@@ -10,7 +10,6 @@ package org.scilab.modules.renderer.subwinDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.textDrawing.StandardTextDrawerGL;
 import org.scilab.modules.renderer.textDrawing.TextAlignementStrategy;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
@@ -22,30 +21,23 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Class drawing ticks for the one axis
  * @author Jean-Baptiste Silvy
  */
-public abstract class TicksDrawerGL extends DrawableObjectGL {
+public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 
 	/** Size in pixel of ticks */
-	public static final double TICKS_PIXEL_LENGTH = 0.04;
+	public static final double TICKS_PIXEL_LENGTH = 0.03;
 	/** Size of subticks compared to ticks */
-	public static final double SUBTICKS_FACTOR = 0.5;
+	public static final double SUBTICKS_FACTOR = 0.6;
 	
 	/** Maximum accpetable value for dot product between axis direction and ticks direction */
 	private static final double MAX_COS = 0.99;
 	
 	/** Distance from labels to axis relative to ticks length */
-	private static final double LABEL_TO_AXIS_DISTANCE = 2.0;
+	private static final double LABEL_TO_AXIS_DISTANCE = 1.5;
 	
 	private double[] ticksPositions;
 	private String[] ticksLabels;
 	private String[] labelsExponents;
 	private double[] subticksPositions;
-	
-	private double xMin;
-	private double xMax;
-	private double yMin;
-	private double yMax;
-	private double zMin;
-	private double zMax;
 	
 	private int lineStyle;
 	private float thickness;
@@ -71,12 +63,6 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		exponentDrawer.setFontColor(1);
 		lineStyle = 0;
 		thickness = 0.0f;
-		xMin = 0.0;
-		xMax = 0.0;
-		yMin = 0.0;
-		yMax = 0.0;
-		zMin = 0.0;
-		zMax = 0.0;
 		lineColor = 0;
 	}
 	
@@ -179,66 +165,6 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
-	 * @return minimium bound on X axis
-	 */
-	protected double getXmin() {
-		return xMin;
-	}
-	
-	/**
-	 * @return maximum bound on X axis
-	 */
-	protected double getXmax() {
-		return xMax;
-	}
-	
-	/**
-	 * @return minimium bound on Y axis
-	 */
-	protected double getYmin() {
-		return yMin;
-	}
-	
-	/**
-	 * @return maximum bound on Y axis
-	 */
-	protected double getYmax() {
-		return yMax;
-	}
-	
-	/**
-	 * @return minimium bound on Z axis
-	 */
-	protected double getZmin() {
-		return zMin;
-	}
-	
-	/**
-	 * @return maximum bound on Z axis
-	 */
-	protected double getZmax() {
-		return zMax;
-	}
-	
-	/**
-	 * Set axes box to know were to draw items.
-	 * @param xMin minimun bounds on X axis.
-	 * @param xMax maximum bounds on X axis.
-	 * @param yMin minimun bounds on Y axis.
-	 * @param yMax maximum bounds on Y axis.
-	 * @param zMin minimun bounds on Z axis.
-	 * @param zMax maximum bounds on Z axis.
-	 */
-	public void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax) {
-		this.xMin = xMin;
-		this.xMax = xMax;
-		this.yMin = yMin;
-		this.yMax = yMax;
-		this.zMin = zMin;
-		this.zMax = zMax;
-	}
-	
-	/**
 	 * Set a new line style for the line.
 	 * @param lineStyle index of the line Style
 	 */
@@ -318,14 +244,6 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		setLineColor(lineColor);
 		setFont(fontType, fontSize);
 		setFontColor(fontColor);
-	}
-	
-	/**
-	 * Display the object by displaying its display list
-	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
-	 */
-	public void show(int parentFigureIndex) {
-		// should not be called
 	}
 	
 	/**
@@ -631,31 +549,6 @@ public abstract class TicksDrawerGL extends DrawableObjectGL {
 		
 	}
 	
-	/**
-	 * Find the height of the bottom facet
-	 * @return Z coordinate of the segment to draw
-	 */
-	protected double findLowerZCoordinate() {
-		GL gl = getGL();
-		
-		// get two point with different Z.
-		Vector3D pointZmin = new Vector3D(getXmin(), getYmin(), getZmin());
-		Vector3D pointZmax = new Vector3D(getXmin(), getYmin(), getZmax());
-		
-		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
-		pointZmin = transform.getCanvasCoordinates(gl, pointZmin);
-		pointZmax = transform.getCanvasCoordinates(gl, pointZmax);
-		
-		if (pointZmax.getY() > pointZmin.getY()) {
-			// standard case Zmax plane is higher than Zmin plane
-			return getZmin();
-		} else {
-			return getZmax();
-		}
-		
-	}
 	
 	/**
 	 * Find the height of the background facet

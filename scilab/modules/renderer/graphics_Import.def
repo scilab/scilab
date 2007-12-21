@@ -89,3 +89,4 @@ sciGetAxesVisible
 ChoixFormatE
 ComputeNbSubTics
 sciGetIs3d
+sciGetGridStyle

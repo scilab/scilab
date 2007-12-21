@@ -13,6 +13,9 @@
 #include "AutomaticTicksComputer.hxx"
 #include "AutoLogTicksComputer.hxx"
 #include "UserDefLogTicksComputer.hxx"
+#include "XGridDrawerJoGL.hxx"
+#include "YGridDrawerJoGL.hxx"
+#include "ZGridDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -47,6 +50,9 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
 
   char logFlags[3];
   sciGetLogFlags(pSubwin, logFlags);
+
+  int xGridStyle;
+  sciGetGridStyle(pSubwin, &xGridStyle, NULL, NULL);
 
   if (!autoTicks[0])
   {
@@ -85,6 +91,22 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
 
+  if (xGridStyle >= 0)
+  {
+    // xgrid enable
+
+    XGridDrawerJoGL * gridDrawer = new XGridDrawerJoGL(m_pDrawer);
+    if (logFlags[0] == 'l')
+    {
+      gridDrawer->setLogMode(true);
+    }
+    else
+    {
+      gridDrawer->setLogMode(false);
+    }
+    newTicksDrawer->setGridDrawer(gridDrawer);
+  }
+
   return newTicksDrawer;
 
 }
@@ -104,6 +126,9 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
 
   char logFlags[3];
   sciGetLogFlags(pSubwin, logFlags);
+
+  int yGridStyle;
+  sciGetGridStyle(pSubwin, NULL, &yGridStyle, NULL);
 
   if (!autoTicks[1])
   {
@@ -142,6 +167,22 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
 
+  if (yGridStyle >= 0)
+  {
+    // ygrid enable
+
+    YGridDrawerJoGL * gridDrawer = new YGridDrawerJoGL(m_pDrawer);
+    if (logFlags[1] == 'l')
+    {
+      gridDrawer->setLogMode(true);
+    }
+    else
+    {
+      gridDrawer->setLogMode(false);
+    }
+    newTicksDrawer->setGridDrawer(gridDrawer);
+  }
+
   return newTicksDrawer;
 }
 /*------------------------------------------------------------------------------------------*/
@@ -166,6 +207,9 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
 
   char logFlags[3];
   sciGetLogFlags(pSubwin, logFlags);
+
+  int zGridStyle;
+  sciGetGridStyle(pSubwin, NULL, NULL, &zGridStyle);
 
   if (!autoTicks[2])
   {
@@ -202,6 +246,22 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
     sciGetDataBounds(pSubwin, bounds);
     ticksComputer->setAxisBounds(bounds[4], bounds[5]);
     newTicksDrawer->setTicksComputer(ticksComputer);
+  }
+
+  if (zGridStyle >= 0)
+  {
+    // ygrid enable
+
+    ZGridDrawerJoGL * gridDrawer = new ZGridDrawerJoGL(m_pDrawer);
+    if (logFlags[2] == 'l')
+    {
+      gridDrawer->setLogMode(true);
+    }
+    else
+    {
+      gridDrawer->setLogMode(false);
+    }
+    newTicksDrawer->setGridDrawer(gridDrawer);
   }
 
   return newTicksDrawer;

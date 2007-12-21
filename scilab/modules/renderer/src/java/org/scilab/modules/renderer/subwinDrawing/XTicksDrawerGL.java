@@ -8,9 +8,6 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
-import javax.media.opengl.GL;
-
-import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 
@@ -25,51 +22,6 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 	 */
 	public XTicksDrawerGL() {
 		super();
-	}
-	
-	
-	
-	
-	/**
-	 * Compute the Y coordinate of the X axis segment
-	 * Select the one wich is in front of the camera
-	 * @param zCoordinate Z coordinate of the X axis segment already computed by findZCoordinate
-	 * @return Y coordinate of the segment to draw
-	 */
-	protected double findFrontYCoordinate(double zCoordinate) {
-		GL gl = getGL();
-		
-		return findFrontYCoordinate(gl, zCoordinate, getXmin(), getYmin(), getYmax());
-		
-	}
-	
-	/**
-	 * Compute the Y coordinate of the X axis segment
-	 * Select the one wich is in front of the camera
-	 * @param gl current GL pipeline
-	 * @param zCoordinate Z coordinate of the X axis segment
-	 * @param xMin mimimum bounds on X axis
-	 * @param yMin minimum bounds on Y axis
-	 * @param yMax maximum bounds on Y axis
-	 * @return Y coordinate of the segment to draw
-	 */
-	protected static double findFrontYCoordinate(GL gl, double zCoordinate, double xMin, double yMin, double yMax) {
-		// same processus as for Z coordinate
-		Vector3D pointYmin = new Vector3D(xMin, yMin, zCoordinate);
-		Vector3D pointYmax = new Vector3D(xMin, yMax, zCoordinate);
-		
-		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
-		pointYmin = transform.getCanvasCoordinates(gl, pointYmin);
-		pointYmax = transform.getCanvasCoordinates(gl, pointYmax);
-		
-		// get the lowest one
-		if (pointYmax.getY() > pointYmin.getY()) {
-			return yMin;
-		} else {
-			return yMax;
-		}
 	}
 	
 	/**

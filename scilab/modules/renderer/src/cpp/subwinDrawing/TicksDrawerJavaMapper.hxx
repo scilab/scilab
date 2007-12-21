@@ -2,7 +2,7 @@
 /* file: TicksDrawerJavaMapper.hxx                                        */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing java methods needed by TicksDrawer             */
+/* desc : Class containing java methods needed by TicksDrawerJoGL         */
 /*------------------------------------------------------------------------*/
 
 #ifndef _TICKS_DRAWER_JAVA_MAPPER_HXX_
@@ -15,8 +15,8 @@ namespace sciGraphics
 {
 
 /**
-* Contains mapping of java method used by HalfBoxDrawerJoGL 
-*/
+ * Contains mapping of java method used by TicksDrawerJoGL 
+ */
 class TicksDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:

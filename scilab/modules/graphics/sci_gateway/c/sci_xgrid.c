@@ -18,7 +18,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xgrid(char *fname,unsigned long fname_len)
 {
-  integer style = 1,m1,n1,l1;
+  integer style = 0,m1,n1,l1;
   int status = 0 ;
   CheckRhs(-1,1);
   if (Rhs == 1) {
@@ -30,7 +30,7 @@ int sci_xgrid(char *fname,unsigned long fname_len)
   status = sciSetGridStyle( sciGetCurrentSubWin(), style, style, style ) ;
   if ( status == 0 )
   {
-    sciDrawObj( sciGetCurrentFigure() ) ;
+    sciDrawObj( sciGetCurrentSubWin() ) ;
   }
 
   return status ;

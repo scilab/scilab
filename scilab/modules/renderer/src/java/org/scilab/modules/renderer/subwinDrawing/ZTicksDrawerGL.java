@@ -8,9 +8,6 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
-import javax.media.opengl.GL;
-
-import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -50,7 +47,6 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 	 * @return direction in which to draw the ticks
 	 */
 	public Vector3D findTicksDirection(double xCoordinate, double yCoordinate) {
-		GL gl = getGL();
 		Vector3D res;
 		
 		// we must find wether Z axis ticks are directed by X axis or Y axis
@@ -60,14 +56,11 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 		
 		// get the three coordinates of the edge whuch is common for X and Y axis in default mode
 		double zCoordFront = findLowerZCoordinate();
-		double xCoordFront = YTicksDrawerGL.findFrontXCoordinate(gl, zCoordFront, getXmin(), getXmax(), getYmin());
-		double yCoordFront = XTicksDrawerGL.findFrontYCoordinate(gl, zCoordFront, getXmin(), getYmin(), getYmax());
 		
-		// find if Z axis has a common edge with X axis or Z axis.
-		if (xCoordinate == xCoordFront) {
-			res = new Vector3D(0.0, yCoordinate - yCoordFront, 0.0);
+		if (isSharingEndWithXaxis(zCoordFront, xCoordinate)) {
+			res = new Vector3D(xCoordinate - findFrontXCoordinate(zCoordFront), 0.0, 0.0);
 		} else {
-			res = new Vector3D(xCoordinate - xCoordFront, 0.0, 0.0);
+			res = new Vector3D(0.0, yCoordinate - findFrontYCoordinate(zCoordFront), 0.0);
 		}
 		
 		return setTicksDirectionLength(res);
@@ -123,8 +116,8 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 	 * @return true if ticks can be displayed or false if we need to reduc number of ticks.
 	 */
 	public boolean checkTicks() {
-		double yCoordinate = findYCoordinate();
-		double xCoordinate = findXCoordinate();
+		double yCoordinate = findLeftMostYCoordinate();
+		double xCoordinate = findLeftMostXCoordinate();
 		
 		Vector3D[] ticksPosition = getTicksPositions(xCoordinate, yCoordinate);
 		Vector3D ticksDirection = findTicksDirection(xCoordinate, yCoordinate);
@@ -136,8 +129,8 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 	 * Draw ticks from the recorded data.
 	 */
 	public void drawTicks() {
-		double yCoordinate = findYCoordinate();
-		double xCoordinate = findXCoordinate();
+		double yCoordinate = findLeftMostYCoordinate();
+		double xCoordinate = findLeftMostXCoordinate();
 		
 		Vector3D[] ticksPosition = getTicksPositions(xCoordinate, yCoordinate);
 		Vector3D[] subticksPosition = getSubTicksPositions(xCoordinate, yCoordinate);
@@ -148,57 +141,6 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 		
 		drawLabels(ticksPosition, ticksDirection);
 
-	}
-	
-	/**
-	 * Find the X coordinate of the Z axis segment.
-	 * Z axis segment is always displayed on the left of the box.
-	 * @return X coordinate of the segment to draw
-	 */
-	public double findXCoordinate() {
-		GL gl = getGL();
-		
-		// same processus as for Z coordinate
-		Vector3D pointXmin = new Vector3D(getXmin(), getYmin(), getZmin());
-		Vector3D pointXmax = new Vector3D(getXmax(), getYmin(), getZmin());
-		
-		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
-		pointXmin = transform.getCanvasCoordinates(gl, pointXmin);
-		pointXmax = transform.getCanvasCoordinates(gl, pointXmax);
-		
-		// get the one which is most on the right
-		if (pointXmax.getX() > pointXmin.getX()) {
-			return getXmin();
-		} else {
-			return getXmax();
-		}
-	}
-	
-	/**
-	 * Compute the Y coordinate of the Z axis segment
-	 * @return Y coordinate of the segment to draw
-	 */
-	public double findYCoordinate() {
-		GL gl = getGL();
-		
-		// same processus as for Z coordinate
-		Vector3D pointYmin = new Vector3D(getXmin(), getYmin(), getZmin());
-		Vector3D pointYmax = new Vector3D(getXmin(), getYmax(), getZmin());
-		
-		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
-		pointYmin = transform.getCanvasCoordinates(gl, pointYmin);
-		pointYmax = transform.getCanvasCoordinates(gl, pointYmax);
-		
-		// get the one which is most on the left
-		if (pointYmax.getX() > pointYmin.getX()) {
-			return getYmin();
-		} else {
-			return getYmax();
-		}
 	}
 
 }

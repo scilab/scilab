@@ -11,6 +11,7 @@
 #include "../DrawableObjectBridge.h"
 #include "ComputeTicksStrategy.hxx"
 #include "DrawableSubwin.h"
+#include "GridDrawer.hxx"
 
 namespace sciGraphics
 {
@@ -24,6 +25,8 @@ public:
   virtual ~TicksDrawer(void);
 
   void setTicksComputer(ComputeTicksStrategy * ticksComputer);
+
+  void setGridDrawer(GridDrawer * gridDrawer);
 
   /**
    * Main function which draw ticks.
@@ -58,6 +61,8 @@ protected:
   ComputeTicksStrategy * m_pTicksComputer;
 
   DrawableSubwin * m_pSubwin;
+
+  GridDrawer * m_pGridDrawer;
   /*----------------------------------------------------------------------*/
 };
 

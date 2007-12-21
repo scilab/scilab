@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: TicksDrawerJoGL.cpp                                              */
+/* file: TicksDrawerJoGL.hxx                                              */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
 /* desc : Class specialized in drawing ticks using JoGL                   */

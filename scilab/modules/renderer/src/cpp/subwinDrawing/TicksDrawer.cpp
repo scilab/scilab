@@ -21,15 +21,13 @@ TicksDrawer::TicksDrawer(DrawableSubwin * subwin)
 {
   m_pSubwin = subwin;
   m_pTicksComputer = NULL;
+  m_pGridDrawer = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawer::~TicksDrawer(void)
 {
-  if (m_pTicksComputer != NULL)
-  {
-    delete m_pTicksComputer;
-    m_pTicksComputer = NULL;
-  }
+  setTicksComputer(NULL);
+  setGridDrawer(NULL);
   m_pSubwin = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
@@ -40,6 +38,15 @@ void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
     delete m_pTicksComputer;
   }
   m_pTicksComputer = ticksComputer;
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawer::setGridDrawer(GridDrawer * gridDrawer)
+{
+  if (m_pGridDrawer != NULL)
+  {
+    delete m_pGridDrawer;
+  }
+  m_pGridDrawer = gridDrawer;
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::draw(void)
@@ -103,6 +110,12 @@ void TicksDrawer::drawTicks(void)
 
   // everything is computed so draw!!!
   drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
+
+  // draw grid
+  if (m_pGridDrawer != NULL)
+  {
+    m_pGridDrawer->draw(ticksPos, nbTicks, subticksPos, nbSubticks);
+  }
 
   // clear used data
   if (m_pTicksComputer->isDisplayingLabelsExponents())

@@ -3746,15 +3746,12 @@ void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zSty
   switch ( sciGetEntityType (pObj) )
   {
   case SCI_SUBWIN:
-    *xStyle = pSUBWIN_FEATURE(pObj)->grid[0] ;
-    *yStyle = pSUBWIN_FEATURE(pObj)->grid[1] ;
-    *zStyle = pSUBWIN_FEATURE(pObj)->grid[2] ;
+    if (xStyle != NULL) {*xStyle = pSUBWIN_FEATURE(pObj)->grid[0];}
+    if (yStyle != NULL) {*yStyle = pSUBWIN_FEATURE(pObj)->grid[1];}
+    if (zStyle != NULL) {*zStyle = pSUBWIN_FEATURE(pObj)->grid[2];}
     break ;
   default:
     printSetGetErrorMessage("grid");
-    *xStyle = -1 ;
-    *yStyle = -1 ;
-    *zStyle = -1 ;
   }
 }
 /*----------------------------------------------------------------------------------*/

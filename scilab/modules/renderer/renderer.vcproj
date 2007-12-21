@@ -582,6 +582,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\GridDrawer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\GridDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\HalfBoxDrawerGL.cpp"
 					>
 				</File>
@@ -678,11 +686,47 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\XGridDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.cpp"
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\YGridDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YGridDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YGridDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\YTicksDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\ZGridDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZGridDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZGridDrawerJoGL.cpp"
 					>
 				</File>
 				<File
@@ -1344,6 +1388,18 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\GridDrawer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\GridDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\GridDrawerJoGL.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\HalfBoxDrawerGL.hxx"
 					>
 				</File>
@@ -1444,7 +1500,31 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\XGridDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJoGL.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YGridDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YGridDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YGridDrawerJoGL.hxx"
 					>
 				</File>
 				<File
@@ -1452,11 +1532,23 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\ZGridDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZGridDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZGridDrawerJoGL.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\ZTicksDrawerGL.hxx"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\ZTicksDRawerJavaMapper.hxx"
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File

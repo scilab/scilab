@@ -65,7 +65,6 @@ void TicksDrawerJoGL::initializeDrawing(void)
   DrawableObjectJoGL::initializeDrawing();
 
   // also set axis drawing parameters
-  
   sciPointObj * pSubwin = m_pSubwin->getDrawedObject();
 
   // set axes bounds
@@ -80,21 +79,38 @@ void TicksDrawerJoGL::initializeDrawing(void)
                                                  sciGetFontStyle(pSubwin),
                                                  sciGetFontSize(pSubwin),
                                                  sciGetFontContext(pSubwin)->foregroundcolor);
+
+  if (m_pGridDrawer != NULL)
+  {
+    m_pGridDrawer->initializeDrawing();
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawerJoGL::endDrawing(void)
 {
   DrawableObjectJoGL::endDrawing();
+  if (m_pGridDrawer != NULL)
+  {
+    m_pGridDrawer->endDrawing();
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawerJoGL::initializeShowing(void)
 {
   DrawableObjectJoGL::initializeDrawing();
+  if (m_pGridDrawer != NULL)
+  {
+    m_pGridDrawer->initializeShowing();
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawerJoGL::endShowing(void)
 {
   DrawableObjectJoGL::endDrawing();
+  if (m_pGridDrawer != NULL)
+  {
+    m_pGridDrawer->endShowing();
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawerJavaMapper * TicksDrawerJoGL::getTicksDrawerJavaMapper(void)
