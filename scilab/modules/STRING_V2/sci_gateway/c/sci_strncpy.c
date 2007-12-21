@@ -52,18 +52,19 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 				Scierror(999,_("%s : Memory allocation error.\n"),fname);
 				return 0;
 			}
-
 			
-			for(j = 0; j < m2n2;j++)
+			if ( ((m1 == m2) && (n1 == n2)) || (m2n2 == 1) )
 			{
-				int len = (int)strlen(InputString_Parameter1[j]);
-				if ( len < InputLength_Parameter2[j] ) InputLength_Parameter2_checked[j] = len;
-				else
+				for(j = 0; j < m2n2;j++)
 				{
-					if ( InputLength_Parameter2[j] < 0 ) InputLength_Parameter2_checked[j] = 0;
-					else InputLength_Parameter2_checked[j] = (int)InputLength_Parameter2[j];
+					int len = (int)strlen(InputString_Parameter1[j]);
+					if ( len < InputLength_Parameter2[j] ) InputLength_Parameter2_checked[j] = len;
+					else
+					{
+						if ( InputLength_Parameter2[j] < 0 ) InputLength_Parameter2_checked[j] = 0;
+						else InputLength_Parameter2_checked[j] = (int)InputLength_Parameter2[j];
+					}
 				}
-
 			}
 		}
 

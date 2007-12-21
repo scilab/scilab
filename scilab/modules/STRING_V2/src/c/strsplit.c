@@ -11,23 +11,6 @@ void strsplit(char **Input_StringMatrix,char **Output_StringMatrix,int *Row_Two,
 	int x = 0;
 	int i=0;
 	int l;
-	/*To loop on every string of the input matrix*/
-	//for (x = 0; x < (int)strlen(Input_StringMatrix[0]) ; x++)
-	//{
-	//	/* To put them in the correct order */
-	//	if (x != Input_IntMatrix[*Row_Pointer_Two]) 
-	//	{
-	//		Output_StringMatrix[*Row_Pointer][(*Col_Pointer)++] = Input_StringMatrix[0][x];
-	//	}
-	//	else 
-	//	{
-	//		(*Row_Pointer)++;
-	//		(*Row_Pointer_Two)++;
-	//		*Col_Pointer=0;
-	//		Output_StringMatrix[*Row_Pointer][(*Col_Pointer)++] = Input_StringMatrix[0][x];
-	//	}
- //       Output_StringMatrix[*Row_Pointer][*Col_Pointer]=0;
-	//}
 	strncpy(Output_StringMatrix[0],Input_StringMatrix[0],Input_IntMatrix[0]);
     for (x = 1; x <= (int)strlen(Input_IntMatrix)+1 ; x++)
 	{
