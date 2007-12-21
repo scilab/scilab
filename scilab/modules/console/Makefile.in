@@ -1017,6 +1017,7 @@ all-local: $(TARGETS_ALL)
 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 	fi )
 install-html-local:
+	echo "-- Install of htm help files --"; \
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	 if test -d $$dir; then \

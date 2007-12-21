@@ -1605,6 +1605,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 @TCLTK_TRUE@	fi )
 @TCLTK_TRUE@install-html-local:
+@TCLTK_TRUE@	echo "-- Install of htm help files --"; \
 @TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 @TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
 @TCLTK_TRUE@	 if test -d $$dir; then \
@@ -1757,6 +1758,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 @TCLTK_FALSE@	fi )
 @TCLTK_FALSE@install-html-local:
+@TCLTK_FALSE@	echo "-- Install of htm help files --"; \
 @TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 @TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
 @TCLTK_FALSE@	 if test -d $$dir; then \

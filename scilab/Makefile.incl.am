@@ -116,6 +116,7 @@ DOCMASK = *.htm
 # What is the mask of the help source
 DOCMASKXML = *.xml
 install-html-local:
+	echo "-- Install of htm help files --"; \
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	 if test -d $$dir; then \
