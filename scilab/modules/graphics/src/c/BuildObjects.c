@@ -2732,6 +2732,9 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
   pUIMENU_FEATURE (pobj)->CallbackType=0;
   pUIMENU_FEATURE (pobj)->Enable=TRUE;
 
+  /* Initialize the tag */
+  /* NULL value is displayed as "" in tag getter */
+  pUIMENU_FEATURE (pobj)->tag = NULL;
 
   /* add the handle in the handle list */
   if ( sciAddNewHandle(pobj) == -1 )
