@@ -38,7 +38,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 138
+#define NB_PROPERTIES 140
 
 /**
 * list of all property names and associated functions in scilab
@@ -182,6 +182,8 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "min"                 , SetUicontrolMin                   },
   { "max"                 , SetUicontrolMax                   },
   { "tag"                 , SetUiobjectTag                    },
+  { "listboxtop"          , SetUicontrolListboxTop            },
+  { "value"               , SetUicontrolValue                 },
   { "units"               , SetUicontrolUnits                 }
 } ;
 

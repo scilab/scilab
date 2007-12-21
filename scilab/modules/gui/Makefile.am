@@ -57,6 +57,10 @@ src/cpp/SetUicontrolMin.cpp \
 src/cpp/GetUicontrolMin.cpp \
 src/cpp/SetUicontrolMax.cpp \
 src/cpp/GetUicontrolMax.cpp \
+src/cpp/SetUicontrolValue.cpp \
+src/cpp/GetUicontrolValue.cpp \
+src/cpp/SetUicontrolListboxTop.cpp \
+src/cpp/GetUicontrolListboxTop.cpp \
 src/cpp/SetUicontrolUnits.cpp \
 src/cpp/GetUicontrolUnits.cpp
 

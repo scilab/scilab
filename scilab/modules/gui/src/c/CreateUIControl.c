@@ -44,6 +44,14 @@ sciPointObj * CreateUIControl(char *style)
   /* The getter for tag returns "" is tag is NULL */
   pUICONTROL_FEATURE (pobj)->tag = NULL;
 
+  /* Value is set to NULL as default */
+  pUICONTROL_FEATURE (pobj)->value = NULL;
+  pUICONTROL_FEATURE (pobj)->valueSize = 0;
+
+  /* ListboxTop is set to NULL as default */
+  /* The getter for ListboxTop returns [] is ListboxTop is NULL */
+  pUICONTROL_FEATURE (pobj)->listboxTop = NULL;
+
   /* Min/Max default values */
   pUICONTROL_FEATURE (pobj)->max = 1;
   pUICONTROL_FEATURE (pobj)->min = 0;
@@ -57,33 +65,6 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE(pobj)->units = POINTS_UNITS;
 
   sciStandardBuildOperations(pobj, NULL);
-  /* add the handle in the handle list */
-/*   if ( sciAddNewHandle(pobj) == -1 ) */
-/*     { */
-/*       FREE( pobj->pfeatures ) ; */
-/*       FREE( pobj ) ; */
-/*       return NULL ; */
-/*     } */
-
-/*   /\* no sons for now *\/ */
-/*   sciInitSelectedSons( pobj ) ; */
-      
-/*   sciGetRelationship(pobj)->psons        = NULL ; */
-/*   sciGetRelationship(pobj)->plastsons    = NULL ; */
-/*   sciGetRelationship(pobj)->pSelectedSon = NULL ; */
-      
-/*   sciInitVisibility( pobj, TRUE ) ; */
-      
-/*   sciGetPointerToUserData( pobj, &userData, &udSize ) ; */
-/*   *userData = NULL ; */
-/*   *udSize   = 0    ; */
-      
-      
-/*   //pobj->pObservers = DoublyLinkedList_new() ; */
-/*   //createDrawingObserver( pobj ) ; */
-      
-      
-/*   pobj->pDrawer = NULL ; */
       
   /* Default Style is PushButton */
   if (style == NULL || strcmp(style,"pushbutton")==0)

@@ -136,8 +136,11 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/GetUiobjectCallback.cpp src/cpp/SetUiobjectTag.cpp \
 	src/cpp/GetUiobjectTag.cpp src/cpp/SetUicontrolMin.cpp \
 	src/cpp/GetUicontrolMin.cpp src/cpp/SetUicontrolMax.cpp \
-	src/cpp/GetUicontrolMax.cpp src/cpp/SetUicontrolUnits.cpp \
-	src/cpp/GetUicontrolUnits.cpp
+	src/cpp/GetUicontrolMax.cpp src/cpp/SetUicontrolValue.cpp \
+	src/cpp/GetUicontrolValue.cpp \
+	src/cpp/SetUicontrolListboxTop.cpp \
+	src/cpp/GetUicontrolListboxTop.cpp \
+	src/cpp/SetUicontrolUnits.cpp src/cpp/GetUicontrolUnits.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -207,6 +210,10 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-GetUicontrolMin.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolMax.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolMax.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolValue.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolValue.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolListboxTop.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolListboxTop.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolUnits.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolUnits.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -424,7 +431,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C) 
-####ï¿½and Linux/Unix
+#### and Linux/Unix
 #######################################################################
 TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
@@ -441,17 +448,10 @@ SUFFIXES = .sci
 
 # Where it should be installed
 pkgdocdir = $(mydatadir)
-
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
 DOCMASK = *.htm
-
-# Which directories we have to install
-DOCIMGDIRS = help/images
-# What is the mask of the help images
-DOCIMGMASK = *
-
 # What is the mask of the help source
 DOCMASKXML = *.xml
 
@@ -530,6 +530,10 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetUicontrolMin.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolMax.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolMax.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolValue.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolValue.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolListboxTop.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolListboxTop.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolUnits.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolUnits.cpp
 
@@ -731,12 +735,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontSize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontWeight.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolListboxTop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolMax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolMin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolPosition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolStyle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolUnits.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUimenuLabel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Plo@am__quote@
@@ -751,12 +757,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontSize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontWeight.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolListboxTop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolMax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolMin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolParent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolPosition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolUnits.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUimenuLabel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Plo@am__quote@
@@ -1334,6 +1342,34 @@ libscigui_la-GetUicontrolMax.lo: src/cpp/GetUicontrolMax.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolMax.lo `test -f 'src/cpp/GetUicontrolMax.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolMax.cpp
 
+libscigui_la-SetUicontrolValue.lo: src/cpp/SetUicontrolValue.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolValue.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolValue.Tpo -c -o libscigui_la-SetUicontrolValue.lo `test -f 'src/cpp/SetUicontrolValue.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolValue.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolValue.Tpo $(DEPDIR)/libscigui_la-SetUicontrolValue.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolValue.cpp' object='libscigui_la-SetUicontrolValue.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolValue.lo `test -f 'src/cpp/SetUicontrolValue.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolValue.cpp
+
+libscigui_la-GetUicontrolValue.lo: src/cpp/GetUicontrolValue.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolValue.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolValue.Tpo -c -o libscigui_la-GetUicontrolValue.lo `test -f 'src/cpp/GetUicontrolValue.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolValue.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolValue.Tpo $(DEPDIR)/libscigui_la-GetUicontrolValue.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolValue.cpp' object='libscigui_la-GetUicontrolValue.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolValue.lo `test -f 'src/cpp/GetUicontrolValue.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolValue.cpp
+
+libscigui_la-SetUicontrolListboxTop.lo: src/cpp/SetUicontrolListboxTop.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolListboxTop.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolListboxTop.Tpo -c -o libscigui_la-SetUicontrolListboxTop.lo `test -f 'src/cpp/SetUicontrolListboxTop.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolListboxTop.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolListboxTop.Tpo $(DEPDIR)/libscigui_la-SetUicontrolListboxTop.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolListboxTop.cpp' object='libscigui_la-SetUicontrolListboxTop.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolListboxTop.lo `test -f 'src/cpp/SetUicontrolListboxTop.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolListboxTop.cpp
+
+libscigui_la-GetUicontrolListboxTop.lo: src/cpp/GetUicontrolListboxTop.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolListboxTop.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolListboxTop.Tpo -c -o libscigui_la-GetUicontrolListboxTop.lo `test -f 'src/cpp/GetUicontrolListboxTop.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolListboxTop.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolListboxTop.Tpo $(DEPDIR)/libscigui_la-GetUicontrolListboxTop.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolListboxTop.cpp' object='libscigui_la-GetUicontrolListboxTop.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolListboxTop.lo `test -f 'src/cpp/GetUicontrolListboxTop.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolListboxTop.cpp
+
 libscigui_la-SetUicontrolUnits.lo: src/cpp/SetUicontrolUnits.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolUnits.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolUnits.Tpo -c -o libscigui_la-SetUicontrolUnits.lo `test -f 'src/cpp/SetUicontrolUnits.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolUnits.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolUnits.Tpo $(DEPDIR)/libscigui_la-SetUicontrolUnits.Plo
@@ -1725,9 +1761,7 @@ all-local: $(TARGETS_ALL)
 	echo "Creating $@"; \
 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 	fi )
-
 install-html-local:
-	echo "-- Install of htm help files --"; \
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	 if test -d $$dir; then \
@@ -1740,20 +1774,6 @@ install-html-local:
 		fi; \
 	 fi; \
 	done
-	echo "-- Install of images help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCIMGDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	 fi; \
-	done
-
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@	 if test -d $$dir; then \

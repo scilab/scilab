@@ -705,21 +705,29 @@ typedef struct
   int * user_data;
   int size_of_user_data;
 
+  /* Index in the java UIElementMapper */
   int hashMapIndex;
 
-  /* UICONTROL STYLE: Must be a value from UicontrolStyle enum */
+  /* ListboxTop property */
+  int * listboxTop;
+
+  /* Value property */
+  int * value;
+  int valueSize;
+
+  /* Style property: Must be a value from UicontrolStyle enum */
   int style;
 
-  /* UICONTROL FONTANGLE: Must be a value from UicontrolFontProperties enum */
+  /* FontAngle property: Must be a value from UicontrolFontProperties enum */
   int fontAngle;
 
-  /* UICONTROL FONTWEIGHT: Must be a value from UicontrolFontProperties enum */
+  /* FontWeight property: Must be a value from UicontrolFontProperties enum */
   int fontWeight;
 
-  /* UICONTROL FONTUNITS: Must be a value from UicontrolUnits enum */
+  /* FontUnits property: Must be a value from UicontrolUnits enum */
   int fontUnits;
 
-  /* UICONTROL UNITS: Must be a value from UicontrolUnits enum */
+  /* Units property: Must be a value from UicontrolUnits enum */
   int units;
 
   int min;

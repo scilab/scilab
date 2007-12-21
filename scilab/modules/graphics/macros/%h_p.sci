@@ -701,6 +701,8 @@ function %h_p(h)
   "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
   "Max = "+sci2exp(h.max)
   "Min = "+sci2exp(h.min)
+  "ListboxTop = "+sci2exp(h.listboxtop,0)
+  "Value = "+sci2exp(h.value,0)
   "Position = "+sci2exp(h.position,0)
   "String = "+h.string
   "Style = "+h.style

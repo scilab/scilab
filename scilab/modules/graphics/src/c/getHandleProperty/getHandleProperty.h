@@ -27,6 +27,8 @@
 #include "GetUicontrolMin.h"
 #include "GetUicontrolMax.h"
 #include "GetUicontrolUnits.h"
+#include "GetUicontrolListboxTop.h"
+#include "GetUicontrolValue.h"
 
 int get_figures_id_property(           sciPointObj * pobj ) ;
 int get_visible_property(              sciPointObj * pobj ) ;
