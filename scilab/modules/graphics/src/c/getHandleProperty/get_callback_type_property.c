@@ -15,34 +15,20 @@
 /*------------------------------------------------------------------------*/
 int get_callback_type_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_UIMENU)
+  int type = 0;
+
+  if (sciGetEntityType (pobj) == SCI_UIMENU || sciGetEntityType (pobj) == SCI_UICONTROL)
     {
-      switch (pUIMENU_FEATURE(pobj)->CallbackType)
+      if(sciGetEntityType (pobj) == SCI_UIMENU)
         {
-        case -1:
-          return sciReturnString( "disabled" ) ;
-          break;
-        case 0:
-          return sciReturnString( "string" ) ;
-          break;
-        case 1:
-          return sciReturnString( "C" ) ;
-          break;
-        case 2:
-          return sciReturnString( "internal" ) ;
-          break;
-        case 3:
-          return sciReturnString( "addmenu" ) ;
-          break;
-        default:
-          sciprint("unknow callbak type\n");
-          return -1;
-          break;
+          type = pUIMENU_FEATURE(pobj)->CallbackType;
         }
-    }
-  else if (sciGetEntityType (pobj) != SCI_UICONTROL)
-    {
-      switch (pUICONTROL_FEATURE(pobj)->CallbackType)
+      else
+        {
+          type = pUICONTROL_FEATURE(pobj)->CallbackType;
+        }
+      
+      switch (type)
         {
         case -1:
           return sciReturnString( "disabled" ) ;
@@ -60,7 +46,7 @@ int get_callback_type_property( sciPointObj * pobj )
           return sciReturnString( "addmenu" ) ;
           break;
         default:
-          sciprint("unknow callbak type\n");
+          sciprint("Unknown callback type\n");
           return -1;
           break;
         }
