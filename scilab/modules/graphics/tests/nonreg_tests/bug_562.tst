@@ -1,4 +1,5 @@
 // <-- INTERACTIVE TEST -->
+// <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 562 -->
 //
