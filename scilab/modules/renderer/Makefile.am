@@ -184,7 +184,18 @@ src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp \
 src/jni/ZTicksDrawerGL.cpp \
 src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp
+src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp \
+src/jni/XGridDrawerGL.cpp \
+src/jni/YGridDrawerGL.cpp \
+src/jni/ZGridDrawerGL.cpp \
+src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
+src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
+src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/GridDrawer.cpp \
+src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
+src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c

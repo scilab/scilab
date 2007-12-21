@@ -254,6 +254,16 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/jni/ZTicksDrawerGL.cpp \
 	src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp \
 	src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp \
+	src/jni/XGridDrawerGL.cpp src/jni/YGridDrawerGL.cpp \
+	src/jni/ZGridDrawerGL.cpp \
+	src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
+	src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
+	src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/GridDrawer.cpp \
+	src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp \
+	src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
+	src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -432,7 +442,18 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-LeftYTicksDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-ZTicksDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-ZTicksDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-ZTicksDrawerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-ZTicksDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-XGridDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-YGridDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-ZGridDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-GridDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-YGridDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-XGridDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-GridDrawer.lo \
+@GUI_TRUE@	libscirenderer_la-YGridDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-ZGridDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-XGridDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-ZGridDrawerJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -816,7 +837,18 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp \
 @GUI_TRUE@src/jni/ZTicksDrawerGL.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp
+@GUI_TRUE@src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp \
+@GUI_TRUE@src/jni/XGridDrawerGL.cpp \
+@GUI_TRUE@src/jni/YGridDrawerGL.cpp \
+@GUI_TRUE@src/jni/ZGridDrawerGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/GridDrawer.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
 
 
 # List of the gateway c files
@@ -1127,6 +1159,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HalfBoxDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HalfBoxDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HalfBoxDrawerJoGL.Plo@am__quote@
@@ -1193,8 +1227,17 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YTicksDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZGridDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZGridDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZTicksDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZTicksDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZTicksDrawerJoGL.Plo@am__quote@
@@ -2503,6 +2546,83 @@ libscirenderer_la-ZTicksDrawerJoGL.lo: src/cpp/subwinDrawing/ZTicksDrawerJoGL.cp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp' object='libscirenderer_la-ZTicksDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZTicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp
+
+libscirenderer_la-XGridDrawerGL.lo: src/jni/XGridDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XGridDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XGridDrawerGL.Tpo -c -o libscirenderer_la-XGridDrawerGL.lo `test -f 'src/jni/XGridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/XGridDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XGridDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-XGridDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XGridDrawerGL.cpp' object='libscirenderer_la-XGridDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XGridDrawerGL.lo `test -f 'src/jni/XGridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/XGridDrawerGL.cpp
+
+libscirenderer_la-YGridDrawerGL.lo: src/jni/YGridDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YGridDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YGridDrawerGL.Tpo -c -o libscirenderer_la-YGridDrawerGL.lo `test -f 'src/jni/YGridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/YGridDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YGridDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-YGridDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/YGridDrawerGL.cpp' object='libscirenderer_la-YGridDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YGridDrawerGL.lo `test -f 'src/jni/YGridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/YGridDrawerGL.cpp
+
+libscirenderer_la-ZGridDrawerGL.lo: src/jni/ZGridDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZGridDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZGridDrawerGL.Tpo -c -o libscirenderer_la-ZGridDrawerGL.lo `test -f 'src/jni/ZGridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ZGridDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ZGridDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-ZGridDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ZGridDrawerGL.cpp' object='libscirenderer_la-ZGridDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZGridDrawerGL.lo `test -f 'src/jni/ZGridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ZGridDrawerGL.cpp
+
+libscirenderer_la-GridDrawerJoGL.lo: src/cpp/subwinDrawing/GridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Tpo -c -o libscirenderer_la-GridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/GridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/GridDrawerJoGL.cpp' object='libscirenderer_la-GridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/GridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawerJoGL.cpp
+
+libscirenderer_la-YGridDrawerJoGL.lo: src/cpp/subwinDrawing/YGridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YGridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Tpo -c -o libscirenderer_la-YGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/YGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YGridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/YGridDrawerJoGL.cpp' object='libscirenderer_la-YGridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/YGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YGridDrawerJoGL.cpp
+
+libscirenderer_la-XGridDrawerJavaMapper.lo: src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XGridDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XGridDrawerJavaMapper.Tpo -c -o libscirenderer_la-XGridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XGridDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-XGridDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp' object='libscirenderer_la-XGridDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XGridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp
+
+libscirenderer_la-GridDrawer.lo: src/cpp/subwinDrawing/GridDrawer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GridDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GridDrawer.Tpo -c -o libscirenderer_la-GridDrawer.lo `test -f 'src/cpp/subwinDrawing/GridDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-GridDrawer.Tpo $(DEPDIR)/libscirenderer_la-GridDrawer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/GridDrawer.cpp' object='libscirenderer_la-GridDrawer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawer.lo `test -f 'src/cpp/subwinDrawing/GridDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawer.cpp
+
+libscirenderer_la-YGridDrawerJavaMapper.lo: src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YGridDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YGridDrawerJavaMapper.Tpo -c -o libscirenderer_la-YGridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YGridDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-YGridDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp' object='libscirenderer_la-YGridDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YGridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp
+
+libscirenderer_la-ZGridDrawerJavaMapper.lo: src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZGridDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZGridDrawerJavaMapper.Tpo -c -o libscirenderer_la-ZGridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ZGridDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-ZGridDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp' object='libscirenderer_la-ZGridDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZGridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp
+
+libscirenderer_la-XGridDrawerJoGL.lo: src/cpp/subwinDrawing/XGridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XGridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Tpo -c -o libscirenderer_la-XGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/XGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XGridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/XGridDrawerJoGL.cpp' object='libscirenderer_la-XGridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/XGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XGridDrawerJoGL.cpp
+
+libscirenderer_la-ZGridDrawerJoGL.lo: src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZGridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Tpo -c -o libscirenderer_la-ZGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' object='libscirenderer_la-ZGridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
