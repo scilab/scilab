@@ -111,21 +111,19 @@ public final class Jxgetmouse {
 		if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
 			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
 				keyChar = keyEvent.getKeyChar(); 
-			}
-			else {
+			} else {
 				if (keyEvent.isShiftDown()) {
 					keyChar = keyEvent.getKeyCode();
-				}
-				else {
+				} else {
 					keyChar = Character.toLowerCase(keyEvent.getKeyCode());
 				}
 			}
 			isControlDown = ((KeyEvent) keyEvent).isControlDown();
-		}
-		/*
-		 * Now we have have to be sure we are in a Canvas.
-		 */
-		else if (keyEvent.getSource() instanceof SwingScilabCanvas) {
+		} else if (keyEvent.getSource() instanceof SwingScilabCanvas) {
+			/*
+			 * Now we have have to be sure we are in a Canvas.
+			 */
+			
 			/*
 			 * If a RELEASED is seen use -keyChar
 			 */
@@ -133,11 +131,10 @@ public final class Jxgetmouse {
 				if (GlobalEventWatcher.isActivated()) {
 					GlobalEventFilter.filterKey(-keyChar, isControlDown);
 				}
-			}
-			/*
-			 * Or If a TYPED is seen use keyChar
-			 */
-			else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
+			} else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
+				/*
+				 * Or If a TYPED is seen use keyChar
+				 */
 				if (GlobalEventWatcher.isActivated()) {
 					GlobalEventFilter.filterKey(keyChar, isControlDown);
 				}	
@@ -155,11 +152,9 @@ public final class Jxgetmouse {
 		if (scilabMouseAction != GlobalMouseEventWatcher.MOVED
 				&& scilabMouseAction != GlobalMouseEventWatcher.RELEASED) {
 			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction);
-		}
-		else if (watchMotion && scilabMouseAction == GlobalMouseEventWatcher.MOVED) {
+		} else if (watchMotion && scilabMouseAction == GlobalMouseEventWatcher.MOVED) {
 			GlobalEventFilter.filterMouse(mouseEvent, canvas, MOVED);
-		}
-		else if (watchRelease && scilabMouseAction == GlobalMouseEventWatcher.RELEASED) {
+		} else if (watchRelease && scilabMouseAction == GlobalMouseEventWatcher.RELEASED) {
 			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction);
 		}
 	}
