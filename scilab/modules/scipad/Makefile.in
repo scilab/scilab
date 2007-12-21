@@ -16,13 +16,8 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
-##########
-
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006/2007
-### 
+###
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
@@ -47,9 +42,12 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@@TCLTK_TRUE@am__append_1 = java
+@SWIG_TRUE@@TCLTK_TRUE@am__append_2 = swig
+@GIWS_TRUE@@TCLTK_TRUE@am__append_3 = giws
+@GUI_TRUE@@TCLTK_FALSE@am__append_4 = java
+@SWIG_TRUE@@TCLTK_FALSE@am__append_5 = swig
+@GIWS_TRUE@@TCLTK_FALSE@am__append_6 = giws
 subdir = modules/scipad
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -77,11 +75,21 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libsciscipad_la_etcdir)" \
-	"$(DESTDIR)$(libsciscipad_la_rootdir)"
+am__installdirs = "$(DESTDIR)$(libsciscipad_la_bindingsdir)" \
+	"$(DESTDIR)$(libsciscipad_la_etcdir)" \
+	"$(DESTDIR)$(libsciscipad_la_iconsdir)" \
+	"$(DESTDIR)$(libsciscipad_la_msgfilesdir)" \
+	"$(DESTDIR)$(libsciscipad_la_rootdir)" \
+	"$(DESTDIR)$(libsciscipad_la_tcldir)"
+libsciscipad_la_bindingsDATA_INSTALL = $(INSTALL_DATA)
 libsciscipad_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciscipad_la_iconsDATA_INSTALL = $(INSTALL_DATA)
+libsciscipad_la_msgfilesDATA_INSTALL = $(INSTALL_DATA)
 libsciscipad_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsciscipad_la_etc_DATA) $(libsciscipad_la_root_DATA)
+libsciscipad_la_tclDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsciscipad_la_bindings_DATA) $(libsciscipad_la_etc_DATA) \
+	$(libsciscipad_la_icons_DATA) $(libsciscipad_la_msgfiles_DATA) \
+	$(libsciscipad_la_root_DATA) $(libsciscipad_la_tcl_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -251,31 +259,153 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-modulename = scipad
+@TCLTK_FALSE@modulename = scipad
+
+#### scipad : Target ######
+@TCLTK_TRUE@modulename = scipad
 
 #### scipad : Conf files ####
-libsciscipad_la_rootdir = $(mydatadir)
-libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
-MACROSDIRSEXT = macros/scipad_internals
+@TCLTK_FALSE@libsciscipad_la_rootdir = $(mydatadir)
 
-#### scipad : init scripts #### 
-libsciscipad_la_etcdir = $(mydatadir)/etc
-libsciscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
+#### scipad : Conf files ####
+@TCLTK_TRUE@libsciscipad_la_rootdir = $(mydatadir)
+@TCLTK_FALSE@libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+@TCLTK_TRUE@libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+
+#### scipad : init scripts ####
+@TCLTK_FALSE@libsciscipad_la_etcdir = $(mydatadir)/etc
+
+#### scipad : init scripts ####
+@TCLTK_TRUE@libsciscipad_la_etcdir = $(mydatadir)/etc
+@TCLTK_FALSE@libsciscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
+@TCLTK_TRUE@libsciscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
+
+### scipad : TCL macros ###
+@TCLTK_TRUE@libsciscipad_la_tcldir = $(mydatadir)/tcl
+@TCLTK_TRUE@libsciscipad_la_tcl_DATA = tcl/buffernavigation.tcl \
+@TCLTK_TRUE@tcl/colorize.tcl \
+@TCLTK_TRUE@tcl/commonbindings.tcl \
+@TCLTK_TRUE@tcl/completion.tcl \
+@TCLTK_TRUE@tcl/cutcopypaste.tcl \
+@TCLTK_TRUE@tcl/db_actbptmanagement.tcl \
+@TCLTK_TRUE@tcl/db_argsmanagement.tcl \
+@TCLTK_TRUE@tcl/db_bptsmanagement.tcl \
+@TCLTK_TRUE@tcl/db_configureexec.tcl \
+@TCLTK_TRUE@tcl/db_debugsession.tcl \
+@TCLTK_TRUE@tcl/db_init.tcl \
+@TCLTK_TRUE@tcl/db_states.tcl \
+@TCLTK_TRUE@tcl/db_watch.tcl \
+@TCLTK_TRUE@tcl/debugger.tcl \
+@TCLTK_TRUE@tcl/defaults.tcl \
+@TCLTK_TRUE@tcl/filecommands.tcl \
+@TCLTK_TRUE@tcl/findinfiles.tcl \
+@TCLTK_TRUE@tcl/findreplace.tcl \
+@TCLTK_TRUE@tcl/fonts.tcl \
+@TCLTK_TRUE@tcl/helps.tcl \
+@TCLTK_TRUE@tcl/infomessages.tcl \
+@TCLTK_TRUE@tcl/inputtext.tcl \
+@TCLTK_TRUE@tcl/localetools.tcl \
+@TCLTK_TRUE@tcl/mainwindow.tcl \
+@TCLTK_TRUE@tcl/menues.tcl \
+@TCLTK_TRUE@tcl/modselection.tcl \
+@TCLTK_TRUE@tcl/platformbind.tcl \
+@TCLTK_TRUE@tcl/popupmenus.tcl \
+@TCLTK_TRUE@tcl/print.tcl \
+@TCLTK_TRUE@tcl/progressbar.tcl \
+@TCLTK_TRUE@tcl/scilabexec.tcl \
+@TCLTK_TRUE@tcl/scipad.tcl \
+@TCLTK_TRUE@tcl/scipaddebug1.tcl \
+@TCLTK_TRUE@tcl/scipaddebug2.tcl \
+@TCLTK_TRUE@tcl/textarea.tcl \
+@TCLTK_TRUE@tcl/tkdndtools.tcl \
+@TCLTK_TRUE@tcl/tooltips.tcl \
+@TCLTK_TRUE@tcl/undoredo.tcl \
+@TCLTK_TRUE@tcl/whichfun.tcl
+
+
+### scipad : Bindings ###
+@TCLTK_TRUE@libsciscipad_la_bindingsdir = $(mydatadir)/tcl/bindings
+@TCLTK_TRUE@libsciscipad_la_bindings_DATA = tcl/bindings/emacs.tcl \
+@TCLTK_TRUE@tcl/bindings/issues.txt \
+@TCLTK_TRUE@tcl/bindings/mac-pc.tcl
+
+
+### scipad : localization ###
+@TCLTK_TRUE@libsciscipad_la_msgfilesdir = $(mydatadir)/tcl/msg_files
+@TCLTK_TRUE@libsciscipad_la_msgfiles_DATA = tcl/msg_files/AddingTranslations.txt \
+@TCLTK_TRUE@tcl/msg_files/da.msg \
+@TCLTK_TRUE@tcl/msg_files/de.msg \
+@TCLTK_TRUE@tcl/msg_files/eng.msg \
+@TCLTK_TRUE@tcl/msg_files/es.msg \
+@TCLTK_TRUE@tcl/msg_files/fr.msg \
+@TCLTK_TRUE@tcl/msg_files/it.msg \
+@TCLTK_TRUE@tcl/msg_files/localenames.tcl \
+@TCLTK_TRUE@tcl/msg_files/no.msg \
+@TCLTK_TRUE@tcl/msg_files/pl.msg \
+@TCLTK_TRUE@tcl/msg_files/se.msg \
+@TCLTK_TRUE@tcl/msg_files/zh_cn.msg \
+@TCLTK_TRUE@tcl/msg_files/zh_tw.msg
+
+
+### scipad : icons ###
+@TCLTK_TRUE@libsciscipad_la_iconsdir = $(mydatadir)/tcl/icons
+@TCLTK_TRUE@libsciscipad_la_icons_DATA = tcl/icons/arrowcursor.gif \
+@TCLTK_TRUE@tcl/icons/arrowend.gif \
+@TCLTK_TRUE@tcl/icons/arrowend2.gif \
+@TCLTK_TRUE@tcl/icons/arrowenter.gif \
+@TCLTK_TRUE@tcl/icons/arrowexit.gif \
+@TCLTK_TRUE@tcl/icons/arrowframe.gif \
+@TCLTK_TRUE@tcl/icons/arrowignore.gif \
+@TCLTK_TRUE@tcl/icons/arrowin.gif \
+@TCLTK_TRUE@tcl/icons/arrowout.gif \
+@TCLTK_TRUE@tcl/icons/arrowover.gif \
+@TCLTK_TRUE@tcl/icons/arrowstop.gif \
+@TCLTK_TRUE@tcl/icons/arrowtoreturn.gif \
+@TCLTK_TRUE@tcl/icons/arrowtoreturn2.gif \
+@TCLTK_TRUE@tcl/icons/arrowwatch.gif \
+@TCLTK_TRUE@tcl/icons/breakpointreturn.gif \
+@TCLTK_TRUE@tcl/icons/dbs_DebugInProgress_48x24.gif \
+@TCLTK_TRUE@tcl/icons/dbs_NoDebug_48x24.gif \
+@TCLTK_TRUE@tcl/icons/dbs_ReadyForDebug_48x24.gif \
+@TCLTK_TRUE@tcl/icons/prompt_busy_48x24.gif \
+@TCLTK_TRUE@tcl/icons/prompt_ready_48x24.gif \
+@TCLTK_TRUE@tcl/icons/removeallbp.gif \
+@TCLTK_TRUE@tcl/icons/setbp.gif \
+@TCLTK_TRUE@tcl/icons/stepstep.gif
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
-mydatadir = $(pkgdatadir)/modules/$(modulename)
+@TCLTK_FALSE@mydatadir = $(pkgdatadir)/modules/$(modulename)
+
+# Where all the Scilab stuff is installed (macros, help, ...)
+@TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C) 
 ####ï¿½and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+@TCLTK_FALSE@TARGETS_ALL = $(am__append_4) $(am__append_5) \
+@TCLTK_FALSE@	$(am__append_6)
+
+########################### JAVA ######################################
+#### We are delegating java compilation to ant... Thanks to that
+#### the procedure will be the same with Microsoft Windows (C) 
+####ï¿½and Linux/Unix
+#######################################################################
+@TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
+@TCLTK_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
+@TCLTK_TRUE@	$(am__append_6)
 
 ################ MACROS ######################"
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+@TCLTK_FALSE@SUFFIXES = .sci 
+
+################ MACROS ######################"
+# Rule to build a macro
+# NOT USED  AT THE MOMENT
+@TCLTK_TRUE@SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 # Install HTML files into the right target
@@ -284,49 +414,96 @@ SUFFIXES = .sci
 # we are building Scilab
 
 # Where it should be installed
-pkgdocdir = $(mydatadir)
+@TCLTK_FALSE@pkgdocdir = $(mydatadir)
+
+########### INSTALL DOCUMENTATION ###################
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
+
+# Where it should be installed
+@TCLTK_TRUE@pkgdocdir = $(mydatadir)
 
 # Which directories we have to install
-DOCDIRS = help/fr_FR help/en_US
+@TCLTK_FALSE@DOCDIRS = help/fr_FR help/en_US
+
+# Which directories we have to install
+@TCLTK_TRUE@DOCDIRS = help/fr_FR help/en_US
 # What is the mask of the help output
-DOCMASK = *.htm
+@TCLTK_FALSE@DOCMASK = *.htm
+# What is the mask of the help output
+@TCLTK_TRUE@DOCMASK = *.htm
 
 # Which directories we have to install
-DOCIMGDIRS = help/images
+@TCLTK_FALSE@DOCIMGDIRS = help/images
+
+# Which directories we have to install
+@TCLTK_TRUE@DOCIMGDIRS = help/images
 # What is the mask of the help images
-DOCIMGMASK = *
+@TCLTK_FALSE@DOCIMGMASK = *
+# What is the mask of the help images
+@TCLTK_TRUE@DOCIMGMASK = *
 
 # What is the mask of the help source
-DOCMASKXML = *.xml
+@TCLTK_FALSE@DOCMASKXML = *.xml
+
+# What is the mask of the help source
+@TCLTK_TRUE@DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
 # Install macros
 # Where it should be installed
-pkgmacrosdir = $(mydatadir)
+@TCLTK_FALSE@pkgmacrosdir = $(mydatadir)
+
+########### INSTALL DATA ###################
+# Install macros
+# Where it should be installed
+@TCLTK_TRUE@pkgmacrosdir = $(mydatadir)
 # Which directory we process
-MACRODIRS = macros/
+@TCLTK_FALSE@MACRODIRS = macros/
+# Which directory we process
+@TCLTK_TRUE@MACRODIRS = macros/
 # Mask of the Scilab sources macros
-MACROMASK = *.sci
+@TCLTK_FALSE@MACROMASK = *.sci
+# Mask of the Scilab sources macros
+@TCLTK_TRUE@MACROMASK = *.sci
 # Mask of the Scilab executable sources macros
-MACROBUILDMASK = *.sce
+@TCLTK_FALSE@MACROBUILDMASK = *.sce
+# Mask of the Scilab executable sources macros
+@TCLTK_TRUE@MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
-MACROBINMASK = *.bin
+@TCLTK_FALSE@MACROBINMASK = *.bin
+# Mask of the Scilab compiled macros
+@TCLTK_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
-FUNCTION_NAMES = macros/names
+@TCLTK_FALSE@FUNCTION_NAMES = macros/names
+# List of the function of a module
+@TCLTK_TRUE@FUNCTION_NAMES = macros/names
 # Tests directory name
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+@TCLTK_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+# Tests directory name
+@TCLTK_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
-HELP_CHAPTERDIR = help/en_US/
-HELP_CHAPTERFILE = addchapter.sce
+@TCLTK_FALSE@HELP_CHAPTERDIR = help/en_US/
+# Chapter file 
+@TCLTK_TRUE@HELP_CHAPTERDIR = help/en_US/
+@TCLTK_FALSE@HELP_CHAPTERFILE = addchapter.sce
+@TCLTK_TRUE@HELP_CHAPTERFILE = addchapter.sce
 # Where to export JAVA files (.jar)
-JARDIR = jar/
+@TCLTK_FALSE@JARDIR = jar/
+# Where to export JAVA files (.jar)
+@TCLTK_TRUE@JARDIR = jar/
 # JAR files
-JARMASK = *.jar
+@TCLTK_FALSE@JARMASK = *.jar
+# JAR files
+@TCLTK_TRUE@JARMASK = *.jar
+@TCLTK_FALSE@MACROSDIRSEXT = macros/scipad_internals
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
+.SUFFIXES: .sci .sci .bin
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -361,6 +538,23 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libsciscipad_la_bindingsDATA: $(libsciscipad_la_bindings_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscipad_la_bindingsdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_bindingsdir)"
+	@list='$(libsciscipad_la_bindings_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciscipad_la_bindingsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscipad_la_bindingsdir)/$$f'"; \
+	  $(libsciscipad_la_bindingsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscipad_la_bindingsdir)/$$f"; \
+	done
+
+uninstall-libsciscipad_la_bindingsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscipad_la_bindings_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_bindingsdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscipad_la_bindingsdir)/$$f"; \
+	done
 install-libsciscipad_la_etcDATA: $(libsciscipad_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscipad_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_etcdir)"
@@ -378,6 +572,40 @@ uninstall-libsciscipad_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsciscipad_la_etcdir)/$$f"; \
 	done
+install-libsciscipad_la_iconsDATA: $(libsciscipad_la_icons_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscipad_la_iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_iconsdir)"
+	@list='$(libsciscipad_la_icons_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciscipad_la_iconsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscipad_la_iconsdir)/$$f'"; \
+	  $(libsciscipad_la_iconsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscipad_la_iconsdir)/$$f"; \
+	done
+
+uninstall-libsciscipad_la_iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscipad_la_icons_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_iconsdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscipad_la_iconsdir)/$$f"; \
+	done
+install-libsciscipad_la_msgfilesDATA: $(libsciscipad_la_msgfiles_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscipad_la_msgfilesdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_msgfilesdir)"
+	@list='$(libsciscipad_la_msgfiles_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciscipad_la_msgfilesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscipad_la_msgfilesdir)/$$f'"; \
+	  $(libsciscipad_la_msgfilesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscipad_la_msgfilesdir)/$$f"; \
+	done
+
+uninstall-libsciscipad_la_msgfilesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscipad_la_msgfiles_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_msgfilesdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscipad_la_msgfilesdir)/$$f"; \
+	done
 install-libsciscipad_la_rootDATA: $(libsciscipad_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscipad_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_rootdir)"
@@ -394,6 +622,23 @@ uninstall-libsciscipad_la_rootDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsciscipad_la_rootdir)/$$f"; \
+	done
+install-libsciscipad_la_tclDATA: $(libsciscipad_la_tcl_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscipad_la_tcldir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_tcldir)"
+	@list='$(libsciscipad_la_tcl_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciscipad_la_tclDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscipad_la_tcldir)/$$f'"; \
+	  $(libsciscipad_la_tclDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscipad_la_tcldir)/$$f"; \
+	done
+
+uninstall-libsciscipad_la_tclDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscipad_la_tcl_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciscipad_la_tcldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscipad_la_tcldir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -433,7 +678,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libsciscipad_la_etcdir)" "$(DESTDIR)$(libsciscipad_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libsciscipad_la_bindingsdir)" "$(DESTDIR)$(libsciscipad_la_etcdir)" "$(DESTDIR)$(libsciscipad_la_iconsdir)" "$(DESTDIR)$(libsciscipad_la_msgfilesdir)" "$(DESTDIR)$(libsciscipad_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_tcldir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -478,8 +723,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsciscipad_la_etcDATA \
-	install-libsciscipad_la_rootDATA
+install-data-am: install-data-local \
+	install-libsciscipad_la_bindingsDATA \
+	install-libsciscipad_la_etcDATA \
+	install-libsciscipad_la_iconsDATA \
+	install-libsciscipad_la_msgfilesDATA \
+	install-libsciscipad_la_rootDATA \
+	install-libsciscipad_la_tclDATA
 
 install-dvi: install-dvi-am
 
@@ -515,8 +765,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciscipad_la_etcDATA \
-	uninstall-libsciscipad_la_rootDATA
+uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
+	uninstall-libsciscipad_la_etcDATA \
+	uninstall-libsciscipad_la_iconsDATA \
+	uninstall-libsciscipad_la_msgfilesDATA \
+	uninstall-libsciscipad_la_rootDATA \
+	uninstall-libsciscipad_la_tclDATA
 
 .MAKE: install-am install-strip
 
@@ -527,183 +781,359 @@ uninstall-am: uninstall-libsciscipad_la_etcDATA \
 	install-data-am install-data-local install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
+	install-libsciscipad_la_bindingsDATA \
 	install-libsciscipad_la_etcDATA \
-	install-libsciscipad_la_rootDATA install-man install-pdf \
+	install-libsciscipad_la_iconsDATA \
+	install-libsciscipad_la_msgfilesDATA \
+	install-libsciscipad_la_rootDATA \
+	install-libsciscipad_la_tclDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-libsciscipad_la_bindingsDATA \
 	uninstall-libsciscipad_la_etcDATA \
-	uninstall-libsciscipad_la_rootDATA
+	uninstall-libsciscipad_la_iconsDATA \
+	uninstall-libsciscipad_la_msgfilesDATA \
+	uninstall-libsciscipad_la_rootDATA \
+	uninstall-libsciscipad_la_tclDATA
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
-	@if test -f build.xml; then \
-		$(ANT) checkstyle; \
-	fi;\
-	COMMAND="test_run('$(modulename)');quit";\
-	export LANG=C;\
-	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@java:
+@TCLTK_TRUE@check-local: $(top_builddir)/scilab-bin
+@TCLTK_TRUE@	@if test -f build.xml; then \
+@TCLTK_TRUE@		$(ANT) checkstyle; \
+@TCLTK_TRUE@	fi;\
+@TCLTK_TRUE@	COMMAND="test_run('$(modulename)');quit";\
+@TCLTK_TRUE@	export LANG=C;\
+@TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@GUI_TRUE@@TCLTK_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) jar; \
-@GUI_TRUE@	fi
+@GUI_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml; then \
+@GUI_TRUE@@TCLTK_TRUE@		$(ANT) jar; \
+@GUI_TRUE@@TCLTK_TRUE@	fi
 
-@GUI_TRUE@clean-java:
+@GUI_TRUE@@TCLTK_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
+@GUI_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml; then \
+@GUI_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
+@GUI_TRUE@@TCLTK_TRUE@	fi
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
-@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
-@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
-@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
-@SWIG_TRUE@			echo "Swig process of $$file ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
-@SWIG_TRUE@		done; \
-@SWIG_TRUE@	fi
+@SWIG_TRUE@@TCLTK_TRUE@swig: $(SWIG_WRAPPERS)
+@SWIG_TRUE@@TCLTK_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@SWIG_TRUE@@TCLTK_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@SWIG_TRUE@@TCLTK_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@@TCLTK_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
+@SWIG_TRUE@@TCLTK_TRUE@			echo "Swig process of $$file ..."; \
+@SWIG_TRUE@@TCLTK_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@@TCLTK_TRUE@		done; \
+@SWIG_TRUE@@TCLTK_TRUE@	fi
 
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
-@GIWS_TRUE@giws: $(GIWS_WRAPPERS)
-@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
-@GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
-@GIWS_TRUE@		done; \
-@GIWS_TRUE@	fi
+@GIWS_TRUE@@TCLTK_TRUE@giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@TCLTK_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@@TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
+@GIWS_TRUE@@TCLTK_TRUE@			echo "Giws process of $$file ..."; \
+@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@TCLTK_TRUE@		done; \
+@GIWS_TRUE@@TCLTK_TRUE@	fi
 
-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-	)
+@TCLTK_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@TCLTK_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@TCLTK_TRUE@	)
 
-all-local: $(TARGETS_ALL)
+@TCLTK_TRUE@all-local: $(TARGETS_ALL)
 
-.sci.bin:
-	-@( if test ! -x $(top_builddir)/scilab-bin; then \
-	echo "Error : Cannot build $< : Scilab has not been build"; \
-	else \
-	echo "Creating $@"; \
-	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
-	fi )
+@TCLTK_TRUE@.sci.bin:
+@TCLTK_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+@TCLTK_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@TCLTK_TRUE@	else \
+@TCLTK_TRUE@	echo "Creating $@"; \
+@TCLTK_TRUE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+@TCLTK_TRUE@	fi )
 
-install-html-local:
-	echo "-- Install of htm help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	 fi; \
-	done
-	echo "-- Install of images help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCIMGDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	 fi; \
-	done
+@TCLTK_TRUE@install-html-local:
+@TCLTK_TRUE@	echo "-- Install of htm help files --"; \
+@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_TRUE@	 if test -d $$dir; then \
+@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@TCLTK_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@		  done ; \
+@TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	 fi; \
+@TCLTK_TRUE@	done
+@TCLTK_TRUE@	echo "-- Install of images help files --"; \
+@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@TCLTK_TRUE@	@for dir in $(DOCIMGDIRS) ; do \
+@TCLTK_TRUE@	 if test -d $$dir; then \
+@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
+@TCLTK_TRUE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
+@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@		  done ; \
+@TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	 fi; \
+@TCLTK_TRUE@	done
 
 # If the user wants the help sources to be installed
-@INSTALL_HELP_XML_TRUE@	@for dir in $(DOCDIRS) ; do \
-@INSTALL_HELP_XML_TRUE@	 if test -d $$dir; then \
-@INSTALL_HELP_XML_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@INSTALL_HELP_XML_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
-@INSTALL_HELP_XML_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
-@INSTALL_HELP_XML_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@INSTALL_HELP_XML_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@INSTALL_HELP_XML_TRUE@		  done ; \
-@INSTALL_HELP_XML_TRUE@		fi; \
-@INSTALL_HELP_XML_TRUE@	 fi; \
-@INSTALL_HELP_XML_TRUE@	done
-install-data-local:
-	@if test -f $(FUNCTION_NAMES); then \
-		echo "-- Install of declaration files --"; \
-		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-	fi
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 if test -d $$dir; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	done
+@TCLTK_TRUE@install-data-local:
+@TCLTK_TRUE@	@if test -f $(FUNCTION_NAMES); then \
+@TCLTK_TRUE@		echo "-- Install of declaration files --"; \
+@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+@TCLTK_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_TRUE@	fi
 # Install the help chapter
-	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
-	if test -f $$HELPFILE; then \
-		echo "-- Install of help --"; \
-		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-	fi
+@TCLTK_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+@TCLTK_TRUE@	if test -f $$HELPFILE; then \
+@TCLTK_TRUE@		echo "-- Install of help --"; \
+@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_TRUE@	fi
 # Install the tests	
-	@echo "-- Install tests (if any) --"; \
-	for dir in $(TESTS_DIR); do \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if test -d $(srcdir)/$$dir/; then \
-		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done; \
-		fi; \
-	done
+@TCLTK_TRUE@	@echo "-- Install tests (if any) --"; \
+@TCLTK_TRUE@	for dir in $(TESTS_DIR); do \
+@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
+@TCLTK_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
+@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@TCLTK_TRUE@		  done; \
+@TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	done
 # Install the macros
-	@echo "-- Install macros (if any) --"; \
-	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if test -d $(srcdir)/$$dir/; then \
-		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
-		  done; \
-		fi; \
-	done
+@TCLTK_TRUE@	@echo "-- Install macros (if any) --"; \
+@TCLTK_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
+@TCLTK_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@TCLTK_TRUE@		  done; \
+@TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	done
 # Install java files (.jar)
-	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
-	echo "-- Install jar files --"; \
-    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
-	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
-	  done ; \
-	fi
+@TCLTK_TRUE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@TCLTK_TRUE@	echo "-- Install jar files --"; \
+@TCLTK_TRUE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+@TCLTK_TRUE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
+@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+@TCLTK_TRUE@	  done ; \
+@TCLTK_TRUE@	fi
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@clean-local: clean-java
-@GUI_FALSE@clean-local:
+@GUI_TRUE@@TCLTK_TRUE@clean-local: clean-java
+@GUI_FALSE@@TCLTK_TRUE@clean-local:
 # Removes macros (*.bin generated from .sci)
-	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-	done
+@TCLTK_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@TCLTK_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+@TCLTK_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@TCLTK_TRUE@	done
 # Removes documentation (*.htm generated from .xml) 
-	@for dir in $(DOCDIRS) ; do \
-		 if test -d $$dir; then \
-			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-		fi; \
-	done
+@TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_TRUE@		 if test -d $$dir; then \
+@TCLTK_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
+@TCLTK_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
+@TCLTK_TRUE@		fi; \
+@TCLTK_TRUE@	done
+
+# This target enables tests for Scilab
+@TCLTK_FALSE@check-local: $(top_builddir)/scilab-bin
+@TCLTK_FALSE@	@if test -f build.xml; then \
+@TCLTK_FALSE@		$(ANT) checkstyle; \
+@TCLTK_FALSE@	fi;\
+@TCLTK_FALSE@	COMMAND="test_run('$(modulename)');quit";\
+@TCLTK_FALSE@	export LANG=C;\
+@TCLTK_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
+@GUI_TRUE@@TCLTK_FALSE@java:
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@@TCLTK_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@TCLTK_FALSE@	if test -f build.xml; then \
+@GUI_TRUE@@TCLTK_FALSE@		$(ANT) jar; \
+@GUI_TRUE@@TCLTK_FALSE@	fi
+
+@GUI_TRUE@@TCLTK_FALSE@clean-java:
+# Some configurations needs to export JAVA_HOME in the current env
+@GUI_TRUE@@TCLTK_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@GUI_TRUE@@TCLTK_FALSE@	if test -f build.xml; then \
+@GUI_TRUE@@TCLTK_FALSE@		$(ANT) clean; \
+@GUI_TRUE@@TCLTK_FALSE@	fi
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@SWIG_TRUE@@TCLTK_FALSE@swig: $(SWIG_WRAPPERS)
+@SWIG_TRUE@@TCLTK_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
+@SWIG_TRUE@@TCLTK_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
+@SWIG_TRUE@@TCLTK_FALSE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@@TCLTK_FALSE@		for file in $(SWIG_WRAPPERS) ; do \
+@SWIG_TRUE@@TCLTK_FALSE@			echo "Swig process of $$file ..."; \
+@SWIG_TRUE@@TCLTK_FALSE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@@TCLTK_FALSE@		done; \
+@SWIG_TRUE@@TCLTK_FALSE@	fi
+
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# We call the target swig-build on the variable SWIG_WRAPPERS
+
+@GIWS_TRUE@@TCLTK_FALSE@giws: $(GIWS_WRAPPERS)
+@GIWS_TRUE@@TCLTK_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@@TCLTK_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@TCLTK_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
+@GIWS_TRUE@@TCLTK_FALSE@			echo "Giws process of $$file ..."; \
+@GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@TCLTK_FALSE@		done; \
+@GIWS_TRUE@@TCLTK_FALSE@	fi
+
+@TCLTK_FALSE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
+@TCLTK_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@TCLTK_FALSE@	)
+
+@TCLTK_FALSE@all-local: $(TARGETS_ALL)
+
+@TCLTK_FALSE@.sci.bin:
+@TCLTK_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+@TCLTK_FALSE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@TCLTK_FALSE@	else \
+@TCLTK_FALSE@	echo "Creating $@"; \
+@TCLTK_FALSE@	$(top_builddir)/bin/scilab -ns -nwni -e "exec('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
+@TCLTK_FALSE@	fi )
+
+@TCLTK_FALSE@install-html-local:
+@TCLTK_FALSE@	echo "-- Install of htm help files --"; \
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_FALSE@	 if test -d $$dir; then \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@TCLTK_FALSE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_FALSE@		  done ; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	 fi; \
+@TCLTK_FALSE@	done
+@TCLTK_FALSE@	echo "-- Install of images help files --"; \
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@TCLTK_FALSE@	@for dir in $(DOCIMGDIRS) ; do \
+@TCLTK_FALSE@	 if test -d $$dir; then \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
+@TCLTK_FALSE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_FALSE@		  done ; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	 fi; \
+@TCLTK_FALSE@	done
+
+# If the user wants the help sources to be installed
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 if test -d $$dir; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  for file in $(srcdir)/$$dir/$(DOCMASKXML) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	done
+@TCLTK_FALSE@install-data-local:
+@TCLTK_FALSE@	@if test -f $(FUNCTION_NAMES); then \
+@TCLTK_FALSE@		echo "-- Install of declaration files --"; \
+@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
+@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_FALSE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
+@TCLTK_FALSE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
+@TCLTK_FALSE@	fi
+# Install the help chapter
+@TCLTK_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
+@TCLTK_FALSE@	if test -f $$HELPFILE; then \
+@TCLTK_FALSE@		echo "-- Install of help --"; \
+@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
+@TCLTK_FALSE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_FALSE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
+@TCLTK_FALSE@	fi
+# Install the tests	
+@TCLTK_FALSE@	@echo "-- Install tests (if any) --"; \
+@TCLTK_FALSE@	for dir in $(TESTS_DIR); do \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@TCLTK_FALSE@		if test -d $(srcdir)/$$dir/; then \
+@TCLTK_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@TCLTK_FALSE@		  done; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	done
+# Install the macros
+@TCLTK_FALSE@	@echo "-- Install macros (if any) --"; \
+@TCLTK_FALSE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@TCLTK_FALSE@		if test -d $(srcdir)/$$dir/; then \
+@TCLTK_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@TCLTK_FALSE@		  done; \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	done
+# Install java files (.jar)
+@TCLTK_FALSE@	@if ls -lLd $(srcdir)/$(JARDIR)$(JARMASK) >/dev/null 2>&1; then \
+@TCLTK_FALSE@	echo "-- Install jar files --"; \
+@TCLTK_FALSE@    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(JARDIR); \
+@TCLTK_FALSE@	  for file in $(srcdir)/$(JARDIR)$(JARMASK); do\
+@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$(JARDIR)" ; \
+@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$(JARDIR) ; \
+@TCLTK_FALSE@	  done ; \
+@TCLTK_FALSE@	fi
+
+########### CLEAN ###################
+# Clean macros and help (generated automatically by Scilab)
+@GUI_TRUE@@TCLTK_FALSE@clean-local: clean-java
+@GUI_FALSE@@TCLTK_FALSE@clean-local:
+# Removes macros (*.bin generated from .sci)
+@TCLTK_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@TCLTK_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+@TCLTK_FALSE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@TCLTK_FALSE@	done
+# Removes documentation (*.htm generated from .xml) 
+@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_FALSE@		 if test -d $$dir; then \
+@TCLTK_FALSE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
+@TCLTK_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
+@TCLTK_FALSE@		fi; \
+@TCLTK_FALSE@	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
