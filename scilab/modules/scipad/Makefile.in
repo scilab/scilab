@@ -16,8 +16,21 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006
+##########
+
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006/2007
-###
+### 
+### Makefile included stuff
+### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+##########
+
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006/2007
+### 
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
@@ -271,6 +284,8 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@libsciscipad_la_rootdir = $(mydatadir)
 @TCLTK_FALSE@libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 @TCLTK_TRUE@libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+@TCLTK_FALSE@MACROSDIRSEXT = macros/scipad_internals
+@TCLTK_TRUE@MACROSDIRSEXT = macros/scipad_internals
 
 #### scipad : init scripts ####
 @TCLTK_FALSE@libsciscipad_la_etcdir = $(mydatadir)/etc
@@ -498,7 +513,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_FALSE@JARMASK = *.jar
 # JAR files
 @TCLTK_TRUE@JARMASK = *.jar
-@TCLTK_FALSE@MACROSDIRSEXT = macros/scipad_internals
 all: all-am
 
 .SUFFIXES:

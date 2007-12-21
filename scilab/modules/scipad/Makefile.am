@@ -12,6 +12,8 @@ modulename=scipad
 libsciscipad_la_rootdir = $(mydatadir)
 libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
+MACROSDIRSEXT = macros/scipad_internals
+
 #### scipad : init scripts ####
 libsciscipad_la_etcdir = $(mydatadir)/etc
 libsciscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
