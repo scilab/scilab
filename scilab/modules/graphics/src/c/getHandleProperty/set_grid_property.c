@@ -19,6 +19,7 @@
 int set_grid_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int i ;
+  int gridStyles[3];
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
 
   if ( !isParameterDoubleMatrix( valueType ) )
@@ -39,15 +40,21 @@ int set_grid_property( sciPointObj * pobj, int stackPointer, int valueType, int 
     return SET_PROPERTY_ERROR ;
   }
 
+  sciGetGridStyle(pobj, &(gridStyles[0]), &(gridStyles[1]), &(gridStyles[2]));
+
   for (  i = 0 ; i < nbCol ; i++ )
   {
-    if ( values[i] < -1 )
+    int curValue = (int) values[i];
+    if ( values[i] < -1 || !sciCheckColorIndex(pobj, curValue) )
     {
       sciprint("Argument must be -1 (no grid) or number of color.\n");
       return SET_PROPERTY_ERROR ;
     }
-    pSUBWIN_FEATURE(pobj)->grid[i] = (int) values[i] ;
+    gridStyles[i] = curValue ;
   }
+
+  sciSetGridStyle(pobj, gridStyles[0], gridStyles[1], gridStyles[2]);
+  
 
   return SET_PROPERTY_SUCCEED ;
 }

@@ -60,8 +60,6 @@ protected:
   /*----------------------------------------------------------------------*/
   ComputeTicksStrategy * m_pTicksComputer;
 
-  DrawableSubwin * m_pSubwin;
-
   GridDrawer * m_pGridDrawer;
   /*----------------------------------------------------------------------*/
 };

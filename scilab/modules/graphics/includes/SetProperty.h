@@ -254,6 +254,8 @@ int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL a
 
 int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable); /* SET */
 
+BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

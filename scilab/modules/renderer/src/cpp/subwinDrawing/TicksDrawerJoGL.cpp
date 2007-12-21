@@ -65,7 +65,7 @@ void TicksDrawerJoGL::initializeDrawing(void)
   DrawableObjectJoGL::initializeDrawing();
 
   // also set axis drawing parameters
-  sciPointObj * pSubwin = m_pSubwin->getDrawedObject();
+  sciPointObj * pSubwin = getDrawer()->getDrawedObject();
 
   // set axes bounds
   double bounds[6];

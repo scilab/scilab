@@ -531,7 +531,7 @@ int sciInitMdlBackground( sciPointObj * pobj, int colorIndex )
 int sciInitBackground( sciPointObj * pobj, int colorindex )
 {
   int m = sciGetNumColors(pobj); 
-  if(colorindex < -2 || colorindex > m+2) return 0;
+  if(!sciCheckColorIndex(pobj, colorindex)) return 0;
 
   colorindex = sciSetGoodIndex(pobj,colorindex);
 
@@ -572,7 +572,7 @@ int sciInitMdlForeground( sciPointObj * pObj, int colorIndex )
 int sciInitForeground( sciPointObj * pobj, int colorindex )
 {
   int m = sciGetNumColors(pobj); 
-  if(colorindex < -2 || colorindex > m+2) return 0;
+  if(!sciCheckColorIndex(pobj, colorindex)) return 0;
   
   colorindex = sciSetGoodIndex(pobj,colorindex);
 
@@ -706,6 +706,7 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
 
 int sciInitMarkForeground( sciPointObj * pobj, int colorindex )
 {
+  if(!sciCheckColorIndex(pobj, colorindex)) return 0;
   colorindex = sciSetGoodIndex(pobj,colorindex); /* Adding F.Leray 31.03.04*/
 
   if (sciGetGraphicContext(pobj) != NULL)
@@ -739,6 +740,7 @@ sciSetMarkForeground (sciPointObj * pobj, int colorindex)
 
 int sciInitMarkBackground( sciPointObj * pobj, int colorindex )
 {
+  if(!sciCheckColorIndex(pobj, colorindex)) return 0;
   colorindex = sciSetGoodIndex(pobj,colorindex); /* Adding F.Leray 31.03.04*/
 
   if (sciGetGraphicContext(pobj) != NULL)
@@ -3667,6 +3669,13 @@ int sciSetHiddenAxisColor( sciPointObj * pObj, int newColor )
 /*-----------------------------------------------------------------------------------*/
 int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
 {
+  if (    !sciCheckColorIndex(pObj, xStyle)
+       || !sciCheckColorIndex(pObj, yStyle)
+       || !sciCheckColorIndex(pObj, zStyle))
+  {
+    return -1;
+  }
+
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_SUBWIN:
@@ -4109,5 +4118,14 @@ int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable)
     return -1;
   }
   return 0;
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Check that a color index is within the colormap range or not
+ * @param pObj object conatining the color
+ */
+BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex)
+{
+  return (colorIndex >= -2) && (colorIndex <= sciGetNumColors(pObj) + 2);
 }
 /*----------------------------------------------------------------------------------*/

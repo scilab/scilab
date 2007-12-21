@@ -19,7 +19,6 @@ namespace sciGraphics
 /*------------------------------------------------------------------------------------------*/
 TicksDrawer::TicksDrawer(DrawableSubwin * subwin)
 {
-  m_pSubwin = subwin;
   m_pTicksComputer = NULL;
   m_pGridDrawer = NULL;
 }
@@ -28,7 +27,6 @@ TicksDrawer::~TicksDrawer(void)
 {
   setTicksComputer(NULL);
   setGridDrawer(NULL);
-  m_pSubwin = NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
