@@ -854,8 +854,8 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @GIWS_TRUE@@TCLTK_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@@TCLTK_TRUE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@TCLTK_TRUE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@@TCLTK_TRUE@		done; \
 @GIWS_TRUE@@TCLTK_TRUE@	fi
 
@@ -1022,8 +1022,8 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @GIWS_TRUE@@TCLTK_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@TCLTK_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@@TCLTK_FALSE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@TCLTK_FALSE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@@TCLTK_FALSE@		done; \
 @GIWS_TRUE@@TCLTK_FALSE@	fi
 

@@ -1362,8 +1362,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@@PVM_TRUE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@PVM_TRUE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@@PVM_TRUE@		done; \
 @GIWS_TRUE@@PVM_TRUE@	fi
 
@@ -1530,8 +1530,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@@PVM_FALSE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@PVM_FALSE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@@PVM_FALSE@		done; \
 @GIWS_TRUE@@PVM_FALSE@	fi
 

@@ -876,8 +876,8 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@JAVASCI_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@@JAVASCI_TRUE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@JAVASCI_TRUE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@@JAVASCI_TRUE@		done; \
 @GIWS_TRUE@@JAVASCI_TRUE@	fi
 

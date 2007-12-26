@@ -201,8 +201,8 @@ DATA = $(libscitclsci_la_demossciGUI_DATA) \
 am__libscitclsci_la_include_HEADERS_DIST = includes/TclUiSet.h \
 	includes/setenvtcl.h includes/GedManagement.h \
 	includes/TCL_Global.h includes/ScilabEval.h \
-	includes/InitTclTk.h includes/TclEvents.h includes/gw_tclsci.h \
-	includes/TclUiGet.h includes/InitializeTclTk.h
+	includes/TclEvents.h includes/gw_tclsci.h includes/TclUiGet.h \
+	includes/InitializeTclTk.h
 libscitclsci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscitclsci_la_include_HEADERS)
 ETAGS = etags
@@ -664,7 +664,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@includes/GedManagement.h \
 @TCLTK_TRUE@includes/TCL_Global.h \
 @TCLTK_TRUE@includes/ScilabEval.h \
-@TCLTK_TRUE@includes/InitTclTk.h \
 @TCLTK_TRUE@includes/TclEvents.h \
 @TCLTK_TRUE@includes/gw_tclsci.h \
 @TCLTK_TRUE@includes/TclUiGet.h \
@@ -1600,8 +1599,8 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GIWS_TRUE@@TCLTK_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@@TCLTK_TRUE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@TCLTK_TRUE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@@TCLTK_TRUE@		done; \
 @GIWS_TRUE@@TCLTK_TRUE@	fi
 
@@ -1768,8 +1767,8 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GIWS_TRUE@@TCLTK_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@TCLTK_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@@TCLTK_FALSE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@@TCLTK_FALSE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@@TCLTK_FALSE@		done; \
 @GIWS_TRUE@@TCLTK_FALSE@	fi
 

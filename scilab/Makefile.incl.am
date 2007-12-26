@@ -73,8 +73,8 @@ giws: $(GIWS_WRAPPERS)
 	@GIWS_OUTPUTDIR=src/jni/;\
 	if test ! -z "$(GIWS_WRAPPERS)"; then \
 		for file in $(GIWS_WRAPPERS) ; do \
-			echo "Giws process of $$file ..."; \
-			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+			echo "GIWS process of $$file ..."; \
+			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 		done; \
 	fi
 

@@ -1312,8 +1312,8 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
-@GIWS_TRUE@			echo "Giws process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR -s --description-file $$file; \
+@GIWS_TRUE@			echo "GIWS process of $$file ..."; \
+@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
