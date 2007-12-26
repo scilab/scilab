@@ -19,7 +19,6 @@
 #include "sciquit.h"
 #include "CallScilab.h"
 #include "fromjava.h"
-#include "InitTclTk.h"
 #include "MALLOC.h"
 
 /********************************************************************************************************/
