@@ -13,7 +13,7 @@ if test $# -ne 1; then
 	echo "by checking the _(xxx) and gettext(xxx) calls in the code"
 	echo
 	echo "Syntax : $0 <module>"
-	echo "If <module> is equal to 'parse_all', it will parse all Scilab module"
+	echo "If <module> is equal to 'process_all', it will parse all Scilab module"
 	echo "per module"
 	exit -1
 fi
