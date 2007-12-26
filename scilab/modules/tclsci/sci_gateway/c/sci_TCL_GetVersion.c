@@ -18,7 +18,6 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 	char *output=NULL ;
 	char VersionString[256];
 	char ReleaseType[256];
-	char *msg_=NULL;
 
 	CheckRhs(0,1);
 	CheckLhs(1,1);
@@ -29,40 +28,21 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 	{
 		switch (type)
 		{
-		case TCL_ALPHA_RELEASE:
-			{
-				char *msg=_("Alpha Release");
-				sprintf(ReleaseType,msg);
-				if (msg) {FREE(msg);msg=NULL;}
-			}
-			break;
-		case TCL_BETA_RELEASE:
-			{
-				char *msg=_("Beta Release");
-				sprintf(ReleaseType,msg);
-				if (msg) {FREE(msg);msg=NULL;}
-			}
-			break;
-		case TCL_FINAL_RELEASE:
-			{
-				char *msg=_("Final Release");
-				sprintf(ReleaseType,msg);
-				if (msg) {FREE(msg);msg=NULL;}
-			}
-			break;
-		default:
-			{
-				char *msg=_("Unknown Release");
-				sprintf(ReleaseType,msg);
-				if (msg) {FREE(msg);msg=NULL;}
-			}
-			break;
+			case TCL_ALPHA_RELEASE:
+				strcpy(ReleaseType,_("Alpha Release"));
+				break;
+			case TCL_BETA_RELEASE:
+				strcpy(ReleaseType,_("Beta Release"));
+				break;
+			case TCL_FINAL_RELEASE:
+				strcpy(ReleaseType,_("Final Release"));
+				break;
+			default:
+				strcpy(ReleaseType,_("Unknown Release"));
+				break;
 		}
 
-		msg_=_("TCL/TK %d.%d.%d %s");
-		sprintf(VersionString,msg_,major,minor,patchLevel,ReleaseType);
-		if (msg_) {FREE(msg_);msg_=NULL;}
-
+		sprintf(VersionString,"TCL/TK %d.%d.%d %s",major,minor,patchLevel,ReleaseType);
 		output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
 		strcpy(output,VersionString);
 		n1=1;
@@ -100,12 +80,12 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,_("%s: invalid output argument : help TCL_GetVersion.\n"),fname);
+				Scierror(999,_("%s: Wrong first input argument: '%s' expected.\n"),fname,"numbers");
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: invalid input argument : help TCL_GetVersion.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 		}
 		
 	}
