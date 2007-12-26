@@ -4,12 +4,27 @@
 /*--------------------------------------------------------------------------*/ 
 #include "InitializeTclTk.h"
 #include "InitTclTk.h"
+#include "scilabmode.h"
+/*--------------------------------------------------------------------------*/ 
 /*--------------------------------------------------------------------------*/ 
 BOOL InitializeTclTk(void)
 {
-	BOOL bOK=FALSE;
-	initTCLTK();
-	return bOK;
+	if ( getScilabMode() != SCILAB_NWNI )
+	{
+		if ( OpenTCLsci()==0 )
+		{
+			setTkStarted(TRUE);
+			return TRUE;
+		}
+		else
+		{
+			setTkStarted(FALSE);
+		}
+	}
+	else
+	{
+		setTkStarted(FALSE);
+	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
-

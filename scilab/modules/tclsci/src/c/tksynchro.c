@@ -3,6 +3,7 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
+#include "InitTclTk.h"
 #include "machine.h"
 #include "TCL_Global.h"
 #include "tksynchro.h"
@@ -13,7 +14,7 @@ void C2F(tksynchro)( int *l)
 {
   char str[128];
 
-  if (TK_Started) 
+  if (isTkStarted()) 
   {
     int RET;
 

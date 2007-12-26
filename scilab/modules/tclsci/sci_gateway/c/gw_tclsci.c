@@ -42,7 +42,7 @@ int C2F(gw_tclsci)()
 {  
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-		if (TK_Started)
+		if (isTkStarted())
 		{
 			Rhs = Max(0, Rhs);
 			callFunctionFromGateway(Tab);		

@@ -24,7 +24,6 @@
 extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 extern int XTKsocket;
-extern int TK_Started;
 /*--------------------------------------------------------------------------*/
 
 /**

@@ -55,7 +55,7 @@ int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long l))
 			return 0;
 		}
 		CloseTCLsci();
-		initTCLTK();
+		InitializeTclTk();
 	}
 
 	LhsVar(1)=0;

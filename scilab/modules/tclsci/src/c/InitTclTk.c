@@ -15,28 +15,9 @@
 #include "scilabmode.h"
 #include "ScilabEval.h"
 /*--------------------------------------------------------------------------*/
-int TK_Started=0;
+BOOL TK_Started=FALSE;
 /*--------------------------------------------------------------------------*/
 static char *GetSciPath(void);
-/*--------------------------------------------------------------------------*/
-void initTCLTK(void)
-{
-	if ( getScilabMode() != SCILAB_NWNI )
-	{
-		if ( OpenTCLsci()==0 )
-		{
-			TK_Started=1;
-		}
-		else
-		{
-			TK_Started=0;
-		}
-	}
-	else
-	{
-		TK_Started=0;
-	}
-}
 /*--------------------------------------------------------------------------*/
 int OpenTCLsci(void)
 /* Checks if tcl/tk has already been initialised and if not */
@@ -152,21 +133,20 @@ int OpenTCLsci(void)
 
 }
 /*--------------------------------------------------------------------------*/
-int CloseTCLsci(void)
+BOOL CloseTCLsci(void)
 {
-	int bOK=0;
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-		if (TK_Started)
+		if (isTkStarted())
 		{
 			Tcl_DeleteInterp(TCLinterp);
 			TCLinterp=NULL;
 			TKmainWindow=NULL;
-			bOK=1;
-			TK_Started=0;
+			setTkStarted(FALSE);
+			return TRUE;
 		}
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 static char *GetSciPath(void)
@@ -192,3 +172,11 @@ static char *GetSciPath(void)
 	return PathUnix;
 }
 /*--------------------------------------------------------------------------*/
+BOOL isTkStarted(void){
+	return TK_Started;
+}
+/*--------------------------------------------------------------------------*/ 
+void setTkStarted(BOOL isTkSet){
+	TK_Started=isTkSet;
+}
+/*--------------------------------------------------------------------------*/ 
