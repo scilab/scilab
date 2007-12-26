@@ -1250,6 +1250,22 @@ else
 echo "  JAVA disabled"
 fi
 
+echo "" 
+echo "TCL/TK configuration:"
+echo "  TK_INC_PATH .... = $TK_INC_PATH"
+echo "  TCL_INC_PATH ... = $TCL_INC_PATH"
+echo "  TCLTK_LIBS ..... = $TCLTK_LIBS"
+
+echo "" 
+echo "XML configuration:"
+echo "  XML_FLAGS ...... = $XML_FLAGS"
+echo "  XML_LIBS ....... = $XML_LIBS"
+
+echo "" 
+echo "PCRE configuration:"
+echo "  PCRE_CFLAGS .... = $PCRE_CFLAGS"
+echo "  PCRE_LIBS ...... = $PCRE_LIBS"
+
 
 echo ""
 echo "SWIG Configuration:"
@@ -1311,12 +1327,5 @@ echo "  CXXFLAGS ....... = $CXXFLAGS"
 echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
-echo "  XML_FLAGS ...... = $XML_FLAGS"
-echo "  XML_LIBS ....... = $XML_LIBS"
-echo "  PCRE_CFLAGS .... = $PCRE_CFLAGS"
-echo "  PCRE_LIBS ...... = $PCRE_LIBS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
-echo "  TK_INC_PATH .... = $TK_INC_PATH"
-echo "  TCL_INC_PATH ... = $TCL_INC_PATH"
-echo "  TCLTK_LIBS ..... = $TCLTK_LIBS"
 echo ""
