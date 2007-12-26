@@ -53,12 +53,12 @@ void PolylineLineDrawerJoGL::drawPolyline( void )
 
   if (xCoords == NULL || yCoords == NULL || zCoords == NULL)
   {
-    sciprint(_("Unable to render polyline, memory full.\n"));
-    if(xCoords != NULL) { delete[] xCoords; }
-    if(yCoords != NULL) { delete[] yCoords; }
-    if(zCoords != NULL) { delete[] zCoords; }
-    endDrawing();
-    return;
+	  sciprint(_("%s: No more memory.\n"),"PolylineLineDrawerJoGL::drawPolyline");
+	  if(xCoords != NULL) { delete[] xCoords; }
+	  if(yCoords != NULL) { delete[] yCoords; }
+	  if(zCoords != NULL) { delete[] zCoords; }
+	  endDrawing();
+	  return;
   }
 
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
