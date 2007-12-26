@@ -50,27 +50,27 @@ int C2F(gw_io)(void)
 		{
 			case 1: 
 			{
-				C2F(intexec)();
+				C2F(intexec)("exec",4); /* 4 = strlen("exec") */
 				return 0;
 			}
 			case 2: 
 			{
-				C2F(intexecstr)();
+				C2F(intexecstr)("execstr",7); /* 4 = strlen("execstr") */
 				return 0;
 			}
 			case 3: 
 			{
-				C2F(intgetf)();
+				C2F(intgetf)(); 
 				return 0;
 			}
 			case 4:  
 			{
-				C2F(intsave)();
+				C2F(intsave)(); /* 4 = strlen("save") */
 				return 0;
 			}
 			case 5:
 			{
-				C2F(intload)();
+				C2F(intload)("load", 4); /* 4 = strlen("load") */
 			}
 			case 6: 
 			{
@@ -83,7 +83,7 @@ int C2F(gw_io)(void)
 			}
 			case 8: 
 			{
-				C2F(intexec)();
+				C2F(intexec)("exec",4); /* 4 = strlen("exec") */
 				return 0;
 			}
 		}
