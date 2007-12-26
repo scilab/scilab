@@ -280,7 +280,6 @@ includes/setenvtcl.h\
 includes/GedManagement.h \
 includes/TCL_Global.h \
 includes/ScilabEval.h \
-includes/InitTclTk.h \
 includes/TclEvents.h \
 includes/gw_tclsci.h \
 includes/TclUiGet.h \
