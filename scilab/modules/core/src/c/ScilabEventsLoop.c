@@ -17,8 +17,10 @@ BOOL ScilabEventsLoop(void)
 {
 	if (scilab_timer_check())
 		{
-			TclEventsLoop() ;
-			return TRUE;
+			if (isTkStarted()){
+				TclEventsLoop() ;
+				return TRUE;
+			}
 		}
 	return FALSE;
 }
