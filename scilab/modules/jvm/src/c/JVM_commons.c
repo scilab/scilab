@@ -80,15 +80,24 @@ char *getJniErrorFromStatusCode(long status){
 		case JNI_EVERSION:
 			return _("JNI version error");
 			break;
+#ifdef JNI_ENOMEM
+			/* ifdef because not defined with some version of gcj */
 		case JNI_ENOMEM:
 			return _("JNI: not enough memory");
 			break;
+#endif
+#ifdef JNI_EEXIST
+			/* ifdef because not defined with some version of gcj */
 		case JNI_EEXIST:
 			return _("VM already created");
 			break;
+#endif
+#ifdef JNI_EINVAL
+			/* ifdef because not defined with some version of gcj */
 		case JNI_EINVAL:
 			return _("JNI: invalid arguments");
 			break;
+#endif
 		default:
 			return _("Undefined error code in the JNI. Weird problem");
 			break;
