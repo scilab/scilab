@@ -15,15 +15,6 @@
 #include "MALLOC.h"
 #include "GetCharWithoutOutput.h"
 /*--------------------------------------------------------------------------*/
-/*
-** Bruno : Useless...
-int C2F(gw_console)()
-{
-Scierror(999,_("Scilab console module not installed.\n"));
-return 0;
-}
-*/
-/*--------------------------------------------------------------------------*/
 char *ConsoleRead(void)
 {
 	return NULL;
