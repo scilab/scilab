@@ -368,9 +368,6 @@
 				RelativePath=".\includes\InitializeTclTk.h"
 				>
 			</File>
-			<File
-				RelativePath=".\includes\InitTclTk.h"
-				>
 			</File>
 			<File
 				RelativePath=".\includes\Messages.h"
