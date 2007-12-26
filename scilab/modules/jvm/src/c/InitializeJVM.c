@@ -25,9 +25,7 @@ BOOL InitializeJVM(void)
 
 	SCIPATH=getSCIpath();
 
-	bOK=startJVM(SCIPATH);
-
-	if (!bOK)
+	if (!startJVM(SCIPATH))
 	{
 #ifdef _MSC_VER
 		MessageBox(NULL,_("\nScilab cannot open JVM library.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
@@ -40,9 +38,7 @@ BOOL InitializeJVM(void)
 		DoLoadLibrarypathInEtc(SCIPATH);
 		DoLoadClasspathInEtc(SCIPATH);
 
-		bOK = createMainScilabObject();
-
-		if (!bOK)
+		if (!createMainScilabObject())
 		{
 #ifdef _MSC_VER
 			MessageBox(NULL,_("\nScilab cannot create Scilab Java Main-Class. (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
@@ -50,13 +46,17 @@ BOOL InitializeJVM(void)
 			printf(_("\nScilab cannot create Scilab Java Main-Class. (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
 #endif
 		}
+		else
+			{
+				bOK=TRUE;
+			}
 	}
 
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
 
 	if (!bOK) exit(1);
 
-	return bOK;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *SCIPATH)

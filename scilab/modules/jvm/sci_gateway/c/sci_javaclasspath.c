@@ -23,7 +23,6 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		int nbRow=0;
 		int nbCol=1;
-		int i=0;
 		char **Strings=NULL;
 
 		Strings=getClasspath(&nbRow);
@@ -39,18 +38,16 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			static int n1=0,m1=0;
 			int i=0;
-			BOOL bOK=FALSE;
 			char **CLASSPATHS=NULL;
 
 			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&CLASSPATHS);
 
 			for (i = 0; i<m1*n1 ;i++)
 			{
-				bOK=addToClasspath(CLASSPATHS[i]);
-				if (!bOK)
+				if (!addToClasspath(CLASSPATHS[i]))
 				{
 					freeArrayOfString(CLASSPATHS,m1*n1);
-					Scierror(999,_("could not add URL to system classloader : %s.\n"),CLASSPATHS[i]);
+					Scierror(999,_("Could not add URL to system classloader : %s.\n"),CLASSPATHS[i]);
 					return 0;
 				}
 			}
@@ -60,7 +57,7 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("invalid parameter(s).\n"));
+			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 		}
 	}
 	return 0;

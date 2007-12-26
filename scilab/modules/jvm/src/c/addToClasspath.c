@@ -11,7 +11,6 @@
 /*--------------------------------------------------------------------------*/ 
 BOOL addToClasspath(char *classpathstring)
 {
-	BOOL bOK=FALSE;
 
 	if (classpathstring)
 	{
@@ -42,12 +41,12 @@ BOOL addToClasspath(char *classpathstring)
 						jstring jstr;
 						jstr = (*currentENV)->NewStringUTF(currentENV,classpathstring);
 						(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstr);
-						bOK=TRUE;
+						return TRUE;
 					}
 				}
 			}
 		}
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 

@@ -50,7 +50,6 @@ JNIEnv *getScilabJNIEnv(void)
 /*--------------------------------------------------------------------------*/ 
 BOOL startJVM(char *SCI_PATH)
 {
-	BOOL bOK=FALSE;
 	JNIEnv *env=NULL;
 	JavaVM *ptr_jvm = NULL;
 	jint res=0;
@@ -173,11 +172,9 @@ BOOL startJVM(char *SCI_PATH)
 		FreeDynLibJVM();
 		if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
 		if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
-		bOK=FALSE;
+		return FALSE;
 	}
-	else bOK=TRUE;
-
-	return bOK;
+	else return TRUE;
 }
 /*--------------------------------------------------------------------------*/ 
 BOOL finishJVM(void)

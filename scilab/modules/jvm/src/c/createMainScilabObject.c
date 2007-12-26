@@ -48,7 +48,6 @@ jobject getScilabObject(void)
 /*--------------------------------------------------------------------------*/ 
 BOOL finishMainScilabObject(void)
 {
-	BOOL bOK = FALSE;
 	JNIEnv * currentENV = getScilabJNIEnv();
 	JavaVM * currentJVM = getScilabJavaVM();
 
@@ -56,8 +55,8 @@ BOOL finishMainScilabObject(void)
 	if (result == 0) 
 	{
 		(*currentENV)->DeleteGlobalRef(currentENV, ScilabObject);
-		bOK = TRUE;
+		return TRUE;
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 

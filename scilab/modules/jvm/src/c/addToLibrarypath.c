@@ -11,7 +11,6 @@
 /*--------------------------------------------------------------------------*/ 
 BOOL addToLibrarypath(char *librarypathstring)
 {
-	BOOL bOK=FALSE;
 
 	if (librarypathstring)
 	{
@@ -42,12 +41,12 @@ BOOL addToLibrarypath(char *librarypathstring)
 						jstring jstr;
 						jstr = (*currentENV)->NewStringUTF(currentENV,librarypathstring);
 						(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstr);
-						bOK=TRUE;
+						return TRUE;
 					}
 				}
 			}
 		}
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 

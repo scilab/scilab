@@ -8,13 +8,7 @@
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateJVM(void)
 {
-	BOOL bOK=FALSE;
-
 	finishMainScilabObject();
-	bOK=finishJVM();
-
-	
-
-	return bOK;
+	return finishJVM();
 }
 /*--------------------------------------------------------------------------*/ 
