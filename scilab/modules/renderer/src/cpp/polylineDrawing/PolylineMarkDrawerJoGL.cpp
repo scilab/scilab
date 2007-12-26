@@ -10,8 +10,8 @@
 extern "C"
 {
 #include "GetProperty.h"
-#include "localization.h"
 #include "sciprint.h"
+#include "localization.h"
 };
 
 #include "BarDecomposition.hxx"
@@ -68,12 +68,12 @@ void PolylineMarkDrawerJoGL::drawPolyline( void )
 
   if (xCoords == NULL || yCoords == NULL || zCoords == NULL)
   {
-    sciprint(_("Unable to render polyline, memory full.\n"));
-    if(xCoords != NULL) { delete[] xCoords; }
-    if(yCoords != NULL) { delete[] yCoords; }
-    if(zCoords != NULL) { delete[] zCoords; }
-    endDrawing();
-    return;
+	  sciprint(_("%s: No more memory.\n"),"PolylineMarkDrawerJoGL::drawPolyline");
+	  if(xCoords != NULL) { delete[] xCoords; }
+	  if(yCoords != NULL) { delete[] yCoords; }
+	  if(zCoords != NULL) { delete[] zCoords; }
+	  endDrawing();
+	  return;
   }
 
   if (sciGetPolylineStyle(pObj) == 3)
