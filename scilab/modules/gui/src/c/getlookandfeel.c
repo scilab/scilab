@@ -18,7 +18,7 @@ char * getlookandfeel(void)
 		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeel");
 		if (classLookAndFeel)
 		{
-			jmethodID methodgetLookAndFeel = (*env)->GetStaticMethodID(env,classLookAndFeel, "getLookAndFeel", "()Ljava/lang/String;");
+			jmethodID methodgetLookAndFeel = (*env)->GetStaticMethodID(env,classLookAndFeel, "getCurrentLookAndFeel", "()Ljava/lang/String;");
 			if (methodgetLookAndFeel)
 			{
 				jstring jstrValue = (*env)->CallStaticObjectMethod(env,classLookAndFeel, methodgetLookAndFeel,NULL);
