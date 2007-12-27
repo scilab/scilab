@@ -57,14 +57,14 @@ public class SwingScilabTab extends View implements SimpleTab {
 		// FIXME : Need improovment to be available at a release Status...
 		this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
-		this.setFocusable(true);
+		//this.setFocusable(true);
 		this.setLayout(null);
 		super.addFocusListener(new FocusListener() {
 
 			public void focusGained(FocusEvent arg0) {
 				// TODO Auto-generated method stub
 				//System.out.println("[TAB "+getName()+"] Tab Focussed ...");	
-				BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
+				//BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
 			}
 
 			public void focusLost(FocusEvent arg0) {
