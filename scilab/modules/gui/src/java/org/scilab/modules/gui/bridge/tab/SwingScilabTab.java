@@ -5,23 +5,25 @@ package org.scilab.modules.gui.bridge.tab;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
-
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
  * This implementation uses FlexDock package
+ * @author Bruno JOFRET
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
@@ -32,6 +34,10 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int parentWindowId;
 	
 	private int elementId;
+	
+	private MenuBar menuBar;
+	
+	private ToolBar toolBar;
 
 	/**
 	 * Constructor
@@ -40,7 +46,8 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public SwingScilabTab(String name) {
 		super(name, name, name);
 		this.addAction(DockingConstants.CLOSE_ACTION);
-		this.addAction(DockingConstants.PIN_ACTION);
+		// FIXME : Need improovment to be available at a release Status...
+		//this.addAction(DockingConstants.PIN_ACTION);
 		this.setLayout(null);
  	}
 
@@ -235,5 +242,42 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void setElementId(int id) {
 		this.elementId = id;
+	}
+
+	/**
+	 * Setter for MenuBar
+	 * @param newMenuBar : the MenuBar to set.
+	 * @see org.scilab.modules.gui.tab.SimpleTab#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
+	 */
+	public void setMenuBar(MenuBar newMenuBar) {
+		this.menuBar = newMenuBar;
+	}
+
+	
+	/**
+	 * Getter for MenuBar
+	 * @return MenuBar : the MenuBar associated to the Tab.
+	 * @see org.scilab.modules.gui.tab.SimpleTab#getMenuBar()
+	 */
+	public MenuBar getMenuBar() {
+		return this.menuBar;
+	}
+	
+	/**
+	 * Setter for ToolBar
+	 * @param newToolBar : the ToolBar to set.
+	 * @see org.scilab.modules.gui.tab.SimpleTab#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
+	 */
+	public void setToolBar(ToolBar newToolBar) {
+		this.toolBar = newToolBar;
+	}
+
+	/**
+	 * Getter for ToolBar
+	 * @return ToolBar : the ToolBar associated to the Tab.
+	 * @see org.scilab.modules.gui.tab.SimpleTab#getToolBar()
+	 */
+	public ToolBar getToolBar() {
+		return this.toolBar;
 	}
 }
