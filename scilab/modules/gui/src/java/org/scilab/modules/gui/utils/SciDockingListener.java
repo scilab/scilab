@@ -50,7 +50,7 @@ public class SciDockingListener implements DockingListener {
 			dockedTab.setParentWindowId(associatedScilabWindowId);
 			MenuBar newMenuBar = dockedTab.getMenuBar();
 			ToolBar newToolBar = dockedTab.getToolBar();
-			updateBars(associatedScilabWindowId, newMenuBar, newToolBar);
+			BarUpdater.updateBars(associatedScilabWindowId, newMenuBar, newToolBar);
 		} 
 		else if (e.getOldDockingPort() != null 
 				&& e.getOldDockingPort().getDockedComponent() != null
@@ -59,7 +59,7 @@ public class SciDockingListener implements DockingListener {
 			SwingScilabTab remainDockedTab = (SwingScilabTab) e.getOldDockingPort().getDockedComponent();
 			MenuBar oldMenuBar = remainDockedTab.getMenuBar();
 			ToolBar oldToolBar = remainDockedTab.getToolBar();
-			updateBars(parentWindowsID, oldMenuBar, oldToolBar);
+			BarUpdater.updateBars(parentWindowsID, oldMenuBar, oldToolBar);
 		}
 	}
 
@@ -91,20 +91,7 @@ public class SciDockingListener implements DockingListener {
 	 */
 	public void undockingStarted(DockingEvent e) {
 		System.out.println("[UNDOCKING STARTED]Is there any component left : " + e.getOldDockingPort().getDockedComponent());
-	}
-	
-	/**
-	 * Local update for MenuBar and ToolBar
-	 * Called when a Dock is complete.
-	 * @param parentWindowsID : the ID of the window we want to update.
-	 * @param newMenuBar : the new MenuBar to display.
-	 * @param newToolBar : the new ToolBar to display.
-	 */
-	private void updateBars(int parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar) {
-		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addMenuBar(newMenuBar);
-		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addToolBar(newToolBar);
-	}
-	
+	}	
 	
 	/**
 	 * Set the window object associated to this docking listener
