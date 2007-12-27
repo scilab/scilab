@@ -160,6 +160,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	public void addTab(Tab newTab) {
 		((SwingScilabTab) newTab.getAsSimpleTab()).setParentWindowId(this.elementId);
 		DockingManager.dock((SwingScilabTab) newTab.getAsSimpleTab(), this.getDockingPort());
+		// Adding the MenuBar of the last added Tab
+		this.addMenuBar(newTab.getMenuBar());
+		this.addToolBar(newTab.getToolBar());
 	}
 	
 	/**
@@ -168,8 +171,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
-		this.menuBar = newMenuBar.getAsSimpleMenuBar();
-		super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
+		if (newMenuBar != null) {
+			this.menuBar = newMenuBar.getAsSimpleMenuBar();
+			super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
+		}
+		else {
+			this.menuBar = null;
+			super.setJMenuBar(null);
+		}
 	}
 
 	/**
@@ -178,12 +187,17 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
 	public void addToolBar(ToolBar newToolBar) {
-		// Remove old toolbar if already set
-		if (this.toolBar != null) {
-			super.remove((SwingScilabToolBar) this.toolBar);
+		if (newToolBar != null) {
+			this.toolBar = newToolBar.getAsSimpleToolBar();
+			super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
 		}
-		this.toolBar = newToolBar.getAsSimpleToolBar();
-		super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
+		else {
+			// Remove old toolbar if already set
+			if (this.toolBar != null) {
+				super.remove((SwingScilabToolBar) this.toolBar);
+			}
+			this.toolBar = null;
+		}
 	}
 
 	/**
