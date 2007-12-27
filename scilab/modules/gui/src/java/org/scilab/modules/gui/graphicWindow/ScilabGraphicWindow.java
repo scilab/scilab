@@ -46,7 +46,7 @@ public class ScilabGraphicWindow extends ScilabWindow {
 	/**
 	 * Constructor
 	 */
-	public ScilabGraphicWindow() {
+	private ScilabGraphicWindow() {
 		super();
 	}
 	
@@ -58,35 +58,15 @@ public class ScilabGraphicWindow extends ScilabWindow {
 	public void setFigureIndex(int figureIndex) {
 		this.setTitle(FIGURE_TITLE + figureIndex);
 		/* MENUBAR */
-		try {
-			this.addMenuBar(MenuBarBuilder.buildMenuBar(MENUBARXMLFILE));
-		} catch (SAXException e) {
-			System.err.println(CANNOT_CREATE_MENUBAR);
-			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-		} catch (IOException e) {
-			System.err.println(CANNOT_CREATE_MENUBAR);
-			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-		} catch (ParserConfigurationException e) {
-			System.err.println(CANNOT_CREATE_MENUBAR);
-			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-		}
+		this.addMenuBar(MenuBarBuilder.buildMenuBar(MENUBARXMLFILE));
 		/* TOOLBAR */
-		try {
-			this.addToolBar(ToolBarBuilder.buildToolBar(TOOLBARXMLFILE));
-		} catch (SAXException e) {
-			System.err.println(CANNOT_CREATE_TOOLBAR);
-			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-		} catch (IOException e) {
-			System.err.println(CANNOT_CREATE_TOOLBAR);
-			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-		} catch (ParserConfigurationException e) {
-			System.err.println(CANNOT_CREATE_TOOLBAR);
-			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-		}
+		this.addToolBar(ToolBarBuilder.buildToolBar(TOOLBARXMLFILE));
 		
 		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
+		//graphicCanvas.addMenuBar(getMenuBar());
+		//graphicCanvas.addToolBar(getToolBar());
 		graphicTab.addMember(graphicCanvas);
 		this.addTab(graphicTab);
 		// don't draw for now
