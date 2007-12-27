@@ -11,6 +11,8 @@ import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
@@ -18,6 +20,7 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 /**
  * Class for tabs in Scilab GUIs
  * @author Vincent COUVERT
+ * @author Bruno JOFRET
  */
 public class ScilabTab extends ScilabContainer implements Tab {
 
@@ -33,9 +36,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	protected ScilabTab(String name) {
 		component = ScilabBridge.createTab(name);
 		component.setElementId(UIElementMapper.add(this));
-		
-		//setMenuBarId(UIElementMapper.getDefaultId());
-		//setToolBarId(UIElementMapper.getDefaultId());
    }
 
 	/**
@@ -141,8 +141,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
-		addMenuBar(member.getMenuBar());
-		addToolBar(member.getToolBar());
+		updateMenuBar(member);
+		updateToolBar(member);
 		return ScilabBridge.addMember(this, member);
 	}
 
@@ -152,8 +152,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Console member) {
-		addMenuBar(member.getMenuBar());
-		addToolBar(member.getToolBar());
+		updateMenuBar(member);
+		updateToolBar(member);
 		UIElementMapper.setConsoleId(this.getAsSimpleTab().getElementId());
 		return ScilabBridge.addMember(this, member);
 	}
@@ -169,15 +169,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		// FIXME must be coded
 		//return addMember(member);
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Sets a MenuBar to a Scilab tab
-	 * @param newMenuBar the tab to add to the tab
-	 * @see org.scilab.modules.gui.tab.Tab#setMenuBar(org.scilab.modules.gui.widget.MenuBar)
-	 */
-	public void addMenuBar(MenuBar newMenuBar) {
-		super.addMenuBar(newMenuBar);
 	}
 	
 	/**
@@ -223,5 +214,55 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 */
 	public int getParentWindowId() {
 		return ScilabBridge.getParentWindowId(this);
+	}
+	
+	/**
+	 * Update the Tab MenuBar.
+	 * If the element added has its own, the Tab will take this
+	 * one as its.
+	 * @param element : the element added.
+	 */
+	private void updateMenuBar(UIElement element) {
+		if (element.getMenuBar() != null) {
+			this.addMenuBar(element.getMenuBar());
+		}
+	}
+	
+	/**
+	 * Add a MenuBar to this Tab
+	 * @Override the UIElement behavior
+	 * Explicitly set the MenuBar in the Tab implementation.
+	 * @param menuBar : The MenuBar to set.
+	 * @see org.scilab.modules.gui.uielement.ScilabUIElement#addMenuBar(org.scilab.modules.gui.menubar.MenuBar)
+	 */
+	@Override
+	public void addMenuBar(MenuBar menuBar) {
+		super.addMenuBar(menuBar);
+		this.getAsSimpleTab().setMenuBar(menuBar);
+	}
+	
+	/**
+	 * Update the Tab ToolBar.
+	 * If the element added has its own, the Tab will take this
+	 * one as its.
+	 * @param element : the element added.
+	 */
+	private void updateToolBar(UIElement element) {
+		if (element.getToolBar() != null) {
+			this.addToolBar(element.getToolBar());
+		}
+	}
+	
+	/**
+	 * Add a ToolBar to this Tab
+	 * @Override the UIElement behavior
+	 * Explicitly set the ToolBar in the Tab implementation.
+	 * @param toolBar : The ToolBar to set.
+	 * @see org.scilab.modules.gui.uielement.ScilabUIElement#addToolBar(org.scilab.modules.gui.toolbar.ToolBar)
+	 */
+	@Override
+	public void addToolBar(ToolBar toolBar) {
+		super.addToolBar(toolBar);
+		this.getAsSimpleTab().setToolBar(toolBar);
 	}
 }
