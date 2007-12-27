@@ -31,7 +31,11 @@ import org.scilab.modules.gui.toolbar.ToolBar;
  * @author Vincent COUVERT
  */
 public final class ToolBarBuilder {
-	
+
+	private static final String FILE_NOT_FOUND = "Could not find file: ";
+
+	private static final String CANNOT_CREATE_TOOLBAR = "Cannot create ToolBar.\n"
+							+ "Check if file *_toolbar.xml is available and valid.";	
 	/**
 	 * Default constructor
 	 */
@@ -63,12 +67,29 @@ public final class ToolBarBuilder {
 	 * @throws IOException can be thrown when an error occurs while reading the file
 	 * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
 	 */
-	public static ToolBar buildToolBar(String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
-		ToolBarConfiguration toolBarConfig = (ToolBarConfiguration) buildToolBar(new Class[] {ToolBarConfiguration.class}, fileToLoad);
-		
+	public static ToolBar buildToolBar(String fileToLoad) {
 		ToolBar toolbar = ScilabToolBar.createToolBar();
 		
-		toolBarConfig.addPushButtons(toolbar);
+		try {
+			ToolBarConfiguration toolBarConfig = (ToolBarConfiguration) buildToolBar(new Class[] {ToolBarConfiguration.class}, fileToLoad);
+			toolBarConfig.addPushButtons(toolbar);
+		} catch (IllegalArgumentException e) {
+			System.err.println(CANNOT_CREATE_TOOLBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//System.exit(-1);
+		} catch (SAXException e) {
+			System.err.println(CANNOT_CREATE_TOOLBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//System.exit(-1);
+		} catch (IOException e) {
+			System.err.println(CANNOT_CREATE_TOOLBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			System.err.println(CANNOT_CREATE_TOOLBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//System.exit(-1);
+		}
 		
 		return toolbar;
 	}	

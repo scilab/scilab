@@ -31,7 +31,11 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
  * @author Vincent COUVERT
  */
 public final class MenuBarBuilder {
+
+	private static final String FILE_NOT_FOUND = "Could not find file: ";
 	
+	private static final String CANNOT_CREATE_MENUBAR = "Cannot create MenuBar.\n"
+								+ "Check if file *_menubar.xml is available and valid.";
 	/**
 	 * Default constructor
 	 */
@@ -63,12 +67,29 @@ public final class MenuBarBuilder {
 	 * @throws IOException can be thrown when an error occurs while reading the file
 	 * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
 	 */
-	public static MenuBar buildMenuBar(String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
-		MenuBarConfiguration menuBarConfig = (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
-		
+	public static MenuBar buildMenuBar(String fileToLoad) {
 		MenuBar menubar = ScilabMenuBar.createMenuBar();
 		
-		menuBarConfig.addMenus(menubar);
+		try {
+			MenuBarConfiguration menuBarConfig = (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
+			menuBarConfig.addMenus(menubar);
+		} catch (IllegalArgumentException e) {
+			System.err.println(CANNOT_CREATE_MENUBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//System.exit(-1);
+		} catch (SAXException e) {
+			System.err.println(CANNOT_CREATE_MENUBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//System.exit(-1);
+		} catch (IOException e) {
+			System.err.println(CANNOT_CREATE_MENUBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			System.err.println(CANNOT_CREATE_MENUBAR);
+			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
+			//System.exit(-1);
+		}
 		
 		return menubar;
 	}	
