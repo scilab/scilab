@@ -14,8 +14,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -58,15 +60,15 @@ public class ScilabGraphicWindow extends ScilabWindow {
 	public void setFigureIndex(int figureIndex) {
 		this.setTitle(FIGURE_TITLE + figureIndex);
 		/* MENUBAR */
-		this.addMenuBar(MenuBarBuilder.buildMenuBar(MENUBARXMLFILE));
+		MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
 		/* TOOLBAR */
-		this.addToolBar(ToolBarBuilder.buildToolBar(TOOLBARXMLFILE));
+		ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
 		
 		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
-		//graphicCanvas.addMenuBar(getMenuBar());
-		//graphicCanvas.addToolBar(getToolBar());
+		graphicTab.addMenuBar(menuBar);
+		graphicTab.addToolBar(toolBar);
 		graphicTab.addMember(graphicCanvas);
 		this.addTab(graphicTab);
 		// don't draw for now
