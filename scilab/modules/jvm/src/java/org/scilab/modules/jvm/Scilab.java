@@ -26,7 +26,8 @@ import org.scilab.modules.gui.utils.ToolBarBuilder;
  * @author Allan CORNET
  * @author Vincent COUVERT
  * @author Sylvestre Ledru INRIA 2007
-  */
+ * @author Bruno JOFRET
+ */
 public class Scilab {
 
 	private static final String CLASS_NOT_FOUND = "Could not find class: ";
@@ -72,52 +73,12 @@ public class Scilab {
 			/************/
 			/* MENU BAR */
 			/************/
-			MenuBar menuBar = null;
-			try {
-				menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-				//mainView.addMenuBar(menuBar);
-			} catch (IllegalArgumentException e) {
-				System.err.println(CANNOT_CREATE_MENUBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				System.exit(-1);
-			} catch (SAXException e) {
-				System.err.println(CANNOT_CREATE_MENUBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				System.exit(-1);
-			} catch (IOException e) {
-				System.err.println(CANNOT_CREATE_MENUBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				e.printStackTrace();
-			} catch (ParserConfigurationException e) {
-				System.err.println(CANNOT_CREATE_MENUBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				System.exit(-1);
-			}
+			MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
 
 			/************/
 			/* TOOL BAR */
 			/************/
-			ToolBar toolBar = null;
-			try {
-				toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
-				//mainView.addToolBar(toolBar);
-			} catch (IllegalArgumentException e) {
-				System.err.println(CANNOT_CREATE_TOOLBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				System.exit(-1);
-			} catch (SAXException e) {
-				System.err.println(CANNOT_CREATE_TOOLBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				System.exit(-1);
-			} catch (IOException e) {
-				System.err.println(CANNOT_CREATE_TOOLBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				e.printStackTrace();
-			} catch (ParserConfigurationException e) {
-				System.err.println(CANNOT_CREATE_TOOLBAR);
-				System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-				System.exit(-1);
-			}
+			ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
 
 			/* CONSOLE */
 			/* Create a tab to put console into */
