@@ -33,14 +33,14 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("Wrong size for first parameter, should be a single string."));
+              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
               return FALSE;
             }
           initialDirectory = cstk(initialDirectoryAdr);
         }
       else 
         {
-          Scierror(999, _("Wrong type for first parameter, should be a single string."));
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
           return FALSE;
         }
     }
@@ -52,14 +52,14 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("Wrong size for first parameter, should be a single string."));
+              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
               return FALSE;
             }
           initialDirectory = cstk(initialDirectoryAdr);
         }
       else 
         {
-          Scierror(999, _("Wrong type for first parameter, should be a single string."));
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
           return FALSE;
         }
 
@@ -69,14 +69,14 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("Wrong size for second parameter, should be a single string."));
+              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"));
               return FALSE;
             }
           title = cstk(titleAdr);
         }
       else 
         {
-          Scierror(999, _("Wrong type for second parameter, should be a single string."));
+          Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"));
           return FALSE;
         }
     }

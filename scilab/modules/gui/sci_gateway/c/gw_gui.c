@@ -39,7 +39,7 @@ int C2F(gw_gui)(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Module disabled in -nogui mode."));
+		Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode."));
 		return 0;
 	}
 

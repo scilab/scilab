@@ -16,6 +16,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2007-11-27 11:13+0100\n"
 
+# File: macros/addmenu.sci, line: 20
+# File: macros/addmenu.sci, line: 35
+# File: macros/addmenu.sci, line: 48
+#, c-format
+msgid "%s: Wrong type for first input argument: Single string expected."
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 26
+#, c-format
+msgid "%s: Wrong type for first input argument: String expected."
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 52
+# File: macros/addmenu.sci, line: 148
+#, c-format
+msgid "%s: Wrong type for second input argument: Two-item list expected."
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 63
+# File: macros/addmenu.sci, line: 82
+# File: macros/addmenu.sci, line: 99
+# File: macros/addmenu.sci, line: 116
+# File: macros/addmenu.sci, line: 138
+#, c-format
+msgid "%s: Wrong type for first input argument: Single value expected."
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 67
+# File: macros/addmenu.sci, line: 103
+# File: macros/addmenu.sci, line: 120
+# File: macros/addmenu.sci, line: 142
+#, c-format
+msgid "%s: Wrong type for second input argument: Single string expected."
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 73
+#, c-format
+msgid "%s: Wrong type for two input arguments"
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 88
+# File: macros/addmenu.sci, line: 124
+#, c-format
+msgid "%s: Wrong type for third input argument: Two-item list expected."
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 130
+#, c-format
+msgid "%s: Wrong type for three input arguments"
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 154
+#, c-format
+msgid "%s: Wrong number of input argument(s)"
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 176
+# File: macros/addmenu.sci, line: 216
+msgid "Callback type must be a 0, 1 or 2"
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 181
+# File: macros/addmenu.sci, line: 221
+msgid "Callback must be a single string."
+msgstr ""
+
+#
+# File: macros/addmenu.sci, line: 184
+# File: macros/addmenu.sci, line: 224
+msgid "Callback list not yet managed in addmenu."
+msgstr ""
+
 # File: src/nogui/nogui.c, line: 19
 # File: src/nogui/nogui.c, line: 135
 # File: src/nogui/nogui.c, line: 139
@@ -34,6 +116,215 @@ msgid "Error. A signal has been caught.\n"
 msgstr ""
 
 #
+# File: src/c/CreateUIControl.c, line: 34
+msgid "No more place to allocates text string, try a shorter string"
+msgstr ""
+
+#
+# File: src/c/CreateUIControl.c, line: 77
+#, c-format
+msgid "Could not create uicontrol of type %s."
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolParent.cpp, line: 18
+#, c-format
+msgid "%s property value must be a single handle.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolParent.cpp, line: 43
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 71
+# File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 34
+# File: src/cpp/GetUiobjectCallback.cpp, line: 24
+# File: src/cpp/SetUiobjectCallback.cpp, line: 41
+# File: src/cpp/GetUiobjectForegroundColor.cpp, line: 25
+# File: src/cpp/GetUicontrolPosition.cpp, line: 35
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 76
+# File: src/cpp/SetUicontrolPosition.cpp, line: 70
+# File: src/cpp/GetUicontrolFontWeight.cpp, line: 32
+# File: src/cpp/SetUicontrolFontWeight.cpp, line: 56
+# File: src/cpp/SetUicontrolFontUnits.cpp, line: 61
+# File: src/cpp/GetUicontrolFontSize.cpp, line: 22
+# File: src/cpp/SetUicontrolFontSize.cpp, line: 63
+# File: src/cpp/GetUicontrolFontUnits.cpp, line: 34
+# File: src/cpp/GetUicontrolUnits.cpp, line: 34
+# File: src/cpp/SetUicontrolUnits.cpp, line: 60
+# File: src/cpp/GetUiobjectTag.cpp, line: 39
+# File: src/cpp/GetUicontrolString.cpp, line: 19
+# File: src/cpp/SetUicontrolString.cpp, line: 36
+# File: src/cpp/GetUicontrolFontAngle.cpp, line: 30
+# File: src/cpp/SetUicontrolFontAngle.cpp, line: 52
+#, c-format
+msgid "No %s property for uicontrols of style: %s.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolParent.cpp, line: 50
+msgid ""
+"Could not set an other object than a figure as parent of an uicontrol.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolParent.cpp, line: 57
+msgid ""
+"Could not set an other object than a handle as parent of an uicontrol.\n"
+msgstr ""
+
+#
+# File: src/cpp/GetUimenuLabel.cpp, line: 18
+# File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 40
+# File: src/cpp/GetUiobjectCallback.cpp, line: 30
+# File: src/cpp/SetUiobjectCallback.cpp, line: 46
+# File: src/cpp/GetUiobjectForegroundColor.cpp, line: 35
+# File: src/cpp/GetUicontrolPosition.cpp, line: 41
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 82
+# File: src/cpp/GetUicontrolFontWeight.cpp, line: 38
+# File: src/cpp/GetUicontrolFontSize.cpp, line: 58
+# File: src/cpp/GetUicontrolFontUnits.cpp, line: 40
+# File: src/cpp/GetUicontrolUnits.cpp, line: 40
+# File: src/cpp/GetUiobjectTag.cpp, line: 45
+# File: src/cpp/SetUiobjectTag.cpp, line: 53
+# File: src/cpp/GetUicontrolMin.cpp, line: 17
+# File: src/cpp/GetUicontrolMax.cpp, line: 17
+# File: src/cpp/SetUimenuLabel.cpp, line: 35
+# File: src/cpp/GetUicontrolStyle.cpp, line: 15
+# File: src/cpp/GetUicontrolString.cpp, line: 25
+# File: src/cpp/SetUicontrolString.cpp, line: 42
+# File: src/cpp/GetUicontrolFontAngle.cpp, line: 36
+# File: src/cpp/GetUicontrolListboxTop.cpp, line: 24
+# File: src/cpp/GetUicontrolValue.cpp, line: 24
+#, c-format
+msgid "No %s property for this object.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 24
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 33
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 47
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 60
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 23
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 31
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 44
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 57
+#, c-format
+msgid "%s property value must be \"R|G|B\" or [R, G, B].\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUiobjectCallback.cpp, line: 13
+# File: src/cpp/SetUiobjectCallback.cpp, line: 17
+# File: src/cpp/SetUiobjectCallback.cpp, line: 23
+# File: src/cpp/SetUiobjectTag.cpp, line: 13
+# File: src/cpp/SetUimenuLabel.cpp, line: 13
+# File: src/cpp/SetUimenuLabel.cpp, line: 17
+# File: src/cpp/SetUimenuLabel.cpp, line: 23
+# File: src/cpp/SetUicontrolString.cpp, line: 13
+# File: src/cpp/SetUicontrolString.cpp, line: 17
+# File: src/cpp/SetUicontrolString.cpp, line: 23
+#, c-format
+msgid "%s property value must be a single string.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolPosition.cpp, line: 24
+# File: src/cpp/SetUicontrolPosition.cpp, line: 32
+# File: src/cpp/SetUicontrolPosition.cpp, line: 46
+# File: src/cpp/SetUicontrolPosition.cpp, line: 59
+msgid ""
+"Position property value must be \"x|y|width|height\" or [x, y, width, "
+"height].\n"
+msgstr ""
+
+#
+# File: src/cpp/GetUicontrolFontWeight.cpp, line: 28
+# File: src/cpp/SetUicontrolFontWeight.cpp, line: 20
+# File: src/cpp/SetUicontrolFontWeight.cpp, line: 45
+# File: src/cpp/SetUicontrolFontWeight.cpp, line: 63
+msgid ""
+"FontWeight property value must be a single string: light, normal, demi or "
+"bold.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolFontUnits.cpp, line: 20
+# File: src/cpp/SetUicontrolFontUnits.cpp, line: 49
+# File: src/cpp/SetUicontrolFontUnits.cpp, line: 68
+# File: src/cpp/GetUicontrolFontSize.cpp, line: 50
+# File: src/cpp/SetUicontrolFontSize.cpp, line: 51
+# File: src/cpp/GetUicontrolFontUnits.cpp, line: 30
+msgid ""
+"FontUnits property value must be a single string: points, normalized, "
+"inches, centimeters or pixels.\n"
+msgstr ""
+
+#
+# File: src/cpp/GetUicontrolFontSize.cpp, line: 34
+msgid "Conversion of FontSize to Normalized units is not implemented.\n"
+msgstr ""
+
+#
+# File: src/cpp/GetUicontrolFontSize.cpp, line: 45
+msgid "Conversion of FontSize to Pixels units is not implemented.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolFontSize.cpp, line: 21
+# File: src/cpp/SetUicontrolFontSize.cpp, line: 70
+# File: src/cpp/SetUicontrolMin.cpp, line: 16
+# File: src/cpp/SetUicontrolMin.cpp, line: 37
+# File: src/cpp/SetUicontrolMax.cpp, line: 16
+# File: src/cpp/SetUicontrolMax.cpp, line: 37
+# File: src/cpp/SetUicontrolListboxTop.cpp, line: 16
+# File: src/cpp/SetUicontrolListboxTop.cpp, line: 48
+# File: src/cpp/SetUicontrolValue.cpp, line: 58
+#, c-format
+msgid "%s property value must be single value.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolFontSize.cpp, line: 35
+msgid "Conversion of FontSize from Normalized units is not implemented.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolFontSize.cpp, line: 46
+msgid "Conversion of FontSize from Pixels units is not implemented.\n"
+msgstr ""
+
+#
+# File: src/cpp/GetUicontrolUnits.cpp, line: 30
+# File: src/cpp/SetUicontrolUnits.cpp, line: 20
+# File: src/cpp/SetUicontrolUnits.cpp, line: 49
+# File: src/cpp/SetUicontrolUnits.cpp, line: 67
+msgid ""
+"Units property value must be a single string: points, normalized, inches, "
+"centimeters or pixels.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUiobjectTag.cpp, line: 17
+#, c-format
+msgid "%s col property value must be a single string.\n"
+msgstr ""
+
+#
+# File: src/cpp/GetUicontrolFontAngle.cpp, line: 26
+# File: src/cpp/SetUicontrolFontAngle.cpp, line: 20
+# File: src/cpp/SetUicontrolFontAngle.cpp, line: 41
+# File: src/cpp/SetUicontrolFontAngle.cpp, line: 59
+msgid ""
+"FontAngle property value must be a single string: normal, italic or "
+"oblique.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolValue.cpp, line: 19
+#, c-format
+msgid "%s property value must be a row vector.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_toolbar.c, line: 36
 msgid "Input argument type incorrect"
 msgstr ""
@@ -49,8 +340,106 @@ msgid "Input argument(s) type incorrect"
 msgstr ""
 
 #
-# File: sci_gateway/c/gw_gui.c, line: 41
-msgid "Module disabled in -nogui mode."
+# File: sci_gateway/c/sci_xgetfile.c, line: 35
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 52
+#, c-format
+msgid "%s: Wrong type for first input argument, a single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 60
+# File: sci_gateway/c/sci_xgetfile.c, line: 123
+# File: sci_gateway/c/sci_xgetfile.c, line: 204
+#, c-format
+msgid "%s: Wrong input argument: '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 70
+# File: sci_gateway/c/sci_xgetfile.c, line: 79
+# File: sci_gateway/c/sci_xgetfile.c, line: 92
+# File: sci_gateway/c/sci_xgetfile.c, line: 100
+# File: sci_gateway/c/sci_xgetfile.c, line: 115
+# File: sci_gateway/c/sci_xgetfile.c, line: 163
+# File: sci_gateway/c/sci_xgetfile.c, line: 196
+# File: sci_gateway/c/sci_unsetmenu.c, line: 35
+# File: sci_gateway/c/sci_delmenu.c, line: 34
+#, c-format
+msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 133
+# File: sci_gateway/c/sci_xgetfile.c, line: 142
+# File: sci_gateway/c/sci_xgetfile.c, line: 181
+#, c-format
+msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 155
+#, c-format
+msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 173
+#, c-format
+msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 214
+#, c-format
+msgid "%s: Wrong size for third input argument: Single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 223
+# File: sci_gateway/c/sci_setmenu.c, line: 35
+#, c-format
+msgid "%s: Wrong type for third input argument: Single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_setmenu.c, line: 27
+# File: sci_gateway/c/sci_unsetmenu.c, line: 27
+# File: sci_gateway/c/sci_delmenu.c, line: 26
+#, c-format
+msgid "%s: Wrong type for first input argument: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_unsetmenu.c, line: 45
+# File: sci_gateway/c/sci_delmenu.c, line: 45
+#, c-format
+msgid "%s: Wrong type for first input argument: Double value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_setmenu.c, line: 52
+# File: sci_gateway/c/sci_unsetmenu.c, line: 52
+# File: sci_gateway/c/sci_delmenu.c, line: 52
+#, c-format
+msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_setmenu.c, line: 58
+# File: sci_gateway/c/sci_unsetmenu.c, line: 58
+# File: sci_gateway/c/sci_delmenu.c, line: 58
+#, c-format
+msgid "%s: Wrong type for second input argument: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/gw_gui.c, line: 42
+msgid "Scilab graphic module disabled -nogui or -nwni mode."
 msgstr ""
 
 #
@@ -70,8 +459,10 @@ msgid "Unknown first input argument. Should be 'paste' or 'pastespecial'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 94
-msgid "Incorrect second input argument."
+# File: sci_gateway/c/sci_ClipBoard.c, line: 95
+msgid ""
+"Incorrect second input argument. Should be 'do', 'paste', 'copy' or "
+"'empty'.\n"
 msgstr ""
 
 #
@@ -94,4 +485,44 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 235
 msgid "Incorrect argument. See : help clipboard"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 63
+# File: sci_gateway/c/sci_uicontrol.c, line: 115
+msgid "First input argument must be a graphic handle."
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 72
+# File: sci_gateway/c/sci_uicontrol.c, line: 124
+msgid "First input argument must be a single handle."
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 78
+# File: sci_gateway/c/sci_uicontrol.c, line: 130
+msgid "Parent must be a figure or a uimenu."
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 85
+# File: sci_gateway/c/sci_uicontrol.c, line: 218
+#, c-format
+msgid "Could not set property %s.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 95
+msgid "No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 157
+msgid "Property name must be a character string."
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 184
+msgid "Style property name must be a character string."
 msgstr ""

@@ -17,13 +17,13 @@ case 1
     // The callback is the variable named menu_label
     
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
     
     addSingleMenu(0, varargin(1));
 
   else
-    error(_("First parameter must be a string."));
+    error(msprintf(_("%s: Wrong type for first input argument: String expected."),"addmenu"));
   end
 case 2
   if type(varargin(1))==10 & type(varargin(2))==10
@@ -32,7 +32,7 @@ case 2
     // The callbacks are the items of variable named menu_label
     
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
     
     // No verification for submenus labels
@@ -45,11 +45,11 @@ case 2
     // The callbacks are the items of variable named menu_label
     
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
     
     if size(varargin(2)) <> 2
-      error(_("Second parameter must be a two-item list."));
+      error(msprintf(_("%s: Wrong type for second input argument: Two-item list expected."),"addmenu"));
     end
     
     addSingleMenuCallback(0, varargin(1), varargin(2));
@@ -60,32 +60,32 @@ case 2
     // The callback is the variable named menu_label
     
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single value."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
     
     if size(varargin(2),"*") <> 1
-      error(_("Second parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
     
     addSingleMenu(scf(varargin(1)), varargin(2))
   
   else
-    error(_("Bad use of addmenu with two input parameters."));
+    error(msprintf(_("%s: Wrong type for two input arguments"),"addmenu"));
   end
 case 3
   if type(varargin(1))==10 & type(varargin(2))==10 & type(varargin(3))==15
     // addmenu(menu_label, submenus_labels, actions_in_a_list)
     // Create a menu in Scilab main Window with submenus
-    // The callbacks are given in the third parameter
+    // The callbacks are given in the third input argument
 
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
     
     // No verification for submenus labels size
     
     if size(varargin(3)) <> 2
-      error(_("Third parameter must be a two-item list."));
+      error(msprintf(_("%s: Wrong type for third input argument: Two-item list expected."),"addmenu"));
     end
 
     addMenuSubMenusCallback(0, varargin(1), varargin(2), varargin(3));
@@ -96,11 +96,11 @@ case 3
     // The callbacks are the items of variable named menu_label
     
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single value."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
     
     if size(varargin(2),"*") <> 1
-      error(_("Second parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
   
     // No verification for submenus labels
@@ -113,21 +113,21 @@ case 3
     // The callbacks are the items of variable named menu_label
 
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single value."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
     
     if size(varargin(2),"*") <> 1
-      error(_("Second parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
 
     if size(varargin(3)) <> 2
-      error(_("Second parameter must be a two-item list."));
+      error(msprintf(_("%s: Wrong type for third input argument: Two-item list expected."),"addmenu"));
     end
 
     addSingleMenuCallback(scf(varargin(1)), varargin(2), varargin(3));
     
   else
-    error(_("Bad use of addmenu with three input parameters."));
+    error(msprintf(_("%s: Wrong type for three input arguments"),"addmenu"));
   end
 case 4
     // addmenu(graphic_window_id, menu_label, submenus_labels, action_in_a_list)
@@ -135,23 +135,23 @@ case 4
     // The callbacks are given in a list
     
     if size(varargin(1),"*") <> 1
-      error(_("First parameter must be a single value."));
+      error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
     
     if size(varargin(2),"*") <> 1
-      error(_("Second parameter must be a single string."));
+      error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
     
     // No verification for submenus labels
     
     if size(varargin(4)) <> 2
-      error(_("Second parameter must be a two-item list."));
+      error(msprintf(_("%s: Wrong type for second input argument: Two-item list expected."),"addmenu"));
     end
 
     addMenuSubMenusCallback(scf(varargin(1)), varargin(2), varargin(3), varargin(4));
 
 else
-  error(_("Wrong number of input parameters."));
+  error(msprintf(_("%s: Wrong number of input argument(s)")),"addmenu");
 end
 endfunction
 //------------------------------------------------------------------------------

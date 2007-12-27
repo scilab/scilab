@@ -32,7 +32,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
 
   if ((optName = (char*)MALLOC(sizeof(char*)*(strlen("title")+1))) == NULL)
     {
-      Scierror(999, _("No more momory."));
+      Scierror(999, _("%s: No more memory.\n"),fname);
       return FALSE;
     }
   
@@ -49,7 +49,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
                   GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
                   if (nbCol !=1)
                     {
-                      Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                      Scierror(999, _("%s: Wrong type for first input argument, a single string expected.\n"),fname);
                       FREE(optName);
                       return FALSE;
                     }
@@ -57,7 +57,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
                 }
               else
                 {
-                  Scierror(999, _("Optional parameter must be 'title='."));
+					Scierror(999, _("%s: Wrong input argument: '%s' expected.\n"),fname, "title");
                   FREE(optName);
                   return FALSE;
                 }
@@ -67,16 +67,16 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
               GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
               if (nbCol !=1)
                 {
-                  Scierror(999, _("Wrong type for first parameter, should be a single string."));
-                  FREE(optName);
-                  return FALSE;
+					Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
+					FREE(optName);
+					return FALSE;
                 }
               fileMask = cstk(fileMaskAdr);
             }
         }
       else
         {
-          Scierror(999, _("Wrong type for first parameter, should be a single string."));
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
           FREE(optName);
           return FALSE;
         }
@@ -89,7 +89,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("Wrong type for first parameter, should be a single string."));
+              Scierror(999,  _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
               FREE(optName);
               return FALSE;
             }
@@ -97,7 +97,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
         }
       else
         {
-          Scierror(999, _("Wrong type for first parameter, should be a single string."));
+          Scierror(999,  _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
           FREE(optName);
           return FALSE;
         }
@@ -112,7 +112,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
                   GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
                   if (nbCol !=1)
                     {
-                      Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                      Scierror(999,  _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
                       FREE(optName);
                       return FALSE;
                     }
@@ -120,7 +120,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
                 }
               else
                 {
-                  Scierror(999, _("Optional parameter must be 'title='."));
+                  Scierror(999, _("%s: Wrong input argument: '%s' expected.\n"),fname, "title");
                   FREE(optName);
                   return FALSE;
                 }
@@ -130,7 +130,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
               GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
               if (nbCol !=1)
                 {
-                  Scierror(999, _("Wrong type for second parameter, should be a single string."));
+                  Scierror(999,  _("%s: Wrong type for second input argument: Single string expected.\n"),fname);
                   FREE(optName);
                   return FALSE;
                 }
@@ -139,7 +139,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
         }
       else
         {
-          Scierror(999, _("Wrong type for second parameter, should be a single string."));
+          Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"),fname);
           FREE(optName);
           return FALSE;
         }
@@ -152,7 +152,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("Wrong size for first parameter, should be a single string."));
+              Scierror(999, _("%s: Wrong size for first input argument: Single string expected.\n"),fname);
               FREE(optName);
               return FALSE;
             }
@@ -160,7 +160,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
         }
       else
         {
-          Scierror(999, _("Wrong type for first parameter, should be a single string."));
+          Scierror(999,  _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
           return FALSE;
         }
 
@@ -170,7 +170,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
           GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("Wrong size for second parameter, should be a single string."));
+              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"),fname);
               FREE(optName);
               return FALSE;
             }
@@ -178,7 +178,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
         }
       else
         {
-          Scierror(999, _("Wrong type for second parameter, should be a single string."));
+          Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"),fname);
           FREE(optName);
           return FALSE;
         }
@@ -193,7 +193,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
                   GetRhsVar(3, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
                   if (nbCol !=1)
                     {
-                      Scierror(999, _("Wrong type for first parameter, should be a single string."));
+                      Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
                       FREE(optName);
                       return FALSE;
                     }
@@ -201,7 +201,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
                 }
               else
                 {
-                  Scierror(999, _("Optional parameter must be 'title='."));
+                  Scierror(999, _("%s: Wrong input argument: '%s' expected.\n"),fname, "title");
                   FREE(optName);
                   return FALSE;
                 }
@@ -211,7 +211,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
               GetRhsVar(3, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
               if (nbCol !=1)
                 {
-                  Scierror(999, _("Wrong size for third parameter, should be a single string."));
+                  Scierror(999, _("%s: Wrong size for third input argument: Single string expected.\n"),fname);
                   FREE(optName);
                   return FALSE;
                 }
@@ -220,7 +220,7 @@ int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
         }
       else
         {
-          Scierror(999, _("Wrong type for third parameter, should be a single string."));
+          Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"),fname);
           FREE(optName);
           return FALSE;
         }

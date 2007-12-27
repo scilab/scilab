@@ -24,7 +24,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
       // Unset a Menu of Scilab Main Window
       if (VarType(1) != sci_strings)
         {
-          Scierror(999, _("Input parameter must be a character string.\n"));
+          Scierror(999, _("%s: Wrong type for first input argument: String expected.\n"),fname);
           return FALSE;
         }
 
@@ -32,7 +32,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
 
       if (nbCol != 1)
         {
-          Scierror(999, _("Input parameter must be a single character string.\n"));
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
           return FALSE;
         }
      EnableRootMenu(cstk(stkAdr), FALSE);
@@ -42,20 +42,20 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
       // Unset a Menu a Scilab Graphic Window
       if (VarType(1) != sci_matrix)
         {
-          Scierror(999, _("First input parameter must be a double value.\n"));
+          Scierror(999, _("%s: Wrong type for first input argument: Double value expected.\n"),fname);
           return FALSE;
         }
       GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
       
       if (nbRow*nbCol != 1)
         {
-          Scierror(999, _("First input parameter must be a scalar.\n"));
+          Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
           return FALSE;
         }
 
       if (VarType(2) != sci_strings)
         {
-          Scierror(999, _("Second input parameter must be a character string.\n"));
+          Scierror(999, _("%s: Wrong type for second input argument: String expected.\n"),fname);
           return FALSE;
         }
       GetRhsVar(2, STRING_DATATYPE, &nbRow1, &nbCol1, &stkAdr1);
