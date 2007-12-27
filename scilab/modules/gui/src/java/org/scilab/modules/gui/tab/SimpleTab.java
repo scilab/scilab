@@ -7,7 +7,9 @@ package org.scilab.modules.gui.tab;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -130,4 +132,28 @@ public interface SimpleTab {
 	 * @return id the id of the corresponding tab object
 	 */
 	int getElementId();
+	
+	/**
+	 * Get the MenuBar associated to this tab
+	 * @return MenuBar the MenuBar associated.
+	 */
+	MenuBar getMenuBar();
+	
+	/**
+	 * Set the MenuBar associated to this tab
+	 * @param newMenuBar : the MenuBar to associate.
+	 */
+	void setMenuBar(MenuBar newMenuBar);
+	
+	/**
+	 * Get the ToolBar associated to this tab
+	 * @return ToolBar the ToolBar associated.
+	 */
+	ToolBar getToolBar();
+	
+	/**
+	 * Set the ToolBar associated to this tab
+	 * @param newToolBar : the ToolBar to associate.
+	 */
+	void setToolBar(ToolBar newToolBar);
 }
