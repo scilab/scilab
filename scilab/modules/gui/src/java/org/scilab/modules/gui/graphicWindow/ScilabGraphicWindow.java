@@ -8,10 +8,6 @@
 
 package org.scilab.modules.gui.graphicWindow;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -24,7 +20,6 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-import org.xml.sax.SAXException;
 
 /**
  * Scilab graphic Window class
@@ -35,15 +30,8 @@ public class ScilabGraphicWindow extends ScilabWindow {
 	
 	private static final String SCIDIR = System.getenv("SCI");
 	
-	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";;
-	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";;
-	
-	private static final String FILE_NOT_FOUND = "Could not find file: ";
-	
-	private static final String CANNOT_CREATE_MENUBAR = "Cannot create Figure MenuBar.\n"
-								+ "Check if file graphics_menubar.xml is available and valid.";
-	private static final String CANNOT_CREATE_TOOLBAR = "Cannot create Figure ToolBar.\n"
-								+ "Check if file graphics_toolbar.xml is available and valid.";
+	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
+	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 	
 	/**
 	 * Constructor
