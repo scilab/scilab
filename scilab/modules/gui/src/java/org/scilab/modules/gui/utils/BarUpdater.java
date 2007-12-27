@@ -18,6 +18,5 @@ public final class BarUpdater {
 	public static void updateBars(int parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar) {
 		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addMenuBar(newMenuBar);
 		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addToolBar(newToolBar);
-		UIElementMapper.getCorrespondingUIElement(parentWindowsID).draw();
 	}
 }
