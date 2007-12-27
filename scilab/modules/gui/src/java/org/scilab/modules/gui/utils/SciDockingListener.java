@@ -3,16 +3,11 @@
 
 package org.scilab.modules.gui.utils;
 
-import java.awt.Component;
-
-import javax.swing.JComponent;
-
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.event.DockingListener;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.window.ScilabWindow;
 
 /**
  * Listener for docking operations in Scilab
@@ -34,10 +29,7 @@ public class SciDockingListener implements DockingListener {
 	 * @param e the event
 	 * @see org.flexdock.docking.event.DockingListener#dockingCanceled(org.flexdock.docking.event.DockingEvent)
 	 */
-	public void dockingCanceled(DockingEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+	public void dockingCanceled(DockingEvent e) { }
 
 	/**
 	 * Handling docking complete events
@@ -45,17 +37,29 @@ public class SciDockingListener implements DockingListener {
 	 * @see org.flexdock.docking.event.DockingListener#dockingCanceled(org.flexdock.docking.event.DockingEvent)
 	 */
 	public void dockingComplete(DockingEvent e) {
-		SwingScilabTab dockedTab = ((SwingScilabTab) e.getDockable());
-		
+		SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
 		int parentWindowsID = dockedTab.getParentWindowId(); 
-		// Change the parent window id of docked tab
-		dockedTab.setParentWindowId(associatedScilabWindowId);
-		MenuBar newMenuBar = UIElementMapper.getCorrespondingUIElement(dockedTab.getElementId()).getMenuBar();
-		ToolBar newToolBar = UIElementMapper.getCorrespondingUIElement(dockedTab.getElementId()).getToolBar();
-		updateBars(parentWindowsID, newMenuBar, newToolBar);
-			
-		if (e.getOldDockingPort() != null) {
-			e.getOldDockingPort().dockingCanceled(e);
+
+		if (parentWindowsID != associatedScilabWindowId) {
+			//DEBUG
+//			System.out.println("---");
+//			System.out.println("[DOCKING COMPLETE] Listener ID = "+this.associatedScilabWindowId);
+//			System.out.println("[DOCKING COMPLETE] Parent ID = "+parentWindowsID);
+//			System.out.println("---");
+			// Change the parent window id of docked tab
+			dockedTab.setParentWindowId(associatedScilabWindowId);
+			MenuBar newMenuBar = dockedTab.getMenuBar();
+			ToolBar newToolBar = dockedTab.getToolBar();
+			updateBars(associatedScilabWindowId, newMenuBar, newToolBar);
+		} 
+		else if (e.getOldDockingPort() != null 
+				&& e.getOldDockingPort().getDockedComponent() != null
+				&& e.getOldDockingPort().getDockedComponent() instanceof SwingScilabTab) {
+			/** There is still a SwingScilabTab Docked */
+			SwingScilabTab remainDockedTab = (SwingScilabTab) e.getOldDockingPort().getDockedComponent();
+			MenuBar oldMenuBar = remainDockedTab.getMenuBar();
+			ToolBar oldToolBar = remainDockedTab.getToolBar();
+			updateBars(parentWindowsID, oldMenuBar, oldToolBar);
 		}
 	}
 
@@ -64,46 +68,21 @@ public class SciDockingListener implements DockingListener {
 	 * @param e the event
 	 * @see org.flexdock.docking.event.DockingListener#dockingCanceled(org.flexdock.docking.event.DockingEvent)
 	 */
-	public void dragStarted(DockingEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("[DRAG STARTED] Is there any component left : " + e.getOldDockingPort().getDockedComponent());
-	}
+	public void dragStarted(DockingEvent e) { }
 
 	/**
 	 * Handling drop started events
 	 * @param e the event
 	 * @see org.flexdock.docking.event.DockingListener#dockingCanceled(org.flexdock.docking.event.DockingEvent)
 	 */
-	public void dropStarted(DockingEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("[DROP STARTED]Is there any component left : " + e.getOldDockingPort().getDockedComponent());
-	}
+	public void dropStarted(DockingEvent e) { }
 
 	/**
 	 * Handling undocking complete events
 	 * @param e the event
 	 * @see org.flexdock.docking.event.DockingListener#dockingCanceled(org.flexdock.docking.event.DockingEvent)
 	 */
-	public void undockingComplete(DockingEvent e) {
-        // TODO Change the parent window id of docked tab (is it useful ?)
-		SwingScilabTab dockedTab = ((SwingScilabTab) e.getDockable());
-		int oldWindowsID = dockedTab.getParentWindowId();
-		dockedTab.setParentWindowId(associatedScilabWindowId);
-		// TESTING !!!!!!
-		System.out.println("[UNDOCK COMPLETE]Is there any component left : " + e.getOldDockingPort().getDockedComponent());
-		if (e.getOldDockingPort().getDockedComponent() == null) {
-			/** There are no more component docked... */
-			e.getOldDockingPort().clear();
-		}
-		else {
-			/** There is still a component Docked */
-			SwingScilabTab remainDockedTab = (SwingScilabTab) e.getOldDockingPort().getDockedComponent();
-			MenuBar newMenuBar = UIElementMapper.getCorrespondingUIElement(remainDockedTab.getElementId()).getMenuBar();
-			ToolBar newToolBar = UIElementMapper.getCorrespondingUIElement(remainDockedTab.getElementId()).getToolBar();
-			//System.out.println("[MenuBar, ToolBar] = "+ newMenuBar.getAsSimpleMenuBar() + " , " + newToolBar.getAsSimpleToolBar());
-			updateBars(oldWindowsID, newMenuBar, newToolBar);
-		}
-	}
+	public void undockingComplete(DockingEvent e) { }
 
 	/**
 	 * Handling undocking started events
@@ -111,28 +90,19 @@ public class SciDockingListener implements DockingListener {
 	 * @see org.flexdock.docking.event.DockingListener#dockingCanceled(org.flexdock.docking.event.DockingEvent)
 	 */
 	public void undockingStarted(DockingEvent e) {
-		System.out.println("[UNDOCK STARTED]Is there any component left : " + e.getOldDockingPort().getDockedComponent());
-		// TODO Auto-generated method stub
-
+		System.out.println("[UNDOCKING STARTED]Is there any component left : " + e.getOldDockingPort().getDockedComponent());
 	}
 	
+	/**
+	 * Local update for MenuBar and ToolBar
+	 * Called when a Dock is complete.
+	 * @param parentWindowsID : the ID of the window we want to update.
+	 * @param newMenuBar : the new MenuBar to display.
+	 * @param newToolBar : the new ToolBar to display.
+	 */
 	private void updateBars(int parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar) {
-		MenuBar dockedTabMenuBar = UIElementMapper.getCorrespondingUIElement(parentWindowsID).getMenuBar();
-		
-		if (dockedTabMenuBar != null) {
-			// If docked tab has a menubar, this menubar becomes current menubar for the parent window
-			UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId).addMenuBar(dockedTabMenuBar);
-		}
-		
-		// Manage the toolbar
-		//int dockedTabToolBarId = UIElementMapper.getCorrespondingUIElement(dockedTab.getElementId()).getToolBarId();
-		ToolBar dockedTabToolBar = UIElementMapper.getCorrespondingUIElement(parentWindowsID).getToolBar();
-		
-		if (dockedTabToolBar != null) {
-			// If docked tab has a toolbar, this toolbar becomes current menubar for the parent window
-			UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId).addToolBar(dockedTabToolBar);
-		}
-		
+		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addMenuBar(newMenuBar);
+		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addToolBar(newToolBar);
 	}
 	
 	
