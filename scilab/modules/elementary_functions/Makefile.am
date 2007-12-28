@@ -246,7 +246,11 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
-src/fortran/rat.f
+src/fortran/rat.f \
+src/fortran/ribesl.f \
+src/fortran/rjbesl.f \
+src/fortran/rkbesl.f \
+src/fortran/rybesl.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
