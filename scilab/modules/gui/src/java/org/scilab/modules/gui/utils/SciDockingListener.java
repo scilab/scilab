@@ -51,8 +51,7 @@ public class SciDockingListener implements DockingListener {
 			MenuBar newMenuBar = dockedTab.getMenuBar();
 			ToolBar newToolBar = dockedTab.getToolBar();
 			BarUpdater.updateBars(associatedScilabWindowId, newMenuBar, newToolBar);
-		} 
-		else if (e.getOldDockingPort() != null 
+		} else if (e.getOldDockingPort() != null 
 				&& e.getOldDockingPort().getDockedComponent() != null
 				&& e.getOldDockingPort().getDockedComponent() instanceof SwingScilabTab) {
 			/** There is still a SwingScilabTab Docked */
