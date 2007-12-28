@@ -339,7 +339,11 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-dmmul.lo \
 	libscielementary_functions_la-wsort.lo \
 	libscielementary_functions_la-wsqrt.lo \
-	libscielementary_functions_la-rat.lo
+	libscielementary_functions_la-rat.lo \
+	libscielementary_functions_la-ribesl.lo \
+	libscielementary_functions_la-rjbesl.lo \
+	libscielementary_functions_la-rkbesl.lo \
+	libscielementary_functions_la-rybesl.lo
 am__objects_4 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_prod.lo \
@@ -893,7 +897,11 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
-src/fortran/rat.f
+src/fortran/rat.f \
+src/fortran/ribesl.f \
+src/fortran/rjbesl.f \
+src/fortran/rkbesl.f \
+src/fortran/rybesl.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -2463,6 +2471,18 @@ libscielementary_functions_la-wsqrt.lo: src/fortran/wsqrt.f
 
 libscielementary_functions_la-rat.lo: src/fortran/rat.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f
+
+libscielementary_functions_la-ribesl.lo: src/fortran/ribesl.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-ribesl.lo `test -f 'src/fortran/ribesl.f' || echo '$(srcdir)/'`src/fortran/ribesl.f
+
+libscielementary_functions_la-rjbesl.lo: src/fortran/rjbesl.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rjbesl.lo `test -f 'src/fortran/rjbesl.f' || echo '$(srcdir)/'`src/fortran/rjbesl.f
+
+libscielementary_functions_la-rkbesl.lo: src/fortran/rkbesl.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rkbesl.lo `test -f 'src/fortran/rkbesl.f' || echo '$(srcdir)/'`src/fortran/rkbesl.f
+
+libscielementary_functions_la-rybesl.lo: src/fortran/rybesl.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rybesl.lo `test -f 'src/fortran/rybesl.f' || echo '$(srcdir)/'`src/fortran/rybesl.f
 
 libscielementary_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
