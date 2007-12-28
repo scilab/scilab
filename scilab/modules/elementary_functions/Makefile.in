@@ -141,7 +141,6 @@ am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 	libscielementary_functions_la-dgamrn.lo \
 	libscielementary_functions_la-dhkseq.lo \
 	libscielementary_functions_la-djairy.lo \
-	libscielementary_functions_la-dlngam.lo \
 	libscielementary_functions_la-dpsixn.lo \
 	libscielementary_functions_la-dxlegf.lo \
 	libscielementary_functions_la-dyairy.lo \
@@ -235,7 +234,6 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wipowe.lo \
 	libscielementary_functions_la-wacos.lo \
 	libscielementary_functions_la-balanc.lo \
-	libscielementary_functions_la-ribesl.lo \
 	libscielementary_functions_la-wdpow1.lo \
 	libscielementary_functions_la-zbesjg.lo \
 	libscielementary_functions_la-dmsum.lo \
@@ -248,7 +246,6 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-dbeskg.lo \
 	libscielementary_functions_la-dmmul1.lo \
 	libscielementary_functions_la-dwpow.lo \
-	libscielementary_functions_la-rybesl.lo \
 	libscielementary_functions_la-wmmul.lo \
 	libscielementary_functions_la-dsearch.lo \
 	libscielementary_functions_la-ddif.lo \
@@ -314,7 +311,6 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wasin.lo \
 	libscielementary_functions_la-wexpm1.lo \
 	libscielementary_functions_la-ddpowe.lo \
-	libscielementary_functions_la-rkbesl.lo \
 	libscielementary_functions_la-nearfloat.lo \
 	libscielementary_functions_la-dmprod.lo \
 	libscielementary_functions_la-wwpowe.lo \
@@ -343,7 +339,6 @@ am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-dmmul.lo \
 	libscielementary_functions_la-wsort.lo \
 	libscielementary_functions_la-wsqrt.lo \
-	libscielementary_functions_la-rjbesl.lo \
 	libscielementary_functions_la-rat.lo
 am__objects_4 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_matrix.lo \
@@ -719,7 +714,6 @@ src/fortran/slatec/dgamma.f \
 src/fortran/slatec/dgamrn.f \
 src/fortran/slatec/dhkseq.f \
 src/fortran/slatec/djairy.f \
-src/fortran/slatec/dlngam.f \
 src/fortran/slatec/dpsixn.f \
 src/fortran/slatec/dxlegf.f \
 src/fortran/slatec/dyairy.f \
@@ -794,7 +788,6 @@ src/fortran/watan.f \
 src/fortran/wipowe.f \
 src/fortran/wacos.f \
 src/fortran/balanc.f \
-src/fortran/ribesl.f \
 src/fortran/wdpow1.f \
 src/fortran/zbesjg.f \
 src/fortran/dmsum.f \
@@ -807,7 +800,6 @@ src/fortran/pythag.f \
 src/fortran/dbeskg.f \
 src/fortran/dmmul1.f \
 src/fortran/dwpow.f \
-src/fortran/rybesl.f \
 src/fortran/wmmul.f \
 src/fortran/dsearch.f \
 src/fortran/ddif.f \
@@ -873,7 +865,6 @@ src/fortran/arcosh.f \
 src/fortran/wasin.f \
 src/fortran/wexpm1.f \
 src/fortran/ddpowe.f \
-src/fortran/rkbesl.f \
 src/fortran/nearfloat.f \
 src/fortran/dmprod.f \
 src/fortran/wwpowe.f \
@@ -902,7 +893,6 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
-src/fortran/rjbesl.f \
 src/fortran/rat.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
@@ -1940,9 +1930,6 @@ libscielementary_functions_la-dhkseq.lo: src/fortran/slatec/dhkseq.f
 libscielementary_functions_la-djairy.lo: src/fortran/slatec/djairy.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-djairy.lo `test -f 'src/fortran/slatec/djairy.f' || echo '$(srcdir)/'`src/fortran/slatec/djairy.f
 
-libscielementary_functions_la-dlngam.lo: src/fortran/slatec/dlngam.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dlngam.lo `test -f 'src/fortran/slatec/dlngam.f' || echo '$(srcdir)/'`src/fortran/slatec/dlngam.f
-
 libscielementary_functions_la-dpsixn.lo: src/fortran/slatec/dpsixn.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dpsixn.lo `test -f 'src/fortran/slatec/dpsixn.f' || echo '$(srcdir)/'`src/fortran/slatec/dpsixn.f
 
@@ -2159,9 +2146,6 @@ libscielementary_functions_la-wacos.lo: src/fortran/wacos.f
 libscielementary_functions_la-balanc.lo: src/fortran/balanc.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balanc.lo `test -f 'src/fortran/balanc.f' || echo '$(srcdir)/'`src/fortran/balanc.f
 
-libscielementary_functions_la-ribesl.lo: src/fortran/ribesl.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-ribesl.lo `test -f 'src/fortran/ribesl.f' || echo '$(srcdir)/'`src/fortran/ribesl.f
-
 libscielementary_functions_la-wdpow1.lo: src/fortran/wdpow1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wdpow1.lo `test -f 'src/fortran/wdpow1.f' || echo '$(srcdir)/'`src/fortran/wdpow1.f
 
@@ -2197,9 +2181,6 @@ libscielementary_functions_la-dmmul1.lo: src/fortran/dmmul1.f
 
 libscielementary_functions_la-dwpow.lo: src/fortran/dwpow.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dwpow.lo `test -f 'src/fortran/dwpow.f' || echo '$(srcdir)/'`src/fortran/dwpow.f
-
-libscielementary_functions_la-rybesl.lo: src/fortran/rybesl.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rybesl.lo `test -f 'src/fortran/rybesl.f' || echo '$(srcdir)/'`src/fortran/rybesl.f
 
 libscielementary_functions_la-wmmul.lo: src/fortran/wmmul.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wmmul.lo `test -f 'src/fortran/wmmul.f' || echo '$(srcdir)/'`src/fortran/wmmul.f
@@ -2396,9 +2377,6 @@ libscielementary_functions_la-wexpm1.lo: src/fortran/wexpm1.f
 libscielementary_functions_la-ddpowe.lo: src/fortran/ddpowe.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-ddpowe.lo `test -f 'src/fortran/ddpowe.f' || echo '$(srcdir)/'`src/fortran/ddpowe.f
 
-libscielementary_functions_la-rkbesl.lo: src/fortran/rkbesl.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rkbesl.lo `test -f 'src/fortran/rkbesl.f' || echo '$(srcdir)/'`src/fortran/rkbesl.f
-
 libscielementary_functions_la-nearfloat.lo: src/fortran/nearfloat.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-nearfloat.lo `test -f 'src/fortran/nearfloat.f' || echo '$(srcdir)/'`src/fortran/nearfloat.f
 
@@ -2482,9 +2460,6 @@ libscielementary_functions_la-wsort.lo: src/fortran/wsort.f
 
 libscielementary_functions_la-wsqrt.lo: src/fortran/wsqrt.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wsqrt.lo `test -f 'src/fortran/wsqrt.f' || echo '$(srcdir)/'`src/fortran/wsqrt.f
-
-libscielementary_functions_la-rjbesl.lo: src/fortran/rjbesl.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rjbesl.lo `test -f 'src/fortran/rjbesl.f' || echo '$(srcdir)/'`src/fortran/rjbesl.f
 
 libscielementary_functions_la-rat.lo: src/fortran/rat.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f

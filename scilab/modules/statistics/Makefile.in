@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
+### INRIA - Scilab 2006/2007
 ##########
 
 ##########
@@ -88,18 +88,17 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscistatistics_la_DEPENDENCIES =
 am__objects_1 = libscistatistics_la-CdfBase.lo \
 	libscistatistics_la-ipmpar1.lo
-am__objects_2 = psi.lo dexpm1.lo alngam.lo erfc1.lo cdff.lo spmpar.lo \
-	cumnor.lo cdfpoi.lo bcorr.lo cumchi.lo apser.lo gamln1.lo \
-	dlanor.lo cdft.lo gaminv.lo cumnbn.lo cdffnc.lo rlog1.lo \
-	cdfchn.lo dt1.lo bgrat.lo dinvnr.lo dlngam.lo rlog.lo basym.lo \
-	bfrac.lo cumbin.lo cumbet.lo rcomp.lo cdfgam.lo gratio.lo \
-	gam1.lo exparg.lo ipmpar.lo cumf.lo cumpoi.lo gamln.lo \
-	dstrem.lo dln1mx.lo betaln.lo stvaln.lo cumt.lo esum.lo \
-	bpser.lo cdfnor.lo cumfnc.lo erf.lo alnrel.lo cumchn.lo \
-	rexp.lo fpser.lo bratio.lo cdfchi.lo gamma.lo dinvr.lo \
-	brcomp.lo devlpl.lo cdfnbn.lo dzror.lo gsumln.lo dln1px.lo \
-	algdiv.lo dlnbet.lo cumgam.lo dbetrm.lo grat1.lo brcmp1.lo \
-	cdfbin.lo bup.lo cdfbet.lo
+am__objects_2 = psi.lo alngam.lo erfc1.lo cdff.lo spmpar.lo cumnor.lo \
+	cdfpoi.lo bcorr.lo cumchi.lo apser.lo gamln1.lo cdft.lo \
+	gaminv.lo cumnbn.lo cdffnc.lo rlog1.lo cdfchn.lo dt1.lo \
+	bgrat.lo dinvnr.lo rlog.lo basym.lo bfrac.lo cumbin.lo \
+	cumbet.lo rcomp.lo cdfgam.lo gratio.lo gam1.lo exparg.lo \
+	ipmpar.lo cumf.lo cumpoi.lo gamln.lo betaln.lo stvaln.lo \
+	cumt.lo esum.lo bpser.lo cdfnor.lo cumfnc.lo erf.lo alnrel.lo \
+	cumchn.lo rexp.lo fpser.lo bratio.lo cdfchi.lo gamma.lo \
+	dinvr.lo brcomp.lo devlpl.lo cdfnbn.lo dzror.lo gsumln.lo \
+	algdiv.lo cumgam.lo grat1.lo brcmp1.lo cdfbin.lo bup.lo \
+	cdfbet.lo
 am__objects_3 = libscistatistics_la-gw_statistics.lo \
 	libscistatistics_la-sci_cdfchi.lo \
 	libscistatistics_la-sci_cdft.lo \
@@ -317,7 +316,6 @@ STATISTICS_C_SOURCES = src/c/CdfBase.c \
 src/c/ipmpar1.c
 
 STATISTICS_FORTRAN_SOURCES = src/dcdflib/psi.f \
-src/dcdflib/dexpm1.f \
 src/dcdflib/alngam.f \
 src/dcdflib/erfc1.f \
 src/dcdflib/cdff.f \
@@ -328,7 +326,6 @@ src/dcdflib/bcorr.f \
 src/dcdflib/cumchi.f \
 src/dcdflib/apser.f \
 src/dcdflib/gamln1.f \
-src/dcdflib/dlanor.f \
 src/dcdflib/cdft.f \
 src/dcdflib/gaminv.f \
 src/dcdflib/cumnbn.f \
@@ -338,7 +335,6 @@ src/dcdflib/cdfchn.f \
 src/dcdflib/dt1.f \
 src/dcdflib/bgrat.f \
 src/dcdflib/dinvnr.f \
-src/dcdflib/dlngam.f \
 src/dcdflib/rlog.f \
 src/dcdflib/basym.f \
 src/dcdflib/bfrac.f \
@@ -353,8 +349,6 @@ src/dcdflib/ipmpar.f \
 src/dcdflib/cumf.f \
 src/dcdflib/cumpoi.f \
 src/dcdflib/gamln.f \
-src/dcdflib/dstrem.f \
-src/dcdflib/dln1mx.f \
 src/dcdflib/betaln.f \
 src/dcdflib/stvaln.f \
 src/dcdflib/cumt.f \
@@ -376,11 +370,8 @@ src/dcdflib/devlpl.f \
 src/dcdflib/cdfnbn.f \
 src/dcdflib/dzror.f \
 src/dcdflib/gsumln.f \
-src/dcdflib/dln1px.f \
 src/dcdflib/algdiv.f \
-src/dcdflib/dlnbet.f \
 src/dcdflib/cumgam.f \
-src/dcdflib/dbetrm.f \
 src/dcdflib/grat1.f \
 src/dcdflib/brcmp1.f \
 src/dcdflib/cdfbin.f \
@@ -705,9 +696,6 @@ libscistatistics_la-sci_cdfnor.lo: sci_gateway/c/sci_cdfnor.c
 psi.lo: src/dcdflib/psi.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o psi.lo `test -f 'src/dcdflib/psi.f' || echo '$(srcdir)/'`src/dcdflib/psi.f
 
-dexpm1.lo: src/dcdflib/dexpm1.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dexpm1.lo `test -f 'src/dcdflib/dexpm1.f' || echo '$(srcdir)/'`src/dcdflib/dexpm1.f
-
 alngam.lo: src/dcdflib/alngam.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o alngam.lo `test -f 'src/dcdflib/alngam.f' || echo '$(srcdir)/'`src/dcdflib/alngam.f
 
@@ -738,9 +726,6 @@ apser.lo: src/dcdflib/apser.f
 gamln1.lo: src/dcdflib/gamln1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln1.lo `test -f 'src/dcdflib/gamln1.f' || echo '$(srcdir)/'`src/dcdflib/gamln1.f
 
-dlanor.lo: src/dcdflib/dlanor.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlanor.lo `test -f 'src/dcdflib/dlanor.f' || echo '$(srcdir)/'`src/dcdflib/dlanor.f
-
 cdft.lo: src/dcdflib/cdft.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdft.lo `test -f 'src/dcdflib/cdft.f' || echo '$(srcdir)/'`src/dcdflib/cdft.f
 
@@ -767,9 +752,6 @@ bgrat.lo: src/dcdflib/bgrat.f
 
 dinvnr.lo: src/dcdflib/dinvnr.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dinvnr.lo `test -f 'src/dcdflib/dinvnr.f' || echo '$(srcdir)/'`src/dcdflib/dinvnr.f
-
-dlngam.lo: src/dcdflib/dlngam.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlngam.lo `test -f 'src/dcdflib/dlngam.f' || echo '$(srcdir)/'`src/dcdflib/dlngam.f
 
 rlog.lo: src/dcdflib/rlog.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlog.lo `test -f 'src/dcdflib/rlog.f' || echo '$(srcdir)/'`src/dcdflib/rlog.f
@@ -812,12 +794,6 @@ cumpoi.lo: src/dcdflib/cumpoi.f
 
 gamln.lo: src/dcdflib/gamln.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln.lo `test -f 'src/dcdflib/gamln.f' || echo '$(srcdir)/'`src/dcdflib/gamln.f
-
-dstrem.lo: src/dcdflib/dstrem.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dstrem.lo `test -f 'src/dcdflib/dstrem.f' || echo '$(srcdir)/'`src/dcdflib/dstrem.f
-
-dln1mx.lo: src/dcdflib/dln1mx.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dln1mx.lo `test -f 'src/dcdflib/dln1mx.f' || echo '$(srcdir)/'`src/dcdflib/dln1mx.f
 
 betaln.lo: src/dcdflib/betaln.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o betaln.lo `test -f 'src/dcdflib/betaln.f' || echo '$(srcdir)/'`src/dcdflib/betaln.f
@@ -882,20 +858,11 @@ dzror.lo: src/dcdflib/dzror.f
 gsumln.lo: src/dcdflib/gsumln.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gsumln.lo `test -f 'src/dcdflib/gsumln.f' || echo '$(srcdir)/'`src/dcdflib/gsumln.f
 
-dln1px.lo: src/dcdflib/dln1px.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dln1px.lo `test -f 'src/dcdflib/dln1px.f' || echo '$(srcdir)/'`src/dcdflib/dln1px.f
-
 algdiv.lo: src/dcdflib/algdiv.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o algdiv.lo `test -f 'src/dcdflib/algdiv.f' || echo '$(srcdir)/'`src/dcdflib/algdiv.f
 
-dlnbet.lo: src/dcdflib/dlnbet.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlnbet.lo `test -f 'src/dcdflib/dlnbet.f' || echo '$(srcdir)/'`src/dcdflib/dlnbet.f
-
 cumgam.lo: src/dcdflib/cumgam.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumgam.lo `test -f 'src/dcdflib/cumgam.f' || echo '$(srcdir)/'`src/dcdflib/cumgam.f
-
-dbetrm.lo: src/dcdflib/dbetrm.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbetrm.lo `test -f 'src/dcdflib/dbetrm.f' || echo '$(srcdir)/'`src/dcdflib/dbetrm.f
 
 grat1.lo: src/dcdflib/grat1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o grat1.lo `test -f 'src/dcdflib/grat1.f' || echo '$(srcdir)/'`src/dcdflib/grat1.f
