@@ -111,7 +111,8 @@ src/fortran/slatec/zuni2.f \
 src/fortran/slatec/zunik.f \
 src/fortran/slatec/zunk1.f \
 src/fortran/slatec/zunk2.f \
-src/fortran/slatec/zuoik.f
+src/fortran/slatec/zuoik.f \
+src/fortran/slatec/dlngam.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -251,7 +252,6 @@ src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
 src/fortran/rybesl.f
-
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
