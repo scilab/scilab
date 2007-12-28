@@ -8,7 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Allan CORNET - INRIA 2007
  * @author Sylvestre Ledru INRIA 2007
  */
-public final class LookAndFeel {
+public class LookAndFeel {
 	private static UIManager.LookAndFeelInfo[] availableLookAndFeels;
 
 	/**
@@ -40,9 +40,10 @@ public final class LookAndFeel {
 
     /**
      * Is this look and feel exists or not
+	 * @param lookandfeel the name of the lookandfeel we want check if exists
      * @return if it exists or not
 	 */
-	public static boolean isSupportedLookAndFeel(String lookandfeel){
+	public static boolean isSupportedLookAndFeel(String lookandfeel) {
 		for (int i = 0; i < availableLookAndFeels.length; i++) {
 			if (availableLookAndFeels[i].getClassName().equals(lookandfeel)) {
 				return true;
@@ -66,8 +67,11 @@ public final class LookAndFeel {
 			 } catch (ClassNotFoundException e) {
 				 System.err.println("LookAndFeel class could not be found:");
 				 System.err.println(e.getLocalizedMessage());
-			 } catch (Exception e) {
-				 System.err.println("Error while setting the Look And Feel:");
+			 } catch (IllegalAccessException e) {
+				 System.err.println("Illegal access while setting the Look And Feel:");
+				 System.err.println(e.getLocalizedMessage());
+			 } catch (InstantiationException e) {
+				 System.err.println("Instantiation error while setting the Look And Feel:");
 				 System.err.println(e.getLocalizedMessage());
 			 }
 	return false;
