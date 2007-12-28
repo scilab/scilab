@@ -185,7 +185,8 @@ am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 	libscielementary_functions_la-zunik.lo \
 	libscielementary_functions_la-zunk1.lo \
 	libscielementary_functions_la-zunk2.lo \
-	libscielementary_functions_la-zuoik.lo
+	libscielementary_functions_la-zuoik.lo \
+	libscielementary_functions_la-dlngam.lo
 am__objects_2 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-finite.lo \
 	libscielementary_functions_la-vfinite.lo \
@@ -762,7 +763,8 @@ src/fortran/slatec/zuni2.f \
 src/fortran/slatec/zunik.f \
 src/fortran/slatec/zunk1.f \
 src/fortran/slatec/zunk2.f \
-src/fortran/slatec/zuoik.f
+src/fortran/slatec/zuoik.f \
+src/fortran/slatec/dlngam.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -2072,6 +2074,9 @@ libscielementary_functions_la-zunk2.lo: src/fortran/slatec/zunk2.f
 
 libscielementary_functions_la-zuoik.lo: src/fortran/slatec/zuoik.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-zuoik.lo `test -f 'src/fortran/slatec/zuoik.f' || echo '$(srcdir)/'`src/fortran/slatec/zuoik.f
+
+libscielementary_functions_la-dlngam.lo: src/fortran/slatec/dlngam.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dlngam.lo `test -f 'src/fortran/slatec/dlngam.f' || echo '$(srcdir)/'`src/fortran/slatec/dlngam.f
 
 libscielementary_functions_la-psi.lo: src/fortran/psi.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-psi.lo `test -f 'src/fortran/psi.f' || echo '$(srcdir)/'`src/fortran/psi.f
