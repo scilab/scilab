@@ -1,9 +1,7 @@
 #!/bin/sh
-# Warning : some old versions of sh dont allow inline function definitions
-# like do_scilex()... . In this case use a system V sh (sh5)
 
 # Copyright INRIA
-# Updated : Sylvestre Ledru 2006
+# Updated : Sylvestre Ledru 2006/2007
 
 #############################################################################
 #                                                                           #
@@ -19,7 +17,7 @@
 #    /usr/local/bin, /usr/local/share/scilab/, /usr/local/lib/scilab/,
 #    /usr/local/include/scilab/
 # * ./configure --prefix=/my/dir/; make install
-#    => will install Scilab into /usr/local/ and split files to
+#    => will install Scilab into /my/dir/ and split files to
 #    /my/dir/bin/, /my/dir/share/scilab/, /my/dir/lib/scilab/
 #    /my/dir/include/scilab/
 # * ./configure; make install prefix=$(DESTDIR)/usr \
@@ -32,7 +30,7 @@
 # * Into the scilab/bin/ directory
 # * Into the scilab/ directory (if the user is using a source version and
 # scilab has been compiled in this directory)
-# * if this file is a simlink to the real one. We browse symlink(s) until we
+# * if this file is a symlink to the real one. We browse symlink(s) until we
 # find the real "scilab" script file and consider that it is the right
 # directory
 # * That is all. Don't hesitate to contact us if you see one missing.
@@ -66,6 +64,7 @@ start_debug() {
 }
 
 start_profiling() {
+	VALGRIND_OPTIONS=" --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
 	  if test -n "$DEVENV"; then
 		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
 		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
@@ -77,6 +76,7 @@ start_profiling() {
 }
 
 start_profiling_visu() {
+	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --dump-instr=yes --trace-jump=yes "
 	if test -n "$DEVENV"; then
 		echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
 		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
@@ -373,11 +373,6 @@ if test $SCIVERBOSE -ne 0; then
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
 fi
 export LD_LIBRARY_PATH
-
-# --suppressions=$SCI/tools/valgrind.supp
-# --gen-suppressions=all
-VALGRIND_OPTIONS=" --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
-VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --dump-instr=yes --trace-jump=yes "
 
 do_scilex()
 {
