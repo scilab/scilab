@@ -32,7 +32,7 @@ static int INTERNAL_CHARACTERS_TABLE_CODES_FOR_SCILAB[NUMBER_INTERNAL_CHARACTERS
   -35, 54, 49, 55, 62, 36,-59, 10, 11, 12,
    13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
    23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
-   33, 34, 35,-54, 57,-55, 61,227 };
+   33, 34, 35,-54, 57,-55, 61, 227 };
 /*--------------------------------------------------------------------------*/
 integer C2F(getfastcode)(unsigned char *c, unsigned long c_len) 
 {
@@ -42,27 +42,48 @@ integer C2F(getfastcode)(unsigned char *c, unsigned long c_len)
 int convertAsciiCodeToScilabCode(unsigned char scilab_char)
 {
 	int k = (int)scilab_char ;
-	int val = 0;
-	if (k < NUMBER_INTERNAL_CHARACTERS) val = INTERNAL_CHARACTERS_TABLE_CODES_FOR_SCILAB[k];
-	else val = k + 100;
-	return val;
+	if (k < NUMBER_INTERNAL_CHARACTERS) 
+		{
+			return INTERNAL_CHARACTERS_TABLE_CODES_FOR_SCILAB[k];
+		}
+	else 
+		{
+			return k + 100;
+		}
 }
 /*--------------------------------------------------------------------------*/
 char convertScilabCodeToAsciiCode(int scilab_code)
 {
-	#define eol 99
-	#define EXCLAMATION_CHAR '!'
-	char ascii_code = 0;
+#define eol 99
+#define EXCLAMATION_CHAR '!'
 
-	if (scilab_code == eol) ascii_code = EXCLAMATION_CHAR;
-	else if (Abs(scilab_code) > csiz) 
-	{
-		if (scilab_code > eol) ascii_code = (char)(scilab_code - (eol + 1));
-		else ascii_code = EXCLAMATION_CHAR;
-	} 
-	else if (scilab_code < 0) ascii_code = C2F(cha1).alfb[Abs(scilab_code)];
-	else ascii_code = C2F(cha1).alfa[scilab_code];
-
-	return ascii_code;
+	if (scilab_code == eol) 
+		{
+			return EXCLAMATION_CHAR;
+		}
+	else {
+		if (Abs(scilab_code) > csiz) 
+			{
+				if (scilab_code > eol) 
+					{
+						return (char)(scilab_code - (eol + 1));
+					}
+				else 
+					{
+						return EXCLAMATION_CHAR;
+					}
+			} 
+		else
+			{
+				if (scilab_code < 0) 
+					{
+						return C2F(cha1).alfb[Abs(scilab_code)];
+					}
+				else 
+					{
+						return C2F(cha1).alfa[scilab_code];
+					}
+			}
+	}
 }
 /*--------------------------------------------------------------------------*/
