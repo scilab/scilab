@@ -67,7 +67,6 @@ src/fortran/slatec/dgamma.f \
 src/fortran/slatec/dgamrn.f \
 src/fortran/slatec/dhkseq.f \
 src/fortran/slatec/djairy.f \
-src/fortran/slatec/dlngam.f \
 src/fortran/slatec/dpsixn.f \
 src/fortran/slatec/dxlegf.f \
 src/fortran/slatec/dyairy.f \
@@ -142,7 +141,6 @@ src/fortran/watan.f \
 src/fortran/wipowe.f \
 src/fortran/wacos.f \
 src/fortran/balanc.f \
-src/fortran/ribesl.f \
 src/fortran/wdpow1.f \
 src/fortran/zbesjg.f \
 src/fortran/dmsum.f \
@@ -155,7 +153,6 @@ src/fortran/pythag.f \
 src/fortran/dbeskg.f \
 src/fortran/dmmul1.f \
 src/fortran/dwpow.f \
-src/fortran/rybesl.f \
 src/fortran/wmmul.f \
 src/fortran/dsearch.f \
 src/fortran/ddif.f \
@@ -221,7 +218,6 @@ src/fortran/arcosh.f \
 src/fortran/wasin.f \
 src/fortran/wexpm1.f \
 src/fortran/ddpowe.f \
-src/fortran/rkbesl.f \
 src/fortran/nearfloat.f \
 src/fortran/dmprod.f \
 src/fortran/wwpowe.f \
@@ -250,7 +246,6 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsort.f \
 src/fortran/wsqrt.f \
-src/fortran/rjbesl.f \
 src/fortran/rat.f
 
 

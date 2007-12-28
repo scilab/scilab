@@ -1,13 +1,12 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
+### INRIA - Scilab 2006/2007
 ##########
 
 STATISTICS_C_SOURCES = src/c/CdfBase.c \
 src/c/ipmpar1.c
 
 STATISTICS_FORTRAN_SOURCES = src/dcdflib/psi.f \
-src/dcdflib/dexpm1.f \
 src/dcdflib/alngam.f \
 src/dcdflib/erfc1.f \
 src/dcdflib/cdff.f \
@@ -18,7 +17,6 @@ src/dcdflib/bcorr.f \
 src/dcdflib/cumchi.f \
 src/dcdflib/apser.f \
 src/dcdflib/gamln1.f \
-src/dcdflib/dlanor.f \
 src/dcdflib/cdft.f \
 src/dcdflib/gaminv.f \
 src/dcdflib/cumnbn.f \
@@ -28,7 +26,6 @@ src/dcdflib/cdfchn.f \
 src/dcdflib/dt1.f \
 src/dcdflib/bgrat.f \
 src/dcdflib/dinvnr.f \
-src/dcdflib/dlngam.f \
 src/dcdflib/rlog.f \
 src/dcdflib/basym.f \
 src/dcdflib/bfrac.f \
@@ -43,8 +40,6 @@ src/dcdflib/ipmpar.f \
 src/dcdflib/cumf.f \
 src/dcdflib/cumpoi.f \
 src/dcdflib/gamln.f \
-src/dcdflib/dstrem.f \
-src/dcdflib/dln1mx.f \
 src/dcdflib/betaln.f \
 src/dcdflib/stvaln.f \
 src/dcdflib/cumt.f \
@@ -66,11 +61,8 @@ src/dcdflib/devlpl.f \
 src/dcdflib/cdfnbn.f \
 src/dcdflib/dzror.f \
 src/dcdflib/gsumln.f \
-src/dcdflib/dln1px.f \
 src/dcdflib/algdiv.f \
-src/dcdflib/dlnbet.f \
 src/dcdflib/cumgam.f \
-src/dcdflib/dbetrm.f \
 src/dcdflib/grat1.f \
 src/dcdflib/brcmp1.f \
 src/dcdflib/cdfbin.f \
