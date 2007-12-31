@@ -653,27 +653,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\dlanor.f"
-				>
-			</File>
-			<File
-				RelativePath="..\dln1mx.f"
-				>
-			</File>
-			<File
-				RelativePath="..\dln1px.f"
-				>
-			</File>
-			<File
 				RelativePath="..\dlnbet.f"
-				>
-			</File>
-			<File
-				RelativePath="..\dlngam.f"
-				>
-			</File>
-			<File
-				RelativePath="..\dstrem.f"
 				>
 			</File>
 			<File
