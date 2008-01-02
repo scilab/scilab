@@ -115,7 +115,6 @@ static size_t gotten_store;
 
 /* The buffers grow automatically if very long input lines are encountered. */
 
-static int buffer_size = 50000;
 char *buffer = NULL;
 
 
@@ -261,7 +260,7 @@ static int strncmpic(char *s, char *t, int n)
 
 
 /*************************************************
-*                Main Program                    *
+*               Algorithem                      *
 *************************************************/
 
 /* Read lines from named file or stdin and write to named file or stdout; lines
@@ -565,15 +564,10 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		callout_fail_count = 999999;
 		callout_fail_id = -1;
 		show_malloc = 0;
-
 		if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
-
 		len = 0;
-
-
 		p = INPUT_LINE;
 		while (isspace(*p)) p++;
-
 		bptr = q = buffer;
 		while ((c = *p++) != 0)
 		{
@@ -678,8 +672,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						*npp++ = 0;
 						*npp = 0;
 						n = pcre_get_stringnumber(re, (char *)getnamesptr);
-						if (n < 0)
-							fprintf(outfile, "no parentheses with name \"%s\"\n", getnamesptr);
 						getnamesptr = npp;
 					}
 				continue;
@@ -699,13 +691,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						size_offsets_max = n;
 						FREE(offsets);
 						use_offsets = offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
-						if (offsets == NULL)
-						{
-							printf("** Failed to get %d bytes of memory for offsets vector\n",
-							(int)(size_offsets_max * sizeof(int)));
-							yield = 1;
-							goto EXIT;
-						}
 					}
 					use_size_offsets = n;
 					if (n == 0) use_offsets = NULL;   /* Ensures it can't write to it */
@@ -757,15 +742,12 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		}
 		*q = 0;
 		len = (int)(q - buffer);
-
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
 			return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
 		}
-
 		/* Handle matching via the POSIX interface, which does not
 		support timing or playing with the match limit or callout data. */
-
 		for (;; gmatched++)    /* Loop for /g or /G */
 		{
 			
@@ -836,18 +818,13 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						*Output_End=use_offsets[i+1];
 						// TO DO REORGANIZE CODE & OUTPUT ERRORS 
 						// IT WORKS by a MIRACLE ...
+						FREE(buffer);
+						FREE(offsets);
 						return 0;
 					}
 				}
 
-				for (i = 0; i < 32; i++)
-				{
-					if ((copystrings & (1 << i)) != 0)
-					{
-						char copybuffer[256];
-						pcre_copy_substring((char *)bptr, use_offsets, count,i, copybuffer, sizeof(copybuffer));
-					}
-				}
+				
 
 				for (copynamesptr = copynames; *copynamesptr != 0;copynamesptr += (int)strlen((char*)copynamesptr) + 1)
 				{
@@ -931,10 +908,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
     }    /* End of loop for data lines */
 
   CONTINUE:
-
-#if !defined NOPOSIX
-	if (posix || do_posix) regfree(&preg);
-#endif
 
 	if (re != NULL) FREE(re);
 	if (extra != NULL) FREE(extra);
