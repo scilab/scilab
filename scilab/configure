@@ -9919,7 +9919,7 @@ echo "$as_me: error: Cannot find ant" >&2;}
 echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/flexdock.jar" "$jardir/libflexdock.jar" "$jardir/libflexdock-java.jar" "$jardir/flexdock*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -9982,7 +9982,7 @@ echo "$as_me: error: Could not find or use the Java package/jar flexdock used by
 echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jogl.jar" "$jardir/libjogl.jar" "$jardir/libjogl-java.jar" "$jardir/jogl*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -10045,7 +10045,7 @@ echo "$as_me: error: Could not find or use the Java package/jar jogl used by Sci
 echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/gluegen-rt.jar" "$jardir/libgluegen-rt.jar" "$jardir/libgluegen-rt-java.jar" "$jardir/gluegen-rt*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -10108,7 +10108,7 @@ echo "$as_me: error: Could not find or use the Java package/jar gluegen-rt used 
 echo $ECHO_N "checking JRosetta-API-1.0... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/JRosetta-API-1.0.jar" "$jardir/libJRosetta-API-1.0.jar" "$jardir/libJRosetta-API-1.0-java.jar" "$jardir/JRosetta-API-1.0*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -10171,7 +10171,7 @@ echo "$as_me: error: Could not find or use the Java package/jar JRosetta-API-1.0
 echo $ECHO_N "checking JRosetta-1.0... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/JRosetta-1.0.jar" "$jardir/libJRosetta-1.0.jar" "$jardir/libJRosetta-1.0-java.jar" "$jardir/JRosetta-1.0*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -10234,7 +10234,7 @@ echo "$as_me: error: Could not find or use the Java package/jar JRosetta-1.0 use
 echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-logging.jar" "$jardir/libcommons-logging.jar" "$jardir/libcommons-logging-java.jar" "$jardir/commons-logging*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
