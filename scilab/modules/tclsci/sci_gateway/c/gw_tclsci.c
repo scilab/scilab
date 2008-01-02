@@ -11,8 +11,7 @@
 #include "inisci-c.h"
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
-/*--------------------------------------------------------------------------*/
-extern int TK_Started;
+#include "InitTclTk.h" /* isTkStarted */
 /*--------------------------------------------------------------------------*/
  static gw_generic_table Tab[]=
  {

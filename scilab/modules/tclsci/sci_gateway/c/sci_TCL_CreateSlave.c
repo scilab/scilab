@@ -22,7 +22,7 @@ int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname,unsigned long l))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,_("%s : Error main TCL interpreter not initialized.\n"),fname);
+			Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 			return 0;
 		}
 
@@ -45,7 +45,7 @@ int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,_("%s : Argument type must be character string.\n"),fname);
+		Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
 		return 0;
 	}
 	

@@ -27,7 +27,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 		if (TCLinterp == NULL)
 		{
 			freeArrayOfString(Str,m1*n1);
-			Scierror(999,_("%s : Error main TCL interpreter not initialized.\n"),fname);
+			Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 			return 0;
 		}
 
@@ -48,7 +48,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 			else
 			{
 				freeArrayOfString(Str,m1*n1);
-				Scierror(999,_("%s : Argument type must be character string.\n"),fname);
+				Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
 				 return 0;
 			}
 		}
@@ -100,7 +100,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,_("Argument type incorrect: Must be a string or vector of strings.\n"));
+		Scierror(999,_("%s: Wrong input argument: String or vector of strings expected.\n"),fname);
 		return 0;
 	}
 	
