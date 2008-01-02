@@ -2,6 +2,7 @@ package org.scilab.modules.gui.utils;
 
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.uielement.UIElement;
 
 /**
  * @author Bruno JOFRET - INRIA 2007
@@ -16,7 +17,10 @@ public final class BarUpdater {
 	 * @param newToolBar : the new ToolBar to display.
 	 */
 	public static void updateBars(int parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar) {
-		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addMenuBar(newMenuBar);
-		UIElementMapper.getCorrespondingUIElement(parentWindowsID).addToolBar(newToolBar);
+		UIElement element = UIElementMapper.getCorrespondingUIElement(parentWindowsID);
+		if(element != null) {
+			element.addMenuBar(newMenuBar);
+			element.addToolBar(newToolBar);
+		}
 	}
 }
