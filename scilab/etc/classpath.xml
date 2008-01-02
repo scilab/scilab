@@ -18,8 +18,8 @@
 <path value="$SCILAB/thirdparty/jogl.jar"/>
 <path value="$SCILAB/thirdparty/gluegen-rt.jar"/>
 <path value="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
-<path value="$SCILAB/thirdparty/JRosetta-API-1.0.jar"/>
-<path value="$SCILAB/thirdparty/JRosetta-1.0.jar"/>
+<path value="$SCILAB/thirdparty/jrosetta-API.jar"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar"/>
 <path value="$SCILAB/thirdparty/skinlf.jar"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
