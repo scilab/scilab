@@ -49,13 +49,13 @@ BOOL LoadLibrarypath(char *xmlfilename)
 				{
 
 					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
-					/* Get the properties of <librarypath>  */
+					/* Get the properties of <path>  */
 					while (attrib != NULL)
 					{
 						/* loop until when have read all the attributes */
 						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
 						{ 
-							/* we found the tag primitiveName */
+							/* we found the tag value */
 							const char *str=(const char*)attrib->children->content;
 							libraryPath=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
 							strcpy(libraryPath,str);
@@ -66,13 +66,9 @@ BOOL LoadLibrarypath(char *xmlfilename)
 					if ( (libraryPath) && (strlen(libraryPath) > 0) )
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
-						char firstchars[8];
 						char *sciPath=getSCIpath();
 						
-						strncpy(firstchars,libraryPath,strlen(KEYWORDSCILAB));
-						firstchars[strlen(KEYWORDSCILAB)]='\0';
-
-						if (strcmp(firstchars,KEYWORDSCILAB)==0)
+						if (strncmp(libraryPath,KEYWORDSCILAB, strlen(KEYWORDSCILAB))==0)
 						{
 							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(libraryPath)+1));
 							strcpy(modifypath,sciPath);

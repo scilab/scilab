@@ -27,7 +27,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;
-			char *CLASSPATH=NULL;
+			char *classpath=NULL;
 
 			doc = xmlParseFile (xmlfilename);
 
@@ -49,43 +49,43 @@ BOOL LoadClasspath(char *xmlfilename)
 				{
 
 					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
-					/* Get the properties of <classpath>  */
+					/* Get the properties of <path>  */
 					while (attrib != NULL)
 					{
 						/* loop until when have read all the attributes */
 						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
 						{ 
-							/* we found the tag primitiveName */
+							/* we found the tag value */
 							const char *str=(const char*)attrib->children->content;
-							CLASSPATH=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-							strcpy(CLASSPATH,str);
+							classpath=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+							strcpy(classpath,str);
 						}
 						attrib = attrib->next;
 					}
 
-					if ( (CLASSPATH) && (strlen(CLASSPATH) > 0) )
+					if ( (classpath) && (strlen(classpath) > 0) )
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
 						char firstchars[8];
 						char *SCIPATH=NULL;
 						SCIPATH=getSCIpath();
 						
-						strncpy(firstchars,CLASSPATH,strlen(KEYWORDSCILAB));
+						strncpy(firstchars,classpath,strlen(KEYWORDSCILAB));
 						firstchars[strlen(KEYWORDSCILAB)]='\0';
 
 						if (strcmp(firstchars,KEYWORDSCILAB)==0)
 						{
-							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(CLASSPATH)+1));
+							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(classpath)+1));
 							strcpy(modifypath,SCIPATH);
-							strcat(modifypath,&CLASSPATH[strlen(KEYWORDSCILAB)]);
-							FREE(CLASSPATH);
-							CLASSPATH = modifypath;
+							strcat(modifypath,&classpath[strlen(KEYWORDSCILAB)]);
+							FREE(classpath);
+							classpath = modifypath;
 						}
 
   					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-						addToClasspath(CLASSPATH);
-						FREE(CLASSPATH);
-						CLASSPATH = NULL;
+						addToClasspath(classpath);
+						FREE(classpath);
+						classpath = NULL;
 					}
 				}
 				bOK = TRUE;
@@ -101,7 +101,7 @@ BOOL LoadClasspath(char *xmlfilename)
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
 	}else{
-		printf(_("Warning: could not find classpath declaration file %s\n"), xmlfilename);
+		printf(_("Warning: could not find classpath declaration file %s.\n"), xmlfilename);
 	}
 	return bOK;
 }
