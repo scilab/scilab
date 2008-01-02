@@ -20,6 +20,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.LookAndFeel;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
+import javax.swing.UIManager;
 
 /**
  * Main Class for Scilab
@@ -56,9 +57,11 @@ public class Scilab {
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
+
 		this.mode = mode;
 		LookAndFeel.setSystemLookAndFeel();
-		if (mode == 2) {
+
+		if (mode == 2) { /* Mode GUI */
 
 			try {
 				mainView = ScilabWindow.createWindow();
@@ -80,19 +83,18 @@ public class Scilab {
 			/************/
 			ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
 
-			/* CONSOLE */
-			/* Create a tab to put console into */
-			Tab consoleTab = ScilabTab.createTab("Console Scilab");
-			consoleTab.setName("Console");
-
-			// mainView.addTab(consoleTab);
-
 			/* Create the console */
+			Tab consoleTab=null;
 			try {
+				/* CONSOLE */
+				/* Create a tab to put console into */
+				consoleTab = ScilabTab.createTab("Console Scilab");
+				consoleTab.setName("Console");
+
 				sciConsole = ScilabConsole.createConsole();
 				//consoleTab.addMember(sciConsole);
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (Rosetta/Jrosetta...).");
+				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).");
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
