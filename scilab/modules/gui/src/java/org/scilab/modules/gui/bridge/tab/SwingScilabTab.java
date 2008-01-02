@@ -31,7 +31,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.SpyListener;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
