@@ -6,7 +6,7 @@
 #ifndef __INITTCLTK__
 #define __INITTCLTK__
 
-#include "TCL_Global.h"
+/*#include "TCL_Global.h"*/
 #include "BOOL.h"
 
 /**

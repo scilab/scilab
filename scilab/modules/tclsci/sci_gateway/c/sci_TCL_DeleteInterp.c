@@ -7,6 +7,7 @@
 #include "InitTclTk.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "InitializeTclTk.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long l))
 {

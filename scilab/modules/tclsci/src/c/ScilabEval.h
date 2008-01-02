@@ -5,6 +5,8 @@
 #ifndef __SCILABEVAL_H__
 #define __SCILABEVAL_H__
 
+#include "TCL_Global.h"
+
 /**
  * @TODO add comment
  *

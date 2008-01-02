@@ -44,7 +44,7 @@ int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong first input argument: '%s' or '%s' expected.\n"),'global','locale');
+				Scierror(999,_("%s: Wrong first input argument: '%s' or '%s' expected.\n"),"global","locale");
 				return 0;
 			}
 		}
