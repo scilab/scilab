@@ -4121,6 +4121,29 @@ int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Specify a new zoom box for a subwin object.
+ * @param zoomBox [xMin, xMax, yMin, yMax, zMin, zMax] vector.
+ */
+int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->ZRect[0] = zoomBox[0];
+    pSUBWIN_FEATURE(pObj)->ZRect[1] = zoomBox[1];
+    pSUBWIN_FEATURE(pObj)->ZRect[2] = zoomBox[2];
+    pSUBWIN_FEATURE(pObj)->ZRect[3] = zoomBox[3];
+    pSUBWIN_FEATURE(pObj)->ZRect[4] = zoomBox[4];
+    pSUBWIN_FEATURE(pObj)->ZRect[5] = zoomBox[5];
+    break;
+  default:
+    printSetGetErrorMessage("zoom_box");
+    return -1;
+  }
+  return 0;
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Check that a color index is within the colormap range or not
  * @param pObj object conatining the color
  */

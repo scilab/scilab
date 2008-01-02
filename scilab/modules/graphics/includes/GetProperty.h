@@ -196,6 +196,7 @@ double * sciGetMargins( sciPointObj * pObj ) ;
 
 void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
 void sciGetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* GET */
+void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6]); /* GET */
 
 void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; /* GET */
 
@@ -229,6 +230,8 @@ BOOL sciGetTightLimitsOn(sciPointObj * pObj); /* GET */
 void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]); /* GET */
 
 void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]); /* GET */
+
+void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
 
 void printSetGetErrorMessage(const char * propertyName);
 

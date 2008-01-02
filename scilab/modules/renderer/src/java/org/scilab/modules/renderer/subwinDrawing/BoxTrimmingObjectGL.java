@@ -214,7 +214,7 @@ public abstract class BoxTrimmingObjectGL extends DrawableObjectGL {
 		
 //		 same processus as for Z coordinate
 		Vector3D pointYmin = new Vector3D(getXmin(), getYmin(), zCoordinate);
-		Vector3D pointYmax = new Vector3D(getXmin(), getXmax(), zCoordinate);
+		Vector3D pointYmax = new Vector3D(getXmin(), getYmax(), zCoordinate);
 		
 		// find the one which is upper in term of pixels
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);

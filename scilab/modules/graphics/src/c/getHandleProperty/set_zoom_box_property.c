@@ -13,7 +13,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
-#include "PloEch.h"
+#include "axesScale.h"
 
 /*------------------------------------------------------------------------*/
 int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
@@ -31,20 +31,26 @@ int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
     return SET_PROPERTY_ERROR ;
   }
 
-  /* On doit avoir avoir une matrice 4x1 */
-  if ( nbRow * nbCol == 4 )
+  /* We must have a 4x1 matrix */
+  if ( nbRow * nbCol == 6 )
   {
-    scizoom( getDoubleMatrixFromStack( stackPointer ), pobj ) ;
+    //scizoom( getDoubleMatrixFromStack( stackPointer ), pobj ) ;
+    return sciZoom3D(pobj, getDoubleMatrixFromStack(stackPointer));
+  }
+  else if( nbRow * nbCol == 4)
+  {
+    return sciZoom2D(pobj, getDoubleMatrixFromStack(stackPointer));
   }
   else if ( nbCol * nbRow == 0 )
   {
-    unzoom() ;
+    sciUnzoom(pobj);
+    //unzoom() ;
   }
   else
   {
-    sciprint("Argument must be a vector of size 4.\n");
+    sciprint("Argument must be a vector of size 6 (or 4 in 2d).\n");
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

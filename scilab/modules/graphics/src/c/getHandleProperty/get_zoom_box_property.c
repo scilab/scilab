@@ -11,6 +11,7 @@
 #include "returnProperty.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "axesScale.h"
 
 /*------------------------------------------------------------------------*/
 int get_zoom_box_property( sciPointObj * pobj )
@@ -23,7 +24,9 @@ int get_zoom_box_property( sciPointObj * pobj )
 
   if ( sciGetZooming( pobj ) )
   {
-    return sciReturnRowVector( pSUBWIN_FEATURE(pobj)->ZRect, 4 ) ;
+    double zoomBox[6];
+    sciGetZoom3D(pobj, zoomBox);
+    return sciReturnRowVector( zoomBox, 6 ) ;
   }
   else
   {

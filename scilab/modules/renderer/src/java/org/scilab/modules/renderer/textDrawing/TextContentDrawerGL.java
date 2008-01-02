@@ -180,7 +180,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * Destroy the current text renderer.
 	 */
 	public void destroyTextRenderer() {
-		textRenderer.dispose();
+		// useless unless we share texture between OpenGL contexts
+		//textRenderer.dispose();
 		textRenderer = null;
 	}
 	
@@ -226,7 +227,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
-		gl.glPushMatrix();
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
@@ -237,7 +237,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		
 		
 		GLTools.endPixelCoordinates(gl);
-		gl.glPopMatrix();
 		
 	}
 	
@@ -298,7 +297,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
-		gl.glPushMatrix();
 		GLTools.usePixelCoordinates(gl);
 		
 		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
@@ -311,7 +309,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		}
 		
 		GLTools.endPixelCoordinates(gl);
-		gl.glPopMatrix();
 		return resPix;
 	}
 	

@@ -90,3 +90,4 @@ ChoixFormatE
 ComputeNbSubTics
 sciGetIs3d
 sciGetGridStyle
+sciGetDisplayedDataBounds

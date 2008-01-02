@@ -11,11 +11,13 @@
 #include "math_graphics.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
+#include "SetProperty.h"
 #include "sciprint.h"
 #include "PloEch.h"
 #include "GraphicZoom.h"
 #include "Vertices.h"
 #include "localization.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------------*/
 double InvAxis( double min, double max, double u )
@@ -338,5 +340,117 @@ int trans3d( sciPointObj * pobj,
   }
   FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
   return(1);
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Specify new zoom box for a subwin object.
+ * @param zoomRect vector [xMin, yMin, xMax, yMax]
+ */
+int sciZoom2D(sciPointObj * pObj, const double zoomRect[4])
+{
+  double zoomBox[6];
+
+  // add Z scale to data bounds.
+  sciGetDataBounds(pObj, zoomBox);
+  zoomBox[0] = zoomRect[0];
+  zoomBox[1] = zoomRect[1];
+  zoomBox[2] = zoomRect[2];
+  zoomBox[3] = zoomRect[3];
+
+  return sciZoom3D(pObj, zoomBox);
+
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Specify a new zoom box for a subwin object
+ * @param zoomBox vector [xMin, yMin, xMax, yMax, zMin, zMax].
+ */
+int sciZoom3D(sciPointObj * pObj, const double zoomBox[6])
+{
+  // convert zoomBox to [xMin, xMax, yMin, yMax, zMin, zMax]
+  double zoomBox3D[6];
+  zoomBox3D[0] = zoomBox[0];
+  zoomBox3D[1] = zoomBox[2];
+  zoomBox3D[2] = zoomBox[1];
+  zoomBox3D[3] = zoomBox[3];
+  zoomBox3D[4] = zoomBox[4];
+  zoomBox3D[5] = zoomBox[5];
+
+  if (!checkDataBounds(pObj, zoomBox3D[0], zoomBox3D[1], zoomBox3D[2],
+                       zoomBox3D[3], zoomBox3D[4], zoomBox3D[5]))
+  {
+    return SET_PROPERTY_ERROR;
+  }
+
+  sciSetZoomBox(pObj, zoomBox3D);
+
+  sciSetZooming(pObj, TRUE);
+
+  return SET_PROPERTY_SUCCEED;
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Unzoom the selected subwin
+ */
+void sciUnzoom(sciPointObj * pObj)
+{
+  sciSetZooming(pObj, FALSE);
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * get the zoom box to dispplay in Scilab for a sunwin object
+ * @param[out] zoomBox [xMin, yMin, xMax, yMax, zMin, zMax];
+ */
+void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6])
+{
+  double temp;
+
+  // here we get [xMin, xMax, yMin, yMax, zMin, zMax]
+  // we need to switch xMax and yMin
+  sciGetZoomBox(pObj, zoomBox);
+  temp = zoomBox[1];
+  zoomBox[1] = zoomBox[2];
+  zoomBox[2] = temp;
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Check if the follawing data bounds can be used as new data bounds for the subwin object
+ * @return TRUE if values can be used, false otherwise
+ */
+BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
+                     double yMin, double yMax, double zMin, double zMax)
+{
+  char logFlags[3];
+  sciGetLogFlags(pObj, logFlags);
+
+  /* check if there is not an inf within the values */
+  /* since this has not any meaning */
+  if (    !finite(xMin) || !finite(xMax)
+       || !finite(yMin) || !finite(yMax)
+       || !finite(zMin) || !finite(zMax) )
+  {
+    sciprint("Error : data bounds values must be finite.");
+    return FALSE ;
+  }
+
+
+  /* check if the bounds are corrects */
+  /* allows equality with bounds since it is working */
+  if ( xMin > xMax || yMin > yMax || zMin > zMax )
+  {
+    sciprint("Error : Min and Max values for one axis do not verify Min <= Max.\n");
+    return FALSE ;
+  }
+
+  /* check for logflags that values are greater than 0 */
+  if (   ( logFlags[0] == 'l' && xMin <= 0.0 )
+      || ( logFlags[1] == 'l' && yMin <= 0.0 )
+      || ( logFlags[2] == 'l' && zMin <= 0.0 ) )
+  {
+    sciprint("Error: bounds on axis must be strictly positive to use logarithmic mode.\n" ) ;
+    return FALSE ;
+  }
+
+  return TRUE;
 }
 /*------------------------------------------------------------------------------*/

@@ -1594,7 +1594,7 @@ void scizoom( double bbox[4], sciPointObj * pobj )
 
   if ( !( sciGetZooming(pobj) ) )
   {
-    sciSetZooming(psousfen, 1);
+    sciSetZooming(psousfen, TRUE);
   }
   /** regraduation de l'axe des axes ***/
   fmin=  bbox[0];

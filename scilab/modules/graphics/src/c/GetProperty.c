@@ -3925,6 +3925,21 @@ void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get the bounds we need to use for a subwin (between user defined one and zoomed ones).
+ */
+void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6])
+{
+  if(sciGetZooming(pObj))
+  {
+    sciGetZoomBox(pObj, bounds);
+  }
+  else
+  {
+    sciGetDataBounds(pObj, bounds);
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Get data-bounds defined by the user and not modified for pretty print by scilab.
  * @param bounds [Xmin,Xmax,Ymain,Ymax,Zmin,Zmax] vector.
  */
@@ -4226,6 +4241,28 @@ void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
     axesVisible[1] = FALSE;
     axesVisible[2] = FALSE;
     printSetGetErrorMessage("axes_visible");
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the current zoom box of a subwin object
+ * @param[out] zoomBox output parameter with thte zoom box
+ */
+void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    zoomBox[0] = pSUBWIN_FEATURE(pObj)->ZRect[0] ;
+    zoomBox[1] = pSUBWIN_FEATURE(pObj)->ZRect[1] ;
+    zoomBox[2] = pSUBWIN_FEATURE(pObj)->ZRect[2] ;
+    zoomBox[3] = pSUBWIN_FEATURE(pObj)->ZRect[3] ;
+    zoomBox[4] = pSUBWIN_FEATURE(pObj)->ZRect[4] ;
+    zoomBox[5] = pSUBWIN_FEATURE(pObj)->ZRect[5] ;
+    break;
+  default:
+    printSetGetErrorMessage("zoom_box");
     break;
   }
 }

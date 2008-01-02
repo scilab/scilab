@@ -10,6 +10,7 @@
 #include "PloEch.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
+#include "axesScale.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_zoom_rect(char *fname,unsigned long fname_len)
@@ -26,7 +27,8 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
   {
     GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l); 
     CheckLength(1,4,m*n);
-    zoom_box(stk(l),&x_pixel,&y_pixel);
+    /*zoom_box(stk(l),&x_pixel,&y_pixel);*/
+    sciZoom2D(sciGetCurrentSubWin(), getDoubleMatrixFromStack(l));
   }
 
   LhsVar(1)=0; 

@@ -313,9 +313,7 @@
           <DESCRIPTION_ITEM label="zoom_box: ">
             <SP>This field contains the current zoom box if any coordinates
             are given. It is an empty matrix (no zoom) or the vector
-            <VERB>[xmin,ymin,xmax,ymax]</VERB> (defines a rectangle given by
-            two opposite corners). The z coordinates is not yet taken into
-            account.</SP>
+            <VERB>[xmin,ymin,xmax,ymax,zmin,zmax]</VERB> (defines a smaller axes box).</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="margins: ">

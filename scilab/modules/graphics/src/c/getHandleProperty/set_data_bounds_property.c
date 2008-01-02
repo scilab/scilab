@@ -151,33 +151,10 @@ int set_data_bounds_property( sciPointObj * pobj, int stackPointer, int valueTyp
       return SET_PROPERTY_ERROR ;
     }
 
-    /* check if there is not an inf within the values */
-    /* since this has not any meaning */
-    if (    !finite(xMin) || !finite(xMax)
-         || !finite(yMin) || !finite(yMax)
-         || !finite(zMin) || !finite(zMax) )
-    {
-      sciprint("Error : data_bounds values must be finite.");
-      return SET_PROPERTY_ERROR ;
-    }
-
-
-    /* check if the bounds are corrects */
-    /* allows equality with bounds since it is working */
-    if ( xMin > xMax || yMin > yMax || zMin > zMax )
-    {
-      sciprint("Error : Min and Max values for one axis do not verify Min <= Max.\n");
-      return SET_PROPERTY_ERROR ;
-    }
-
-    /* check for logflags that values are greater than 0 */
-    if (   ( ppSubWin->logflags[0] == 'l' && xMin <= 0.0 )
-      || ( ppSubWin->logflags[1] == 'l' && yMin <= 0.0 )
-      || ( ppSubWin->logflags[2] == 'l' && zMin <= 0.0 ) )
-    {
-      sciprint("Error: bounds on axis must be strictly positive to use logarithmic mode\n" ) ;
-      return SET_PROPERTY_ERROR ;
-    }
+   if (!checkDataBounds(pobj, xMin, xMax, yMin, yMax, zMin, zMax))
+   {
+     return SET_PROPERTY_ERROR;
+   }
 
     /* copy the values in the axis */
     if ( nbRow * nbCol == 4 )

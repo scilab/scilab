@@ -162,7 +162,7 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
 {
   // retrieve user bounds
   double userBounds[6];
-  sciGetDataBounds(m_pDrawed, userBounds);
+  sciGetDisplayedDataBounds(m_pDrawed, userBounds);
 
   double bestBounds[6]; // output bounds
 
