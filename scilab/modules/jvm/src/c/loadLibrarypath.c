@@ -27,7 +27,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;
-			char *LIBRARYPATH=NULL;
+			char *libraryPath=NULL;
 
 			doc = xmlParseFile (xmlfilename);
 
@@ -57,35 +57,34 @@ BOOL LoadLibrarypath(char *xmlfilename)
 						{ 
 							/* we found the tag primitiveName */
 							const char *str=(const char*)attrib->children->content;
-							LIBRARYPATH=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-							strcpy(LIBRARYPATH,str);
+							libraryPath=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
+							strcpy(libraryPath,str);
 						}
 						attrib = attrib->next;
 					}
 
-					if ( (LIBRARYPATH) && (strlen(LIBRARYPATH) > 0) )
+					if ( (libraryPath) && (strlen(libraryPath) > 0) )
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
 						char firstchars[8];
-						char *SCIPATH=NULL;
-						SCIPATH=getSCIpath();
+						char *sciPath=getSCIpath();
 						
-						strncpy(firstchars,LIBRARYPATH,strlen(KEYWORDSCILAB));
+						strncpy(firstchars,libraryPath,strlen(KEYWORDSCILAB));
 						firstchars[strlen(KEYWORDSCILAB)]='\0';
 
 						if (strcmp(firstchars,KEYWORDSCILAB)==0)
 						{
-							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(LIBRARYPATH)+1));
-							strcpy(modifypath,SCIPATH);
-							strcat(modifypath,&LIBRARYPATH[strlen(KEYWORDSCILAB)]);
-							FREE(LIBRARYPATH);
-							LIBRARYPATH = modifypath;
+							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(libraryPath)+1));
+							strcpy(modifypath,sciPath);
+							strcat(modifypath,&libraryPath[strlen(KEYWORDSCILAB)]);
+							FREE(libraryPath);
+							libraryPath = modifypath;
 						}
 
-  					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-                        addToLibrarypath(LIBRARYPATH);
-						FREE(LIBRARYPATH);
-						LIBRARYPATH = NULL;
+  					    if (sciPath) {FREE(sciPath);sciPath=NULL;}
+                        addToLibrarypath(libraryPath);
+						FREE(libraryPath);
+						libraryPath = NULL;
 					}
 				}
 				bOK = TRUE;
