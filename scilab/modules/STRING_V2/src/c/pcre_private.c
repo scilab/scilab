@@ -260,7 +260,7 @@ static int strncmpic(char *s, char *t, int n)
 
 
 /*************************************************
-*               Algorithem                      *
+*               Algorithm                      *
 *************************************************/
 
 /* Read lines from named file or stdin and write to named file or stdout; lines
