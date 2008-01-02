@@ -52,7 +52,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 			mputl(tmp_file,path);
 		end
 		
-		mprintf("\tProcessing file %s.xml\n",basename(path));
+		mprintf(_("\tProcessing file %s.xml\n"),basename(path));
 		
 		// build .xml2 file where LINK tags references are solved
 		find_links(path,path+"2");
@@ -85,7 +85,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		
 		//run html generator
 		if execstr('unix_s('+sci2exp(instr)+')','errcatch')<>0 then 
-			write(%io(2),"Warning "+path+" does not follow the dtd","(a)");
+			write(%io(2),msprint(_("Warning %s does not follow the dtd"),path),"(a)");
 			ok = %F;
 		else
 			ok = %T;
