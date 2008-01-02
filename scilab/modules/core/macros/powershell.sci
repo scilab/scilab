@@ -23,7 +23,7 @@ function [resultat,status] = powershell(varargin)
  
   if (rhs == 1) then
     if ( (type(varargin(1)) == 10) & and(size(varargin(1)) == [1 1]) ) then
-      // Verification que le premier parametre est un fichier 
+      // Check that the first input argument is a file
       [x,ierr]=fileinfo(varargin(1));
       if ( x == [] ) then // it is a command
         Chainecmd = Chainecmdbegin + '-command ""' + varargin(1) + '""';
@@ -32,10 +32,10 @@ function [resultat,status] = powershell(varargin)
       end
       [resultat,status]=dos(Chainecmd);
     else
-      error(gettext("Input argument must be a string."));
+      error(msprintf(gettext("%s: Wrong input argument: String expected."),"powershell"));
     end
   else
-    error(gettext("Input argument must be a string."));
+    error(msprintf(gettext("%s: Wrong input argument: String expected."),"powershell"));
   end
   
 endfunction

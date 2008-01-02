@@ -77,7 +77,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 
   if (stkdata[0] > 0) /* Not a reference to variable */
     {
-		Scierror(999,_("%s: input argument must be a named variable\n"),"acr2tree");
+		Scierror(999,_("%s: Wrong input argument: Named variable expected.\n"),"acr2tree");
       return 0;
     }
   else
@@ -88,7 +88,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Verify good type for input: must be a compiled macro (type 13) */
   if(stkdata[0] != 13)
     {
-		Scierror(999,_("%s: Wrong input type (must be a compiled macro)!\n"),"macr2tree");
+		Scierror(999,_("%s: Wrong type for input argument: Compiled macro expected.\n"),"macr2tree");
       return 0;
     }
 
@@ -176,7 +176,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
   /* Error handling (S. Steer */
   if (*Lstk(Top+1) >= *Lstk(Bot)) 
   {
-	  Scierror(17,_("%s : stack size exceeded (Use stacksize function to increase it).\n"));
+	  Scierror(17,_("%s: stack size exceeded (Use stacksize function to increase it).\n"));
 
     /* Free memory */
     FREE(name[0]);
@@ -243,7 +243,7 @@ int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 	}
       if(TopSave!=Top-1) 
 	  {
-		  Scierror(999,_("%s: wrong Top value %d instead of %d\n"),"macr2tree",Top,TopSave+1);
+		  Scierror(999,_("%s: Wrong Top value %d instead of %d\n"),"macr2tree",Top,TopSave+1);
 
 
 	/* Free memory */
@@ -582,7 +582,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
       }
     else
       {
-	Scierror(999,_("GetInstruction: unknown code %d at index2 %d.\n"),data[*index2],*index2 );
+	Scierror(999,_("%S: Unknown code %d at index2 %d.\n"),"GetInstruction",data[*index2],*index2 );
 	return 0;
       }
     break;
@@ -1079,7 +1079,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
     }
   else /* Should never happen */
     {
-	  Scierror(999,_("%s: wrong type value.\n"),"CreateCsteTList");
+	  Scierror(999,_("%s: Wrong type value.\n"),"CreateCsteTList");
       return 0;
     }
   
@@ -1694,7 +1694,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should not happen */
     {
-	  Scierror(999,_("%s: wrong fromwhat value %s\n"),"CreateEqualTList",fromwhat);
+	  Scierror(999,_("%s: Wrong fromwhat value %s\n"),"CreateEqualTList",fromwhat);
       return 0;
     }
 

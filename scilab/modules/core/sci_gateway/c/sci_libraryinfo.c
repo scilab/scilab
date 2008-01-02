@@ -78,12 +78,12 @@ int C2F(sci_libraryinfo) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("Invalid library.\n"));
+			Scierror(999,_("%s: Invalid library %s.\n"),fname, libraryname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("Invalid type of input argument: String expected.\n"));
+		Scierror(999,_("%s: Wrong type of input argument: String expected.\n"),fname);
 	}
 	return 0;
 }

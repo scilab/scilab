@@ -44,13 +44,13 @@ int C2F(sci_getvariablesonstack) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid input argument. Must be 'global' or 'locale'.\n"));
+				Scierror(999,_("%s: Wrong first input argument: '%s' or '%s' expected.\n"),'global','locale');
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("Invalid type of input argument: String expected.\n"));
+			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"));
 			return 0;
 		}
 	}

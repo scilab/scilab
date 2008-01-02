@@ -8,19 +8,19 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(where)();
+extern int C2F(where)(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_where) _PARAMS((char *fname,unsigned long fname_len))
 {
 	if (Rhs > 0)
 	{
-		Scierror(39,_("Incorrect number of input arguments.\n"));
+		Scierror(39,_("%s: Wrong number of input arguments.\n"),"where");
 		return 0;
 	}
 
 	if (Lhs != 2)
 	{
-		Scierror(41,_("Incompatible number of output parameter (LHS).\n"));
+		Scierror(41,_("%s: Wrong number of output arguments: %d expected.\n"),"where",2);
 		return 0;
 	}
 

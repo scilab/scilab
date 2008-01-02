@@ -71,7 +71,7 @@ int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Input argument must be a string.\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"), fname);
 		return 0;
 	}
 	LhsVar(1)=0;

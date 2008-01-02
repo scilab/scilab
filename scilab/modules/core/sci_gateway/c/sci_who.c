@@ -93,7 +93,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				 Scierror(999,_("First input argument must be 'local' , 'get' , 'global' or 'sorted'.\n"));
+				 Scierror(999,_("%s: Wrong first input argument: '%s', '%s', '%s' or '%s' expected.\n"),fname, "local" , "get" , "global", "sorted");
 				 return 0;
 			 }
 		 }
@@ -102,7 +102,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,_("First input argument must be 'local' , 'get' , 'global' or 'sorted'.\n"));
+			 Scierror(999,_("%s: Wrong first input argument: '%s', '%s', '%s' or '%s'.\n"),fname, "local", "get", "global", "sorted");
 			 return 0;
 		 }
 	 }
@@ -125,7 +125,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 				  FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				  FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				  Scierror(999,_("Second input argument must be 'sorted'.\n"));
+				  Scierror(999,_("%s: Wrong second input argument: '%s' expected.\n"),fname,"sorted");
 				  return 0;
 			  }
 			  else
@@ -162,7 +162,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 					FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 					FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-					Scierror(999,_("First input argument must be 'local' , 'get' or 'global'.\n"));
+					Scierror(999,_("%s: Wrong first input argument: '%s' , '%s' or '%s'.\n"),fname,"local","get","global");
 					return 0;
 				 }
 			  }
@@ -172,7 +172,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,_("First input argument must be 'local' , 'get' , 'global' and second parameter must be 'sorted'.\n"));
+			 Scierror(999,_("%s: Wrong first input argument: '%s', '%s', '%s' and second input argument must be '%s'.\n"),fname,"local","get","global","sorted");
 			 return 0;
 		 }
 	 }

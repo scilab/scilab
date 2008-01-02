@@ -15,7 +15,7 @@ function [resultat,status] = perl(varargin)
       // Check that params are strings
       for i=1:1:rhs,
         if ~(type(varargin(i)) == 10) then
-          error(gettext("All input arguments must be strings."));
+          error(msprintf(gettext("%s: Wrong input argument: Strings expected."),"perl"));
         end
         
         idx=strindex(varargin(i),' ');
@@ -65,6 +65,6 @@ function [resultat,status] = perl(varargin)
       end
     end  
   else
-    error(gettext("First input argument must be a Perl File."));
+    error(msprintf(gettext("%s: Wrong first input argument: Perl File expected."),'perl'));
   end
 endfunction

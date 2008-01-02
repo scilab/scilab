@@ -5,11 +5,11 @@ function whos(%_opt,%_sel)
 //get the variables
   [%_nams,%_vol]=who('get');
   [%_lhs,%_rhs]=argn();
-  if %_rhs==1 then error(gettext("whos requires zeros or two input arguments.")),end
+  if %_rhs==1 then error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected."),'whos',0, 2)),end
   if %_rhs==2 then 
     %_nams($-1:$)=[],
     if %_opt<>'-type'&%_opt<>'-name' then 
-      error(gettext("First input argument must be ''-name'' or ''-type''."))
+      error(msprintf(gettext("%s: Wrong first input argument: ''%s'' or ''%s'' expected."),'whos','-name','-type'))
     end
   end
   //write the display header
