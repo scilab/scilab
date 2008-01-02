@@ -21,19 +21,19 @@ BOOL createMainScilabObject(void)
 	{
 		jclass cls=NULL;
 		cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/jvm/Scilab");
-		bOK=catchIfJavaException(_("Could not access to the Main Scilab Class :\n"));
+		bOK=catchIfJavaException(_("Could not access to the Main Scilab Class:\n"));
 		if (cls)
 		{
 			jmethodID mid=NULL;
 			mid = (*currentENV)->GetMethodID(currentENV,cls,"<init>","(I)V");
-			bOK=catchIfJavaException("Could not access to the constructor of the Main Scilab Class :\n");
+			bOK=catchIfJavaException(_("Could not access to the constructor of the Main Scilab Class:\n"));
 			if (mid)
 			{
 				jint ScilabMode = getScilabMode();
 				ScilabObject = (*currentENV)->NewObject(currentENV,cls,mid,ScilabMode); 
 				/* Catch the exception and display an human-reading error message 
 				 */
-				bOK=catchIfJavaException(_("Could not create a Scilab main class. Error :\n"));
+				bOK=catchIfJavaException(_("Could not create a Scilab main class. Error:\n"));
 			}
 		}
 	}
