@@ -39,27 +39,27 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 			static int n1=0,m1=0;
 			int i=0;
 			BOOL bOK=FALSE;
-			char **LIBRARYPATHS=NULL;
+			char **libraryPaths=NULL;
 
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&LIBRARYPATHS);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&libraryPaths);
 
 			for (i = 0; i<m1*n1 ;i++)
 			{
-				bOK=addToLibrarypath(LIBRARYPATHS[i]);
+				bOK=addToLibrarypath(libraryPaths[i]);
 				if (!bOK)
 				{
-					freeArrayOfString(LIBRARYPATHS,m1*n1);
-					Scierror(999,_("could not add path to java.library.path : %s.\n"),LIBRARYPATHS[i]);
+					freeArrayOfString(libraryPaths,m1*n1);
+					Scierror(999,_("%s: Could not add path to java.library.path: %s.\n"),fname, libraryPaths[i]);
 					return 0;
 				}
 			}
 			LhsVar(1) = 0;
 			C2F(putlhsvar)();	
-			freeArrayOfString(LIBRARYPATHS,m1*n1);
+			freeArrayOfString(libraryPaths,m1*n1);
 		}
 		else
 		{
-			Scierror(999,_("invalid parameter(s).\n"));
+			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"), fname);
 		}
 	}
 	return 0;

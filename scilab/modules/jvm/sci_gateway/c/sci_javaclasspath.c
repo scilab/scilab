@@ -38,22 +38,22 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			static int n1=0,m1=0;
 			int i=0;
-			char **CLASSPATHS=NULL;
+			char **classPaths=NULL;
 
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&CLASSPATHS);
+			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&classPaths);
 
 			for (i = 0; i<m1*n1 ;i++)
 			{
-				if (!addToClasspath(CLASSPATHS[i]))
+				if (!addToClasspath(classPaths[i]))
 				{
-					freeArrayOfString(CLASSPATHS,m1*n1);
-					Scierror(999,_("Could not add URL to system classloader : %s.\n"),CLASSPATHS[i]);
+					freeArrayOfString(classPaths,m1*n1);
+					Scierror(999,_("%s: Could not add URL to system classloader : %s.\n"),fname,classPaths[i]);
 					return 0;
 				}
 			}
 			LhsVar(1) = 0;
 			C2F(putlhsvar)();	
-			freeArrayOfString(CLASSPATHS,m1*n1);
+			freeArrayOfString(classPaths,m1*n1);
 		}
 		else
 		{
