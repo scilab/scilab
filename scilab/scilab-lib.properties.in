@@ -1,16 +1,17 @@
 ; Definition of lib used in Scilab 
 
-commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
-flexdock.jar=${thirdparty.dir}/flexdock-0.5.1.jar
+commons-logging.jar=@COMMONS_LOGGING@
 
-gluegen.jar=${thirdparty.dir}/gluegen-rt.jar
+flexdock.jar=@FLEXDOCK@
 
-JRosetta-API-1.0.jar=${thirdparty.dir}/jrosetta-API.jar
+jogl.jar=@JOGL@
 
-JRosetta-1.0.jar=${thirdparty.dir}/jrosetta-engine.jar
+gluegen.jar=@GLUEGEN_RT@
 
-jogl.jar=${thirdparty.dir}/jogl.jar
+jrosetta-API.jar=@JROSETTA_API@
+
+jrosetta-engine.jar=@JROSETTA_ENGINE@
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 

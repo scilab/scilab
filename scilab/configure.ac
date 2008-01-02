@@ -511,11 +511,23 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 		AC_JAVA_ANT
 		if test "$with_gui" != no; then
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
+				FLEXDOCK=$PACKAGE_JAR_FILE
+				AC_SUBST(FLEXDOCK)
 				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1-pre 20071112])
+				JOGL=$PACKAGE_JAR_FILE
+				AC_SUBST(JOGL)
 				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
-				AC_JAVA_CHECK_PACKAGE([JRosetta-API-1.0],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
-				AC_JAVA_CHECK_PACKAGE([JRosetta-1.0],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
+				GLUEGEN_RT=$PACKAGE_JAR_FILE
+				AC_SUBST(GLUEGEN_RT)
+				AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+				JROSETTA_API=$PACKAGE_JAR_FILE
+				AC_SUBST(JROSETTA_API)
+				AC_JAVA_CHECK_PACKAGE([jrosetta-engine],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
+				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
+				AC_SUBST(JROSETTA_ENGINE)
 				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
+				COMMONS_LOGGING=$PACKAGE_JAR_FILE
+				AC_SUBST(COMMONS_LOGGING)
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
 		fi
 	else
@@ -1103,7 +1115,7 @@ modules/Makefile
 libs/Makefile
 Makefile
 etc/modules.xml
-modules/helptools/macros/xmlfiletohtml.sci
+scilab-lib.properties
 ])#MAN_FR MAN_ENG
 #modules/mpi/Makefile
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do

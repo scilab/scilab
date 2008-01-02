@@ -67,15 +67,12 @@
 		
 		<pathelement location="${gluegen.jar}"/>
 		
-		<pathelement location="${JRosetta-API-1.0.jar}"/>
+		<pathelement location="${jrosetta-API.jar}"/>
 		
-		<pathelement location="${JRosetta-1.0.jar}"/>
+		<pathelement location="${jrosetta-engine.jar}"/>
 
-		<pathelement location="${looks.jar}"/>
-		
 		<pathelement location="${jogl.jar}"/>
 		
-		<pathelement location="${skinlf.jar}"/>
 	</path>
 	
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>

@@ -679,6 +679,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
           AC_JAVA_TRY_COMPILE([import $2;], , [
             AC_MSG_RESULT([$jar_resolved])
             found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
             break
           ], [
             ac_java_classpath=$saved_ac_java_classpath
