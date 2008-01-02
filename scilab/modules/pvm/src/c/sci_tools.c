@@ -78,7 +78,7 @@ void SciToF77(double *ptr, int size, int lda)
   double *tab;
   
   if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    (void) fprintf(stderr, _("SciToF77: Error malloc\n"));
+    (void) fprintf(stderr, _("%s: No more memory.\n"),"SciToF77");
     return;
   }
 
@@ -102,7 +102,7 @@ void F77ToSci(double *ptr, int size, int lda)
   double *tab;
   
   if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    (void) fprintf(stderr, _("F77ToSci: Error malloc\n"));
+    (void) fprintf(stderr, _("%s: No more memory.\n"),"F77ToSci");
     return;
   }
   
