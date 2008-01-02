@@ -5,19 +5,27 @@
  default java.library.path for Scilab
  add path only if path exists
  @author Allan CORNET
- @date INRIA 2007
+ @author Sylvestre Ledru
+ @date INRIA 2007/2008
  ===================
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
 <librarypaths>
-<librarypath path="$SCILAB/bin"/>
-<librarypath path="$SCILAB/modules/action_binding/.libs"/>
-<librarypath path="$SCILAB/modules/console/.libs"/>
-<librarypath path="$SCILAB/modules/history_manager/.libs"/>
-<librarypath path="$SCILAB/modules/completion/.libs"/>
-<librarypath path="$SCILAB/modules/localization/.libs"/>
-<librarypath path="$SCILAB/modules/renderer/.libs"/>
-<librarypath path="$SCILAB/.libs"/>
+<!-- Scilab binary -->
+<path value="$SCILAB/bin"/>
+
+<!-- Developpement environment -->
+<path value="$SCILAB/modules/action_binding/.libs"/>
+<path value="$SCILAB/modules/console/.libs"/>
+<path value="$SCILAB/modules/history_manager/.libs"/>
+<path value="$SCILAB/modules/completion/.libs"/>
+<path value="$SCILAB/modules/localization/.libs"/>
+<path value="$SCILAB/modules/renderer/.libs"/>
+<path value="$SCILAB/.libs"/>
+
+<!-- Default path to the JNI classes under some Linux (Debian for example) -->
+<path value="/usr/lib/jni/"/>
+
 </librarypaths>

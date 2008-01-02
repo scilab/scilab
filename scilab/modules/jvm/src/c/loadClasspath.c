@@ -39,7 +39,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//classpaths/classpath", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//classpaths/path", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{
@@ -53,7 +53,7 @@ BOOL LoadClasspath(char *xmlfilename)
 					while (attrib != NULL)
 					{
 						/* loop until when have read all the attributes */
-						if (xmlStrEqual (attrib->name, (const xmlChar*) "path"))
+						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
 						{ 
 							/* we found the tag primitiveName */
 							const char *str=(const char*)attrib->children->content;

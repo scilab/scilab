@@ -5,31 +5,32 @@
  default CLASSPATH for Scilab
 
  @author Allan CORNET
- @date INRIA 2007
+ @author Sylvestre LEDRU
+ @date INRIA 2007/2008
  ===================
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
 
 <classpaths>
-<classpath path="$SCILAB/bin"/>
-<classpath path="$SCILAB/thirdparty/"/>
-<classpath path="$SCILAB/thirdparty/jogl.jar"/>
-<classpath path="$SCILAB/thirdparty/gluegen-rt.jar"/>
-<classpath path="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
-<classpath path="$SCILAB/thirdparty/JRosetta-API-1.0.jar"/>
-<classpath path="$SCILAB/thirdparty/JRosetta-1.0.jar"/>
-<classpath path="$SCILAB/thirdparty/skinlf.jar"/>
-<classpath path="$SCILAB/thirdparty/looks-2.1.1.jar"/>
-<classpath path="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
-<classpath path="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
-<classpath path="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>
-<classpath path="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar"/>
-<classpath path="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
-<classpath path="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
-<classpath path="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
-<classpath path="$SCILAB/modules/javasci/jar/javasci.jar"/>
-<classpath path="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
-<classpath path="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
-<classpath path="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar"/>
+<path value="$SCILAB/bin"/>
+<path value="$SCILAB/thirdparty/"/>
+<path value="$SCILAB/thirdparty/jogl.jar"/>
+<path value="$SCILAB/thirdparty/gluegen-rt.jar"/>
+<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
+<path value="$SCILAB/thirdparty/JRosetta-API-1.0.jar"/>
+<path value="$SCILAB/thirdparty/JRosetta-1.0.jar"/>
+<path value="$SCILAB/thirdparty/skinlf.jar"/>
+<path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
+<path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
+<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>
+<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar"/>
+<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
+<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
+<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
+<path value="$SCILAB/modules/javasci/jar/javasci.jar"/>
+<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
+<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
+<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar"/>
 </classpaths>

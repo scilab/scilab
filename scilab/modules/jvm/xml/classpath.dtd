@@ -6,9 +6,9 @@
 <!ATTLIST META 
 CATEGORY 	CDATA 	"Scilab classpath" 	 
 VERSION_SCI 	CDATA 	"5.0" 	 
-VERSION_DOC 	CDATA 	"1.0" 	 
+VERSION_DOC 	CDATA 	"1.1" 	 
 AUTHOR 	CDATA 	"Allan CORNET INRIA 2007" 	 
  >
 
-<!ELEMENT classpath (#PCDATA)>
-<!ATTLIST classpath path CDATA #IMPLIED>
+<!ELEMENT path (#PCDATA)>
+<!ATTLIST path value CDATA #IMPLIED>
