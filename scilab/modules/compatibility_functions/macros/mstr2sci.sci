@@ -7,7 +7,7 @@ function y=mstr2sci(x)
 // Ex : 'string' is converted into ['s' 't' 'r' 'i' 'n' 'g']
 
 if type(x)==17 then error(gettext("Not written for hypermatrices.")),return,end
-if type(x)<>10 then error(gettext("Input argument must be a character string matrix.")),return,end
+if type(x)<>10 then error(msprintf(gettext("%s: Wrong input argument: String matrix expected."),'mstr2sci')),return,end
 nr=size(x,1);
 nc=max(length(x));
 y=[]

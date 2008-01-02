@@ -22,7 +22,7 @@ int C2F(gw_symbolic)()
 {
 	if (Rhs != 2)
 	{
-		Scierror(39,_("Incorrect number of input arguments.\n"));
+		Scierror(39,_("%s: Wrong number of input arguments: %d expected.\n"),Tab[Fin-1].name, 2);
 		return 0;
 	}
 	callFunctionFromGateway(Tab);

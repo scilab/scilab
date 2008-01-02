@@ -127,7 +127,7 @@ function test_run(varargin)
 		
 		if ((or(size(module) <> [1,1])) & (test_mat <> [])) then
 			example = test_examples();
-			err     = ["" ; gettext("error : Input argument sizes are not valid") ; "" ; example ];
+			err     = ["" ; msprintf(gettext("%s: Wrong size for input argument."),"test_run") ; "" ; example ];
 			printf("%s\n",err);
 			return;
 		end
@@ -152,7 +152,7 @@ function test_run(varargin)
 			end
 		end
 	else
-		error(gettext('Number of parameters incorrect.'));
+		error(msprintf(gettext('%s: Wrong number of input arguments.'),"test_run"));
 	end
 	
 	// =======================================================

@@ -20,7 +20,7 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 	else
 		suf = part(tstfile,ind($):length(tstfile));
 		if suf == '.dia' then
-			error(gettext("scitest: first input argument should not be a file with .dia suffix"));
+			error(msprintf(gettext("%s: Wrong first input argument: File with .dia suffix expected."),"scitest"));
 			return
 		end
 		diafile=strsubst(tstfile,suf,'.dia');

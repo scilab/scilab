@@ -24,7 +24,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 		if ( (m1 != 1) && (n1 != 1) )
 		{
 			freeArrayOfString(Str,m1*n1);
-			Scierror(89,_("%s: Input argument has incorrect dimensions.\n"),fname);
+			Scierror(89,_("%s: Wrong size for first input argument.\n"),fname);
 			return 0;
 		}
 		else
@@ -44,7 +44,7 @@ int C2F(sci_host) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(55,_("%s: Input argument type must be a character string.\n"),fname);
+		Scierror(55,_("%s: Wrong type for input argument: String expected.\n"),fname);
 	}
 
 	return 0;
