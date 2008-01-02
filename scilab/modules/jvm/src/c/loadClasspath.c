@@ -66,14 +66,10 @@ BOOL LoadClasspath(char *xmlfilename)
 					if ( (classpath) && (strlen(classpath) > 0) )
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
-						char firstchars[8];
 						char *SCIPATH=NULL;
 						SCIPATH=getSCIpath();
 						
-						strncpy(firstchars,classpath,strlen(KEYWORDSCILAB));
-						firstchars[strlen(KEYWORDSCILAB)]='\0';
-
-						if (strcmp(firstchars,KEYWORDSCILAB)==0)
+						if (strncmp(classpath,KEYWORDSCILAB,strlen(KEYWORDSCILAB))==0)
 						{
 							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(classpath)+1));
 							strcpy(modifypath,SCIPATH);
