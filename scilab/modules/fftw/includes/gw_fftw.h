@@ -11,14 +11,11 @@
 #include "sci_loadfftwlibrary.h"
 #include "sci_set_fftw_wisdom.h"
 #include "sci_fftw_forget_wisdom.h"
+#include "sci_fftw.h"
+#include "sci_fftwlibraryisloaded.h"
+#include "sci_disposefftwlibrary.h"
 /*--------------------------------------------------------------------------*/
 int C2F(gw_fftw)(void);
-/*--------------------------------------------------------------------------*/
-/* interface for the previous function Table */ 
-/*--------------------------------------------------------------------------*/
-int sci_fftw __PARAMS((char *fname,unsigned long fname_len));
-int sci_disposefftwlibrary __PARAMS((char *fname,unsigned long fname_len));
-int sci_fftwlibraryisloaded __PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_FFTW__ */
 /*--------------------------------------------------------------------------*/
