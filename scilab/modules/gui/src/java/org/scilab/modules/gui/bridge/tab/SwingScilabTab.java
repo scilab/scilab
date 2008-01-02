@@ -1,14 +1,18 @@
-
 /* Copyright INRIA 2007 */
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
@@ -27,6 +31,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.SpyListener;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -57,48 +62,14 @@ public class SwingScilabTab extends View implements SimpleTab {
 		// FIXME : Need improovment to be available at a release Status...
 		this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
-		//this.setFocusable(true);
 		this.setLayout(null);
-		super.addFocusListener(new FocusListener() {
+	}
 
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-				//System.out.println("[TAB "+getName()+"] Tab Focussed ...");	
-				//BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
-			}
-
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		super.addComponentListener(new ComponentListener() {
-
-			public void componentHidden(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void componentMoved(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void componentResized(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void componentShown(ComponentEvent arg0) {
-				//System.out.println("[TAB "+getName()+"] Tab Shown ...");
-				BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
-			}
-			
-		});
-		
- 	}
-
+	public void repaint() {
+		super.repaint();
+		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
+	}
+	
 	/**
 	 * Sets the Name of a swing Scilab tab
 	 * @param newTabName the Name of the tab
