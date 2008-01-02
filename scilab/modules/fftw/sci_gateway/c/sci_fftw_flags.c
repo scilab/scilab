@@ -167,14 +167,14 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
 		j = 1;
 		if ((Str3 = (char **)MALLOC(sizeof(char *))) == NULL) 
 		{
-			Scierror(999,_("%s: Memory allocation error\n"),fname);
+			Scierror(999,_("%s: No more memory.\n"),fname);
 			return(0);
 		}
 
 		len = (int)strlen(Str[0]);
 		if ((Str3[0] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
 		{
-			Scierror(999,_("%s: Memory allocation error\n"),fname);
+			Scierror(999,_("%s: No more memory.\n"),fname);
 			return(0);
 		}
 		strcpy(Str3[0],Str[0]);
@@ -192,14 +192,14 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
 
 				if ( Str3 == NULL) 
 				{
-					Scierror(999,_("%s: Memory allocation error\n"),fname);
+					Scierror(999,_("%s: No more memory.\n"),fname);
 					return(0);
 				}
 				len = (int)strlen(Str[i]);
 				if ((Str3[j-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
 				{
 					freeArrayOfString(Str3,j);
-					Scierror(999,_("%s: Memory allocation error\n"),fname);
+					Scierror(999,_("%s: No more memory.\n"),fname);
 					return(0);
 				}
 				strcpy(Str3[j-1],Str[i]);

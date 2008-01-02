@@ -48,7 +48,7 @@ int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
 			if (Str == NULL) 
 			{
 				freeArrayOfString(Str1,m1*n1);
-				Scierror(999,_("%s: Memory allocation error\n"),fname);
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return(0);
 			}
 

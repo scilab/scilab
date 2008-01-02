@@ -87,7 +87,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
   /* 3 rhs not allowed */
   if (Rhs==3) {
-   Scierror(39,_("%s: Wrong number of input arguments, expecting 3.\n"),
+	  Scierror(39,_("%s: Wrong number of input arguments: %d expected.\n"),3,
                fname);
    return(0);
   }
@@ -155,7 +155,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    }
    /* if is not int/double then error message */
    else {
-    Scierror(53,_("%s: Wrong type for the second input argument, expecting matrix.\n"),
+    Scierror(53,_("%s: Wrong type for the second input argument: Matrix expected.\n"),
                 fname);
     return(0);
    }
@@ -187,7 +187,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m3*n3==0) {
-     Scierror(999,_("%s: Wrong size for the third input argument\n"),
+     Scierror(999,_("%s: Wrong size for the third input argument.\n"),
                   fname);
      return(0);
     }
@@ -200,7 +200,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* look at for type of Rhs(4) */
     if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) { /* int */
-     Scierror(53,_("%s: Wrong type for the fourth input argument\n"),
+     Scierror(53,_("%s: Wrong type for the fourth input argument.\n"),
                  fname);
      return(0);
     }
@@ -210,27 +210,27 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m4*n4==0) {
-     Scierror(999,_("%s: Wrong size for the fourth input argument\n"),
+     Scierror(999,_("%s: Wrong size for the fourth input argument.\n"),
                   fname);
      return(0);
     }
 
     /* cross variable size checking */
     if (mn4!=mn3) {
-     Scierror(999,_("%s: Size of the third and fourth input arguments must be the same\n"),
+     Scierror(999,_("%s: Size of the third and fourth input arguments must be the same.\n"),
                    fname);
      return(0);
     }
 
     /* alloc n/nspn with MALLOC */
     if ((n=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,_("%s: Memory allocation error\n"),
+     Scierror(999,_("%s: No more memory.\n"),
                   fname);
      return(0);
     }
 
     if ((nspn=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,_("%s: Memory allocation error\n"),
+     Scierror(999,_("%s: No more memory.\n"),
                   fname);
      FREE(n);
      return(0);
@@ -286,8 +286,8 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of n[i] */
      if (n[i]<=0) {
-      Scierror(999,_("%s: Wrong value for the third input argument : %d\n"),
-                    fname,n[i]);
+      Scierror(999,_("%s: Wrong value for the third input argument.\n"),
+                    fname);
       FREE(n);FREE(nspn);
       return(0);
       break;
@@ -339,8 +339,8 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of nspn[i] */
      if (nspn[i]<=0) {
-      Scierror(999,_("%s: Wrong value for the fourth input argument : %d\n"),
-                    fname,nspn[i]);
+      Scierror(999,_("%s: Wrong value for the fourth input argument.\n"),
+                    fname);
       FREE(n);FREE(nspn);
       return(0);
       break;
@@ -404,7 +404,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    /* set arguments of fftw_plan_guru_split_dft */
    gdim.rank=1;
    if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-    Scierror(999,_("%s: Memory allocation error\n"),
+    Scierror(999,_("%s: No more memory.\n"),
                  fname);
     return(0);
    }
@@ -422,7 +422,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
     /* set arguments of fftw_plan_guru_split_dft */
     gdim.rank=2;
     if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-     Scierror(999,_("%s: Memory allocation error\n"),
+     Scierror(999,_("%s: No more memory.\n"),
                   fname);
      return(0);
     }
@@ -450,7 +450,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      /* set arguments of fftw_plan_guru_split_dft */
      gdim.rank = 1;
      if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,_("%s: Memory allocation error\n"),
+      Scierror(999,_("%s: No more memory.\n"),
                    fname);
       return(0);
      }
@@ -461,7 +461,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
      gdim.howmany_rank = 1;
      if ((gdim.howmany_dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,_("%s: Memory allocation error\n"),
+      Scierror(999,_("%s: No more memory.\n"),
                    fname);
       return(0);
      }
@@ -484,7 +484,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      if ((p = GetFFTWPlan(&gdim,
                           ri, ii, ro, io,
                           cur_fftw_flags,isn)) == NULL) {
-      Scierror(999,_("%s: Memory allocation error\n"),
+      Scierror(999,_("%s: No more memory.\n"),
                    fname);
       FREE(gdim.dims);
       FREE(gdim.howmany_dims);
@@ -524,7 +524,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
       /* set arguments of fftw_plan_guru_split_dft */
       gdim.rank=mn3;
       if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-       Scierror(999,_("%s: Memory allocation error\n"),
+       Scierror(999,_("%s: No more memory.\n"),
                     fname);
        return(0);
       }
@@ -551,7 +551,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
   if ((p = GetFFTWPlan(&gdim,
                        ri, ii, ro, io,
                        cur_fftw_flags,isn)) == NULL) {
-   Scierror(999,_("%s: Memory allocation error\n"),
+   Scierror(999,_("%s: No more memory.\n"),
                 fname);
    FREE(gdim.dims);
    FREE(gdim.howmany_dims);
