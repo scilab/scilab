@@ -31,7 +31,7 @@ typedef struct fftw_plan_st
   unsigned flags;
 } FFTW_Plan_struct;
 
-extern int C2F(dset)();
+extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 
 /* prototypes of utilities functions */
 fftw_plan GetFFTWPlan(guru_dim_struct *gdim,
