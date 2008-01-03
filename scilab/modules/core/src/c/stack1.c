@@ -275,8 +275,6 @@ int C2F(cremati)(char *fname,integer *stlw,integer *it,integer *m,integer *n,int
 *---------------------------------------------------------- */
 int C2F(crematvar)(integer *id, integer *lw, integer *it, integer *m, integer *n, double *rtab, double *itab)
 {
-	extern int C2F(unsfdcopy)(integer *, double *, integer *, double *, integer *);
-	extern int C2F(putid)(integer *, integer *);
 
 	/* Local variables */
 	integer i__1;
