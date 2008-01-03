@@ -39,8 +39,7 @@ int sci_loadfftwlibrary __PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		 Scierror(999,_("Invalid parameter type.\n"));
-		 return 0;
+		 Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 	}
 	return(0);
 }

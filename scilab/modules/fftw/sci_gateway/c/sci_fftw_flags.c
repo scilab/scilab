@@ -109,51 +109,50 @@ int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
 	}
 	else 
 	{
-		if (VarType(1)==sci_ints) 
-		{ 
+		switch(VarType(1)){
+			case sci_ints:
+
 			/* int */
 			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &M1);
 			CheckDims(1,m1,n1,1,1);
 			cur_fftw_flags = ((int *)M1.D)[0];
-		}
-		else if (VarType(1)==sci_matrix) 
-		{ 
-			/* double */
-			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-			CheckDims(1,m1,n1,1,1);
-			cur_fftw_flags = (int)*stk(l1);
-		}
-		else if (VarType(1)==sci_strings) 
-		{ 
-			/* string */
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str1);
-			for (j=0;j<m1*n1;j++) 
-			{
-				for (i=0;i<nb_flag;i++) 
-				{
-					if (strcmp(Str1[j],Str[i])==0) break;
-				}
+			break;
+			case sci_matrix:
+				/* double */
+				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+				CheckDims(1,m1,n1,1,1);
+				cur_fftw_flags = (int)*stk(l1);
+				break;
+			case sci_strings:
+				/* string */
+				GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str1);
+				for (j=0;j<m1*n1;j++) 
+					{
+						for (i=0;i<nb_flag;i++) 
+							{
+								if (strcmp(Str1[j],Str[i])==0) break;
+							}
 
-				if (i == nb_flag) 
-				{
-					freeArrayOfString(Str1,m1*n1);
-					Scierror(999,_("%s: Bad flag %s for the first input parameter\n"),fname,Str1[j]);
-					return(0);
-				}
-				else 
-				{
-					if (i>0) flagv = ( flagv | (1U << (i-1)) );
-				}
-			}
-			cur_fftw_flags = flagv;
-			freeArrayOfString(Str1,m1*n1);
-		}
-		else 
-		{
-			Scierror(53,_("%s: Bad type for the first input parameter\n"),fname);
-			return(0);
+						if (i == nb_flag) 
+							{
+								freeArrayOfString(Str1,m1*n1);
+								Scierror(999,_("%s: Wrong flag for first input argument.\n"),fname);
+								return(0);
+							}
+						else 
+							{
+								if (i>0) flagv = ( flagv | (1U << (i-1)) );
+							}
+					}
+				cur_fftw_flags = flagv;
+				freeArrayOfString(Str1,m1*n1);
+				break;
+			default:
+				Scierror(53,_("%s: Wrong type for first input argument.\n"),fname);
+				return(0);
 		}
 	}
+
 	/* return value of Sci_Plan.flags in position 2 */
 	m2 = 1;
 	n2 = m2;

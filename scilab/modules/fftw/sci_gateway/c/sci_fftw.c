@@ -87,8 +87,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
   /* 3 rhs not allowed */
   if (Rhs==3) {
-	  Scierror(39,_("%s: Wrong number of input arguments: %d expected.\n"),3,
-               fname);
+	  Scierror(39,_("%s: Wrong number of input arguments: %d expected.\n"),fname,3);
    return(0);
   }
 
@@ -127,7 +126,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    /* look at for type of Rhs(2) */
    if (VarType(2)==sci_ints) { /* int */
     /* */
-    switch (it2)
+	   switch (it2) /* Types defines in stack-c.h */
     {
      case I_CHAR   : ptr_c=IC_CHAR(&header[4]);
                      isn=(int) ptr_c[0];
@@ -155,14 +154,13 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
    }
    /* if is not int/double then error message */
    else {
-    Scierror(53,_("%s: Wrong type for the second input argument: Matrix expected.\n"),
-                fname);
+    Scierror(53,_("%s: Wrong type for second input argument: Matrix expected.\n"), fname);
     return(0);
    }
 
    /* check value of second rhs argument */
    if ((isn!=1)&&(isn!=-1)) {
-    Scierror(53,_("%s: Wrong value for the second input argument.\n"),
+    Scierror(53,_("%s: Wrong value for second input argument.\n"),
                 fname);
     return(0);
    }
@@ -177,7 +175,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* look at for type of Rhs(3) */
     if ((VarType(3)!=sci_ints)&&(VarType(3)!=sci_matrix)) {
-     Scierror(53,_("%s: Wrong type for the third input argument.\n"),
+     Scierror(53,_("%s: Wrong type for third input argument.\n"),
                  fname);
      return(0);
     }
@@ -187,7 +185,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m3*n3==0) {
-     Scierror(999,_("%s: Wrong size for the third input argument.\n"),
+     Scierror(999,_("%s: Wrong size for third input argument.\n"),
                   fname);
      return(0);
     }
@@ -200,7 +198,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* look at for type of Rhs(4) */
     if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) { /* int */
-     Scierror(53,_("%s: Wrong type for the fourth input argument.\n"),
+     Scierror(53,_("%s: Wrong type for fourth input argument.\n"),
                  fname);
      return(0);
     }
@@ -210,7 +208,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
 
     /* check dims */
     if (m4*n4==0) {
-     Scierror(999,_("%s: Wrong size for the fourth input argument.\n"),
+     Scierror(999,_("%s: Wrong size for fourth input argument.\n"),
                   fname);
      return(0);
     }
@@ -286,7 +284,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of n[i] */
      if (n[i]<=0) {
-      Scierror(999,_("%s: Wrong value for the third input argument.\n"),
+      Scierror(999,_("%s: Wrong value for third input argument.\n"),
                     fname);
       FREE(n);FREE(nspn);
       return(0);
@@ -339,7 +337,7 @@ int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
      }
      /* check value of nspn[i] */
      if (nspn[i]<=0) {
-      Scierror(999,_("%s: Wrong value for the fourth input argument.\n"),
+      Scierror(999,_("%s: Wrong value for fourth input argument.\n"),
                     fname);
       FREE(n);FREE(nspn);
       return(0);
