@@ -12,6 +12,7 @@
 #include "MALLOC.h"
 #include "sortTemplate.h"
 #include "freeArrayOfString.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 {
@@ -27,8 +28,10 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	int *indices = NULL;
 	int iflag = 0;
 
-	iord[0] = DECREASE_COMMAND; iord[1]='\0';
-	typex[0] = GLOBAL_SORT; typex[1] = '\0';
+	iord[0] = DECREASE_COMMAND; 
+	iord[1]='\0';
+	typex[0] = GLOBAL_SORT; 
+	typex[1] = '\0';
 
 	Rhs = Max(0, Rhs);
 	CheckRhs(1,3);
@@ -49,7 +52,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&Im);
 			break;
 		default :
-			Scierror(999,"%s: first argument has a wrong type, expecting scalar or string matrix\n",fname);
+			Scierror(999,_("%s: Wrong type for first argument: Scalar or string matrix expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -60,13 +63,13 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		if ( m2 == 0 )
 		{
-			Scierror(999,"%s: second argument is an empty string\n",fname);
+			Scierror(999,_("%s: Wrong second input argument: Not empty string expected.\n"),fname);
 			return 0;
 		}
 		c = *cstk(l2);
 		if (c != ROW_SORT && c != COLUMN_SORT && c != GLOBAL_SORT && c != LIST_SORT)
 		{
-			Scierror(999,"%s: second argument has a wrong value %s should be in r,c,g,lr,lc\n",fname,cstk(l2));
+			Scierror(999,_("%s: Wrong value for second input argument: '%s','%s','%s','%s' or '%s' expected.\n"),fname,"r","c","g","lr","lc");
 			return 0;
 		}
 		strcpy(typex,cstk(l2));
@@ -78,7 +81,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		CheckLength(3,m3,1);
 		if ( *cstk(l3) != INCREASE_COMMAND && *cstk(l3) != DECREASE_COMMAND)
 		{
-			Scierror(999,"%s: third argument must be \"i\" or \"d\"\n",fname);
+			Scierror(999,_("%s: Wrong value for third input argument: '%s' or '%s' expected.\n"),fname,"i","d");
 			return 0;
 		}
 		iord[0] = *cstk(l3);
@@ -91,16 +94,28 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			ind_m1 = m1;
 			ind_n1 = 1;
 			ind_l1 = 0;
-			if (ind_m1) indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
-			else indices = NULL;
+			if (ind_m1) 
+				{
+					indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
+				}
+			else 
+				{
+					indices = NULL;
+				}
 		}
 		else
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
 			ind_l1 = 0;
-			if (ind_n1) indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
-			else indices = NULL;
+			if (ind_n1) 
+				{
+					indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
+				}
+			else 
+				{
+					indices = NULL;
+				}
 		}
 	}
 	else
@@ -108,8 +123,15 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		ind_m1 = m1;
 		ind_n1 = n1;
 		ind_l1 = 0;
-		if (ind_m1*ind_n1+1) indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
-		else indices = NULL;
+		if (ind_m1*ind_n1+1) 
+			{
+				indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
+			}
+		else 
+			{
+				indices = NULL;
+			}
+		
 	}
 
 	if (Lhs == 2) iflag = 1;
@@ -123,17 +145,23 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			double *tmp_matrix = NULL;
 			int i;
 			tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1+1));
-			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+
+			for (i = 0;i< m1*n1; i++) {
+				tmp_matrix[i] = matrix[i];
+			}
+
 			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) {
 			  /* When it is row sort or colume sort*/
 			  rowcolsortdouble(tmp_matrix,indices,m1,n1,typex,iord);
 			}
+
 			if (typex[0]==GLOBAL_SORT ) {
 			  /* When it is 'g', to sort them all*/
 			  // @FIXME Bruno : Useless param typex.
 			  // wholesortdouble(tmp_matrix,indices,m1,n1,typex,iord);
 			  wholesortdouble(tmp_matrix,indices,m1,n1,iord);
 			}
+
 			if (typex[0]==LIST_SORT) {
 			  /* When it is going to be lr or lc*/
 			  lgsortdouble(tmp_matrix,indices,m1,n1,typex,iord);
@@ -161,23 +189,32 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 				if (Str[i]) strcpy(Str[i],S[i]);
 			}
 			freeArrayOfString(S,m1*n1);
+
 			if (typex[0]==LIST_SORT) {
 			  lgsortstring(Str,indices,m1,n1,typex,iord); /* When it is going to be lr or lc*/
 			}
+
 			if (typex[0]==GLOBAL_SORT ) {
 			  /* When it is 'g', to sort them all*/
 			  // @FIXME Bruno : Useless param typex.
 			  // wholesortstring(Str,indices,m1,n1,typex,iord);
 			  wholesortstring(Str,indices,m1,n1,iord);
 			}
-			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) rowcolsortstring(Str,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+
+			if (typex[0]==ROW_SORT || typex[0]==COLUMN_SORT) 
+				{
+					rowcolsortstring(Str,indices,m1,n1,typex,iord);/* When it is row sort or colume sort*/
+				}
+			
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Str);    /*Output */
 			LhsVar(1)=Rhs+1;
+
 			if (Lhs == 2)
 			{
 				CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)
 				LhsVar(2)= Rhs+2 ;
 			}
+
 			C2F(putlhsvar)();
 			if (indices) {FREE(indices); indices = NULL;}
 			for (i=0;i<m1*n1;i++)
@@ -190,25 +227,25 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 
 	case sci_ints:               /* Can not find a example , so can not just remove it */
 		{
-			switch(Im.it)
+			switch(Im.it) /* Type defined in stack-c.h */
 			{
-			case 1 :
+			case I_CHAR :
 				C2F(gsortchar)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
-			case 4 :
+			case I_INT32 :
 				C2F(gsortint)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
-			case 11 :
+			case I_UCHAR :
 				C2F(gsortuchar)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
-			case 12 :
+			case I_UINT16 :
 				C2F(gsortushort)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
-			case 14 :
+			case I_UINT32 :
 				C2F(gsortuint)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
 			default:
-				Scierror(999,"invalid type.\n");
+				Scierror(999,_("%s: Wrong type for input argument: Unkown type of the matrix.\n"),fname);
 				return 0;
 			}
 
@@ -224,7 +261,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		}
 		break;
 	default:
-		Scierror(999,"invalid type.\n");
+		Scierror(999,_("%s: Wrong type for first input argument.\n"),fname);
 		return 0;
 		break;
 	}
