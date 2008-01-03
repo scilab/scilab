@@ -10,6 +10,10 @@
 #include "machine.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
+/*
+Commented by Sylvestre
+Seen to be unused ... 
+@TODO check if it really the case
 void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 { 
 	int count=0;
@@ -33,9 +37,10 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 		}
 		return;
 	}
-	sciprint(_("No input file\n"));
+	sciprint(_("%s: No input file.\n"),"mgetstr");
 	*ierr=1;
-}
+} 
+*/
 /*--------------------------------------------------------------------------*/
 void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr)
 { 
@@ -53,7 +58,7 @@ void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr)
 		}
 		return;
 	}
-	sciprint(_("No input file\n"));
+	sciprint(_("%s: No input file.\n"),"mgetstr");
 	*ierr=1;
 }
 /*--------------------------------------------------------------------------*/

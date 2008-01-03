@@ -15,7 +15,7 @@ void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)
 	fa = GetFileOpenedInScilab(*fd);
 	if (!fa) 
 	{
-		sciprint(_("No input file.\n"));
+		sciprint(_("%s: No input file.\n"),"mputstr");
 		*ierr=1;
 	}
 	else 

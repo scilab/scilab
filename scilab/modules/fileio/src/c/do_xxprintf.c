@@ -25,7 +25,7 @@ static char *sprintf_limit = sprintf_buffer + MAX_SPRINTF_SIZE;
 /*--------------------------------------------------------------------------*/
 static int GetScalarInt(char *fname,int *first,int *arg,int narg, int *ir,int ic,int *ival);
 static int GetString (char *fname,int *first,int *arg,int narg, int *ir,int ic,char **sval);
-static int GetScalarDouble(char *fname,int *first,int *arg,int narg, int *ir,int ic,double *dval);
+static int GetScalarDouble(char *fname,int *prev,int *arg,int narg, int *ic,int ir,double *dval);
 static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target);
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval );
 /*--------------------------------------------------------------------------*/
@@ -33,7 +33,7 @@ static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target)
 {
 	(*xxprintf) ((VPTR) target, "\n");
 	(*flush) ((FILE *) target);
-	Scierror(998,_("Error:\tprintf: not enough arguments\n"));
+	Scierror(998,_("%s: Not enough arguments.\n"),"printf");
 }
 /*--------------------------------------------------------------------------*/
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval )
@@ -217,7 +217,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				{
 					if (target > sprintf_limit)	/* over sprintf_limit */
 					{
-						Scierror(998,_("Error:\tsprintf problem, buffer too small\n"));
+						Scierror(998,_("%s: Buffer too small.\n"),"sprintf");
 						return RET_BUG;
 					}
 					else
@@ -315,17 +315,18 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 		tmpcurrentchar=currentchar;
 		switch (*(currentchar++))
 		{
-		case 's': case 'c':
+			case 's': 
+			case 'c':
 			{
 				if (low_flag + high_flag)
 				{
 					if (*tmpcurrentchar == 's')
 					{
-						Scierror(998,_("Warning:\tprintf: bad conversion l or h flag mixed with s directive\n"));
+						Scierror(998,_("%s: Bad conversion l or h flag mixed with s directive.\n"),"printf");
 					}
 					else /* 'c' */
 					{
-						Scierror(998,_("Warning:\tprintf: bad conversion l or h flag mixed with c directive\n"));
+						Scierror(998,_("%s: Bad conversion l or h flag mixed with c directive.\n"),"printf");
 					}
 				}
 
@@ -352,7 +353,9 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				break;
 			}
 
-		case 'd': case 'x': case 'X':
+			case 'd': 
+			case 'x': 
+			case 'X':
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
 			if (rval <= 0) 
 			{
@@ -366,7 +369,8 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			conversion_type = PF_D;
 			break;
 
-		case 'i': case 'u':
+			case 'i': 
+			case 'u':
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
 			if (rval <= 0) 
 			{
@@ -380,10 +384,14 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			conversion_type = low_flag ? PF_LD : PF_D;
 			break;
 
-		case 'e': case 'g': case 'f': case 'E': case 'G':
+			case 'e': 
+			case 'g': 
+			case 'f': 
+			case 'E': 
+			case 'G':
 			if (high_flag + low_flag)
 			{
-				Scierror(998,_("Error:\tprintf: bad conversion\n"));
+				Scierror(998,_("%s: Bad conversion.\n"),"printf");
 				return RET_BUG;
 			}
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
@@ -400,12 +408,12 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			break;
 
 		case 'o':
-			Scierror(998,_("Error:\tprintf: \"o\" format not allowed\n"));
+			Scierror(998,_("%s: 'o' format not allowed.\n"),"printf");
 			return RET_BUG;
 			break;
 
 		default:
-			Scierror(998,_("Error:\tprintf: bad conversion\n"));
+			Scierror(998,_("%s: Bad conversion.\n"),"printf");
 			return RET_BUG;
 		}
 
@@ -439,7 +447,9 @@ static int GetScalarInt(char *fname, int *prev, int *arg, int narg, int *ic, int
 	if ( (*ic>nx) || (*prev != 1)) 
 		{
 			*arg=*arg+1;
-			if (*arg > narg ) return NOT_ENOUGH_ARGS;
+			if (*arg > narg ) {
+				return NOT_ENOUGH_ARGS;
+			}
 			*ic=1;
 			GetRhsVar(*arg,MATRIX_OF_INTEGER_DATATYPE,&mx,&nx,&lx);
 		}
@@ -450,7 +460,7 @@ static int GetScalarInt(char *fname, int *prev, int *arg, int narg, int *ic, int
 	return OK;
 }
 /*--------------------------------------------------------------------------*/
-static int  GetString(char *fname, int *prev, int *arg, int narg, int *ic, int ir, char **sval)
+static int GetString(char *fname, int *prev, int *arg, int narg, int *ic, int ir, char **sval)
 {
 	int mx,nx,il,ild,lw,k,one=1;
 	char *p;
@@ -462,21 +472,31 @@ static int  GetString(char *fname, int *prev, int *arg, int narg, int *ic, int i
 	}
 	lw = *arg + Top - Rhs;
 
-	if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long)strlen(fname))) return RET_BUG;
+	if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long)strlen(fname))) {
+		return RET_BUG;
+	}
 	else 
 	{
 		if ( *ic>nx ) 
 		{
 			*arg=*arg+1;
-			if (*arg>narg ) return NOT_ENOUGH_ARGS;
+			if (*arg>narg ) {
+				return NOT_ENOUGH_ARGS;
+			}
 			*ic=1;
 			lw = *arg + Top - Rhs;
-			if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long) strlen(fname))) return RET_BUG;
+			if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long) strlen(fname))) {
+				return RET_BUG;
+			}
 		}
 	}
-	if (ir>mx) return RET_END;
+	if (ir>mx) {
+		return RET_END;
+	}
 	k=ir-1+mx*(*ic-1);
-	if (SciStrtoStr(istk(il-1+*istk(ild+k)),&one,istk(ild+k),&p) < 0) return MEM_LACK;
+	if (SciStrtoStr(istk(il-1+*istk(ild+k)),&one,istk(ild+k),&p) < 0) {
+		return MEM_LACK;
+	}
 	*ic=*ic+1;
 	*sval = p;
 	return OK;
@@ -496,11 +516,15 @@ static int GetScalarDouble(char *fname, int *prev, int *arg, int narg, int *ic, 
 	if ( *ic>nx) 
 		{
 			*arg=*arg+1;
-			if (*arg > narg ) return NOT_ENOUGH_ARGS;
+			if (*arg > narg ) {
+				return NOT_ENOUGH_ARGS;
+			}
 			*ic=1;
 			GetRhsVar(*arg,MATRIX_OF_DOUBLE_DATATYPE,&mx,&nx,&lx);
 		}
-	if (ir>mx) return RET_END;
+	if (ir>mx) {
+		return RET_END;
+	}
 	*dval =  *(stk(lx+ir-1+mx*(*ic-1)));
 	*ic=*ic+1;
 	return OK;

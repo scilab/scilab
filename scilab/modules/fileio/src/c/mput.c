@@ -46,7 +46,7 @@ extern int swap; /* defined in mget.c */
 		swap = (islittleendian()==1) ? 0 : 1; \
 		MPUT_NC(Type,Fswap); break; \
 		default: \
-		sciprint(_("%s: %s format not recognized\n"),"mput",type); \
+		sciprint(_("%s: %s format not recognized.\n"),"mput",type); \
 		*ierr=1;return; \
 	}
 /*--------------------------------------------------------------------------*/
@@ -58,7 +58,7 @@ void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ier
 	n=*n1;
 	*ierr=0;
 	if ((fa = GetFileOpenedInScilab(*fd)) ==NULL) {
-		sciprint(_("No input file associated to logical unit %d\n"),*fd);
+		sciprint(_("%s: No input file associated to logical unit %d.\n"),"mput",*fd);
 		*ierr=3;
 		return;
 	}
@@ -124,7 +124,7 @@ data **/
 		swap = (islittleendian()==1) ? 0 : 1; \
 		MPUT(Type,Fswap); break; \
 		default: \
-		sciprint(_("%s: %s format not recognized\n"),"mput",type); \
+		sciprint(_("%s: %s format not recognized.\n"),"mput",type); \
 		*ierr=1;return; \
 }
 /*--------------------------------------------------------------------------*/
@@ -167,7 +167,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	*ierr=0;
 	if ((nc = (int)strlen(type)) == 0) 
 	{
-		sciprint(_("%s: format is of length 0\n"),"mput",type);
+		sciprint(_("%s: Format is of length 0.\n"),"mput",type);
 		*ierr=2;
 		return;
 	}
@@ -175,11 +175,11 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mput2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint(_("%s: %s format not recognized\n"),"mput",type);
+		if (*ierr > 0) sciprint(_("%s: %s format not recognized.\n"),"mput",type);
 	}
 	else 
 	{
-		sciprint(_("No input file associated to logical unit %d\n"),*fd);
+		sciprint(_("%s: No input file associated to logical unit %d\n"),"mput",*fd);
 		*ierr=3;
 	}
 }

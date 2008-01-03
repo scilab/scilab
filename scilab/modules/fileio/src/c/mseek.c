@@ -4,6 +4,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
+#include <errno.h>
 #include "mseek.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
@@ -30,7 +31,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 	*err=0;
 	if ( fa == (FILE *) 0 ) 
 	{
-		sciprint(_("%s: wrong file logical unit\n"),"mseek");
+		sciprint(_("%s: Wrong file logical unit.\n"),"mseek");
 		*err=1;
 		return;
 	}
@@ -42,7 +43,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 		iflag = SEEK_END;
 	else 
 	{
-		sciprint(_("%s : flag = %s not recognized. Should be 'set', 'cur' or 'end'.\n"),"mseek");
+		sciprint(_("%s: Wrong third input argument: '%s', '%s' or '%s' expected.\n"),"mseek","set","cur","end");
 		*err=1;
 		return;
 	}
@@ -58,7 +59,8 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 #else
 	if (fseek(fa,(long) *offset,iflag) == -1 ) 
 	{
-		sciprint(_("%s: error\n"),"mseek"); /* @TODO : provide a real error message */
+		int errnum=errno; /* global variable produced by fseek */
+		sciprint(_("%s: An error occurred: %s\n"),"mseek",strerror(errnum));
 		*err=1;
 	}
 	else 
