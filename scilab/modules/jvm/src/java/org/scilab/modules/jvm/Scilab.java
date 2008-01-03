@@ -3,12 +3,6 @@
 
 package org.scilab.modules.jvm;
 
-import java.io.IOException;
-
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -20,7 +14,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.LookAndFeel;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
-import javax.swing.UIManager;
 
 /**
  * Main Class for Scilab
@@ -68,7 +61,7 @@ public class Scilab {
 				mainView.draw();
 				mainView.setTitle("Scilab-5.0");
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Window.\nCheck if the thirdparties are available (Flexdock, JOGL...).");
+				System.err.println("Cannot create Scilab Window.\nCheck if the thirdparties are available (Flexdock, JOGL...).\nSee SCI/etc/classpath.xml for default paths.");
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
@@ -84,7 +77,7 @@ public class Scilab {
 			ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
 
 			/* Create the console */
-			Tab consoleTab=null;
+			Tab consoleTab = null;
 			try {
 				/* CONSOLE */
 				/* Create a tab to put console into */
@@ -94,7 +87,7 @@ public class Scilab {
 				sciConsole = ScilabConsole.createConsole();
 				//consoleTab.addMember(sciConsole);
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).");
+				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).\nSee SCI/etc/classpath.xml for default paths.");
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
