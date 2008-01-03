@@ -12,6 +12,7 @@
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
+#include <errno.h>
 #include "getdate.h"
 #include "machine.h"
 #include "sciprint.h"
@@ -48,12 +49,12 @@ static int ChronoFlag=0;
 void  C2F(scigetdate)(time_t *dt,int *ierr)
 {
   *ierr=0;
-  if (time(dt) == (time_t) - 1) 
+  if (time(dt) == (time_t) - 1)
   {
-    *ierr=1;
+    *ierr=errno;
   }
   ChronoFlag=1;
-  
+
   #ifdef _MSC_VER
     _ftime64( &timebufferW );
   #else
@@ -63,6 +64,7 @@ void  C2F(scigetdate)(time_t *dt,int *ierr)
 /*--------------------------------------------------------------------------*/
 void C2F(convertdate)(time_t *dt,int w[10])
 {
+	// check that dt > 0 (and dt < _MAX__TIME64_T if _MSC_VER is defined)
 	#ifdef _MSC_VER
 	if ( (*dt<0) || (*dt> _MAX__TIME64_T) )
 	#else
@@ -79,9 +81,9 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		w[7] = 0;
 		w[8] = 0;
 		w[9] = 0;
-		if (*dt<0)	sciprint(_("dt=getdate(x) x must be > 0.\n"));
+		if (*dt<0)	Scierror(999,_("%s: Wrong value for first input argument: Must be > 0.\n"),"getdate");
 		#ifdef _MSC_VER
-		else sciprint(_("dt=getdate(x) x must be < %d.\n"),_MAX__TIME64_T);
+		else Scierror(999,_("%s: Wrong value for first input argument: Must be < %d.\n"),"getdate",_MAX__TIME64_T);
 		#endif
 	}
 	else
@@ -130,7 +132,7 @@ static int week_days (int yday,int wday)
   return (yday - (yday - wday + ISO_WEEK1_WDAY + big_enough_multiple_of_7) % 7 + ISO_WEEK1_WDAY - ISO_WEEK_START_WDAY);
 }
 /*--------------------------------------------------------------------------*/
-/* week_number computes 
+/* week_number computes
  *      the ISO 8601  week  number  as  a  decimal  number
  *      [01,53].  In the ISO 8601 week-based system, weeks
  *      begin on a Monday and week 1 of the  year  is  the

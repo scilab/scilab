@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "MALLOC.h"
 #include "sci_calendar.h"
 #include "Scierror.h"
@@ -26,7 +26,7 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 	int month=0;
 	int year=0;
 	int day, day_1, numdays, i;
-    int a=0;
+	int a=0;
 
 	int *CALMONTH=NULL;
 	int *tmpMatrix=NULL;
@@ -34,7 +34,7 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 	Rhs = Max(0, Rhs);
 	CheckRhs(2,2);
 	CheckLhs(1,1);
-	
+
 	if ( IsAScalar(Rhs-1) && IsAScalar(Rhs) )
 	{
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
@@ -45,19 +45,19 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (year<1800) || (year>3000) )
 		{
-			Scierror(999,_("Error : year (1800 - 3000).\n"));
+			Scierror(999,_("%s: Wrong value for second input argument: Must be between %d and %d.\n"),fname,1800,3000);
 			return 0;
 		}
-				
+
 		if ( (month<1) || (month>12) )
 		{
-			Scierror(999,_("Error : month (1 - 12).\n"));
+			Scierror(999,_("%s: Wrong value for first input argument: Must be between %d and %d.\n"),fname,1,12);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("Invalid argument(s) type.\n"));
+		Scierror(999,_("%s: Wrong type for input arguments: Scalar values expected.\n"),fname);
 		return 0;
 	}
 	CALMONTH=(int *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(int) );
@@ -84,7 +84,7 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 
 	CALMONTH=InversionMatrixInt(NBRDAY,NBRWEEK,CALMONTH);
 	if(tmpMatrix) {FREE(tmpMatrix);tmpMatrix=NULL;}
-	
+
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&CALMONTH);
 	LhsVar(1)=Rhs+1;
 
@@ -113,7 +113,7 @@ static long ymd_to_scalar (unsigned year, unsigned month, unsigned day)
 {
     long scalaire;
     scalaire = day + months_to_days(month);
-    if ( month > 2 )                      
+    if ( month > 2 )
     scalaire -= isBissextile(year) ? 1 : 2;
     year--;
     scalaire += years_to_days(year);

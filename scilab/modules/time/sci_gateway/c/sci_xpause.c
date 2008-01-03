@@ -22,9 +22,9 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		CheckScalar(1,m1,n1);
 		sec = (integer) *stk(l1);
-		if (sec <=0)
+		if (sec <= 0)
 		{
-			Scierror(999,_("%s : error time must be > 0.\n"),fname);
+			Scierror(999,_("%s: Wrong value for input argument: Must be > 0.\n"),fname);
 			return 0;
 		}
 
@@ -36,7 +36,7 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 	#else
 		{
 			unsigned useconds;
-			useconds=(unsigned) sec;
+			useconds = (unsigned) sec;
 			if (useconds != 0)
 				#ifdef HAVE_USLEEP
 					{ usleep(useconds); }
@@ -47,9 +47,9 @@ int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 				#endif
 		}
 	#endif
-     }
-	 LhsVar(1)=0;
-	 C2F(putlhsvar)();
-	 return 0;
+	}
+	LhsVar(1)=0;
+	C2F(putlhsvar)();
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

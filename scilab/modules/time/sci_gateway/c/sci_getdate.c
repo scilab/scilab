@@ -7,12 +7,13 @@
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifdef _MSC_VER
-#include <sys/types.h> 
+#include <sys/types.h>
 #include <sys/timeb.h>
 #else
-#include <sys/time.h> 
+#include <sys/time.h>
 #endif
 #include "MALLOC.h"
 #include "getdate.h"
@@ -39,7 +40,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(scigetdate)(&dt,&ierr);
 		if (ierr)
 		{
-			Scierror(999,_("Impossible to get the date...\n"));
+			Scierror(999,_("%s: An error occurred: %s\n"),fname,strerror(ierr));
 			return 0;
 		}
 		else
@@ -49,7 +50,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			n1=10;
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEMATRIX);
 		}
-		
+
 	}
 	else /* Rhs == 1 */
 	{
@@ -71,7 +72,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Input parameter must be 's' or a integer.\n"));
+				Scierror(999,_("%s: Wrong type for first input argument: 's' or an integer expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -83,7 +84,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 				int k=0;
 				int l=0;
 				double *param=NULL;
-			
+
 				int *DATEARRAY=NULL;
 				int *DATEARRAYtmp=NULL;
 
@@ -93,7 +94,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 				l=10*m1*n1;
 				DATEARRAY=(int *)MALLOC( (l)*sizeof(int) );
 				for (k=0;k<l;k++) DATEARRAY[k]=0;
-			
+
 				for(li=0;li<m1*n1;li++)
 				{
 					int j=0;
@@ -127,7 +128,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Input parameter must be 's' or a integer.\n"));
+				Scierror(999,_("%s: Wrong type for first input argument: 's' or an integer expected.\n"),fname);
 				return 0;
 			}
 		}
