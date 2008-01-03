@@ -27,18 +27,12 @@
 
 #define SCI_REAL_OR_CMPLX 1
 #define SCI_POLYNOMIAL 2
-#define SCI_IMPLICIT_POLY 129
 #define SCI_BOOLEAN 4
 #define SCI_SP_BOOLEAN 6
 #define SCI_INTEGER 8
+#define SCI_IMPLICIT_POLY 129
 #define SCI_STRING sci_strings
 #define SCI_MLIST sci_mlist
-#define SCI_INT8 1
-#define SCI_UINT8 11
-#define SCI_INT16 2
-#define SCI_UINT16 12
-#define SCI_INT32 4
-#define SCI_UINT32 14
 #define NOT_REAL_or_CMPLX_or_BOOL_or_INT -1
 #define OLD_HYPERMAT -2
 
@@ -126,7 +120,7 @@ static int get_hmat(int num, HyperMat *H)
       return 2;
     }
 
-  if ( (*istk(il2) != SCI_INTEGER)  |  (*istk(il2+3) != SCI_INT32) )
+  if ( (*istk(il2) != SCI_INTEGER)  |  (*istk(il2+3) != I_INT32) )
     return 0;
 
 
@@ -349,7 +343,7 @@ static int reshape_hmat(int pos, HyperMat *H, int new_dimsize)
   int *new_dims;
   int k, one=1, l;
 
-  l = SCI_INT32; CreateVar(pos,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &new_dimsize, &one, &l);
+  l = I_INT32; CreateVar(pos,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &new_dimsize, &one, &l);
   new_dims = istk(l);
   for ( k = 0 ; k < new_dimsize ; k++)
     new_dims[k] = H->dims[k];
@@ -771,13 +765,13 @@ int C2F(intehm)()
       break;
 
     case (SCI_INTEGER) :
-      if ( H.it == SCI_INT32  ||  H.it == SCI_UINT32 )
+      if ( H.it == I_INT32  ||  H.it == I_UINT32 )
 	{
 	  Pe = (int *) He.P; P = (int *) H.P;
 	  for ( k = 0 ; k < ntot ; k++ )
 	    Pe[k] = P[j[k]];
 	}
-      else if ( H.it == SCI_INT16  ||  H.it == SCI_UINT16 )
+      else if ( H.it == I_INT16  ||  H.it == I_UINT16 )
 	{
 	  siPe = (short int *) He.P; siP = (short int *) H.P;
 	  for ( k = 0 ; k < ntot ; k++ )
@@ -947,7 +941,7 @@ int C2F(intihm)()
       break;
 
     case (SCI_INTEGER) :
-      if ( A.it == SCI_INT32  ||  A.it == SCI_UINT32 )
+      if ( A.it == I_INT32  ||  A.it == I_UINT32 )
 	{
 	  PA = (int *) A.P ; PB = (int *) B.P;
 	  if ( B_is_scalar )
@@ -955,7 +949,7 @@ int C2F(intihm)()
 	  else
 	    for ( k = 0 ; k < ntot ; k++ ) PA[j[k]] = PB[k];
 	}
-      else if ( A.it == SCI_INT16  ||  A.it == SCI_UINT16 )
+      else if ( A.it == I_INT16  ||  A.it == I_UINT16 )
 	{
 	  siPA = (short int *) A.P; siPB = (short int *) B.P;
 	  if ( B_is_scalar )
