@@ -25,7 +25,7 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 
 	if (! ((GetType(1) == sci_strings) && (GetType(2) == sci_strings ) ) ){
 
-		Scierror(999,_("%s: Wrong type for input argument(s): String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
 		return 0;
 
 	}else{
@@ -55,12 +55,12 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 
 		if( strlen(param1) > PATH_MAX )
 		{
-			Scierror(999,_("%s: Wrong size of first input argument: must be less than %d characters.\n"),fname, PATH_MAX);
+			Scierror(999,_("%s: Wrong size for first input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
 		}
 
 		if( strlen(param2) > PATH_MAX )
 		{
-			Scierror(999,_("%s: Wrong size of the second input argument: must be less than %d characters.\n"),fname,PATH_MAX);
+			Scierror(999,_("%s: Wrong size for second input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
 		}
 
 		result = getrelativefilename(param1,param2);

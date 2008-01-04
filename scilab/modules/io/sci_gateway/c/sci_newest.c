@@ -23,7 +23,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(1,1);
 	if (Rhs < 1)
 	{
-		/* newest() --> [] */
+		/* no input argument: return an empty matrix - newest() = [] */
 		int m1,n1,l1;
 		m1=0;
 		n1=0;
@@ -44,13 +44,15 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if (j == 1)
 			{
-				/* newest([]) --> [] */
+				/* first input argument can be a matrix but should be an empty one: return an error
+				   when a numerical matrix is encountered - newest([2, 3]) = ERROR */
 				if (GetType(j) == sci_matrix)
 				{
 					GetRhsVar(j,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 
 					if ( (m1==0) && (n1==0) )
 					{
+						/* first input argument is an empty matrix: return an empty matrix - newest([]) = [] */
 						m1=0;
 						n1=0;
 						l1=0;
@@ -62,16 +64,17 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					else
 					{
-						Scierror(999,_("%s: incorrect %dst parameter.\n"),fname,j);
+						/* non-empty matrix encountered: return an error */
+						Scierror(999,_("%s: Wrong type for first argument: String expected.\n"),fname);
 						return 0;
-
 					}
 				}
 			}
 
+			/* otherwise: input arguments should be strings */
 			if (GetType(j) != sci_strings)
 			{
-				Scierror(999,_("%s: incorrect %dth parameter(s).\n"),fname,j);
+				Scierror(999,_("%s: Wrong type for #%d input argument: String expected.\n"),fname,j);
 				return 0;
 			}
 		}
@@ -84,7 +87,7 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 
 			if ( (m1 != 1) && (n1 != 1) )
 			{
-				Scierror(999,_("Not a vector of filename.\n"));
+				Scierror(999,_("%s: Wrong size for first input argument: Vector of strings expected.\n"),fname);
 				return 0;
 			}
 			RetIndex=GetIndexLastModifiedFileInList(Str,m1*n1);

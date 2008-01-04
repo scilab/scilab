@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Scilab */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#include <Windows.h> /* GetEnvironmentVariable */
 #else
@@ -17,7 +17,7 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	#ifdef _MSC_VER
 	if (GetEnvironmentVariable(var,buf,(DWORD)*buflen)==0)
 	{
-		if ( *iflag == 1 ) sciprint(_("You must define the environment variable %s\n"),var);
+		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
 	}
 	else
@@ -29,10 +29,10 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	char *local;
 	if ( (local=getenv(var)) == 0)
 	{
-		if ( *iflag == 1 ) sciprint(_("You must define the environment variable %s\n"),var);
+		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
 	}
-	else 
+	else
 	{
 		strncpy(buf,local,*buflen);
 		*buflen = strlen(buf);

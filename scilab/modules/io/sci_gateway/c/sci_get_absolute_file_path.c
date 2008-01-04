@@ -2,15 +2,15 @@
  * Provides get_absolute_file_path to scilab
  * @author Allan CORNET - INRIA 2007
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h> /* FILE */
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 	#include <windows.h>
-#else 
+#else
 	#include <unistd.h>
 	#define GETCWD(x,y) getcwd(x,y)
-#endif 
+#endif
 
 #include "gw_io.h"
 #include "FileExist.h"
@@ -28,10 +28,10 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
-	
+
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,_("%s: Input argument incorrect must be a string (a filename).\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 		return 0;
 	}
 	else
@@ -55,10 +55,10 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 				integer swap2=0;
 				integer type=0;
 				integer mode=0;
-				
+
 				integer lf=0;
 				integer ierr=0;
-				
+
 				int posBeginFileName=0;
 
 				C2F(getfileinfo)(&i, &fa, &swap2,&type,&mode,fileNameFormList,&lf,&ierr);
@@ -117,7 +117,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 		}
 		else
 		{
-			Scierror(999,_("%s: First input argument incorrect, must be a string (a file).\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 			return 0;
 		}
 	}
