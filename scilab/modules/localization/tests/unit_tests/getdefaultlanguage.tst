@@ -1,0 +1,18 @@
+//===============================
+// unit tests getdefaultlanguage
+// INRIA 2008
+// @author Sylvestre LEDRU
+//===============================
+
+// check that the default language is really english
+ if getdefaultlanguage() <> "en_US" then pause, end
+
+// Switch to french with small code and check if the default language has not changed
+lang="fr"; setlanguage(lang); if getdefaultlanguage() <> "en_US" then pause, end
+
+// Switch to english with small code
+lang="en"; setlanguage(lang); if getdefaultlanguage() <> "en_US" then pause, end
+
+// Switch to english with full code
+lang="en_US"; setlanguage(lang); if getdefaultlanguage() <> "en_US" then pause, end
+
