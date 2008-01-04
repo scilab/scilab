@@ -523,6 +523,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolVerticalAlignment.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUimenuLabel.cpp"
 				>
 			</File>
