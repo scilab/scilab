@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/* Allan CORNET */
+/* INRIA 2007/2008 */
+/* @author Allan CORNET */
+/* @author Sylvestre LEDRU */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +9,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <sys/select.h> 
 #include "GetCharWithEventsLoop.h"
 #include "localization.h"
 #include "sciprint.h"
@@ -35,7 +37,7 @@ int GetCharWithEventsLoop(int interrupt)
 	if (!isingleton)
 	{
 		initializeScilabMask();
-		isingleton++;
+		isingleton=1;
 	}
 
 	for( ; ; )
@@ -49,55 +51,79 @@ int GetCharWithEventsLoop(int interrupt)
 
 		select_timeout.tv_sec = 0;
 		select_timeout.tv_usec = 10;
-		i = select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL, &select_timeout);
-		if (i < 0)
+		
+		if (select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL, &select_timeout)==-1)
 		{
-			if (errno != EINTR) /* EINTR  A signal was caught. */
+			int errnum = errno;
+			sciprint(_("%s: An error occurred: %s\n"),"GetCharWithEventsLoop",strerror(errnum));
+			if (errnum != EINTR) /* EINTR  A signal was caught. */
 			{
-				sciprint(_("Error.\n"));
 				exit(0);
 				continue;
 			}
 		}
 
 		/* if there's something to output */
-		if ( FD_ISSET(fd_out,&write_mask)) fflush(stdout);
-		if ( FD_ISSET(fd_err,&write_mask)) fflush(stderr);
+		if ( FD_ISSET(fd_out,&write_mask)) {
+			fflush(stdout);
+		}
+		if ( FD_ISSET(fd_err,&write_mask)) {
+			fflush(stderr);
+		}
 
 		/* if there's something to read */
-		if (FD_ISSET(fd_in,&select_mask)) state=1;
-		else  if (!IntoEmacs()) state=0;
+		if (FD_ISSET(fd_in,&select_mask)) {
+			state=1;
+		} else {
+			if (!IntoEmacs()) { 
+				state=0; 
+			}
+		}
 
 		if (state)
 		{
 			i = getchar();
 			ScilabEventsLoop();
-			if (i == LF) state=0;
+			if (i == LF) {
+				state=0;
+			}
 			return i ;
 		}
-		else ScilabEventsLoop();
-		if (interrupt&&(ismenu()==1)) return(-1);
+		else {
+			ScilabEventsLoop();
+		}
+		if (interrupt && (ismenu()==1)) {
+			return -1;
+		}
 	}
 }
 /*--------------------------------------------------------------------------*/
-static void initializeScilabMask( void)
+static void initializeScilabMask(void)
 {
+	/*    
+	 * Examines the  argument  stream  and  returns  its integer descriptor.
+	 */
 	fd_in = fileno(stdin) ;
 	fd_out = fileno(stdout);
 	fd_err = fileno(stderr);
 
-	FD_ZERO(&Select_mask_ref);
-	FD_SET(fd_in , &Select_mask_ref);
+	FD_ZERO(&Select_mask_ref); /* clears the set. */
+	FD_SET(fd_in , &Select_mask_ref); /* Add the file descriptor to the set */
 	FD_SET(Xsocket, &Select_mask_ref);
-	FD_ZERO(&Write_mask_ref);
+	FD_ZERO(&Write_mask_ref); /* clears the set. */
 
+
+	/* This is an integer  one  more  than  the  maximum  of  any  file
+	 * descriptor  in  any  of  the sets.
+	 * See man select for more information	  
+	 */
 	inter_max_plus1 = Max(fd_in,Xsocket);
 	inter_max_plus1 = Max(fd_out,inter_max_plus1);
 	inter_max_plus1 = Max(fd_err,inter_max_plus1);
 	inter_max_plus1++;
 }
 /*--------------------------------------------------------------------------*/
-static int IntoEmacs(void )
+static int IntoEmacs(void)
 {
 	return(strcmp(getenv("TERM"),"dumb")==0);
 }
