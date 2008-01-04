@@ -92,20 +92,17 @@ int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two)
 {
 	int x = 0,y = 0;
-	int *next = NULL;
 
 	for (x = 0; x <  mn_one ;x++) 
 	{
 		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
 	}
 
-	next = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
 	results->values = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
 	results->positions = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
 
-	if ( (next == NULL) || (results->values == NULL) || (results->positions == NULL) )
+	if ( (results->values == NULL) || (results->positions == NULL) )
 	{
-		if (next) {FREE(next); next = NULL;}
 		if (results->values) {FREE(results->values);results->values = NULL;}
 		if (results->positions) {FREE(results->positions);results->positions = NULL;}
 		return MEMORY_ALLOC_ERROR;

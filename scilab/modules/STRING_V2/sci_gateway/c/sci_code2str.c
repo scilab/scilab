@@ -80,6 +80,8 @@ int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 	/* free pointers */
 	if (Output_Matrix[0]) { FREE(Output_Matrix[0]); Output_Matrix[0]=NULL;}
 	if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
+    
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

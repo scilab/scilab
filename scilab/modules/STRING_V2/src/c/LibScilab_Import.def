@@ -18,6 +18,7 @@ vartype_
 checklhs_
 checkrhs_
 intersci_
+intstrcat_
 check_length
 callFunctionFromGateway
 gettype_

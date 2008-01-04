@@ -824,8 +824,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					}
 				}
 
-				
-
 				for (copynamesptr = copynames; *copynamesptr != 0;copynamesptr += (int)strlen((char*)copynamesptr) + 1)
 				{
 					char copybuffer[256];
@@ -862,7 +860,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		character, not one byte. */
 		else
         {
-			
 			{
 				if (count == PCRE_ERROR_NOMATCH)
 				{
