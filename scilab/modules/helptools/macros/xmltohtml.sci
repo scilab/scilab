@@ -94,17 +94,17 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			default_language   = [];
 			language_system    = [];
 			
-			if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
-				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage('LANGUAGE_DEFAULT')+".xsl",%f,%f);
+			if getlanguage() == getdefaultlanguage() then
+				xsl = pathconvert(SCI+"/modules/helptools/help_"+getdefaultlanguage()+".xsl",%f,%f);
 				for k=1:size(dirs,'*')
-					directory_language = [directory_language;getlanguage('LANGUAGE_DEFAULT')];
+					directory_language = [directory_language;getdefaultlanguage()];
 					language_system    = [language_system;%F];
 				end
 			else
 				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 				for k=1:size(dirs,'*')
 					directory_language = [directory_language;getlanguage()];
-					default_language   = [default_language;getlanguage('LANGUAGE_DEFAULT')];
+					default_language   = [default_language;getdefaultlanguage()];
 					language_system    = [language_system;%T];
 				end
 			end
@@ -120,8 +120,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			language_system = [];
 			titles          = [];
 			
-			if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
-				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage('LANGUAGE_DEFAULT')+".xsl",%f,%f);
+			if getlanguage() == getdefaultlanguage() then
+				xsl = pathconvert(SCI+"/modules/helptools/help_"+getdefaultlanguage()+".xsl",%f,%f);
 				for k=1:size(dirs,'*')
 					titles = [titles;"Help chapter ("+dirs(k)+")"];
 					language_system = [language_system;%F];
@@ -180,8 +180,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			if ~exists("step") | step == [] | step == "" then step = "all"; end
 			
 			if ~exists("xsl") | xsl == [] | xsl == "" then
-				if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
-					xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage('LANGUAGE_DEFAULT')+".xsl",%f,%f);
+				if getlanguage() == getdefaultlanguage() then
+					xsl = pathconvert(SCI+"/modules/helptools/help_"+getdefaultlanguage()+".xsl",%f,%f);
 				else
 					xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 				end
@@ -202,8 +202,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			if ~exists("step") | step == [] | step == "" then step = "all"; end
 			
 			if ~exists("xsl") | xsl == [] | xsl == "" then
-				if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
-					xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage('LANGUAGE_DEFAULT')+".xsl",%f,%f);
+				if getlanguage() == getdefaultlanguage() then
+					xsl = pathconvert(SCI+"/modules/helptools/help_"+getdefaultlanguage()+".xsl",%f,%f);
 				else
 					xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 				end
@@ -225,8 +225,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			if ~exists("step") | step == [] | step == "" then step = "all"; end
 			
 			if ~exists("xsl") | xsl == [] | xsl == "" then
-				if getlanguage() == getlanguage('LANGUAGE_DEFAULT') then
-					xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage('LANGUAGE_DEFAULT')+".xsl",%f,%f);
+				if getlanguage() == getdefaultlanguage() then
+					xsl = pathconvert(SCI+"/modules/helptools/help_"+getdefaultlanguage()+".xsl",%f,%f);
 				else
 					xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 				end
@@ -788,7 +788,7 @@ function gener_contents(dirs1)
 	
 	select getlanguage()
 		case 'fr_FR'                         then type_title =  "		<H2>Fonctions Scilab</H2>";
-		case getlanguage('LANGUAGE_DEFAULT') then type_title =  "		<H2>Scilab functions</H2>";
+		case getdefaultlanguage() then type_title =  "		<H2>Scilab functions</H2>";
 	end
 	
 	full_whatis=["<html>"

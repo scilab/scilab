@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/scipad/help/'+getlanguage('LANGUAGE_DEFAULT');
+path = SCI+'/modules/scipad/help/'+getdefaultlanguage();
 add_help_chapter("scipad",path,%T);
 clear path add_help_chapter;
 // ====================================================================

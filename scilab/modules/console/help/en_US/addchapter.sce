@@ -5,7 +5,7 @@
 // Allan CORNET
 // Vincent COUVERT
 // ====================================================================
-//path = SCI+'/modules/console/help/'+getlanguage('LANGUAGE_DEFAULT');
+//path = SCI+'/modules/console/help/'+getdefaultlanguage();
 //add_help_chapter("console",path,%T);
 //clear path add_help_chapter;
 // ====================================================================

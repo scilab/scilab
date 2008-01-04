@@ -5,6 +5,6 @@
 // Pierre MARECHAL
 // =============================================================================
 
-path = SCI+'/modules/demo_tools/help/'+getlanguage('LANGUAGE_DEFAULT');
+path = SCI+'/modules/demo_tools/help/'+getdefaultlanguage();
 add_help_chapter("Demo Tools",path,%T);
 clear path add_help_chapter;

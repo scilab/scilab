@@ -4,7 +4,7 @@
 // Copyright INRIA 2007
 // Allan CORNET
 // ====================================================================
-path = SCI+'/modules/arnoldi/help/'+getlanguage('LANGUAGE_DEFAULT');
+path = SCI+'/modules/arnoldi/help/'+getdefaultlanguage();
 add_help_chapter("ARnoldi PACKage",path,%T);
 clear path add_help_chapter;
 // ====================================================================
