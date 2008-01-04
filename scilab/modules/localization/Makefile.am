@@ -15,6 +15,7 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
+sci_gateway/c/sci_dgettext.c \
 sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c

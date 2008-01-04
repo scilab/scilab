@@ -1,15 +1,33 @@
 /*--------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/* Allan CORNET */
+/* INRIA 2007/2008 */
+/* @author Allan CORNET */
+/* @author Sylvestre LEDRU */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include "machine.h"
+
+#ifndef _MSC_VER
+ #ifdef HAVE_LIBINTL_H
+  #include <libintl.h>
+  #ifdef HAVE_LOCALE_H
+   #include <locale.h>
+  #else
+   #error "Cannot find locale.h despite that libintl.h is available"
+  #endif
+ #endif
+#endif
+
 #include "setgetlanguage.h"
 #include "MALLOC.h"
 #include "tableslanguages.h"
 #include "defaultlanguage.h"
 #include "loadsavelanguage.h"
 #include "syncexec.h"
+#include "scilabDefaults.h"
+#include "../../../io/includes/setenvc.h"
+
 /*--------------------------------------------------------------------------*/
 static char CURRENTLANGUAGESTRING[LengthAlphacode]=SCILABDEFAULTLANGUAGE;
 static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
@@ -17,6 +35,7 @@ static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
 static int FindLanguageCode(char *lang);
 static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
+static void putEnvLC_ALL(char *locale);
 static char *GetLanguageFromAlias(char *langAlias);
 /*--------------------------------------------------------------------------*/
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
@@ -28,8 +47,30 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 		{
 			if (needtochangelanguage(lang))
 			{
+				char *ret=NULL;
+
+				/* Load the locale from the system */
+#ifndef _MSC_VER
+				ret=setlocale(LC_MESSAGES,lang);
+#else
+				/* MS VS (setlocale) doesn't know LC_MESSAGES */
+				/* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
+				ret = setlocale(LC_CTYPE,lang);
+#endif
+				if (ret==NULL){
+					fprintf(stderr, "Localization: Doesn't support the locale '%s'.\n",lang);
+					return FALSE;
+				}
+				
+				putEnvLC_ALL(lang);
+
 				/* change language */
-				strcpy(CURRENTLANGUAGESTRING,lang);
+				if (strcmp(lang,"C")==0){
+					/* The lang is the default one... ie en_US */
+					strcpy(CURRENTLANGUAGESTRING,"en_US");
+				}else{
+					strcpy(CURRENTLANGUAGESTRING,lang);
+				}
 				setlanguagecode(lang);
 
 				if (updateHelpIndex)
@@ -178,7 +219,7 @@ char *convertlanguagealias(char *strlanguage)
 {
 	char *correctlanguage=NULL;
 
-	if (strlen(strlanguage)==2)
+	if ( (strlen(strlanguage)==2) || (strcmp(strlanguage,"en_US")==0) ) /* If the user wants to change to en_US ... use the default locale */
 	{
 		correctlanguage=GetLanguageFromAlias(strlanguage);
 	}
@@ -189,3 +230,16 @@ char *convertlanguagealias(char *strlanguage)
 	return correctlanguage;
 }
 /*--------------------------------------------------------------------------*/
+/**
+ * Export the variable LC_ALL to the system
+ *
+ * @param locale the locale (ex : fr_FR or en_US)
+ */
+static void putEnvLC_ALL(char *locale){
+
+	/* It will put in the env something like LC_ALL=fr_FR */
+	if ( !setenvc(EXPORTENVLOCALE,locale))
+	{
+		fprintf(stderr,"Localization: Failed to declare the system variable LC_ALL\n");
+	}
+}

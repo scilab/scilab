@@ -3,16 +3,16 @@
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
 
-  <TITLE>gettext</TITLE>
+  <TITLE>dgettext</TITLE>
 
   <TYPE>Scilab Function</TYPE>
 
   <DATE>$LastChangedDate: 2007-11-15 13:33:00 +0200 (thu., 15 nov. 2007)$</DATE>
 
-  <SHORT_DESCRIPTION name="gettext">get text translated into the current locale and domain.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="gettext">get text translated into the current locale and a specific domain domain.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>msg=gettext(myString)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>msg=dgettext(domain, myString)</CALLING_SEQUENCE_ITEM>
 
   </CALLING_SEQUENCE>
 
@@ -20,32 +20,33 @@
  
     <PARAM_INDENT>
       <PARAM_ITEM>
+        <PARAM_NAME>domain</PARAM_NAME>
+
         <PARAM_NAME>string</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
+          <SP>: The name of the message domain</SP>
           <SP>: the message to be translated</SP>
+
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-g    <P><VERB>gettext</VERB> get the translation of a string to the current locale in the current domain.</P>
+    <P><VERB>dgettext</VERB> get the translation of a string to the current locale in a specified message domain.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
 
-gettext('Startup execution:')
+dgettext('scilab','Startup execution:')
  
   ]]></EXAMPLE>
-
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>dgettext</LINK>
-
+      <LINK>gettext</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-
   <AUTHORS>
     <AUTHORS_ITEM>Sylvestre Ledru</AUTHORS_ITEM>
   </AUTHORS>

@@ -1,6 +1,6 @@
 /** 
-* INRIA 2007 
-* Rewrite using gettext by Sylvestre Ledru <sylvestre.ledru@inria.fr>
+* INRIA 2008
+* @author Sylvestre LEDRU
 */
 #include <string.h>
 #include <stdlib.h>
@@ -24,23 +24,8 @@
 #include "inisci-c.h"
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
-#include "../../../io/includes/setenvc.h"
 
 /*--------------------------------------------------------------------------*/ 
-/**
- * Export the variable LC_ALL to the system
- *
- * @param locale the locale (ex : fr_FR or en_US)
- */
-static void putEnvLC_ALL(char *locale){
-
-	/* It will put in the env something like LC_ALL=fr_FR */
-	if ( !setenvc(EXPORTENVLOCALE,locale))
-	{
-		fprintf(stderr,"Failed to declare the system variable LC_ALL\n");
-	}
-}
-
 
 BOOL InitializeLocalization(void)
 {
@@ -50,41 +35,31 @@ BOOL InitializeLocalization(void)
 	char *pathLocales=NULL;
 	char *ret=NULL;
 
-#ifndef _MSC_VER
-	ret=setlocale(LC_MESSAGES,"");
-#else
-	/* MS VS (setlocale) doesn't know LC_MESSAGES */
-	/* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
-	ret = setlocale(LC_CTYPE,"");
-#endif
-	if (ret==NULL){
-   		fprintf(stderr, "I18N: Doesn't support your locale.\n" );
-		return FALSE;
-	}
+	setlanguage("", FALSE, FALSE); /* Booleans are : BOOL updateHelpIndex, BOOL updateMenus */
 
-	putEnvLC_ALL(ret);
-	setlanguage(ret, FALSE, FALSE);
-
+	/* set directory containing message catalogs */
 	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
 
 	strcpy(pathLocales, SCIpath);
 	strcat(pathLocales, PATHLOCALIZATIONFILE);
 
 	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL){
-		fprintf(stderr, "Error while binding the domain from %s\n", pathLocales);
+		fprintf(stderr, "Localization: Error while binding the domain from %s\n", pathLocales);
 		FREE(pathLocales);
 		return FALSE;
 	}
 	FREE(pathLocales);
 
-	if (textdomain(NAMELOCALIZATIONDOMAIN)==NULL){
-		fprintf(stderr, "Error while declaring the text domain %s\n", NAMELOCALIZATIONDOMAIN);
+	/* set domain for future gettext() calls */
+	ret=textdomain(NAMELOCALIZATIONDOMAIN);
+	if (ret==NULL){
+		fprintf(stderr, "Localization: Error while declaring the text domain %s\n", NAMELOCALIZATIONDOMAIN);
 		return FALSE;
 	}
 
 	return TRUE;
 #else
-	fprintf(stderr, "setlocale didn't exist on the computer used to compile Scilab ! This is abnormal ! No localization will be working for this distribution of Scilab.\n");
+	fprintf(stderr, "Localization: setlocale didn't exist on the computer used to compile Scilab ! This is abnormal ! No localization will be working for this distribution of Scilab.\n");
 	return FALSE;
 #endif
 }

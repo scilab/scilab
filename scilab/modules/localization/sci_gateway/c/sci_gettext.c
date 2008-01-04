@@ -19,15 +19,15 @@ int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			static int l1,n1,m1;
 
-			char *param1=NULL;
+			char *msgid=NULL;
 			char *TranslatedString=NULL;
 
 			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-			param1=cstk(l1);
+			msgid=cstk(l1);
 
 			/* We always have something from this functions because gettext
 			 * is returning the same string if it cannot find it */
-			TranslatedString=gettext(param1);
+			TranslatedString=gettext(msgid);
 
 			n1=1;
 			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(TranslatedString), &m1),&n1,&TranslatedString);
@@ -37,7 +37,7 @@ int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
 		}
 	else
 		{
-			Scierror(999,"invalid first parameter. See help gettext.\n");
+			Scierror(999,"%s: Wrong type for first input argument: String expected.\n",fname);
 			return 0;
 		}
 }

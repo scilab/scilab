@@ -29,7 +29,7 @@ typedef struct languagesalias_struct
 
 } LanguagesTableAlias;
 /*--------------------------------------------------------------------------*/
-#define NumberLanguagesAlias 41
+#define NumberLanguagesAlias 42
 static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias]=
 {
 	{"bg","bg_BG"},
@@ -40,7 +40,8 @@ static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias]=
 	{"da","da_DK"},
 	{"de","de_DE"},
 	{"el","el_GR"},
-	{"en","en_US"},
+	{"en","C"}, /* When the user is requesting english ... switch back to the default */
+	{"en_US","C"},
 	{"es","es_ES"},
 	{"et","et_EE"},
 	{"eu","eu_ES"},
@@ -75,7 +76,7 @@ static LanguagesTableAlias LANGUAGE_LOCALE_ALIAS[NumberLanguagesAlias]=
 	{"uk","uk_UA"}
 };
 /*--------------------------------------------------------------------------*/
-#define NumberLanguages 219
+#define NumberLanguages 220
 static LanguagesTable LANGUAGE_COUNTRY_TAB[NumberLanguages]=
 {
 	{  1, "aa_DJ","Afar (Djibouti)"},
@@ -296,7 +297,8 @@ static LanguagesTable LANGUAGE_COUNTRY_TAB[NumberLanguages]=
 	{ 216,"uz_Latn","Uzbek (Latin)"},
 	{ 217,"vi_VN","Vietnamese (Vietnam)"},
 	{ 218,"wal_ET","Walamo (Ethiopia)"},
-	{ 219,"cy_GB","Welsh (United Kingdom)"}
+	{ 219,"cy_GB","Welsh (United Kingdom)"},
+	{ 220,"C","English (Default)"}
 };
 /*--------------------------------------------------------------------------*/
 #endif /* __TABLESLANGUAGES_H__ */
