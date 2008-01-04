@@ -30,7 +30,6 @@ static int IntoEmacs(void);
 /*--------------------------------------------------------------------------*/
 int GetCharWithEventsLoop(int interrupt)
 {
-	register int i = 0;
 	static struct timeval select_timeout;
 	static int state = 0;
 
@@ -82,7 +81,7 @@ int GetCharWithEventsLoop(int interrupt)
 
 		if (state)
 		{
-			i = getchar();
+			int i = getchar();
 			ScilabEventsLoop();
 			if (i == LF) {
 				state=0;
