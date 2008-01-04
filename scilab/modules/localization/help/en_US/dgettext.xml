@@ -9,7 +9,7 @@
 
   <DATE>$LastChangedDate: 2007-11-15 13:33:00 +0200 (thu., 15 nov. 2007)$</DATE>
 
-  <SHORT_DESCRIPTION name="gettext">get text translated into the current locale and a specific domain domain.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="dgettext">get text translated into the current locale and a specific domain domain.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>msg=dgettext(domain, myString)</CALLING_SEQUENCE_ITEM>
