@@ -30,7 +30,7 @@ endif
 
 LANG_DOMAIN=scilab
 
-TARGETS_ALL=macros 
+TARGETS_ALL=macros doc
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
@@ -54,16 +54,25 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
 doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
-	-@( cd $(top_builddir) ; \
-	$(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e "xmltohtml();exit;")
-
-	-@( cd $(top_builddir) ; \
-	$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;")
-
+	-@if test -x $(top_builddir)/scilab-bin; then \
+		cd $(top_builddir);\
+		echo "-- Building documentation (English) --"; \
+		$(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e "xmltohtml();exit;";\
+		echo "-- Building documentation (French) --"; \
+		$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;"; \
+	else \
+		echo "Cannot find Scilab binary"; \
+	fi
 
 check-help:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
-	$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;'
-	$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;'
+	@if test -x $(top_builddir)/scilab-bin; then \
+		echo "-- Checking documentation (English) --"; \
+		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;';\
+		echo "-- Checking documentation (French) --"; \
+		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;';\
+	else \
+		echo "Cannot find Scilab binary"; \
+	fi
 
 check-recursive: check-local
 check-local:
@@ -75,9 +84,18 @@ check-local:
 		echo "Cannot find Scilab binary"; \
 	fi
 
-distclean-recursive: clean-help clean-localization
+distclean-recursive: clean-recursive
 
-clean-recursive: clean-help clean-localization
+clean-recursive: clean-help clean-localization clean-macros
+
+clean-macros:
+	@echo "-- Cleanning macros (*.bin) --"; \
+	find $(top_builddir) -name "*.bin" | xargs rm 2> /dev/null; \
+	echo "-- Cleanning names files (names) --"; \
+	find $(top_builddir)/modules/*/macros -name "names" | xargs rm 2> /dev/null; \
+	echo "-- Cleanning lib files (lib) --"; \
+	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
+
 
 clean-help:
 	@if test -x $(top_builddir)/scilab-bin; then \
