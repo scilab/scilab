@@ -63,15 +63,13 @@ public final class MenuBarBuilder {
 	 * Create a Scilab menubar from data in a XML file
 	 * @param fileToLoad XML file to load
 	 * @return the menubar created
-	 * @throws SAXException can be thrown when an error occurs while reading the file
-	 * @throws IOException can be thrown when an error occurs while reading the file
-	 * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
 	 */
 	public static MenuBar buildMenuBar(String fileToLoad) {
 		MenuBar menubar = ScilabMenuBar.createMenuBar();
 		
 		try {
-			MenuBarConfiguration menuBarConfig = (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
+			MenuBarConfiguration menuBarConfig = 
+					(MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
 			menuBarConfig.addMenus(menubar);
 		} catch (IllegalArgumentException e) {
 			System.err.println(CANNOT_CREATE_MENUBAR);

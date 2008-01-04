@@ -63,7 +63,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
   switch(pUICONTROL_FEATURE(sciObj)->style)
     {
     case SCI_PUSHBUTTON:
-      CallScilabBridge::setPushButtonPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, xInt, sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, widthInt, heightInt);
+      CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, xInt, sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, widthInt, heightInt);
 
       return SET_PROPERTY_SUCCEED;
     default:

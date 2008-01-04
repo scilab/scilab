@@ -28,13 +28,13 @@ public interface SimpleMenu extends Widget {
 	 * Sets the text of the Menu
 	 * @param newText the text we want to set for the Menu
 	 */
-	void setText(String newText);
+	//void setText(String newText);
 	
 	/**
 	 * Gets the text of the Menu
 	 * @return the text of the Menu
 	 */
-	String getText();
+	//String getText();
 	
 	/**
 	 * set a mnemonic to the Menu

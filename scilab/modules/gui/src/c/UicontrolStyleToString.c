@@ -10,7 +10,7 @@ char * UicontrolStyleToString(int style)
   switch(style)
     {
     case SCI_PUSHBUTTON:
-      return "PushButton";
+      return "pushbutton";
     default:
       return "Unknown";
     }

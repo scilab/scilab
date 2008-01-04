@@ -9,6 +9,7 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 
 /**
  * Listener for docking operations in Scilab
+ * @author Bruno JOFRET
  * @author Vincent COUVERT
  */
 public class SciDockingListener implements DockingListener {
@@ -90,6 +91,10 @@ public class SciDockingListener implements DockingListener {
 		this.associatedScilabWindowId = id;
 	}
 	
+	/**
+	 * Display debug information
+	 * @param method the name of the method called
+	 */
 	private void debug(String method) {
 		//System.out.println("["+method+"] on Window "+associatedScilabWindowId);
 	}

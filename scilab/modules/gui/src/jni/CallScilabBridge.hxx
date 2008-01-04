@@ -61,10 +61,8 @@ jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
 jmethodID voidsetParentjintjintID; // cache method id
 jmethodID voidsetPushButtonParentjintjintID; // cache method id
-jmethodID voidsetMenuTextjintjstringID; // cache method id
-jmethodID voidsetPushButtonTextjintjstringID; // cache method id
-jmethodID jstringgetMenuTextjintID; // cache method id
-jmethodID jstringgetPushButtonTextjintID; // cache method id
+jmethodID voidsetWidgetTextjintjstringID; // cache method id
+jmethodID jstringgetWidgetTextjintID; // cache method id
 jmethodID voidsetPushButtonBackgroundColorjintjintjintjintID; // cache method id
 jmethodID jintArraygetPushButtonBackgroundColorjintID; // cache method id
 jmethodID voidsetPushButtonForegroundColorjintjintjintjintID; // cache method id
@@ -75,8 +73,8 @@ jmethodID voidsetPushButtonFontWeightjintjstringID; // cache method id
 jmethodID voidsetPushButtonFontSizejintjintID; // cache method id
 jmethodID jintgetPushButtonFontSizejintID; // cache method id
 jmethodID voidsetPushButtonFontAnglejintjstringID; // cache method id
-jmethodID voidsetPushButtonPositionjintjintjintjintjintID; // cache method id
-jmethodID jintArraygetPushButtonPositionjintID; // cache method id
+jmethodID voidsetWidgetPositionjintjintjintjintjintID; // cache method id
+jmethodID jintArraygetWidgetPositionjintID; // cache method id
 jmethodID voidsetMenuCallbackjintjstringID; // cache method id
 jmethodID jstringgetMenuCallbackjintID; // cache method id
 jmethodID voidsetPushButtonCallbackjintjstringID; // cache method id
@@ -153,13 +151,9 @@ static void setParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setPushButtonParent(JavaVM * jvm_, long parentID, long objID);
 
-static void setMenuText(JavaVM * jvm_, long objID, char * text);
+static void setWidgetText(JavaVM * jvm_, long objID, char * text);
 
-static void setPushButtonText(JavaVM * jvm_, long objID, char * text);
-
-static char * getMenuText(JavaVM * jvm_, long objID);
-
-static char * getPushButtonText(JavaVM * jvm_, long objID);
+static char * getWidgetText(JavaVM * jvm_, long objID);
 
 static void setPushButtonBackgroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
 
@@ -181,9 +175,9 @@ static long getPushButtonFontSize(JavaVM * jvm_, long objID);
 
 static void setPushButtonFontAngle(JavaVM * jvm_, long objID, char * angle);
 
-static void setPushButtonPosition(JavaVM * jvm_, long objID, long x, long y, long width, long height);
+static void setWidgetPosition(JavaVM * jvm_, long objID, long x, long y, long width, long height);
 
-static long * getPushButtonPosition(JavaVM * jvm_, long objID);
+static long * getWidgetPosition(JavaVM * jvm_, long objID);
 
 static void setMenuCallback(JavaVM * jvm_, long objID, char * text);
 

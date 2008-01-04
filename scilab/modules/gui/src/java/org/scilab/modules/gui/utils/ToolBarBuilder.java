@@ -63,15 +63,13 @@ public final class ToolBarBuilder {
 	 * Create a Scilab toolbar from data in a XML file
 	 * @param fileToLoad XML file to load
 	 * @return the toolbar created
-	 * @throws SAXException can be thrown when an error occurs while reading the file
-	 * @throws IOException can be thrown when an error occurs while reading the file
-	 * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
 	 */
 	public static ToolBar buildToolBar(String fileToLoad) {
 		ToolBar toolbar = ScilabToolBar.createToolBar();
 		
 		try {
-			ToolBarConfiguration toolBarConfig = (ToolBarConfiguration) buildToolBar(new Class[] {ToolBarConfiguration.class}, fileToLoad);
+			ToolBarConfiguration toolBarConfig = 
+					(ToolBarConfiguration) buildToolBar(new Class[] {ToolBarConfiguration.class}, fileToLoad);
 			toolBarConfig.addPushButtons(toolbar);
 		} catch (IllegalArgumentException e) {
 			System.err.println(CANNOT_CREATE_TOOLBAR);

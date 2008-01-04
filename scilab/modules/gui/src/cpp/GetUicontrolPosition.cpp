@@ -18,7 +18,7 @@ int GetUicontrolPosition(sciPointObj* sciObj)
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
-          returnValues = CallScilabBridge::getPushButtonPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+          returnValues = CallScilabBridge::getWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           
           tmp = new double[4];
           tmp[0] = returnValues[0];

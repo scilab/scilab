@@ -11,7 +11,7 @@ int GetUimenuLabel(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
       // Get the label from Java
-      return sciReturnString(CallScilabBridge::getMenuText(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex));
+      return sciReturnString(CallScilabBridge::getWidgetText(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex));
     }
   else
     {

@@ -36,7 +36,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
               CallScilabBridge::setPushButtonParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               
               // Scilab default values
-              CallScilabBridge::setPushButtonPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(figure) - 80, 40, 20);
+              CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(figure) - 80, 40, 20);
               
               return SET_PROPERTY_SUCCEED;
             default:

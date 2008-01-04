@@ -106,10 +106,8 @@ voidsetMenuAsParentjintjintID=NULL;
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
-voidsetMenuTextjintjstringID=NULL; 
-voidsetPushButtonTextjintjstringID=NULL; 
-jstringgetMenuTextjintID=NULL; 
-jstringgetPushButtonTextjintID=NULL; 
+voidsetWidgetTextjintjstringID=NULL; 
+jstringgetWidgetTextjintID=NULL; 
 voidsetPushButtonBackgroundColorjintjintjintjintID=NULL; 
 jintArraygetPushButtonBackgroundColorjintID=NULL; 
 voidsetPushButtonForegroundColorjintjintjintjintID=NULL; 
@@ -120,8 +118,8 @@ voidsetPushButtonFontWeightjintjstringID=NULL;
 voidsetPushButtonFontSizejintjintID=NULL; 
 jintgetPushButtonFontSizejintID=NULL; 
 voidsetPushButtonFontAnglejintjstringID=NULL; 
-voidsetPushButtonPositionjintjintjintjintjintID=NULL; 
-jintArraygetPushButtonPositionjintID=NULL; 
+voidsetWidgetPositionjintjintjintjintjintID=NULL; 
+jintArraygetWidgetPositionjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
 jstringgetMenuCallbackjintID=NULL; 
 voidsetPushButtonCallbackjintjstringID=NULL; 
@@ -169,10 +167,8 @@ voidsetMenuAsParentjintjintID=NULL;
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
-voidsetMenuTextjintjstringID=NULL; 
-voidsetPushButtonTextjintjstringID=NULL; 
-jstringgetMenuTextjintID=NULL; 
-jstringgetPushButtonTextjintID=NULL; 
+voidsetWidgetTextjintjstringID=NULL; 
+jstringgetWidgetTextjintID=NULL; 
 voidsetPushButtonBackgroundColorjintjintjintjintID=NULL; 
 jintArraygetPushButtonBackgroundColorjintID=NULL; 
 voidsetPushButtonForegroundColorjintjintjintjintID=NULL; 
@@ -183,8 +179,8 @@ voidsetPushButtonFontWeightjintjstringID=NULL;
 voidsetPushButtonFontSizejintjintID=NULL; 
 jintgetPushButtonFontSizejintID=NULL; 
 voidsetPushButtonFontAnglejintjstringID=NULL; 
-voidsetPushButtonPositionjintjintjintjintjintID=NULL; 
-jintArraygetPushButtonPositionjintID=NULL; 
+voidsetWidgetPositionjintjintjintjintjintID=NULL; 
+jintArraygetWidgetPositionjintID=NULL; 
 voidsetMenuCallbackjintjstringID=NULL; 
 jstringgetMenuCallbackjintID=NULL; 
 voidsetPushButtonCallbackjintjstringID=NULL; 
@@ -423,21 +419,21 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void CallScilabBridge::setMenuText (JavaVM * jvm_, long objID, char * text){
+void CallScilabBridge::setWidgetText (JavaVM * jvm_, long objID, char * text){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetMenuTextjintjstringID = curEnv->GetStaticMethodID(cls, "setMenuText", "(ILjava/lang/String;)V" ) ;
-if (voidsetMenuTextjintjstringID == NULL) {
-std::cerr << "Could not access to the method " << "setMenuText" << std::endl;
+jmethodID voidsetWidgetTextjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetText", "(ILjava/lang/String;)V" ) ;
+if (voidsetWidgetTextjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetText" << std::endl;
 exit(EXIT_FAILURE);
 }
 
 jstring text_ = curEnv->NewStringUTF( text );
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetMenuTextjintjstringID ,objID, text_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetTextjintjstringID ,objID, text_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -446,70 +442,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void CallScilabBridge::setPushButtonText (JavaVM * jvm_, long objID, char * text){
+char * CallScilabBridge::getWidgetText (JavaVM * jvm_, long objID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetPushButtonTextjintjstringID = curEnv->GetStaticMethodID(cls, "setPushButtonText", "(ILjava/lang/String;)V" ) ;
-if (voidsetPushButtonTextjintjstringID == NULL) {
-std::cerr << "Could not access to the method " << "setPushButtonText" << std::endl;
+jmethodID jstringgetWidgetTextjintID = curEnv->GetStaticMethodID(cls, "getWidgetText", "(I)Ljava/lang/String;" ) ;
+if (jstringgetWidgetTextjintID == NULL) {
+std::cerr << "Could not access to the method " << "getWidgetText" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-jstring text_ = curEnv->NewStringUTF( text );
-
-                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonTextjintjstringID ,objID, text_);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-}
-
-char * CallScilabBridge::getMenuText (JavaVM * jvm_, long objID){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread((void **) &curEnv, NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID jstringgetMenuTextjintID = curEnv->GetStaticMethodID(cls, "getMenuText", "(I)Ljava/lang/String;" ) ;
-if (jstringgetMenuTextjintID == NULL) {
-std::cerr << "Could not access to the method " << "getMenuText" << std::endl;
-exit(EXIT_FAILURE);
-}
-
-                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetMenuTextjintID ,objID);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-const char *tempString = curEnv->GetStringUTFChars(res, 0);
-char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
-strcpy(myStringBuffer, tempString);
-curEnv->ReleaseStringUTFChars(res, tempString);
-
-return myStringBuffer;
-
-}
-
-char * CallScilabBridge::getPushButtonText (JavaVM * jvm_, long objID){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread((void **) &curEnv, NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID jstringgetPushButtonTextjintID = curEnv->GetStaticMethodID(cls, "getPushButtonText", "(I)Ljava/lang/String;" ) ;
-if (jstringgetPushButtonTextjintID == NULL) {
-std::cerr << "Could not access to the method " << "getPushButtonText" << std::endl;
-exit(EXIT_FAILURE);
-}
-
-                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetPushButtonTextjintID ,objID);
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetWidgetTextjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -783,19 +728,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void CallScilabBridge::setPushButtonPosition (JavaVM * jvm_, long objID, long x, long y, long width, long height){
+void CallScilabBridge::setWidgetPosition (JavaVM * jvm_, long objID, long x, long y, long width, long height){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetPushButtonPositionjintjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonPosition", "(IIIII)V" ) ;
-if (voidsetPushButtonPositionjintjintjintjintjintID == NULL) {
-std::cerr << "Could not access to the method " << "setPushButtonPosition" << std::endl;
+jmethodID voidsetWidgetPositionjintjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setWidgetPosition", "(IIIII)V" ) ;
+if (voidsetWidgetPositionjintjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetPosition" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonPositionjintjintjintjintjintID ,objID, x, y, width, height);
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetPositionjintjintjintjintjintID ,objID, x, y, width, height);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -804,19 +749,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-long * CallScilabBridge::getPushButtonPosition (JavaVM * jvm_, long objID){
+long * CallScilabBridge::getWidgetPosition (JavaVM * jvm_, long objID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintArraygetPushButtonPositionjintID = curEnv->GetStaticMethodID(cls, "getPushButtonPosition", "(I)[I" ) ;
-if (jintArraygetPushButtonPositionjintID == NULL) {
-std::cerr << "Could not access to the method " << "getPushButtonPosition" << std::endl;
+jmethodID jintArraygetWidgetPositionjintID = curEnv->GetStaticMethodID(cls, "getWidgetPosition", "(I)[I" ) ;
+if (jintArraygetWidgetPositionjintID == NULL) {
+std::cerr << "Could not access to the method " << "getWidgetPosition" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetPushButtonPositionjintID ,objID);
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetWidgetPositionjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

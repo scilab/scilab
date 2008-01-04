@@ -9,16 +9,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
-* Swing implementation for Scilab PushButtons in GUIs
-* @author Marouane BEN JELLOUL
-*/
+ * Swing implementation for Scilab PushButtons in GUIs
+ * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
+ */
 public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	
+	private static final long serialVersionUID = 2277539556048935959L;
+
 	/**
 	 * Constructor
 	 */
@@ -98,6 +103,42 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	public void setEnabled(boolean status) {
 		super.setEnabled(status);
+	}
+
+	/**
+	 * Setter for MenuBar
+	 * @param menuBarToAdd the MenuBar associated to the Tab.
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		/* Unimplemented for pushbuttons */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Setter for ToolBar
+	 * @param toolBarToAdd the ToolBar associated to the Tab.
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		/* Unimplemented for pushbuttons */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for MenuBar
+	 * @return MenuBar: the MenuBar associated to the Tab.
+	 */
+	public MenuBar getMenuBar() {
+		/* Unimplemented for pushbuttons */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for ToolBar
+	 * @return ToolBar: the ToolBar associated to the Tab.
+	 */
+	public ToolBar getToolBar() {
+		/* Unimplemented for pushbuttons */
+		throw new UnsupportedOperationException();
 	}
 }
 

@@ -27,18 +27,11 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Text setting -->
-	<method name="setMenuText" returnType="void" modifier="static">
+	<method name="setWidgetText" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="text"/>
 	</method>
-	<method name="setPushButtonText" returnType="void" modifier="static">
-	  <parameter type="int" name="objID"/>
-	  <parameter type="String" name="text"/>
-	</method>
-	<method name="getMenuText" returnType="String" modifier="static">
-	  <parameter type="int" name="objID"/>
-	</method>
-	<method name="getPushButtonText" returnType="String" modifier="static">
+	<method name="getWidgetText" returnType="String" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Color setting -->
@@ -86,14 +79,14 @@
 	  <parameter type="String" name="angle"/>
 	</method>
 <!-- Position setting -->
-	<method name="setPushButtonPosition" returnType="void" modifier="static">
+	<method name="setWidgetPosition" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="x"/>
 	  <parameter type="int" name="y"/>
 	  <parameter type="int" name="width"/>
 	  <parameter type="int" name="height"/>
 	</method>
-	<method name="getPushButtonPosition" returnType="int[]" modifier="static">
+	<method name="getWidgetPosition" returnType="int[]" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Callback setting -->

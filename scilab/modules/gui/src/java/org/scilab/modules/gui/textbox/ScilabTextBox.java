@@ -13,6 +13,7 @@ import org.scilab.modules.gui.utils.Size;
 
 /**
  * Class for Scilab EditBoxs in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public class ScilabTextBox extends ScilabText implements TextBox {
@@ -164,5 +165,14 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 */
 	public Font getFont() {
 		return ScilabBridge.getFont(this);
+	}
+
+	/**
+	 * Set the status of the TextBox
+	 * @param status true if the TextBox is enabled
+	 * @see org.scilab.modules.gui.widget.Widget#setEnabled(boolean)
+	 */
+	public void setEnabled(boolean status) {
+		// TODO Auto-generated method stub
 	}
 }

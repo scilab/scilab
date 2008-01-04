@@ -21,6 +21,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.FigureMapper;
@@ -110,43 +111,21 @@ public class CallScilabBridge {
 	}
 	
 	/**
-	 * Set the dimensions of a menu in Scilab GUIs
-	 * @param objID the ID of the menu in the UIElementMapper
-	 * @param text the text to set to the menu
+	 * Set the text of a widget in Scilab GUIs
+	 * @param objID the ID of the Widget in the UIElementMapper
+	 * @param text the text to set to the widget
 	 */
-	public static void setMenuText(int objID, String text) {
-		// TODO do not cast !
-		((Menu) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
+	public static void setWidgetText(int objID, String text) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
 	}
 	
 	/**
-	 * Set the dimensions of a pushbutton in Scilab GUIs
-	 * @param objID the ID of the pushbutton in the UIElementMapper
-	 * @param text the text to set to the pushbutton
+	 * Get the text of a widget in Scilab GUIs
+	 * @param objID the ID of the Widget in the UIElementMapper
+	 * @return the text of the widget
 	 */
-	public static void setPushButtonText(int objID, String text) {
-		// TODO do not cast !
-		((PushButton) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
-	}
-	
-	/**
-	 * Set the dimensions of an object in Scilab GUIs
-	 * @param objID the ID of the object in the UIElementMapper
-	 * @return the label of the Menu
-	 */
-	public static String getMenuText(int objID) {
-		// TODO do not cast !
-		return ((Menu) UIElementMapper.getCorrespondingUIElement(objID)).getText();
-	}
-	
-	/**
-	 * Set the dimensions of an object in Scilab GUIs
-	 * @param objID the ID of the object in the UIElementMapper
-	 * @return the label of the Menu
-	 */
-	public static String getPushButtonText(int objID) {
-		// TODO do not cast !
-        return ((PushButton) UIElementMapper.getCorrespondingUIElement(objID)).getText();
+	public static String getWidgetText(int objID) {
+		return ((Widget) UIElementMapper.getCorrespondingUIElement(objID)).getText();
 	}
 
 	/*****************************/
@@ -192,39 +171,8 @@ public class CallScilabBridge {
 	 */
 	public static void setPushButtonParent(int figureID, int objID) {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
-		//parentTab.addMember((PushButton) UIElementMapper.getCorrespondingUIElement(objID));
 		PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, pushButton);
-		
-//		Class[] paramTypes = new Class[2];
-//		paramTypes[0] = parentTab.getClass().getSuperclass();
-//		paramTypes[1] = UIElementMapper.getCorrespondingUIElement(objID).getClass().getSuperclass();
-//		Method m = null;
-//		try {
-//			m = ScilabBridge.class.getMethod("addMember", paramTypes);
-//		} catch (SecurityException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NoSuchMethodException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		Object[] objects = new Object[2];
-//		objects[0] = parentTab;
-//		objects[1] = UIElementMapper.getCorrespondingUIElement(objID).getClass();
-//		try {
-//			m.invoke("addMember", objects);
-//		} catch (IllegalArgumentException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (InvocationTargetException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 
 	/**
@@ -600,25 +548,25 @@ public class CallScilabBridge {
 	/********************/
 	
 	/**
-	 * Set the position (in Scilab terms) of a pushbutton 
-	 * @param id the id of the push button
+	 * Set the position (in Scilab terms) of a widget 
+	 * @param id the id of the widget
 	 * @param x the X-coordinate for the button
 	 * @param y the Y-coordinate for the button
 	 * @param width the width of the button
 	 * @param height the height of the button
 	 */
-	public static void setPushButtonPosition(int id, int x, int y, int width, int height) {
+	public static void setWidgetPosition(int id, int x, int y, int width, int height) {
 		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
 		//ScilabBridge.setPosition(UIElementMapper.getCorrespondingUIElement(id), new Position(x, y));
 		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
 	}
 	
 	/**
-	 * Get the position (in Scilab terms) of a pushbutton 
-	 * @param id the id of the push button
+	 * Get the position (in Scilab terms) of a widget 
+	 * @param id the id of the widget
 	 * @return the position (X-coordinate, Y-coordinate, width, height) of the button
 	 */
-	public static int[] getPushButtonPosition(int id) {
+	public static int[] getWidgetPosition(int id) {
 		int[] position = new int[POSITION_SIZE];
 		
 		position[X_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getX();

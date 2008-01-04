@@ -10,6 +10,7 @@ import org.scilab.modules.gui.dockable.Dockable;
 
 /**
  * Interface for widget associated to objects in Scilab GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public interface Widget extends Dockable {
@@ -49,5 +50,23 @@ public interface Widget extends Dockable {
 	 * @return the font
 	 */
 	Font getFont();
+	
+	/**
+	 * Set the text of the widget
+	 * @param text the text
+	 */
+	void setText(String text);
+	
+	/**
+	 * Get the text of the widget
+	 * @return the text
+	 */
+	String getText();
+
+	/**
+	 * Set the status of the widget
+	 * @param status true if the Widget is enabled
+	 */
+	void setEnabled(boolean status);
 
 }

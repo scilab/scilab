@@ -2,11 +2,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
