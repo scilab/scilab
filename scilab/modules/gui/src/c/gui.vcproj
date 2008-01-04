@@ -255,6 +255,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolFontName.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolFontSize.cpp"
 				>
 			</File>
@@ -264,6 +268,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolFontWeight.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolHorizontalAlignment.cpp"
 				>
 			</File>
 			<File
@@ -283,6 +291,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolRelief.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolSliderStep.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUicontrolString.cpp"
 				>
 			</File>
@@ -296,6 +312,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolValue.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolVerticalAlignment.cpp"
 				>
 			</File>
 			<File
@@ -443,6 +463,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUicontrolFontName.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUicontrolFontSize.cpp"
 				>
 			</File>
@@ -452,6 +476,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolFontWeight.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolHorizontalAlignment.cpp"
 				>
 			</File>
 			<File
@@ -472,6 +500,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolPosition.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolRelief.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolSliderStep.cpp"
 				>
 			</File>
 			<File
@@ -596,6 +632,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUicontrolFontName.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUicontrolFontSize.h"
 				>
 			</File>
@@ -617,6 +657,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolFontWeight.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolHorizontalAlignment.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolHorizontalAlignment.hxx"
 				>
 			</File>
 			<File
@@ -652,6 +700,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUicontrolRelief.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolRelief.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolSliderStep.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolSliderStep.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUicontrolString.h"
 				>
 			</File>
@@ -681,6 +745,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\GetUicontrolValue.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetUicontrolVerticalAlignment.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUicontrolVerticalAlignment.hxx"
 				>
 			</File>
 			<File
@@ -796,6 +868,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\SetUicontrolFontName.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolFontName.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\SetUicontrolFontSize.h"
 				>
 			</File>
@@ -817,6 +897,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolFontWeight.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolHorizontalAlignment.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolHorizontalAlignment.hxx"
 				>
 			</File>
 			<File
@@ -860,6 +948,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\SetUicontrolRelief.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolRelief.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolSliderStep.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolSliderStep.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\SetUicontrolString.h"
 				>
 			</File>
@@ -885,6 +989,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolValue.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUicontrolVerticalAlignment.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUicontrolVerticalAlignment.hxx"
 				>
 			</File>
 			<File

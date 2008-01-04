@@ -60,4 +60,14 @@ GetUicontrolValue
 SetUicontrolValue
 GetUicontrolListboxTop
 SetUicontrolListboxTop
+GetUicontrolFontName
+SetUicontrolFontName
+GetUicontrolHorizontalAlignment
+SetUicontrolHorizontalAlignment
+GetUicontrolVerticalAlignment
+SetUicontrolVerticalAlignment
+GetUicontrolRelief
+SetUicontrolRelief
+GetUicontrolSliderStep
+SetUicontrolSliderStep
 ;

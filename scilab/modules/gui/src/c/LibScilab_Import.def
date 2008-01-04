@@ -23,6 +23,7 @@ freeArrayOfString
 isopt_
 sciReturnRowVector
 sciReturnDouble
+sciReturnMatrix
 sciReturnRowVectorFromInt
 sciReturnEmptyMatrix
 ;
