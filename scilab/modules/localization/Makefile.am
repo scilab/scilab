@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
+### INRIA - Scilab 2006/2007/2008
 ##########
 
 LOCALIZATION_C_SOURCES = \
@@ -17,6 +17,7 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_setlanguage.c \
+sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c
 
 #sci_gateway/c/sci_getlanguagealias.c \

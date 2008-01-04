@@ -26,7 +26,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		param=cstk(l1);
-
+		/* Convert small code to long code fr => fr_FR */
 		newlanguage=convertlanguagealias(param);
 
 		if ( LanguageIsOK(param) && (newlanguage == NULL) )
@@ -60,9 +60,10 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if (getWarningMode())
 			{
-				sciprint(_("\nUnsupported language \"%s\".\n"),param);
-				sciprint(_("Choosing default language : \"%s\".\n\n"),SCILABDEFAULTLANGUAGE);
+				sciprint(_("Unsupported language '%s'.\n"),param);
+				sciprint(_("Switching to default language : '%s'.\n"),SCILABDEFAULTLANGUAGE);	
 			}
+			setlanguage(SCILABDEFAULTLANGUAGE,TRUE,TRUE);
 
 			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
@@ -72,7 +73,7 @@ int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		return 0;
 	}
 

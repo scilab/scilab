@@ -9,7 +9,7 @@
 
   <DATE>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007) $</DATE>
 
-  <SHORT_DESCRIPTION name="getlanguage">getlanguagestable() returns current language used by Scilab.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="getlanguage">getlanguage() returns current language used by Scilab.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>getlanguage()</CALLING_SEQUENCE_ITEM>
@@ -34,5 +34,6 @@ getlanguage()
 
   <AUTHORS>
     <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+    <AUTHORS_ITEM>Sylvestre Ledru</AUTHORS_ITEM>
   </AUTHORS>
 </MAN>

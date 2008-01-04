@@ -26,8 +26,10 @@
 
 <PRIMITIVE gatewayId="50" primitiveId="1" primitiveName="setlanguage" />
 <PRIMITIVE gatewayId="50" primitiveId="2" primitiveName="getlanguage" />
-<PRIMITIVE gatewayId="50" primitiveId="3" primitiveName="gettext" />
-<PRIMITIVE gatewayId="50" primitiveId="3" primitiveName="_" />
+<PRIMITIVE gatewayId="50" primitiveId="3" primitiveName="getdefaultlanguage" />
+<PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="gettext" />
+<PRIMITIVE gatewayId="50" primitiveId="5" primitiveName="_" />
+
 
 <!--<PRIMITIVE gatewayId="50" primitiveId="3" primitiveName="getlanguagealias" />
 <PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="getlanguagestable" />
