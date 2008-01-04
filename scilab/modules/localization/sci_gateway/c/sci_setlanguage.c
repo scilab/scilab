@@ -1,8 +1,10 @@
 /*--------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/* Allan CORNET */
+/* INRIA 2007/2008 */
+/* @author Allan CORNET */
+/* @author Sylvestre LEDRU */
+
 /*--------------------------------------------------------------------------*/
-#include "sci_setlanguage.h"
+#include "gw_localization.h"
 #include "setgetlanguage.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -11,6 +13,7 @@
 #include "MALLOC.h"
 #include "loadhashtableslocalization.h"
 #include "localization.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_setlanguage) _PARAMS((char *fname,unsigned long fname_len))
 {
