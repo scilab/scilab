@@ -23,6 +23,7 @@ else
   if old(1)<>defaultstacksize then stacksize(defaultstacksize),end
 end
 clear nparam params ierr old newstacksize defaultstacksize
+
 // Special variables definition =======================================
 ieee(2);%inf=1/0;ieee(0);%nan=%inf-%inf;
 %T=%t;%F=%f;       // boolean variables
@@ -34,6 +35,7 @@ if verbose then
     write(%io(2),[' ';' ';gettext("Startup execution:")])
   end
 end
+
 // Load scilab functions libraries  ===================================
 if verbose then
   if ~fromjava() & ~fromc() then
@@ -50,6 +52,7 @@ PWD = getcwd()
 global demolist
 demolist=[];
 clear demolist;
+
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 args=sciargs(); larg=find(args=="-l")
@@ -58,6 +61,7 @@ if larg<>[] & larg<=size(args,"*") then
   setlanguage(L);
 end
 clear larg
+
 // loads modules ======================================================
 
 modules=getmodules();
@@ -67,6 +71,7 @@ for i=1:index(1) do
 end
 
 clear modules index i add_demo add_help_chapter add_module_help_chapter
+
 // Create some configuration variables ================================
 home=getenv('HOME',SCI);
 if MSDOS then
@@ -88,6 +93,7 @@ clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variabl
 
 // Protect variable previously defined  ================================
 predef('all')
+
 // Graphic mode and Startup info ======================================
 if %gui then
   verbose=sciargs()<>"-nb"
@@ -97,6 +103,7 @@ if %gui then
   end
   clear verbose;
 end
+
 // load contrib menu if present ========================================
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');
 if ierr== 0 then;
@@ -142,6 +149,7 @@ if sciargs()<>'-nouserstartup' then
   end
 end
 clear startup ierr
+
 // Menu can now be enabled ===========================================
 if ( getscilabmode() == 'STD') then
         setmenu(gettext("File"));
@@ -152,5 +160,6 @@ if ( getscilabmode() == 'STD') then
         setmenu(gettext("?"));
 end
 // =====================================================================
+
 clear ans
 // =====================================================================
