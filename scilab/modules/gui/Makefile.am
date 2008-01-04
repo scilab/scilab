@@ -41,6 +41,8 @@ src/cpp/SetUiobjectForegroundColor.cpp \
 src/cpp/GetUiobjectForegroundColor.cpp \
 src/cpp/SetUicontrolPosition.cpp \
 src/cpp/GetUicontrolPosition.cpp \
+src/cpp/SetUicontrolFontName.cpp \
+src/cpp/GetUicontrolFontName.cpp \
 src/cpp/SetUicontrolFontWeight.cpp \
 src/cpp/GetUicontrolFontWeight.cpp \
 src/cpp/SetUicontrolFontUnits.cpp \
@@ -62,7 +64,15 @@ src/cpp/GetUicontrolValue.cpp \
 src/cpp/SetUicontrolListboxTop.cpp \
 src/cpp/GetUicontrolListboxTop.cpp \
 src/cpp/SetUicontrolUnits.cpp \
-src/cpp/GetUicontrolUnits.cpp
+src/cpp/GetUicontrolUnits.cpp \
+src/cpp/SetUicontrolRelief.cpp \
+src/cpp/GetUicontrolRelief.cpp \
+src/cpp/SetUicontrolHorizontalAlignment.cpp \
+src/cpp/GetUicontrolHorizontalAlignment.cpp \
+src/cpp/SetUicontrolVerticalAlignment.cpp \
+src/cpp/GetUicontrolVerticalAlignment.cpp \
+src/cpp/SetUicontrolSliderStep.cpp \
+src/cpp/GetUicontrolSliderStep.cpp
 
 GIWS_WRAPPERS = \
 src/jni/DrawableRectangleGL.giws.xml \

@@ -124,6 +124,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/GetUiobjectForegroundColor.cpp \
 	src/cpp/SetUicontrolPosition.cpp \
 	src/cpp/GetUicontrolPosition.cpp \
+	src/cpp/SetUicontrolFontName.cpp \
+	src/cpp/GetUicontrolFontName.cpp \
 	src/cpp/SetUicontrolFontWeight.cpp \
 	src/cpp/GetUicontrolFontWeight.cpp \
 	src/cpp/SetUicontrolFontUnits.cpp \
@@ -140,7 +142,14 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/GetUicontrolValue.cpp \
 	src/cpp/SetUicontrolListboxTop.cpp \
 	src/cpp/GetUicontrolListboxTop.cpp \
-	src/cpp/SetUicontrolUnits.cpp src/cpp/GetUicontrolUnits.cpp
+	src/cpp/SetUicontrolUnits.cpp src/cpp/GetUicontrolUnits.cpp \
+	src/cpp/SetUicontrolRelief.cpp src/cpp/GetUicontrolRelief.cpp \
+	src/cpp/SetUicontrolHorizontalAlignment.cpp \
+	src/cpp/GetUicontrolHorizontalAlignment.cpp \
+	src/cpp/SetUicontrolVerticalAlignment.cpp \
+	src/cpp/GetUicontrolVerticalAlignment.cpp \
+	src/cpp/SetUicontrolSliderStep.cpp \
+	src/cpp/GetUicontrolSliderStep.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -194,6 +203,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-GetUiobjectForegroundColor.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolPosition.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolPosition.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolFontName.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolFontName.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolFontWeight.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolFontWeight.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolFontUnits.lo \
@@ -215,7 +226,15 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-SetUicontrolListboxTop.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolListboxTop.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolUnits.lo \
-@GUI_TRUE@	libscigui_la-GetUicontrolUnits.lo
+@GUI_TRUE@	libscigui_la-GetUicontrolUnits.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolRelief.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolRelief.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolHorizontalAlignment.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolHorizontalAlignment.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolVerticalAlignment.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolVerticalAlignment.lo \
+@GUI_TRUE@	libscigui_la-SetUicontrolSliderStep.lo \
+@GUI_TRUE@	libscigui_la-GetUicontrolSliderStep.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -527,6 +546,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetUiobjectForegroundColor.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolPosition.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolPosition.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolFontName.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolFontName.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolFontWeight.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolFontWeight.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolFontUnits.cpp \
@@ -548,7 +569,15 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/SetUicontrolListboxTop.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolListboxTop.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolUnits.cpp \
-@GUI_TRUE@src/cpp/GetUicontrolUnits.cpp
+@GUI_TRUE@src/cpp/GetUicontrolUnits.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolRelief.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolRelief.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolHorizontalAlignment.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolHorizontalAlignment.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolVerticalAlignment.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolVerticalAlignment.cpp \
+@GUI_TRUE@src/cpp/SetUicontrolSliderStep.cpp \
+@GUI_TRUE@src/cpp/GetUicontrolSliderStep.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
@@ -745,17 +774,22 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontAngle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontName.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontSize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontWeight.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolHorizontalAlignment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolListboxTop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolMax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolMin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolPosition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolRelief.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolSliderStep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolStyle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolValue.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolVerticalAlignment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUimenuLabel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Plo@am__quote@
@@ -767,17 +801,22 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontAngle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontName.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontSize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontWeight.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolHorizontalAlignment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolListboxTop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolMax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolMin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolParent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolPosition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolRelief.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolSliderStep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolValue.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolVerticalAlignment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUimenuLabel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Plo@am__quote@
@@ -1243,6 +1282,20 @@ libscigui_la-GetUicontrolPosition.lo: src/cpp/GetUicontrolPosition.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolPosition.lo `test -f 'src/cpp/GetUicontrolPosition.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolPosition.cpp
 
+libscigui_la-SetUicontrolFontName.lo: src/cpp/SetUicontrolFontName.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolFontName.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolFontName.Tpo -c -o libscigui_la-SetUicontrolFontName.lo `test -f 'src/cpp/SetUicontrolFontName.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolFontName.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolFontName.Tpo $(DEPDIR)/libscigui_la-SetUicontrolFontName.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolFontName.cpp' object='libscigui_la-SetUicontrolFontName.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolFontName.lo `test -f 'src/cpp/SetUicontrolFontName.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolFontName.cpp
+
+libscigui_la-GetUicontrolFontName.lo: src/cpp/GetUicontrolFontName.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolFontName.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolFontName.Tpo -c -o libscigui_la-GetUicontrolFontName.lo `test -f 'src/cpp/GetUicontrolFontName.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolFontName.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolFontName.Tpo $(DEPDIR)/libscigui_la-GetUicontrolFontName.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolFontName.cpp' object='libscigui_la-GetUicontrolFontName.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolFontName.lo `test -f 'src/cpp/GetUicontrolFontName.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolFontName.cpp
+
 libscigui_la-SetUicontrolFontWeight.lo: src/cpp/SetUicontrolFontWeight.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolFontWeight.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolFontWeight.Tpo -c -o libscigui_la-SetUicontrolFontWeight.lo `test -f 'src/cpp/SetUicontrolFontWeight.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolFontWeight.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolFontWeight.Tpo $(DEPDIR)/libscigui_la-SetUicontrolFontWeight.Plo
@@ -1396,6 +1449,62 @@ libscigui_la-GetUicontrolUnits.lo: src/cpp/GetUicontrolUnits.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolUnits.cpp' object='libscigui_la-GetUicontrolUnits.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolUnits.lo `test -f 'src/cpp/GetUicontrolUnits.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolUnits.cpp
+
+libscigui_la-SetUicontrolRelief.lo: src/cpp/SetUicontrolRelief.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolRelief.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolRelief.Tpo -c -o libscigui_la-SetUicontrolRelief.lo `test -f 'src/cpp/SetUicontrolRelief.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolRelief.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolRelief.Tpo $(DEPDIR)/libscigui_la-SetUicontrolRelief.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolRelief.cpp' object='libscigui_la-SetUicontrolRelief.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolRelief.lo `test -f 'src/cpp/SetUicontrolRelief.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolRelief.cpp
+
+libscigui_la-GetUicontrolRelief.lo: src/cpp/GetUicontrolRelief.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolRelief.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolRelief.Tpo -c -o libscigui_la-GetUicontrolRelief.lo `test -f 'src/cpp/GetUicontrolRelief.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolRelief.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolRelief.Tpo $(DEPDIR)/libscigui_la-GetUicontrolRelief.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolRelief.cpp' object='libscigui_la-GetUicontrolRelief.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolRelief.lo `test -f 'src/cpp/GetUicontrolRelief.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolRelief.cpp
+
+libscigui_la-SetUicontrolHorizontalAlignment.lo: src/cpp/SetUicontrolHorizontalAlignment.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolHorizontalAlignment.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolHorizontalAlignment.Tpo -c -o libscigui_la-SetUicontrolHorizontalAlignment.lo `test -f 'src/cpp/SetUicontrolHorizontalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolHorizontalAlignment.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolHorizontalAlignment.Tpo $(DEPDIR)/libscigui_la-SetUicontrolHorizontalAlignment.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolHorizontalAlignment.cpp' object='libscigui_la-SetUicontrolHorizontalAlignment.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolHorizontalAlignment.lo `test -f 'src/cpp/SetUicontrolHorizontalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolHorizontalAlignment.cpp
+
+libscigui_la-GetUicontrolHorizontalAlignment.lo: src/cpp/GetUicontrolHorizontalAlignment.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolHorizontalAlignment.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolHorizontalAlignment.Tpo -c -o libscigui_la-GetUicontrolHorizontalAlignment.lo `test -f 'src/cpp/GetUicontrolHorizontalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolHorizontalAlignment.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolHorizontalAlignment.Tpo $(DEPDIR)/libscigui_la-GetUicontrolHorizontalAlignment.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolHorizontalAlignment.cpp' object='libscigui_la-GetUicontrolHorizontalAlignment.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolHorizontalAlignment.lo `test -f 'src/cpp/GetUicontrolHorizontalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolHorizontalAlignment.cpp
+
+libscigui_la-SetUicontrolVerticalAlignment.lo: src/cpp/SetUicontrolVerticalAlignment.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolVerticalAlignment.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolVerticalAlignment.Tpo -c -o libscigui_la-SetUicontrolVerticalAlignment.lo `test -f 'src/cpp/SetUicontrolVerticalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolVerticalAlignment.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolVerticalAlignment.Tpo $(DEPDIR)/libscigui_la-SetUicontrolVerticalAlignment.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolVerticalAlignment.cpp' object='libscigui_la-SetUicontrolVerticalAlignment.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolVerticalAlignment.lo `test -f 'src/cpp/SetUicontrolVerticalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolVerticalAlignment.cpp
+
+libscigui_la-GetUicontrolVerticalAlignment.lo: src/cpp/GetUicontrolVerticalAlignment.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolVerticalAlignment.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolVerticalAlignment.Tpo -c -o libscigui_la-GetUicontrolVerticalAlignment.lo `test -f 'src/cpp/GetUicontrolVerticalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolVerticalAlignment.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolVerticalAlignment.Tpo $(DEPDIR)/libscigui_la-GetUicontrolVerticalAlignment.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolVerticalAlignment.cpp' object='libscigui_la-GetUicontrolVerticalAlignment.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolVerticalAlignment.lo `test -f 'src/cpp/GetUicontrolVerticalAlignment.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolVerticalAlignment.cpp
+
+libscigui_la-SetUicontrolSliderStep.lo: src/cpp/SetUicontrolSliderStep.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUicontrolSliderStep.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUicontrolSliderStep.Tpo -c -o libscigui_la-SetUicontrolSliderStep.lo `test -f 'src/cpp/SetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolSliderStep.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUicontrolSliderStep.Tpo $(DEPDIR)/libscigui_la-SetUicontrolSliderStep.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUicontrolSliderStep.cpp' object='libscigui_la-SetUicontrolSliderStep.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUicontrolSliderStep.lo `test -f 'src/cpp/SetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolSliderStep.cpp
+
+libscigui_la-GetUicontrolSliderStep.lo: src/cpp/GetUicontrolSliderStep.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUicontrolSliderStep.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUicontrolSliderStep.Tpo -c -o libscigui_la-GetUicontrolSliderStep.lo `test -f 'src/cpp/GetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSliderStep.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUicontrolSliderStep.Tpo $(DEPDIR)/libscigui_la-GetUicontrolSliderStep.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolSliderStep.cpp' object='libscigui_la-GetUicontrolSliderStep.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolSliderStep.lo `test -f 'src/cpp/GetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSliderStep.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

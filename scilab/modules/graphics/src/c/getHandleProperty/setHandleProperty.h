@@ -31,6 +31,12 @@
 #include "SetUicontrolUnits.h"
 #include "SetUicontrolListboxTop.h"
 #include "SetUicontrolValue.h"
+#include "SetUicontrolRelief.h"
+#include "SetUicontrolHorizontalAlignment.h"
+#include "SetUicontrolVerticalAlignment.h"
+#include "SetUicontrolFontName.h"
+#include "SetUicontrolSliderStep.h"
+
 
 int set_color_map_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_old_style_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;

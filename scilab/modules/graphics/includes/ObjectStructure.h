@@ -702,6 +702,7 @@ typedef struct
 
   int CallbackType;
 
+  /* Userdata property */
   int * user_data;
   int size_of_user_data;
 
@@ -718,6 +719,9 @@ typedef struct
   /* Style property: Must be a value from UicontrolStyle enum */
   int style;
 
+  /* FontName property */
+  char * fontName;
+
   /* FontAngle property: Must be a value from UicontrolFontProperties enum */
   int fontAngle;
 
@@ -730,9 +734,23 @@ typedef struct
   /* Units property: Must be a value from UicontrolUnits enum */
   int units;
 
+  /* Relief property: Must be a value from UicontrolRelief enum */
+  int relief;
+
+  /* Horizontalalignment property */
+  int horizontalAlignment;
+
+  /* Verticalalignment property */
+  int verticalAlignment;
+
+  /* Min/Max properties */
   int min;
   int max;
 
+  /* SliderStep property */
+  double * sliderStep;
+
+  /* Tag property */
   char * tag;
 }/** */
 sciUicontrol;
@@ -752,6 +770,10 @@ typedef enum {
 } UicontrolStyle ;
 /* uicontrol units */
 typedef enum {POINTS_UNITS, NORMALIZED_UNITS, INCHES_UNITS, CENTIMETERS_UNITS, PIXELS_UNITS} UicontrolUnits ;
+/* uicontrol relief */
+typedef enum {FLAT_RELIEF, GROOVE_RELIEF, RAISED_RELIEF, RIDGE_RELIEF, SOLID_RELIEF, SUNKEN_RELIEF} UicontrolRelief;
+/* uicontrol alignment */
+typedef enum {LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT, TOP_ALIGNMENT, MIDDLE_ALIGNMENT, BOTTOM_ALIGNMENT} UicontrolAlignment;
 
 /* the part of the drawn box for 3d axis */
 typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXIS, BT_BACK_HALF } EAxesBoxType ;

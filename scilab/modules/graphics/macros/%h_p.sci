@@ -695,22 +695,28 @@ function %h_p(h)
   "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
   //"Enable = "+sci2exp(h.menu_enable)
   "FontAngle = "+h.fontangle
+  "FontName = "+h.fontname
   "FontSize = "+sci2exp(h.fontsize)
   "FontUnits = "+h.fontunits
   "FontWeight = "+h.fontweight
   "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
+  "HorizontalAlignment = "+h.horizontalalignment
+  "ListboxTop = "+sci2exp(h.listboxtop,0)
   "Max = "+sci2exp(h.max)
   "Min = "+sci2exp(h.min)
-  "ListboxTop = "+sci2exp(h.listboxtop,0)
-  "Value = "+sci2exp(h.value,0)
   "Position = "+sci2exp(h.position,0)
+  "Relief = "+h.relief
+  "SliderStep = "+sci2exp(h.sliderstep)
   "String = "+h.string
   "Style = "+h.style
   "Units = "+h.units
+  "Value = "+sci2exp(h.value,0)
+  "VerticalAlignment = "+h.verticalalignment
   "Visible = "+sci2exp(h.visible)
   "Callback = "+h.callback
   "CallbackType = "+h.callback_type
   //"handle_visible = "+sci2exp(h.handle_visible)
+  "Userdata = "+h.user_data
   "Tag = "+h.tag
   ]
     end

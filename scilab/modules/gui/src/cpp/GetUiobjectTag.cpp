@@ -10,7 +10,7 @@ int GetUiobjectTag(sciPointObj* sciObj)
 {
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
-      // Get the label
+      // Get the tag
       if (pUIMENU_FEATURE(sciObj)->tag == NULL)
         {
           return sciReturnString("");
@@ -22,11 +22,11 @@ int GetUiobjectTag(sciPointObj* sciObj)
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
-      // Get the label from Java
+      // Get the tag from Scilab
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
-          // Get the label
+          // Get the tag
           if (pUICONTROL_FEATURE(sciObj)->tag == NULL)
             {
               return sciReturnString("");

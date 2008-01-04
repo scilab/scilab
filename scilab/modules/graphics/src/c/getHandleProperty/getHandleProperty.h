@@ -29,6 +29,11 @@
 #include "GetUicontrolUnits.h"
 #include "GetUicontrolListboxTop.h"
 #include "GetUicontrolValue.h"
+#include "GetUicontrolRelief.h"
+#include "GetUicontrolHorizontalAlignment.h"
+#include "GetUicontrolVerticalAlignment.h"
+#include "GetUicontrolFontName.h"
+#include "GetUicontrolSliderStep.h"
 
 int get_figures_id_property(           sciPointObj * pobj ) ;
 int get_visible_property(              sciPointObj * pobj ) ;
