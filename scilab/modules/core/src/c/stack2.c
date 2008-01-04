@@ -1920,11 +1920,11 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 
  L89:
   if (Top < Rhs) {
-	  Scierror(22,_("%s: recursion problems. Sorry ...\n"),"scifunction");
+	  Scierror(22,_("%s: Recursion problems. Sorry ...\n"),"scifunction");
     goto L9999;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
-    Scierror(18,_("%s: too many names.\n"),"scifunction");
+    Scierror(18,_("%s: Too many names.\n"),"scifunction");
     goto L9999;
   }
   goto L91;
@@ -1939,7 +1939,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   k = C2F(com).fun;
   C2F(com).fun = 0;
   if (k == krec) {
-    Scierror(22,_("%s: recursion problems. Sorry ...\n"),"scifunction");
+    Scierror(22,_("%s: Recursion problems. Sorry ...\n"),"scifunction");
     goto L9999;
   }
   if (k == 0) {
@@ -2146,11 +2146,11 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   }
  L89:
   if (Top < Rhs) {
-    Scierror(22,_("%s: recursion problems. Sorry ...\n"),_("built in"));
+    Scierror(22,_("%s: Recursion problems. Sorry ...\n"),_("built in"));
     goto L9999;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
-    Scierror(18,_("%s: too many names.\n"),"");
+    Scierror(18,_("%s: Too many names.\n"),"");
     goto L9999;
   }
   goto L91;
@@ -2165,7 +2165,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   k = C2F(com).fun;
   C2F(com).fun = 0;
   if (k == krec) {
-    Scierror(22,_("%s: recursion problems. Sorry ...\n"),_("built in"));
+    Scierror(22,_("%s: Recursion problems. Sorry ...\n"),_("built in"));
     goto L9999;
   }
   if (k == 0) {
@@ -3163,7 +3163,7 @@ int C2F(createreffromname)(int number, char *name)
   }
   else
     {
-      Scierror(999,_("%s: variable %s not found.\n"),"CreateRefFromName",name);
+      Scierror(999,_("%s: Variable %s not found.\n"),"CreateRefFromName",name);
       return 0;
     }
 }
