@@ -68,7 +68,7 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
   if ( Rhs < *iMin || Rhs > *iMax)
     {
 		if (Rhs==0 || Rhs==1) { /* 0 or 1 input argument */
-			Scierror(77,_("%s: Wrong number of input arguments: %d expected.\n"),get_fname(fname,fname_len), *iMax);
+			Scierror(77,_("%s: Wrong number of input argument: %d expected.\n"),get_fname(fname,fname_len), *iMax);
 		}else{
 			Scierror(77,_("%s: Wrong number of input arguments: %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
 		}
