@@ -16,6 +16,7 @@
 #include "getdate.h"
 #include "machine.h"
 #include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 #define ISO_WEEK_START_WDAY 1 /* Monday */
