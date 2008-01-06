@@ -4,13 +4,13 @@ commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
 flexdock.jar=${thirdparty.dir}/flexdock-0.5.1.jar
 
+jogl.jar=${thirdparty.dir}/jogl.jar
+
 gluegen.jar=${thirdparty.dir}/gluegen-rt.jar
 
-JRosetta-API-1.0.jar=${thirdparty.dir}/jrosetta-API.jar
+jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
-JRosetta-1.0.jar=${thirdparty.dir}/jrosetta-engine.jar
-
-jogl.jar=${thirdparty.dir}/jogl.jar
+jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 

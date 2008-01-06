@@ -292,6 +292,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\scilab-lib.properties.vc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\modules\helptools\macros\xmlfiletohtml.sci.vc"
 				>
 			</File>

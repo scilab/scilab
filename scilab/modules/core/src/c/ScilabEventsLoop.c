@@ -4,6 +4,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "ScilabEventsLoop.h"
 #include "scilabmode.h"
+#include "../../../tclsci/src/c/InitTclTk.h"
 #include "../../../tclsci/includes/TclEvents.h"
 #include "timerEvents.h"
 /*--------------------------------------------------------------------------*/

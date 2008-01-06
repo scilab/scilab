@@ -17,6 +17,8 @@
    #error "Cannot find locale.h despite that libintl.h is available"
   #endif
  #endif
+#else
+	#include <locale.h>
 #endif
 
 #include "setgetlanguage.h"

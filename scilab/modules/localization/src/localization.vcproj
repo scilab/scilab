@@ -341,6 +341,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\sci_gateway\c\sci_dgettext.c"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\c\sci_getdefaultlanguage.c"
 				>
 			</File>
