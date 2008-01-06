@@ -1461,8 +1461,8 @@ msgstr "        ___________________________________________        "
 
 #
 # File: src/c/banier.c, line: 28
-msgid "                 Copyright (c) 1989-2007                   \n"
-msgstr "                 Copyright (c) 1989-2007                   \n"
+msgid "                 Copyright (c) 1989-2008                   \n"
+msgstr "                 Copyright (c) 1989-2008                   \n"
 
 #
 # File: src/c/banier.c, line: 29
