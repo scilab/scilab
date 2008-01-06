@@ -9,9 +9,10 @@
 #define __SCIMATH_H__
 #include <limits.h>
 #include <math.h>
-#include "machine.h"
-
 #include <stdlib.h>
+#include "machine.h"
+#include "core_math.h"
+
 
 
 
@@ -34,14 +35,6 @@
 	#define ISNAN(x) isnan(x)
 #endif 
 
-#define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
-#ifndef Min
-#define Min(x,y)	(((x)<(y))?(x):(y))
-#endif 
-
-#ifndef Max 
-#define Max(x,y)	(((x)>(y))?(x):(y))
-#endif
 
 #define PI0 (integer *) 0
 #define PD0 (double *) 0

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "machine.h"
+#include "core_math.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "returnanan.h"
@@ -19,7 +20,6 @@
 #define  typ_uchar "uc"
 #define  typ_double "d"
 #define  typ_int "i"
-#define Min(x,y)  ((x) < (y) ? (x) : (y))
 /*------------------------------------------------------------------*/
 extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 /*------------------------------------------------------------------*/

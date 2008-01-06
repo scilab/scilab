@@ -2,6 +2,7 @@
 #include <math.h>
 
 #include "machine.h"
+#include "core_math.h"
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "scicos.h"
  
@@ -10,9 +11,6 @@
  *     A set of elementary blocks 
  *------------------------------------------------*/
 
-#define Abs(x) ( (x) > 0) ? (x) : -(x)
-#define Min(x,y)	(((x)<(y))?(x):(y))
-#define Max(x,y)	(((x)>(y))?(x):(y))
 
 typedef  void (scicos0_block) __PARAMS((ARGS_scicos0));
 extern scicos0_block F2C(absblk), F2C(andlog), F2C(bidon), F2C(gain);
