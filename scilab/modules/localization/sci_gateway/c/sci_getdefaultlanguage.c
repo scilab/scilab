@@ -10,19 +10,19 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getdefaultlanguage) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int n1,m1;
-	char *Output=NULL;
-
+	static int n1 = 0,m1 = 0,l1 = 0;
+	
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	Output=SCILABDEFAULTLANGUAGE;
-	strcat(Output,"\0");
+	m1= (int)strlen(SCILABDEFAULTLANGUAGE);
 	n1=1;
-	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
+
+	CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&l1);
+	strcpy(cstk(l1), SCILABDEFAULTLANGUAGE );
+
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
-
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
