@@ -4,7 +4,9 @@
 package org.scilab.modules.gui.bridge.pushbutton;
 
 import java.awt.Dimension;
+import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -67,7 +69,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setDims(Size newSize) {
 		setSize(newSize.getWidth(), newSize.getHeight());
 		setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
-		setBounds(getPosition().getX(), getPosition().getY(), newSize.getWidth(), newSize.getHeight());
+		//setBounds(getPosition().getX(), getPosition().getY(), newSize.getWidth(), newSize.getHeight());
 	}
 
 	/**
