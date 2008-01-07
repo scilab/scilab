@@ -19,16 +19,16 @@ int geom3d(double *x, double *y, double *z, int n) ;
 int geom3d(double *x, double *y, double *z, int n)
 {
   int i;
-  int pixCoords[2];
+  double userCoords2d[2];
 
   sciPointObj * psubwin = sciGetCurrentSubWin();
   
   for (i = 0; i < n; i++)
   {
     double userCoords[3] = {x[i], y[i], z[i]};
-    sciGetPixelCoordinate(psubwin, userCoords, pixCoords);
-    x[i] = pixCoords[0];
-    y[i] = pixCoords[1];
+    sciGet2dViewCoordinate(psubwin, userCoords, userCoords2d);
+    x[i] = userCoords2d[0];
+    y[i] = userCoords2d[1];
   }
 
   return 0;
@@ -42,7 +42,7 @@ int sci_geom3d( char * fname, unsigned long fname_len )
   if ( Rhs <= 0 )
   {
     int one = 1 ;
-    sci_demo( fname, "t=0:0.1:5*%pi,[x,y]=geom3d(sin(t),cos(t),t/10);", &one ) ;
+    sci_demo( fname, "t=0:0.1:5*%pi,[x,y]=geom3d(sin(t),cos(t),t/10)", &one ) ;
     return 0 ;
   }
 

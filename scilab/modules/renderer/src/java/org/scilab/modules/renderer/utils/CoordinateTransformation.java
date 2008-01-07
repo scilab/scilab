@@ -57,6 +57,27 @@ public class CoordinateTransformation {
 	}
 	
 	/**
+	 * @return current projection matrix
+	 */
+	public Matrix4D getProjectionMatrix() {
+		return projectMatrix;
+	}
+	
+	/**
+	 * @return current inverse of projection matrix
+	 */
+	public Matrix4D getUnprojectMatrix() {
+		return unprojectMatrix;
+	}
+	
+	/**
+	 * @return current viewPort
+	 */
+	public double[] getViewPort() {
+		return viewPort;
+	}
+	
+	/**
 	 * Update the projection data of the coordinates.
 	 * @param gl current Gl pipeline
 	 */

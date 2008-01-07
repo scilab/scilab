@@ -42,6 +42,15 @@ public:
    */
   void get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2]);
 
+  /**
+   * Find coordinates in 2D view from pixel ones
+   */
+  void get2dViewCoordinates(const int pixCoords[2], double userCoord2D[2]);
+
+  /**
+   * Find the projection of user coords on the 2D frame.
+   */
+  void get2dViewCoordinates(const double userCoords[3], double coord2D[2]);
 
   /**
    * Draw the graphic handle and store it representation in memory
@@ -54,6 +63,15 @@ public:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void );
+
+  /**
+   * Apply a zoom square on the axes box
+   * @param posX X coordinate of the lower left point of the zoom box in pixels.
+   * @param posY Y coordinate of the lower left point of the zoom box in pixels.
+   * @param width width of the zooming rectangle.
+   * @param height height of the zooming rectangle.
+   */
+  void zoomRect(int posX, int posY, int width, int height);
 
 protected:
 
@@ -90,6 +108,38 @@ protected:
    * Position the view and view area accordingly to previous calls.
    */
   void renderPosition( void ) ;
+
+  /**
+   * Apply a zoom square on the axes box
+   * @param corners the 4 corners of the zooming rectangle in pixel
+   */
+  void zoomRect(const double corners[4][2]);
+
+  /**
+   * Compute new bounds for one axis.
+   * @param corners coordinates of the zooming rectangle in pixels
+   * @param axisPoint1 coordinates of a point on the axis in user coordinates.
+   * @param axisPoint2 coordinate of an other point on the axis in user coordinates.
+   * @param minBound old minimum bound on the axis
+   * @param maxNound old maximum bound on the axis
+   * @param[out] newMinBound newly computed minimum bound
+   * @param[out] newMaxBound newly computed maximum bound.
+   */
+  void getNewBounds(const double corners[4][2], const double axisPoint1[3], const double axisPoint2[3],
+                   double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound);
+
+  /**
+   * Compute new bounds for one axis.
+   * @param corners coordinates of the zooming rectangle in pixels
+   * @param axisPoint1 coordinates of a point on the axis in pixels
+   * @param axisPoint2 coordinate of an other point on the axis in pixels
+   * @param minBound old minimum bound on the axis
+   * @param maxNound old maximum bound on the axis
+   * @param[out] newMinBound newly computed minimum bound
+   * @param[out] newMaxBound newly computed maximum bound.
+   */
+  void getNewBoundsPix(const double corners[4][2], const double axisPoint1[2], const double axisPoint2[2],
+                       double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound);
 
   /**
    * Return the real type of implementation object

@@ -41,7 +41,7 @@ public:
 
   virtual void closeRenderingCanvas(void);
 
-  virtual void setBackgroundColor(int backgroundColor);
+  virtual void setFigureParameters(int backgroundColor, int logicOpIndex);
 
   virtual void setColorMapData(const double rgbmat[], int nbColor);
   virtual void getColorMapData(double rgbmat[]);

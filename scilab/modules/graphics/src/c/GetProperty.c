@@ -4133,9 +4133,30 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
     sciGetJavaPixelCoordinates(pObj, userCoord, pixCoord);
     break;
   default:
-    sciprint(_("Pixel coordinates are only applicable on axes objects.\n"));
+    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
     pixCoord[0] = -1;
     pixCoord[1] = -1;
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Convert user coordinates to pixel ones (relative to the viewing canvas).
+ * @param pObj subwindow handle
+ * @param userCoord user coordinates
+ * @param userCoords2D result in user coord but in the default 2D plane.
+ */
+void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    sciGetJava2dViewCoordinates(pObj, userCoords3D, userCoords2D);
+    break;
+  default:
+    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
+    userCoords2D[0] = 0.0;
+    userCoords2D[1] = 0.0;
     break;
   }
 }

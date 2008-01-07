@@ -61,5 +61,15 @@
       <param type="double" name="userCoordY" />
       <param type="double" name="userCoordZ" />
     </method>
+    <method name="getProjectionMatrix" returnType="double[]">
+    </method>
+    <method name="getUnprojectMatrix" returnType="double[]">
+    </method>
+    <method name="get2dViewProjectionMatrix" returnType="double[]">
+    </method>
+    <method name="get2dViewUnprojectMatrix" returnType="double[]">
+    </method>
+    <method name="getViewPort" returnType="double[]">
+    </method>
   </object>
 </package>

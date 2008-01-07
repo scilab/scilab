@@ -224,6 +224,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	public void drawTextContent() {
 		
 		GL gl = getGL();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
@@ -237,6 +239,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		
 		
 		GLTools.endPixelCoordinates(gl);
+		
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
 	}
 	

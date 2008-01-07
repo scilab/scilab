@@ -25,6 +25,24 @@ import org.scilab.modules.renderer.ObjectGLCleaner;
  */
 public class DrawableFigureGL extends ObjectGL {
 	
+	/** Mapping between scilab pixel drawing mode and OpenGL ones */
+	private static final int[] LOGICAL_OPS = {GL.GL_CLEAR,
+											  GL.GL_AND,
+											  GL.GL_AND_REVERSE,
+											  GL.GL_COPY,
+											  GL.GL_AND_INVERTED,
+											  GL.GL_NOOP,
+											  GL.GL_XOR,
+											  GL.GL_OR,
+											  GL.GL_NOR,
+											  GL.GL_EQUIV,
+											  GL.GL_INVERT,
+											  GL.GL_OR_REVERSE,
+											  GL.GL_COPY_INVERTED,
+											  GL.GL_OR_INVERTED,
+											  GL.GL_NAND,
+											  GL.GL_SET};
+	
 	/** Canvas to draw the figure */
 	private RendererProperties guiProperties;
 	/** store the figureIndex */
@@ -34,6 +52,8 @@ public class DrawableFigureGL extends ObjectGL {
 	
 	/** To know if the figure can be displayed */
 	private boolean isReadyForRendering;
+	
+	private boolean pixmapModeOn;
 	
 	/**
 	 * Default Constructor
@@ -45,6 +65,7 @@ public class DrawableFigureGL extends ObjectGL {
       	figureId = -1; // figure ids should be greater than 0.
       	destroyedObjects = new ObjectGLCleaner();
       	isReadyForRendering = false;
+      	pixmapModeOn = true;
     }
 	
 	/**
@@ -199,12 +220,31 @@ public class DrawableFigureGL extends ObjectGL {
   	
   	/**
   	 * Set the background color of the figure
-  	 * @param colorIndex index of the colro to use
+  	 * @param colorIndex index of the color to use
   	 */
   	public void setBackgroundColor(int colorIndex) {
   		double[] color = getColorMap().getColor(colorIndex);
-  		getGL().glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
-  		getGL().glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+		getGL().glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
+  	}
+  	
+  	
+  	/**
+     * Set the pixel drawing mode of the figure.
+  	 * @param logicOpIndex Scilab value of pixel drawing mode
+  	 */
+  	public void setLogicalOp(int logicOpIndex) {
+  		// convert to OpenGL value
+  		getGL().glLogicOp(LOGICAL_OPS[logicOpIndex]);
+  	}
+  	
+  	/**
+  	 * Set all figure parameters in one time
+  	 * @param backgroundColor index of the background color
+  	 * @param logicOpIndex Scilab value of pixel drawing mode
+  	 */
+  	public void setFigureParameters(int backgroundColor, int logicOpIndex) {
+  		setLogicalOp(logicOpIndex);
+  		setBackgroundColor(backgroundColor);
   	}
   	
   	/**
@@ -304,36 +344,14 @@ public class DrawableFigureGL extends ObjectGL {
 	 * @param onOrOff specify if we set the pixmap on or off
 	 */
 	public void setPixmapMode(boolean onOrOff) {
-		
+		pixmapModeOn = onOrOff;
 	}
 	
 	/**
 	 * @return wether the pixmap mode is on ar off.
 	 */
-	public boolean getPixmapModeB() {
-		return false;
-	}
-	
-	/**
-	 * @param onOrOff if 0 set pixmap mode to false, otherwise set it to true.
-	 */
-	public void setPixmapMode(int onOrOff) {
-		if (onOrOff == 0) {
-			setPixmapMode(false);
-		} else {
-			setPixmapMode(true);
-		}
-	}
-	
-	/**
-	 * @return 0 if pixmap mode is false, 1 otherwise.
-	 */
-	public int getPixmapMode() {
-		if (getPixmapModeB()) {
-			return 1;
-		} else {
-			return 0;
-		}
+	public boolean getPixmapMode() {
+		return pixmapModeOn;
 	}
 	
   	

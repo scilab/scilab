@@ -55,6 +55,11 @@ void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff);
  */
 void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable);
 
+/**
+ * Zoom a subwin object with the specified rectangle in pixels
+ */
+void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height);
+
 #ifdef __cplusplus
 }
 #endif

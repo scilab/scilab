@@ -81,7 +81,7 @@ void DrawableFigure::closeRenderingCanvas( void )
 void DrawableFigure::drawInContext( void )
 {
   initializeDrawing() ;
-  setBackgroundColor() ;
+  setFigureParameters() ;
   if ( checkVisibility() )
   {
     displayChildren() ;
@@ -122,9 +122,9 @@ void DrawableFigure::setInfoMessage( const char * infoMessage )
   getFigureImp()->setInfoMessage(infoMessage) ;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::setBackgroundColor( void )
+void DrawableFigure::setFigureParameters( void )
 {
-  getFigureImp()->setBackgroundColor( sciGetGraphicContext(getDrawedObject())->backgroundcolor ) ;
+  getFigureImp()->setFigureParameters() ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::getWindowPosition( int pos[2] )

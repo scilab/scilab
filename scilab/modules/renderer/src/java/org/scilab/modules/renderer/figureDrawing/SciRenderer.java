@@ -41,9 +41,16 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */    
   public void display(GLAutoDrawable gLDrawable) {
+	//gLDrawable.setAutoSwapBufferMode(false);
+	DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
     // should call the draw function of the corresponding figure
-	if (FigureMapper.getCorrespondingFigure(renderedFigure).getIsRenderingEnable()) {
+	if (curFigure.getIsRenderingEnable()) {
 		FigureScilabCall.displayFigure(renderedFigure);
+	}
+	
+	// seems that buffers will be swaped any way with GLJPanel
+	if (!gLDrawable.getAutoSwapBufferMode()) {
+		gLDrawable.swapBuffers();
 	}
 
   }
@@ -62,6 +69,7 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */
   public void init(GLAutoDrawable gLDrawable) {
+	  gLDrawable.setAutoSwapBufferMode(false);
 	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
       if (curFigure.getIsRenderingEnable()) {
     	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
@@ -73,8 +81,9 @@ public class SciRenderer
       gl.glClearDepth(1.0f);                      // Depth Buffer Setup
       gl.glEnable(GL.GL_DEPTH_TEST);							// Enables Depth Testing
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
-      gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really Nice Perspective Calculations
+      gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin lines
+	  gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
 
     }
     

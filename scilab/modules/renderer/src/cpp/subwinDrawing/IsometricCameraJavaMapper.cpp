@@ -114,5 +114,42 @@ void IsometricCameraJavaMapper::get2dViewPixelCoordinates(double userCoordX, dou
   delete[] javaCoords;
 }
 /*--------------------------------------------------------------------------*/
-
+void IsometricCameraJavaMapper::getProjectionMatrix(double mat[4][4])
+{
+  double * matArray = m_pJavaObject->getProjectionMatrix();
+  convertMatrixFormat(matArray, mat);
+  delete[] matArray;
+}
+/*--------------------------------------------------------------------------*/
+void IsometricCameraJavaMapper::getUnprojectMatrix(double mat[4][4])
+{
+  double * matArray = m_pJavaObject->getUnprojectMatrix();
+  convertMatrixFormat(matArray, mat);
+  delete[] matArray;
+}
+/*--------------------------------------------------------------------------*/
+void IsometricCameraJavaMapper::get2dViewProjectionMatrix(double mat[4][4])
+{
+  double * matArray = m_pJavaObject->get2dViewProjectionMatrix();
+  convertMatrixFormat(matArray, mat);
+  delete[] matArray;
+}
+/*--------------------------------------------------------------------------*/
+void IsometricCameraJavaMapper::get2dViewUnprojectMatrix(double mat[4][4])
+{
+  double * matArray = m_pJavaObject->get2dViewUnprojectMatrix();
+  convertMatrixFormat(matArray, mat);
+  delete[] matArray;
+}
+/*--------------------------------------------------------------------------*/
+void IsometricCameraJavaMapper::getViewPort(double viewPort[4])
+{
+  double * javaViewPort = m_pJavaObject->getViewPort();
+  viewPort[0] = javaViewPort[0];
+  viewPort[1] = javaViewPort[1];
+  viewPort[2] = javaViewPort[2];
+  viewPort[3] = javaViewPort[3];
+  delete[] javaViewPort;
+}
+/*--------------------------------------------------------------------------*/
 }

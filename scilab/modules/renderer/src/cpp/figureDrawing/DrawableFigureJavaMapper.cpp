@@ -68,9 +68,9 @@ void DrawableFigureJavaMapper::closeRenderingCanvas(void)
   m_pJavaObject->closeRenderingCanvas();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::setBackgroundColor(int backgroundColor)
+void DrawableFigureJavaMapper::setFigureParameters(int backgroundColor, int logicOpIndex)
 {
-  m_pJavaObject->setBackgroundColor(backgroundColor);
+  m_pJavaObject->setFigureParameters(backgroundColor, logicOpIndex);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setColorMapData(const double rgbmat[], int nbColor)
@@ -147,27 +147,12 @@ void DrawableFigureJavaMapper::setInfoMessage(char * infoMessage)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setPixmapMode(bool onOrOff)
 {
-  if (onOrOff)
-  {
-    m_pJavaObject->setPixmapMode(1);
-  }
-  else
-  {
-    m_pJavaObject->setPixmapMode(0);
-  }
-  
+  m_pJavaObject->setPixmapMode(onOrOff);  
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::getPixmapMode(void)
 {
-  if (m_pJavaObject->getPixmapMode() == 0)
-  {
-    return false;
-  }
-  else
-  {
-    return true;
-  }
+ return m_pJavaObject->getPixmapMode();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setRenderingEnable(bool isEnable)

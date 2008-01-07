@@ -44,7 +44,7 @@ public:
   /**
    * Set the background color of the figure
    */
-  virtual void setBackgroundColor( int backgroundColor ) = 0 ;
+  virtual void setFigureParameters(void) = 0 ;
 
   /**
    * Set a new colormap to this figure

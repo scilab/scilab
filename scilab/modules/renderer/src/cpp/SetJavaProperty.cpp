@@ -9,6 +9,7 @@
 #include "SetJavaProperty.h"
 #include "getHandleDrawer.h"
 #include "figureDrawing/DrawableFigure.h"
+#include "subwinDrawing/DrawableSubwin.h"
 
 using namespace sciGraphics ;
 
@@ -46,5 +47,10 @@ void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff)
 void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable)
 {
   getFigureDrawer(pFigure)->setRenderingEnable(isEnable == TRUE);
+}
+/*---------------------------------------------------------------------------------*/
+void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
+{
+  getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height);
 }
 /*---------------------------------------------------------------------------------*/

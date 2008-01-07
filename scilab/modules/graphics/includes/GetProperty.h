@@ -219,6 +219,8 @@ void sciGetTextPos(sciPointObj * pObj, double position[3]); /* GET */
 
 void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2]); /* GET */
 
+void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2]); /* GET */
+
 BOOL sciGetIsIsoView(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsCubeScaled(sciPointObj * pObj); /* GET */

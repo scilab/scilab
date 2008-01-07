@@ -42,6 +42,21 @@ public:
 
   virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;
   virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]) = 0;
+
+  virtual void getProjectionMatrix(double mat[4][4]) = 0;
+  virtual void getUnprojectMatrix(double mat[4][4]) = 0;
+  virtual void get2dViewProjectionMatrix(double mat[4][4]) = 0;
+  virtual void get2dViewUnprojectMatrix(double mat[4][4]) = 0;
+  virtual void getViewPort(double viewPort[4]) = 0;
+  /*----------------------------------------------------------------------*/
+  void convertMatrixFormat(const double src[16], double dest[4][4]) {
+    for (int i = 0; i < 4; i++) {
+      dest[i][0] = src[4 * i];
+      dest[i][1] = src[4 * i + 1];
+      dest[i][2] = src[4 * i + 2];
+      dest[i][3] = src[4 * i + 3];
+    }
+  }
   /*----------------------------------------------------------------------*/
 
 

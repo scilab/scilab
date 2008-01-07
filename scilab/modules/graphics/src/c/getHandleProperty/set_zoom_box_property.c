@@ -34,7 +34,6 @@ int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
   /* We must have a 4x1 matrix */
   if ( nbRow * nbCol == 6 )
   {
-    //scizoom( getDoubleMatrixFromStack( stackPointer ), pobj ) ;
     return sciZoom3D(pobj, getDoubleMatrixFromStack(stackPointer));
   }
   else if( nbRow * nbCol == 4)
@@ -43,8 +42,7 @@ int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
   }
   else if ( nbCol * nbRow == 0 )
   {
-    sciUnzoom(pobj);
-    //unzoom() ;
+    sciUnzoom(&pobj, 1);
   }
   else
   {

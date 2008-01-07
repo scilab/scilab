@@ -55,3 +55,8 @@ void sciGetJava2dViewPixelCoordinates(sciPointObj * pSubwin, const double userCo
    getSubwinDrawer(pSubwin)->getCamera()->get2dViewPixelCoordinates(userCoord, pixCoord);
 }
 /*---------------------------------------------------------------------------------*/
+void sciGetJava2dViewCoordinates(sciPointObj * pSubwin, const double userCoords3D[3], double userCoords2D[2])
+{
+  getSubwinDrawer(pSubwin)->getCamera()->get2dViewCoordinates(userCoords3D, userCoords2D);
+}
+/*---------------------------------------------------------------------------------*/

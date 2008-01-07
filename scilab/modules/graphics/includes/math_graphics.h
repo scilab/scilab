@@ -140,14 +140,24 @@ void normalize2d( double vect[2] ) ;
 void iNormalize2d( int vect[2] ) ;
 
 /**
+ * Perform the substraction of vect1 and vect2 and store it in res
+ */
+void vectSubstract2D(const double vect1[2], const double vect2[], double res[2]);
+
+/**
  * return the scalar product of two 2d vectors.
  */
 #define DOT_PROD_2D(v1,v2) ( ((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]) )
 
 /**
+ * Square norm of a vector
+ */
+#define SQUARE_NORM_2D(v) ( DOT_PROD_2D((v),(v)) )
+
+/**
  * Norm of a 2D vector
  */
-#define NORM_2D(v) ( sqrt( DOT_PROD_2D((v),(v)) ) ) ;
+#define NORM_2D(v) ( sqrt( SQUARE_NORM_2D(v) ) )
 
 /************************************************************************/
 /* 3D algorithms                                                        */
@@ -172,12 +182,22 @@ void crossProduct( const double v1[3], const double v2[3], double res[3] ) ;
 /**
  * Norm of a 3D vector
  */
-#define NORM_3D(v) ( sqrt( SQUARE_NORM_3D(v) ) ) ;
+#define NORM_3D(v) ( sqrt( SQUARE_NORM_3D(v) ) )
 
 /**
  * Normalize a 3D vector
  */
 void normalize3D( double vect[3] ) ;
+
+/**
+ * Set a 4x4 matrix to identity.
+ */
+void setToIdentity(double mat4D[4][4]);
+
+/**
+ * Compute the product mat4D*vect3D and store the result in res.
+ */
+void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3]);
 
 /*----------------------------------------------------------------------------*/
 /* check if two values can be considered equal given an accurracy */

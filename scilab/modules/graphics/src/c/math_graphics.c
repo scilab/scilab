@@ -122,6 +122,12 @@ void iTranslate2D( int from[2], int trans[2], int dest[2] )
   dest[1] = from[1] + trans[1] ;
 }
 /*----------------------------------------------------------------------------*/
+void vectSubstract2D(const double vect1[2], const double vect2[], double res[2])
+{
+  res[0] = vect1[0] - vect2[0];
+  res[1] = vect1[1] - vect2[1];
+}
+/*----------------------------------------------------------------------------*/
 void normalize2d( double vect[2] )
 {
   double norm = NORM_2D(vect) ;
@@ -149,6 +155,34 @@ void normalize3D( double vect[3] )
   vect[0] /= norm ;
   vect[1] /= norm ;
   vect[2] /= norm ;
+}
+/*----------------------------------------------------------------------------*/
+void setToIdentity(double mat4D[4][4])
+{
+  int i;
+  int j;
+  for (i = 0; i < 4; i++)
+  {
+    for (j = 0; j < 4; j++)
+    {
+      mat4D[i][j] = 0.0;
+    }
+    mat4D[i][i] = 1.0;
+  }
+}
+/*----------------------------------------------------------------------------*/
+void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
+{
+  int i;
+  double res4D[4];
+  // w coordinate of the vector is supposed to be 1;
+  for (i = 0; i < 4; i++) {
+    res4D[i]  =  vect3D[0] * mat4D[i][0] + vect3D[1] * mat4D[i][1]
+               + vect3D[2] * mat4D[i][2] + mat4D[i][3];
+  }
+  res[0] = res4D[0] / res4D[3];
+  res[1] = res4D[1] / res4D[3];
+  res[2] = res4D[2] / res4D[3];
 }
 /*----------------------------------------------------------------------------*/
 /* check if two values can be considered equal given an accurracy */

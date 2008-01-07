@@ -55,6 +55,12 @@ public:
 
   virtual void getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
   virtual void get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ, int pixCoord[2]);
+
+  virtual void getProjectionMatrix(double mat[4][4]);
+  virtual void getUnprojectMatrix(double mat[4][4]);
+  virtual void get2dViewProjectionMatrix(double mat[4][4]);
+  virtual void get2dViewUnprojectMatrix(double mat[4][4]);
+  virtual void getViewPort(double viewPort[4]);
   /*----------------------------------------------------------------------*/
 
 private:

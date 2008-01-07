@@ -155,7 +155,7 @@ protected:
   /**
    * Set the background color of the figure
    */
-  void setBackgroundColor( void ) ;
+  void setFigureParameters( void ) ;
 
   /*-----------------------------------------------------------------------------*/
   /** Synchronizer object used to protect data of the figure and its children */

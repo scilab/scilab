@@ -57,9 +57,11 @@ void DrawableFigureJoGL::closeRenderingCanvas( void )
   }
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::setBackgroundColor( int backgroundColor )
+void DrawableFigureJoGL::setFigureParameters(void)
 {
-  getFigureJavaMapper()->setBackgroundColor(backgroundColor);
+  sciPointObj * pFigure = getFigureDrawer()->getDrawedObject();
+  getFigureJavaMapper()->setFigureParameters(sciGetGraphicContext(pFigure)->backgroundcolor,
+                                             sciGetXorMode(pFigure));
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setColorMap( const double rgbMat[], int nbColor )

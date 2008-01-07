@@ -16,6 +16,8 @@ package org.scilab.modules.renderer.utils.geom3D;
  */
 public class Matrix4D {
 
+	private static final String COMMA = ", ";
+	
 	private static final int MATRIX_SIZE = 4;
 	private static final int MATRIX_NB_ELEMENTS = MATRIX_SIZE * MATRIX_SIZE;
 	
@@ -107,6 +109,21 @@ public class Matrix4D {
 			res[MATRIX_SIZE * j + 1] = values[1][j];
 			res[MATRIX_SIZE * j + 2] = values[2][j];
 			res[MATRIX_SIZE * j + MATRIX_SIZE - 1] = values[MATRIX_SIZE - 1][j];
+		}
+		return res;
+	}
+	
+	/**
+	 * @return an array of size 16, stored row wise.
+	 */
+	public double[] getRowWiseRepresentation() {
+		double[] res = new double[MATRIX_NB_ELEMENTS];
+		
+		for (int i = 0; i < MATRIX_SIZE; i++) {
+			res[MATRIX_SIZE * i] = values[i][0];
+			res[MATRIX_SIZE * i + 1] = values[i][1];
+			res[MATRIX_SIZE * i + 2] = values[i][2];
+			res[MATRIX_SIZE * i + MATRIX_SIZE - 1] = values[i][MATRIX_SIZE - 1];
 		}
 		return res;
 	}
@@ -307,10 +324,9 @@ public class Matrix4D {
 	 * @return text of the matrix
 	 */
 	public String toString() {
-		final String comma = ", ";
 		String res = new String();
 		for (int i = 0; i < MATRIX_SIZE; i++) {
-			res += "[" + values[i][0] + comma + values[i][1] + comma + values[i][2] + comma + values[i][MATRIX_SIZE - 1] + "]" + "\n";
+			res += "[" + values[i][0] + COMMA + values[i][1] + COMMA + values[i][2] + COMMA + values[i][MATRIX_SIZE - 1] + "]" + "\n";
 		}
 		return res;
 	}

@@ -18,6 +18,10 @@
 #include "Vertices.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "SetJavaProperty.h"
+#include "GraphicSynchronizerInterface.h"
+#include "DrawingBridge.h"
+#include "CurrentObjectsManagement.h"
 
 /*------------------------------------------------------------------------------*/
 double InvAxis( double min, double max, double u )
@@ -390,14 +394,6 @@ int sciZoom3D(sciPointObj * pObj, const double zoomBox[6])
 }
 /*------------------------------------------------------------------------------*/
 /**
- * Unzoom the selected subwin
- */
-void sciUnzoom(sciPointObj * pObj)
-{
-  sciSetZooming(pObj, FALSE);
-}
-/*------------------------------------------------------------------------------*/
-/**
  * get the zoom box to dispplay in Scilab for a sunwin object
  * @param[out] zoomBox [xMin, yMin, xMax, yMax, zMin, zMax];
  */
@@ -411,6 +407,15 @@ void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6])
   temp = zoomBox[1];
   zoomBox[1] = zoomBox[2];
   zoomBox[2] = temp;
+}
+/*------------------------------------------------------------------------------*/
+/**
+ *  Zoom on a subwidow using a rectangle specified by user in pixels
+ */
+void sciZoomRect(sciPointObj * pObj, int posX, int posY, int width, int height)
+{
+  sciJavaZoomRect(pObj, posX, posY, width, height);
+  sciSetZooming(pObj, TRUE);
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -452,5 +457,21 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
   }
 
   return TRUE;
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Unzoom several subwindows in the same time
+ */
+void sciUnzoom(sciPointObj * subwins[], int nbSubwins)
+{
+  int i;
+  for (i = 0; i < nbSubwins; i++)
+  {
+    sciPointObj * parentFig = sciGetParentFigure(subwins[i]);
+    startFigureDataWriting(parentFig);
+    sciSetZooming(subwins[i], FALSE);
+    endFigureDataWriting(parentFig);
+    sciDrawObj(subwins[i]);
+  }
 }
 /*------------------------------------------------------------------------------*/

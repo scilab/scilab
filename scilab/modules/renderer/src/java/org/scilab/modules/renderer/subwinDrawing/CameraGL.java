@@ -369,6 +369,47 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
+	 * @return array of size 16 containing the current projection matrix
+	 */
+	public double[] getProjectionMatrix() {
+		return CoordinateTransformation.getTransformation(getGL()).getProjectionMatrix().getRowWiseRepresentation();
+	}
+	
+	/**
+	 * @return array of size 16 containing the inverse of projection matrix.
+	 */
+	public double[] getUnprojectMatrix() {
+		return CoordinateTransformation.getTransformation(getGL()).getUnprojectMatrix().getRowWiseRepresentation();
+	}
+	
+	/**
+	 * @return array of size 16 containing the projection matrix for 2d view.
+	 */
+	public double[] get2dViewProjectionMatrix() {
+		switchTo2DCoordinates();
+		double[] res = getProjectionMatrix();
+		backTo3DCoordinates();
+		return res;
+	}
+	
+	/**
+	 * @return array of size 16 containing the inverse of projection matrix for 2d view.
+	 */
+	public double[] get2dViewUnprojectMatrix() {
+		switchTo2DCoordinates();
+		double[] res = getUnprojectMatrix();
+		backTo3DCoordinates();
+		return res;
+	}
+	
+	/**
+	 * @return Array of size 4 containing the viewPort.
+	 */
+	public double[] getViewPort() {
+		return CoordinateTransformation.getTransformation(getGL()).getViewPort();
+	}
+	
+	/**
 	 * Move the camera to the default 2D coordinates.
 	 * Try to avoid to use this method, but it sometime needed
 	 * for backward compatibility with old renderer.

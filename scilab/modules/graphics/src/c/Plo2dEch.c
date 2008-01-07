@@ -1292,10 +1292,6 @@ extern void unzoom()
       if (sciGetZooming(psousfen))
       {
         sciSetZooming(psousfen, 0);
-        /*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
-        /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
-        /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
-        /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
 
         pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
         pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
@@ -1333,10 +1329,6 @@ extern void unzoom_one_axes(sciPointObj *psousfen)
   if (sciGetEntityType (psousfen) == SCI_SUBWIN) {
     if (sciGetZooming(psousfen)) 	{
       sciSetZooming(psousfen, 0);
-      /*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
-      /* 	  pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
-      /* 	  pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
-      /* 	  pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
 
       pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
       pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];

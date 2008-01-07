@@ -91,3 +91,8 @@ ComputeNbSubTics
 sciGetIs3d
 sciGetGridStyle
 sciGetDisplayedDataBounds
+setToIdentity
+mat4DMult
+sciSetZoomBox
+vectSubstract2D
+sciGetXorMode

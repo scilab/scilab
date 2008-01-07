@@ -106,5 +106,6 @@ public interface RendererProperties {
      * @return wether the pixmap mode is on or off.
      */
     boolean getPixmapMode();
+    
 	
 }

@@ -20,8 +20,9 @@
     </method>
     <method name="closeRenderingCanvas" returnType="void">
     </method>
-    <method name="setBackgroundColor" returnType="void">
+    <method name="setFigureParameters" returnType="void">
       <param type="int" name="backgroundColor" />
+      <param type="int" name="logicOpIndex" />
     </method>
     <method name="setColorMapData" returnType="void">
       <param type="double[]" name="rgbmat" />
@@ -58,9 +59,9 @@
       <param type="String" name="infoMessage" />
     </method>
     <method name="setPixmapMode" returnType="void">
-      <param type="int" name="onOrOff" />
+      <param type="boolean" name="onOrOff" />
     </method>
-    <method name="getPixmapMode" returnType="int">
+    <method name="getPixmapMode" returnType="boolean">
     </method>
     <method name="setIsRenderingEnable" returnType="void">
       <param type="boolean" name="isEnable" />

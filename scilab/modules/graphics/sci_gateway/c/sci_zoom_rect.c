@@ -13,12 +13,13 @@
 #include "gw_graphics.h"
 #include "axesScale.h"
 #include "CurrentObjectsManagement.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_zoom_rect(char *fname,unsigned long fname_len)
 {
-  int m,n,l;
-  /* int x_pixel=0,y_pixel=0; */
+  int m,n;
+  int stackPointer;
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
   if (Rhs <= 0) 
@@ -27,10 +28,25 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
   }
   else
   {
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l); 
+    double * rectData = NULL;
+    sciPointObj * curFigure = NULL;
+    sciPointObj * curSubWin = NULL;
+
+
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&stackPointer); 
     CheckLength(1,4,m*n);
-    /*zoom_box(stk(l),&x_pixel,&y_pixel);*/
-    sciZoom2D(sciGetCurrentSubWin(), getDoubleMatrixFromStack(l));
+    /*sciZoom2D(sciGetCurrentSubWin(), getDoubleMatrixFromStack(stackPointer));*/
+    rectData = getDoubleMatrixFromStack(stackPointer);
+    
+    curFigure = sciGetCurrentFigure();
+    curSubWin = sciGetCurrentSubWin();
+
+    startFigureDataWriting(curFigure);
+    sciZoomRect(curSubWin, (int) rectData[0], (int) rectData[1],
+                (int) rectData[2], (int) rectData[3]);
+    endFigureDataWriting(curFigure);
+
+    sciDrawObj(curSubWin);
   }
 
   LhsVar(1)=0; 

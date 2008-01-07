@@ -69,6 +69,7 @@ public:
                               double startingPointsX[], double startingPointsY[],
                               double startingPointsZ[], double vectorLength);
 
+
 protected:
 
   /*---------------------------------------------------------------------*/

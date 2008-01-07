@@ -393,7 +393,7 @@ typedef struct
   	       	       
   
 }/** */
-scigMode;  
+scigMode;
 
 
 /**
@@ -462,7 +462,6 @@ typedef struct
   /** specifies the number of the selected son         */
   int numsubwinselected;
   /** specifies the current pixmap status         */
-  /*int pixmap; */ /* DJ.A 30/12 */
   int wshow ;
   
   BOOL allredraw;
