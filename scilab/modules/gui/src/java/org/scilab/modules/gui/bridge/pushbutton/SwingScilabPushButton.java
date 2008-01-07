@@ -31,7 +31,6 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public SwingScilabPushButton() {
 		super();
 		this.setFocusable(false);
-		this.setBorder(BorderFactory.createEmptyBorder());
 	}
 
 	/**
