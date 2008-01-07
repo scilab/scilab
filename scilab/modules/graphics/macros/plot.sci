@@ -221,15 +221,18 @@ for i=1:numplot
     if (type(ListArg(P(i,2))) == 13 | type(ListArg(P(i,2))) == 130)
       // A function (macro or primitive) is given. We need to build the vector or matrix.
       sizefirstarg = size(ListArg(P(i,1)));
-      fonction = ListArg(P(i,2));
+      buildFunc = ListArg(P(i,2));
       firstarg = ListArg(P(i,1));
       tmp = [];
       for ii=1:sizefirstarg(1,2)
 	for jj=1:sizefirstarg(1,1)
-	  tmp(jj,ii) = fonction(firstarg(jj,ii));
+	  tmp(jj,ii) = buildFunc(firstarg(jj,ii));
 	end
       end
       ListArg(P(i,2)) = tmp;
+      // if there is an other iteration, we will have error message redefining function.
+      // we need to clear here and not before, because user must see the warning if needed.
+      clear buildFunc;
     end
 
     [X,Y] = checkXYPair(typeOfPlot,ListArg(P(i,1)),ListArg(P(i,2)),current_figure,cur_draw_mode)
