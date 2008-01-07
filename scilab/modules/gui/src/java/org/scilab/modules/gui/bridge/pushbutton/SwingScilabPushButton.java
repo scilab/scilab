@@ -5,7 +5,6 @@ package org.scilab.modules.gui.bridge.pushbutton;
 
 import java.awt.Dimension;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 

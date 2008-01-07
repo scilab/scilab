@@ -8,7 +8,6 @@ import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Bridge for Scilab Menus in GUIs
