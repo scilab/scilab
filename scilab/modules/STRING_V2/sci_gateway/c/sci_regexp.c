@@ -38,6 +38,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 
     int outIndex = 0;
     int numRow = 1;
+    int j;
 
 	int *values = NULL;
 	int *values_end= NULL;
@@ -46,9 +47,9 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	int nbValues = 0;
 	int nbValues_end=0;
     int nbposition = 0;
-	
+	char **match=NULL;
     CheckRhs(1,3);
-    CheckLhs(1,2);
+    CheckLhs(1,3);
 
     if (VarType(1) == sci_matrix)
 	{
@@ -129,7 +130,17 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
             }
         }
     }
-   
+    match = (char**)MALLOC(sizeof(char**)*(50));
+	for( i=0;i<nbValues;i++)
+	{
+		match[i] = (char*)MALLOC(sizeof(char*)*(50));
+	    for(j=values[i]-1;j<values_end[i];j++)
+		{
+			match[i][j-values[i]+1]=Str[i][j];
+		}
+	}
+    
+
 
 	freeArrayOfString(Str,mn);
 	freeArrayOfString(Str2,mn2);
@@ -161,7 +172,12 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		stk(outIndex)[i] = (double)values_end[i] ;
     }
     LhsVar(2) = Rhs+2;  
-
+    	
+	numRow =  values_end[nbValues_end]-values[nbValues]+1;
+	outIndex = 1 ;
+	CreateVarFromPtr(Rhs + 3,MATRIX_OF_STRING_DATATYPE, &numRow, &outIndex, match );
+	LhsVar(3) = Rhs + 3 ;
+	
 
     C2F(putlhsvar)();
 
