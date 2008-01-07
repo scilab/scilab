@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)
-  $</DATE>
+  <DATE>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</DATE>
 
   <SHORT_DESCRIPTION name="strsubst">substitute a character string by another
   in a character string.</SHORT_DESCRIPTION>
