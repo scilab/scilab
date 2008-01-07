@@ -160,7 +160,7 @@ endfunction
 // Add a menu with no callback given by the user
 //------------------------------------------------------------------------------
 function addSingleMenu(fig, menulabel)
-UImenu("parent", fig, "label", menulabel);//, "callback", "execstr(""" + menulabel + """)");
+UImenu("parent", fig, "label", menulabel, "callback", "execstr(""" + menulabel + """)");
 endfunction
 //------------------------------------------------------------------------------
 
@@ -170,21 +170,18 @@ endfunction
 //------------------------------------------------------------------------------
 function addSingleMenuCallback(fig, menulabel, callback)
 
-// TODO: Code for callback should be factorized with addSingleMenuSubMenusCallback
-callbackType = callback(1);
-if type(callbackType)<>1 | size(callbackType,"*")<>1
-  error(_("Callback type must be a 0, 1 or 2"));
+[callbackStr, callbackType] = getCallbackProperties(callback);
+
+h = UImenu("parent", fig, "label", menulabel, "callbacktype", 0);
+if callbackType <> 2
+  set(h, "callback", "execstr("""+callbackStr+""")");
+else
+  if fig==0
+    set(h, "callback", "execstr("""+callbackStr+"(1)"")");
+  else
+    set(h, "callback", "execstr("""+callbackStr+"(1,"+string(fig)+")"")");
+  end
 end
-
-callbackStr = callback(2);
-if size(callbackStr,"*")<>1
-  error(_("Callback must be a single string."));
-end
-
-warning(_("Callback list not yet managed in addmenu."));
-// TODO: end of code to factorize
-
-UImenu("parent",fig,"label",menulabel);
 
 endfunction
 //------------------------------------------------------------------------------
@@ -198,7 +195,7 @@ function addMenuSubMenus(fig, menulabel, submenuslabels)
 h0 = UImenu("parent", fig, "label", menulabel);
 
 for K=1:size(submenuslabels,"*")
-  UImenu("parent", h0, "label", submenuslabels(K));//, "callback", "execstr("""+submenuslabels+"("+K+")"")");
+  UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("""+submenuslabels+"("+string(K)+")"")");
 end
 
 endfunction
@@ -210,7 +207,30 @@ endfunction
 //------------------------------------------------------------------------------
 function addMenuSubMenusCallback(fig, menulabel, submenuslabels, callback)
 
-// TODO: Code for callback should be factorized with addSingleMenuCallback
+[callbackStr, callbackType] = getCallbackProperties(callback);
+
+h0 = UImenu("parent",fig,"label",menulabel);
+
+for K=1:size(submenuslabels,"*")
+  h = UImenu("parent", h0, "label", submenuslabels(K), "callbacktype", 0);
+  if callbackType <> 2
+    set(h, "callback", "execstr("""+callbackStr+""")");
+  else
+    if fig == 0
+      set(h, "callback", "execstr("""+callbackStr+"(1)"")");
+    else
+      set(h, "callback", "execstr("""+callbackStr+"("+string(K)+","+string(fig)+")"")");
+    end
+  end
+end
+endfunction
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+// Manages callback given as list and check parameters
+//------------------------------------------------------------------------------
+function [callbackStr, callbackType] = getCallbackProperties(callback)
 callbackType = callback(1);
 if type(callbackType)<>1 | size(callbackType,"*")<>1
   error(_("Callback type must be a 0, 1 or 2"));
@@ -219,15 +239,6 @@ end
 callbackStr = callback(2);
 if size(callbackStr,"*")<>1
   error(_("Callback must be a single string."));
-end
-
-warning(_("Callback list not yet managed in addmenu."));
-// TODO: end of code to factorize
-
-h0 = UImenu("parent",fig,"label",menulabel);
-
-for K=1:size(submenuslabels,"*")
-  UImenu("parent",h0,"label",submenuslabels(K));
 end
 endfunction
 //------------------------------------------------------------------------------

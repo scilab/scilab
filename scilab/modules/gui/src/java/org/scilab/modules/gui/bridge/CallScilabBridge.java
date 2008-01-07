@@ -225,11 +225,11 @@ public class CallScilabBridge {
 
 	/**
 	 * Set a callback for a Menu
-	 * @param objID the ID of the object in the UIElementMapper
+	 * @param menuID the ID of the object in the UIElementMapper
 	 * @param callback the text of the callback
 	 */
-	public static void setMenuCallback(int objID, String callback) {
-		System.out.println("setMenuCallback is not implemented");
+	public static void setMenuCallback(int menuID, String callback) {
+		((Menu) UIElementMapper.getCorrespondingUIElement(menuID)).setCallback(callback, 0);
 	}
 	
 	/**

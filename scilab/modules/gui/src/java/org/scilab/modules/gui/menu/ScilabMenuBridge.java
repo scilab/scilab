@@ -8,6 +8,7 @@ import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Bridge for Scilab Menus in GUIs
@@ -193,4 +194,15 @@ public class ScilabMenuBridge {
 	public static Font getFont(Menu menu) {
 		return menu.getAsSimpleMenu().getFont();
 	}
+	
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param menu the menu we want to set the callback of
+	 * @param command the Scilab command to execute when the menu is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(Menu menu, String command, int commandType) {
+		menu.getAsSimpleMenu().setCallback(command, commandType);
+	}
+
 }

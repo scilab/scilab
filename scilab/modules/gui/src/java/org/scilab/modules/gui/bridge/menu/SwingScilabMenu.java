@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.menu;
 import javax.swing.JMenu;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -183,5 +184,14 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	public ToolBar getToolBar() {
 		// Must not be there...
 		return null;
+	}
+
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the menu is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		addActionListener(ScilabCallBack.create(command, commandType));
 	}
 }

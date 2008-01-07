@@ -5,6 +5,7 @@ package org.scilab.modules.gui.bridge.pushbutton;
 
 import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -30,6 +31,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public SwingScilabPushButton() {
 		super();
 		this.setFocusable(false);
+		this.setBorder(BorderFactory.createEmptyBorder());
 	}
 
 	/**

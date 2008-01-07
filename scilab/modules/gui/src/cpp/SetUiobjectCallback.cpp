@@ -28,6 +28,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
     {
       // Send the label to Java
       CallScilabBridge::setMenuCallback(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
+      return SET_PROPERTY_SUCCEED;
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
@@ -42,8 +43,10 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
           return SET_PROPERTY_ERROR;
        }
     }
-
-  sciprint(_("No %s property for this object.\n"), "Callback");
-  return SET_PROPERTY_ERROR;
+  else
+    {
+      sciprint(_("No %s property for this object.\n"), "Callback");
+      return SET_PROPERTY_ERROR;
+    }
 }
 

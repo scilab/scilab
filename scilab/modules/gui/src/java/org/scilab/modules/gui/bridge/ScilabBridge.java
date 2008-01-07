@@ -1028,6 +1028,16 @@ public class ScilabBridge {
 		return ScilabMenuBridge.getFont(menu);
 	}
 
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param menu the menu we want to set the callback of
+	 * @param command the Scilab command to execute when the menu is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(Menu menu, String command, int commandType) {
+		ScilabMenuBridge.setCallback(menu, command, commandType);
+	}
+
 	/*****************/
 	/* Separator Bridge */
 	/*****************/

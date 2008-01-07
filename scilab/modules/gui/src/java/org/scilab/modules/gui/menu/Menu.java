@@ -59,5 +59,13 @@ public interface Menu extends Widget {
 	 * @param status true if the menu item is enabled
 	 */
 	void setEnabled(boolean status);
-	
+
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the menu is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	void setCallback(String command, int commandType);
+
+
 }
