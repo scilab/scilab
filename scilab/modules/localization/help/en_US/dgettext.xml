@@ -21,13 +21,14 @@
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>domain</PARAM_NAME>
-
-        <PARAM_NAME>string</PARAM_NAME>
-
         <PARAM_DESCRIPTION>
           <SP>: The name of the message domain</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>string</PARAM_NAME>
+        <PARAM_DESCRIPTION>
           <SP>: the message to be translated</SP>
-
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

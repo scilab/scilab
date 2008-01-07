@@ -30,7 +30,7 @@
   </PARAM>
 
   <DESCRIPTION>
-g    <P><VERB>gettext</VERB> get the translation of a string to the current locale in the current domain.</P>
+    <P><VERB>gettext</VERB> get the translation of a string to the current locale in the current domain.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
