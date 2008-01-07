@@ -1,55 +1,93 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>strsubst</TITLE>
+
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="strsubst"> substitute  a character string by another in a  character string.  </SHORT_DESCRIPTION>
+
+  <DATE>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)
+  $</DATE>
+
+  <SHORT_DESCRIPTION name="strsubst">substitute a character string by another
+  in a character string.</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>str=strsubst(str1,str2,str3)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>str=strsubst(str1,str2,str3)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>str=strsubst(str1,str2,str3，["flag"])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>str1</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: a matrix of character string. The strings where to search occurrences of <VERB>str2</VERB></SP>
+          <SP>: a matrix of character string. The strings where to search
+          occurrences of <VERB>str2</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>str2</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: a character string. The string to search in <VERB>str1</VERB>.</SP>
+          <SP>: a character string. The string to search in
+          <VERB>str1</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>str3</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: a character string. The replacement string.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>str</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: a matrix of character string. The result of the substitution on  <VERB>str2</VERB> by  <VERB>str3</VERB> in  <VERB>str1</VERB></SP>
+          <SP>: a matrix of character string. The result of the substitution
+          on <VERB>str2</VERB> by <VERB>str3</VERB> in <VERB>str1</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>"flag"</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string("r" for regular expression)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-    <P><VERB>strsubst</VERB> replaces all occurrences of <VERB>str2</VERB> in <VERB>str1</VERB> by <VERB>str3</VERB>.</P>
+    <P><VERB>strsubst</VERB> replaces all occurrences of <VERB>str2</VERB> in
+    <VERB>str1</VERB> by <VERB>str3</VERB>.</P>
+
+    <P>When using the forth parameters "r", the str2 should be a string of
+    regular expression. And then strsubst is going to match it with str1 and
+    replace according to the regular express rules. </P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+
 strsubst('SCI/demos/scicos','SCI','.')
 strsubst('SCI/demos/scicos','/',' ')
- ]]>
-  </EXAMPLE>
+strsubst('2' ,'/2(]*)?$\1/' ,'0','r')
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>string</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>strings</LINK>
     </SEE_ALSO_ITEM>
