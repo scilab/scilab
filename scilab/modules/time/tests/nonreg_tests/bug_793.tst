@@ -6,4 +6,5 @@
 // <-- Short Description -->
 //    Getdate crashes scilab with negative arguments
 
-if or(getdate(-1) <> [0 0 0 0 0 0 0 0 0 0]) then pause,end
+err = execstr("getdate(-1)","errcatch");
+if err <> 999 then pause,end
