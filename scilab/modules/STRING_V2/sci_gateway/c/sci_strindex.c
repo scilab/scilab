@@ -24,10 +24,34 @@
 /*------------------------------------------------------------------------*/
 #define CHAR_S "s"
 #define CHAR_R "r"
-int cmp ( const void *first , const void *second )
+void my_swap(int v[], int i, int j)
 {
-         return *(int *)first - *(int *)second;
-} 
+   int temp;
+   temp = v[i];
+   v[i] = v[j];
+   v[j] = temp;
+}
+void my_qsort(int v[],int index[], int left, int right)
+{
+   int i, last;
+   if (left >= right) /* do nothing if array contains */
+       return;        /* fewer than two elements */
+   my_swap(v, left, (left + right)/2); /* move partition elem */
+   my_swap(index, left, (left + right)/2);
+   last = left;                        /* to v[0] */
+   for (i = left + 1; i <= right; i++) /* partition */
+	   if (v[i] < v[left])
+	   {
+		   ++last;
+		   my_swap(v, last, i);
+           my_swap(index, last, i);
+	   }
+   my_swap(v, left, last);
+   my_swap(index, left, last);   /* restore partition elem */
+   my_qsort(v,index, left, last-1);
+   my_qsort(v,index, last+1, right);
+}
+
 /*------------------------------------------------------------------------*/
 int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -172,7 +196,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
             
 		
 		
-            qsort(values,nbValues,sizeof(values[0]),cmp); 
+           my_qsort( values, position,0, nbValues - 1 );
 			
 
 		}
@@ -212,40 +236,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 
 					/* values are sorted */
 					/* TO DO : Optimize this , with a qsort */
-					{
-						int i   = 0; /* Indice de répétition du tri */
-						int j   = 0; /* Variable de boucle */
-						int tmp = 0; /* Variable de stockage temporaire */
-
-						/* Booléen marquant l'arrêt du tri si le tableau est ordonn?*/
-						BOOL en_desordre = TRUE; 
-						/* Boucle de répétition du tri et le test qui
-						arrête le tri dès que le tableau est ordonn?*/
-						for(i = 0 ; (i < nbposition) && en_desordre; i++)
-						{
-							/* Supposons le tableau ordonn?*/
-							en_desordre = FALSE;
-							/* Vérification des éléments des places j et j-1 */
-							for(j = 1 ; j < nbposition - i ; j++)
-							{
-								/* Si les 2 éléments sont mal triés */
-								if(values[j] < values[j-1])
-								{
-									/* Inversion des 2 éléments */
-									tmp = values[j-1];
-									values[j-1] = values[j];
-									values[j] = tmp;
-
-									tmp = position[j-1];
-									position[j-1] = position[j];
-									position[j] = tmp;
-
-									/* Le tableau n'est toujours pas tri?*/
-									en_desordre = TRUE;
-								}
-							}
-						}
-					}
+					my_qsort( values, position,0, nbValues - 1 );
 				}
 			}
 		}
