@@ -9,13 +9,12 @@ function [resultat,status] = perl(varargin)
     // Check that the first param is a file 
     [x,ierr]=fileinfo(varargin(1));
     if (x == []) then
-      msgerr=gettext("Unable to find Perl file: ")+string(varargin(1));
-    	error(msgerr);
+    	error(msprintf(gettext("%s: Unable to find Perl file: %s","perl",string(varargin(1)))));
     else
       // Check that params are strings
       for i=1:1:rhs,
         if ~(type(varargin(i)) == 10) then
-          error(msprintf(gettext("%s: Wrong input argument: Strings expected."),"perl"));
+          error(msprintf(gettext("%s: Wrong type for input argument: Strings expected.\n"),"perl"));
         end
         
         idx=strindex(varargin(i),' ');
@@ -30,7 +29,7 @@ function [resultat,status] = perl(varargin)
       end
       
       if (Chainecmd == '') then
-        error(gettext("No perl command specified."));
+        error(msprintf(gettext("%s: No perl command specified."),"perl"));
       else
         if MSDOS then
           // For Windows
@@ -38,8 +37,7 @@ function [resultat,status] = perl(varargin)
           
           [x,ierr]=fileinfo(CheminPerl+'perl.exe');
           if (x == []) then
-            msgerr=gettext("Unable to find Perl in: ")+CheminPerl;
-            error(msgerr);
+            error(msprintf(gettext("%s: Unable to find Perl in ''%s''"),"perl",CheminPerl));
           else
             Chainecmd = 'perl'+' '+Chainecmd;
             CommandePerl = 'set PATH='+CheminPerl+';%PATH%&'+Chainecmd+'>'+TMPDIR+'\script';
@@ -55,16 +53,15 @@ function [resultat,status] = perl(varargin)
             status = unix(Chainecmd);
             resultat=mgetl(TMPDIR+'\script');
           else
-            error(gettext("Unable to find Perl."));
+            error(msprintf(gettext("%s: Unable to find Perl.\n"),"perl"));
           end
         end
       end
       if (status~=0) then
-        msgerr= gettext("System error: Command executed: ")+ Chainecmd;
-        error(msgerr);
+        error(msprintf(gettext("%s: System error: Command executed: %s"),"perl",Chainecmd));
       end
     end  
   else
-    error(msprintf(gettext("%s: Wrong first input argument: Perl File expected."),'perl'));
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d or more expected.\n"),"perl",1));
   end
 endfunction
