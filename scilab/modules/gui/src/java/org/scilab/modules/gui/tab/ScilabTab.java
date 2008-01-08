@@ -8,6 +8,7 @@ import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
+import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -186,6 +187,15 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return the position of the pushbutton in the member list.
 	 */
 	public int addMember(PushButton member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * We want to be able to add directly a editbox in a Tab.
+	 * @param member the editbox to add
+	 * @return the position of the editbox in the member list.
+	 */
+	public int addMember(EditBox member) {
 		return ScilabBridge.addMember(this, member);
 	}
 

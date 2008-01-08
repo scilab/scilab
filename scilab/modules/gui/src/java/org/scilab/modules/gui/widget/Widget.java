@@ -69,4 +69,11 @@ public interface Widget extends Dockable {
 	 */
 	void setEnabled(boolean status);
 
+	/**
+	 * Set the callback of the widget
+	 * @param command the command to be executed when the widget is activated
+	 * @param commandType the type of the command
+	 */
+	void setCallback(String command, int commandType);
+
 }

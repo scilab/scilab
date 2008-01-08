@@ -6,6 +6,7 @@ package org.scilab.modules.gui.tab;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -151,6 +152,16 @@ public class ScilabTabBridge {
 	 * @return the position of the pushbutton in the member list.
 	 */
 	public static int addMember(Tab tab, PushButton member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the EditBox to
+	 * @param member the EditBox to add
+	 * @return the position of the EditBox in the member list.
+	 */
+	public static int addMember(Tab tab, EditBox member) {
 		return (tab.getAsSimpleTab().addMember(member));
 	}
 

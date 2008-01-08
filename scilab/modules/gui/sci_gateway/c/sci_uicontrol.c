@@ -10,9 +10,11 @@
 #include "localization.h"
 #include "stack-c.h"
 #include "sciprint.h"
+#include "ObjectStructure.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "PushButton.h" /* setCurentFigureAsPushButtonParent */
+#include "EditBox.h" /* setCurentFigureAsEditBoxParent */
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 16 
 /*--------------------------------------------------------------------------*/
@@ -225,7 +227,17 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       if(propertiesValuesIndices[1]==NOT_FOUND)
         {
           /* Set the parent */
-          setCurentFigureAsPushButtonParent((sciPointObj*) GraphicHandle);
+           switch(pUICONTROL_FEATURE( ((sciPointObj*) GraphicHandle) )->style)
+            {
+            case SCI_PUSHBUTTON:
+              setCurentFigureAsPushButtonParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_EDIT:
+              setCurentFigureAsEditBoxParent((sciPointObj*) GraphicHandle);
+              break;
+           default:
+              break;
+            }
         }
     }
   

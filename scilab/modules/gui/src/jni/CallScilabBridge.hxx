@@ -56,20 +56,22 @@ jmethodID jintnewWindowID; // cache method id
 jmethodID jintnewMenuBarID; // cache method id
 jmethodID jintnewMenuID; // cache method id
 jmethodID jintnewPushButtonID; // cache method id
+jmethodID jintnewEditBoxID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
 jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
 jmethodID voidsetParentjintjintID; // cache method id
 jmethodID voidsetPushButtonParentjintjintID; // cache method id
+jmethodID voidsetEditBoxParentjintjintID; // cache method id
 jmethodID voidsetWidgetTextjintjstringID; // cache method id
 jmethodID jstringgetWidgetTextjintID; // cache method id
-jmethodID voidsetPushButtonBackgroundColorjintjintjintjintID; // cache method id
-jmethodID jintArraygetPushButtonBackgroundColorjintID; // cache method id
-jmethodID voidsetPushButtonForegroundColorjintjintjintjintID; // cache method id
-jmethodID jintArraygetPushButtonForegroundColorjintID; // cache method id
+jmethodID voidsetWidgetBackgroundColorjintjintjintjintID; // cache method id
+jmethodID jintArraygetWidgetBackgroundColorjintID; // cache method id
+jmethodID voidsetWidgetForegroundColorjintjintjintjintID; // cache method id
+jmethodID jintArraygetWidgetForegroundColorjintID; // cache method id
 jmethodID voidsetMenuForegroundColorjintjintjintjintID; // cache method id
 jmethodID jintArraygetMenuForegroundColorjintID; // cache method id
-jmethodID voidsetPushButtonFontWeightjintjstringID; // cache method id
+jmethodID voidsetWidgetFontWeightjintjstringID; // cache method id
 jmethodID voidsetPushButtonFontSizejintjintID; // cache method id
 jmethodID jintgetPushButtonFontSizejintID; // cache method id
 jmethodID voidsetPushButtonFontAnglejintjstringID; // cache method id
@@ -141,6 +143,8 @@ static long newMenu(JavaVM * jvm_);
 
 static long newPushButton(JavaVM * jvm_);
 
+static long newEditBox(JavaVM * jvm_);
+
 static void setFigureAsParent(JavaVM * jvm_, long figureID, long objID);
 
 static void setMenuAsParent(JavaVM * jvm_, long menuID, long objID);
@@ -151,23 +155,25 @@ static void setParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setPushButtonParent(JavaVM * jvm_, long parentID, long objID);
 
+static void setEditBoxParent(JavaVM * jvm_, long parentID, long objID);
+
 static void setWidgetText(JavaVM * jvm_, long objID, char * text);
 
 static char * getWidgetText(JavaVM * jvm_, long objID);
 
-static void setPushButtonBackgroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
+static void setWidgetBackgroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
 
-static long * getPushButtonBackgroundColor(JavaVM * jvm_, long objID);
+static long * getWidgetBackgroundColor(JavaVM * jvm_, long objID);
 
-static void setPushButtonForegroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
+static void setWidgetForegroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
 
-static long * getPushButtonForegroundColor(JavaVM * jvm_, long objID);
+static long * getWidgetForegroundColor(JavaVM * jvm_, long objID);
 
 static void setMenuForegroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
 
 static long * getMenuForegroundColor(JavaVM * jvm_, long objID);
 
-static void setPushButtonFontWeight(JavaVM * jvm_, long objID, char * weight);
+static void setWidgetFontWeight(JavaVM * jvm_, long objID, char * weight);
 
 static void setPushButtonFontSize(JavaVM * jvm_, long objID, long size);
 

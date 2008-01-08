@@ -34,15 +34,17 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
             {
             case SCI_PUSHBUTTON:
               CallScilabBridge::setPushButtonParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-              
-              // Scilab default values
-              CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(figure) - 80, 40, 20);
-              
-              return SET_PROPERTY_SUCCEED;
+              break;
+            case SCI_EDIT:
+              CallScilabBridge::setEditBoxParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+              break;
             default:
               sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
               return SET_PROPERTY_ERROR;
             }
+          // Scilab default values
+          CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(figure) - 80, 40, 20);
+          return SET_PROPERTY_SUCCEED;
         }
       else
         {

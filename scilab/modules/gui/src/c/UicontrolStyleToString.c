@@ -11,6 +11,8 @@ char * UicontrolStyleToString(int style)
     {
     case SCI_PUSHBUTTON:
       return "pushbutton";
+    case SCI_EDIT:
+      return "edit";
     default:
       return "Unknown";
     }

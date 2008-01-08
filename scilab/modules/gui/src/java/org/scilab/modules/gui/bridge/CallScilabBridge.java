@@ -6,6 +6,8 @@ package org.scilab.modules.gui.bridge;
 import java.awt.Color;
 import java.awt.Font;
 
+import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
@@ -101,6 +103,18 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Create a new EditBox in Scilab GUIs
+	 * @return the ID of the Edit in the UIElementMapper
+	 */
+	public static int newEditBox() {
+		EditBox editBox = ScilabEditBox.createEditBox();
+		int id = UIElementMapper.add(editBox);
+		// Scilab default font
+		//setEditBoxFontWeight(id, "normal");
+		return id;
+	}
+
+	/**
 	 * Set the dimensions of an object in Scilab GUIs
 	 * @param objID the ID of the object in the UIElementMapper
 	 * @param width the width of the object
@@ -173,6 +187,17 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, pushButton);
+	}
+
+	/**
+	 * Set a figure as parent for a EditBox
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void setEditBoxParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, editBox);
 	}
 
 	/**
@@ -395,23 +420,23 @@ public class CallScilabBridge {
 	/******************/
 	
 	/**
-	 * Set the background color of a push button 
-	 * @param id the id of the push button
+	 * Set the background color of a Widget
+	 * @param id the id of the Widget
 	 * @param red the red value for the color
 	 * @param green the green value for the color
 	 * @param blue the blue value for the color
 	 */
-	public static void setPushButtonBackgroundColor(int id, int red, int green, int blue) {
-		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
+	public static void setWidgetBackgroundColor(int id, int red, int green, int blue) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
 	}
 	
 	/**
-	 * Get the background color of a pushbutton 
-	 * @param id the id of the pushbutton
+	 * Get the background color of a widget 
+	 * @param id the id of the widget
 	 * @return the color [R, G, B]
 	 */
-	public static int[] getPushButtonBackgroundColor(int id) {
-		Color tmpColor = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getBackground();
+	public static int[] getWidgetBackgroundColor(int id) {
+		Color tmpColor = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getBackground();
 		int[] color = new int[NB_COLORS];
 		color[0] = tmpColor.getRed();
 		color[1] = tmpColor.getGreen();
@@ -420,23 +445,23 @@ public class CallScilabBridge {
 	}
 	
 	/**
-	 * Set the foreground color of a push button 
-	 * @param id the id of the push button
+	 * Set the foreground color of a Widget
+	 * @param id the id of the Widget
 	 * @param red the red value for the color
 	 * @param green the green value for the color
 	 * @param blue the blue value for the color
 	 */
-	public static void setPushButtonForegroundColor(int id, int red, int green, int blue) {
-		((PushButton) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
+	public static void setWidgetForegroundColor(int id, int red, int green, int blue) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
 	}
 	
 	/**
-	 * Get the foreground color of a pushbutton 
-	 * @param id the id of the pushbutton
+	 * Get the foreground color of a Widget 
+	 * @param id the id of the Widget
 	 * @return the color [R, G, B]
 	 */
-	public static int[] getPushButtonForegroundColor(int id) {
-		Color tmpColor = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
+	public static int[] getWidgetForegroundColor(int id) {
+		Color tmpColor = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
 		int[] color = new int[NB_COLORS];
 		color[0] = tmpColor.getRed();
 		color[1] = tmpColor.getGreen();
@@ -474,12 +499,12 @@ public class CallScilabBridge {
 	/****************/
 
 	/**
-	 * Set the weight of a pushbutton font
-	 * @param id the id of the push button
-	 * @param weight the weight of the button font
+	 * Set the weight of a Widget font
+	 * @param id the id of the Widget
+	 * @param weight the weight of the Widget font
 	 */
-	public static void setPushButtonFontWeight(int id, String weight) {
-		Font font = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+	public static void setWidgetFontWeight(int id, String weight) {
+		Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
 		if (weight.equals("bold")) {
 			if (font.isItalic()) {
@@ -495,7 +520,7 @@ public class CallScilabBridge {
 			}
 		}
 
-		ScilabBridge.setFont((PushButton) UIElementMapper.getCorrespondingUIElement(id), font);
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
 	}
 	
 	/**

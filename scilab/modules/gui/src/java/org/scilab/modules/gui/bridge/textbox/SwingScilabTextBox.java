@@ -5,6 +5,7 @@ package org.scilab.modules.gui.bridge.textbox;
 
 import javax.swing.JTextArea;
 
+import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -128,5 +129,15 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Add a callback to the TextBox
+	 * @param command the Scilab command to execute when the contents of the TextBox is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		throw new UnsupportedOperationException();
+	}
+
 
 }

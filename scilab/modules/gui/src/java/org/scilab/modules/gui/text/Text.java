@@ -11,15 +11,4 @@ import org.scilab.modules.gui.widget.Widget;
  */
 public interface Text extends Widget {
 
-	/**
-	 * Sets the text of a Text Widget
-	 * @param newText the text to set to the Text Widget
-	 */
-	void setText(String newText);
-
-	/**
-	 * Gets the text of a Text Widget
-	 * @return the text of the Text Widget
-	 */
-	String getText();
 }

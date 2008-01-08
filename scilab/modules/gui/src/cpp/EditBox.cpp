@@ -1,16 +1,16 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#include "PushButton.hxx"
+#include "EditBox.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
 
-void createPushButton(sciPointObj* sciObj)
+void createEditBox(sciPointObj* sciObj)
 {
-  pUICONTROL_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newPushButton(getScilabJavaVM());
+  pUICONTROL_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newEditBox(getScilabJavaVM());
 }
 
-int setCurentFigureAsPushButtonParent(sciPointObj* sciObj)
+int setCurentFigureAsEditBoxParent(sciPointObj* sciObj)
 {
   int parentFigureIndex = 0;
   
@@ -19,7 +19,7 @@ int setCurentFigureAsPushButtonParent(sciPointObj* sciObj)
   
   // Java objects
   parentFigureIndex = sciGetNum(sciGetCurrentFigure());
-  CallScilabBridge::setPushButtonParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+  CallScilabBridge::setEditBoxParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
   
   // Scilab default values
   CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(sciGetCurrentFigure()) - 80, 40, 20);

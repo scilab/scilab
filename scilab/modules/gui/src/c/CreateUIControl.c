@@ -94,6 +94,11 @@ sciPointObj * CreateUIControl(char *style)
       createPushButton((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_PUSHBUTTON;
     }
+  else if (strcmp(style,"edit")==0)
+    {
+      createEditBox((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_EDIT;
+    }
   else
     {
       sciprint(_("Could not create uicontrol of type %s."), style);

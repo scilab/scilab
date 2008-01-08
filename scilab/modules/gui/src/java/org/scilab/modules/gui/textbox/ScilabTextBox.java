@@ -175,4 +175,13 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	public void setEnabled(boolean status) {
 		// TODO Auto-generated method stub
 	}
+
+	/**
+	 * Add a callback to the TextBox
+	 * @param command the Scilab command to execute when the TextBox is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		ScilabBridge.setCallback(this, command, commandType);
+	}
 }

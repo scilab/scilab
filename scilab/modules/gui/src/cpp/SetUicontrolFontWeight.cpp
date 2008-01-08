@@ -49,7 +49,8 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, int stackPointer, int valueType,
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
-          CallScilabBridge::setPushButtonFontWeight(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontWeight);
+        case SCI_EDIT:
+          CallScilabBridge::setWidgetFontWeight(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontWeight);
           return SET_PROPERTY_SUCCEED;
         default:
           /* Unimplmented uicontrol style */

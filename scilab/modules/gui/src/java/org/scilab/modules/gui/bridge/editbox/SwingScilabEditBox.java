@@ -3,44 +3,37 @@
 
 package org.scilab.modules.gui.bridge.editbox;
 
-import javax.swing.JTextArea;
+import java.awt.Color;
 
+import javax.swing.JTextField;
+
+import org.scilab.modules.gui.editbox.SimpleEditBox;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabWidgetBorder;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab EditBox in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabEditBox extends JTextArea {
-	// FIXME : Must have some Interface here...
-	//implements SimpleEditBox {
+public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Constructor
 	 */
 	public SwingScilabEditBox() {
 		super();
+		/* Default properties */
+		setBackground(Color.GRAY);
+		setForeground(Color.BLACK);
+		setBorder(ScilabWidgetBorder.SUNKEN);
 	}
 
-	/**
-	 * Sets the text of a Text Widget
-	 * @param newText the text to set to the Text Widget
-	 */
-	@Override
-	public void setText(String newText) {
-		super.setText(newText);
-	}
-
-	/**
-	 * Gets the text of a Text Widget
-	 * @return the text of the Text Widget
-	 */
-	@Override
-	public String getText() {
-		return super.getText();
-	}
-	
 	/**
 	 * Draws a swing Scilab EditBox
 	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
@@ -86,4 +79,49 @@ public class SwingScilabEditBox extends JTextArea {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 	
+	/**
+	 * Add a callback to the EditBox
+	 * @param command the Scilab command to execute when the EditBox is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabEditBox");
+		//addActionListener(ScilabCallBack.create(command, commandType));
+	}
+
+	/**
+	 * Setter for MenuBar
+	 * @param menuBarToAdd the MenuBar associated to the Tab.
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		/* Unimplemented for EditBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Setter for ToolBar
+	 * @param toolBarToAdd the ToolBar associated to the Tab.
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		/* Unimplemented for EditBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for MenuBar
+	 * @return MenuBar: the MenuBar associated to the Tab.
+	 */
+	public MenuBar getMenuBar() {
+		/* Unimplemented for EditBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for ToolBar
+	 * @return ToolBar: the ToolBar associated to the Tab.
+	 */
+	public ToolBar getToolBar() {
+		/* Unimplemented for EditBoxes */
+		throw new UnsupportedOperationException();
+	}
 }

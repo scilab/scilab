@@ -171,4 +171,15 @@ public class ScilabTextBoxBridge {
 	public static Font getFont(TextBox textBox) {
 		return textBox.getAsSimpleTextBox().getFont();
 	}
+	
+	/**
+	 * Add a callback to the TextBox
+	 * @param textBox the TextBox we want to set the callback of
+	 * @param command the Scilab command to execute when the contents of the textBox is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(TextBox textBox, String command, int commandType) {
+		textBox.getAsSimpleTextBox().setCallback(command, commandType);
+	}
+
 }

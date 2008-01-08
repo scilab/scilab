@@ -29,6 +29,7 @@ src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
 src/cpp/PushButton.cpp \
+src/cpp/EditBox.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \

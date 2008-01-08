@@ -4,9 +4,7 @@
 package org.scilab.modules.gui.bridge.pushbutton;
 
 import java.awt.Dimension;
-import java.awt.Insets;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -91,7 +89,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	}
 	
 	/**
-	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * Add a callback to the pushbutton
 	 * @param command the Scilab command to execute when the pushbutton is activated
 	 * @param commandType the type of the command that will be executed.
 	 */

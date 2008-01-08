@@ -488,6 +488,16 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the EditBox to
+	 * @param member the editbox to add
+	 * @return the position of the editbox in the member list.
+	 */
+	public static int addMember(Tab tab, EditBox member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
 	 * Get the current status of the Tab in its parent
 	 * @param tab the tab we want to get the status of
 	 * @return true is the tab is the tab currently displayed in its parent
@@ -1153,7 +1163,7 @@ public class ScilabBridge {
 	}
 	
 	/**
-	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * Add a callback to the pushbutton
 	 * @param pushButton the PushButton we want to set the callback of
 	 * @param command the Scilab command to execute when the pushbutton is activated
 	 * @param commandType the type of the command that will be executed.
@@ -1378,9 +1388,19 @@ public class ScilabBridge {
 		return ScilabTextBoxBridge.getFont(textBox);
 	}
 
-	/*****************/
+	/**
+	 * Add a callback to the TextBox
+	 * @param textBox the TextBox we want to set the callback of
+	 * @param command the Scilab command to execute when the TextBox is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(TextBox textBox, String command, int commandType) {
+		ScilabTextBoxBridge.setCallback(textBox, command, commandType);
+	}
+
+	/******************/
 	/* EditBox Bridge */
-	/*****************/
+	/******************/
 
 	/**
 	 * Creates a new EditBox
@@ -1477,9 +1497,82 @@ public class ScilabBridge {
 		ScilabEditBoxBridge.setVisible(editBox, newVisibleState);
 	}
 	
-	/*****************/
+	/**
+	 * Set the Background color of the EditBox
+	 * @param editBox the EditBox we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(EditBox editBox, Color color) {
+		ScilabEditBoxBridge.setBackground(editBox, color);
+	}
+
+	/**
+	 * Get the Background color of the EditBox
+	 * @param editBox the EditBox we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(EditBox editBox) {
+		return ScilabEditBoxBridge.getBackground(editBox);
+	}
+
+	/**
+	 * Set the Foreground color of the EditBox
+	 * @param editBox the EditBox we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(EditBox editBox, Color color) {
+		ScilabEditBoxBridge.setForeground(editBox, color);
+	}
+
+	/**
+	 * Get the Foreground color of the EditBox
+	 * @param editBox the EditBox we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(EditBox editBox) {
+		return ScilabEditBoxBridge.getForeground(editBox);
+	}
+
+	/**
+	 * Set the font of the EditBox.
+	 * @param editBox the EditBox we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(EditBox editBox, Font font) {
+		ScilabEditBoxBridge.setFont(editBox, font);
+	}
+	
+	/**
+	 * Get the font of the EditBox.
+	 * @param editBox the EditBox we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(EditBox editBox) {
+		return ScilabEditBoxBridge.getFont(editBox);
+	}
+
+	/**
+	 * Set if the EditBox is enabled or not
+	 * @param editBox the EditBox we want to set the status of
+	 * @param status true if the EditBox is enabled
+	 */
+	public static void setEnabled(EditBox editBox, boolean status) {
+		ScilabEditBoxBridge.setEnabled(editBox, status);
+	}
+	
+	/**
+	 * Add a callback to the EditBox
+	 * @param editBox the EditBox we want to set the callback of
+	 * @param command the Scilab command to execute when the EditBox is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(EditBox editBox, String command, int commandType) {
+		ScilabEditBoxBridge.setCallback(editBox, command, commandType);
+	}
+
+	/*********************/
 	/* FlowLayout Bridge */
-	/*****************/
+	/*********************/
 	/**
 	 * Creates a new FlowLayout
 	 * @return the created FlowLayout

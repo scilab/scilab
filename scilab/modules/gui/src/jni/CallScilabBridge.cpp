@@ -101,20 +101,22 @@ jintnewWindowID=NULL;
 jintnewMenuBarID=NULL; 
 jintnewMenuID=NULL; 
 jintnewPushButtonID=NULL; 
+jintnewEditBoxID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
+voidsetEditBoxParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
-voidsetPushButtonBackgroundColorjintjintjintjintID=NULL; 
-jintArraygetPushButtonBackgroundColorjintID=NULL; 
-voidsetPushButtonForegroundColorjintjintjintjintID=NULL; 
-jintArraygetPushButtonForegroundColorjintID=NULL; 
+voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
+jintArraygetWidgetBackgroundColorjintID=NULL; 
+voidsetWidgetForegroundColorjintjintjintjintID=NULL; 
+jintArraygetWidgetForegroundColorjintID=NULL; 
 voidsetMenuForegroundColorjintjintjintjintID=NULL; 
 jintArraygetMenuForegroundColorjintID=NULL; 
-voidsetPushButtonFontWeightjintjstringID=NULL; 
+voidsetWidgetFontWeightjintjstringID=NULL; 
 voidsetPushButtonFontSizejintjintID=NULL; 
 jintgetPushButtonFontSizejintID=NULL; 
 voidsetPushButtonFontAnglejintjstringID=NULL; 
@@ -162,20 +164,22 @@ CallScilabBridge::CallScilabBridge(JavaVM * jvm_, jobject JObj) {
 jintnewMenuBarID=NULL; 
 jintnewMenuID=NULL; 
 jintnewPushButtonID=NULL; 
+jintnewEditBoxID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
+voidsetEditBoxParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
-voidsetPushButtonBackgroundColorjintjintjintjintID=NULL; 
-jintArraygetPushButtonBackgroundColorjintID=NULL; 
-voidsetPushButtonForegroundColorjintjintjintjintID=NULL; 
-jintArraygetPushButtonForegroundColorjintID=NULL; 
+voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
+jintArraygetWidgetBackgroundColorjintID=NULL; 
+voidsetWidgetForegroundColorjintjintjintjintID=NULL; 
+jintArraygetWidgetForegroundColorjintID=NULL; 
 voidsetMenuForegroundColorjintjintjintjintID=NULL; 
 jintArraygetMenuForegroundColorjintID=NULL; 
-voidsetPushButtonFontWeightjintjstringID=NULL; 
+voidsetWidgetFontWeightjintjstringID=NULL; 
 voidsetPushButtonFontSizejintjintID=NULL; 
 jintgetPushButtonFontSizejintID=NULL; 
 voidsetPushButtonFontAnglejintjstringID=NULL; 
@@ -314,6 +318,29 @@ return res;
 
 }
 
+long CallScilabBridge::newEditBox (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewEditBoxID = curEnv->GetStaticMethodID(cls, "newEditBox", "()I" ) ;
+if (jintnewEditBoxID == NULL) {
+std::cerr << "Could not access to the method " << "newEditBox" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewEditBoxID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
 void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, long figureID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -419,6 +446,27 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::setEditBoxParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetEditBoxParentjintjintID = curEnv->GetStaticMethodID(cls, "setEditBoxParent", "(II)V" ) ;
+if (voidsetEditBoxParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setEditBoxParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetEditBoxParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setWidgetText (JavaVM * jvm_, long objID, char * text){
 
 JNIEnv * curEnv = NULL;
@@ -470,19 +518,19 @@ return myStringBuffer;
 
 }
 
-void CallScilabBridge::setPushButtonBackgroundColor (JavaVM * jvm_, long objID, long red, long green, long blue){
+void CallScilabBridge::setWidgetBackgroundColor (JavaVM * jvm_, long objID, long red, long green, long blue){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetPushButtonBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonBackgroundColor", "(IIII)V" ) ;
-if (voidsetPushButtonBackgroundColorjintjintjintjintID == NULL) {
-std::cerr << "Could not access to the method " << "setPushButtonBackgroundColor" << std::endl;
+jmethodID voidsetWidgetBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setWidgetBackgroundColor", "(IIII)V" ) ;
+if (voidsetWidgetBackgroundColorjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetBackgroundColor" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonBackgroundColorjintjintjintjintID ,objID, red, green, blue);
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetBackgroundColorjintjintjintjintID ,objID, red, green, blue);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -491,19 +539,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-long * CallScilabBridge::getPushButtonBackgroundColor (JavaVM * jvm_, long objID){
+long * CallScilabBridge::getWidgetBackgroundColor (JavaVM * jvm_, long objID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintArraygetPushButtonBackgroundColorjintID = curEnv->GetStaticMethodID(cls, "getPushButtonBackgroundColor", "(I)[I" ) ;
-if (jintArraygetPushButtonBackgroundColorjintID == NULL) {
-std::cerr << "Could not access to the method " << "getPushButtonBackgroundColor" << std::endl;
+jmethodID jintArraygetWidgetBackgroundColorjintID = curEnv->GetStaticMethodID(cls, "getWidgetBackgroundColor", "(I)[I" ) ;
+if (jintArraygetWidgetBackgroundColorjintID == NULL) {
+std::cerr << "Could not access to the method " << "getWidgetBackgroundColor" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetPushButtonBackgroundColorjintID ,objID);
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetWidgetBackgroundColorjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -526,19 +574,19 @@ return myArray;
 
 }
 
-void CallScilabBridge::setPushButtonForegroundColor (JavaVM * jvm_, long objID, long red, long green, long blue){
+void CallScilabBridge::setWidgetForegroundColor (JavaVM * jvm_, long objID, long red, long green, long blue){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetPushButtonForegroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonForegroundColor", "(IIII)V" ) ;
-if (voidsetPushButtonForegroundColorjintjintjintjintID == NULL) {
-std::cerr << "Could not access to the method " << "setPushButtonForegroundColor" << std::endl;
+jmethodID voidsetWidgetForegroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setWidgetForegroundColor", "(IIII)V" ) ;
+if (voidsetWidgetForegroundColorjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetForegroundColor" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonForegroundColorjintjintjintjintID ,objID, red, green, blue);
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetForegroundColorjintjintjintjintID ,objID, red, green, blue);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -547,19 +595,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-long * CallScilabBridge::getPushButtonForegroundColor (JavaVM * jvm_, long objID){
+long * CallScilabBridge::getWidgetForegroundColor (JavaVM * jvm_, long objID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintArraygetPushButtonForegroundColorjintID = curEnv->GetStaticMethodID(cls, "getPushButtonForegroundColor", "(I)[I" ) ;
-if (jintArraygetPushButtonForegroundColorjintID == NULL) {
-std::cerr << "Could not access to the method " << "getPushButtonForegroundColor" << std::endl;
+jmethodID jintArraygetWidgetForegroundColorjintID = curEnv->GetStaticMethodID(cls, "getWidgetForegroundColor", "(I)[I" ) ;
+if (jintArraygetWidgetForegroundColorjintID == NULL) {
+std::cerr << "Could not access to the method " << "getWidgetForegroundColor" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetPushButtonForegroundColorjintID ,objID);
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetWidgetForegroundColorjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -638,21 +686,21 @@ return myArray;
 
 }
 
-void CallScilabBridge::setPushButtonFontWeight (JavaVM * jvm_, long objID, char * weight){
+void CallScilabBridge::setWidgetFontWeight (JavaVM * jvm_, long objID, char * weight){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetPushButtonFontWeightjintjstringID = curEnv->GetStaticMethodID(cls, "setPushButtonFontWeight", "(ILjava/lang/String;)V" ) ;
-if (voidsetPushButtonFontWeightjintjstringID == NULL) {
-std::cerr << "Could not access to the method " << "setPushButtonFontWeight" << std::endl;
+jmethodID voidsetWidgetFontWeightjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetFontWeight", "(ILjava/lang/String;)V" ) ;
+if (voidsetWidgetFontWeightjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetFontWeight" << std::endl;
 exit(EXIT_FAILURE);
 }
 
 jstring weight_ = curEnv->NewStringUTF( weight );
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetPushButtonFontWeightjintjstringID ,objID, weight_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetFontWeightjintjstringID ,objID, weight_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

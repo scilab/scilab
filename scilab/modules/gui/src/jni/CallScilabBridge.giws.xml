@@ -5,7 +5,7 @@
 	<method name="newMenuBar" returnType="int" modifier="static"/>
 	<method name="newMenu" returnType="int" modifier="static"/>        
 	<method name="newPushButton" returnType="int" modifier="static"/>        
-  
+	<method name="newEditBox" returnType="int" modifier="static"/>        
 <!-- Parent setting -->
 	<method name="setFigureAsParent" returnType="void" modifier="static">
 	  <parameter type="int" name="figureID"/>
@@ -26,6 +26,10 @@
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
+	<method name="setEditBoxParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
 <!-- Text setting -->
 	<method name="setWidgetText" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
@@ -35,22 +39,22 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Color setting -->
-	<method name="setPushButtonBackgroundColor" returnType="void" modifier="static">
+	<method name="setWidgetBackgroundColor" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="red"/>
 	  <parameter type="int" name="green"/>
 	  <parameter type="int" name="blue"/>
 	</method>
-	<method name="getPushButtonBackgroundColor" returnType="int[]" modifier="static">
+	<method name="getWidgetBackgroundColor" returnType="int[]" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
-	<method name="setPushButtonForegroundColor" returnType="void" modifier="static">
+	<method name="setWidgetForegroundColor" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="red"/>
 	  <parameter type="int" name="green"/>
 	  <parameter type="int" name="blue"/>
 	</method>
-	<method name="getPushButtonForegroundColor" returnType="int[]" modifier="static">
+	<method name="getWidgetForegroundColor" returnType="int[]" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
 	<method name="setMenuForegroundColor" returnType="void" modifier="static">
@@ -63,7 +67,7 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Font setting -->
-	<method name="setPushButtonFontWeight" returnType="void" modifier="static">
+	<method name="setWidgetFontWeight" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="weight"/>
 	</method>

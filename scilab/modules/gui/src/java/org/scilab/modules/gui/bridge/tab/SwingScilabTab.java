@@ -2,15 +2,21 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JScrollPane;
+
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
+import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -46,7 +52,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public SwingScilabTab(String name) {
 		super(name, name, name);
 		this.addAction(DockingConstants.CLOSE_ACTION);
-		// FIXME : Need improovment to be available at a release Status...
+		// FIXME : Need improvement to be available at a release Status...
 		this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
 		this.setLayout(null);
@@ -123,23 +129,23 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 
-//	 TODO : Check wether we want a Canvas in a Tab or not.
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(Canvas member) {
+		// TODO : Check wether we want a Canvas in a Tab or not.
 		return this.addMember((SwingScilabCanvas) member.getAsSimpleCanvas());
 	}
 	
-//	 TODO : Check wether we want a Canvas in a Tab or not.
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabCanvas member) {
+		// TODO : Check wether we want a Canvas in a Tab or not.
 		this.setContentPane(member);
 		return this.getComponentZOrder(member);
 	}
@@ -197,6 +203,26 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabPushButton member) {
+		this.add(member);
+		this.revalidate(); // If do not revalidate then the component do not appear
+		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(EditBox member) {
+		return this.addMember((SwingScilabEditBox) member.getAsSimpleEditBox());
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabEditBox member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
 		return this.getComponentZOrder(member);

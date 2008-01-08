@@ -1,13 +1,13 @@
 /* Copyright INRIA 2007 */
 /* Vincent COUVERT */
 
-#ifndef __PUSHBUTTON_HXX__
-#define __PUSHBUTTON_HXX__
+#ifndef __EDITBOX_HXX__
+#define __EDITBOX_HXX__
 
 #include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"{
-#include "PushButton.h"
+#include "EditBox.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
 #include "CurrentObjectsManagement.h"
@@ -17,4 +17,4 @@ extern "C"{
 #include "sciprint.h"
 }
 
-#endif /* __PUSHBUTTON_HXX__ */
+#endif /* __EDITBOX_HXX__ */

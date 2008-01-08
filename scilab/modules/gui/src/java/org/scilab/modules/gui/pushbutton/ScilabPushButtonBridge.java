@@ -121,7 +121,7 @@ public class ScilabPushButtonBridge {
 	}
 
 	/**
-	 * Add a callback to the pushbutton, this callback is a Scilab command
+	 * Add a callback to the pushbutton
 	 * @param pushButton the PushButton we want to set the callback of
 	 * @param command the Scilab command to execute when the pushbutton is activated
 	 * @param commandType the type of the command that will be executed.

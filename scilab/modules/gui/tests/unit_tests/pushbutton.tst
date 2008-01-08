@@ -12,14 +12,14 @@ h = uicontrol(gcf());
 set(h, "string", "White button");
 set(h, "backgroundcolor", [1 1 1]);
 set(h, "foregroundcolor", [0 1 0]);
-set(h, "position", [50 125 200 30]);
+set(h, "position", [50 130 200 30]);
 set(h, "fontweight", "light");
 
 h = uicontrol("parent", gcf());
 set(h, "string", "Light grey button");
 set(h, "backgroundcolor", [0.7 0.7 0.7]);
 set(h, "foregroundcolor", [0 0 1]);
-set(h, "position", [50 150 200 30]);
+set(h, "position", [50 160 200 30]);
 set(h, "fontweight", "demi");
 
 h = uicontrol("style", "pushbutton");
@@ -33,13 +33,13 @@ h = uicontrol(gcf(), "style", "pushbutton");
 set(h, "string", "Cyan button");
 set(h, "backgroundcolor", "0|1|1");
 set(h, "foregroundcolor", "0|1|0");
-set(h, "position", [250 125 200 30]);
+set(h, "position", [250 130 200 30]);
 
 h = uicontrol("parent", gcf(), "style", "pushbutton");
 set(h, "string", "Dark grey button");
 set(h, "backgroundcolor", "0.3|0.3|0.3");
 set(h, "foregroundcolor", "0|0.5|0");
-set(h, "position", [250 150 200 30]);
+set(h, "position", [250 160 200 30]);
 
 // Current figure size
 f=gcf();

@@ -3,24 +3,33 @@
 
 package org.scilab.modules.gui.editbox;
 
+import java.awt.Color;
+import java.awt.Font;
+
+import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Bridge for Scilab EditBox in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public class ScilabEditBoxBridge {
 
+	/**
+	 * Constructor
+	 */
+	protected ScilabEditBoxBridge() {
+		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+	}
 
 	/**
 	 * Creates a Scilab EditBox
 	 * @return the created EditBox
 	 */
 	public static SimpleEditBox createEditBox() {
-		// FIXME : UI CONTROL must be developped last !!!!!
-		return null;	
-		//return new SwingScilabEditBox();
+		return new SwingScilabEditBox();
 	}
 	
 	/**
@@ -47,8 +56,7 @@ public class ScilabEditBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public static void draw(EditBox editBox) {
-		// FIXME : UI CONTROL MUST BE LAST !!!!
-		// editBox.getAsSimpleEditBox().draw();
+		editBox.getAsSimpleEditBox().draw();
 	}
 
 	/**
@@ -58,9 +66,7 @@ public class ScilabEditBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public static Size getDims(EditBox editBox) {
-		// FIXME : UI CONTROL MUST BE LAST !!!!
-		// return editBox.getAsSimpleEditBox().getDims();
-		return null;
+		return editBox.getAsSimpleEditBox().getDims();
 	}
 
 	/**
@@ -70,9 +76,7 @@ public class ScilabEditBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public static Position getPosition(EditBox editBox) {
-		// FIXME : UI CONTROL MUST BE LAST !!!!
-		// return editBox.getAsSimpleEditBox().getPosition();
-		return null;
+		return editBox.getAsSimpleEditBox().getPosition();
 	}
 
 	/**
@@ -82,9 +86,7 @@ public class ScilabEditBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#isVisible()
 	 */
 	public static boolean isVisible(EditBox editBox) {
-		// FIXME : UI CONTROL MUST BE LAST !!!!
-		//return editBox.getAsSimpleEditBox().isVisible();
-		return false;
+		return editBox.getAsSimpleEditBox().isVisible();
 	}
 
 	/**
@@ -94,8 +96,7 @@ public class ScilabEditBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public static void setDims(EditBox editBox, Size newSize) {
-		// FIXME : UI CONTROL MUST BE LAST !!!!
-		// editBox.getAsSimpleEditBox().setDims(newSize);
+		editBox.getAsSimpleEditBox().setDims(newSize);
 	}
 
 	/**
@@ -105,8 +106,7 @@ public class ScilabEditBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public static void setPosition(EditBox editBox, Position newPosition) {
-		// FIXME : UI CONTROL MUST BE LAST !!!!
-		//editBox.getAsSimpleEditBox().setPosition(newPosition);
+		editBox.getAsSimpleEditBox().setPosition(newPosition);
 	}
 
 	/**
@@ -116,7 +116,79 @@ public class ScilabEditBoxBridge {
 	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
 	 */
 	public static void setVisible(EditBox editBox, boolean newVisibleState) {
-		// FIXME : UI CONTROL MUST BE LAST !!!!
-		//editBox.getAsSimpleEditBox().setVisible(newVisibleState);
+		editBox.getAsSimpleEditBox().setVisible(newVisibleState);
+	}
+	
+	/**
+	 * Add a callback to the EditBox
+	 * @param editBox the EditBox we want to set the callback of
+	 * @param command the Scilab command to execute when the contents of the editBox is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(EditBox editBox, String command, int commandType) {
+		editBox.getAsSimpleEditBox().setCallback(command, commandType);
+	}
+	
+	/**
+	 * To set the Background color of the EditBox
+	 * @param editBox the EditBox we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(EditBox editBox, Color color) {
+		editBox.getAsSimpleEditBox().setBackground(color);
+	}
+
+	/**
+	 * Get the Background color of the EditBox
+	 * @param editBox the EditBox we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(EditBox editBox) {
+		return editBox.getAsSimpleEditBox().getBackground();
+	}
+
+	/**
+	 * To set the Foreground color of the editBox
+	 * @param editBox the EditBox we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(EditBox editBox, Color color) {
+		editBox.getAsSimpleEditBox().setForeground(color);
+	}
+
+	/**
+	 * Get the Foreground color of the EditBox
+	 * @param editBox the EditBox we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(EditBox editBox) {
+		return editBox.getAsSimpleEditBox().getForeground();
+	}
+
+	/**
+	 * Set the font of the EditBox.
+	 * @param editBox the EditBox we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(EditBox editBox, Font font) {
+		editBox.getAsSimpleEditBox().setFont(font);
+	}
+	
+	/**
+	 * Get the font of the EditBox.
+	 * @param editBox the EditBox we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(EditBox editBox) {
+		return editBox.getAsSimpleEditBox().getFont();
+	}
+	
+	/**
+	 * Set if the EditBox is enabled or not
+	 * @param editBox the EditBox we want to set the status of
+	 * @param status true if the EditBox is enabled
+	 */
+	public static void setEnabled(EditBox editBox, boolean status) {
+		editBox.getAsSimpleEditBox().setEnabled(status);
 	}
 }
