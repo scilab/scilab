@@ -4043,11 +4043,7 @@ int sciInitLogFlags(sciPointObj * pObj, char logFlags[3])
     pSUBWIN_FEATURE(pObj)->logflags[1] = logFlags[1];
     pSUBWIN_FEATURE(pObj)->logflags[2] = logFlags[2];
 
-    // force redraw of all children of the object.
-    if (pObj != getAxesModel())
-    {
-      forceHierarchyRedraw(pObj);
-    }
+    
 
     return 0;
   default:
@@ -4062,6 +4058,7 @@ int sciInitLogFlags(sciPointObj * pObj, char logFlags[3])
 int sciSetLogFlags(sciPointObj * pObj, char logFlags[3])
 {
   char curLogFlags[3];
+  int status;
   sciGetLogFlags(pObj, curLogFlags);
   if (   logFlags[0] == curLogFlags[0] && logFlags[1] == curLogFlags[1]
       && logFlags[2] == curLogFlags[2])
@@ -4069,7 +4066,15 @@ int sciSetLogFlags(sciPointObj * pObj, char logFlags[3])
     // nothing to do
     return 1;
   }
-  return sciInitLogFlags(pObj, logFlags);
+  status = sciInitLogFlags(pObj, logFlags);
+
+  // force redraw of all children of the object.
+  if (status == 0 && pObj != getAxesModel())
+  {
+    forceHierarchyRedraw(pObj);
+  }
+
+  return status;
 }
 /*----------------------------------------------------------------------------------*/
 int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)

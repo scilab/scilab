@@ -6,10 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableLabel.h"
-extern "C"
-{
-//#include "handleDrawing/drawLabelEntity.h"
-}
+#include "getHandleDrawer.h"
 
 namespace sciGraphics
 {
@@ -17,12 +14,15 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 void DrawableLabel::draw( void )
 {
-  //drawLabelEntity( m_pDrawed ) ;
+  // draw the enclosed text
+  getHandleDrawer(pLABEL_FEATURE(m_pDrawed)->text)->hasChanged();
+  getHandleDrawer(pLABEL_FEATURE(m_pDrawed)->text)->display();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableLabel::show( void )
 {
-  draw() ;
+  // show the enclosed text
+  getHandleDrawer(pLABEL_FEATURE(m_pDrawed)->text)->display();
 }
 /*---------------------------------------------------------------------------------*/
 

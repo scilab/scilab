@@ -3752,6 +3752,7 @@ void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zSty
     break ;
   default:
     printSetGetErrorMessage("grid");
+    break;
   }
 }
 /*----------------------------------------------------------------------------------*/

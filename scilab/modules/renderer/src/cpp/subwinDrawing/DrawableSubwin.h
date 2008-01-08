@@ -59,6 +59,8 @@ protected:
    */
   void showAxesBox(void);
 
+  
+
   /**
    * Draw the surrounding cube of the subwin object.
    */

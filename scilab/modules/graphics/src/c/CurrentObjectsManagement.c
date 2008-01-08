@@ -54,6 +54,7 @@ sciPointObj * sciGetCurrentFigure( void )
   {
     /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
     /* for now, no higher entities than figure */
+    startGraphicDataWriting();
     if ( (pfigure = ConstructFigure(NULL, NULL)) != NULL )
     {
       sciSetCurrentObj(pfigure);
@@ -64,6 +65,7 @@ sciPointObj * sciGetCurrentFigure( void )
         set_cf_type(1);/* current figure is a graphic one */
       }
     }
+    endGraphicDataWriting();
   }
 
   return pfigure;
