@@ -337,10 +337,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\dbetrm.c"
-				>
-			</File>
-			<File
 				RelativePath="..\devlpl.c"
 				>
 			</File>
@@ -357,27 +353,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\dlanor.c"
-				>
-			</File>
-			<File
-				RelativePath="..\dln1mx.c"
-				>
-			</File>
-			<File
-				RelativePath="..\dln1px.c"
-				>
-			</File>
-			<File
 				RelativePath="..\dlnbet.c"
-				>
-			</File>
-			<File
-				RelativePath="..\dlngam.c"
-				>
-			</File>
-			<File
-				RelativePath="..\dstrem.c"
 				>
 			</File>
 			<File
@@ -633,10 +609,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\dbetrm.f"
-				>
-			</File>
-			<File
 				RelativePath="..\devlpl.f"
 				>
 			</File>
@@ -650,10 +622,6 @@
 			</File>
 			<File
 				RelativePath="..\dinvr.f"
-				>
-			</File>
-			<File
-				RelativePath="..\dlnbet.f"
 				>
 			</File>
 			<File
