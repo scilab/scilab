@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\org\scilab\modules\gui\utils\ScilabWidgetBorder.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\gui\window\ScilabWindow.java"
 				>
 			</File>

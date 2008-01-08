@@ -227,6 +227,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\EditBox.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\FileChooser.cpp"
 				>
 			</File>
@@ -597,6 +601,14 @@
 			</File>
 			<File
 				RelativePath=".\CreateUIControl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\EditBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\EditBox.hxx"
 				>
 			</File>
 			<File
