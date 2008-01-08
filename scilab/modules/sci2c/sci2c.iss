@@ -10,7 +10,7 @@
 ;
 #define SCI2C "sci2c"
 ;
-Source: modules\{#SCI2C}\VERSION.xml; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}; Check: set_with_SCI2C
+Source: modules\{#SCI2C}\VERSION.xml; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
 Source: modules\{#SCI2C}\readme.txt; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
 Source: modules\{#SCI2C}\licence.txt; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
 Source: modules\{#SCI2C}\changelog.txt; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}

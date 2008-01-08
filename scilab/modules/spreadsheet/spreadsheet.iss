@@ -14,7 +14,7 @@ Source: bin\spreadsheet.dll; DestDir: {app}\bin; Components: {#COMPN_SPREADSHEET
 ;
 Source: bin\nospreadsheet.dll; DestDir: {app}\bin; DestName: spreadsheet.dll; Components: not ({#COMPN_SPREADSHEET})
 ;
-Source: modules\{#SPREADSHEET}\changelog.txt; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}; Check: set_with_spreadsheet
+Source: modules\{#SPREADSHEET}\changelog.txt; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\licence.txt; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\readme.txt; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\VERSION.xml; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}

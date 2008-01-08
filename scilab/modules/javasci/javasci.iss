@@ -10,7 +10,7 @@
 ;
 #define JAVASCI "javasci"
 ;
-Source: bin\Javasci.dll; DestDir: {app}\bin; Components: {#COMPN_JAVASCI}; Check: set_with_javasci
+Source: bin\Javasci.dll; DestDir: {app}\bin; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\jar\javasci.jar;DestDir: {app}\modules\{#JAVASCI}\jar; Components: {#COMPN_JAVASCI}
 ;
 Source: modules\{#JAVASCI}\help\addchapter.sce; DestDir: {app}\modules\{#JAVASCI}\help; Flags: recursesubdirs; Components:  {#COMPN_JAVASCI}

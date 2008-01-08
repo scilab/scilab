@@ -10,7 +10,7 @@
 ;
 #define TCLSCI "tclsci"
 ;
-Source: modules\{#TCLSCI}\VERSION.xml; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}; Check: set_with_tclsci
+Source: modules\{#TCLSCI}\VERSION.xml; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\readme.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\licence.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\changelog.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}

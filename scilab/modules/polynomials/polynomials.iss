@@ -10,7 +10,7 @@
 ;
 #define POLYNOMIALS "polynomials"
 ;
-Source: modules\{#POLYNOMIALS}\VERSION.xml; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}; Check: set_with_polynomials
+Source: modules\{#POLYNOMIALS}\VERSION.xml; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\readme.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\licence.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\changelog.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}

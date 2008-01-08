@@ -10,7 +10,7 @@
 ;
 #define SPARSE "sparse"
 ;
-Source: bin\sparse_f.dll; DestDir: {app}\bin; Components: {#COMPN_SPARSE}; Check: set_with_sparse
+Source: bin\sparse_f.dll; DestDir: {app}\bin; Components: {#COMPN_SPARSE}
 ;
 Source: modules\{#SPARSE}\VERSION.xml; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\readme.txt; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SPARSE}

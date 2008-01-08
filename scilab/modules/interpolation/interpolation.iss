@@ -10,7 +10,7 @@
 ;
 #define INTERPOLATION "interpolation"
 ;
-Source: modules\{#INTERPOLATION}\VERSION.xml; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}; Check: set_with_interpolation
+Source: modules\{#INTERPOLATION}\VERSION.xml; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\readme.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\licence.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\changelog.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}

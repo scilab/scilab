@@ -10,7 +10,7 @@
 ;
 #define METANET "metanet"
 ;
-Source: bin\metanet_f.dll; DestDir: {app}\bin; Components: {#COMPN_METANET}; Check: set_with_metanet
+Source: bin\metanet_f.dll; DestDir: {app}\bin; Components: {#COMPN_METANET}
 Source: bin\metanet.dll; DestDir: {app}\bin; DestName: metanet.dll; Components: {#COMPN_METANET}
 Source: bin\nometanet.dll; DestDir: {app}\bin; DestName: metanet.dll; Components: not ({#COMPN_METANET})
 ;

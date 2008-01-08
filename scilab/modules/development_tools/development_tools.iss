@@ -10,7 +10,7 @@
 ;
 #define DEVTOOLS "development_tools"
 ;
-Source: modules\{#DEVTOOLS}\VERSION.xml; DestDir: {app}\modules\{#DEVTOOLS}; Components: {#COMPN_DEVTOOLS}; Check: set_with_{#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\VERSION.xml; DestDir: {app}\modules\{#DEVTOOLS}; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\readme.txt; DestDir: {app}\modules\{#DEVTOOLS}; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\licence.txt; DestDir: {app}\modules\{#DEVTOOLS}; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\changelog.txt; DestDir: {app}\modules\{#DEVTOOLS}; Components: {#COMPN_DEVTOOLS}

@@ -13,7 +13,7 @@
 Source: bin\scicos.lib; DestDir: {app}\bin; DestName: scicos.lib
 Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;
-;Source: bin\scicos_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}; Check: set_with_scicos
+;Source: bin\scicos_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;Source: bin\scicos.lib; DestDir: {app}\bin; DestName: scicos.lib; Components: {#COMPN_SCICOS}
 ;Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll; Components: {#COMPN_SCICOS}
 ;Source: bin\noscicos.dll; DestDir: {app}\bin; DestName: scicos.dll; Components: not ({#COMPN_SCICOS})

@@ -15,7 +15,7 @@ Source: bin\norandlib.dll; DestDir: {app}\bin; DestName: randlib.dll; Components
 Source: bin\randlib.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
 Source: bin\randlib_f.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\VERSION.xml; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}; Check: set_with_randlib
+Source: modules\{#RANDLIB}\VERSION.xml; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\readme.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\licence.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\changelog.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}

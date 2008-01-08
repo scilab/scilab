@@ -10,7 +10,7 @@
 ;
 #define SCIPAD "scipad"
 ;
-Source: modules\{#SCIPAD}\VERSION.xml; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}; Check: set_with_scipad
+Source: modules\{#SCIPAD}\VERSION.xml; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\readme.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\licence.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\changelog.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}

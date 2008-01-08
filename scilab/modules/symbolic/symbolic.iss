@@ -13,7 +13,7 @@
 Source: bin\symbolic.dll; DestDir: {app}\bin; DestName: symbolic.dll; Components: {#COMPN_SYMB}
 Source: bin\symbolic_f.dll; DestDir: {app}\bin; DestName: symbolic_f.dll; Components: {#COMPN_SYMB}
 ;
-Source: modules\{#SYMBOLIC}\VERSION.xml; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}; Check: set_with_symbolic
+Source: modules\{#SYMBOLIC}\VERSION.xml; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\readme.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\licence.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\changelog.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}

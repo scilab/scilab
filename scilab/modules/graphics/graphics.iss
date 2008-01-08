@@ -10,7 +10,7 @@
 ;
 #define GRAPHICS "graphics"
 ;
-Source: modules\{#GRAPHICS}\VERSION.xml; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}; Check: set_with_graphics
+Source: modules\{#GRAPHICS}\VERSION.xml; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\readme.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\licence.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\changelog.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}

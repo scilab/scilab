@@ -10,7 +10,7 @@
 ;
 #define MEXLIB "mexlib"
 ;
-Source: bin\libmx.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}; Check: set_with_mexlib
+Source: bin\libmx.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 Source: bin\libmex.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 Source: bin\libmat.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 ;

@@ -10,7 +10,9 @@
 ;
 #define ARNOLDI "arnoldi"
 ;
-Source: bin\arnoldi.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI}; Check: set_with_arnoldi
+Source: bin\arnoldi.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI};
+;Source: bin\noarnoldi.dll; DestDir: {app}\bin; DestName: arnoldi.dll; Components: not ({#COMPN_ARNOLDI})
+;
 Source: bin\Arpack.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI}
 Source: bin\UMFPACK.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI}
 ;
