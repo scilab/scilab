@@ -24,33 +24,15 @@
 /*------------------------------------------------------------------------*/
 #define CHAR_S "s"
 #define CHAR_R "r"
-void my_swap(int v[], int i, int j)
+struct In
 {
-   int temp;
-   temp = v[i];
-   v[i] = v[j];
-   v[j] = temp;
-}
-void my_qsort(int v[],int index[], int left, int right)
+		int data;
+		int position;
+} ; 
+int cmp( const void *a ,const void *b)
 {
-   int i, last;
-   if (left >= right) /* do nothing if array contains */
-       return;        /* fewer than two elements */
-   my_swap(v, left, (left + right)/2); /* move partition elem */
-   my_swap(index, left, (left + right)/2);
-   last = left;                        /* to v[0] */
-   for (i = left + 1; i <= right; i++) /* partition */
-	   if (v[i] < v[left])
-	   {
-		   ++last;
-		   my_swap(v, last, i);
-           my_swap(index, last, i);
-	   }
-   my_swap(v, left, last);
-   my_swap(index, left, last);   /* restore partition elem */
-   my_qsort(v,index, left, last-1);
-   my_qsort(v,index, last+1, right);
-}
+return (*(struct In *)a).data > (*(struct In *)b).data ? 1 : -1;
+} 
 
 /*------------------------------------------------------------------------*/
 int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
@@ -137,10 +119,10 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		char **Strings_Input2 = NULL;
 		int m2n2 = 0; /* m2 * n2 */
 
-		int *values = NULL;
-		int *position = NULL;
-
-		int nbValues = 0;
+	
+        struct In *values=NULL;
+		
+	    int nbValues = 0;
 		int nbposition = 0;
 
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Strings_Input1);
@@ -166,13 +148,12 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (int)strlen(Strings_Input1[0]) == 0 )
 		{
-			values = (int *)MALLOC(sizeof(int));
-			position = (int *)MALLOC(sizeof(int));
+			values= (struct In*)MALLOC(sizeof(struct In));
 		}
 		else
 		{
-			values = (int *)MALLOC( sizeof(int) * ( strlen(Strings_Input1[0]) ) );
-			position = (int *)MALLOC( sizeof(int) * ( strlen(Strings_Input1[0])) );
+			values = (struct In *)MALLOC( sizeof(struct In) * ( strlen(Strings_Input1[0]) ) );
+			
 		}
 
 		if (bStrindex_with_pattern)
@@ -189,14 +170,14 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 				w = pcre_private(Strings_Input1[0],Strings_Input2[x],&Output_Start,&Output_End);
 				if ( w == 0)
 				{         
-					values[nbValues++] = Output_Start+1; /* adding the answer into the outputmatrix */
-					position[nbposition++] = x+1;        /* The number according to the str2 matrix */
+					values[nbValues++].data = Output_Start+1; /* adding the answer into the outputmatrix */
+					values[nbposition++].position = x+1;        /* The number according to the str2 matrix */
 				}     
 			}
             
 		
 		
-           my_qsort( values, position,0, nbValues - 1 );
+           qsort(values,nbValues,sizeof(values[0]),cmp); 
 			
 
 		}
@@ -214,7 +195,6 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 						freeArrayOfString(Strings_Input1,m1n1);
 						if (next) {FREE(next); next = NULL;}
 						if (values) {FREE(values); values = NULL;}
-						if (position) {FREE(position); position = NULL;}
 						Scierror(999, _("%s : Wrong size for second input argument: a not empty string expected.\n"));
 						return 0;
 				}
@@ -227,8 +207,8 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 						w = kmp(*Strings_Input1,Strings_Input2[x],pos,next);      
 						if (w !=0)
 						{            
-							values[nbValues++] = w;
-							position[nbposition++] = x+1;
+							values[nbValues++].data = w;
+							values[nbposition++].position = x+1;
 						}
 						pos = w;
 					}
@@ -236,7 +216,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 
 					/* values are sorted */
 					/* TO DO : Optimize this , with a qsort */
-					my_qsort( values, position,0, nbValues - 1 );
+					qsort(values,nbValues,sizeof(values[0]),cmp); 
 				}
 			}
 		}
@@ -249,7 +229,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
 		for ( i = 0 ; i < nbValues ; i++ )
 		{
-			stk(outIndex)[i] = (double)values[i] ;
+			stk(outIndex)[i] = (double)values[i].data ;
 		}
 		LhsVar(1) = Rhs+1 ;
 
@@ -260,7 +240,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 			CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbposition,&outIndex);
 			for ( i = 0 ; i < nbposition ; i++ )
 			{
-				stk(outIndex)[i] = (double)position[i] ;
+				stk(outIndex)[i] = (double)values[i].position ;
 			}
 			LhsVar(2) = Rhs+2;    
 		}
@@ -268,7 +248,6 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		C2F(putlhsvar)();
 
 		if (values) {FREE(values); values = NULL;}
-		if (position) {FREE(position); position = NULL;}
 	}
 	else
 	{
