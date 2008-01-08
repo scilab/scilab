@@ -1,9 +1,9 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_regexp.c                                                  */
+/* File: sci_regexp.c                                                     */
 /* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                      */
+/* @Authors : Cong Wu                                                     */
 /* desc : search position of a character string in an other string
-          using regular expression .                                         */
+          using regular expression .                                      */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -22,6 +22,8 @@
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
 #define CHAR_R 'r'
+/* TODO : Add tests !!! man , bench , search memory leak , and optimize ... */
+/* Not finish !!! :( */
 /*------------------------------------------------------------------------*/
 int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -48,6 +50,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	int nbValues_end=0;
     int nbposition = 0;
 	char **match=NULL;
+
+	/* Are you sure for Lhs and Rhs */
     CheckRhs(1,3);
     CheckLhs(1,3);
 
@@ -109,6 +113,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 
         if ( m3*n3 != 0) typ = cstk(l3)[0];
 
+		/* TODO : What do you when it is not 'R' ? ? ? */
         if (typ == CHAR_R )
         {
 			int x = 0;
@@ -130,6 +135,10 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
             }
         }
     }
+
+	/* TODO : Why 50 ? */
+	/* Please modify this */
+
     match = (char**)MALLOC(sizeof(char**)*(50));
 	for( i=0;i<nbValues;i++)
 	{
@@ -139,7 +148,6 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 			match[i][j-values[i]+1]=Str[i][j];
 		}
 	}
-    
 
 
 	freeArrayOfString(Str,mn);
@@ -153,16 +161,6 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		stk(outIndex)[i] = (double)values[i] ;
     }
     LhsVar(1) = Rhs+1 ;
-
-	/* position[]*/
-    /*numRow   = 1;
-    outIndex = 0;
-    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbposition,&outIndex);
-    for ( i = 0 ; i < nbposition ; i++ )
-    {
-		stk(outIndex)[i] = (double)position[i] ;
-    }
-    LhsVar(2) = Rhs+2;    */
 
     numRow   = 1;
     outIndex = 0;
