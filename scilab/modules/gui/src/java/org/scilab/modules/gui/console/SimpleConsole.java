@@ -108,16 +108,5 @@ public interface SimpleConsole {
 	 * @return true is Scilab is waiting for commands
 	 */
 	boolean isWaitingForInput();
-	
-	/**
-	 * Set the element id for this console
-	 * @param id the id of the corresponding console object
-	 */
-	void setElementId(int id);
-	
-	/**
-	 * Get the element id for this console
-	 * @return id the id of the corresponding console object
-	 */
-	int getElementId();
+
 }

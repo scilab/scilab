@@ -4,10 +4,9 @@
 package org.scilab.modules.gui.console;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.dockable.ScilabDockable;
 
 /**
  * Class for Scilab Console in GUIs
@@ -18,14 +17,13 @@ public class ScilabConsole extends ScilabDockable implements Console {
 
 	private SimpleConsole component;
 
+	private static Console instance;
+	
 	/**
 	 * Constructor
 	 */
 	protected ScilabConsole() {
 		component = ScilabBridge.createConsole();
-		component.setElementId(UIElementMapper.add(this));
-
-		//setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**
@@ -33,9 +31,23 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 * @return the created console
 	 */
 	public static Console createConsole() {
-		return new ScilabConsole();
+		if (instance == null) {
+			instance = new ScilabConsole();
+		}
+		return instance;
 	}
 
+	/**
+	 * get a Scilab Console
+	 * @return the console
+	 */
+	public static Console getConsole() {
+		if (instance == null) {
+			instance = new ScilabConsole();
+		}
+		return instance;
+	}
+	
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
