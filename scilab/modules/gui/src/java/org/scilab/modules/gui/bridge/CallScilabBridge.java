@@ -98,7 +98,7 @@ public class CallScilabBridge {
 		PushButton pushButton = ScilabPushButton.createPushButton();
 		int id = UIElementMapper.add(pushButton);
 		// Scilab default font
-		setPushButtonFontWeight(id, "normal");
+		setWidgetFontWeight(id, "normal");
 		return id;
 	}
 
