@@ -25,7 +25,11 @@ function [Y,M,D,h,m,s] = datevec(N)
 	end
 	
 	[nr,nc] = size(N);
-	compteur = 0;
+	
+	if nc == 1 then
+		common_year = common_year';
+		leap_year   = leap_year';
+	end
 	
 	// for the moment : hour, minute, second
 	// =========================================================================
@@ -68,9 +72,10 @@ function [Y,M,D,h,m,s] = datevec(N)
 	
 	Day = ones(nr,nc);
 	
-	Day(isLeapYear(Year))  = N(isLeapYear(Year))  - leap_year(Month(isLeapYear(Year)))';
-	Day(~isLeapYear(Year)) = N(~isLeapYear(Year)) - common_year(Month(~isLeapYear(Year)))';
+	month_day_mat(isLeapYear(Year))  = leap_year(Month(isLeapYear(Year)));
+	month_day_mat(~isLeapYear(Year)) = common_year(Month(~isLeapYear(Year)));
 	
+	Day = N - month_day_mat;
 	
 	if (lhs==1) then
 		Y(:,1) = matrix(Year  ,nr*nc , 1);
