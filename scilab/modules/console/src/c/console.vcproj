@@ -258,6 +258,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\org_scilab_modules_gui_bridge.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\PromptToHome.cpp"
 				>
 			</File>
@@ -267,10 +271,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetConsolePrompt.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\SwingScilabConsole.cpp"
 				>
 			</File>
 			<File
@@ -335,14 +335,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\GetScilabConsoleObject.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\GetScilabConsoleObject.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\GuiManagement.h"
 				>
 			</File>
@@ -352,6 +344,10 @@
 			</File>
 			<File
 				RelativePath=".\InterpreterManagement.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\org_scilab_modules_gui_bridge.hxx"
 				>
 			</File>
 			<File
@@ -376,10 +372,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\SetConsolePrompt.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\SwingScilabConsole.hxx"
 				>
 			</File>
 			<File
