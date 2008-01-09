@@ -109,10 +109,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\org\scilab\modules\gui\bridge\Renderer.java"
-				>
-			</File>
-			<File
 				RelativePath=".\org\scilab\modules\gui\bridge\ScilabBridge.java"
 				>
 			</File>
