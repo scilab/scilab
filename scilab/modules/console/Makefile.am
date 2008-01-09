@@ -7,7 +7,7 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_JNI_SOURCES = src/jni/SwingScilabConsole.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/org_scilab_modules_gui_bridge.cpp
 
 CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
@@ -17,8 +17,7 @@ src/cpp/ConsoleIsWaitingForInput.cpp \
 src/cpp/GetCharWithoutOutput.cpp \
 src/cpp/PromptToHome.cpp \
 src/cpp/ScilabLinesUpdate.cpp \
-src/cpp/SetConsolePrompt.cpp \
-src/cpp/GetScilabConsoleObject.cpp
+src/cpp/SetConsolePrompt.cpp
 
 # List of the c files
 CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
@@ -29,7 +28,7 @@ src/c/GuiManagement.c \
 src/c/dropFiles.c \
 src/c/TerminateConsole.c
 
-GIWS_WRAPPERS = src/jni/SwingScilabConsole.giws.xml
+GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 
 else
 

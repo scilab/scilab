@@ -90,12 +90,12 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/jni/DropFiles_wrap.c src/noconsole/noconsole.c \
 	src/c/InitializeConsole.c src/c/GuiManagement.c \
 	src/c/dropFiles.c src/c/TerminateConsole.c \
-	src/jni/SwingScilabConsole.cpp src/cpp/ClearConsole.cpp \
-	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
-	src/cpp/ConsoleRead.cpp src/cpp/ConsoleIsWaitingForInput.cpp \
+	src/jni/org_scilab_modules_gui_bridge.cpp \
+	src/cpp/ClearConsole.cpp src/cpp/ClearConsolePart.cpp \
+	src/cpp/ConsolePrintf.cpp src/cpp/ConsoleRead.cpp \
+	src/cpp/ConsoleIsWaitingForInput.cpp \
 	src/cpp/GetCharWithoutOutput.cpp src/cpp/PromptToHome.cpp \
-	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp \
-	src/cpp/GetScilabConsoleObject.cpp
+	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp
 @GUI_TRUE@am__objects_1 = libsciconsole_la-GuiManagement_wrap.lo \
 @GUI_TRUE@	libsciconsole_la-DropFiles_wrap.lo
 @GUI_FALSE@am__objects_2 = libsciconsole_la-noconsole.lo
@@ -103,7 +103,8 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 @GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
 @GUI_TRUE@	libsciconsole_la-dropFiles.lo \
 @GUI_TRUE@	libsciconsole_la-TerminateConsole.lo
-@GUI_TRUE@am__objects_3 = libsciconsole_la-SwingScilabConsole.lo
+@GUI_TRUE@am__objects_3 =  \
+@GUI_TRUE@	libsciconsole_la-org_scilab_modules_gui_bridge.lo
 @GUI_TRUE@am__objects_4 = libsciconsole_la-ClearConsole.lo \
 @GUI_TRUE@	libsciconsole_la-ClearConsolePart.lo \
 @GUI_TRUE@	libsciconsole_la-ConsolePrintf.lo \
@@ -112,8 +113,7 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 @GUI_TRUE@	libsciconsole_la-GetCharWithoutOutput.lo \
 @GUI_TRUE@	libsciconsole_la-PromptToHome.lo \
 @GUI_TRUE@	libsciconsole_la-ScilabLinesUpdate.lo \
-@GUI_TRUE@	libsciconsole_la-SetConsolePrompt.lo \
-@GUI_TRUE@	libsciconsole_la-GetScilabConsoleObject.lo
+@GUI_TRUE@	libsciconsole_la-SetConsolePrompt.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
@@ -322,7 +322,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the cpp files
-@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/SwingScilabConsole.cpp
+@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/org_scilab_modules_gui_bridge.cpp
 @GUI_TRUE@CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
 @GUI_TRUE@src/cpp/ClearConsolePart.cpp \
 @GUI_TRUE@src/cpp/ConsolePrintf.cpp \
@@ -331,8 +331,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/GetCharWithoutOutput.cpp \
 @GUI_TRUE@src/cpp/PromptToHome.cpp \
 @GUI_TRUE@src/cpp/ScilabLinesUpdate.cpp \
-@GUI_TRUE@src/cpp/SetConsolePrompt.cpp \
-@GUI_TRUE@src/cpp/GetScilabConsoleObject.cpp
+@GUI_TRUE@src/cpp/SetConsolePrompt.cpp
 
 
 # List of the c files
@@ -347,7 +346,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/c/dropFiles.c \
 @GUI_TRUE@src/c/TerminateConsole.c
 
-@GUI_TRUE@GIWS_WRAPPERS = src/jni/SwingScilabConsole.giws.xml
+@GUI_TRUE@GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
@@ -537,17 +536,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsoleRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetScilabConsoleObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InitializeConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SwingScilabConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-TerminateConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-noconsole.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -640,12 +638,12 @@ libsciconsole_la-TerminateConsole.lo: src/c/TerminateConsole.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciconsole_la-SwingScilabConsole.lo: src/jni/SwingScilabConsole.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-SwingScilabConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-SwingScilabConsole.Tpo -c -o libsciconsole_la-SwingScilabConsole.lo `test -f 'src/jni/SwingScilabConsole.cpp' || echo '$(srcdir)/'`src/jni/SwingScilabConsole.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-SwingScilabConsole.Tpo $(DEPDIR)/libsciconsole_la-SwingScilabConsole.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SwingScilabConsole.cpp' object='libsciconsole_la-SwingScilabConsole.lo' libtool=yes @AMDEPBACKSLASH@
+libsciconsole_la-org_scilab_modules_gui_bridge.lo: src/jni/org_scilab_modules_gui_bridge.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-org_scilab_modules_gui_bridge.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Tpo -c -o libsciconsole_la-org_scilab_modules_gui_bridge.lo `test -f 'src/jni/org_scilab_modules_gui_bridge.cpp' || echo '$(srcdir)/'`src/jni/org_scilab_modules_gui_bridge.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Tpo $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/org_scilab_modules_gui_bridge.cpp' object='libsciconsole_la-org_scilab_modules_gui_bridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-SwingScilabConsole.lo `test -f 'src/jni/SwingScilabConsole.cpp' || echo '$(srcdir)/'`src/jni/SwingScilabConsole.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-org_scilab_modules_gui_bridge.lo `test -f 'src/jni/org_scilab_modules_gui_bridge.cpp' || echo '$(srcdir)/'`src/jni/org_scilab_modules_gui_bridge.cpp
 
 libsciconsole_la-ClearConsole.lo: src/cpp/ClearConsole.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
@@ -709,13 +707,6 @@ libsciconsole_la-SetConsolePrompt.lo: src/cpp/SetConsolePrompt.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetConsolePrompt.cpp' object='libsciconsole_la-SetConsolePrompt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-SetConsolePrompt.lo `test -f 'src/cpp/SetConsolePrompt.cpp' || echo '$(srcdir)/'`src/cpp/SetConsolePrompt.cpp
-
-libsciconsole_la-GetScilabConsoleObject.lo: src/cpp/GetScilabConsoleObject.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-GetScilabConsoleObject.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GetScilabConsoleObject.Tpo -c -o libsciconsole_la-GetScilabConsoleObject.lo `test -f 'src/cpp/GetScilabConsoleObject.cpp' || echo '$(srcdir)/'`src/cpp/GetScilabConsoleObject.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-GetScilabConsoleObject.Tpo $(DEPDIR)/libsciconsole_la-GetScilabConsoleObject.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetScilabConsoleObject.cpp' object='libsciconsole_la-GetScilabConsoleObject.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-GetScilabConsoleObject.lo `test -f 'src/cpp/GetScilabConsoleObject.cpp' || echo '$(srcdir)/'`src/cpp/GetScilabConsoleObject.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
