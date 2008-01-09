@@ -4,7 +4,6 @@
 EXPORTS
 ;core
 cha1_
-icopy_
 com_
 iop_
 putlhsvar_
@@ -23,4 +22,5 @@ check_length
 callFunctionFromGateway
 gettype_
 freeArrayOfString
-;
+; elementary_functions
+icopy_

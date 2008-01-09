@@ -387,10 +387,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\strsplit.c"
-				>
-			</File>
-			<File
 				RelativePath=".\strsubst.c"
 				>
 			</File>
@@ -473,10 +469,6 @@
 			</File>
 			<File
 				RelativePath=".\stripblanks.h"
-				>
-			</File>
-			<File
-				RelativePath=".\strsplit.h"
 				>
 			</File>
 			<File
