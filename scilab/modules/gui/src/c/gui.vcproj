@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="gui"
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
@@ -363,6 +363,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\Label.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\PushButton.cpp"
 				>
 			</File>
@@ -652,6 +656,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUicontrolFontName.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUicontrolFontSize.h"
 				>
 			</File>
@@ -829,6 +837,14 @@
 			</File>
 			<File
 				RelativePath="..\jni\Jxgetmouse.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Label.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\Label.hxx"
 				>
 			</File>
 			<File

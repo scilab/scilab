@@ -9,6 +9,8 @@
 #include "BuildObjects.h"
 #include "ObjectStructure.h"
 #include "PushButton.h"
+#include "EditBox.h"
+#include "Label.h"
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
