@@ -1,12 +1,9 @@
 package org.scilab.modules.gui.events;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * This class is to manage Events as Scilab used to.

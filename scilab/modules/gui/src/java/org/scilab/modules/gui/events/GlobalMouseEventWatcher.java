@@ -40,17 +40,17 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	public static final int DCLICKED = 9;
 	/** Internal state MOVED */
 	public static final int MOVED = -100;
-	
+
 	private static final int UNMANAGED = -10000;
 	private static final int TIMETOSLEEP = 300;
-	
+
 	private boolean inCanvas;
 	private boolean freedom = true;
 	private int action = UNMANAGED;
 	private long eventMask;
 	private MouseEvent lastMouse;
 	private SwingScilabCanvas canvas;
-	
+
 	/**
 	 * Constructor.
 	 * 
@@ -87,7 +87,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 			/* CLICKED */
 			case MouseEvent.MOUSE_CLICKED :
 				if (lastMouse.getClickCount() == 1) {
-						setAction(CLICKED);
+					setAction(CLICKED);
 				}
 				else {
 					/*
@@ -99,7 +99,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 					}
 				}		
 				break;
-			/* PRESSED */
+				/* PRESSED */
 			case MouseEvent.MOUSE_PRESSED :
 				setAction(PRESSED);
 				if (this.freedom) {
@@ -109,12 +109,19 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 					timer.start();
 				}			
 				break;
-			/* ENTERED */
+				/* ENTERED */
 			case MouseEvent.MOUSE_ENTERED :
 				this.inCanvas = true;
 				mouseEventFilter(lastMouse, canvas, MOVED);
 				break;
-			/* EXITED */
+				/* MOVED */
+			case MouseEvent.MOUSE_MOVED :
+				mouseEventFilter(lastMouse, canvas, MOVED);
+				break;
+			case MouseEvent.MOUSE_DRAGGED :
+				mouseEventFilter(lastMouse, canvas, MOVED);
+				break;
+				/* EXITED */
 			case MouseEvent.MOUSE_EXITED :
 				this.inCanvas = false;
 				break;
@@ -142,10 +149,10 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	 * @param newAction : the Action to remember.
 	 */
 	private void setAction(int newAction) {
-			this.action = newAction;
+		this.action = newAction;
 	}
-	
-	
+
+
 	/**
 	 * Thread to manage old style scilab
 	 * click management.
