@@ -14,7 +14,7 @@
 	</Platforms>
 	<ToolFiles>
 		<ToolFile
-			RelativePath="..\..\VS-2005-settings\swig.rules"
+			RelativePath="..\..\Visual-Studio-settings\swig.rules"
 		/>
 	</ToolFiles>
 	<Configurations>

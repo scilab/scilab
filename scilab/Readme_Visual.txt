@@ -33,10 +33,10 @@ Settings for Visual Studio 2005 Pro with Intel fortran
 
 4 platforms :
 
--- Scilab Win32 build on a Windows 32 bits (/trunk/scilab/VS-2005-settings/fortran-on-Win32.vssettings)
--- Scilab Win32 build on a Windows 64 bits (/trunk/scilab/VS-2005-settings/fortran-on-Win64.vssettings)
--- Scilab Win64 build on a Windows 32 bits (Intel cross compiler) (/trunk/scilab/VS-2005-settings/fortran-on-Win32.vssettings)
--- Scilab Win64 build on a Windows 64 bits (/trunk/scilab/VS-2005-settings/fortran-on-Win64.vssettings)
+-- Scilab Win32 build on a Windows 32 bits (/trunk/scilab/Visual-Studio-settings/fortran-on-Win32.vssettings)
+-- Scilab Win32 build on a Windows 64 bits (/trunk/scilab/Visual-Studio-settings/fortran-on-Win64.vssettings)
+-- Scilab Win64 build on a Windows 32 bits (Intel cross compiler) (/trunk/scilab/Visual-Studio-settings/fortran-on-Win32.vssettings)
+-- Scilab Win64 build on a Windows 64 bits (/trunk/scilab/Visual-Studio-settings/fortran-on-Win64.vssettings)
 
 On some visual studio .NET 2005 , .vssetting are "volatile" modifications and are removed after it has been applied.
 In this case, do :
