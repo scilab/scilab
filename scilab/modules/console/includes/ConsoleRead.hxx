@@ -6,10 +6,8 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <jni.h>
-#include "GetScilabConsoleObject.hxx"
-#include "SwingScilabConsole.hxx"
 
-extern "C" 
+extern "C"
 {
 #include "getScilabJavaVM.h"
 #include "ConsoleRead.h"

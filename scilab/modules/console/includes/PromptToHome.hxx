@@ -8,10 +8,8 @@
 
 #include <jni.h>
 #include "machine.h"
-#include "GetScilabConsoleObject.hxx"
-#include "SwingScilabConsole.hxx"
 
-extern "C" 
+extern "C"
 {
 #include "getScilabJavaVM.h"
 #include "PromptToHome.h"
