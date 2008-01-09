@@ -138,18 +138,6 @@ public interface SimpleTab {
 	int getParentWindowId();
 
 	/**
-	 * Set the element id for this tab
-	 * @param id the id of the corresponding tab object
-	 */
-	void setElementId(int id);
-	
-	/**
-	 * Get the element id for this tab
-	 * @return id the id of the corresponding tab object
-	 */
-	int getElementId();
-	
-	/**
 	 * Get the MenuBar associated to this tab
 	 * @return MenuBar the MenuBar associated.
 	 */

@@ -3,9 +3,9 @@
 
 package org.scilab.modules.gui.tab;
 
-import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
@@ -17,7 +17,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * Class for tabs in Scilab GUIs
@@ -37,7 +36,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 */
 	protected ScilabTab(String name) {
 		component = ScilabBridge.createTab(name);
-		component.setElementId(UIElementMapper.add(this));
    }
 
 	/**
@@ -156,7 +154,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public int addMember(Console member) {
 		updateMenuBar(member);
 		updateToolBar(member);
-		UIElementMapper.setConsoleId(this.getAsSimpleTab().getElementId());
 		return ScilabBridge.addMember(this, member);
 	}
 	
