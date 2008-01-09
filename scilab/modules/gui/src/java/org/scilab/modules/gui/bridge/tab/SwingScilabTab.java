@@ -37,8 +37,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 	
 	private int parentWindowId;
 	
-	private int elementId;
-	
 	private MenuBar menuBar;
 	
 	private ToolBar toolBar;
@@ -279,22 +277,6 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void setParentWindowId(int id) {
 		this.parentWindowId = id;
-	}
-
-	/**
-	 * Get the element id for this tab
-	 * @return id the id of the corresponding tab object
-	 */
-	public int getElementId() {
-		return this.elementId;
-	}
-
-	/**
-	 * Set the element id for this tab
-	 * @param id the id of the corresponding tab object
-	 */
-	public void setElementId(int id) {
-		this.elementId = id;
 	}
 
 	/**
