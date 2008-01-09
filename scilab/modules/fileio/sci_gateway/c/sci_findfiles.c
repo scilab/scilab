@@ -38,7 +38,7 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 
 			if (ierr)
 			{
-				Scierror(999,_("Problem with current directory.\n"));
+				Scierror(999,_("%s: Error while trying to retrieve the name of the current directory.\n"),fname);
 				return 0;
 			}
 			else
@@ -64,7 +64,7 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid parameter, it must be a path (string).\n"));
+				Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 				return 0;
 			}
 
@@ -85,7 +85,7 @@ int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid parameter(s), it must be a path and a filespec (string).\n"));
+				Scierror(999,_("%s: Wrong type for first and/or second argument(s): Strings expected.\n"),fname);
 				return 0;
 			}
 		}

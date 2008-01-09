@@ -27,7 +27,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("first parameter must be a filename.\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		return 0;
 	}
 
@@ -46,13 +46,13 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s works only with reals.\n"),fname);
+			Scierror(999,_("%s: Wrong type for second input argument: Real values expected.\n"),fname);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s works only with reals.\n"),fname);
+		Scierror(999,_("%s: Wrong type for second input argument: Real values expected.\n"),fname);
 		return 0;
 	}
 
@@ -74,7 +74,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if (( f = fopen(cstk(l1),"w")) == (FILE *)0)
 	{
-		Scierror(999,_("Error: in function %s, cannot open file %s\n"),fname,cstk(l1));
+		Scierror(999,_("%s: Cannot open file %s.\n"),fname,cstk(l1));
 		return 0;
 	}
 

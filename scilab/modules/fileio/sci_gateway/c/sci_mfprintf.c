@@ -23,7 +23,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(0,1);
 	if ( Rhs < 2 ) 
 	{ 
-		Scierror(999,_("Error:\tInput parameters (RHS) must be >= 2\n"));
+		Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"),fname,2);
 		return 0;
 	}
 	for (k=3;k<=Rhs;k++) 
@@ -38,7 +38,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 
 	if ((f= GetFileOpenedInScilab(param1)) == (FILE *)0)
 	{
-		Scierror(999,_("mfprintf:\t wrong file descriptor %d\n"),*istk(l1));
+		Scierror(999,_("%s: Wrong file descriptor: %d.\n"),fname,*istk(l1));
 		return 0;
 	}
 
@@ -53,7 +53,7 @@ int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
 
 	if (NumberPercent<Rhs-2)
 	{
-		Scierror(999,_("mfprintf: Invalid format.\n"));
+		Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent+2);
 		return 0;
 	}
 

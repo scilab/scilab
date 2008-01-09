@@ -47,7 +47,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 		
 		if( strlen(path) > PATH_MAX )
 		{
-		  Scierror(999,_("%s: Wrong size for first input argument: Must be less than %d characters.\n"),fname, PATH_MAX);
+		  Scierror(999,_("%s: Wrong size for first input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
 		}
 		
 		/* Crappy workaround because a / was added after SCI & ~ into 

@@ -38,7 +38,7 @@ int C2F(sci_createdir) _PARAMS((char *fname,unsigned long l))
 		}
 		else
 		{
-			if (getWarningMode()) sciprint(_("Warning: Directory already exists.\n\n"));
+			if (getWarningMode()) sciprint(_("%s: Warning: Directory '%s' already exists.\n"),fname,expandedpath);
 			bOK = TRUE;
 		}
 
@@ -51,7 +51,7 @@ int C2F(sci_createdir) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,_("Invalid parameter , it must be a directory (string).\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"));
 	}
 	return 0;
 }

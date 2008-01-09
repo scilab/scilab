@@ -39,7 +39,7 @@ int C2F(sci_deletefile) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Invalid parameter , it must be a filename (string).\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 	}
 	return 0;
 }

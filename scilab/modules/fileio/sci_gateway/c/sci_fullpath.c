@@ -47,12 +47,12 @@ int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("Invalid path.\n"));
+			Scierror(999,_("%s: Wrong value for first input argument: '%s' is an invalid path.\n"),fname,relPath);
 		}
 	}
 	else
 	{
-		Scierror(999,_("Invalid parameter , it must be a path (string).\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 	}
 
 	return 0;

@@ -35,14 +35,18 @@ int swap = 0;
 #define MGET_GEN_NC(NumType,Fswap,cf)\
 { \
 	switch (cf) { \
-		  case ' ': MGET_NC(NumType,Fswap);break; \
-		  case 'b': swap = (islittleendian()==1)? 1:0; \
+		case ' ': \
+		  MGET_NC(NumType,Fswap);break; \
+		case 'b': \
+		  swap = (islittleendian()==1)? 1:0; \
 		  MGET_NC(NumType,Fswap); break; \
-	  case 'l': swap = (islittleendian()==1) ? 0:1; \
-	  MGET_NC(NumType,Fswap);  break; \
-	  default: sciprint(_("%s: %s format not recognized.\n"),"mget",type); \
-	  *ierr=1; return; \
-				} \
+	  case 'l': \
+	    swap = (islittleendian()==1) ? 0:1; \
+	    MGET_NC(NumType,Fswap);  break; \
+	  default: \
+	    sciprint(_("%s: Wrong value for fourth input argument (%s): '%s' or '%s' or '%s' expected.\n"),"mget",type," ","b","l"); \
+	    *ierr=1; return; \
+	} \
 }
 /*--------------------------------------------------------------------------*/
 void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr)
@@ -156,7 +160,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	*ierr=0;
 	if ( nc == 0) 
 	{
-		sciprint(_("%s: Length of format is 0.\n"),"mget");
+		sciprint(_("%s: Wrong size for fourth input argument ('%s'): Non-empty string expected.\n"),"mput",type);
 		*ierr=2;
 		return;
 	}
@@ -165,7 +169,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mget2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint(_("%s: %s format not recognized.\n"),"mget",type);
+		if (*ierr > 0) sciprint(_("%s: Wrong value for fourth input argument ('%s'): Format not recognized.\n"),"mget",type);
 	}
 	else 
 	{

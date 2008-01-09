@@ -43,7 +43,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 		iflag = SEEK_END;
 	else 
 	{
-		sciprint(_("%s: Wrong third input argument: '%s', '%s' or '%s' expected.\n"),"mseek","set","cur","end");
+		sciprint(_("%s: Wrong value for third input argument: '%s', '%s' or '%s' expected.\n"),"mseek","set","cur","end");
 		*err=1;
 		return;
 	}
@@ -60,7 +60,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 	if (fseek(fa,(long) *offset,iflag) == -1 ) 
 	{
 		int errnum=errno; /* global variable produced by fseek */
-		sciprint(_("%s: An error occurred: %s\n"),"mseek",strerror(errnum));
+		sciprint(_("%s: An error occurred in %s: errno=%s\n"),"mseek","fseek",strerror(errnum));
 		*err=1;
 	}
 	else 

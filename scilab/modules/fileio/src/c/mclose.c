@@ -44,13 +44,13 @@ void C2F(mclose) (integer *fd, double *res)
 			else
 			{
 				*res = 0.0;
-				sciprint(_("File %d not active\n"),fd1);
+				sciprint(_("%s: Cannot close file whose descriptor is %d: File is not active.\n"),"mclose",fd1);
 			}
 		}
 		else 
 		{
 			*res = -1.0;
-			sciprint(_("No file to close\n"),fd1);
+			sciprint(_("%s: Cannot close file whose descriptor is %d: No file to close.\n"),"mclose",fd1);
 		}
 	}
 }

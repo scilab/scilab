@@ -20,7 +20,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
   CheckLhs(0,1);
   if ( Rhs < 1 ) 
   { 
-     Scierror(999,_("Error:\tInput parameters (RHS) must be > 0\n"));
+     Scierror(999,_("%s: Wrong number of input arguments: Must be > 0.\n"),fname);
      return 0;
   }
 
@@ -34,7 +34,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
   for(i=0;i<(int)strlen(ptrFormat);i++)
   {
     if (ptrFormat[i]=='%') 
-	{
+  	{
       NumberPercent++;
       if (ptrFormat[i+1]=='%') {NumberPercent--;i++;}
     }
@@ -42,8 +42,8 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
 
   if (NumberPercent<Rhs-1)
   {
-	Scierror(999,_("mfprintf: Invalid format.\n"));
-	return 0;
+	  Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent+1);
+	  return 0;
   }
 
   mx=0;
@@ -52,7 +52,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
   {
     GetMatrixdims(2,&mx,&nk);
     for (k=3;k<=Rhs;k++) 
-	{
+  	{
       GetMatrixdims(k,&mk,&nk);
       mx = Min(mx,mk);
     }
@@ -61,9 +61,9 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
   if (Rhs == 1) rval=do_xxprintf("printf",stdout,cstk(l1),Rhs,1,lcount,(char **)0);
   else while (1) 
   {
-	if ((rval = do_xxprintf("printf",stdout,cstk(l1),Rhs,1,lcount,(char **)0)) < 0) break;
-	lcount++;
-	if (lcount>mx) break;
+	  if ((rval = do_xxprintf("printf",stdout,cstk(l1),Rhs,1,lcount,(char **)0)) < 0) break;
+	  lcount++;
+	  if (lcount>mx) break;
   }
   if (rval == RET_BUG) return 0;
   LhsVar(1)=0; /** No return value **/

@@ -70,12 +70,12 @@ int intsmopen(char *fname,unsigned long fname_len)
 			}
 			else if ( err == 2)
 			{
-				Scierror(999,_("%s:  Could not open the file!\n"),fname);
+				Scierror(999,_("%s: Cannot open file %s.\n"),fname,filename);
 				return 0;
 			}
 			else
 			{
-				Error(112);/* Not enough memory to  open the file*/
+				Error(112); /* Not enough memory to  open the file */
 				return 0;
 			}
 		}

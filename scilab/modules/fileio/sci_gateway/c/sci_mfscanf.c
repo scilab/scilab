@@ -33,7 +33,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1 != 1 )
 		{
-			Scierror(999,_("Error: in fscanf: incorrect first argument\n"));
+			Scierror(999,_("%s: Wrong size for first input argument: Scalar expected.\n"),fname);
 			return 0;
 		}
 		iarg=2;
@@ -52,7 +52,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 	StringConvert(cstk(l2));  /* conversion */
 	if ((f= GetFileOpenedInScilab(param1)) == (FILE *)0)
 	{
-		Scierror(999,_("fprintf:\t wrong file descriptor %d\n"),*istk(l1));
+		Scierror(999,_("%s: Wrong file descriptor: %d.\n"),fname,*istk(l1));
 		return 0;
 	}
 
@@ -81,7 +81,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 				if (maxrow>=0)
 				{
 					Free_Scan(rowcount,ncol,type_s,&data);
-					Scierror(999,_("Error: in fscanf: data mismatch\n"));
+					Scierror(999,_("%s: Data mismatch.\n"),fname);
 					return 0;
 				}
 				fseek(f,pos,SEEK_SET);
@@ -89,7 +89,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 
 			case MEM_LACK:
 				Free_Scan(rowcount,ncol,type_s,&data);
-				Scierror(999,_("Error: in fscanf: cannot allocate more memory\n"));
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 				break;
 			}
@@ -100,7 +100,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 	/* create Scilab variable with each column of data */
 	err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
 	Free_Scan(rowcount,ncol,type_s,&data);
-	if (err==MEM_LACK) { Scierror(999,_("Error: in sscanf: cannot allocate more memory\n"));}
+	if (err==MEM_LACK) { Scierror(999,_("%s: No more memory.\n"),fname);}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

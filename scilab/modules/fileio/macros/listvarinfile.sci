@@ -50,7 +50,7 @@ function varargout=listvarinfile(fil)
     elseif typ==130 then
       typn="primitive";
     else
-       error(msprintf(gettext("Unknown variable type (%s?), maybe wrong or corrupted file"), string(typ)))
+       error(msprintf(gettext("%s: Wrong variable type (%s) found in ''%s''. File may be wrong or corrupted.\n"), "listvarinfile", string(typ), fil))
     end
 
     if lhs==1 then

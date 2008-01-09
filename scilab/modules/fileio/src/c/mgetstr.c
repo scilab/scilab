@@ -12,8 +12,8 @@
 /*--------------------------------------------------------------------------*/
 /*
 Commented by Sylvestre
-Seen to be unused ... 
-@TODO check if it really the case
+Seems to be unused ... 
+@TODO check if it is really the case
 void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 { 
 	int count=0;

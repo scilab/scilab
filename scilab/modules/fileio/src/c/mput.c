@@ -36,19 +36,20 @@ extern int swap; /* defined in mget.c */
 }
 /*--------------------------------------------------------------------------*/
 #define MPUT_GEN_NC(Type,Fswap,cf) \
-	switch ( cf )  \
-	{ \
-	case ' ': MPUT_NC(Type,Fswap); break; \
-	case 'b': \
-	swap = (islittleendian()==1) ? 1 : 0; \
-	MPUT_NC(Type,Fswap); break; \
-		case 'l': \
-		swap = (islittleendian()==1) ? 0 : 1; \
-		MPUT_NC(Type,Fswap); break; \
-		default: \
-		sciprint(_("%s: %s format not recognized.\n"),"mput",type); \
-		*ierr=1;return; \
-	}
+switch ( cf )  \
+{ \
+  case ' ': \
+    MPUT_NC(Type,Fswap); break; \
+  case 'b': \
+    swap = (islittleendian()==1) ? 1 : 0; \
+    MPUT_NC(Type,Fswap); break; \
+	case 'l': \
+	  swap = (islittleendian()==1) ? 0 : 1; \
+	  MPUT_NC(Type,Fswap); break; \
+	default: \
+	  sciprint(_("%s: Wrong value for fourth input argument (%s): '%s' or '%s' or '%s' expected.\n"),"mput",type," ","b","l"); \
+	  *ierr=1;return; \
+}
 /*--------------------------------------------------------------------------*/
 void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ierr)
 {  
@@ -114,18 +115,19 @@ data **/
 /*--------------------------------------------------------------------------*/
 /** The output mode is controlled by type[1] **/
 #define MPUT_GEN(Type,Fswap,cf) \
-	switch ( cf )  \
+switch ( cf )  \
 { \
-	case ' ': MPUT(Type,Fswap); break; \
-	case 'b': \
-	swap = (islittleendian()==1) ? 1 : 0; \
-	MPUT(Type,Fswap); break; \
-		case 'l': \
-		swap = (islittleendian()==1) ? 0 : 1; \
-		MPUT(Type,Fswap); break; \
-		default: \
-		sciprint(_("%s: %s format not recognized.\n"),"mput",type); \
-		*ierr=1;return; \
+  case ' ': \
+    MPUT(Type,Fswap); break; \
+  case 'b': \
+  	swap = (islittleendian()==1) ? 1 : 0; \
+  	MPUT(Type,Fswap); break; \
+  case 'l': \
+	  swap = (islittleendian()==1) ? 0 : 1; \
+	  MPUT(Type,Fswap); break; \
+  default: \
+	  sciprint(_("%s: Wrong value for fourth input argument (%s): '%s' or '%s' or '%s' expected.\n"),"mput",type," ","b","l"); \
+	  *ierr=1;return; \
 }
 /*--------------------------------------------------------------------------*/
 void mput2 (FILE *fa, integer swap2, double *res, integer n, char *type, integer *ierr)
@@ -167,7 +169,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	*ierr=0;
 	if ((nc = (int)strlen(type)) == 0) 
 	{
-		sciprint(_("%s: Format is of length 0.\n"),"mput",type);
+		sciprint(_("%s: Wrong size for fourth input argument ('%s'): Non-empty string expected.\n"),"mput",type);
 		*ierr=2;
 		return;
 	}
@@ -175,11 +177,11 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mput2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint(_("%s: %s format not recognized.\n"),"mput",type);
+		if (*ierr > 0) sciprint(_("%s: Wrong value for fourth input argument ('%s'): Format not recognized.\n"),"mput",type);
 	}
 	else 
 	{
-		sciprint(_("%s: No input file associated to logical unit %d\n"),"mput",*fd);
+		sciprint(_("%s: No input file associated to logical unit %d.\n"),"mput",*fd);
 		*ierr=3;
 	}
 }
