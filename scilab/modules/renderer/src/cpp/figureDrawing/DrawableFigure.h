@@ -101,6 +101,13 @@ public:
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;
+
+   /**
+    * Export the currently drawn image to a file.
+    * @param filename name of the file to write.
+    * @param fileType type of the file to draw (ie jpg, bmp).
+    */
+   void exportToBitmapFile(const char * fileName, int fileType);
   /*-----------------------------------------------------------------------------*/
    /**
     * Get the synchronization object that protect this figure.

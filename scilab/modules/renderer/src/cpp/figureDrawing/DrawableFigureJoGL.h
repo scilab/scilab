@@ -111,6 +111,13 @@ public:
   virtual void setRenderingEnable(bool isEnable);
 
   /**
+   * Export the currently drawn image to a file.
+   * @param filename name of the file to write.
+   * @param fileType type of the file to draw (ie jpg, bmp).
+   */
+  virtual void exportToBitmapFile(const char * fileName, int fileType);
+
+  /**
    * Return the drawn object
    */
   DrawableFigure * getFigureDrawer( void ) ;

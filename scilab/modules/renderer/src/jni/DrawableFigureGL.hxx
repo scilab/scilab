@@ -77,6 +77,7 @@ jmethodID voidsetInfoMessagejstringID; // cache method id
 jmethodID voidsetPixmapModejbooleanID; // cache method id
 jmethodID jbooleangetPixmapModeID; // cache method id
 jmethodID voidsetIsRenderingEnablejbooleanID; // cache method id
+jmethodID voidexportToBitmapFilejstringjintID; // cache method id
 
 
 /**
@@ -167,6 +168,8 @@ void setPixmapMode(bool onOrOff);
 bool getPixmapMode();
 
 void setIsRenderingEnable(bool isEnable);
+
+void exportToBitmapFile(char * fileName, long fileType);
 
 
                         /**

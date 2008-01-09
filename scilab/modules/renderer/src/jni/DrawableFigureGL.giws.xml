@@ -66,5 +66,9 @@
     <method name="setIsRenderingEnable" returnType="void">
       <param type="boolean" name="isEnable" />
     </method>
+    <method name="exportToBitmapFile" returnType="void">
+      <param type="String" name="fileName" />
+      <param type="int" name="fileType" />
+    </method>
   </object>
 </package>

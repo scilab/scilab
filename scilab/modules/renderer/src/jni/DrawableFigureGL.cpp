@@ -121,6 +121,7 @@ voidsetInfoMessagejstringID=NULL;
 voidsetPixmapModejbooleanID=NULL; 
 jbooleangetPixmapModeID=NULL; 
 voidsetIsRenderingEnablejbooleanID=NULL; 
+voidexportToBitmapFilejstringjintID=NULL; 
 
 
 }
@@ -167,6 +168,7 @@ voidsetInfoMessagejstringID=NULL;
 voidsetPixmapModejbooleanID=NULL; 
 jbooleangetPixmapModeID=NULL; 
 voidsetIsRenderingEnablejbooleanID=NULL; 
+voidexportToBitmapFilejstringjintID=NULL; 
 
 
 }
@@ -722,6 +724,28 @@ exit(EXIT_FAILURE);
 jboolean isEnable_ = ((bool) isEnable ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallVoidMethod( this->instance, voidsetIsRenderingEnablejbooleanID ,isEnable_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableFigureGL::exportToBitmapFile (char * fileName, long fileType){
+
+JNIEnv * curEnv = getCurrentEnv();
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidexportToBitmapFilejstringjintID = curEnv->GetMethodID(this->instanceClass, "exportToBitmapFile", "(Ljava/lang/String;I)V" ) ;
+if (voidexportToBitmapFilejstringjintID == NULL) {
+std::cerr << "Could not access to the method " << "exportToBitmapFile" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring fileName_ = curEnv->NewStringUTF( fileName );
+
+                         curEnv->CallVoidMethod( this->instance, voidexportToBitmapFilejstringjintID ,fileName_, fileType);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

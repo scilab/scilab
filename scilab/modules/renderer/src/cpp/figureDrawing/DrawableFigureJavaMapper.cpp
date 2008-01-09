@@ -160,5 +160,9 @@ void DrawableFigureJavaMapper::setRenderingEnable(bool isEnable)
   m_pJavaObject->setIsRenderingEnable(isEnable);
 }
 /*---------------------------------------------------------------------------------*/
-
+void DrawableFigureJavaMapper::exportToBitmapFile(const char * fileName, int fileType)
+{
+  m_pJavaObject->exportToBitmapFile((char *) fileName, fileType);
+}
+/*---------------------------------------------------------------------------------*/
 }

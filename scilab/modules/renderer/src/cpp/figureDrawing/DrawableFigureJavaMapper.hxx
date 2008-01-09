@@ -65,6 +65,8 @@ public:
   virtual bool getPixmapMode(void);
 
   virtual void setRenderingEnable(bool isEnable);
+
+  virtual void exportToBitmapFile(const char * fileName, int fileType);
   /*----------------------------------------------------------------------*/
 
 protected:

@@ -78,6 +78,11 @@ void DrawableFigure::closeRenderingCanvas( void )
   getFigureImp()->closeRenderingCanvas() ;
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::exportToBitmapFile(const char * fileName, int fileType)
+{
+  getFigureImp()->exportToBitmapFile(fileName, fileType);
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFigure::drawInContext( void )
 {
   initializeDrawing() ;

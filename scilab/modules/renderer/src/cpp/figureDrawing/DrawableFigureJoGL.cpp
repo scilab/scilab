@@ -133,6 +133,11 @@ void DrawableFigureJoGL::setRenderingEnable(bool isEnable)
   getFigureJavaMapper()->setRenderingEnable(isEnable);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::exportToBitmapFile(const char * fileName, int fileType)
+{
+  getFigureJavaMapper()->exportToBitmapFile(fileName, fileType);
+}
+/*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 {
   return dynamic_cast<DrawableFigure *>(getDrawer()) ;
