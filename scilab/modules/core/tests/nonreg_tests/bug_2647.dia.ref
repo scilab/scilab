@@ -22,4 +22,8 @@
 // Date : 8 janvier 2008
 a=cos(3);
 b=sin(3);
-if a^2+ b^2 - 1 > (10 * %eps) then bugmes();quit;end
+my_log_file = TMPDIR+"/bug_2647.log"
+ my_log_file  =
+ 
+ TMPDIR/bug_2647.log   
+diary(my_log_file);
