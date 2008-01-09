@@ -7,8 +7,6 @@ STRING_C_SOURCES = src/c/code2str.c \
 src/c/stripblanks.c \
 src/c/convstr.c \
 src/c/men_Sutils.c \
-src/c/strsplit.c \
-src/c/CreateEmptystr.c \
 src/c/tokens.c \
 src/c/strcatfunction.c \
 src/c/InitializeString.c \
@@ -24,6 +22,8 @@ src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c \
 src/c/kmp.c
+#src/c/strsplit.c \
+#src/c/CreateEmptystr.c
 
 STRING_FORTRAN_SOURCES =src/fortran/strdsp.f
 
