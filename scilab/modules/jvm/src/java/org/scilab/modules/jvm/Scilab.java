@@ -40,7 +40,6 @@ public class Scilab {
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 
-	private Console sciConsole;
 	private int mode;
 
 	private Window mainView;
@@ -84,7 +83,7 @@ public class Scilab {
 				consoleTab = ScilabTab.createTab("Console Scilab");
 				consoleTab.setName("Console");
 
-				sciConsole = ScilabConsole.createConsole();
+				ScilabConsole.createConsole();
 				//consoleTab.addMember(sciConsole);
 			} catch (NoClassDefFoundError exception) {
 				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).\nSee SCI/etc/classpath.xml for default paths.");
@@ -101,9 +100,9 @@ public class Scilab {
 			}
 
 			/** Adding content into container */
-			sciConsole.addToolBar(toolBar);
-			sciConsole.addMenuBar(menuBar);
-			consoleTab.addMember(sciConsole);
+			ScilabConsole.getConsole().addToolBar(toolBar);
+			ScilabConsole.getConsole().addMenuBar(menuBar);
+			consoleTab.addMember(ScilabConsole.getConsole());
 			mainView.addTab(consoleTab);
 		} else {
 			System.out.println("mode -NW");
@@ -112,27 +111,11 @@ public class Scilab {
 	}
 
 	/**
-	 * Gets the console object associated to Scilab
-	 * @return the console
-	 */
-	public Console getSciConsole() {
-		return sciConsole;
-	}
-
-	/**
-	 * Sets the console object associated to Scilab
-	 * @param sciConsole the console to associate to Scilab
-	 */
-	public void setSciConsole(Console sciConsole) {
-		this.sciConsole = sciConsole;
-	}
-
-	/**
 	 * Sets the prompt displayed in Scilab console
 	 * @param prompt the prompt to be displayed as a String
 	 */
 	public void setPrompt(String prompt) {
-		this.sciConsole.setPrompt(prompt);
+		ScilabConsole.getConsole().setPrompt(prompt);
 	}
 
 	/**
