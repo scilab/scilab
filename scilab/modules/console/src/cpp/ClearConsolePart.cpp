@@ -5,23 +5,11 @@
 /*--------------------------------------------------------------------------*/
 #include "ClearConsolePart.hxx"
 /*--------------------------------------------------------------------------*/
-using namespace  org_scilab_modules_gui_bridge_console;
+#include "org_scilab_modules_gui_bridge.hxx"
+using namespace  org_scilab_modules_gui_bridge;
 BOOL ClearConsolePart(int nbLines)
 {
-  JavaVM scilabJVM = *getScilabJavaVM();
-  jobject scilabConsoleObj = GetScilabConsoleObject();
-
-  if (scilabConsoleObj) 
-    {
-      SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
-      
-      (*jConsole).clear(nbLines);
-
-      delete(jConsole);
-
-      return TRUE;
-    }
-
-  return FALSE;
+  CallScilabBridge::clear(getScilabJavaVM(), nbLines);
+  return TRUE;
 }
 /*--------------------------------------------------------------------------*/

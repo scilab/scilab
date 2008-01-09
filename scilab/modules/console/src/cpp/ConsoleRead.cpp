@@ -5,23 +5,11 @@
 /*--------------------------------------------------------------------------*/
 #include "ConsoleRead.hxx"
 /*--------------------------------------------------------------------------*/
-using namespace  org_scilab_modules_gui_bridge_console;
+#include "org_scilab_modules_gui_bridge.hxx"
+using namespace  org_scilab_modules_gui_bridge;
 char *ConsoleRead(void)
 {
-  /* Character string to be returned */
-  char *strRead = NULL;
-
-  JavaVM scilabJVM = *getScilabJavaVM();
-  jobject scilabConsoleObj = GetScilabConsoleObject();
-
-  if (scilabConsoleObj)
-    {
-      SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
-      strRead = (*jConsole).readLine();
-      delete(jConsole);
-    }
-
-  return strRead;
+  return CallScilabBridge::readLine(getScilabJavaVM());
 }
 /*--------------------------------------------------------------------------*/
 

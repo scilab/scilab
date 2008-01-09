@@ -6,22 +6,11 @@
 /*--------------------------------------------------------------------------*/
 #include "ConsolePrintf.hxx"
 /*--------------------------------------------------------------------------*/
-using namespace  org_scilab_modules_gui_bridge_console;
+#include "org_scilab_modules_gui_bridge.hxx"
+using namespace  org_scilab_modules_gui_bridge;
 int ConsolePrintf(char *line)
 {
-  JavaVM scilabJVM = *getScilabJavaVM();
-  jobject scilabConsoleObj = GetScilabConsoleObject();
-
-  if (scilabConsoleObj) 
-    {
-      SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
-      
-      (*jConsole).display(line);
-
-      delete(jConsole);
-    }
-
-  /* Should return the length of the string displayed */
+  CallScilabBridge::display(getScilabJavaVM(), line);
   return 0;
 }
 /*--------------------------------------------------------------------------*/

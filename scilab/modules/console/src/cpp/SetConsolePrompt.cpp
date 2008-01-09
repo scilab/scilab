@@ -4,23 +4,11 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "SetConsolePrompt.hxx"
+#include "org_scilab_modules_gui_bridge.hxx"
 /*--------------------------------------------------------------------------*/
-using namespace  org_scilab_modules_gui_bridge_console;
+using namespace  org_scilab_modules_gui_bridge;
 BOOL SetConsolePrompt(char *Sci_prompt)
 {
-  JavaVM scilabJVM = *getScilabJavaVM();
-  jobject scilabConsoleObj = GetScilabConsoleObject();
-
-  if (scilabConsoleObj) 
-    {
-      SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
-      
-      (*jConsole).setPrompt(Sci_prompt);
-
-      delete(jConsole);
-
-      return TRUE;
-    }
-
-  return FALSE;
+  CallScilabBridge::setPrompt(getScilabJavaVM(), Sci_prompt);
+  return TRUE;
 }

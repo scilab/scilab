@@ -4,23 +4,11 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "PromptToHome.hxx"
+#include "org_scilab_modules_gui_bridge.hxx"
 /*--------------------------------------------------------------------------*/
-using namespace  org_scilab_modules_gui_bridge_console;
+using namespace  org_scilab_modules_gui_bridge;
 BOOL PromptToHome(void)
 {
-  JavaVM scilabJVM = *getScilabJavaVM();
-  jobject scilabConsoleObj = GetScilabConsoleObject();
-
-  if (scilabConsoleObj) 
-    {
-      SwingScilabConsole *jConsole = new SwingScilabConsole(&scilabJVM, scilabConsoleObj);
-      
-      (*jConsole).toHome();
-
-      delete(jConsole);
-
-      return TRUE;
-    }
-
-  return FALSE;
+  CallScilabBridge::toHome(getScilabJavaVM());
+  return TRUE;
 }

@@ -13,36 +13,9 @@ extern "C" {
 #include "MALLOC.h"
 #include "GetCharWithoutOutput.hxx"
 /*--------------------------------------------------------------------------*/
+#include "org_scilab_modules_gui_bridge.hxx"
+using namespace  org_scilab_modules_gui_bridge;
 int GetCharWithoutOutput(void)
 {
-  jobject  ScilabObj = getScilabObject();
-  JNIEnv *env = getScilabJNIEnv();
-
-  int intValue = 0;
-  
-  if (env)
-    {
-      jclass class_Mine = env->GetObjectClass(ScilabObj);
-      if (class_Mine)
-        {
-            jfieldID id_Console =  env->GetFieldID(class_Mine, "sciConsole","Lorg/scilab/modules/gui/console/Console;");
-            if (id_Console)
-              {
-                jobject jConsole = env->GetObjectField(ScilabObj, id_Console);
-                if (jConsole)
-                  {
-                    jclass cls = env->GetObjectClass(jConsole);
-                    if (cls)
-                      {
-                        jmethodID mid = env->GetMethodID(cls, "getCharWithoutOutput", "()I");
-                        if (mid)
-                          {
-                            intValue = (int) env->CallIntMethod(jConsole, mid);
-                          }
-                      }
-                  }
-              }
-        }
-    }
-  return intValue;
+  return CallScilabBridge::getCharWithoutOutput(getScilabJavaVM());
 }
