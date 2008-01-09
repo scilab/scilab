@@ -354,5 +354,16 @@ public class DrawableFigureGL extends ObjectGL {
 		return pixmapModeOn;
 	}
 	
-  	
+	/**
+	 * Export function
+	 * @param fileName name of the file in which the window will be rendered
+	 * @param fileType type of the file (ie jpg, bmp, ...).
+	 */
+  	public void exportToBitmapFile(String fileName, int fileType) {
+  		ExportToFile export = new ExportBitmap(fileName, fileType);
+  		export.setFileSize(getCanvasWidth(), getCanvasHeight());
+  		
+  		// create the file and export graphic inside
+  		export.exportToBitmap();
+  	}
 }
