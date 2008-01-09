@@ -14,6 +14,7 @@ int GetUicontrolFontUnits(sciPointObj* sciObj)
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
+        case SCI_EDIT:
           switch(pUICONTROL_FEATURE(sciObj)->fontUnits)
             {
             case POINTS_UNITS:
@@ -28,6 +29,7 @@ int GetUicontrolFontUnits(sciPointObj* sciObj)
               return sciReturnString("pixels");
             default:
               sciprint(_("FontUnits property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
+              sciReturnString(""); /* return an empty string */
               return FALSE;
             }
         default:

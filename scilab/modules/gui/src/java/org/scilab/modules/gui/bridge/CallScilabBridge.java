@@ -109,8 +109,6 @@ public class CallScilabBridge {
 	public static int newEditBox() {
 		EditBox editBox = ScilabEditBox.createEditBox();
 		int id = UIElementMapper.add(editBox);
-		// Scilab default font
-		//setEditBoxFontWeight(id, "normal");
 		return id;
 	}
 
@@ -247,42 +245,23 @@ public class CallScilabBridge {
 	/*************/
 	/* Callbacks */
 	/*************/
-
-	/**
-	 * Set a callback for a Menu
-	 * @param menuID the ID of the object in the UIElementMapper
-	 * @param callback the text of the callback
-	 */
-	public static void setMenuCallback(int menuID, String callback) {
-		((Menu) UIElementMapper.getCorrespondingUIElement(menuID)).setCallback(callback, 0);
-	}
 	
 	/**
-	 * Get the callback for a Menu
-	 * @param objID the ID of the object in the UIElementMapper
-	 * @return the text of the callback
-	 */
-	public static String getMenuCallback(int objID) {
-		System.out.println("getMenuCallback is not implemented");
-		return "";
-	}
-	
-	/**
-	 * Set a callback for a PushButton
+	 * Set a callback for a Widget
 	 * @param objID the ID of the object in the UIElementMapper
 	 * @param callback the text of the callback
 	 */
-	public static void setPushButtonCallback(int objID, String callback) {
-		System.out.println("setPushButtonCallback is not implemented");
+	public static void setWidgetCallback(int objID, String callback) {
+		System.out.println("setWidgetCallback is not implemented");
 	}
 	
 	/**
-	 * Get the callback for a PushButton
+	 * Get the callback for a Widget
 	 * @param objID the ID of the object in the UIElementMapper
 	 * @return the text of the callback
 	 */
-	public static String getPushButtonCallback(int objID) {
-		System.out.println("getPushButtonCallback is not implemented");
+	public static String getWidgetCallback(int objID) {
+		System.out.println("getWidgetCallback is not implemented");
 		return "";
 	}
 
@@ -524,12 +503,12 @@ public class CallScilabBridge {
 	}
 	
 	/**
-	 * Set the angle of a pushbutton font
-	 * @param id the id of the push button
-	 * @param angle the angle of the button font
+	 * Set the angle of a Widget font
+	 * @param id the id of the Widget
+	 * @param angle the angle of the Widget font
 	 */
-	public static void setPushButtonFontAngle(int id, String angle) {
-		Font font = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+	public static void setWidgetFontAngle(int id, String angle) {
+		Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
 		if (angle.equals("italic") || angle.equals("oblique")) {
 			if (font.isBold()) {
@@ -545,27 +524,27 @@ public class CallScilabBridge {
 			}
 		}
 
-		ScilabBridge.setFont((PushButton) UIElementMapper.getCorrespondingUIElement(id), font);
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
 	}
 	
 	/**
-	 * Set the size of a pushbutton font
-	 * @param id the id of the push button
-	 * @param size the size of the button font
+	 * Set the size of a Widget font
+	 * @param id the id of the Widget button
+	 * @param size the size of the Widget font
 	 */
-	public static void setPushButtonFontSize(int id, int size) {
-		Font font = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+	public static void setWidgetFontSize(int id, int size) {
+		Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 		font = new Font(font.getName(), font.getStyle(), size);
-		ScilabBridge.setFont((PushButton) UIElementMapper.getCorrespondingUIElement(id), font);
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
 	}
 
 	/**
-	 * Get the size of a pushbutton font
-	 * @param id the id of the push button
-	 * @return the size of the button font
+	 * Get the size of a Widget font
+	 * @param id the id of the Widget
+	 * @return the size of the Widget font
 	 */
-	public static int getPushButtonFontSize(int id) {
-		return ScilabBridge.getFont((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getSize();
+	public static int getWidgetFontSize(int id) {
+		return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont().getSize();
 	}
 
 	/********************/
@@ -582,7 +561,6 @@ public class CallScilabBridge {
 	 */
 	public static void setWidgetPosition(int id, int x, int y, int width, int height) {
 		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
-		//ScilabBridge.setPosition(UIElementMapper.getCorrespondingUIElement(id), new Position(x, y));
 		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
 	}
 	
@@ -594,10 +572,10 @@ public class CallScilabBridge {
 	public static int[] getWidgetPosition(int id) {
 		int[] position = new int[POSITION_SIZE];
 		
-		position[X_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getX();
-		position[Y_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getY();
-		position[WIDTH_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getDims().getWidth();
-		position[HEIGHT_INDEX] = ((PushButton) UIElementMapper.getCorrespondingUIElement(id)).getDims().getHeight();
+		position[X_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getX();
+		position[Y_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getY();
+		position[WIDTH_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getDims().getWidth();
+		position[HEIGHT_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getDims().getHeight();
 		
 		return position;
 	}

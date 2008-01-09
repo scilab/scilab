@@ -11,7 +11,7 @@ int GetUiobjectCallback(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
       // Get the label from Java
-      return sciReturnString(CallScilabBridge::getMenuCallback(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex));
+      return sciReturnString(CallScilabBridge::getWidgetCallback(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex));
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
@@ -19,7 +19,8 @@ int GetUiobjectCallback(sciPointObj* sciObj)
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
-          return sciReturnString(CallScilabBridge::getPushButtonCallback(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+        case SCI_EDIT:
+          return sciReturnString(CallScilabBridge::getWidgetCallback(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex));
         default:
           sciprint(_("No %s property for uicontrols of style: %s.\n"), "Callback", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
           return FALSE;

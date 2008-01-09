@@ -8,10 +8,10 @@ import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Interface for Menu associated to objects in Scilab GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public interface Menu extends Widget {
-	//	 TODO : Add the methods that are usefull for a Menu
 	
 	/**
 	 * Gets this Bridge component object
@@ -32,18 +32,6 @@ public interface Menu extends Widget {
 	void add(Menu newSubMenu);
 	
 	/**
-	 * Sets the text of the Menu
-	 * @param newText the text we want to set for the Menu
-	 */
-	void setText(String newText);
-	
-	/**
-	 * Gets the text of the Menu
-	 * @return the text we want to set for the Menu
-	 */
-	String getText();
-	
-	/**
 	 * set a mnemonic to the Menu
 	 * @param mnemonic the new mnemonic of the Menu
 	 */
@@ -53,19 +41,4 @@ public interface Menu extends Widget {
 	 * Add a Separator to a Menu
 	 */
 	void addSeparator();
-
-	/**
-	 * Set if the menu item is enabled or not
-	 * @param status true if the menu item is enabled
-	 */
-	void setEnabled(boolean status);
-
-	/**
-	 * Add a callback to the menu, this callback is a Scilab command
-	 * @param command the Scilab command to execute when the menu is activated
-	 * @param commandType the type of the command that will be executed.
-	 */
-	void setCallback(String command, int commandType);
-
-
 }

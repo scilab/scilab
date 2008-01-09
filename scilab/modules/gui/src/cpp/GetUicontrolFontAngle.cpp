@@ -14,6 +14,7 @@ int GetUicontrolFontAngle(sciPointObj* sciObj)
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
+        case SCI_EDIT:
           switch(pUICONTROL_FEATURE(sciObj)->fontAngle)
             {
             case NORMAL_FONT:
@@ -28,6 +29,7 @@ int GetUicontrolFontAngle(sciPointObj* sciObj)
             }
         default:
           sciprint(_("No %s property for uicontrols of style: %s.\n"), "FontAngle", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+          sciReturnString(""); /* Return an empty value */
           return FALSE;
         }
     }

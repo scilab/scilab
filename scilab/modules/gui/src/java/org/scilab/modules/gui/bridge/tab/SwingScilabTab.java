@@ -2,10 +2,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JScrollPane;
-
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;

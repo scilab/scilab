@@ -53,6 +53,7 @@ int SetUicontrolFontUnits(sciPointObj* sciObj, int stackPointer, int valueType, 
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
+        case SCI_EDIT:
           // TODO Change de Scilab of the Java font
           // CallScilabBridge::setPushButtonFontUnits(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontUnits);
           return SET_PROPERTY_SUCCEED;

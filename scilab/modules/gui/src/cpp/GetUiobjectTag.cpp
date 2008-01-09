@@ -26,6 +26,7 @@ int GetUiobjectTag(sciPointObj* sciObj)
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
+        case SCI_EDIT:
           // Get the tag
           if (pUICONTROL_FEATURE(sciObj)->tag == NULL)
             {

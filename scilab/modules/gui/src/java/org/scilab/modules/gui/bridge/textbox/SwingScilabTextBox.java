@@ -5,7 +5,6 @@ package org.scilab.modules.gui.bridge.textbox;
 
 import javax.swing.JTextArea;
 
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;

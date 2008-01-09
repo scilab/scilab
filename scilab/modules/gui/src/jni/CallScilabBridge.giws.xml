@@ -57,28 +57,19 @@
 	<method name="getWidgetForegroundColor" returnType="int[]" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
-	<method name="setMenuForegroundColor" returnType="void" modifier="static">
-	  <parameter type="int" name="objID"/>
-	  <parameter type="int" name="red"/>
-	  <parameter type="int" name="green"/>
-	  <parameter type="int" name="blue"/>
-	</method>
-	<method name="getMenuForegroundColor" returnType="int[]" modifier="static">
-	  <parameter type="int" name="objID"/>
-	</method>
 <!-- Font setting -->
 	<method name="setWidgetFontWeight" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="weight"/>
 	</method>
-	<method name="setPushButtonFontSize" returnType="void" modifier="static">
+	<method name="setWidgetFontSize" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="size"/>
 	</method>
-	<method name="getPushButtonFontSize" returnType="int" modifier="static">
+	<method name="getWidgetFontSize" returnType="int" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
-	<method name="setPushButtonFontAngle" returnType="void" modifier="static">
+	<method name="setWidgetFontAngle" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="angle"/>
 	</method>
@@ -94,18 +85,11 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Callback setting -->
-	<method name="setMenuCallback" returnType="void" modifier="static">
+	<method name="setWidgetCallback" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="text"/>
 	</method>
-	<method name="getMenuCallback" returnType="String" modifier="static">
-	  <parameter type="int" name="objID"/>
-	</method>
-	<method name="setPushButtonCallback" returnType="void" modifier="static">
-	  <parameter type="int" name="objID"/>
-	  <parameter type="String" name="text"/>
-	</method>
-	<method name="getPushButtonCallback" returnType="String" modifier="static">
+	<method name="getWidgetCallback" returnType="String" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Enable/Disable -->
