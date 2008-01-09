@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge;
 import java.awt.Color;
 import java.awt.Font;
 
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.filechooser.FileChooser;
@@ -52,6 +53,46 @@ public class CallScilabBridge {
 	 */
 	protected CallScilabBridge() {
 		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
+	}
+	
+	/* Console */
+	
+	
+	public static String readLine() {
+		return ScilabConsole.getConsole().readLine();
+	}
+	
+	public static void display(String dataToDisplay) {
+		ScilabConsole.getConsole().display(dataToDisplay);
+	}
+	
+	public static boolean isWaitingForInput() {
+		return ScilabConsole.getConsole().isWaitingForInput();
+	}
+
+	public static void scilabLinesUpdate() {
+		ScilabConsole.getConsole().scilabLinesUpdate();
+	}
+	
+	public static void clear() {
+		ScilabConsole.getConsole().clear();
+	}
+	
+	public static void clear(int nbLines) {
+		ScilabConsole.getConsole().clear(nbLines);
+	}
+	
+	public static int getCharWithoutOutput() {
+		// FIXME : Something unclear there... 
+		return ScilabConsole.getConsole().getAsSimpleConsole().getCharWithoutOutput();
+	}
+	
+	public static void toHome() {
+		ScilabConsole.getConsole().toHome();
+	}
+	
+	public static void setPrompt(String prompt) {
+		ScilabConsole.getConsole().setPrompt(prompt);
 	}
 	
 	/**********************************/
@@ -316,12 +357,7 @@ public class CallScilabBridge {
 	 * @param status true to set the menu enabled
 	 */
 	public static void setRootMenuEnabled(String menuName, boolean status) {
-		int consoleTabId = UIElementMapper.getConsoleId();
-		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
-		
-		MenuBar consoleMenuBar = consoleTab.getMenuBar();
-
-		consoleMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
 	}
 	
 	/**
@@ -342,14 +378,7 @@ public class CallScilabBridge {
 	 * @param menuName the name of the menu
 	 */
 	public static void removeRootMenu(String menuName) {
-		int consoleTabId = UIElementMapper.getConsoleId();
-		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
-		
-		MenuBar consoleMenuBar = consoleTab.getMenuBar();
-		
-		if (consoleMenuBar != null) {
-			consoleMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
-		}
+		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
 	}
 	
 	/***************************/
