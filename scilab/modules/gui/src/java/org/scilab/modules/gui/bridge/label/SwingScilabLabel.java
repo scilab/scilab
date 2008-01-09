@@ -6,24 +6,27 @@ package org.scilab.modules.gui.bridge.label;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.label.SimpleLabel;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
-* Swing implementation for Scilab Labels in GUIs
-* @author Marouane BEN JELLOUL
-*/
-public class SwingScilabLabel extends JLabel {
-// FIXME : Must have some Interface here...
-//implements SimpleLabel {
+ * Swing implementation for Scilab Labels in GUIs
+ * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
+ */
+public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	
+	private static final long serialVersionUID = 7177323379068859441L;
+
 	/**
 	 * Constructor
 	 */
 	public SwingScilabLabel() {
 		super();
+		setOpaque(true);
 	}
 	
 	/**
@@ -33,19 +36,6 @@ public class SwingScilabLabel extends JLabel {
 	public void draw() {
 		this.setVisible(true);
 		this.doLayout();
-	}
-
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (Label)
-		// Interface Container must describe methode: int addMember(Label member);
-		return container.addMember((Label) this);
 	}
 
 	/**
@@ -91,5 +81,51 @@ public class SwingScilabLabel extends JLabel {
 	public void setBorder(LineBorder lineBorder) {
 		super.setBorder(lineBorder);
 	}
-	
+
+	/**
+	 * Add a callback to the Label
+	 * @param command the Scilab command to execute when the Label is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabLabel");
+		//addActionListener(ScilabCallBack.create(command, commandType));
+	}
+
+	/**
+	 * Setter for MenuBar
+	 * @param menuBarToAdd the MenuBar associated to the Label.
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		/* Unimplemented for Labels */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Setter for ToolBar
+	 * @param toolBarToAdd the ToolBar associated to the Label.
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		/* Unimplemented for Labels */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for MenuBar
+	 * @return MenuBar: the MenuBar associated to the Label.
+	 */
+	public MenuBar getMenuBar() {
+		/* Unimplemented for Labels */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for ToolBar
+	 * @return ToolBar: the ToolBar associated to the Label.
+	 */
+	public ToolBar getToolBar() {
+		/* Unimplemented for Labels */
+		throw new UnsupportedOperationException();
+	}
+
 }

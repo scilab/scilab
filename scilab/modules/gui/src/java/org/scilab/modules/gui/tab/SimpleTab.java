@@ -8,6 +8,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -68,6 +69,13 @@ public interface SimpleTab {
 	 * @return the position of the editbox in the member list.
 	 */
 	int addMember(EditBox member);
+
+	/**
+	 * We want to be able to add directly a label in a Tab.
+	 * @param member the label to add
+	 * @return the position of the label in the member list.
+	 */
+	int addMember(Label member);
 
 	/**
 	 * Gets the size of an Tab (width and height)

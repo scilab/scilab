@@ -102,12 +102,14 @@ jintnewMenuBarID=NULL;
 jintnewMenuID=NULL; 
 jintnewPushButtonID=NULL; 
 jintnewEditBoxID=NULL; 
+jintnewLabelID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
 voidsetEditBoxParentjintjintID=NULL; 
+voidsetLabelParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
@@ -161,12 +163,14 @@ jintnewMenuBarID=NULL;
 jintnewMenuID=NULL; 
 jintnewPushButtonID=NULL; 
 jintnewEditBoxID=NULL; 
+jintnewLabelID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
 voidsetEditBoxParentjintjintID=NULL; 
+voidsetLabelParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
@@ -333,6 +337,29 @@ return res;
 
 }
 
+long CallScilabBridge::newLabel (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewLabelID = curEnv->GetStaticMethodID(cls, "newLabel", "()I" ) ;
+if (jintnewLabelID == NULL) {
+std::cerr << "Could not access to the method " << "newLabel" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewLabelID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
 void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, long figureID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -451,6 +478,27 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetEditBoxParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setLabelParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetLabelParentjintjintID = curEnv->GetStaticMethodID(cls, "setLabelParent", "(II)V" ) ;
+if (voidsetLabelParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setLabelParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetLabelParentjintjintID ,parentID, objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

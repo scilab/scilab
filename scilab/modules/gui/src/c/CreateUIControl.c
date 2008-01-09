@@ -99,6 +99,11 @@ sciPointObj * CreateUIControl(char *style)
       createEditBox((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_EDIT;
     }
+  else if (strcmp(style,"text")==0)
+    {
+      createLabel((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_UITEXT;
+    }
   else
     {
       sciprint(_("Could not create uicontrol of type %s."), style);

@@ -8,6 +8,7 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.Position;
@@ -162,6 +163,16 @@ public class ScilabTabBridge {
 	 * @return the position of the EditBox in the member list.
 	 */
 	public static int addMember(Tab tab, EditBox member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the Label to
+	 * @param member the Label to add
+	 * @return the position of the Label in the member list.
+	 */
+	public static int addMember(Tab tab, Label member) {
 		return (tab.getAsSimpleTab().addMember(member));
 	}
 

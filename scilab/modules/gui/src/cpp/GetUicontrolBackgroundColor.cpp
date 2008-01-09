@@ -19,6 +19,7 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
            returnValues = CallScilabBridge::getWidgetBackgroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           
           tmp = new double[3];

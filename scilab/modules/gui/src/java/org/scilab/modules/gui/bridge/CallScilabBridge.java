@@ -11,6 +11,8 @@ import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
+import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.label.ScilabLabel;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -42,6 +44,8 @@ public class CallScilabBridge {
 	private static final int Y_INDEX = 1;
 	private static final int WIDTH_INDEX = 2;
 	private static final int HEIGHT_INDEX = 3;
+	
+	private static final String NORMALFONT = "normal";
 
 	/**
 	 * Constructor
@@ -98,7 +102,7 @@ public class CallScilabBridge {
 		PushButton pushButton = ScilabPushButton.createPushButton();
 		int id = UIElementMapper.add(pushButton);
 		// Scilab default font
-		setWidgetFontWeight(id, "normal");
+		setWidgetFontWeight(id, NORMALFONT);
 		return id;
 	}
 
@@ -109,6 +113,22 @@ public class CallScilabBridge {
 	public static int newEditBox() {
 		EditBox editBox = ScilabEditBox.createEditBox();
 		int id = UIElementMapper.add(editBox);
+		// Scilab default font
+		setWidgetFontWeight(id, NORMALFONT);
+		return id;
+	}
+
+	/**
+	 * Create a new Label in Scilab GUIs
+	 * @return the ID of the Label in the UIElementMapper
+	 */
+	public static int newLabel() {
+		Label label = ScilabLabel.createLabel();
+		int id = UIElementMapper.add(label);
+		// Scilab default font
+		setWidgetFontWeight(id, NORMALFONT);
+		label.setBackground(Color.GRAY);
+		label.setForeground(Color.BLACK);
 		return id;
 	}
 
@@ -196,6 +216,17 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, editBox);
+	}
+
+	/**
+	 * Set a figure as parent for a Label
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void setLabelParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		Label label = (Label) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, label);
 	}
 
 	/**

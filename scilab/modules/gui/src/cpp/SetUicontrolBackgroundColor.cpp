@@ -65,6 +65,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
     {
     case SCI_PUSHBUTTON:
     case SCI_EDIT:
+    case SCI_UITEXT:
       CallScilabBridge::setWidgetBackgroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, redInt, greenInt, blueInt);
       return SET_PROPERTY_SUCCEED;
     default:

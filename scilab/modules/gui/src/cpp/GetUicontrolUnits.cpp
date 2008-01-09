@@ -15,6 +15,7 @@ int GetUicontrolUnits(sciPointObj* sciObj)
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           switch(pUICONTROL_FEATURE(sciObj)->units)
             {
             case POINTS_UNITS:

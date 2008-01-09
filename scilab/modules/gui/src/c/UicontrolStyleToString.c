@@ -13,6 +13,8 @@ char * UicontrolStyleToString(int style)
       return "pushbutton";
     case SCI_EDIT:
       return "edit";
+    case SCI_UITEXT:
+      return "text";
     default:
       return "Unknown";
     }

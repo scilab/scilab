@@ -46,6 +46,7 @@ int SetUicontrolFontAngle(sciPointObj* sciObj, int stackPointer, int valueType, 
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           CallScilabBridge::setWidgetFontAngle(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontAngle);
           return SET_PROPERTY_SUCCEED;
         default:

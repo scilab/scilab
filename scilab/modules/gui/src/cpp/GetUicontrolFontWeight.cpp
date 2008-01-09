@@ -15,6 +15,7 @@ int GetUicontrolFontWeight(sciPointObj* sciObj)
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           switch(pUICONTROL_FEATURE(sciObj)->fontWeight)
             {
             case LIGHT_FONT:

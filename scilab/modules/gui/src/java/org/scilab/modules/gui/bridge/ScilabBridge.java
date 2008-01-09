@@ -23,6 +23,9 @@ import org.scilab.modules.gui.filechooser.SimpleFileChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
 import org.scilab.modules.gui.frame.SimpleFrame;
+import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.label.ScilabLabelBridge;
+import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.layout.BorderLayout;
 import org.scilab.modules.gui.layout.FlowLayout;
 import org.scilab.modules.gui.layout.ScilabBorderLayoutBridge;
@@ -494,6 +497,16 @@ public class ScilabBridge {
 	 * @return the position of the editbox in the member list.
 	 */
 	public static int addMember(Tab tab, EditBox member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the Label to
+	 * @param member the label to add
+	 * @return the position of the label in the member list.
+	 */
+	public static int addMember(Tab tab, Label member) {
 		return ScilabTabBridge.addMember(tab, member);
 	}
 	
@@ -1568,6 +1581,178 @@ public class ScilabBridge {
 	 */
 	public static void setCallback(EditBox editBox, String command, int commandType) {
 		ScilabEditBoxBridge.setCallback(editBox, command, commandType);
+	}
+
+	/******************/
+	/* Label Bridge */
+	/******************/
+
+	/**
+	 * Creates a new Label
+	 * @return the created Label
+	 */
+	public static SimpleLabel createLabel() {
+		return ScilabLabelBridge.createLabel();
+	}
+	
+	/**
+	 * Sets the Text of a Label
+	 * @param label the Label we want to set the Text of
+	 * @param newText the Text to set for the Label
+	 */
+	public static void setText(Label label, String newText) {
+		ScilabLabelBridge.setText(label, newText);
+	}
+	
+	/**
+	 * Gets the text of an Label
+	 * @param label the Label we want to get the text of
+	 * @return the text of the Label
+	 */
+	public static String getText(Label label) {
+		return ScilabLabelBridge.getText(label);
+	}
+	
+	/**
+	 * Draws a Scilab Label
+	 * @param label the Label to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(Label label) {
+		ScilabLabelBridge.draw(label);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab Label
+	 * @param label the Label we want to get the dimensions of
+	 * @return the size of the label
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(Label label) {
+		return ScilabLabelBridge.getDims(label);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab label
+	 * @param label the label we want to get the position of
+	 * @return the position of the label
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(Label label) {
+		return ScilabLabelBridge.getPosition(label);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab Label
+	 * @param label the label we want to get the visiblity status of
+	 * @return the visibility status of the label (true if the label is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(Label label) {
+		return ScilabLabelBridge.isVisible(label);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab Label
+	 * @param label the label we want to set the dimensions of
+	 * @param newSize the size we want to set to the label
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(Label label, Size newSize) {
+		ScilabLabelBridge.setDims(label, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab label
+	 * @param label the label we want to set the position of
+	 * @param newPosition the position we want to set to the label
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(Label label, Position newPosition) {
+		ScilabLabelBridge.setPosition(label, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab Label
+	 * @param label the label we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the label (true to set the label visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(Label label, boolean newVisibleState) {
+		ScilabLabelBridge.setVisible(label, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the Label
+	 * @param label the Label we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(Label label, Color color) {
+		ScilabLabelBridge.setBackground(label, color);
+	}
+
+	/**
+	 * Get the Background color of the Label
+	 * @param label the Label we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(Label label) {
+		return ScilabLabelBridge.getBackground(label);
+	}
+
+	/**
+	 * Set the Foreground color of the Label
+	 * @param label the Label we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(Label label, Color color) {
+		ScilabLabelBridge.setForeground(label, color);
+	}
+
+	/**
+	 * Get the Foreground color of the Label
+	 * @param label the Label we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(Label label) {
+		return ScilabLabelBridge.getForeground(label);
+	}
+
+	/**
+	 * Set the font of the Label.
+	 * @param label the Label we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(Label label, Font font) {
+		ScilabLabelBridge.setFont(label, font);
+	}
+	
+	/**
+	 * Get the font of the Label.
+	 * @param label the Label we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(Label label) {
+		return ScilabLabelBridge.getFont(label);
+	}
+
+	/**
+	 * Set if the Label is enabled or not
+	 * @param label the Label we want to set the status of
+	 * @param status true if the Label is enabled
+	 */
+	public static void setEnabled(Label label, boolean status) {
+		ScilabLabelBridge.setEnabled(label, status);
+	}
+	
+	/**
+	 * Add a callback to the Label
+	 * @param label the Label we want to set the callback of
+	 * @param command the Scilab command to execute when the Label is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(Label label, String command, int commandType) {
+		ScilabLabelBridge.setCallback(label, command, commandType);
 	}
 
 	/*********************/

@@ -15,6 +15,7 @@ int GetUicontrolString(sciPointObj* sciObj)
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           return sciReturnString(CallScilabBridge::getWidgetText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex));
         default:
           sciprint(_("No %s property for uicontrols of style: %s.\n"), "String", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));

@@ -57,6 +57,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, int stackPointer, int valueType, i
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           CallScilabBridge::setWidgetFontSize(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontSizeInt);
           return SET_PROPERTY_SUCCEED;
         default:

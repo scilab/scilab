@@ -30,6 +30,7 @@ src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/EditBox.cpp \
+src/cpp/Label.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \

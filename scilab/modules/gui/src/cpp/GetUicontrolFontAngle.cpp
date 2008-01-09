@@ -15,6 +15,7 @@ int GetUicontrolFontAngle(sciPointObj* sciObj)
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           switch(pUICONTROL_FEATURE(sciObj)->fontAngle)
             {
             case NORMAL_FONT:

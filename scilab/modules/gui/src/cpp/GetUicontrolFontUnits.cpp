@@ -15,6 +15,7 @@ int GetUicontrolFontUnits(sciPointObj* sciObj)
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           switch(pUICONTROL_FEATURE(sciObj)->fontUnits)
             {
             case POINTS_UNITS:

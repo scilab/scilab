@@ -57,12 +57,14 @@ jmethodID jintnewMenuBarID; // cache method id
 jmethodID jintnewMenuID; // cache method id
 jmethodID jintnewPushButtonID; // cache method id
 jmethodID jintnewEditBoxID; // cache method id
+jmethodID jintnewLabelID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
 jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
 jmethodID voidsetParentjintjintID; // cache method id
 jmethodID voidsetPushButtonParentjintjintID; // cache method id
 jmethodID voidsetEditBoxParentjintjintID; // cache method id
+jmethodID voidsetLabelParentjintjintID; // cache method id
 jmethodID voidsetWidgetTextjintjstringID; // cache method id
 jmethodID jstringgetWidgetTextjintID; // cache method id
 jmethodID voidsetWidgetBackgroundColorjintjintjintjintID; // cache method id
@@ -141,6 +143,8 @@ static long newPushButton(JavaVM * jvm_);
 
 static long newEditBox(JavaVM * jvm_);
 
+static long newLabel(JavaVM * jvm_);
+
 static void setFigureAsParent(JavaVM * jvm_, long figureID, long objID);
 
 static void setMenuAsParent(JavaVM * jvm_, long menuID, long objID);
@@ -152,6 +156,8 @@ static void setParent(JavaVM * jvm_, long parentID, long objID);
 static void setPushButtonParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setEditBoxParent(JavaVM * jvm_, long parentID, long objID);
+
+static void setLabelParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setWidgetText(JavaVM * jvm_, long objID, char * text);
 

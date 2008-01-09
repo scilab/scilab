@@ -31,6 +31,7 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
           // Send the label to Java
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           CallScilabBridge::setWidgetText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
           return SET_PROPERTY_SUCCEED;
         default:

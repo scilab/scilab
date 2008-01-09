@@ -19,6 +19,7 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
         {
         case SCI_PUSHBUTTON:
         case SCI_EDIT:
+        case SCI_UITEXT:
           returnValues = CallScilabBridge::getWidgetForegroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           break;
         default:
