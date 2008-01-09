@@ -4,7 +4,7 @@
 /*--------------------------------------------------------------------------*/
 #include "registry.h"
 #include "win_mem_alloc.h"
-#include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
+#include "GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383

@@ -6,9 +6,9 @@
 #include <strsafe.h>
 #include <string.h>
 #include <stdio.h>
-#include "../../../../../libs/DetectFramework2/DetectFramework.h"
-#include "../../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
-#include "../../../../../libs/MALLOC/includes/win_mem_alloc.h" /* MALLOC */
+#include "DetectFramework.h"
+#include "GetWindowsVersion.h"
+#include "win_mem_alloc.h" /* MALLOC */
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
 #define MSG_DETECT_FRAMEWORK "The .NET Framework 2.0 is not installed"
