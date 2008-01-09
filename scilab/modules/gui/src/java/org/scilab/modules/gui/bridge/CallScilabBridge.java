@@ -55,42 +55,75 @@ public class CallScilabBridge {
 		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
 	}
 	
+	/***********/
 	/* Console */
+	/***********/
 	
-	
+	/**
+	 * Read a line from the Console
+	 * @return the line read
+	 */
 	public static String readLine() {
 		return ScilabConsole.getConsole().readLine();
 	}
 	
+	/**
+	 * Display a line in the Console
+	 * @param dataToDisplay the line to display
+	 */
 	public static void display(String dataToDisplay) {
 		ScilabConsole.getConsole().display(dataToDisplay);
 	}
 	
+	/**
+	 * Get the status of the Console
+	 * @return true if the console is at the prompt
+	 */
 	public static boolean isWaitingForInput() {
 		return ScilabConsole.getConsole().isWaitingForInput();
 	}
 
+	/**
+	 * Update the number of lines and columns that Scilab use to format data to display
+	 */
 	public static void scilabLinesUpdate() {
 		ScilabConsole.getConsole().scilabLinesUpdate();
 	}
 	
+	/**
+	 * Clear the Console
+	 */
 	public static void clear() {
 		ScilabConsole.getConsole().clear();
 	}
 	
+	/**
+	 * Clear some lines in the Console
+	 * @param nbLines the number of lines to clear
+	 */
 	public static void clear(int nbLines) {
 		ScilabConsole.getConsole().clear(nbLines);
 	}
 	
+	/**
+	 * Get a char to know if the user wants more data to be displayed
+	 * @return the user answer
+	 */
 	public static int getCharWithoutOutput() {
-		// FIXME : Something unclear there... 
 		return ScilabConsole.getConsole().getAsSimpleConsole().getCharWithoutOutput();
 	}
 	
+	/**
+	 * Put the prompt on the top left corner
+	 */
 	public static void toHome() {
 		ScilabConsole.getConsole().toHome();
 	}
 	
+	/**
+	 * Set the contents of the prompt
+	 * @param prompt the content to set (default is -->)
+	 */
 	public static void setPrompt(String prompt) {
 		ScilabConsole.getConsole().setPrompt(prompt);
 	}
