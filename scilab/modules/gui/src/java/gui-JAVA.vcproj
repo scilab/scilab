@@ -89,10 +89,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\org\scilab\modules\gui\bridge\GLCanvasMouseListener.java"
-				>
-			</File>
-			<File
 				RelativePath=".\org\scilab\modules\gui\utils\Layout.java"
 				>
 			</File>
