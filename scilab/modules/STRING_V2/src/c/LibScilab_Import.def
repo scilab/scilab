@@ -24,5 +24,3 @@ gettype_
 freeArrayOfString
 ; elementary_functions
 icopy_
-CreateEmptystr
-strsplit
