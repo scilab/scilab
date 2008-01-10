@@ -9957,7 +9957,7 @@ EOF
             { echo "$as_me:$LINENO: result: $jar_resolved" >&5
 echo "${ECHO_T}$jar_resolved" >&6; }
             found_jar=yes
-			PACKAGE_JAR_FILE=$jar_resolved
+            PACKAGE_JAR_FILE=$jar_resolved
             break
 
     else
@@ -10023,7 +10023,7 @@ EOF
             { echo "$as_me:$LINENO: result: $jar_resolved" >&5
 echo "${ECHO_T}$jar_resolved" >&6; }
             found_jar=yes
-			PACKAGE_JAR_FILE=$jar_resolved
+            PACKAGE_JAR_FILE=$jar_resolved
             break
 
     else
@@ -10089,7 +10089,7 @@ EOF
             { echo "$as_me:$LINENO: result: $jar_resolved" >&5
 echo "${ECHO_T}$jar_resolved" >&6; }
             found_jar=yes
-			PACKAGE_JAR_FILE=$jar_resolved
+            PACKAGE_JAR_FILE=$jar_resolved
             break
 
     else
@@ -10155,7 +10155,7 @@ EOF
             { echo "$as_me:$LINENO: result: $jar_resolved" >&5
 echo "${ECHO_T}$jar_resolved" >&6; }
             found_jar=yes
-			PACKAGE_JAR_FILE=$jar_resolved
+            PACKAGE_JAR_FILE=$jar_resolved
             break
 
     else
@@ -10221,7 +10221,7 @@ EOF
             { echo "$as_me:$LINENO: result: $jar_resolved" >&5
 echo "${ECHO_T}$jar_resolved" >&6; }
             found_jar=yes
-			PACKAGE_JAR_FILE=$jar_resolved
+            PACKAGE_JAR_FILE=$jar_resolved
             break
 
     else
@@ -10287,7 +10287,7 @@ EOF
             { echo "$as_me:$LINENO: result: $jar_resolved" >&5
 echo "${ECHO_T}$jar_resolved" >&6; }
             found_jar=yes
-			PACKAGE_JAR_FILE=$jar_resolved
+            PACKAGE_JAR_FILE=$jar_resolved
             break
 
     else
@@ -35190,7 +35190,7 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile modules/helptools/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/STRING_V2/Makefile modules/time/Makefile modules/graphics/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/fftw/Makefile modules/scicos/Makefile modules/scicos/src/ocaml/Makefile modules/functions/Makefile modules/incremental_link/Makefile modules/others/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/Makefile libs/Makefile Makefile etc/modules.xml scilab-lib.properties"
+ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/STRING_V2/Makefile modules/time/Makefile modules/graphics/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/fftw/Makefile modules/scicos/Makefile modules/scicos/src/ocaml/Makefile modules/functions/Makefile modules/incremental_link/Makefile modules/others/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/Makefile libs/Makefile Makefile etc/modules.xml scilab-lib.properties"
 #MAN_FR MAN_ENG
 #modules/mpi/Makefile
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
@@ -36360,6 +36360,7 @@ do
     "libs/hashtable/Makefile") CONFIG_FILES="$CONFIG_FILES libs/hashtable/Makefile" ;;
     "libs/libst/Makefile") CONFIG_FILES="$CONFIG_FILES libs/libst/Makefile" ;;
     "modules/helptools/Makefile") CONFIG_FILES="$CONFIG_FILES modules/helptools/Makefile" ;;
+    "modules/helptools/macros/xmlfiletohtml.sci") CONFIG_FILES="$CONFIG_FILES modules/helptools/macros/xmlfiletohtml.sci" ;;
     "modules/data_structures/Makefile") CONFIG_FILES="$CONFIG_FILES modules/data_structures/Makefile" ;;
     "modules/differential_equations/Makefile") CONFIG_FILES="$CONFIG_FILES modules/differential_equations/Makefile" ;;
     "modules/optimization/Makefile") CONFIG_FILES="$CONFIG_FILES modules/optimization/Makefile" ;;
