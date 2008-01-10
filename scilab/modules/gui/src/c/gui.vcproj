@@ -375,6 +375,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\RadioButton.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_about.c"
 				>
 			</File>
@@ -873,6 +877,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\PushButton.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\RadioButton.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\RadioButton.hxx"
 				>
 			</File>
 			<File
