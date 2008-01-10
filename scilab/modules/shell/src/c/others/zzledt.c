@@ -896,9 +896,8 @@ static void set_crmod()
 
 static void init_io()
 {
-  int  tgetent();
-  char *getenv();
-  char *tgetstr();
+  int  tgetent(char *bp, const char *name);
+  char *tgetstr(char *id, char **area);
   char tc_buf[1024];       /* holds termcap buffer */
   char *area;
   char erase_char;
