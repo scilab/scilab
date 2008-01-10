@@ -10,10 +10,7 @@ package org.scilab.modules.renderer.figureDrawing;
 
 
 import javax.media.opengl.GL;
-import javax.media.opengl.Threading;
 
-
-import org.scilab.modules.renderer.BitmapExporterRunner;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
