@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "arnoldi module"
             VALUE "FileVersion", "5, 0, 0, 0"
             VALUE "InternalName", "arnoldi"
-            VALUE "LegalCopyright", "Copyright (C) 2007"
+            VALUE "LegalCopyright", "Copyright (C) 2008"
             VALUE "OriginalFilename", "arnoldi.dll"
             VALUE "ProductName", "arnoldi module"
             VALUE "ProductVersion", "5, 0, 0, 0"

@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nomodule_skeleton module"
             VALUE "FileVersion", "5, 0, 0, 0"
             VALUE "InternalName", "nomodule_skeleton module"
-            VALUE "LegalCopyright", "Copyright (C) 2007"
+            VALUE "LegalCopyright", "Copyright (C) 2008"
             VALUE "OriginalFilename", "nomodule_skeleton.dll"
             VALUE "ProductName", " nomodule_skeleton"
             VALUE "ProductVersion", "5, 0, 0, 0"

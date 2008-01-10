@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nometanet module"
             VALUE "FileVersion", "5, 0, 0, 0"
             VALUE "InternalName", "nometanet module"
-            VALUE "LegalCopyright", "Copyright (C) 2007"
+            VALUE "LegalCopyright", "Copyright (C) 2008"
             VALUE "OriginalFilename", "nometanet.dll"
             VALUE "ProductName", " nometanet"
             VALUE "ProductVersion", "5, 0, 0, 0"
