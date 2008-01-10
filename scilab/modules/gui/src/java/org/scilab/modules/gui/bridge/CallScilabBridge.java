@@ -443,32 +443,7 @@ public class CallScilabBridge {
 	 * @param objID the id of the menu
 	 */
 	public static void setRootAsParent(int objID) {
-		int consoleTabId = UIElementMapper.getConsoleId();
-		Tab consoleTab = (Tab) UIElementMapper.getCorrespondingUIElement(consoleTabId);
-
-		MenuBar menuBar;
-		//int menuBarId;
-
-		// Create a menuBar if not already one associated to the parentTab
-		if (consoleTab.getMenuBar() == null) {
-			menuBar = ScilabMenuBar.createMenuBar();
-			//menuBarId = UIElementMapper.add(menuBar);
-
-			consoleTab.addMenuBar(menuBar);
-			//consoleTab.setMenuBarId(menuBarId);
-		} else {
-			menuBar = consoleTab.getMenuBar();
-			//menuBarId = consoleTab.getMenuBarId();
-		}
-		// Add the menu to the tab
-		ScilabMenuBarBridge.add(menuBar, (Menu) UIElementMapper.getCorrespondingUIElement(objID));
-
-		// If parent tab is the currently "on top" tab, then the MenuBar is also added to the parent window
-		if (ScilabTabBridge.isCurrentTab(consoleTab)) {
-			consoleTab.addMenuBar(menuBar);
-			//consoleTab.setMenuBarId(menuBarId);
-		}
-		
+		ScilabConsole.getConsole().getMenuBar().add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 	}
 	
 	/**
