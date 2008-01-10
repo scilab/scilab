@@ -133,7 +133,12 @@ void DrawableFigureJoGL::setRenderingEnable(bool isEnable)
   getFigureJavaMapper()->setRenderingEnable(isEnable);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::exportToBitmapFile(const char * fileName, int fileType)
+void DrawableFigureJoGL::exportToFile(const char * fileName, ExportFileType fileType)
+{
+  getFigureJavaMapper()->exportToFile(fileName, fileType);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::exportToBitmapFile(const char * fileName, ExportFileType fileType)
 {
   getFigureJavaMapper()->exportToBitmapFile(fileName, fileType);
 }

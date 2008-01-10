@@ -50,7 +50,7 @@ public class ExportBitmap extends ExportToFile {
 		case PPM:  file = new File(getFilename() + ".ppm");
 		break;
 		default: System.err.println(INVALID_FILE);
-		break;
+		return;
 		}
 
 		try {

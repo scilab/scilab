@@ -66,6 +66,7 @@ public:
 
   virtual void setRenderingEnable(bool isEnable);
 
+  virtual void exportToFile(const char * fileName, int fileType);
   virtual void exportToBitmapFile(const char * fileName, int fileType);
   /*----------------------------------------------------------------------*/
 

@@ -11,6 +11,6 @@
 /*--------------------------------------------------------------------------*/
 int sci_xs2ppm( char * fname, unsigned long fname_len )
 {
-  return xs2file( fname, "PPM", fname_len, 3 ) ;
+  return xs2file( fname, PPM_EXPORT);
 }
 /*--------------------------------------------------------------------------*/

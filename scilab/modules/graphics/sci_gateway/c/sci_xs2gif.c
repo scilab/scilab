@@ -11,6 +11,6 @@
 /*--------------------------------------------------------------------------*/
 int sci_xs2gif( char * fname, unsigned long fname_len )
 {
-  return xs2file( fname, "GIF", fname_len, 3 ) ;
+  return xs2file( fname, GIF_EXPORT ) ;
 }
 /*--------------------------------------------------------------------------*/

@@ -195,7 +195,6 @@ typedef enum
 /**Struct of Entity type*/
 sciEntityType;	
 
-
 typedef struct _Vertices 
 {
   int value_xm;

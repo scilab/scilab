@@ -13,7 +13,8 @@
 extern "C" {
 #endif
 
-#include "../../../graphics/includes/ObjectStructure.h"
+#include "ObjectStructure.h"
+#include "xs2file.h"
 
 /**
  * Change the colormap of a figure. The colormap is stored in java
@@ -59,6 +60,11 @@ void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable);
  * Zoom a subwin object with the specified rectangle in pixels
  */
 void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height);
+
+/**
+ * Export a figure as a bitmap file
+ */
+void sciJavaExportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType);
 
 #ifdef __cplusplus
 }

@@ -12,8 +12,6 @@ extern "C"
 #include "GetProperty.h"
 }
 
-#include <iostream>
-
 namespace sciGraphics
 {
 
@@ -78,9 +76,9 @@ void DrawableFigure::closeRenderingCanvas( void )
   getFigureImp()->closeRenderingCanvas() ;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::exportToBitmapFile(const char * fileName, int fileType)
+void DrawableFigure::exportToFile(const char * fileName, ExportFileType fileType)
 {
-  getFigureImp()->exportToBitmapFile(fileName, fileType);
+  getFigureImp()->exportToFile(fileName, fileType);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::drawInContext( void )

@@ -15,6 +15,11 @@
 #include "../DrawableObjectJoGL.h"
 #include "ScilabGraphicWindow.hxx"
 
+extern "C"
+{
+#include "xs2file.h"
+}
+
 namespace sciGraphics
 {
 
@@ -115,7 +120,15 @@ public:
    * @param filename name of the file to write.
    * @param fileType type of the file to draw (ie jpg, bmp).
    */
-  virtual void exportToBitmapFile(const char * fileName, int fileType);
+  virtual void exportToFile(const char * fileName, ExportFileType fileType);
+
+  /**
+   * Export the currently drawn image to a bitmap file.
+   * To be called within the OpenGL context.
+   * @param filename name of the file to write.
+   * @param fileType type of the file to draw (ie jpg, bmp).
+   */
+  virtual void exportToBitmapFile(const char * fileName, ExportFileType fileType);
 
   /**
    * Return the drawn object

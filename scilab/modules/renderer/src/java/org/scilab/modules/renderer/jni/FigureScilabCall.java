@@ -40,6 +40,12 @@ public static void redrawFigure(int figureId) {
     FigureScilabCallJNI.redrawFigure(figureId);
   }
 
+/**
+ * Export a figure 
+ * @param figureId index of the figure to export
+ * @param fileName name of the file to create
+ * @param fileType type of the file to create (ie jpg, bmp, ...)
+ */
   public static void exportFigure(int figureId, String fileName, int fileType) {
     FigureScilabCallJNI.exportFigure(figureId, fileName, fileType);
   }

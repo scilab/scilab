@@ -45,7 +45,12 @@ public class SciRenderer
 	DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
     // should call the draw function of the corresponding figure
 	if (curFigure.getIsRenderingEnable()) {
-		FigureScilabCall.displayFigure(renderedFigure);
+		if (curFigure.isExportEnable()) {
+			FigureScilabCall.exportFigure(renderedFigure, curFigure.getExportFileName(), curFigure.getExportFileType());
+			
+		} else {
+			FigureScilabCall.displayFigure(renderedFigure);
+		}
 	}
 	
 	// seems that buffers will be swaped any way with GLJPanel

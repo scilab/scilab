@@ -19,28 +19,52 @@
 #include "DrawingBridge.h"
 #include "getcolordef.h"
 #include "localization.h"
+#include "SetJavaProperty.h"
+
 /*--------------------------------------------------------------------------*/
-int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_len )
+int xs2file(char * fname, ExportFileType fileType )
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,flagx = -1,iwin;
   CheckRhs(2,3);
 
-  /* the window number */ 
-  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-  CheckScalar(1,m1,n1) ;
-  iwin = (integer) *stk(l1) ;
-  /* the file name */ 
-  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-  /* color or n & b */ 
-  if ( Rhs >= 3 )
+  CheckLhs(0,1);
+  CheckRhs(2,2);
+  if ( (GetType(2) == sci_strings) && IsAScalar(1) )
   {
-    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
-    CheckScalar(3,m3,n3) ;
-    flagx = (integer) *stk(l3) ;
+    integer m1,n1,l1;
+    int figurenum=-1;
+    GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+    figurenum = *istk(l1);
+    if (figurenum>=0)
+    {
+      char * fileName=NULL;
+      GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
+      fileName = cstk(l1);
+
+      /* Call the function for exporting file */
+      exportToFile(getFigureFromIndex(figurenum), fileName, fileType);
+    }
+    else
+    {
+      Scierror(999,_("%s: Wrong input argument: %s expected.\n"),fname,">=0");
+      return 0;
+    }
+
   }
-  /* nouveau graphique ?????*/
-  C2F(xg2psofig)(cstk(l2),&m2,&iwin,&flagx,dr,bsiz,dr_len);
-  LhsVar(1)=0;
+  else
+  {
+    if ( IsAScalar(1) )
+    {
+      Scierror(999,_("%s: Wrong type for first input argument: integer scalar expected.\n"),fname);
+      return 0;
+    }
+    if ( GetType(2) != sci_strings)
+    {
+      Scierror(999,_("%s: Wrong type for second input argument: String expected.\n"),fname);
+      return 0;
+    }
+  }
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -115,5 +139,10 @@ int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, cha
     sc= *color;
   /*scig_toPs(*iwin,sc,fname,driver);*/
   return scig_toPs(*iwin,sc,fname,driver); /* why twice ???? */
+}
+/*--------------------------------------------------------------------------*/
+void exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType)
+{
+  sciJavaExportToFile(pFigure, fileName, fileType);
 }
 /*--------------------------------------------------------------------------*/
