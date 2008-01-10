@@ -35,7 +35,10 @@ int C2F(idmax)(int *n, double *x, int *incx)
 	{
 		if (x[i * x_dim1 + 1] > xmax) 
 		{
-			/* a test with a nan must always return false */
+			/* the previous test must return false if x[i*x_dim1+1] is a nan 
+			 * so should not branch here in this case (for compiler 
+			 * managing ieee754 ... Intel Compiler doesn't)
+			 */
 			xmax = x[i * x_dim1 + 1];
 			ret_val = i;
 		}
