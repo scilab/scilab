@@ -11,6 +11,6 @@
 /*--------------------------------------------------------------------------*/
 int sci_xs2fig(char *fname,unsigned long fname_len)
 {
-  return xs2file( fname, "Fig", fname_len, 3 ) ;
+  return xs2file( fname, NO_EXPORT ) ;
 }
 /*--------------------------------------------------------------------------*/

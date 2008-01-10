@@ -11,6 +11,6 @@
 /*--------------------------------------------------------------------------*/
 int sci_xs2ps(char *fname,unsigned long fname_len)
 {
-  return xs2file( fname, "Pos", fname_len, 3 ) ;
+  return xs2file( fname, NO_EXPORT ) ;
 }
 /*--------------------------------------------------------------------------*/
