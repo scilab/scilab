@@ -242,10 +242,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\GetScilabConsoleObject.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\GuiManagement.c"
 				>
 			</File>
