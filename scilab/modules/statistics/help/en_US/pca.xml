@@ -8,7 +8,7 @@
   <SHORT_DESCRIPTION name="pca">  Principal components analysis</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[lambda,facpr,comprinc] = pca(x,N)</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[lambda,facpr,comprinc] = pca(x,N,disable_graphics)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -32,6 +32,13 @@
          values of eigenvalues.  If  N is  missing, we suppose
          N=[1 2].</SP>
 
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    
+    <PARAM_ITEM>
+    <PARAM_NAME>disable_graphics</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP> : a boolean. %t to disable output graphics outputs. this parameter is optional.</SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
 
@@ -95,6 +102,13 @@ the projection  onto the k dimensional  subspace must be
 maximal.
 </P>
   </DESCRIPTION>
+
+ <EXAMPLE>
+    <![CDATA[
+  a=rand(100,10,'n');
+  [lambda,facpr,comprinc] = pca(a);
+ ]]>
+  </EXAMPLE>
 
   <AUTHOR>
     Carlos Klimann
