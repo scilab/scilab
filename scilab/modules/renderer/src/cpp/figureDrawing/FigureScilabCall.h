@@ -15,6 +15,8 @@ extern "C" {
 void displayFigure(int figureId);
 
 void redrawFigure(int figureId) ;
+
+void exportFigure(int figureId, char * fileName, int fileType);
 #ifdef __cplusplus
 }
 #endif
