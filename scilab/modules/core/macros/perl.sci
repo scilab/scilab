@@ -14,7 +14,7 @@ function [resultat,status] = perl(varargin)
       // Check that params are strings
       for i=1:1:rhs,
         if ~(type(varargin(i)) == 10) then
-          error(msprintf(gettext("%s: Wrong type for input argument: Strings expected.\n"),"perl"));
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: Strings expected.\n"),"perl",i));
         end
         
         idx=strindex(varargin(i),' ');
@@ -62,6 +62,6 @@ function [resultat,status] = perl(varargin)
       end
     end  
   else
-    error(msprintf(gettext("%s: Wrong number of input arguments: %d or more expected.\n"),"perl",1));
+    error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"perl",1));
   end
 endfunction

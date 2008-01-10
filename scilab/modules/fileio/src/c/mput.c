@@ -181,7 +181,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	}
 	else 
 	{
-		sciprint(_("%s: No input file associated to logical unit %d.\n"),"mput",*fd);
+		sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mput",GetFileNameOpenedInScilab(*fd));
 		*ierr=3;
 	}
 }

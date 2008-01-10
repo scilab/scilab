@@ -75,7 +75,7 @@ int intsmopen(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Error(112); /* Not enough memory to  open the file */
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
 		}

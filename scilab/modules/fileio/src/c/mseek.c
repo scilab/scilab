@@ -31,7 +31,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 	*err=0;
 	if ( fa == (FILE *) 0 ) 
 	{
-		sciprint(_("%s: Wrong file logical unit.\n"),"mseek");
+		sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mseek",GetFileNameOpenedInScilab(*fd));
 		*err=1;
 		return;
 	}
