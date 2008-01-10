@@ -12,7 +12,7 @@ char * UicontrolStyleToString(int style)
     case SCI_PUSHBUTTON:
       return "pushbutton";
     case SCI_RADIOBUTTON:
-      return "radio";
+      return "radiobutton";
     case SCI_CHECKBOX:
       return "checkbox";
     case SCI_EDIT:

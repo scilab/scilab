@@ -104,6 +104,7 @@ jintnewPushButtonID=NULL;
 jintnewEditBoxID=NULL; 
 jintnewLabelID=NULL; 
 jintnewCheckBoxID=NULL; 
+jintnewRadioButtonID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -112,6 +113,7 @@ voidsetPushButtonParentjintjintID=NULL;
 voidsetEditBoxParentjintjintID=NULL; 
 voidsetLabelParentjintjintID=NULL; 
 voidsetCheckBoxParentjintjintID=NULL; 
+voidsetRadioButtonParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
@@ -167,6 +169,7 @@ jintnewPushButtonID=NULL;
 jintnewEditBoxID=NULL; 
 jintnewLabelID=NULL; 
 jintnewCheckBoxID=NULL; 
+jintnewRadioButtonID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -175,6 +178,7 @@ voidsetPushButtonParentjintjintID=NULL;
 voidsetEditBoxParentjintjintID=NULL; 
 voidsetLabelParentjintjintID=NULL; 
 voidsetCheckBoxParentjintjintID=NULL; 
+voidsetRadioButtonParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
@@ -387,6 +391,29 @@ return res;
 
 }
 
+long CallScilabBridge::newRadioButton (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewRadioButtonID = curEnv->GetStaticMethodID(cls, "newRadioButton", "()I" ) ;
+if (jintnewRadioButtonID == NULL) {
+std::cerr << "Could not access to the method " << "newRadioButton" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewRadioButtonID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
 void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, long figureID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -547,6 +574,27 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetCheckBoxParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setRadioButtonParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetRadioButtonParentjintjintID = curEnv->GetStaticMethodID(cls, "setRadioButtonParent", "(II)V" ) ;
+if (voidsetRadioButtonParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setRadioButtonParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetRadioButtonParentjintjintID ,parentID, objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

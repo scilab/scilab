@@ -17,6 +17,7 @@
 #include "EditBox.h" /* setCurentFigureAsEditBoxParent */
 #include "Label.h" /* setCurentFigureAsLabelParent */
 #include "CheckBox.h" /* setCurentFigureAsCheckBoxParent */
+#include "RadioButton.h" /* setCurentFigureAsRadioButtonParent */
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 16 
 /*--------------------------------------------------------------------------*/
@@ -242,6 +243,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               break;
             case SCI_CHECKBOX:
               setCurentFigureAsCheckBoxParent((sciPointObj*) GraphicHandle);
+            case SCI_RADIOBUTTON:
+              setCurentFigureAsRadioButtonParent((sciPointObj*) GraphicHandle);
               break;
            default:
               break;

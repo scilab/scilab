@@ -12,6 +12,7 @@
 #include "EditBox.h"
 #include "Label.h"
 #include "CheckBox.h"
+#include "RadioButton.h"
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
@@ -111,6 +112,11 @@ sciPointObj * CreateUIControl(char *style)
     {
       createCheckBox((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_CHECKBOX;
+    }
+  else if (strcmp(style,"radiobutton")==0)
+    {
+      createRadioButton((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_RADIOBUTTON;
     }
   else
     {

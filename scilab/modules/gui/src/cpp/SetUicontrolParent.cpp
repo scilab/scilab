@@ -44,6 +44,9 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
             case SCI_CHECKBOX:
               CallScilabBridge::setCheckBoxParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               break;
+            case SCI_RADIOBUTTON:
+              CallScilabBridge::setRadioButtonParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+              break;
             default:
               sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
               return SET_PROPERTY_ERROR;
