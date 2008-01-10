@@ -219,6 +219,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CheckBox.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CreateUIControl.c"
 				>
 			</File>
@@ -601,6 +605,14 @@
 			</File>
 			<File
 				RelativePath="..\jni\CallScilabBridge.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CheckBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CheckBox.hxx"
 				>
 			</File>
 			<File
