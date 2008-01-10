@@ -61,17 +61,9 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
       return SET_PROPERTY_ERROR;
     }
 
-  switch(pUICONTROL_FEATURE(sciObj)->style)
-    {
-    case SCI_PUSHBUTTON:
-    case SCI_EDIT:
-    case SCI_UITEXT:
-      CallScilabBridge::setWidgetBackgroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, redInt, greenInt, blueInt);
-      return SET_PROPERTY_SUCCEED;
-    default:
-      /* Unimplmented uicontrol style */
-      sciprint(_("No %s property for uicontrols of style: %s.\n"), "BackgroundColor", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-      return SET_PROPERTY_ERROR;
-    }
+  CallScilabBridge::setWidgetBackgroundColor(getScilabJavaVM(), 
+                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                             redInt, greenInt, blueInt);
+  return SET_PROPERTY_SUCCEED;
 }
 

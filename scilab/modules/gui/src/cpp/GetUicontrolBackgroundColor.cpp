@@ -15,27 +15,19 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the color from Java
-      switch(pUICONTROL_FEATURE(sciObj)->style)
-        {
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-           returnValues = CallScilabBridge::getWidgetBackgroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-          
-          tmp = new double[3];
-          tmp[0] = (double)returnValues[0] / 255; // Red
-          tmp[1] = (double)returnValues[1] / 255; // Green
-          tmp[2] = (double)returnValues[2] / 255; // Blue
-          
-          returnFlag =  sciReturnRowVector(tmp, 3);
-          
-          delete(tmp);
-          
-          return returnFlag;
-        default:
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "BackgroundColor", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return FALSE;
-        }
+      returnValues = CallScilabBridge::getWidgetBackgroundColor(getScilabJavaVM(),
+                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+      
+      tmp = new double[3];
+      tmp[0] = (double)returnValues[0] / 255; // Red
+      tmp[1] = (double)returnValues[1] / 255; // Green
+      tmp[2] = (double)returnValues[2] / 255; // Blue
+      
+      returnFlag =  sciReturnRowVector(tmp, 3);
+      
+      delete(tmp);
+      
+      return returnFlag;
     }
   else
     {

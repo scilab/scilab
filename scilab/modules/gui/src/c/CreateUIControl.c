@@ -11,6 +11,7 @@
 #include "PushButton.h"
 #include "EditBox.h"
 #include "Label.h"
+#include "CheckBox.h"
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
@@ -106,6 +107,11 @@ sciPointObj * CreateUIControl(char *style)
       createLabel((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_UITEXT;
     }
+  else if (strcmp(style,"checkbox")==0)
+    {
+      createCheckBox((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_CHECKBOX;
+    }
   else
     {
       sciprint(_("Could not create uicontrol of type %s."), style);
@@ -114,3 +120,4 @@ sciPointObj * CreateUIControl(char *style)
   return (sciPointObj *) pobj;
 }
 /*----------------------------------------------------------------------------*/
+

@@ -15,18 +15,8 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the color from Java
-      switch(pUICONTROL_FEATURE(sciObj)->style)
-        {
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-          returnValues = CallScilabBridge::getWidgetForegroundColor(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-          break;
-        default:
-          /* Unimplemented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "ForegroundColor", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return FALSE;
-        }
+      returnValues = CallScilabBridge::getWidgetForegroundColor(getScilabJavaVM(),
+                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex);
     }
   else if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {

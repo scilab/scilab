@@ -16,6 +16,7 @@
 #include "PushButton.h" /* setCurentFigureAsPushButtonParent */
 #include "EditBox.h" /* setCurentFigureAsEditBoxParent */
 #include "Label.h" /* setCurentFigureAsLabelParent */
+#include "CheckBox.h" /* setCurentFigureAsCheckBoxParent */
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 16 
 /*--------------------------------------------------------------------------*/
@@ -238,6 +239,9 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               break;
             case SCI_UITEXT:
               setCurentFigureAsLabelParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_CHECKBOX:
+              setCurentFigureAsCheckBoxParent((sciPointObj*) GraphicHandle);
               break;
            default:
               break;

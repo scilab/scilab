@@ -11,29 +11,20 @@ int GetUicontrolUnits(sciPointObj* sciObj)
   if (sciGetEntityType(sciObj) == SCI_UICONTROL)
     {
       // Get the font units from Scilab object
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      switch(pUICONTROL_FEATURE(sciObj)->units)
         {
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-          switch(pUICONTROL_FEATURE(sciObj)->units)
-            {
-            case POINTS_UNITS:
-              return sciReturnString("points");
-            case NORMALIZED_UNITS:
-              return sciReturnString("normalized");
-            case INCHES_UNITS:
-              return sciReturnString("inches");
-            case CENTIMETERS_UNITS:
-              return sciReturnString("centimeters");
-            case PIXELS_UNITS:
-              return sciReturnString("pixels");
-            default:
-              sciprint(_("Units property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
-              return FALSE;
-            }
+        case POINTS_UNITS:
+          return sciReturnString("points");
+        case NORMALIZED_UNITS:
+          return sciReturnString("normalized");
+        case INCHES_UNITS:
+          return sciReturnString("inches");
+        case CENTIMETERS_UNITS:
+          return sciReturnString("centimeters");
+        case PIXELS_UNITS:
+          return sciReturnString("pixels");
         default:
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Units", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+          sciprint(_("Units property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
           return FALSE;
         }
     }

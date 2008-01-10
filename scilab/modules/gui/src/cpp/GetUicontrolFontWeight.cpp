@@ -11,27 +11,18 @@ int GetUicontrolFontWeight(sciPointObj* sciObj)
   if (sciGetEntityType(sciObj) == SCI_UICONTROL)
     {
       // Get the font weight from Scilab object
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      switch(pUICONTROL_FEATURE(sciObj)->fontWeight)
         {
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-          switch(pUICONTROL_FEATURE(sciObj)->fontWeight)
-            {
-            case LIGHT_FONT:
-              return sciReturnString("light");
-            case NORMAL_FONT:
-              return sciReturnString("normal");
-            case DEMI_FONT:
-              return sciReturnString("demi");
-            case BOLD_FONT:
-              return sciReturnString("bold");
-            default:
-              sciprint(_("FontWeight property value must be a single string: light, normal, demi or bold.\n"));
-              return FALSE;
-            }
+        case LIGHT_FONT:
+          return sciReturnString("light");
+        case NORMAL_FONT:
+          return sciReturnString("normal");
+        case DEMI_FONT:
+          return sciReturnString("demi");
+        case BOLD_FONT:
+          return sciReturnString("bold");
         default:
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "FontWeight", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+          sciprint(_("FontWeight property value must be a single string: light, normal, demi or bold.\n"));
           return FALSE;
         }
     }

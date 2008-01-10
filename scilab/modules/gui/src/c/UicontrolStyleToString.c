@@ -11,10 +11,22 @@ char * UicontrolStyleToString(int style)
     {
     case SCI_PUSHBUTTON:
       return "pushbutton";
+    case SCI_RADIOBUTTON:
+      return "radio";
+    case SCI_CHECKBOX:
+      return "checkbox";
     case SCI_EDIT:
       return "edit";
     case SCI_UITEXT:
       return "text";
+    case SCI_SLIDER:
+      return "slider";
+    case SCI_UIFRAME:
+      return "frame";
+    case SCI_LISTBOX:
+      return "listbox";
+    case SCI_POPUPMENU:
+      return "popup";
     default:
       return "Unknown";
     }

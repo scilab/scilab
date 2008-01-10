@@ -26,18 +26,11 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
 
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
-      switch(pUICONTROL_FEATURE(sciObj)->style)
-        {
-          // Send the label to Java
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-          CallScilabBridge::setWidgetText(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
-          return SET_PROPERTY_SUCCEED;
-        default:
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "String", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
-       }
+      // Send the label to Java
+      CallScilabBridge::setWidgetText(getScilabJavaVM(), 
+                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                      getStringFromStack(stackPointer));
+      return SET_PROPERTY_SUCCEED;
     }
   else
     {

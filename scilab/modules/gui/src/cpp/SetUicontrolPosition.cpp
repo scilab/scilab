@@ -60,21 +60,12 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
       return SET_PROPERTY_ERROR;
     }
 
-  switch(pUICONTROL_FEATURE(sciObj)->style)
-    {
-    case SCI_PUSHBUTTON:
-    case SCI_EDIT:
-    case SCI_UITEXT:
-      CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
-                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                          xInt, 
-                                          sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
-                                          widthInt, 
-                                          heightInt);
-      return SET_PROPERTY_SUCCEED;
-    default:
-      sciprint(_("No %s property for uicontrols of style: %s.\n"), "Position", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-      return SET_PROPERTY_ERROR;
-    }
+  CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
+                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                      xInt, 
+                                      sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
+                                      widthInt, 
+                                      heightInt);
+  return SET_PROPERTY_SUCCEED;
 }
 
