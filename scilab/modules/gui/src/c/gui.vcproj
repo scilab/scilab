@@ -1056,10 +1056,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\SetUicontrolTag.hxx"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\SetUicontrolUnits.h"
 				>
 			</File>
