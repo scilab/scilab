@@ -9,6 +9,7 @@
 	<method name="newLabel" returnType="int" modifier="static"/>        
 	<method name="newCheckBox" returnType="int" modifier="static"/>        
 	<method name="newRadioButton" returnType="int" modifier="static"/>      	<method name="newSlider" returnType="int" modifier="static"/>        
+	<method name="newPopupMenu" returnType="int" modifier="static"/>        	<method name="newListBox" returnType="int" modifier="static"/>        
 <!-- Parent setting -->
 	<method name="setFigureAsParent" returnType="void" modifier="static">
 	  <parameter type="int" name="figureID"/>
@@ -46,6 +47,14 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 	<method name="setSliderParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPopupMenuParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setListBoxParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>

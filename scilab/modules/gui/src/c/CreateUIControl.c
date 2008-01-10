@@ -14,6 +14,8 @@
 #include "CheckBox.h"
 #include "RadioButton.h"
 #include "Slider.h"
+#include "PopupMenu.h"
+#include "ListBox.h"
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
@@ -123,6 +125,16 @@ sciPointObj * CreateUIControl(char *style)
     {
       createSlider((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_SLIDER;
+    }
+  else if (strcmp(style,"popupmenu")==0)
+    {
+      createPopupMenu((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_POPUPMENU;
+    }
+  else if (strcmp(style,"listbox")==0)
+    {
+      createListBox((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_LISTBOX;
     }
   else
     {

@@ -34,6 +34,8 @@ src/cpp/Label.cpp \
 src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
 src/cpp/Slider.cpp \
+src/cpp/PopupMenu.cpp \
+src/cpp/ListBox.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \

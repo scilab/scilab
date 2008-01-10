@@ -61,6 +61,8 @@ jmethodID jintnewLabelID; // cache method id
 jmethodID jintnewCheckBoxID; // cache method id
 jmethodID jintnewRadioButtonID; // cache method id
 jmethodID jintnewSliderID; // cache method id
+jmethodID jintnewPopupMenuID; // cache method id
+jmethodID jintnewListBoxID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
 jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
@@ -71,6 +73,8 @@ jmethodID voidsetLabelParentjintjintID; // cache method id
 jmethodID voidsetCheckBoxParentjintjintID; // cache method id
 jmethodID voidsetRadioButtonParentjintjintID; // cache method id
 jmethodID voidsetSliderParentjintjintID; // cache method id
+jmethodID voidsetPopupMenuParentjintjintID; // cache method id
+jmethodID voidsetListBoxParentjintjintID; // cache method id
 jmethodID voidsetWidgetTextjintjstringID; // cache method id
 jmethodID jstringgetWidgetTextjintID; // cache method id
 jmethodID voidsetWidgetBackgroundColorjintjintjintjintID; // cache method id
@@ -157,6 +161,10 @@ static long newRadioButton(JavaVM * jvm_);
 
 static long newSlider(JavaVM * jvm_);
 
+static long newPopupMenu(JavaVM * jvm_);
+
+static long newListBox(JavaVM * jvm_);
+
 static void setFigureAsParent(JavaVM * jvm_, long figureID, long objID);
 
 static void setMenuAsParent(JavaVM * jvm_, long menuID, long objID);
@@ -176,6 +184,10 @@ static void setCheckBoxParent(JavaVM * jvm_, long parentID, long objID);
 static void setRadioButtonParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setSliderParent(JavaVM * jvm_, long parentID, long objID);
+
+static void setPopupMenuParent(JavaVM * jvm_, long parentID, long objID);
+
+static void setListBoxParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setWidgetText(JavaVM * jvm_, long objID, char * text);
 

@@ -19,6 +19,8 @@
 #include "CheckBox.h" /* setCurentFigureAsCheckBoxParent */
 #include "RadioButton.h" /* setCurentFigureAsRadioButtonParent */
 #include "Slider.h" /* setCurentFigureAsSliderParent */
+#include "PopupMenu.h" /* setCurentFigureAsPopupMenuParent */
+#include "ListBox.h" /* setCurentFigureAsListBoxParent */
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 16 
 /*--------------------------------------------------------------------------*/
@@ -244,10 +246,18 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               break;
             case SCI_CHECKBOX:
               setCurentFigureAsCheckBoxParent((sciPointObj*) GraphicHandle);
+              break;
             case SCI_RADIOBUTTON:
               setCurentFigureAsRadioButtonParent((sciPointObj*) GraphicHandle);
+              break;
             case SCI_SLIDER:
               setCurentFigureAsSliderParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_POPUPMENU:
+              setCurentFigureAsPopupMenuParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_LISTBOX:
+              setCurentFigureAsListBoxParent((sciPointObj*) GraphicHandle);
               break;
            default:
               break;

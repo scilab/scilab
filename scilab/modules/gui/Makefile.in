@@ -116,10 +116,10 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
 	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
 	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
-	src/cpp/Slider.cpp src/cpp/SetUimenuLabel.cpp \
-	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
-	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
-	src/cpp/SetUicontrolParent.cpp \
+	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp src/cpp/ListBox.cpp \
+	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
+	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
+	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -195,6 +195,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
 @GUI_TRUE@	libscigui_la-Label.lo libscigui_la-CheckBox.lo \
 @GUI_TRUE@	libscigui_la-RadioButton.lo libscigui_la-Slider.lo \
+@GUI_TRUE@	libscigui_la-PopupMenu.lo libscigui_la-ListBox.lo \
 @GUI_TRUE@	libscigui_la-SetUimenuLabel.lo \
 @GUI_TRUE@	libscigui_la-GetUimenuLabel.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolStyle.lo \
@@ -543,6 +544,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/CheckBox.cpp \
 @GUI_TRUE@src/cpp/RadioButton.cpp \
 @GUI_TRUE@src/cpp/Slider.cpp \
+@GUI_TRUE@src/cpp/PopupMenu.cpp \
+@GUI_TRUE@src/cpp/ListBox.cpp \
 @GUI_TRUE@src/cpp/SetUimenuLabel.cpp \
 @GUI_TRUE@src/cpp/GetUimenuLabel.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolStyle.cpp \
@@ -810,6 +813,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Label.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ListBox.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PopupMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-RadioButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
@@ -1246,6 +1251,20 @@ libscigui_la-Slider.lo: src/cpp/Slider.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Slider.cpp' object='libscigui_la-Slider.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-Slider.lo `test -f 'src/cpp/Slider.cpp' || echo '$(srcdir)/'`src/cpp/Slider.cpp
+
+libscigui_la-PopupMenu.lo: src/cpp/PopupMenu.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-PopupMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-PopupMenu.Tpo -c -o libscigui_la-PopupMenu.lo `test -f 'src/cpp/PopupMenu.cpp' || echo '$(srcdir)/'`src/cpp/PopupMenu.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-PopupMenu.Tpo $(DEPDIR)/libscigui_la-PopupMenu.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/PopupMenu.cpp' object='libscigui_la-PopupMenu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-PopupMenu.lo `test -f 'src/cpp/PopupMenu.cpp' || echo '$(srcdir)/'`src/cpp/PopupMenu.cpp
+
+libscigui_la-ListBox.lo: src/cpp/ListBox.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-ListBox.lo -MD -MP -MF $(DEPDIR)/libscigui_la-ListBox.Tpo -c -o libscigui_la-ListBox.lo `test -f 'src/cpp/ListBox.cpp' || echo '$(srcdir)/'`src/cpp/ListBox.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-ListBox.Tpo $(DEPDIR)/libscigui_la-ListBox.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ListBox.cpp' object='libscigui_la-ListBox.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ListBox.lo `test -f 'src/cpp/ListBox.cpp' || echo '$(srcdir)/'`src/cpp/ListBox.cpp
 
 libscigui_la-SetUimenuLabel.lo: src/cpp/SetUimenuLabel.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUimenuLabel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUimenuLabel.Tpo -c -o libscigui_la-SetUimenuLabel.lo `test -f 'src/cpp/SetUimenuLabel.cpp' || echo '$(srcdir)/'`src/cpp/SetUimenuLabel.cpp

@@ -106,6 +106,8 @@ jintnewLabelID=NULL;
 jintnewCheckBoxID=NULL; 
 jintnewRadioButtonID=NULL; 
 jintnewSliderID=NULL; 
+jintnewPopupMenuID=NULL; 
+jintnewListBoxID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -116,6 +118,8 @@ voidsetLabelParentjintjintID=NULL;
 voidsetCheckBoxParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
+voidsetPopupMenuParentjintjintID=NULL; 
+voidsetListBoxParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
@@ -173,6 +177,8 @@ jintnewLabelID=NULL;
 jintnewCheckBoxID=NULL; 
 jintnewRadioButtonID=NULL; 
 jintnewSliderID=NULL; 
+jintnewPopupMenuID=NULL; 
+jintnewListBoxID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -183,6 +189,8 @@ voidsetLabelParentjintjintID=NULL;
 voidsetCheckBoxParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
+voidsetPopupMenuParentjintjintID=NULL; 
+voidsetListBoxParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
@@ -441,6 +449,52 @@ return res;
 
 }
 
+long CallScilabBridge::newPopupMenu (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewPopupMenuID = curEnv->GetStaticMethodID(cls, "newPopupMenu", "()I" ) ;
+if (jintnewPopupMenuID == NULL) {
+std::cerr << "Could not access to the method " << "newPopupMenu" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewPopupMenuID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+long CallScilabBridge::newListBox (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewListBoxID = curEnv->GetStaticMethodID(cls, "newListBox", "()I" ) ;
+if (jintnewListBoxID == NULL) {
+std::cerr << "Could not access to the method " << "newListBox" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewListBoxID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
 void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, long figureID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -643,6 +697,48 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetSliderParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setPopupMenuParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetPopupMenuParentjintjintID = curEnv->GetStaticMethodID(cls, "setPopupMenuParent", "(II)V" ) ;
+if (voidsetPopupMenuParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setPopupMenuParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetPopupMenuParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setListBoxParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetListBoxParentjintjintID = curEnv->GetStaticMethodID(cls, "setListBoxParent", "(II)V" ) ;
+if (voidsetListBoxParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setListBoxParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetListBoxParentjintjintID ,parentID, objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
