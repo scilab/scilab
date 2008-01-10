@@ -1,5 +1,7 @@
 /*--------------------------------------------------------------------------*/ 
 /* INRIA 2007 */
+/* @author Allan Cornet (rewrite to C) */
+/* @author Bruno Pincon (bug fix .. nan problem) */
 /*--------------------------------------------------------------------------*/ 
 #include "idmax.h"
 #include "isanan.h"
@@ -33,7 +35,7 @@ int C2F(idmax)(int *n, double *x, int *incx)
 	{
 		if (x[i * x_dim1 + 1] > xmax) 
 		{
-			/* a test with a nan must always re */
+			/* a test with a nan must always return false */
 			xmax = x[i * x_dim1 + 1];
 			ret_val = i;
 		}

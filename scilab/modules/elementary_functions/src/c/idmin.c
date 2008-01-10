@@ -1,5 +1,7 @@
 /*--------------------------------------------------------------------------*/ 
 /* INRIA 2007 */
+/* @author Allan Cornet (rewrite to C) */
+/* @author Bruno Pincon (bug fix .. nan problem) */
 /*--------------------------------------------------------------------------*/ 
 #include "idmin.h"
 #include "isanan.h"
@@ -32,7 +34,7 @@ int C2F(idmin)(int *n, double *x, int *incx)
 	{
 		if (x[i * x_dim1 + 1] < xmin) 
 		{
-			/* a test with a nan must always re */
+			/* a test with a nan must always return false */
 			xmin = x[i * x_dim1 + 1];
 			ret_val = i;
 		}
