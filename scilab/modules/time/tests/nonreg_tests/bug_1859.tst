@@ -36,6 +36,6 @@ Month = [   2,    3];
 Day   = [  28,    1];
 
 test  = datenum(Year, Month, Day);
-ref   = [731275 ; 731276];
+ref   = [731275 731276];
 
 if or(test <> ref) then pause,end
