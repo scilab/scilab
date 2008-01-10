@@ -4,20 +4,22 @@
 package org.scilab.modules.gui.bridge.slider;
 
 import javax.swing.JSlider;
-import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.slider.SimpleSlider;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab Slider in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabSlider extends JSlider {
-//	 FIXME : Must have some Interface here...
-//	implements SimpleSlider {
+public class SwingScilabSlider extends JSlider implements SimpleSlider {
+
+	private static final long serialVersionUID = -4262320156090829309L;
+
 	/**
 	 * Constructor
 	 */
@@ -26,28 +28,16 @@ public class SwingScilabSlider extends JSlider {
 		// Scilab slider always snap to ticks
 		setSnapToTicks(true);
 	}
-	
+
 	/**
-	 * 
+	 * Draws a swing Scilab Slider
+	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
 		this.setVisible(true);
 		this.doLayout();
 	}
-
-	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
-	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (Slider)
-		// Interface Container must describe methode: int addMember(Slider member);
-		return container.addMember((Slider) this);
-	}
-
+	
 	/**
 	 * Gets the dimensions (width and height) of a swing Scilab Slider
 	 * @return the dimensions of the Slider
@@ -83,12 +73,68 @@ public class SwingScilabSlider extends JSlider {
 	public void setPosition(Position newPosition) {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
-	
+
 	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
+	 * Add a callback to the Slider
+	 * @param command the Scilab command to execute when the Slider is validated
+	 * @param commandType the type of the command that will be executed.
 	 */
-	public void setBorder(LineBorder lineBorder) {
-		super.setBorder(lineBorder);
+	public void setCallback(String command, int commandType) {
+		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabSlider");
+		//addActionListener(ScilabCallBack.create(command, commandType));
+	}
+
+	/**
+	 * Setter for MenuBar
+	 * @param menuBarToAdd the MenuBar associated to the Tab.
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		/* Unimplemented for CheckBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Setter for ToolBar
+	 * @param toolBarToAdd the ToolBar associated to the Tab.
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		/* Unimplemented for CheckBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for MenuBar
+	 * @return MenuBar: the MenuBar associated to the Tab.
+	 */
+	public MenuBar getMenuBar() {
+		/* Unimplemented for CheckBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for ToolBar
+	 * @return ToolBar: the ToolBar associated to the Tab.
+	 */
+	public ToolBar getToolBar() {
+		/* Unimplemented for CheckBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Get the text of the Slider
+	 * @return the text
+	 * @see org.scilab.modules.gui.widget.Widget#getText()
+	 */
+	public String getText() {
+		return this.getName();
+	}
+
+	/**
+	 * Set the text of the Slider
+	 * @param text the text to set to the Slider
+	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
+	 */
+	public void setText(String text) {
+		this.setName(text);
 	}
 }

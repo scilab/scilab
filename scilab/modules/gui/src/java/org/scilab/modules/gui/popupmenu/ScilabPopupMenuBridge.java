@@ -3,10 +3,16 @@
 
 package org.scilab.modules.gui.popupmenu;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 
 /**
  * Bridge for Scilab PopupMenus in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public class ScilabPopupMenuBridge {
@@ -22,8 +28,167 @@ public class ScilabPopupMenuBridge {
 	 * Creates a Scilab PopupMenu
 	 * @return the created PopupMenu
 	 */
-	public static PopupMenu createPopupMenu() {
+	public static SimplePopupMenu createPopupMenu() {
 		return new SwingScilabPopupMenu();
 	}
 	
+	/**
+	 * Sets the Text of a Scilab PopupMenu
+	 * @param popupMenu the PopupMenu we want to set the Text of
+	 * @param newText the Text we want to set to the PopupMenu
+	 */
+	public static void setText(PopupMenu popupMenu, String newText) {
+		popupMenu.getAsSimplePopupMenu().setText(newText);
+	}
+	
+	/**
+	 * Sets the Text of a Scilab PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the Text of
+	 * @return the text of the PopupMenu
+	 */
+	public static String getText(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getText();
+	}
+	
+	/**
+	 * Draws a Scilab popupMenu
+	 * @param popupMenu the popupMenu to draw
+	 * @see org.scilab.modules.gui.UIElement#draw()
+	 */
+	public static void draw(PopupMenu popupMenu) {
+		popupMenu.getAsSimplePopupMenu().draw();
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab PopupMenu
+	 * @param popupMenu the popupMenu we want to get the dimensions of
+	 * @return the size of the popupMenu
+	 * @see org.scilab.modules.gui.UIElement#getDims()
+	 */
+	public static Size getDims(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getDims();
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab popupMenu
+	 * @param popupMenu the popupMenu we want to get the position of
+	 * @return the position of the popupMenu
+	 * @see org.scilab.modules.gui.UIElement#getPosition()
+	 */
+	public static Position getPosition(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getPosition();
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab PopupMenu
+	 * @param popupMenu the popupMenu we want to get the visiblity status of
+	 * @return the visibility status of the popupMenu (true if the popupMenu is visible, false if not)
+	 * @see org.scilab.modules.gui.UIElement#isVisible()
+	 */
+	public static boolean isVisible(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().isVisible();
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab PopupMenu
+	 * @param popupMenu the popupMenu we want to set the dimensions of
+	 * @param newSize the size we want to set to the popupMenu
+	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+	 */
+	public static void setDims(PopupMenu popupMenu, Size newSize) {
+		popupMenu.getAsSimplePopupMenu().setDims(newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab popupMenu
+	 * @param popupMenu the popupMenu we want to set the position of
+	 * @param newPosition the position we want to set to the popupMenu
+	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+	 */
+	public static void setPosition(PopupMenu popupMenu, Position newPosition) {
+		popupMenu.getAsSimplePopupMenu().setPosition(newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab PopupMenu
+	 * @param popupMenu the popupMenu we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the popupMenu (true to set the popupMenu visible, false else)
+	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(PopupMenu popupMenu, boolean newVisibleState) {
+		popupMenu.getAsSimplePopupMenu().setVisible(newVisibleState);
+	}
+	
+	/**
+	 * Add a callback to the PopupMenu
+	 * @param popupMenu the PopupMenu we want to set the callback of
+	 * @param command the Scilab command to execute when the contents of the popupMenu is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(PopupMenu popupMenu, String command, int commandType) {
+		popupMenu.getAsSimplePopupMenu().setCallback(command, commandType);
+	}
+	
+	/**
+	 * To set the Background color of the PopupMenu
+	 * @param popupMenu the PopupMenu we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(PopupMenu popupMenu, Color color) {
+		popupMenu.getAsSimplePopupMenu().setBackground(color);
+	}
+
+	/**
+	 * Get the Background color of the PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getBackground();
+	}
+
+	/**
+	 * To set the Foreground color of the popupMenu
+	 * @param popupMenu the PopupMenu we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(PopupMenu popupMenu, Color color) {
+		popupMenu.getAsSimplePopupMenu().setForeground(color);
+	}
+
+	/**
+	 * Get the Foreground color of the PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getForeground();
+	}
+
+	/**
+	 * Set the font of the PopupMenu.
+	 * @param popupMenu the PopupMenu we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(PopupMenu popupMenu, Font font) {
+		popupMenu.getAsSimplePopupMenu().setFont(font);
+	}
+	
+	/**
+	 * Get the font of the PopupMenu.
+	 * @param popupMenu the PopupMenu we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getFont();
+	}
+	
+	/**
+	 * Set if the PopupMenu is enabled or not
+	 * @param popupMenu the PopupMenu we want to set the status of
+	 * @param status true if the PopupMenu is enabled
+	 */
+	public static void setEnabled(PopupMenu popupMenu, boolean status) {
+		popupMenu.getAsSimplePopupMenu().setEnabled(status);
+	}
 }

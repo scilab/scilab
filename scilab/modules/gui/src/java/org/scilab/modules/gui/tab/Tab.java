@@ -3,13 +3,18 @@
 
 package org.scilab.modules.gui.tab;
 
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.slider.Slider;
 
 /**
  * Interface for tabs in Scilab GUIs
@@ -76,6 +81,41 @@ public interface Tab extends Container {
 	 * @return the position of the label in the member list.
 	 */
 	int addMember(Label member);
+
+	/**
+	 * We want to be able to add directly a checkbox in a Tab.
+	 * @param member the checkbox to add
+	 * @return the position of the checkbox in the member list.
+	 */
+	int addMember(CheckBox member);
+
+	/**
+	 * We want to be able to add directly a RadioButton in a Tab.
+	 * @param member the RadioButton to add
+	 * @return the position of the RadioButton in the member list.
+	 */
+	int addMember(RadioButton member);
+
+	/**
+	 * We want to be able to add directly a Slider in a Tab.
+	 * @param member the Slider to add
+	 * @return the position of the Slider in the member list.
+	 */
+	int addMember(Slider member);
+
+	/**
+	 * We want to be able to add directly a ListBox in a Tab.
+	 * @param member the ListBox to add
+	 * @return the position of the ListBox in the member list.
+	 */
+	int addMember(ListBox member);
+
+	/**
+	 * We want to be able to add directly a PopupMenu in a Tab.
+	 * @param member the PopupMenu to add
+	 * @return the position of the PopupMenu in the member list.
+	 */
+	int addMember(PopupMenu member);
 
 	/**
 	 * Get the current status of the Tab in its parent

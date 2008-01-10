@@ -6,6 +6,8 @@ package org.scilab.modules.gui.bridge;
 import java.awt.Color;
 import java.awt.Font;
 
+import org.scilab.modules.gui.checkbox.CheckBox;
+import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
@@ -14,13 +16,21 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabel;
+import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.listbox.ScilabListBox;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBarBridge;
+import org.scilab.modules.gui.popupmenu.PopupMenu;
+import org.scilab.modules.gui.popupmenu.ScilabPopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
+import org.scilab.modules.gui.slider.ScilabSlider;
+import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
@@ -201,8 +211,78 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(label);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
-		label.setBackground(Color.GRAY);
+		label.setBackground(Color.LIGHT_GRAY);
 		label.setForeground(Color.BLACK);
+		return id;
+	}
+
+	/**
+	 * Create a new CheckBox in Scilab GUIs
+	 * @return the ID of the CheckBox in the UIElementMapper
+	 */
+	public static int newCheckBox() {
+		CheckBox checkBox = ScilabCheckBox.createCheckBox();
+		int id = UIElementMapper.add(checkBox);
+		// Scilab default font
+		setWidgetFontWeight(id, NORMALFONT);
+		checkBox.setBackground(Color.LIGHT_GRAY);
+		checkBox.setForeground(Color.BLACK);
+		return id;
+	}
+
+	/**
+	 * Create a new RadioButton in Scilab GUIs
+	 * @return the ID of the RadioButton in the UIElementMapper
+	 */
+	public static int newRadioButton() {
+		RadioButton radioButton = ScilabRadioButton.createRadioButton();
+		int id = UIElementMapper.add(radioButton);
+		// Scilab default font
+		setWidgetFontWeight(id, NORMALFONT);
+		radioButton.setBackground(Color.LIGHT_GRAY);
+		radioButton.setForeground(Color.BLACK);
+		return id;
+	}
+
+	/**
+	 * Create a new Slider in Scilab GUIs
+	 * @return the ID of the Slider in the UIElementMapper
+	 */
+	public static int newSlider() {
+		Slider slider = ScilabSlider.createSlider();
+		int id = UIElementMapper.add(slider);
+		// Scilab default font
+		setWidgetFontWeight(id, NORMALFONT);
+		slider.setBackground(Color.LIGHT_GRAY);
+		slider.setForeground(Color.BLACK);
+		return id;
+	}
+
+	/**
+	 * Create a new ListBox in Scilab GUIs
+	 * @return the ID of the ListBox in the UIElementMapper
+	 */
+	public static int newListBox() {
+		ListBox listBox = ScilabListBox.createListBox();
+		int id = UIElementMapper.add(listBox);
+		// Scilab default font
+		setWidgetFontWeight(id, NORMALFONT);
+		listBox.setBackground(Color.LIGHT_GRAY);
+		listBox.setForeground(Color.BLACK);
+		return id;
+	}
+
+	/**
+	 * Create a new PopupMenu in Scilab GUIs
+	 * @return the ID of the PopupMenu in the UIElementMapper
+	 */
+	public static int newPopupMenu() {
+		PopupMenu popupMenu = ScilabPopupMenu.createPopupMenu();
+		int id = UIElementMapper.add(popupMenu);
+		// Scilab default font
+		setWidgetFontWeight(id, NORMALFONT);
+		popupMenu.setBackground(Color.LIGHT_GRAY);
+		popupMenu.setForeground(Color.BLACK);
 		return id;
 	}
 
@@ -301,6 +381,61 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		Label label = (Label) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, label);
+	}
+
+	/**
+	 * Set a figure as parent for a CheckBox
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void setCheckBoxParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		CheckBox checkBox = (CheckBox) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, checkBox);
+	}
+
+	/**
+	 * Set a figure as parent for a RadioButton
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void setRadioButtonParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, radioButton);
+	}
+
+	/**
+	 * Set a figure as parent for a Slider
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void setSliderParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		Slider slider = (Slider) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, slider);
+	}
+
+	/**
+	 * Set a figure as parent for a ListBox
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the ListBox in the UIElementMapper
+	 */
+	public static void setListBoxParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		ListBox listBox = (ListBox) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, listBox);
+	}
+
+	/**
+	 * Set a figure as parent for a PopupMenu
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PopupMenu in the UIElementMapper
+	 */
+	public static void setPopupMenuParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		PopupMenu popupMenu = (PopupMenu) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, popupMenu);
 	}
 
 	/**

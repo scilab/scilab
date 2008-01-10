@@ -3,116 +3,19 @@
 
 package org.scilab.modules.gui.listbox;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.border.LineBorder;
-
 import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Interface for ListBox associated to objects in Scilab GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public interface ListBox extends Widget {
 	
 	/**
-	 * Only one list index can be selected at a time.
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
 	 */
-	int SINGLE_SELECTION = 0;
-	
-	/**
-	 * In this mode, there's no restriction on what can be selected.
-	 */
-	int MULTIPLE_SELECTION = 2;
-	
-	/**
-	 * To set the content of the ListBox.
-	 * @param listData the content of the ListBox 
-	 */
-	void setListData(String[] listData);
-	
-	/**
-	 * Set the selection mode. The accepted selection modes are:
-	 * - ListBox.SINGLE_SELECTION (=0)
-	 * - ListBox.MULTIPLE_SELECTION (=2)
-	 * @param mode - the selection mode we want
-	 * @throws java.lang.IllegalArgumentException - if the selection mode isn't one of those allowed
-	 */
-	void setSelectionMode(int mode) throws IllegalArgumentException;
+	SimpleListBox getAsSimpleListBox();
 
-	/**
-	 * To set the Background color of the element.
-	 * @param color the Color
-	 */
-	void setBackground(Color color);
-	
-	/**
-	 * To get the Background color of the element.
-	 * @return color the Color
-	 */
-	Color getBackground();
-	
-	/**
-	 * To set the Foreground color of the element.
-	 * @param color the Color
-	 */
-	void setForeground(Color color);
-	
-	/**
-	 * To get the Foreground color of the element.
-	 * @return color the Color
-	 */
-	Color getForeground();
-	
-	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	void setBorder(LineBorder lineBorder);
-	
-	/**
-	 * To set the Font of the element.
-	 * @param font the Font
-	 */
-	void setFont(Font font);
-	
-	/**
-	 * To get the Font of the element.
-	 * @return font the Font
-	 */
-	Font getFont();
-	
-	/**
-	 * To set the Dimension of the element.
-	 * @param dimension the Dimension
-	 */
-	void setSize(Dimension dimension);
-	
-	/**
-	 * To get the Dimension of the element.
-	 * @return the Dimension
-	 */
-	Dimension getSize();
-	
-	/**
-	 * Moves this component to a new location. The top-left corner of the new location is specified by the x and y 
-	 * parameters in the coordinate space of this component's parent.
-	 * @param x - the x-coordinate of the new location's top-left corner in the parent's coordinate space
-	 * @param y - the y-coordinate of the new location's top-left corner in the parent's coordinate space
-	 */
-	void setLocation(int x, int y);
-	
-	/**
-	 * To get the x coordinate  of the element.
-	 * @return the x coordinate
-	 */
-	int getX();
-	
-	/**
-	 * To get the y coordinate  of the element.
-	 * @return the y coordinate
-	 */
-	int getY();
 }

@@ -5,19 +5,29 @@ package org.scilab.modules.gui.bridge.tab;
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
+import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
+import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
@@ -239,6 +249,106 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabLabel member) {
+		this.add(member);
+		this.revalidate(); // If do not revalidate then the component do not appear
+		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(CheckBox member) {
+		return this.addMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabCheckBox member) {
+		this.add(member);
+		this.revalidate(); // If do not revalidate then the component do not appear
+		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(RadioButton member) {
+		return this.addMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabRadioButton member) {
+		this.add(member);
+		this.revalidate(); // If do not revalidate then the component do not appear
+		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(Slider member) {
+		return this.addMember((SwingScilabSlider) member.getAsSimpleSlider());
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabSlider member) {
+		this.add(member);
+		this.revalidate(); // If do not revalidate then the component do not appear
+		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(ListBox member) {
+		return this.addMember((SwingScilabListBox) member.getAsSimpleListBox());
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabListBox member) {
+		this.add(member.getScrollPane());
+		this.revalidate(); // If do not revalidate then the component do not appear
+		return this.getComponentZOrder(member.getScrollPane());
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(PopupMenu member) {
+		return this.addMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabPopupMenu member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
 		return this.getComponentZOrder(member);

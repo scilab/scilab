@@ -5,14 +5,19 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.utils.Position;
@@ -203,6 +208,51 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * @return the position of the label in the member list.
 	 */
 	public int addMember(Label member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * We want to be able to add directly a checkbox in a Tab.
+	 * @param member the checkbox to add
+	 * @return the position of the checkbox in the member list.
+	 */
+	public int addMember(CheckBox member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * We want to be able to add directly a RadioButton in a Tab.
+	 * @param member the RadioButton to add
+	 * @return the position of the RadioButton in the member list.
+	 */
+	public int addMember(RadioButton member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * We want to be able to add directly a Slider in a Tab.
+	 * @param member the Slider to add
+	 * @return the position of the Slider in the member list.
+	 */
+	public int addMember(Slider member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * We want to be able to add directly a ListBox in a Tab.
+	 * @param member the ListBox to add
+	 * @return the position of the ListBox in the member list.
+	 */
+	public int addMember(ListBox member) {
+		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * We want to be able to add directly a PopupMenu in a Tab.
+	 * @param member the PopupMenu to add
+	 * @return the position of the PopupMenu in the member list.
+	 */
+	public int addMember(PopupMenu member) {
 		return ScilabBridge.addMember(this, member);
 	}
 

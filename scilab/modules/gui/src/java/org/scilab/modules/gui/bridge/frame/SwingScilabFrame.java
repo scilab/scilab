@@ -260,8 +260,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @return index of member in ArrayList
 	 */
 	public int addMember(ListBox member) {
-//		 FIXME replace member with member.getAsSimpleListBox() when ready
-		return this.addMember((SwingScilabListBox) member);
+		return this.addMember((SwingScilabListBox) member.getAsSimpleListBox());
 	}
 
 	/**

@@ -3,14 +3,19 @@
 
 package org.scilab.modules.gui.tab;
 
+import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
+import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -173,6 +178,56 @@ public class ScilabTabBridge {
 	 * @return the position of the Label in the member list.
 	 */
 	public static int addMember(Tab tab, Label member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the CheckBox to
+	 * @param member the CheckBox to add
+	 * @return the position of the CheckBox in the member list.
+	 */
+	public static int addMember(Tab tab, CheckBox member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the RadioButton to
+	 * @param member the RadioButton to add
+	 * @return the position of the RadioButton in the member list.
+	 */
+	public static int addMember(Tab tab, RadioButton member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the Slider to
+	 * @param member the Slider to add
+	 * @return the position of the Slider in the member list.
+	 */
+	public static int addMember(Tab tab, Slider member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the ListBox to
+	 * @param member the ListBox to add
+	 * @return the position of the ListBox in the member list.
+	 */
+	public static int addMember(Tab tab, ListBox member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the PopupMenu to
+	 * @param member the PopupMenu to add
+	 * @return the position of the PopupMenu in the member list.
+	 */
+	public static int addMember(Tab tab, PopupMenu member) {
 		return (tab.getAsSimpleTab().addMember(member));
 	}
 

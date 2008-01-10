@@ -3,11 +3,17 @@
 
 package org.scilab.modules.gui.checkbox;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 
 /**
  * Bridge for Scilab TextBox in GUIs
  * @author Marouane BEN JELLOUL
+ * @author Vincent COUVERT
  */
 public class ScilabCheckBoxBridge {
 
@@ -22,9 +28,167 @@ public class ScilabCheckBoxBridge {
 	 * Creates a Scilab CheckBox
 	 * @return the created CheckBox
 	 */
-	public static CheckBox createCheckBox() {
-//		 FIXME : UI CONTROL must be developped last !!!!!
-//		return new SwingScilabCheckBox();
-		return null;
+	public static SimpleCheckBox createCheckBox() {
+		return new SwingScilabCheckBox();
+	}
+	
+	/**
+	 * Sets the Text of a Scilab CheckBox
+	 * @param checkBox the CheckBox we want to set the Text of
+	 * @param newText the Text we want to set to the CheckBox
+	 */
+	public static void setText(CheckBox checkBox, String newText) {
+		checkBox.getAsSimpleCheckBox().setText(newText);
+	}
+	
+	/**
+	 * Sets the Text of a Scilab CheckBox
+	 * @param checkBox the CheckBox we want to get the Text of
+	 * @return the text of the CheckBox
+	 */
+	public static String getText(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().getText();
+	}
+	
+	/**
+	 * Draws a Scilab checkBox
+	 * @param checkBox the checkBox to draw
+	 * @see org.scilab.modules.gui.UIElement#draw()
+	 */
+	public static void draw(CheckBox checkBox) {
+		checkBox.getAsSimpleCheckBox().draw();
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab CheckBox
+	 * @param checkBox the checkBox we want to get the dimensions of
+	 * @return the size of the checkBox
+	 * @see org.scilab.modules.gui.UIElement#getDims()
+	 */
+	public static Size getDims(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().getDims();
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab checkBox
+	 * @param checkBox the checkBox we want to get the position of
+	 * @return the position of the checkBox
+	 * @see org.scilab.modules.gui.UIElement#getPosition()
+	 */
+	public static Position getPosition(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().getPosition();
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab CheckBox
+	 * @param checkBox the checkBox we want to get the visiblity status of
+	 * @return the visibility status of the checkBox (true if the checkBox is visible, false if not)
+	 * @see org.scilab.modules.gui.UIElement#isVisible()
+	 */
+	public static boolean isVisible(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().isVisible();
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab CheckBox
+	 * @param checkBox the checkBox we want to set the dimensions of
+	 * @param newSize the size we want to set to the checkBox
+	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+	 */
+	public static void setDims(CheckBox checkBox, Size newSize) {
+		checkBox.getAsSimpleCheckBox().setDims(newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab checkBox
+	 * @param checkBox the checkBox we want to set the position of
+	 * @param newPosition the position we want to set to the checkBox
+	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+	 */
+	public static void setPosition(CheckBox checkBox, Position newPosition) {
+		checkBox.getAsSimpleCheckBox().setPosition(newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab CheckBox
+	 * @param checkBox the checkBox we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the checkBox (true to set the checkBox visible, false else)
+	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(CheckBox checkBox, boolean newVisibleState) {
+		checkBox.getAsSimpleCheckBox().setVisible(newVisibleState);
+	}
+	
+	/**
+	 * Add a callback to the CheckBox
+	 * @param checkBox the CheckBox we want to set the callback of
+	 * @param command the Scilab command to execute when the contents of the checkBox is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(CheckBox checkBox, String command, int commandType) {
+		checkBox.getAsSimpleCheckBox().setCallback(command, commandType);
+	}
+	
+	/**
+	 * To set the Background color of the CheckBox
+	 * @param checkBox the CheckBox we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(CheckBox checkBox, Color color) {
+		checkBox.getAsSimpleCheckBox().setBackground(color);
+	}
+
+	/**
+	 * Get the Background color of the CheckBox
+	 * @param checkBox the CheckBox we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().getBackground();
+	}
+
+	/**
+	 * To set the Foreground color of the checkBox
+	 * @param checkBox the CheckBox we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(CheckBox checkBox, Color color) {
+		checkBox.getAsSimpleCheckBox().setForeground(color);
+	}
+
+	/**
+	 * Get the Foreground color of the CheckBox
+	 * @param checkBox the CheckBox we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().getForeground();
+	}
+
+	/**
+	 * Set the font of the CheckBox.
+	 * @param checkBox the CheckBox we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(CheckBox checkBox, Font font) {
+		checkBox.getAsSimpleCheckBox().setFont(font);
+	}
+	
+	/**
+	 * Get the font of the CheckBox.
+	 * @param checkBox the CheckBox we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().getFont();
+	}
+	
+	/**
+	 * Set if the CheckBox is enabled or not
+	 * @param checkBox the CheckBox we want to set the status of
+	 * @param status true if the CheckBox is enabled
+	 */
+	public static void setEnabled(CheckBox checkBox, boolean status) {
+		checkBox.getAsSimpleCheckBox().setEnabled(status);
 	}
 }

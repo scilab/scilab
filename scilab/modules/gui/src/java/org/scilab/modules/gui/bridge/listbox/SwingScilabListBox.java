@@ -4,25 +4,23 @@
 package org.scilab.modules.gui.bridge.listbox;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 
-import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.listbox.SimpleListBox;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab ListBox in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabListBox {
-//	 FIXME : Must have some Interface here...
-//	implements SimpleListBox {
+public class SwingScilabListBox implements SimpleListBox {
 	
 	/**
 	 * the Scroll Pane that contain the JList
@@ -43,94 +41,13 @@ public class SwingScilabListBox {
 	}
 	
 	/**
-	 * Set the selection mode. The accepted selection modes are:
-	 * - ListBox.SINGLE_SELECTION (=0)
-	 * - ListBox.MULTIPLE_SELECTION (=2)
-	 * @param mode - the selection mode we want
-	 * @throws java.lang.IllegalArgumentException - if the selection mode isn't one of those allowed
-	 * @see org.scilab.modules.gui.listbox.ListBox#setSelectionMode(int)
-	 */
-	public void setSelectionMode(int mode) throws IllegalArgumentException {
-		switch (mode) {
-			case 0:
-				// ListBox.SINGLE_SELECTION is the same as ListSelectionModel.SINGLE_SELECTION of Swing
-				list.setSelectionMode(mode);
-				break;
-			case 2:
-				// ListBox.MULTIPLE_SELECTION is the same as ListSelectionModel.MULTIPLE_INTERVAL_SELECTION of Swing
-				list.setSelectionMode(mode);
-				break;
-			default:
-				throw new IllegalArgumentException("the mode " + mode + " is not allowed");
-		}
-	}
-	
-	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	public void setBorder(LineBorder lineBorder) {
-		scrollPane.setBorder(lineBorder);
-	}
-	
-	/**
-	 * get the scroll pane that contain the listBox.
-	 * @return the scroll pane that contain the listBox
+	 * Get the scrollpane
+	 * @return the scrollpane
 	 */
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
-	
-	/**
-	 * To set the content of the ListBox.
-	 * @param listData the content of the ListBox
-	 */
-	public void setListData(String[] listData) {
-		list.setListData(listData);
-	}
-	
-	/**
-	 * To set the Dimension of the element.
-	 * @param dimension the Dimension
-	 */
-	public void setSize(Dimension dimension) {
-		scrollPane.setSize(dimension);
-	}
-	
-	/**
-	 * To get the Dimension of the element.
-	 * @return the Dimension
-	 */
-	public Dimension getSize() {
-		return scrollPane.getSize();
-	}
-	
-	/**
-	 * Moves this component to a new location. The top-left corner of the new location is specified by the x and y 
-	 * parameters in the coordinate space of this component's parent.
-	 * @param x - the x-coordinate of the new location's top-left corner in the parent's coordinate space
-	 * @param y - the y-coordinate of the new location's top-left corner in the parent's coordinate space
-	 */
-	public void setLocation(int x, int y) {
-		scrollPane.setLocation(x, y);
-	}
-	
-	/**
-	 * To get the x coordinate  of the element.
-	 * @return the x coordinate
-	 */
-	public int getX() {
-		return scrollPane.getX();
-	}
-	
-	/**
-	 * To get the y coordinate  of the element.
-	 * @return the y coordinate
-	 */
-	public int getY() {
-		return scrollPane.getY();
-	}
-	
+
 	/**
 	 * To get the Background color of the element.
 	 * @return color the Color
@@ -193,7 +110,7 @@ public class SwingScilabListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return new Size(this.getSize().width, this.getSize().height);
+		return new Size(scrollPane.getWidth(), scrollPane.getHeight());
 	}
 
 	/**
@@ -202,7 +119,7 @@ public class SwingScilabListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return new Position(this.getX(), this.getY());
+		return new Position(scrollPane.getX(), scrollPane.getY());
 	}
 
 	/**
@@ -220,7 +137,7 @@ public class SwingScilabListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		this.setLocation(newPosition.getX(), newPosition.getY());
+		scrollPane.setLocation(newPosition.getX(), newPosition.getY());
 	}
 
 	/**
@@ -228,8 +145,7 @@ public class SwingScilabListBox {
 	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
 	 */
 	public boolean isVisible() {
-		// TODO check if this is ok
-		return list.isVisible();
+		return list.isVisible() & scrollPane.isVisible();
 	}
 	
 	/**
@@ -241,17 +157,78 @@ public class SwingScilabListBox {
 		scrollPane.setVisible(newVisibleState);
 		list.setVisible(newVisibleState);
 	}
-	
 	/**
-	 * Add this as member (dockable element) to the Scilab container and returns its index
-	 * @param container the container in which we add this
-	 * @return index of this in container components
-	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
-	 * @see org.scilab.modules.gui.dockable.Dockable#addAsMemberTo(org.scilab.modules.gui.container.Container)
+	 * Add a callback to the CheckBox
+	 * @param command the Scilab command to execute when the CheckBox is validated
+	 * @param commandType the type of the command that will be executed.
 	 */
-	public int addAsMemberTo(Container container) {
-		// delegate to the container but also adding info on how to handle me (ListBox)
-		// Interface Container must describe methode: int addMember(ListBox member);
-		return container.addMember((ListBox) this);
+	public void setCallback(String command, int commandType) {
+		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabListBox");
+		//addActionListener(ScilabCallBack.create(command, commandType));
+	}
+
+	/**
+	 * Setter for MenuBar
+	 * @param menuBarToAdd the MenuBar associated to the Tab.
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		/* Unimplemented for ListBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Setter for ToolBar
+	 * @param toolBarToAdd the ToolBar associated to the Tab.
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		/* Unimplemented for ListBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for MenuBar
+	 * @return MenuBar: the MenuBar associated to the Tab.
+	 */
+	public MenuBar getMenuBar() {
+		/* Unimplemented for ListBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for ToolBar
+	 * @return ToolBar: the ToolBar associated to the Tab.
+	 */
+	public ToolBar getToolBar() {
+		/* Unimplemented for ListBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Get the text if the list items
+	 * @return the items
+	 * @see org.scilab.modules.gui.widget.Widget#getText()
+	 */
+	public String getText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Enable or disable the list for selection
+	 * @param status true to set the list enabled
+	 * @see org.scilab.modules.gui.widget.Widget#setEnabled(boolean)
+	 */
+	public void setEnabled(boolean status) {
+		list.setEnabled(status);
+		scrollPane.setEnabled(status);
+	}
+
+	/**
+	 * Set the text of the list items
+	 * @param text the text of the items
+	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
+	 */
+	public void setText(String text) {
+		// TODO Auto-generated method stub
 	}
 }

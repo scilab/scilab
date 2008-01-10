@@ -11,6 +11,9 @@ import javax.media.opengl.GL;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvasBridge;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.checkbox.CheckBox;
+import org.scilab.modules.gui.checkbox.ScilabCheckBoxBridge;
+import org.scilab.modules.gui.checkbox.SimpleCheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsoleBridge;
 import org.scilab.modules.gui.console.SimpleConsole;
@@ -30,6 +33,9 @@ import org.scilab.modules.gui.layout.BorderLayout;
 import org.scilab.modules.gui.layout.FlowLayout;
 import org.scilab.modules.gui.layout.ScilabBorderLayoutBridge;
 import org.scilab.modules.gui.layout.ScilabFlowLayoutBridge;
+import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.listbox.ScilabListBoxBridge;
+import org.scilab.modules.gui.listbox.SimpleListBox;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenuBridge;
 import org.scilab.modules.gui.menu.SimpleMenu;
@@ -39,11 +45,20 @@ import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItemBridge;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
+import org.scilab.modules.gui.popupmenu.PopupMenu;
+import org.scilab.modules.gui.popupmenu.ScilabPopupMenuBridge;
+import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButtonBridge;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
+import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.radiobutton.ScilabRadioButtonBridge;
+import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
 import org.scilab.modules.gui.separator.ScilabSeparatorBridge;
 import org.scilab.modules.gui.separator.Separator;
+import org.scilab.modules.gui.slider.ScilabSliderBridge;
+import org.scilab.modules.gui.slider.SimpleSlider;
+import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -507,6 +522,56 @@ public class ScilabBridge {
 	 * @return the position of the label in the member list.
 	 */
 	public static int addMember(Tab tab, Label member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the CheckBox to
+	 * @param member the checkbox to add
+	 * @return the position of the checkbox in the member list.
+	 */
+	public static int addMember(Tab tab, CheckBox member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the RadioButton to
+	 * @param member the RadioButton to add
+	 * @return the position of the RadioButton in the member list.
+	 */
+	public static int addMember(Tab tab, RadioButton member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the Slider to
+	 * @param member the Slider to add
+	 * @return the position of the Slider in the member list.
+	 */
+	public static int addMember(Tab tab, Slider member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the ListBox to
+	 * @param member the ListBox to add
+	 * @return the position of the ListBox in the member list.
+	 */
+	public static int addMember(Tab tab, ListBox member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the PopupMenu to
+	 * @param member the PopupMenu to add
+	 * @return the position of the PopupMenu in the member list.
+	 */
+	public static int addMember(Tab tab, PopupMenu member) {
 		return ScilabTabBridge.addMember(tab, member);
 	}
 	
@@ -1753,6 +1818,867 @@ public class ScilabBridge {
 	 */
 	public static void setCallback(Label label, String command, int commandType) {
 		ScilabLabelBridge.setCallback(label, command, commandType);
+	}
+
+	/*******************/
+	/* CheckBox Bridge */
+	/*******************/
+
+	/**
+	 * Creates a new CheckBox
+	 * @return the created CheckBox
+	 */
+	public static SimpleCheckBox createCheckBox() {
+		return ScilabCheckBoxBridge.createCheckBox();
+	}
+	
+	/**
+	 * Sets the Text of a CheckBox
+	 * @param checkBox the CheckBox we want to set the Text of
+	 * @param newText the Text to set for the CheckBox
+	 */
+	public static void setText(CheckBox checkBox, String newText) {
+		ScilabCheckBoxBridge.setText(checkBox, newText);
+	}
+	
+	/**
+	 * Gets the text of an CheckBox
+	 * @param checkBox the CheckBox we want to get the text of
+	 * @return the text of the CheckBox
+	 */
+	public static String getText(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.getText(checkBox);
+	}
+	
+	/**
+	 * Draws a Scilab CheckBox
+	 * @param checkBox the CheckBox to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(CheckBox checkBox) {
+		ScilabCheckBoxBridge.draw(checkBox);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab CheckBox
+	 * @param checkBox the CheckBox we want to get the dimensions of
+	 * @return the size of the checkBox
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.getDims(checkBox);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab checkBox
+	 * @param checkBox the checkBox we want to get the position of
+	 * @return the position of the checkBox
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.getPosition(checkBox);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab CheckBox
+	 * @param checkBox the checkBox we want to get the visiblity status of
+	 * @return the visibility status of the checkBox (true if the checkBox is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.isVisible(checkBox);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab CheckBox
+	 * @param checkBox the checkBox we want to set the dimensions of
+	 * @param newSize the size we want to set to the checkBox
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(CheckBox checkBox, Size newSize) {
+		ScilabCheckBoxBridge.setDims(checkBox, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab checkBox
+	 * @param checkBox the checkBox we want to set the position of
+	 * @param newPosition the position we want to set to the checkBox
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(CheckBox checkBox, Position newPosition) {
+		ScilabCheckBoxBridge.setPosition(checkBox, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab CheckBox
+	 * @param checkBox the checkBox we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the checkBox (true to set the checkBox visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(CheckBox checkBox, boolean newVisibleState) {
+		ScilabCheckBoxBridge.setVisible(checkBox, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the CheckBox
+	 * @param checkBox the CheckBox we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(CheckBox checkBox, Color color) {
+		ScilabCheckBoxBridge.setBackground(checkBox, color);
+	}
+
+	/**
+	 * Get the Background color of the CheckBox
+	 * @param checkBox the CheckBox we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.getBackground(checkBox);
+	}
+
+	/**
+	 * Set the Foreground color of the CheckBox
+	 * @param checkBox the CheckBox we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(CheckBox checkBox, Color color) {
+		ScilabCheckBoxBridge.setForeground(checkBox, color);
+	}
+
+	/**
+	 * Get the Foreground color of the CheckBox
+	 * @param checkBox the CheckBox we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.getForeground(checkBox);
+	}
+
+	/**
+	 * Set the font of the CheckBox.
+	 * @param checkBox the CheckBox we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(CheckBox checkBox, Font font) {
+		ScilabCheckBoxBridge.setFont(checkBox, font);
+	}
+	
+	/**
+	 * Get the font of the CheckBox.
+	 * @param checkBox the CheckBox we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.getFont(checkBox);
+	}
+
+	/**
+	 * Set if the CheckBox is enabled or not
+	 * @param checkBox the CheckBox we want to set the status of
+	 * @param status true if the CheckBox is enabled
+	 */
+	public static void setEnabled(CheckBox checkBox, boolean status) {
+		ScilabCheckBoxBridge.setEnabled(checkBox, status);
+	}
+	
+	/**
+	 * Add a callback to the CheckBox
+	 * @param checkBox the CheckBox we want to set the callback of
+	 * @param command the Scilab command to execute when the CheckBox is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(CheckBox checkBox, String command, int commandType) {
+		ScilabCheckBoxBridge.setCallback(checkBox, command, commandType);
+	}
+
+	/**********************/
+	/* RadioButton Bridge */
+	/**********************/
+
+	/**
+	 * Creates a new RadioButton
+	 * @return the created RadioButton
+	 */
+	public static SimpleRadioButton createRadioButton() {
+		return ScilabRadioButtonBridge.createRadioButton();
+	}
+	
+	/**
+	 * Sets the Text of a RadioButton
+	 * @param radioButton the RadioButton we want to set the Text of
+	 * @param newText the Text to set for the RadioButton
+	 */
+	public static void setText(RadioButton radioButton, String newText) {
+		ScilabRadioButtonBridge.setText(radioButton, newText);
+	}
+	
+	/**
+	 * Gets the text of an RadioButton
+	 * @param radioButton the RadioButton we want to get the text of
+	 * @return the text of the RadioButton
+	 */
+	public static String getText(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.getText(radioButton);
+	}
+	
+	/**
+	 * Draws a Scilab RadioButton
+	 * @param radioButton the RadioButton to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(RadioButton radioButton) {
+		ScilabRadioButtonBridge.draw(radioButton);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab RadioButton
+	 * @param radioButton the RadioButton we want to get the dimensions of
+	 * @return the size of the radioButton
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.getDims(radioButton);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab radioButton
+	 * @param radioButton the radioButton we want to get the position of
+	 * @return the position of the radioButton
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.getPosition(radioButton);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab RadioButton
+	 * @param radioButton the radioButton we want to get the visiblity status of
+	 * @return the visibility status of the radioButton (true if the radioButton is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.isVisible(radioButton);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab RadioButton
+	 * @param radioButton the radioButton we want to set the dimensions of
+	 * @param newSize the size we want to set to the radioButton
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(RadioButton radioButton, Size newSize) {
+		ScilabRadioButtonBridge.setDims(radioButton, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab radioButton
+	 * @param radioButton the radioButton we want to set the position of
+	 * @param newPosition the position we want to set to the radioButton
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(RadioButton radioButton, Position newPosition) {
+		ScilabRadioButtonBridge.setPosition(radioButton, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab RadioButton
+	 * @param radioButton the radioButton we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the radioButton (true to set the radioButton visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(RadioButton radioButton, boolean newVisibleState) {
+		ScilabRadioButtonBridge.setVisible(radioButton, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the RadioButton
+	 * @param radioButton the RadioButton we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(RadioButton radioButton, Color color) {
+		ScilabRadioButtonBridge.setBackground(radioButton, color);
+	}
+
+	/**
+	 * Get the Background color of the RadioButton
+	 * @param radioButton the RadioButton we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.getBackground(radioButton);
+	}
+
+	/**
+	 * Set the Foreground color of the RadioButton
+	 * @param radioButton the RadioButton we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(RadioButton radioButton, Color color) {
+		ScilabRadioButtonBridge.setForeground(radioButton, color);
+	}
+
+	/**
+	 * Get the Foreground color of the RadioButton
+	 * @param radioButton the RadioButton we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.getForeground(radioButton);
+	}
+
+	/**
+	 * Set the font of the RadioButton.
+	 * @param radioButton the RadioButton we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(RadioButton radioButton, Font font) {
+		ScilabRadioButtonBridge.setFont(radioButton, font);
+	}
+	
+	/**
+	 * Get the font of the RadioButton.
+	 * @param radioButton the RadioButton we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.getFont(radioButton);
+	}
+
+	/**
+	 * Set if the RadioButton is enabled or not
+	 * @param radioButton the RadioButton we want to set the status of
+	 * @param status true if the RadioButton is enabled
+	 */
+	public static void setEnabled(RadioButton radioButton, boolean status) {
+		ScilabRadioButtonBridge.setEnabled(radioButton, status);
+	}
+	
+	/**
+	 * Add a callback to the RadioButton
+	 * @param radioButton the RadioButton we want to set the callback of
+	 * @param command the Scilab command to execute when the RadioButton is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(RadioButton radioButton, String command, int commandType) {
+		ScilabRadioButtonBridge.setCallback(radioButton, command, commandType);
+	}
+
+	/*****************/
+	/* Slider Bridge */
+	/*****************/
+
+	/**
+	 * Creates a new Slider
+	 * @return the created Slider
+	 */
+	public static SimpleSlider createSlider() {
+		return ScilabSliderBridge.createSlider();
+	}
+	
+	/**
+	 * Sets the Text of a Slider
+	 * @param slider the Slider we want to set the Text of
+	 * @param newText the Text to set for the Slider
+	 */
+	public static void setText(Slider slider, String newText) {
+		ScilabSliderBridge.setText(slider, newText);
+	}
+	
+	/**
+	 * Gets the text of an Slider
+	 * @param slider the Slider we want to get the text of
+	 * @return the text of the Slider
+	 */
+	public static String getText(Slider slider) {
+		return ScilabSliderBridge.getText(slider);
+	}
+	
+	/**
+	 * Draws a Scilab Slider
+	 * @param slider the Slider to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(Slider slider) {
+		ScilabSliderBridge.draw(slider);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab Slider
+	 * @param slider the Slider we want to get the dimensions of
+	 * @return the size of the slider
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(Slider slider) {
+		return ScilabSliderBridge.getDims(slider);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab slider
+	 * @param slider the slider we want to get the position of
+	 * @return the position of the slider
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(Slider slider) {
+		return ScilabSliderBridge.getPosition(slider);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab Slider
+	 * @param slider the slider we want to get the visiblity status of
+	 * @return the visibility status of the slider (true if the slider is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(Slider slider) {
+		return ScilabSliderBridge.isVisible(slider);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab Slider
+	 * @param slider the slider we want to set the dimensions of
+	 * @param newSize the size we want to set to the slider
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(Slider slider, Size newSize) {
+		ScilabSliderBridge.setDims(slider, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab slider
+	 * @param slider the slider we want to set the position of
+	 * @param newPosition the position we want to set to the slider
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(Slider slider, Position newPosition) {
+		ScilabSliderBridge.setPosition(slider, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab Slider
+	 * @param slider the slider we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the slider (true to set the slider visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(Slider slider, boolean newVisibleState) {
+		ScilabSliderBridge.setVisible(slider, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the Slider
+	 * @param slider the Slider we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(Slider slider, Color color) {
+		ScilabSliderBridge.setBackground(slider, color);
+	}
+
+	/**
+	 * Get the Background color of the Slider
+	 * @param slider the Slider we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(Slider slider) {
+		return ScilabSliderBridge.getBackground(slider);
+	}
+
+	/**
+	 * Set the Foreground color of the Slider
+	 * @param slider the Slider we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(Slider slider, Color color) {
+		ScilabSliderBridge.setForeground(slider, color);
+	}
+
+	/**
+	 * Get the Foreground color of the Slider
+	 * @param slider the Slider we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(Slider slider) {
+		return ScilabSliderBridge.getForeground(slider);
+	}
+
+	/**
+	 * Set the font of the Slider.
+	 * @param slider the Slider we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(Slider slider, Font font) {
+		ScilabSliderBridge.setFont(slider, font);
+	}
+	
+	/**
+	 * Get the font of the Slider.
+	 * @param slider the Slider we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(Slider slider) {
+		return ScilabSliderBridge.getFont(slider);
+	}
+
+	/**
+	 * Set if the Slider is enabled or not
+	 * @param slider the Slider we want to set the status of
+	 * @param status true if the Slider is enabled
+	 */
+	public static void setEnabled(Slider slider, boolean status) {
+		ScilabSliderBridge.setEnabled(slider, status);
+	}
+	
+	/**
+	 * Add a callback to the Slider
+	 * @param slider the Slider we want to set the callback of
+	 * @param command the Scilab command to execute when the Slider is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(Slider slider, String command, int commandType) {
+		ScilabSliderBridge.setCallback(slider, command, commandType);
+	}
+
+	/******************/
+	/* ListBox Bridge */
+	/******************/
+
+	/**
+	 * Creates a new ListBox
+	 * @return the created ListBox
+	 */
+	public static SimpleListBox createListBox() {
+		return ScilabListBoxBridge.createListBox();
+	}
+	
+	/**
+	 * Sets the Text of a ListBox
+	 * @param listBox the ListBox we want to set the Text of
+	 * @param newText the Text to set for the ListBox
+	 */
+	public static void setText(ListBox listBox, String newText) {
+		ScilabListBoxBridge.setText(listBox, newText);
+	}
+	
+	/**
+	 * Gets the text of an ListBox
+	 * @param listBox the ListBox we want to get the text of
+	 * @return the text of the ListBox
+	 */
+	public static String getText(ListBox listBox) {
+		return ScilabListBoxBridge.getText(listBox);
+	}
+	
+	/**
+	 * Draws a Scilab ListBox
+	 * @param listBox the ListBox to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(ListBox listBox) {
+		ScilabListBoxBridge.draw(listBox);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab ListBox
+	 * @param listBox the ListBox we want to get the dimensions of
+	 * @return the size of the listBox
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(ListBox listBox) {
+		return ScilabListBoxBridge.getDims(listBox);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab listBox
+	 * @param listBox the listBox we want to get the position of
+	 * @return the position of the listBox
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(ListBox listBox) {
+		return ScilabListBoxBridge.getPosition(listBox);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab ListBox
+	 * @param listBox the listBox we want to get the visiblity status of
+	 * @return the visibility status of the listBox (true if the listBox is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(ListBox listBox) {
+		return ScilabListBoxBridge.isVisible(listBox);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab ListBox
+	 * @param listBox the listBox we want to set the dimensions of
+	 * @param newSize the size we want to set to the listBox
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(ListBox listBox, Size newSize) {
+		ScilabListBoxBridge.setDims(listBox, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab listBox
+	 * @param listBox the listBox we want to set the position of
+	 * @param newPosition the position we want to set to the listBox
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(ListBox listBox, Position newPosition) {
+		ScilabListBoxBridge.setPosition(listBox, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab ListBox
+	 * @param listBox the listBox we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the listBox (true to set the listBox visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(ListBox listBox, boolean newVisibleState) {
+		ScilabListBoxBridge.setVisible(listBox, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the ListBox
+	 * @param listBox the ListBox we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(ListBox listBox, Color color) {
+		ScilabListBoxBridge.setBackground(listBox, color);
+	}
+
+	/**
+	 * Get the Background color of the ListBox
+	 * @param listBox the ListBox we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(ListBox listBox) {
+		return ScilabListBoxBridge.getBackground(listBox);
+	}
+
+	/**
+	 * Set the Foreground color of the ListBox
+	 * @param listBox the ListBox we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(ListBox listBox, Color color) {
+		ScilabListBoxBridge.setForeground(listBox, color);
+	}
+
+	/**
+	 * Get the Foreground color of the ListBox
+	 * @param listBox the ListBox we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(ListBox listBox) {
+		return ScilabListBoxBridge.getForeground(listBox);
+	}
+
+	/**
+	 * Set the font of the ListBox.
+	 * @param listBox the ListBox we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(ListBox listBox, Font font) {
+		ScilabListBoxBridge.setFont(listBox, font);
+	}
+	
+	/**
+	 * Get the font of the ListBox.
+	 * @param listBox the ListBox we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(ListBox listBox) {
+		return ScilabListBoxBridge.getFont(listBox);
+	}
+
+	/**
+	 * Set if the ListBox is enabled or not
+	 * @param listBox the ListBox we want to set the status of
+	 * @param status true if the ListBox is enabled
+	 */
+	public static void setEnabled(ListBox listBox, boolean status) {
+		ScilabListBoxBridge.setEnabled(listBox, status);
+	}
+	
+	/**
+	 * Add a callback to the ListBox
+	 * @param listBox the ListBox we want to set the callback of
+	 * @param command the Scilab command to execute when the ListBox is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(ListBox listBox, String command, int commandType) {
+		ScilabListBoxBridge.setCallback(listBox, command, commandType);
+	}
+
+
+	/********************/
+	/* PopupMenu Bridge */
+	/********************/
+
+	/**
+	 * Creates a new PopupMenu
+	 * @return the created PopupMenu
+	 */
+	public static SimplePopupMenu createPopupMenu() {
+		return ScilabPopupMenuBridge.createPopupMenu();
+	}
+	
+	/**
+	 * Sets the Text of a PopupMenu
+	 * @param popupMenu the PopupMenu we want to set the Text of
+	 * @param newText the Text to set for the PopupMenu
+	 */
+	public static void setText(PopupMenu popupMenu, String newText) {
+		ScilabPopupMenuBridge.setText(popupMenu, newText);
+	}
+	
+	/**
+	 * Gets the text of an PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the text of
+	 * @return the text of the PopupMenu
+	 */
+	public static String getText(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getText(popupMenu);
+	}
+	
+	/**
+	 * Draws a Scilab PopupMenu
+	 * @param popupMenu the PopupMenu to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
+	 */
+	public static void draw(PopupMenu popupMenu) {
+		ScilabPopupMenuBridge.draw(popupMenu);
+	}
+
+	/**
+	 * Gets the dimensions (width and height) of a Scilab PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the dimensions of
+	 * @return the size of the popupMenu
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
+	 */
+	public static Size getDims(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getDims(popupMenu);
+	}
+
+	/**
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab popupMenu
+	 * @param popupMenu the popupMenu we want to get the position of
+	 * @return the position of the popupMenu
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
+	 */
+	public static Position getPosition(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getPosition(popupMenu);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab PopupMenu
+	 * @param popupMenu the popupMenu we want to get the visiblity status of
+	 * @return the visibility status of the popupMenu (true if the popupMenu is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.isVisible(popupMenu);
+	}
+
+	/**
+	 * Sets the dimensions (width and height) of a Scilab PopupMenu
+	 * @param popupMenu the popupMenu we want to set the dimensions of
+	 * @param newSize the size we want to set to the popupMenu
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
+	 */
+	public static void setDims(PopupMenu popupMenu, Size newSize) {
+		ScilabPopupMenuBridge.setDims(popupMenu, newSize);
+	}
+
+	/**
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab popupMenu
+	 * @param popupMenu the popupMenu we want to set the position of
+	 * @param newPosition the position we want to set to the popupMenu
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
+	 */
+	public static void setPosition(PopupMenu popupMenu, Position newPosition) {
+		ScilabPopupMenuBridge.setPosition(popupMenu, newPosition);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab PopupMenu
+	 * @param popupMenu the popupMenu we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the popupMenu (true to set the popupMenu visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(PopupMenu popupMenu, boolean newVisibleState) {
+		ScilabPopupMenuBridge.setVisible(popupMenu, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the PopupMenu
+	 * @param popupMenu the PopupMenu we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(PopupMenu popupMenu, Color color) {
+		ScilabPopupMenuBridge.setBackground(popupMenu, color);
+	}
+
+	/**
+	 * Get the Background color of the PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getBackground(popupMenu);
+	}
+
+	/**
+	 * Set the Foreground color of the PopupMenu
+	 * @param popupMenu the PopupMenu we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(PopupMenu popupMenu, Color color) {
+		ScilabPopupMenuBridge.setForeground(popupMenu, color);
+	}
+
+	/**
+	 * Get the Foreground color of the PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getForeground(popupMenu);
+	}
+
+	/**
+	 * Set the font of the PopupMenu.
+	 * @param popupMenu the PopupMenu we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(PopupMenu popupMenu, Font font) {
+		ScilabPopupMenuBridge.setFont(popupMenu, font);
+	}
+	
+	/**
+	 * Get the font of the PopupMenu.
+	 * @param popupMenu the PopupMenu we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getFont(popupMenu);
+	}
+
+	/**
+	 * Set if the PopupMenu is enabled or not
+	 * @param popupMenu the PopupMenu we want to set the status of
+	 * @param status true if the PopupMenu is enabled
+	 */
+	public static void setEnabled(PopupMenu popupMenu, boolean status) {
+		ScilabPopupMenuBridge.setEnabled(popupMenu, status);
+	}
+	
+	/**
+	 * Add a callback to the PopupMenu
+	 * @param popupMenu the PopupMenu we want to set the callback of
+	 * @param command the Scilab command to execute when the PopupMenu is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(PopupMenu popupMenu, String command, int commandType) {
+		ScilabPopupMenuBridge.setCallback(popupMenu, command, commandType);
 	}
 
 	/*********************/
