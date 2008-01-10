@@ -559,6 +559,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\Slider.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\SwingScilabMenu.cpp"
 				>
 			</File>
@@ -1085,6 +1089,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectTag.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Slider.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\Slider.hxx"
 				>
 			</File>
 			<File
