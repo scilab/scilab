@@ -371,6 +371,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\ListBox.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\PopupMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\PushButton.cpp"
 				>
 			</File>
@@ -868,11 +876,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\ListBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\ListBox.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\men_choice.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\men_scilab.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\PopupMenu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\PopupMenu.hxx"
 				>
 			</File>
 			<File
