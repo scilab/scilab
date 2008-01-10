@@ -13,6 +13,7 @@
 #include "Label.h"
 #include "CheckBox.h"
 #include "RadioButton.h"
+#include "Slider.h"
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
@@ -117,6 +118,11 @@ sciPointObj * CreateUIControl(char *style)
     {
       createRadioButton((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_RADIOBUTTON;
+    }
+  else if (strcmp(style,"slider")==0)
+    {
+      createSlider((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_SLIDER;
     }
   else
     {
