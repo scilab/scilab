@@ -30,7 +30,7 @@ catch
 end
 
 try
-	xmltohtml('SCI/modules/elementaries_functions/help/'+getlanguage())
+	xmltohtml('SCI/modules/elementary_functions/help/'+getlanguage())
 catch
 	if %T then pause,end
 end

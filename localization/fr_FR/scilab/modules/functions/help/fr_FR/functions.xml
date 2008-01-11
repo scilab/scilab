@@ -67,10 +67,10 @@ endfunction
 deff('[x,y]=myfct(a,b)',['x=a+b';
                          'y=a-b'])
 // définition dans un fichier texte (voir exec)
-exec SCI/modules/elementaries_functions/macros/asinh.sci;
+exec SCI/modules/elementary_functions/macros/asinh.sci;
 
 // définition dans un fichier texte (voir getf)
-getf SCI/modules/elementaries_functions/macros/asinh.sci;
+getf SCI/modules/elementary_functions/macros/asinh.sci;
 
  ]]></EXAMPLE>
   <SEE_ALSO>

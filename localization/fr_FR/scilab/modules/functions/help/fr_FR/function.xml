@@ -88,7 +88,7 @@ foo(%pi/3)
 
 
 // définition dans un script
-exec SCI/modules/elementaries_functions/macros/asinh.sci;
+exec SCI/modules/elementary_functions/macros/asinh.sci;
 
 
  ]]></EXAMPLE>

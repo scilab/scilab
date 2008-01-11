@@ -1,5 +1,5 @@
 // ====================================================================
-// help elementaries_functions module
+// help elementary_functions module
 // remove chapter
 // Copyright INRIA 2007
 // Allan CORNET
