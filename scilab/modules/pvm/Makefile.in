@@ -90,10 +90,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscipvm_la_demosdir)" \
 	"$(DESTDIR)$(libscipvm_la_etcdir)" \
 	"$(DESTDIR)$(libscipvm_la_rootdir)" \
 	"$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscipvm_la_demosdir)" \
 	"$(DESTDIR)$(libscipvm_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -191,12 +191,13 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscipvm_la_SOURCES)
 DIST_SOURCES = $(am__libscipvm_la_SOURCES_DIST)
-libscipvm_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libscipvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscipvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscipvm_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscipvm_la_demos_DATA) $(libscipvm_la_etc_DATA) \
-	$(libscipvm_la_root_DATA) $(libscipvm_la_sci_gateway_DATA)
+nobase_libscipvm_la_demosDATA_INSTALL = $(install_sh_DATA)
+DATA = $(libscipvm_la_etc_DATA) $(libscipvm_la_root_DATA) \
+	$(libscipvm_la_sci_gateway_DATA) \
+	$(nobase_libscipvm_la_demos_DATA)
 am__libscipvm_la_include_HEADERS_DIST = includes/gw_pvm.h
 libscipvm_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscipvm_la_include_HEADERS)
@@ -460,7 +461,7 @@ top_srcdir = @top_srcdir@
 
 #### pvm : demos files ####
 @PVM_TRUE@libscipvm_la_demosdir = $(mydatadir)/demos/
-@PVM_TRUE@libscipvm_la_demos_DATA = demos/pvm.dem \
+@PVM_TRUE@nobase_libscipvm_la_demos_DATA = demos/pvm.dem \
 @PVM_TRUE@demos/pvm1.sce \
 @PVM_TRUE@demos/script.sce
 
@@ -1037,23 +1038,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscipvm_la_demosDATA: $(libscipvm_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscipvm_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipvm_la_demosdir)"
-	@list='$(libscipvm_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscipvm_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipvm_la_demosdir)/$$f'"; \
-	  $(libscipvm_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipvm_la_demosdir)/$$f"; \
-	done
-
-uninstall-libscipvm_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscipvm_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscipvm_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscipvm_la_demosdir)/$$f"; \
-	done
 install-libscipvm_la_etcDATA: $(libscipvm_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscipvm_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipvm_la_etcdir)"
@@ -1104,6 +1088,25 @@ uninstall-libscipvm_la_sci_gatewayDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libscipvm_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)/$$f"; \
+	done
+install-nobase_libscipvm_la_demosDATA: $(nobase_libscipvm_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscipvm_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipvm_la_demosdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscipvm_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscipvm_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipvm_la_demosdir)/$$f'"; \
+	  $(nobase_libscipvm_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipvm_la_demosdir)/$$f"; \
+	done
+
+uninstall-nobase_libscipvm_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscipvm_la_demos_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscipvm_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscipvm_la_demosdir)/$$f"; \
 	done
 install-libscipvm_la_includeHEADERS: $(libscipvm_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
@@ -1202,7 +1205,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_demosdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscipvm_la_demosdir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1250,11 +1253,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscipvm_la_demosDATA \
-	install-libscipvm_la_etcDATA \
+install-data-am: install-data-local install-libscipvm_la_etcDATA \
 	install-libscipvm_la_includeHEADERS \
 	install-libscipvm_la_rootDATA \
-	install-libscipvm_la_sci_gatewayDATA
+	install-libscipvm_la_sci_gatewayDATA \
+	install-nobase_libscipvm_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -1292,11 +1295,11 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscipvm_la_demosDATA \
-	uninstall-libscipvm_la_etcDATA \
+uninstall-am: uninstall-libscipvm_la_etcDATA \
 	uninstall-libscipvm_la_includeHEADERS \
 	uninstall-libscipvm_la_rootDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
+	uninstall-nobase_libscipvm_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1309,21 +1312,21 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscipvm_la_demosDATA \
-	install-libscipvm_la_etcDATA \
+	install-info-am install-libscipvm_la_etcDATA \
 	install-libscipvm_la_includeHEADERS \
 	install-libscipvm_la_rootDATA \
-	install-libscipvm_la_sci_gatewayDATA install-man install-pdf \
+	install-libscipvm_la_sci_gatewayDATA install-man \
+	install-nobase_libscipvm_la_demosDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscipvm_la_demosDATA \
-	uninstall-libscipvm_la_etcDATA \
+	uninstall-am uninstall-libscipvm_la_etcDATA \
 	uninstall-libscipvm_la_includeHEADERS \
 	uninstall-libscipvm_la_rootDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
+	uninstall-nobase_libscipvm_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

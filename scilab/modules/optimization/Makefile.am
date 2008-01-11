@@ -199,6 +199,7 @@ demos/lmitool/testh2hinf \
 demos/multiflow/ex3.graph \
 demos/multiflow/demo_multiflow.sci \
 demos/multiflow/multiflow.dem \
+demos/multiflow/demo_multiflow_fr.htm \
 demos/icse/icse.sci \
 demos/icse/icseinit.sce \
 demos/icse/icsu.sci \
@@ -216,8 +217,7 @@ demos/icse/sero.mes \
 demos/icse/README \
 demos/datafit/datafit.dem \
 demos/datafit/demo_datafit.sci \
+demos/datafit/demo_datafit_fr.htm \
 demos/optimization.dem
 
-#demos/datafit/demo_datafit_fr.htm \
-#demos/multiflow/demo_multiflow_fr.htm
 include $(top_srcdir)/Makefile.incl.am

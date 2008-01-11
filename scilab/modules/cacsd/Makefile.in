@@ -652,6 +652,9 @@ demos/flat/truck.sci \
 demos/flat/flat.dem \
 demos/flat/fcts.sci \
 demos/flat/demo_truck_eng_htm \
+demos/flat/demo_truck_fr.htm \
+demos/flat/demo_car_eng.htm \
+demos/flat/demo_car_fr.htm \
 demos/pendulum/pendule.dem \
 demos/pendulum/simulation.sci \
 demos/pendulum/yy \
@@ -1981,15 +1984,6 @@ install-data-local:
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
-
-#demos/flat/demo_car_fr.htm \
-#demos/flat/demo_car_eng.htm \
-#demos/flat/demo_truck_fr.htm
-
-#SUFFIXES += .htm
-#.htm:
-#	echo "$<"
-#	echo "$@"
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

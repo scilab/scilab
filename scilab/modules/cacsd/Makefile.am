@@ -269,6 +269,9 @@ demos/flat/truck.sci \
 demos/flat/flat.dem \
 demos/flat/fcts.sci \
 demos/flat/demo_truck_eng_htm \
+demos/flat/demo_truck_fr.htm \
+demos/flat/demo_car_eng.htm \
+demos/flat/demo_car_fr.htm \
 demos/pendulum/pendule.dem \
 demos/pendulum/simulation.sci \
 demos/pendulum/yy \
@@ -281,13 +284,4 @@ demos/control.dem \
 demos/cont.dem \
 demos/mixed.dem
 
-#demos/flat/demo_car_fr.htm \
-#demos/flat/demo_car_eng.htm \
-#demos/flat/demo_truck_fr.htm
 include $(top_srcdir)/Makefile.incl.am
-
-#SUFFIXES += .htm
-#.htm:
-#	echo "$<"
-#	echo "$@"
-

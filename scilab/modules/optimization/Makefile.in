@@ -522,6 +522,7 @@ demos/lmitool/testh2hinf \
 demos/multiflow/ex3.graph \
 demos/multiflow/demo_multiflow.sci \
 demos/multiflow/multiflow.dem \
+demos/multiflow/demo_multiflow_fr.htm \
 demos/icse/icse.sci \
 demos/icse/icseinit.sce \
 demos/icse/icsu.sci \
@@ -539,6 +540,7 @@ demos/icse/sero.mes \
 demos/icse/README \
 demos/datafit/datafit.dem \
 demos/datafit/demo_datafit.sci \
+demos/datafit/demo_datafit_fr.htm \
 demos/optimization.dem
 
 
@@ -1611,9 +1613,6 @@ install-data-local:
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
-
-#demos/datafit/demo_datafit_fr.htm \
-#demos/multiflow/demo_multiflow_fr.htm
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
