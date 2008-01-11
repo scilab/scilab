@@ -239,6 +239,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\Frame.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\getinstalledlookandfeels.c"
 				>
 			</File>
@@ -645,6 +649,14 @@
 			</File>
 			<File
 				RelativePath="..\jni\FileChooser.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Frame.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\Frame.hxx"
 				>
 			</File>
 			<File
