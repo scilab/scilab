@@ -33,7 +33,6 @@
 // absolute filenames start with "X:\" so this value should be 3, in UNIX they start
 // with "\" so this value should be 1.
 
-int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l));
 char* getrelativefilename(char *currentDirectory, char *absoluteFilename);
 
 #endif /* __INTGETRELATIVEFILENAME__ */
