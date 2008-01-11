@@ -323,6 +323,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\TCL_Command.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\TCL_Global.c"
 				>
 			</File>
@@ -401,6 +405,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\TCL_Command.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\TCL_Global.h"
 				>
 			</File>
@@ -418,6 +426,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\TerminateTclTk.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\Thread_Wrapper.h"
 				>
 			</File>
 			<File

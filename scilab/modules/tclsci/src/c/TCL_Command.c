@@ -10,6 +10,11 @@
 ** Copyright INRIA 2008
 */
 
+#ifdef _MSC_VER
+	#include <Windows.h>
+	#define usleep(micro) Sleep(micro/1000)
+	#define strdup _strdup
+#endif
 #include "TCL_Command.h"
 
 // TCL Interpreter creation and loop ID
