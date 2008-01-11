@@ -56,6 +56,9 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
             case SCI_LISTBOX:
               CallScilabBridge::setListBoxParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               break;
+            case SCI_UIFRAME:
+              CallScilabBridge::setFrameParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+              break;
             default:
               sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
               return SET_PROPERTY_ERROR;

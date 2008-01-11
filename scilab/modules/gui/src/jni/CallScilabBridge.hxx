@@ -63,6 +63,7 @@ jmethodID jintnewRadioButtonID; // cache method id
 jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
+jmethodID jintnewFrameID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
 jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
@@ -75,20 +76,35 @@ jmethodID voidsetRadioButtonParentjintjintID; // cache method id
 jmethodID voidsetSliderParentjintjintID; // cache method id
 jmethodID voidsetPopupMenuParentjintjintID; // cache method id
 jmethodID voidsetListBoxParentjintjintID; // cache method id
+jmethodID voidsetFrameParentjintjintID; // cache method id
 jmethodID voidsetWidgetTextjintjstringID; // cache method id
 jmethodID jstringgetWidgetTextjintID; // cache method id
+jmethodID voidsetFrameTextjintjstringID; // cache method id
+jmethodID jstringgetFrameTextjintID; // cache method id
 jmethodID voidsetWidgetBackgroundColorjintjintjintjintID; // cache method id
 jmethodID jintArraygetWidgetBackgroundColorjintID; // cache method id
 jmethodID voidsetWidgetForegroundColorjintjintjintjintID; // cache method id
 jmethodID jintArraygetWidgetForegroundColorjintID; // cache method id
+jmethodID voidsetFrameBackgroundColorjintjintjintjintID; // cache method id
+jmethodID jintArraygetFrameBackgroundColorjintID; // cache method id
+jmethodID voidsetFrameForegroundColorjintjintjintjintID; // cache method id
+jmethodID jintArraygetFrameForegroundColorjintID; // cache method id
 jmethodID voidsetWidgetFontWeightjintjstringID; // cache method id
 jmethodID voidsetWidgetFontSizejintjintID; // cache method id
 jmethodID jintgetWidgetFontSizejintID; // cache method id
 jmethodID voidsetWidgetFontAnglejintjstringID; // cache method id
+jmethodID voidsetFrameFontWeightjintjstringID; // cache method id
+jmethodID voidsetFrameFontSizejintjintID; // cache method id
+jmethodID jintgetFrameFontSizejintID; // cache method id
+jmethodID voidsetFrameFontAnglejintjstringID; // cache method id
 jmethodID voidsetWidgetPositionjintjintjintjintjintID; // cache method id
 jmethodID jintArraygetWidgetPositionjintID; // cache method id
+jmethodID voidsetFramePositionjintjintjintjintjintID; // cache method id
+jmethodID jintArraygetFramePositionjintID; // cache method id
 jmethodID voidsetWidgetCallbackjintjstringID; // cache method id
 jmethodID jstringgetWidgetCallbackjintID; // cache method id
+jmethodID voidsetFrameCallbackjintjstringID; // cache method id
+jmethodID jstringgetFrameCallbackjintID; // cache method id
 jmethodID voidsetRootMenuEnabledjstringjbooleanID; // cache method id
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
@@ -165,6 +181,8 @@ static long newPopupMenu(JavaVM * jvm_);
 
 static long newListBox(JavaVM * jvm_);
 
+static long newFrame(JavaVM * jvm_);
+
 static void setFigureAsParent(JavaVM * jvm_, long figureID, long objID);
 
 static void setMenuAsParent(JavaVM * jvm_, long menuID, long objID);
@@ -189,9 +207,15 @@ static void setPopupMenuParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setListBoxParent(JavaVM * jvm_, long parentID, long objID);
 
+static void setFrameParent(JavaVM * jvm_, long parentID, long objID);
+
 static void setWidgetText(JavaVM * jvm_, long objID, char * text);
 
 static char * getWidgetText(JavaVM * jvm_, long objID);
+
+static void setFrameText(JavaVM * jvm_, long objID, char * text);
+
+static char * getFrameText(JavaVM * jvm_, long objID);
 
 static void setWidgetBackgroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
 
@@ -201,6 +225,14 @@ static void setWidgetForegroundColor(JavaVM * jvm_, long objID, long red, long g
 
 static long * getWidgetForegroundColor(JavaVM * jvm_, long objID);
 
+static void setFrameBackgroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
+
+static long * getFrameBackgroundColor(JavaVM * jvm_, long objID);
+
+static void setFrameForegroundColor(JavaVM * jvm_, long objID, long red, long green, long blue);
+
+static long * getFrameForegroundColor(JavaVM * jvm_, long objID);
+
 static void setWidgetFontWeight(JavaVM * jvm_, long objID, char * weight);
 
 static void setWidgetFontSize(JavaVM * jvm_, long objID, long size);
@@ -209,13 +241,29 @@ static long getWidgetFontSize(JavaVM * jvm_, long objID);
 
 static void setWidgetFontAngle(JavaVM * jvm_, long objID, char * angle);
 
+static void setFrameFontWeight(JavaVM * jvm_, long objID, char * weight);
+
+static void setFrameFontSize(JavaVM * jvm_, long objID, long size);
+
+static long getFrameFontSize(JavaVM * jvm_, long objID);
+
+static void setFrameFontAngle(JavaVM * jvm_, long objID, char * angle);
+
 static void setWidgetPosition(JavaVM * jvm_, long objID, long x, long y, long width, long height);
 
 static long * getWidgetPosition(JavaVM * jvm_, long objID);
 
+static void setFramePosition(JavaVM * jvm_, long objID, long x, long y, long width, long height);
+
+static long * getFramePosition(JavaVM * jvm_, long objID);
+
 static void setWidgetCallback(JavaVM * jvm_, long objID, char * text);
 
 static char * getWidgetCallback(JavaVM * jvm_, long objID);
+
+static void setFrameCallback(JavaVM * jvm_, long objID, char * text);
+
+static char * getFrameCallback(JavaVM * jvm_, long objID);
 
 static void setRootMenuEnabled(JavaVM * jvm_, char * menuName, bool status);
 

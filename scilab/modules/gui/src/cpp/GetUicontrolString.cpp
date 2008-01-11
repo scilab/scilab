@@ -11,8 +11,16 @@ int GetUicontrolString(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the string from Java
-      return sciReturnString(CallScilabBridge::getWidgetText(getScilabJavaVM(),
-                                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+        {
+          return sciReturnString(CallScilabBridge::getFrameText(getScilabJavaVM(),
+                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+        }
+      else /* All other uicontrol style */
+        {
+          return sciReturnString(CallScilabBridge::getWidgetText(getScilabJavaVM(),
+                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+        }
     }
   else
     {

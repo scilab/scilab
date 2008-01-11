@@ -27,9 +27,18 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Send the label to Java
-      CallScilabBridge::setWidgetText(getScilabJavaVM(), 
-                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                      getStringFromStack(stackPointer));
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
+        {
+          CallScilabBridge::setFrameText(getScilabJavaVM(), 
+                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                          getStringFromStack(stackPointer));
+        }
+      else /* All other uicontrol styles */
+        {
+          CallScilabBridge::setWidgetText(getScilabJavaVM(), 
+                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                          getStringFromStack(stackPointer));
+        }
       return SET_PROPERTY_SUCCEED;
     }
   else

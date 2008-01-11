@@ -2,6 +2,8 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.Dimension;
+
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -190,7 +192,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabFrame member) {
-		this.setContentPane(member);
+		this.add(member);
 		return this.getComponentZOrder(member);
 	}
 

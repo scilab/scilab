@@ -15,9 +15,16 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the color from Java
-      returnValues = CallScilabBridge::getWidgetBackgroundColor(getScilabJavaVM(),
-                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-      
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+        {
+          returnValues = CallScilabBridge::getFrameBackgroundColor(getScilabJavaVM(),
+                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
+      else /* All other uicontrol styles */
+        {
+          returnValues = CallScilabBridge::getWidgetBackgroundColor(getScilabJavaVM(),
+                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
       tmp = new double[3];
       tmp[0] = (double)returnValues[0] / 255; // Red
       tmp[1] = (double)returnValues[1] / 255; // Green

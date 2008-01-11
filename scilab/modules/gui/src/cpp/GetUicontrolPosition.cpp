@@ -15,8 +15,16 @@ int GetUicontrolPosition(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the position from Java
-      returnValues = CallScilabBridge::getWidgetPosition(getScilabJavaVM(),
-                                                         pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+        {
+          returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
+                                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
+      else /* All other uicontrol styles */
+        {
+          returnValues = CallScilabBridge::getWidgetPosition(getScilabJavaVM(),
+                                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
           
       tmp = new double[4];
       tmp[0] = returnValues[0];

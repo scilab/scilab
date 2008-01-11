@@ -13,8 +13,17 @@ int GetUicontrolFontSize(sciPointObj* sciObj)
   if (sciGetEntityType(sciObj) == SCI_UICONTROL)
     {
       // Get the font size from Scilab object
-      fontSize = (double)CallScilabBridge::getWidgetFontSize(getScilabJavaVM(), 
-                                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+        {
+          fontSize = (double)CallScilabBridge::getFrameFontSize(getScilabJavaVM(), 
+                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
+      else /* All other uicontrol styles */
+        {
+          fontSize = (double)CallScilabBridge::getWidgetFontSize(getScilabJavaVM(), 
+                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
+
       /* Compute the correct value according to FontUnits */
       switch(pUICONTROL_FEATURE(sciObj)->fontUnits)
         {

@@ -20,17 +20,20 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.listbox.ListBox;
+import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -428,4 +431,79 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 		super.setLayout((java.awt.LayoutManager) layout);
 	}
 	
+	/**
+	 * Add a callback to the Frame
+	 * @param command the Scilab command to execute when the Frame is validated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public void setCallback(String command, int commandType) {
+		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabFrame");
+		//addActionListener(ScilabCallBack.create(command, commandType));
+	}
+
+	/**
+	 * Setter for MenuBar
+	 * @param menuBarToAdd the MenuBar associated to the Frame.
+	 */
+	public void addMenuBar(MenuBar menuBarToAdd) {
+		/* Unimplemented for Frames */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Setter for ToolBar
+	 * @param toolBarToAdd the ToolBar associated to the Frame.
+	 */
+	public void addToolBar(ToolBar toolBarToAdd) {
+		/* Unimplemented for Frames */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for MenuBar
+	 * @return MenuBar: the MenuBar associated to the Frame.
+	 */
+	public MenuBar getMenuBar() {
+		/* Unimplemented for Frames */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for ToolBar
+	 * @return ToolBar: the ToolBar associated to the Frame.
+	 */
+	public ToolBar getToolBar() {
+		/* Unimplemented for Frames */
+		throw new UnsupportedOperationException();
+	}
+
+	/** 
+	 * Get the text of the Frame
+	 * @return the text of the frame
+	 * @see org.scilab.modules.gui.frame.SimpleFrame#getText()
+	 */
+	public String getText() {
+		return this.getName();
+	}
+
+	/** 
+	 * Set the text of the Frame
+	 * @param text the text to set to the frame
+	 * @see org.scilab.modules.gui.frame.SimpleFrame#setText()
+	 */
+	public void setText(String text) {
+		this.setName(text);
+	}
+
+	/**
+	 * Add a dockable element in the Frame (Not available for the moment)
+	 * @param member the object we want to add to the Frame
+	 * @return the index of the member in the Frame
+	 * @see org.scilab.modules.gui.container.Container#addMember(org.scilab.modules.gui.dockable.Dockable)
+	 */
+	public int addMember(Dockable member) {
+		/* Unimplemented for Frames */
+		throw new UnsupportedOperationException();
+	}
+
 }

@@ -13,6 +13,8 @@ import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
+import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabel;
@@ -57,6 +59,10 @@ public class CallScilabBridge {
 	private static final int HEIGHT_INDEX = 3;
 	
 	private static final String NORMALFONT = "normal";
+	private static final String OBLIQUEFONT = "oblique";
+	private static final String ITALICFONT = "italic";
+	private static final String BOLDFONT = "bold";
+	private static final int DEFAULTFONTSIZE = 12;
 
 	/**
 	 * Constructor
@@ -65,9 +71,11 @@ public class CallScilabBridge {
 		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
 	}
 	
-	/***********/
-	/* Console */
-	/***********/
+	/******************/
+	/*                */  
+	/* CONSOLE BRIDGE */
+	/*                */  
+	/******************/
 	
 	/**
 	 * Read a line from the Console
@@ -138,9 +146,11 @@ public class CallScilabBridge {
 		ScilabConsole.getConsole().setPrompt(prompt);
 	}
 	
-	/**********************************/
-	/* Methods used to create objects */
-	/**********************************/
+	/**************************/
+	/*                        */
+	/* OBJECT CREATION BRIDGE */
+	/*                        */
+	/**************************/
 	
 	/**
 	 * Create a new Window in Scilab GUIs
@@ -187,6 +197,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(pushButton);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		return id;
 	}
 
@@ -199,6 +210,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(editBox);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		return id;
 	}
 
@@ -211,6 +223,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(label);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		label.setBackground(Color.LIGHT_GRAY);
 		label.setForeground(Color.BLACK);
 		return id;
@@ -225,6 +238,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(checkBox);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		checkBox.setBackground(Color.LIGHT_GRAY);
 		checkBox.setForeground(Color.BLACK);
 		return id;
@@ -239,6 +253,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(radioButton);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		radioButton.setBackground(Color.LIGHT_GRAY);
 		radioButton.setForeground(Color.BLACK);
 		return id;
@@ -253,6 +268,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(slider);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		slider.setBackground(Color.LIGHT_GRAY);
 		slider.setForeground(Color.BLACK);
 		return id;
@@ -267,6 +283,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(listBox);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		listBox.setBackground(Color.LIGHT_GRAY);
 		listBox.setForeground(Color.BLACK);
 		return id;
@@ -281,11 +298,33 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(popupMenu);
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
+		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		popupMenu.setBackground(Color.LIGHT_GRAY);
 		popupMenu.setForeground(Color.BLACK);
 		return id;
 	}
 
+	/**
+	 * Create a new Frame in Scilab GUIs
+	 * @return the ID of the PopupMenu in the UIElementMapper
+	 */
+	public static int newFrame() {
+		Frame frame = ScilabFrame.createFrame();
+		int id = UIElementMapper.add(frame);
+		// Scilab default font
+		setFrameFontWeight(id, NORMALFONT);
+		setFrameFontSize(id, DEFAULTFONTSIZE);
+		frame.setBackground(Color.LIGHT_GRAY);
+		frame.setForeground(Color.BLACK);
+		return id;
+	}
+
+	/****************************/
+	/*                          */
+	/* OBJECT DIMENSIONS BRIDGE */
+	/*                          */
+	/****************************/
+	
 	/**
 	 * Set the dimensions of an object in Scilab GUIs
 	 * @param objID the ID of the object in the UIElementMapper
@@ -295,6 +334,12 @@ public class CallScilabBridge {
 	public static void setDims(int objID, int width, int height) {
 		UIElementMapper.getCorrespondingUIElement(objID).setDims(new Size(width, height));
 	}
+	
+	/**********************/
+	/*                    */
+	/* OBJECT TEXT BRIDGE */
+	/*                    */
+	/**********************/
 	
 	/**
 	 * Set the text of a widget in Scilab GUIs
@@ -314,9 +359,29 @@ public class CallScilabBridge {
 		return ((Widget) UIElementMapper.getCorrespondingUIElement(objID)).getText();
 	}
 
-	/*****************************/
-	/* Parent setting properties */
-	/*****************************/
+	/**
+	 * Set the text of a Frame in Scilab GUIs
+	 * @param objID the ID of the Widget in the UIElementMapper
+	 * @param text the text to set to the Frame
+	 */
+	public static void setFrameText(int objID, String text) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setText(text);
+	}
+	
+	/**
+	 * Get the text of a Frame in Scilab GUIs
+	 * @param objID the ID of the Frame in the UIElementMapper
+	 * @return the text of the Frame
+	 */
+	public static String getFrameText(int objID) {
+		return ((Frame) UIElementMapper.getCorrespondingUIElement(objID)).getText();
+	}
+
+	/******************/
+	/*                */
+	/* PARENT SETTING */
+	/*                */
+	/******************/
 
 	/**
 	 * Set a figure as parent for an UIElement
@@ -439,6 +504,17 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Set a figure as parent for a Frame
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PopupMenu in the UIElementMapper
+	 */
+	public static void setFrameParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		Frame frame = (Frame) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.addMember(parentTab, frame);
+	}
+
+	/**
 	 * Set root Scilab object (the console tab) as the parent of the menu
 	 * @param objID the id of the menu
 	 */
@@ -457,9 +533,11 @@ public class CallScilabBridge {
 		ScilabBridge.add(parentMenu, menu);
 	}
 	
-	/*************/
-	/* Callbacks */
-	/*************/
+	/*******************/
+	/*                 */
+	/* OBJECT CALLBACK */
+	/*                 */
+	/*******************/
 	
 	/**
 	 * Set a callback for a Widget
@@ -479,6 +557,31 @@ public class CallScilabBridge {
 		System.out.println("getWidgetCallback is not implemented");
 		return "";
 	}
+
+	/**
+	 * Set a callback for a Frame
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @param callback the text of the callback
+	 */
+	public static void setFrameCallback(int objID, String callback) {
+		System.out.println("setFrameCallback is not implemented");
+	}
+	
+	/**
+	 * Get the callback for a Frame
+	 * @param objID the ID of the object in the UIElementMapper
+	 * @return the text of the callback
+	 */
+	public static String getFrameCallback(int objID) {
+		System.out.println("getFrameCallback is not implemented");
+		return "";
+	}
+
+	/************************/
+	/*                      */
+	/* ENABLE/DISABLE MENUS */
+	/*                      */
+	/************************/
 
 	/**
 	 * Disable a menu of a Scilab figure giving its name
@@ -503,6 +606,12 @@ public class CallScilabBridge {
 		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
 	}
 	
+	/****************/
+	/*              */
+	/* REMOVE MENUS */
+	/*              */
+	/****************/
+
 	/**
 	 * Delete a menu of a Scilab figure giving its name
 	 * @param figureID the id of the figure
@@ -524,9 +633,11 @@ public class CallScilabBridge {
 		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
 	}
 	
-	/***************************/
-	/* File chooser properties */
-	/***************************/
+	/***********************/
+	/*                     */
+	/* FILE CHOOSER BRIDGE */
+	/*                     */
+	/***********************/
 	
 	/**
 	 * Set the file chooser title 
@@ -597,9 +708,11 @@ public class CallScilabBridge {
 		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setFileSelectionOnly();
 	}
 	
-	/******************/
-	/* Colors setting */
-	/******************/
+	/************************/
+	/*                      */
+	/* OBJECT COLORS BRIDGE */
+	/*                      */
+	/************************/
 	
 	/**
 	 * Set the background color of a Widget
@@ -652,23 +765,48 @@ public class CallScilabBridge {
 	}
 
 	/**
-	 * Set the foreground color of a menu
-	 * @param id the id of the menu
+	 * Set the background color of a Frame
+	 * @param id the id of the Frame
 	 * @param red the red value for the color
 	 * @param green the green value for the color
 	 * @param blue the blue value for the color
 	 */
-	public static void setMenuForegroundColor(int id, int red, int green, int blue) {
-		((Menu) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
+	public static void setFrameBackgroundColor(int id, int red, int green, int blue) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
 	}
 	
 	/**
-	 * Get the foreground color of a menu 
-	 * @param id the id of the menu
+	 * Get the background color of a Frame 
+	 * @param id the id of the Frame
 	 * @return the color [R, G, B]
 	 */
-	public static int[] getMenuForegroundColor(int id) {
-		Color tmpColor = ((Menu) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
+	public static int[] getFrameBackgroundColor(int id) {
+		Color tmpColor = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getBackground();
+		int[] color = new int[NB_COLORS];
+		color[0] = tmpColor.getRed();
+		color[1] = tmpColor.getGreen();
+		color[2] = tmpColor.getBlue();
+		return color;
+	}
+	
+	/**
+	 * Set the foreground color of a Frame
+	 * @param id the id of the Frame
+	 * @param red the red value for the color
+	 * @param green the green value for the color
+	 * @param blue the blue value for the color
+	 */
+	public static void setFrameForegroundColor(int id, int red, int green, int blue) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
+	}
+	
+	/**
+	 * Get the foreground color of a Frame 
+	 * @param id the id of the Frame
+	 * @return the color [R, G, B]
+	 */
+	public static int[] getFrameForegroundColor(int id) {
+		Color tmpColor = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getForeground();
 		int[] color = new int[NB_COLORS];
 		color[0] = tmpColor.getRed();
 		color[1] = tmpColor.getGreen();
@@ -676,9 +814,11 @@ public class CallScilabBridge {
 		return color;
 	}
 
-	/****************/
-	/* Font setting */
-	/****************/
+	/**********************/
+	/*                    */
+	/* OBJECT FONT BRIDGE */
+	/*                    */
+	/**********************/
 
 	/**
 	 * Set the weight of a Widget font
@@ -688,7 +828,7 @@ public class CallScilabBridge {
 	public static void setWidgetFontWeight(int id, String weight) {
 		Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
-		if (weight.equals("bold")) {
+		if (weight.equals(BOLDFONT)) {
 			if (font.isItalic()) {
 				font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
 			} else {
@@ -713,7 +853,7 @@ public class CallScilabBridge {
 	public static void setWidgetFontAngle(int id, String angle) {
 		Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
 
-		if (angle.equals("italic") || angle.equals("oblique")) {
+		if (angle.equals(ITALICFONT) || angle.equals(OBLIQUEFONT)) {
 			if (font.isBold()) {
 				font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
 			} else {
@@ -732,7 +872,7 @@ public class CallScilabBridge {
 	
 	/**
 	 * Set the size of a Widget font
-	 * @param id the id of the Widget button
+	 * @param id the id of the Widget
 	 * @param size the size of the Widget font
 	 */
 	public static void setWidgetFontSize(int id, int size) {
@@ -750,17 +890,89 @@ public class CallScilabBridge {
 		return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont().getSize();
 	}
 
-	/********************/
-	/* Position setting */
-	/********************/
+	/**
+	 * Set the weight of a Frame font
+	 * @param id the id of the Frame
+	 * @param weight the weight of the Frame font
+	 */
+	public static void setFrameFontWeight(int id, String weight) {
+		Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+
+		if (weight.equals(BOLDFONT)) {
+			if (font.isItalic()) {
+				font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+			} else {
+				font = new Font(font.getName(), Font.BOLD, font.getSize());
+			}
+		} else {
+			if (font.isItalic()) {
+				font = new Font(font.getName(), Font.ITALIC, font.getSize());
+			} else {
+				font = new Font(font.getName(), Font.PLAIN, font.getSize());
+			}
+		}
+
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
+	}
 	
 	/**
-	 * Set the position (in Scilab terms) of a widget 
-	 * @param id the id of the widget
-	 * @param x the X-coordinate for the button
-	 * @param y the Y-coordinate for the button
-	 * @param width the width of the button
-	 * @param height the height of the button
+	 * Set the angle of a Frame font
+	 * @param id the id of the Frame
+	 * @param angle the angle of the Frame font
+	 */
+	public static void setFrameFontAngle(int id, String angle) {
+		Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+
+		if (angle.equals(ITALICFONT) || angle.equals(OBLIQUEFONT)) {
+			if (font.isBold()) {
+				font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+			} else {
+				font = new Font(font.getName(), Font.ITALIC, font.getSize());
+			}
+		} else {
+			if (font.isBold()) {
+				font = new Font(font.getName(), Font.BOLD, font.getSize());
+			} else {
+				font = new Font(font.getName(), Font.PLAIN, font.getSize());
+			}
+		}
+
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
+	}
+	
+	/**
+	 * Set the size of a Frame font
+	 * @param id the id of the Frame
+	 * @param size the size of the Frame font
+	 */
+	public static void setFrameFontSize(int id, int size) {
+		Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+		font = new Font(font.getName(), font.getStyle(), size);
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
+	}
+
+	/**
+	 * Get the size of a Frame font
+	 * @param id the id of the Frame
+	 * @return the size of the Frame font
+	 */
+	public static int getFrameFontSize(int id) {
+		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont().getSize();
+	}
+
+	/**************************/
+	/*                        */
+	/* OBJECT POSITION BRIDGE */
+	/*                        */
+	/**************************/
+	
+	/**
+	 * Set the position (in Scilab terms) of a Widget 
+	 * @param id the id of the Widget
+	 * @param x the X-coordinate for the Widget
+	 * @param y the Y-coordinate for the Widget
+	 * @param width the width of the Widget
+	 * @param height the height of the Widget
 	 */
 	public static void setWidgetPosition(int id, int x, int y, int width, int height) {
 		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
@@ -779,6 +991,35 @@ public class CallScilabBridge {
 		position[Y_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getY();
 		position[WIDTH_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getDims().getWidth();
 		position[HEIGHT_INDEX] = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getDims().getHeight();
+		
+		return position;
+	}
+	
+	/**
+	 * Set the position (in Scilab terms) of a Frame 
+	 * @param id the id of the Frame
+	 * @param x the X-coordinate for the Frame
+	 * @param y the Y-coordinate for the Frame
+	 * @param width the width of the Frame
+	 * @param height the height of the Frame
+	 */
+	public static void setFramePosition(int id, int x, int y, int width, int height) {
+		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
+		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
+	}
+	
+	/**
+	 * Get the position (in Scilab terms) of a Frame 
+	 * @param id the id of the Frame
+	 * @return the position (X-coordinate, Y-coordinate, width, height) of the button
+	 */
+	public static int[] getFramePosition(int id) {
+		int[] position = new int[POSITION_SIZE];
+		
+		position[X_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getX();
+		position[Y_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getPosition().getY();
+		position[WIDTH_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getDims().getWidth();
+		position[HEIGHT_INDEX] = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getDims().getHeight();
 		
 		return position;
 	}

@@ -16,8 +16,16 @@ int GetUiobjectCallback(sciPointObj* sciObj)
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the callback from Java
-      return sciReturnString(CallScilabBridge::getWidgetCallback(getScilabJavaVM(),
-                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+        {
+          return sciReturnString(CallScilabBridge::getFrameCallback(getScilabJavaVM(),
+                                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+        }
+      else /* All other uicontrol styles */
+        {
+          return sciReturnString(CallScilabBridge::getWidgetCallback(getScilabJavaVM(),
+                                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+        }
     }
   else
     {

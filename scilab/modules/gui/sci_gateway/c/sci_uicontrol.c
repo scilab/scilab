@@ -3,6 +3,8 @@
 /* Copyright INRIA 2007                                                   */
 /* Authors : Vincent COUVERT                                              */
 /*------------------------------------------------------------------------*/
+#include <ctype.h> /* tolower */
+/*------------------------------------------------------------------------*/
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
 #include "CreateUIControl.h"
@@ -21,8 +23,9 @@
 #include "Slider.h" /* setCurentFigureAsSliderParent */
 #include "PopupMenu.h" /* setCurentFigureAsPopupMenuParent */
 #include "ListBox.h" /* setCurentFigureAsListBoxParent */
+#include "Frame.h" /* setCurentFigureAsFrameParent */
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 16 
+#define NBPROPERTIES 17 
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
@@ -41,9 +44,11 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   unsigned long GraphicHandle = 0;
 
+  int found = 0; /* Does the property exists ? */ 
+
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "position", "fontweight", "min", "max", "tag", "units", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname"};
+  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "position", "fontweight", "min", "max", "tag", "units", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback"};
   int *propertiesValuesIndices = NULL;
 
   //CheckRhs(2,2);
@@ -170,12 +175,23 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               GetRhsVar(inputIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
               propertyName = cstk(stkAdr);
 
+              /* Convert the property name to lower string */
+              for(k=0; propertyName[k]; k++)
+                propertyName[k] = tolower(propertyName[k]);
+
+              found = 0;
               for(k=0; k<NBPROPERTIES; k++)
                 {
                   if (strcmp(propertyName, propertiesNames[k]) == 0)
                     {
                       propertiesValuesIndices[k] = inputIndex+1; /* Position of value for property */
+                      found = 1;
                     }
+                }
+              if (found == 0)
+                {
+                  Scierror(999, _("Unknown property: %s for uicontrols."), propertyName);
+                  return FALSE;
                 }
             }
         }
@@ -258,6 +274,9 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               break;
             case SCI_LISTBOX:
               setCurentFigureAsListBoxParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_UIFRAME:
+              setCurentFigureAsFrameParent((sciPointObj*) GraphicHandle);
               break;
            default:
               break;

@@ -3,135 +3,77 @@
 
 package org.scilab.modules.gui.frame;
 
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
+import java.awt.Color;
+import java.awt.Font;
 
+import org.scilab.modules.gui.container.Container;
 
 /**
  * Interface for SimpleFrame the associated object to Scilab GUIs Frame
+ * @author Vincent COUVERT
+ * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
  */
-public interface SimpleFrame {
+public interface SimpleFrame extends Container {
 
 	/**
-	 * DO NOT BE OVER OPTIMISTIC !!!
-	 * TRY TO FOCUS ON MAIN STUFF FIRST !!!
+	 * Set the Background color of the Frame.
+	 * @param color the Color
 	 */
+	void setBackground(Color color);
 	
 	/**
-	 * Gets the size of an Frame (width and height)
-	 * @return the size of the Frame
+	 * Get the Background color of the Frame.
+	 * @return the Color
 	 */
-	Size getDims();
+	Color getBackground();
+	
+	/**
+	 * Set the Foreground color of the Frame.
+	 * @param color the Color
+	 */
+	void setForeground(Color color);
+	
+	/**
+	 * Get the Foreground color of the Frame.
+	 * @return the Color
+	 */
+	Color getForeground();
 
 	/**
-	 * Sets the size of an Frame (width and height)
-	 * @param newSize the size we want to set to the Frame
+	 * Set the font of the Frame.
+	 * @param font the font
 	 */
-	void setDims(Size newSize);
+	void setFont(Font font);
+	
+	/**
+	 * Get the font of the Frame.
+	 * @return the font
+	 */
+	Font getFont();
+	
+	/**
+	 * Set the text of the Frame
+	 * @param text the text
+	 */
+	void setText(String text);
+	
+	/**
+	 * Get the text of the Frame
+	 * @return the text
+	 */
+	String getText();
 
 	/**
-	 * Gets the position of an Frame (X-coordinate and Y-corrdinate)
-	 * @return the position of the Frame
+	 * Set the status of the Frame
+	 * @param status true if the Widget is enabled
 	 */
-	Position getPosition();
+	void setEnabled(boolean status);
 
 	/**
-	 * Sets the position of an Frame (X-coordinate and Y-corrdinate)
-	 * @param newPosition the position we want to set to the Frame
+	 * Set the callback of the Frame
+	 * @param command the command to be executed when the Frame is activated
+	 * @param commandType the type of the command
 	 */
-	void setPosition(Position newPosition);
-
-	/**
-	 * Gets the visibility status of an Frame
-	 * @return the visibility status of the Frame (true if the Frame is visible, false if not)
-	 */
-	boolean isVisible();
-
-	/**
-	 * Sets the visibility status of an Frame
-	 * @param newVisibleState the visibility status we want to set for the Frame
-	 * 			(true if the Frame is visible, false if not)
-	 */
-	void setVisible(boolean newVisibleState);
-
-	/**
-	 * Draws an Frame
-	 */
-	void draw();
-	
-	/**
-	 * We want to be able to add directly a Canvas in a Frame.
-	 * @param member the member to add
-	 * @return the position of the canvas in the member list.
-	 */
-	//int addMember(Canvas member);
-
-	/**
-	 * We want to be able to add a CheckBox in a Frame.
-	 * @param member the member to add
-	 * @return the position of the CheckBox in the member list.
-	 */
-	//int addMember(CheckBox member);
-
-	/**
-	 * We want to be able to add a EditBox in a Frame.
-	 * @param member the member to add
-	 * @return the position of the EditBox in the member list.
-	 */
-	//int addMember(EditBox member);
-	
-	/**
-	 * We want to be able to add a ListBox in a Frame.
-	 * @param member the member to add
-	 * @return the position of the ListBox in the member list.
-	 */
-	//int addMember(ListBox member);
-	
-	/**
-	 * We want to be able to add a PushButton in a Frame.
-	 * @param member the member to add
-	 * @return the position of the PushButton in the member list.
-	 */
-	int addMember(PushButton member);
-	
-	/**
-	 * We want to be able to add a RadioButton in a Frame.
-	 * @param member the member to add
-	 * @return the position of the RadioButton in the member list.
-	 */
-	//int addMember(RadioButton member);
-
-	/**
-	 * We want to be able to add a Slider in a Frame.
-	 * @param member the member to add
-	 * @return the position of the slider in the member list.
-	 */
-	//int addMember(Slider member);
-	
-	/**
-	 * We want to be able to add a Frame in a Frame.
-	 * @param member the member to add
-	 * @return the position of the Frame in the member list.
-	 */
-	int addMember(Frame member);
-	
-	// TODO : Check if it should be possible to add a Tab to a frame and how it should behave
-	/**
-	 * We want to be able to add a Tab in a Frame.
-	 * @param member the member to add
-	 * @return the position of the Tab in the member list.
-	 */
-	//int addMember(Tab member);
-	
-	/**
-	 * We want to be able to add a TextBox in a Frame.
-	 * @param member the member to add
-	 * @return the position of the TextBox in the member list.
-	 */
-	//int addMember(TextBox member);
-	
-	
-	
+	void setCallback(String command, int commandType);
 }

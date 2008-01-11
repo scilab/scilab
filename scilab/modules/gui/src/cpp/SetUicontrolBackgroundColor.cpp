@@ -61,9 +61,18 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
       return SET_PROPERTY_ERROR;
     }
 
-  CallScilabBridge::setWidgetBackgroundColor(getScilabJavaVM(), 
-                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                             redInt, greenInt, blueInt);
+  if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+    {
+      CallScilabBridge::setFrameBackgroundColor(getScilabJavaVM(), 
+                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                 redInt, greenInt, blueInt);
+    }
+  else /* All other uicontrol styles */
+    {
+      CallScilabBridge::setWidgetBackgroundColor(getScilabJavaVM(), 
+                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                 redInt, greenInt, blueInt);
+    }
   return SET_PROPERTY_SUCCEED;
 }
 

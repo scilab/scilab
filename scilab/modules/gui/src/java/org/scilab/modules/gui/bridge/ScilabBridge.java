@@ -253,113 +253,171 @@ public class ScilabBridge {
 	/****************/
 
 	/**
-	 * Creates a new frame
-	 * @return the created frame
+	 * Creates a new Frame
+	 * @return the created Frame
 	 */
 	public static SimpleFrame createFrame() {
 		return ScilabFrameBridge.createFrame();
 	}
+	
 	/**
-	 * Draws a frame on screen
-	 * @param frame the frame to be drawn
+	 * Sets the Text of a Frame
+	 * @param frame the Frame we want to set the Text of
+	 * @param newText the Text to set for the Frame
+	 */
+	public static void setText(Frame frame, String newText) {
+		ScilabFrameBridge.setText(frame, newText);
+	}
+	
+	/**
+	 * Gets the text of an Frame
+	 * @param frame the Frame we want to get the text of
+	 * @return the text of the Frame
+	 */
+	public static String getText(Frame frame) {
+		return ScilabFrameBridge.getText(frame);
+	}
+	
+	/**
+	 * Draws a Scilab Frame
+	 * @param frame the Frame to draw
+	 * @see org.scilab.modules.ihm.UIElement#draw()
 	 */
 	public static void draw(Frame frame) {
 		ScilabFrameBridge.draw(frame);
 	}
 
 	/**
-	 * Gets the dimensions (width and height) of a frame
-	 * @param frame the frame we want to get the dimensions of
-	 * @return the dimensions of the frame
+	 * Gets the dimensions (width and height) of a Scilab Frame
+	 * @param frame the Frame we want to get the dimensions of
+	 * @return the size of the frame
+	 * @see org.scilab.modules.ihm.UIElement#getDims()
 	 */
 	public static Size getDims(Frame frame) {
 		return ScilabFrameBridge.getDims(frame);
 	}
 
 	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a frame
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab frame
 	 * @param frame the frame we want to get the position of
-	 * @return position of the frame
+	 * @return the position of the frame
+	 * @see org.scilab.modules.ihm.UIElement#getPosition()
 	 */
 	public static Position getPosition(Frame frame) {
 		return ScilabFrameBridge.getPosition(frame);
 	}
 
 	/**
-	 * Gets the visibility status of a frame
-	 * @param frame the frame we want to Gets the status of
-	 * @return visibility status (true if the frame is visible, false if not)
+	 * Gets the visibility status of a Scilab Frame
+	 * @param frame the frame we want to get the visiblity status of
+	 * @return the visibility status of the frame (true if the frame is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
 	 */
 	public static boolean isVisible(Frame frame) {
 		return ScilabFrameBridge.isVisible(frame);
 	}
 
 	/**
-	 * Sets the dimensions (width and height) of a frame
+	 * Sets the dimensions (width and height) of a Scilab Frame
 	 * @param frame the frame we want to set the dimensions of
-	 * @param newFrameSize new dimensions of the frame
+	 * @param newSize the size we want to set to the frame
+	 * @see org.scilab.modules.ihm.UIElement#setDims(org.scilab.modules.ihm.utils.Size)
 	 */
-	public static void setDims(Frame frame, Size newFrameSize) {
-		ScilabFrameBridge.setDims(frame, newFrameSize);
+	public static void setDims(Frame frame, Size newSize) {
+		ScilabFrameBridge.setDims(frame, newSize);
 	}
 
 	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a frame
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab frame
 	 * @param frame the frame we want to set the position of
-	 * @param newFramePosition new position of the frame
+	 * @param newPosition the position we want to set to the frame
+	 * @see org.scilab.modules.ihm.UIElement#setPosition(org.scilab.modules.ihm.utils.Position)
 	 */
-	public static void setPosition(Frame frame, Position newFramePosition) {
-		ScilabFrameBridge.setPosition(frame, newFramePosition);
+	public static void setPosition(Frame frame, Position newPosition) {
+		ScilabFrameBridge.setPosition(frame, newPosition);
 	}
 
 	/**
-	 * Sets the visibility status of a frame
-	 * @param frame the frame we want to set the visibility status of
-	 * @param newVisibleState new visibility status for the window
-	 * 			(true set the window visible, false to set the window invisible)
+	 * Sets the visibility status of a Scilab Frame
+	 * @param frame the frame we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the frame (true to set the frame visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
 	 */
 	public static void setVisible(Frame frame, boolean newVisibleState) {
 		ScilabFrameBridge.setVisible(frame, newVisibleState);
 	}
-
+	
 	/**
-	 * Add a member (dockable element) to a frame and returns the index of this member
-	 * @param frame the frame where we want to add the member
-	 * @param member the member to add
- 	 * @return index of member
- 	 */
-	public static int addMember(Frame frame, Frame member) {
-		return ScilabFrameBridge.addMember(frame, member);
+	 * Set the Background color of the Frame
+	 * @param frame the Frame we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(Frame frame, Color color) {
+		ScilabFrameBridge.setBackground(frame, color);
 	}
 
 	/**
-	 * Add a member (dockable element) to a frame and returns the index of this member
-	 * @param frame the frame where we want to add the member
-	 * @param member the member to add
- 	 * @return index of member
- 	 */
-	public static int addMember(Frame frame, Console member) {
-		return ScilabFrameBridge.addMember(frame, member);
+	 * Get the Background color of the Frame
+	 * @param frame the Frame we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(Frame frame) {
+		return ScilabFrameBridge.getBackground(frame);
 	}
 
 	/**
-	 * Add a member (dockable element) to a frame and returns the index of this member
-	 * @param frame the frame where we want to add the member
-	 * @param member the member to add
- 	 * @return index of member
- 	 */
-	public static int addMember(Frame frame, Canvas member) {
-		return ScilabFrameBridge.addMember(frame, member);
+	 * Set the Foreground color of the Frame
+	 * @param frame the Frame we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(Frame frame, Color color) {
+		ScilabFrameBridge.setForeground(frame, color);
+	}
+
+	/**
+	 * Get the Foreground color of the Frame
+	 * @param frame the Frame we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(Frame frame) {
+		return ScilabFrameBridge.getForeground(frame);
+	}
+
+	/**
+	 * Set the font of the Frame.
+	 * @param frame the Frame we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(Frame frame, Font font) {
+		ScilabFrameBridge.setFont(frame, font);
 	}
 	
 	/**
-	 * Add a member (dockable element) to a frame and returns the index of this member
-	 * @param frame the frame where we want to add the member
-	 * @param member the member to add
- 	 * @return index of member
- 	 */
-	public static int addMember(Frame frame, PushButton member) {
-		return ScilabFrameBridge.addMember(frame, member);
+	 * Get the font of the Frame.
+	 * @param frame the Frame we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(Frame frame) {
+		return ScilabFrameBridge.getFont(frame);
+	}
+
+	/**
+	 * Set if the Frame is enabled or not
+	 * @param frame the Frame we want to set the status of
+	 * @param status true if the Frame is enabled
+	 */
+	public static void setEnabled(Frame frame, boolean status) {
+		ScilabFrameBridge.setEnabled(frame, status);
+	}
+	
+	/**
+	 * Add a callback to the Frame
+	 * @param frame the Frame we want to set the callback of
+	 * @param command the Scilab command to execute when the Frame is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(Frame frame, String command, int commandType) {
+		ScilabFrameBridge.setCallback(frame, command, commandType);
 	}
 
 	/**************/

@@ -50,19 +50,17 @@ int SetUicontrolFontUnits(sciPointObj* sciObj, int stackPointer, int valueType, 
           return SET_PROPERTY_ERROR;
         }
       
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
         {
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-          // TODO Change de Scilab of the Java font
-          // CallScilabBridge::setPushButtonFontUnits(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontUnits);
-          return SET_PROPERTY_SUCCEED;
-        default:
-          /* Unimplmented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "FontUnits", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
+          // TODO Change the size of the Java font
+          // CallScilabBridge::setFrameFontUnits(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontUnits       
         }
+      else /* All other uicontrol styles */
+        {
+          // TODO Change the size of the Java font
+          // CallScilabBridge::setWidgetFontUnits(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontUnits);
+        }
+      return SET_PROPERTY_SUCCEED;
     }
   else
     {

@@ -10,7 +10,7 @@ int GetUicontrolFontAngle(sciPointObj* sciObj)
 {
   if (sciGetEntityType(sciObj) == SCI_UICONTROL)
     {
-      // Get the font weight from Scilab object
+      // Get the font angle from Scilab object
       switch(pUICONTROL_FEATURE(sciObj)->fontAngle)
         {
         case NORMAL_FONT:

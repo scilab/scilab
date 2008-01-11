@@ -16,6 +16,7 @@
 #include "Slider.h"
 #include "PopupMenu.h"
 #include "ListBox.h"
+#include "Frame.h"
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
@@ -135,6 +136,11 @@ sciPointObj * CreateUIControl(char *style)
     {
       createListBox((sciPointObj *) pobj);
       pUICONTROL_FEATURE (pobj)->style = SCI_LISTBOX;
+    }
+  else if (strcmp(style,"frame")==0)
+    {
+      createFrame((sciPointObj *) pobj);
+      pUICONTROL_FEATURE (pobj)->style = SCI_UIFRAME;
     }
   else
     {

@@ -57,7 +57,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, int stackPointer, int valueType, int
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_PUSHBUTTON:
-          // TODO Change the size of the Java object
+          // TODO Change the relief of the Java object
            return SET_PROPERTY_SUCCEED;
         default:
           /* Unimplemented uicontrol style */

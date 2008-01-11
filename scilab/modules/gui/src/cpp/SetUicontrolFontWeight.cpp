@@ -46,9 +46,18 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, int stackPointer, int valueType,
           return SET_PROPERTY_ERROR;
         }
       
-      CallScilabBridge::setWidgetFontWeight(getScilabJavaVM(), 
-                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                            fontWeight);
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
+        {
+           CallScilabBridge::setFrameFontWeight(getScilabJavaVM(), 
+                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                fontWeight);
+       }
+      else /* All other uicontrol styles */
+        {
+          CallScilabBridge::setWidgetFontWeight(getScilabJavaVM(), 
+                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                fontWeight);
+        }
       return SET_PROPERTY_SUCCEED;
     }
   else

@@ -3,15 +3,10 @@
 
 package org.scilab.modules.gui.frame;
 
-import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
+import java.awt.Color;
+import java.awt.Font;
+
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.listbox.ListBox;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.slider.Slider;
-import org.scilab.modules.gui.tab.Tab;
 
 /**
  * Interface for Scilab frames in GUIs
@@ -26,110 +21,64 @@ public interface Frame extends Container {
 	SimpleFrame getAsSimpleFrame();
 	
 	/**
-	 * We want to be able to add directly a Canvas in a Frame.
-	 * @param member the member to add
-	 * @return the position of the canvas in the member list.
+	 * Set the Background color of the Frame.
+	 * @param color the Color
 	 */
-	int addMember(Canvas member);
+	void setBackground(Color color);
+	
+	/**
+	 * Get the Background color of the Frame.
+	 * @return the Color
+	 */
+	Color getBackground();
+	
+	/**
+	 * Set the Foreground color of the Frame.
+	 * @param color the Color
+	 */
+	void setForeground(Color color);
+	
+	/**
+	 * Get the Foreground color of the Frame.
+	 * @return the Color
+	 */
+	Color getForeground();
 
 	/**
-	 * We want to be able to add a CheckBox in a Frame.
-	 * @param member the member to add
-	 * @return the position of the CheckBox in the member list.
+	 * Set the font of the Frame.
+	 * @param font the font
 	 */
-	int addMember(CheckBox member);
+	void setFont(Font font);
+	
+	/**
+	 * Get the font of the Frame.
+	 * @return the font
+	 */
+	Font getFont();
+	
+	/**
+	 * Set the text of the Frame
+	 * @param text the text
+	 */
+	void setText(String text);
+	
+	/**
+	 * Get the text of the Frame
+	 * @return the text
+	 */
+	String getText();
 
 	/**
-	 * We want to be able to add a EditBox in a Frame.
-	 * @param member the member to add
-	 * @return the position of the EditBox in the member list.
+	 * Set the status of the Frame
+	 * @param status true if the Widget is enabled
 	 */
-	int addMember(EditBox member);
-	
-	/**
-	 * We want to be able to add a ListBox in a Frame.
-	 * @param member the member to add
-	 * @return the position of the ListBox in the member list.
-	 */
-	int addMember(ListBox member);
-	
-	/**
-	 * We want to be able to add a PushButton in a Frame.
-	 * @param member the member to add
-	 * @return the position of the PushButton in the member list.
-	 */
-	int addMember(PushButton member);
-	
-	/**
-	 * We want to be able to add a RadioButton in a Frame.
-	 * @param member the member to add
-	 * @return the position of the RadioButton in the member list.
-	 */
-	int addMember(RadioButton member);
+	void setEnabled(boolean status);
 
 	/**
-	 * We want to be able to add a Slider in a Frame.
-	 * @param member the member to add
-	 * @return the position of the slider in the member list.
+	 * Set the callback of the Frame
+	 * @param command the command to be executed when the Frame is activated
+	 * @param commandType the type of the command
 	 */
-	int addMember(Slider member);
-	
-	/**
-	 * We want to be able to add a PushButton in a Frame with a BorderLayout.
-	 * @param member the PushButton to add
-	 * @param borderLayout the BorderLayout to use
-	 * @return the position of the PushButton in the member list.
-	 */
-	/**
-	 * JUST THINK SCILAB AND NOT JAVA !!! 
-	 */
-	//int addMember(PushButton member, String borderLayout);
-	
-	/**
-	 * We want to be able to add a PushButton in a Frame with a FlowLayout.
-	 * @param member the PushButton to add
-	 * @param flowLayoutPosition the FlowLayout position to use
-	 * @return the position of the PushButton in the member list.
-	 */
-	/**
-	 * JUST THINK SCILAB AND NOT JAVA !!! 
-	 */
-	//int addMember(PushButton member, int flowLayoutPosition);
-	
-	/**
-	 * We want to be able to add a Frame in a Frame.
-	 * @param member the member to add
-	 * @return the position of the Frame in the member list.
-	 */
-	int addMember(Frame member);
-	
-	/**
-	 * We want to be able to add a Frame in a Frame with a BorderLayout.
-	 * @param member the member to add
-	 * @param borderLayout the BorderLayout to use
-	 * @return the position of the Frame in the member list.
-	 */
-	/**
-	 * JUST THINK SCILAB AND NOT JAVA !!! 
-	 */
-	//int addMember(Frame member, String borderLayout);
-	
-	/**
-	 * We want to be able to add a Frame in a Frame with a FlowLayout.
-	 * @param member the Frame to add
-	 * @param flowLayoutPosition the FlowLayout position to use
-	 * @return the position of the Frame in the member list.
-	 */
-	/**
-	 * JUST THINK SCILAB AND NOT JAVA !!! 
-	 */
-	//int addMember(Frame member, int flowLayoutPosition);
-	
-	// TODO : Check if it should be possible to add a Tab to a frame and how it should behave
-	/**
-	 * We want to be able to add a Tab in a Frame.
-	 * @param member the member to add
-	 * @return the position of the Tab in the member list.
-	 */
-	int addMember(Tab member);
+	void setCallback(String command, int commandType);
+
 }

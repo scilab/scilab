@@ -15,8 +15,16 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the color from Java
-      returnValues = CallScilabBridge::getWidgetForegroundColor(getScilabJavaVM(),
-                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+        {
+          returnValues = CallScilabBridge::getFrameForegroundColor(getScilabJavaVM(),
+                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
+      else /* All other uicontrol style */
+        {
+          returnValues = CallScilabBridge::getWidgetForegroundColor(getScilabJavaVM(),
+                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+        }
     }
   else if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {

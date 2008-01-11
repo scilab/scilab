@@ -66,9 +66,18 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
     }
   else if(sciGetEntityType(sciObj) == SCI_UICONTROL)  /* Sets the foreground of an uicontrol */
     {
-      CallScilabBridge::setWidgetForegroundColor(getScilabJavaVM(), 
-                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                                 redInt, greenInt, blueInt);
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+        {
+          CallScilabBridge::setFrameForegroundColor(getScilabJavaVM(), 
+                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                     redInt, greenInt, blueInt);
+        }
+      else /* All other uicontrol styles */
+        {
+          CallScilabBridge::setWidgetForegroundColor(getScilabJavaVM(), 
+                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                     redInt, greenInt, blueInt);
+        }
       return SET_PROPERTY_SUCCEED;
     }
   else

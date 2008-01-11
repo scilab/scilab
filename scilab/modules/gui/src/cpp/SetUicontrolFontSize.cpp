@@ -53,18 +53,16 @@ int SetUicontrolFontSize(sciPointObj* sciObj, int stackPointer, int valueType, i
         }
       
       /* Send the value to java */
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
         {
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-          CallScilabBridge::setWidgetFontSize(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontSizeInt);
-          return SET_PROPERTY_SUCCEED;
-        default:
-          /* Unimplmented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "FontSize", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
+          CallScilabBridge::setFrameFontSize(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontSizeInt);
         }
+      else /* All other uicontrol styles */
+        {
+          CallScilabBridge::setWidgetFontSize(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontSizeInt);
+        }
+      return SET_PROPERTY_SUCCEED;
+
     }
   else
     {

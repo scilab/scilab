@@ -3,20 +3,11 @@
 
 package org.scilab.modules.gui.frame;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
-import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.ScilabContainer;
-import org.scilab.modules.gui.dockable.Dockable;
-import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.listbox.ListBox;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.slider.Slider;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -33,16 +24,16 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	 */
 	protected ScilabFrame() {
 		component = ScilabBridge.createFrame();
-    }
+	}
 
 	/**
-	 * Creates a Scilab Frame
-	 * @return the created Scilab FRame
+	 * Creates a Scilab Frame object
+	 * @return the created Frame
 	 */
 	public static Frame createFrame() {
 		return new ScilabFrame();
 	}
-
+	
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
@@ -50,210 +41,146 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	public SimpleFrame getAsSimpleFrame() {
 		return component;
 	}
-
+	
 	/**
-	 * Draws a frame
-	 * @see org.scilab.modules.gui.UIElement#draw()
+	 * Sets the text of a Frame
+	 * @param newText the text to set to the Frame
+	 */
+	public void setText(String newText) {
+		ScilabBridge.setText(this, newText);
+	}
+	
+	/**
+	 * Gets the text of a Frame
+	 * @return text of the Frame
+	 */
+	public String getText() {
+		return ScilabBridge.getText(this);
+	}
+	
+	/**
+	 * Draws a Frame
 	 */
 	public void draw() {
 		ScilabBridge.draw(this);
 	}
-
+	
 	/**
-	 * Gets the dimensions (width and height) of a Scilab frame
-	 * @return the size of the frame
-	 * @see org.scilab.modules.gui.UIElement#getDims()
+	 * Sets the dimensions (width and height) of a swing Scilab element
+	 * @param newSize the dimensions to set to the element
+	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+	 */
+	public void setDims(Size newSize) {
+		ScilabBridge.setDims(this, newSize); 
+	}
+	
+	/**
+	 * Gets the dimensions (width and height) of a swing Scilab element
+	 * @return the dimensions (width and height) of the element
+	 * @see org.scilab.modules.gui.uielement.UIElement#getDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public Size getDims() {
 		return ScilabBridge.getDims(this);
 	}
-
+	
 	/**
-	 * Gets the position (X-coordinate and Y-coordinates) of a Scilab frame
-	 * @return the position of the frame
-	 * @see org.scilab.modules.gui.UIElement#getPosition()
+	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab element
+	 * @return the position of the element
+	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
 		return ScilabBridge.getPosition(this);
 	}
 
 	/**
-	 * Gets the visibility status of a frame
-	 * @return the visibility status of the frame (true if the frame is visible, false if not)
-	 * @see org.scilab.modules.gui.UIElement#isVisible()
+	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab element
+	 * @param newPosition the position we want to set to the element
+	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+	 */
+	public void setPosition(Position newPosition) {
+		ScilabBridge.setPosition(this, newPosition);
+	}
+
+	/**
+	 * Gets the visibility status of an UIElement
+	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
 	 */
 	public boolean isVisible() {
 		return ScilabBridge.isVisible(this);
 	}
-
+	
 	/**
-	 * Sets the dimensions (width and height) of a Scilab frame
-	 * @param newFrameSize the size we want to set to the frame
-	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
-	 */
-	public void setDims(Size newFrameSize) {
-		ScilabBridge.setDims(this, newFrameSize);
-	}
-
-	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab frame
-	 * @param newFramePosition the position we want to set to the frame
-	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
-	 */
-	public void setPosition(Position newFramePosition) {
-		ScilabBridge.setPosition(this, newFramePosition);
-	}
-
-	/**
-	 * Sets the visibility status of a Scilab frame
-	 * @param newVisibleState the visibility status we want to set to the frame
-	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
+	 * Sets the visibility status of a Menu
+	 * @param newVisibleState the visibility status we want to set for the UIElement
+	 * 			(true if the UIElement is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
 		ScilabBridge.setVisible(this, newVisibleState);
 	}
 
 	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
+	 * To get the Background color of the element.
+	 * @return color the Color
 	 */
-	public int addMember(Canvas member) {
-		return ScilabBridge.addMember(this, member);
+	public Color getBackground() {
+		return ScilabBridge.getBackground(this);
 	}
 
 	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
+	 * To get the Font of the element.
+	 * @return font the Font
 	 */
-	public int addMember(CheckBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
-	}
-	
-	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
-	 */
-	public int addMember(Console member) {
-		// TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+	public Font getFont() {
+		return ScilabBridge.getFont(this);
 	}
 
 	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
+	 * To get the Foreground color of the element.
+	 * @return color the Color
 	 */
-	public int addMember(Dockable member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+	public Color getForeground() {
+		return ScilabBridge.getForeground(this);
 	}
 
 	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
+	 * To set the Background color of the element.
+	 * @param color the Color
 	 */
-	public int addMember(EditBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
-	}
-	
-	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
-	 */
-	public int addMember(Frame member) {
-		return ScilabBridge.addMember(this, member);
-	}
-	
-	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
-	 */
-	public int addMember(Label member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
-	}
-	
-	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
-	 */
-	public int addMember(ListBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+	public void setBackground(Color color) {
+		ScilabBridge.setBackground(this, color);
 	}
 
 	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
+	 * To set the Font of the element.
+	 * @param font the Font
 	 */
-	public int addMember(PushButton member) {
-		return ScilabBridge.addMember(this, member);
-	}
-	
-	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
-	 */
-	public int addMember(RadioButton member) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
-	 */
-	public int addMember(Slider member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+	public void setFont(Font font) {
+		ScilabBridge.setFont(this, font);
 	}
 
 	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
+	 * To set the Foreground color of the element.
+	 * @param color the Color
 	 */
-	public int addMember(Tab member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+	public void setForeground(Color color) {
+		ScilabBridge.setForeground(this, color);
 	}
 	
 	/**
-	 * Add a member (dockable element) to a Scilab frame and returns its index
-	 * @param member the member to add
-	 * @return index of member in frame components
+	 * Add a callback to the Frame
+	 * @param command the Scilab command to execute when the Frame is activated
+	 * @param commandType the type of the command that will be executed.
 	 */
-	public int addMember(TextBox member) {
-//		 TODO code this
-		//return ScilabBridge.addMember(this, member);
-		return 0;
+	public void setCallback(String command, int commandType) {
+		ScilabBridge.setCallback(this, command, commandType);
 	}
-
+	
 	/**
-	 * WE ABSOLUTELY WANT TO AVOID
-	 * USE OF ANY GUI IMPLEMENTATION OBJECTS !!!!
-	 * 
-	 * THE AIM IS NOT TO MIRROR THE IMPLEMENTATION !!!!
+	 * Set if the Frame is enabled or not
+	 * @param status true if the Frame is enabled
 	 */
+	public void setEnabled(boolean status) {
+		ScilabBridge.setEnabled(this, status);
+	}
 
 }

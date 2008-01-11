@@ -60,12 +60,24 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
       return SET_PROPERTY_ERROR;
     }
 
-  CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
-                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                      xInt, 
-                                      sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
-                                      widthInt, 
-                                      heightInt);
+  if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
+    {
+      CallScilabBridge::setFramePosition(getScilabJavaVM(), 
+                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                          xInt, 
+                                          sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
+                                          widthInt, 
+                                          heightInt);
+    }
+  else /* All other uicontrol styles */
+    {
+      CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
+                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                          xInt, 
+                                          sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
+                                          widthInt, 
+                                          heightInt);
+    }
   return SET_PROPERTY_SUCCEED;
 }
 

@@ -108,6 +108,7 @@ jintnewRadioButtonID=NULL;
 jintnewSliderID=NULL; 
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
+jintnewFrameID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -120,20 +121,35 @@ voidsetRadioButtonParentjintjintID=NULL;
 voidsetSliderParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
 voidsetListBoxParentjintjintID=NULL; 
+voidsetFrameParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
+voidsetFrameTextjintjstringID=NULL; 
+jstringgetFrameTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
 jintArraygetWidgetBackgroundColorjintID=NULL; 
 voidsetWidgetForegroundColorjintjintjintjintID=NULL; 
 jintArraygetWidgetForegroundColorjintID=NULL; 
+voidsetFrameBackgroundColorjintjintjintjintID=NULL; 
+jintArraygetFrameBackgroundColorjintID=NULL; 
+voidsetFrameForegroundColorjintjintjintjintID=NULL; 
+jintArraygetFrameForegroundColorjintID=NULL; 
 voidsetWidgetFontWeightjintjstringID=NULL; 
 voidsetWidgetFontSizejintjintID=NULL; 
 jintgetWidgetFontSizejintID=NULL; 
 voidsetWidgetFontAnglejintjstringID=NULL; 
+voidsetFrameFontWeightjintjstringID=NULL; 
+voidsetFrameFontSizejintjintID=NULL; 
+jintgetFrameFontSizejintID=NULL; 
+voidsetFrameFontAnglejintjstringID=NULL; 
 voidsetWidgetPositionjintjintjintjintjintID=NULL; 
 jintArraygetWidgetPositionjintID=NULL; 
+voidsetFramePositionjintjintjintjintjintID=NULL; 
+jintArraygetFramePositionjintID=NULL; 
 voidsetWidgetCallbackjintjstringID=NULL; 
 jstringgetWidgetCallbackjintID=NULL; 
+voidsetFrameCallbackjintjstringID=NULL; 
+jstringgetFrameCallbackjintID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
@@ -179,6 +195,7 @@ jintnewRadioButtonID=NULL;
 jintnewSliderID=NULL; 
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
+jintnewFrameID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -191,20 +208,35 @@ voidsetRadioButtonParentjintjintID=NULL;
 voidsetSliderParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
 voidsetListBoxParentjintjintID=NULL; 
+voidsetFrameParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
+voidsetFrameTextjintjstringID=NULL; 
+jstringgetFrameTextjintID=NULL; 
 voidsetWidgetBackgroundColorjintjintjintjintID=NULL; 
 jintArraygetWidgetBackgroundColorjintID=NULL; 
 voidsetWidgetForegroundColorjintjintjintjintID=NULL; 
 jintArraygetWidgetForegroundColorjintID=NULL; 
+voidsetFrameBackgroundColorjintjintjintjintID=NULL; 
+jintArraygetFrameBackgroundColorjintID=NULL; 
+voidsetFrameForegroundColorjintjintjintjintID=NULL; 
+jintArraygetFrameForegroundColorjintID=NULL; 
 voidsetWidgetFontWeightjintjstringID=NULL; 
 voidsetWidgetFontSizejintjintID=NULL; 
 jintgetWidgetFontSizejintID=NULL; 
 voidsetWidgetFontAnglejintjstringID=NULL; 
+voidsetFrameFontWeightjintjstringID=NULL; 
+voidsetFrameFontSizejintjintID=NULL; 
+jintgetFrameFontSizejintID=NULL; 
+voidsetFrameFontAnglejintjstringID=NULL; 
 voidsetWidgetPositionjintjintjintjintjintID=NULL; 
 jintArraygetWidgetPositionjintID=NULL; 
+voidsetFramePositionjintjintjintjintjintID=NULL; 
+jintArraygetFramePositionjintID=NULL; 
 voidsetWidgetCallbackjintjstringID=NULL; 
 jstringgetWidgetCallbackjintID=NULL; 
+voidsetFrameCallbackjintjstringID=NULL; 
+jstringgetFrameCallbackjintID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
@@ -495,6 +527,29 @@ return res;
 
 }
 
+long CallScilabBridge::newFrame (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewFrameID = curEnv->GetStaticMethodID(cls, "newFrame", "()I" ) ;
+if (jintnewFrameID == NULL) {
+std::cerr << "Could not access to the method " << "newFrame" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewFrameID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
 void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, long figureID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -747,6 +802,27 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::setFrameParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameParentjintjintID = curEnv->GetStaticMethodID(cls, "setFrameParent", "(II)V" ) ;
+if (voidsetFrameParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setWidgetText (JavaVM * jvm_, long objID, char * text){
 
 JNIEnv * curEnv = NULL;
@@ -783,6 +859,57 @@ exit(EXIT_FAILURE);
 }
 
                         jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetWidgetTextjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
+}
+
+void CallScilabBridge::setFrameText (JavaVM * jvm_, long objID, char * text){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameTextjintjstringID = curEnv->GetStaticMethodID(cls, "setFrameText", "(ILjava/lang/String;)V" ) ;
+if (voidsetFrameTextjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameText" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring text_ = curEnv->NewStringUTF( text );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameTextjintjstringID ,objID, text_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+char * CallScilabBridge::getFrameText (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jstringgetFrameTextjintID = curEnv->GetStaticMethodID(cls, "getFrameText", "(I)Ljava/lang/String;" ) ;
+if (jstringgetFrameTextjintID == NULL) {
+std::cerr << "Could not access to the method " << "getFrameText" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetFrameTextjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -910,6 +1037,118 @@ return myArray;
 
 }
 
+void CallScilabBridge::setFrameBackgroundColor (JavaVM * jvm_, long objID, long red, long green, long blue){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setFrameBackgroundColor", "(IIII)V" ) ;
+if (voidsetFrameBackgroundColorjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameBackgroundColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameBackgroundColorjintjintjintjintID ,objID, red, green, blue);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long * CallScilabBridge::getFrameBackgroundColor (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintArraygetFrameBackgroundColorjintID = curEnv->GetStaticMethodID(cls, "getFrameBackgroundColor", "(I)[I" ) ;
+if (jintArraygetFrameBackgroundColorjintID == NULL) {
+std::cerr << "Could not access to the method " << "getFrameBackgroundColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetFrameBackgroundColorjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+void CallScilabBridge::setFrameForegroundColor (JavaVM * jvm_, long objID, long red, long green, long blue){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameForegroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setFrameForegroundColor", "(IIII)V" ) ;
+if (voidsetFrameForegroundColorjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameForegroundColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameForegroundColorjintjintjintjintID ,objID, red, green, blue);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long * CallScilabBridge::getFrameForegroundColor (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintArraygetFrameForegroundColorjintID = curEnv->GetStaticMethodID(cls, "getFrameForegroundColor", "(I)[I" ) ;
+if (jintArraygetFrameForegroundColorjintID == NULL) {
+std::cerr << "Could not access to the method " << "getFrameForegroundColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetFrameForegroundColorjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
 void CallScilabBridge::setWidgetFontWeight (JavaVM * jvm_, long objID, char * weight){
 
 JNIEnv * curEnv = NULL;
@@ -1000,6 +1239,96 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::setFrameFontWeight (JavaVM * jvm_, long objID, char * weight){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameFontWeightjintjstringID = curEnv->GetStaticMethodID(cls, "setFrameFontWeight", "(ILjava/lang/String;)V" ) ;
+if (voidsetFrameFontWeightjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameFontWeight" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring weight_ = curEnv->NewStringUTF( weight );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameFontWeightjintjstringID ,objID, weight_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFrameFontSize (JavaVM * jvm_, long objID, long size){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameFontSizejintjintID = curEnv->GetStaticMethodID(cls, "setFrameFontSize", "(II)V" ) ;
+if (voidsetFrameFontSizejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameFontSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameFontSizejintjintID ,objID, size);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::getFrameFontSize (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetFrameFontSizejintID = curEnv->GetStaticMethodID(cls, "getFrameFontSize", "(I)I" ) ;
+if (jintgetFrameFontSizejintID == NULL) {
+std::cerr << "Could not access to the method " << "getFrameFontSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetFrameFontSizejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setFrameFontAngle (JavaVM * jvm_, long objID, char * angle){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameFontAnglejintjstringID = curEnv->GetStaticMethodID(cls, "setFrameFontAngle", "(ILjava/lang/String;)V" ) ;
+if (voidsetFrameFontAnglejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameFontAngle" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring angle_ = curEnv->NewStringUTF( angle );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameFontAnglejintjstringID ,objID, angle_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setWidgetPosition (JavaVM * jvm_, long objID, long x, long y, long width, long height){
 
 JNIEnv * curEnv = NULL;
@@ -1034,6 +1363,62 @@ exit(EXIT_FAILURE);
 }
 
                         jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetWidgetPositionjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+void CallScilabBridge::setFramePosition (JavaVM * jvm_, long objID, long x, long y, long width, long height){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFramePositionjintjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setFramePosition", "(IIIII)V" ) ;
+if (voidsetFramePositionjintjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFramePosition" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFramePositionjintjintjintjintjintID ,objID, x, y, width, height);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long * CallScilabBridge::getFramePosition (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintArraygetFramePositionjintID = curEnv->GetStaticMethodID(cls, "getFramePosition", "(I)[I" ) ;
+if (jintArraygetFramePositionjintID == NULL) {
+std::cerr << "Could not access to the method " << "getFramePosition" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetFramePositionjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -1092,6 +1477,57 @@ exit(EXIT_FAILURE);
 }
 
                         jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetWidgetCallbackjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
+}
+
+void CallScilabBridge::setFrameCallback (JavaVM * jvm_, long objID, char * text){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameCallbackjintjstringID = curEnv->GetStaticMethodID(cls, "setFrameCallback", "(ILjava/lang/String;)V" ) ;
+if (voidsetFrameCallbackjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameCallback" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring text_ = curEnv->NewStringUTF( text );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameCallbackjintjstringID ,objID, text_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+char * CallScilabBridge::getFrameCallback (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jstringgetFrameCallbackjintID = curEnv->GetStaticMethodID(cls, "getFrameCallback", "(I)Ljava/lang/String;" ) ;
+if (jstringgetFrameCallbackjintID == NULL) {
+std::cerr << "Could not access to the method " << "getFrameCallback" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetFrameCallbackjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

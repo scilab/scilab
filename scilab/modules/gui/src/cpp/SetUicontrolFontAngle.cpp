@@ -42,18 +42,15 @@ int SetUicontrolFontAngle(sciPointObj* sciObj, int stackPointer, int valueType, 
           return SET_PROPERTY_ERROR;
         }
       
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
         {
-        case SCI_PUSHBUTTON:
-        case SCI_EDIT:
-        case SCI_UITEXT:
-          CallScilabBridge::setWidgetFontAngle(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontAngle);
-          return SET_PROPERTY_SUCCEED;
-        default:
-          /* Unimplmented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "FontAngle", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
+          CallScilabBridge::setFrameFontAngle(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontAngle);     
         }
+      else /* All other uicontrol styles */
+        {
+          CallScilabBridge::setWidgetFontAngle(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, fontAngle);
+        }
+      return SET_PROPERTY_SUCCEED;
     }
   else
     {

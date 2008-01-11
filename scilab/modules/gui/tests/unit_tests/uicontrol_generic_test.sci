@@ -57,4 +57,61 @@ set(h, "foregroundcolor", [1 0.5 0]);
 h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [figsize(1)-200 figsize(2)-20 200 20], "string", "I''m a top right "+uicontrol_style, "fontweight", "bold");
 set(h, "backgroundcolor", [1 0 1]);
 set(h, "foregroundcolor", [0 0 0]);
+
+// Test all properties with all possible values
+// - First: set the property
+// - Then: read the property and copare to the value set
+
+// Create a new figure
+scf();
+
+// Create a new uicontrol
+h = uicontrol("parent", gcf(), "style", uicontrol_style);
+
+// BackgroundColor
+// Vector of 'integer' values
+set(h, "backgroundcolor", [1 0 0]);
+if ~and(get(h, "backgroundcolor") == [1 0 0]) then
+  pause
+end
+// Vector of 'real' values
+set(h, "backgroundcolor", [0.3 0.4 0.5]);
+if ~and(get(h, "backgroundcolor") == [0.3 0.4 0.5]) then
+  pause
+end
+// String of 'integer' values
+set(h, "backgroundcolor", "1|1|0");
+if ~and(get(h, "backgroundcolor") == [1 1 0]) then
+  pause
+end
+// String of 'real' values
+set(h, "backgroundcolor", "0.2|0.3|0.4");
+if ~and(get(h, "backgroundcolor") == [0.2 0.3 0.4]) then
+  pause
+end
+// TODO Test with wrong format values: "aze", "", [], ...
+
+
+// ForegroundColor
+// Vector of 'integer' values
+set(h, "foregroundcolor", [1 0 1]);
+if ~and(get(h, "foregroundcolor") == [1 0 1]) then
+  pause
+end
+// Vector of 'real' values
+set(h, "foregroundcolor", [0.6 0.5 0.4]);
+if ~and(get(h, "foregroundcolor") == [0.6 0.5 0.4]) then
+  pause
+end
+// String of 'integer' values
+set(h, "foregroundcolor", "1|1|1");
+if ~and(get(h, "foregroundcolor") == [1 1 1]) then
+  pause
+end
+// String of 'real' values
+set(h, "foregroundcolor", "0.5|0.6|0.7");
+if ~and(get(h, "foregroundcolor") == [0.5 0.6 0.7]) then
+  pause
+end
+
 endfunction
