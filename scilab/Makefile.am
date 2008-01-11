@@ -118,11 +118,11 @@ localization:
 	FILENAME="*.po*"; \
 	rm modules/*/locales/*/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
-		echo "Building for $$LOCALE :"; \
+		echo "        -- Building for $$LOCALE --"; \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
 		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
-			echo "Creating $$PATHTO"; \
+			echo "        Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
