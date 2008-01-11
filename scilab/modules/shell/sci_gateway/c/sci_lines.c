@@ -48,7 +48,7 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid parameter(s).\n"));
+				Scierror(999,_("%s: Wrong type for second input argument: Matrix expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -64,7 +64,7 @@ int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("Invalid parameter(s).\n"));
+			Scierror(999,_("%s: Wrong type for first input argument: Matrix expected.\n"),fname);
 			return 0;
 		}
 

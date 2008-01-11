@@ -12,16 +12,13 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_tohome) _PARAMS((char *fname,unsigned long fname_len))
 {
-	BOOL bOK = FALSE;
 
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	bOK = tohome();
-
-	if (!bOK)
+	if (!tohome())
 	{
-		sciprint(_("Not implemented in this mode.\n"));
+		sciprint(_("%s: This feature has not been implemented in this mode.\n"),fname);
 	}
 
 	LhsVar(1) = 0;
