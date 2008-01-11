@@ -51,6 +51,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	int nbValues = 0;
 	int nbValues_end=0;
     int nbposition = 0;
+	int start_point=0;
 	char **match=NULL;
 
 	/* Are you sure for Lhs and Rhs */
@@ -128,6 +129,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
             for (x = 0; x < mn2; ++x)
             {
                 pointer=Str[0];
+				start_point=0;
                 save = (char *)MALLOC( sizeof(char) * ( 500 ) );
 				do
 				{
@@ -135,10 +137,11 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					w = pcre_private(pointer,save,&Output_Start,&Output_End);
 					if ( w == 0)
 					{         
-						values[nbValues++]=Output_Start+1;         /*adding the answer into the outputmatrix*/
-						values_end[nbValues_end++]=Output_End; 
+						values[nbValues++]=Output_Start+1+start_point;         /*adding the answer into the outputmatrix*/
+						values_end[nbValues_end++]=Output_End+start_point; 
 						position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
-	                    pointer=pointer+Output_End;				
+	                    pointer=pointer+Output_End;	
+						start_point=start_point+Output_End;
 					}
 				}while(w == 0);
             }
@@ -148,15 +151,15 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	/* TODO : Why 50 ? */
 	/* Please modify this */
 
- //   match = (char**)MALLOC(sizeof(char**)*(50));
-	//for( i=0;i<nbValues;i++)
-	//{
-	//	match[i] = (char*)MALLOC(sizeof(char*)*(50));
-	//    for(j=values[i]-1;j<values_end[i];j++)
-	//	{
-	//		match[i][j-values[i]+1]=Str[i][j];
-	//	}
-	//}
+    match = (char**)MALLOC(sizeof(char**)*(nbValues));
+	for( i=0;i<nbValues;i++)
+	{
+		match[i] = (char*)MALLOC(sizeof(char*)*(values_end[i]-values[i]+1));
+	    for(j=values[i]-1;j<values_end[i];j++)
+		{
+			match[i][j+1-values[i]]=Str[0][j];
+		}
+	}
 
 
 	freeArrayOfString(Str,mn);
@@ -170,21 +173,26 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		stk(outIndex)[i] = (double)values[i] ;
     }
     LhsVar(1) = Rhs+1 ;
+    
+	if (Lhs==2)
+	{
+		numRow   = 1;
+		outIndex = 0;
+		CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues_end,&outIndex);
+		for ( i = 0 ; i < nbposition ; i++ )
+		{
+			stk(outIndex)[i] = (double)values_end[i] ;
+		}
+		LhsVar(2) = Rhs+2;  
+	}
 
-    numRow   = 1;
-    outIndex = 0;
-    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues_end,&outIndex);
-    for ( i = 0 ; i < nbposition ; i++ )
-    {
-		stk(outIndex)[i] = (double)values_end[i] ;
-    }
-    LhsVar(2) = Rhs+2;  
-    	
-	//numRow =  values_end[nbValues_end]-values[nbValues]+1;
-	//outIndex = 1 ;
-	//CreateVarFromPtr(Rhs + 3,MATRIX_OF_STRING_DATATYPE, &numRow, &outIndex, match );
-	//LhsVar(3) = Rhs + 3 ;
-	
+    if (Lhs==3)
+	{
+		numRow =  nbValues;
+		outIndex = 1 ;
+		CreateVarFromPtr(Rhs + 3,MATRIX_OF_STRING_DATATYPE, &numRow, &outIndex, match );
+		LhsVar(3) = Rhs + 3 ;
+	}
 
     C2F(putlhsvar)();
 
