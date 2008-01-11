@@ -6,6 +6,17 @@ package org.scilab.modules.renderer.figureDrawing;
  *
  */
 public abstract class ExportToFile {	
+	
+	/** Code-number for each bitmap format */
+	public static final int BMP_EXPORT = 1;
+	public static final int GIF_EXPORT = 2;
+	public static final int JPG_EXPORT = 3;
+	public static final int PNG_EXPORT = 4;
+	public static final int PPM_EXPORT = 5;
+	
+	protected static final String INVALID_FILE = "File name not supported";
+
+	
 	/** Width and height of the figure  */
 	private int width;
 	private int height;
@@ -86,4 +97,24 @@ public abstract class ExportToFile {
 	 * Create a bitmap file which is the screen-shot of the figure
 	 */
 	public abstract void exportToBitmap();
+	
+	/**
+	 * Choose which kind of filetype will be exported /*
+	 * @param filetype type of the file
+	 * @param fileName name of the file
+	 * @return new ExportBitmap of
+	 */
+	public static ExportToFile createExporter(String fileName, int filetype) {		
+		switch (filetype) {
+		case BMP_EXPORT:  
+		case GIF_EXPORT:
+		case JPG_EXPORT:
+		case PNG_EXPORT:
+			return new ExportBitmap(fileName, filetype);
+		case PPM_EXPORT:
+			return new ExportPPM(fileName, filetype);	  
+		default: System.err.println(INVALID_FILE);
+		}
+		return null;		
+	}
 }

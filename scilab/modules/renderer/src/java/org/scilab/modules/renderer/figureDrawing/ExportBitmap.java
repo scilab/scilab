@@ -2,7 +2,9 @@ package org.scilab.modules.renderer.figureDrawing;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.media.opengl.GLException;
+
 import com.sun.opengl.util.Screenshot;
 
 /**
@@ -10,20 +12,11 @@ import com.sun.opengl.util.Screenshot;
  * @author Sylvestre Koumar
  *
  */
-public class ExportBitmap extends ExportToFile {
-
-	/** Code-number for each bitmap format */
-	public static final int BMP = 1;
-	public static final int GIF = 2;
-	public static final int JPG = 3;
-	public static final int PNG = 4;
-	public static final int PPM = 5;
-	
-	private static final String INVALID_FILE = "File name not supported";
+public class ExportBitmap extends ExportToFile {	
 		
 	/** File which contains the screen-shot */
 	private File file;
-
+	
 	/**
 	 * Default Constructor
 	 * @param filename name of the exported file
@@ -36,19 +29,17 @@ public class ExportBitmap extends ExportToFile {
 	/**
 	 * Create a bitmap file which is the screen-shot of the figure
 	 */
-	public void exportToBitmap() {		
-
+	public void exportToBitmap() {				
+		
 		switch (getFiletype()) {
-		case BMP:  file = new File(getFilename() + ".bmp");
+		case BMP_EXPORT:  file = new File(getFilename() + ".bmp");
 		break;
-		case GIF:  file = new File(getFilename() + ".gif");
+		case GIF_EXPORT:  file = new File(getFilename() + ".gif");
 		break;
-		case JPG:  file = new File(getFilename() + ".jpg");
+		case JPG_EXPORT:  file = new File(getFilename() + ".jpg");
 		break;
-		case PNG:  file = new File(getFilename() + ".png");
-		break;
-		case PPM:  file = new File(getFilename() + ".ppm");
-		break;
+		case PNG_EXPORT:  file = new File(getFilename() + ".png");
+		break;					  
 		default: System.err.println(INVALID_FILE);
 		return;
 		}
@@ -60,7 +51,7 @@ public class ExportBitmap extends ExportToFile {
 			ex1.printStackTrace();
 
 		} catch (IOException ex2) {
-			System.err.println(INVALID_FILE);
+			System.err.println(ExportToFile.INVALID_FILE);
 			ex2.printStackTrace();
 		}			
 	}

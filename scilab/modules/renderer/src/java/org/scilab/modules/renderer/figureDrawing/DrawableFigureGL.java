@@ -387,7 +387,7 @@ public class DrawableFigureGL extends ObjectGL {
   		GL gl = getGL();
   		// use the lastly modified buffer
   		gl.glReadBuffer(GL.GL_FRONT);
-  		ExportToFile export = new ExportBitmap(fileName, fileType);
+  		ExportToFile export = ExportToFile.createExporter(fileName, fileType);
   		export.setFileSize(getCanvasWidth(), getCanvasHeight());
   		export.exportToBitmap();
   		// back to defautl value
