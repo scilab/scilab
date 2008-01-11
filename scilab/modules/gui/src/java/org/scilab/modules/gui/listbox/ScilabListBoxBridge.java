@@ -192,4 +192,23 @@ public class ScilabListBoxBridge {
 	public static void setEnabled(ListBox listBox, boolean status) {
 		listBox.getAsSimpleListBox().setEnabled(status);
 	}
+	
+	/**
+	 * Set the horizontal alignment for the ListBox text
+	 * @param listBox the ListBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(ListBox listBox, String alignment) {
+		listBox.getAsSimpleListBox().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the ListBox text
+	 * @param listBox the ListBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(ListBox listBox, String alignment) {
+		listBox.getAsSimpleListBox().setVerticalAlignment(alignment);
+	}
+
 }

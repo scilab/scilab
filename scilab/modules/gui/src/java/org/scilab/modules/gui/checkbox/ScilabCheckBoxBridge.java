@@ -191,4 +191,23 @@ public class ScilabCheckBoxBridge {
 	public static void setEnabled(CheckBox checkBox, boolean status) {
 		checkBox.getAsSimpleCheckBox().setEnabled(status);
 	}
+	
+	/**
+	 * Set the horizontal alignment for the CheckBox text
+	 * @param checkBox the CheckBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(CheckBox checkBox, String alignment) {
+		checkBox.getAsSimpleCheckBox().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the CheckBox text
+	 * @param checkBox the CheckBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(CheckBox checkBox, String alignment) {
+		checkBox.getAsSimpleCheckBox().setVerticalAlignment(alignment);
+	}
+
 }

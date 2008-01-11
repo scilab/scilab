@@ -44,6 +44,8 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabFrame extends JPanel implements SimpleFrame {
 
+	private static final long serialVersionUID = -7401084975837285447L;
+
 	/**
 	 * Constructor
 	 */

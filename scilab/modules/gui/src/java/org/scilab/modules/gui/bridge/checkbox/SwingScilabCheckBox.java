@@ -9,6 +9,7 @@ import org.scilab.modules.gui.checkbox.SimpleCheckBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -116,6 +117,22 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 	public ToolBar getToolBar() {
 		/* Unimplemented for CheckBoxes */
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Set the horizontal alignment for the CheckBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+	}
+
+	/**
+	 * Set the vertical alignment for the CheckBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
 
 }

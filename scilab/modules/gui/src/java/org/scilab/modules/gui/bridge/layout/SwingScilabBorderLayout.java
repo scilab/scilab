@@ -11,6 +11,8 @@ import org.scilab.modules.gui.layout.BorderLayout;
  */
 public class SwingScilabBorderLayout extends java.awt.BorderLayout implements BorderLayout {
 	
+	private static final long serialVersionUID = 222353824141297435L;
+
 	/**
 	 * Constructor
 	 */

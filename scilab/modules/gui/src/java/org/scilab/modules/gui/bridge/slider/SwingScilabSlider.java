@@ -137,4 +137,20 @@ public class SwingScilabSlider extends JSlider implements SimpleSlider {
 	public void setText(String text) {
 		this.setName(text);
 	}
+
+	/**
+	 * Set the horizontal alignment for the Slider text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Set the vertical alignment for the Slider text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
 }

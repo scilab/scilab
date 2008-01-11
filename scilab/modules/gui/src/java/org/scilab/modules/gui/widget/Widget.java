@@ -76,4 +76,16 @@ public interface Widget extends Dockable {
 	 */
 	void setCallback(String command, int commandType);
 
+	/**
+	 * Set the horizontal alignment for the widget text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	void setHorizontalAlignment(String alignment);
+
+	/**
+	 * Set the vertical alignment for the widget text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	void setVerticalAlignment(String alignment);
+
 }

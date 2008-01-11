@@ -183,5 +183,20 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
 		ScilabBridge.setEnabled(this, status);
 	}
 
+	/**
+	 * Set the horizontal alignment for the CheckBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		ScilabBridge.setHorizontalAlignment(this, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the CheckBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		ScilabBridge.setVerticalAlignment(this, alignment);
+	}
 
 }

@@ -23,6 +23,8 @@ import org.scilab.modules.renderer.figureDrawing.SciRenderer;
  */
 public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
+	private static final long serialVersionUID = 6101347094617535625L;
+
 	/**
 	 * Constructor
 	 * 

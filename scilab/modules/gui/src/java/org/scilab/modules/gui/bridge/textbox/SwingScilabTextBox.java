@@ -17,6 +17,8 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 
+	private static final long serialVersionUID = 3632560416759268432L;
+
 	/**
 	 * Constructor
 	 */
@@ -138,5 +140,20 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Set the horizontal alignment for the TextBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Set the vertical alignment for the TextBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
 
 }

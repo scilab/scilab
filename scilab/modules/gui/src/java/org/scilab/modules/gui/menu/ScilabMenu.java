@@ -214,4 +214,21 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	public void setCallback(String command, int commandType) {
 		ScilabBridge.setCallback(this, command, commandType);
 	}
+
+	/**
+	 * Set the horizontal alignment for the Menu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		ScilabBridge.setHorizontalAlignment(this, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Menu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		ScilabBridge.setVerticalAlignment(this, alignment);
+	}
+
 }

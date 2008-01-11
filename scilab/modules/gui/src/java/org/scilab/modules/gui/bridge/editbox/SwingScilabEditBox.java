@@ -11,6 +11,7 @@ import org.scilab.modules.gui.editbox.SimpleEditBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabWidgetBorder;
 import org.scilab.modules.gui.utils.Size;
 
@@ -122,6 +123,22 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	 */
 	public ToolBar getToolBar() {
 		/* Unimplemented for EditBoxes */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Set the horizontal alignment for the EditBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+	}
+
+	/**
+	 * Set the vertical alignment for the EditBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -42,17 +42,14 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, int stackPointer, int v
           return SET_PROPERTY_ERROR;
         }
       
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      // Update Java object
+      if (pUICONTROL_FEATURE(sciObj)->style != SCI_FRAME)
         {
-        case SCI_UITEXT:
-        case SCI_CHECKBOX:
-          // TODO Change the size of the Java object
-           return SET_PROPERTY_SUCCEED;
-        default:
-          /* Unimplemented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "HorizontalAlignment", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
+          CallScilabBridge::setWidgetHorizontalAlignment(getScilabJavaVM(), 
+                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                         alignment);
         }
+      return SET_PROPERTY_SUCCEED;
     }
   else
     {

@@ -11,6 +11,8 @@ import org.scilab.modules.gui.layout.FlowLayout;
  */
 public class SwingScilabFlowLayout extends java.awt.FlowLayout implements FlowLayout {
 
+	private static final long serialVersionUID = 1947906560190763378L;
+
 	/**
 	 * Constructor
 	 */

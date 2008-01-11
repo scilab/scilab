@@ -191,4 +191,23 @@ public class ScilabEditBoxBridge {
 	public static void setEnabled(EditBox editBox, boolean status) {
 		editBox.getAsSimpleEditBox().setEnabled(status);
 	}
+
+	/**
+	 * Set the horizontal alignment for the EditBox text
+	 * @param editBox the EditBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(EditBox editBox, String alignment) {
+		editBox.getAsSimpleEditBox().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the EditBox text
+	 * @param editBox the EditBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(EditBox editBox, String alignment) {
+		editBox.getAsSimpleEditBox().setVerticalAlignment(alignment);
+	}
+
 }

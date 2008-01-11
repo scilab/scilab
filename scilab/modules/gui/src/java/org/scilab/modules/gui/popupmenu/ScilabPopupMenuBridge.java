@@ -191,4 +191,23 @@ public class ScilabPopupMenuBridge {
 	public static void setEnabled(PopupMenu popupMenu, boolean status) {
 		popupMenu.getAsSimplePopupMenu().setEnabled(status);
 	}
+
+	/**
+	 * Set the horizontal alignment for the PopupMenu text
+	 * @param popupMenu the PopupMenu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(PopupMenu popupMenu, String alignment) {
+		popupMenu.getAsSimplePopupMenu().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the PopupMenu text
+	 * @param popupMenu the PopupMenu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(PopupMenu popupMenu, String alignment) {
+		popupMenu.getAsSimplePopupMenu().setVerticalAlignment(alignment);
+	}
+
 }

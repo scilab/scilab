@@ -189,6 +189,15 @@
 	<method name="getFrameCallback" returnType="String" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
+<!-- Widget Alignment setting -->
+	<method name="setWidgetHorizontalAlignment" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="alignment"/>
+	</method>
+	<method name="setWidgetVerticalAlignment" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="alignment"/>
+	</method>
 <!-- Enable/Disable Menus -->
 	<method name="setRootMenuEnabled" returnType="void" modifier="static">
 	  <parameter type="String" name="menuName"/>

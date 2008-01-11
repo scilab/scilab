@@ -191,4 +191,23 @@ public class ScilabSliderBridge {
 	public static void setEnabled(Slider slider, boolean status) {
 		slider.getAsSimpleSlider().setEnabled(status);
 	}
+
+	/**
+	 * Set the horizontal alignment for the Slider text
+	 * @param slider the Slider we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(Slider slider, String alignment) {
+		slider.getAsSimpleSlider().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Slider text
+	 * @param slider the Slider we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(Slider slider, String alignment) {
+		slider.getAsSimpleSlider().setVerticalAlignment(alignment);
+	}
+
 }

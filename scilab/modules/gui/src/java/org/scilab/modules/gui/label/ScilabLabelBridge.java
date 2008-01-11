@@ -191,4 +191,23 @@ public class ScilabLabelBridge {
 	public static void setEnabled(Label label, boolean status) {
 		label.getAsSimpleLabel().setEnabled(status);
 	}
+	
+	/**
+	 * Set the horizontal alignment for the Label text
+	 * @param label the Label we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(Label label, String alignment) {
+		label.getAsSimpleLabel().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Label text
+	 * @param label the Label we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(Label label, String alignment) {
+		label.getAsSimpleLabel().setVerticalAlignment(alignment);
+	}
+
 }

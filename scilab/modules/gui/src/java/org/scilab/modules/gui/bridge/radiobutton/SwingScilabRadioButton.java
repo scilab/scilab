@@ -9,6 +9,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -116,5 +117,21 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 	public ToolBar getToolBar() {
 		/* Unimplemented for RadioButtones */
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Set the horizontal alignment for the RadioButton text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+	}
+
+	/**
+	 * Set the vertical alignment for the RadioButton text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
 }

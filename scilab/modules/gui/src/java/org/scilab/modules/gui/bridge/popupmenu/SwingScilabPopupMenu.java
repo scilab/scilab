@@ -136,4 +136,19 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Set the horizontal alignment for the PopupMenu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Set the vertical alignment for the PopupMenu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
 }

@@ -10,6 +10,7 @@ import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -126,6 +127,22 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	public ToolBar getToolBar() {
 		/* Unimplemented for Labels */
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Set the horizontal alignment for the Label text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+	}
+
+	/**
+	 * Set the vertical alignment for the Label text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
 
 }

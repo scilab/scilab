@@ -50,16 +50,16 @@ int SetUicontrolUnits(sciPointObj* sciObj, int stackPointer, int valueType, int 
           return SET_PROPERTY_ERROR;
         }
       
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      // Update Java objects 
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
         {
-        case SCI_PUSHBUTTON:
-          // TODO Change the size of the Java object
-           return SET_PROPERTY_SUCCEED;
-        default:
-          /* Unimplemented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Units", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
+          // TODO Change size and dimensions of the frame
         }
+      else /* All other uicontrol styles */
+        {
+          // TODO Change size and dimensions of the widget
+        }
+      return SET_PROPERTY_SUCCEED;
     }
   else
     {

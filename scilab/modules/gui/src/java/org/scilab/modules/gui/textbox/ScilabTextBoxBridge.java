@@ -181,5 +181,23 @@ public class ScilabTextBoxBridge {
 	public static void setCallback(TextBox textBox, String command, int commandType) {
 		textBox.getAsSimpleTextBox().setCallback(command, commandType);
 	}
+	
+	/**
+	 * Set the horizontal alignment for the TextBox text
+	 * @param textBox the TextBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(TextBox textBox, String alignment) {
+		textBox.getAsSimpleTextBox().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the TextBox text
+	 * @param textBox the TextBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(TextBox textBox, String alignment) {
+		textBox.getAsSimpleTextBox().setVerticalAlignment(alignment);
+	}
 
 }

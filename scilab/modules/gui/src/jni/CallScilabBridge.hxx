@@ -105,6 +105,8 @@ jmethodID voidsetWidgetCallbackjintjstringID; // cache method id
 jmethodID jstringgetWidgetCallbackjintID; // cache method id
 jmethodID voidsetFrameCallbackjintjstringID; // cache method id
 jmethodID jstringgetFrameCallbackjintID; // cache method id
+jmethodID voidsetWidgetHorizontalAlignmentjintjstringID; // cache method id
+jmethodID voidsetWidgetVerticalAlignmentjintjstringID; // cache method id
 jmethodID voidsetRootMenuEnabledjstringjbooleanID; // cache method id
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
@@ -264,6 +266,10 @@ static char * getWidgetCallback(JavaVM * jvm_, long objID);
 static void setFrameCallback(JavaVM * jvm_, long objID, char * text);
 
 static char * getFrameCallback(JavaVM * jvm_, long objID);
+
+static void setWidgetHorizontalAlignment(JavaVM * jvm_, long objID, char * alignment);
+
+static void setWidgetVerticalAlignment(JavaVM * jvm_, long objID, char * alignment);
 
 static void setRootMenuEnabled(JavaVM * jvm_, char * menuName, bool status);
 

@@ -204,4 +204,22 @@ public class ScilabMenuBridge {
 		menu.getAsSimpleMenu().setCallback(command, commandType);
 	}
 
+	/**
+	 * Set the horizontal alignment for the Menu text
+	 * @param menu the Menu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(Menu menu, String alignment) {
+		menu.getAsSimpleMenu().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Menu text
+	 * @param menu the Menu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(Menu menu, String alignment) {
+		menu.getAsSimpleMenu().setVerticalAlignment(alignment);
+	}
+
 }

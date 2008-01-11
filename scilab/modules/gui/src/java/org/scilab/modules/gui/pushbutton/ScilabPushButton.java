@@ -191,22 +191,20 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		return ScilabBridge.getFont(this);
 	}
 
-	//	/**
-//	 * Sets a MenuBar to an element
-//	 * @param newMenuBar the MenuBar to set to the element
-//	 */
-//	public void addMenuBar(MenuBar newMenuBar) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	/**
-//	 * Sets a ToolBar to an element
-//	 * @param newToolBar the ToolBar to set to the element
-//	 */
-//	public void addToolBar(ToolBar newToolBar) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	/**
+	 * Set the horizontal alignment for the PushButton text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		ScilabBridge.setHorizontalAlignment(this, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the PushButton text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		ScilabBridge.setVerticalAlignment(this, alignment);
+	}
 	
 }

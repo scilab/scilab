@@ -231,4 +231,20 @@ public class SwingScilabListBox implements SimpleListBox {
 	public void setText(String text) {
 		// TODO Auto-generated method stub
 	}
+	
+	/**
+	 * Set the horizontal alignment for the ListBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Set the vertical alignment for the ListBox text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		throw new UnsupportedOperationException();
+	}
 }

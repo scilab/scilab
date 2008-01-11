@@ -2,8 +2,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.Dimension;
-
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;

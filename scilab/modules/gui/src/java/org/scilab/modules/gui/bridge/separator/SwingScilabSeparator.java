@@ -12,6 +12,8 @@ import org.scilab.modules.gui.separator.Separator;
 */
 public class SwingScilabSeparator extends JSeparator implements Separator {
 
+	private static final long serialVersionUID = 5992766808459442369L;
+
 	/**
 	 * Constructor
 	 */

@@ -150,6 +150,8 @@ voidsetWidgetCallbackjintjstringID=NULL;
 jstringgetWidgetCallbackjintID=NULL; 
 voidsetFrameCallbackjintjstringID=NULL; 
 jstringgetFrameCallbackjintID=NULL; 
+voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
+voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
@@ -237,6 +239,8 @@ voidsetWidgetCallbackjintjstringID=NULL;
 jstringgetWidgetCallbackjintID=NULL; 
 voidsetFrameCallbackjintjstringID=NULL; 
 jstringgetFrameCallbackjintID=NULL; 
+voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
+voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
@@ -1541,6 +1545,52 @@ curEnv->ReleaseStringUTFChars(res, tempString);
 
 return myStringBuffer;
 
+}
+
+void CallScilabBridge::setWidgetHorizontalAlignment (JavaVM * jvm_, long objID, char * alignment){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetWidgetHorizontalAlignmentjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetHorizontalAlignment", "(ILjava/lang/String;)V" ) ;
+if (voidsetWidgetHorizontalAlignmentjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetHorizontalAlignment" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring alignment_ = curEnv->NewStringUTF( alignment );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetHorizontalAlignmentjintjstringID ,objID, alignment_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setWidgetVerticalAlignment (JavaVM * jvm_, long objID, char * alignment){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetWidgetVerticalAlignmentjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetVerticalAlignment", "(ILjava/lang/String;)V" ) ;
+if (voidsetWidgetVerticalAlignmentjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetVerticalAlignment" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring alignment_ = curEnv->NewStringUTF( alignment );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetVerticalAlignmentjintjstringID ,objID, alignment_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 void CallScilabBridge::setRootMenuEnabled (JavaVM * jvm_, char * menuName, bool status){

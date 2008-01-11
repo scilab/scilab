@@ -1023,4 +1023,28 @@ public class CallScilabBridge {
 		
 		return position;
 	}
+	
+	/***************************/
+	/*                         */
+	/* OBJECT ALIGNMENT BRIDGE */
+	/*                         */
+	/***************************/
+
+	/**
+	 * Set the horizontal alignment for the Widget text
+	 * @param id the id of the Widget
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setWidgetHorizontalAlignment(int id, String alignment) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Widget text
+	 * @param id the id of the Widget
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setWidgetVerticalAlignment(int id, String alignment) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setVerticalAlignment(alignment);
+	}
 }

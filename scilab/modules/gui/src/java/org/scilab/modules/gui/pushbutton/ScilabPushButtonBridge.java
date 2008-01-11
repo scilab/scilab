@@ -192,5 +192,24 @@ public class ScilabPushButtonBridge {
 	public static Font getFont(PushButton pushButton) {
 		return pushButton.getAsSimplePushButton().getFont();
 	}
+
+	/**
+	 * Set the horizontal alignment for the PushButton text
+	 * @param pushButton the PushButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(PushButton pushButton, String alignment) {
+		pushButton.getAsSimplePushButton().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the PushButton text
+	 * @param pushButton the PushButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(PushButton pushButton, String alignment) {
+		pushButton.getAsSimplePushButton().setVerticalAlignment(alignment);
+	}
+
 }
 

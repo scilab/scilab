@@ -4,7 +4,6 @@
 package org.scilab.modules.gui.bridge.radiogroup;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
 
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
@@ -16,6 +15,8 @@ import org.scilab.modules.gui.radiogroup.RadioGroup;
  */
 public class SwingScilabRadioGroup extends ButtonGroup implements RadioGroup {
 	
+	private static final long serialVersionUID = 5155598847554099496L;
+
 	/**
 	 * Constructor
 	 */

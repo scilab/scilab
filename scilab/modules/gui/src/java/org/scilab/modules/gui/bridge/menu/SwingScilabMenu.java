@@ -14,6 +14,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciActionListener;
+import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -193,5 +194,21 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 */
 	public void setCallback(String command, int commandType) {
 		addActionListener(ScilabCallBack.create(command, commandType));
+	}
+
+	/**
+	 * Set the horizontal alignment for the Menu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+	}
+
+	/**
+	 * Set the vertical alignment for the Menu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
 }

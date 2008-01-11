@@ -1184,6 +1184,24 @@ public class ScilabBridge {
 		ScilabMenuBridge.setCallback(menu, command, commandType);
 	}
 
+	/**
+	 * Set the horizontal alignment for the Menu text
+	 * @param menu the Menu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(Menu menu, String alignment) {
+		ScilabMenuBridge.setHorizontalAlignment(menu, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Menu text
+	 * @param menu the Menu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(Menu menu, String alignment) {
+		ScilabMenuBridge.setVerticalAlignment(menu, alignment);
+	}
+
 	/*****************/
 	/* Separator Bridge */
 	/*****************/
@@ -1371,6 +1389,24 @@ public class ScilabBridge {
 		return ScilabPushButtonBridge.getFont(pushButton);
 	}
 
+	/**
+	 * Set the horizontal alignment for the PushButton text
+	 * @param pushButton the PushButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(PushButton pushButton, String alignment) {
+		ScilabPushButtonBridge.setHorizontalAlignment(pushButton, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the PushButton text
+	 * @param pushButton the PushButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(PushButton pushButton, String alignment) {
+		ScilabPushButtonBridge.setVerticalAlignment(pushButton, alignment);
+	}
+
 	/*****************/
 	/* TextBox Bridge */
 	/*****************/
@@ -1532,6 +1568,24 @@ public class ScilabBridge {
 	 */
 	public static void setCallback(TextBox textBox, String command, int commandType) {
 		ScilabTextBoxBridge.setCallback(textBox, command, commandType);
+	}
+
+	/**
+	 * Set the horizontal alignment for the TextBox text
+	 * @param textBox the TextBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(TextBox textBox, String alignment) {
+		ScilabTextBoxBridge.setHorizontalAlignment(textBox, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the TextBox text
+	 * @param textBox the TextBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(TextBox textBox, String alignment) {
+		ScilabTextBoxBridge.setVerticalAlignment(textBox, alignment);
 	}
 
 	/******************/
@@ -1706,6 +1760,24 @@ public class ScilabBridge {
 		ScilabEditBoxBridge.setCallback(editBox, command, commandType);
 	}
 
+	/**
+	 * Set the horizontal alignment for the EditBox text
+	 * @param editBox the EditBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(EditBox editBox, String alignment) {
+		ScilabEditBoxBridge.setHorizontalAlignment(editBox, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the EditBox text
+	 * @param editBox the EditBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(EditBox editBox, String alignment) {
+		ScilabEditBoxBridge.setVerticalAlignment(editBox, alignment);
+	}
+
 	/******************/
 	/* Label Bridge */
 	/******************/
@@ -1876,6 +1948,24 @@ public class ScilabBridge {
 	 */
 	public static void setCallback(Label label, String command, int commandType) {
 		ScilabLabelBridge.setCallback(label, command, commandType);
+	}
+
+	/**
+	 * Set the horizontal alignment for the Label text
+	 * @param label the Label we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(Label label, String alignment) {
+		ScilabLabelBridge.setHorizontalAlignment(label, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Label text
+	 * @param label the Label we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(Label label, String alignment) {
+		ScilabLabelBridge.setVerticalAlignment(label, alignment);
 	}
 
 	/*******************/
@@ -2050,6 +2140,24 @@ public class ScilabBridge {
 		ScilabCheckBoxBridge.setCallback(checkBox, command, commandType);
 	}
 
+	/**
+	 * Set the horizontal alignment for the CheckBox text
+	 * @param checkBox the CheckBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(CheckBox checkBox, String alignment) {
+		ScilabCheckBoxBridge.setHorizontalAlignment(checkBox, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the CheckBox text
+	 * @param checkBox the CheckBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(CheckBox checkBox, String alignment) {
+		ScilabCheckBoxBridge.setVerticalAlignment(checkBox, alignment);
+	}
+
 	/**********************/
 	/* RadioButton Bridge */
 	/**********************/
@@ -2222,6 +2330,24 @@ public class ScilabBridge {
 		ScilabRadioButtonBridge.setCallback(radioButton, command, commandType);
 	}
 
+	/**
+	 * Set the horizontal alignment for the RadioButton text
+	 * @param radioButton the RadioButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(RadioButton radioButton, String alignment) {
+		ScilabRadioButtonBridge.setHorizontalAlignment(radioButton, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the RadioButton text
+	 * @param radioButton the RadioButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(RadioButton radioButton, String alignment) {
+		ScilabRadioButtonBridge.setVerticalAlignment(radioButton, alignment);
+	}
+
 	/*****************/
 	/* Slider Bridge */
 	/*****************/
@@ -2392,6 +2518,24 @@ public class ScilabBridge {
 	 */
 	public static void setCallback(Slider slider, String command, int commandType) {
 		ScilabSliderBridge.setCallback(slider, command, commandType);
+	}
+
+	/**
+	 * Set the horizontal alignment for the Slider text
+	 * @param slider the Slider we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(Slider slider, String alignment) {
+		ScilabSliderBridge.setHorizontalAlignment(slider, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Slider text
+	 * @param slider the Slider we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(Slider slider, String alignment) {
+		ScilabSliderBridge.setVerticalAlignment(slider, alignment);
 	}
 
 	/******************/
@@ -2567,6 +2711,24 @@ public class ScilabBridge {
 	}
 
 
+	/**
+	 * Set the horizontal alignment for the ListBox text
+	 * @param listBox the ListBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(ListBox listBox, String alignment) {
+		ScilabListBoxBridge.setHorizontalAlignment(listBox, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the ListBox text
+	 * @param listBox the ListBox we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(ListBox listBox, String alignment) {
+		ScilabListBoxBridge.setVerticalAlignment(listBox, alignment);
+	}
+
 	/********************/
 	/* PopupMenu Bridge */
 	/********************/
@@ -2737,6 +2899,24 @@ public class ScilabBridge {
 	 */
 	public static void setCallback(PopupMenu popupMenu, String command, int commandType) {
 		ScilabPopupMenuBridge.setCallback(popupMenu, command, commandType);
+	}
+
+	/**
+	 * Set the horizontal alignment for the PopupMenu text
+	 * @param popupMenu the PopupMenu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(PopupMenu popupMenu, String alignment) {
+		ScilabPopupMenuBridge.setHorizontalAlignment(popupMenu, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the PopupMenu text
+	 * @param popupMenu the PopupMenu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(PopupMenu popupMenu, String alignment) {
+		ScilabPopupMenuBridge.setVerticalAlignment(popupMenu, alignment);
 	}
 
 	/*********************/

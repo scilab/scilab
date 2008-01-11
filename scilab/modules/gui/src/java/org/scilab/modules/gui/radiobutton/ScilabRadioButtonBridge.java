@@ -191,4 +191,23 @@ public class ScilabRadioButtonBridge {
 	public static void setEnabled(RadioButton radioButton, boolean status) {
 		radioButton.getAsSimpleRadioButton().setEnabled(status);
 	}
+	
+	/**
+	 * Set the horizontal alignment for the RadioButton text
+	 * @param radioButton the RadioButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(RadioButton radioButton, String alignment) {
+		radioButton.getAsSimpleRadioButton().setHorizontalAlignment(alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the RadioButton text
+	 * @param radioButton the RadioButton we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(RadioButton radioButton, String alignment) {
+		radioButton.getAsSimpleRadioButton().setVerticalAlignment(alignment);
+	}
+
 }
