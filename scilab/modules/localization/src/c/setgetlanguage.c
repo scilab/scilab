@@ -42,7 +42,6 @@ static char *GetLanguageFromAlias(char *langAlias);
 /*--------------------------------------------------------------------------*/
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
-
 	if (lang)
 	{
 		if ( LanguageIsOK(lang) )
@@ -59,11 +58,13 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 				/* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
 				ret = setlocale(LC_CTYPE,lang);
 #endif
+				/*
+				  This stuff causes pb when locales have been compiled 
 				if (ret==NULL){
 					fprintf(stderr, "Localization: Doesn't support the locale '%s'.\n",lang);
 					return FALSE;
 				}
-				
+				*/
 				putEnvLC_ALL(lang);
 
 				/* change language */
