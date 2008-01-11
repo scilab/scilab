@@ -236,7 +236,6 @@ IMPORT int soxpreview;	/* Preview mode: be fast and ugly */
 
 #if defined(unix) || defined(__OS2__) || defined(aix)
 #include <errno.h>
-extern int errno;
 #endif
 
 #ifdef	__OS2__
@@ -244,9 +243,6 @@ extern int errno;
 #else
 #define REMOVE unlink
 #endif
-
-char *version();			/* return version number */
-/* ummmm??? */
 
 #include "machine.h" 
 
