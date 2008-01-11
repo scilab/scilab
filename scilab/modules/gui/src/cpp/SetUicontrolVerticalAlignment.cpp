@@ -43,7 +43,11 @@ int SetUicontrolVerticalAlignment(sciPointObj* sciObj, int stackPointer, int val
         }
       
       // Update Java object
-      if (pUICONTROL_FEATURE(sciObj)->style != SCI_FRAME)
+      if (pUICONTROL_FEATURE(sciObj)->style != SCI_UIFRAME
+          && pUICONTROL_FEATURE(sciObj)->style != SCI_EDIT
+          && pUICONTROL_FEATURE(sciObj)->style != SCI_SLIDER
+          && pUICONTROL_FEATURE(sciObj)->style != SCI_POPUPMENU
+          && pUICONTROL_FEATURE(sciObj)->style != SCI_LISTBOX)
         {
           CallScilabBridge::setWidgetVerticalAlignment(getScilabJavaVM(), 
                                                        pUICONTROL_FEATURE(sciObj)->hashMapIndex,

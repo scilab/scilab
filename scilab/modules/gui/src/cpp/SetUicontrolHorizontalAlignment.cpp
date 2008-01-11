@@ -43,7 +43,10 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, int stackPointer, int v
         }
       
       // Update Java object
-      if (pUICONTROL_FEATURE(sciObj)->style != SCI_FRAME)
+      if (pUICONTROL_FEATURE(sciObj)->style != SCI_UIFRAME
+          && pUICONTROL_FEATURE(sciObj)->style != SCI_SLIDER
+          && pUICONTROL_FEATURE(sciObj)->style != SCI_POPUPMENU
+          && pUICONTROL_FEATURE(sciObj)->style != SCI_LISTBOX)
         {
           CallScilabBridge::setWidgetHorizontalAlignment(getScilabJavaVM(), 
                                                        pUICONTROL_FEATURE(sciObj)->hashMapIndex,
