@@ -33,10 +33,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
           return SET_PROPERTY_ERROR;
         }
 
-      xInt = (int) (xFloat * 255);
-      yInt = (int) (yFloat * 255);
-      widthInt = (int) (widthFloat * 255);
-      heightInt = (int) (heightFloat * 255);
+      xInt = (int) (xFloat);
+      yInt = (int) (yFloat);
+      widthInt = (int) (widthFloat);
+      heightInt = (int) (heightFloat);
       
     }
   else if (valueType == sci_matrix)
