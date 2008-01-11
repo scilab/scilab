@@ -89,7 +89,6 @@ void DrawableFigure::drawInContext( void )
   {
     displayChildren() ;
   }
-
   endDrawing() ;
 }
 /*---------------------------------------------------------------------------------*/
