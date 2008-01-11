@@ -150,14 +150,6 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	
 	matrixdimension = value_param_pos_1 * value_param_pos_2;
-    if ( (value_param_pos_1 == 0) && (value_param_pos_2==0) )
-	{
-		int l = 0;
-		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&value_param_pos_1,&value_param_pos_2,&l);
-		LhsVar(1) = Rhs+1 ;
-		C2F(putlhsvar)();
-		return 0;
-	}
 	
 	if (matrixdimension > 0)
 	{
@@ -168,7 +160,11 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	else
 	{
-		sci_emptystr_no_rhs();
+		int l = 0;
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&value_param_pos_1,&value_param_pos_2,&l);
+		LhsVar(1) = Rhs+1 ;
+		C2F(putlhsvar)();
+		return 0;
 	}   
 	return 0;
 }
