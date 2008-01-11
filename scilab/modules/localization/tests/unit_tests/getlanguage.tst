@@ -16,6 +16,3 @@ lang="en_US"; setlanguage(lang); if getlanguage() <> "en_US" then pause, end
 // Switch to french with full code
 lang="fr_FR"; setlanguage(lang); if getlanguage() <> "fr_FR" then pause, end
 
-// Stay in the curretn lang when calling a wrong lang
-lang="ffff"; setlanguage(lang); if getlanguage() <> "fr_FR" then pause, end
-

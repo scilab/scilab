@@ -11,7 +11,3 @@ lang="en"; setlanguage(lang); if getlanguage() <> "en_US" then pause, end
 lang="en_US"; setlanguage(lang); if getlanguage() <> "en_US" then pause, end
 // Switch to french with full code
 lang="fr_FR"; setlanguage(lang); if getlanguage() <> "fr_FR" then pause, end
-// Switch to default lang by calling a wrong lang
-lang="ffff"; setlanguage(lang); if getlanguage() <> "en_US" then pause, end
-Unsupported language 'ffff'.
-Switching to default language : 'en_US'.
