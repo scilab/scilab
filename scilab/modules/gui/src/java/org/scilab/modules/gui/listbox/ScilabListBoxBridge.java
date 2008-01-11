@@ -211,4 +211,13 @@ public class ScilabListBoxBridge {
 		listBox.getAsSimpleListBox().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set if more than one item can be selected in a ListBox
+	 * @param listBox the ListBox we want to set the status of
+	 * @param status true if multiple selection is enabled
+	 */
+	public static void setMultipleSelectionEnabled(ListBox listBox, boolean status) {
+		listBox.getAsSimpleListBox().setMultipleSelectionEnabled(status);
+	}
+
 }

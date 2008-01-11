@@ -198,6 +198,29 @@
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="alignment"/>
 	</method>
+<!-- SliderStep setting -->
+	<method name="setSliderMinorTickSpacing" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="space"/>
+	</method>
+	<method name="setSliderMajorTickSpacing" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="space"/>
+	</method>
+<!-- Min/Max Slider setting -->
+	<method name="setSliderMinValue" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="value"/>
+	</method>
+	<method name="setSliderMaxValue" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="value"/>
+	</method>
+<!-- Listbox Multiple Selection setting -->
+	<method name="setListBoxMultipleSelectionEnabled" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
 <!-- Enable/Disable Menus -->
 	<method name="setRootMenuEnabled" returnType="void" modifier="static">
 	  <parameter type="String" name="menuName"/>

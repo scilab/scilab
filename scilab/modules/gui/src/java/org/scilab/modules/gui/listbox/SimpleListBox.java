@@ -10,4 +10,11 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  */
 public interface SimpleListBox extends Widget {
+	
+	/**
+	 * Set if more than one item can be selected in a ListBox
+	 * @param status true if multiple selection is enabled
+	 */
+	void setMultipleSelectionEnabled(boolean status);
+
 }

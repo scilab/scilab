@@ -18,12 +18,6 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
     return SET_PROPERTY_ERROR;
   }
 
-  if (nbRow == 0) {
-    // This case should never happen beacause if nbRow==0 then nbCol is also 0
-    sciprint(_("%s property value must be a single string.\n"), "String");
-    return SET_PROPERTY_ERROR;
-  }
-
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Send the label to Java

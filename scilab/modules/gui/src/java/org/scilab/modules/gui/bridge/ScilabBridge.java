@@ -2538,6 +2538,42 @@ public class ScilabBridge {
 		ScilabSliderBridge.setVerticalAlignment(slider, alignment);
 	}
 
+	/**
+	 * Set the minor tick spacing for a Slider
+	 * @param slider the Slider we want to set the spacing of
+	 * @param space the increment value
+	 */
+	public static void setMinorTickSpacing(Slider slider, int space) {
+		ScilabSliderBridge.setMinorTickSpacing(slider, space);	
+	}
+
+	/**
+	 * Set the major tick spacing for a Slider
+	 * @param slider the Slider we want to set the spacing of
+	 * @param space the increment value
+	 */
+	public static void setMajorTickSpacing(Slider slider, int space) {
+		ScilabSliderBridge.setMinorTickSpacing(slider, space);	
+	}
+
+	/**
+	 * Set the minimum value of a Slider
+	 * @param slider the Slider we want to set the minimum value of
+	 * @param value the minimum value
+	 */
+	public static void setMinimumValue(Slider slider, int value) {
+		ScilabSliderBridge.setMinimumValue(slider, value);	
+	}
+
+	/**
+	 * Set the maximum value of a Slider
+	 * @param slider the Slider we want to set the maximum value of
+	 * @param value the maximum value
+	 */
+	public static void setMaximumValue(Slider slider, int value) {
+		ScilabSliderBridge.setMinimumValue(slider, value);	
+	}
+
 	/******************/
 	/* ListBox Bridge */
 	/******************/
@@ -2727,6 +2763,15 @@ public class ScilabBridge {
 	 */
 	public static void setVerticalAlignment(ListBox listBox, String alignment) {
 		ScilabListBoxBridge.setVerticalAlignment(listBox, alignment);
+	}
+
+	/**
+	 * Set if more than one item can be selected in a ListBox
+	 * @param listBox the ListBox we want to set the status of
+	 * @param status true if multiple selection is enabled
+	 */
+	public static void setMultipleSelectionEnabled(ListBox listBox, boolean status) {
+		ScilabListBoxBridge.setMultipleSelectionEnabled(listBox, status);
 	}
 
 	/********************/

@@ -25,15 +25,18 @@ int SetUicontrolSliderStep(sciPointObj* sciObj, int stackPointer, int valueType,
       pUICONTROL_FEATURE(sciObj)->sliderStep[0] = allValues[0];
       pUICONTROL_FEATURE(sciObj)->sliderStep[1] = allValues[1];
 
-      switch(pUICONTROL_FEATURE(sciObj)->style)
+      // Set the Java object property for sliders
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
         {
-        case SCI_SLIDER:
-          // TODO Set the Java property if necessary
-          return SET_PROPERTY_SUCCEED;
-        default:
-          /* No Java attribute to set or method to call */
-          return SET_PROPERTY_SUCCEED;
+          CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
+                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                       (int) pUICONTROL_FEATURE(sciObj)->sliderStep[0] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
+
+           CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
+                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                       (int) pUICONTROL_FEATURE(sciObj)->sliderStep[1] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
         }
+      return SET_PROPERTY_SUCCEED;
     }
   else
     {

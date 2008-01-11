@@ -199,4 +199,36 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 		ScilabBridge.setVerticalAlignment(this, alignment);
 	}
 
+	/**
+	 * Set the minor tick spacing for a Slider
+	 * @param space the increment value
+	 */
+	public void setMinorTickSpacing(int space) {
+		ScilabBridge.setMinorTickSpacing(this, space);	
+	}
+
+	/**
+	 * Set the major tick spacing for a Slider
+	 * @param space the increment value
+	 */
+	public void setMajorTickSpacing(int space) {
+		ScilabBridge.setMinorTickSpacing(this, space);	
+	}
+
+	/**
+	 * Set the minimum value of a Slider
+	 * @param value the minimum value
+	 */
+	public void setMinimumValue(int value) {
+		ScilabBridge.setMinimumValue(this, value);	
+	}
+
+	/**
+	 * Set the maximum value of a Slider
+	 * @param value the maximum value
+	 */
+	public void setMaximumValue(int value) {
+		ScilabBridge.setMinimumValue(this, value);	
+	}
+
 }

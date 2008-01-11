@@ -152,6 +152,11 @@ voidsetFrameCallbackjintjstringID=NULL;
 jstringgetFrameCallbackjintID=NULL; 
 voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
+voidsetSliderMinorTickSpacingjintjintID=NULL; 
+voidsetSliderMajorTickSpacingjintjintID=NULL; 
+voidsetSliderMinValuejintjintID=NULL; 
+voidsetSliderMaxValuejintjintID=NULL; 
+voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
@@ -241,6 +246,11 @@ voidsetFrameCallbackjintjstringID=NULL;
 jstringgetFrameCallbackjintID=NULL; 
 voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
+voidsetSliderMinorTickSpacingjintjintID=NULL; 
+voidsetSliderMajorTickSpacingjintjintID=NULL; 
+voidsetSliderMinValuejintjintID=NULL; 
+voidsetSliderMaxValuejintjintID=NULL; 
+voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
@@ -1585,6 +1595,113 @@ exit(EXIT_FAILURE);
 jstring alignment_ = curEnv->NewStringUTF( alignment );
 
                          curEnv->CallStaticVoidMethod(cls, voidsetWidgetVerticalAlignmentjintjstringID ,objID, alignment_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setSliderMinorTickSpacing (JavaVM * jvm_, long objID, long space){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetSliderMinorTickSpacingjintjintID = curEnv->GetStaticMethodID(cls, "setSliderMinorTickSpacing", "(II)V" ) ;
+if (voidsetSliderMinorTickSpacingjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setSliderMinorTickSpacing" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetSliderMinorTickSpacingjintjintID ,objID, space);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setSliderMajorTickSpacing (JavaVM * jvm_, long objID, long space){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetSliderMajorTickSpacingjintjintID = curEnv->GetStaticMethodID(cls, "setSliderMajorTickSpacing", "(II)V" ) ;
+if (voidsetSliderMajorTickSpacingjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setSliderMajorTickSpacing" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetSliderMajorTickSpacingjintjintID ,objID, space);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setSliderMinValue (JavaVM * jvm_, long objID, long value){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetSliderMinValuejintjintID = curEnv->GetStaticMethodID(cls, "setSliderMinValue", "(II)V" ) ;
+if (voidsetSliderMinValuejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setSliderMinValue" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetSliderMinValuejintjintID ,objID, value);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setSliderMaxValue (JavaVM * jvm_, long objID, long value){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetSliderMaxValuejintjintID = curEnv->GetStaticMethodID(cls, "setSliderMaxValue", "(II)V" ) ;
+if (voidsetSliderMaxValuejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setSliderMaxValue" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetSliderMaxValuejintjintID ,objID, value);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setListBoxMultipleSelectionEnabled (JavaVM * jvm_, long objID, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetListBoxMultipleSelectionEnabledjintjbooleanID = curEnv->GetStaticMethodID(cls, "setListBoxMultipleSelectionEnabled", "(IZ)V" ) ;
+if (voidsetListBoxMultipleSelectionEnabledjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setListBoxMultipleSelectionEnabled" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetListBoxMultipleSelectionEnabledjintjbooleanID ,objID, status_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

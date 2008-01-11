@@ -8,6 +8,7 @@ import java.awt.Font;
 
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.gui.listbox.SimpleListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -247,4 +248,17 @@ public class SwingScilabListBox implements SimpleListBox {
 	public void setVerticalAlignment(String alignment) {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Set if more than one item can be selected in a ListBox
+	 * @param status true if multiple selection is enabled
+	 */
+	public void setMultipleSelectionEnabled(boolean status) {
+		if (status) {
+			list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		} else {
+			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		}
+	}
+
 }

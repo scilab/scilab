@@ -216,19 +216,106 @@ end
 
 // TODO ListboxTop tests
 
-// TODO Max tests
+// --- Max ---
+// Default value
+if get(h, "max") <> 1 then
+  pause
+end
+set(h, "max", 10);
+if get(h, "max") <> 10 then
+  pause
+end
+// TODO test with min > max
+// TODO test with wrong values
 
-// TODO Min tests
+// --- Min ---
+// Default value
+if get(h, "min") <> 0 then
+  pause
+end
+set(h, "min", 1);
+if get(h, "min") <> 1 then
+  pause
+end
+// TODO test with min > max
+// TODO test with wrong values
 
 // TODO Parent tests
 
-// TODO Position tests
+// --- Position ---
+// TODO Default value
+// Vector of 'integer' values
+set(h, "position", [0 10 100 200]);
+if ~and(get(h, "position") == [0 10 100 200]) then
+//  pause
+end
+// String of 'integer' values
+//set(h, "position", "10|20|50|100");
+if ~and(get(h, "position") == [10 20 50 100]) then
+//  pause
+end
+// TODO Test with wrong format values: "aze", "", [], ...
 
 // TODO Relief tests
+// Default value
+if get(h, "relief") <> "flat" then
+  pause
+end
+set(h, "relief", "groove");
+if get(h, "relief") <> "groove" then
+  pause
+end
+set(h, "relief", "raised");
+if get(h, "relief") <> "raised" then
+  pause
+end
+set(h, "relief", "ridge");
+if get(h, "relief") <> "ridge" then
+  pause
+end
+set(h, "relief", "solid");
+if get(h, "relief") <> "solid" then
+  pause
+end
+set(h, "relief", "sunken");
+if get(h, "relief") <> "sunken" then
+  pause
+end
+set(h, "relief", "flat");
+if get(h, "relief") <> "flat" then
+  pause
+end
+// TODO test with wrong values
 
-// TODO SliderStep tests
+// --- SliderStep ---
+// Default value
+if ~and(get(h, "sliderstep") == [0.01 0.1]) then
+  pause
+end
+set(h, "sliderstep", [0.2 0.5]);
+if ~and(get(h, "sliderstep") == [0.2 0.5]) then
+  pause
+end
+set(h, "sliderstep", [0.01 0.1]);
+if ~and(get(h, "sliderstep") == [0.01 0.1]) then
+  pause
+end
+// TODO test for value1 > value2
+// TODO test with wrong values
 
-// TODO String tests
+// --- String ---
+if get(h, "string") <> "" then
+  pause
+end
+set(h, "string", "test for string");
+if get(h, "string") <> "test for string" then
+  pause
+end
+set(h, "string", "");
+if get(h, "string") <> "" then
+  pause
+end
+// TODO test with wrong values
 
 // --- Style ---
 // Default value
@@ -237,7 +324,20 @@ if get(h, "style") <>  uicontrol_style then
 end
 // TODO style changes tests (when implemented)
 
-// TODO Tag tests
+// --- Tag ---
+// Default value
+if get(h, "tag") <> "" then
+  pause
+end
+set(h, "tag", "test for tag");
+if get(h, "tag") <> "test for tag" then
+  pause
+end
+set(h, "tag", "");
+if get(h, "tag") <> "" then
+  pause
+end
+// TODO test with wrong values
 
 // --- Units ---
 // Default value
@@ -258,7 +358,19 @@ if get(h, "units") <> "points" then
 end
 // TODO test with wrong values
 
-// TODO UserData tests
+// --- UserData ---
+// Default value
+if ~isempty(get(h, "user_data")) then
+  pause
+end
+set(h, "user_data", [1 2 3]);
+if ~and(get(h, "user_data") == [1 2 3]) then
+  pause
+end
+set(h, "user_data", []);
+if ~isempty(get(h, "user_data")) then
+  pause
+end
 
 // TODO Value tests
 

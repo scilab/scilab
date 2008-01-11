@@ -198,5 +198,14 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
 	public void setVerticalAlignment(String alignment) {
 		ScilabBridge.setVerticalAlignment(this, alignment);
 	}
+	
+	/**
+	 * Set if more than one item can be selected in a ListBox
+	 * @param status true if multiple selection is enabled
+	 */
+	public void setMultipleSelectionEnabled(boolean status) {
+		ScilabBridge.setMultipleSelectionEnabled(this, status);
+	}
+
 
 }

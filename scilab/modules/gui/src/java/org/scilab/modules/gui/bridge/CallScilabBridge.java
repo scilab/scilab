@@ -271,6 +271,7 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		slider.setBackground(Color.LIGHT_GRAY);
 		slider.setForeground(Color.BLACK);
+		slider.setText(""); /* Because Name property is null at creation */
 		return id;
 	}
 
@@ -1047,4 +1048,68 @@ public class CallScilabBridge {
 	public static void setWidgetVerticalAlignment(int id, String alignment) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setVerticalAlignment(alignment);
 	}
+	
+	/**********************/
+	/*                    */
+	/* SLIDER STEP BRIDGE */
+	/*                    */
+	/**********************/
+
+	/**
+	 * Set the minor tick spacing for a Slider
+	 * @param id the id of the Slider
+	 * @param space the increment value
+	 */
+	public static void setSliderMinorTickSpacing(int id, int space) {
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMinorTickSpacing(space);
+	}
+
+	/**
+	 * Set the major tick spacing for a Slider
+	 * @param id the id of the Slider
+	 * @param space the increment value
+	 */
+	public static void setSliderMajorTickSpacing(int id, int space) {
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMajorTickSpacing(space);
+	}
+	
+	/*************************/
+	/*                       */
+	/* SLIDER MIN/MAX BRIDGE */
+	/*                       */
+	/*************************/
+
+	/**
+	 * Set the minimum value of a Slider
+	 * @param id the id of the Slider
+	 * @param value the minimum value
+	 */
+	public static void setSliderMinValue(int id, int value) {
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMinimumValue(value);
+	}
+
+	/**
+	 * Set the maximum value of a Slider
+	 * @param id the id of the Widget
+	 * @param value the maximum value
+	 */
+	public static void setSliderMaxValue(int id, int value) {
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMaximumValue(value);
+	}
+	
+	/*************************************/
+	/*                                   */
+	/* LISTBOX MULTIPLE SELECTION BRIDGE */
+	/*                                   */
+	/*************************************/
+
+	/**
+	 * Set if more than one item can be selected in a ListBox
+	 * @param id the id of the ListBox
+	 * @param status true if multiple selection is enabled
+	 */
+	public static void setListBoxMultipleSelectionEnabled(int id, boolean status) {
+		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setMultipleSelectionEnabled(status);
+	}
+
 }

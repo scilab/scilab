@@ -210,4 +210,40 @@ public class ScilabSliderBridge {
 		slider.getAsSimpleSlider().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set the minor tick spacing for a Slider
+	 * @param slider the Slider we want to set the spacing of
+	 * @param space the increment value
+	 */
+	public static void setMinorTickSpacing(Slider slider, int space) {
+		slider.getAsSimpleSlider().setMinorTickSpacing(space);	
+	}
+
+	/**
+	 * Set the major tick spacing for a Slider
+	 * @param slider the Slider we want to set the spacing of
+	 * @param space the increment value
+	 */
+	public static void setMajorTickSpacing(Slider slider, int space) {
+		slider.getAsSimpleSlider().setMinorTickSpacing(space);	
+	}
+
+	/**
+	 * Set the minimum value of a Slider
+	 * @param slider the Slider we want to set the minimum value of
+	 * @param value the minimum value
+	 */
+	public static void setMinimumValue(Slider slider, int value) {
+		slider.getAsSimpleSlider().setMinimumValue(value);	
+	}
+
+	/**
+	 * Set the maximum value of a Slider
+	 * @param slider the Slider we want to set the maximum value of
+	 * @param value the maximum value
+	 */
+	public static void setMaximumValue(Slider slider, int value) {
+		slider.getAsSimpleSlider().setMinimumValue(value);	
+	}
+
 }

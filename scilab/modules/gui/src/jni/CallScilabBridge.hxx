@@ -107,6 +107,11 @@ jmethodID voidsetFrameCallbackjintjstringID; // cache method id
 jmethodID jstringgetFrameCallbackjintID; // cache method id
 jmethodID voidsetWidgetHorizontalAlignmentjintjstringID; // cache method id
 jmethodID voidsetWidgetVerticalAlignmentjintjstringID; // cache method id
+jmethodID voidsetSliderMinorTickSpacingjintjintID; // cache method id
+jmethodID voidsetSliderMajorTickSpacingjintjintID; // cache method id
+jmethodID voidsetSliderMinValuejintjintID; // cache method id
+jmethodID voidsetSliderMaxValuejintjintID; // cache method id
+jmethodID voidsetListBoxMultipleSelectionEnabledjintjbooleanID; // cache method id
 jmethodID voidsetRootMenuEnabledjstringjbooleanID; // cache method id
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
@@ -270,6 +275,16 @@ static char * getFrameCallback(JavaVM * jvm_, long objID);
 static void setWidgetHorizontalAlignment(JavaVM * jvm_, long objID, char * alignment);
 
 static void setWidgetVerticalAlignment(JavaVM * jvm_, long objID, char * alignment);
+
+static void setSliderMinorTickSpacing(JavaVM * jvm_, long objID, long space);
+
+static void setSliderMajorTickSpacing(JavaVM * jvm_, long objID, long space);
+
+static void setSliderMinValue(JavaVM * jvm_, long objID, long value);
+
+static void setSliderMaxValue(JavaVM * jvm_, long objID, long value);
+
+static void setListBoxMultipleSelectionEnabled(JavaVM * jvm_, long objID, bool status);
 
 static void setRootMenuEnabled(JavaVM * jvm_, char * menuName, bool status);
 

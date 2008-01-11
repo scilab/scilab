@@ -18,4 +18,10 @@ public interface ListBox extends Widget {
 	 */
 	SimpleListBox getAsSimpleListBox();
 
+	/**
+	 * Set if more than one item can be selected in a ListBox
+	 * @param status true if multiple selection is enabled
+	 */
+	void setMultipleSelectionEnabled(boolean status);
+
 }

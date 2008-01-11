@@ -153,4 +153,21 @@ public class SwingScilabSlider extends JSlider implements SimpleSlider {
 	public void setVerticalAlignment(String alignment) {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Set the minimum value of a Slider
+	 * @param value the minimum value
+	 */
+	public void setMinimumValue(int value) {
+		setMinimum(value);	
+	}
+
+	/**
+	 * Set the maximum value of a Slider
+	 * @param value the maximum value
+	 */
+	public void setMaximumValue(int value) {
+		setMaximum(value);	
+	}
+
 }

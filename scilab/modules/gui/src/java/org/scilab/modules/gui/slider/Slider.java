@@ -6,7 +6,7 @@ package org.scilab.modules.gui.slider;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
- * Interface for RadioGroup associated to objects in Scilab GUIs
+ * Interface for Slider associated to objects in Scilab GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
@@ -32,26 +32,26 @@ public interface Slider extends Widget {
 	//void setValue(int n);
 	
 	/**
-     * This method sets the major tick spacing.
-     * @param n - new value for the major tick spacing.
-     */
-	//void setMajorTickSpacing(int n);
-	
-	/**
-	 * Sets the slider's maximum value to maximum.
-	 * @param value the value to set
+	 * Set the minor tick spacing for a Slider
+	 * @param space the increment value
 	 */
-	//void setMaximum(int value);
-	
+	void setMinorTickSpacing(int space);
+
 	/**
-	 * Sets the slider's minimum value to minimum.
-	 * @param value the value to set
+	 * Set the major tick spacing for a Slider
+	 * @param space the increment value
 	 */
-	//void setMinimum(int value);
-	
+	void setMajorTickSpacing(int space);
+
 	/**
-     * This method sets the minior tick spacing.
-     * @param n - new value for the minior tick spacing.
-     */
-	//void setMinorTickSpacing(int n);
+	 * Set the minimum value of a Slider
+	 * @param value the minimum value
+	 */
+	void setMinimumValue(int value);
+
+	/**
+	 * Set the maximum value of a Slider
+	 * @param value the maximum value
+	 */
+	void setMaximumValue(int value);
 }
