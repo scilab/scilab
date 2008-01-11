@@ -64,7 +64,7 @@ start_debug() {
 }
 
 start_profiling() {
-	VALGRIND_OPTIONS=" --num-callers=6 --trace-children=yes --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
+	VALGRIND_OPTIONS=" --num-callers=6 --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
 	  if test -n "$DEVENV"; then
 		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
 		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
