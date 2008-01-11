@@ -57,9 +57,6 @@
 #include "others_generators.h"
 #include "localization.h"
 
-int set_state_mt_simple(double s);
-
-
 /* Period parameters */  
 #define N 624
 #define M 397
@@ -79,8 +76,6 @@ static unsigned long mt[N]; /* the array for the state vector  */
 static int mti=N;
 static int is_init=0;  
 static double DEFAULT_SEED=5489.0;
-
-extern void sciprint __PARAMS((char *fmt,...));
 
 unsigned long randmt()
 {
