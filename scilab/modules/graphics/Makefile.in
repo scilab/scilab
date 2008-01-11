@@ -95,6 +95,7 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphics_la_etcdir)" \
+	"$(DESTDIR)$(libscigraphics_la_geddir)" \
 	"$(DESTDIR)$(libscigraphics_la_rootdir)" \
 	"$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscigraphics_la_demosdir)" \
@@ -830,10 +831,12 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscigraphics_la_SOURCES)
 DIST_SOURCES = $(am__libscigraphics_la_SOURCES_DIST)
 libscigraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscigraphics_la_gedDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libscigraphics_la_demosDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_root_DATA) \
+DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_ged_DATA) \
+	$(libscigraphics_la_root_DATA) \
 	$(libscigraphics_la_sci_gateway_DATA) \
 	$(nobase_libscigraphics_la_demos_DATA)
 am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
@@ -1601,6 +1604,45 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_param3d.h \
 @GUI_TRUE@includes/CurrentObjectsManagement.h \
 @GUI_TRUE@includes/ObjectSelection.h
+
+
+### graphics : ged files ###
+@GUI_TRUE@libscigraphics_la_geddir = $(mydatadir)/tcl/ged
+@GUI_TRUE@libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
+@GUI_TRUE@tcl/ged/Axes.tcl \
+@GUI_TRUE@tcl/ged/Axis.tcl \
+@GUI_TRUE@tcl/ged/Champ.tcl \
+@GUI_TRUE@tcl/ged/Compound.tcl \
+@GUI_TRUE@tcl/ged/Fac3d.tcl \
+@GUI_TRUE@tcl/ged/Fec.tcl \
+@GUI_TRUE@tcl/ged/Figure.tcl \
+@GUI_TRUE@tcl/ged/Grayplot.tcl \
+@GUI_TRUE@tcl/ged/Legend.tcl \
+@GUI_TRUE@tcl/ged/Matplot.tcl \
+@GUI_TRUE@tcl/ged/ObjectsBrowser.tcl \
+@GUI_TRUE@tcl/ged/Plot3d.tcl \
+@GUI_TRUE@tcl/ged/Polyline.tcl \
+@GUI_TRUE@tcl/ged/Rectangle.tcl \
+@GUI_TRUE@tcl/ged/Segs.tcl \
+@GUI_TRUE@tcl/ged/Text.tcl \
+@GUI_TRUE@tcl/ged/images/arc.gif \
+@GUI_TRUE@tcl/ged/images/axes.gif \
+@GUI_TRUE@tcl/ged/images/axis.gif \
+@GUI_TRUE@tcl/ged/images/champ.gif \
+@GUI_TRUE@tcl/ged/images/compound.gif \
+@GUI_TRUE@tcl/ged/images/fac3d.gif \
+@GUI_TRUE@tcl/ged/images/fec.gif \
+@GUI_TRUE@tcl/ged/images/figure.gif \
+@GUI_TRUE@tcl/ged/images/grayplot.gif \
+@GUI_TRUE@tcl/ged/images/leaf.gif \
+@GUI_TRUE@tcl/ged/images/legend.gif \
+@GUI_TRUE@tcl/ged/images/matplot.gif \
+@GUI_TRUE@tcl/ged/images/passwd.gif \
+@GUI_TRUE@tcl/ged/images/plot3d.gif \
+@GUI_TRUE@tcl/ged/images/polyline.gif \
+@GUI_TRUE@tcl/ged/images/rectangle.gif \
+@GUI_TRUE@tcl/ged/images/segs.gif \
+@GUI_TRUE@tcl/ged/images/text.gif
 
 
 #### graphics : demos files ####
@@ -4945,6 +4987,23 @@ uninstall-libscigraphics_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscigraphics_la_etcdir)/$$f"; \
 	done
+install-libscigraphics_la_gedDATA: $(libscigraphics_la_ged_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscigraphics_la_geddir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_geddir)"
+	@list='$(libscigraphics_la_ged_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscigraphics_la_gedDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigraphics_la_geddir)/$$f'"; \
+	  $(libscigraphics_la_gedDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigraphics_la_geddir)/$$f"; \
+	done
+
+uninstall-libscigraphics_la_gedDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscigraphics_la_ged_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_geddir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscigraphics_la_geddir)/$$f"; \
+	done
 install-libscigraphics_la_rootDATA: $(libscigraphics_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscigraphics_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_rootdir)"
@@ -5095,7 +5154,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_demosdir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_geddir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_demosdir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -5144,6 +5203,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscigraphics_la_etcDATA \
+	install-libscigraphics_la_gedDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA \
@@ -5186,6 +5246,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscigraphics_la_etcDATA \
+	uninstall-libscigraphics_la_gedDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \
@@ -5203,6 +5264,7 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscigraphics_la_etcDATA \
+	install-libscigraphics_la_gedDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA install-man \
@@ -5213,6 +5275,7 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscigraphics_la_etcDATA \
+	uninstall-libscigraphics_la_gedDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \

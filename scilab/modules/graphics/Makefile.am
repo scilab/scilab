@@ -561,6 +561,45 @@ includes/CurrentObjectsManagement.h \
 includes/ObjectSelection.h
 
 
+### graphics : ged files ###
+libscigraphics_la_geddir = $(mydatadir)/tcl/ged
+libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
+tcl/ged/Axes.tcl \
+tcl/ged/Axis.tcl \
+tcl/ged/Champ.tcl \
+tcl/ged/Compound.tcl \
+tcl/ged/Fac3d.tcl \
+tcl/ged/Fec.tcl \
+tcl/ged/Figure.tcl \
+tcl/ged/Grayplot.tcl \
+tcl/ged/Legend.tcl \
+tcl/ged/Matplot.tcl \
+tcl/ged/ObjectsBrowser.tcl \
+tcl/ged/Plot3d.tcl \
+tcl/ged/Polyline.tcl \
+tcl/ged/Rectangle.tcl \
+tcl/ged/Segs.tcl \
+tcl/ged/Text.tcl \
+tcl/ged/images/arc.gif \
+tcl/ged/images/axes.gif \
+tcl/ged/images/axis.gif \
+tcl/ged/images/champ.gif \
+tcl/ged/images/compound.gif \
+tcl/ged/images/fac3d.gif \
+tcl/ged/images/fec.gif \
+tcl/ged/images/figure.gif \
+tcl/ged/images/grayplot.gif \
+tcl/ged/images/leaf.gif \
+tcl/ged/images/legend.gif \
+tcl/ged/images/matplot.gif \
+tcl/ged/images/passwd.gif \
+tcl/ged/images/plot3d.gif \
+tcl/ged/images/polyline.gif \
+tcl/ged/images/rectangle.gif \
+tcl/ged/images/segs.gif \
+tcl/ged/images/text.gif
+
+
 #### graphics : demos files ####
 libscigraphics_la_demosdir=$(mydatadir)
 nobase_libscigraphics_la_demos_DATA = demos/peaks.sci \
