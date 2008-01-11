@@ -26,7 +26,7 @@ char * UicontrolStyleToString(int style)
     case SCI_LISTBOX:
       return "listbox";
     case SCI_POPUPMENU:
-      return "popup";
+      return "popupmenu";
     default:
       return "Unknown";
     }
