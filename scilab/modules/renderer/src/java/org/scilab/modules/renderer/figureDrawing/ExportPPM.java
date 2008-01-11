@@ -36,9 +36,11 @@ public class ExportPPM  extends ExportToFile {
 	 */
 	public void exportToBitmap() {		
 		try {
+			/** FileOutputStream contain's the figure */
 			o = new FileOutputStream(getFilename() + ".ppm");
 			image = Screenshot.readToBufferedImage(getWidth(), getHeight());
 
+			/** Will encode image into PPM format */
 			encoder = new PPMEncoder(image, o);
 			encoder.encodeStart(image.getWidth(), image.getHeight());
 			int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());

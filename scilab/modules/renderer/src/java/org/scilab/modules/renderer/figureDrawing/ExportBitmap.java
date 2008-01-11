@@ -31,6 +31,7 @@ public class ExportBitmap extends ExportToFile {
 	 */
 	public void exportToBitmap() {				
 		
+		/** Select the screen-shot format */
 		switch (getFiletype()) {
 		case BMP_EXPORT:  file = new File(getFilename() + ".bmp");
 		break;
@@ -45,6 +46,7 @@ public class ExportBitmap extends ExportToFile {
 		}
 
 		try {
+			/** Generate the screen-shot */
 			Screenshot.writeToFile(file, getWidth(), getHeight());
 		} catch (GLException ex1) {
 			System.err.println("Error: GLException");

@@ -104,7 +104,8 @@ public abstract class ExportToFile {
 	 * @param fileName name of the file
 	 * @return new ExportBitmap of
 	 */
-	public static ExportToFile createExporter(String fileName, int filetype) {		
+	public static ExportToFile createExporter(String fileName, int filetype) {	
+		/** Select in which type the file will be exported */
 		switch (filetype) {
 		case BMP_EXPORT:  
 		case GIF_EXPORT:
