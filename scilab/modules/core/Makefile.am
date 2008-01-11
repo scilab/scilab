@@ -412,7 +412,8 @@ demos/intro/MakeC.mak \
 demos/intro/MakeF.mak \
 demos/intro/dem01.dem \
 demos/intro/extc.sce \
-demos/intro/Makefile
+demos/intro/Makefile \
+demos/intro/dem01_gateway.sce
 
 include $(top_srcdir)/Makefile.incl.am
 
