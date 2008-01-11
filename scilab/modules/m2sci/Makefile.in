@@ -78,10 +78,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libm2sci_la_etcdir)" \
-	"$(DESTDIR)$(libm2sci_la_rootdir)"
+	"$(DESTDIR)$(libm2sci_la_rootdir)" \
+	"$(DESTDIR)$(libm2sci_la_tcldir)"
 libm2sci_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libm2sci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libm2sci_la_etc_DATA) $(libm2sci_la_root_DATA)
+libm2sci_la_tclDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libm2sci_la_etc_DATA) $(libm2sci_la_root_DATA) \
+	$(libm2sci_la_tcl_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -270,6 +273,10 @@ MACROSDIRSEXT = macros/kernel macros/percent macros/sci_files
 libm2sci_la_etcdir = $(mydatadir)/etc
 libm2sci_la_etc_DATA = etc/m2sci.quit etc/m2sci.start
 
+### m2sci : TCL macros ###
+libm2sci_la_tcldir = $(mydatadir)/tcl
+libm2sci_la_tcl_DATA = tcl/m2sci.tcl
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -403,6 +410,23 @@ uninstall-libm2sci_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libm2sci_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libm2sci_la_rootdir)/$$f"; \
 	done
+install-libm2sci_la_tclDATA: $(libm2sci_la_tcl_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libm2sci_la_tcldir)" || $(MKDIR_P) "$(DESTDIR)$(libm2sci_la_tcldir)"
+	@list='$(libm2sci_la_tcl_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libm2sci_la_tclDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libm2sci_la_tcldir)/$$f'"; \
+	  $(libm2sci_la_tclDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libm2sci_la_tcldir)/$$f"; \
+	done
+
+uninstall-libm2sci_la_tclDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libm2sci_la_tcl_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libm2sci_la_tcldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libm2sci_la_tcldir)/$$f"; \
+	done
 tags: TAGS
 TAGS:
 
@@ -441,7 +465,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libm2sci_la_etcdir)" "$(DESTDIR)$(libm2sci_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libm2sci_la_etcdir)" "$(DESTDIR)$(libm2sci_la_rootdir)" "$(DESTDIR)$(libm2sci_la_tcldir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -487,7 +511,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libm2sci_la_etcDATA \
-	install-libm2sci_la_rootDATA
+	install-libm2sci_la_rootDATA install-libm2sci_la_tclDATA
 
 install-dvi: install-dvi-am
 
@@ -524,7 +548,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libm2sci_la_etcDATA \
-	uninstall-libm2sci_la_rootDATA
+	uninstall-libm2sci_la_rootDATA uninstall-libm2sci_la_tclDATA
 
 .MAKE: install-am install-strip
 
@@ -536,12 +560,13 @@ uninstall-am: uninstall-libm2sci_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libm2sci_la_etcDATA install-libm2sci_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am uninstall uninstall-am uninstall-libm2sci_la_etcDATA \
-	uninstall-libm2sci_la_rootDATA
+	install-libm2sci_la_tclDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-libm2sci_la_etcDATA uninstall-libm2sci_la_rootDATA \
+	uninstall-libm2sci_la_tclDATA
 
 
 # This target enables tests for Scilab
