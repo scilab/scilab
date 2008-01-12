@@ -353,10 +353,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\dlnbet.c"
-				>
-			</File>
-			<File
 				RelativePath="..\dt1.c"
 				>
 			</File>
