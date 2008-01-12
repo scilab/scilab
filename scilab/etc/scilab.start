@@ -60,7 +60,7 @@ if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1);
   setlanguage(L);
 end
-clear larg
+clear larg args
 
 // loads modules ======================================================
 
@@ -118,11 +118,7 @@ clear fd ierr
 // calling user initialization =========================================
 // Home dir startup (if any)
 if sciargs()<>'-nouserstartup' then
-  if MSDOS then
-    startup_path=SCIHOME+'\'
-  else
-    startup_path=SCIHOME+'/'
-  end
+  startup_path=SCIHOME+filesep();
 
   [startup,ierr]=mopen(startup_path+'.scilab','r')
   if ierr==0 then
