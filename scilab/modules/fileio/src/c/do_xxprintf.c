@@ -241,7 +241,15 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			if (fp)
 			{
 				/* putc */
-				(*xxprintf) ((VPTR) target, "%c",*currentchar);
+				if (fp == stdout) { /* sciprint2 */
+					/* %%%c is a crappy workaround ... when xxprintf is 
+					 * calling sciprint2, it is correctly changing %% to % 
+					 * but it is removed by the function sciprint
+					 */
+					(*xxprintf) ((VPTR) target, "%%%c",*currentchar); 
+				}else{
+					(*xxprintf) ((VPTR) target, "%c",*currentchar); 
+				}
 				retval++;
 			}
 			else
