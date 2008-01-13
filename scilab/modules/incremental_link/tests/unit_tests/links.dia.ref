@@ -11,9 +11,13 @@ ilib_for_link(routines,'externals.o',[],"f");
    Running the Makefile
    compilation of externals
    building shared library (be patient)
+// disable message
+warning_mode = warning('query');
+warning('off');
+// load the shared library
 exec loader.sce ;
-shared archive loaded
-Link done.
+// enable message
+warning(warning_mode);
 //===========================================================
 //(very) simple example 1
 //===========================================================

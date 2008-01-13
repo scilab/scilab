@@ -8,8 +8,16 @@ if ~c_link('foo') then
   path = getcwd(); 
   chdir(TMPDIR); 
   mputl(foo,'foo.c');
+  
   ilib_for_link(['foo'],'foo.o',[],"c");
+  
+  // disable message
+  warning_mode = warning('query');
+  warning('off');
+  // load the shared library 
   exec loader.sce ;
+  // enable message
+  warning(warning_mode);
   chdir(path) 
 end	
 
@@ -27,9 +35,18 @@ if ~c_link('libintertest') then
   chdir(TMPDIR); 
   files=['addinter.o'];
   ilib_build('libintertest',['scifun1','intfun1'],files,[]);
+  
+  // disable message
+  warning_mode = warning('query');
+  warning('off');
   // load the shared library 
   exec loader.sce ;
+  
+  // enable message
+  warning(warning_mode);
+  
+  
   if norm(scifun1(%pi)- sin(%pi+1)/%pi ) > %eps then pause;end 
-  chdir(path) 
+  chdir(path);
 end
 

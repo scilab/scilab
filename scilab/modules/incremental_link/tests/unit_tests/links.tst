@@ -6,7 +6,16 @@ suf='f';
 routines=[pref(ones(1,12))+string(1:12)+suf(ones(1,12))];
 chdir(SCI+filesep()+'modules'+filesep()+'incremental_link'+filesep()+'tests'+filesep()+'unit_tests');
 ilib_for_link(routines,'externals.o',[],"f");
+
+// disable message
+warning_mode = warning('query');
+warning('off');
+
+// load the shared library 
 exec loader.sce ;
+
+// enable message
+warning(warning_mode);
 //===========================================================
 //(very) simple example 1
 //===========================================================
