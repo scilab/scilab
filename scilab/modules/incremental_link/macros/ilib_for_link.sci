@@ -85,6 +85,10 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
     if i <>n ; mfprintf(fd,","); else mfprintf(fd,"],");end
   end
   mfprintf(fd,"''%s'');\n",flag);
+  mfprintf(fd,"// remove temp. variables on stack\n");
+  mfprintf(fd,"clear %s_path;\n",libname);
+  mfprintf(fd,"clear functions;\n");
+  mfprintf(fd,"clear get_file_path;\n");
   mclose(fd);
 endfunction
 

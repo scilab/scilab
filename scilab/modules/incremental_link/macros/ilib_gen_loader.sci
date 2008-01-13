@@ -57,6 +57,10 @@ function ilib_gen_loader(name,tables,libs)
 		string(itable));
      end
   end
+  mfprintf(fd,"// remove temp. variables on stack\n");
+  mfprintf(fd,"clear %s_path;\n",name);
+  mfprintf(fd,"clear functions;\n");
+  mfprintf(fd,"clear get_file_path;\n");
   mclose(fd);
 endfunction
 
