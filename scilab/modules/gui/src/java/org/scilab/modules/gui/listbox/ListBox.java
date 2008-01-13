@@ -24,4 +24,21 @@ public interface ListBox extends Widget {
 	 */
 	void setMultipleSelectionEnabled(boolean status);
 
+	/**
+	 * Set the selected indices of the ListBox
+	 * @param indices the indices of the items to be selected
+	 */
+	void setSelectedIndices(int[] indices);
+	
+	/**
+	 * Get the selected indices of the ListBox
+	 * @return the indices of the items selected
+	 */
+	int[] getSelectedIndices();
+
+	/**
+	 * Get the number of items selected in the ListBox
+	 * @return the number of items selected
+	 */
+	int getSelectionSize();
 }

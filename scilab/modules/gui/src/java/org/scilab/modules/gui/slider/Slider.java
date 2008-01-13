@@ -19,17 +19,16 @@ public interface Slider extends Widget {
 	SimpleSlider getAsSimpleSlider();
 
 	/**
-	 * Returns the slider's current value
-	 * @return the current value of the slider
+	 * Get the current value of the Slider
+	 * @return the current value of the Slider
 	 */
-	//int getValue();
+	int getValue();
 	
 	/**
-	 * Sets the slider's current value to n. This method forwards the new value to the model.
-	 * If the new value is different from the previous value, all change listeners are notified.
-	 * @param n - the new value
+	 * Sets the current value of the Slider
+	 * @param value the new value
 	 */
-	//void setValue(int n);
+	void setValue(int value);
 	
 	/**
 	 * Set the minor tick spacing for a Slider

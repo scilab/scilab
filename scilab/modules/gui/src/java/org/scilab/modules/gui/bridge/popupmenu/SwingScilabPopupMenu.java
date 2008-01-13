@@ -151,4 +151,21 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 	public void setVerticalAlignment(String alignment) {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Set the selected index of the PopupMenu
+	 * @param index the index of the item to be selected
+	 */
+	public void setSelectedIndex(int index) {
+		getSelectionModel().setSelectedIndex(index);
+	}
+	
+	/**
+	 * Get the selected index of the PopupMenu
+	 * @return the index of the item selected
+	 */
+	public int getSelectedIndex() {
+		return getSelectionModel().getSelectedIndex();
+	}
+
 }

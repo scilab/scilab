@@ -134,4 +134,21 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 	public void setVerticalAlignment(String alignment) {
 		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
+	
+	/**
+	 * Set if the RadioButton is checked or not
+	 * @param status true to set the RadioButton checked
+	 */
+	public void setChecked(boolean status) {
+		setSelected(status);
+	}
+	
+	/**
+	 * Get the status of the RadioButton
+	 * @return true if the RadioButton is checked
+	 */
+	public boolean isChecked() {
+		return isSelected();
+	}
+
 }

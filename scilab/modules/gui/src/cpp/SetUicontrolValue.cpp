@@ -42,10 +42,62 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
             }
         }
 
+      // Set the Java object property if necessary
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
         case SCI_LISTBOX:
-          // TODO Set the Java property if necessary
+          if (pUICONTROL_FEATURE(sciObj)->valueSize == 0)
+            {
+              CallScilabBridge::setListBoxSelectedIndices(getScilabJavaVM(), 
+                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                          (long int*) allValues,
+                                                          -1); /* No value selected */
+            }
+          else
+            {
+              CallScilabBridge::setListBoxSelectedIndices(getScilabJavaVM(), 
+                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                          (long int*) allValues,
+                                                          pUICONTROL_FEATURE(sciObj)->valueSize);
+            }
+          return SET_PROPERTY_SUCCEED;
+        case SCI_POPUPMENU:
+          if (pUICONTROL_FEATURE(sciObj)->valueSize == 0)
+            {
+                CallScilabBridge::setPopupMenuSelectedIndex(getScilabJavaVM(), 
+                                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                            -1); /* No value selected */
+            }
+            else
+              {
+                CallScilabBridge::setPopupMenuSelectedIndex(getScilabJavaVM(), 
+                                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                            pUICONTROL_FEATURE(sciObj)->value[0]);
+              }
+          return SET_PROPERTY_SUCCEED;
+        case SCI_CHECKBOX:
+          if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
+            {
+              CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
+                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                   pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
+            }
+          return SET_PROPERTY_SUCCEED;
+        case SCI_RADIOBUTTON:
+           if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
+            {
+              CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
+                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                      pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
+            }
+          return SET_PROPERTY_SUCCEED;
+        case SCI_SLIDER:
+          if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
+            {
+              CallScilabBridge::setSliderValue(getScilabJavaVM(), 
+                                               pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                               pUICONTROL_FEATURE(sciObj)->value[0]);
+            }
           return SET_PROPERTY_SUCCEED;
         default:
           /* No Java attribute to set or method to call */

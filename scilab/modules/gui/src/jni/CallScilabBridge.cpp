@@ -154,6 +154,17 @@ voidsetWidgetHorizontalAlignmentjintjstringID=NULL;
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
 voidsetSliderMinorTickSpacingjintjintID=NULL; 
 voidsetSliderMajorTickSpacingjintjintID=NULL; 
+voidsetListBoxSelectedIndicesjintjintArrayID=NULL; 
+jintArraygetListBoxSelectedIndicesjintID=NULL; 
+jintgetListBoxSelectionSizejintID=NULL; 
+voidsetPopupMenuSelectedIndexjintjintID=NULL; 
+jintgetPopupMenuSelectedIndexjintID=NULL; 
+voidsetSliderValuejintjintID=NULL; 
+jintgetSliderValuejintID=NULL; 
+voidsetRadioButtonCheckedjintjbooleanID=NULL; 
+jbooleanisRadioButtonCheckedjintID=NULL; 
+voidsetCheckBoxCheckedjintjbooleanID=NULL; 
+jbooleanisCheckBoxCheckedjintID=NULL; 
 voidsetSliderMinValuejintjintID=NULL; 
 voidsetSliderMaxValuejintjintID=NULL; 
 voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL; 
@@ -248,6 +259,17 @@ voidsetWidgetHorizontalAlignmentjintjstringID=NULL;
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
 voidsetSliderMinorTickSpacingjintjintID=NULL; 
 voidsetSliderMajorTickSpacingjintjintID=NULL; 
+voidsetListBoxSelectedIndicesjintjintArrayID=NULL; 
+jintArraygetListBoxSelectedIndicesjintID=NULL; 
+jintgetListBoxSelectionSizejintID=NULL; 
+voidsetPopupMenuSelectedIndexjintjintID=NULL; 
+jintgetPopupMenuSelectedIndexjintID=NULL; 
+voidsetSliderValuejintjintID=NULL; 
+jintgetSliderValuejintID=NULL; 
+voidsetRadioButtonCheckedjintjbooleanID=NULL; 
+jbooleanisRadioButtonCheckedjintID=NULL; 
+voidsetCheckBoxCheckedjintjbooleanID=NULL; 
+jbooleanisCheckBoxCheckedjintID=NULL; 
 voidsetSliderMinValuejintjintID=NULL; 
 voidsetSliderMaxValuejintjintID=NULL; 
 voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL; 
@@ -1643,6 +1665,268 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+void CallScilabBridge::setListBoxSelectedIndices (JavaVM * jvm_, long objID, long * indices, int indicesSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetListBoxSelectedIndicesjintjintArrayID = curEnv->GetStaticMethodID(cls, "setListBoxSelectedIndices", "(I[I)V" ) ;
+if (voidsetListBoxSelectedIndicesjintjintArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setListBoxSelectedIndices" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jintArray indices_ = curEnv->NewIntArray( indicesSize ) ;
+curEnv->SetIntArrayRegion( indices_, 0, indicesSize, (jint*) indices ) ;
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetListBoxSelectedIndicesjintjintArrayID ,objID, indices_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long * CallScilabBridge::getListBoxSelectedIndices (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintArraygetListBoxSelectedIndicesjintID = curEnv->GetStaticMethodID(cls, "getListBoxSelectedIndices", "(I)[I" ) ;
+if (jintArraygetListBoxSelectedIndicesjintID == NULL) {
+std::cerr << "Could not access to the method " << "getListBoxSelectedIndices" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetListBoxSelectedIndicesjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+long CallScilabBridge::getListBoxSelectionSize (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetListBoxSelectionSizejintID = curEnv->GetStaticMethodID(cls, "getListBoxSelectionSize", "(I)I" ) ;
+if (jintgetListBoxSelectionSizejintID == NULL) {
+std::cerr << "Could not access to the method " << "getListBoxSelectionSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetListBoxSelectionSizejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setPopupMenuSelectedIndex (JavaVM * jvm_, long objID, long index){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetPopupMenuSelectedIndexjintjintID = curEnv->GetStaticMethodID(cls, "setPopupMenuSelectedIndex", "(II)V" ) ;
+if (voidsetPopupMenuSelectedIndexjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setPopupMenuSelectedIndex" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetPopupMenuSelectedIndexjintjintID ,objID, index);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::getPopupMenuSelectedIndex (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetPopupMenuSelectedIndexjintID = curEnv->GetStaticMethodID(cls, "getPopupMenuSelectedIndex", "(I)I" ) ;
+if (jintgetPopupMenuSelectedIndexjintID == NULL) {
+std::cerr << "Could not access to the method " << "getPopupMenuSelectedIndex" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetPopupMenuSelectedIndexjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setSliderValue (JavaVM * jvm_, long objID, long index){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetSliderValuejintjintID = curEnv->GetStaticMethodID(cls, "setSliderValue", "(II)V" ) ;
+if (voidsetSliderValuejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setSliderValue" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetSliderValuejintjintID ,objID, index);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::getSliderValue (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetSliderValuejintID = curEnv->GetStaticMethodID(cls, "getSliderValue", "(I)I" ) ;
+if (jintgetSliderValuejintID == NULL) {
+std::cerr << "Could not access to the method " << "getSliderValue" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetSliderValuejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setRadioButtonChecked (JavaVM * jvm_, long objID, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetRadioButtonCheckedjintjbooleanID = curEnv->GetStaticMethodID(cls, "setRadioButtonChecked", "(IZ)V" ) ;
+if (voidsetRadioButtonCheckedjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setRadioButtonChecked" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetRadioButtonCheckedjintjbooleanID ,objID, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+bool CallScilabBridge::isRadioButtonChecked (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanisRadioButtonCheckedjintID = curEnv->GetStaticMethodID(cls, "isRadioButtonChecked", "(I)Z" ) ;
+if (jbooleanisRadioButtonCheckedjintID == NULL) {
+std::cerr << "Could not access to the method " << "isRadioButtonChecked" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanisRadioButtonCheckedjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
+
+void CallScilabBridge::setCheckBoxChecked (JavaVM * jvm_, long objID, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetCheckBoxCheckedjintjbooleanID = curEnv->GetStaticMethodID(cls, "setCheckBoxChecked", "(IZ)V" ) ;
+if (voidsetCheckBoxCheckedjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setCheckBoxChecked" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetCheckBoxCheckedjintjbooleanID ,objID, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+bool CallScilabBridge::isCheckBoxChecked (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanisCheckBoxCheckedjintID = curEnv->GetStaticMethodID(cls, "isCheckBoxChecked", "(I)Z" ) ;
+if (jbooleanisCheckBoxCheckedjintID == NULL) {
+std::cerr << "Could not access to the method " << "isCheckBoxChecked" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanisCheckBoxCheckedjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
 }
 
 void CallScilabBridge::setSliderMinValue (JavaVM * jvm_, long objID, long value){

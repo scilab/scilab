@@ -109,6 +109,17 @@ jmethodID voidsetWidgetHorizontalAlignmentjintjstringID; // cache method id
 jmethodID voidsetWidgetVerticalAlignmentjintjstringID; // cache method id
 jmethodID voidsetSliderMinorTickSpacingjintjintID; // cache method id
 jmethodID voidsetSliderMajorTickSpacingjintjintID; // cache method id
+jmethodID voidsetListBoxSelectedIndicesjintjintArrayID; // cache method id
+jmethodID jintArraygetListBoxSelectedIndicesjintID; // cache method id
+jmethodID jintgetListBoxSelectionSizejintID; // cache method id
+jmethodID voidsetPopupMenuSelectedIndexjintjintID; // cache method id
+jmethodID jintgetPopupMenuSelectedIndexjintID; // cache method id
+jmethodID voidsetSliderValuejintjintID; // cache method id
+jmethodID jintgetSliderValuejintID; // cache method id
+jmethodID voidsetRadioButtonCheckedjintjbooleanID; // cache method id
+jmethodID jbooleanisRadioButtonCheckedjintID; // cache method id
+jmethodID voidsetCheckBoxCheckedjintjbooleanID; // cache method id
+jmethodID jbooleanisCheckBoxCheckedjintID; // cache method id
 jmethodID voidsetSliderMinValuejintjintID; // cache method id
 jmethodID voidsetSliderMaxValuejintjintID; // cache method id
 jmethodID voidsetListBoxMultipleSelectionEnabledjintjbooleanID; // cache method id
@@ -279,6 +290,28 @@ static void setWidgetVerticalAlignment(JavaVM * jvm_, long objID, char * alignme
 static void setSliderMinorTickSpacing(JavaVM * jvm_, long objID, long space);
 
 static void setSliderMajorTickSpacing(JavaVM * jvm_, long objID, long space);
+
+static void setListBoxSelectedIndices(JavaVM * jvm_, long objID, long * indices, int indicesSize);
+
+static long * getListBoxSelectedIndices(JavaVM * jvm_, long objID);
+
+static long getListBoxSelectionSize(JavaVM * jvm_, long objID);
+
+static void setPopupMenuSelectedIndex(JavaVM * jvm_, long objID, long index);
+
+static long getPopupMenuSelectedIndex(JavaVM * jvm_, long objID);
+
+static void setSliderValue(JavaVM * jvm_, long objID, long index);
+
+static long getSliderValue(JavaVM * jvm_, long objID);
+
+static void setRadioButtonChecked(JavaVM * jvm_, long objID, bool status);
+
+static bool isRadioButtonChecked(JavaVM * jvm_, long objID);
+
+static void setCheckBoxChecked(JavaVM * jvm_, long objID, bool status);
+
+static bool isCheckBoxChecked(JavaVM * jvm_, long objID);
 
 static void setSliderMinValue(JavaVM * jvm_, long objID, long value);
 

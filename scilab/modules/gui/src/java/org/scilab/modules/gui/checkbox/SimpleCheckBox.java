@@ -10,4 +10,15 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  */
 public interface SimpleCheckBox extends Widget {
+	/**
+	 * Set if the CheckBox is checked or not
+	 * @param status true to set the CheckBox checked
+	 */
+	void setChecked(boolean status);
+	
+	/**
+	 * Get the status of the CheckBox
+	 * @return true if the CheckBox is checked
+	 */
+	boolean isChecked();
 }

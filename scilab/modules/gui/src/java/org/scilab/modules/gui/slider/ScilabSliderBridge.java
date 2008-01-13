@@ -246,4 +246,22 @@ public class ScilabSliderBridge {
 		slider.getAsSimpleSlider().setMinimumValue(value);	
 	}
 
+	/**
+	 * Get the current value of the Slider
+	 * @param slider the Slider we want to get the value of
+	 * @return the current value of the Slider
+	 */
+	public static int getValue(Slider slider) {
+		return slider.getAsSimpleSlider().getValue();	
+	}
+	
+	/**
+	 * Sets the current value of the Slider
+	 * @param slider the Slider we want to set the value of
+	 * @param value the new value
+	 */
+	public static void setValue(Slider slider, int value) {
+		slider.getAsSimpleSlider().setValue(value);	
+	}
+
 }

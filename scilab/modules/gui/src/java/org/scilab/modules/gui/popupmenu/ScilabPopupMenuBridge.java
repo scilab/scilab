@@ -210,4 +210,22 @@ public class ScilabPopupMenuBridge {
 		popupMenu.getAsSimplePopupMenu().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set the selected index of the ListBox
+	 * @param popupMenu the PopupMenu we want to set the selected index of
+	 * @param index the index of the item to be selected
+	 */
+	public static void setSelectedIndex(PopupMenu popupMenu, int index) {
+		popupMenu.getAsSimplePopupMenu().setSelectedIndex(index);
+	}
+	
+	/**
+	 * Get the selected index of the ListBox
+	 * @param popupMenu the PopupMenu we want to get the selected index of
+	 * @return the index of the item selected
+	 */
+	public static int getSelectedIndex(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getSelectedIndex();
+	}
+
 }

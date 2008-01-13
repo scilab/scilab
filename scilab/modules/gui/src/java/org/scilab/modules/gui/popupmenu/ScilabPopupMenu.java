@@ -199,4 +199,19 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
 		ScilabBridge.setVerticalAlignment(this, alignment);
 	}
 
+	/**
+	 * Set the selected index of the ListBox
+	 * @param index the index of the item to be selected
+	 */
+	public void setSelectedIndex(int index) {
+		ScilabBridge.setSelectedIndex(this, index);
+	}
+	
+	/**
+	 * Get the selected index of the ListBox
+	 * @return the index of the item selected
+	 */
+	public int getSelectedIndex() {
+		return ScilabBridge.getSelectedIndex(this);
+	}
 }

@@ -199,4 +199,19 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
 		ScilabBridge.setVerticalAlignment(this, alignment);
 	}
 
+	/**
+	 * Set if the CheckBox is checked or not
+	 * @param status true to set the CheckBox checked
+	 */
+	public void setChecked(boolean status) {
+		ScilabBridge.setChecked(this, status);
+	}
+	
+	/**
+	 * Get the status of the CheckBox
+	 * @return true if the CheckBox is checked
+	 */
+	public boolean isChecked() {
+		return ScilabBridge.isChecked(this);
+	}
 }

@@ -2158,6 +2158,24 @@ public class ScilabBridge {
 		ScilabCheckBoxBridge.setVerticalAlignment(checkBox, alignment);
 	}
 
+	/**
+	 * Set if the CheckBox is checked or not
+	 * @param checkBox the CheckBox we want to set the status of
+	 * @param status true to set the CheckBox checked
+	 */
+	public static void setChecked(CheckBox checkBox, boolean status) {
+		ScilabCheckBoxBridge.setChecked(checkBox, status);
+	}
+	
+	/**
+	 * Get the status of the CheckBox
+	 * @param checkBox the CheckBox we want to get the status of
+	 * @return true if the CheckBox is checked
+	 */
+	public static boolean isChecked(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.isChecked(checkBox);
+	}
+
 	/**********************/
 	/* RadioButton Bridge */
 	/**********************/
@@ -2346,6 +2364,24 @@ public class ScilabBridge {
 	 */
 	public static void setVerticalAlignment(RadioButton radioButton, String alignment) {
 		ScilabRadioButtonBridge.setVerticalAlignment(radioButton, alignment);
+	}
+
+	/**
+	 * Set if the RadioButton is checked or not
+	 * @param radioButton the RadioButton we want to set the status of
+	 * @param status true to set the RadioButon checked
+	 */
+	public static void setChecked(RadioButton radioButton, boolean status) {
+		ScilabRadioButtonBridge.setChecked(radioButton, status);
+	}
+	
+	/**
+	 * Get the status of the RadioButton
+	 * @param radioButton the RadioButton we want to get the status of
+	 * @return true if the RadioButton is checked
+	 */
+	public static boolean isChecked(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.isChecked(radioButton);
 	}
 
 	/*****************/
@@ -2574,6 +2610,24 @@ public class ScilabBridge {
 		ScilabSliderBridge.setMinimumValue(slider, value);	
 	}
 
+	/**
+	 * Get the current value of the Slider
+	 * @param slider the Slider we want to get the value of
+	 * @return the current value of the Slider
+	 */
+	public static int getValue(Slider slider) {
+		return ScilabSliderBridge.getValue(slider);	
+	}
+	
+	/**
+	 * Sets the current value of the Slider
+	 * @param slider the Slider we want to set the value of
+	 * @param value the new value
+	 */
+	public static void setValue(Slider slider, int value) {
+		ScilabSliderBridge.setValue(slider, value);	
+	}
+
 	/******************/
 	/* ListBox Bridge */
 	/******************/
@@ -2774,6 +2828,33 @@ public class ScilabBridge {
 		ScilabListBoxBridge.setMultipleSelectionEnabled(listBox, status);
 	}
 
+	/**
+	 * Set the selected indices of the ListBox
+	 * @param listBox the ListBox we want to set the selected indices of
+	 * @param indices the indices of the items to be selected
+	 */
+	public static void setSelectedIndices(ListBox listBox, int[] indices) {
+		ScilabListBoxBridge.setSelectedIndices(listBox, indices);
+	}
+	
+	/**
+	 * Get the selected indices of the ListBox
+	 * @param listBox the ListBox we want to get the selected indices of
+	 * @return the indices of the items selected
+	 */
+	public static int[] getSelectedIndices(ListBox listBox) {
+		return ScilabListBoxBridge.getSelectedIndices(listBox);
+	}
+
+	/**
+	 * Get the number of items selected in the ListBox
+	 * @param listBox the ListBox we want to get the selection size of
+	 * @return the number of items selected
+	 */
+	public static int getSelectionSize(ListBox listBox) {
+		return ScilabListBoxBridge.getSelectionSize(listBox);
+	}
+
 	/********************/
 	/* PopupMenu Bridge */
 	/********************/
@@ -2962,6 +3043,24 @@ public class ScilabBridge {
 	 */
 	public static void setVerticalAlignment(PopupMenu popupMenu, String alignment) {
 		ScilabPopupMenuBridge.setVerticalAlignment(popupMenu, alignment);
+	}
+
+	/**
+	 * Set the selected index of the ListBox
+	 * @param popupMenu the PopupMenu we want to set the selected index of
+	 * @param index the index of the item to be selected
+	 */
+	public static void setSelectedIndex(PopupMenu popupMenu, int index) {
+		ScilabPopupMenuBridge.setSelectedIndex(popupMenu, index);
+	}
+	
+	/**
+	 * Get the selected index of the ListBox
+	 * @param popupMenu the PopupMenu we want to get the selected index of
+	 * @return the index of the item selected
+	 */
+	public static int getSelectedIndex(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getSelectedIndex(popupMenu);
 	}
 
 	/*********************/

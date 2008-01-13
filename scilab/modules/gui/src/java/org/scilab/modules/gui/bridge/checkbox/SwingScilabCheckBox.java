@@ -135,4 +135,19 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
 
+	/**
+	 * Set if the CheckBox is checked or not
+	 * @param status true to set the CheckBox checked
+	 */
+	public void setChecked(boolean status) {
+		setSelected(status);
+	}
+	
+	/**
+	 * Get the status of the CheckBox
+	 * @return true if the CheckBox is checked
+	 */
+	public boolean isChecked() {
+		return isSelected();
+	}
 }

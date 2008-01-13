@@ -261,4 +261,27 @@ public class SwingScilabListBox implements SimpleListBox {
 		}
 	}
 
+	/**
+	 * Set the selected indices of the ListBox
+	 * @param indices the indices of the items to be selected
+	 */
+	public void setSelectedIndices(int[] indices) {
+		list.setSelectedIndices(indices);
+	}
+	
+	/**
+	 * Get the selected indices of the ListBox
+	 * @return the indices of the items selected
+	 */
+	public int[] getSelectedIndices() {
+		return list.getSelectedIndices();
+	}
+
+	/**
+	 * Get the number of items selected in the ListBox
+	 * @return the number of items selected
+	 */
+	public int getSelectionSize() {
+		return list.getSelectedIndices().length;
+	}
 }

@@ -207,6 +207,45 @@
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="space"/>
 	</method>
+<!-- Value setting -->
+	<method name="setListBoxSelectedIndices" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int[]" name="indices"/>
+	</method>
+	<method name="getListBoxSelectedIndices" returnType="int[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="getListBoxSelectionSize" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPopupMenuSelectedIndex" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="index"/>
+	</method>
+	<method name="getPopupMenuSelectedIndex" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setSliderValue" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="int" name="index"/>
+	</method>
+	<method name="getSliderValue" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setRadioButtonChecked" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="isRadioButtonChecked" returnType="boolean" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setCheckBoxChecked" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="isCheckBoxChecked" returnType="boolean" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
 <!-- Min/Max Slider setting -->
 	<method name="setSliderMinValue" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>

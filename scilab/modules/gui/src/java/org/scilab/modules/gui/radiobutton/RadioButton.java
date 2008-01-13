@@ -17,4 +17,16 @@ public interface RadioButton extends Widget {
 	 * @return this Bridge component object
 	 */
 	SimpleRadioButton getAsSimpleRadioButton();
+
+	/**
+	 * Set if the RadioButton is checked or not
+	 * @param status true to set the RadioButton checked
+	 */
+	void setChecked(boolean status);
+	
+	/**
+	 * Get the status of the RadioButton
+	 * @return true if the RadioButton is checked
+	 */
+	boolean isChecked();
 }

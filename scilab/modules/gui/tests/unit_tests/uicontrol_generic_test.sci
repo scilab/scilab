@@ -372,7 +372,25 @@ if ~isempty(get(h, "user_data")) then
   pause
 end
 
-// TODO Value tests
+// --- Value tests ---
+// Default value
+if ~isempty(get(h, "value")) then
+  pause
+end
+set(h, "value", [1]);
+if get(h, "value") <> 1 then
+  pause
+end
+set(h, "value", [1 2 3]);
+if ~and(get(h, "value") == [1 2 3]) then
+  pause
+end
+set(h, "value", []);
+if ~isempty(get(h, "value")) then
+  pause
+end
+// TODO test with wrong values
+// TODO tests for checkbox and radiobuttons should fail !
 
 // --- VerticalalAlignment --- 
 if get(h, "verticalalignment") <> "middle" then

@@ -210,4 +210,21 @@ public class ScilabRadioButtonBridge {
 		radioButton.getAsSimpleRadioButton().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set if the RadioButton is checked or not
+	 * @param radioButton the RadioButton we want to set the status of
+	 * @param status true to set the RadioButon checked
+	 */
+	public static void setChecked(RadioButton radioButton, boolean status) {
+		radioButton.getAsSimpleRadioButton().setChecked(status);
+	}
+	
+	/**
+	 * Get the status of the RadioButton
+	 * @param radioButton the RadioButton we want to get the status of
+	 * @return true if the RadioButton is checked
+	 */
+	public static boolean isChecked(RadioButton radioButton) {
+		return radioButton.getAsSimpleRadioButton().isChecked();
+	}
 }

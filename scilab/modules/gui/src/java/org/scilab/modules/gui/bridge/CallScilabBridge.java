@@ -1112,4 +1112,108 @@ public class CallScilabBridge {
 		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setMultipleSelectionEnabled(status);
 	}
 
+	/****************/
+	/*              */
+	/* VALUE BRIDGE */
+	/*              */
+	/****************/
+
+	/**
+	 * Set the selected indices of the ListBox
+	 * @param id the id of the ListBox
+	 * @param indices the indices of the items to be selected
+	 */
+	public static void setListBoxSelectedIndices(int id, int[] indices) {
+		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setSelectedIndices(indices);
+	}
+	
+	/**
+	 * Get the selected indices of the ListBox
+	 * @param id the id of the ListBox
+	 * @return the indices of the items selected
+	 */
+	public static int[] getListBoxSelectedIndices(int id) {
+		return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectedIndices();
+	}
+
+	/**
+	 * Get the number of items selected in the ListBox
+	 * @param id the id of the ListBox
+	 * @return the number of items selected
+	 */
+	public static int getListBoxSelectionSize(int id) {
+		return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectionSize();
+	}
+
+	/**
+	 * Set the selected index of the PopupMenu
+	 * @param id the id of the PopupMenu
+	 * @param index the index of the item to be selected
+	 */
+	public static void setPopupMenuSelectedIndex(int id, int index) {
+		((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).setSelectedIndex(index);
+	}
+	
+	/**
+	 * Get the selected index of the PopupMenu
+	 * @param id the id of the PopupMenu
+	 * @return the index of the item selected
+	 */
+	public int getPopupMenuSelectedIndex(int id) {
+		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getSelectedIndex();
+	}
+
+	/**
+	 * Get the current value of the Slider
+	 * @param id the id of the Slider
+	 * @return the current value of the Slider
+	 */
+	public int getSliderValue(int id) {
+		return ((Slider) UIElementMapper.getCorrespondingUIElement(id)).getValue();
+	}
+	
+	/**
+	 * Sets the current value of the Slider
+	 * @param id the id of the Slider
+	 * @param value the new value
+	 */
+	public void setSliderValue(int id, int value) {
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setValue(value);		
+	}
+
+	/**
+	 * Set if the RadioButton is checked or not
+	 * @param id the id of the RadioButton
+	 * @param status true to set the RadioButton checked
+	 */
+	public void setRadioButtonChecked(int id, boolean status) {
+		((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
+	}
+	
+	/**
+	 * Get the status of the RadioButton
+	 * @param id the id of the RadioButton
+	 * @return true if the RadioButton is checked
+	 */
+	public boolean isRadioButtonhecked(int id) {
+		return ((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
+	}
+
+	/**
+	 * Set if the CheckBox is checked or not
+	 * @param id the id of the CheckBox
+	 * @param status true to set the CheckBox checked
+	 */
+	public void setCheckBoxChecked(int id, boolean status) {
+		((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
+	}
+	
+	/**
+	 * Get the status of the CheckBox
+	 * @param id the id of the CheckBox
+	 * @return true if the CheckBox is checked
+	 */
+	public boolean isCheckBoxChecked(int id) {
+		return ((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
+	}
 }

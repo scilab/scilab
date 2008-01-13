@@ -220,4 +220,30 @@ public class ScilabListBoxBridge {
 		listBox.getAsSimpleListBox().setMultipleSelectionEnabled(status);
 	}
 
+	/**
+	 * Set the selected indices of the ListBox
+	 * @param listBox the ListBox we want to set the selected indices of
+	 * @param indices the indices of the items to be selected
+	 */
+	public static void setSelectedIndices(ListBox listBox, int[] indices) {
+		listBox.getAsSimpleListBox().setSelectedIndices(indices);
+	}
+	
+	/**
+	 * Get the selected indices of the ListBox
+	 * @param listBox the ListBox we want to get the seleted indices of
+	 * @return the indices of the items selected
+	 */
+	public static int[] getSelectedIndices(ListBox listBox) {
+		return listBox.getAsSimpleListBox().getSelectedIndices();
+	}
+	
+	/**
+	 * Get the number of items selected in the ListBox
+	 * @param listBox the ListBox we want to get the selection size of
+	 * @return the number of items selected
+	 */
+	public static int getSelectionSize(ListBox listBox) {
+		return listBox.getAsSimpleListBox().getSelectionSize();
+	}
 }

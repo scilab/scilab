@@ -231,4 +231,19 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 		ScilabBridge.setMinimumValue(this, value);	
 	}
 
+	/**
+	 * Get the current value of the Slider
+	 * @return the current value of the Slider
+	 */
+	public int getValue() {
+		return ScilabBridge.getValue(this);	
+	}
+	
+	/**
+	 * Sets the current value of the Slider
+	 * @param value the new value
+	 */
+	public void setValue(int value) {
+		ScilabBridge.setValue(this, value);	
+	}
 }

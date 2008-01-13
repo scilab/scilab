@@ -34,5 +34,18 @@ public interface SimpleSlider extends Widget {
 	 * @param value the maximum value
 	 */
 	void setMaximumValue(int value);
+	
+	/**
+	 * Get the current value of the Slider
+	 * @return the current value of the Slider
+	 */
+	int getValue();
+	
+	/**
+	 * Sets the current value of the Slider
+	 * @param value the new value
+	 */
+	void setValue(int value);
+
 
 }

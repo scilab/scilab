@@ -210,4 +210,22 @@ public class ScilabCheckBoxBridge {
 		checkBox.getAsSimpleCheckBox().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set if the CheckBox is checked or not
+	 * @param checkBox the CheckBox we want to set the status of
+	 * @param status true to set the CheckBox checked
+	 */
+	public static void setChecked(CheckBox checkBox, boolean status) {
+		checkBox.getAsSimpleCheckBox().setChecked(status);
+	}
+	
+	/**
+	 * Get the status of the CheckBox
+	 * @param checkBox the CheckBox we want to get the status of
+	 * @return true if the CheckBox is checked
+	 */
+	public static boolean isChecked(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().isChecked();
+	}
+
 }

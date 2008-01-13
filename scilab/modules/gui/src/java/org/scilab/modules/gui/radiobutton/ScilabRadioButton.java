@@ -199,4 +199,20 @@ public class ScilabRadioButton extends ScilabWidget implements RadioButton {
 		ScilabBridge.setVerticalAlignment(this, alignment);
 	}
 
+	/**
+	 * Set if the RadioButton is checked or not
+	 * @param status true to set the RadioButon checked
+	 */
+	public void setChecked(boolean status) {
+		ScilabBridge.setChecked(this, status);
+	}
+	
+	/**
+	 * Get the status of the RadioButton
+	 * @return true if the RadioButton is checked
+	 */
+	public boolean isChecked() {
+		return ScilabBridge.isChecked(this);
+	}
+
 }
