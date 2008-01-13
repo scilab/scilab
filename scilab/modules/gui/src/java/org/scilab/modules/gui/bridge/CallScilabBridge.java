@@ -1159,7 +1159,7 @@ public class CallScilabBridge {
 	 * @param id the id of the PopupMenu
 	 * @return the index of the item selected
 	 */
-	public int getPopupMenuSelectedIndex(int id) {
+	public static int getPopupMenuSelectedIndex(int id) {
 		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getSelectedIndex();
 	}
 
@@ -1168,7 +1168,7 @@ public class CallScilabBridge {
 	 * @param id the id of the Slider
 	 * @return the current value of the Slider
 	 */
-	public int getSliderValue(int id) {
+	public static int getSliderValue(int id) {
 		return ((Slider) UIElementMapper.getCorrespondingUIElement(id)).getValue();
 	}
 	
@@ -1177,7 +1177,7 @@ public class CallScilabBridge {
 	 * @param id the id of the Slider
 	 * @param value the new value
 	 */
-	public void setSliderValue(int id, int value) {
+	public static void setSliderValue(int id, int value) {
 		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setValue(value);		
 	}
 
@@ -1186,7 +1186,7 @@ public class CallScilabBridge {
 	 * @param id the id of the RadioButton
 	 * @param status true to set the RadioButton checked
 	 */
-	public void setRadioButtonChecked(int id, boolean status) {
+	public static void setRadioButtonChecked(int id, boolean status) {
 		((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
 	}
 	
@@ -1195,7 +1195,7 @@ public class CallScilabBridge {
 	 * @param id the id of the RadioButton
 	 * @return true if the RadioButton is checked
 	 */
-	public boolean isRadioButtonhecked(int id) {
+	public static boolean isRadioButtonhecked(int id) {
 		return ((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
 	}
 
@@ -1204,7 +1204,7 @@ public class CallScilabBridge {
 	 * @param id the id of the CheckBox
 	 * @param status true to set the CheckBox checked
 	 */
-	public void setCheckBoxChecked(int id, boolean status) {
+	public static void setCheckBoxChecked(int id, boolean status) {
 		((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
 	}
 	
@@ -1213,7 +1213,7 @@ public class CallScilabBridge {
 	 * @param id the id of the CheckBox
 	 * @return true if the CheckBox is checked
 	 */
-	public boolean isCheckBoxChecked(int id) {
+	public static boolean isCheckBoxChecked(int id) {
 		return ((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
 	}
 }
