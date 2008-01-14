@@ -10,15 +10,12 @@ import java.awt.Point;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.ui.ConsoleTextPane;
@@ -98,27 +95,27 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		this.setFocusable(true);
 		this.grabFocus();
 		// Have to be allowed to write...
+		// Try to acquire semaphore, if not, executes Scilab event loop for callbacks
 		try {
-			// Try to acquire semaphore, if not, executes Scilab event loop for callbacks
-			while (!canReadBuffer.tryAcquire(1, TimeUnit.MILLISECONDS)) {
-				// TCl/TK event loop
-				InterpreterManagement.execScilabEventLoop();
-				// Callback events handling
-				if (InterpreterManagement.haveCommandsInTheQueue()) {
-					// Leave the buffer allowed
-					canReadBuffer.release();
-					return "";
-				}
-			}
+			canReadBuffer.acquire();
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// TCl/TK event loop
+		// InterpreterManagement.execScilabEventLoop();
+		// Callback events handling
+		//		if (InterpreterManagement.haveCommandsInTheQueue()) {
+		//			// Leave the buffer allowed
+		//			canReadBuffer.release();
+		//			return "";
+		//		}
 		// Store command in an temp 
 		String tmp = cmdBuffer;
-		
+
 		// Leave the buffer allowed
 		canReadBuffer.release();
-		
+
 		return tmp;
 	}
 	
@@ -147,6 +144,10 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		}
 	}
 
+	public void unlockBuffer() {
+			canReadBuffer.release();
+	}
+	
 	/**
 	 * Sets the console object containing this input view
 	 * @param c the console associated 
