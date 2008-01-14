@@ -15,7 +15,6 @@ EXPORTS
  createvarfromptr_
  callFunctionFromGateway
  iop_
- ScilabEventsLoop
  ;
  ;core_f
  sigbas_

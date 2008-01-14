@@ -28,7 +28,6 @@
 #include "MALLOC.h"
 #include "command.h"
 #include "dynamic_menus.h"
-#include "ScilabEventsLoop.h"
 #include "HistoryManager.h"
 #include "scilabmode.h"
 #include "sigbas.h"
@@ -570,8 +569,7 @@ static char msdos_getch ()
 	{
 		while( !_kbhit() && ismenu()==0)  /* Test on ismenu added (bug 1052) - Francois VOGEL */
 		{
-			if (ScilabEventsLoop());
-			else Sleep(1);
+			Sleep(1);
 		}
 	}
 	if (ismenu()==1) return 0;  /* This line added to fix bug 1052 - Francois VOGEL */

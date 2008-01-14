@@ -23,7 +23,6 @@ cluni0_
 resetNumberOfCommands
 callFunctionFromGateway
 getSCIHOME
-ScilabEventsLoop
 scilab_timer_check
 ;
 set_is_reading
