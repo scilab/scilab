@@ -198,18 +198,6 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManag
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_execScilabEventLoop(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (int)execScilabEventLoop();
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_action_1binding_InterpreterManagementJNI_interruptScilab(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;

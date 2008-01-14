@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------------*/
-/** 
+/**
  * @copyright INRIA 2007
  * @author Vincent COUVERT
  */
@@ -19,22 +19,11 @@
 int putCommandInScilabQueue(char *command);
 
 /*
-* exec ScilabEventLoop
-* @return execution status
-*/
-int execScilabEventLoop(void);
-
-/*
 * Stops Scilab current work
 * @return execution status
 */
 int interruptScilab(void);
 
-/*
-* Check Queue 
-* return TRUE if it is not empty
-*/
-BOOL haveCommandsInTheQueue(void);
 /*--------------------------------------------------------------------------*/
 
 #endif /* __INTERPRETERMANAGEMENT_H__ */

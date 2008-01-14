@@ -1,5 +1,5 @@
 /* InterpreterManagement.i */
-/*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ InterpreterManagement.i */
+/*  swig -java -package org.scilab.modules.action_binding -outdir ../java/org/scilab/modules/action_binding/ InterpreterManagement.i */
 %module InterpreterManagement
 %{
 #include "../c/InterpreterManagement.h"
@@ -9,10 +9,10 @@
 
 /* JavaDoc for InterpreterManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{
- /** 
-   * All Scilab interpreter management used in Java console 
+ /**
+   * All Scilab interpreter management used in Java console
    * @author Vincent COUVERT
-   * @copyright INRIA 
+   * @copyright INRIA
    */
 class%}
 
@@ -24,7 +24,7 @@ class%}
   protected InterpreterManagementJNI() {
 	throw new UnsupportedOperationException();
   }";
-  
+
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
@@ -42,10 +42,10 @@ class%}
 
 /* JavaDoc for InterpreterManagement class */
 %pragma(java) moduleclassmodifiers="
- /** 
-   * All Scilab interpreter management used in Java console 
+ /**
+   * All Scilab interpreter management used in Java console
    * @author Vincent COUVERT
-   * @copyright INRIA 
+   * @copyright INRIA
    */
 public class";
 
@@ -69,15 +69,6 @@ public class";
    */
 public ";
 int putCommandInScilabQueue(char *command);
-
-/* JavaDoc */
-%javamethodmodifiers execScilabEventLoop(void) "
- /**
-  * Executes Scilab event loop so that queued callbacks can be executed
-  * @return execution status
-  */
-public ";
-int execScilabEventLoop(void);
 
 /* JavaDoc */
 %javamethodmodifiers interruptScilab(void) "

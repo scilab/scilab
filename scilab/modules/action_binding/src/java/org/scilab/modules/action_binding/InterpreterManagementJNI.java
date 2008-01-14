@@ -9,10 +9,10 @@
 package org.scilab.modules.action_binding;
 
 
- /** 
-   * All Scilab interpreter management used in Java console 
+ /**
+   * All Scilab interpreter management used in Java console
    * @author Vincent COUVERT
-   * @copyright INRIA 
+   * @copyright INRIA
    */
 class InterpreterManagementJNI {
 
@@ -36,7 +36,5 @@ class InterpreterManagementJNI {
   }
 
   public final static native int putCommandInScilabQueue(String jarg1);
-  public final static native int execScilabEventLoop();
   public final static native int interruptScilab();
-  public final static native boolean haveCommandsInTheQueue();
 }

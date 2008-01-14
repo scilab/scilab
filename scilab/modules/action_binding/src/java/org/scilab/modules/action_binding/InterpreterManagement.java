@@ -9,10 +9,10 @@
 package org.scilab.modules.action_binding;
 
 
- /** 
-   * All Scilab interpreter management used in Java console 
+ /**
+   * All Scilab interpreter management used in Java console
    * @author Vincent COUVERT
-   * @copyright INRIA 
+   * @copyright INRIA
    */
 public class InterpreterManagement {
 
@@ -36,29 +36,11 @@ public  static int putCommandInScilabQueue(String command) {
 
   
  /**
-  * Executes Scilab event loop so that queued callbacks can be executed
-  * @return execution status
-  */
-public  static int execScilabEventLoop() {
-    return InterpreterManagementJNI.execScilabEventLoop();
-  }
-
-  
- /**
   * Stop Scilab current work
   * @return execution status
   */
 public  static int interruptScilab() {
     return InterpreterManagementJNI.interruptScilab();
-  }
-
-  
- /**
-  * Are there some commands in the queue to be executed
-  * @return true if there are commands in the queue
-  */
-public  static boolean haveCommandsInTheQueue() {
-    return InterpreterManagementJNI.haveCommandsInTheQueue();
   }
 
 }
