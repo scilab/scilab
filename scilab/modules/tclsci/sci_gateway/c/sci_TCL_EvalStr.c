@@ -7,6 +7,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "TCL_Command.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 {
@@ -18,7 +19,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
       char *tclSlave = NULL;
 
       char **Str=NULL;
-      int m1,n1,i,j,RET;
+      int m1,n1,i,j;
       int m2,n2,l2;
       char **ReturnArrayString=NULL;
       int k=0;
@@ -58,8 +59,6 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 
       for (i = 0; i<m1*n1 ;i++)
 	{
-	  char *RetStr=NULL;
-	  char *AsciiFromUTF8=NULL;
 
 	  if (tclSlave != NULL) {
 	    sendTclCommandToSlave(Str[i], tclSlave);
