@@ -1,0 +1,15 @@
+// <-- Non-regression test for bug 2602 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2602
+//
+// <-- Short Description -->
+//    printf('%%') display a blank character instead of the percent character
+
+// Pierre MARECHAL - Scilab Project
+// Copyright INRIA
+// 14 janvier 2008
+
+
+if sprintf("%%")<>"%" then pause,end
+if msprintf("%%")<>"%" then pause,end
