@@ -3,10 +3,9 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "InitTclTk.h"
-#include "TclEvents.h"
 #ifndef _MSC_VER
- #include <dirent.h>
- #include <ctype.h>
+#include <dirent.h>
+#include <ctype.h>
 #endif
 #include "setgetSCIpath.h"
 #include "sciprint.h"
@@ -14,15 +13,22 @@
 #include "localization.h"
 #include "scilabmode.h"
 #include "ScilabEval.h"
+#include "TCL_Command.h"
+
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
+
+/* The tclLoop thread Id
+   in order to wait it ends when closing Scilab */
+__threadId TclThread;
 /*--------------------------------------------------------------------------*/
 static char *GetSciPath(void);
 /*--------------------------------------------------------------------------*/
-int OpenTCLsci(void)
-/* Checks if tcl/tk has already been initialised and if not */
-/* initialise it. It must find the tcl script */
+void *DaemonOpenTCLsci(void* in)
+     /* Checks if tcl/tk has already been initialised and if not */
+     /* initialise it. It must find the tcl script */
 {
+  int TclInterpReturn;
   char *SciPath=NULL;
   char TkScriptpath[PATH_MAX];
   char MyCommand[2048];
@@ -35,22 +41,21 @@ int OpenTCLsci(void)
   FILE *tmpfile2=NULL;
 
 #ifdef TCL_MAJOR_VERSION
-  #ifdef TCL_MINOR_VERSION
-    #if TCL_MAJOR_VERSION >= 8
-      #if TCL_MINOR_VERSION > 0
-         Tcl_FindExecutable(" ");
-      #endif
-    #endif
-  #endif
+#ifdef TCL_MINOR_VERSION
+#if TCL_MAJOR_VERSION >= 8
+#if TCL_MINOR_VERSION > 0
+  Tcl_FindExecutable(" ");
+#endif
+#endif
+#endif
 #endif
   SciPath=GetSciPath();
 
   /* test SCI validity */
   if (SciPath==NULL)
-  {
-	sciprint(_("	The SCI environment variable is not set.\n	TCL initialisation failed !\n"));
-    return(1);
-  }
+    {
+      sciprint(_("	The SCI environment variable is not set.\n	TCL initialisation failed !\n"));
+     }
 
 #ifdef _MSC_VER
   strcpy(TkScriptpath, SciPath);
@@ -58,18 +63,16 @@ int OpenTCLsci(void)
 
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL)
-  {
-	sciprint(_("	Unable to find TCL initialisation scripts.\n	Check your SCI environment variable.\n	TCL initialisation failed !"));
-    return(1);
-  }
+    {
+      sciprint(_("	Unable to find TCL initialisation scripts.\n	Check your SCI environment variable.\n	TCL initialisation failed !"));
+     }
   else fclose(tmpfile2);
 #else
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL)
     {
       sciprint(_("	The SCI environment variable is not set.\n	TCL initialisation failed !\n"));
-      return(1);
-    }
+     }
   else closedir(tmpdir);
   strcpy(TkScriptpath,SciPath);
   strcat(TkScriptpath,"/modules/tclsci/tcl/TK_Scilab.tcl");
@@ -77,106 +80,112 @@ int OpenTCLsci(void)
   if (tmpfile2==NULL)
     {
       sciprint(_("	Unable to find TCL initialisation scripts.\n	Check your SCI environment variable.\n	TCL initialisation failed !"));
-      return(1);
-    }
+     }
   else fclose(tmpfile2);
 #endif /* _MSC_VER */
 
   if (TCLinterp == NULL)
     {
       TCLinterp = Tcl_CreateInterp();
-	  if ( TCLinterp == NULL )
-	  {
-		Scierror(999,_("Tcl Error : Tcl_CreateInterp.\n"));
-		return (1);
-	  }
+      if ( TCLinterp == NULL )
+	{
+	  Scierror(999,_("Tcl Error : Tcl_CreateInterp.\n"));
+	}
 
       if ( Tcl_Init(TCLinterp) == TCL_ERROR)
-	  {
-		Scierror(999,_("Tcl Error : Tcl_Init %s\n"),TCLinterp->result);
-		return (1);
-	  }
+	{
+	  Scierror(999,_("Tcl Error : Tcl_Init %s\n"),TCLinterp->result);
+	}
 
       if ( Tk_Init(TCLinterp) == TCL_ERROR)
-	  {
-		Scierror(999,_("Tcl Error : Tk_Init %s\n"),TCLinterp->result);
-		return (1);
-	  }
+	{
+	  Scierror(999,_("Tcl Error : Tk_Init %s\n"),TCLinterp->result);
+	}
 
       sprintf(MyCommand, "set SciPath \"%s\";",SciPath);
 
-	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
-	  {
-		Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
-		return (1);
-	  }
+      if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
+	{
+	  Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
+	}
 
-	  Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
+      Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
     }
 
   if (TKmainWindow == NULL)
     {
-      TKmainWindow = Tk_MainWindow(TCLinterp);
-      Tk_GeometryRequest(TKmainWindow,2,2);
-
-  	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
-	  {
-		Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
-		return (1);
-	  }
-
-      flushTKEvents();
+      if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
+	{
+	  Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
+	}
     }
 
   if (SciPath) {FREE(SciPath);SciPath=NULL;}
+
+
+  // This start a periodic and endless call to "update"
+  // TCL command. This causes any TCL application to start
+  // and run as if it's in the main program thread.
+  startTclLoop(TCLinterp);
+
   return(0);
 
 }
 /*--------------------------------------------------------------------------*/
+int OpenTCLsci(void)
+{
+  // Open TCL interpreter in a separated thread.
+  // Allows all Tcl application not to freeze nor decrease Scilab speed.
+  // Causes also Scilab let those application live their own lifes.
+  __CreateThread(&TclThread, &DaemonOpenTCLsci);
+
+  return 0;
+}
+/*--------------------------------------------------------------------------*/
 BOOL CloseTCLsci(void)
 {
-	if ( getScilabMode() != SCILAB_NWNI )
+  if ( getScilabMode() != SCILAB_NWNI )
+    {
+      if (isTkStarted())
 	{
-		if (isTkStarted())
-		{
-			Tcl_DeleteInterp(TCLinterp);
-			TCLinterp=NULL;
-			TKmainWindow=NULL;
-			setTkStarted(FALSE);
-			return TRUE;
-		}
+	  setTkStarted(FALSE);
+	  __WaitThreadDie(&TclThread);
+	  TCLinterp=NULL;
+	  TKmainWindow=NULL;
+	  return TRUE;
 	}
-	return FALSE;
+    }
+  return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 static char *GetSciPath(void)
-/* force SciPath to Unix format for compatibility (Windows) */
+     /* force SciPath to Unix format for compatibility (Windows) */
 {
-	char *PathUnix=NULL;
-	char *SciPathTmp=NULL;
-	int i=0;
+  char *PathUnix=NULL;
+  char *SciPathTmp=NULL;
+  int i=0;
 
-	SciPathTmp=getSCIpath();
+  SciPathTmp=getSCIpath();
 
-	if (SciPathTmp)
+  if (SciPathTmp)
+    {
+      PathUnix=(char*)MALLOC( ((int)strlen(SciPathTmp)+1)*sizeof(char) );
+
+      strcpy(PathUnix,SciPathTmp);
+      for (i=0;i<(int)strlen(PathUnix);i++)
 	{
-		PathUnix=(char*)MALLOC( ((int)strlen(SciPathTmp)+1)*sizeof(char) );
-
-		strcpy(PathUnix,SciPathTmp);
-		for (i=0;i<(int)strlen(PathUnix);i++)
-		{
-			if (PathUnix[i]=='\\') PathUnix[i]='/';
-		}
+	  if (PathUnix[i]=='\\') PathUnix[i]='/';
 	}
-	if (SciPathTmp) {FREE(SciPathTmp);SciPathTmp=NULL;}
-	return PathUnix;
+    }
+  if (SciPathTmp) {FREE(SciPathTmp);SciPathTmp=NULL;}
+  return PathUnix;
 }
 /*--------------------------------------------------------------------------*/
 BOOL isTkStarted(void){
-	return TK_Started;
+  return TK_Started;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 void setTkStarted(BOOL isTkSet){
-	TK_Started=isTkSet;
+  TK_Started=isTkSet;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

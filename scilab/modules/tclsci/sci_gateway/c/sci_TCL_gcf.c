@@ -4,7 +4,6 @@
 /*--------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "TclEvents.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -20,13 +19,13 @@ int C2F(sci_TCL_gcf) _PARAMS((char *fname,unsigned long l))
 
 	CheckRhs(0,0);
 	CheckLhs(1,1);
-	
+
 	*paramoutINT=GetTclCurrentFigure();
 	n1=1;
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
+	C2F(putlhsvar)();
 
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	return 0;
@@ -38,7 +37,7 @@ int GetTclCurrentFigure(void)
 	char MyTclCommand[2048];
 	char *StrHandle=NULL;
 
-	sprintf(MyTclCommand, "set TclScilabTmpVar [GetGcf];"); 
+	sprintf(MyTclCommand, "set TclScilabTmpVar [GetGcf];");
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
@@ -54,7 +53,7 @@ int GetTclCurrentFigure(void)
 		return 0;
 	}
 
-	
+
 	ValRet=(int)atoi(StrHandle);
 	Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 
@@ -68,7 +67,7 @@ int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
-	
+
 	if ( (Rhs== 1) && (IsAScalar(1)) )
 	{
 		int *Handle=NULL;
@@ -77,19 +76,18 @@ int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 		Handle=istk(l1);
 
 		*paramoutINT=SetTclCurrentFigure(*Handle);
-		flushTKEvents();
 	}
 	else
 	{
 		Scierror(999,_("Invalid parameter(s) type.\n"));
 		return 0;
 	}
-	
+
 	n1=1;
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
+	C2F(putlhsvar)();
 
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	return 0;
@@ -101,7 +99,7 @@ int SetTclCurrentFigure(int num)
 	char MyTclCommand[2048];
 	char *StrHandle=NULL;
 
-	sprintf(MyTclCommand, "set TclScilabTmpVar [FigureSelect %d];",num); 
+	sprintf(MyTclCommand, "set TclScilabTmpVar [FigureSelect %d];",num);
 
 	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
@@ -116,7 +114,7 @@ int SetTclCurrentFigure(int num)
 		Scierror(999,"Tcl Error: SetTclCurrentFigure.\n");
 		return 0;
 	}
-	
+
 	set_cf_type(0); /* Current handle is a TCL Handle */
 
 	ValRet=(int)atoi(StrHandle);

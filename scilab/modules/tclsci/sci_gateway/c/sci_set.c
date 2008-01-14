@@ -5,7 +5,6 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "TclUiSet.h" /* InterfaceScilabToUiSet */
-#include "TclEvents.h" /* flushTKEvents */
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -29,9 +28,8 @@ int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
 			Scierror(999,_("uicontrol %d doesn't exist.\n"),Handle);
 			return 0;
 		}
-		
+
 		InterfaceScilabToUiSet(Handle,Rhs-1,Rhs);
-		flushTKEvents ();
 	}
 	else
 	{
@@ -48,7 +46,7 @@ int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
     }
 
 	LhsVar(1) = 0;
-	C2F(putlhsvar)();	
+	C2F(putlhsvar)();
 
 	return 0;
 }

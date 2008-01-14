@@ -1,14 +1,13 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "ScilabEval.h"
 #include "sciprint.h"
 #include "sciprint_full.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "tksynchro.h"
 #include "../../localization/includes/localization.h"
 #include "syncexec.h"
 #include "dynamic_menus.h"
@@ -17,13 +16,13 @@
 #define arbitrary_max_queued_callbacks 20
 #define AddCharacters 4
 /*--------------------------------------------------------------------------*/
-static int c_n1 = -1;     
+static int c_n1 = -1;
 /*--------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
   int ns,ierr,seq;
   char *command;
-  
+
   char *comm[arbitrary_max_queued_callbacks];
   int   seqf[arbitrary_max_queued_callbacks];
   int nc,ncomm=-1;
@@ -84,9 +83,10 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{
       /* sync or sync seq */
-      C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
+	  // TODO : Scilab is supposed to be busy there. Add mutex lock...
+	  // C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
       seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
-      ns=(int)strlen(command); 
+      ns=(int)strlen(command);
       if (C2F(iop).ddt==-1)
 	  {
 		  char *msg=_("Execution starts for %s");
@@ -102,7 +102,8 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		  if (msg){FREE(msg);msg=NULL;}
           sciprint("\n");
 	  }
-      C2F(tksynchro)(&C2F(recu).paus);
+      // TODO : Scilab is supposed to be busy there. Add mutex lock...
+      // C2F(tksynchro)(&C2F(recu).paus);
       if (ierr != 0) return TCL_ERROR;
     }
     else if (strncmp(command,"flush",5)==0)
@@ -123,7 +124,8 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       if (ismenu()) sciprint(_("Warning: Too many callbacks in queue!\n"));
       for (nc = 0 ; nc <= ncomm ; nc++ )
 	  {
-        C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
+	    // TODO : Scilab is supposed to be busy there. Add mutex lock...
+	    // C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
         if (C2F(iop).ddt==-1)
         {
 	      if (seqf[nc]==0)
@@ -151,7 +153,8 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
             sciprint("\n");
         }
         FREE(comm[nc]);
-        C2F(tksynchro)(&C2F(recu).paus);
+	// TODO : Scilab is supposed to be busy there. Add mutex lock...
+	// C2F(tksynchro)(&C2F(recu).paus);
         if (ierr != 0) return TCL_ERROR;
       }
       if (C2F(iop).ddt==-1) sciprint(_("Flushing ends\n"));
@@ -159,7 +162,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     else
 	{
       /* seq or no option */
-      StoreCommand(command); 
+      StoreCommand(command);
 
       if ( (argv[2] != (char *)0) && (strncmp(argv[2],"seq",3)==0) )
 	  {
@@ -173,7 +176,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     }
     FREE(command);
 
-  } 
+  }
   else
   {
 	/* ScilabEval called without argument */

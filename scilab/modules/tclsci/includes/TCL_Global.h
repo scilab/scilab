@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __TCLGLOBAL__
 #define __TCLGLOBAL__
 
@@ -25,18 +25,36 @@ extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 extern int XTKsocket;
 /*--------------------------------------------------------------------------*/
+/*
+** Manage Tcl Loop as a standalone one.
+** An  important  constraint  of  the  Tcl  threads implementation
+** is that only the thread that created a Tcl interpreter can use that interpreter.
+*/
+// Global Tcl Command Buffer
+extern char *TclCommand;
+// Command Mutex
+extern pthread_mutex_t CommandMutex;
+// Global Tcl Return Code.
+extern int TclInterpReturn;
+// Return Mutex
+extern pthread_mutex_t ReturnMutex;
+// Global Tcl Return Result.
+extern char *TclInterpResult;
+// Result Mutex
+extern pthread_mutex_t ResultMutex;
+/*--------------------------------------------------------------------------*/
 
 /**
  * @TODO : add comment
  *
- * @param s 
+ * @param s
  */
 void nocase (char *s);
 
 /**
  * @TODO : add comment
  *
- * @param RhsMatrix 
+ * @param RhsMatrix
  * @return <ReturnValue>
  */
 char *Matrix2String(int RhsMatrix);
@@ -44,8 +62,8 @@ char *Matrix2String(int RhsMatrix);
 /**
  * @TODO : add comment
  *
- * @param StringIn  
- * @param nbelemOut 
+ * @param StringIn
+ * @param nbelemOut
  * @return <ReturnValue>
  */
 double *String2Matrix(char *StringIn,int *nbelemOut);
@@ -53,7 +71,7 @@ double *String2Matrix(char *StringIn,int *nbelemOut);
 /**
  * @TODO : add comment
  *
- * @param FieldPropertie    
+ * @param FieldPropertie
  * @return <ReturnValue>
  */
 int MustReturnAMatrix(char *FieldPropertie);
@@ -61,7 +79,7 @@ int MustReturnAMatrix(char *FieldPropertie);
 /**
  * @TODO : add comment
  *
- * @param FieldPropertie    
+ * @param FieldPropertie
  * @return <ReturnValue>
  */
 int MustReturnAString(char *FieldPropertie);
@@ -69,7 +87,7 @@ int MustReturnAString(char *FieldPropertie);
 /**
  * @TODO : add comment
  *
- * @param FieldPropertie    
+ * @param FieldPropertie
  * @return <ReturnValue>
  */
 int ValueMustBeAMatrix(char *FieldPropertie);
@@ -77,7 +95,7 @@ int ValueMustBeAMatrix(char *FieldPropertie);
 /**
  * @TODO : add comment
  *
- * @param FieldPropertie    
+ * @param FieldPropertie
  * @return <ReturnValue>
  */
 int ValueMustBeAString(char *FieldPropertie);
@@ -85,7 +103,7 @@ int ValueMustBeAString(char *FieldPropertie);
 /**
  * @TODO : add comment
  *
- * @param FieldPropertie    
+ * @param FieldPropertie
  * @return <ReturnValue>
  */
 int CheckPropertyField(char *FieldPropertie);
@@ -93,12 +111,12 @@ int CheckPropertyField(char *FieldPropertie);
 /**
  * @TODO : add comment
  *
- * @param TCLinterp 
- * @param StringUTF8    
+ * @param TCLinterp
+ * @param StringUTF8
  * @return <ReturnValue>
  */
 char *UTF8toANSI(Tcl_Interp *TCLinterp,char *StringUTF8);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __TCLGLOBAL__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

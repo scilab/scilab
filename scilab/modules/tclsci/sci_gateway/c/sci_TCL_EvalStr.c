@@ -9,101 +9,100 @@
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
-{ 
-	CheckRhs(1,2);
-	CheckLhs(1,1);
+{
+  CheckRhs(1,2);
+  CheckLhs(1,1);
 
-	if (GetType(1) == sci_strings)
+  if (GetType(1) == sci_strings)
+    {
+      char *tclSlave = NULL;
+
+      char **Str=NULL;
+      int m1,n1,i,j,RET;
+      int m2,n2,l2;
+      char **ReturnArrayString=NULL;
+      int k=0;
+
+      GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
+
+      if (TCLinterp == NULL)
 	{
-		char **Str=NULL;
-		int m1,n1,i,j,RET;
-		int m2,n2,l2;
-        Tcl_Interp *TCLinterpreter=NULL;
-        char **ReturnArrayString=NULL;
-        int k=0;
+	  freeArrayOfString(Str,m1*n1);
+	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
+	  return 0;
+	}
 
-		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
-
-		if (TCLinterp == NULL)
+      if (Rhs==2)
+	{
+	  /* two arguments given - the slave interpreter name */
+	  if (GetType(2) == sci_strings)
+	    {
+	      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+	      if (Tcl_GetSlave(TCLinterp,cstk(l2)) == NULL)
 		{
-			freeArrayOfString(Str,m1*n1);
-			Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
-			return 0;
+		  freeArrayOfString(Str,m1*n1);
+		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
+		  return 0;
 		}
+	      tclSlave = strdup(cstk(l2));
+	    }
+	  else
+	    {
+	      freeArrayOfString(Str,m1*n1);
+	      Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+	      return 0;
+	    }
+	}
 
-		if (Rhs==2)
+      ReturnArrayString = (char **) MALLOC(m1*n1*sizeof(char **));
+
+      for (i = 0; i<m1*n1 ;i++)
+	{
+	  char *RetStr=NULL;
+	  char *AsciiFromUTF8=NULL;
+
+	  if (tclSlave != NULL) {
+	    sendTclCommandToSlave(Str[i], tclSlave);
+	  }
+	  else {
+	    sendTclCommand(Str[i]);
+	  }
+
+	  if (getTclCommandReturn() == TCL_ERROR)
+	    {
+	      const char *trace = Tcl_GetVar(TCLinterp, "errorInfo", TCL_GLOBAL_ONLY);
+	      freeArrayOfString(Str,m1*n1);
+	      if(Err>0)
 		{
-			/* two arguments given - get a pointer on the slave interpreter */
-			if (GetType(2) == sci_strings)
-			{
-				GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-				TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
-				if (TCLinterpreter==NULL)
-				{
-					freeArrayOfString(Str,m1*n1);
-					Scierror(999,_("%s: No such slave interpreter.\n"),fname);
-					return 0;
-				}
-			}
-			else
-			{
-				freeArrayOfString(Str,m1*n1);
-				Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
-				 return 0;
-			}
+		  Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
 		}
-		else
+	      else
 		{
-			/* only one argument given - use the main interpreter */
-			TCLinterpreter=TCLinterp;
+		  Scierror(999,"%s, %s at line %i\n	%s\n",fname,TCLinterp->result,i+1,(char *)trace);
 		}
-
-        ReturnArrayString = (char **) MALLOC(m1*n1*sizeof(char **));
-
-		for (i = 0; i<m1*n1 ;i++)
-		{
-			char *RetStr=NULL;
-			char *AsciiFromUTF8=NULL;
-
-			RET=Tcl_Eval(TCLinterpreter,Str[i]);
-
-			if (RET==TCL_ERROR)
-			{
-                const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
-				freeArrayOfString(Str,m1*n1);
-				if(Err>0)
-				{
-					Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
-				}
-				else
-				{
-					Scierror(999,"%s, %s at line %i\n	%s\n",fname,TCLinterpreter->result,i+1,(char *)trace);
-				}
-				return 0;
-            } 
-			else
-			{
-                /* return result of the successful evaluation of the script */
-                /* return a matrix of string results */
-                RetStr = (char*)Tcl_GetStringResult(TCLinterpreter);
-                AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
-                ReturnArrayString[k++]=AsciiFromUTF8;
+	      return 0;
             }
-		}
-		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, ReturnArrayString);
-		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+	  else
+	    {
+	      /* return result of the successful evaluation of the script */
+	      /* return a matrix of string results */
+	      ReturnArrayString[k++]=getTclCommandResult();
+            }
+	}
+      CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, ReturnArrayString);
+      LhsVar(1)=Rhs+1;
+      C2F(putlhsvar)();
 
-		for (i=0;i<n1;i++) for (j=0;j<m1;j++) { FREE(ReturnArrayString[i+n1*j]);ReturnArrayString[i+n1*j]=NULL; }
-		FREE(ReturnArrayString);
-		freeArrayOfString(Str,m1*n1);
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong input argument: String or vector of strings expected.\n"),fname);
-		return 0;
-	}
-	
-  	return 0;
+      for (i=0;i<n1;i++) for (j=0;j<m1;j++) { FREE(ReturnArrayString[i+n1*j]);ReturnArrayString[i+n1*j]=NULL; }
+      FREE(ReturnArrayString);
+      freeArrayOfString(Str,m1*n1);
+    }
+  else
+    {
+      Scierror(999,_("%s: Wrong input argument: String or vector of strings expected.\n"),fname);
+      return 0;
+    }
+
+  return 0;
 }
 /*--------------------------------------------------------------------------*/

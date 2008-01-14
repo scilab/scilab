@@ -4,7 +4,6 @@
 /*--------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
-#include "TclEvents.h"
 #include "TclUiGet.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -31,7 +30,6 @@ int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 		}
 
 		TCL_UiGet(Handle,Rhs);
-		flushTKEvents ();
 	}
 	else
 	{
@@ -40,7 +38,7 @@ int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long l))
 	}
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
+	C2F(putlhsvar)();
 
 	return 0;
 }

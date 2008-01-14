@@ -8,10 +8,8 @@ if TCLTK
 TCLSCI_C_SOURCES = src/c/GedManagement.c \
 src/c/TclUiGet.c \
 src/c/TCL_Global.c \
-src/c/tksynchro.c \
 src/c/InitTclTk.c \
 src/c/ScilabEval.c \
-src/c/TclEvents.c \
 src/c/setenvtcl.c \
 src/c/TclUiSet.c \
 src/c/InitializeTclTk.c \
@@ -21,7 +19,8 @@ src/c/setvar.c \
 src/c/TCL_ArrayDim.c \
 src/c/TCL_ArrayExist.c \
 src/c/TCL_ArrayGetVar.c \
-src/c/TCL_ArraySize.c
+src/c/TCL_ArraySize.c \
+src/c/TCL_Command.c
 
 
 GATEWAY_C_SOURCES =  sci_gateway/c/sci_TCL_CreateSlave.c \
@@ -280,7 +279,6 @@ includes/setenvtcl.h\
 includes/GedManagement.h \
 includes/TCL_Global.h \
 includes/ScilabEval.h \
-includes/TclEvents.h \
 includes/gw_tclsci.h \
 includes/TclUiGet.h \
 includes/InitializeTclTk.h
