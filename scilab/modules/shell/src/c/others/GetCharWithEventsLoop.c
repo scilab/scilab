@@ -9,13 +9,12 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
-#include <sys/select.h> 
+#include <sys/select.h>
 #include "GetCharWithEventsLoop.h"
 #include "localization.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "core_math.h" /* Max */
-#include "ScilabEventsLoop.h"
 #include "dynamic_menus.h"
 /*--------------------------------------------------------------------------*/
 #define LF                    0x000a
@@ -50,16 +49,15 @@ int GetCharWithEventsLoop(int interrupt)
 
 		select_timeout.tv_sec = 0;
 		select_timeout.tv_usec = 10;
-		
+
 		if (select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL, &select_timeout)==-1)
 		{
 			int errnum = errno;
-			sciprint(_("%s: An error occurred: %s\n"),"GetCharWithEventsLoop",strerror(errnum));
-			if (errnum != EINTR) /* EINTR  A signal was caught. */
+			if (errnum == EINTR) /* EINTR  A signal was caught. */
 			{
-				exit(0);
-				continue;
+			  exit(errnum);
 			}
+			sciprint(_("%s: An error occurred: %s\n"),"GetCharWithEventsLoop",strerror(errnum));
 		}
 
 		/* if there's something to output */
@@ -74,22 +72,18 @@ int GetCharWithEventsLoop(int interrupt)
 		if (FD_ISSET(fd_in,&select_mask)) {
 			state=1;
 		} else {
-			if (!IntoEmacs()) { 
-				state=0; 
+			if (!IntoEmacs()) {
+				state=0;
 			}
 		}
 
 		if (state)
 		{
 			int i = getchar();
-			ScilabEventsLoop();
 			if (i == LF) {
 				state=0;
 			}
 			return i ;
-		}
-		else {
-			ScilabEventsLoop();
 		}
 		if (interrupt && (ismenu()==1)) {
 			return -1;
@@ -99,7 +93,7 @@ int GetCharWithEventsLoop(int interrupt)
 /*--------------------------------------------------------------------------*/
 static void initializeScilabMask(void)
 {
-	/*    
+	/*
 	 * Examines the  argument  stream  and  returns  its integer descriptor.
 	 */
 	fd_in = fileno(stdin) ;
@@ -114,7 +108,7 @@ static void initializeScilabMask(void)
 
 	/* This is an integer  one  more  than  the  maximum  of  any  file
 	 * descriptor  in  any  of  the sets.
-	 * See man select for more information	  
+	 * See man select for more information
 	 */
 	inter_max_plus1 = Max(fd_in,Xsocket);
 	inter_max_plus1 = Max(fd_out,inter_max_plus1);
