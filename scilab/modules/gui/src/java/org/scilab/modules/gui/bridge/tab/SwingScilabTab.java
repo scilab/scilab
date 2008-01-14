@@ -2,6 +2,8 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import javax.swing.Action;
+
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -20,6 +22,8 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -57,14 +61,15 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public SwingScilabTab(String name) {
 		super(name, name, name);
-		this.addAction(DockingConstants.CLOSE_ACTION);
-		// FIXME : Need improvement to be available at a release Status...
-		this.addAction(DockingConstants.PIN_ACTION);
+		// This button is "overloaded" when we add a callback
+		//this.addAction(DockingConstants.CLOSE_ACTION);
+		// Removed because make JOGL crash when "Unpin"
+		//this.addAction(DockingConstants.PIN_ACTION);
 		this.addAction(DockingConstants.ACTIVE_WINDOW);
 		this.setLayout(null);
 	}
 
-    /**
+	/**
      * Repaint it
      */
 	public void repaint() {
@@ -426,5 +431,15 @@ public class SwingScilabTab extends View implements SimpleTab {
 		return this.toolBar;
 	}
 	
-	
+	/**
+	 * Set the callback of the tab
+	 * @param command the command to be executed when the tab is closed
+	 * @param commandType the type of the command
+	 */
+	public void setCallback(String command, int commandType) {
+		CallBack cb = ScilabCallBack.create(command, commandType);
+		cb.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
+		this.addAction(cb);
+	}
+
 }

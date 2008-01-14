@@ -200,4 +200,12 @@ public interface SimpleTab {
 	 * @param newToolBar : the ToolBar to associate.
 	 */
 	void setToolBar(ToolBar newToolBar);
+	
+	/**
+	 * Set the callback of the tab
+	 * @param command the command to be executed when the tab is closed
+	 * @param commandType the type of the command
+	 */
+	void setCallback(String command, int commandType);
+
 }

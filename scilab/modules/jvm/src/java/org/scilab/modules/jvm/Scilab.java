@@ -6,10 +6,10 @@ package org.scilab.modules.jvm;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.LookAndFeel;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
@@ -25,22 +25,15 @@ import org.scilab.modules.gui.utils.ToolBarBuilder;
 public class Scilab {
 
 	private static final String CLASS_NOT_FOUND = "Could not find class: ";
-	private static final String FILE_NOT_FOUND = "Could not find file: ";
-
-	private static final String CANNOT_CREATE_MENUBAR = "Cannot create Figure MenuBar.\n"
-							+ "Check if file main_menubar.xml is available and valid.";
-	private static final String CANNOT_CREATE_TOOLBAR = "Cannot create Figure ToolBar.\n"
-							+ "Check if file main_toolbar.xml is available and valid.";
 
 	private static final String SCIDIR = System.getenv("SCI");
 
 	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/main_menubar.xml";
 	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
-
-	private static final int DEFAULTWIDTH = 500;
-	private static final int DEFAULTHEIGHT = 500;
-
-	private int mode;
+	
+	private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
+	
+		private int mode;
 
 	private Window mainView;
 
@@ -52,7 +45,7 @@ public class Scilab {
 
 		this.mode = mode;
 		LookAndFeel.setSystemLookAndFeel();
-
+		//LookAndFeel.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 		if (mode == 2) { /* Mode GUI */
 
 			try {
@@ -60,7 +53,9 @@ public class Scilab {
 				mainView.draw();
 				mainView.setTitle("Scilab-5.0");
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Window.\nCheck if the thirdparties are available (Flexdock, JOGL...).\nSee SCI/etc/classpath.xml for default paths.");
+				System.err.println("Cannot create Scilab Window.\n"
+						+ "Check if the thirdparties are available (Flexdock, JOGL...).\n"
+						+ SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
@@ -82,11 +77,15 @@ public class Scilab {
 				/* Create a tab to put console into */
 				consoleTab = ScilabTab.createTab("Console Scilab");
 				consoleTab.setName("Console");
+				/* Exit Scilab when the console is closed */
+				consoleTab.setCallback("exit();", CallBack.SCILAB_INSTRUCTION);
 
 				ScilabConsole.createConsole();
 				//consoleTab.addMember(sciConsole);
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).\nSee SCI/etc/classpath.xml for default paths.");
+				System.err.println("Cannot create Scilab Console.\n"
+						+ "Check if the thirdparties are available (JoGL/JRosetta...).\n"
+						+ SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}

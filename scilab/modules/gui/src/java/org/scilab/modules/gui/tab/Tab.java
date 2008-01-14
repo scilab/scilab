@@ -134,4 +134,12 @@ public interface Tab extends Container {
 	 * @return the id of the parent window
 	 */
 	int getParentWindowId();
+	
+	/**
+	 * Set the callback of the tab
+	 * @param command the command to be executed when the tab is closed
+	 * @param commandType the type of the command
+	 */
+	void setCallback(String command, int commandType);
+
 }

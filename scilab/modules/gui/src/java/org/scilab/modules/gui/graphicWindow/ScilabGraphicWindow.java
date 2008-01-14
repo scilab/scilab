@@ -10,6 +10,7 @@ package org.scilab.modules.gui.graphicWindow;
 
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -54,6 +55,8 @@ public class ScilabGraphicWindow extends ScilabWindow {
 		
 		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
+		/* Destroy the graphic figure when the tab is closed */
+		graphicTab.setCallback("delete(gcf());", CallBack.SCILAB_INSTRUCTION);
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
 		graphicTab.addMenuBar(menuBar);
 		graphicTab.addToolBar(toolBar);

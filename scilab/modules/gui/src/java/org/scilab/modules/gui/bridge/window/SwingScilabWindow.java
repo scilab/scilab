@@ -3,11 +3,16 @@
 
 package org.scilab.modules.gui.bridge.window;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 
+import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.defaults.DefaultDockingPort;
+import org.flexdock.view.View;
 
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -70,6 +75,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		
 		sciDockingListener = new SciDockingListener();
 		sciDockingPort.addDockingListener(sciDockingListener);
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				Object[] dockArray = sciDockingPort.getDockables().toArray();
+				for (int i = 0; i < dockArray.length; i++) {
+					((View) dockArray[i]).getActionButton(DockingConstants.CLOSE_ACTION).getAction().actionPerformed(null);
+				}
+			}
+		});
 	}
 
 	/**

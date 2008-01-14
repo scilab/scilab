@@ -332,4 +332,15 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		super.addToolBar(toolBar);
 		this.getAsSimpleTab().setToolBar(toolBar);
 	}
+
+	/**
+	 * Set the callback of the tab
+	 * @param command the command to be executed when the tab is closed
+	 * @param commandType the type of the command
+	 */
+	public void setCallback(String command, int commandType) {
+		ScilabBridge.setCallback(this, command, commandType);
+	}
+
 }
+

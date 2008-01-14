@@ -266,4 +266,15 @@ public class ScilabTabBridge {
 	public static int getParentWindowId(Tab tab) {
 		return tab.getAsSimpleTab().getParentWindowId();
 	}
+	
+	/**
+	 * Set the callback of the tab
+	 * @param tab the tab which we want to set the callback of
+	 * @param command the command to be executed when the tab is closed
+	 * @param commandType the type of the command
+	 */
+	public static void setCallback(Tab tab, String command, int commandType) {
+		tab.getAsSimpleTab().setCallback(command, commandType);
+	}
+
 }
