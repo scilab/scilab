@@ -5,8 +5,23 @@
 
 mode(-1);
 lines(0);
+
+try   
+ version_scilab = getversion('scilab');
+catch  
+ warning('Scilab 5.0 or more is required.');  
+ return;
+end;  
+
+if ~haveacompiler() then
+  warning('This toolbox requires a compiler to build.');
+  return;
+end
+
+
 current_dir = pwd();
 main_dir_tlbx_sklt = get_absolute_file_path('builder.sce');
+
 
 disp('Build macros');
 chdir(main_dir_tlbx_sklt);

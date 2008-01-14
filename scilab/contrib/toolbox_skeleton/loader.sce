@@ -5,7 +5,8 @@
 try   
  version_scilab = getversion('scilab');
 catch  
- error('Scilab 5.0 or more is required.');  
+ warning('Scilab 5.0 or more is required.');  
+ return;
 end;  
 // ====================================================================
 root_tlbx = get_absolute_file_path('loader.sce');
