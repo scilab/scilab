@@ -109,4 +109,10 @@ public interface SimpleConsole {
 	 */
 	boolean isWaitingForInput();
 
+	/**
+	 * Send commands to be executed by Scilab (after a copy/paste or drag&drop...)
+	 * @param textToExec all text lines to executed
+	 * @param displayCmdInOutput flag indicating if the input command has to be displayed in the output view
+	 */
+	public void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput);
 }
