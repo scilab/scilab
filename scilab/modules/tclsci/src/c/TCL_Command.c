@@ -9,6 +9,8 @@
 **
 ** Copyright INRIA 2008
 */
+#include <stdlib.h>
+#include <unistd.h>
 
 #ifdef _MSC_VER
 	#include <Windows.h>
@@ -16,6 +18,7 @@
 	#define strdup _strdup
 #endif
 #include "TCL_Command.h"
+
 
 // TCL Interpreter creation and loop ID
 __threadId		TclThread;
