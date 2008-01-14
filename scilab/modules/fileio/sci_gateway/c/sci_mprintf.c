@@ -20,7 +20,7 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
   CheckLhs(0,1);
   if ( Rhs < 1 ) 
   { 
-     Scierror(999,_("%s: Wrong number of input arguments: Must be > 0.\n"),fname);
+     Scierror(999,_("%s: Wrong number of input arguments: Must be > %d.\n"),fname,0);
      return 0;
   }
 
@@ -36,7 +36,11 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
     if (ptrFormat[i]=='%') 
   	{
       NumberPercent++;
-      if (ptrFormat[i+1]=='%') {NumberPercent--;i++;}
+      if (ptrFormat[i+1]=='%') /* If the user provided %% */
+		  {
+			  NumberPercent--;
+			  i++;
+		  }
     }
   }
 
@@ -58,13 +62,24 @@ int int_objprintf __PARAMS((char *fname,unsigned long fname_len))
     }
   }
   lcount = 1;
-  if (Rhs == 1) rval=do_xxprintf("printf",stdout,cstk(l1),Rhs,1,lcount,(char **)0);
-  else while (1) 
-  {
-	  if ((rval = do_xxprintf("printf",stdout,cstk(l1),Rhs,1,lcount,(char **)0)) < 0) break;
-	  lcount++;
-	  if (lcount>mx) break;
-  }
+  if (Rhs == 1) 
+	  {
+		  rval=do_xxprintf("printf",stdout,cstk(l1),Rhs,1,lcount,(char **)0);
+	  }
+  else 
+	  {
+		  while (1) 
+			  {
+				  if ((rval = do_xxprintf("printf",stdout,cstk(l1),Rhs,1,lcount,(char **)0)) < 0) {
+					  break;
+				  }
+				  lcount++;
+				  if (lcount>mx) 
+					  {
+						  break;
+					  }
+			  }
+	  }
   if (rval == RET_BUG) return 0;
   LhsVar(1)=0; /** No return value **/
   PutLhsVar();
