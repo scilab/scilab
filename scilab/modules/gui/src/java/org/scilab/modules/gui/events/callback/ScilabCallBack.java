@@ -2,7 +2,7 @@ package org.scilab.modules.gui.events.callback;
 
 import java.awt.event.ActionEvent;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.GlobalEventFilter;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 
@@ -62,7 +62,8 @@ public abstract class ScilabCallBack extends CallBack {
 	 */
 	public void storeCommand(String command, int type) {
 		//System.out.println("Store Command  Command="+command+" Type="+type);
-		InterpreterManagement.putCommandInScilabQueue(command);
+		//InterpreterManagement.putCommandInScilabQueue(command);
+		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(command, false);
 	}
 
 	/**
