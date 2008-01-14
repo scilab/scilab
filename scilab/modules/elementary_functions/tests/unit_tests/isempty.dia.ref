@@ -1,0 +1,19 @@
+//==============================================================================
+// Author : Pierre MARECHAL
+// Scilab team
+// Copyright INRIA
+// Date : 14 janvier 2008
+//==============================================================================
+// unit tests for isempty function
+// =============================================================================
+// empty matrix
+if ~isempty([]) then bugmes();quit;end
+// character string
+if ~isempty('') then bugmes();quit;end
+// matrix of character string
+if ~isempty([ '' , '' ; '' , '' ]) then bugmes();quit;end
+if isempty([ ' ' , '' ; '' , '' ]) then bugmes();quit;end
+// empty list
+if ~isempty(list()) then bugmes();quit;end
+// mlist is never empty
+if isempty(mlist('')) then bugmes();quit;end
