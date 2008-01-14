@@ -25,7 +25,6 @@
 #include "Scierror.h"
 #include "prompt.h"
 #include "x_VTPrsTbl.h"
-#include "ScilabEventsLoop.h"
 /*--------------------------------------------------------------------------*/
 #ifdef aix
 	#define ATTUNIX
@@ -301,9 +300,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     {
       /* main loop to read keyboard input */
       /* get next keystroke (no echo) returns -1 if interrupted */
-      ScilabEventsLoop();
       keystroke = gchar_no_echo(*menusflag);
-      ScilabEventsLoop();
 
       if (keystroke==-1)
       {
