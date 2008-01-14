@@ -6,6 +6,9 @@
 #include "tcl.h"
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/intl.lib")
+#ifdef __WINDOWS_WITH_PTHREAD__
+#pragma comment(lib,"../../bin/pthreadVC.lib")
+#endif
 /*--------------------------------------------------------------------------*/ 
 #if defined(TCL_MAJOR_VERSION) && defined(TCL_MAJOR_VERSION)
 	#if TCL_MAJOR_VERSION == 8 

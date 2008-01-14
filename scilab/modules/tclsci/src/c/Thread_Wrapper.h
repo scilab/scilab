@@ -19,50 +19,51 @@
 #define __THREAD_WRAPPER_H__
 
 #ifndef _MSC_VER
-
 	#include <pthread.h>
-
-	typedef pthread_t __threadId;
-	typedef pthread_mutex_t __threadLock;
-	typedef pthread_cond_t __threadSignal;
-
-	#define __Lock(lockName)			pthread_mutex_lock(lockName)
-
-	#define __UnLock(lockName)			pthread_mutex_unlock(lockName)
-
-	#define __InitSignal(signalName)		pthread_cond_init(signalName, NULL)
-	#define __Signal(signalName)			pthread_cond_signal(signalName)
-
-	#define __Wait(signalName, lockName)		pthread_cond_wait(signalName, lockName)
-
-	#define __CreateThread(threadId, functionName)  pthread_create(threadId, NULL, functionName, NULL)
-
-	#define __WaitThreadDie(threadId)		pthread_join(threadId, NULL)
-
 #else
-	#include <Windows.h>
+	#ifdef __WINDOWS_WITH_PTHREAD__
+		#include <pthread.h>
+	#else
+		#define _WIN32_WINNT 0x500
+		#include <Windows.h>
+		#include <process.h>
 
-	typedef HANDLE __threadId;
-	typedef HANDLE __threadLock;
-	typedef HANDLE __threadSignal;
+		#define	pthread_t								HANDLE
+		#define	pthread_create(t,u,f,d)					*(t)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)f,d,0,NULL)
+		#define	pthread_join(thread, result)			((WaitForSingleObject((thread),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(thread))
+		
+		#define pthread_mutex_t							HANDLE
+		
+		#define pthread_mutex_lock(pobject)		        WaitForSingleObject(*pobject,INFINITE)
+		#define pthread_mutex_unlock(pobject)	        ReleaseMutex(*pobject)
+		#define pthread_mutex_init(pobject,pattr)       (*pobject=CreateMutex(NULL,FALSE,NULL))
+		#define pthread_mutex_destroy(pobject)          CloseHandle(*pobject)
 
-	#define __Lock(lockName)			(WaitForSingleObject((*(lockName)),INFINITE))
-
-	#define __UnLock(lockName)			ReleaseMutex(*(lockName))
-
-	#define __InitSignal(signalName)		(*(signalName)) = CreateEvent(NULL,FALSE,FALSE,NULL)
-
-	#define __Signal(signalName)			(SetEvent((*(signalName))))
-	
-	#define __Wait(signalName, lockName)		(ReleaseMutex(*(lockName)),(WaitForSingleObject((*(signalName)),INFINITE)))
-
-	static DWORD _thread_tmp;
-
-	#define __CreateThread(threadId, functionName)  (*(threadId))=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)functionName,NULL,0,&_thread_tmp)
-
-	#define __WaitThreadDie(threadId)		WaitForSingleObject(threadId,INFINITE)
-
+		#define pthread_cond_t					        HANDLE
+		#define pthread_cond_init(pobject,pattr)        (*pobject=CreateEvent(NULL,FALSE,FALSE,NULL))
+		#define pthread_cond_destroy(pobject)           CloseHandle(*pobject)
+		#define CV_TIMEOUT			INFINITE
+		#define pthread_cond_wait(pcv,pmutex)			{ReleaseMutex(*pmutex);WaitForSingleObject(*pcv,CV_TIMEOUT);WaitForSingleObject(*pmutex,INFINITE);};
+		#define pthread_cond_signal(pcv)				SetEvent(*pcv)
+	#endif
 #endif
+
+typedef pthread_t __threadId;
+typedef pthread_mutex_t __threadLock;
+typedef pthread_cond_t __threadSignal;
+#define __Lock(lockName)			pthread_mutex_lock(lockName)
+
+#define __UnLock(lockName)			pthread_mutex_unlock(lockName)
+
+#define __InitSignal(signalName)		pthread_cond_init(signalName, NULL)
+#define __Signal(signalName)			pthread_cond_signal(signalName)
+
+#define __Wait(signalName, lockName)		pthread_cond_wait(signalName, lockName)
+
+#define __CreateThread(threadId, functionName)  pthread_create(threadId, NULL, functionName, NULL)
+
+#define __WaitThreadDie(threadId)		pthread_join(threadId, NULL)
+
 
 #endif /* !__THREAD_WRAPPER_H__ */
 

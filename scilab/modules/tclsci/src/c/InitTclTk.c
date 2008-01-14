@@ -33,7 +33,6 @@ void *DaemonOpenTCLsci(void* in)
      /* Checks if tcl/tk has already been initialised and if not */
      /* initialise it. It must find the tcl script */
 {
-  int TclInterpReturn;
   char *SciPath=NULL;
   char TkScriptpath[PATH_MAX];
   char MyCommand[2048];
@@ -117,13 +116,18 @@ void *DaemonOpenTCLsci(void* in)
       Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
     }
 
-  if (TKmainWindow == NULL)
+	if (TKmainWindow == NULL)
     {
-      if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
-	{
-	  Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
+		#ifdef _MSC_VER
+			TKmainWindow = Tk_MainWindow(TCLinterp);
+			Tk_GeometryRequest(TKmainWindow,2,2);
+		#endif
+			if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
+			{
+				Scierror(999,_("Tcl Error : %s\n"),TCLinterp->result);
+			}
 	}
-    }
+
 
   if (SciPath) {FREE(SciPath);SciPath=NULL;}
 
@@ -160,7 +164,7 @@ BOOL CloseTCLsci(void)
       if (isTkStarted())
 	{
 	  setTkStarted(FALSE);
-	  __WaitThreadDie(&TclThread);
+	  __WaitThreadDie(TclThread);
 	  TCLinterp=NULL;
 	  TKmainWindow=NULL;
 	  return TRUE;

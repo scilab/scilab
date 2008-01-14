@@ -2,6 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "Scierror.h"
@@ -45,7 +46,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 		  return 0;
 		}
-	      tclSlave = strdup(cstk(l2));
+	      tclSlave =  strdup(cstk(l2));
 	    }
 	  else
 	    {

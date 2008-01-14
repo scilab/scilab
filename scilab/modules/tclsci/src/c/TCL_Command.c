@@ -10,7 +10,9 @@
 ** Copyright INRIA 2008
 */
 #include <stdlib.h>
-#include <unistd.h>
+#ifndef _MSC_VER
+	#include <unistd.h>
+#endif
 
 #ifdef _MSC_VER
 	#include <Windows.h>
@@ -54,6 +56,7 @@ static void *sleepAndSignal(void* in) {
     __Signal(&wakeUp);
     __UnLock(&wakeUpLock);
   }
+  return NULL;
 }
 
 /*
@@ -118,7 +121,13 @@ void startTclLoop(Tcl_Interp *TCLinterp)
     */
     else
       {
-	Tcl_Eval(TCLinterp, "update");
+	#ifdef _MSC_VER
+		  Tcl_Eval(TCLinterp, "update idletasks");
+		  Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);
+	#else
+		  Tcl_Eval(TCLinterp, "update");
+	#endif
+
 	__Wait(&wakeUp, &wakeUpLock);
       }
     __UnLock(&wakeUpLock);

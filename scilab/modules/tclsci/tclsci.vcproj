@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;includes;src/c;../../libs/MALLOC/includes;../core/includes;includes\tcltk\include;includes\tcltk\include\X11;../action_binding/includes;../output_stream/includes;../localization/includes;../../libs/intl"
+				AdditionalIncludeDirectories=".;includes;src/c;../../libs/MALLOC/includes;../../libs/pthreads;../core/includes;includes\tcltk\include;includes\tcltk\include\X11;../action_binding/includes;../output_stream/includes;../localization/includes;../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;TCLSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -331,10 +331,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\TclEvents.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\TclUiGet.c"
 				>
 			</File>
@@ -344,10 +340,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\TerminateTclTk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\tksynchro.c"
 				>
 			</File>
 			<File
