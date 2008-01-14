@@ -118,7 +118,7 @@ f1=['int ext1c(n, a, b, c)'
     '      c[k] = a[k] + b[k];'
     '  return(0);}'];
 
-mputl(f1,'fun1.c')
+mputl(f1,TMPDIR+'fun1.c')
 
 //creating the shared library (a gateway, a Makefile and a loader are 
 //generated. 
