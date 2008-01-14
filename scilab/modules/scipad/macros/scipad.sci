@@ -7,13 +7,13 @@ function scipad(varargin)
       scilab5=%t;
     else
       scilab5=%f;
-    end 
+    end
     if ~scilab5 then
       // fake gettext function - no localization of Scilab in Scilab 4.x
       function sss=gettext(sss)
       endfunction
     end
-  
+
     global SCIPADISSTARTING
     // ensure that no concurrent launching occurs
     // this fixes the issue that shows up when quickly
@@ -35,12 +35,13 @@ function scipad(varargin)
     clear nwnimode noguimode
 
     if with_tk() then
-        if ~TCL_ExistInterp("scipad") then    
+        if ~TCL_ExistInterp("scipad") then
             TCL_EvalStr("interp create scipad")
             TCL_EvalStr("load {'+gettklib()+'} Tk scipad")
             TCL_EvalStr("wm withdraw .","scipad")
             TCL_EvalStr("scipad alias ScilabEval ScilabEval")
-        end
+	    TCL_EvalStr("set sciprompt 0", "scipad")
+	end
         if exists("SCIHOME") then
             if MSDOS then
                 TCL_EvalStr("set env(SCIHOME) """+strsubst(SCIHOME,"\","/")+"""","scipad")
@@ -63,13 +64,13 @@ function scipad(varargin)
           TCL_EvalStr("source """+SCI+"/modules/scipad/tcl/scipad.tcl""","scipad")
         else
           TCL_EvalStr("source """+SCI+"/tcl/scipadsources/scipad.tcl""","scipad")
-        end        
+        end
         nfiles=argn(2)
         if nfiles>0 then
             for i=1:nfiles
                 validfile=%f;
                 f=varargin(i)
-                select type(f)        
+                select type(f)
                 case 1 then filetoopen=string(f); validfile=%t;
                 case 8 then filetoopen=string(f); validfile=%t;
                 case 10 then filetoopen=f; validfile=%t;
@@ -109,12 +110,12 @@ function scipad(varargin)
                     // thus sync cannot be used for loading colorization arrays chset and words, and a seq
                     // is used. But then the file opening should be queued after the loading of keywords,
                     // which means the following nested complication is needed
-                    TCL_EvalStr("ScilabEval {TCL_EvalStr(""openfile {"+ filetoopen +"}"",""scipad"")} ""seq"" ")     
+                    TCL_EvalStr("ScilabEval {TCL_EvalStr(""openfile {"+ filetoopen +"}"",""scipad"")} ""seq"" ")
 //                    TCL_EvalStr("openfile """+filetoopen+"""","scipad")
                 end
             end  // end of "for i=1:nfiles"
         end  // end of "if nfiles>0"
-    else 
+    else
         // with_tk() is %f
         clearglobal SCIPADISSTARTING
         error(gettext('Scilab has not been built with Tcl/Tk: Scipad unavailable.'))
