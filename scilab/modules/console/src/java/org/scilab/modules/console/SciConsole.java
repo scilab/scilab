@@ -36,15 +36,15 @@ import com.artenum.rosetta.util.StringConstants;
  * @author Vincent COUVERT
  */
 public abstract class SciConsole extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private static final int LINE_NUMBER_IN_PROMPT = 2;
-	
+
 	private static final String BACKSLASH_R = "\r";
-	
+
 	/**
-	 * Maximum length of a command send to Scilab 
+	 * Maximum length of a command send to Scilab
 	 */
 	private static final int MAX_CMD_LENGTH = 512;
 
@@ -52,27 +52,27 @@ public abstract class SciConsole extends JPanel {
 	 * Configuration associated to the console oject
 	 */
 	private ConsoleConfiguration config;
-	
+
 	/**
 	 * Scroll Pane used in Scilab Console
 	 */
 	private JScrollPane jSP;
-	
+
 	/**
 	 * Generic console object
 	 */
 	private Console sciConsole;
-	
+
 	/**
 	 * Flag indicating if the input command vieaw size has been forced to a value by a call to toHome
 	 */
 	private boolean inputCommandViewSizeForced;
-	
+
 	/**
 	 * Value used to get one char from user input (when using [more y or n ?])
 	 */
 	private int userInputValue;
-	
+
 	/**
 	 * Protection for userInputValue variable R/W
 	 */
@@ -82,7 +82,7 @@ public abstract class SciConsole extends JPanel {
 	 * Boolean flag used to store the state of Scilab (true is all works done)
 	 */
 	private boolean workDone;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -90,7 +90,7 @@ public abstract class SciConsole extends JPanel {
 		super(new BorderLayout());
 		String configFilePath = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 		String profileName = null;
-		
+
 		try {
 			config = ConfigurationBuilder.buildConfiguration(configFilePath);
 		} catch (IllegalArgumentException e) {
@@ -108,7 +108,7 @@ public abstract class SciConsole extends JPanel {
 		}
 		config.setActiveProfile(profileName);
 		//
-		
+
 		sciConsole = ConsoleBuilder.buildConsole(config, this);
 		jSP = new JScrollPane(sciConsole);
 		this.add(jSP, BorderLayout.CENTER);
@@ -122,7 +122,7 @@ public abstract class SciConsole extends JPanel {
 		// The console is given to the CompletionWindow
 		((SciCompletionWindow) config.getCompletionWindow()).setConsole(this);
 		((SciCompletionWindow) config.getCompletionWindow()).setGraphicalContext(this);
-		
+
 		// The promptview is given to the Parsing Manager
 		// Used to get the position of the CompletionWindow
 		((SciInputParsingManager) config.getInputParsingManager()).setPromptView(this.getConfiguration().getPromptView());
@@ -135,7 +135,7 @@ public abstract class SciConsole extends JPanel {
 	public ConsoleConfiguration getConfiguration() {
 		return config;
 	}
-	
+
 	/**
 	 * Sets the configuration associated to the console
 	 * @param newConfig the new config to set
@@ -143,7 +143,7 @@ public abstract class SciConsole extends JPanel {
 	public void setConfiguration(ConsoleConfiguration newConfig) {
 		config = newConfig;
 	}
-	
+
 	/**
 	 * Updates Scilab internal variables containing the size of the console
 	 * These variables are used to format data before displaying it
@@ -151,11 +151,11 @@ public abstract class SciConsole extends JPanel {
 	public void scilabLinesUpdate() {
 		// Size of the console
 		int outputViewWidth = jSP.getWidth();
-		
+
 		// Size of a char
 		OutputView outputView = this.getConfiguration().getOutputView();
 		int[] charsWidth = ((JTextPane) outputView).getFontMetrics(((JTextPane) outputView).getFont()).getWidths();
-		
+
 		// This loop is not needed for monospaced fonts !
 		int maxCharWidth = charsWidth[0];
 		for (int i = 1; i < charsWidth.length; i++) {
@@ -163,16 +163,16 @@ public abstract class SciConsole extends JPanel {
 		    	maxCharWidth = charsWidth[i];
 		    }
 		}
-		
+
 		int numberOfLines = getNumberOfLines();
 		int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
-		
-		int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1; 
+
+		int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1;
 		/* -1 because of the margin between text prompt and command line text */
 
 		GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
 	}
-	
+
 	/**
 	 * Get the number of lines that can be displayed in the visible part of the console
 	 * @return the number of lines
@@ -180,12 +180,12 @@ public abstract class SciConsole extends JPanel {
 	public int getNumberOfLines() {
 		// Size of the console
 		int outputViewHeight = jSP.getHeight();
-		
+
 		// Size of a char
 		OutputView outputView = this.getConfiguration().getOutputView();
 		int charHeight = ((JTextPane) outputView).getFontMetrics(((JTextPane) outputView).getFont()).getHeight();
 		int[] charsWidth = ((JTextPane) outputView).getFontMetrics(((JTextPane) outputView).getFont()).getWidths();
-		
+
 		// This loop is not needed for monospaced fonts !
 		int maxCharWidth = charsWidth[0];
 		for (int i = 1; i < charsWidth.length; i++) {
@@ -193,17 +193,17 @@ public abstract class SciConsole extends JPanel {
 		    	maxCharWidth = charsWidth[i];
 		    }
 		}
-		
+
 		return outputViewHeight / charHeight - 1; /* -1 because of the size of the InputCommandLine */
 	}
-	
+
     /**
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				jSP.getViewport().setViewPosition(new Point(0, 
+				jSP.getViewport().setViewPosition(new Point(0,
 						sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
 				jSP.revalidate();
 			}
@@ -229,19 +229,19 @@ public abstract class SciConsole extends JPanel {
      * @param nbLines the number of lines to be deleted
      */
     public void clear(int nbLines) {
-    	
+
     	if (nbLines == 0) {
     		// Clear the prompt
     		config.getInputCommandView().reset();
     	} else {
     		// Clear lines in output command view
-    		try {	
+    		try {
     			// We have to remove the command entered by the user
     			int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
-    		
+
     			StyledDocument outputStyle = config.getOutputViewStyledDocument();
     			String outputTxt =  outputStyle.getText(0, outputStyle.getLength());
-			
+
     			// Are there enough lines in the output view ?
     			String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
     			if (allLines.length < totalNumberOfLines) {
@@ -275,17 +275,17 @@ public abstract class SciConsole extends JPanel {
     	((JTextPane) config.getInputCommandView()).doLayout();
     	inputCommandViewSizeForced = true;
    }
-    
+
     /**
-     * Sets the flags indicating if the input command view has been resize by calling toHome() 
+     * Sets the flags indicating if the input command view has been resize by calling toHome()
      * @param status the new status
      */
     public void setInputCommandViewSizeForced(boolean status) {
     	inputCommandViewSizeForced = status;
     }
-    
+
     /**
-     * Gets the flags indicating if the input command view has been resize by calling toHome() 
+     * Gets the flags indicating if the input command view has been resize by calling toHome()
      * @return true if a toHome() call is still affecting the size of the input command view
      */
     public boolean getInputCommandViewSizeForced() {
@@ -298,9 +298,7 @@ public abstract class SciConsole extends JPanel {
 	 */
 	public int getUserInputValue() {
 		try {
-			while (!canReadUserInputValue.tryAcquire(1, TimeUnit.MILLISECONDS)) {
-				InterpreterManagement.execScilabEventLoop();
-			}
+			canReadUserInputValue.acquire();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -323,7 +321,7 @@ public abstract class SciConsole extends JPanel {
 	public Semaphore getCanReadUserInputValue() {
 		return canReadUserInputValue;
 	}
-	
+
 	/**
 	 * Send commands to be executed by Scilab (after a copy/paste or drag&drop...)
 	 * @param textToExec all text lines to executed
@@ -333,10 +331,10 @@ public abstract class SciConsole extends JPanel {
 		String[] linesToExec = textToExec.split(StringConstants.NEW_LINE);
 		int nbStatements = 0;
 		boolean firstPrompt = true;
-		
+
 		while (nbStatements < linesToExec.length) {
-		
-			// Send data to the console only if the prompt is visible 
+
+			// Send data to the console only if the prompt is visible
 			boolean bufferAvailable = ((SciPromptView) config.getPromptView()).isVisible();
 
 			if (bufferAvailable) {
@@ -344,14 +342,14 @@ public abstract class SciConsole extends JPanel {
 				InputParsingManager inputParsingManager = config.getInputParsingManager();
 				OutputView outputView = config.getOutputView();
 				PromptView promptView = config.getPromptView();
-				
+
 				// Reset command line
 				inputParsingManager.reset();
 				promptView.updatePrompt();
-				
+
 				// Reset history settings
 				config.getHistoryManager().setInHistory(false);
-				
+
 				// Hide the prompt and command line
 				config.getInputCommandView().setEditable(false);
 				config.getPromptView().setVisible(false);
@@ -378,20 +376,20 @@ public abstract class SciConsole extends JPanel {
 				}
 				// Store the command in the buffer so that Scilab can read it
 				if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
-					config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH 
+					config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH
 							+ " characters long): could not send it to Scilab\n");
 					((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("");
 					return;
 				}
-				
+
 				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 				nbStatements++;
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * Intercept doLayout events to send the new size of the console to Scilab
 	 * @see java.awt.Container#doLayout()
@@ -401,7 +399,7 @@ public abstract class SciConsole extends JPanel {
 		// Send the size of the console to Scilab to adjust display
 		scilabLinesUpdate();
 	}
-	
+
 	/**
 	 * Get the JScrollPane associated to the console
 	 * @return the JScrollPane associated to the console
@@ -409,7 +407,7 @@ public abstract class SciConsole extends JPanel {
 	public JScrollPane getJScrollPane() {
 		return jSP;
 	}
-	
+
 	/**
 	 * Get the Console object associated to the console
 	 * @return the Console object associated to the console
@@ -417,7 +415,7 @@ public abstract class SciConsole extends JPanel {
 	public Console getSciConsole() {
 		return sciConsole;
 	}
-	
+
 	/**
 	 * Get the current status of the console
 	 * If the prompt view is visible, Scilab is waiting for commands
@@ -432,20 +430,20 @@ public abstract class SciConsole extends JPanel {
 	 * @return the command to execute
 	 */
 	public String readLine() {
-		
+
 		workDone = true;
-		
+
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
-		
+
 		// Force the prompt to be displayed
 		if (!((SciOutputView) this.getConfiguration().getOutputView()).getThread().isAlive()) {
 			((SciOutputView) this.getConfiguration().getOutputView()).getThread().run();
 		}
 
-		workDone = false;		
+		workDone = false;
 		// Reads the buffer
 		String cmd = ((SciInputCommandView) inputCmdView).getCmdBuffer();
-		
+
 		return cmd;
 	}
 
@@ -453,7 +451,7 @@ public abstract class SciConsole extends JPanel {
 	 * This method is used to display the prompt
 	 */
 	public abstract void waitForInput();
-	
+
 	/**
 	 * Does Scilab have finished its work ?
 	 * @return true if Scilab is waiting for new commands
@@ -461,5 +459,5 @@ public abstract class SciConsole extends JPanel {
 	public boolean isWorkDone() {
 		return workDone;
 	}
-	
+
 }
