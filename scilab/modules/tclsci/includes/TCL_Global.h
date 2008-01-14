@@ -25,24 +25,6 @@ extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 extern int XTKsocket;
 /*--------------------------------------------------------------------------*/
-/*
-** Manage Tcl Loop as a standalone one.
-** An  important  constraint  of  the  Tcl  threads implementation
-** is that only the thread that created a Tcl interpreter can use that interpreter.
-*/
-// Global Tcl Command Buffer
-extern char *TclCommand;
-// Command Mutex
-extern pthread_mutex_t CommandMutex;
-// Global Tcl Return Code.
-extern int TclInterpReturn;
-// Return Mutex
-extern pthread_mutex_t ReturnMutex;
-// Global Tcl Return Result.
-extern char *TclInterpResult;
-// Result Mutex
-extern pthread_mutex_t ResultMutex;
-/*--------------------------------------------------------------------------*/
 
 /**
  * @TODO : add comment
