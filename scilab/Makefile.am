@@ -86,7 +86,7 @@ check-local:
 
 distclean-recursive: clean-recursive
 
-clean-recursive: clean-help clean-localization clean-macros
+clean-recursive: clean-doc clean-localization clean-macros
 
 clean-macros:
 	@echo "-- Cleanning macros (*.bin) --"; \
@@ -97,7 +97,7 @@ clean-macros:
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
 
 
-clean-help:
+clean-doc:
 	@if test -x $(top_builddir)/scilab-bin; then \
 		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
 		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
