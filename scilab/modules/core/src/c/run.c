@@ -1,10 +1,10 @@
 /*--------------------------------------------------------------------------
  * Execution of a compiled macro (byte code)
- * byte code is a sequence of tags each of them containing the data relative 
+ * byte code is a sequence of tags each of them containing the data relative
  * to a particular basic operation
  * @author S. Steer, INRIA
  *
- * Code automatically translated from Fortran to C 
+ * Code automatically translated from Fortran to C
  *------------------------------------------------------------------ */
 
 #include <string.h>
@@ -18,7 +18,6 @@
 #include "stack-c.h"
 #include "run.h"
 #include "basout.h"
-#include "ScilabEventsLoop.h"
 #include "dynamic_menus.h"
 #include "parse.h"
 #include "localization.h"
@@ -93,7 +92,7 @@ int C2F(run)()
   static double *Stk  = C2F(stack).Stk-1;
   static int    *Istk = (int *)( C2F(stack).Stk)-1;
   static int  *Infstk = C2F(vstk).infstk-1;
-  
+
   static double equiv_4[1];
 #define x (equiv_4)
 #define ix ((int *)equiv_4)
@@ -112,7 +111,7 @@ int C2F(run)()
   static int nentry, lastindpos;
   static int lcc, kid, nlr;
   int i2;
-  
+
   /* @TODO Why 80 ? */
   static char tmp[80];
 
@@ -152,7 +151,7 @@ int C2F(run)()
 
   }
 
-  
+
  L1: /*  Start execution of a "compiled" function  */
   tref = clock();
   C2F(errgst).toperr = Top;
@@ -172,8 +171,8 @@ int C2F(run)()
       Pt = C2F(errgst).errpt;
       goto L271;
     }
-   /* errcatch in exec(function,'errcatch') 
-     * or catched error in an external 
+   /* errcatch in exec(function,'errcatch')
+     * or catched error in an external
      * or errcatch in execstr('foo()','errcatch') */
     if (C2F(errgst).errcatch == 0) goto L999;
     /* error under errcatch(....,'continue') */
@@ -196,7 +195,7 @@ int C2F(run)()
     }
   }
 
- 
+
  L11:   /*  next opcode */
   op = Istk[lc];
   /*  label 49 retains to be able issue a compatibility error message */
@@ -238,8 +237,8 @@ int C2F(run)()
     /* ------------- primitive call (matfn's) -------------- */
     goto L80;
   }
-  
-  if (op == 99) { 
+
+  if (op == 99) {
     /* ------------- return -------------------------------- */
     /* check if "return" occured in a for loop */
     p = Pt + 1;
@@ -279,9 +278,9 @@ int C2F(run)()
   ifin = Fin;
   Rhs = Istk[8 + lc];
   lname = lc + 1;
- L26: 
+ L26:
   C2F(stackg)(&Istk[lname]);
-  if (Err > 0||C2F(errgst).err1 > 0) { 
+  if (Err > 0||C2F(errgst).err1 > 0) {
     lc += 9;
     goto L10;
   }
@@ -303,7 +302,7 @@ int C2F(run)()
 	goto L10;
       }
     } else {
-      /* referenced name was function at compile time it is now a 
+      /* referenced name was function at compile time it is now a
        * primitive. Modify the code for further use */
       if (ifin != -4 && ifin != 0) {
 	/* function call */
@@ -338,7 +337,7 @@ int C2F(run)()
     lc += 9;
 
     if (Istk[7 + lc-9] == -2) {
-    
+
       /* instruction reduced to <name> with name not a function, replace */
       /* next two op code by a single store */
       /* skip extract op-code <5 3 1 1> */
@@ -480,12 +479,6 @@ int C2F(run)()
   C2F(nextj)(&Istk[1 + l0 - 7], &Pstk[Pt]);
   if (Pstk[Pt] != 0) {
     Lct[8] = Ids[2 + Pt * nsiz];
-
-	if (sciMode != SCILAB_NWNI){
-		/* Don't call the Event loop in the NWNI mode */
-		ScilabEventsLoop();
-	}
-
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   }
@@ -595,11 +588,6 @@ int C2F(run)()
     Ids[1 + Pt * nsiz] = l0;
     Ids[2 + Pt * nsiz] = nc;
     Rstk[Pt] = 616;
-
-	if (sciMode != SCILAB_NWNI){
-		/* Don't call the Event loop in the NWNI mode */
-		ScilabEventsLoop();
-	}
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   } else {
@@ -657,18 +645,13 @@ int C2F(run)()
 
  L70:
   /* re entering run to continue macro evaluation */
-
-	if (sciMode != SCILAB_NWNI){
-		/* Don't call the Event loop in the NWNI mode */
-		ScilabEventsLoop();
-	}
   if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
  L71:
   /* reset proper values for l0 and nc if a control structure had been escaped*/
   r = Rstk[Pt] - 610;
   switch ((int)r) {
-  case 1: 
+  case 1:
     l0 = Ids[1 + Pt * nsiz];
     nc = Ids[2 + Pt * nsiz];
     goto L10;
@@ -693,9 +676,9 @@ int C2F(run)()
     l0 += nc;
     nc = Istk[4 + li];
     goto L10;
-  case 4: 
-  case 5: 
-  case 6: 
+  case 4:
+  case 5:
+  case 6:
   /*    back to a select case   */
     l0 = Ids[1 + Pt * nsiz];
     nc = Ids[2 + Pt * nsiz];
@@ -709,7 +692,7 @@ int C2F(run)()
     nc = Istk[l0 - 1];
     l0 = l0 + Istk[l0 - 2];
     goto L10;
-  default : 
+  default :
     goto L10;
   }
 
@@ -797,7 +780,7 @@ int C2F(run)()
       lc = l0 + (i2 = Istk[1 + l0], abs(i2));
       Pt = p - 1;
       goto L70;
-    } else if (Rstk[p] == 501 || Rstk[p] == 502 || 
+    } else if (Rstk[p] == 501 || Rstk[p] == 502 ||
 	       Rstk[p] == 503) {
       /*     going outside a function an exec (break ignored) */
       ++lc;
@@ -933,11 +916,6 @@ int C2F(run)()
   }
   ++Lct[8];
   ++lc;
-
-  if (sciMode != SCILAB_NWNI){
-	  /* Don't call the Event loop in the NWNI mode */
-	  ScilabEventsLoop();
-  }
   if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
 
   goto L10;
@@ -1299,7 +1277,7 @@ int C2F(run)()
   C2F(errgst).errpt = Pt;
   Pstk[Pt] = Top;
   goto L10;
- L271:  
+ L271:
   /* try op-codes finished*/
   l0 = Ids[1 + Pt * nsiz];
   /*check if an error occured*/
@@ -1326,12 +1304,12 @@ int C2F(run)()
   l0 = lc;
   Rstk[Pt] = 619;
   goto L10;
- L272: 
+ L272:
   /* catch op-codes finished*/
   /* close "try catch" context and continue*/
   --Pt;
   goto L70;
- 
+
 
  L998:
   Lhs = 0;
@@ -1370,4 +1348,4 @@ int C2F(adjustrhs)()
     Ids[5 + Pt * nsiz] = 0;
   }
   return 0;
-} 
+}

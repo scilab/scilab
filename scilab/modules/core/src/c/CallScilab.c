@@ -6,7 +6,6 @@
 #include "MALLOC.h"
 #include "../../../graphics/includes/WindowList.h"
 #include "../../../graphics/includes/GetProperty.h"
-#include "ScilabEventsLoop.h"
 #include "../../../io/includes/setenvc.h"
 #include "setgetSCIpath.h"
 #include "fromc.h"
@@ -45,8 +44,8 @@ static void SetSciEnv(void)
   }
   SetScilabEnvironmentVariables(ScilabDirectory);
 
-  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
-  
+  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
+
 }
 #endif
 /*--------------------------------------------------------------------------*/
@@ -57,8 +56,6 @@ void DisableInteractiveMode(void)
 /*--------------------------------------------------------------------------*/
 int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 {
-	int bOK=FALSE;
-
 	char *ScilabStartupUsed=NULL;
 	char *InitStringToScilab=NULL;
 	int StacksizeUsed=0;
@@ -66,7 +63,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	static int iflag=-1,ierr=0;
 
-	if (StartScilabIsOK) return bOK;
+	if (StartScilabIsOK) return FALSE;
 
 	SetFromCToON();
 
@@ -101,7 +98,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		ScilabStartupUsed=(char*)MALLOC((strlen(DEFAULTSCILABSTARTUP)+1)*sizeof(char));
 		strcpy(ScilabStartupUsed,ScilabStartup);
 	}
-	
+
 	if (Stacksize==NULL)
 	{
 		StacksizeUsed=DEFAULTSTACKSIZE;
@@ -111,31 +108,29 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		StacksizeUsed=*Stacksize;
 	}
 
-	/* running the startup */ 
+	/* running the startup */
 	C2F(settmpdir)();
 
-	/* Scilab Initialization */ 
+	/* Scilab Initialization */
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
 
-	if ( ierr > 0 ) 
-    {
-	  bOK=FALSE;
-      return bOK;
-    }
+	if ( ierr > 0 )
+	  {
+	    return FALSE;
+	  }
 
 	lengthStringToScilab=(int)(strlen("exec(\"SCI/etc/scilab.start\",-1);quit;")+strlen(ScilabStartupUsed));
 	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
-	
+
 	C2F(scirun)(InitStringToScilab,(long int)strlen(InitStringToScilab));
 
 	if (ScilabStartupUsed) {FREE(ScilabStartupUsed);ScilabStartupUsed=NULL;}
 	if (InitStringToScilab) {FREE(InitStringToScilab);InitStringToScilab=NULL;}
 
-	bOK=TRUE;
 	StartScilabIsOK=TRUE;
 
-	return bOK;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 int TerminateScilab(char *ScilabQuit)
@@ -150,13 +145,17 @@ int TerminateScilab(char *ScilabQuit)
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
+/*
+  Where is this function called ????
+  What's that shit...
+*/
 void ScilabDoOneEvent(void)
 {
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-		ScilabEventsLoop();
+	  //ScilabEventsLoop();
 
-		while(ismenu()==1 ) 
+		while(ismenu()==1 )
 		{
 			C2F(scirun)("quit;",(int)strlen("quit;"));
 		}

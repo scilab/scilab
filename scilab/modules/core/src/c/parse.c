@@ -1,8 +1,8 @@
 /*--------------------------------------------------------------------------
- * Scilab parsing function 
+ * Scilab parsing function
  * @author S. Steer, INRIA
  *
- * Code automatically translated from Fortran to C 
+ * Code automatically translated from Fortran to C
  *------------------------------------------------------------------ */
 #include <string.h>
 #include <stdio.h>
@@ -11,9 +11,7 @@
 /*--------------------------------------------------------------------------*/
 #include "parse.h"
 #include "basout.h"
-#include "ScilabEventsLoop.h"
 #include "core_math.h"
-#include "../../tclsci/includes/tksynchro.h"
 #include "cvstr.h"
 #include "msgs.h"
 #include "scilabmode.h"
@@ -218,8 +216,8 @@ int C2F(parse)(void)
 	goto L96;
       }
       Lct[1] = 0;
-      if (C2F(recu).paus == 0 && 
-	  C2F(iop).rio == C2F(iop).rte && 
+      if (C2F(recu).paus == 0 &&
+	  C2F(iop).rio == C2F(iop).rte &&
 	  C2F(recu).macr ==  0) {
 	if (Pt != 0) {
 	  Msgs(30,0);
@@ -234,11 +232,11 @@ int C2F(parse)(void)
   }
  L13:
 
-  C2F(tksynchro)(&C2F(recu).paus);
+  //C2F(tksynchro)(&C2F(recu).paus);
 
   C2F(getlin)(&job, &c__1);
 
-  C2F(tksynchro)(&c_n1);
+  //C2F(tksynchro)(&c_n1);
 
 
   if (Fin == -3) {
@@ -268,12 +266,6 @@ int C2F(parse)(void)
   /*     Beginning of a new statement, clause expression or command */
   /* ------------------------------------------------------------ */
  L15:
-
-  if (sciMode != SCILAB_NWNI){
-	  /* Don't call the Event loop in the NWNI mode */
-	  ScilabEventsLoop();
-  }
-
   if (ismenu() == 1 && C2F(basbrk).interruptible) {
     iret = 1;
     goto L96;
@@ -325,7 +317,7 @@ int C2F(parse)(void)
   pts = Pt;
 
   C2F(getsym)();
-  if (C2F(com).sym == right || C2F(com).sym == rparen || C2F(com).sym == less || 
+  if (C2F(com).sym == right || C2F(com).sym == rparen || C2F(com).sym == less ||
       C2F(com).sym == great) {
     SciError(1);
     goto L98;
@@ -778,8 +770,8 @@ int C2F(parse)(void)
   if (Rstk[Pt - Lhs] == 808) {/* syntax error while in try */
     /* set back the standard error handling ++++*/
     Pt=Pt-Lhs;
-    C2F(errgst).errct = Ids[2 + Pt * nsiz]; 	
-    C2F(errgst).errpt = Ids[5 + Pt * nsiz]; 
+    C2F(errgst).errct = Ids[2 + Pt * nsiz];
+    C2F(errgst).errpt = Ids[5 + Pt * nsiz];
     /* forgot the catch error */
     C2F(errgst).err1 = Ids[3 + Pt * nsiz];
     C2F(errgst).err2 = Ids[4 + Pt * nsiz];
@@ -895,7 +887,7 @@ int C2F(parse)(void)
   if (Lct[4] < 0 || Fin == 0) {
     goto L76;
   }
-  if (! ((C2F(com).sym != semi && Lct[3] == 0) || (C2F(com).sym == semi && 
+  if (! ((C2F(com).sym != semi && Lct[3] == 0) || (C2F(com).sym == semi &&
 	 Lct[3] == 1))) {
     goto L76;
   }
@@ -950,7 +942,7 @@ int C2F(parse)(void)
   }
   if (C2F(errgst).err1 != 0) {
     /* a catched error has occured */
-    if (r == 808) { 
+    if (r == 808) {
       /* in try instructions */
       goto L80;
     } else if (Ids[1 + (Pt - 1) * nsiz] != 0) {
@@ -1436,11 +1428,11 @@ int C2F(parse)(void)
       goto L88;
     }
   }
- 
+
   if (C2F(recu).niv > 0) { /*     error in an external */
     C2F(com).fun = 99;
     return 0;
-  } 
+  }
   else if (C2F(recu).paus>0) {/*     error in a  pause */
     C2F(com).comp[0] = 0;
     goto L5;
@@ -1462,7 +1454,7 @@ int C2F(parse)(void)
   SciError(22);
   goto L1;
 
-} 
+}
 /*--------------------------------------------------------------------------*/
 /**
 * checks if an implicit execution is required on the prompt
@@ -1480,9 +1472,9 @@ void handle_onprompt(int *where_)
   static int *Rstk = C2F(recu).rstk-1;
   static int *Pstk = C2F(recu).pstk-1;
   static int *Lstk = C2F(vstk).lstk-1;
-  
+
   *where_ = 0;
-  if (Pt > 0) 
+  if (Pt > 0)
   {
     /* back from %onprompt */
     C2F(errgst).errct = Pstk[Pt];
@@ -1491,14 +1483,14 @@ void handle_onprompt(int *where_)
     Top = 0;
     Fin = 0;
     C2F(com).fun = 0;
-  } 
-  else 
+  }
+  else
   {
     /* on prompt implicit execution */
     C2F(com).fun = 0;
     C2F(funs)(onprompt);
     if (Err > 0) return;
-    if (C2F(com).fun <= 0 && Fin == 0) return; 
+    if (C2F(com).fun <= 0 && Fin == 0) return;
     /* %onprompt function exists */
     Rhs = 0;
     Lhs = 1;
@@ -1508,12 +1500,12 @@ void handle_onprompt(int *where_)
     /* set error catch with mode continue */
     C2F(errgst).errct = -100001;
     C2F(errgst).errpt = 1;
-    if (C2F(com).fun > 0) 
+    if (C2F(com).fun > 0)
 	{
       /* %onprompt is a primitive *call* matfns */
       *where_ = 1;
-    } 
-	else 
+    }
+	else
 	{
       /* %onprompt is a Scilab function *call*  macro */
       C2F(com).fin = Lstk[Fin];
@@ -1536,20 +1528,20 @@ void C2F(parsecomment)()
   /* look for eol */
   l0=Lpt[4]-1;
   if( (Lin[l0]==slash) &&(Lin[l0-1]==slash)&(Lin[l0+1]==eol)) l0=l0+1;
-    
+
   l=l0;
   while (Lin[l]!=eol) l++;
   ll = l - l0;
-  if (Comp[1] == 0) 
+  if (Comp[1] == 0)
   {
     /* ignore all characters up to the end */
-  } 
-  else 
+  }
+  else
   {
     /* compilation [30 number-of-char chars-vector] */
     lkp = C2F(com).comp[0];
     Err = (lkp + 2 + ll) / 2 + 1 - Lstk[Bot];
-    if (Err > 0) 
+    if (Err > 0)
 	{
       SciError(17);
       return ;

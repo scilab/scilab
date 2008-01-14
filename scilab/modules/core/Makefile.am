@@ -74,7 +74,6 @@ src/c/librarieslist.c \
 src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
-src/c/ScilabEventsLoop.c \
 src/c/freeArrayOfString.c
 
 
@@ -398,7 +397,6 @@ includes/getvariablesname.h \
 includes/commandwords.h \
 includes/existfunction.h \
 includes/getfunctionslist.h \
-includes/ScilabEventsLoop.h \
 includes/stackinfo.h \
 includes/timerEvents.h \
 includes/freeArrayOfString.h
