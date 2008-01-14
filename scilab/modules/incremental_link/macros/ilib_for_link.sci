@@ -136,20 +136,10 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 	// Copy files => linkpath
 	chdir(linkpath)
 	printf(gettext("Copy compilation files (Makefile*, libtool...) to %s\n"),linkpath);
-	copyfile(commandpath+"/Makefile.orig",linkpath);
-	copyfile(commandpath+"/configure.ac",linkpath);
-	copyfile(commandpath+"/configure",linkpath);
-	copyfile(commandpath+"/Makefile.am",linkpath);
-	copyfile(commandpath+"/Makefile.in",linkpath);
-	copyfile(commandpath+"/config.sub",linkpath);
-	copyfile(commandpath+"/config.guess",linkpath);
-	copyfile(commandpath+"/config.status",linkpath);
-	copyfile(commandpath+"/depcomp",linkpath);
-	copyfile(commandpath+"/install-sh",linkpath);
-	copyfile(commandpath+"/ltmain.sh",linkpath);
-	copyfile(commandpath+"/libtool",linkpath);
-	copyfile(commandpath+"/missing",linkpath);
-	copyfile(commandpath+"/aclocal.m4",linkpath);
+	mandatoryFiles=["Makefile.orig", "configure.ac", "configure", "Makefile.am","Makefile.in","config.sub","config.guess","config.status","depcomp","install-sh","ltmain.sh","libtool","missing","aclocal.m4"]
+	for x=mandatoryFiles(:)' ;
+		copyfile(commandpath+"/"+x,linkpath);
+	end
 	filelist=""
 	for x=files(:)' ; filelist = filelist +" " +x;end
 
