@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006/2008
 ##########
 
 # Sablotron or xsltproc
@@ -23,14 +23,14 @@ if test "x$with" != 'x' -a "x$with" != "xyes"; then
         if test -x "$MANBIN"; then
                 AC_MSG_RESULT([$MANBIN])
         else
-			   dnl Wrong path provided ! The user is blind ;)
+			   dnl Wrong path provided ! 
                 AC_MSG_ERROR([Unable to find $PROGNAME. Please check the path you provided])
 		fi
 else
 dnl look for the program in the path
+    AC_MSG_CHECKING([$progname])
 	AC_CHECK_PROG(WITH,$prog,yes,no)
 	if test "x$WITH" = "xyes"; then
-		MANTARGET=man
 		MANGENERATOR=$prog
 	else
 	if test "x$with" != "x"; then

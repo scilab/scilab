@@ -895,19 +895,19 @@ fi
 
 dnl check for xsltproc
 AC_ARG_WITH(sablotron,
-		[  --with-sablotron compile man pages with sablotron],
+		[  --with-sablotron compile man pages using sablotron],
 		[with_sablotron=$withval],
 		[with_sablotron='']
 	)
 
 AC_ARG_WITH(xsltproc,
-		[  --with-xsltproc  compile man pages with xsltproc],
+		[  --with-xsltproc  compile man pages using xsltproc],
 		[with_xsltproc=$withval],
 		[with_xsltproc='']
 		)
 
 if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
-	AC_MSG_ERROR([Conflicting options : you specified two xsl compilers (sablotron & sabcmd)])
+	AC_MSG_ERROR([Conflicting options : you specified two XSLT processor (sablotron & xsltproc)])
 fi
 
 AC_CHECK_MAN_GENERATOR([$with_sablotron],[Sablotron],[sabcmd])
