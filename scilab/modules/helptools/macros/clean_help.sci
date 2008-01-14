@@ -71,7 +71,7 @@ function clean_help(dirs)
 	// Nettoyage des répertoires un par un
 	// --------------------------------------------------------------------------------
 
-	mprintf("deleting files ");
+	mprintf(gettext("-- Deleting "+getlanguage()+" help files --"));
 	
 	for k=1:size(dirs,'*')
 		files_to_delete = listfiles([dirs(k)+"/*.htm";dirs(k)+"/.list*";dirs(k)+"/.last_successful_build*"]);
