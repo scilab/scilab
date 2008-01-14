@@ -117,15 +117,7 @@ public class Scilab {
 	public void setPrompt(String prompt) {
 		ScilabConsole.getConsole().setPrompt(prompt);
 	}
-
-	/**
-	 * Get main Scilab Window
-	 * @return main Scilab window
-	 */
-	public Window getMainWindow() {
-		return mainView;
-	}
-
+	
 }
 /*--------------------------------------------------------------------------*/
 
