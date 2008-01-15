@@ -45,6 +45,12 @@ AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
 AC_SYS_LARGEFILE
 
+# In order to be able to change the scilab directory
+# See http://wiki.debian.org/RpathIssue
+AC_RELOCATABLE
+AC_RELOCATABLE_LIBRARY
+
+
 # If configure detect that timestamp changed,
 # it tries to rebuild configure & makefile which can be a painmaker
 # if the version is different
@@ -945,23 +951,6 @@ if test "$enable_static" = 'yes'; then
   libtool_build_static_libs='yes'
 fi
 
-# Mandatory for Debian (and more generaly for Linux)
-# See http://wiki.debian.org/RpathIssue
-# by Marcelo Magallon <mmagallo@efis.ucr.ac.cr>
-# Turn around -rpath problem with libtool
-# This define should be improbable enough to not conflict with anything
- case ${host} in
-   *-pc-linux-gnu)
-     AC_MSG_RESULT([Fixing libtool for -rpath problems.])
-     sed < $SCI_SRCDIR/libtool > $SCI_SRCDIR/libtool-2 \
-    's/^hardcode_libdir_flag_spec.*$/hardcode_libdir_flag_spec=" -D__LIBTOOL_IS_A_FOOL__ "/'
-     mv $SCI_SRCDIR/libtool-2 $SCI_SRCDIR/libtool
-     chmod 755 $SCI_SRCDIR/libtool
-   ;;
- esac
-####### End of the workaround
-
-
 AC_C_CONST()
 AC_C_INLINE()
 
@@ -1156,20 +1145,19 @@ echo "GNU Fortran 77 (--with-g77) ...... =		$with_g77"
 echo "GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
 echo ""
 echo "Options:"
-echo "Use PVM (--with-pvm) ............................ = $with_pvm"
-echo "PVM include (--with-pvm-include) ................ = $PVMINCLUDE"
-echo "PVM library (--with-pvm-library) ................ = $PVMLIBDIR"
-echo "Do not use TCL/TK (--without-tk) ................ = $with_tk"
-echo "Do not compile with Ocaml (--without-ocaml) ..... = $with_ocaml"
-echo "TCL include (--with-tcl-include) ................ = $USER_TCL_INC_PATH"
-echo "TCL library (--with-tcl-library) ................ = $USER_TCL_LIB_PATH"
-echo "TK include (--with-tk-include) .................. = $USER_TK_INC_PATH"
-echo "TK library (--with-tk-library) .................. = $USER_TK_LIB_PATH"
-echo "Sablotron processor (--with-sablotron) .......... = $with_sablotron"
-echo "Xsltproc processor (--with-xsltproc) ............ = $with_xsltproc"
-echo "Install XML Help (--with-install-help-xml) ...... = $with_install_help_xml"
-echo "Do not compile Scicos (--without-scicos) ........ = $without_scicos"
-echo "Use FFTW (--with-fftw) .......................... = $with_fftw"
+echo "Use PVM (--with-pvm) ............................. = $with_pvm"
+echo "PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
+echo "PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
+echo "Do not use TCL/TK (--without-tk) ................. = $with_tk"
+echo "Do not compile with Ocaml (--without-ocaml) ...... = $with_ocaml"
+echo "TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
+echo "TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
+echo "TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
+echo "TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
+echo "Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
+echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
+echo "Do not compile Scicos (--without-scicos) ......... = $without_scicos"
+echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
 
 echo ""
 if test ! -z "$PVM_INCLUDE"; then
@@ -1188,6 +1176,12 @@ if test "$with_fftw" != no;  then
 else
    echo "Not using FFTW"
 fi
+
+echo ""
+echo "Documentation processor:"
+echo "Sablotron processor (--with-sablotron) ........... = $with_sablotron"
+echo "Xsltproc processor (--with-xsltproc) ............. = $with_xsltproc"
+
 
 
 echo ""

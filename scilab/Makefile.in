@@ -49,10 +49,11 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in \
-	config/compile config/config.guess config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing
+	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in ABOUT-NLS \
+	config.guess config.sub config/compile config/config.guess \
+	config/config.rpath config/config.sub config/depcomp \
+	config/install-sh config/ltmain.sh config/missing depcomp \
+	install-sh ltmain.sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -63,9 +64,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/sciman.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -229,8 +230,10 @@ PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 RANLIB = @RANLIB@
+RELOCATABLE = @RELOCATABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
+SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@

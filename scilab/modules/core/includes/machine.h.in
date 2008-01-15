@@ -14,6 +14,9 @@
 /* Cname */
 #undef CNAME
 
+/* Define to 1 if the package shall run at any location in the filesystem. */
+#undef ENABLE_RELOCATABLE
+
 /* Define C2F without Trailing Underscore */
 #undef F2C
 
@@ -111,6 +114,9 @@
 
 /* Define to 1 if you have the <locale.h> header file. */
 #undef HAVE_LOCALE_H
+
+/* Define to 1 if you have the <mach-o/dyld.h> header file. */
+#undef HAVE_MACH_O_DYLD_H
 
 /* Define to 1 if you have the <malloc.h> header file. */
 #undef HAVE_MALLOC_H
@@ -301,6 +307,12 @@
 
 /* Define to 1 if you have the <wctype.h> header file. */
 #undef HAVE_WCTYPE_H
+
+/* Define to 1 if you have the `_NSGetExecutablePath' function. */
+#undef HAVE__NSGETEXECUTABLEPATH
+
+/* Define to the value of ${prefix}, as a string. */
+#undef INSTALLPREFIX
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
