@@ -71,43 +71,55 @@ void stripblanks(char **InputStrings,char **OutputStrings,int InputStringsDim,BO
 			}
 		}
 		/* search character ' ' or TAB from beginning of the string */
-		if (lenghtInput_Two > 0) for (i = 0;i<(int)strlen(InputStrings[x]); i++)
+		if (lenghtInput_Two > 0)
 		{
-			if (withTAB)
+			for (i = 0;i<(int)strlen(InputStrings[x]); i++)
 			{
-				if ( (InputStrings[x][i] == (char)BLANK_CHARACTER) ||
-					(InputStrings[x][i] == (char)TAB_CHARACTER) )
-					continue;
-				else
+				if (withTAB)
 				{
-					lenghtInput_One = i;
-					break;
+					if ( (InputStrings[x][i] == (char)BLANK_CHARACTER) ||
+						(InputStrings[x][i] == (char)TAB_CHARACTER) )
+						continue;
+					else
+					{
+						lenghtInput_One = i;
+						break;
+					}
 				}
-			}
-			else
-			{
-				if (InputStrings[x][i] == (char)BLANK_CHARACTER)	continue;
 				else
 				{
-					lenghtInput_One = i;
-					break;
+					if (InputStrings[x][i] == (char)BLANK_CHARACTER)	continue;
+					else
+					{
+						lenghtInput_One = i;
+						break;
+					}
 				}
 			}
 		}
-
-		if (lenghtInput_One <= lenghtInput_Two)
+		
+		if (lenghtInput_One <= lenghtInput_Two )
 		{
-			/*Get the substring without tabs*/ 
-			replacedstr=substr(InputStrings[x], lenghtInput_One, lenghtInput_Two+1 ); 
-			/*To add the substring into the output matrix*/
-			strcpy(OutputStrings[x],replacedstr);
+			if( (lenghtInput_Two == 0)
+				&& ( (InputStrings[x][0] == (char)BLANK_CHARACTER )
+					|| (withTAB && (InputStrings[x][0] == (char)TAB_CHARACTER)) ) )
+			{
+				strcpy(OutputStrings[x],"\0");
+			}
+			else
+			{
+				/*Get the substring without tabs*/ 
+				replacedstr=substr(InputStrings[x], lenghtInput_One, lenghtInput_Two+1 );
+				/*To add the substring into the output matrix*/
+				strcpy(OutputStrings[x],replacedstr);
+			}
+			
 			if (replacedstr) {FREE(replacedstr);replacedstr = NULL;}
 		}
 		else
 		{
 			strcpy(OutputStrings[x],InputStrings[x]);
 		}
-
 	}
 }
 /*------------------------------------------------------------------------*/
