@@ -227,5 +227,32 @@ public class ScilabPopupMenuBridge {
 	public static int getSelectedIndex(PopupMenu popupMenu) {
 		return popupMenu.getAsSimplePopupMenu().getSelectedIndex();
 	}
+	
+	/**
+	 * Get the text of all the PopupMenu items
+	 * @param popupMenu the PopupMenu we want to get the items of
+	 * @return the text items
+	 */
+	public static String[] getAllItemsText(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getAllItemsText();
+	}
+
+	/**
+	 * Get the number of items in the PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the items number of
+	 * @return the number of items
+	 */
+	public static int getNumberOfItems(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getNumberOfItems();
+	}
+
+	/**
+	 * Set the text of the PopupMenu items
+	 * @param popupMenu the PopupMenu we want to set the text items of
+	 * @param text the text of the items
+	 */
+	public static void setText(PopupMenu popupMenu, String[] text) {
+		popupMenu.getAsSimplePopupMenu().setText(text);
+	}
 
 }

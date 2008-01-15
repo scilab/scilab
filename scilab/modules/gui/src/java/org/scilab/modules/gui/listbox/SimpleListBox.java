@@ -34,4 +34,22 @@ public interface SimpleListBox extends Widget {
 	 * @return the number of items selected
 	 */
 	int getSelectionSize();
+	
+	/**
+	 * Get the text of all the list items
+	 * @return the text items
+	 */
+	String[] getAllItemsText();
+
+	/**
+	 * Get the number of items in the list
+	 * @return the number of items
+	 */
+	int getNumberOfItems();
+
+	/**
+	 * Set the text of the list items
+	 * @param text the text of the items
+	 */
+	void setText(String[] text);
 }

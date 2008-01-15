@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.listbox;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -21,13 +22,10 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabListBox implements SimpleListBox {
+public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	
-	/**
-	 * the Scroll Pane that contain the JList
-	 */
-	private JScrollPane scrollPane;
-	
+	private static final long serialVersionUID = 3507396207331058895L;
+
 	/**
 	 * the JList we use
 	 */
@@ -37,16 +35,8 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * Constructor
 	 */
 	public SwingScilabListBox() {
-		list = new JList();
-		scrollPane = new JScrollPane(list);
-	}
-	
-	/**
-	 * Get the scrollpane
-	 * @return the scrollpane
-	 */
-	public JScrollPane getScrollPane() {
-		return scrollPane;
+		super();
+		getViewport().add(getList());
 	}
 
 	/**
@@ -54,7 +44,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @return color the Color
 	 */
 	public Color getBackground() {
-		return list.getBackground();
+		return getList().getBackground();
 	}
 	
 	/**
@@ -62,7 +52,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @return font the Font
 	 */
 	public Font getFont() {
-		return list.getFont();
+		return getList().getFont();
 	}
 	
 	/**
@@ -70,7 +60,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @return color the Color
 	 */
 	public Color getForeground() {
-		return list.getForeground();
+		return getList().getForeground();
 	}
 	
 	/**
@@ -78,7 +68,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @param color the Color
 	 */
 	public void setBackground(Color color) {
-		list.setBackground(color);
+		getList().setBackground(color);
 	}
 
 	/**
@@ -86,7 +76,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @param font the Font
 	 */
 	public void setFont(Font font) {
-		list.setFont(font);
+		getList().setFont(font);
 	}
 	
 	/**
@@ -94,7 +84,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @param color the Color
 	 */
 	public void setForeground(Color color) {
-		list.setForeground(color);
+		getList().setForeground(color);
 	}
 	
 	/**
@@ -103,6 +93,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 */
 	public void draw() {
 		this.setVisible(true);
+		this.doLayout();
 	}
 
 	/**
@@ -111,7 +102,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return new Size(scrollPane.getWidth(), scrollPane.getHeight());
+		return new Size(getWidth(), getHeight());
 	}
 
 	/**
@@ -120,7 +111,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return new Position(scrollPane.getX(), scrollPane.getY());
+		return new Position(getX(), getY());
 	}
 
 	/**
@@ -129,7 +120,8 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		scrollPane.setSize(newSize.getWidth(), newSize.getHeight());
+		getList().setSize(newSize.getWidth(), newSize.getHeight());
+		setSize(newSize.getWidth(), newSize.getHeight());
 	}
 
 	/**
@@ -138,26 +130,19 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		scrollPane.setLocation(newPosition.getX(), newPosition.getY());
+		setLocation(newPosition.getX(), newPosition.getY());
 	}
 
 	/**
-	 * Gets the visibility status of an UIElement
-	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
-	 */
-	public boolean isVisible() {
-		return list.isVisible() & scrollPane.isVisible();
-	}
-	
-	/**
 	 * Sets the visibility status of an UIElement
 	 * @param newVisibleState the visibility status we want to set for the UIElement
-	 * 			(true if the UIElement is visible, false if not)
+	 *                      (true if the UIElement is visible, false if not)
 	 */
 	public void setVisible(boolean newVisibleState) {
-		scrollPane.setVisible(newVisibleState);
+		super.setVisible(newVisibleState);
 		list.setVisible(newVisibleState);
 	}
+	
 	/**
 	 * Add a callback to the CheckBox
 	 * @param command the Scilab command to execute when the CheckBox is validated
@@ -205,23 +190,35 @@ public class SwingScilabListBox implements SimpleListBox {
 	}
 
 	/**
-	 * Get the text if the list items
+	 * Get the first item text
 	 * @return the items
 	 * @see org.scilab.modules.gui.widget.Widget#getText()
 	 */
 	public String getText() {
-		// TODO Auto-generated method stub
-		return null;
+		/* Unimplemented for ListBoxes */
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * Enable or disable the list for selection
-	 * @param status true to set the list enabled
-	 * @see org.scilab.modules.gui.widget.Widget#setEnabled(boolean)
+	 * Get the text of all the list items
+	 * @return the items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getAllItemsText()
 	 */
-	public void setEnabled(boolean status) {
-		list.setEnabled(status);
-		scrollPane.setEnabled(status);
+	public String[] getAllItemsText() {
+		String[] retValue = new String[getList().getModel().getSize()];
+		for (int i = 0; i < getList().getModel().getSize(); i++) {
+			retValue[i] = (String) getList().getModel().getElementAt(0);
+		}
+		return retValue;
+	}
+
+	/**
+	 * Get the number of items in the list
+	 * @return the number of items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getNumberOfItems()
+	 */
+	public int getNumberOfItems() {
+		return getList().getModel().getSize();
 	}
 
 	/**
@@ -230,7 +227,20 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
 	 */
 	public void setText(String text) {
-		// TODO Auto-generated method stub
+		((DefaultListModel) getList().getModel()).clear();
+		((DefaultListModel) getList().getModel()).addElement(text);
+	}
+	
+	/**
+	 * Set the text of the list items
+	 * @param text the text of the items
+	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
+	 */
+	public void setText(String[] text) {
+		((DefaultListModel) getList().getModel()).clear();
+		for (int i = 0; i < text.length; i++) {
+			((DefaultListModel) getList().getModel()).addElement(text[i]);
+		}
 	}
 	
 	/**
@@ -255,9 +265,9 @@ public class SwingScilabListBox implements SimpleListBox {
 	 */
 	public void setMultipleSelectionEnabled(boolean status) {
 		if (status) {
-			list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+			getList().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		} else {
-			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			getList().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		}
 	}
 
@@ -266,7 +276,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @param indices the indices of the items to be selected
 	 */
 	public void setSelectedIndices(int[] indices) {
-		list.setSelectedIndices(indices);
+		getList().setSelectedIndices(indices);
 	}
 	
 	/**
@@ -274,7 +284,7 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @return the indices of the items selected
 	 */
 	public int[] getSelectedIndices() {
-		return list.getSelectedIndices();
+		return getList().getSelectedIndices();
 	}
 
 	/**
@@ -282,6 +292,20 @@ public class SwingScilabListBox implements SimpleListBox {
 	 * @return the number of items selected
 	 */
 	public int getSelectionSize() {
-		return list.getSelectedIndices().length;
+		return getList().getSelectedIndices().length;
+	}
+	
+	/**
+	 * Get or create the list component
+	 * @return the list
+	 */
+	private JList getList() {
+		if (list == null) {
+			list = new JList();
+			list.setLayoutOrientation(JList.VERTICAL);
+			list.setModel(new DefaultListModel());
+		}
+		return list;
+		
 	}
 }

@@ -11,14 +11,32 @@ import org.scilab.modules.gui.widget.Widget;
  */
 public interface SimplePopupMenu extends Widget {
 	/**
-	 * Set the selected index of the ListBox
+	 * Set the selected index of the PopupMenu
 	 * @param index the index of the item to be selected
 	 */
 	void setSelectedIndex(int index);
 	
 	/**
-	 * Get the selected index of the ListBox
+	 * Get the selected index of the PopupMenu
 	 * @return the index of the item selected
 	 */
 	int getSelectedIndex();
+	
+	/**
+	 * Get the text of all the PopupMenu items
+	 * @return the text items
+	 */
+	String[] getAllItemsText();
+
+	/**
+	 * Get the number of items in the PopupMenu
+	 * @return the number of items
+	 */
+	int getNumberOfItems();
+
+	/**
+	 * Set the text of the PopupMenu items
+	 * @param text the text of the items
+	 */
+	void setText(String[] text);
 }

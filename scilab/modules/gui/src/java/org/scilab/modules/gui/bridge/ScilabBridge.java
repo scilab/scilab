@@ -2865,6 +2865,36 @@ public class ScilabBridge {
 		return ScilabListBoxBridge.getSelectionSize(listBox);
 	}
 
+	/**
+	 * Get the text of all the list items
+	 * @param listBox the ListBox we want to get the items text of
+	 * @return the text items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getAllItemsText()
+	 */
+	public static String[] getAllItemsText(ListBox listBox) {
+		return ScilabListBoxBridge.getAllItemsText(listBox);
+	}
+
+	/**
+	 * Get the number of items in the list
+	 * @param listBox the ListBox we want to get the items number of
+	 * @return the number of items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getNumberOfItems()
+	 */
+	public static int getNumberOfItems(ListBox listBox) {
+		return ScilabListBoxBridge.getNumberOfItems(listBox);
+	}
+
+	/**
+	 * Set the text of the list items
+	 * @param listBox the ListBox we want to set the items text of
+	 * @param text the text of the items
+	 * @see org.scilab.modules.gui.listbox.ListBox#setText(java.lang.String[])
+	 */
+	public static void setText(ListBox listBox, String[] text) {
+		ScilabListBoxBridge.setText(listBox, text);
+	}
+
 	/********************/
 	/* PopupMenu Bridge */
 	/********************/
@@ -3071,6 +3101,33 @@ public class ScilabBridge {
 	 */
 	public static int getSelectedIndex(PopupMenu popupMenu) {
 		return ScilabPopupMenuBridge.getSelectedIndex(popupMenu);
+	}
+	
+	/**
+	 * Get the text of all the PopupMenu items
+	 * @param popupMenu the PopupMenu we want to get the items of
+	 * @return the text items
+	 */
+	public static String[] getAllItemsText(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getAllItemsText(popupMenu);
+	}
+
+	/**
+	 * Get the number of items in the PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the items number of
+	 * @return the number of items
+	 */
+	public static int getNumberOfItems(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getNumberOfItems(popupMenu);
+	}
+
+	/**
+	 * Set the text of the PopupMenu items
+	 * @param popupMenu the PopupMenu we want to set the text items of
+	 * @param text the text of the items
+	 */
+	public static void setText(PopupMenu popupMenu, String[] text) {
+		ScilabPopupMenuBridge.setText(popupMenu, text);
 	}
 
 	/*********************/

@@ -246,4 +246,34 @@ public class ScilabListBoxBridge {
 	public static int getSelectionSize(ListBox listBox) {
 		return listBox.getAsSimpleListBox().getSelectionSize();
 	}
+	
+	/**
+	 * Get the text of all the list items
+	 * @param listBox the ListBox we want to get the items text of
+	 * @return the text items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getAllItemsText()
+	 */
+	public static String[] getAllItemsText(ListBox listBox) {
+		return listBox.getAsSimpleListBox().getAllItemsText();
+	}
+
+	/**
+	 * Get the number of items in the list
+	 * @param listBox the ListBox we want to get the items number of
+	 * @return the number of items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getNumberOfItems()
+	 */
+	public static int getNumberOfItems(ListBox listBox) {
+		return listBox.getAsSimpleListBox().getNumberOfItems();
+	}
+
+	/**
+	 * Set the text of the list items
+	 * @param listBox the ListBox we want to set the items text of
+	 * @param text the text of the items
+	 * @see org.scilab.modules.gui.listbox.ListBox#setText(java.lang.String[])
+	 */
+	public static void setText(ListBox listBox, String[] text) {
+		listBox.getAsSimpleListBox().setText(text);
+	}
 }

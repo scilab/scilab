@@ -334,9 +334,11 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabListBox member) {
-		this.add(member.getScrollPane());
+		//this.add(member.getScrollPane());
+		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
-		return this.getComponentZOrder(member.getScrollPane());
+		//return this.getComponentZOrder(member.getScrollPane());
+		return this.getComponentZOrder(member);
 	}
 
 	/**

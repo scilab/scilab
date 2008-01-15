@@ -3,6 +3,7 @@
 
 package org.scilab.modules.gui.popupmenu;
 
+import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -29,4 +30,23 @@ public interface PopupMenu extends Widget {
 	 * @return the index of the item selected
 	 */
 	int getSelectedIndex();
+	
+	/**
+	 * Get the text of all the PopupMenu items
+	 * @return the text items
+	 */
+	String[] getAllItemsText();
+
+	/**
+	 * Get the number of items in the PopupMenu
+	 * @return the number of items
+	 */
+	int getNumberOfItems();
+
+	/**
+	 * Set the text of the PopupMenu items
+	 * @param text the text of the items
+	 */
+	void setText(String[] text);
+
 }

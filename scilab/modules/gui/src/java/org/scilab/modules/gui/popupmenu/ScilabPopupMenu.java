@@ -214,4 +214,29 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
 	public int getSelectedIndex() {
 		return ScilabBridge.getSelectedIndex(this);
 	}
+	
+	/**
+	 * Get the text of all the PopupMenu items
+	 * @return the text items
+	 */
+	public String[] getAllItemsText() {
+		return ScilabBridge.getAllItemsText(this);
+	}
+
+	/**
+	 * Get the number of items in the PopupMenu
+	 * @return the number of items
+	 */
+	public int getNumberOfItems() {
+		return ScilabBridge.getNumberOfItems(this);
+	}
+
+	/**
+	 * Set the text of the PopupMenu items
+	 * @param text the text of the items
+	 */
+	public void setText(String[] text) {
+		ScilabBridge.setText(this, text);
+	}
+
 }

@@ -169,7 +169,7 @@
 	  <parameter type="int" name="y"/>
 	  <parameter type="int" name="width"/>
 	  <parameter type="int" name="height"/>
-	</method>
+	</method>getScrollPane
 	<method name="getFramePosition" returnType="int[]" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
@@ -255,10 +255,31 @@
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="value"/>
 	</method>
-<!-- Listbox Multiple Selection setting -->
+<!-- Listbox setting -->
 	<method name="setListBoxMultipleSelectionEnabled" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="getListBoxAllItemsText" returnType="String[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="getListBoxNumberOfItems" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setListBoxText" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String[]" name="text"/>
+	</method>
+<!-- PopupMenu setting -->
+	<method name="getPopupMenuAllItemsText" returnType="String[]" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="getPopupMenuNumberOfItems" returnType="int" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setPopupMenuText" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String[]" name="text"/>
 	</method>
 <!-- Enable/Disable Menus -->
 	<method name="setRootMenuEnabled" returnType="void" modifier="static">

@@ -6,6 +6,8 @@ package org.scilab.modules.gui.bridge;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.DefaultListModel;
+
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -300,7 +302,7 @@ public class CallScilabBridge {
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		popupMenu.setBackground(Color.LIGHT_GRAY);
+		popupMenu.setBackground(Color.WHITE);
 		popupMenu.setForeground(Color.BLACK);
 		return id;
 	}
@@ -1097,11 +1099,11 @@ public class CallScilabBridge {
 		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMaximumValue(value);
 	}
 	
-	/*************************************/
-	/*                                   */
-	/* LISTBOX MULTIPLE SELECTION BRIDGE */
-	/*                                   */
-	/*************************************/
+	/******************/
+	/*                */
+	/* LISTBOX BRIDGE */
+	/*                */
+	/******************/
 
 	/**
 	 * Set if more than one item can be selected in a ListBox
@@ -1110,6 +1112,72 @@ public class CallScilabBridge {
 	 */
 	public static void setListBoxMultipleSelectionEnabled(int id, boolean status) {
 		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setMultipleSelectionEnabled(status);
+	}
+
+	/**
+	 * Get the text of all the list items
+	 * @param id the id of the ListBox
+	 * @return the text items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getAllItemsText()
+	 */
+	public static String[] getListBoxAllItemsText(int id) {
+		return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getAllItemsText();
+	}
+
+	/**
+	 * Get the number of items in the list
+	 * @param id the id of the ListBox
+	 * @return the number of items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getNumberOfItems()
+	 */
+	public static int getListBoxNumberOfItems(int id) {
+		return ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).getNumberOfItems();
+	}
+
+	/**
+	 * Set the text of the list items
+	 * @param id the id of the ListBox
+	 * @param text the text of the items
+	 * @see org.scilab.modules.gui.listbox.ListBox#setText(java.lang.String[])
+	 */
+	public static void setListBoxText(int id, String[] text) {
+		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setText(text);
+	}
+
+	/********************/
+	/*                  */
+	/* POPUPMENU BRIDGE */
+	/*                  */
+	/********************/
+
+	/**
+	 * Get the text of all the PopupMenu items
+	 * @param id the id of the PopupMenu
+	 * @return the text items
+	 * @see org.scilab.modules.gui.popupmenu.PopupMenu#getAllItemsText()
+	 */
+	public static String[] getPopupMenuAllItemsText(int id) {
+		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getAllItemsText();
+	}
+
+	/**
+	 * Get the number of items in the PopupMenu
+	 * @param id the id of the PopupMenu
+	 * @return the number of items
+	 * @see org.scilab.modules.gui.popupmenu.PopupMenu#getNumberOfItems()
+	 */
+	public static int getPopupMenuNumberOfItems(int id) {
+		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getNumberOfItems();
+	}
+
+	/**
+	 * Set the text of the PopupMenu items
+	 * @param id the id of the PopupMenu
+	 * @param text the text of the items
+	 * @see org.scilab.modules.gui.popupmenu.PopupMenu#setText(java.lang.String[])
+	 */
+	public static void setPopupMenuText(int id, String[] text) {
+		((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).setText(text);
 	}
 
 	/****************/

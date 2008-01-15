@@ -230,4 +230,31 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
 	public int getSelectionSize() {
 		return ScilabBridge.getSelectionSize(this);
 	}
+
+	/**
+	 * Get the text of all the list items
+	 * @return the text items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getAllItemsText()
+	 */
+	public String[] getAllItemsText() {
+		return ScilabBridge.getAllItemsText(this);
+	}
+
+	/**
+	 * Get the number of items in the list
+	 * @return the number of items
+	 * @see org.scilab.modules.gui.listbox.ListBox#getNumberOfItems()
+	 */
+	public int getNumberOfItems() {
+		return ScilabBridge.getNumberOfItems(this);
+	}
+
+	/**
+	 * Set the text of the list items
+	 * @param text the text of the items
+	 * @see org.scilab.modules.gui.listbox.ListBox#setText(java.lang.String[])
+	 */
+	public void setText(String[] text) {
+		ScilabBridge.setText(this, text);
+	}
 }

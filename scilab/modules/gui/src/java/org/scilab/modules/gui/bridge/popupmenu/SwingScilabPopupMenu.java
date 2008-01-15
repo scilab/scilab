@@ -3,7 +3,7 @@
 
 package org.scilab.modules.gui.bridge.popupmenu;
 
-import javax.swing.JPopupMenu;
+import javax.swing.JComboBox;
 
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
@@ -16,7 +16,7 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu {
+public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 
 	private static final long serialVersionUID = -4366581303317502544L;
 
@@ -123,8 +123,8 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 	 * @see org.scilab.modules.gui.widget.Widget#getText()
 	 */
 	public String getText() {
-		// TODO Auto-generated method stub
-		return null;
+		/* Unimplemented for PopupMenus */
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -133,7 +133,8 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
 	 */
 	public void setText(String text) {
-		// TODO Auto-generated method stub
+		/* Unimplemented for PopupMenus */
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -141,7 +142,9 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
+		/* Unimplemented for PopupMenus */
 		throw new UnsupportedOperationException();
+		
 	}
 
 	/**
@@ -149,6 +152,7 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
+		/* Unimplemented for PopupMenus */
 		throw new UnsupportedOperationException();
 	}
 	
@@ -157,7 +161,11 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 	 * @param index the index of the item to be selected
 	 */
 	public void setSelectedIndex(int index) {
-		getSelectionModel().setSelectedIndex(index);
+		for (int i = 0; i < getItemCount(); i++) {
+			if (i == index) {
+				getModel().setSelectedItem(getItemAt(i));
+			}
+		}
 	}
 	
 	/**
@@ -165,7 +173,46 @@ public class SwingScilabPopupMenu extends JPopupMenu implements SimplePopupMenu 
 	 * @return the index of the item selected
 	 */
 	public int getSelectedIndex() {
-		return getSelectionModel().getSelectedIndex();
+		Object itemSelected = getModel().getSelectedItem();
+		for (int i = 0; i < getItemCount(); i++) {
+			if (itemSelected.equals(getItemAt(i))) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * Get the text of all the PopupMenu items
+	 * @return the text items
+	 */
+	public String[] getAllItemsText() {
+		String[] retValue = new String[getItemCount()];
+		for (int i = 0; i < getItemCount(); i++) {
+			retValue[i] = (String) getItemAt(i);
+		}
+		return retValue;
+		
+	}
+
+	/**
+	 * Get the number of items in the PopupMenu
+	 * @return the number of items
+	 */
+	public int getNumberOfItems() {
+		return getItemCount();
+	}
+
+	/**
+	 * Set the text of the PopupMenu items
+	 * @param text the text of the items
+	 */
+	public void setText(String[] text) {
+		removeAllItems();
+		for (int i = 0; i < text.length; i++) {
+			addItem(text[i]);
+		}
+		
 	}
 
 }
