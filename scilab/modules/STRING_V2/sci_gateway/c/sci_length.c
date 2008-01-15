@@ -29,6 +29,8 @@
 static int lengthStrings(char *fname);
 static int lengthMatrix(void);
 static int lengthList(void);
+static int lengthMlist(void);
+static int lengthTlist(void);
 static int lengthOthers(char *fname);
 /*----------------------------------------------------------------------------*/
 int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
@@ -49,6 +51,15 @@ int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
 	case sci_list:
 		lengthList();
     break;
+
+	
+	case sci_tlist:
+		lengthTlist();
+	break;
+
+	case sci_mlist:
+		lengthMlist();
+	break;
 
 	default :
 	   lengthOthers(fname);
@@ -186,6 +197,46 @@ static int lengthOthers(char *fname)
 {
 	/* unknow type */
 	Scierror(999, _("%s : Not managed input type.\n"),fname);
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+static int lengthMlist(void)
+{
+
+	int Row_Num = 0,Col_Num = 0;
+	int Row_Out = 0, Col_Out = 0;
+	int StackPos = 0; 
+
+	GetRhsVar(1,MATRIX_ORIENTED_TYPED_LIST_DATATYPE,&Row_Num,&Col_Num,&StackPos);
+
+	StackPos = 0;
+	Row_Out = 1;
+	Col_Out = 1;
+
+	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
+	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+static int lengthTlist(void)
+{
+
+	int Row_Num = 0,Col_Num = 0;
+	int Row_Out = 0, Col_Out = 0;
+	int StackPos = 0; 
+
+	GetRhsVar(1, TYPED_LIST_DATATYPE,&Row_Num,&Col_Num,&StackPos);
+
+	StackPos = 0;
+	Row_Out = 1;
+	Col_Out = 1;
+
+	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
+	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
