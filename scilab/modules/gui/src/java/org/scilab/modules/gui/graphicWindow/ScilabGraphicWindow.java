@@ -25,7 +25,7 @@ import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 /**
  * Scilab graphic Window class
  */
-public class ScilabGraphicWindow extends ScilabWindow {
+public final class ScilabGraphicWindow extends ScilabWindow {
 
 	private static final String FIGURE_TITLE = "Graphic window number ";
 	

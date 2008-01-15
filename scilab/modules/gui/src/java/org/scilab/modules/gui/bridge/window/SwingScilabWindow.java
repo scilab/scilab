@@ -188,8 +188,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		if (newMenuBar != null) {
 			this.menuBar = newMenuBar.getAsSimpleMenuBar();
 			super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
-		}
-		else {
+		} else {
 			this.menuBar = null;
 			super.setJMenuBar(null);
 		}
@@ -208,8 +207,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		if (newToolBar != null) {
 			this.toolBar = newToolBar.getAsSimpleToolBar();
 			super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
-		}
-		else {
+		} else {
 			this.toolBar = null;
 			super.add(null, java.awt.BorderLayout.PAGE_START);
 		}
