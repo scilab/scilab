@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../help.dtd">
+<!DOCTYPE MAN SYSTEM "../dtd/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>fortran_sum</TITLE>

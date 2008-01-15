@@ -10,7 +10,6 @@
 #define TOOLBOX_SKELETON "toolbox_skeleton"
 ;
 Source: contrib\{#TOOLBOX_SKELETON}\builder.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
-Source: contrib\{#TOOLBOX_SKELETON}\loader.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
 ;
 ;Source: contrib\{#TOOLBOX_SKELETON}\demos\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\demos; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton.quit; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}
