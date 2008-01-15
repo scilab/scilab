@@ -105,6 +105,15 @@ clean-doc:
 		echo "Cannot find Scilab binary"; \
 	fi
 
+
+clean-tests:
+	@if test -x $(top_builddir)/scilab-bin; then \
+		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'test_clean();exit;'; \
+	else \
+		echo "Cannot find Scilab binary"; \
+	fi
+
+
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
