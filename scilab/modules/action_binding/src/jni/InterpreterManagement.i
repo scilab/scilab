@@ -78,12 +78,3 @@ int putCommandInScilabQueue(char *command);
   */
 public ";
 int interruptScilab(void);
-
-/* JavaDoc */
-%javamethodmodifiers haveCommandsInTheQueue(void) "
- /**
-  * Are there some commands in the queue to be executed
-  * @return true if there are commands in the queue
-  */
-public ";
-BOOL haveCommandsInTheQueue(void);
