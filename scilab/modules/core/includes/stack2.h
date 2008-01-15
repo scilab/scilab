@@ -2,7 +2,22 @@
 #define  STACK2_H
 /* from sci_tools */
 
+/**
+ * Convert an Scilab array of double to a fortran format
+ *
+ * @param ptr the array of double
+ * @param size size of the array
+ * @param lda
+ */
 void SciToF77 __PARAMS((double *ptr, int size, int lda));
+
+/**
+ * Convert an Fortran array of double to a Scilab format
+ *
+ * @param ptr the array of double
+ * @param size size of the array
+ * @param lda
+ */
 void F77ToSci __PARAMS((double *ptr, int size, int lda));
 void double2z __PARAMS((double *ptr,  double *ptr77z, int size, int lda));
 void z2double __PARAMS((double *ptrz, double *ptrsci, int size, int lda));
