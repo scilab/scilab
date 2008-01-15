@@ -22,6 +22,7 @@
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
 #define CHAR_R 'r'
+#define STR_ONCE 'ONCE'
 /* TODO : Add tests !!! man , bench , search memory leak , and optimize ... */
 /* Not finish !!! :( */
 /*------------------------------------------------------------------------*/
@@ -147,11 +148,16 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
             }
         }
     }
+    
+	if (nbValues!=0)
+	{
+		match = (char**)MALLOC(sizeof(char**)*(nbValues));
+	}
+	else
+	{
+		match = (char**)MALLOC(sizeof(char**)*(1));
 
-	/* TODO : Why 50 ? */
-	/* Please modify this */
-
-    match = (char**)MALLOC(sizeof(char**)*(nbValues));
+	}
 	for( i=0;i<nbValues;i++)
 	{
 		match[i] = (char*)MALLOC(sizeof(char*)*(values_end[i]-values[i]+1));
@@ -165,6 +171,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	freeArrayOfString(Str,mn);
 	freeArrayOfString(Str2,mn2);
 
+
+
     numRow   = 1;/* Output values[] */ 
     outIndex = 0;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
@@ -174,7 +182,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
     }
     LhsVar(1) = Rhs+1 ;
     
-	if (Lhs==2)
+	if (Lhs>=2)
 	{
 		numRow   = 1;
 		outIndex = 0;
