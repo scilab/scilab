@@ -22,16 +22,19 @@
 // Copyright INRIA 2008
 // Date : 8 janvier 2008
 
-a=cos(3);
-b=sin(3);
+// a=cos(3);
+// b=sin(3);
+// 
+// 
+// my_log_file = TMPDIR+"/bug_2647.log"
+// 
+// diary(my_log_file);
+// disp(a^2+b^2);
+// diary(0);
+// 
+// c = mgetl(my_log_file);
+// 
+// if stripblanks(c(4))<>"2." then pause, end
 
 
-my_log_file = TMPDIR+"/bug_2647.log"
 
-diary(my_log_file);
-disp(a^2+b^2);
-diary(0);
-
-c = mgetl(my_log_file);
-
-if stripblanks(c(4))<>"2." then pause, end
