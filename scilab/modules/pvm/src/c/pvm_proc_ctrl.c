@@ -166,42 +166,9 @@
 #include "setgetSCIpath.h"
 #include "sciprint.h"
 #include "sciprint_nd.h"
+#include "localization.h"
 
 extern int pvmendtask(void);
-
-typedef char *strings;
-
-static strings Scipvm_error[]= { 
-	_("OK"), /* 0 */
-	_("Bad parameter"), /* 1 */
-	_("Barrier count mismatch"), /* 2 */
-	_("Read past end of buffer"), /* 3 */
-	_("No such host"), /* 4 */
-	_("No such executable"), /* 5 */
-	_("Can not get memory"), /* 6 */
-	_("Can not decode received msg"), /* 7 */
-	_("Daemon pvmd is not responding"), /* 8 */
-	_("No current buffer"), /* 9 */
-	_("Bad message id"), /* 10 */
-	_("Null group name is illegal"), /* 11 */
-	_("Already in group"), /* 12 */
-	_("No group with that name"), /* 13 */
-	_("Not in group"), /* 14 */
-	_("No such instance in group"), /* 15 */
-	_("Host failed"), /* 16 */
-	_("No parent task"), /* 17 */
-	_("Function not implemented"), /* 18 */
-	_("Pvmd system error"), /* 19 */
-	_("Pvmd-pvmd protocol mismatch"), /* 20 */
-	_("Out of ressources"), /* 21 */
-	_("Host already configured (Duplicate host)"), /* 22 */
-	_("Failed to exec new slave pvmd"), /* 23 */
-	_("Already oing operation"), /* 24 */
-	_("No such task"), /* 25 */
-	_("No such (group,instance)"), /* 26 */
-	_("(group,instance) already exists"), /* 27 */
-	_("Unknown Error"), /* 28 */
-};
 
 /*--------------------------------------------------
  * get error message 
@@ -221,40 +188,40 @@ char *scipvm_error_msg(int err)
 {
   switch (err)
     {
-    case PvmOk:          return Scipvm_error[0];     break;
-    case PvmBadParam:    return Scipvm_error[1];     break;
-    case PvmMismatch:    return Scipvm_error[2];     break;
-    case PvmNoData:      return Scipvm_error[3];     break;
-    case PvmNoHost:      return Scipvm_error[4];     break;
-    case PvmNoFile:      return Scipvm_error[5];     break;
-    case PvmNoMem:       return Scipvm_error[6];     break;
-    case PvmBadMsg:      return Scipvm_error[7];     break;
-    case PvmSysErr:      return Scipvm_error[8];     break;
-    case PvmNoBuf:       return Scipvm_error[9];     break;
-    case PvmNoSuchBuf:   return Scipvm_error[10];     break;
-    case PvmNullGroup:   return Scipvm_error[11];     break;
-    case PvmDupGroup:    return Scipvm_error[12];     break;
-    case PvmNoGroup:     return Scipvm_error[13];     break;
-    case PvmNotInGroup:  return Scipvm_error[14];     break;
-    case PvmNoInst:      return Scipvm_error[15];     break;
-    case PvmHostFail:    return Scipvm_error[16];     break;
-    case PvmNoParent:    return Scipvm_error[17];     break;
-    case PvmNotImpl:     return Scipvm_error[18];     break;
-    case PvmDSysErr:     return Scipvm_error[19];     break;
-    case PvmBadVersion:  return Scipvm_error[20];     break;
-    case PvmOutOfRes:    return Scipvm_error[21];     break;
-    case PvmDupHost:     return Scipvm_error[22];     break;
-    case PvmCantStart:   return Scipvm_error[23];     break;
-    case PvmAlready:     return Scipvm_error[24];     break;
-    case PvmNoTask:      return Scipvm_error[25];     break;
+    case PvmOk:          return _("OK");     break;
+    case PvmBadParam:    return _("Bad parameter");     break;
+    case PvmMismatch:    return _("Barrier count mismatch");     break;
+    case PvmNoData:      return _("Read past end of buffer");     break;
+    case PvmNoHost:      return _("No such host");     break;
+    case PvmNoFile:      return _("No such executable");     break;
+    case PvmNoMem:       return _("Can not get memory");     break;
+    case PvmBadMsg:      return _("Can not decode received msg");     break;
+    case PvmSysErr:      return _("Daemon pvmd is not responding");     break;
+    case PvmNoBuf:       return _("No current buffer");     break;
+    case PvmNoSuchBuf:   return _("Bad message id");     break;
+    case PvmNullGroup:   return _("Null group name is illegal");     break;
+    case PvmDupGroup:    return _("Already in group");     break;
+    case PvmNoGroup:     return _("No group with that name");     break;
+    case PvmNotInGroup:  return _("Not in group");     break;
+    case PvmNoInst:      return _("No such instance in group");     break;
+    case PvmHostFail:    return _("Host failed");     break;
+    case PvmNoParent:    return _("No parent task");     break;
+    case PvmNotImpl:     return _("Function not implemented");     break;
+    case PvmDSysErr:     return _("Pvmd system error");     break;
+    case PvmBadVersion:  return _("Pvmd-pvmd protocol mismatch");     break;
+    case PvmOutOfRes:    return _("Out of ressources");     break;
+    case PvmDupHost:     return _("Host already configured (Duplicate host)");     break;
+    case PvmCantStart:   return _("Failed to exec new slave pvmd");     break;
+    case PvmAlready:     return _("Already oing operation");     break;
+    case PvmNoTask:      return _("No such task");     break;
 #ifdef PVM_MAJOR_VERSION 
-    case PvmNotFound:    return Scipvm_error[26];     break;
-    case PvmExists:      return Scipvm_error[27];     break;
+    case PvmNotFound:    return _("PVM not found");     break;
+    case PvmExists:      return _("PVM exists");     break;
 #else
-    case PvmNoEntry:     return Scipvm_error[26];     break;
-    case PvmDupEntry:    return Scipvm_error[27];     break;
+    case PvmNoEntry:     return _("No such (group,instance)");     break;
+    case PvmDupEntry:    return _("(group,instance) already exists");     break;
 #endif
-    default:             return Scipvm_error[28]; break;
+    default:             return _("Unknown Error"); break;
     }
 }
 

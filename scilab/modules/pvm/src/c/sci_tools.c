@@ -46,13 +46,16 @@
      TODO:use imatrix
 
 ***/
-#include "machine.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
+#include "MALLOC.h"
+#include "machine.h"
 #include "sci_tools.h"
 #include "sci_pvm.h"
+#include "localization.h"
 
 
 void C2F(ccomplexf)(int *n, double **ip, double *op)

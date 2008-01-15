@@ -7,6 +7,7 @@
 #include "gw_pvm.h"
 #include "MALLOC.h"
 #include "sci_pvm.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_tasks, fin = 8
@@ -28,7 +29,7 @@ int intspvm_tasks _PARAMS((char *fname,unsigned long fname_len))
   C2F(scipvmtasks)(&where,&ntask,&ptid,&pptid,&pdtid,&pflag,&pname,&ne3,&info); 
   if (info != 0 ) 
     {
-      Scierror(999,_("%s: Error\n"),fname);
+      Scierror(999,_("%s: An error occurred: %s\n"),fname,scipvm_error_msg(info));
       return 0;
     }
   /* Creation of output list of length 7*/

@@ -238,25 +238,6 @@ void C2F(scipvmhalt)(int *res);
  */
 void ccomplexf(int *n, double **ip, double *op); 
 
-
-/**
- * TODO: add comments
- *
- * @param ptr   
- * @param size  
- * @param lda   
- */
-void SciToF77(double *ptr, int size, int lda);
-
-/**
- * TODO: add comments
- *
- * @param ptr   
- * @param size  
- * @param lda   
- */
-void F77ToSci(double *ptr, int size, int lda);
-
 /** 
  *
  * Given a scilab variable, stored in the stack at the position k (in 

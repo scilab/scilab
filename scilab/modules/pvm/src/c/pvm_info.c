@@ -19,6 +19,7 @@
 #include "machine.h" 
 #include "stack-c.h" 
 #include "sci_pvm.h"
+#include "localization.h"
 
 #include "MALLOC.h"
 /*---------------------------------------------------
@@ -36,7 +37,7 @@ void C2F(scipvmconfig)(int *nhost, int *narch, int **dtid,
   *n = *nhost;
   
   if (*info) {
-    Scierror(999,_("%s: Error %d\n"), "pvm_config", *info);
+    Scierror(999,_("%s: An error occurred: %s\n"), "pvm_config", scipvm_error_msg(*info));
     *n = 0;
     *name = NULL;
     *arch = NULL;
@@ -99,7 +100,7 @@ void C2F(scipvmtasks)(int *where, int *ntask,
   *n = *ntask;
 
   if (*info) {
-    Scierror(999,_("pvm_tasks: Error in C routine pvm_tasks  %d\n"), *info);
+    Scierror(999,_("%s: An error occurred: %s\n"), "pvm_tasks", scipvm_error_msg(*info));
     *n = 0;
     *ntask = 0;
     *name = NULL;

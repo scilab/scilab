@@ -18,6 +18,7 @@
 #include "machine.h"
 #include "sci_tools.h"
 #include "sci_pvm.h"
+#include "localization.h"
 
 
 void C2F(scipvmbcast)(char *group, int *l, 

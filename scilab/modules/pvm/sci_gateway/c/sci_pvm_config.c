@@ -7,6 +7,7 @@
 #include "gw_pvm.h"
 #include "MALLOC.h"
 #include "sci_pvm.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_config, fin = 9
@@ -22,7 +23,7 @@ int intspvm_config _PARAMS((char *fname,unsigned long fname_len))
   /* Creation of output list of length 7*/
   if (info != 0 ) 
     {
-      Scierror(999,_("%s: Error\n"),fname);
+      Scierror(999,_("%s: An error occurred: %s\n"),fname,scipvm_error_msg(info));
       return 0;
     }
   Createlist(1,7);

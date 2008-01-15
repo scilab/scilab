@@ -87,22 +87,4 @@ int F2C(mycmatptr) __PARAMS((char *name,int *m, int *n, int *type, int *lp));
  */
 void C2F(ccomplexf) __PARAMS((int *n, double **ip, double *op));
 
-/**
- * Convert an Scilab array of double to a fortran format
- *
- * @param ptr the array of double
- * @param size size of the array
- * @param lda   
- */
-void SciToF77  __PARAMS((double *ptr, int size, int lda));
-
-/**
- * Convert an Fortran array of double to a Scilab format
- *
- * @param ptr the array of double
- * @param size size of the array
- * @param lda   
- */
-void F77ToSci  __PARAMS((double *ptr, int size, int lda));
-
 #endif /* __SCI_TOOLS */
