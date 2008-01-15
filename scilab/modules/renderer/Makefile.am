@@ -195,7 +195,18 @@ src/cpp/subwinDrawing/GridDrawer.cpp \
 src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
+src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
+src/jni/YLabelPositionerGL.cpp \
+src/jni/ZLabelPositionerGL.cpp \
+src/jni/XLabelPositionerGL.cpp \
+src/cpp/labelDrawing/XLabelPositionerJoGL.cpp \
+src/cpp/labelDrawing/YLabelPositionerJoGL.cpp \
+src/cpp/labelDrawing/ZLabelPositionerJoGL.cpp \
+src/cpp/labelDrawing/LabelPositionerJoGL.cpp \
+src/cpp/labelDrawing/XLabelPositionerJavaMapper.cpp \
+src/cpp/labelDrawing/YLabelPositionerJavaMapper.cpp \
+src/cpp/labelDrawing/LabelPositioner.cpp \
+src/cpp/labelDrawing/ZLabelPositionerJavaMapper.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
