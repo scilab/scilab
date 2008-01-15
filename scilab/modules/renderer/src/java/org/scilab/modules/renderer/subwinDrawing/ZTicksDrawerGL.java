@@ -47,21 +47,7 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 	 * @return direction in which to draw the ticks
 	 */
 	public Vector3D findTicksDirection(double xCoordinate, double yCoordinate) {
-		Vector3D res;
-		
-		// we must find wether Z axis ticks are directed by X axis or Y axis
-		// Actually Z axis is direted by the axis with which it shares on edge
-		// when X and Y axis are in defautl mode, ie bottom and left
-
-		
-		// get the three coordinates of the edge whuch is common for X and Y axis in default mode
-		double zCoordFront = findLowerZCoordinate();
-		
-		if (isSharingEndWithXaxis(zCoordFront, xCoordinate)) {
-			res = new Vector3D(xCoordinate - findFrontXCoordinate(zCoordFront), 0.0, 0.0);
-		} else {
-			res = new Vector3D(0.0, yCoordinate - findFrontYCoordinate(zCoordFront), 0.0);
-		}
+		Vector3D res = findZTicksDirection(xCoordinate, yCoordinate);
 		
 		return setTicksDirectionLength(res);
 		
@@ -126,9 +112,9 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 	}
 
 	/**
-	 * Draw ticks from the recorded data.
+	 * @return maximum distance from ticks to the axis.Draw ticks from the recorded data.
 	 */
-	public void drawTicks() {
+	public double drawTicks() {
 		double yCoordinate = findLeftMostYCoordinate();
 		double xCoordinate = findLeftMostXCoordinate();
 		
@@ -139,8 +125,9 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 					   getAxisSegmentStart(xCoordinate, yCoordinate),
 					   getAxisSegmentEnd(xCoordinate, yCoordinate));
 		
-		drawLabels(ticksPosition, ticksDirection);
+		return drawLabels(ticksPosition, ticksDirection);
 
+		
 	}
 
 }

@@ -47,27 +47,31 @@ void TicksDrawer::setGridDrawer(GridDrawer * gridDrawer)
   m_pGridDrawer = gridDrawer;
 }
 /*------------------------------------------------------------------------------------------*/
-void TicksDrawer::draw(void)
+double TicksDrawer::draw(void)
 {
   initializeDrawing();
   
-  drawTicks();
+  double dist = drawTicks();
 
   endDrawing();
+
+  return dist;
 }
 /*------------------------------------------------------------------------------------------*/
-void TicksDrawer::showTicks(void)
+double TicksDrawer::showTicks(void)
 {
 
   // same as initialize drawing but don't set constant parameters
   initializeShowing();
   
-  drawTicks();
+  double dist = drawTicks();
 
   endShowing();
+
+  return dist;
 }
 /*------------------------------------------------------------------------------------------*/
-void TicksDrawer::drawTicks(void)
+double TicksDrawer::drawTicks(void)
 {
   m_pTicksComputer->reinit();
 
@@ -107,7 +111,7 @@ void TicksDrawer::drawTicks(void)
   m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
 
   // everything is computed so draw!!!
-  drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
+  double dist = drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
 
   // draw grid
   if (m_pGridDrawer != NULL)
@@ -125,6 +129,8 @@ void TicksDrawer::drawTicks(void)
 
   delete[] ticksPos;
   delete[] subticksPos;
+
+  return dist;
 }
 /*------------------------------------------------------------------------------------------*/
 }

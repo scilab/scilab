@@ -35,7 +35,7 @@ public:
   /**
    * Get the bounding box of the displayed text. Used to detect overlapping text.
    */
-  virtual void getScreenBoundingBox(int * xPos, int * yPos, int * width, int * height);
+  virtual void getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2]);
 
   /**
    * Add a new strategy to draw the bounding rectangle of text.
@@ -56,6 +56,12 @@ public:
    * Delete the strategy used for drawing text.
    */
   void removeTextDrawingStrategy(void);
+
+  /**
+   * To know if there is really some text to display.
+   * Useful for labels objects which display text.
+   */
+  virtual bool isTextEmpty(void);
 
 protected:
 

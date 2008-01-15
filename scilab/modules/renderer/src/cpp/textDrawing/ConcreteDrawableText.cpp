@@ -8,6 +8,11 @@
 
 #include "ConcreteDrawableText.hxx"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 
@@ -31,9 +36,9 @@ void ConcreteDrawableText::getBoundingRectangle(double corner1[3], double corner
   m_pDrawingTextStrategy->getBoundingRectangle(corner1, corner2, corner3, corner4);
 }
 /*---------------------------------------------------------------------------------*/
-void ConcreteDrawableText::getScreenBoundingBox(int * xPos, int * yPos, int * width, int * height)
+void ConcreteDrawableText::getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2])
 {
-  m_pDrawingTextStrategy->getScreenBoundingBox(xPos, yPos, width, height);
+  m_pDrawingTextStrategy->getScreenBoundingBox(corner1, corner2, corner3, corner4);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::addBoxDrawingStrategy(DrawTextBoxStrategy * strategy)
@@ -101,6 +106,35 @@ void ConcreteDrawableText::showBox(void)
 void ConcreteDrawableText::showTextContent(void)
 {
   m_pDrawingTextStrategy->drawTextContent();
+}
+/*---------------------------------------------------------------------------------*/
+bool ConcreteDrawableText::isTextEmpty(void)
+{
+  StringMatrix * text = sciGetText(m_pDrawed);
+  if (text == NULL)
+  {
+    return true;
+  }
+  
+  int nbElements = getMatNbRow(text) * getMatNbCol(text);
+
+  if (nbElements == 0) {return true;}
+
+  if (nbElements == 1)
+  {
+    char * firstElement = getStrMatElement(text, 0, 0);
+    if (firstElement == NULL)
+    {
+      return true;
+    }
+    else if (firstElement[0] == 0)
+    {
+      // empty string
+      return true;
+    }
+  }
+
+  return false;
 }
 /*---------------------------------------------------------------------------------*/
 

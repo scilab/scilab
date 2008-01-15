@@ -33,25 +33,16 @@ ConcreteDrawableSubwin::ConcreteDrawableSubwin(sciPointObj * pObj)
 /*------------------------------------------------------------------------------------------*/
 ConcreteDrawableSubwin::~ConcreteDrawableSubwin(void)
 {
-  delete m_pXBoundsStrategy;
-  m_pXBoundsStrategy = NULL;
-  delete m_pYBoundsStrategy;
-  m_pYBoundsStrategy = NULL;
-  delete m_pZBoundsStrategy;
-  m_pZBoundsStrategy = NULL;
 
-  if (m_pAxesBoxDrawer != NULL)
-  {
-    delete m_pAxesBoxDrawer;
-    m_pAxesBoxDrawer = NULL;
-  }
+  setXBoundsStrategy(NULL);
+  setYBoundsStrategy(NULL);
+  setZBoundsStrategy(NULL);
 
-  delete m_pXTicksDrawer;
-  m_pXTicksDrawer = NULL;
-  delete m_pYTicksDrawer;
-  m_pYTicksDrawer = NULL;
-  delete m_pZTicksDrawer;
-  m_pZTicksDrawer = NULL;
+  setAxesBoxDrawer(NULL);
+
+  setXTicksDrawer(NULL);
+  setYTicksDrawer(NULL);
+  setZTicksDrawer(NULL);
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::setXBoundsStrategy(ComputeBoundsStrategy * strategy)
@@ -203,9 +194,24 @@ void ConcreteDrawableSubwin::drawBox(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::drawTicks(void)
 {
-  if (m_pXTicksDrawer != NULL) {m_pXTicksDrawer->draw();}
-  if (m_pYTicksDrawer != NULL) {m_pYTicksDrawer->draw();}
-  if (m_pZTicksDrawer != NULL) {m_pZTicksDrawer->draw();}
+  double distToXaxis = 0.0;
+  double distToYaxis = 0.0;
+  double distToZaxis = 0.0;
+  if (m_pXTicksDrawer != NULL)
+  {
+    distToXaxis = m_pXTicksDrawer->draw();
+  }
+  if (m_pYTicksDrawer != NULL)
+  {
+    distToYaxis = m_pYTicksDrawer->draw();
+  }
+  if (m_pZTicksDrawer != NULL)
+  {
+    distToZaxis = m_pZTicksDrawer->draw();
+  }
+
+  /* for title there is no displayable ticks */
+  setLabelsDistanceToAxis(distToXaxis, distToYaxis, distToZaxis, 0.0);
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::showBox(void)
@@ -219,9 +225,42 @@ void ConcreteDrawableSubwin::showBox(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::showTicks(void)
 {
-  if (m_pXTicksDrawer != NULL) {m_pXTicksDrawer->showTicks();}
-  if (m_pYTicksDrawer != NULL) {m_pYTicksDrawer->showTicks();}
-  if (m_pZTicksDrawer != NULL) {m_pZTicksDrawer->showTicks();}
+  double distToXaxis = 0.0;
+  double distToYaxis = 0.0;
+  double distToZaxis = 0.0;
+  if (m_pXTicksDrawer != NULL)
+  {
+    distToXaxis = m_pXTicksDrawer->showTicks();
+  }
+  if (m_pYTicksDrawer != NULL)
+  {
+    distToYaxis = m_pYTicksDrawer->showTicks();
+  }
+  if (m_pZTicksDrawer != NULL)
+  {
+    distToZaxis = m_pZTicksDrawer->showTicks();
+  }
+
+  /* for title there is no displayable ticks */
+  setLabelsDistanceToAxis(distToXaxis, distToYaxis, distToZaxis, 0.0);
+
 }
 /*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double yLabelDist,
+                                                     double zLabelDist, double titleDist)
+{
+  sciPointObj * xLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_x_label;
+  getLabelDrawer(xLabel)->setDistanceToAxis(xLabelDist);
+
+  sciPointObj * yLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_y_label;
+  getLabelDrawer(yLabel)->setDistanceToAxis(yLabelDist);
+
+  sciPointObj * zLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_z_label;
+  getLabelDrawer(zLabel)->setDistanceToAxis(zLabelDist);
+
+  /*sciPointObj * titleLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_title;
+  getLabelDrawer(titleLabel)->setDistanceToAxis(titleDist);*/
+}
+/*------------------------------------------------------------------------------------------*/
+
 }

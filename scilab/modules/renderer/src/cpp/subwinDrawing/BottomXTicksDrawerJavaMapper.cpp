@@ -57,12 +57,12 @@ void BottomXTicksDrawerJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void BottomXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
-                                             int nbTicks, const double subticksPositions[], int nbSubticks)
+double BottomXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+                                               int nbTicks, const double subticksPositions[], int nbSubticks)
 {
-  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
-                           ticksLabels, nbTicks,
-                           (double *)subticksPositions, nbSubticks);
+  return m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                                  ticksLabels, nbTicks,
+                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
 bool BottomXTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
@@ -71,14 +71,14 @@ bool BottomXTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], cha
                                    ticksLabels, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
-void BottomXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
-                                             char * labelsExponents[], int nbTicks,
-                                             const double subticksPositions[], int nbSubticks)
+double BottomXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+                                               char * labelsExponents[], int nbTicks,
+                                               const double subticksPositions[], int nbSubticks)
 {
-  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
-                           ticksLabels, nbTicks,
-                           labelsExponents, nbTicks,
-                           (double *)subticksPositions, nbSubticks);
+  return m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                                  ticksLabels, nbTicks,
+                                  labelsExponents, nbTicks,
+                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
 bool BottomXTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],

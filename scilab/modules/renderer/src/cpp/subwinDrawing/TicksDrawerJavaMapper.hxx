@@ -27,12 +27,12 @@ public:
 
   /*----------------------------------------------------------------------*/
   // specific for TicksDrawer
-  virtual void drawTicks(const double ticksPositions[], char * ticksLabels[],
-                         int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
+  virtual double drawTicks(const double ticksPositions[], char * ticksLabels[],
+                           int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
 
   virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks) = 0;
 
-  virtual void drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+  virtual double drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
                          int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
 
   virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[],

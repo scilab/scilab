@@ -297,5 +297,62 @@ public abstract class BoxTrimmingObjectGL extends DrawableObjectGL {
 		return (Math.abs(xCoordinate - xCoordBack) < Math.abs(xCoordinate - xCoordFront));
 	}
 	
+	/**
+	 * Compute the default direction of ticks on X axis, parallel to Y axis
+	 * @param yCoordinate Y coordinate of the X axis
+	 * @param zCoordinate Z coordinate of the X axis
+	 * @return direction of the ticks normalized
+	 */
+	protected Vector3D findXTicksDirection(double yCoordinate, double zCoordinate) {
+		Vector3D res;
+		if (Math.abs(yCoordinate - getYmin()) <= Math.abs(yCoordinate - getYmax())) {
+			// yCoordinate is closer to Ymin
+			res = new Vector3D(0.0, getYmin() - getYmax(), 0.0);
+		} else {
+			res = new Vector3D(0.0, getYmax() - getYmin(), 0.0);
+		}
+		return res.getNormalized();
+	}
+	
+	/**
+	 * Compute the default direction of ticks on Y axis, parallel to X axis
+	 * @param xCoordinate X coordinate of the Y axis
+	 * @param zCoordinate Z coordinate of the Y axis
+	 * @return direction of the ticks normalized
+	 */
+	protected Vector3D findYTicksDirection(double xCoordinate, double zCoordinate) {
+		Vector3D res;
+		if (Math.abs(xCoordinate - getXmin()) <= Math.abs(xCoordinate - getXmax())) {
+			// yCoordinate is closer to Ymin
+			res = new Vector3D(getXmin() - getXmax(), 0.0, 0.0);
+		} else {
+			res = new Vector3D(getXmax() - getXmin(), 0.0, 0.0);
+		}
+		return res.getNormalized();
+	}
 
+	/**
+	 * Compute the default direction of ticks on Z axis.
+	 * @param xCoordinate X coordinate of the Z axis
+	 * @param yCoordinate Y coordinate of the Z axis
+	 * @return direction of the ticks normalized
+	 */
+	protected Vector3D findZTicksDirection(double xCoordinate, double yCoordinate) {
+		Vector3D res;
+		// we must find wether Z axis ticks are directed by X axis or Y axis
+		// Actually Z axis is directed by the axis with which it shares on edge
+		// when X and Y axis are in defautl mode, ie bottom and left
+
+		
+		// get the three coordinates of the edge which is common for X and Y axis in default mode
+		double zCoordFront = findLowerZCoordinate();
+		
+		if (isSharingEndWithXaxis(zCoordFront, xCoordinate)) {
+			res = new Vector3D(xCoordinate - findFrontXCoordinate(zCoordFront), 0.0, 0.0);
+		} else {
+			res = new Vector3D(0.0, yCoordinate - findFrontYCoordinate(zCoordFront), 0.0);
+		}
+		return res.getNormalized();
+	}
+	
 }

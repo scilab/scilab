@@ -81,13 +81,8 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 	 * @return direction in which to draw the ticks
 	 */
 	public Vector3D findTicksDirection(double yCoordinate, double zCoordinate) {
-		Vector3D res;
-		if (Math.abs(yCoordinate - getYmin()) <= Math.abs(yCoordinate - getYmax())) {
-			// yCoordinate is closer to Ymin
-			res = new Vector3D(0.0, getYmin() - getYmax(), 0.0);
-		} else {
-			res = new Vector3D(0.0, getYmax() - getYmin(), 0.0);
-		}
+		
+		Vector3D res = findXTicksDirection(yCoordinate, zCoordinate);
 		
 		// if angle is too small then use Z direction
 		if (!checkTicksDirection(res, getAxisSegmentStart(yCoordinate, zCoordinate), getAxisSegmentEnd(yCoordinate, zCoordinate))) {
@@ -150,8 +145,9 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 
 	/**
 	 * Draw ticks from the recorded data.
+	 * @return maximum distance from ticks to the axis.
 	 */
-	public void drawTicks() {
+	public double drawTicks() {
 		
 		double zCoordinate = findZCoordinate();
 		double yCoordinate = findYCoordinate(zCoordinate);
@@ -163,7 +159,7 @@ public abstract class XTicksDrawerGL extends TicksDrawerGL {
 					   getAxisSegmentStart(yCoordinate, zCoordinate),
 					   getAxisSegmentEnd(yCoordinate, zCoordinate));
 		
-		drawLabels(ticksPosition, ticksDirection);
+		return drawLabels(ticksPosition, ticksDirection);
 		
 	}
 	

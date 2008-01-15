@@ -56,7 +56,9 @@ void DrawableObjectJoGL::destroy( void )
 {
   if (m_pJavaMapper != NULL)
   {
-    getJavaMapper()->destroy(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())));
+    DrawableObject * drawer = getDrawer();
+    sciPointObj * pObj = drawer->getDrawedObject();
+    getJavaMapper()->destroy(sciGetNum(sciGetParentFigure(pObj)));
     delete getJavaMapper();
     setJavaMapper(NULL);
   }

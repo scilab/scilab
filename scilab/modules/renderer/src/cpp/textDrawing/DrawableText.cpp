@@ -13,12 +13,11 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 void DrawableText::draw( void )
 {
-  initializeDrawing() ;
-  if ( !checkVisibility() )
+  if (!checkVisibility() || isTextEmpty() )
   {
-    endDrawing();
     return ;
   }
+  initializeDrawing() ;
   clip();
   drawBox();
   drawTextContent();
@@ -28,10 +27,16 @@ void DrawableText::draw( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableText::show( void )
 {
+  if (!checkVisibility() || isTextEmpty() )
+  {
+    return ;
+  }
+  initializeDrawing();
   clip();
   showBox();
   showTextContent();
   unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 

@@ -31,26 +31,27 @@ public:
   /**
    * Main function which draw ticks.
    */
-  void draw(void);
+  double draw(void);
 
   /**
    * Redefined show since we can not use display lists.
    */
-  void showTicks(void);
+  double showTicks(void);
 
 protected:
 
   /*----------------------------------------------------------------------*/
   /**
-   * Compoute ticks positions and draw ticks from the computed position.
+   * Compute ticks positions and draw ticks from the computed position.
    */
-  void drawTicks(void);
+  double drawTicks(void);
 
   /**
    * Draw the ticks on the right axis on computed positions.
+   * @return distance from ticks to the axis in pixels
    */
-  virtual void drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                         int nbTicks, double subticksPositions[], int nbSubtics) = 0;
+  virtual double drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                           int nbTicks, double subticksPositions[], int nbSubtics) = 0;
 
   /**
    * Check if the ticks do not conceal each others.

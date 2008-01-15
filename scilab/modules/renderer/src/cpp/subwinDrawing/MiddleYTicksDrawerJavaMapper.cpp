@@ -58,12 +58,14 @@ void MiddleYTicksDrawerJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void MiddleYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
-                                             int nbTicks, const double subticksPositions[], int nbSubticks)
+double MiddleYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+                                               int nbTicks, const double subticksPositions[], int nbSubticks)
 {
-  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
-                           ticksLabels, nbTicks,
-                           (double *)subticksPositions, nbSubticks);
+  return m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                                  ticksLabels, nbTicks,
+                       
+                                  
+                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
 bool MiddleYTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
@@ -72,14 +74,14 @@ bool MiddleYTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], cha
                                    ticksLabels, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
-void MiddleYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
-                                             char * labelsExponents[], int nbTicks,
-                                             const double subticksPositions[], int nbSubticks)
+double MiddleYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+                                               char * labelsExponents[], int nbTicks,
+                                               const double subticksPositions[], int nbSubticks)
 {
-  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
-                           ticksLabels, nbTicks,
-                           labelsExponents, nbTicks,
-                           (double *)subticksPositions, nbSubticks);
+  return m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                                  ticksLabels, nbTicks,
+                                  labelsExponents, nbTicks,
+                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
 bool MiddleYTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],

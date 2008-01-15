@@ -221,6 +221,8 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
 
 void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2]); /* GET */
 
+void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2]); /* GET */
+
 BOOL sciGetIsIsoView(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsCubeScaled(sciPointObj * pObj); /* GET */
@@ -234,6 +236,12 @@ void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]); /* GET */
 void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]); /* GET */
 
 void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
+
+void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
+                             double corner3[2], double corner4[2]); /* GET */
+
+void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
+                            int corner3[2], int corner4[2]); /* GET */
 
 void printSetGetErrorMessage(const char * propertyName);
 

@@ -8,6 +8,14 @@
 
 #include "DrawableLabelFactory.h"
 #include "DrawableLabel.h"
+#include "XLabelPositionerJoGL.hxx"
+#include "YLabelPositionerJoGL.hxx"
+#include "ZLabelPositionerJoGL.hxx"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
 
 namespace sciGraphics
 {
@@ -15,13 +23,42 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableLabelFactory::create( void )
 {
-  return new DrawableLabel( m_pDrawed ) ;
+  DrawableLabel * newLabel = new DrawableLabel( m_pDrawed ) ;
+  setPositionner(newLabel);
+  return newLabel;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableLabelFactory::update( void )
 {
-  // nothing for now
+  // nothing for now, label type does not change
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableLabelFactory::setPositionner(DrawableLabel * label)
+{
+  if (label->getLabelPositioner() != NULL)
+  {
+    delete label->getLabelPositioner();
+  }
 
+  switch (pLABEL_FEATURE(m_pDrawed)->ptype)
+  {
+  case 2:
+    // x label
+    label->setDrawableImp(new XLabelPositionerJoGL(label));
+    break;
+  case 3:
+    // y label
+    label->setDrawableImp(new YLabelPositionerJoGL(label));
+    break;
+  case 4:
+    // z label
+    label->setDrawableImp(new ZLabelPositionerJoGL(label));
+    break;
+  default:
+    label->setDrawableImp(NULL);
+    break;
+  }
+
+}
+/*---------------------------------------------------------------------------------*/
 }

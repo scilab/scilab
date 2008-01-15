@@ -10,6 +10,7 @@
 
 
 #include "../DrawableObject.h"
+#include "LabelPositioner.hxx"
 
 namespace sciGraphics
 {
@@ -19,10 +20,25 @@ class DrawableLabel : public DrawableObject
 
 public:
 
-  DrawableLabel( sciPointObj * pObj ) : DrawableObject( pObj ) {}
+  DrawableLabel( sciPointObj * pObj );
+
+  virtual ~DrawableLabel(void);
+
+  /**
+   * Set the distance to use between the axis and label
+   */
+  void setDistanceToAxis(double dist);
+
+  /**
+   * Return the real type of implementation object
+   * Here it is just getting a pointer on the object used to place label
+   * The label is drawn is drawn using its text object
+   */
+  LabelPositioner * getLabelPositioner( void ) ;
 
 protected:
 
+  /*------------------------------------------------------------------*/
   /**
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
@@ -34,6 +50,24 @@ protected:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void ) ;
+
+  /**
+   * Automatically set label position and orientation
+   */
+  void setLabelLocation(void);
+
+  /**
+   * Automatically set label position
+   */
+  void setLabelPosition(void);
+
+  /**
+   * Automatically set label orientation
+   */
+  void setLabelOrientation(void);
+  /*------------------------------------------------------------------*/
+
+
 
 } ;
 

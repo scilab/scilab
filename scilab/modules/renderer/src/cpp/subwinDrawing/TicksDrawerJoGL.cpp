@@ -27,19 +27,19 @@ TicksDrawerJoGL::~TicksDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                                int nbTicks, double subticksPositions[], int nbSubtics)
+double TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                                  int nbTicks, double subticksPositions[], int nbSubtics)
 {
   if (labelsExponents == NULL)
   {
-    getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels, nbTicks,
-                                          subticksPositions, nbSubtics);
+    return getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels, nbTicks,
+                                                 subticksPositions, nbSubtics);
   }
   else
   {
-    getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels,
-                                          labelsExponents, nbTicks,
-                                          subticksPositions, nbSubtics);
+    return getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels,
+                                                 labelsExponents, nbTicks,
+                                                 subticksPositions, nbSubtics);
   }
   
 }

@@ -60,3 +60,14 @@ void sciGetJava2dViewCoordinates(sciPointObj * pSubwin, const double userCoords3
   getSubwinDrawer(pSubwin)->getCamera()->get2dViewCoordinates(userCoords3D, userCoords2D);
 }
 /*---------------------------------------------------------------------------------*/
+void sciGetJava2dViewCoordFromPixel(sciPointObj * pSubwin, const int pixCoords[2], double userCoords2D[2])
+{
+  getSubwinDrawer(pSubwin)->getCamera()->get2dViewCoordinates(pixCoords, userCoords2D);
+}
+/*---------------------------------------------------------------------------------*/
+void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2],
+                                int corner3[2], int corner4[2])
+{
+  getTextDrawer(pText)->getScreenBoundingBox(corner1, corner2, corner3, corner4);
+}
+/*---------------------------------------------------------------------------------*/

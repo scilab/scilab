@@ -59,6 +59,17 @@ void sciGetJava2dViewPixelCoordinates(sciPointObj * pSubwin, const double userCo
  */
 void sciGetJava2dViewCoordinates(sciPointObj * pSubwin, const double userCoords3D[3], double userCoords2D[2]);
 
+/**
+ * Convert pixel coordinates to 2D view ones.
+ */
+void sciGetJava2dViewCoordFromPixel(sciPointObj * pSubwin, const int pixCoords[2], double userCoords2D[2]);
+
+/**
+ * Get the bounding box in pixels of a text object.
+ */
+void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2],
+                                int corner3[2], int corner4[2]);
+
 #ifdef __cplusplus
 }
 #endif

@@ -32,7 +32,13 @@ public:
   /**
    * Get the bounding box of the displayed text in pixels. Used to detect overlapping text.
    */
-  virtual void getScreenBoundingBox(int * xPos, int * yPos, int * width, int * height) = 0;
+  virtual void getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2]) = 0;
+
+  /**
+   * To know if there is really some text to display.
+   * Useful for labels objects which display text.
+   */
+  virtual bool isTextEmpty(void) = 0;
 
 protected:
 

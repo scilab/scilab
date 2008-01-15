@@ -112,5 +112,14 @@ DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin )
   return dynamic_cast<DrawableSubwin *>(getHandleDrawer(pSubwin));
 }
 /*---------------------------------------------------------------------------------*/
+DrawableLabel * getLabelDrawer( sciPointObj * pLabel )
+{
+  if ( sciGetEntityType(pLabel) != SCI_LABEL )
+  {
+    return NULL;
+  }
 
+  return dynamic_cast<DrawableLabel *>(getHandleDrawer(pLabel));
+}
+/*---------------------------------------------------------------------------------*/
 }

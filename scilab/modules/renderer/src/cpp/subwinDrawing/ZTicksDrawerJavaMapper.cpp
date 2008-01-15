@@ -57,12 +57,12 @@ void ZTicksDrawerJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
-                                       int nbTicks, const double subticksPositions[], int nbSubticks)
+double ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+                                         int nbTicks, const double subticksPositions[], int nbSubticks)
 {
-  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
-                           ticksLabels, nbTicks,
-                           (double *)subticksPositions, nbSubticks);
+  return m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                                  ticksLabels, nbTicks,
+                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
 bool ZTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
@@ -71,14 +71,14 @@ bool ZTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ti
                                    ticksLabels, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
-void ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
-                                       char * labelsExponents[], int nbTicks,
-                                       const double subticksPositions[], int nbSubticks)
+double ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
+                                         char * labelsExponents[], int nbTicks,
+                                         const double subticksPositions[], int nbSubticks)
 {
-  m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
-                           ticksLabels, nbTicks,
-                           labelsExponents, nbTicks,
-                           (double *)subticksPositions, nbSubticks);
+  return m_pJavaObject->drawTicks((double *)ticksPositions, nbTicks,
+                                  ticksLabels, nbTicks,
+                                  labelsExponents, nbTicks,
+                                 (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
 bool ZTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],

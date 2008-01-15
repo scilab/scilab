@@ -20,6 +20,7 @@ extern "C"
 #include "polylineDrawing/DrawablePolyline.h"
 #include "textDrawing/DrawableText.h"
 #include "subwinDrawing/DrawableSubwin.h"
+#include "labelDrawing/DrawableLabel.h"
 
 namespace sciGraphics
 {
@@ -89,9 +90,15 @@ DrawableText * getTextDrawer( sciPointObj * pText );
 
 /**
  * Return a DrawableSubwin object corresponding to a sciPointObj object.
- * @return the corresponding text to pSubwin if pSubwin if of type subwin, NULL otherwise
+ * @return the corresponding subwin to pSubwin if pSubwin if of type subwin, NULL otherwise
  */
 DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin );
+
+/**
+ * Return a DrawableLabel object corresponding to a sciPointObj object.
+ * @return the corresponding label to pLabel if pLabel if of type label, NULL otherwise
+ */
+DrawableLabel * getLabelDrawer( sciPointObj * pLabel );
 
 }
 

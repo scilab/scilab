@@ -2442,7 +2442,14 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       FREE(pobj);
       return NULL ;
     }
-    
+
+    /* labels are not clipped */
+    sciSetIsClipping(ppLabel->text, -1) ;
+
+    /* Use centered mode */
+    sciInitCenterPos(ppLabel->text, TRUE);
+    sciInitAutoSize(ppLabel->text, TRUE);
+
     if (sciAddNewHandle (pobj) == -1)
     {
       deallocateText( ppLabel->text ) ;

@@ -29,7 +29,7 @@ public:
   /**
    * Get the bounding box of the displayed text. Used to detect overlapping text.
    */
-  virtual void getScreenBoundingBox(int * xPos, int * yPos, int * width, int * height) = 0;
+  virtual void getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2]) = 0;
 
   /**
    * Draw the rectangle surrounding the text.

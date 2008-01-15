@@ -255,14 +255,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\labelDrawing\DrawableLabel.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\labelDrawing\DrawableLabelFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\legendDrawing\DrawableLegend.cpp"
 				>
 			</File>
@@ -990,6 +982,62 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="LabelDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\DrawableLabel.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\DrawableLabelFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\LabelPositioner.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\LabelPositionerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\XLabelPositionerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\XLabelPositionerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\XLabelPositionerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YLabelPositionerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\YLabelPositionerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\YLabelPositionerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\ZLabelPositionerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\ZLabelPositionerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\ZLabelPositionerJoGL.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1050,14 +1098,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotFactory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\labelDrawing\DrawableLabel.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\labelDrawing\DrawableLabelFactory.h"
 				>
 			</File>
 			<File
@@ -1873,6 +1913,66 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\TextLineBoxDrawerJoGL.hxx"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="LabelDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\DrawableLabel.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\DrawableLabelFactory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\LabelPositioner.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\LabelPositionerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\LabelPositionerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\XLabelPositionerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\XLabelPositionerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\XLabelPositionerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YLabelPositionerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\YLabelPositionerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\YLabelPositionerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\ZLabelPositionerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\ZLabelPositionerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\ZLabelPositionerJoGL.hxx"
 					>
 				</File>
 			</Filter>

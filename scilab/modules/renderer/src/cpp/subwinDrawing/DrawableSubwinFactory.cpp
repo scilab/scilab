@@ -16,6 +16,7 @@
 #include "FullBoxDrawerJoGL.hxx"
 #include "HalfBoxDrawerJoGL.hxx"
 #include "TicksDrawerFactory.hxx"
+#include "../labelDrawing/XLabelPositionerJoGL.hxx"
 
 extern "C"
 {

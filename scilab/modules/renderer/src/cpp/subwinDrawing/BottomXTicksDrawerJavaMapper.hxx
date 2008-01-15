@@ -39,13 +39,13 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // Inherited from TicksDrawer
-  virtual void drawTicks(const double ticksPositions[], char * ticksLabels[],
-                         int nbTicks, const double subticksPositions[], int nbSubticks);
+  virtual double drawTicks(const double ticksPositions[], char * ticksLabels[],
+                           int nbTicks, const double subticksPositions[], int nbSubticks);
 
   virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks);
 
-  virtual void drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                         int nbTicks, const double subticksPositions[], int nbSubticks);
+  virtual double drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                          int nbTicks, const double subticksPositions[], int nbSubticks);
 
   virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[],
                           char * labelsExponents[], int nbTicks);

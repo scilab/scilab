@@ -4144,8 +4144,8 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
 /**
  * Convert user coordinates to pixel ones (relative to the viewing canvas).
  * @param pObj subwindow handle
- * @param userCoord user coordinates
- * @param userCoords2D result in user coord but in the default 2D plane.
+ * @param userCoord3D user coordinates
+ * @param userCoords2D result in user coordinates in the default 2D plane.
  */
 void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2])
 {
@@ -4153,6 +4153,27 @@ void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], do
   {
   case SCI_SUBWIN:
     sciGetJava2dViewCoordinates(pObj, userCoords3D, userCoords2D);
+    break;
+  default:
+    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
+    userCoords2D[0] = 0.0;
+    userCoords2D[1] = 0.0;
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+* Convert pixel coordinates to 2D view coordinate
+* @param pObj subwindow handle
+* @param userCoord pixel coordinates
+* @param userCoords2D user coordinates in default 2D plane
+*/
+void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    sciGetJava2dViewCoordFromPixel(pObj, pixelCoords, userCoords2D);
     break;
   default:
     sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
@@ -4287,6 +4308,45 @@ void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6])
     printSetGetErrorMessage("zoom_box");
     break;
   }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the 4 corners of the bounding box of a text object in pixels
+ */
+void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
+                            int corner3[2], int corner4[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_TEXT:
+    sciGetJavaPixelBoundingBox(pObj, corner1, corner2, corner3, corner4);
+    break;
+  case SCI_LABEL:
+    sciGetPixelBoundingBox(pLABEL_FEATURE(pObj)->text, corner1, corner2, corner3, corner4);
+    break;
+  default:
+    printSetGetErrorMessage("bounding box");
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the 4 corners of the boundng box of a text object in 2D view user coordinates.
+ */
+void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corner2[2],
+                             double corner3[2], double corner4[2])
+{
+  int pixCorners[4][2];
+  sciPointObj * parentSubwin = sciGetParentSubwin(pObj);
+
+  // get pixel bounding box
+  sciGetPixelBoundingBox(pObj, pixCorners[0], pixCorners[1], pixCorners[2], pixCorners[3]);
+
+  // convert them to user coordinates
+  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[0], corner1);
+  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[1], corner2);
+  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[2], corner3);
+  sciGetJava2dViewCoordFromPixel(parentSubwin, pixCorners[3], corner4);
 }
 /*----------------------------------------------------------------------------------*/
 /**

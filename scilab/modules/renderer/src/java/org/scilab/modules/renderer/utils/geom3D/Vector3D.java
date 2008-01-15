@@ -15,6 +15,11 @@ package org.scilab.modules.renderer.utils.geom3D;
  */
 public class Vector3D {
 
+	public static final Vector3D ORIGIN = new Vector3D(0.0, 0.0, 0.0);
+	public static final Vector3D X_AXIS = new Vector3D(1.0, 0.0, 0.0);
+	public static final Vector3D Y_AXIS = new Vector3D(0.0, 1.0, 0.0);
+	public static final Vector3D Z_AXIS = new Vector3D(0.0, 0.0, 1.0);
+	
 	private double xCoord;
 	private double yCoord;
 	private double zCoord;

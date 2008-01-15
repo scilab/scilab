@@ -27,9 +27,10 @@ protected:
 
   /**
    * Draw the ticks on the right axis.
+   * @return distance from the ticks to axis in pixels
    */
-  virtual void drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                         int nbTicks, double subticksPositions[], int nbSubtics);
+  virtual double drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                           int nbTicks, double subticksPositions[], int nbSubtics);
 
   /**
    * Check if the ticks do not conceal each others.

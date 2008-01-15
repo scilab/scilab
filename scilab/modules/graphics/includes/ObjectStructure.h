@@ -642,7 +642,7 @@ typedef struct
  /*  sciText text; */
   sciPointObj * text ;
   /** absolut position in subindow*/
-  /* POINT2D pos; */
+
   int ptype ; /**< to distinguish between title, x_label,.... */
 
   /** */

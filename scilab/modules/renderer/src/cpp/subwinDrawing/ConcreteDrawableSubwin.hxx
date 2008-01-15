@@ -13,6 +13,7 @@
 #include "ComputeBoundsStrategy.hxx"
 #include "DrawAxesBoxStrategy.hxx"
 #include "TicksDrawer.hxx"
+#include "../labelDrawing/LabelPositioner.hxx"
 
 namespace sciGraphics
 {
@@ -98,6 +99,14 @@ protected:
    * Draw the ticks of the subwin from alraedy computed data.
   */
   virtual void showTicks(void);
+
+  /**
+   * Set the distance to use between axis and labels.
+   * May vary depending on the ticks drawing, the two should not
+   * conceal each other.
+   */
+  virtual void setLabelsDistanceToAxis(double xLabelDist, double yLabelDist,
+                                       double zLabelDist, double titleDist);
   /*---------------------------------------------------------------------*/
   ComputeBoundsStrategy * m_pXBoundsStrategy;
   ComputeBoundsStrategy * m_pYBoundsStrategy;
@@ -110,6 +119,7 @@ protected:
   DrawAxesBoxStrategy * m_pAxesBoxDrawer;
   /*---------------------------------------------------------------------*/
 
+  
 };
 
 }

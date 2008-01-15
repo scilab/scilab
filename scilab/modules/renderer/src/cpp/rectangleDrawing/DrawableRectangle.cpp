@@ -24,7 +24,6 @@ void DrawableRectangle::draw( void )
   initializeDrawing() ;
   if ( !checkVisibility() )
   {
-
     endDrawing();
     return ;
   }
@@ -37,6 +36,11 @@ void DrawableRectangle::draw( void )
 void DrawableRectangle::show( void )
 {
   initializeDrawing();
+  if ( !checkVisibility() )
+  {
+    endDrawing();
+    return ;
+  }
   clip();
   getRectangleImp()->show() ;
   unClip();

@@ -96,3 +96,9 @@ mat4DMult
 sciSetZoomBox
 vectSubstract2D
 sciGetXorMode
+getStrMatElement
+sciSetTextPos
+sciGetAutoPosition
+sciSetFontOrientation
+sciGetAutoRotation
+sciGetPixelBoundingBox

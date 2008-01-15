@@ -20,7 +20,7 @@
       <param type="double[]" name="ticksPositions" />
       <param type="String[]" name="ticksLabels" />
     </method>
-    <method name="drawTicks" returnType="void">
+    <method name="drawTicks" returnType="double">
       <param type="double[]" name="ticksPositions" />
       <param type="String[]" name="ticksLabels" />
       <param type="double[]" name="subticksPositions" />
@@ -30,7 +30,7 @@
       <param type="String[]" name="ticksLabels" />
       <param type="String[]" name="labelsExponents" />
     </method>
-    <method name="drawTicks" returnType="void">
+    <method name="drawTicks" returnType="double">
       <param type="double[]" name="ticksPositions" />
       <param type="String[]" name="ticksLabels" />
       <param type="String[]" name="labelsExponents" />

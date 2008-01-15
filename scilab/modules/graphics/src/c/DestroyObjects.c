@@ -381,6 +381,7 @@ int deallocateText( sciPointObj * pthis )
   deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
   FREE (pTEXT_FEATURE (pthis)->user_data);
   pTEXT_FEATURE (pthis)->size_of_user_data = 0;
+  destroyHandleDrawer(pthis);
 
   FREE (sciGetFontContext(pthis)->pfontname);
   FREE (sciGetPointerToFeature (pthis));
