@@ -302,7 +302,7 @@ public class CallScilabBridge {
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		popupMenu.setBackground(Color.WHITE);
+		popupMenu.setBackground(Color.LIGHT_GRAY);
 		popupMenu.setForeground(Color.BLACK);
 		return id;
 	}

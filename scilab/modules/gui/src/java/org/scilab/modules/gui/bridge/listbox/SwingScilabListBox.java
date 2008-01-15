@@ -5,6 +5,7 @@ package org.scilab.modules.gui.bridge.listbox;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.StringTokenizer;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -237,9 +238,19 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
 	 */
 	public void setText(String[] text) {
+		/* Clear previous items */
 		((DefaultListModel) getList().getModel()).clear();
-		for (int i = 0; i < text.length; i++) {
-			((DefaultListModel) getList().getModel()).addElement(text[i]);
+		
+		/* Special case if the text contains | to separate items */
+		if (text.length == 1) {
+			StringTokenizer strTok = new StringTokenizer(text[0], "|");
+			while (strTok.hasMoreTokens()) {
+				((DefaultListModel) getList().getModel()).addElement(strTok.nextToken());
+			}
+		} else {
+			for (int i = 0; i < text.length; i++) {
+				((DefaultListModel) getList().getModel()).addElement(text[i]);
+			}
 		}
 	}
 	

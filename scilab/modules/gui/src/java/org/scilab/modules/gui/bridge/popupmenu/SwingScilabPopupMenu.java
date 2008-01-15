@@ -3,6 +3,8 @@
 
 package org.scilab.modules.gui.bridge.popupmenu;
 
+import java.util.StringTokenizer;
+
 import javax.swing.JComboBox;
 
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -60,6 +62,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 */
 	public void setDims(Size newSize) {
 		setSize(newSize.getWidth(), newSize.getHeight());
+		doLayout(); /* Needed !! because PopupMenu is badly drawn else */
 	}
 
 	/**
@@ -208,9 +211,19 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * @param text the text of the items
 	 */
 	public void setText(String[] text) {
+		/* Clear previous items */
 		removeAllItems();
-		for (int i = 0; i < text.length; i++) {
-			addItem(text[i]);
+		
+		/* Special case if the text contains | to separate items */
+		if (text.length == 1) {
+			StringTokenizer strTok = new StringTokenizer(text[0], "|");
+			while (strTok.hasMoreTokens()) {
+				addItem(strTok.nextToken());
+			}
+		} else {
+			for (int i = 0; i < text.length; i++) {
+				addItem(text[i]);
+			}
 		}
 		
 	}
