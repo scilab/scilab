@@ -13,7 +13,7 @@ import com.sun.opengl.util.Screenshot;
  *
  */
 public class ExportBitmap extends ExportToFile {	
-		
+	
 	/** File which contains the screen-shot */
 	private File file;
 	
@@ -28,8 +28,9 @@ public class ExportBitmap extends ExportToFile {
 	
 	/**
 	 * Create a bitmap file which is the screen-shot of the figure
+	 * @return a int which is a type of error
 	 */
-	public void exportToBitmap() {				
+	public int exportToBitmap() {				
 		
 		/** Select the screen-shot format */
 		switch (getFiletype()) {
@@ -41,21 +42,19 @@ public class ExportBitmap extends ExportToFile {
 		break;
 		case PNG_EXPORT:  file = new File(getFilename() + ".png");
 		break;					  
-		default: System.err.println(INVALID_FILE);
-		return;
+		default: return INVALID_FILE;
 		}
 
 		try {
 			/** Generate the screen-shot */
-			Screenshot.writeToFile(file, getWidth(), getHeight());
+			Screenshot.writeToFile(file, getWidth(), getHeight());			
 		} catch (GLException ex1) {
-			System.err.println("Error: GLException");
-			ex1.printStackTrace();
+			return GLEXCEPTION_ERROR;
 
 		} catch (IOException ex2) {
-			System.err.println(ExportToFile.INVALID_FILE);
-			ex2.printStackTrace();
-		}			
+			return IOEXCEPTION_ERROR;			
+		}
+		return SUCCESS;			
 	}
 }
 

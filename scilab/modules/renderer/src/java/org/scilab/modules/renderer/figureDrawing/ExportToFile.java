@@ -1,5 +1,7 @@
 package org.scilab.modules.renderer.figureDrawing;
 
+import com.sun.opengl.util.FileUtil;
+
 /**
  * Abstract Class allows to export screen-shots in format Bitmap (BMP, GIF, JPG, PNG and PPM)
  * @author Sylvestre Koumar
@@ -14,9 +16,12 @@ public abstract class ExportToFile {
 	public static final int PNG_EXPORT = 4;
 	public static final int PPM_EXPORT = 5;
 	
-	protected static final String INVALID_FILE = "File name not supported";
-
+	public static final int SUCCESS = 0;
+	public static final int GLEXCEPTION_ERROR = 1;
+	public static final int IOEXCEPTION_ERROR = 2;
+	public static final int INVALID_FILE = 3;
 	
+		
 	/** Width and height of the figure  */
 	private int width;
 	private int height;
@@ -32,7 +37,8 @@ public abstract class ExportToFile {
 	 */
 	protected ExportToFile(String filename, int filetype) {
 		this.filename = filename;
-		this.filetype = filetype;
+		this.filetype = filetype;		
+		removeExtension();
 	}
 
 	/**
@@ -95,8 +101,9 @@ public abstract class ExportToFile {
 	
 	/**
 	 * Create a bitmap file which is the screen-shot of the figure
+	 * @return a int which is a type of error
 	 */
-	public abstract void exportToBitmap();
+	public abstract int exportToBitmap();
 	
 	/**
 	 * Choose which kind of filetype will be exported /*
@@ -117,5 +124,25 @@ public abstract class ExportToFile {
 		default: System.err.println(INVALID_FILE);
 		}
 		return null;		
+	}
+	
+	/**
+	 * Function allowing to format the extension of the screen-shot file  
+	 */
+	public void removeExtension() {		
+		String suffix = FileUtil.getFileSuffix(this.filename); //get the suffix(extension) of the file name
+		int pos = this.filename.lastIndexOf('.'); // position of the dot
+		
+		if (suffix.equals("bmp") && this.filetype == BMP_EXPORT) {
+			this.filename = filename.substring(0, pos);
+		} else if (suffix.equals("gif") && this.filetype == GIF_EXPORT) {
+			this.filename = filename.substring(0, pos);
+		} else if (suffix.equals("jpg") && this.filetype == JPG_EXPORT) {
+			this.filename = filename.substring(0, pos);
+		} else if (suffix.equals("png") && this.filetype == PNG_EXPORT) {
+			this.filename = filename.substring(0, pos);
+		} else if (suffix.equals("ppm") && this.filetype == PPM_EXPORT) {
+			this.filename = filename.substring(0, pos);
+		}		
 	}
 }

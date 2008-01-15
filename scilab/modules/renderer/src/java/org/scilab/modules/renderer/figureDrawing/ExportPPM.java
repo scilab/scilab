@@ -33,9 +33,10 @@ public class ExportPPM  extends ExportToFile {
 	
 	/**
 	 * Create a PPM file which is the screen-shot of the figure
+	 * @return a int which is a type of error
 	 */
-	public void exportToBitmap() {		
-		try {
+	public int exportToBitmap() {		
+		try {			
 			/** FileOutputStream contain's the figure */
 			o = new FileOutputStream(getFilename() + ".ppm");
 			image = Screenshot.readToBufferedImage(getWidth(), getHeight());
@@ -46,9 +47,10 @@ public class ExportPPM  extends ExportToFile {
 			int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
 			encoder.encodePixels(0, 0, image.getWidth(), image.getHeight(),	pixels, 0, image.getWidth());
 		} catch (GLException e1) {
-			e1.printStackTrace();
+			return GLEXCEPTION_ERROR;
 		} catch (IOException e1) {
-			e1.printStackTrace();
-		}			
+			return IOEXCEPTION_ERROR;
+		}
+		return SUCCESS;			
 	}
 }
