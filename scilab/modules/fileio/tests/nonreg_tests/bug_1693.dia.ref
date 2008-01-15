@@ -40,31 +40,19 @@ else
 	if pwd() <> '/' then bugmes();quit;end
 end
 // ================== Test 2 ==================
-cd home
- ans  =
- 
- /home/pmarecha   
+cd home;
 if pwd() <> home then bugmes();quit;end
 // ================== Test 3 ==================
 if MSDOS then
-	cd WSCI
+	cd WSCI;
 	if pwd() <> WSCI then bugmes();quit;end
 end
 // ================== Test 4 ==================
-cd SCIHOME
- ans  =
- 
- /home/pmarecha/.Scilab/scilab-trunk-SVN   
+cd SCIHOME;
 if pwd() <> SCIHOME then bugmes();quit;end
 // ================== Test 5 ==================
-cd SCIHOME
- ans  =
- 
- /home/pmarecha/.Scilab/scilab-trunk-SVN   
+cd SCIHOME;
 if pwd() <> SCIHOME then bugmes();quit;end
 // ================== Test 6 ==================
-cd PWD
- ans  =
- 
- /home/pmarecha   
+cd PWD;
 if pwd() <> PWD then bugmes();quit;end

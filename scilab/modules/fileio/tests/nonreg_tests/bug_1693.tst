@@ -43,27 +43,27 @@ end
 
 // ================== Test 2 ==================
 
-cd home
+cd home;
 if pwd() <> home then pause,end
 
 // ================== Test 3 ==================
 
 if MSDOS then
-	cd WSCI
+	cd WSCI;
 	if pwd() <> WSCI then pause,end
 end
 
 // ================== Test 4 ==================
 
-cd SCIHOME
+cd SCIHOME;
 if pwd() <> SCIHOME then pause,end
 
 // ================== Test 5 ==================
 
-cd SCIHOME
+cd SCIHOME;
 if pwd() <> SCIHOME then pause,end
 
 // ================== Test 6 ==================
 
-cd PWD
+cd PWD;
 if pwd() <> PWD then pause,end
