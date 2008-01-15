@@ -818,8 +818,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						*Output_End=use_offsets[i+1];
 						// TO DO REORGANIZE CODE & OUTPUT ERRORS 
 						// IT WORKS by a MIRACLE ...
-						FREE(buffer);
-						FREE(offsets);
+						if (buffer) FREE(buffer);
+						if (offsets) FREE(offsets);
 						return 0;
 					}
 				}
