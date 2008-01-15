@@ -18,7 +18,7 @@
 #endif
 #define BUF C2F(cha1).buf
 /*--------------------------------------------------------------------------*/
-extern int C2F(showstack)();
+extern int C2F(showstack)(void);
 /*--------------------------------------------------------------------------*/
 static int msg_1(integer *n, integer *ierr);
 static int msg_2(integer *n, integer *ierr);
