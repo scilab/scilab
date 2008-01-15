@@ -144,7 +144,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	                    pointer=pointer+Output_End;	
 						start_point=start_point+Output_End;
 					}
-				}while(w == 0);
+				}while(w == 0 && Output_Start!=Output_End);
             }
         }
     }
@@ -160,8 +160,9 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	for( i=0;i<nbValues;i++)
 	{
-		match[i] = (char*)MALLOC(sizeof(char*)*(values_end[i]-values[i]+1));
-	    for(j=values[i]-1;j<values_end[i];j++)
+		if (values_end[i]-values[i]>1) match[i] = (char*)MALLOC(sizeof(char*)*(values_end[i]-values[i]+1));
+		else match[i] = (char*)MALLOC(sizeof(char*)*(1));
+		for(j=values[i]-1;j<values_end[i];j++)
 		{
 			match[i][j+1-values[i]]=Str[0][j];
 		}
