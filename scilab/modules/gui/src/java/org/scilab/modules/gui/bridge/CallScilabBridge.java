@@ -6,8 +6,6 @@ package org.scilab.modules.gui.bridge;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.DefaultListModel;
-
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.console.ScilabConsole;

@@ -3,7 +3,6 @@
 
 package org.scilab.modules.gui.popupmenu;
 
-import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
