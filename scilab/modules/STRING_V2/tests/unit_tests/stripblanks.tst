@@ -53,4 +53,16 @@ if (R1 <> W1) then pause,end
 R2 = str2code('!'+stripblanks(STRING,%F)+'!');
 W2 = [38.;  - 40.;   40.;  - 28.;    40.;  - 40.;  - 12.;    40.;  - 40.;  - 18.;    40.;  - 40.;  - 21.;    40.;  - 40.;  - 10.;    40.;  - 40.;  - 11.;    40.;  - 40.;    38.];
 if (R2 <> W2) then pause,end
-//===============================
+
+// = strings with only blank character =========================================
+
+if(stripblanks("")<>"")              then pause,end
+if(stripblanks(" ")<>"")             then pause,end
+if(stripblanks("      ")<>"")        then pause,end
+
+if(stripblanks("",%T)<>"")           then pause,end
+if(stripblanks(" ",%T)<>"")          then pause,end
+if(stripblanks("      ",%T)<>"")     then pause,end
+
+if(stripblanks(ascii(9))<>ascii(9))  then pause,end
+if(stripblanks(ascii(9),%T)<>"")     then pause,end
