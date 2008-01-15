@@ -5,12 +5,10 @@
 //
 // <-- Short Description -->
 //    fun2string converts the sequence \@ as carriage return
-
-
 // Scilab Project - Serge Steer
 // Copyright INRIA 2007
 // Date : June 2007
-
 function a=strudel(),a='+\@+';endfunction
 t=fun2string(strudel);
-if stripblanks(t)<>"function a=ans(),a = '+\@+';endfunction" then pause,end
+if stripblanks(t)<>"function a=ans(),a = '+\@+';endfunction" then bugmes();quit;end
+ 
