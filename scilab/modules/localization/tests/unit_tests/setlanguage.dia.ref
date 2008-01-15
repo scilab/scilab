@@ -12,24 +12,24 @@ lang=""; if setlanguage(lang) <> %F then bugmes();quit;end
 Unsupported language ''.
 Switching to default language : 'en_US'.
 // Switch to english
-lang="en_US"; if setlanguage(lang) <> %T then pause, end
+lang="en_US"; if setlanguage(lang) <> %T then bugmes();quit;end
 // Switch to english with small code
-lang="en"; if setlanguage(lang) <> %T then pause, end
+lang="en"; if setlanguage(lang) <> %T then bugmes();quit;end
 // Switch to french with small code
-lang="fr"; if setlanguage(lang) <> %T then pause, end
+lang="fr"; if setlanguage(lang) <> %T then bugmes();quit;end
 // Switch to a wrong code
-lang="f"; if setlanguage(lang) <> %F then pause, end
+lang="f"; if setlanguage(lang) <> %F then bugmes();quit;end
 Unsupported language 'f'.
 Switching to default language : 'en_US'.
 // Switch to a wrong code
-lang="ff"; if setlanguage(lang) <> %F then pause, end
+lang="ff"; if setlanguage(lang) <> %F then bugmes();quit;end
 Unsupported language 'ff'.
 Switching to default language : 'en_US'.
 // Switch to a wrong code
-lang="fff"; if setlanguage(lang) <> %F then pause, end
+lang="fff"; if setlanguage(lang) <> %F then bugmes();quit;end
 Unsupported language 'fff'.
 Switching to default language : 'en_US'.
 // Switch to a wrong code
-lang="ffff"; if setlanguage(lang) <> %F then pause, end
+lang="ffff"; if setlanguage(lang) <> %F then bugmes();quit;end
 Unsupported language 'ffff'.
 Switching to default language : 'en_US'.
