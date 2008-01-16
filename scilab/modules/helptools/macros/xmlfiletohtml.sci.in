@@ -64,7 +64,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		
 		if  MSDOS then 
 			// sabcmd does not like c:/.. path replace it by file://c:/..
-			xsl='file://'+xsl;
+			xsl='file://'+getshortpathname(xsl);
 			generate_cmd='""'+WSCI+'\modules\helptools\bin\sablotron\sabcmd'+'""'
 			if basename(in)+".xml2"<>in then
 				in='file://'+in;
