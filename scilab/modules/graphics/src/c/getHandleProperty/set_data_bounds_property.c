@@ -15,7 +15,7 @@
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "localization.h"
-
+#include "axesScale.h"
 /*------------------------------------------------------------------------*/
 int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
                              double * xMin, double * xMax,
