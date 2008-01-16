@@ -19,6 +19,7 @@
 #include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
+#include "DrawingBridge.h"
 
 extern int xinitxend_flag;
 

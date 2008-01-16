@@ -12,6 +12,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "axesScale.h"
+#include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
