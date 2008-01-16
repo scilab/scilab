@@ -55,11 +55,11 @@ start_electric_fence() {
 
 start_debug() {
 	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab  : " $SCI/libtool --mode=execute gdb $SCILABBIN $sci_args
-		  "$SCI"/libtool --mode=execute gdb "$SCILABBIN" $sci_args
+		  echo "Running debug of Scilab  : " $SCI/libtool --mode=execute gdb --args $SCILABBIN $sci_args
+		  "$SCI"/libtool --mode=execute gdb --args "$SCILABBIN" $sci_args
 	  else
-		  echo "Running debug of Scilab  : " gdb "$SCILABBIN" $sci_args
-		  gdb $SCILABBIN $sci_args
+		  echo "Running debug of Scilab  : " gdb --args "$SCILABBIN" $sci_args
+		  gdb --args $SCILABBIN $sci_args
 	  fi
 }
 
