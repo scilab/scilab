@@ -1,11 +1,11 @@
 //==============================================================================
-// Benchmark for part function
-// Copyright INRIA 2007
+// Benchmark for blanks function
+// Copyright INRIA 2008
 //==============================================================================
 
-// <-- BENCH NB RUN : 1000000 -->
+// <-- BENCH NB RUN : 1000 -->
 
 // <-- BENCH START -->
-a = part(['a','abc','abcd'],[1,1,2]);
+out = blanks(100000);
 // <-- BENCH END -->
 

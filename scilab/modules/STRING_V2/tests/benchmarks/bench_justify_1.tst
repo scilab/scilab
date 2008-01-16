@@ -1,11 +1,11 @@
 //==============================================================================
-// Benchmark for part function
-// Copyright INRIA 2007
+// Benchmark for justify function
+// Copyright INRIA 2008
 //==============================================================================
 
-// <-- BENCH NB RUN : 1000000 -->
+in = ["1234","x","adfdfgdfghfgj" ;"1","354556","dgf";"sdfgd","","sdfsf"];
 
 // <-- BENCH START -->
-a = part(['a','abc','abcd'],[1,1,2]);
+out = justify(in,'l');
 // <-- BENCH END -->
 

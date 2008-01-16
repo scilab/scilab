@@ -1,11 +1,17 @@
 //==============================================================================
-// Benchmark for part function
+// Benchmark for stripblanks function
 // Copyright INRIA 2007
 //==============================================================================
 
-// <-- BENCH NB RUN : 1000000 -->
+str     = "   ";
+str_mat = emptystr(50,50);
+
+for i=1:50
+	for j=1:50
+		str_mat(i,j) = str;
+	end
+end
 
 // <-- BENCH START -->
-a = part(['a','abc','abcd'],[1,1,2]);
+a = stripblanks(str_mat);
 // <-- BENCH END -->
-

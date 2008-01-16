@@ -1,11 +1,10 @@
 //==============================================================================
-// Benchmark for part function
+// Benchmark for stripblanks function
 // Copyright INRIA 2007
 //==============================================================================
 
-// <-- BENCH NB RUN : 1000000 -->
+text = mgetl(SCI+"/modules/STRING_V2/tests/benchmarks/ascii_text.txt");
 
 // <-- BENCH START -->
-a = part(['a','abc','abcd'],[1,1,2]);
+a = stripblanks(text,%T);
 // <-- BENCH END -->
-

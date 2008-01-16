@@ -1,11 +1,10 @@
 //==============================================================================
-// Benchmark for part function
-// Copyright INRIA 2007
+// Benchmark for strrev function
+// Copyright INRIA 2008
 //==============================================================================
 
-// <-- BENCH NB RUN : 1000000 -->
+text = mgetl(SCI+"/modules/STRING_V2/tests/benchmarks/ascii_text.txt");
 
 // <-- BENCH START -->
-a = part(['a','abc','abcd'],[1,1,2]);
+a = strrev(text);
 // <-- BENCH END -->
-
