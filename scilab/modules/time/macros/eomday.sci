@@ -15,23 +15,23 @@ function E=eomday(Y,M)
 	leap_year   = [31,29,31,30,31,30,31,31,30,31,30,31];
 	
 	if size(Y) <> size(M) then
-		error(gettext("Both parameters must have the same size."));
+		error(msprintf(gettext("%s: Wrong size for input argument: same size expected.\n"),"eomday"));
 	end
 	
 	if rhs <> 2 then
-		error(gettext("Number of parameters incorrect."));
+		error(msprintf(gettext("%s: Wrong number of input arguments.\n"),"eomday"));
 	end
 
 	if (type(Y) <> 1) | (type(M) <> 1) then
-		error(gettext("Parameters must be integers."));
+		error(msprintf(gettext("%s: Wrong type for input arguments: Integer expected.\n"),"eomday"));
 	end
 	
 	if (int(Y)<>Y) | (int(M)<>M) then
-		error(gettext("Parameters must be integers."));
+		error(msprintf(gettext("%s: Wrong type for input arguments: Integer expected.\n"),"eomday"));
 	end
 	
 	if (min(M) < 1) | (max(M) > 12) then
-		error(gettext("The second parameter must be between 1 and 12."));
+		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between 1 and 12.\n"),"eomday"));
 	end
 	
 	[nr,nc] = size(M);
