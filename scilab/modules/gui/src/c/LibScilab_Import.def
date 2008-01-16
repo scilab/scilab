@@ -27,5 +27,6 @@ sciReturnMatrix
 sciReturnRowVectorFromInt
 sciReturnEmptyMatrix
 sciReturnInt
+sciReturnStringMatrix
 ;
 
