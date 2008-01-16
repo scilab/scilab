@@ -9,6 +9,9 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "TCL_Command.h"
+#ifdef _MSC_VER
+	#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 {

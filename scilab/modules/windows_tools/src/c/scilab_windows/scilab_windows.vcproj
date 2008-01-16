@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +126,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -247,6 +247,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\strdup_windows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stristr.c"
 				>
 			</File>
@@ -317,6 +321,10 @@
 			</File>
 			<File
 				RelativePath=".\StartupMessageBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\strdup_windows.h"
 				>
 			</File>
 			<File

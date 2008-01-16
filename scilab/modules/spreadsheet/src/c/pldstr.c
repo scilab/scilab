@@ -14,8 +14,8 @@
 #include "localization.h"
 
 #ifdef _MSC_VER
+	#include "strdup_windows.h"
 	#define vsnprintf _vsnprintf
-	#define strdup _strdup
 #endif
 
 /*-----------------------------------------------------------------\

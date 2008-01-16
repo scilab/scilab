@@ -16,9 +16,11 @@
 
 #ifdef _MSC_VER
 #include <Windows.h>
+#include "strdup_windows.h"
 #define usleep(micro) Sleep(micro/1000)
-#define strdup _strdup
+
 #endif
+#include "MALLOC.h"
 #include "TCL_Command.h"
 
 
@@ -112,7 +114,7 @@ void startTclLoop(Tcl_Interp *TCLinterp)
 	if(TclSlave != NULL)
 	  {
 	    LocalTCLinterp = Tcl_GetSlave(TCLinterp, TclSlave);
-	    free(TclSlave);
+	    FREE(TclSlave);
 	    TclSlave = NULL;
 	  }
 	/* Do the evaluation */
@@ -128,7 +130,7 @@ void startTclLoop(Tcl_Interp *TCLinterp)
 	  {
 	    TclInterpResult = NULL;
 	  }
-	free(TclCommand);
+	FREE(TclCommand);
 	TclCommand = NULL;
 	//printf("[SIGNAL] executionDone\n");
 	//fflush(NULL);

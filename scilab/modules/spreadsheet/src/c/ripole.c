@@ -18,7 +18,7 @@
 #include "MALLOC.h"
 
 #ifdef _MSC_VER
-#define strdup _strdup
+	#include "strdup_windows.h"
 #endif
 
 #define ROLE_VERSION "0.2.0"

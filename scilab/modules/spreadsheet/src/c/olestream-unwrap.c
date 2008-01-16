@@ -11,6 +11,10 @@
 #include "machine.h"
 #include "localization.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+	#include "strdup_windows.h"
+#endif
+
 
 #define DUW if (oleuw->debug)
 
@@ -25,9 +29,6 @@ struct OLE10_header{
 	size_t attach_start_offset;
 };
 
-#ifdef _MSC_VER
-	#define strdup _strdup
-#endif
 
 /*-----------------------------------------------------------------\
  Function Name	: OLEUNWRAP_init
