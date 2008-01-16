@@ -44,7 +44,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
 	if (lang)
 	{
-		if ( LanguageIsOK(lang) )
+		if ( LanguageIsOK(lang))
 		{
 			if (needtochangelanguage(lang))
 			{
@@ -65,6 +65,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 					return FALSE;
 				}
 				*/
+
 				putEnvLC_ALL(lang);
 
 				/* change language */
@@ -134,6 +135,10 @@ int getcodefromlanguage(char *language)
 BOOL LanguageIsOK(char *lang)
 {
 	int i=0;
+
+	if (strlen(lang)==0){ /* Empty language declaration... it is the default one */
+		return TRUE;
+	}
 
 	for (i=0;i<NumberLanguages;i++)
 	{
