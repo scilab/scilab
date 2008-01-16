@@ -28,7 +28,7 @@
 /*
 ** TCL Event loop refresh rate.
 */
-#define TIME_TO_SLEEP 100000
+#define TIME_TO_SLEEP 10000
 
 /*
 ** This function start an endless Tcl Loop
