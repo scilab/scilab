@@ -21,31 +21,27 @@
 #ifndef _MSC_VER
 	#include <pthread.h>
 #else
-	#ifdef __WINDOWS_WITH_PTHREAD__
-		#include <pthread.h>
-	#else
-		#define _WIN32_WINNT 0x500
-		#include <Windows.h>
-		#include <process.h>
+	#define _WIN32_WINNT 0x500
+	#include <Windows.h>
+	#include <process.h>
 
-		#define	pthread_t								HANDLE
-		#define	pthread_create(t,u,f,d)					*(t)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)f,d,0,NULL)
-		#define	pthread_join(thread, result)			((WaitForSingleObject((thread),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(thread))
+	#define	pthread_t								HANDLE
+	#define	pthread_create(t,u,f,d)					*(t)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)f,d,0,NULL)
+	#define	pthread_join(thread, result)			((WaitForSingleObject((thread),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(thread))
 		
-		#define pthread_mutex_t							HANDLE
+	#define pthread_mutex_t							HANDLE
 		
-		#define pthread_mutex_lock(pobject)		        WaitForSingleObject(*pobject,INFINITE)
-		#define pthread_mutex_unlock(pobject)	        ReleaseMutex(*pobject)
-		#define pthread_mutex_init(pobject,pattr)       (*(pobject)=CreateMutex(NULL,FALSE,NULL))
-		#define pthread_mutex_destroy(pobject)          CloseHandle(*pobject)
+	#define pthread_mutex_lock(pobject)		        WaitForSingleObject(*pobject,INFINITE)
+	#define pthread_mutex_unlock(pobject)	        ReleaseMutex(*pobject)
+	#define pthread_mutex_init(pobject,pattr)       (*(pobject)=CreateMutex(NULL,FALSE,NULL))
+	#define pthread_mutex_destroy(pobject)          CloseHandle(*pobject)
 
-		#define pthread_cond_t					        HANDLE
-		#define pthread_cond_init(pobject,pattr)        (*pobject=CreateEvent(NULL,FALSE,FALSE,NULL))
-		#define pthread_cond_destroy(pobject)           CloseHandle(*pobject)
-		#define CV_TIMEOUT			INFINITE
-		#define pthread_cond_wait(pcv,pmutex)			{ReleaseMutex(*pmutex);WaitForSingleObject(*pcv,CV_TIMEOUT);};
-		#define pthread_cond_signal(pcv)				SetEvent(*pcv)
-	#endif
+	#define pthread_cond_t					        HANDLE
+	#define pthread_cond_init(pobject,pattr)        (*pobject=CreateEvent(NULL,FALSE,FALSE,NULL))
+	#define pthread_cond_destroy(pobject)           CloseHandle(*pobject)
+	#define CV_TIMEOUT			INFINITE
+	#define pthread_cond_wait(pcv,pmutex)			{ReleaseMutex(*pmutex);WaitForSingleObject(*pcv,CV_TIMEOUT);};
+	#define pthread_cond_signal(pcv)				SetEvent(*pcv)
 #endif
 
 typedef pthread_t __threadId;
