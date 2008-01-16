@@ -35,8 +35,6 @@ BOOL InitializeLocalization(void)
 	char *pathLocales=NULL;
 	char *ret=NULL;
 
-	setlanguage("", FALSE, FALSE); /* Booleans are : BOOL updateHelpIndex, BOOL updateMenus */
-
 	/* set directory containing message catalogs */
 	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
 
@@ -56,6 +54,8 @@ BOOL InitializeLocalization(void)
 		fprintf(stderr, "Localization: Error while declaring the text domain %s\n", NAMELOCALIZATIONDOMAIN);
 		return FALSE;
 	}
+
+	setlanguage("", FALSE, FALSE); /* Booleans are : BOOL updateHelpIndex, BOOL updateMenus */
 
 	return TRUE;
 #else
