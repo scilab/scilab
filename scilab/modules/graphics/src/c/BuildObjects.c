@@ -196,6 +196,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
 
   /* Colormap */
+  sciInitNumColors(pobj, 0);
   sciSetDefaultColorMap(pobj);
 
   /* Add the figure in the list of created figures */
