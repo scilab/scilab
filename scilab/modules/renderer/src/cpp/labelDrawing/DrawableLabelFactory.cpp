@@ -11,6 +11,7 @@
 #include "XLabelPositionerJoGL.hxx"
 #include "YLabelPositionerJoGL.hxx"
 #include "ZLabelPositionerJoGL.hxx"
+#include "TitlePositionerJoGL.hxx"
 
 extern "C"
 {
@@ -42,6 +43,10 @@ void DrawableLabelFactory::setPositionner(DrawableLabel * label)
 
   switch (pLABEL_FEATURE(m_pDrawed)->ptype)
   {
+  case 1:
+    // title
+    label->setDrawableImp(new TitlePositionerJoGL(label));
+    break;
   case 2:
     // x label
     label->setDrawableImp(new XLabelPositionerJoGL(label));

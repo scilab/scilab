@@ -4350,6 +4350,27 @@ void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corne
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get the viewing area of a subwindown acoordinf to its axes scale and margins
+ * result is in pixels
+ */
+void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, int * height)
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    sciGetJavaViewingArea(pObj, xPos, yPos, width, height);
+    break;
+  default:
+    *xPos = -1;
+    *yPos = -1;
+    *width = -1;
+    *height = -1;
+    sciprint(_("Only axes handles have a viewing area."));
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)

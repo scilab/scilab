@@ -70,6 +70,13 @@ public abstract class LabelPositionerGL extends BoxTrimmingObjectGL {
 	}
 	
 	/**
+	 * @return height of the label bounding box
+	 */
+	protected double getBoundingBoxHeight() {
+		return Math.abs(labelBoxCorners[0].substract(labelBoxCorners[2]).getY());
+	}
+	
+	/**
 	 * Compute the position of the label for best display.
 	 * @param axisStart one edge of the corresponding axis
 	 * @param axisEnd other edge of the corresponding axis

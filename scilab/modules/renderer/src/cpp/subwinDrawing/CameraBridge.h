@@ -84,6 +84,11 @@ public:
   virtual void replaceCamera( void ) = 0;
 
   /**
+   * Get the position and size of the rectangle in which the axes box must fit
+   */
+  virtual void getViewingArea(int * xPos, int * yPos, int * width, int * height) = 0;
+
+  /**
    * Add an axes reverse strategy.
    */
   void setAxesReverse(bool axisReverseX, bool axisReverseY, bool axisReverseZ);

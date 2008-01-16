@@ -102,3 +102,4 @@ sciGetAutoPosition
 sciSetFontOrientation
 sciGetAutoRotation
 sciGetPixelBoundingBox
+sciGetViewingArea

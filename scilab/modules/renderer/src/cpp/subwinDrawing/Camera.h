@@ -73,6 +73,11 @@ public:
    */
   void zoomRect(int posX, int posY, int width, int height);
 
+  /**
+   * Get the position and size of the rectangle in which the axes box must fit
+   */
+  void getViewingArea(int * xPos, int * yPos, int * width, int * height);
+
 protected:
 
   /**
@@ -126,7 +131,7 @@ protected:
    * @param[out] newMaxBound newly computed maximum bound.
    */
   void getNewBounds(const double corners[4][2], const double axisPoint1[3], const double axisPoint2[3],
-                   double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound);
+                    double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound);
 
   /**
    * Compute new bounds for one axis.
@@ -140,6 +145,7 @@ protected:
    */
   void getNewBoundsPix(const double corners[4][2], const double axisPoint1[2], const double axisPoint2[2],
                        double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound);
+
 
   /**
    * Return the real type of implementation object

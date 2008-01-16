@@ -2,7 +2,7 @@
 /* file: ZLabelPositionerJoGL.cpp                                         */
 /* Copyright INRIA 2008                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class positioning X label using JoGL                            */
+/* desc : Class positioning Z label using JoGL                            */
 /*------------------------------------------------------------------------*/
 
 #include "ZLabelPositionerJoGL.hxx"

@@ -1002,6 +1002,18 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\TitlePositionerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\TitlePositionerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\TitlePositionerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\XLabelPositionerGL.cpp"
 					>
 				</File>
@@ -1937,6 +1949,18 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\labelDrawing\LabelPositionerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\TitlePositionerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\TitlePositionerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\labelDrawing\TitlePositionerJoGL.hxx"
 					>
 				</File>
 				<File

@@ -243,6 +243,8 @@ void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corne
 void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
                             int corner3[2], int corner4[2]); /* GET */
 
+void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, int * height); /* GET */
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

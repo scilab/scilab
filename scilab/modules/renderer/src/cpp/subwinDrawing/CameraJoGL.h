@@ -35,6 +35,11 @@ public:
   virtual void renderPosition( void ) ;
 
   /**
+   * Display an object which whose representation has been already saved (ie dl created).
+   */
+  virtual void show(void);
+
+  /**
    * Put back camera to default position.
    */
   virtual void replaceCamera( void );
@@ -53,6 +58,11 @@ public:
    * Find coordinates in 2D view from pixel ones
    */
   virtual void get2dViewCoordinates(const int pixCoords[2], double userCoord2D[2]);
+
+  /**
+   * Get the position and size of the rectangle in which the axes box must fit
+   */
+  virtual void getViewingArea(int * xPos, int * yPos, int * width, int * height);
 
 protected:
 
@@ -87,6 +97,9 @@ protected:
 
   /** Current viewPort */
   double m_aViewPort[4];
+
+  /** Current size of the viewing area used by the plot, this a vector [x,y,w,h] */
+  double m_aViewingArea[4];
   /*----------------------------------------------------------------*/
 
 };

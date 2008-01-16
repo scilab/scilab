@@ -71,3 +71,9 @@ void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2
   getTextDrawer(pText)->getScreenBoundingBox(corner1, corner2, corner3, corner4);
 }
 /*---------------------------------------------------------------------------------*/
+void sciGetJavaViewingArea(sciPointObj * pSubwin, int * xPos, int * yPos,
+                           int * width, int * height)
+{
+  getSubwinDrawer(pSubwin)->getCamera()->getViewingArea(xPos, yPos, width, height);
+}
+/*---------------------------------------------------------------------------------*/

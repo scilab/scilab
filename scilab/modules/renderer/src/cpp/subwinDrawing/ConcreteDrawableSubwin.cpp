@@ -258,8 +258,8 @@ void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double y
   sciPointObj * zLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_z_label;
   getLabelDrawer(zLabel)->setDistanceToAxis(zLabelDist);
 
-  /*sciPointObj * titleLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_title;
-  getLabelDrawer(titleLabel)->setDistanceToAxis(titleDist);*/
+  sciPointObj * titleLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_title;
+  getLabelDrawer(titleLabel)->setDistanceToAxis(titleDist);
 }
 /*------------------------------------------------------------------------------------------*/
 

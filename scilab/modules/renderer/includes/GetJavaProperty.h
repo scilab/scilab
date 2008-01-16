@@ -70,6 +70,12 @@ void sciGetJava2dViewCoordFromPixel(sciPointObj * pSubwin, const int pixCoords[2
 void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2],
                                 int corner3[2], int corner4[2]);
 
+/**
+ * Get the viewing area in pixels of a subwin object
+ */
+void sciGetJavaViewingArea(sciPointObj * pSubwin, int * xPos, int * yPos,
+                           int * width, int * height);
+
 #ifdef __cplusplus
 }
 #endif

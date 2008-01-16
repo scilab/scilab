@@ -218,6 +218,11 @@ void Camera::zoomRect(const double corners[4][2])
   sciSetZoomBox(m_pDrawed, newDataBounds);
 
 }
+/*--------------------------------------------------------------------------*/
+void Camera::getViewingArea(int * xPos, int * yPos, int * width, int * height)
+{
+  getCameraImp()->getViewingArea(xPos, yPos, width, height);
+}
 /*------------------------------------------------------------------------------------------*/
 void Camera::getNewBounds(const double corners[4][2], const double axisPoint1[3], const double axisPoint2[3],
                           double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound)
