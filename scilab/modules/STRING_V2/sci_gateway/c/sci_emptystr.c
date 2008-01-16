@@ -154,18 +154,16 @@ static int sci_emptystr_two_rhs(char *fname)
 	if (matrixdimension > 0)
 	{
 		CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE,&value_param_pos_1, &value_param_pos_2, NULL);
-		LhsVar(1) = Rhs + 1;
-		C2F(putlhsvar)();
-		return 0;
 	}
 	else
 	{
 		int l = 0;
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&value_param_pos_1,&value_param_pos_2,&l);
-		LhsVar(1) = Rhs+1 ;
-		C2F(putlhsvar)();
-		return 0;
 	}   
+
+	LhsVar(1) = Rhs + 1;
+	C2F(putlhsvar)();
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/       
