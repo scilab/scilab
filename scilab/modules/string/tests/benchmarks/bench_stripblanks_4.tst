@@ -3,7 +3,8 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-// <-- BENCH START -->
-a = stripblanks(" S C I L A B ");
-// <-- BENCH END -->
+text = mgetl(SCI+"/modules/STRING_V2/tests/benchmarks/ascii_text.txt");
 
+// <-- BENCH START -->
+a = stripblanks(text,%T);
+// <-- BENCH END -->

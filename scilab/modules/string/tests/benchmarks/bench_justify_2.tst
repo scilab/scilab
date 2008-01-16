@@ -1,9 +1,11 @@
 //==============================================================================
-// Benchmark for stripblanks function
-// Copyright INRIA 2007
+// Benchmark for justify function
+// Copyright INRIA 2008
 //==============================================================================
 
+in = ["1234","x","adfdfgdfghfgj" ;"1","354556","dgf";"sdfgd","","sdfsf"];
+
 // <-- BENCH START -->
-a = stripblanks(" S C I L A B ");
+out = justify(in,'c');
 // <-- BENCH END -->
 

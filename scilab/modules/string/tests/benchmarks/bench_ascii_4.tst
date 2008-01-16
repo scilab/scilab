@@ -3,7 +3,7 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-exec(SCI+"/modules/string/tests/benchmarks/ascii_code.txt",-1);
+exec(SCI+"/modules/STRING_V2/tests/benchmarks/ascii_code.txt",-1);
 
 // <-- BENCH START -->
 a = ascii(ref);

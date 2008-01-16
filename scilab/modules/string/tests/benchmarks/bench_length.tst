@@ -3,7 +3,7 @@
 // Copyright INRIA 2007
 //==============================================================================
 
-text = mgetl(SCI+"/modules/string/tests/benchmarks/ascii_text.txt");
+text = mgetl(SCI+"/modules/STRING_V2/tests/benchmarks/ascii_text.txt");
 
 // <-- BENCH START -->
 a = length(text);

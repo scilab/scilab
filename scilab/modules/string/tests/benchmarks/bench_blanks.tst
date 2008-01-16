@@ -1,9 +1,11 @@
 //==============================================================================
-// Benchmark for stripblanks function
-// Copyright INRIA 2007
+// Benchmark for blanks function
+// Copyright INRIA 2008
 //==============================================================================
 
+// <-- BENCH NB RUN : 1000 -->
+
 // <-- BENCH START -->
-a = stripblanks(" S C I L A B ");
+out = blanks(100000);
 // <-- BENCH END -->
 

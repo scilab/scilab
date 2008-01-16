@@ -1,9 +1,10 @@
 //==============================================================================
-// Benchmark for stripblanks function
-// Copyright INRIA 2007
+// Benchmark for strrev function
+// Copyright INRIA 2008
 //==============================================================================
 
-// <-- BENCH START -->
-a = stripblanks(" S C I L A B ");
-// <-- BENCH END -->
+text = mgetl(SCI+"/modules/STRING_V2/tests/benchmarks/ascii_text.txt");
 
+// <-- BENCH START -->
+a = strrev(text);
+// <-- BENCH END -->
