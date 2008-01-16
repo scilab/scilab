@@ -42,7 +42,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 int C2F(sci_setenv) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intexecstr) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intgetenv) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intload) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(intload) (integer *id1, integer *k1); /* FORTRAN subroutine */
 int C2F(intexec) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intgetf)(void);
 int C2F(intsave)(void);
