@@ -206,7 +206,10 @@ src/cpp/labelDrawing/LabelPositionerJoGL.cpp \
 src/cpp/labelDrawing/XLabelPositionerJavaMapper.cpp \
 src/cpp/labelDrawing/YLabelPositionerJavaMapper.cpp \
 src/cpp/labelDrawing/LabelPositioner.cpp \
-src/cpp/labelDrawing/ZLabelPositionerJavaMapper.cpp
+src/cpp/labelDrawing/ZLabelPositionerJavaMapper.cpp \
+src/jni/TitlePositionerGL.cpp \
+src/cpp/labelDrawing/TitlePositionerJavaMapper.cpp \
+src/cpp/labelDrawing/TitlePositionerJoGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
