@@ -526,6 +526,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
                   
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
       endFigureDataWriting(pparentfigure);
+
       return (sciPointObj *)pobj;
       
     }
@@ -702,6 +703,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   sciInitIsBoxed(pObj,isboxed);
   sciInitIsLine(pObj,isline);
   sciInitIsFilled(pObj,isfilled);
+  pObj->pDrawer = NULL ;
 
   if ( foreground != NULL )
   {
