@@ -28,20 +28,21 @@
 	#define	pthread_t								HANDLE
 	#define	pthread_create(t,u,f,d)					*(t)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)f,d,0,NULL)
 	#define	pthread_join(thread, result)			((WaitForSingleObject((thread),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(thread))
+	
+	/* http://msdn2.microsoft.com/en-us/library/ms683472(VS.85).aspx */
+	#define pthread_mutex_t							CRITICAL_SECTION
 		
-	#define pthread_mutex_t							HANDLE
-		
-	#define pthread_mutex_lock(pobject)		        WaitForSingleObject(*pobject,INFINITE)
-	#define pthread_mutex_unlock(pobject)	        ReleaseMutex(*pobject)
-	#define pthread_mutex_init(pobject,pattr)       (*(pobject)=CreateMutex(NULL,FALSE,NULL))
-	#define pthread_mutex_destroy(pobject)          CloseHandle(*pobject)
+	#define pthread_mutex_init(pobject,pattr)       InitializeCriticalSection(pobject)
+	#define pthread_mutex_destroy(pobject)          
+	#define pthread_mutex_lock(pobject)				EnterCriticalSection(pobject)
+	#define pthread_mutex_unlock(pobject)	        LeaveCriticalSection(pobject)
 
 	#define pthread_cond_t					        HANDLE
 	#define pthread_cond_init(pobject,pattr)        (*pobject=CreateEvent(NULL,FALSE,FALSE,NULL))
 	#define pthread_cond_destroy(pobject)           CloseHandle(*pobject)
 	#define CV_TIMEOUT			INFINITE
-	#define pthread_cond_wait(pcv,pmutex)			{ReleaseMutex(*pmutex);WaitForSingleObject(*pcv,CV_TIMEOUT);};
-	#define pthread_cond_signal(pcv)				SetEvent(*pcv)
+	#define pthread_cond_wait(pobject,pmutex)		{LeaveCriticalSection(pmutex);WaitForSingleObject(*pobject,CV_TIMEOUT);};
+	#define pthread_cond_signal(pobject)			SetEvent(*pobject)
 #endif
 
 typedef pthread_t __threadId;
