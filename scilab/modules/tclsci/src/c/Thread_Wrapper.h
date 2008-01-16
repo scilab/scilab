@@ -36,14 +36,14 @@
 		
 		#define pthread_mutex_lock(pobject)		        WaitForSingleObject(*pobject,INFINITE)
 		#define pthread_mutex_unlock(pobject)	        ReleaseMutex(*pobject)
-		#define pthread_mutex_init(pobject,pattr)       (*pobject=CreateMutex(NULL,FALSE,NULL))
+		#define pthread_mutex_init(pobject,pattr)       (*(pobject)=CreateMutex(NULL,FALSE,NULL))
 		#define pthread_mutex_destroy(pobject)          CloseHandle(*pobject)
 
 		#define pthread_cond_t					        HANDLE
 		#define pthread_cond_init(pobject,pattr)        (*pobject=CreateEvent(NULL,FALSE,FALSE,NULL))
 		#define pthread_cond_destroy(pobject)           CloseHandle(*pobject)
 		#define CV_TIMEOUT			INFINITE
-		#define pthread_cond_wait(pcv,pmutex)			{ReleaseMutex(*pmutex);WaitForSingleObject(*pcv,CV_TIMEOUT);WaitForSingleObject(*pmutex,INFINITE);};
+		#define pthread_cond_wait(pcv,pmutex)			{ReleaseMutex(*pmutex);WaitForSingleObject(*pcv,CV_TIMEOUT);};
 		#define pthread_cond_signal(pcv)				SetEvent(*pcv)
 	#endif
 #endif
@@ -51,6 +51,8 @@
 typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
 typedef pthread_cond_t __threadSignal;
+#define __InitLock(lockName)		pthread_mutex_init(lockName, NULL)
+
 #define __Lock(lockName)			pthread_mutex_lock(lockName)
 
 #define __UnLock(lockName)			pthread_mutex_unlock(lockName)
