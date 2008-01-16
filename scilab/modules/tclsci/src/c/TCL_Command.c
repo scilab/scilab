@@ -5,19 +5,19 @@
 ** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 **
 ** Started on  Wed Jan  9 09:15:30 2008 bruno
-** Last update Fri Jan 11 13:55:55 2008 bruno
+** Last update Wed Jan 16 08:37:32 2008 bruno
 **
 ** Copyright INRIA 2008
 */
 #include <stdlib.h>
 #ifndef _MSC_VER
-	#include <unistd.h>
+#include <unistd.h>
 #endif
 
 #ifdef _MSC_VER
-	#include <Windows.h>
-	#define usleep(micro) Sleep(micro/1000)
-	#define strdup _strdup
+#include <Windows.h>
+#define usleep(micro) Sleep(micro/1000)
+#define strdup _strdup
 #endif
 #include "TCL_Command.h"
 
@@ -28,19 +28,26 @@ __threadId		TclThread;
 char *			TclSlave;
 // Global Tcl Command Buffer
 char *			TclCommand;
-// Command Lock
-__threadLock		CommandLock;
 // Global Tcl Return Code.
 int			TclInterpReturn;
-// Return Mutex
-__threadLock		ReturnLock;
 // Global Tcl Return Result.
 char *			TclInterpResult;
-// Result Mutex
-__threadLock		ResultLock;
-// Condition on TclCommand
-__threadLock		wakeUpLock;
+
+// Single execution
+__threadLock		singleExecutionLock;
+
+// Wake Up
 __threadSignal		wakeUp;
+__threadLock		wakeUpLock;
+
+// Work is done
+__threadSignal		workIsDone;
+
+// Launch command
+__threadLock		launchCommand;
+
+
+
 
 extern BOOL TK_Started;
 
@@ -51,6 +58,8 @@ extern BOOL TK_Started;
 */
 static void *sleepAndSignal(void* in) {
   while(TK_Started) {
+    //printf(".");
+    //fflush(NULL);
     usleep(TIME_TO_SLEEP);
     __Lock(&wakeUpLock);
     __Signal(&wakeUp);
@@ -69,16 +78,21 @@ void startTclLoop(Tcl_Interp *TCLinterp)
   __threadId sleepThreadId;
 
   Tcl_Interp *LocalTCLinterp;
-  __Lock(&ReturnLock);
-  __Lock(&ResultLock);
+  __InitLock(&singleExecutionLock);
+
   __InitSignal(&wakeUp);
+  __InitLock(&wakeUpLock);
+  __InitSignal(&workIsDone);
+  __InitLock(&launchCommand);
+
   __CreateThread(&sleepThreadId, sleepAndSignal);
 
   /*
   ** TCL Event Loop : Threaded
   */
   while(TK_Started) {
-    __Lock(&wakeUpLock);
+    //printf(".");
+    //fflush(NULL);
     /*
     ** -= IF =-
     ** there is a command to run
@@ -86,6 +100,10 @@ void startTclLoop(Tcl_Interp *TCLinterp)
     */
     if (TclCommand != NULL)
       {
+	//printf("[LOCK] launch Command\n");
+	//fflush(NULL);
+	__Lock(&launchCommand);
+
 	/* Reinit local interpreter,
 	   default is the biggest one. */
 	LocalTCLinterp = TCLinterp;
@@ -98,6 +116,8 @@ void startTclLoop(Tcl_Interp *TCLinterp)
 	    TclSlave = NULL;
 	  }
 	/* Do the evaluation */
+	//printf("[TCL Daemon] Eval : %s\n", TclCommand);
+	//fflush(NULL);
 	TclInterpReturn = Tcl_Eval(LocalTCLinterp, TclCommand);
 	/* Update return value and result */
 	if (LocalTCLinterp->result && strlen(LocalTCLinterp->result) != 0)
@@ -108,11 +128,12 @@ void startTclLoop(Tcl_Interp *TCLinterp)
 	  {
 	    TclInterpResult = NULL;
 	  }
-	__UnLock(&ResultLock);
-	__UnLock(&ReturnLock);
 	free(TclCommand);
 	TclCommand = NULL;
-	__UnLock(&CommandLock);
+	//printf("[SIGNAL] executionDone\n");
+	//fflush(NULL);
+	__Signal(&workIsDone);
+	__UnLock(&launchCommand);
       }
     /*
     ** -= ELSE =-
@@ -121,16 +142,13 @@ void startTclLoop(Tcl_Interp *TCLinterp)
     */
     else
       {
-	#ifdef _MSC_VER
-		  Tcl_Eval(TCLinterp, "update idletasks");
-		  Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);
-	#else
-		  Tcl_Eval(TCLinterp, "update");
-	#endif
-
+	__Lock(&wakeUpLock);
+	Tcl_Eval(TCLinterp, "update");
+	//printf("[TCL Daemon] Wait\n");
+	//fflush(NULL);
 	__Wait(&wakeUp, &wakeUpLock);
+	__UnLock(&wakeUpLock);
       }
-    __UnLock(&wakeUpLock);
   }
   /* TK is stopped... Kill interpreter. */
   Tcl_DeleteInterp(TCLinterp);
@@ -144,11 +162,23 @@ void startTclLoop(Tcl_Interp *TCLinterp)
 */
 void sendTclCommand(char* command)
 {
-  __Lock(&CommandLock);
-  TclCommand = strdup(command);
-  __Lock(&wakeUpLock);
-  __Signal(&wakeUp);
-  __UnLock(&wakeUpLock);
+  //printf("[TCL Send] Eval : %s\n", command);
+  //fflush(NULL);
+  __Lock(&singleExecutionLock);
+  {
+    __Lock(&launchCommand);
+    TclCommand = strdup(command);
+    __Lock(&wakeUpLock);
+    __Signal(&wakeUp);
+    __UnLock(&wakeUpLock);
+    //printf("[TCL Main]Wait EXECUTION DONE\n");
+    //fflush(NULL);
+    __Wait(&workIsDone, &launchCommand);
+    //printf("[TCL Send] DONE\n");
+    //fflush(NULL);
+    __UnLock(&launchCommand);
+  }
+  __UnLock(&singleExecutionLock);
 }
 
 /*
@@ -158,12 +188,25 @@ void sendTclCommand(char* command)
 */
 void sendTclCommandToSlave(char* command, char* slave)
 {
-  __Lock(&CommandLock);
-  TclCommand = strdup(command);
-  TclSlave = strdup(slave);
-  __Lock(&wakeUpLock);
-  __Signal(&wakeUp);
-  __UnLock(&wakeUpLock);
+
+  //printf("[TCL %s Send] Eval : %s\n", slave, command);
+  //fflush(NULL);
+  __Lock(&singleExecutionLock);
+  {
+    __Lock(&launchCommand);
+    TclCommand = strdup(command);
+    TclSlave = strdup(slave);
+    __Lock(&wakeUpLock);
+    __Signal(&wakeUp);
+    __UnLock(&wakeUpLock);
+    //printf("[TCL Main]Wait EXECUTION DONE\n");
+    //fflush(NULL);
+    __Wait(&workIsDone, &launchCommand);
+    //printf("[TCL Send] DONE\n");
+    //fflush(NULL);
+    __UnLock(&launchCommand);
+  }
+  __UnLock(&singleExecutionLock);
 }
 
 
@@ -174,7 +217,8 @@ void sendTclCommandToSlave(char* command, char* slave)
 */
 int getTclCommandReturn(void)
 {
-  __Lock(&ReturnLock);
+  //printf("[TCL getTclCommandReturn]\n");
+  //fflush(NULL);
   return TclInterpReturn;
 }
 
@@ -186,7 +230,8 @@ int getTclCommandReturn(void)
 */
 char *getTclCommandResult(void)
 {
-  __Lock(&ResultLock);
+  //printf("[TCL getTclCommandResult]\n");
+  //fflush(NULL);
   if (TclInterpResult != NULL) {
     char *result = strdup(TclInterpResult);
     TclInterpResult = NULL;
