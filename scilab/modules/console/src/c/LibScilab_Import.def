@@ -5,6 +5,5 @@ EXPORTS
 ; core 
 ;
 getScilabMode
-scilab_timer_check
 sigbas_
 ;
