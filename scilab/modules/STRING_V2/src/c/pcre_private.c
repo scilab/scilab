@@ -282,7 +282,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	#endif
 	int debug = 0;
 	int all_use_dfa = 0;
-	int yield = 0;
 	BOOL LOOP_PCRE_TST = FALSE;
 
 	/* These vectors store, end-to-end, a list of captured substring names. Assume
