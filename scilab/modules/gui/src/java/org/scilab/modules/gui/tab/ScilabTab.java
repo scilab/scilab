@@ -261,7 +261,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	/**
 	 * We want to be able to remove directly a Canvas from a Tab.
 	 * @param member canvas to remove 
-	 * @return the position of the canvas in the member list.
 	 */
 	public void removeMember(Canvas member) {
 		ScilabBridge.removeMember(this, member);

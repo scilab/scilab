@@ -6,7 +6,6 @@ import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
-import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
