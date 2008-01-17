@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@author Allan CORNET
+@author Sylvestre LEDRU
+INRIA 2007
+-->
+<project name="graphic_export" default="compile">
+  <import file="../../build.incl.xml"/>
+
+  <property name="library.name" value="${library.graphic_export.name}" />
+
+  <description>
+	Build the graphic export Scilab module
+  </description>
+
+<!-- 
+  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
+-->
+  <target name="jar" description="Build the jar file" depends="compile">
+	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
+	  <manifest>
+	  </manifest>
+	</jar>
+  </target>
+</project>

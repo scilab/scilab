@@ -79,7 +79,9 @@
 
 /* 56 */						#include "../../spreadsheet/includes/gw_spreadsheet.h"
 
-/* 55 *///                        #include "../../mpi/includes/gw_mpi.h"
+/* 57 */						/*#include "../../graphic_export/includes/gw_graphic_export.h"*/
+
+/* 58 *///                        #include "../../mpi/includes/gw_mpi.h"
 
 
 /*-------------------------------------
