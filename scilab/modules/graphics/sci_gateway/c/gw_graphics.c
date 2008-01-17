@@ -78,7 +78,6 @@ static gw_generic_table Tab[]={
 	{sci_zoom_rect,"zoom_rect"},
 	{sci_unzoom,"unzoom"},
 	{sci_StringBox,"StringBox"},
-	/* NG beg */
 	{sci_move,"move"},
 	{sci_glue,"glue"},
 	{sci_unglue,"unglue"}, 
@@ -93,7 +92,6 @@ static gw_generic_table Tab[]={
 	{sci_newaxes,"newaxes"},
     {sci_relocate_handle,"relocate_handle"},
     {sci_swap_handles,"swap_handles"},
-     /* NG end */
 	{sci_help_gtk,"help_gtk"},
 	{sci_UImenu,"UImenu"},
 	{sci_showalluimenushandles,"showalluimenushandles"}

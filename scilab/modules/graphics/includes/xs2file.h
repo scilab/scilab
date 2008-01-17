@@ -8,7 +8,6 @@
 #ifndef _XS2FILE_H_
 #define _XS2FILE_H_
 
-#include "machine.h"
 #include "ObjectStructure.h"
 
 /** Enum listing the supported type of export files */
@@ -31,17 +30,6 @@ typedef enum
  * @return 0 if success, -1 otherwise
  */
 int xs2file(char * fname, ExportFileType fileType) ;
-
-/**
- * send recorded graphics to file bufname in ``driver'' syntax ( Pos or Fig )
- * @param win_num the number of the window,
- * @param colored 1 if color is wanted
- * @param[in] bufname string the name of the file 
- * @param[in] driver driver for code generation 
- */
-int scig_toPs( integer win_num, integer colored, char * bufname, char * driver ) ;
-
-int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, char *driver, long int l1, long int l2) ;
 
 void exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType);
 
