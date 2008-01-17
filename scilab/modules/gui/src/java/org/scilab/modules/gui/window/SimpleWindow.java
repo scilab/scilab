@@ -35,6 +35,12 @@ public interface SimpleWindow {
 	void addTab(Tab newTab);
 	
 	/**
+	 * Remove a tab from a window
+	 * @param tab tab to remove
+	 */
+	void removeTab(Tab tab);
+	
+	/**
 	 * Sets a InfoBar to a window
 	 * @param newInfoBar the Scilab InfoBar to set to the Scilab window
 	 */

@@ -22,6 +22,8 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Class for tabs in Scilab GUIs
@@ -254,6 +256,28 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 */
 	public int addMember(PopupMenu member) {
 		return ScilabBridge.addMember(this, member);
+	}
+	
+	/**
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * @param member canvas to remove 
+	 * @return the position of the canvas in the member list.
+	 */
+	public void removeMember(Canvas member) {
+		ScilabBridge.removeMember(this, member);
+	}
+	
+	/**
+	 * Destroy the tab.
+	 */
+	public void close() {
+		// find parent window
+		int parentWindowId = getParentWindowId();
+		Window parentWindow = (Window) UIElementMapper.getCorrespondingUIElement(parentWindowId);
+		
+		// remove the tab from the parent
+		parentWindow.removeTab(this);
+		
 	}
 
 	/**

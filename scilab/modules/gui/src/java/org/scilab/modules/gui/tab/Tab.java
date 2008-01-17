@@ -116,6 +116,17 @@ public interface Tab extends Container {
 	 * @return the position of the PopupMenu in the member list.
 	 */
 	int addMember(PopupMenu member);
+	
+	/**
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * @param member canvas to remove 
+	 */
+	void removeMember(Canvas member);
+	
+	/**
+	 * Destroy the tab.
+	 */
+	void close();
 
 	/**
 	 * Get the current status of the Tab in its parent

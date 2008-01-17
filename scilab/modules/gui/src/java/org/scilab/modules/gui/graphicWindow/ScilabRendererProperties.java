@@ -12,6 +12,8 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.figureDrawing.RendererProperties;
 
 
@@ -181,5 +183,13 @@ public class ScilabRendererProperties implements RendererProperties {
 	public Tab getParentTab() {
 		return parentTab;
 	}
+	
+	/**
+     * Close the rendering canvas
+     */
+   public void closeCanvas() {
+	   parentTab.removeMember(parentCanvas);
+	   parentTab.close();
+   }
 	
 }

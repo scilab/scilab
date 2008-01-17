@@ -180,6 +180,21 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	}
 	
 	/**
+	 * Remove a Scilab tab from a Scilab window
+	 * @param tab the Scilab tab to remove from the Scilab window
+	 * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
+	 */
+	public void removeTab(Tab tab) {
+		DockingManager.close((SwingScilabTab) tab.getAsSimpleTab());
+		
+		// Remove tool bar and menu bar
+		this.addMenuBar(null);
+		this.addToolBar(null);
+	}
+	
+	
+	
+	/**
 	 * Sets a Scilab MenuBar to a Scilab window
 	 * @param newMenuBar the Scilab MenuBar to add to the Scilab window
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
@@ -209,7 +224,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 			super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
 		} else {
 			this.toolBar = null;
-			super.add(null, java.awt.BorderLayout.PAGE_START);
 		}
 		this.repaint();
 	}

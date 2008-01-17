@@ -129,6 +129,15 @@ public class ScilabWindowBridge {
 	}
 	
 	/**
+	 * Remove a tab from a window
+	 * @param window the window which we want to remove the tab from
+	 * @param tab tab to remove
+	 */
+	public static void removeTab(Window window, Tab tab) {
+		window.getAsSimpleWindow().removeTab(tab);
+	}
+	
+	/**
 	 * Sets a MenuBar to a Scilab window
 	 * @param window the window which we want to add the MenuBar to
 	 * @param newMenuBar the MenuBar to add to the window

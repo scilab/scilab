@@ -189,6 +189,15 @@ public class ScilabBridge {
 	public static void addTab(Window window, Tab newTab) {
 		ScilabWindowBridge.addTab(window, newTab);
 	}
+	
+	/**
+	 * Add a tab to a window
+	 * @param window the window which we want to remove the tab from
+	 * @param newTab the tab to add to the window
+	 */
+	public static void removeTab(Window window, Tab newTab) {
+		ScilabWindowBridge.removeTab(window, newTab);
+	}
 
 	/**
 	 * Sets a MenuBar to a window
@@ -640,6 +649,15 @@ public class ScilabBridge {
 	 */
 	public static int addMember(Tab tab, PopupMenu member) {
 		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Remove a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab where we want to add the member
+	 * @param member the member to add
+ 	 */
+	public static void removeMember(Tab tab, Canvas member) {
+		ScilabTabBridge.removeMember(tab, member);
 	}
 	
 	/**

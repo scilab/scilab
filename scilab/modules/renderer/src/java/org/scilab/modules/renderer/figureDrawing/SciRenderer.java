@@ -41,8 +41,15 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */    
   public void display(GLAutoDrawable gLDrawable) {
-	//gLDrawable.setAutoSwapBufferMode(false);
+	
 	DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
+	
+	if (curFigure == null) {
+		// figure has been destroyed
+		// nothing to render
+		return;
+	}
+	
     // should call the draw function of the corresponding figure
 	if (curFigure.getIsRenderingEnable()) {
 		if (curFigure.isExportEnable()) {
@@ -76,6 +83,13 @@ public class SciRenderer
   public void init(GLAutoDrawable gLDrawable) {
 	  gLDrawable.setAutoSwapBufferMode(false);
 	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
+	  
+	  if (curFigure == null) {
+		  // figure has been destroyed
+		  // nothing to render
+		  return;
+	  }
+	  
       if (curFigure.getIsRenderingEnable()) {
     	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
     	  FigureScilabCall.redrawFigure(renderedFigure);
@@ -108,20 +122,6 @@ public class SciRenderer
    */
   public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)
     {
-	  // not needed for now
-      //final GL gl = gLDrawable.getGL();
-      //float h = 1.0f;
-
-      //if (height > 0) {
-        // avoid a divide by zero error!
-        //h = (float) height;
-      //}
-      //h = (float) width / h;
-      //gl.glMatrixMode(GL.GL_PROJECTION);
-      //gl.glLoadIdentity();
-      //gl.glFrustum(0.0, 1.0, 0.0, 1.0, 1.0, 20.0);
-      //gl.glMatrixMode(GL.GL_MODELVIEW);
-      //gl.glLoadIdentity();
 
     }
 

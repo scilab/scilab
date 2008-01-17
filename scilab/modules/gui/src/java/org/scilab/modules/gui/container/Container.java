@@ -17,5 +17,5 @@ public interface Container extends Dockable {
 	 * @return index of member in ArrayList
 	 */
 	int addMember(Dockable member);
-	
+
 }

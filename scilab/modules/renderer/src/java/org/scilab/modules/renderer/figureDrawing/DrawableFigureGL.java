@@ -257,7 +257,7 @@ public class DrawableFigureGL extends ObjectGL {
   	@Override
 	public void destroy(int parentFigureIndex) {
 		// figure should not be add to the object cleaner or will destroy themselves.
-		// no operation for now
+  		getRendererProperties().closeCanvas();
   		FigureMapper.removeMapping(figureId);
 	}
 	

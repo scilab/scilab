@@ -239,6 +239,15 @@ public class ScilabTabBridge {
 	public static void addMenuBar(Tab tab, MenuBar newMenuBar) {
 		tab.addMenuBar(newMenuBar);
 	}
+	
+	/**
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * @param tab the tab from which we want to remove the Canvas from
+	 * @param member canvas to remove 
+	 */
+	public static void removeMember(Tab tab, Canvas member) {
+		tab.getAsSimpleTab().removeMember(member);
+	}
 
 	/**
 	 * Get the current status of the Tab in its parent

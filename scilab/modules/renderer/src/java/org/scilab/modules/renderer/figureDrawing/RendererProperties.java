@@ -107,5 +107,9 @@ public interface RendererProperties {
      */
     boolean getPixmapMode();
     
+    /**
+     * Close the rendering canvas
+     */
+    void closeCanvas();
 	
 }

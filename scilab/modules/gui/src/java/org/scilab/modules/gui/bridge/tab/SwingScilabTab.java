@@ -6,6 +6,7 @@ import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
+import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -34,7 +35,6 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -74,7 +74,6 @@ public class SwingScilabTab extends View implements SimpleTab {
      */
 	public void repaint() {
 		super.repaint();
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
 	}
 	
 	/**
@@ -369,6 +368,23 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public int addMember(Dockable member) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	/**
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * @param member canvas to remove 
+	 */
+	public void removeMember(Canvas member) {
+		this.removeMember((SwingScilabCanvas) member.getAsSimpleCanvas());
+	}
+	
+	/**
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * @param member canvas to remove 
+	 */
+	public void removeMember(SwingScilabCanvas member) {
+		this.remove(member);
+		this.revalidate();
 	}
 
 	/**

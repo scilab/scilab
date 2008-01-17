@@ -116,6 +116,12 @@ public interface SimpleTab {
 	 * @return the position of the PopupMenu in the member list.
 	 */
 	int addMember(PopupMenu member);
+	
+	/**
+	 * We want to be able to remove directly a Canvas from a Tab.
+	 * @param member canvas to remove
+	 */
+	void removeMember(Canvas member);
 
 	/**
 	 * Gets the size of an Tab (width and height)

@@ -146,6 +146,15 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	public void addTab(Tab newTab) {
 		ScilabBridge.addTab(this, newTab);
 	}
+	
+	/**
+	 * Remove a tab from a Scilab window
+	 * @param newTab the tab to remove from the window
+	 * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
+	 */
+	public void removeTab(Tab newTab) {
+		ScilabBridge.removeTab(this, newTab);
+	}
 
 	/**
 	 * Sets a MenuBar to a Scilab window
