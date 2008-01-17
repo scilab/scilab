@@ -176,6 +176,18 @@
          or "sunken"</SP>
       </ITEM>
 
+      <ITEM label="o">
+        <SP>pushbutton: the default value for Relief property is "raised".</SP>
+      </ITEM>
+
+      <ITEM label="o">
+        <SP>edit: the default value for Relief property is "sunken".</SP>
+      </ITEM>
+
+      <ITEM label="o">
+        <SP>other styles: the default value for Relief property is "flat".</SP>
+      </ITEM>
+
       <ITEM label="SliderStep">
         <SP>[1,2] real vector or string, [small big]. The small step represents
         the movement achieved when clicking on the slider trough
