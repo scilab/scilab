@@ -29,7 +29,7 @@
 int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 {
 	char typ = CHAR_S;
-    char **Str = NULL;
+     char **Str = NULL;
 	char **Str2 = NULL;
 	char *pointer=NULL;
 	char *save=NULL;
@@ -129,9 +129,9 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 			/*When we use the regexp;*/
             for (x = 0; x < mn2; ++x)
             {
+				save = (char *)MALLOC( sizeof(char) * ( strlen(Str2[x]) ) );
                 pointer=Str[0];
 				start_point=0;
-                save = (char *)MALLOC( sizeof(char) * ( 500 ) );
 				do
 				{
 					strcpy(save,Str2[x]);
@@ -145,6 +145,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 						start_point=start_point+Output_End;
 					}
 				}while(w == 0 && Output_Start!=Output_End);
+				if (save) {FREE(save);save=NULL;}
             }
         }
     }
@@ -206,8 +207,10 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
     C2F(putlhsvar)();
 
     if (values) {FREE(values); values = NULL;}
+	if (values_end) {FREE(values_end); values_end = NULL;}
     if (position) {FREE(position); position = NULL;}
-
+	
+    freeArrayOfString(match,nbValues);
     return 0;
 }
 /*-----------------------------------------------------------------------------------*/
