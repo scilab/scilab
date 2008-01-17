@@ -35,7 +35,7 @@ void Camera::setViewingArea( double axesBounds[4], double margins[4] )
   double translation[2] ;
   // T = Taxes + SizeAxes * [marginLeft, marginTop].
   translation[0] = axesBounds[0] + axesBounds[2] * margins[0] ;
-  translation[1] = axesBounds[1] + axesBounds[3] * margins[2] ;
+  translation[1] = 1.0 - axesBounds[1] - axesBounds[3] * (1.0 - margins[3]) ;
 
   // S = Saxes - margin.Saxes
   // where Saxes = [w,h] and margin = [margin_left+margin_right, margin_top+margin_bottom].
