@@ -80,5 +80,10 @@ public interface Frame extends Container {
 	 * @param commandType the type of the command
 	 */
 	void setCallback(String command, int commandType);
-
+	
+	/**
+	 * Set the Relief of the Frame
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	void setRelief(String reliefType);
 }

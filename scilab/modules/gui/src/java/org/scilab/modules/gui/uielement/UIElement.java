@@ -100,12 +100,6 @@ public interface UIElement {
 	//void setBackground(Color color);
 	
 	/**
-	 * To set the Border color and Border size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	//void setBorder(LineBorder lineBorder);
-	
-	/**
 	 * Get the Id of the menubar in the UIElementMapper
 	 * @return the MenuBar of the UIElement
 	 */

@@ -56,13 +56,18 @@ int SetUicontrolRelief(sciPointObj* sciObj, int stackPointer, int valueType, int
       
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
-        case SCI_PUSHBUTTON:
-          // TODO Change the relief of the Java object
-           return SET_PROPERTY_SUCCEED;
-        default:
-          /* Unimplemented uicontrol style */
-          sciprint(_("No %s property for uicontrols of style: %s.\n"), "Relief", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
-          return SET_PROPERTY_ERROR;
+        case SCI_UIFRAME:
+          // Change the relief of the Java object
+          CallScilabBridge::setFrameRelief(getScilabJavaVM(), 
+                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                           relief);
+          return SET_PROPERTY_SUCCEED;
+        default: /* All Widgets */
+          // Change the relief of the Java object
+          CallScilabBridge::setWidgetRelief(getScilabJavaVM(), 
+                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                            relief);
+          return SET_PROPERTY_SUCCEED;
         }
     }
   else

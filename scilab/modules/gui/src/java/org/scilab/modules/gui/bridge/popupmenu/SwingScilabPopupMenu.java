@@ -11,6 +11,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -165,7 +166,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 */
 	public void setSelectedIndex(int index) {
 		for (int i = 0; i < getItemCount(); i++) {
-			if (i == index) {
+			// Scilab indices in Value begin at 1 and Java indices begin at 0
+			if (i == (index - 1)) {
 				getModel().setSelectedItem(getItemAt(i));
 			}
 		}
@@ -179,7 +181,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 		Object itemSelected = getModel().getSelectedItem();
 		for (int i = 0; i < getItemCount(); i++) {
 			if (itemSelected.equals(getItemAt(i))) {
-				return i;
+				// Scilab indices in Value begin at 1 and Java indices begin at 0
+				return i + 1;
 			}
 		}
 		return -1;
@@ -225,7 +228,14 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 				addItem(text[i]);
 			}
 		}
-		
+	}
+
+	/**
+	 * Set the Relief of the PopupMenu
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
 }

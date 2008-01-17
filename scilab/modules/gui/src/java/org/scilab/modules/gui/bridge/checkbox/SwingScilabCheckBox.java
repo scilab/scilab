@@ -10,6 +10,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -150,4 +151,13 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 	public boolean isChecked() {
 		return isSelected();
 	}
+	
+	/**
+	 * Set the Relief of the CheckBox
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+	}
+
 }

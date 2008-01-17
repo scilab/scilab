@@ -246,4 +246,13 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 	public void setValue(int value) {
 		ScilabBridge.setValue(this, value);	
 	}
+	
+	/**
+	 * Set the Relief of the Slider
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		ScilabBridge.setRelief(this, reliefType);
+	}
+
 }

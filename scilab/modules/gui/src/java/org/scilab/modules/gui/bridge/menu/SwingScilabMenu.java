@@ -15,10 +15,12 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciActionListener;
 import org.scilab.modules.gui.utils.ScilabAlignment;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab Menus in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public class SwingScilabMenu extends JMenu implements SimpleMenu {
@@ -211,4 +213,13 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	public void setVerticalAlignment(String alignment) {
 		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
+	
+	/**
+	 * Set the Relief of the Menu
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+	}
+
 }

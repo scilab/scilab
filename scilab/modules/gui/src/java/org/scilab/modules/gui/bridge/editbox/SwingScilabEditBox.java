@@ -12,7 +12,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
-import org.scilab.modules.gui.utils.ScilabWidgetBorder;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -32,7 +32,7 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 		/* Default properties */
 		setBackground(Color.GRAY);
 		setForeground(Color.BLACK);
-		setBorder(ScilabWidgetBorder.SUNKEN);
+		setRelief(ScilabRelief.SUNKEN);
 	}
 
 	/**
@@ -141,4 +141,13 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	public void setVerticalAlignment(String alignment) {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Set the Relief of the EditBox
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+	}
+
 }

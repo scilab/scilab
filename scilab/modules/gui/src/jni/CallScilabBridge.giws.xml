@@ -281,6 +281,15 @@
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String[]" name="text"/>
 	</method>
+<!-- Relief setting -->
+	<method name="setWidgetRelief" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="reliefType"/>
+	</method>
+	<method name="setFrameRelief" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="reliefType"/>
+	</method>
 <!-- Enable/Disable Menus -->
 	<method name="setRootMenuEnabled" returnType="void" modifier="static">
 	  <parameter type="String" name="menuName"/>

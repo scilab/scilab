@@ -16,6 +16,7 @@ import org.scilab.modules.gui.listbox.SimpleListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -208,7 +209,7 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	public String[] getAllItemsText() {
 		String[] retValue = new String[getList().getModel().getSize()];
 		for (int i = 0; i < getList().getModel().getSize(); i++) {
-			retValue[i] = (String) getList().getModel().getElementAt(0);
+			retValue[i] = (String) getList().getModel().getElementAt(i);
 		}
 		return retValue;
 	}
@@ -287,7 +288,13 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @param indices the indices of the items to be selected
 	 */
 	public void setSelectedIndices(int[] indices) {
-		getList().setSelectedIndices(indices);
+		System.out.println("Swing.setSelectedIndices");
+		// Scilab indices in Value begin at 1 and Java indices begin at 0
+		int[] javaIndices = indices.clone();
+		//for (int i = 0; i < javaIndices.length; i++) {
+		//	javaIndices[i] = javaIndices[i] - 1;
+		//}
+		getList().setSelectedIndices(javaIndices);
 	}
 	
 	/**
@@ -295,7 +302,13 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @return the indices of the items selected
 	 */
 	public int[] getSelectedIndices() {
-		return getList().getSelectedIndices();
+		// Scilab indices in Value begin at 1 and Java indices begin at 0
+		int[] javaIndices = getList().getSelectedIndices().clone();
+		int[] scilabIndices = javaIndices.clone();
+		//for (int i = 0; i < getList().getSelectedIndices().length; i++) {
+		//	scilabIndices[i] = scilabIndices[i] + 1;
+		//}
+		return scilabIndices;
 	}
 
 	/**
@@ -317,6 +330,14 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 			list.setModel(new DefaultListModel());
 		}
 		return list;
-		
 	}
+
+	/**
+	 * Set the Relief of the ListBox
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+	}
+
 }

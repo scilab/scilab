@@ -200,4 +200,12 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 		ScilabBridge.setVerticalAlignment(this, alignment);
 	}
 
+	/**
+	 * Set the Relief of the EditBox
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		ScilabBridge.setRelief(this, reliefType);
+	}
+
 }

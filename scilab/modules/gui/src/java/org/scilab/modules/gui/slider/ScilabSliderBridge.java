@@ -264,4 +264,13 @@ public class ScilabSliderBridge {
 		slider.getAsSimpleSlider().setValue(value);	
 	}
 
+	/**
+	 * Set the Relief of the Slider
+	 * @param slider the Slider which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Slider slider, String reliefType) {
+		slider.getAsSimpleSlider().setRelief(reliefType);
+	}
+
 }

@@ -10,6 +10,8 @@ int GetUicontrolValue(sciPointObj* sciObj)
 {
   int * value = NULL;
 
+  int singleValue = 0;
+
   int valueSize = 0;
 
   if (sciGetEntityType(sciObj) == SCI_UICONTROL)
@@ -21,28 +23,34 @@ int GetUicontrolValue(sciPointObj* sciObj)
                                                               pUICONTROL_FEATURE(sciObj)->hashMapIndex);
           valueSize = CallScilabBridge::getListBoxSelectionSize(getScilabJavaVM(), 
                                                               pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-          if (value[0] == -1)
+          if (valueSize==0 || value[0] == -1)
             {
               return sciReturnEmptyMatrix();
             }
           else
             {
-              return sciReturnRowVectorFromInt(value, pUICONTROL_FEATURE(sciObj)->valueSize);
+              if (valueSize == 1)
+                {
+                  return sciReturnInt(value[0]);
+                }
+              else
+                {
+                  return sciReturnRowVectorFromInt(value, valueSize);
+                }
             }
         case SCI_POPUPMENU:
-          value = (int*) CallScilabBridge::getPopupMenuSelectedIndex(getScilabJavaVM(), 
+          singleValue = (int) CallScilabBridge::getPopupMenuSelectedIndex(getScilabJavaVM(), 
                                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-          if (value[0] == -1)
+          if (singleValue == -1)
             {
               return sciReturnEmptyMatrix();
             }
           else
             {
-              return sciReturnRowVectorFromInt(value, 1); /* Only one value returned */
+              return sciReturnInt(singleValue); /* Only one value returned */
             }
         case SCI_SLIDER:
-          return sciReturnInt(
-                              CallScilabBridge::getSliderValue(getScilabJavaVM(), 
+          return sciReturnInt(CallScilabBridge::getSliderValue(getScilabJavaVM(), 
                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex)); /* Only one value returned */
         case SCI_CHECKBOX:
           if (CallScilabBridge::isCheckBoxChecked(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex))

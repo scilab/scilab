@@ -36,6 +36,7 @@ import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.widget.Widget;
@@ -198,6 +199,7 @@ public class CallScilabBridge {
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
+		setWidgetRelief(id, ScilabRelief.RAISED);
 		return id;
 	}
 
@@ -211,6 +213,7 @@ public class CallScilabBridge {
 		// Scilab default font
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
+		setWidgetRelief(id, ScilabRelief.SUNKEN);
 		return id;
 	}
 
@@ -226,6 +229,7 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		label.setBackground(Color.LIGHT_GRAY);
 		label.setForeground(Color.BLACK);
+		setWidgetRelief(id, ScilabRelief.FLAT);
 		return id;
 	}
 
@@ -241,6 +245,7 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		checkBox.setBackground(Color.LIGHT_GRAY);
 		checkBox.setForeground(Color.BLACK);
+		setWidgetRelief(id, ScilabRelief.FLAT);
 		return id;
 	}
 
@@ -256,6 +261,7 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		radioButton.setBackground(Color.LIGHT_GRAY);
 		radioButton.setForeground(Color.BLACK);
+		setWidgetRelief(id, ScilabRelief.FLAT);
 		return id;
 	}
 
@@ -271,7 +277,11 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		slider.setBackground(Color.LIGHT_GRAY);
 		slider.setForeground(Color.BLACK);
+		setWidgetRelief(id, ScilabRelief.FLAT);
 		slider.setText(""); /* Because Name property is null at creation */
+		slider.setMinimumValue(0);
+		slider.setMaximumValue(1);
+		slider.setValue(0);
 		return id;
 	}
 
@@ -287,6 +297,7 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		listBox.setBackground(Color.LIGHT_GRAY);
 		listBox.setForeground(Color.BLACK);
+		setWidgetRelief(id, ScilabRelief.FLAT);
 		return id;
 	}
 
@@ -302,6 +313,7 @@ public class CallScilabBridge {
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		popupMenu.setBackground(Color.LIGHT_GRAY);
 		popupMenu.setForeground(Color.BLACK);
+		setWidgetRelief(id, ScilabRelief.FLAT);
 		return id;
 	}
 
@@ -317,6 +329,8 @@ public class CallScilabBridge {
 		setFrameFontSize(id, DEFAULTFONTSIZE);
 		frame.setBackground(Color.LIGHT_GRAY);
 		frame.setForeground(Color.BLACK);
+		setFrameRelief(id, ScilabRelief.FLAT);
+		frame.setText(""); /* Because Name property is null at creation */
 		return id;
 	}
 
@@ -1190,6 +1204,7 @@ public class CallScilabBridge {
 	 * @param indices the indices of the items to be selected
 	 */
 	public static void setListBoxSelectedIndices(int id, int[] indices) {
+		System.out.println("CallScilabBridge.setListBoxSelectedIndices");
 		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setSelectedIndices(indices);
 	}
 	
@@ -1261,7 +1276,7 @@ public class CallScilabBridge {
 	 * @param id the id of the RadioButton
 	 * @return true if the RadioButton is checked
 	 */
-	public static boolean isRadioButtonhecked(int id) {
+	public static boolean isRadioButtonChecked(int id) {
 		return ((RadioButton) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
 	}
 
@@ -1282,4 +1297,29 @@ public class CallScilabBridge {
 	public static boolean isCheckBoxChecked(int id) {
 		return ((CheckBox) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
 	}
+	
+	/*****************/
+	/*               */
+	/* RELIEF BRIDGE */
+	/*               */
+	/*****************/
+
+	/**
+	 * Set the Relief of the Widget
+	 * @param id the id of the Widget
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setWidgetRelief(int id, String reliefType) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setRelief(reliefType);
+	}
+
+	/**
+	 * Set the Relief of the Frame
+	 * @param id the id of the Frame
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setFrameRelief(int id, String reliefType) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setRelief(reliefType);
+	}
+
 }

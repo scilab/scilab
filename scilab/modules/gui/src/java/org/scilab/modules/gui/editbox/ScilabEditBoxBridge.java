@@ -210,4 +210,13 @@ public class ScilabEditBoxBridge {
 		editBox.getAsSimpleEditBox().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set the Relief of the EditBox
+	 * @param editBox the EditBox which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(EditBox editBox, String reliefType) {
+		editBox.getAsSimpleEditBox().setRelief(reliefType);
+	}
+
 }

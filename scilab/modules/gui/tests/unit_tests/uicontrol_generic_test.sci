@@ -42,11 +42,11 @@ set(h, "fontweight", "bold");
 f=gcf();
 figsize = f.figure_size;
 
-h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [0 0 200 20], "string", "I''m a bottom left "+uicontrol_style);
+h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [0 0 200 20], "string", "I''m a left "+uicontrol_style);
 set(h, "backgroundcolor", [1 0 0]);
 set(h, "foregroundcolor", [0 0 1]);
 
-h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [figsize(1)-200 0 200 20], "string", "I''m a bottom right "+uicontrol_style);
+h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [figsize(1)-200 0 200 20], "string", "I''m a right "+uicontrol_style);
 set(h, "backgroundcolor", [0 1 0]);
 set(h, "foregroundcolor", [1 0 0]);
 
@@ -256,11 +256,8 @@ if ~and(get(h, "position") == [10 20 50 100]) then
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
-// TODO Relief tests
-// Default value
-if get(h, "relief") <> "flat" then
-  pause
-end
+// --- Relief ---
+// Default value is tested in separate files beause is different according the style
 set(h, "relief", "groove");
 if get(h, "relief") <> "groove" then
   pause
@@ -373,23 +370,7 @@ if ~isempty(get(h, "user_data")) then
 end
 
 // --- Value tests ---
-// Default value
-if ~isempty(get(h, "value")) then
-  pause
-end
-set(h, "value", [1]);
-if get(h, "value") <> 1 then
-  pause
-end
-set(h, "value", [1 2 3]);
-if ~and(get(h, "value") == [1 2 3]) then
-  pause
-end
-set(h, "value", []);
-if ~isempty(get(h, "value")) then
-  pause
-end
-// TODO test with wrong values
+// Tested in separate files beause is different according the style
 // TODO tests for checkbox and radiobuttons should fail !
 
 // --- VerticalalAlignment --- 

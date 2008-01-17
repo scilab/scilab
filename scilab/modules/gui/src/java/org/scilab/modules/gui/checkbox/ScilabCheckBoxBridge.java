@@ -228,4 +228,13 @@ public class ScilabCheckBoxBridge {
 		return checkBox.getAsSimpleCheckBox().isChecked();
 	}
 
+	/**
+	 * Set the Relief of the CheckBox
+	 * @param checkBox the CheckBox which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(CheckBox checkBox, String reliefType) {
+		checkBox.getAsSimpleCheckBox().setRelief(reliefType);
+	}
+
 }

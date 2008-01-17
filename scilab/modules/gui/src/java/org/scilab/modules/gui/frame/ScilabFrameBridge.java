@@ -190,4 +190,14 @@ public class ScilabFrameBridge {
 	public static void setEnabled(Frame frame, boolean status) {
 		frame.getAsSimpleFrame().setEnabled(status);
 	}
+	
+	/**
+	 * Set the Relief of the Frame
+	 * @param frame the Frame we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Frame frame, String reliefType) {
+		frame.getAsSimpleFrame().setRelief(reliefType);
+	}
+
 }

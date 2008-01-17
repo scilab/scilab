@@ -79,7 +79,18 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE(pobj)->units = POINTS_UNITS;
 
   /* Relief default */
-  pUICONTROL_FEATURE(pobj)->relief = FLAT_RELIEF;
+  if (style == NULL || strcmp(style,"pushbutton")==0)
+    {
+      pUICONTROL_FEATURE(pobj)->relief = RAISED_RELIEF;
+    }
+  else if (strcmp(style,"edit")==0)
+    {
+      pUICONTROL_FEATURE(pobj)->relief = SUNKEN_RELIEF;
+    }
+  else
+    {
+      pUICONTROL_FEATURE(pobj)->relief = FLAT_RELIEF;
+    }
 
   /* Alignment default */
   pUICONTROL_FEATURE(pobj)->horizontalAlignment = CENTER_ALIGNMENT;

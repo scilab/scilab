@@ -9,6 +9,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -168,6 +169,14 @@ public class SwingScilabSlider extends JSlider implements SimpleSlider {
 	 */
 	public void setMaximumValue(int value) {
 		setMaximum(value);	
+	}
+
+	/**
+	 * Set the Relief of the Slider
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
 }

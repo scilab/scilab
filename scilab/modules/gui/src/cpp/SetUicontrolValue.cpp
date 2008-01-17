@@ -57,24 +57,24 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
             {
               CallScilabBridge::setListBoxSelectedIndices(getScilabJavaVM(), 
                                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                          (long int*) allValues,
+                                                          (long int*) pUICONTROL_FEATURE(sciObj)->value,
                                                           pUICONTROL_FEATURE(sciObj)->valueSize);
             }
           return SET_PROPERTY_SUCCEED;
         case SCI_POPUPMENU:
-          if (pUICONTROL_FEATURE(sciObj)->valueSize == 0)
+          if (pUICONTROL_FEATURE(sciObj)->valueSize != 1)
             {
-                CallScilabBridge::setPopupMenuSelectedIndex(getScilabJavaVM(), 
-                                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                            -1); /* No value selected */
+              /* Wrong value size */
+              sciprint(_("%s property value must be a single value.\n"), "Value");
+              return SET_PROPERTY_ERROR;
             }
             else
               {
                 CallScilabBridge::setPopupMenuSelectedIndex(getScilabJavaVM(), 
                                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                             pUICONTROL_FEATURE(sciObj)->value[0]);
+                return SET_PROPERTY_SUCCEED;
               }
-          return SET_PROPERTY_SUCCEED;
         case SCI_CHECKBOX:
           if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
             {

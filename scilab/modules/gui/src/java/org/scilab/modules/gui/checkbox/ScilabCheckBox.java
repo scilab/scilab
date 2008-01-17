@@ -214,4 +214,13 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
 	public boolean isChecked() {
 		return ScilabBridge.isChecked(this);
 	}
+	
+	/**
+	 * Set the Relief of the CheckBox
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		ScilabBridge.setRelief(this, reliefType);
+	}
+
 }

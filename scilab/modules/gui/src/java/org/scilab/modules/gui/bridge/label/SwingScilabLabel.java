@@ -4,13 +4,13 @@
 package org.scilab.modules.gui.bridge.label;
 
 import javax.swing.JLabel;
-import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -76,14 +76,6 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	}
 
 	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	public void setBorder(LineBorder lineBorder) {
-		super.setBorder(lineBorder);
-	}
-
-	/**
 	 * Add a callback to the Label
 	 * @param command the Scilab command to execute when the Label is validated
 	 * @param commandType the type of the command that will be executed.
@@ -143,6 +135,14 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	 */
 	public void setVerticalAlignment(String alignment) {
 		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+	}
+
+	/**
+	 * Set the Relief of the Label
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
 }

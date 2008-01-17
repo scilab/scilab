@@ -222,4 +222,13 @@ public class ScilabMenuBridge {
 		menu.getAsSimpleMenu().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set the Relief of the Menu
+	 * @param menu the Menu which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Menu menu, String reliefType) {
+		menu.getAsSimpleMenu().setRelief(reliefType);
+	}
+
 }

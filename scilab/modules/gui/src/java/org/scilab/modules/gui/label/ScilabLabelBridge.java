@@ -210,4 +210,13 @@ public class ScilabLabelBridge {
 		label.getAsSimpleLabel().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set the Relief of the Label
+	 * @param label the Label which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Label label, String reliefType) {
+		label.getAsSimpleLabel().setRelief(reliefType);
+	}
+
 }

@@ -101,10 +101,4 @@ public interface SimpleUIElement {
 	 * @param color the Color
 	 */
 	//void setBackground(Color color);
-	
-	/**
-	 * To set the Border color and Border size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	//void setBorder(LineBorder lineBorder);
 }

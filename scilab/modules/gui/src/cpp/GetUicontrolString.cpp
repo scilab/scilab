@@ -8,6 +8,8 @@ using namespace org_scilab_modules_gui_bridge;
 
 int GetUicontrolString(sciPointObj* sciObj)
 {  
+  int nbItems = 0;
+
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the string from Java
@@ -19,20 +21,34 @@ int GetUicontrolString(sciPointObj* sciObj)
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_LISTBOX) /* ListBox style uicontrol */
         {
           /* Return a row vector */
-          return sciReturnStringMatrix(CallScilabBridge::getListBoxAllItemsText(getScilabJavaVM(),
-                                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex),
-                                       1,
-                                       CallScilabBridge::getListBoxNumberOfItems(getScilabJavaVM(),
-                                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+          nbItems = CallScilabBridge::getListBoxNumberOfItems(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+          if (nbItems == 0) /* If no Items, the return matrix is an empty string of size 1x1 */
+            {
+              return sciReturnString("");
+            }
+          else 
+            {
+              return sciReturnStringMatrix(CallScilabBridge::getListBoxAllItemsText(getScilabJavaVM(),
+                                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex),
+                                           1,
+                                           nbItems);
+            }
         }
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_POPUPMENU) /* PopupMenu style uicontrol */
         {
           /* Return a row vector */
-          return sciReturnStringMatrix(CallScilabBridge::getPopupMenuAllItemsText(getScilabJavaVM(),
-                                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex),
-                                       1,
-                                       CallScilabBridge::getPopupMenuNumberOfItems(getScilabJavaVM(),
-                                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+          nbItems = CallScilabBridge::getPopupMenuNumberOfItems(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+          if (nbItems == 0) /* If no Items, the return matrix is an empty string of size 1x1 */
+            {
+              return sciReturnString("");
+            }
+          else
+            {
+              return sciReturnStringMatrix(CallScilabBridge::getPopupMenuAllItemsText(getScilabJavaVM(),
+                                                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex),
+                                           1,
+                                           nbItems);
+            }
         }
       else/* All other uicontrol style */
         {

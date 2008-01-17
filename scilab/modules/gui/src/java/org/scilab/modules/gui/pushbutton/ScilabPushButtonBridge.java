@@ -211,5 +211,14 @@ public class ScilabPushButtonBridge {
 		pushButton.getAsSimplePushButton().setVerticalAlignment(alignment);
 	}
 
+	/**
+	 * Set the Relief of the PushButton
+	 * @param pushButton the PushButton which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(PushButton pushButton, String reliefType) {
+		pushButton.getAsSimplePushButton().setRelief(reliefType);
+	}
+
 }
 

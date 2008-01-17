@@ -257,4 +257,13 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
 	public void setText(String[] text) {
 		ScilabBridge.setText(this, text);
 	}
+
+	/**
+	 * Set the Relief of the ListBox
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		ScilabBridge.setRelief(this, reliefType);
+	}
+
 }

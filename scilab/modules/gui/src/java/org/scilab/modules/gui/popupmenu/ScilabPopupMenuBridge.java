@@ -255,4 +255,13 @@ public class ScilabPopupMenuBridge {
 		popupMenu.getAsSimplePopupMenu().setText(text);
 	}
 
+	/**
+	 * Set the Relief of the PopupMenu
+	 * @param popupMenu the PopupMenu which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(PopupMenu popupMenu, String reliefType) {
+		popupMenu.getAsSimplePopupMenu().setRelief(reliefType);
+	}
+
 }

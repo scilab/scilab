@@ -276,4 +276,14 @@ public class ScilabListBoxBridge {
 	public static void setText(ListBox listBox, String[] text) {
 		listBox.getAsSimpleListBox().setText(text);
 	}
+	
+	/**
+	 * Set the Relief of the ListBox
+	 * @param listBox the ListBox which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(ListBox listBox, String reliefType) {
+		listBox.getAsSimpleListBox().setRelief(reliefType);
+	}
+
 }

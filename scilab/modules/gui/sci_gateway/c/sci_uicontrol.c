@@ -226,7 +226,14 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                   break;
                 case sci_strings:
-                  GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                  if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
+                    {
+                      GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                    }
+                  else
+                    {
+                      GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                    }
                   setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                   break;
                 case sci_handles:

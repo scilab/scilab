@@ -35,6 +35,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -417,13 +418,6 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 		this.add(member);
 		return this.getComponentZOrder(member);
 	}
-	/**
-	 * To set the Border color and size of the element.
-	 * @param lineBorder the LineBorder
-	 */
-	public void setBorder(LineBorder lineBorder) {
-		super.setBorder(lineBorder);
-	}
 	
 	/**
 	 * To set the Layout of the element.
@@ -506,6 +500,14 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	public int addMember(Dockable member) {
 		/* Unimplemented for Frames */
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Set the Relief of the Frame
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
 }

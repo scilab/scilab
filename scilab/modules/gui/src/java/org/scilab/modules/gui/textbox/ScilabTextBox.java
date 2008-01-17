@@ -200,4 +200,13 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	public void setVerticalAlignment(String alignment) {
 		ScilabBridge.setVerticalAlignment(this, alignment);
 	}
+	
+	/**
+	 * Set the Relief of the TextBox
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		ScilabBridge.setRelief(this, reliefType);
+	}
+
 }

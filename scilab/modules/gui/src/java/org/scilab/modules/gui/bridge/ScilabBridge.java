@@ -420,6 +420,15 @@ public class ScilabBridge {
 		ScilabFrameBridge.setCallback(frame, command, commandType);
 	}
 
+	/**
+	 * Set the Relief of the Frame
+	 * @param frame the Frame we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Frame frame, String reliefType) {
+		ScilabFrameBridge.setRelief(frame, reliefType);
+	}
+
 	/**************/
 	/* Tab Bridge */
 	/**************/
@@ -1212,6 +1221,15 @@ public class ScilabBridge {
 		ScilabMenuBridge.setVerticalAlignment(menu, alignment);
 	}
 
+	/**
+	 * Set the Relief of the Menu
+	 * @param menu the Menu which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Menu menu, String reliefType) {
+		ScilabMenuBridge.setRelief(menu, reliefType);
+	}
+
 	/*****************/
 	/* Separator Bridge */
 	/*****************/
@@ -1417,6 +1435,15 @@ public class ScilabBridge {
 		ScilabPushButtonBridge.setVerticalAlignment(pushButton, alignment);
 	}
 
+	/**
+	 * Set the Relief of the PushButton
+	 * @param pushButton the PushButton which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(PushButton pushButton, String reliefType) {
+		ScilabPushButtonBridge.setRelief(pushButton, reliefType);
+	}
+
 	/*****************/
 	/* TextBox Bridge */
 	/*****************/
@@ -1596,6 +1623,15 @@ public class ScilabBridge {
 	 */
 	public static void setVerticalAlignment(TextBox textBox, String alignment) {
 		ScilabTextBoxBridge.setVerticalAlignment(textBox, alignment);
+	}
+
+	/**
+	 * Set the Relief of the TextBox
+	 * @param textBox the TextBox which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(TextBox textBox, String reliefType) {
+		ScilabTextBoxBridge.setRelief(textBox, reliefType);
 	}
 
 	/******************/
@@ -1788,6 +1824,15 @@ public class ScilabBridge {
 		ScilabEditBoxBridge.setVerticalAlignment(editBox, alignment);
 	}
 
+	/**
+	 * Set the Relief of the EditBox
+	 * @param editBox the EditBox which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(EditBox editBox, String reliefType) {
+		ScilabEditBoxBridge.setRelief(editBox, reliefType);
+	}
+
 	/******************/
 	/* Label Bridge */
 	/******************/
@@ -1976,6 +2021,15 @@ public class ScilabBridge {
 	 */
 	public static void setVerticalAlignment(Label label, String alignment) {
 		ScilabLabelBridge.setVerticalAlignment(label, alignment);
+	}
+	
+	/**
+	 * Set the Relief of the Label
+	 * @param label the Label which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Label label, String reliefType) {
+		ScilabLabelBridge.setRelief(label, reliefType);
 	}
 
 	/*******************/
@@ -2186,6 +2240,15 @@ public class ScilabBridge {
 		return ScilabCheckBoxBridge.isChecked(checkBox);
 	}
 
+	/**
+	 * Set the Relief of the CheckBox
+	 * @param checkBox the CheckBox which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(CheckBox checkBox, String reliefType) {
+		ScilabCheckBoxBridge.setRelief(checkBox, reliefType);
+	}
+
 	/**********************/
 	/* RadioButton Bridge */
 	/**********************/
@@ -2392,6 +2455,15 @@ public class ScilabBridge {
 	 */
 	public static boolean isChecked(RadioButton radioButton) {
 		return ScilabRadioButtonBridge.isChecked(radioButton);
+	}
+
+	/**
+	 * Set the Relief of the RadioButton
+	 * @param radioButton the RadioButton which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(RadioButton radioButton, String reliefType) {
+		ScilabRadioButtonBridge.setRelief(radioButton, reliefType);
 	}
 
 	/*****************/
@@ -2636,6 +2708,15 @@ public class ScilabBridge {
 	 */
 	public static void setValue(Slider slider, int value) {
 		ScilabSliderBridge.setValue(slider, value);	
+	}
+
+	/**
+	 * Set the Relief of the Slider
+	 * @param slider the Slider which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(Slider slider, String reliefType) {
+		ScilabSliderBridge.setRelief(slider, reliefType);
 	}
 
 	/******************/
@@ -2895,6 +2976,15 @@ public class ScilabBridge {
 		ScilabListBoxBridge.setText(listBox, text);
 	}
 
+	/**
+	 * Set the Relief of the ListBox
+	 * @param listBox the ListBox which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(ListBox listBox, String reliefType) {
+		ScilabListBoxBridge.setRelief(listBox, reliefType);
+	}
+
 	/********************/
 	/* PopupMenu Bridge */
 	/********************/
@@ -3128,6 +3218,15 @@ public class ScilabBridge {
 	 */
 	public static void setText(PopupMenu popupMenu, String[] text) {
 		ScilabPopupMenuBridge.setText(popupMenu, text);
+	}
+
+	/**
+	 * Set the Relief of the PopupMenu
+	 * @param popupMenu the PopupMenu which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(PopupMenu popupMenu, String reliefType) {
+		ScilabPopupMenuBridge.setRelief(popupMenu, reliefType);
 	}
 
 	/*********************/

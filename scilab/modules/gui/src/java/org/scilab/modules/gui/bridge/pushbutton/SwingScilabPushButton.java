@@ -14,6 +14,7 @@ import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -156,6 +157,14 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	public void setVerticalAlignment(String alignment) {
 		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+	}
+
+	/**
+	 * Set the Relief of the PushButton
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
 }

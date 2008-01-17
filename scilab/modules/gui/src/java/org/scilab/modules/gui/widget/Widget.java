@@ -88,4 +88,10 @@ public interface Widget extends Dockable {
 	 */
 	void setVerticalAlignment(String alignment);
 
+	/**
+	 * Set the Relief of the Widget
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	void setRelief(String reliefType);
+
 }
