@@ -5,7 +5,7 @@
   <TITLE>isascii</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="isletter"> tests if character is a 7-bit US-ASCII character</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="isascii"> tests if character is a 7-bit US-ASCII character</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> res = isascii(str)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
