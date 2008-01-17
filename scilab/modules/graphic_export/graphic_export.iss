@@ -2,54 +2,51 @@
 ; Script d'installation Inno Setup (5.2.1) pour scilab
 ; Allan CORNET
 ; Version TRUNK
-; Copyright INRIA 2007
+; Copyright INRIA 2008
 ;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
-; renderer module
+; graphic_export module
 ;--------------------------------------------------------------------------------------------------------------
 ;
-#define RENDERER "renderer"
+; TO DO : a component "graphics_export"
 ;
-Source: bin\jogl.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
-Source: bin\jogl_awt.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
-Source: bin\jogl_cg.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
-
-Source: bin\scirenderer.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
-;Source: bin\norenderer.dll; DestDir: {app}\bin; DestName: scirenderer.dll; Components: not ({#COMPN_GRAPHICS})
+#define GRAPHIC_EXPORT "graphic_export"
 ;
-Source: thirdparty\gluegen-rt.jar; DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
-Source: thirdparty\jogl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: bin\gl2ps.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\scigraphic_export; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+;Source: bin\nographic_export.dll; DestDir: {app}\bin; DestName: scigraphic_export.dll; Components: not ({#COMPN_GRAPHICS})
 ;
-Source: modules\{#RENDERER}\jar\org.scilab.modules.renderer.jar;DestDir: {app}\modules\{#RENDERER}\jar; Components: {#COMPN_GRAPHICS}
+;
+Source: modules\{#GRAPHIC_EXPORT}\jar\org.scilab.modules.graphic_export.jar;DestDir: {app}\modules\{#GRAPHIC_EXPORT}\jar; Components: {#COMPN_GRAPHICS}
 ;
 
-Source: modules\{#RENDERER}\changelog.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS};
-Source: modules\{#RENDERER}\licence.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
-Source: modules\{#RENDERER}\readme.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
-Source: modules\{#RENDERER}\version.xml; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\changelog.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS};
+Source: modules\{#GRAPHIC_EXPORT}\licence.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\readme.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\version.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
 ;
-;Source: modules\{#RENDERER}\sci_gateway\renderer_gateway.xml; DestDir: {app}\modules\{#RENDERER}\sci_gateway; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\sci_gateway\renderer_gateway.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\includes\*.h; DestDir: {app}\modules\{#RENDERER}\includes; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\includes\*.h; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\includes; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\help\addchapter.sce; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\help\addchapter.sce; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\etc\{#RENDERER}.quit; DestDir: {app}\modules\{#RENDERER}\etc; Components: {#COMPN_GRAPHICS}
-Source: modules\{#RENDERER}\etc\{#RENDERER}.start; DestDir: {app}\modules\{#RENDERER}\etc; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\etc\{#GRAPHIC_EXPORT}.quit; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\etc; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\etc\{#GRAPHIC_EXPORT}.start; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\etc; Components: {#COMPN_GRAPHICS}
 ;
-;Source: modules\{#RENDERER}\help\*.htm; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHIC_EXPORT}\help\*.htm; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
 ;
-Source: modules\{#RENDERER}\macros\buildmacros.sce; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#RENDERER}\macros\buildmacros.bat; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#RENDERER}\macros\cleanmacros.bat; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-;Source: modules\{#RENDERER}\macros\*.bin; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-;Source: modules\{#RENDERER}\macros\*.sci; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-;Source: modules\{#RENDERER}\macros\lib; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-;Source: modules\{#RENDERER}\macros\names; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\macros\buildmacros.sce; DestDir: {app}\modules\{#RGRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\macros\buildmacros.bat; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHIC_EXPORT}\macros\cleanmacros.bat; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHIC_EXPORT}\macros\*.bin; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHIC_EXPORT}\macros\*.sci; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHIC_EXPORT}\macros\lib; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHIC_EXPORT}\macros\names; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
 ;
-;Source: modules\{#RENDERER}\demos\*.*; DestDir: {app}\modules\{#RENDERER}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHIC_EXPORT}\demos\*.*; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;
-;Source: modules\{#RENDERER}\tests\*.*; DestDir: {app}\modules\{#RENDERER}\tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_TESTS}
+;Source: modules\{#GRAPHIC_EXPORT}\tests\*.*; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\tests; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
