@@ -13,7 +13,7 @@ function [files]= dirname(files,flag,flagexpand)
     files = pathconvert(files,%f,flagexpand); 
   end 
 
-  sep = directorysepator();
+  sep = filesep();
   
   for i=1:size(files,'*')
     fname = files(i) 
