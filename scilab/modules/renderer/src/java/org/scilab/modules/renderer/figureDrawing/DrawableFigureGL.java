@@ -10,10 +10,14 @@ package org.scilab.modules.renderer.figureDrawing;
 
 
 import javax.media.opengl.GL;
+
+import org.scilab.modules.graphic_export.ExportToFile;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.jni.TestSwig;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.ObjectGLCleaner;
+
 
 
 
@@ -365,9 +369,6 @@ public class DrawableFigureGL extends ObjectGL {
 	public void exportToFile(String fileName, int fileType) {
 		exportFileName = fileName;
 		exportFileType = fileType; 
-  		
-	    //GLPbuffer pbuffer = GLDrawableFactory.getFactory().createGLPbuffer(new GLCapabilities(), null, 2000 , 2000, null);
-
 		
 		drawCanvas();		
 
@@ -395,7 +396,7 @@ public class DrawableFigureGL extends ObjectGL {
   		export.setFileSize(getCanvasWidth(), getCanvasHeight());
   		export.exportToBitmap();
   		// back to defautl value
-  		gl.glReadBuffer(GL.GL_BACK);
+  		gl.glReadBuffer(GL.GL_BACK);  		
   	}
 
   	/**
@@ -411,5 +412,4 @@ public class DrawableFigureGL extends ObjectGL {
 	public int getExportFileType() {
 		return exportFileType;
 	}
-
 }
