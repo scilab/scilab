@@ -18,13 +18,15 @@
 #include "ObjectSelection.h"
 #include "DrawingBridge.h"
 #include "localization.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,num, lw;
   unsigned long hdl;
-  sciPointObj *pobj, *pparentfigure;
+  sciPointObj * pobj;
+  sciPointObj * parentFigure;
 
   CheckRhs(0,1);
   CheckLhs(0,1);
@@ -35,9 +37,12 @@ int sci_delete(char *fname,unsigned long fname_len)
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
     if (m1!=1||n1!=1) {
       lw = 1 + Top - Rhs;
-      C2F(overload)(&lw,"delete",6);return 0;}
+      C2F(overload)(&lw,"delete",6);return 0;
+    }
     if (Rhs == 2)
+    {
       GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */
+    }
     hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
     break;
   case sci_strings: /* delete("all") */
@@ -45,7 +50,10 @@ int sci_delete(char *fname,unsigned long fname_len)
     GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
     if (strcmp(cstk(l2),"all") == 0)
     {
-      sciXbasc();return 0;
+      startGraphicDataWriting();
+      sciXbasc();
+      endGraphicDataWriting();
+      return 0;
     }
     else
     {
@@ -60,17 +68,22 @@ int sci_delete(char *fname,unsigned long fname_len)
   }
 
   pobj = sciGetPointerFromHandle(hdl);
+
   if (pobj == NULL)
   {
     Scierror(999,_("%s: The handle is not valid.\n"),fname);
     return 0;
   }
+
+  parentFigure = sciGetParentFigure(pobj);
   
   num = sciGetNumFigure( pobj ) ;
 
   if ((Rhs == 2) && (strcmp(cstk(l2),"callback") == 0))
   {
+    startFigureDataWriting(parentFigure);
     sciDelCallback((sciPointObj *)pobj);
+    endFigureDataWriting(parentFigure);
   }
   else
   {
@@ -80,8 +93,9 @@ int sci_delete(char *fname,unsigned long fname_len)
     if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
     {
       BOOL selected = sciGetIsSelected( pobj ) ;
-      pparentfigure = sciGetParentFigure(pobj);
-      sciSetCurrentObj( sciGetParent(pobj) ) ; /* A LAISSER F.Leray 25.03.04*/
+      sciPointObj * parentObj = sciGetParent(pobj);
+      startFigureDataWriting(parentFigure);
+      sciSetCurrentObj(parentObj) ; /* A LAISSER F.Leray 25.03.04*/
       sciDelGraphicObj( pobj ) ; /* don't use pobj after this point */
       pobj = NULL ;
 
@@ -90,15 +104,19 @@ int sci_delete(char *fname,unsigned long fname_len)
       if ( objType == SCI_SUBWIN && selected )
       {
         /* we have to select antoher subwindow if one exists at least */
-        sciSelectFirstSubwin( pparentfigure ) ;
+        sciSelectFirstSubwin( parentFigure ) ;
       }
 
+      endFigureDataWriting(parentFigure);
+
       /* redraw the window */
-      sciDrawObj( pparentfigure ) ;
+      sciDrawObj( parentObj ) ;
     }
     else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* F.Leray 13.04.04: We delete the special object Figure !!*/
     {
+      startFigureDataWriting(parentFigure);
       sciDeleteWindow( num );
+      endFigureDataWriting(parentFigure);
     }
 
   }
