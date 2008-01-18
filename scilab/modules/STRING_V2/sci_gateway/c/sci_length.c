@@ -158,8 +158,8 @@ static int lengthMatrix(void)
 	int Row_Out = 0, Col_Out = 0;
 	int StackPos = 0;
 
-	/*When input vector of integer ascii codes  */
-	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&StackPos);
+	/*input matrix is a  matrix of double */
+	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Num,&Col_Num,&StackPos);
 
 	StackPos = 0;
 	Row_Out = 1;
