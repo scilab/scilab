@@ -1710,10 +1710,6 @@
 				RelativePath=".\src\c\WindowList.c"
 				>
 			</File>
-			<File
-				RelativePath=".\src\c\xs2file.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
