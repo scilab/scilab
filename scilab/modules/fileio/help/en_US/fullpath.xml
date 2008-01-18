@@ -45,8 +45,12 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-   fullpath('scilab.test')
-  ]]></EXAMPLE>
+mkdir(TMPDIR+'/niv1');
+mkdir(TMPDIR+'/niv1/niv2');
+mputl(' ',TMPDIR+'/niv1/test.txt');
+cd(TMPDIR+'/niv1/niv2');
+fullpath('../test.txt')
+]]></EXAMPLE>
 
 
   <AUTHORS>

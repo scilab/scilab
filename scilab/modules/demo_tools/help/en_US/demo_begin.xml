@@ -21,15 +21,6 @@
 		</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE><![CDATA[
-getf('SCI/demos/demos_lib/demo_begin.sci');
-
-demo_begin;
-
-getf('SCI/demos/graphics/bezier/Macros.sci');
-exec('SCI/demos/graphics/bezier/bezier.sci','n');
-	]]></EXAMPLE>
-	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>
 			<LINK>demo_end</LINK>

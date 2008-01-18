@@ -18,10 +18,6 @@
 		</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE><![CDATA[
-demo_run('SCI/demos/control/pid/pid_1.sce');
-	]]></EXAMPLE>
-	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>
 			<LINK>exec</LINK>

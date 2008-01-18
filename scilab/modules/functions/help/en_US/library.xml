@@ -37,15 +37,12 @@
   <EXAMPLE>
 <![CDATA[
 // elemlib is a predefined library
-elemlib //displays the contents of the library
+elementary_functionlib //displays the contents of the library
 A=rand(3,3);
 cosm(A) //loads cosm and executes it
-
 whos -name cosm // now cosm is a variable
-
-elemlib.sinm //loads sinm from the library
-
-elemlib.cosm(A) //reloads cosm and executes it
+elementary_functionlib.sinm //loads sinm from the library
+elementary_functionlib.cosm(A) //reloads cosm and executes it
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

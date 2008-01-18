@@ -21,13 +21,6 @@
 		</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE><![CDATA[
-getf('SCI/demos/optimization/datafit/demo_datafit.sci')
-demo_datafit()
-
-demo_end();
-	]]></EXAMPLE>
-	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>
 			<LINK>demo_begin</LINK>
