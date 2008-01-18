@@ -200,10 +200,12 @@ function bench_run(varargin)
 			
 			// XML print
 			xml_str = [ xml_str ; ..
-				sprintf("    <bench id=""%s"" duration=""%s"" nb_run=""%s"">", ..
-					test_list(i,2), ..
-					strsubst(returned_time_str," "+ascii(181)+"s",""), ..
-					nb_run_done) ];
+				"    <bench>"; ..
+				"        <module>"+test_list(i,1)+"</module>"; ..
+				"        <id>"+test_list(i,2)+"</id>"; ..
+				"        <duration>"+strsubst(returned_time_str," "+ascii(181)+"s","")+"</duration>"; ..
+				"        <nb_run>"+nb_run_done+"</nb_run>"; ..
+				"    </bench>" ];
 			
 		end
 		
