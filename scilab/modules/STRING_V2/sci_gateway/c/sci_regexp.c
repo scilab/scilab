@@ -22,7 +22,7 @@
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
 #define CHAR_R 'r'
-#define STR_ONCE 'ONCE'
+#define STR_ONCE 'o'
 /* TODO : Add tests !!! man , bench , search memory leak , and optimize ... */
 /* Not finish !!! :( */
 /*------------------------------------------------------------------------*/
@@ -87,7 +87,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	if (mn != 1)
     {
 		freeArrayOfString(Str,mn);
-        Scierror(36, _("First input argument is incorrect.\n")); /* @TODO : detail why it is incorrect */
+        Scierror(36, _("First input argument must be one string.\n")); 
         return 0;
     }
 
@@ -147,8 +147,29 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 				}while(w == 0 && Output_Start!=Output_End);
 				if (save) {FREE(save);save=NULL;}
             }
-        }
-    }
+		}
+		else if (typ== STR_ONCE)
+		{
+		
+			int x = 0;
+			int w = 0;
+
+			int Output_Start = 0;
+			int Output_End = 0;
+
+            for (x = 0; x < mn2; ++x)
+            {
+                w = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
+                if ( w == 0)
+                {         
+                    values[nbValues++]=Output_Start+1;         /*adding the answer into the outputmatrix*/
+					values_end[nbValues_end++]=Output_End; 
+                    position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
+                }     
+            }
+        
+		}
+	}
     
 	if (nbValues!=0)
 	{
