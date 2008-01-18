@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="renderer"
 	ProjectGUID="{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	RootNamespace="renderer"
@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -133,7 +133,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
