@@ -913,7 +913,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
 @GUI_TRUE@				-I$(top_srcdir)/libs/doublylinkedlist/includes \
-@GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes
+@GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
+@GUI_TRUE@				-I$(top_srcdir)/modules/graphic_export/includes/
 
 
 # All the sources needed by libscirenderer.la

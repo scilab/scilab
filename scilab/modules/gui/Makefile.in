@@ -650,7 +650,8 @@ JARMASK = *.jar
 @GUI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
-@GUI_TRUE@			-Isrc/jni/
+@GUI_TRUE@			-Isrc/jni/ \
+@GUI_TRUE@			-I$(top_srcdir)/modules/graphic_export/includes/
 
 libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la

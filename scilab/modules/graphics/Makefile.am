@@ -401,9 +401,13 @@ libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/jvm/includes \
 				-I$(top_srcdir)/modules/renderer/includes/ \
 				-I$(top_srcdir)/modules/action_binding/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/graphic_export/includes/
 
-libscigraphics_la_CXXFLAGS =  -Iincludes/ -Isrc/c/ $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes
+libscigraphics_la_CXXFLAGS =  	-Iincludes/ \
+				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
+				-I$(top_srcdir)/modules/jvm/includes \
+			 	-I$(top_srcdir)/modules/graphic_export/includes/
 
 libscigraphics_la_LDFLAGS =  $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 

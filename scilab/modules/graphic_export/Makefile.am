@@ -26,8 +26,10 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-Isrc/cpp/ \
 				-Isrc/jni/ \
 				-I$(top_srcdir)/modules/jvm/includes \
-				-I$(top_srcdir)/modules/graphic/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/graphics/includes/ \
+				-I$(top_srcdir)/modules/renderer/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/libs/doublylinkedlist/includes
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
@@ -76,7 +78,7 @@ includes/xs2file.h \
 includes/sci_xs2emf.h \
 includes/sci_xs2bmp.h \
 includes/sci_xs2ps.h \
-includes/sci_xs2fig.h \
+includes/sci_xs2fig.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
