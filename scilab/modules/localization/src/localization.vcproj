@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="localization"
 	ProjectGUID="{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
 	RootNamespace="localization"
@@ -321,26 +321,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\c\sci_addtext.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="..\sci_gateway\c\sci_dgettext.c"
 				>
 			</File>
@@ -397,52 +377,12 @@
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\c\sci_removetext.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="..\sci_gateway\c\sci_setlanguage.c"
 				>
 			</File>
 			<File
 				RelativePath=".\c\setgetlanguage.c"
 				>
-			</File>
-			<File
-				RelativePath=".\c\TerminateLocalization.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
