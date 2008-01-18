@@ -168,12 +168,7 @@ gotten_store = size;
 return block;
 }
 
-/* For recursion malloc/free, to test stacking calls */
 
-static void *stack_malloc(size_t size)
-{
-	return (void *)MALLOC(size);
-}
 
 
 /*************************************************
@@ -819,6 +814,15 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						// IT WORKS by a MIRACLE ...
 						if (buffer) FREE(buffer);
 						if (offsets) FREE(offsets);
+						if (use_offsets) FREE(use_offsets);
+						if (re ) FREE(re);
+						if (extra ) FREE(extra);
+						if (tables)
+						{
+							FREE((void *)tables);
+							setlocale(LC_CTYPE, "C");
+							locale_set = 0;
+						}
 						return 0;
 					}
 				}
