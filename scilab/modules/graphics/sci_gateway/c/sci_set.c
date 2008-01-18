@@ -109,8 +109,10 @@ int sci_set(char *fname, unsigned long fname_len)
 				{
 					if (m1!=1||n1!=1) 
 					{ 
-						Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
-						return 0;
+						//Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+						//return 0;
+                                          lw = 1 + Top - Rhs;
+                                          C2F(overload)(&lw,"set",3);return 0;
 					}
 
 					hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */ 
