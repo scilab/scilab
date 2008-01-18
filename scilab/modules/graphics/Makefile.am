@@ -280,7 +280,6 @@ src/c/Axes.c \
 src/c/sciMatrix.c \
 src/c/DrawObjects.c \
 src/c/Vect2Matrix.c \
-src/c/xs2file.c \
 src/c/Plo3d.c \
 src/c/GetProperty.c \
 src/c/Contour.c \
@@ -336,9 +335,6 @@ sci_gateway/c/sci_xset.c \
 sci_gateway/c/sci_set_posfig_dim.c \
 sci_gateway/c/sci_xgetech.c \
 sci_gateway/c/sci_unzoom.c \
-sci_gateway/c/sci_xs2ppm.c \
-sci_gateway/c/sci_xs2bmp.c \
-sci_gateway/c/sci_xs2emf.c \
 sci_gateway/c/sci_xsegs.c \
 sci_gateway/c/sci_xaxis.c \
 sci_gateway/c/sci_glue.c \
@@ -346,7 +342,6 @@ sci_gateway/c/sci_xarc.c \
 sci_gateway/c/sci_xpolys.c \
 sci_gateway/c/sci_xstring.c \
 sci_gateway/c/sci_xstringb.c \
-sci_gateway/c/sci_xs2gif.c \
 sci_gateway/c/sci_xsetech.c \
 sci_gateway/c/sci_show_window.c \
 sci_gateway/c/sci_param3d1.c \
@@ -369,7 +364,6 @@ sci_gateway/c/sci_move.c \
 sci_gateway/c/sci_copy.c \
 sci_gateway/c/sci_relocate_handle.c \
 sci_gateway/c/sci_get.c \
-sci_gateway/c/sci_xs2ps.c \
 sci_gateway/c/sci_xarcs.c \
 sci_gateway/c/sci_xfpoly.c \
 sci_gateway/c/sci_drawlater.c \
@@ -383,7 +377,6 @@ sci_gateway/c/sci_unglue.c \
 sci_gateway/c/gw_graphics.c \
 sci_gateway/c/sci_zoom_rect.c \
 sci_gateway/c/sci_delete.c \
-sci_gateway/c/sci_xs2fig.c \
 sci_gateway/c/sci_plot2d.c \
 sci_gateway/c/sci_xrects.c \
 sci_gateway/c/sci_xtitle.c \
@@ -457,13 +450,11 @@ includes/DefaultCommandArg.h \
 includes/graphicSession.h \
 includes/sci_xgraduate.h \
 includes/sci_unzoom.h \
-includes/sci_xs2ppm.h \
 includes/sci_xsegs.h \
 includes/sci_xaxis.h \
 includes/sci_xarc.h \
 includes/sci_xpolys.h \
 includes/sci_xstring.h \
-includes/sci_xs2gif.h \
 includes/Axes.h \
 includes/sci_xsetech.h \
 includes/sciMatrix.h \
@@ -471,7 +462,6 @@ includes/sci_show_window.h \
 includes/sci_param3d1.h \
 includes/sci_xstringl.h \
 includes/graphicModuleLoad.h \
-includes/xs2file.h \
 includes/sci_matplot.h \
 includes/color.h \
 includes/sci_drawaxis.h \
@@ -525,12 +515,10 @@ includes/sci_xset.h \
 includes/sci_xgetech.h \
 includes/sci_glue.h \
 includes/sci_xstringb.h \
-includes/sci_xs2emf.h \
 includes/fig.h \
 includes/sci_xname.h \
 includes/DrawObjects.h \
 includes/Vect2Matrix.h \
-includes/sci_xs2bmp.h \
 includes/sci_xpoly.h \
 includes/sci_xchange.h \
 includes/sci_demo.h \
@@ -540,7 +528,6 @@ includes/sci_plot3d.h \
 includes/sci_copy.h \
 includes/BuildObjects.h \
 includes/CloneObjects.h \
-includes/sci_xs2ps.h \
 includes/sci_xarcs.h \
 includes/pixel_mode.h \
 includes/sci_champ.h \
@@ -550,7 +537,6 @@ includes/sci_xend.h \
 includes/sci_unglue.h \
 includes/gw_graphics.h \
 includes/sci_zoom_rect.h \
-includes/sci_xs2fig.h \
 includes/DestroyObjects.h \
 includes/sci_xrects.h \
 includes/sci_xtitle.h \

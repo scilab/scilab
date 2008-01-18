@@ -81,8 +81,8 @@ static OpTab Interfaces[] = {
 	/* 53  */ {C2F(gw_shell)},
 	/* 54  */ {C2F(gw_completion)},
 	/* 55  */ {C2F(gw_history_manager)},
-	/* 56  */ {C2F(gw_spreadsheet)}/*,*/
-	/* 57  */ /*{C2F(gw_graphic_export)}*/
+	/* 56  */ {C2F(gw_spreadsheet)},
+	/* 57  */ {C2F(gw_graphic_export)}
 };
 
 

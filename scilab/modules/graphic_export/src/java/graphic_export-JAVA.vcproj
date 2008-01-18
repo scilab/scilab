@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8,00"
 	Name="graphic_export-Ant"
-	ProjectGUID="{3E4EF47F-2284-4b43-ABBB-20593FF0B51D}"
+	ProjectGUID="{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}"
 	RootNamespace="graphic_export-Ant"
 	Keyword="MakeFileProj"
 	>

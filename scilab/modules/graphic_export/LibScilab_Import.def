@@ -5,3 +5,11 @@ EXPORTS
 
 ; core
 com_
+stack_
+getrhsvar_
+IsAScalar
+gettype_
+vstk_
+checklhs_
+checkrhs_
+putlhsvar_

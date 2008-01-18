@@ -12,7 +12,12 @@ int C2F(gw_graphic_export)(void);
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
 /*--------------------------------------------------------------------------*/ 
-
+#include "sci_xs2bmp.h"
+#include "sci_xs2ps.h"
+#include "sci_xs2ppm.h"
+#include "sci_xs2emf.h"
+#include "sci_xs2gif.h"
+#include "sci_xs2fig.h"
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_GRAPHIC_EXPORT__ */
 /*--------------------------------------------------------------------------*/ 

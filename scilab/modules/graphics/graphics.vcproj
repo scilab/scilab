@@ -1131,30 +1131,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xs2bmp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xs2emf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xs2fig.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xs2gif.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xs2ppm.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xs2ps.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_xsave.c"
 				>
 			</File>
@@ -2190,30 +2166,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xrects.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xs2bmp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xs2emf.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xs2fig.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xs2gif.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xs2ppm.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xs2ps.h"
 				>
 			</File>
 			<File

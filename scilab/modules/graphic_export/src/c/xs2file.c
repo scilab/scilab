@@ -58,7 +58,7 @@ int xs2file(char * fname, ExportFileType fileType )
       return 0;
     }
   }
-
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

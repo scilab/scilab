@@ -8,8 +8,17 @@ if GUI
 # List of the c files
 GRAPHIC_EXPORT_CPP_SOURCES = 
 
+GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c
+
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
+sci_gateway/c/sci_xs2bmp.c \
+sci_gateway/c/sci_xs2emf.c \
+sci_gateway/c/sci_xs2fig.c \
+sci_gateway/c/sci_xs2gif.c \
+sci_gateway/c/sci_xs2ppm.c \
+sci_gateway/c/sci_xs2ps.c 
+
 
 # Includes need for the compilation
 libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
@@ -21,7 +30,7 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # All the sources needed by libscigraphic_export.la
-libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
@@ -60,7 +69,14 @@ libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.st
 
 #### graphic_export : include files ####
 libscigraphic_export_la_includedir=$(pkgincludedir)/graphic_export
-libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h
+libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h \
+includes/sci_xs2ppm.h \
+includes/sci_xs2gif.h \
+includes/xs2file.h \
+includes/sci_xs2emf.h \
+includes/sci_xs2bmp.h \
+includes/sci_xs2ps.h \
+includes/sci_xs2fig.h \
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

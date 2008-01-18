@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="graphic_export"
 	ProjectGUID="{5AD5654B-B2EE-4B84-81FC-F6A4C1073D96}"
 	RootNamespace="graphic_export"
@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -65,11 +65,11 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib libscilab.lib"
+				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="graphic_export.def"
@@ -133,7 +133,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -152,11 +152,11 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib libscilab.lib"
+				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="graphic_export.def"
@@ -210,6 +210,34 @@
 				RelativePath=".\sci_gateway\c\gw_graphic_export.c"
 				>
 			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xs2bmp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xs2emf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xs2fig.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xs2gif.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xs2ppm.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_xs2ps.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\xs2file.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -218,6 +246,34 @@
 			>
 			<File
 				RelativePath=".\includes\gw_graphic_export.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2bmp.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2emf.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2fig.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2gif.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2ppm.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2ps.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\xs2file.h"
 				>
 			</File>
 		</Filter>
@@ -239,7 +295,15 @@
 			Name="Libraries Dependencies"
 			>
 			<File
+				RelativePath=".\graphics_Import.def"
+				>
+			</File>
+			<File
 				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\renderer_Import.def"
 				>
 			</File>
 		</Filter>

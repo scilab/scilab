@@ -21,12 +21,11 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-<!--  
+<!-- =================== --> 
 <PRIMITIVE gatewayId="57" primitiveId="1" primitiveName="xs2gif" />
 <PRIMITIVE gatewayId="57" primitiveId="2" primitiveName="xs2ppm" />
 <PRIMITIVE gatewayId="57" primitiveId="3" primitiveName="xs2ps" />
 <PRIMITIVE gatewayId="57" primitiveId="4" primitiveName="xs2bmp" />
 <PRIMITIVE gatewayId="57" primitiveId="5" primitiveName="xs2emf" />
--->
+<PRIMITIVE gatewayId="57" primitiveId="6" primitiveName="xs2fig" />
 </GATEWAY>
