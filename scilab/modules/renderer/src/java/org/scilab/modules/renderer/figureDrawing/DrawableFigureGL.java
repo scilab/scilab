@@ -14,7 +14,6 @@ import javax.media.opengl.GL;
 import org.scilab.modules.graphic_export.ExportToFile;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.jni.TestSwig;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.ObjectGLCleaner;
 
