@@ -14,7 +14,7 @@ extern "C" {
 #endif
 
 #include "ObjectStructure.h"
-#include "xs2file.h"
+#include "xs2file.h" /* graphic_export */
 
 /**
  * Change the colormap of a figure. The colormap is stored in java

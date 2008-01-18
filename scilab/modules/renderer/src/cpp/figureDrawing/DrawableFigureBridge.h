@@ -14,7 +14,7 @@
 
 extern "C"
 {
-#include "xs2file.h"
+#include "xs2file.h" /* graphic_export */
 }
 
 namespace sciGraphics
