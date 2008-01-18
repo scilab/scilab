@@ -43,3 +43,6 @@ library.renderer.name=org.scilab.modules.renderer.jar
 
 library.javasci.dir=${modules.dir}/javasci/${build.jar.dir}/
 library.javasci.name=javasci.jar
+
+library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
+library.graphic_export.name=org.scilab.modules.graphic_export.jar
