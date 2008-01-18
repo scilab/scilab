@@ -35,7 +35,7 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int l
 #ifdef CALLOC
 #undef CALLOC
 #endif
-#define CALLOC(x,y) MyHeapAlloc((x*y),__FILE__,__LINE__)
+#define CALLOC(x,y) MyHeapAlloc(((x)*(y)),__FILE__,__LINE__)
 
 
 #ifdef REALLOC
