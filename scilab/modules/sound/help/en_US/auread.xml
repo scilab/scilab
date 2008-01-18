@@ -61,7 +61,7 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-  y=wavread('SCI/demos/signal/sound/chimes.wav');
+  y=wavread('SCI/modules/sound/demos/chimes.wav');
   // default is 8-bits mu-law
   auwrite(y,TMPDIR+'/tmp.au');
   y1=auread(TMPDIR+'/tmp.au');
