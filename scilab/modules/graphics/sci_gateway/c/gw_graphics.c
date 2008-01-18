@@ -46,7 +46,6 @@ static gw_generic_table Tab[]={
 	{sci_xfpoly,"xfpoly"},
 	{sci_xfpolys,"xfpolys"},
 	{sci_xrect,"xfrect"},
-	{sci_xg2ps,"xg2ps"},
 	{sci_xget,"xget"},
 	{sci_xgetech,"xgetech"},
 	{sci_xgetmouse,"xgetmouse"},

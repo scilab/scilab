@@ -17,7 +17,8 @@ sci_gateway/c/sci_xs2emf.c \
 sci_gateway/c/sci_xs2fig.c \
 sci_gateway/c/sci_xs2gif.c \
 sci_gateway/c/sci_xs2ppm.c \
-sci_gateway/c/sci_xs2ps.c 
+sci_gateway/c/sci_xs2ps.c \
+sci_gateway/c/sci_xg2ps.c
 
 
 # Includes need for the compilation
@@ -78,7 +79,8 @@ includes/xs2file.h \
 includes/sci_xs2emf.h \
 includes/sci_xs2bmp.h \
 includes/sci_xs2ps.h \
-includes/sci_xs2fig.h
+includes/sci_xs2fig.h \
+includes/sci_xg2ps.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

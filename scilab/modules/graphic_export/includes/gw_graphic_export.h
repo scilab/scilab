@@ -18,6 +18,7 @@ int C2F(gw_graphic_export)(void);
 #include "sci_xs2emf.h"
 #include "sci_xs2gif.h"
 #include "sci_xs2fig.h"
+#include "sci_xg2ps.h"
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_GRAPHIC_EXPORT__ */
 /*--------------------------------------------------------------------------*/ 

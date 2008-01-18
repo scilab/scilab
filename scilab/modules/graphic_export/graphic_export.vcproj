@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_xg2ps.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_xs2bmp.c"
 				>
 			</File>
@@ -246,6 +250,10 @@
 			>
 			<File
 				RelativePath=".\includes\gw_graphic_export.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xg2ps.h"
 				>
 			</File>
 			<File

@@ -28,4 +28,5 @@
 <PRIMITIVE gatewayId="57" primitiveId="4" primitiveName="xs2bmp" />
 <PRIMITIVE gatewayId="57" primitiveId="5" primitiveName="xs2emf" />
 <PRIMITIVE gatewayId="57" primitiveId="6" primitiveName="xs2fig" />
+<PRIMITIVE gatewayId="57" primitiveId="7" primitiveName="xg2ps" />
 </GATEWAY>

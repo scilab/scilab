@@ -357,7 +357,6 @@ sci_gateway/c/sci_plot2d1.c \
 sci_gateway/c/sci_xrect.c \
 sci_gateway/c/sci_xclea.c \
 sci_gateway/c/sci_draw.c \
-sci_gateway/c/sci_xg2ps.c \
 sci_gateway/c/sci_xarrows.c \
 sci_gateway/c/sci_plot3d.c \
 sci_gateway/c/sci_move.c \
@@ -475,7 +474,6 @@ includes/sci_plot2d1.h \
 includes/GetProperty.h \
 includes/sci_xclea.h \
 includes/SetProperty.h \
-includes/sci_xg2ps.h \
 includes/sci_xarrows.h \
 includes/sci_move.h \
 includes/sci_relocate_handle.h \

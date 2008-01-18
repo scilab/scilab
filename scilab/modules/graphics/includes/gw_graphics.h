@@ -73,7 +73,6 @@
 #include "sci_xtape.h"
 #include "sci_show_window.h"
 #include "sci_xpolys.h"
-#include "sci_xg2ps.h"
 #include "sci_xdel.h"
 #include "sci_winsid.h"
 #include "sci_contour2di.h"

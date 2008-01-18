@@ -27,8 +27,8 @@ static Graphic_ExportTable Tab[]=
   {sci_xs2ps,"xs2ps"},
   {sci_xs2bmp,"xs2bmp"},
   {sci_xs2emf,"xs2emf"},
-  {sci_xs2fig,"xs2fig"}
-  
+  {sci_xs2fig,"xs2fig"},
+  {sci_xs2fig,"xg2ps"}
 };
 
 /*--------------------------------------------------------------------------*/
