@@ -34,6 +34,7 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -73,7 +74,8 @@ public class SwingScilabTab extends View implements SimpleTab {
      */
 	public void repaint() {
 		super.repaint();
-	}
+		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
+		}
 	
 	/**
 	 * Sets the Name of a swing Scilab tab
