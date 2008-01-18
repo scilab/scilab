@@ -46,6 +46,7 @@ completion \
 history_manager \
 action_binding \
 console \
+graphic_export \
 renderer \
 gui \
 graphics \
@@ -112,6 +113,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/graphic_export/libscigraphics_export.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \

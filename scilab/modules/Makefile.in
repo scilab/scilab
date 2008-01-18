@@ -99,6 +99,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/graphic_export/libscigraphics_export.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
@@ -172,10 +173,11 @@ DIST_SUBDIRS = polynomials string STRING_V2 intersci cacsd \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
-	action_binding console renderer gui graphics windows_tools \
-	functions others overloading maple2scilab m2sci texmacs scipad \
-	scilab2fortran development_tools compatibility_functions \
-	helptools scicos fftw pvm spreadsheet jvm demo_tools . javasci
+	action_binding console graphic_export renderer gui graphics \
+	windows_tools functions others overloading maple2scilab m2sci \
+	texmacs scipad scilab2fortran development_tools \
+	compatibility_functions helptools scicos fftw pvm spreadsheet \
+	jvm demo_tools . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -364,11 +366,11 @@ SUBDIRS = polynomials $(am__append_1) STRING_V2 intersci cacsd \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
-	action_binding console renderer gui graphics windows_tools \
-	functions others overloading maple2scilab m2sci texmacs scipad \
-	scilab2fortran development_tools compatibility_functions \
-	helptools scicos fftw pvm spreadsheet jvm demo_tools . \
-	$(am__append_2)
+	action_binding console graphic_export renderer gui graphics \
+	windows_tools functions others overloading maple2scilab m2sci \
+	texmacs scipad scilab2fortran development_tools \
+	compatibility_functions helptools scicos fftw pvm spreadsheet \
+	jvm demo_tools . $(am__append_2)
 modulename = 
 
 #### Basic files ####
@@ -391,6 +393,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/graphic_export/libscigraphics_export.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \

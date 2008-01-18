@@ -1,7 +1,7 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE
-### INRIA - Scilab 2007
+### Graphic export module
+### INRIA - Scilab 2008
 ##########
 
 if GUI

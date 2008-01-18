@@ -1075,6 +1075,7 @@ modules/string/Makefile
 modules/STRING_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
+modules/graphic_export/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
