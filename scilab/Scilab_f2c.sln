@@ -830,6 +830,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "incremental_link", "modules
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_export", "D:\TRUNK\scilab\modules\graphic_export\src\nographic_export\nographic_export.vcproj", "{3411652C-2879-48D0-B5C1-18D546E0A683}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphic_export-Ant", "D:\TRUNK\scilab\modules\graphic_export\src\java\graphic_export-JAVA.vcproj", "{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1310,6 +1314,14 @@ Global
 		{EAB6C580-22B3-4359-BA1D-DD7499A96163}.Debug|Win32.Build.0 = Debug|Win32
 		{EAB6C580-22B3-4359-BA1D-DD7499A96163}.Release|Win32.ActiveCfg = Release|Win32
 		{EAB6C580-22B3-4359-BA1D-DD7499A96163}.Release|Win32.Build.0 = Release|Win32
+		{3411652C-2879-48D0-B5C1-18D546E0A683}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3411652C-2879-48D0-B5C1-18D546E0A683}.Debug|Win32.Build.0 = Debug|Win32
+		{3411652C-2879-48D0-B5C1-18D546E0A683}.Release|Win32.ActiveCfg = Release|Win32
+		{3411652C-2879-48D0-B5C1-18D546E0A683}.Release|Win32.Build.0 = Release|Win32
+		{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}.Debug|Win32.Build.0 = Debug|Win32
+		{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}.Release|Win32.ActiveCfg = Release|Win32
+		{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
