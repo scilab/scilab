@@ -4,12 +4,14 @@ LIBRARY    LibScilab.dll
 EXPORTS
 
 ; core
+putlhsvar_
+callFunctionFromGateway
+getScilabMode
 com_
 stack_
+vstk_
 getrhsvar_
 IsAScalar
 gettype_
-vstk_
-checklhs_
+checklhs_ 
 checkrhs_
-putlhsvar_
