@@ -186,7 +186,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public void removeTab(Tab tab) {
 		DockingManager.close((SwingScilabTab) tab.getAsSimpleTab());
-		
 		// Remove tool bar and menu bar
 		this.addMenuBar(null);
 		this.addToolBar(null);

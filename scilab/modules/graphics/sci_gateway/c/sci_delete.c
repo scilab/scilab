@@ -114,9 +114,9 @@ int sci_delete(char *fname,unsigned long fname_len)
     }
     else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* F.Leray 13.04.04: We delete the special object Figure !!*/
     {
-      startFigureDataWriting(parentFigure);
+      startGraphicDataWriting();
       sciDeleteWindow( num );
-      endFigureDataWriting(parentFigure);
+      endGraphicDataWriting();
     }
 
   }

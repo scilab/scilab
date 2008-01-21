@@ -186,7 +186,6 @@ public class ScilabRendererProperties implements RendererProperties {
      * Close the rendering canvas
      */
    public void closeCanvas() {
-	   parentTab.removeMember(parentCanvas);
 	   parentTab.close();
    }
 	

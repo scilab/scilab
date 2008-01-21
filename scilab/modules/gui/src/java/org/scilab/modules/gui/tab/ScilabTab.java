@@ -276,6 +276,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		
 		// remove the tab from the parent
 		parentWindow.removeTab(this);
+		this.setParentWindowId(-1);
 		
 	}
 
