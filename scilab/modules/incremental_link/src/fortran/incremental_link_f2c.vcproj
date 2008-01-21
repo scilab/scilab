@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8,00"
 	Name="incremental_link_f2c"
-	ProjectGUID="{9BC28602-73B4-4fbb-9583-478D2F047CA4}"
+	ProjectGUID="{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
 	RootNamespace="incremental_link_f2c"
 	Keyword="Win32Proj"
 	>
@@ -32,7 +32,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)incremental_link_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)incremental_link.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)incremental_link_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)incremental_link.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 				ExecutionBucket="2"
 			/>
 			<Tool
@@ -82,7 +82,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib incremental_link.lib"
+				AdditionalDependencies="LibScilab.lib scioutput_stream.lib string.lib"
 				OutputFile="$(SolutionDir)bin\incremental_link_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="incremental_link_f.def"
@@ -133,7 +133,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build Dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)incremental_link_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)incremental_link.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)incremental_link_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)incremental_link.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -175,7 +175,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib incremental_link.lib"
+				AdditionalDependencies="LibScilab.lib scioutput_stream.lib string.lib"
 				OutputFile="$(SolutionDir)bin\incremental_link_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="incremental_link_f.def"
@@ -221,112 +221,20 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdeff.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_addinter.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdiary.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_c_link.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdisp.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_fort.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intexec.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_link.c"
 				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intexecstr.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intfile.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetenv.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intmgetl.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intprint.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intrat.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intread.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intread4b.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intreadb.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intwritb.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intwrite.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="1"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intwrite4b.c"
-				>
-			</File>
-			<File
-				RelativePath=".\newsave.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\oldloadsave.c"
-				>
-			</File>
-			<File
-				RelativePath=".\v2cunit.c"
-				>
-			</File>
-			<File
-				RelativePath=".\v2unit.c"
-				>
-			</File>
-			<File
-				RelativePath=".\writebuf.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="1"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -345,78 +253,22 @@
 			Name="Fortran files"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdeff.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_addinter.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdiary.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_c_link.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdisp.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intexec.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intexecstr.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intfile.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetenv.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intmgetl.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intprint.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intrat.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intread.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intread4b.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intreadb.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intwritb.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intwrite.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_fort.f"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -424,32 +276,12 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intwrite4b.f"
-				>
-			</File>
-			<File
-				RelativePath=".\newsave.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\oldloadsave.f"
-				>
-			</File>
-			<File
-				RelativePath=".\v2cunit.f"
-				>
-			</File>
-			<File
-				RelativePath=".\v2unit.f"
-				>
-			</File>
-			<File
-				RelativePath=".\writebuf.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_link.f"
 				>
 			</File>
 		</Filter>

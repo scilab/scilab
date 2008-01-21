@@ -834,6 +834,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_export", "modules\graphic_export\src\nographic_export\nographic_export.vcproj", "{3411652C-2879-48D0-B5C1-18D546E0A683}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphic_export-Ant", "modules\graphic_export\src\java\graphic_export-JAVA.vcproj", "{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}"
@@ -845,6 +846,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphic_export", "modules\g
 	ProjectSection(ProjectDependencies) = postProject
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "incremental_link_f2c", "modules\incremental_link\src\fortran\incremental_link_f2c.vcproj", "{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
+		{EAB6C580-22B3-4359-BA1D-DD7499A96163} = {EAB6C580-22B3-4359-BA1D-DD7499A96163}
 	EndProjectSection
 EndProject
 Global
@@ -1339,6 +1346,10 @@ Global
 		{5AD5654B-B2EE-4B84-81FC-F6A4C1073D96}.Debug|Win32.Build.0 = Debug|Win32
 		{5AD5654B-B2EE-4B84-81FC-F6A4C1073D96}.Release|Win32.ActiveCfg = Release|Win32
 		{5AD5654B-B2EE-4B84-81FC-F6A4C1073D96}.Release|Win32.Build.0 = Release|Win32
+		{9BC28602-73B4-4FBB-9583-478D2F047CA4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9BC28602-73B4-4FBB-9583-478D2F047CA4}.Debug|Win32.Build.0 = Debug|Win32
+		{9BC28602-73B4-4FBB-9583-478D2F047CA4}.Release|Win32.ActiveCfg = Release|Win32
+		{9BC28602-73B4-4FBB-9583-478D2F047CA4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="core_f2c"
 	ProjectGUID="{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 	RootNamespace="core_f2c"
@@ -545,15 +545,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_addinter.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_argn.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_c_link.c"
 				>
 			</File>
 			<File
@@ -601,10 +593,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fort.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_funcprot.c"
 				>
 			</File>
@@ -630,10 +618,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_isglobal.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_link.c"
 				>
 			</File>
 			<File
@@ -1145,15 +1129,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_addinter.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_argn.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_c_link.f"
 				>
 			</File>
 			<File
@@ -1201,10 +1177,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fort.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_funcprot.f"
 				>
 			</File>
@@ -1230,10 +1202,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_isglobal.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_link.f"
 				>
 			</File>
 			<File
