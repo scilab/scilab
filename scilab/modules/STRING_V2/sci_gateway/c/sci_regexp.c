@@ -121,7 +121,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
         if (typ == CHAR_R )
         {
 			int x = 0;
-			int w = 0;
+			int answer = 0;
 
 			int Output_Start = 0;
 			int Output_End = 0;
@@ -135,8 +135,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 				do
 				{
 					strcpy(save,Str2[x]);
-					w = pcre_private(pointer,save,&Output_Start,&Output_End);
-					if ( w == 0)
+					answer = pcre_private(pointer,save,&Output_Start,&Output_End);
+					if ( answer == 0)
 					{         
 						values[nbValues++]=Output_Start+1+start_point;         /*adding the answer into the outputmatrix*/
 						values_end[nbValues_end++]=Output_End+start_point; 
@@ -144,7 +144,53 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	                    pointer=pointer+Output_End;	
 						start_point=start_point+Output_End;
 					}
-				}while(w == 0 && Output_Start!=Output_End);
+					else
+					{
+						switch (answer)
+						{
+						case NO_MATCH:
+							/*No match */
+
+						break;
+						case NOT_ENOUGH_MEMORY_FOR_VECTOR:
+							Scierror(999,_("Failed to get enough memory for offsets vector\n"));
+							return 0;
+							break;
+						case DELIMITER_NOT_ALPHANUMERIC:
+							Scierror(999,_("Delimiter must not be alphameric\n"));
+							return 0;
+							break;
+						case CAPTURING_SUBPATTERNS_ERROR:
+							Scierror(999,_("Capturing subpatterns error\n"));
+							return 0;
+						break;
+						case PARTIAL_MATCHING_NOT_SUPPORTED:
+							Scierror(999,_("Partial matching not supported\n"));
+							return 0;
+						break;
+						case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
+							Scierror(999,_("Contains explicit CR or LF match\n"));
+							return 0;
+						break;
+						case DUPLICATE_NAME_STATUS_CHANGES:
+							Scierror(999,_("Duplicate name status changes\n"));
+							return 0;
+						break;
+						case TOO_BIG_FOR_OFFSET_SIZE:
+							Scierror(999,_("Returned count is too big for offset size\n"));
+							return 0;
+						break;
+						case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
+							Scierror(999,_("Match limit not relevant for DFA matching: ignored\n"));
+							return 0;
+						break;
+						default :
+							 return 0;
+						break;	
+
+						}
+					}
+				}while(answer == 0 && Output_Start!=Output_End);
 				if (save) {FREE(save);save=NULL;}
             }
 		}
@@ -152,20 +198,66 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		{
 		
 			int x = 0;
-			int w = 0;
+			int answer = 0;
 
 			int Output_Start = 0;
 			int Output_End = 0;
 
             for (x = 0; x < mn2; ++x)
             {
-                w = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
-                if ( w == 0)
+                answer = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
+                if ( answer == 0)
                 {         
                     values[nbValues++]=Output_Start+1;         /*adding the answer into the outputmatrix*/
 					values_end[nbValues_end++]=Output_End; 
                     position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
-                }     
+                }    
+				else
+				{
+					switch (answer)
+					{
+					case NO_MATCH:
+						/*No match */
+
+					break;
+					case NOT_ENOUGH_MEMORY_FOR_VECTOR:
+						Scierror(999,_("Failed to get enough memory for offsets vector\n"));
+						return 0;
+						break;
+					case DELIMITER_NOT_ALPHANUMERIC:
+						Scierror(999,_("Delimiter must not be alphameric\n"));
+						return 0;
+						break;
+					case CAPTURING_SUBPATTERNS_ERROR:
+						Scierror(999,_("Capturing subpatterns error\n"));
+						return 0;
+					break;
+					case PARTIAL_MATCHING_NOT_SUPPORTED:
+						Scierror(999,_("Partial matching not supported\n"));
+						return 0;
+					break;
+					case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
+						Scierror(999,_("Contains explicit CR or LF match\n"));
+						return 0;
+					break;
+					case DUPLICATE_NAME_STATUS_CHANGES:
+						Scierror(999,_("Duplicate name status changes\n"));
+						return 0;
+					break;
+					case TOO_BIG_FOR_OFFSET_SIZE:
+						Scierror(999,_("Returned count is too big for offset size\n"));
+						return 0;
+					break;
+					case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
+						Scierror(999,_("Match limit not relevant for DFA matching: ignored\n"));
+						return 0;
+					break;
+					default :
+						 return 0;
+					break;	
+
+					}
+				}
             }
         
 		}
@@ -173,17 +265,17 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
     
 	if (nbValues!=0)
 	{
-		match = (char**)MALLOC(sizeof(char**)*(nbValues));
+		match = (char**)MALLOC(sizeof(char*)*(nbValues));
 	}
 	else
 	{
-		match = (char**)MALLOC(sizeof(char**)*(1));
+		match = (char**)MALLOC(sizeof(char*)*(1));
 
 	}
 	for( i=0;i<nbValues;i++)
 	{
-		if (values_end[i]-values[i]>1) match[i] = (char*)MALLOC(sizeof(char*)*(values_end[i]-values[i]+1));
-		else match[i] = (char*)MALLOC(sizeof(char*)*(1));
+		if (values_end[i]-values[i]>1) match[i] = (char*)MALLOC(sizeof(char)*(values_end[i]-values[i]+1));
+		else match[i] = (char*)MALLOC(sizeof(char)*(1));
 		for(j=values[i]-1;j<values_end[i];j++)
 		{
 			match[i][j+1-values[i]]=Str[0][j];
