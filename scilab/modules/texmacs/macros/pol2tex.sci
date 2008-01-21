@@ -15,7 +15,7 @@ function [tt]=pol2tex(a)
 		lz = lz-1;
 	end
 	
-	z = part(z,1:lz);
+	z  = part(z,1:lz);
 	
 	np = prod(size(p));
 	ok = " ";
