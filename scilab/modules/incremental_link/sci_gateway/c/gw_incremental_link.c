@@ -13,7 +13,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_addinter),"addinter"},
 	{C2F(sci_fort),"fort"},
 	{C2F(sci_call),"call"},
-	{C2F(sci_link),"link"}
+	{C2F(sci_link),"link"},
+	{C2F(sci_ulink),"ulink"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_incremental_link)()

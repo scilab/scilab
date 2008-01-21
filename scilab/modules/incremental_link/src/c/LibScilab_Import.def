@@ -10,11 +10,13 @@ com_
 funtab_
 namstr_
 getWarningMode
+getrhsvar_
 createvar_
-createvar_
+gettype_
 putlhsvar_
 checklhs_
 checkrhs_
+vstk_
 intersci_
 createvarfromptr_
 callFunctionFromGateway

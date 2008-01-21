@@ -195,7 +195,6 @@ sci_gateway/c/sci_banner.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_getos.c \
-sci_gateway/c/sci_ulink.c \
 sci_gateway/c/sci_format.c \
 sci_gateway/c/sci_fromjava.c \
 sci_gateway/c/sci_getmemory.c \

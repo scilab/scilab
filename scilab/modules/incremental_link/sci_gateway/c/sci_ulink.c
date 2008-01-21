@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "gw_core.h"
+#include "gw_incremental_link.h"
 #include "machine.h"
 #include "stack-c.h"
 #include "link.h"

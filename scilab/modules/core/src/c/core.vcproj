@@ -608,10 +608,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_ulink.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_warning.c"
 				>
 			</File>

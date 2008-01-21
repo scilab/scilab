@@ -337,7 +337,7 @@ c     if special compilation mode skip  comands
          return
       endif
       fun=13
-      fin=44
+      fin=41
       rhs=0
       return
 C     
