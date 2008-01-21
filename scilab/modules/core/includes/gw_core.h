@@ -68,7 +68,6 @@ int C2F(sci_fromc) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_islittleendian) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_getscilabmode) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len));

@@ -5,11 +5,10 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "gw_core.h"
+#include "gw_incremental_link.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
 {
-	#define nbcharsext 8
 	static int n1 = 0, m1 = 0;
 	int outIndex = 0 ;
 

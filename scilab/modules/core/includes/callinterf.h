@@ -81,7 +81,9 @@
 
 /* 57 */						#include "../../graphic_export/includes/gw_graphic_export.h"
 
-/* 58 *///                        #include "../../mpi/includes/gw_mpi.h"
+/* 58 */						#include "../../incremental_link/includes/gw_incremental_link.h"
+
+/* 59 *///                        #include "../../mpi/includes/gw_mpi.h"
 
 
 /*-------------------------------------

@@ -249,7 +249,6 @@ sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
-sci_gateway/c/sci_getdynlibext.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_librarieslist.c \

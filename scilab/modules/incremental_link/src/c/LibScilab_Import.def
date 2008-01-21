@@ -3,15 +3,18 @@
 
 EXPORTS
 ;core
+;
+iop_
+stack_
 com_
-callFunctionFromGateway
+funtab_
+namstr_
 getWarningMode
 createvar_
+createvar_
 putlhsvar_
-createvarfromptr_
-iop_
+checklhs_
+checkrhs_
 intersci_
-namstr_
-funtab_
-ExceptionMessage
-;
+createvarfromptr_
+callFunctionFromGateway

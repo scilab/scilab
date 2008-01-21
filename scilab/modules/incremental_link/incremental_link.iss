@@ -21,14 +21,15 @@ Source: modules\{#INCRLINK}\changelog.txt; DestDir: {app}\modules\{#INCRLINK}; C
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.quit; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.start; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#INCRLINK}\sci_gateway\incremental_link_gateway.xml; DestDir: {app}\modules\{#INCRLINK}\sci_gateway; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#INCRLINK}\help\addchapter.sce; DestDir: {app}\modules\{#INCRLINK}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\help\*.htm; DestDir: {app}\modules\{#INCRLINK}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;
 Source: modules\{#INCRLINK}\src\scripts\Makedll.incl; DestDir: {app}\modules\{#INCRLINK}\src\scripts; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#INCRLINK}\includes\*.h; DestDir: {app}\modules\{#INCRLINK}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\includes\*.h; DestDir: {app}\modules\{#INCRLINK}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\macros\lib; DestDir: {app}\modules\{#INCRLINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\macros\names; DestDir: {app}\modules\{#INCRLINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

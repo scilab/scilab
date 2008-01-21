@@ -203,7 +203,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\gw_incremental_link.c"
+				>
+			</File>
+			<File
 				RelativePath=".\link.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getdynlibext.c"
 				>
 			</File>
 		</Filter>
@@ -213,6 +221,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\addinter.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_incremental_link.h"
 				>
 			</File>
 			<File
