@@ -7,20 +7,15 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_vide) _PARAMS((char *fname,unsigned long fname_len))
-{
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
 {C2F(sci_debug),"debug"},
 {C2F(sci_who),"who"},
 {C2F(sci_warning),"warning"},
 {C2F(sci_argn),"argn"},
-{C2F(sci_vide),"vide"},
+{C2F(sci_getvariablesonstack),"getvariablesonstack"},
 {C2F(sci_comp),"comp"},
-{C2F(sci_vide),"vide"},
+{C2F(sci_getscilabmode),"getscilabmode"},
 {C2F(sci_mode),"mode"},
 {C2F(sci_type),"type"},
 {C2F(sci_error),"error"},
@@ -73,10 +68,9 @@ static gw_generic_table Tab[]=
 {C2F(sci_getmodules),"getmodules"},
 {C2F(sci_with_module),"with_module"},
 {C2F(sci_islittleendian),"islittleendian"},
-{C2F(sci_getscilabmode),"getscilabmode"},
 {C2F(sci_librarieslist),"librarieslist"},
-{C2F(sci_libraryinfo),"libraryinfo"},
-{C2F(sci_getvariablesonstack),"getvariablesonstack"}
+{C2F(sci_libraryinfo),"libraryinfo"}
+
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_core)()
