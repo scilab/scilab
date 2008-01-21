@@ -6,7 +6,7 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intmode)();
+extern int C2F(intmode)(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_mode) _PARAMS((char *fname,unsigned long fname_len))
 {
