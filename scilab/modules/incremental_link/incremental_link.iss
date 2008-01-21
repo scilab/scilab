@@ -12,6 +12,9 @@
 ;
 Source: bin\{#INCRLINK}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#INCRLINK}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\incremental_link_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\incremental_link_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
 ;
 Source: modules\{#INCRLINK}\VERSION.xml; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\readme.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
