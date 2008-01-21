@@ -18,6 +18,7 @@ int C2F(sci_fort) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_call) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_ulink) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_INCREMENTAL_LINK__ */
 /*--------------------------------------------------------------------------*/ 

@@ -337,7 +337,8 @@ c     if special compilation mode skip  comands
          return
       endif
       fun=13
-      fin=41
+c     if you modify pwd position in core gateway , you need change fin      
+      fin=40
       rhs=0
       return
 C     

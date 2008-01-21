@@ -41,7 +41,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_havewindow),"havewindow"},
 {C2F(sci_stacksize),"stacksize"},
 {C2F(sci_mtlb_mode),"mtlb_mode"},
-{C2F(sci_c_link),"c_link"},
 {C2F(sci_clear),"clear"},
 {C2F(sci_what),"what"},
 {C2F(sci_sciargs),"sciargs"},

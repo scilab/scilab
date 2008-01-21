@@ -205,7 +205,6 @@ sci_gateway/c/sci_macr2lst.c \
 sci_gateway/c/sci_isdef.c \
 sci_gateway/c/sci_isglobal.c \
 sci_gateway/c/sci_who.c \
-sci_gateway/c/sci_c_link.c \
 sci_gateway/c/sci_errclear.c \
 sci_gateway/c/sci_global.c \
 sci_gateway/c/sci_funcprot.c \
@@ -253,7 +252,6 @@ sci_gateway/c/sci_getvariablesonstack.c
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_c_link.f \
 sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \

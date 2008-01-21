@@ -215,6 +215,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_c_link.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_call.c"
 				>
 			</File>
