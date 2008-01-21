@@ -33,9 +33,9 @@
 	
 	<EXAMPLE><![CDATA[
 if MSDOS then 
-	unix_w("dir "+'""'+WSCI+"\bin"+'""');
+	unix_w("dir "+'""'+WSCI+"\modules"+'""');
 else
-	unix_w("ls $SCI/bin");
+	unix_w("ls $SCI/modules");
 end
 ]]></EXAMPLE>
 	
