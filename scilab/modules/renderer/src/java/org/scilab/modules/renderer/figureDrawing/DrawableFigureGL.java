@@ -260,16 +260,22 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
   	@Override
 	public void destroy(int parentFigureIndex) {
-		// figure should not be add to the object cleaner or will destroy themselves.
+		// figure should not be add to the object cleaner or they will destroy themselves.
   		FigureMapper.removeMapping(figureId);
   		
   		// call destroying on OpenGL thread in order to call it after any display call.
   		// It appears that destroying tabs while displaying causes deadlocks.
-  		Threading.invokeOnOpenGLThread(new Runnable() {
-  			public void run() {
-  				getRendererProperties().closeCanvas();
-  			}
-  		});
+  		// According to JoGL java doc, we need to test wether we are on the
+  		// OpenGL thread or not
+  		if (Threading.isOpenGLThread()) {
+  			getRendererProperties().closeCanvas();
+  		} else {
+  			Threading.invokeOnOpenGLThread(new Runnable() {
+  				public void run() {
+  					getRendererProperties().closeCanvas();
+  				}
+  			});
+  		}
 	}
 	
 	
