@@ -12,7 +12,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_getdynlibext),"getdynlibext"},
 	{C2F(sci_addinter),"addinter"},
 	{C2F(sci_fort),"fort"},
-	{C2F(sci_call),"call"}
+	{C2F(sci_call),"call"},
+	{C2F(sci_link),"link"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_incremental_link)()

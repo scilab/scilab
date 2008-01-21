@@ -13,10 +13,12 @@ src/c/link.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_incremental_link.c \
 sci_gateway/c/sci_getdynlibext.c \
 sci_gateway/c/sci_addinter.c \
-sci_gateway/c/sci_call.c
+sci_gateway/c/sci_call.c \
+sci_gateway/c/sci_link.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_addinter.f \
-sci_gateway/fortran/sci_fort.f
+sci_gateway/fortran/sci_fort.f \
+sci_gateway/fortran/sci_link.f
 
 libsciincremental_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes \

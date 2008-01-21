@@ -222,6 +222,10 @@
 				RelativePath="..\..\sci_gateway\c\sci_getdynlibext.c"
 				>
 			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_link.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -250,6 +254,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\incremental_link.iss"
+			>
+		</File>
+		<File
+			RelativePath=".\incremental_link_f_Import.def"
 			>
 		</File>
 		<File

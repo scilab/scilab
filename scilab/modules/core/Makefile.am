@@ -198,7 +198,6 @@ sci_gateway/c/sci_getos.c \
 sci_gateway/c/sci_ulink.c \
 sci_gateway/c/sci_format.c \
 sci_gateway/c/sci_fromjava.c \
-sci_gateway/c/sci_link.c \
 sci_gateway/c/sci_getmemory.c \
 sci_gateway/c/sci_fromc.c \
 sci_gateway/c/sci_havewindow.c \
@@ -272,7 +271,6 @@ sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_format.f \
-sci_gateway/fortran/sci_link.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_setbpt.f \
 sci_gateway/fortran/sci_predef.f \

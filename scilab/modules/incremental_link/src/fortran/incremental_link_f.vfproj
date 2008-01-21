@@ -42,9 +42,13 @@ copy incremental_link_f_header.def+incremental_link_f.vcdef incremental_link_f.d
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\..\sci_gateway\fortran\sci_addinter.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_fort.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_fort.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_link.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<File RelativePath="..\..\Makefile.am"/>
-		<File RelativePath="..\..\sci_gateway\incremental_link_gateway.xml"/></Files>
+		<File RelativePath="..\..\sci_gateway\incremental_link_gateway.xml"/>
+		<File RelativePath=".\incremental_link_Import.def"/>
+		<File RelativePath=".\LibScilab_Import.def"/>
+		<File RelativePath=".\output_stream_Import.def"/></Files>
 	<Globals/></VisualStudioProject>
