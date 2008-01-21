@@ -138,7 +138,14 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					answer = pcre_private(pointer,save,&Output_Start,&Output_End);
 					if ( answer == 0)
 					{         
-						values[nbValues++]=Output_Start+1+start_point;         /*adding the answer into the outputmatrix*/
+						if (Output_Start!=Output_End || Output_Start==0) 
+						{
+							values[nbValues++]=Output_Start+start_point+1;         /*adding the answer into the outputmatrix*/
+						}
+						else 
+						{
+							values[nbValues++]=Output_Start+start_point; 
+						}
 						values_end[nbValues_end++]=Output_End+start_point; 
 						position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
 	                    pointer=pointer+Output_End;	
@@ -207,8 +214,17 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
             {
                 answer = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
                 if ( answer == 0)
-                {         
-                    values[nbValues++]=Output_Start+1;         /*adding the answer into the outputmatrix*/
+                {      
+					if (Output_Start!=Output_End || Output_Start==0) 
+					{
+						values[nbValues++]=Output_Start+1;         /*adding the answer into the outputmatrix*/
+
+					}
+					else
+					{
+						values[nbValues++]=Output_Start;
+					}
+					
 					values_end[nbValues_end++]=Output_End; 
                     position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
                 }    

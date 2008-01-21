@@ -37,8 +37,8 @@ if regexp('abcc'                                    ,'/^abc/'                   
 if regexp('aabc'                                    ,'/^abc$/'                               ,'r') <>  []  then pause,end
 if regexp('aabc'                                    ,'/abc$/'                                ,'r') <>  2   then pause,end
 if regexp('aabcd'                                   ,'/abc$/'                                ,'r') <>  []  then pause,end
-//if regexp('abc'                                     ,'/^/'                                   ,'r') <>  1   then pause,end
-//?4 if regexp('abc'                                     ,'/$/'                                   ,'r') <>  4   then pause,end
+if regexp('abc'                                     ,'/^/'                                   ,'r') <>  1   then pause,end
+if regexp('abc'                                     ,'/$/'                                   ,'r') <>  3   then pause,end
 if regexp('abc'                                     ,'/a.c/'                                 ,'r') <>  1   then pause,end
 if regexp('axc'                                     ,'/a.c/'                                 ,'r') <>  1   then pause,end
 if regexp('axyzc'                                   ,'/a.*c/'                                ,'r') <>  1   then pause,end
@@ -105,7 +105,7 @@ if regexp('aabbabc'                                 ,'/a{1,}b{1,}c/'            
 if regexp('abcabc'                                  ,'/a.+?c/'                               ,'r') <>  1   then pause,end
 if regexp('cde'                                     ,'/[^ab]*/'                              ,'r') <>  1   then pause,end
 if regexp(''                                        ,'/abc/'                                 ,'r') <>  []  then pause,end
-//?1if regexp(''                                        ,'/a*/'                                  ,'r') <>  []  then pause,end
+//?if regexp(''                                        ,'/a*/'                                  ,'r') <>  []  then pause,end
 if regexp('e'                                       ,'/a|b|c|d|e/'                           ,'r') <>  1   then pause,end
 if regexp('abcdefg'                                 ,'/abcd*efg/'                            ,'r') <>  1   then pause,end
 if regexp('xabyabbbz'                               ,'/ab*/'                                 ,'r') <>  [2 5]   then pause,end
@@ -158,9 +158,9 @@ if regexp('ABC'                                     ,'/^abc$/i'                 
 if regexp('ABCC'                                    ,'/^abc$/i'                              ,'r') <>  []  then pause,end
 if regexp('ABCC'                                    ,'/^abc/i'                               ,'r') <>  1   then pause,end
 //if regexp('AABC'                                    ,'/^abc$/i'                              ,'r') <>  []  then pause,end
-//if regexp('AABC'                                    ,'/abc$/i'                               ,'r') <>  1   then pause,end
+if regexp('AABC'                                    ,'/abc$/i'                               ,'r') <>  2   then pause,end
 //if regexp('ABC'                                     ,'/^/i'                                  ,'r') <>  1   then pause,end
-//if regexp('ABC'                                     ,'/$/i'                                  ,'r') <>  1   then pause,end
+if regexp('ABC'                                     ,'/$/i'                                  ,'r') <>  3   then pause,end
 if regexp('ABC'                                     ,'/a.c/i'                                ,'r') <>  1   then pause,end
 if regexp('AXC'                                     ,'/a.c/i'                                ,'r') <>  1   then pause,end
 if regexp('AXYZC'                                   ,'/a.*?c/i'                              ,'r') <>  1   then pause,end
