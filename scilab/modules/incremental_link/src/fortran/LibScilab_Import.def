@@ -1,0 +1,19 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+stack_
+cha1_
+com_
+vstk_
+ref2val_
+checkrhs_
+getsmat_
+getwsmat
+gettype_
+getscalar_
+objvide_
+getwsmat_

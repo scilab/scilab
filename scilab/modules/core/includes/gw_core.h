@@ -44,7 +44,6 @@ int C2F(sci_mtlb_mode) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_ulink) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_clear) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sciargs) _PARAMS((char *fname,unsigned long fname_len));

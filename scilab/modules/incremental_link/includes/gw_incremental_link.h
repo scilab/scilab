@@ -13,6 +13,7 @@ int C2F(gw_incremental_link)(void);
 /* used in sci_gateway */
 /*--------------------------------------------------------------------------*/ 
 int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_INCREMENTAL_LINK__ */
 /*--------------------------------------------------------------------------*/ 

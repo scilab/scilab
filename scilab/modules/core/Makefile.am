@@ -205,7 +205,6 @@ sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
 sci_gateway/c/sci_macr2lst.c \
 sci_gateway/c/sci_isdef.c \
-sci_gateway/c/sci_addinter.c \
 sci_gateway/c/sci_isglobal.c \
 sci_gateway/c/sci_who.c \
 sci_gateway/c/sci_c_link.c \
@@ -286,7 +285,6 @@ sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_mode.f \
-sci_gateway/fortran/sci_addinter.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f

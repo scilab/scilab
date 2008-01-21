@@ -10,8 +10,11 @@ src/c/link.c
 #src/c/link_std.c 
 #src/c/link_W95.c
 
-INCREMENTAL_LINK_GATEWAY_C_SOURCES = sci_gateway/c/gw_incremental_link.c \
-sci_gateway/c/sci_getdynlibext.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_incremental_link.c \
+sci_gateway/c/sci_getdynlibext.c \
+sci_gateway/c/sci_addinter.c
+
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_addinter.f
 
 libsciincremental_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes \
@@ -20,8 +23,7 @@ libsciincremental_link_la_CFLAGS = \
 -Iincludes/
 
 pkglib_LTLIBRARIES = libsciincremental_link.la
-libsciincremental_link_la_SOURCES = $(INCREMENTAL_LINK_C_SOURCES) $(INCREMENTAL_LINK_GATEWAY_C_SOURCES)
-
+libsciincremental_link_la_SOURCES = $(INCREMENTAL_LINK_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 
 #### Target ######

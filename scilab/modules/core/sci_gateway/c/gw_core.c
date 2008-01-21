@@ -44,7 +44,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_link),"link"},
 {C2F(sci_ulink),"ulink"},
 {C2F(sci_c_link),"c_link"},
-{C2F(sci_addinter),"addinter"},
 {C2F(sci_clear),"clear"},
 {C2F(sci_what),"what"},
 {C2F(sci_sciargs),"sciargs"},
