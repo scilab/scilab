@@ -408,10 +408,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_call.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_chdir.c"
 				>
 			</File>

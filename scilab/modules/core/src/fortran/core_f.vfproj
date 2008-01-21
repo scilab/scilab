@@ -134,7 +134,6 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_error.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_exists.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_format.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_fort.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_funcprot.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_funptr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_global.f"/>

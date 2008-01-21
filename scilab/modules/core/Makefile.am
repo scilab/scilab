@@ -233,7 +233,6 @@ sci_gateway/c/sci_what.c \
 sci_gateway/c/sci_predef.c \
 sci_gateway/c/sci_clearglobal.c \
 sci_gateway/c/sci_arg.c \
-sci_gateway/c/sci_call.c \
 sci_gateway/c/sci_getcwd.c \
 sci_gateway/c/sci_type.c \
 sci_gateway/c/sci_typename.c \
@@ -279,7 +278,6 @@ sci_gateway/fortran/sci_setbpt.f \
 sci_gateway/fortran/sci_predef.f \
 sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
-sci_gateway/fortran/sci_fort.f \
 sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \

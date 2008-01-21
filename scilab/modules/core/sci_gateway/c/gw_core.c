@@ -13,9 +13,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_who),"who"},
 {C2F(sci_warning),"warning"},
 {C2F(sci_argn),"argn"},
-{C2F(sci_fort),"fort"},
 {C2F(sci_comp),"comp"},
-{C2F(sci_call),"call"},
 {C2F(sci_mode),"mode"},
 {C2F(sci_type),"type"},
 {C2F(sci_error),"error"},
@@ -84,7 +82,7 @@ int C2F(gw_core)()
 	*/
 	if ( C2F(recu).rstk[C2F(recu).pt-1] == 901) 
 	{
-		Fin=6;
+		Fin = 5;
 	}
 
 	callFunctionFromGateway(Tab);

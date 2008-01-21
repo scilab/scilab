@@ -14,8 +14,6 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_argn) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_comp) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_fort) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_call) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_mode) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_type) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_error) _PARAMS((char *fname,unsigned long fname_len));
