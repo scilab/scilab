@@ -1,8 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* file: xs2file.c                                                        */
 /* Copyright INRIA 2006                                                   */
-/* Authors : Jean-Philippe Chancelier,                                    */
-/*           Fabrice Leray,                                               */
+/* Authors : Fabrice Leray,                                               */
 /*           Jean-Baptiste Silvy                                          */
 /* desc : interface for xs2file routine                                   */
 /*------------------------------------------------------------------------*/
