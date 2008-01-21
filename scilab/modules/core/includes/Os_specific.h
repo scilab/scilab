@@ -38,8 +38,6 @@ extern void set_is_reading  __PARAMS((int mode));
 extern int get_is_reading  __PARAMS((void));  
 /*  "getenvc-n.c.X1" */
 
-void C2F(getenvc) __PARAMS((int *ierr,char *var,char *buf,int *buflen,int *iflag));
-
 /*  "getpidc-n.c.X1" */
 extern int C2F(getpidc) __PARAMS((int *id1));  
 
