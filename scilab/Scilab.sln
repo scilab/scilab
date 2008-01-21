@@ -696,6 +696,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographics", "modules\graph
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer-Ant", "modules\renderer\src\java\renderer-JAVA.vcproj", "{4235A847-ED0E-43A3-B62B-E59CB857EDE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E4EF47F-2284-4B43-ABBB-20593FF0B51D} = {3E4EF47F-2284-4B43-ABBB-20593FF0B51D}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer", "modules\renderer\renderer.vcproj", "{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -842,9 +845,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_export", "modules
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphic_export-Ant", "modules\graphic_export\src\java\graphic_export-JAVA.vcproj", "{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4235A847-ED0E-43A3-B62B-E59CB857EDE9} = {4235A847-ED0E-43A3-B62B-E59CB857EDE9}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
