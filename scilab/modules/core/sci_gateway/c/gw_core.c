@@ -7,13 +7,20 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
+int C2F(sci_vide) _PARAMS((char *fname,unsigned long fname_len))
+{
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
 {C2F(sci_debug),"debug"},
 {C2F(sci_who),"who"},
 {C2F(sci_warning),"warning"},
 {C2F(sci_argn),"argn"},
+{C2F(sci_vide),"vide"},
 {C2F(sci_comp),"comp"},
+{C2F(sci_vide),"vide"},
 {C2F(sci_mode),"mode"},
 {C2F(sci_type),"type"},
 {C2F(sci_error),"error"},
@@ -82,7 +89,7 @@ int C2F(gw_core)()
 	*/
 	if ( C2F(recu).rstk[C2F(recu).pt-1] == 901) 
 	{
-		Fin = 5;
+		Fin = 6;
 	}
 
 	callFunctionFromGateway(Tab);
