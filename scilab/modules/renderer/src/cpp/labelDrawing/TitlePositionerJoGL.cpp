@@ -41,7 +41,7 @@ void TitlePositionerJoGL::getAutoPosition(double pos[3])
   sciGetViewingArea(sciGetParentSubwin(m_pDrawer->getDrawedObject()),
                     &upperXpos, &upperYpos, &width, &height);
   
-  upperXpos = (int) upperXpos + width / 2.0;
+  upperXpos = (int) ( upperXpos + (width / 2.0) );
   upperYpos = upperYpos + height;
 
   getTitlePositionerJavaMapper()->setViewingAreaUpperPos(upperXpos, upperYpos);

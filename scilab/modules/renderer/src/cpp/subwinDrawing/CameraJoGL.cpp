@@ -144,11 +144,11 @@ void CameraJoGL::get2dViewCoordinates(const int pixCoords[2], double userCoord2D
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::getViewingArea(int * xPos, int * yPos, int * width, int * height)
 {
-  *xPos = m_aViewPort[0] + m_aViewingTranslation[0] * m_aViewPort[2];
-  *yPos = m_aViewPort[1] + m_aViewingTranslation[1] * m_aViewPort[3];
+  *xPos = (int)(m_aViewPort[0] + m_aViewingTranslation[0] * m_aViewPort[2]);
+  *yPos =(int)(m_aViewPort[1] + m_aViewingTranslation[1] * m_aViewPort[3]);
 
-  *width = m_aViewPort[2] * m_aViewingScale[0];
-  *height = m_aViewPort[3] * m_aViewingScale[1];
+  *width = (int)(m_aViewPort[2] * m_aViewingScale[0]);
+  *height = (int)(m_aViewPort[3] * m_aViewingScale[1]);
 }
 /*--------------------------------------------------------------------------*/
 }
