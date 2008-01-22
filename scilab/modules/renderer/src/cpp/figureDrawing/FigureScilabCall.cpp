@@ -53,21 +53,3 @@ void redrawFigure(int figureId)
   endFigureDataDisplaying(curFig);
 }
 /*--------------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------*/
-void exportFigure(int figureId, char * fileName, int fileType)
-{
-  startGraphicDataReading();
-  sciPointObj * curFig = getFigureFromIndex(figureId) ;
-  endGraphicDataReading();
-
-  if ( curFig == NULL )
-  {
-    return ;
-  }
-
-  startFigureDataDisplaying(curFig);
-  (sciGraphics::getFigureDrawer(curFig))->exportInContext(fileName, (ExportFileType) fileType);
-  endFigureDataDisplaying(curFig);
-}
-/*--------------------------------------------------------------------------*/

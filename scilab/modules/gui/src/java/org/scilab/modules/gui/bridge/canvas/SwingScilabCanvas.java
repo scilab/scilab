@@ -11,6 +11,8 @@ import javax.media.opengl.GLJPanel;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 
 /**
@@ -63,7 +65,14 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public static SwingScilabCanvas createCanvas(int figureIndex) {
 		GLCapabilities cap = new GLCapabilities();
 		cap.setDoubleBuffered(true);
-		return new SwingScilabCanvas(cap, figureIndex);
+		
+		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
+		
+		// I do this here and not in the ScilabCanvas because it is JOGL related stuff
+		DrawableFigureGL correspondigFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+		correspondigFigure.setRenderingTarget(newCanvas);
+		
+		return newCanvas;
 	}
 
 	/**
@@ -117,6 +126,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public void setPosition(Position newPosition) {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
+	
 
 
 }

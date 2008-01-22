@@ -61,8 +61,3 @@ int xs2file(char * fname, ExportFileType fileType )
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-void exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType)
-{
-  sciJavaExportToFile(pFigure, fileName, fileType);
-}
-/*--------------------------------------------------------------------------*/

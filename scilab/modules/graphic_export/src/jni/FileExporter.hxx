@@ -36,47 +36,23 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_RENDERER_FIGUREDRAWING_DRAWABLEFIGUREGL__
-#define __ORG_SCILAB_MODULES_RENDERER_FIGUREDRAWING_DRAWABLEFIGUREGL__
+#ifndef __ORG_SCILAB_MODULES_GRAPHIC_EXPORT_FILEEXPORTER__
+#define __ORG_SCILAB_MODULES_GRAPHIC_EXPORT_FILEEXPORTER__
 #include <iostream>
 #include <string>
 #include <string.h>
 #include <stdlib.h>
 #include <jni.h>
 
-namespace org_scilab_modules_renderer_figureDrawing {
+namespace org_scilab_modules_graphic_export {
 
-class DrawableFigureGL {
+class FileExporter {
 private:
 JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
-jmethodID voiddisplayID; // cache method id
-jmethodID voidinitializeDrawingjintID; // cache method id
-jmethodID voidendDrawingID; // cache method id
-jmethodID voidshowjintID; // cache method id
-jmethodID voiddestroyjintID; // cache method id
-jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voiddrawCanvasID; // cache method id
-jmethodID voidcloseRenderingCanvasID; // cache method id
-jmethodID voidsetFigureParametersjintjintID; // cache method id
-jmethodID voidsetColorMapDatajdoubleArrayID; // cache method id
-jmethodID jdoubleArraygetColorMapDataID; // cache method id
-jmethodID jintgetColorMapSizeID; // cache method id
-jmethodID jintgetCanvasWidthID; // cache method id
-jmethodID jintgetCanvasHeightID; // cache method id
-jmethodID voidsetCanvasSizejintjintID; // cache method id
-jmethodID jintgetWindowPosXID; // cache method id
-jmethodID jintgetWindowPosYID; // cache method id
-jmethodID voidsetWindowPositionjintjintID; // cache method id
-jmethodID jintgetWindowWidthID; // cache method id
-jmethodID jintgetWindowHeightID; // cache method id
-jmethodID voidsetWindowSizejintjintID; // cache method id
-jmethodID voidsetInfoMessagejstringID; // cache method id
-jmethodID voidsetPixmapModejbooleanID; // cache method id
-jmethodID jbooleangetPixmapModeID; // cache method id
-jmethodID voidsetIsRenderingEnablejbooleanID; // cache method id
+jmethodID jintfileExportjintjstringjintID; // cache method id
 
 
 /**
@@ -91,17 +67,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-DrawableFigureGL(JavaVM * jvm_);
+FileExporter(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-DrawableFigureGL(JavaVM * jvm_, jobject JObj);
+FileExporter(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~DrawableFigureGL();
+~FileExporter();
 
 // Generic method
 // Synchronization methods
@@ -118,55 +94,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-void display();
-
-void initializeDrawing(long figureIndex);
-
-void endDrawing();
-
-void show(long figureIndex);
-
-void destroy(long parentFigureIndex);
-
-void setFigureIndex(long figureIndex);
-
-void drawCanvas();
-
-void closeRenderingCanvas();
-
-void setFigureParameters(long backgroundColor, long logicOpIndex);
-
-void setColorMapData(double * rgbmat, int rgbmatSize);
-
-double * getColorMapData();
-
-long getColorMapSize();
-
-long getCanvasWidth();
-
-long getCanvasHeight();
-
-void setCanvasSize(long width, long height);
-
-long getWindowPosX();
-
-long getWindowPosY();
-
-void setWindowPosition(long posX, long posY);
-
-long getWindowWidth();
-
-long getWindowHeight();
-
-void setWindowSize(long width, long height);
-
-void setInfoMessage(char * infoMessage);
-
-void setPixmapMode(bool onOrOff);
-
-bool getPixmapMode();
-
-void setIsRenderingEnable(bool isEnable);
+static long fileExport(JavaVM * jvm_, long figureIndex, char * fileName, long fileType);
 
 
                         /**
@@ -176,7 +104,7 @@ void setIsRenderingEnable(bool isEnable);
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/renderer/figureDrawing/DrawableFigureGL";
+                return "org/scilab/modules/graphic_export/FileExporter";
                 }
                 
 };

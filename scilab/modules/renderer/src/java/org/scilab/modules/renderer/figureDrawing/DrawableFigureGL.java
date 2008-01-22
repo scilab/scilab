@@ -10,9 +10,9 @@ package org.scilab.modules.renderer.figureDrawing;
 
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.Threading;
 
-import org.scilab.modules.graphic_export.ExportToFile;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
@@ -57,8 +57,8 @@ public class DrawableFigureGL extends ObjectGL {
 	
 	private boolean pixmapModeOn;
 	
-	private String exportFileName;
-	private int exportFileType;
+	/** Keep a pointer on the OpenGL rendering target (Canvas, pBuffer, ...). */
+	private GLAutoDrawable renderingTarget;
 	
 	/**
 	 * Default Constructor
@@ -71,8 +71,7 @@ public class DrawableFigureGL extends ObjectGL {
       	destroyedObjects = new ObjectGLCleaner();
       	isReadyForRendering = false;
       	pixmapModeOn = true;
-      	exportFileName = null;
-      	exportFileType = 0;
+      	renderingTarget = null;
     }
 	
 	/**
@@ -375,54 +374,18 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
-	 * Export function
-	 * @param fileName name of the file in which the window will be rendered
-	 * @param fileType type of the file (ie jpg, bmp, ...).
+	 * Specify the default target on which the figure is rendered.
+	 * @param target pointer on the target
 	 */
-	public void exportToFile(String fileName, int fileType) {
-		exportFileName = fileName;
-		exportFileType = fileType; 
-		
-		drawCanvas();		
-
-		exportFileName = null;
-		exportFileType = 0;
+	public void setRenderingTarget(GLAutoDrawable target) {
+		this.renderingTarget = target;
 	}
 	
 	/**
-	 * @return true if we need to export a graphic file, false otherwise
+	 * @return Default target on which the figure is rendered.
 	 */
-	public boolean isExportEnable() {
-		return exportFileType != 0;
+	public GLAutoDrawable getRenderingTarget() {
+		return renderingTarget;
 	}
 	
-	/**
-	 * Export function
-	 * @param fileName name of the file in which the window will be rendered
-	 * @param fileType type of the file (ie jpg, bmp, ...).
-	 */
-  	public void exportToBitmapFile(String fileName, int fileType) {
-  		GL gl = getGL();
-  		// use the lastly modified buffer
-  		gl.glReadBuffer(GL.GL_FRONT);
-  		ExportToFile export = ExportToFile.createExporter(fileName, fileType);
-  		export.setFileSize(getCanvasWidth(), getCanvasHeight());
-  		export.exportToBitmap();
-  		// back to defautl value
-  		gl.glReadBuffer(GL.GL_BACK);  		
-  	}
-
-  	/**
-  	 * @return name of the file to export
-  	 */
-	public String getExportFileName() {
-		return exportFileName;
-	}
-
-	/**
-	 * @return type of the file to export
-	 */
-	public int getExportFileType() {
-		return exportFileType;
-	}
 }

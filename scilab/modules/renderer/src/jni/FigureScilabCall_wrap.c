@@ -199,25 +199,6 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI_exportFigure(JNIEnv *jenv, jclass jcls, jint jarg1, jstring jarg2, jint jarg3) {
-  int arg1 ;
-  char *arg2 = (char *) 0 ;
-  int arg3 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = (int)jarg1; 
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
-    if (!arg2) return ;
-  }
-  arg3 = (int)jarg3; 
-  exportFigure(arg1,arg2,arg3);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-}
-
-
 #ifdef __cplusplus
 }
 #endif

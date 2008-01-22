@@ -76,13 +76,4 @@ void displayFigure(int figureId);
 public";
 void redrawFigure(int figureId);
 
-/* JavaDoc */
-%javamethodmodifiers redrawFigure(int figureId) "
- /**
-  * Draw a figure and its all children inside the OpenGL context
-  * and then export it into a file
-  * @param figureId index of the figure to redraw
-  */
-public";
-void exportFigure(int figureId, char * fileName, int fileType);
 

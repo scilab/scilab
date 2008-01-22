@@ -65,7 +65,7 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 		// don't draw for now
 		
 		
-		// link the tab and canvas with theie figure
+		// link the tab and canvas with their figure
 		DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
 		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
 		

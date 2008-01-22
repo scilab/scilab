@@ -76,11 +76,6 @@ void DrawableFigure::closeRenderingCanvas( void )
   getFigureImp()->closeRenderingCanvas() ;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::exportToFile(const char * fileName, ExportFileType fileType)
-{
-  getFigureImp()->exportToFile(fileName, fileType);
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigure::drawInContext( void )
 {
   initializeDrawing() ;

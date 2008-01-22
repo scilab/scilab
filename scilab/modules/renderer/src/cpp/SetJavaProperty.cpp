@@ -54,9 +54,4 @@ void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int h
   getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height);
 }
 /*---------------------------------------------------------------------------------*/
-void sciJavaExportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType)
-{
-  getFigureDrawer(pFigure)->exportToFile(fileName, fileType);
-}
-/*---------------------------------------------------------------------------------*/
 

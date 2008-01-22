@@ -9,18 +9,7 @@
 #define _XS2FILE_H_
 
 #include "ObjectStructure.h"
-
-/** Enum listing the supported type of export files */
-typedef enum
-{
-  NO_EXPORT = 0,
-  BMP_EXPORT = 1,
-  GIF_EXPORT = 2,
-  JPG_EXPORT = 3,
-  PNG_EXPORT = 4,
-  PPM_EXPORT = 5
-} ExportFileType;
-
+#include "exportTofile.hxx"
 
 /**
  * Generic function to create either ps, fig, gif or ppm files.
@@ -31,6 +20,5 @@ typedef enum
  */
 int xs2file(char * fname, ExportFileType fileType) ;
 
-void exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType);
 
 #endif /* _INT_XS2FILE_H_ */

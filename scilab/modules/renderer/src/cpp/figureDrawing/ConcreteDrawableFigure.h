@@ -23,12 +23,6 @@ public:
   ConcreteDrawableFigure( sciPointObj * pObj ) : DrawableFigure( pObj ) {}
 
   /**
-   * Export the current OpenGL window into a file.
-   * Can only be called if the rendering context is created.
-   */
-  virtual void exportInContext(const char * fileName, ExportFileType fileType);
-
-  /**
    * check if the auto_redraw option is enable
    */
   virtual bool checkAutoRedraw( void ) ;

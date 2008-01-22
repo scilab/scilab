@@ -31,11 +31,6 @@ public:
    */
   virtual void drawInContext( void ) ;
 
-  /**
-   * Export the current OpenGL window into a file.
-   * Can only be called if the rendering context is created.
-   */
-  virtual void exportInContext(const char * fileName, ExportFileType fileType) = 0;
   /*-----------------------------------------------------------------------------*/
   /* Set/Get properties */
 
@@ -107,12 +102,6 @@ public:
     */
    void openRenderingCanvas( void ) ;
 
-   /**
-    * Export the currently drawn image to a file.
-    * @param filename name of the file to write.
-    * @param fileType type of the file to draw (ie jpg, bmp).
-    */
-   void exportToFile(const char * fileName, ExportFileType fileType);
   /*-----------------------------------------------------------------------------*/
    /**
     * Get the synchronization object that protect this figure.

@@ -6,7 +6,8 @@
 
 if GUI
 # List of the c files
-GRAPHIC_EXPORT_CPP_SOURCES = 
+GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
+src/jni/FileExporter.cpp
 
 GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c
 
