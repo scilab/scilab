@@ -39,20 +39,23 @@ char *getScilabDirectory(BOOL UnixStyle)
 	}
 	else return NULL;
 
-	SciPathName=(char*)MALLOC((int)(strlen(drive)+strlen(dir)+5)*sizeof(char));
+	SciPathName = (char*)MALLOC((int)( strlen(drive) + strlen(dir) + 5)*sizeof(char));
+	if (SciPathName)
+	{
+		_makepath(SciPathName,drive,dir,NULL,NULL);
 
-	_makepath(SciPathName,drive,dir,NULL,NULL);
-
-	if ( UnixStyle )
-	{	
-		int i=0;
-		for (i=0;i<(int)strlen(SciPathName);i++)
-		{
-			if (SciPathName[i]=='\\') SciPathName[i]='/';
+		if ( UnixStyle )
+		{	
+			int i=0;
+			for (i=0;i<(int)strlen(SciPathName);i++)
+			{
+				if (SciPathName[i]=='\\') SciPathName[i]='/';
+			}
 		}
+		SciPathName[strlen(SciPathName)-1]='\0';
+		setSCIpath(SciPathName);
+
 	}
-	SciPathName[strlen(SciPathName)-1]='\0';
-	setSCIpath(SciPathName);
 	return SciPathName;
 }
 /*--------------------------------------------------------------------------*/ 
