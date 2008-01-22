@@ -35,33 +35,31 @@
     <P>
     This function enables the change of the <VERB>unsigned flags</VERB> parameter of the
     <VERB>fftw_plan_guru_split_dft</VERB> function that is used in <A href='fftw.htm'><VERB>fftw</VERB></A> function. Default value is FFTW_ESTIMATE</P>
-    <P>
-    Accepted entries are :
+    <P>Accepted entries are :</P>
     <ITEMIZE>
-      <ITEM>FFTW_MEASURE or 0</ITEM>
-      <ITEM>FFTW_DESTROY_INPUT or 1</ITEM>
-      <ITEM>FFTW_UNALIGNED or 2</ITEM>
-      <ITEM>FFTW_CONSERVE_MEMORY or 4</ITEM>
-      <ITEM>FFTW_EXHAUSTIVE or 8</ITEM>
-      <ITEM>FFTW_PRESERVE_INPUT or 16</ITEM>
-      <ITEM>FFTW_PATIENT or 32</ITEM>
-      <ITEM>FFTW_ESTIMATE or 64</ITEM>
-      <ITEM>FFTW_ESTIMATE_PATIENT or 128</ITEM>
-      <ITEM>FFTW_BELIEVE_PCOST or 256</ITEM>
-      <ITEM>FFTW_NO_DFT_R2HC or 512</ITEM>
-      <ITEM>FFTW_NO_NONTHREADED or 1024</ITEM>
-      <ITEM>FFTW_NO_BUFFERING or 2048</ITEM>
-      <ITEM>FFTW_NO_INDIRECT_OP or 4096</ITEM>
-      <ITEM>FFTW_ALLOW_LARGE_GENERIC or 8192</ITEM>
-      <ITEM>FFTW_NO_RANK_SPLITS or 16384</ITEM>
-      <ITEM>FFTW_NO_VRANK_SPLITS or 32768</ITEM>
-      <ITEM>FFTW_NO_VRECURSE or 65536</ITEM>
-      <ITEM>FFTW_NO_SIMD or 131072</ITEM>
-      <ITEM>FFTW_NO_SLOW or 262144</ITEM>
-      <ITEM>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</ITEM>
-      <ITEM>FFTW_ALLOW_PRUNING or 1048576</ITEM>
+      <ITEM><SP>FFTW_MEASURE or 0</SP></ITEM>
+      <ITEM><SP>FFTW_DESTROY_INPUT or 1</SP></ITEM>
+      <ITEM><SP>FFTW_UNALIGNED or 2</SP></ITEM>
+      <ITEM><SP>FFTW_CONSERVE_MEMORY or 4</SP></ITEM>
+      <ITEM><SP>FFTW_EXHAUSTIVE or 8</SP></ITEM>
+      <ITEM><SP>FFTW_PRESERVE_INPUT or 16</SP></ITEM>
+      <ITEM><SP>FFTW_PATIENT or 32</SP></ITEM>
+      <ITEM><SP>FFTW_ESTIMATE or 64</SP></ITEM>
+      <ITEM><SP>FFTW_ESTIMATE_PATIENT or 128</SP></ITEM>
+      <ITEM><SP>FFTW_BELIEVE_PCOST or 256</SP></ITEM>
+      <ITEM><SP>FFTW_NO_DFT_R2HC or 512</SP></ITEM>
+      <ITEM><SP>FFTW_NO_NONTHREADED or 1024</SP></ITEM>
+      <ITEM><SP>FFTW_NO_BUFFERING or 2048</SP></ITEM>
+      <ITEM><SP>FFTW_NO_INDIRECT_OP or 4096</SP></ITEM>
+      <ITEM><SP>FFTW_ALLOW_LARGE_GENERIC or 8192</SP></ITEM>
+      <ITEM><SP>FFTW_NO_RANK_SPLITS or 16384</SP></ITEM>
+      <ITEM><SP>FFTW_NO_VRANK_SPLITS or 32768</SP></ITEM>
+      <ITEM><SP>FFTW_NO_VRECURSE or 65536</SP></ITEM>
+      <ITEM><SP>FFTW_NO_SIMD or 131072</SP></ITEM>
+      <ITEM><SP>FFTW_NO_SLOW or 262144</SP></ITEM>
+      <ITEM><SP>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</SP></ITEM>
+      <ITEM><SP>FFTW_ALLOW_PRUNING or 1048576</SP></ITEM>
     </ITEMIZE>
-    </P>
     <P>
      Rmk : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must call two times fftw.
      (first call for initialisation, second and others calls for computation)
@@ -80,9 +78,6 @@
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <A href='fftw.htm'><VERB>fftw</VERB></A>
-    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>fftw</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
-
 </MAN>
