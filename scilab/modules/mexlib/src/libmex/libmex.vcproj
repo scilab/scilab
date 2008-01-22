@@ -76,6 +76,7 @@
 				SubSystem="2"
 				ImportLibrary="$(OutDir)/libmex.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -159,6 +160,7 @@
 				OptimizeForWindows98="1"
 				ImportLibrary="$(OutDir)/libmex.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

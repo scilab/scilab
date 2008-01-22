@@ -88,6 +88,7 @@
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -184,6 +185,7 @@
 				EnableCOMDATFolding="2"
 				LinkTimeCodeGeneration="0"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

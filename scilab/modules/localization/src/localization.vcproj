@@ -79,6 +79,7 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				ImportLibrary="..\..\..\bin\scilocalization.lib"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -170,6 +171,7 @@
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
 				ImportLibrary="..\..\..\bin\scilocalization.lib"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

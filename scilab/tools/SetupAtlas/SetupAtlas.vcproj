@@ -67,6 +67,7 @@
 				ProgramDatabaseFile="$(OutDir)/SetupAtlas.pdb"
 				SubSystem="2"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -143,6 +144,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

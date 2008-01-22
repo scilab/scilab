@@ -76,6 +76,7 @@
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				GenerateDebugInformation="true"
 				ImportLibrary="..\..\bin\hashtable.lib"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -166,6 +167,7 @@
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
 				ImportLibrary="..\..\bin\hashtable.lib"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

@@ -70,6 +70,7 @@
 				SubSystem="2"
 				ImportLibrary="..\..\bin\$(ProjectName).lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -152,6 +153,7 @@
 				EnableCOMDATFolding="2"
 				ImportLibrary="..\..\bin\$(ProjectName).lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

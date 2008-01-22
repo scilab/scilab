@@ -6,7 +6,7 @@
 #include <strsafe.h>
 #include <string.h>
 #include <stdio.h>
-#include "DetectFramework.h"
+/*#include "DetectFramework.h"*/
 #include "GetWindowsVersion.h"
 #include "win_mem_alloc.h" /* MALLOC */
 /*--------------------------------------------------------------------------*/
@@ -37,11 +37,13 @@ int main (int argc, char **argv)
 	int i = 0;
 	int FindNW = 0;
 
+	/*
 	if (!DetectFrameWorkNET2())
 	{
 		MessageBox(NULL,TEXT(MSG_DETECT_FRAMEWORK),TEXT(MSG_WARNING),MB_ICONWARNING);
 		return -1;
 	}
+	*/
 
 	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
 	{

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="lapack_f2c_DLL"
 	ProjectGUID="{69296D00-0DE1-4F4B-B0CE-FE4F3CB43923}"
 	RootNamespace="lapack_f2c_DLL"
@@ -84,6 +84,7 @@
 				AdditionalOptions="/fixed:no"
 				OutputFile="../../../bin/lapack.dll"
 				ModuleDefinitionFile="..\..\..\bin\lapack.def"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -182,6 +183,7 @@
 				ExecutionBucket="10"
 				OutputFile="../../../bin/lapack.dll"
 				ModuleDefinitionFile="..\..\..\bin\lapack.def"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

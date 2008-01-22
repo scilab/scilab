@@ -76,6 +76,7 @@
 				ProgramDatabaseFile="$(ConfigurationName)/Gensomex.pdb"
 				SubSystem="1"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -166,6 +167,7 @@
 				ProgramDatabaseFile="$(ConfigurationName)/Gensomex.pdb"
 				SubSystem="1"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

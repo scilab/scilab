@@ -70,6 +70,7 @@
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -157,6 +158,7 @@
 				LinkTimeCodeGeneration="0"
 				ImportLibrary="../../../../bin/$(ProjectName).lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

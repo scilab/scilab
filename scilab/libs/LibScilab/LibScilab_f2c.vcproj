@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="LibScilab_f2c"
 	ProjectGUID="{64BC155E-292F-484F-9404-76EE6AE67A43}"
 	RootNamespace="LibScilab"
@@ -96,6 +96,7 @@
 				SubSystem="2"
 				ImportLibrary="../../bin/LibScilab.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -217,6 +218,7 @@
 				SupportUnloadOfDelayLoadedDLL="true"
 				ImportLibrary="../../bin/LibScilab.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

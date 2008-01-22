@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="incremental_link_f2c"
 	ProjectGUID="{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
 	RootNamespace="incremental_link_f2c"
@@ -89,6 +89,7 @@
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -185,6 +186,7 @@
 				EnableCOMDATFolding="2"
 				LinkTimeCodeGeneration="0"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

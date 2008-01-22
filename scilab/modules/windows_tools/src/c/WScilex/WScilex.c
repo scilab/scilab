@@ -6,7 +6,7 @@
 #include <strsafe.h>
 #include <string.h>
 #include <stdio.h>
-#include "DetectFramework.h"
+/*#include "DetectFramework.h"*/
 #include "GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
@@ -28,11 +28,13 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 	MYPROC Windows_Main = NULL; 
 	BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
 
+	/*
 	if (!DetectFrameWorkNET2())
 	{
 		MessageBox(NULL,TEXT(MSG_DETECT_FRAMEWORK),TEXT(MSG_WARNING),MB_ICONWARNING);
 		return -1;
 	}
+	*/
 
 	if (GetWindowsVersion() < OS_WIN32_WINDOWS_2000)
 	{

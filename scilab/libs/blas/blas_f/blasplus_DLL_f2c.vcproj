@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="blasplus_f2c_DLL"
 	ProjectGUID="{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}"
 	RootNamespace="blas_f2c"
@@ -84,6 +84,7 @@
 				OutputFile="../../../bin/blasplus.dll"
 				ModuleDefinitionFile="blasplus_for_Scilab.def"
 				ImportLibrary="../../../bin/blasplus.lib"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -181,6 +182,7 @@
 				OutputFile="../../../bin/blasplus.dll"
 				ModuleDefinitionFile="blasplus_for_Scilab.def"
 				ImportLibrary="../../../bin/blasplus.lib"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

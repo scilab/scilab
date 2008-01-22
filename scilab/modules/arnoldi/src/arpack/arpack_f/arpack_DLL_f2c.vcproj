@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="arpack_f2c_DLL"
 	ProjectGUID="{34F953E3-9A2C-4359-A8C5-41CEBD0ECE45}"
 	RootNamespace="arpack_f2c_DLL"
@@ -85,6 +85,7 @@
 				AdditionalOptions="/fixed:no"
 				OutputFile="../../../../../bin/Arpack.dll"
 				ModuleDefinitionFile="..\..\..\..\..\bin\Arpack.def"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -184,6 +185,7 @@
 				ExecutionBucket="10"
 				OutputFile="../../../../../bin/Arpack.dll"
 				ModuleDefinitionFile="..\..\..\..\..\bin\Arpack.def"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

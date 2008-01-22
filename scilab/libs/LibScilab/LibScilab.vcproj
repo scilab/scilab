@@ -96,6 +96,7 @@
 				SubSystem="2"
 				ImportLibrary="../../bin/LibScilab.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -217,6 +218,7 @@
 				SupportUnloadOfDelayLoadedDLL="true"
 				ImportLibrary="../../bin/LibScilab.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

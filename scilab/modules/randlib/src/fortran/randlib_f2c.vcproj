@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="randlib_f2c"
 	ProjectGUID="{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	RootNamespace="randlib_f2c"
@@ -88,6 +88,7 @@
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -184,6 +185,7 @@
 				EnableCOMDATFolding="2"
 				LinkTimeCodeGeneration="0"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

@@ -71,6 +71,7 @@
 				SubSystem="2"
 				ImportLibrary="$(OutDir)/Javasci.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -153,6 +154,7 @@
 				OptimizeForWindows98="1"
 				ImportLibrary="$(OutDir)/Javasci.lib"
 				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
