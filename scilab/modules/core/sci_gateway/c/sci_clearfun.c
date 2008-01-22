@@ -12,41 +12,45 @@
 #include "Funtab.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len);
+/* fortran subroutine */
+extern int C2F(cvname)(int *id,char *str,int *jobptr,unsigned long str_len); 
 /*--------------------------------------------------------------------------*/
 int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int l1,n1,m1;
-	int *Status=NULL;
+	static int l1 = 0,n1 = 0,m1 = 0;
+	int *Status = NULL;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
 	if (GetType(1) == sci_strings)
 	{
-		char *VarName=NULL;
+		char *VarName = NULL;
+		int id[nsiz];
+		int zero = 0;
+		int fptr = 0;
+		int job = 0;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName=cstk(l1);
 
 		Status=(int*)MALLOC(sizeof(int));
 
-		if (ExistFunction(VarName))
-		{
-			int id[nsiz];
-			int zero=0;
-			int fptr=0;
-			int job=4;
+		C2F(cvname)(id,VarName,&zero,(unsigned long)strlen(VarName));
+		job = SCI_HFUNCTIONS_FIND; /* Find function & returns fptr value */
+		C2F(funtab)(id,&fptr,&job,"NULL_NAME",0);
 
-			C2F(cvname)(id,VarName,&zero,(unsigned long)strlen(VarName));
-			C2F(funtab)(id,&fptr,&job,"NULL_NAME",0);
-			*Status=TRUE;
-		}
-		else
+		if (fptr != 0)
 		{
-			*Status=FALSE;
+			job = SCI_HFUNCTIONS_DELETE; /* delete function entry */
+			C2F(funtab)(id,&fptr,&job,"NULL_NAME",0);
+			*Status = TRUE;
 		}
-		m1=1;n1=1;
+		else /* fptr = 0 function doesn't exist */
+		{
+			*Status = FALSE;
+		}
+		m1 = 1;n1 = 1;
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
 		LhsVar(1)=Rhs+1;
 

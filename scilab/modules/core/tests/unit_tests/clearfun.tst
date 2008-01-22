@@ -1,0 +1,10 @@
+//================================================
+// test clearfun , funptr, newfun
+//================================================
+if clearfun('myfunctionname') <> %F then pause,end
+//================================================
+ptr = funptr('pwd');
+newfun("MY_PWD",ptr);
+
+if clearfun("MY_PWD") <> %T then pause,end
+//================================================
