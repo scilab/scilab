@@ -26,14 +26,14 @@
 #pragma comment(lib,"../../libs/pvm_f.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
+#pragma comment(lib,"../../bin/libxml2.lib")
+#pragma comment(lib,"../../bin/intl.lib")
+/*-----------------------------------------------------------------------------------*/ 
+/* force linking fortran libraries */
 #pragma comment(lib,"../../bin/blasplus.lib")
 #pragma comment(lib,"../../bin/arpack.lib")
 #pragma comment(lib,"../../bin/lapack.lib")
 #pragma comment(lib,"../../bin/linear_algebra_f.lib")
-#pragma comment(lib,"../../bin/libxml2.lib")
-#pragma comment(lib,"../../bin/intl.lib")
-/*-----------------------------------------------------------------------------------*/ 
-#ifndef USE_F2C
 #pragma comment(lib,"../../bin/sparse_f.lib")
 #pragma comment(lib,"../../bin/symbolic_f.lib")
 #pragma comment(lib,"../../bin/integer_f.lib")
@@ -41,24 +41,19 @@
 #pragma comment(lib,"../../bin/slatec_f.lib")
 #pragma comment(lib,"../../bin/string_f.lib")
 #pragma comment(lib,"../../bin/io_f.lib")
-
-#pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/data_structures_f.lib")
 #pragma comment(lib,"../../libs/boolean_f.lib")
 #pragma comment(lib,"../../libs/double_f.lib")
 #pragma comment(lib,"../../libs/differential_equations_f.lib")
 #pragma comment(lib,"../../libs/special_functions_f.lib")
-
 #pragma comment(lib,"../../libs/elementary_functions_f.lib")
-//#pragma comment(lib,"../../libs/gui_f.lib")
 #pragma comment(lib,"../../libs/dcd_f.lib")
 #pragma comment(lib,"../../libs/core_f.lib")
 #pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/signal_f.lib")
 #pragma comment(lib,"../../libs/polynomials_f.lib")
 #pragma comment(lib,"../../libs/cacsd_f.lib")
-#endif
 /*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
