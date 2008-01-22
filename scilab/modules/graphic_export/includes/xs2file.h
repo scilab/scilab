@@ -9,7 +9,7 @@
 #define _XS2FILE_H_
 
 #include "ObjectStructure.h"
-#include "exportTofile.hxx"
+#include "exportToFile.hxx"
 
 /**
  * Generic function to create either ps, fig, gif or ppm files.
