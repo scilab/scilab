@@ -173,7 +173,7 @@ DIST_SUBDIRS = polynomials string STRING_V2 intersci cacsd \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
-	action_binding console graphic_export renderer gui graphics \
+	action_binding console renderer graphic_export gui graphics \
 	windows_tools functions others overloading maple2scilab m2sci \
 	texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos fftw pvm spreadsheet \
@@ -366,7 +366,7 @@ SUBDIRS = polynomials $(am__append_1) STRING_V2 intersci cacsd \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io shell completion history_manager \
-	action_binding console graphic_export renderer gui graphics \
+	action_binding console renderer graphic_export gui graphics \
 	windows_tools functions others overloading maple2scilab m2sci \
 	texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools scicos fftw pvm spreadsheet \

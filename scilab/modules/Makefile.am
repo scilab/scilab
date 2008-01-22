@@ -46,8 +46,8 @@ completion \
 history_manager \
 action_binding \
 console \
-graphic_export \
 renderer \
+graphic_export \
 gui \
 graphics \
 windows_tools \
