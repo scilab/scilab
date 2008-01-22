@@ -270,12 +270,8 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	 * Destroy the tab.
 	 */
 	public void close() {
-		// find parent window
-		int parentWindowId = getParentWindowId();
-		Window parentWindow = (Window) UIElementMapper.getCorrespondingUIElement(parentWindowId);
-		
 		// remove the tab from the parent
-		parentWindow.removeTab(this);
+		getParentWindow().removeTab(this);
 		this.setParentWindowId(-1);
 		
 	}
@@ -365,6 +361,12 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public void setCallback(String command, int commandType) {
 		ScilabBridge.setCallback(this, command, commandType);
 	}
-
+	
+	/**
+	 * @return parent window of the tab object
+	 */
+	public Window getParentWindow() {
+		return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
+	}
 }
 

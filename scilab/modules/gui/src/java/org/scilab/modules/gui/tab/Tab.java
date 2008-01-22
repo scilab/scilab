@@ -15,6 +15,7 @@ import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Interface for tabs in Scilab GUIs
@@ -152,5 +153,10 @@ public interface Tab extends Container {
 	 * @param commandType the type of the command
 	 */
 	void setCallback(String command, int commandType);
+	
+	/**
+	 * @return parent window of the tab object
+	 */
+	Window getParentWindow();
 
 }

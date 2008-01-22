@@ -56,7 +56,7 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		/* Destroy the graphic figure when the tab is closed */
-		graphicTab.setCallback("delete(scf(" + figureIndex +"));", CallBack.SCILAB_INSTRUCTION);
+		graphicTab.setCallback(getClosingWindowCommand(figureIndex), CallBack.SCILAB_INSTRUCTION);
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
 		graphicTab.addMenuBar(menuBar);
 		graphicTab.addToolBar(toolBar);
@@ -79,6 +79,15 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 	 */
 	public static Window createWindow(int figureIndex) {
 		return new ScilabGraphicWindow();
+	}
+	
+	/**
+	 * @param figureIndex of the figure to close
+	 * @return Scilab command used to close a window.
+	 */
+	private String getClosingWindowCommand(int figureIndex) {
+		// delete(scf(i));
+		return "delete(scf(" + figureIndex + "));";
 	}
 	
 }

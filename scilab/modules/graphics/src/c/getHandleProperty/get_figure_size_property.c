@@ -25,8 +25,8 @@ int get_figure_size_property( sciPointObj * pobj )
     return -1;
   }
 
-  figureSize[0] = sciGetWidth(pobj) ;
-  figureSize[1] = sciGetHeight(pobj) ;
+  figureSize[0] = sciGetWindowWidth(pobj) ;
+  figureSize[1] = sciGetWindowHeight(pobj) ;
 
   return sciReturnRowVector( figureSize, 2 ) ;
 

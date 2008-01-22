@@ -85,7 +85,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getWindowHeight()
 	 */
 	public int getWindowHeight() {
-		return parentTab.getDims().getHeight();
+		return parentTab.getParentWindow().getDims().getHeight();
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getWindowPosX()
 	 */
 	public int getWindowPosX() {
-		return parentTab.getPosition().getX();
+		return parentTab.getParentWindow().getPosition().getX();
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getWindowPosY()
 	 */
 	public int getWindowPosY() {
-		return parentTab.getPosition().getY();
+		return parentTab.getParentWindow().getPosition().getY();
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getWindowWidth()
 	 */
 	public int getWindowWidth() {
-		return parentTab.getDims().getWidth();
+		return parentTab.getParentWindow().getDims().getWidth();
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#setWindowPosition(int, int)
 	 */
 	public void setWindowPosition(int posX, int posY) {
-		parentTab.setPosition(new Position(posX, posY));
+		parentTab.getParentWindow().setPosition(new Position(posX, posY));
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#setWindowSize(int, int)
 	 */
 	public void setWindowSize(int width, int height) {
-		parentTab.setDims(new Size(width, height));
+		parentTab.getParentWindow().setDims(new Size(width, height));
 		
 	}
 
@@ -188,5 +188,6 @@ public class ScilabRendererProperties implements RendererProperties {
    public void closeCanvas() {
 	   parentTab.close();
    }
+   
 	
 }
