@@ -35,8 +35,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_strrev),"strrev"},
 	{C2F(sci_strtok),"strtok"},
 	{C2F(sci_strspn),"strspn"},
-	{C2F(sci_strtod),"strtod"},
-	{C2F(sci_regexp),"regexp"}
+	{C2F(sci_strtod),"strtod"}
 
 };
 /*--------------------------------------------------------------------------*/
