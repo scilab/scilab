@@ -12,7 +12,7 @@
 #include "machine.h"
 
 
-#include "link.h"
+#include "link.h" /* TO DO : modify this !!! */
 
 
 #include "scicos.h"
@@ -101,7 +101,7 @@ extern void  F2C(sciblk)();
 extern void  sciblk2();
 extern void  sciblk4();
 extern void  GetDynFunc();
-extern void  C2F(iislink)();
+extern void  C2F(iislink)(); 
 
 
 

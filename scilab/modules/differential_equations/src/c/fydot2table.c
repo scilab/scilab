@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 
 extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
 
@@ -54,5 +54,5 @@ void C2F(fydot2)(integer *n, double *t, double *y, double *ydot)
 
 void C2F(setfydot2)(char *name, int *rep)
 {
-	fydot2fonc = (fydot2f) SetFunction(name,rep,FTab_fydot2);
+	fydot2fonc = (fydot2f) AddFunctionInTable(name,rep,FTab_fydot2);
 }

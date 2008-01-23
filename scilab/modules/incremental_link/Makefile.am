@@ -4,7 +4,8 @@
 ##########
 
 INCREMENTAL_LINK_C_SOURCES = src/c/addinter.c \
-src/c/link.c
+src/c/link.c \
+src/c/AddFunctionInTable.c
 
 #src/c/link_SYSV.c 
 #src/c/link_std.c 

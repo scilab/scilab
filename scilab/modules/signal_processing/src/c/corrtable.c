@@ -2,16 +2,7 @@
 /* INRIA */
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-
-typedef void (*voidf)();
-
-typedef struct 
-{
-	char *name;
-	voidf f;
-} FTAB;
-
-extern voidf SetFunction(char *name, int *rep, FTAB *table);
+#include "AddFunctionInTable.h"
 /***********************************
 * corr ( dgetx dgety )
 ***********************************/
@@ -66,7 +57,7 @@ void C2F(dgetx)(double *x, integer *incr, integer *istart)
 
 void C2F(setdgetx)(char *name, int *rep)
 {
-	dgetxfonc = (dgetxf) SetFunction(name,rep,FTab_dgetx);
+	dgetxfonc = (dgetxf) AddFunctionInTable(name,rep,FTab_dgetx);
 }
 
 
@@ -84,6 +75,6 @@ void C2F(dgety)(double *y, integer *incr, integer *istart)
 
 void C2F(setdgety)(char *name, int *rep)
 {
-	dgetyfonc = (dgetyf) SetFunction(name,rep,FTab_dgety);
+	dgetyfonc = (dgetyf) AddFunctionInTable(name,rep,FTab_dgety);
 }
 

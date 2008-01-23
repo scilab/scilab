@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * Search Table for int2d
 ***********************************/
@@ -40,5 +40,5 @@ double *C2F(fint2d)(double *x, double *y)
 
 void C2F(setfint2d)(char *name, int *rep)
 {
-	fint2dfonc = (fint2df) SetFunction(name,rep,FTab_fint2d);
+	fint2dfonc = (fint2df) AddFunctionInTable(name,rep,FTab_fint2d);
 }

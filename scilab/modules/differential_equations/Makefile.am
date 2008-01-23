@@ -127,12 +127,15 @@ sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f
 
 libscidifferential_equations_la_CFLAGS=  	-Iincludes/ \
-						-I$(top_builddir)/modules/output_stream/includes
+-I$(top_builddir)/modules/output_stream/includes \
+-I$(top_builddir)/modules/incremental_link/includes
+
 pkglib_LTLIBRARIES = libscidifferential_equations.la
 
 libscidifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscidifferential_equations_la_LIBADD = \
+	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 

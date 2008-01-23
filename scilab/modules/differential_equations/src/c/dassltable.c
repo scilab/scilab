@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * Search Table for dassl 
 ***********************************/
@@ -92,7 +92,7 @@ void C2F(fresd)(double *t, double *y, double *ydot, double *res, integer *ires, 
 
 void C2F(setfresd)(char *name, int *rep)
 {
-	fresdfonc = (fresdf) SetFunction(name,rep,FTab_fresd);
+	fresdfonc = (fresdf) AddFunctionInTable(name,rep,FTab_fresd);
 }
 
 
@@ -111,7 +111,7 @@ void C2F(fjacd)(double *t, double *y, double *ydot, double *pd, double *cj, doub
 
 void C2F(setfjacd)(char *name, int *rep)
 {
-	fjacdfonc = (fjacdf) SetFunction(name,rep,FTab_fjacd);
+	fjacdfonc = (fjacdf) AddFunctionInTable(name,rep,FTab_fjacd);
 }
 
 
@@ -131,7 +131,7 @@ void C2F(fsurfd)(integer *neq, double *t, double *y, integer *ng, double *gout, 
 
 void C2F(setfsurfd)(char *name, int *rep)
 {
-	fsurfdfonc = (fsurfdf) SetFunction(name,rep,FTab_fsurfd);
+	fsurfdfonc = (fsurfdf) AddFunctionInTable(name,rep,FTab_fsurfd);
 }
 
 /***********************************
@@ -153,5 +153,5 @@ void C2F(fsurf)(integer *ny, double *t, double *y, integer *ng, double *gout)
 
 void C2F(setfsurf)(char *name, int *rep)
 {
-	fsurffonc = (fsurff) SetFunction(name,rep,FTab_fsurf);
+	fsurffonc = (fsurff) AddFunctionInTable(name,rep,FTab_fsurf);
 }

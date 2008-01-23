@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * Search Table for colnew 
 *   corr uses : fcoldg , fcolg, fcoldf,fcolf,fcolgu
@@ -84,7 +84,7 @@ void C2F(fcoldg)(integer *i, double *z, double *dg)
 
 void C2F(setfcoldg)(char *name, int *rep)
 {
-	fcoldgfonc = (fcoldgf) SetFunction(name,rep,FTab_fcoldg);
+	fcoldgfonc = (fcoldgf) AddFunctionInTable(name,rep,FTab_fcoldg);
 }
 
 
@@ -103,7 +103,7 @@ void C2F(fcolg)(integer *i, double *z, double *g)
 
 void C2F(setfcolg)(char *name, int *rep)
 {
-	fcolgfonc = (fcolgf) SetFunction(name,rep,FTab_fcolg);
+	fcolgfonc = (fcolgf) AddFunctionInTable(name,rep,FTab_fcolg);
 }
 
 
@@ -123,7 +123,7 @@ void C2F(fcoldf)(double *x, double *z, double *df)
 
 void C2F(setfcoldf)(char *name, int *rep)
 {
-	fcoldffonc = (fcoldff) SetFunction(name,rep,FTab_fcoldf);
+	fcoldffonc = (fcoldff) AddFunctionInTable(name,rep,FTab_fcoldf);
 }
 
 
@@ -142,7 +142,7 @@ void C2F(fcolf)(double *x, double *z, double *df)
 
 void C2F(setfcolf)(char *name, int *rep)
 {
-	fcolffonc = (fcolff) SetFunction(name,rep,FTab_fcolf);
+	fcolffonc = (fcolff) AddFunctionInTable(name,rep,FTab_fcolf);
 }
 
 /** the current function fixed by setfcolgu **/
@@ -160,5 +160,5 @@ void C2F(fcolgu)(double *x, double *z, double *dmval)
 
 void C2F(setfcolgu)(char *name, int *rep)
 {
-	fcolgufonc = (fcolguf) SetFunction(name,rep,FTab_fcolgu);
+	fcolgufonc = (fcolguf) AddFunctionInTable(name,rep,FTab_fcolgu);
 }

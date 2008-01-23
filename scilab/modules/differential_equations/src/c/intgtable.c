@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 
 #define ARGS_fintg double *
 
@@ -40,5 +40,5 @@ double *C2F(fintg)(double *x)
 
 void C2F(setfintg)(char *name, int *rep)
 {
-	fintgfonc = (fintgf) SetFunction(name,rep,FTab_fintg);
+	fintgfonc = (fintgf) AddFunctionInTable(name,rep,FTab_fintg);
 }

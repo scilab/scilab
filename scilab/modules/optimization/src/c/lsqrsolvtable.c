@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * Search Table for lsqrsolve 
 ***********************************/
@@ -53,7 +53,7 @@ void C2F(lsqrsolvf)(integer *m, integer *n, double *x, double *fvec, integer *if
 
 void C2F(setlsqrsolvf)(char *name, int *rep)
 {
-	lsqrsolvffonc = (lsqrsolvff) SetFunction(name,rep,FTab_lsqrsolvf);
+	lsqrsolvffonc = (lsqrsolvff) AddFunctionInTable(name,rep,FTab_lsqrsolvf);
 }
 
 /** the current function fixed by setfsolvj **/
@@ -71,5 +71,5 @@ void C2F(lsqrsolvj)(integer *m, integer *n, double *x, double *fjac, integer *ld
 
 void C2F(setlsqrsolvj)(char *name, int *rep)
 {
-	lsqrsolvjfonc = (lsqrsolvjf) SetFunction(name,rep,FTab_lsqrsolvj);
+	lsqrsolvjfonc = (lsqrsolvjf) AddFunctionInTable(name,rep,FTab_lsqrsolvj);
 }

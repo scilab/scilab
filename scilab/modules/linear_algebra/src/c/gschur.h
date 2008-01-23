@@ -4,6 +4,7 @@
 #ifndef __GSCHUR_H__
 #define __GSCHUR_H__
 
+#include "AddFunctionInTable.h"
 #include "linear_FTables.h"
 
 

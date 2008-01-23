@@ -197,6 +197,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\AddFunctionInTable.c"
+				>
+			</File>
+			<File
 				RelativePath=".\addinter.c"
 				>
 			</File>
@@ -241,6 +245,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\AddFunctionInTable.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\addinter.h"
 				>

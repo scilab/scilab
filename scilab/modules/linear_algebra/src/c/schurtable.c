@@ -4,10 +4,9 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "AddFunctionInTable.h"
 #include "linear_FTables.h"
-#include "link.h"
 #include "schur.h"
-#include "FTables.h"
 
 /***********************************
 * Search Table for fschur
@@ -83,11 +82,11 @@ integer *C2F(schsel)(double *alpha, double *beta)
 void C2F(setschsel)(int *len, char *name, int *rep)
 {
 	if ( ((strncmp(name,"c",1)== 0 ) && (*len==1)) || strncmp(name,"cont",4)== 0 )
-		schselfonc = (schself) SetFunction("sb02mv",rep,FTab_schsel);
+		schselfonc = (schself) AddFunctionInTable("sb02mv",rep,FTab_schsel);
 	else if ( ((strncmp(name,"d",1)== 0) && (*len==1)) || strncmp(name,"disc",4)== 0 )
-		schselfonc = (schself) SetFunction("sb02mw",rep,FTab_schsel);
+		schselfonc = (schself) AddFunctionInTable("sb02mw",rep,FTab_schsel);
 	else 
-		schselfonc = (schself) SetFunction(name,rep,FTab_schsel);
+		schselfonc = (schself) AddFunctionInTable(name,rep,FTab_schsel);
 }
 
 /***********************************
@@ -110,11 +109,11 @@ integer *C2F(zchsel)(doublecmplx *alpha)
 void C2F(setzchsel)(int *len, char *name, int *rep)
 {
 	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-		zchselfonc = (zchself) SetFunction("zb02mv",rep,FTab_zchsel);
+		zchselfonc = (zchself) AddFunctionInTable("zb02mv",rep,FTab_zchsel);
 	else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-		zchselfonc = (zchself) SetFunction("zb02mw",rep,FTab_zchsel);
+		zchselfonc = (zchself) AddFunctionInTable("zb02mw",rep,FTab_zchsel);
 	else 
-		zchselfonc = (zchself) SetFunction(name,rep,FTab_zchsel);
+		zchselfonc = (zchself) AddFunctionInTable(name,rep,FTab_zchsel);
 }
 
 /***********************************
@@ -137,11 +136,11 @@ integer *C2F(gshsel)(double *alphar, double *alphai, double *beta)
 void C2F(setgshsel)(int *len, char *name, int *rep)
 {
 	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-		gshselfonc = (gshself) SetFunction("sb02ow",rep,FTab_gshsel);
+		gshselfonc = (gshself) AddFunctionInTable("sb02ow",rep,FTab_gshsel);
 	else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-		gshselfonc = (gshself) SetFunction("sb02ox",rep,FTab_gshsel);
+		gshselfonc = (gshself) AddFunctionInTable("sb02ox",rep,FTab_gshsel);
 	else 
-		gshselfonc = (gshself) SetFunction(name,rep,FTab_gshsel);
+		gshselfonc = (gshself) AddFunctionInTable(name,rep,FTab_gshsel);
 }
 
 /***********************************
@@ -164,11 +163,11 @@ integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta)
 void C2F(setgzhsel)(int *len, char *name, int *rep)
 {
 	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-		gzhselfonc = (gzhself) SetFunction("zb02ow",rep,FTab_gzhsel);
+		gzhselfonc = (gzhself) AddFunctionInTable("zb02ow",rep,FTab_gzhsel);
 	else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-		gzhselfonc = (gzhself) SetFunction("zb02ox",rep,FTab_gzhsel);
+		gzhselfonc = (gzhself) AddFunctionInTable("zb02ox",rep,FTab_gzhsel);
 	else 
-		gzhselfonc = (gzhself) SetFunction(name,rep,FTab_gzhsel);
+		gzhselfonc = (gzhself) AddFunctionInTable(name,rep,FTab_gzhsel);
 }
 
 /***********************************
@@ -191,10 +190,10 @@ integer *C2F(fschur)(integer *lsize, double *alpha, double *beta, double *s, dou
 void C2F(setfschur)(char *name, int *rep)
 {
 	if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
-		fschurfonc = (fschurf) SetFunction("folhp",rep,FTab_fschur);
+		fschurfonc = (fschurf) AddFunctionInTable("folhp",rep,FTab_fschur);
 	else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
-		fschurfonc = (fschurf) SetFunction("find",rep,FTab_fschur);
+		fschurfonc = (fschurf) AddFunctionInTable("find",rep,FTab_fschur);
 	else 
-		fschurfonc = (fschurf) SetFunction(name,rep,FTab_fschur);
+		fschurfonc = (fschurf) AddFunctionInTable(name,rep,FTab_fschur);
 }
 

@@ -244,10 +244,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\FTables.c"
-				>
-			</File>
-			<File
 				RelativePath=".\Funtab.c"
 				>
 			</File>
@@ -805,19 +801,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\FTables.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Funtab.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -925,11 +913,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File

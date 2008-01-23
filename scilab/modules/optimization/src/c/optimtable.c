@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * Search Table for foptim 
 ***********************************/
@@ -43,6 +43,6 @@ void C2F(foptim)(integer *indsim, integer *n, double *x, double *f, double *g, i
 
 void C2F(setfoptim)(char *name, int *rep)
 {
-	foptimfonc = (foptimf) SetFunction(name,rep,FTab_foptim);
+	foptimfonc = (foptimf) AddFunctionInTable(name,rep,FTab_foptim);
 }
 

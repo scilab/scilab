@@ -3,7 +3,7 @@
 /* @TODO : rewrite all this crap ... this should not be released */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 
 
 /***********************************
@@ -61,7 +61,7 @@ void C2F(interf1)(char *name, long int size)
 
 void C2F(setinterf)(char *name, int *rep)
 {
-	interffonc = (interff) SetFunction(name,rep,FTab_interf);
+	interffonc = (interff) AddFunctionInTable(name,rep,FTab_interf);
 }
 
 /** function call **/

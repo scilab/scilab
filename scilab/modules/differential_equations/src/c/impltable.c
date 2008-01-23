@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * impl   (  fres, fadda, fj2 )
 ***********************************/
@@ -61,7 +61,7 @@ void C2F(fres)(integer *ny, double *t, double *y, double *s, double *r, integer 
 
 void C2F(setfres)(char *name, int *rep)
 {
-	fresfonc = (fresf) SetFunction(name,rep,FTab_fres);
+	fresfonc = (fresf) AddFunctionInTable(name,rep,FTab_fres);
 }
 
 
@@ -78,7 +78,7 @@ void C2F(fadda)(integer *ny, double *t, double *y, integer *ml, integer *mu, dou
 
 void C2F(setfadda)(char *name, int *rep)
 {
-	faddafonc = (faddaf) SetFunction(name,rep,FTab_fadda);
+	faddafonc = (faddaf) AddFunctionInTable(name,rep,FTab_fadda);
 }
 
 
@@ -97,5 +97,5 @@ void C2F(fj2)(integer *ny, double *t, double *y, double *s, integer *ml, integer
 
 void C2F(setfj2)(char *name, int *rep)
 {
-	fj2fonc = (fj2f) SetFunction(name,rep,FTab_fj2);
+	fj2fonc = (fj2f) AddFunctionInTable(name,rep,FTab_fj2);
 }

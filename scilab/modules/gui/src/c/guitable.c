@@ -1,7 +1,9 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
+/* TO DO : See with V.C if we need again this file */
+
 /***********************************
 * Search Table for fbutn
 ***********************************/
@@ -43,5 +45,5 @@ void C2F(fbutn)(char *name, integer *win, integer *entry)
 
 void C2F(setfbutn)(char *name, int *rep)
 {
-	fbutnfonc = (fbutnf) SetFunction(name,rep,FTab_fbutn);
+	fbutnfonc = (fbutnf) AddFunctionInTable(name,rep,FTab_fbutn);
 }

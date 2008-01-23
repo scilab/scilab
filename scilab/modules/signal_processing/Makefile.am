@@ -93,13 +93,15 @@ sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS=  	-Iincludes/ \
-					-I$(top_builddir)/modules/output_stream/includes
+-I$(top_builddir)/modules/output_stream/includes \
+-I$(top_builddir)/modules/incremental_link/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 
 libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libscisignal_processing_la_LIBADD = \
+	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 # Cyclic deps
 #	$(top_builddir)/modules/core/libscicore.la

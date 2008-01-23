@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * Search Table for fsolve 
 ***********************************/
@@ -51,7 +51,7 @@ void C2F(fsolvf)(integer *n, double *x, double *fvec, integer *iflag)
 
 void C2F(setfsolvf)(char *name, int *rep)
 {
-	fsolvffonc = (fsolvff) SetFunction(name,rep,FTab_fsolvf);
+	fsolvffonc = (fsolvff) AddFunctionInTable(name,rep,FTab_fsolvf);
 }
 
 /** the current function fixed by setfsolvj **/
@@ -69,5 +69,5 @@ void C2F(fsolvj)(integer *n, double *x, double *fjac, integer *iflag)
 
 void C2F(setfsolvj)(char *name, int *rep)
 {
-	fsolvjfonc = (fsolvjf) SetFunction(name,rep,FTab_fsolvj);
+	fsolvjfonc = (fsolvjf) AddFunctionInTable(name,rep,FTab_fsolvj);
 }

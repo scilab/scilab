@@ -16,7 +16,6 @@ intersci_
 vstk_
 getScilabMode
 callFunctionFromGateway
-SetFunction
 vartype_
 sciReturnString
 freeArrayOfString

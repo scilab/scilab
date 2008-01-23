@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 #include "feval.h"
 /***********************************
 * feval (ffeval)
@@ -39,6 +39,6 @@ void C2F(ffeval)(integer *nn, double *x1, double *x2, double *xres, integer *ity
 
 void C2F(setfeval)(char *name, int *rep)
 {
-	fevalfonc = (ffevalf) SetFunction(name,rep,FTab_ffeval);
+	fevalfonc = (ffevalf) AddFunctionInTable(name,rep,FTab_ffeval);
 }
 

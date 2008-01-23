@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 #include "arnol.h"
 	/***********************************
 	* ode   (fydot and fjac )
@@ -68,7 +68,7 @@ void C2F(fydot)(integer *n, double *t, double *y, double *ydot)
 
 void C2F(setfydot)(char *name, int *rep)
 {
-	fydotfonc = (fydotf) SetFunction(name,rep,FTab_fydot);
+	fydotfonc = (fydotf) AddFunctionInTable(name,rep,FTab_fydot);
 }
 
 
@@ -87,5 +87,5 @@ void C2F(fjac)(integer *neq, double *t, double *y, integer *ml, integer *mu, dou
 
 void C2F(setfjac)(char *name, int *rep)
 {
-	fjacfonc = (fjacf) SetFunction(name,rep,FTab_fjac);
+	fjacfonc = (fjacf) AddFunctionInTable(name,rep,FTab_fjac);
 }

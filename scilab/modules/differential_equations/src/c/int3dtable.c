@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA */
 /*--------------------------------------------------------------------------*/
-#include "FTables.h"
+#include "AddFunctionInTable.h"
 /***********************************
 * Search Table for int3d
 ***********************************/
@@ -41,5 +41,5 @@ void C2F(fint3d)(double *xyz, integer *numfun, double *v)
 
 void C2F(setfint3d)(char *name, int *rep)
 {
-	fint3dfonc = (fint3df) SetFunction(name,rep,FTab_fint3d);
+	fint3dfonc = (fint3df) AddFunctionInTable(name,rep,FTab_fint3d);
 }

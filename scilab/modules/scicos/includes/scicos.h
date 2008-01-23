@@ -1,7 +1,7 @@
 #ifndef __SCICOS_H 
 #define __SCICOS_H 
 #include "scicos_block4.h"
-
+#include "AddFunctionInTable.h"
 /* maximum value for sum of number of inputs and outputs ports of a given 
 block of type 2 */
 #define SZ_SIZE 60
@@ -10,7 +10,7 @@ of type 0 */
 #define TB_SIZE 500
 
 
-typedef void (*voidf)();
+
 
 /* Blocks prototypes */
 #define I integer

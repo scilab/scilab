@@ -5,7 +5,7 @@
 #define __LINEAR_FTABLES_H__
 
 #include "machine.h"
-#include "FTables.h"
+
 
 #define OK 1
 #define FAIL 0
