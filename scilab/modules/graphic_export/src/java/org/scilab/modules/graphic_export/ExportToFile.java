@@ -135,15 +135,15 @@ public abstract class ExportToFile {
 		int pos = this.filename.lastIndexOf('.'); // position of the dot
 
 		if (suffix != null) {
-			if (suffix.equals("bmp") && this.filetype == BMP_EXPORT) {
+			if (suffix.equalsIgnoreCase("bmp") && this.filetype == BMP_EXPORT) {
 				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("gif") && this.filetype == GIF_EXPORT) {
+			} else if (suffix.equalsIgnoreCase("gif") && this.filetype == GIF_EXPORT) {
 				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("jpg") && this.filetype == JPG_EXPORT) {
+			} else if (suffix.equalsIgnoreCase("jpg") && this.filetype == JPG_EXPORT) {
 				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("png") && this.filetype == PNG_EXPORT) {
+			} else if (suffix.equalsIgnoreCase("png") && this.filetype == PNG_EXPORT) {
 				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("ppm") && this.filetype == PPM_EXPORT) {
+			} else if (suffix.equalsIgnoreCase("ppm") && this.filetype == PPM_EXPORT) {
 				this.filename = filename.substring(0, pos);
 			}	
 		}
