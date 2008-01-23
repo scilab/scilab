@@ -136,7 +136,7 @@ sci_gateway/fortran/Ex-fsolve.f \
 sci_gateway/fortran/Ex-lsqrsolve.f
 
 libscioptimization_la_CFLAGS=  	-Iincludes/ \
--I$(top_builddir)/modules/output_stream/includes
+-I$(top_builddir)/modules/output_stream/includes \
 -I$(top_builddir)/modules/incremental_link/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscioptimization.la

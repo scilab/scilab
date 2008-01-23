@@ -86,7 +86,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisignal_processing_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscisignal_processing_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisignal_processing_la_DEPENDENCIES = $(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = sci_ffir.lo degree.lo parcha.lo ouch.lo dfftbi.lo \
 	dsqrtc.lo tranze.lo chebc.lo tscccf.lo dsn2.lo hammin.lo \
 	bounn.lo nstabl.lo ino.lo desia.lo desi11.lo cmpse3.lo \
@@ -413,11 +414,13 @@ sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS = -Iincludes/ \
-					-I$(top_builddir)/modules/output_stream/includes
+-I$(top_builddir)/modules/output_stream/includes \
+-I$(top_builddir)/modules/incremental_link/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscisignal_processing_la_LIBADD = \
+	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 # Cyclic deps
