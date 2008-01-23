@@ -8,7 +8,7 @@ function check_help(dirs)
 	// Date : 08/08/2006
 	//
 	// Update by Sylvestre LEDRU <sylvestre.ledru@inria.fr> on the 04/10/2007
-	// 
+	//
 	// dirs is a set of directories for which html manuals are to be generated
 	// =========================================================================================
 	
@@ -35,8 +35,7 @@ function check_help(dirs)
 		
 		global %helps;
 		global %helps_modules
-    %HELPS=[%helps_modules;%helps];
-    
+		%HELPS=[%helps_modules;%helps];
 		dirs_to_build = %HELPS;
 		clear %HELPS;
 		
@@ -47,7 +46,7 @@ function check_help(dirs)
 		if size(scs,'*') == 1 then dirs_to_build(scs,:)=[]; end
 		// End of patch --------------------------------------------------------------------
 		
-		dirs = dirs_to_build(:,1);
+		dirs = gsort(dirs_to_build(:,1),"lr","i");
 	end
 	
 	// Transform the relative path to the absolute one
@@ -66,7 +65,7 @@ function check_help(dirs)
 	// Management of the log file
 	//---------------------------------------------------------------------------------
 	logfile = pathconvert(SCIHOME+"/check_help_"+getlanguage()+".log",%f,%f);
-		
+	
 	logfile_id = mopen(logfile,"w");
 	mclose(logfile_id);
 	
@@ -128,7 +127,7 @@ function check_help(dirs)
 					for k2=1:size(xml,'*')
 						
 						if k2 == 1 then
-							mprintf("%s\n",dirs(k1));
+							mprintf("%s\n",strsubst(dirs(k1),SCI,"SCI"));
 						end
 						
 						if MSDOS then
@@ -192,7 +191,7 @@ function check_help(dirs)
 		end
 	end
 	
-	// Restore the initial environement 
+	// Restore the initial environement
 	//---------------------------------------------------------------------------------
 	
 	chdir(current_directory);
