@@ -25,10 +25,9 @@
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <A href='fftw.htm'><VERB>fftw</VERB></A>
-      <A href='get_fftw_wisdom.htm'><VERB>get_fftw_wisdom</VERB></A>
-      <A href='set_fftw_wisdom.htm'><VERB>set_fftw_wisdom</VERB></A>
-    </SEE_ALSO_ITEM>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM><LINK>fftw</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>get_fftw_wisdom</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>set_fftw_wisdom</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

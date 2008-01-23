@@ -53,14 +53,12 @@
     <P>
     Pour plus de détails concernant la libraire FFW, consultez le site web <A href='http://www.fftw.org'><VERB> http://www.fftw.org </VERB></A>.
     </P>
-    <P>
     <SP>
-     Rmq : La fonction ffw enregistre automatiquement les dernières paramètres utilisés lors d'un appel pour les ré-utiliser une seconde fois.
-     </SP>
-     <SP>
-     Cela permet une amélioration significative du temps de calcul lorsque la fonction fftw est appelée consécutivement avec les mêmes paramètres.
+    Rmq : La fonction ffw enregistre automatiquement les dernières paramètres utilisés lors d'un appel pour les ré-utiliser une seconde fois.
     </SP>
-    </P>
+    <SP>
+    Cela permet une amélioration significative du temps de calcul lorsque la fonction fftw est appelée consécutivement avec les mêmes paramètres.
+    </SP>
   </DESCRIPTION>
   <EXAMPLE>
   <![CDATA[
@@ -89,13 +87,12 @@
   b = fftw(y,1,[5 6 4],[1 5 30]);
   ]]>
   </EXAMPLE>
+
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <A href='fftw_flags.htm'><VERB>fftw_flags</VERB></A>
-      <A href='get_fftw_wisdom.htm'><VERB>get_fftw_wisdom</VERB></A>
-      <A href='set_fftw_wisdom.htm'><VERB>set_fftw_wisdom</VERB></A>
-      <A href='fftw_forget_wisdom.htm'><VERB>fftw_forget_wisdom</VERB></A>
-    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>fftw_flags</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>get_fftw_wisdom</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>set_fftw_wisdom</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>fftw_forget_wisdom</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 
   <BIBLIO>
