@@ -24,7 +24,7 @@
  fftw_forget_wisdom();
  ]]>
   </EXAMPLE>
-  <SEE_ALSO>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM><LINK>fftw</LINK></SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM><LINK>get_fftw_wisdom</LINK></SEE_ALSO_ITEM>

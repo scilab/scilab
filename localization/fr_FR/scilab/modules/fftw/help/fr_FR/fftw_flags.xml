@@ -38,6 +38,7 @@
     </P>
     <P>
     Les entrées possibles sont :
+    </p>
     <ITEMIZE>
       <ITEM><SP>FFTW_MEASURE or 0</SP></ITEM>
       <ITEM><SP>FFTW_DESTROY_INPUT or 1</SP></ITEM>
@@ -62,7 +63,6 @@
       <ITEM><SP>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</SP></ITEM>
       <ITEM><SP>FFTW_ALLOW_PRUNING or 1048576</SP></ITEM>
     </ITEMIZE>
-    </P>
     <P>
      Rmq : Lors de l'utilisation des méthodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit être appélée au moins deux fois.
      (le premier appel est pour l'initalisation, le second et les autres pour le calcul)
