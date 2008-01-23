@@ -813,8 +813,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						// TO DO REORGANIZE CODE & OUTPUT ERRORS 
 						// IT WORKS by a MIRACLE ...
 						if (buffer) FREE(buffer);
-						if (offsets) FREE(offsets);
-						if (use_offsets) FREE(use_offsets);
+						//if (offsets) FREE(offsets);
+						//if (use_offsets) FREE(use_offsets);
 						if (re ) FREE(re);
 						if (extra ) FREE(extra);
 						if (tables)
