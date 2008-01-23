@@ -133,17 +133,19 @@ public abstract class ExportToFile {
 	public void removeExtension() {		
 		String suffix = FileUtil.getFileSuffix(this.filename); //get the suffix(extension) of the file name
 		int pos = this.filename.lastIndexOf('.'); // position of the dot
-		
-		if (suffix.equals("bmp") && this.filetype == BMP_EXPORT) {
-			this.filename = filename.substring(0, pos);
-		} else if (suffix.equals("gif") && this.filetype == GIF_EXPORT) {
-			this.filename = filename.substring(0, pos);
-		} else if (suffix.equals("jpg") && this.filetype == JPG_EXPORT) {
-			this.filename = filename.substring(0, pos);
-		} else if (suffix.equals("png") && this.filetype == PNG_EXPORT) {
-			this.filename = filename.substring(0, pos);
-		} else if (suffix.equals("ppm") && this.filetype == PPM_EXPORT) {
-			this.filename = filename.substring(0, pos);
-		}		
+
+		if (suffix != null) {
+			if (suffix.equals("bmp") && this.filetype == BMP_EXPORT) {
+				this.filename = filename.substring(0, pos);
+			} else if (suffix.equals("gif") && this.filetype == GIF_EXPORT) {
+				this.filename = filename.substring(0, pos);
+			} else if (suffix.equals("jpg") && this.filetype == JPG_EXPORT) {
+				this.filename = filename.substring(0, pos);
+			} else if (suffix.equals("png") && this.filetype == PNG_EXPORT) {
+				this.filename = filename.substring(0, pos);
+			} else if (suffix.equals("ppm") && this.filetype == PPM_EXPORT) {
+				this.filename = filename.substring(0, pos);
+			}	
+		}
 	}
 }
