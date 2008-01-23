@@ -815,6 +815,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						if (buffer) FREE(buffer);
 						//if (offsets) FREE(offsets);
 						//if (use_offsets) FREE(use_offsets);
+						//I commented this two lines because it crashed scilab:(
 						if (re ) FREE(re);
 						if (extra ) FREE(extra);
 						if (tables)
