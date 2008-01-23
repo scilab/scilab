@@ -38,22 +38,27 @@ modulename=incremental_link
 
 
 #### incremental_link : Conf files ####
-libincremental_link_la_rootdir = $(mydatadir)
-libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libsciincremental_link_la_rootdir = $(mydatadir)
+libsciincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### incremental_link : init scripts #### 
-libincremental_link_la_etcdir = $(mydatadir)/etc
-libincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start
+libsciincremental_link_la_etcdir = $(mydatadir)/etc
+libsciincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start
+
+#### incremental_link : gateway declaration ####
+libsciincremental_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libsciincremental_link_la_sci_gateway_DATA = sci_gateway/incremental_link_gateway.xml
+
 
 #### incremental_link : compilation scripts #### 
-libincremental_link_la_scriptdir = $(mydatadir)/src/scripts/
-libincremental_link_la_script_DATA = src/scripts/Makefile.in \
+libsciincremental_link_la_scriptdir = $(mydatadir)/src/scripts/
+libsciincremental_link_la_script_DATA = src/scripts/Makefile.in \
 src/scripts/configure.ac \
 src/scripts/ltmain.sh \
 src/scripts/Makefile.am \
 src/scripts/aclocal.m4
 
-libincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
+libsciincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
 src/scripts/config.guess \
 src/scripts/config.sub \
 src/scripts/configure \

@@ -78,10 +78,11 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libincremental_link_la_scriptdir)" \
-	"$(DESTDIR)$(libincremental_link_la_etcdir)" \
-	"$(DESTDIR)$(libincremental_link_la_rootdir)" \
-	"$(DESTDIR)$(libincremental_link_la_scriptdir)"
+	"$(DESTDIR)$(libsciincremental_link_la_scriptdir)" \
+	"$(DESTDIR)$(libsciincremental_link_la_etcdir)" \
+	"$(DESTDIR)$(libsciincremental_link_la_rootdir)" \
+	"$(DESTDIR)$(libsciincremental_link_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciincremental_link_la_scriptdir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciincremental_link_la_LIBADD =
@@ -99,8 +100,8 @@ am_libsciincremental_link_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libsciincremental_link_la_OBJECTS =  \
 	$(am_libsciincremental_link_la_OBJECTS)
-libincremental_link_la_scriptSCRIPT_INSTALL = $(INSTALL_SCRIPT)
-SCRIPTS = $(libincremental_link_la_script_SCRIPTS)
+libsciincremental_link_la_scriptSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(libsciincremental_link_la_script_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -122,12 +123,14 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciincremental_link_la_SOURCES)
 DIST_SOURCES = $(libsciincremental_link_la_SOURCES)
-libincremental_link_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libincremental_link_la_rootDATA_INSTALL = $(INSTALL_DATA)
-libincremental_link_la_scriptDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libincremental_link_la_etc_DATA) \
-	$(libincremental_link_la_root_DATA) \
-	$(libincremental_link_la_script_DATA)
+libsciincremental_link_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciincremental_link_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libsciincremental_link_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+libsciincremental_link_la_scriptDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsciincremental_link_la_etc_DATA) \
+	$(libsciincremental_link_la_root_DATA) \
+	$(libsciincremental_link_la_sci_gateway_DATA) \
+	$(libsciincremental_link_la_script_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -338,22 +341,26 @@ libsciincremental_link_la_SOURCES = $(INCREMENTAL_LINK_C_SOURCES) $(GATEWAY_C_SO
 modulename = incremental_link
 
 #### incremental_link : Conf files ####
-libincremental_link_la_rootdir = $(mydatadir)
-libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libsciincremental_link_la_rootdir = $(mydatadir)
+libsciincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
 #### incremental_link : init scripts #### 
-libincremental_link_la_etcdir = $(mydatadir)/etc
-libincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start
+libsciincremental_link_la_etcdir = $(mydatadir)/etc
+libsciincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start
+
+#### incremental_link : gateway declaration ####
+libsciincremental_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libsciincremental_link_la_sci_gateway_DATA = sci_gateway/incremental_link_gateway.xml
 
 #### incremental_link : compilation scripts #### 
-libincremental_link_la_scriptdir = $(mydatadir)/src/scripts/
-libincremental_link_la_script_DATA = src/scripts/Makefile.in \
+libsciincremental_link_la_scriptdir = $(mydatadir)/src/scripts/
+libsciincremental_link_la_script_DATA = src/scripts/Makefile.in \
 src/scripts/configure.ac \
 src/scripts/ltmain.sh \
 src/scripts/Makefile.am \
 src/scripts/aclocal.m4
 
-libincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
+libsciincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
 src/scripts/config.guess \
 src/scripts/config.sub \
 src/scripts/configure \
@@ -485,24 +492,24 @@ clean-pkglibLTLIBRARIES:
 	done
 libsciincremental_link.la: $(libsciincremental_link_la_OBJECTS) $(libsciincremental_link_la_DEPENDENCIES) 
 	$(F77LINK) -rpath $(pkglibdir) $(libsciincremental_link_la_OBJECTS) $(libsciincremental_link_la_LIBADD) $(LIBS)
-install-libincremental_link_la_scriptSCRIPTS: $(libincremental_link_la_script_SCRIPTS)
+install-libsciincremental_link_la_scriptSCRIPTS: $(libsciincremental_link_la_script_SCRIPTS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libincremental_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_scriptdir)"
-	@list='$(libincremental_link_la_script_SCRIPTS)'; for p in $$list; do \
+	test -z "$(libsciincremental_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciincremental_link_la_scriptdir)"
+	@list='$(libsciincremental_link_la_script_SCRIPTS)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  if test -f $$d$$p; then \
 	    f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
-	    echo " $(libincremental_link_la_scriptSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
-	    $(libincremental_link_la_scriptSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	    echo " $(libsciincremental_link_la_scriptSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f'"; \
+	    $(libsciincremental_link_la_scriptSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f"; \
 	  else :; fi; \
 	done
 
-uninstall-libincremental_link_la_scriptSCRIPTS:
+uninstall-libsciincremental_link_la_scriptSCRIPTS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libincremental_link_la_script_SCRIPTS)'; for p in $$list; do \
+	@list='$(libsciincremental_link_la_script_SCRIPTS)'; for p in $$list; do \
 	  f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
-	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f"; \
 	done
 
 mostlyclean-compile:
@@ -631,56 +638,73 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libincremental_link_la_etcDATA: $(libincremental_link_la_etc_DATA)
+install-libsciincremental_link_la_etcDATA: $(libsciincremental_link_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libincremental_link_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_etcdir)"
-	@list='$(libincremental_link_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libsciincremental_link_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciincremental_link_la_etcdir)"
+	@list='$(libsciincremental_link_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libincremental_link_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libincremental_link_la_etcdir)/$$f'"; \
-	  $(libincremental_link_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libincremental_link_la_etcdir)/$$f"; \
+	  echo " $(libsciincremental_link_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciincremental_link_la_etcdir)/$$f'"; \
+	  $(libsciincremental_link_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciincremental_link_la_etcdir)/$$f"; \
 	done
 
-uninstall-libincremental_link_la_etcDATA:
+uninstall-libsciincremental_link_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libincremental_link_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libsciincremental_link_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libincremental_link_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciincremental_link_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciincremental_link_la_etcdir)/$$f"; \
 	done
-install-libincremental_link_la_rootDATA: $(libincremental_link_la_root_DATA)
+install-libsciincremental_link_la_rootDATA: $(libsciincremental_link_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libincremental_link_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_rootdir)"
-	@list='$(libincremental_link_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libsciincremental_link_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciincremental_link_la_rootdir)"
+	@list='$(libsciincremental_link_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libincremental_link_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libincremental_link_la_rootdir)/$$f'"; \
-	  $(libincremental_link_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libincremental_link_la_rootdir)/$$f"; \
+	  echo " $(libsciincremental_link_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciincremental_link_la_rootdir)/$$f'"; \
+	  $(libsciincremental_link_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciincremental_link_la_rootdir)/$$f"; \
 	done
 
-uninstall-libincremental_link_la_rootDATA:
+uninstall-libsciincremental_link_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libincremental_link_la_root_DATA)'; for p in $$list; do \
+	@list='$(libsciincremental_link_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libincremental_link_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciincremental_link_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciincremental_link_la_rootdir)/$$f"; \
 	done
-install-libincremental_link_la_scriptDATA: $(libincremental_link_la_script_DATA)
+install-libsciincremental_link_la_sci_gatewayDATA: $(libsciincremental_link_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libincremental_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_scriptdir)"
-	@list='$(libincremental_link_la_script_DATA)'; for p in $$list; do \
+	test -z "$(libsciincremental_link_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciincremental_link_la_sci_gatewaydir)"
+	@list='$(libsciincremental_link_la_sci_gateway_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libincremental_link_la_scriptDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
-	  $(libincremental_link_la_scriptDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	  echo " $(libsciincremental_link_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciincremental_link_la_sci_gatewaydir)/$$f'"; \
+	  $(libsciincremental_link_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciincremental_link_la_sci_gatewaydir)/$$f"; \
 	done
 
-uninstall-libincremental_link_la_scriptDATA:
+uninstall-libsciincremental_link_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libincremental_link_la_script_DATA)'; for p in $$list; do \
+	@list='$(libsciincremental_link_la_sci_gateway_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsciincremental_link_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciincremental_link_la_sci_gatewaydir)/$$f"; \
+	done
+install-libsciincremental_link_la_scriptDATA: $(libsciincremental_link_la_script_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciincremental_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciincremental_link_la_scriptdir)"
+	@list='$(libsciincremental_link_la_script_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciincremental_link_la_scriptDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f'"; \
+	  $(libsciincremental_link_la_scriptDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f"; \
+	done
+
+uninstall-libsciincremental_link_la_scriptDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciincremental_link_la_script_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciincremental_link_la_scriptdir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -762,7 +786,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)" "$(DESTDIR)$(libincremental_link_la_etcdir)" "$(DESTDIR)$(libincremental_link_la_rootdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciincremental_link_la_scriptdir)" "$(DESTDIR)$(libsciincremental_link_la_etcdir)" "$(DESTDIR)$(libsciincremental_link_la_rootdir)" "$(DESTDIR)$(libsciincremental_link_la_sci_gatewaydir)" "$(DESTDIR)$(libsciincremental_link_la_scriptdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -811,10 +835,11 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
-	install-libincremental_link_la_etcDATA \
-	install-libincremental_link_la_rootDATA \
-	install-libincremental_link_la_scriptDATA \
-	install-libincremental_link_la_scriptSCRIPTS
+	install-libsciincremental_link_la_etcDATA \
+	install-libsciincremental_link_la_rootDATA \
+	install-libsciincremental_link_la_sci_gatewayDATA \
+	install-libsciincremental_link_la_scriptDATA \
+	install-libsciincremental_link_la_scriptSCRIPTS
 
 install-dvi: install-dvi-am
 
@@ -852,10 +877,11 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libincremental_link_la_etcDATA \
-	uninstall-libincremental_link_la_rootDATA \
-	uninstall-libincremental_link_la_scriptDATA \
-	uninstall-libincremental_link_la_scriptSCRIPTS \
+uninstall-am: uninstall-libsciincremental_link_la_etcDATA \
+	uninstall-libsciincremental_link_la_rootDATA \
+	uninstall-libsciincremental_link_la_sci_gatewayDATA \
+	uninstall-libsciincremental_link_la_scriptDATA \
+	uninstall-libsciincremental_link_la_scriptSCRIPTS \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -868,20 +894,22 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libincremental_link_la_etcDATA \
-	install-libincremental_link_la_rootDATA \
-	install-libincremental_link_la_scriptDATA \
-	install-libincremental_link_la_scriptSCRIPTS install-man \
+	install-info-am install-libsciincremental_link_la_etcDATA \
+	install-libsciincremental_link_la_rootDATA \
+	install-libsciincremental_link_la_sci_gatewayDATA \
+	install-libsciincremental_link_la_scriptDATA \
+	install-libsciincremental_link_la_scriptSCRIPTS install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-	uninstall-libincremental_link_la_etcDATA \
-	uninstall-libincremental_link_la_rootDATA \
-	uninstall-libincremental_link_la_scriptDATA \
-	uninstall-libincremental_link_la_scriptSCRIPTS \
+	uninstall-libsciincremental_link_la_etcDATA \
+	uninstall-libsciincremental_link_la_rootDATA \
+	uninstall-libsciincremental_link_la_sci_gatewayDATA \
+	uninstall-libsciincremental_link_la_scriptDATA \
+	uninstall-libsciincremental_link_la_scriptSCRIPTS \
 	uninstall-pkglibLTLIBRARIES
 
 
