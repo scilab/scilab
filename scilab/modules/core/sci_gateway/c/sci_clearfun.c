@@ -12,9 +12,6 @@
 #include "Funtab.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-/* fortran subroutine */
-extern int C2F(cvname)(int *id,char *str,int *jobptr,unsigned long str_len); 
-/*--------------------------------------------------------------------------*/
 int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1 = 0,n1 = 0,m1 = 0;
