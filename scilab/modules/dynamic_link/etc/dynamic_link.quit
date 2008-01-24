@@ -1,0 +1,9 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for dynamic_link module
+// Copyright INRIA 2008
+// Allan CORNET
+// ====================================================================
+// delete help chapter
+del_help_chapter('dynamic_link',%T);
+// ====================================================================

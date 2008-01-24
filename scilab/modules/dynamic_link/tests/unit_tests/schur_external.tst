@@ -1,0 +1,23 @@
+//============================================
+// external with schur 
+// dynamic link test
+//============================================
+A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
+
+// The same function in C (a Compiler is required)
+C=['int mytest(double *EvR, double *EvI) {' //the C code
+   'if (*EvR * *EvR + *EvI * *EvI < 0.9025) return 1;'
+   'else return 0; }';];
+mputl(C,TMPDIR+'/mytest.c');
+
+
+//build and link
+lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+link(lp,'mytest','c'); 
+
+//run it
+[U,dim,T]=schur(A,'mytest');
+
+if (dim <> 2) then pause,end;
+
+//============================================
