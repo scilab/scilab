@@ -1,0 +1,105 @@
+# File: sci_gateway/c/sci_chartooem.c, line: 37
+# File: sci_gateway/c/sci_oemtochar.c, line: 37
+# File: sci_gateway/c/sci_dos.c, line: 41
+# File: sci_gateway/c/sci_dos.c, line: 53
+# File: sci_gateway/c/sci_mcisendstring.c, line: 96
+# File: sci_gateway/c/sci_findfileassociation.c, line: 27
+#, c-format
+msgid "%s: Wrong type for first input argument: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 29
+# File: sci_gateway/c/sci_winqueryreg.c, line: 37
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 81
+#, c-format
+msgid "%s: An error occurred.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 130
+#, c-format
+msgid "%s: Cannot query value of this type.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dos.c, line: 61
+#, c-format
+msgid "%s: Wrong second input argument: '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_consolebox.c, line: 36
+# File: sci_gateway/c/sci_consolebox.c, line: 73
+msgid "Only on Windows Mode, not in Console Mode.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_findfileassociation.c, line: 45
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 49
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 55
+msgid "%: Wrong type for first input argument: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 71
+# File: sci_gateway/c/sci_toprint.c, line: 172
+# File: sci_gateway/c/sci_toprint.c, line: 178
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 76
+#, c-format
+msgid "%s: Wrong first input argument: Must be >= %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 82
+# File: sci_gateway/c/sci_toprint.c, line: 88
+# File: sci_gateway/c/sci_toprint.c, line: 190
+#, c-format
+msgid "%s: Wrong first input argument.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 141
+#, c-format
+msgid ""
+"%s: Wrong first input argument: String or string matrix (1 x m) or (n x 1) "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 184
+#, c-format
+msgid "%s: Wrong second input argument: '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_toprint.c, line: 197
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_winopen.c, line: 23
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""

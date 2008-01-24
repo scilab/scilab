@@ -76,13 +76,13 @@ int C2F(sci_consolebox) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,("%s: Wrong input argument: 'on', 'off' or 'toggle' expected."),fname);
+				Scierror(999,("%s: Wrong input argument: '%s', '%s' or '%s' expected.\n"),fname,"on", "off", "toggle");
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,("%s: Wrong input argument: 'on', 'off' or 'toggle' expected."),fname);
+			Scierror(999,("%s: Wrong input argument: '%s', '%s' or '%s' expected.\n"),fname,"on", "off", "toggle");
 			return 0;
 		}
 

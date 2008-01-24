@@ -8,6 +8,7 @@
 #include "Scierror.h"
 #include "FindFileAssociation.h"
 #include "stack-c.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 {	
@@ -24,7 +25,7 @@ int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 	{
 		if (GetType(1) != sci_strings)
 		{
-			Scierror(999,"invalid parameter.\n");
+			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 			return 0;
 		}
 		else
@@ -42,7 +43,7 @@ int C2F(sci_findfileassociation) _PARAMS((char *fname,unsigned long l))
 	{
 		if ( (GetType(1) != sci_strings) && (GetType(2) != sci_strings) )
 		{
-			Scierror(999,"invalid parameter(s).\n");
+			Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
 			return 0;
 		}
 		else

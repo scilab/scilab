@@ -3,8 +3,9 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_windows_tools.h"
-#include "MALLOC.h" /* MALLOC */
+#include "MALLOC.h" 
 #include "stack-c.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib, "winmm.lib")
 /*--------------------------------------------------------------------------*/
@@ -42,7 +43,7 @@ int C2F(sci_mcisendstring) _PARAMS((char *fname,unsigned long l))
 			
 			if ( mciGetErrorString(Error,ErrorText,sizeof(ErrorText)) == FALSE )
 			{
-				wsprintf(ErrorText,"%s","Unkown MCI error");
+				wsprintf(ErrorText,"%s","Unknown MCI error");
 			}
 
 			Output=(char*)MALLOC((strlen(ErrorText)+1)*sizeof(char));
@@ -93,7 +94,7 @@ int C2F(sci_mcisendstring) _PARAMS((char *fname,unsigned long l))
 	}
 	else
 	{
-		Scierror(999,"parameter must be a string.");
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		return 0;
 	}
 }

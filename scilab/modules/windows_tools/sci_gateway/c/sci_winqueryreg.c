@@ -7,10 +7,7 @@
 #include "MALLOC.h"
 #include "registry.h"
 #include "Scierror.h"
-/*--------------------------------------------------------------------------*/
-#define MSG_WERROR1 "parameter(s) type incorrect.\n"
-#define MSG_WERROR2 "Error.\n"
-#define MSG_WERROR3 "Cannot query value of this type.\n"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 {
@@ -30,7 +27,7 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 	{
 		if ( (GetType(1) != sci_strings) || (GetType(2) != sci_strings) || (GetType(3) != sci_strings))
 		{
-			Scierror(999,MSG_WERROR1);
+			Scierror(999,_("%s: Wrong type for input arguments: String expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -38,7 +35,7 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 	{
 		if ( (GetType(1) != sci_strings) || (GetType(2) != sci_strings) )
 		{
-			Scierror(999,MSG_WERROR1);
+			Scierror(999,_("%s: Wrong type for input arguments: String expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -82,7 +79,7 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 				}
 				else
 				{
-					Scierror(999,MSG_WERROR2);
+					Scierror(999,_("%s: An error occurred.\n"),fname); /* @TODO: provide a real error message */
 					return 0;
 				}
 			}
@@ -131,7 +128,7 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 	{
 		if (output) {FREE(output);output=NULL;}
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-		Scierror(999,MSG_WERROR3);
+		Scierror(999,_("%s: Cannot query value of this type.\n"),fname);
 		return 0;
 	}
 

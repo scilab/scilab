@@ -38,7 +38,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 
 	if (GetType(1)!=sci_strings) 
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected."),fname);
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		return 0;
 	}
 
@@ -50,7 +50,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 	{
 		if (GetType(2)!=sci_strings) 
 		{
-			Scierror(999,_("%s: Wrong type for first input argument: String expected."),fname);
+			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 			return 0;
 		}
 		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
@@ -58,7 +58,7 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 
 		if (strcmp("-echo",Param2String))
 		{
-			Scierror(999,_("%s: Wrong second input argument: 'echo' expected."),fname);
+			Scierror(999,_("%s: Wrong second input argument: '%s' expected.\n"),fname, "echo");
 			return 0;
 		}
 		else
@@ -169,7 +169,6 @@ int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 /*--------------------------------------------------------------------------*/
 static int PrintOuput(char **ouput,int nbrlines)
 {
-	BOOL bOK=FALSE;
 	if (ouput)
 	{
 		int i=0;
@@ -177,8 +176,8 @@ static int PrintOuput(char **ouput,int nbrlines)
 		{
 			if (ouput[i]) sciprint("%s\n",ouput[i]);
 		}
-		bOK=TRUE;
+		return TRUE;
 	}
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/

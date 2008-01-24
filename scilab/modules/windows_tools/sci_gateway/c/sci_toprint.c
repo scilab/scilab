@@ -46,13 +46,13 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 				}
 				else 
 				{
-					sciprint(_("\nError : Can't open %s.\n"),param);
+					sciprint(_("%s: The file %s does not exist.\n"),fname,param);
 					*paramoutINT=(int)(FALSE);
 				}
 			}
 			else
 			{
-				Scierror(999,_("%: Wrong type for first input argument: a string expected.\n"),fname);
+				Scierror(999,_("%: Wrong type for first input argument: String expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -68,24 +68,24 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 					if (num_win>=0)
 					{
 						/* DISABLE */
-						sciprint(_("Not yet implemented.\n"));
+						sciprint(_("%s: This feature has not been implemented.\n"),fname);
 						//*paramoutINT=(int)FigureToPrint(num_win,FALSE);
 					}
 					else
 					{
-						Scierror(999,_("%s: Wrong first input argument: >= 0 expected.\n"),fname);
+						Scierror(999,_("%s: Wrong first input argument: Must be >= %d.\n"),fname,0);
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,_("%s: Wrong first input argument: see help toprint."),fname);
+					Scierror(999,_("%s: Wrong first input argument.\n"),fname);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong first input argument: see help toprint."),fname);
+				Scierror(999,_("%s: Wrong first input argument.\n"),fname);
 				return 0;
 			}
 		}
@@ -138,7 +138,7 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 			else
 			{
 				freeArrayOfString(Str,m1);
-				Scierror(999,"parameter incorrect must be a string or a string matrix (1 x m) or (n x 1).");
+				Scierror(999,_("%s: Wrong first input argument: String or string matrix (1 x m) or (n x 1) expected.\n"),fname);
 				return 0;
 			}
 
@@ -169,32 +169,32 @@ int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 						if ( strcmp(param,"pos")==0 )
 						{
 							/* DISABLE */
-							sciprint("Not yet implemented.\n");
+							sciprint(_("%s: This feature has not been implemented.\n"),fname);
 							//*paramoutINT=(int)FigureToPrint(num_win,TRUE);
 						}
 						else
 						{
 							/* DISABLE */
-							sciprint("Not yet implemented.\n");
+							sciprint(_("%s: This feature has not been implemented.\n"),fname);
 							//*paramoutINT=(int)FigureToPrint(num_win,FALSE);
 						}
 					}
 					else
 					{
-						Scierror(999,"2nd parameter incorrect --> see help toprint ('pos' or 'gdi').");
+						Scierror(999,_("%s: Wrong second input argument: '%s' or '%s' expected.\n"),fname,"pos","gdi");
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,"1st parameter incorrect --> see help toprint.");
+					Scierror(999,_("%s: Wrong first input argument.\n"),fname);
 					return 0;
 				}
 
 			}
 			else
 			{
-				Scierror(999,"parameter(s) incorrect --> see help toprint.");
+				Scierror(999,_("%s: Wrong type for input argument.\n"),fname);
 				return 0;
 			}
 		}
