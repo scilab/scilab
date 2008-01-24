@@ -36,6 +36,6 @@ Source: modules\{#JAVASCI}\src\java\javasci\*.*; DestDir: {app}\modules\{#JAVASC
 ;
 Source: modules\{#JAVASCI}\examples\*.*; DestDir: {app}\modules\{#JAVASCI}\examples; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;
-;Source: modules\{#JAVASCI}\tests\*.*; DestDir: {app}\modules\{#JAVASCI}\tests; Flags: recursesubdirs; Components: {#COMPN_JAVASCI} and {#COMPN_TESTS}
+Source: modules\{#JAVASCI}\tests\*.*; DestDir: {app}\modules\{#JAVASCI}\tests; Flags: recursesubdirs; Components: {#COMPN_JAVASCI} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
