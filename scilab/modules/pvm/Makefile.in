@@ -571,12 +571,8 @@ top_srcdir = @top_srcdir@
 # Mask of the Scilab compiled macros
 @PVM_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
-@PVM_FALSE@FUNCTION_NAMES = macros/names
-# List of the function of a module
-@PVM_TRUE@FUNCTION_NAMES = macros/names
-# Tests directory name
 @PVM_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Tests directory name
+# List of the function of a module
 @PVM_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
 @PVM_FALSE@HELP_CHAPTERDIR = help/en_US/
@@ -1433,15 +1429,6 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
 @PVM_TRUE@install-data-local:
-@PVM_TRUE@	@if test -f $(FUNCTION_NAMES); then \
-@PVM_TRUE@		echo "-- Install of declaration files --"; \
-@PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@PVM_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@PVM_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@PVM_TRUE@	fi
 # Install the help chapter
 @PVM_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_TRUE@	if test -f $$HELPFILE; then \
@@ -1467,7 +1454,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
-@PVM_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@PVM_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @PVM_TRUE@		  done; \
@@ -1601,15 +1588,6 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
 @PVM_FALSE@install-data-local:
-@PVM_FALSE@	@if test -f $(FUNCTION_NAMES); then \
-@PVM_FALSE@		echo "-- Install of declaration files --"; \
-@PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@PVM_FALSE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@PVM_FALSE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@PVM_FALSE@	fi
 # Install the help chapter
 @PVM_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_FALSE@	if test -f $$HELPFILE; then \
@@ -1635,7 +1613,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
-@PVM_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@PVM_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @PVM_FALSE@		  done; \

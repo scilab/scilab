@@ -414,8 +414,6 @@ modulename = javasci
 # Mask of the Scilab compiled macros
 @JAVASCI_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
-@JAVASCI_TRUE@FUNCTION_NAMES = macros/names
-# Tests directory name
 @JAVASCI_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
 @JAVASCI_TRUE@HELP_CHAPTERDIR = help/en_US/
@@ -944,15 +942,6 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	done
 @JAVASCI_TRUE@install-data-local:
-@JAVASCI_TRUE@	@if test -f $(FUNCTION_NAMES); then \
-@JAVASCI_TRUE@		echo "-- Install of declaration files --"; \
-@JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@JAVASCI_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@JAVASCI_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@JAVASCI_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@JAVASCI_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@JAVASCI_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@JAVASCI_TRUE@	fi
 # Install the help chapter
 @JAVASCI_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @JAVASCI_TRUE@	if test -f $$HELPFILE; then \
@@ -978,7 +967,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @JAVASCI_TRUE@		if test -d $(srcdir)/$$dir/; then \
-@JAVASCI_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@JAVASCI_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @JAVASCI_TRUE@		  done; \

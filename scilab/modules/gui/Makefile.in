@@ -509,8 +509,6 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the function of a module
-FUNCTION_NAMES = macros/names
-# Tests directory name
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
 HELP_CHAPTERDIR = help/en_US/
@@ -648,6 +646,7 @@ JARMASK = *.jar
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/jni/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/cpp/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/cpp/figureDrawing/ \
+@GUI_TRUE@			-I$(top_srcdir)/modules/graphic_export/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
@@ -2009,15 +2008,6 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@	done
 install-data-local:
-	@if test -f $(FUNCTION_NAMES); then \
-		echo "-- Install of declaration files --"; \
-		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-	fi
 # Install the help chapter
 	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 	if test -f $$HELPFILE; then \
@@ -2043,7 +2033,7 @@ install-data-local:
 	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
-		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 		  done; \

@@ -500,12 +500,8 @@ top_srcdir = @top_srcdir@
 # Mask of the Scilab compiled macros
 @TCLTK_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
-@TCLTK_FALSE@FUNCTION_NAMES = macros/names
-# List of the function of a module
-@TCLTK_TRUE@FUNCTION_NAMES = macros/names
-# Tests directory name
 @TCLTK_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Tests directory name
+# List of the function of a module
 @TCLTK_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # Chapter file 
 @TCLTK_FALSE@HELP_CHAPTERDIR = help/en_US/
@@ -922,15 +918,6 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	done
 @TCLTK_TRUE@install-data-local:
-@TCLTK_TRUE@	@if test -f $(FUNCTION_NAMES); then \
-@TCLTK_TRUE@		echo "-- Install of declaration files --"; \
-@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@TCLTK_TRUE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@TCLTK_TRUE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@TCLTK_TRUE@	fi
 # Install the help chapter
 @TCLTK_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @TCLTK_TRUE@	if test -f $$HELPFILE; then \
@@ -956,7 +943,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
-@TCLTK_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@TCLTK_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @TCLTK_TRUE@		  done; \
@@ -1090,15 +1077,6 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	done
 @TCLTK_FALSE@install-data-local:
-@TCLTK_FALSE@	@if test -f $(FUNCTION_NAMES); then \
-@TCLTK_FALSE@		echo "-- Install of declaration files --"; \
-@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir); \
-@TCLTK_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@TCLTK_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@TCLTK_FALSE@		echo "$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/macros/"; \
-@TCLTK_FALSE@		$(INSTALL_DATA) $(FUNCTION_NAMES) $(DESTDIR)$(pkgmacrosdir)/$(MACRODIRS); \
-@TCLTK_FALSE@	fi
 # Install the help chapter
 @TCLTK_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @TCLTK_FALSE@	if test -f $$HELPFILE; then \
@@ -1124,7 +1102,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_FALSE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_FALSE@		if test -d $(srcdir)/$$dir/; then \
-@TCLTK_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@TCLTK_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
 @TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @TCLTK_FALSE@		  done; \
