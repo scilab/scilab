@@ -5,6 +5,10 @@
 #include <memory.h>
 #include "../includes/win_mem_alloc.h"
 /*-----------------------------------------------------------------------------------*/
+/* an interesting article about HeapAlloc,malloc, and OctAlloc */
+/* bench show that HeapAlloc is faster than malloc on Windows */
+/* http://denisbider.blogspot.com/2007/10/heap-allocation-on-multi-core-systems.html */
+/*-----------------------------------------------------------------------------------*/
 #define MEMDISPO (MEM_COMMIT | MEM_TOP_DOWN)
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
