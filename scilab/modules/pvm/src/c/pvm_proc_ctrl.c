@@ -261,34 +261,34 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 				if (stat(path, &buf) == 0){
 					argc = 1;
 					argv[0] = path;
-					sciprint_nd(_("The configuration file\n %s\nis used.\n"), path);
+					sciprint_nd(_("The configuration file %s is used.\n"), path);
 				} else {
 					sciprint_nd(_("Warning: PVM_ROOT is set to %s\n"),ro);
-					sciprint_nd(_("\tbut there exists no configuration file:\n"));
-					sciprint_nd("\t%s\n", path);
+					sciprint_nd(_("but there exists no configuration file:\n"));
+					sciprint_nd("%s\n", path);
 					FREE(path);
 				}
 			} /* PVM_ROOT + HOME */
 			if (!argc && (rd = getSCIpath())){
 				if ((path = (char *) MALLOC(strlen(rd)+strlen(PVM_CONFIG_FILE)+1)) == NULL) {
-					(void) fprintf(stderr, _("Error malloc in pvm_error\n"));
+					(void) fprintf(stderr, _("%s: No more memory.\n"),"pvm_start");
 					*res = PvmNoMem;
 					return;
 				}
 				strcpy(path, rd);
 				strcat(path, PVM_CONFIG_FILE); 
 				if (stat(path, &buf) == 0){
-					sciprint_nd(_("The standard configuration file $SCI%s will be used.\n\tWith SCI=%s\n\tSCI will have to be set on remote hosts\n\tin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
+					sciprint_nd(_("The standard configuration file $SCI%s will be used.\nWith SCI=%s\nSCI will have to be set on remote hosts\nin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
 					argc = 1;
 					argv[0] = path;
 				} else {
 					FREE(path);
-					sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\n\tWe supposed that PVM and scilab are in standard place on your net\n\t (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
+					sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\nWe supposed that PVM and scilab are in standard place on your net\n (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
 				}
 			} /* SCI */
 		} else {
 			if (stat(hostfile, &buf) == -1){
-				sciprint(_("%s: No such file or directory\n"), hostfile);
+				sciprint(_("%s: No such file or directory.\n"), hostfile);
 			} else {
 				argv[0] = hostfile;
 				argc = 1;

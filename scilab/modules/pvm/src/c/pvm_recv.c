@@ -54,7 +54,7 @@ void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
   }
 
 #ifdef DEBUG
-  (void) fprintf(stderr, _("RECV: %d:%d:%d\n"), msgbyte, msgtag, msgtid);
+  (void) fprintf(stderr, "RECV: %d:%d:%d\n", msgbyte, msgtag, msgtid);
 #endif /* DEBUG */
 
   /* unpack the size of the packing vector */

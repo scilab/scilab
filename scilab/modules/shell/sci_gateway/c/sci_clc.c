@@ -35,7 +35,7 @@ int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("%s: This feature has not been implemented yet.\n"),fname);
+			Scierror(999,_("%s: This feature has not been implemented.\n"),fname);
 			return 0;
 		}
 	}

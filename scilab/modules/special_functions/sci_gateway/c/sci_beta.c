@@ -37,7 +37,7 @@ int sci_beta(char *fname,unsigned long fname_len)
   CheckSameDims(1,2,mx,nx,my,ny);
   if ( itx == 1  ||  ity == 1 )
     {
-      Scierror(999,_("%s don't work for complex arguments\n"), fname);
+      Scierror(999,_("%s: Wrong type for input argument: Complex argument not accepted.\n"), fname);
       return 0;
     };
 
@@ -47,7 +47,7 @@ int sci_beta(char *fname,unsigned long fname_len)
     {
       if ( x[i] <= 0.0  ||  y[i] <= 0.0 )
 	{
-	  Scierror(999,_("%s: input arguments must be positive\n"), fname);
+	  Scierror(999,_("%s: Wrong value for input arguments: Must be > %d.\n"), fname,0);
 	  return 0;
 	}
       xpy = x[i] + y[i];
