@@ -48,19 +48,19 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("function-name is incorrect.\n"));
+				Scierror(999,_("%s: function-name is incorrect.\n"),fname);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s argument must be > 0.\n"),"nameptr");
+			Scierror(999,_("%s: Wrong value for second input argument: Must be > %d.\n"),fname,0);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("See help newfun.\n"));
+		Scierror(999,_("%s: Wrong type for input arguments.\n"));
 		return 0;
 	}
 	return 0;
@@ -68,7 +68,6 @@ int C2F(sci_newfun) _PARAMS((char *fname,unsigned long fname_len))
 /*--------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname)
 {
-	BOOL bOK=TRUE;
 	int i=0;
 
 	for(i=0;i<(int)strlen(functionname);i++)
@@ -119,6 +118,6 @@ static BOOL Is_a_correct_function_name(char *functionname)
 		}
 		/* To be continued ... :( */
 	}
-	return bOK;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/

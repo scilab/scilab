@@ -215,13 +215,13 @@ static int getversion_one_rhs(void)
 			}
 			else
 			{
-				Scierror(999,_("Error: file VERSION in %s.\n"),Param);
+				Scierror(999,_("%s: Wrong file VERSION %s.\n"),"getversion",Param);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("Error: Wrong module name %s.\n"),Param);
+			Scierror(999,_("%s: Wrong module name %s.\n"),"getversion",Param);
 			return 0;
 		}
 		m1=1;
@@ -233,7 +233,7 @@ static int getversion_one_rhs(void)
 	}
 	else
 	{
-		Scierror(999,_("Invalid argument.\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"));
 		return 0;
 	}
 	return 0;
@@ -303,13 +303,13 @@ static int getversion_two_rhs(void)
 				}
 				else
 				{
-					Scierror(999,_("Error: file VERSION in %s.\n"),ParamRhs1);
+					Scierror(999,_("%s: Wrong file VERSION in %s.\n"),"getversion",ParamRhs1);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,_("Error: Wrong module name %s.\n"),ParamRhs1);
+				Scierror(999,_("%S: Wrong module name %s.\n"),"getversion",ParamRhs1);
 				return 0;
 			}
 		}
@@ -321,7 +321,7 @@ static int getversion_two_rhs(void)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong input arguments: Strings expected.\n"),"getversion");
+		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),"getversion");
 		return 0;
 	}
 }

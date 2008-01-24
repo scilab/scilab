@@ -14,9 +14,6 @@ static int getnumberoflibraries(void);
 char **getlibrarieslist(int *sizearray)
 {
 	char **librarieslist = NULL;
-	int nbElements = getnumberoflibraries();
-
-	librarieslist = (char**)MALLOC(sizeof(char*)*(nbElements));
 
 	if (librarieslist)
 	{
@@ -34,12 +31,9 @@ char **getlibrarieslist(int *sizearray)
 				int *header = istk( iadr(*Lstk(fin)));
 				if ( (header) && (header[0] == sci_lib ) ) 
 				{
-					char *cpybuf = NULL;
 
-					cpybuf = (char*)MALLOC(sizeof(char)*(strlen(NameVariable)+1));
-					if (cpybuf) strcpy(cpybuf,NameVariable);
-
-					librarieslist[i] = cpybuf;
+					librarieslist[i]= (char*)MALLOC(sizeof(char)*(strlen(NameVariable)+1));
+					strcpy(librarieslist[i],NameVariable);
 					i++;
 				}
 			}

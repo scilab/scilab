@@ -56,7 +56,7 @@ int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Must be the name of a scilab function.\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		return 0;
 	}
 
