@@ -60,7 +60,7 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   if MSDOS then
   mfprintf(fd,"%s_path=get_absolute_file_path(''%s'');\n",libname,basename(loadername+'.x'));
   else
-  mfprintf(fd,"%s_path=get_absolute_file_path(''%s'')+%s;\n",libname,basename(loadername+'.x'),"''.libs/''");
+  mfprintf(fd,"%s_path=get_absolute_file_path(''%s'');\n",libname,basename(loadername+'.x'));
 //  mfprintf(fd,"%s_path='.libs/';\n",libname);
   end
   
@@ -71,7 +71,7 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
     else
       [diri,basenamei,exti]=fileparts(libs(i));
       if (diri == '') then
-        mfprintf(fd,"link(%s_path+''%s.%s'');\n",libname,libs(i),lib_suf);
+         mfprintf(fd,"link(%s_path+''%s.%s'');\n",libname,libs(i),lib_suf);
       else
         mfprintf(fd,"link(''%s.%s'');\n",libs(i),lib_suf);
       end
@@ -125,7 +125,8 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 				 ldflags,cflags,fflags,cc)
   
   if libname=="" then libname = names(1);end 
-  linkpath=TMPDIR;
+  oldPath=pwd();
+  linkpath=TMPDIR
   commandpath=SCI+"/modules/incremental_link/src/scripts/";
 //  chdir(commandpath);
 	// We launch ./configure in order to produce a "generic" Makefile 
@@ -136,21 +137,49 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 	// Copy files => linkpath
 	chdir(linkpath)
 	printf(gettext("Copy compilation files (Makefile*, libtool...) to %s\n"),linkpath);
+
+ 	// List of the files mandatory to generate a lib with the detection of the env
 	mandatoryFiles=["Makefile.orig", "configure.ac", "configure", "Makefile.am","Makefile.in","config.sub","config.guess","config.status","depcomp","install-sh","ltmain.sh","libtool","missing","aclocal.m4"]
+
+	// Copy files to the working tmpdir
 	for x=mandatoryFiles(:)' ;
 		copyfile(commandpath+"/"+x,linkpath);
 	end
-	filelist=""
-	for x=files(:)' ; filelist = filelist +" " +x;end
 
-//    printf(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
+	filelist=""	
+	for x=files(:)' ;  
+		// Old way: to compile a fun.c file, the user had to provide fun.o
+		filename=strsubst(x,'.o','')
+		filesMatching=ls(oldPath+"/"+filename+".*")
+
+		// The user provided the real filename
+		if filesMatching==[] then
+			copyfile(x, linkpath)
+		else
+		// Or copy the file matching to what we were looking for (this stuff
+		// could lead to bug if you have fun.c fun.f or fun.cxx but it was 
+		// already the case before ...
+			for f=filesMatching(:)' ;
+				printf("Copy %s to %s\n",f, linkpath)
+				copyfile(f, linkpath)
+			end
+		end
+
+		filelist = filelist +" " +x;
+	end
+
+	// Alter the Makefile in order to compile the right files
 	printf("Modification of the Makefile in " + linkpath+"\n");
 	unix_w(""+commandpath+"/scicompile.sh "+libname+ " " +filelist);
-// on devrait catcher le code de retour du script et gere/afficher l'erreur
-// TODO : voir quoi faire du CFLAGS
+
+	// on devrait catcher le code de retour du script et gere/afficher l'erreur
+	// TODO : voir quoi faire du CFLAGS
+
 	unix_w("make CFLAGS=-I"+SCI+"/modules/core/includes/");
 
-//  chdir(oldpath)
+	lib_name="lib"+libname+'.'+ilib_unix_soname();
+	copyfile(".libs/"+lib_name, oldPath)
+	chdir(oldPath)
 
 	return;
     

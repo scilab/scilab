@@ -31,7 +31,10 @@ function libn=ilib_compile(lib_name,makename,files)
     write(%io(2),'   building shared library (be patient)');
    unix_s(make_command+makename + ' '+ lib_name); 
   else
+	// Switch back to the TMPDIR where the mandatory files are
+	chdir(TMPDIR)
 	  unix_s("make");
+	chdir(oldpath)
 	end
   // a revoir 
   libn=path+lib_name_make ; 
