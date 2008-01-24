@@ -14,6 +14,9 @@ static int getnumberoflibraries(void);
 char **getlibrarieslist(int *sizearray)
 {
 	char **librarieslist = NULL;
+	int nbElements = getnumberoflibraries();
+
+	librarieslist = (char**)MALLOC(sizeof(char*)*(nbElements));
 
 	if (librarieslist)
 	{
