@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### Graphic export module
+### Graphic export module
 ### INRIA - Scilab 2008
 ##########
 
@@ -63,15 +63,15 @@ modulename=graphic_export
 libscigraphic_export_la_rootdir = $(mydatadir)
 libscigraphic_export_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
 
-#### graphic_export : init scripts ####
+#### graphic_export : init scripts ####
 libscigraphic_export_la_etcdir = $(mydatadir)/etc
 libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.start
 
-#### graphic_export : gateway declaration ####
-#libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscigraphic_export_la_sci_gateway_DATA = sci_gateway/graphic_export_gateway.xml
+#### graphic_export : gateway declaration ####
+libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscigraphic_export_la_sci_gateway_DATA = sci_gateway/graphic_export_gateway.xml
 
-#### graphic_export : include files ####
+#### graphic_export : include files ####
 libscigraphic_export_la_includedir=$(pkgincludedir)/graphic_export
 libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h \
 includes/sci_xs2ppm.h \
