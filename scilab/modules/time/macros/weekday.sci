@@ -24,7 +24,7 @@ function [N,S] = weekday(D,form)
 	end
 	
 	if (rhs==2) & (form <> 'long') & (form <> 'short') then
-		error(msprintf(gettext("%s: Wrong second input argument: ''%s'' or ''%s'' expected.\n"),"weekday","long","short"));
+		error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"weekday","long","short"));
 	end
 	
 	// some definitions
