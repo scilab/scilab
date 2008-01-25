@@ -31,7 +31,7 @@ int get_segs_color_property( sciPointObj * pobj )
   colors = MALLOC( nbSegs * sizeof(double) ) ;
   if ( colors == NULL )
   {
-	  sciprint(_("%s: No more memory\n"),"get_segs_color_property");
+	  sciprint(_("%s: No more memory.\n"),"get_segs_color_property");
 	  return -1 ;
   }
 

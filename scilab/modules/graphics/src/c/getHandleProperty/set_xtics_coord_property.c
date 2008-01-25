@@ -39,19 +39,19 @@ int set_xtics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   if ( nbRow != 1 )
   {
-    sciprint(_("%s: Wrong type for second input argument: row vector expected.\n"), "set_xtics_coord_property") ;
+    sciprint(_("%s: Wrong type for second input argument: Row vector expected.\n"), "set_xtics_coord_property") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->nx == 1 && nbCol != 1 )
   {
-    sciprint(_("%s: Wrong type for second input argument: scalar expected.\n"), "set_xtics_coord_property") ;
+    sciprint(_("%s: Wrong type for second input argument: Scalar expected.\n"), "set_xtics_coord_property") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (  pAXES_FEATURE(pobj)->nx != 1 && nbCol == 1 )
   {
-    sciprint(_("%s: Wrong type for second input argument: vector expected.\n"), "set_xtics_coord_property") ;
+    sciprint(_("%s: Wrong type for second input argument: Vector expected.\n"), "set_xtics_coord_property") ;
     return SET_PROPERTY_ERROR ;
   }
 

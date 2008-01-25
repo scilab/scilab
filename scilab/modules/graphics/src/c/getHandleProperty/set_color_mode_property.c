@@ -62,7 +62,7 @@ int set_color_mode_property( sciPointObj * pobj, int stackPointer, int valueType
 
       if ((psurf->zcol = MALLOC ( nc * sizeof (double))) == NULL)
       {
-        sciprint(_("%s: No more memory\n"),"set_color_mode_property");
+        sciprint(_("%s: No more memory.\n"),"set_color_mode_property");
         return SET_PROPERTY_ERROR ;
       }
 

@@ -826,7 +826,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
      
       if ( ppTitle->text.pStrings == NULL )
       {
-        sciprint(_("No more place to allocates text string, try a shorter string"));
+        sciprint(_("No more place to allocates text string, try a shorter string.\n"));
         sciDelThisToItsParent (pobj, sciGetParent (pobj));
         sciDelHandle (pobj);
         FREE(ppTitle);
@@ -922,7 +922,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       /* Allocation de la structure sciText */
       if ( ppLegend->text.pStrings == NULL)
       {
-        sciprint(_("\nNo more place to allocates text string, try a shorter string\n"));
+        sciprint(_("No more place to allocates text string, try a shorter string.\n"));
         sciDelThisToItsParent (pobj, sciGetParent (pobj));
         sciDelHandle (pobj);
         FREE(ppLegend);

@@ -39,7 +39,7 @@ sciPointObj * CreateUIControl(char *style)
 
   if ((pUICONTROL_FEATURE (pobj)->callback = CALLOC(1,sizeof(char))) == NULL )
     {
-      sciprint(_("No more place to allocates text string, try a shorter string"));
+      sciprint(_("No more place to allocates text string, try a shorter string.\n"));
       return (sciPointObj *) NULL;
     }
 
@@ -67,7 +67,7 @@ sciPointObj * CreateUIControl(char *style)
   /* Font default */
   if ((pUICONTROL_FEATURE (pobj)->fontName = CALLOC(1,sizeof(char))) == NULL )
     {
-      sciprint(_("No more place to allocates text string, try a shorter string"));
+      sciprint(_("No more place to allocates text string, try a shorter string.\n"));
       return (sciPointObj *) NULL;
     }
   strcpy(pUICONTROL_FEATURE (pobj)->fontName, "");

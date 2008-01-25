@@ -63,7 +63,10 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 * @return the created canvas
 	 */
 	public static SwingScilabCanvas createCanvas(int figureIndex) {
-		GLCapabilities cap = new GLCapabilities();
+		GLCapabilities cap=null;
+		try {
+
+		cap = new GLCapabilities();
 		cap.setDoubleBuffered(true);
 		
 		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
@@ -73,6 +76,11 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		correspondigFigure.setRenderingTarget(newCanvas);
 		
 		return newCanvas;
+
+		}catch (Exception e){ 
+			System.err.println("--------------============================= "+e.getMessage());
+			return new SwingScilabCanvas(cap, figureIndex);
+		}
 	}
 
 	/**

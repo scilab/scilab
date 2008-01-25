@@ -58,7 +58,7 @@ int set_cdata_mapping_property( sciPointObj * pobj, int stackPointer, int valueT
       {
         if ((ppSurf->color = MALLOC (nc * sizeof (double))) == NULL)
         {
-			sciprint(_("%s: No more memory\n"),"set_cdata_mapping_property");
+			sciprint(_("%s: No more memory.\n"),"set_cdata_mapping_property");
           return SET_PROPERTY_ERROR ;
         }
       }

@@ -2963,15 +2963,15 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	ny=*numcol-1;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
 	  if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory."), "sciSetPoint") ;
+	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);
-	    sciprint(_("%s: No more memory."), "sciSetPoint") ;
+	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);FREE(pvecy);
-	    sciprint(_("%s: No more memory."), "sciSetPoint") ;
+	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
@@ -2995,7 +2995,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	ny=*numcol;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
 	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory."), "sciSetPoint") ;
+	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
 	}
@@ -3016,14 +3016,14 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	Nnode = *numrow;
 	if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
 	  if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory."), "sciSetPoint") ;
+	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory."), "sciSetPoint") ;
+	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
 	    FREE(pvecx);
 	    return -1;}
 	  if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory."), "sciSetPoint") ;
+	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
 	    FREE(pvecx);FREE(pvecy);
 	    return -1;}
 	  FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
@@ -3302,7 +3302,7 @@ sciSetInterpVector(sciPointObj * pobj, int size, int * value)
   FREE(pPOLYLINE_FEATURE(pobj)->scvector);
   
   if((pPOLYLINE_FEATURE(pobj)->scvector = MALLOC(size*sizeof(int)))==NULL){
-    sciprint(_("%s: No more memory."), "sciSetInterpVector") ;
+    sciprint(_("%s: No more memory.\n"), "sciSetInterpVector") ;
     return -1;
   }
   
@@ -3805,7 +3805,7 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
 
       if ( ppFigure == NULL )
       {
-        sciprint(_("%s: No more memory."), "sciInitEventHandler") ;
+        sciprint(_("%s: No more memory.\n"), "sciInitEventHandler") ;
         return -1 ;
       }
 
