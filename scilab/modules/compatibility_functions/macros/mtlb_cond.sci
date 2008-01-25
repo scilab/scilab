@@ -4,7 +4,7 @@ function c=mtlb_cond(A,flag)
 // F.B.
 
 if A == [] then c = 0, return, end
-if size(A,1) <> size(A,2) &  flag <> 2 then error(msprintf(gettext("%s: Wrong input argument: Square matrix expected."),"mtlb_cond")),end
+if size(A,1) <> size(A,2) &  flag <> 2 then error(msprintf(gettext("%s: Wrong tpye for first input argument: Square matrix expected.\n"),"mtlb_cond")),end
 
 if flag == 1
   c = norm(A,1)*norm(inv(A),1);
@@ -24,6 +24,6 @@ elseif flag == "fro"
 elseif flag == "inf"
   c = norm(A,'inf')*norm(inv(A),'inf');
 else
-  error(msprintf(gettext("%s: Wrong second input argument: %s, %s,''%s'' or ''%s'' expected."),"mtlb_cond",'1','2', 'fro','inf'));  
+  error(msprintf(gettext("%s: Wrong value for second input argument: %s, %s,''%s'' or ''%s'' expected.\n"),"mtlb_cond",'1','2', 'fro','inf'));  
 end
 endfunction
