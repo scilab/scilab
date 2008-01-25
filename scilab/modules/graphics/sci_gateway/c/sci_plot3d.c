@@ -81,7 +81,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
       GetRhsVar(3,LIST_DATATYPE,&m3l,&n3l,&l3l);
       if ( m3l != 2 ) 
       {
-        Scierror(999,_("%s: Wrong size for second input argument: list of size %d expected.\n"),
+        Scierror(999,_("%s: Wrong size for second input argument: List of size %d expected.\n"),
           fname,2);
         return 0;
       }

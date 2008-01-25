@@ -129,8 +129,8 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     if ( dir == 'd' ) 
       y_def[0] = Cscale.frect[1];
     else if ( dir == 'u' ) 
-      y_def[0] = Cscale.frect[3];
-  }
+      y_def[0] = Cscale.frect[3]; 
+ }
 
   /* compatibility test */
   switch (tics ) 
@@ -151,8 +151,8 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
       return 0;
     break;
   default :
-    Scierror(999,_("%: Wrong value for tics \"%c\": \"r\",\"v\" and \"i\" expected.\n"), 
-      fname,dir);
+    Scierror(999,_("%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"), 
+      fname,"tics",dir,"r","v","i");
     return 0;
   }
 
@@ -209,8 +209,8 @@ int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
     }
     break;
   default :
-    Scierror(999,"%s: Wrong value for dir \"%c\": \"u\",\"d\",\"r\" and \"l\" expected.\n", 
-      fname,dir);
+    Scierror(999,"%s: Wrong value for %s '%c': '%s','%s','%s' and '%s' expected.\n", 
+      fname,"dir",dir,"u","d","r","l");
     return 0;
   }
   return 1;

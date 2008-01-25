@@ -73,7 +73,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
       if (VarType(1) != sci_handles)
         {
-          Scierror(999,_("First input argument must be a graphic handle."));
+			Scierror(999,_("%s: Wrong type for first input argument: Graphic handle expected.\n"),fname);
           return FALSE;
         }
       else /* Get parent ID */
@@ -82,13 +82,13 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
           
           if (nbRow*nbCol != 1)
             {
-              Scierror(999,_("First input argument must be a single handle."));
+              Scierror(999,_("%s: Wrong size for first input argument: Single handle expected.\n"),fname);
               return FALSE;
             }
           pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
           if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
             {
-              Scierror(999,_("Parent must be a figure or a uimenu."));
+              Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
               return FALSE;
             }
           /* First parameter is the parent */
@@ -125,7 +125,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         {
           if (VarType(1) != sci_handles)
             {
-              Scierror(999,_("First input argument must be a graphic handle."));
+              Scierror(999,_("%s: Wrong type for first input argument: Graphic handle expected.\n"),fname);
               return FALSE;
             }
           else /* Get parent ID */
@@ -134,14 +134,14 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
               if (nbRow*nbCol != 1)
                 {
-                  Scierror(999,_("First input argument must be a single handle."));
+                  Scierror(999,_("%s: First size for first input argument: Single handle expected.\n"),fname);
                   return FALSE;
                 }
               pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
               if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
                 {
-                  Scierror(999,_("Parent must be a figure or a uimenu."));
-                  return FALSE;
+					Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
+					return FALSE;
                 }
               /* First parameter is the parent */
               propertiesValuesIndices[1] = 1;
@@ -190,7 +190,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 }
               if (found == 0)
                 {
-                  Scierror(999, _("Unknown property: %s for uicontrols."), propertyName);
+                  Scierror(999, _("%s: Unknown property: %s for uicontrols."), fname, propertyName);
                   return FALSE;
                 }
             }
@@ -205,7 +205,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             }
           else
             {
-              Scierror(999, _("Style property name must be a character string."));
+              Scierror(999, _("%s: Wrong type for property name: String expected.\n"));
               return FALSE;
             }
         }

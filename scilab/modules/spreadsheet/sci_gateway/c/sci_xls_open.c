@@ -111,27 +111,27 @@ int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len))
 			break;
 
 		case 1:
-			Scierror(999,_("%s :Not an ole2 file\n"),fname);
+			Scierror(999,_("%s :Not an ole2 file.\n"),fname);
 			return 0;
 			break;
 
 		case 2:
-			Scierror(999,_("%s : the file has no Workbook directory\n"),fname);
+			Scierror(999,_("%s : The file has no Workbook directory.\n"),fname);
 			return 0;
 			break;
 
 		case 3:
-			Scierror(999,_("%s: No more memory\n"),fname);
+			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 			break;
 
 		case 4:
-			Scierror(990,_("%s : incorrect or corrupted file\n"),fname);
+			Scierror(990,_("%s : Incorrect or corrupted file.\n"),fname);
 			return 0;
 			break;
 
 		case 5:
-			Scierror(999,_("%s : Only BIFF8 file format is handled\n"),fname);
+			Scierror(999,_("%s : Only BIFF8 file format is handled.\n"),fname);
 			return 0;
 			break;
 		default :
