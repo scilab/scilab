@@ -9,6 +9,7 @@
 #include "Scierror.h"
 #include "dynamic_link.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 static int linkNoRhs(void);
 static int linkOneRhsShow(void);
@@ -49,7 +50,7 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					Scierror(999,"%s : first argument must be a unique id of a shared library.\r\n",fname);
+					Scierror(999,_("%s : first argument must be a unique id of a shared library.\n"),fname);
 					return 0;
 				}
 			}
@@ -66,7 +67,7 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					Scierror(999,"%s : first argument must be a unique dynamic library name.\r\n",fname);
+					Scierror(999,_("%s : first argument must be a unique dynamic library name.\n"),fname);
 					return 0;
 				}
 
@@ -77,7 +78,7 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Invalid parameter(s).\r\n");
+				Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -94,13 +95,13 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					Scierror(999,"Invalid parameter(s). It requires a vector of strings.\r\n");
+					Scierror(999,_("%s: Wrong type for input argument. Strings vector expected.\n"),fname);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,"Invalid parameter. It requires a string or a vector of strings.\r\n");
+				Scierror(999,_("%s: Wrong type for input argument. Strings expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -116,7 +117,7 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"Invalid parameter(s). It must be 'f' or 'c'.\r\n");
+				Scierror(999,_("%s Wrong input argument(s). It must be 'f' or 'c'.\n"),fname);
 				return 0;
 			}
 		}
@@ -133,22 +134,22 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 		switch (ierr)
 		{
 		case -1:
-			Scierror(236,"%s : the shared archive was not loaded.\n",fname);
+			Scierror(236,_("%s : the shared archive was not loaded.\n"),fname);
 			break;
 
 		case -2:
-			Scierror(999,"You can't open shared files max. entry %d reached.\r\n",ENTRYMAX);
+			Scierror(999,_("You can't open shared files max. entry %d reached.\n"),ENTRYMAX);
 			break;
 
 		case -3:
-			Scierror(999,"Shared lib %d does not exists.\r\n",param1int);
+			Scierror(999,_("Shared lib %d does not exists.\n"),param1int);
 			break;
 
 		case -4:
-			Scierror(999," is already loaded from lib %d\r\n",param1int);
+			Scierror(999,_(" is already loaded from lib %d\n"),param1int);
 			break;
 		case -5:
-			Scierror(235,"%s : problem with one of the entry point.\n",fname);
+			Scierror(235,_("%s : problem with one of the entry point.\n"),fname);
 			break;
 
 		default :

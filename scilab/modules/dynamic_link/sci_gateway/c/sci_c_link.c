@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "dynamic_link.h"
 #include "MALLOC.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -31,7 +32,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"%s : second argument must be a unique id of a shared library.\r\n",fname);
+				Scierror(999,_("%s : second argument must be a unique id of a shared library.\n"),fname);
 				return 0;
 			}
 		}
@@ -79,7 +80,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,"%s: Wrong type for input argument: String expected.\n");
+			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"));
 		}
 	}
 	else

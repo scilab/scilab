@@ -59,14 +59,14 @@ int scilabLink(int idsharedlibrary,
 
 	if (IdSharedLib == -1 ) 
 	{
-		if ( getWarningMode() ) sciprint("link failed for dynamic library '%s'.\r\n",filename);
+		if ( getWarningMode() ) sciprint(_("link failed for dynamic library '%s'.\n"),filename);
 		*ierr = -1;
 		return IdSharedLib;
 	}
 	if ( (idsharedlibrary == -1) && getWarningMode() ) 
 	{
-		sciprint("shared archive loaded.\r\n");
-		sciprint("Link done.\r\n");
+		sciprint(_("shared archive loaded.\n"));
+		sciprint(_("Link done.\n"));
 	}
 
 	if (sizesubnamesarray > 0)
@@ -279,7 +279,7 @@ int Sci_dlopen( char *loaded_file)
 
 	if ( Nshared == ENTRYMAX ) 
 	{
-		if (getWarningMode()) sciprint("You can't open shared files maxentry %d reached\r\n",ENTRYMAX);
+		if (getWarningMode()) sciprint(_("You can't open shared files max entry %d reached\n"),ENTRYMAX);
 		return(FALSE);
 	}
 	/* Warning x64 windows */
@@ -319,7 +319,7 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 	/** entry was previously loaded **/
 	if ( SearchFandS(ename,ish) >= 0 ) 
 	{
-		sciprint("Entry name %s \r\n",ename);
+		sciprint(_("Entry name %s\n"),ename);
 		ierr = -4;
 	}
 	else
@@ -333,13 +333,13 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 		EP[NEpoints].epoint = (function) GetDynLibFuncPtr (hd1,enamebuf);
 		if ( EP[NEpoints].epoint == NULL )
 		{
-			if (getWarningMode()) sciprint("%s is not an entry point \r\n",enamebuf);
+			if (getWarningMode()) sciprint(_("%s is not an entry point\n"),enamebuf);
 			ierr = -5;
 		}
 		else 
 		{
 			/* we don't add the _ in the table */
-			if (debug) sciprint("Linking %s \r\n",ename);
+			if (debug) sciprint(_("Linking %s\n"),ename);
 			strncpy(EP[NEpoints].name,ename,MAXNAME);
 			EP[NEpoints].Nshared = ish;
 			NEpoints++;

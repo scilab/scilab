@@ -205,7 +205,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\DllmainIncremental_link.c"
+				RelativePath=".\DllmainDynamic_link.c"
 				>
 			</File>
 			<File

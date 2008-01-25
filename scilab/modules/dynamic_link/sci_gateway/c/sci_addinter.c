@@ -6,6 +6,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "addinter.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -27,7 +28,7 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&sharedlibname);
 		if ( (m1 != n1) && (n1 != 1) )
 		{
-			Scierror(999,"Invalid parameter(s).\r\n");
+			Scierror(999,_("%s: Wrong size for first input argument.\n"),fname);
 			return 0;
 		}
 
@@ -36,10 +37,9 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 
 		if ( (m2 != n2) && (n2 != 1) )
 		{
-			Scierror(999,"Invalid parameter(s).\r\n");
+			Scierror(999,_("%s: Wrong size for second input argument.\n"),fname);
 			return 0;
 		}
-
 
 		{
 			int ierr = 0;
@@ -55,7 +55,7 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 				switch (ierr)
 				{
 				default :
-					Scierror(999,"%s : unknow error.\r\n",fname);
+					Scierror(999,_("%s : unknow error.\n"),fname);
 					break;
 				}
 			}
@@ -63,7 +63,7 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"Invalid parameter(s).\r\n");
+		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname); 
 		return 0;
 	}
 	return 0;

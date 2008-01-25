@@ -26,8 +26,6 @@ void initializeLink(void);
 * @param[in/out] ilib number in the function table (-1 if FALSE)
 * @return a BOOL
 */
-
-
 BOOL c_link(char *routinename,int *ilib);
 
 /**

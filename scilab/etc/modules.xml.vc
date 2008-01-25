@@ -31,7 +31,7 @@
 <module name="completion" activate="1"/>
 <module name="history_manager" activate="1"/>
 <module name="gui" activate="1"/>
-<module name="incremental_link" activate="1"/>
+<module name="dynamic_link" activate="1"/>
 <module name="integer" activate="1"/>
 <module name="interpolation" activate="1"/>
 <module name="io" activate="1"/>

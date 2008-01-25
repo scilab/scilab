@@ -144,12 +144,12 @@ static void initializeInterfaces(void)
 /*********************************
 * used in unlinksharedlib(i) 
 *********************************/
-void RemoveInterf(int Nshared)
+void RemoveInterf(int id)
 {
-	int i;
+	int i = 0;
 	for ( i = 0 ; i < LastInterf ; i++ ) 
 	{
-		if ( DynInterf[i].Nshared == Nshared ) 
+		if ( DynInterf[i].Nshared == id ) 
 		{
 			DynInterf[i].ok = FALSE;
 			break;
