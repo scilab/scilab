@@ -21,7 +21,7 @@
         <PARAM_NAME>msvc</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: returns 'msvc50','msvc60','msvc70','msvc71','unknown'</SP>
+          <SP>: returns 'msvc70','msvc71','msvc80express','msvc80std,'msvc80pro','msvc90express','msvc90std,'msvc90pro','unknown'</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
