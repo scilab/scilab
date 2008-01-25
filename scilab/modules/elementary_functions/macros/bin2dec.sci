@@ -14,10 +14,10 @@ function y=bin2dec(str)
 	// check the type of input argument
 	
 	// 2006-06-26 : Modified by Pierre MARECHAL
-	// Check the string length ( must be 47 bits or less )
+	// Check length of given string ( must be 47 bits or less )
 	
 	if type(str)<>10 
-		error("Input argument must be a string");
+		error(msprintf(gettext("%s: Input argument must be a string"),"bin2dec"));
 	end
 	
 	// delete all spaces included in the str
@@ -30,11 +30,11 @@ function y=bin2dec(str)
 		ind0=strindex(str(i),'0')
 		
 		if length(str(i)) <> sum([prod(size(ind0)) prod(size(ind1))]) then
-			error("Input argument must be a string of characters ''0'' or ''1'' ");
+			error(msprintf(gettext("%s: Wrong value for first input argument: String made of zeros and ones expected.\n"),"bin2dec"));
 		end
 		
 		if length(str(i)) > 47 then
-			error("Binary string must be 47 bits or less.");
+			error(msprintf(gettext("%s: Wrong size for first input argument: Must be less than 48 characters.\n"),"bin2dec"));
 		end
 		
 		if ~isempty(ind1)

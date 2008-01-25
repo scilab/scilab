@@ -11,18 +11,18 @@ function z=bitor(x,y)
 // F.Belahcene
 
 if size(x)<>size(y)
-	error("inputs arguments must have the same size")
+	error(msprintf(gettext("%s: Wrong size for inputs arguments: Same sizes expected.\n"),"bitor"));
 elseif isempty(x) & isempty(x)
 	z=[]
 	return
 end
 
 if (type(x)==1 & (x-floor(x)<>0 | x<0)) | (type(x)==8 & x<0) | (type(x)==17 & (type(x.entries<>1) | type(x.entries<>8)) & find(x.entries>0)<>[])  | (type(x)<>1 & type(x)<>8 & type(x)<>17)
-	error("first input argument must be a scalar/vector/matrix of positives integers")
+	error(msprintf(gettext("%s: Wrong type for first input argument: Scalar/vector/matrix of positive integers expected.\n"),"bitor"));
 end
 
 if (type(y)==1 & (y-floor(y)<>0 | y<0)) | (type(y)==8 & y<0) | (type(y)==17 & (type(y.entries<>1) | type(y.entries<>8)) & find(y.entries>0)<>[]) | (type(y)<>1 & type(y)<>8 & type(y)<>17)
-	error("second input argument must be a scalar/matrix of positives integers")
+	error(msprintf(gettext("%s: Wrong type for second input argument: Scalar/vector/matrix of positive integers expected.\n"),"bitor"));
 end
 
 for i=1:prod(size(x))

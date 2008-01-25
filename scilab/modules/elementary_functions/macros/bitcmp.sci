@@ -21,7 +21,7 @@ if rhs==1 & isempty(x)
 	return
 elseif rhs==2 & isempty(x) 
 	if type(n)<>1 & type(n)<>8
-		error("second input argument must be a positive integer")
+		error(msprintf(gettext("%s: Wrong type for second input argument: Positive integer expected.\n"),"bitcmp"));
 	else
 		y=[]
 		return
@@ -38,7 +38,7 @@ elseif typeof(x)=="uint32"
 	sizemax=32
 	one=uint32(1)
 else
-	error("first input argument must be a unsigned integer")
+	error(msprintf(gettext("%s: Wrong type for first input argument: Unsigned integer expected.\n"),"bitcmp"));
 end
 
 // check type of second input
@@ -46,7 +46,7 @@ if rhs==1
 	n=sizemax
 elseif rhs==2
 	if (type(n)<>1 & type(n)<>8) | n>sizemax | n<1 | n-floor(n)<>0 | prod(size(n))<>1
-		error("second input argument must be a positive integer between 1 and "+ string(sizemax))
+		error(msprintf(gettext("%s: Wrong value for second input argument: Positive integer between 1 and %d expected.\n"),"bitcmp",sizemax));
 	end
 end
 

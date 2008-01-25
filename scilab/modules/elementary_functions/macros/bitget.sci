@@ -15,12 +15,12 @@ function y=bitget(x,pos)
 rhs=argn(2)
 // check rhs number
 if rhs<>2
-	error("wrong number of rhs arguments")
+	error(msprintf(gettext("%s: Wrong number of input arguments. %d expected.\n"),"bitget",2));
 end
 // case empty matrix
 if isempty(x)
 	if ~isempty(pos) & prod(size(pos))<>1
-		error("inputs arguments must have the same size")
+		error(msprintf(gettext("%s: Wrong size for inputs arguments: Same sizes expected.\n"),"bitget"));
 	else
 		y=[]
 		return
@@ -38,17 +38,17 @@ elseif typeof(x)=="uint32"
 	sizemax=32
 	one=uint32(1)
 else
-	error("first input argument must be a unsigned integer")
+	error(msprintf(gettext("%s: Wrong type for first input argument: Unsigned integer expected.\n"),"bitget"));
 end
 
 // check the type and size of the second input argument
 if prod(size(pos))==1 
 	pos=ones(x)*pos
 elseif size(pos)<>size(x)
-	error("inputs arguments must have the same size")
+	error(msprintf(gettext("%s: Wrong size for inputs arguments: Same sizes expected.\n"),"bitget"));
 end
 if (type(pos)<>1 & type(pos)<>8) | or(pos>sizemax) | or(pos<1) | or(pos-floor(pos)<>0) 
-	error("second input argument must be positives integers between 1 and "+ string(sizemax))
+	error(msprintf(gettext("%s: Wrong value for second input argument: Positive integers between 1 and %d expected.\n"),"bitget",sizemax));
 end
 
 xbin=dec2bin(x,sizemax)
