@@ -15,31 +15,8 @@ function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflag
   if rhs <= 6 then cflags  = ''; end 
   if rhs <= 7 then fflags  = ''; end 
   
-  warningmode = warning('query');
+  ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,%t);
   
-  // generate the gateway file
-  if (warningmode == 'on') then
-    write(%io(2),_('   generate a gateway file'));
-  end    
-  ilib_gen_gateway(ilib_name,table)
-  
-  // generate a loader file
-  if (warningmode == 'on') then
-    write(%io(2),_('   generate a loader file'));
-  end
-  ilib_gen_loader(ilib_name,table);
-  
-  // generate a Makefile
-  if (warningmode == 'on') then
-    write(%io(2),sprintf(_('   generate a Makefile: %s'),'Makelib'));
-  end
-  ilib_gen_Make(ilib_name,table,files,libs,makename,%t,ldflags,cflags,fflags);
-  
-  // we call make
-  if (warningmode == 'on') then
-    write(%io(2),_('   running the makefile'));
-  end
-  ilib_compile(ilib_name,makename,files);
   
 endfunction
 //==========================================
