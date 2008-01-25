@@ -4,10 +4,10 @@ function kdf=tokenpos(str,sep)
   if argn(2)<2 then sep=[' ',ascii(9)],end
   
   if size(str,'*')<> 1 then 
-    error(gettext("numtok : str must be a single string"))
+    error(msprintf(gettext("%s: Wrong size for first input argument: Single string expected.\n"),"tokenpos"));
   end
   if or(length(sep)<>1) then 
-    error(gettext("numtok : delimitor must be a character or a vector of characters"))
+    error(msprintf(gettext("%s: Wrong size for second input argument: Single character or vector of characters expected.\n"),"tokenpos"));
   end  
   str=sep(1)+str+sep(1)
   k1=strindex(str,sep)

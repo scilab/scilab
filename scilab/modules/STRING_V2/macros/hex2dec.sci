@@ -12,7 +12,7 @@ for i=1:nr
   for j=1:nc
     s=abs(str2code(h(i,j)))
     if max(s)>15 then
-      error(gettext("hex2dec : an entry is not a valid hexadecimal representation"))
+      error(msprintf(gettext("%s: Wrong value for input argument(s): Valid hexadecimal representations expected.\n"),"hex2dec"));
     end
     d(i,j)=p(n(i,j):-1:1)*abs(str2code(h(i,j)))
   end

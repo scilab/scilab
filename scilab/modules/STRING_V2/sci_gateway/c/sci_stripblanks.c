@@ -44,7 +44,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("%s : Wrong type for second input argument: boolean expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for second input argument: Boolean expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -72,7 +72,7 @@ int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		break;
 	default :
-		Scierror(999,_("%s : Wrong type for first input argument: scalar or string matrix expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
 		return 0;
 	}
 

@@ -38,7 +38,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(InputString_Parameter1,m1n1);
 			freeArrayOfString(InputString_Parameter2,m2n2);
-			Scierror(999,_("%s : Wrong size for second argument.\n"),fname);
+			Scierror(999,_("%s: Wrong size for second argument: Non-empty matrix of strings expected.\n"),fname);
 			return 0;
 		}
 		else
@@ -53,7 +53,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 				{
 					freeArrayOfString(InputString_Parameter1,m1n1);
 					freeArrayOfString(InputString_Parameter2,m2n2);
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				}
 
@@ -63,11 +63,11 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 
 					if (m2n2 == 1) 
 					{
-						i = 0; /* Input parameter two is dimension one */
+						i = 0; /* Second input argument is one dimensional */
 					}
 					else 
 					{
-						i = j; /* Input parameter One & two have same dimension */
+						i = j; /* First and second input arguments have same size */
 					}
 
 					if (strlen(InputString_Parameter1[j])< strlen(InputString_Parameter2[i]))
@@ -75,7 +75,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 						freeArrayOfString(OutputStrings,m1n1);
 						freeArrayOfString(InputString_Parameter1,m1n1);
 						freeArrayOfString(InputString_Parameter2,m2n2);
-						Scierror(999,_("%s : Wrong size for second argument.\n"),fname);
+						Scierror(999,_("%s: Wrong size for second input argument.\n"),fname);
 						return 0;
 					}
 					else
@@ -93,7 +93,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 								freeArrayOfString(OutputStrings,m1n1);
 								freeArrayOfString(InputString_Parameter1,m1n1);
 								freeArrayOfString(InputString_Parameter2,m2n2);
-								Scierror(999,_("%s : Memory allocation error.\n"),fname);
+								Scierror(999,_("%s: No more memory.\n"),fname);
 								return 0;
 							}
 						}
@@ -109,7 +109,7 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 								freeArrayOfString(OutputStrings,m1n1);
 								freeArrayOfString(InputString_Parameter1,m1n1);
 								freeArrayOfString(InputString_Parameter2,m2n2);
-								Scierror(999,_("%s : Memory allocation error.\n"),fname);
+								Scierror(999,_("%s: No more memory.\n"),fname);
 								return 0;
 							}
 						}
@@ -128,14 +128,14 @@ int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				freeArrayOfString(InputString_Parameter1,m1n1);
 				freeArrayOfString(InputString_Parameter2,m2n2);
-				Scierror(999,_("%s : Wrong size for second parameter.\n"),fname);
+				Scierror(999,_("%s: Wrong size for second parameter.\n"),fname);
 				return 0;
 			}
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for input arguments(s): Strings expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument(s): Matrix of strings expected.\n"),fname);
 	}
 	return 0;
 }

@@ -147,7 +147,7 @@ static int lengthStrings(char *fname)
 	//else
 	//{
 	//	freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
-	//	Scierror(999,_("%s : Memory allocation error.\n"),fname);
+	//	Scierror(999,_("%s: No more memory.\n"),fname);
 	//}
 	//return 0;
 }
@@ -196,7 +196,7 @@ static int lengthList(void)
 static int lengthOthers(char *fname)
 {
 	/* unknow type */
-	Scierror(999, _("%s : Not managed input type.\n"),fname);
+	Scierror(999, _("%s: Wrong type for input argument(s).\n"),fname);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

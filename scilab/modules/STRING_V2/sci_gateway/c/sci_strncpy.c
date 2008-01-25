@@ -39,7 +39,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 		if (m2n2 == 0)
 		{
 			freeArrayOfString(InputString_Parameter1,m1n1);
-			Scierror(999,_("%s : Wrong size for Second input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong size for second input argument: Non-empty matrix expected.\n"),fname);
 			return 0;
 		}
 		else
@@ -49,7 +49,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 			if (InputLength_Parameter2_checked == NULL)
 			{
 				freeArrayOfString(InputString_Parameter1,m1n1);
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
 			
@@ -82,7 +82,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 					InputLength_Parameter2_checked = NULL;
 				}
 				freeArrayOfString(InputString_Parameter1,m1n1);
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
 
@@ -109,7 +109,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					freeArrayOfString(InputString_Parameter1,m1n1);
 					freeArrayOfString(OutputStrings,i);
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				}
 				strncpy(OutputStrings[i],InputString_Parameter1[i],InputLength_Parameter2_checked[j]);
@@ -130,7 +130,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 		else
 		{
 			freeArrayOfString(InputString_Parameter1,m1n1);
-			Scierror(999,_("%s : Wrong size for second input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong size for second input argument.\n"),fname);
 			return 0;
 		}
 
@@ -138,7 +138,7 @@ int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for input arguments(s): Strings expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument(s): Matrix of strings expected.\n"),fname);
 	}
 	return 0;
 }

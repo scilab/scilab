@@ -3,8 +3,8 @@ function h=dec2hex(v)
 //numbers in vector v.
 // Copyright INRIA
 [nr,nc]=size(v)
-if find(v<0)<>[]|norm(round(v)-v,1)>norm(round(v),1)*2*%eps then 
-  error(gettext("dec2hex : v entries must be non negative integers"))
+if (find(v<0) <> []) | (norm(round(v)-v,1) > norm(round(v),1)*2*%eps) then 
+  error(msprintf(gettext("%s: Wrong values for first input argument: Non-negative integers expected.\n"),"dec2hex"));
 end
 v=v(:)
 kz=find(v<>0)

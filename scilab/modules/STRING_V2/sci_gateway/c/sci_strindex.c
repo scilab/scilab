@@ -1,9 +1,9 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_strindex.c                                                  */
+/* File: sci_strindex.c                                                   */
 /* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu                                                      */
-/* desc : search position of a character string in an other string
-          using regular expression .                                         */
+/* @Authors : Cong Wu                                                     */
+/* desc : search position of a character string in an other string        */
+/*        using regular expression .                                      */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -55,7 +55,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 
 		if (VarType(3) != sci_strings)
 		{
-			Scierror(999,_("%s : Wrong type for third input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
 			return 0;
 		}
 		GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Strings_Input3);
@@ -64,7 +64,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		if (m3n3 != 1)
 		{
 			freeArrayOfString(Strings_Input3,m3n3);
-			Scierror(999,_("%s : Wrong type for third input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
 			return 0;
 		}
 
@@ -83,7 +83,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		else
 		{
 			freeArrayOfString(Strings_Input3,m3n3);
-			Scierror(999,_("%s : Wrong type for third input argument: 's' or 'r' expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"s","r");
 			return 0;
 		}
 	}
@@ -104,7 +104,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("%s : Wrong type for third input argument: String or [] expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for third input argument: String or [] expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -131,7 +131,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		if (m1n1 != 1)
 		{
 			freeArrayOfString(Strings_Input1,m1n1);
-			Scierror(999,_("%s : Wrong type for first input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 			return 0;
 		}
 
@@ -142,7 +142,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Strings_Input1,m1n1);
 			freeArrayOfString(Strings_Input2,m2n2);
-			Scierror(999,_("%s : Wrong type for second input argument: String or string vector expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for second input argument: String or vector of strings expected.\n"),fname);
 			return 0;
 		}
 
@@ -195,7 +195,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 						freeArrayOfString(Strings_Input1,m1n1);
 						if (next) {FREE(next); next = NULL;}
 						if (values) {FREE(values); values = NULL;}
-						Scierror(999, _("%s : Wrong size for second input argument: a not empty string expected.\n"));
+						Scierror(999, _("%s: Wrong size for second input argument: Non-empty string expected.\n"));
 						return 0;
 				}
 				if (Strings_Input2)
@@ -251,7 +251,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for input arguments: Strings expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
 		return 0;
 	}
 	return 0;

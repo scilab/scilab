@@ -35,7 +35,7 @@ int C2F(sci_isalphanum) _PARAMS((char *fname,unsigned long fname_len))
 		if (mn != 1)
 		{
 			freeArrayOfString(Input_StringMatrix,mn);
-			Scierror(999,_("%s : Wrong dimension for first input argument: string expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for first input argument: Single string expected.\n"),fname);
 			return 0;
 		}
 
@@ -66,7 +66,7 @@ int C2F(sci_isalphanum) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for first input argument: string expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 	}
 	return 0;
 }

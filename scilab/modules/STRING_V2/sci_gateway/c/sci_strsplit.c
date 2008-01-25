@@ -41,7 +41,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("%s : Wrong type for first input argument: string expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		}
 		return 0;
 	}
@@ -191,7 +191,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for input argument(s).\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument(s).\n"),fname);
 	}
 	return 0;
 
@@ -267,7 +267,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 //					Output = (char**)MALLOC(sizeof(char*)*(m2n2 + 1) );
 //					if (Output == NULL)
 //					{
-//						Scierror(999,_("%s : Memory allocation error.\n"),fname);
+//						Scierror(999,_("%s: No more memory.\n"),fname);
 //						return 0;
 //					}
 //
@@ -275,7 +275,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 //					if (Output[i] == NULL)
 //					{
 //						freeArrayOfString(Output,i);
-//						Scierror(999,_("%s : Memory allocation error.\n"),fname);
+//						Scierror(999,_("%s: No more memory.\n"),fname);
 //						return 0;
 //					}
 //					strncpy(Output[i],&Input_String[j],Input_Matrix[i]);
@@ -286,7 +286,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 //					if (Output[i] == NULL)
 //					{
 //						freeArrayOfString(Output,i);
-//						Scierror(999,_("%s : Memory allocation error.\n"),fname);
+//						Scierror(999,_("%s: No more memory.\n"),fname);
 //						return 0;
 //					}
 //					strncpy(Output[i],&Input_String[j],Input_Matrix[i]-Input_Matrix[i-1]);
@@ -299,7 +299,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 //			if (Output[m2n2] == NULL)
 //			{
 //				freeArrayOfString(Output,m2n2);
-//				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+//				Scierror(999,_("%s: No more memory.\n"),fname);
 //				return 0;
 //			}
 //			strncpy(Output[m2n2],&Input_String[j],Input_Matrix[m2n2]-Input_Matrix[m2n2-1]);

@@ -44,7 +44,7 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 				typ = cstk(Stack_Pos)[0];
 				if ( (typ != CHAR_I) && (typ != CHAR_S)) 
 				{
-					Scierror(999,_("%s : Wrong type for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
+					Scierror(999,_("%s: Wrong value for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
 					return 0;	
 				}
 				 if (typ == CHAR_I) do_stricmp = TRUE;
@@ -52,7 +52,7 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("%s : Wrong type for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
+			Scierror(999,_("%s: Wrong value for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -107,12 +107,12 @@ int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Input_Strings_One,m1n1);
 			freeArrayOfString(Input_Strings_Two,m2n2);
-			Scierror(999,_("%s : Wrong dimension for second input argument: a string or string matrix as same dimension as first argument expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for second input argument: String or matrix of strings with same size as first input argument expected.\n"),fname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for first or second input argument: string or string matrix expected.\n"),fname);
+		Scierror(999,_("%s : Wrong type for first and/or second input argument: String or matrix of strings expected.\n"),fname);
 	}
 	return 0;
 }

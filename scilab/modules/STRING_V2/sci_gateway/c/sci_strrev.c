@@ -43,13 +43,13 @@ int C2F(sci_strrev) _PARAMS((char *fname,unsigned long fname_len))
 		else
 		{
 			freeArrayOfString(InputStrings,m1n1);
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 	}
 	return 0;
 }

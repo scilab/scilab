@@ -10,7 +10,7 @@ function C=tree2code(P,prettyprint)
 
 // Verify good type for input
 if typeof(P)<>"program" then
-  error(gettext("Input variable is not a program tree in tree2code !"))
+  error(msprintf(gettext("%s: Wrong type for first input argument. ''%s'' expected.\n"),"tree2code","program tree"));
 end
 
 // Default value

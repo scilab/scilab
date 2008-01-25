@@ -28,7 +28,7 @@ end
 
 // check the size
 if ( size( cText ) <> 1 ) then
-  error(gettext("The function arobasestring2strings only works with a single string"));
+  error(msprintf(gettext("%s: Wrong size for first input argument: Single string expected.\n"),"arobasestring2strings"));
   return ;
 end
 

@@ -248,7 +248,7 @@ static int asciiMatrix(char *fname)
 /*--------------------------------------------------------------------------*/
 static int asciiOthers(char *fname)
 {
-	Scierror(999,_("%s : Not managed input type.\n"),fname);
+	Scierror(999,_("%s: Wrong type for input argument(s).\n"),fname);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

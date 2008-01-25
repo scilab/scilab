@@ -3,7 +3,7 @@ function [%val,%ierr]=evstr(%str)
 [lhs,rhs]=argn(0)
 %val=[]
 select type(%str)
- case 10 then
+ case 10 then // matrix of character strings
     for %l=1:size(%str,'r')
       %t1(%l)=strcat(%str(%l,:),',')+';'
     end
@@ -14,7 +14,7 @@ select type(%str)
     else
       execstr(%t1)
     end
- case 15 then
+ case 15 then // list
     %sexp=%str(2),
     %nstr=prod(size(%sexp)); %=list();
     if lhs==2 then
@@ -28,10 +28,10 @@ select type(%str)
       for %k=1:%nstr, %(%k)=evstr(%sexp(%k)),end,
       %val=evstr(%str(1))
     end
-case 1 then
+ case 1 then // real or complex constant matrix
    %val=%str
    %ierr=0
 else 
-   error(gettext("waiting for: matrix of strings or list")),
+   error(msprintf(gettext("%s: Wrong type for first input argument: Matrix of strings or list expected.\n"),"evstr"));
 end
 endfunction

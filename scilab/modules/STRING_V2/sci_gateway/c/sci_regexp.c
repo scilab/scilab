@@ -87,7 +87,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	if (mn != 1)
     {
 		freeArrayOfString(Str,mn);
-        Scierror(36, _("First input argument must be one string.\n")); 
+        Scierror(36, _("%s: Wrong size for first input argument: Single string expected.\n")); 
         return 0;
     }
 
@@ -160,35 +160,35 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 
 						break;
 						case NOT_ENOUGH_MEMORY_FOR_VECTOR:
-							Scierror(999,_("Failed to get enough memory for offsets vector\n"));
+							Scierror(999,_("%s: No more memory.\n"),fname);
 							return 0;
 							break;
 						case DELIMITER_NOT_ALPHANUMERIC:
-							Scierror(999,_("Delimiter must not be alphameric\n"));
+							Scierror(999,_("%s: Delimiter must not be alphameric\n"),fname);
 							return 0;
 							break;
 						case CAPTURING_SUBPATTERNS_ERROR:
-							Scierror(999,_("Capturing subpatterns error\n"));
+							Scierror(999,_("%s: Capturing subpatterns error\n"),fname);
 							return 0;
 						break;
 						case PARTIAL_MATCHING_NOT_SUPPORTED:
-							Scierror(999,_("Partial matching not supported\n"));
+							Scierror(999,_("%s: Partial matching not supported\n"),fname);
 							return 0;
 						break;
 						case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
-							Scierror(999,_("Contains explicit CR or LF match\n"));
+							Scierror(999,_("%s: Contains explicit CR or LF match\n"),fname);
 							return 0;
 						break;
 						case DUPLICATE_NAME_STATUS_CHANGES:
-							Scierror(999,_("Duplicate name status changes\n"));
+							Scierror(999,_("%s: Duplicate name status changes\n"),fname);
 							return 0;
 						break;
 						case TOO_BIG_FOR_OFFSET_SIZE:
-							Scierror(999,_("Returned count is too big for offset size\n"));
+							Scierror(999,_("%s: Returned count is too big for offset size\n"),fname);
 							return 0;
 						break;
 						case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
-							Scierror(999,_("Match limit not relevant for DFA matching: ignored\n"));
+							Scierror(999,_("%s: Match limit not relevant for DFA matching: ignored\n"),fname);
 							return 0;
 						break;
 						default :
@@ -236,38 +236,38 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 						/*No match */
 
 					break;
-					case NOT_ENOUGH_MEMORY_FOR_VECTOR:
-						Scierror(999,_("Failed to get enough memory for offsets vector\n"));
-						return 0;
+						case NOT_ENOUGH_MEMORY_FOR_VECTOR:
+							Scierror(999,_("%s: No more memory.\n"),fname);
+							return 0;
+							break;
+						case DELIMITER_NOT_ALPHANUMERIC:
+							Scierror(999,_("%s: Delimiter must not be alphameric\n"),fname);
+							return 0;
+							break;
+						case CAPTURING_SUBPATTERNS_ERROR:
+							Scierror(999,_("%s: Capturing subpatterns error\n"),fname);
+							return 0;
 						break;
-					case DELIMITER_NOT_ALPHANUMERIC:
-						Scierror(999,_("Delimiter must not be alphameric\n"));
-						return 0;
+						case PARTIAL_MATCHING_NOT_SUPPORTED:
+							Scierror(999,_("%s: Partial matching not supported\n"),fname);
+							return 0;
 						break;
-					case CAPTURING_SUBPATTERNS_ERROR:
-						Scierror(999,_("Capturing subpatterns error\n"));
-						return 0;
-					break;
-					case PARTIAL_MATCHING_NOT_SUPPORTED:
-						Scierror(999,_("Partial matching not supported\n"));
-						return 0;
-					break;
-					case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
-						Scierror(999,_("Contains explicit CR or LF match\n"));
-						return 0;
-					break;
-					case DUPLICATE_NAME_STATUS_CHANGES:
-						Scierror(999,_("Duplicate name status changes\n"));
-						return 0;
-					break;
-					case TOO_BIG_FOR_OFFSET_SIZE:
-						Scierror(999,_("Returned count is too big for offset size\n"));
-						return 0;
-					break;
-					case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
-						Scierror(999,_("Match limit not relevant for DFA matching: ignored\n"));
-						return 0;
-					break;
+						case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
+							Scierror(999,_("%s: Contains explicit CR or LF match\n"),fname);
+							return 0;
+						break;
+						case DUPLICATE_NAME_STATUS_CHANGES:
+							Scierror(999,_("%s: Duplicate name status changes\n"),fname);
+							return 0;
+						break;
+						case TOO_BIG_FOR_OFFSET_SIZE:
+							Scierror(999,_("%s: Returned count is too big for offset size\n"),fname);
+							return 0;
+						break;
+						case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
+							Scierror(999,_("%s: Match limit not relevant for DFA matching: ignored\n"),fname);
+							return 0;
+						break;
 					default :
 						 return 0;
 					break;	

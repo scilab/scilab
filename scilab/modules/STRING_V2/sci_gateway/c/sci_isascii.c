@@ -31,7 +31,7 @@ int C2F(sci_isascii) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for first input argument.\n"),fname);
+		Scierror(999,_("%s: Wrong type for first input argument: Matrix or string expected.\n"),fname);
 	}
 	return 0;
 }
@@ -90,7 +90,7 @@ static int isasciiStrings(char *fname)
 	if (Output_BooleanMatrix == NULL)
 	{
 		freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: No more memory.\n"),fname);
 		return 0;
 	}
 

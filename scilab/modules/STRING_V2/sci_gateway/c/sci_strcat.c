@@ -89,7 +89,7 @@ static int sci_strcat_three_rhs(char *fname)
 				typ = cstk(l3)[0];
 			if (typ != COL && typ != ROW ) 
 			{
-				Scierror(999,_("%s: Wrong type for third input argument: 'c' or 'r'  expected.\n"),fname); 
+				Scierror(999,_("%s: Wrong type for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"c","r"); 
 				return 0;
 			}
 		}
@@ -117,7 +117,7 @@ static int sci_strcat_three_rhs(char *fname)
 			/* return a column matrix */ 
 			if ( (Output_String = MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
 			Output_String[Row_One]=NULL;
@@ -129,7 +129,7 @@ static int sci_strcat_three_rhs(char *fname)
 				nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
 				if ( (Output_String[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				} 
 				/* fill the string */ 
@@ -168,7 +168,7 @@ static int sci_strcat_three_rhs(char *fname)
 			/* return a row matrix */ 
 			if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
 			{
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
 			Output_String[Col_One]=NULL;
@@ -181,7 +181,7 @@ static int sci_strcat_three_rhs(char *fname)
 				nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
 				if ( (Output_String[j]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 				{
-					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				} 
 				/* fill the string */ 
@@ -235,7 +235,7 @@ static int sci_strcat_two_rhs(char *fname)
 
 	if (Type_Two != sci_strings)
 	{
-		Scierror(246,_("Function not defined for given argument type(s), check arguments or define function %s for overloading"),fname); 
+		Scierror(246,_("%s: Wrong type for second input argument: String expected.\n"),fname); 
 		return 0;
 	}
 	else /* sci_strings */
@@ -248,7 +248,7 @@ static int sci_strcat_two_rhs(char *fname)
 		if (Number_Inputs_Two != 1)
 		{
 			freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-			Scierror(36,"%s : Wrong type for second input argument: a string  expected.\n",fname); 
+			Scierror(36,"%s : Wrong type for second input argument: String expected.\n",fname); 
 			return 0;
 		}
 	}
@@ -256,7 +256,7 @@ static int sci_strcat_two_rhs(char *fname)
 	if ( (Type_One != sci_strings) && (Type_One != sci_matrix) )
 	{
 		freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-		Scierror(246,"Function not defined for given argument type(s), check arguments or define function %s for overloading.\n",fname); 
+		Scierror(246,"%s: Wrong type for first input argument: String or matrix expected.\n",fname); 
 		return 0;
 	}
 	else
@@ -374,7 +374,7 @@ static int sci_strcat_one_rhs(char *fname)
 	int Type_One = VarType(1);
 	if ( (Type_One != sci_strings) && (Type_One != sci_matrix) )
 	{
-		Scierror(246,_("Function not defined for given argument type(s), check arguments or define function %s for overloading"),fname); 
+		Scierror(246,"%s: Wrong type for first input argument: String or matrix expected.\n",fname);
 		return 0;
 	}
 	else
@@ -428,7 +428,7 @@ static int sci_strcat_one_rhs(char *fname)
 			}
 			else
 			{
-				Scierror(999,_("%s : Wrong size for input argument(s).\n"),fname);
+				Scierror(999,_("%s: Wrong size for input argument(s).\n"),fname);
 			}
 		}
 		else /* sci_matrix*/
@@ -461,7 +461,7 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for input argument: scalar or string matrix expected.\n"),fname); 
+		Scierror(999,_("%s: Wrong type for first input argument: scalar or matrix of strings expected.\n"),fname); 
 	}
 	return 0;
 }

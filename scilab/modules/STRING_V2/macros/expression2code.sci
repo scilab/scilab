@@ -313,7 +313,7 @@ case "list"
 case "equal"
   C=instruction2code(e)
 else
-  error(msprintf(gettext("expression2code(): %s is not yet implemented !"),typeof(e)));
+  error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"expression2code",typeof(e)));
 end
 
 // Restore format

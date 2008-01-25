@@ -42,13 +42,13 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (VarType(1) != sci_strings)
 	{
-		Scierror(999,_("%s : Wrong type for first input argument: string expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		return 0;
 	}
 
 	if (VarType(2) != sci_matrix)
 	{
-		Scierror(999,_("%s : Wrong type for second input argument.\n"),fname);
+		Scierror(999,_("%s: Wrong type for second input argument: Matrix expected.\n"),fname);
 		return 0;
 	}
 
@@ -73,7 +73,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 	
 	if ( !( (m2 == 1 && n2 > 0) || (m2 > 0 && n2 == 1) ) )
 	{
-		Scierror(89,_("%s : Wrong dimensions for second input argument.\n"),fname);
+		Scierror(89,_("%s: Wrong size for second input argument.\n"),fname);
 		return 0;
 	}
 
@@ -86,7 +86,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 		if (SecondParamaterValue[i] < 1)
 		{
 			freeArrayOfString(Input_StringMatrix,m1n1);
-			Scierror(36,_("%s : Incorrect second input argument.\n"),fname);
+			Scierror(36,_("%s: Wrong values for second input argument: Must be >= 1.\n"),fname);
 			return 0;
 		}
 	}
@@ -101,7 +101,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 	if (Output_StringMatrix == NULL)
 	{
 		freeArrayOfString(Input_StringMatrix,m1n1);
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: No more memory.\n"),fname);
 		return 0;
 	}
 		
@@ -112,7 +112,7 @@ int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			freeArrayOfString(Input_StringMatrix,m1n1);
 			freeArrayOfString(Output_StringMatrix,i);
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
 	}
