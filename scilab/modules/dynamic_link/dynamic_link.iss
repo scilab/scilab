@@ -44,7 +44,7 @@ Source: modules\{#DYNAMIC_LINK}\macros\cleanmacros.bat; DestDir: {app}\modules\{
 ;
 ;Source: modules\{#DYNAMIC_LINK}\demos\*.*; DestDir: {app}\modules\{#DYNAMIC_LINK}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DYNAMIC_LINK}\examples\*.*; DestDir: {app}\modules\{#DYNAMIC_LINK}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#DYNAMIC_LINK}\examples\*.*; DestDir: {app}\modules\{#DYNAMIC_LINK}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DYNAMIC_LINK}\tests\*.*; DestDir: {app}\modules\{#DYNAMIC_LINK}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
