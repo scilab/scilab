@@ -3,8 +3,9 @@
 //==========================================
 function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags)
   
-  if ~havecompiler() then
+  if ~haveacompiler() then
   	error(_('A Fortran or C compiler is required.'))  
+  	return;
   end
   
   [lhs,rhs]=argn(0);

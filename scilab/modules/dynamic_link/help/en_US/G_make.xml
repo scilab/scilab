@@ -32,25 +32,34 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    On Unix like systems (i.e unix or windows/gcwin32) <VERB>G_make</VERB> calls
-    the <VERB>make</VERB> utility for building target <VERB>files</VERB> and returns
-    the value of <VERB>files</VERB> in the variable <VERB>Rfiles</VERB>. On windows platforms, (i.e when
-    Scilab was compiled with Microsoft Visual Studio C++ 2005 or more). <VERB>G_make</VERB> calls
-    the <VERB>nmake</VERB> utility for building target <VERB>dllname</VERB> and it
+    <P>On Unix like systems <VERB>G_make</VERB> calls the <VERB>make</VERB> utility for building target <VERB>files</VERB>
+    and returns the value of <VERB>files</VERB> in the variable <VERB>Rfiles</VERB>.
+    On windows platforms, <VERB>G_make</VERB> calls the <VERB>nmake</VERB> utility for building target <VERB>dllname</VERB> and it
     returns the value of <VERB>dllname</VERB> in the variable <VERB>Rfiles</VERB>. 
     Of course <VERB>G_make</VERB> will work if apropriate Makefiles are 
-    provided in the current Scilab directory.</P>
-    <P><VERB>G_make</VERB> can be used to provide OS independant call to addinter. 
-    and such examples can be found in the directory
-    <VERB>SCIDIR/examples/addinter-examples</VERB></P>
-    <VERBATIM>
+    provided in the current Scilab directory.
+    </P>
+    <P><VERB>G_make</VERB> can be used to provide OS independant call to addinter.</P> 
+    </DESCRIPTION>
+<EXAMPLE>
 <![CDATA[
-files=G_make([TMPDIR+'/ex1cI.o',TMPDIR+'/ex1c.o'],'ex1c.dll');// compilation 
-addinter(files,'foobar','foubare'); // link 
-   ]]>
-    </VERBATIM>
-  </DESCRIPTION>
+if MSDOS then
+ txt = ['ex1c.dll:',
+	       '  @echo ------------------------------------------',
+         '  @echo From Makefile.mak',
+	       '  @echo ------------------------------------------',
+	       ' '];
+  mputl(txt,TMPDIR+'/makefile.mak')
+  current_dir = pwd();  
+  cd TMPDIR
+  files=G_make([TMPDIR+'/ex1cI.o',TMPDIR+'/ex1c.o'],'ex1c.dll');// compilation 
+  //
+  //addinter(files,'foobar','foubare'); // link 
+  cd(current_dir);
+end
+ ]]>
+  </EXAMPLE>
+  
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>addinter</LINK>
