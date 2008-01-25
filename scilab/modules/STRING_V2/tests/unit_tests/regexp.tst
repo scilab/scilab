@@ -133,7 +133,7 @@ if regexp('XBC'                                     ,'/abc/i'                   
 if regexp('AXC'                                     ,'/abc/i'                                ,'r') <>  []  then pause,end
 if regexp('ABX'                                     ,'/abc/i'                                ,'r') <>  []  then pause,end
 if regexp('XABCY'                                   ,'/abc/i'                                ,'r') <>  2   then pause,end
-if regexp('ABABC'                                   ,'/abc/i'                                ,'r') <>  1   then pause,end
+if regexp('ABABC'                                   ,'/abc/i'                                ,'r') <>  3   then pause,end
 if regexp('ABC'                                     ,'/ab*c/i'                               ,'r') <>  1   then pause,end
 if regexp('ABC'                                     ,'/ab*bc/i'                              ,'r') <>  1   then pause,end
 if regexp('ABBC'                                    ,'/ab*bc/i'                              ,'r') <>  1   then pause,end
@@ -157,9 +157,9 @@ if regexp('ABC'                                     ,'/ab{0,1}?c/i'             
 if regexp('ABC'                                     ,'/^abc$/i'                              ,'r') <>  1   then pause,end
 if regexp('ABCC'                                    ,'/^abc$/i'                              ,'r') <>  []  then pause,end
 if regexp('ABCC'                                    ,'/^abc/i'                               ,'r') <>  1   then pause,end
-//if regexp('AABC'                                    ,'/^abc$/i'                              ,'r') <>  []  then pause,end
+//leak if regexp('AABC'                                    ,'/^abc$/i'                              ,'r') <>  []  then pause,end
 if regexp('AABC'                                    ,'/abc$/i'                               ,'r') <>  2   then pause,end
-//if regexp('ABC'                                     ,'/^/i'                                  ,'r') <>  1   then pause,end
+//leak if regexp('ABC'                                     ,'/^/i'                                  ,'r') <>  1   then pause,end
 if regexp('ABC'                                     ,'/$/i'                                  ,'r') <>  3   then pause,end
 if regexp('ABC'                                     ,'/a.c/i'                                ,'r') <>  1   then pause,end
 if regexp('AXC'                                     ,'/a.c/i'                                ,'r') <>  1   then pause,end
@@ -186,7 +186,7 @@ if regexp('B'                                       ,'/$b/i'                    
 if regexp('AB'                                      ,'/a\(*b/i'                              ,'r') <>  1   then pause,end
 if regexp('A((B'                                    ,'/a\(*b/i'                              ,'r') <>  1   then pause,end
 if regexp('AABBABC'                                 ,'/a+b+c/i'                              ,'r') <>  5   then pause,end
-if regexp('AABBABC'                                 ,'/a{1,}b{1,}c/i'                        ,'r') <>  1   then pause,end
+if regexp('AABBABC'                                 ,'/a{1,}b{1,}c/i'                        ,'r') <>  5   then pause,end
 if regexp('ABCABC'                                  ,'/a.+?c/i'                              ,'r') <>  [1 4]   then pause,end
 if regexp('ABCABC'                                  ,'/a.*?c/i'                              ,'r') <>  1   then pause,end
 if regexp('ABCABC'                                  ,'/a.{0,5}?c/i'                          ,'r') <>  1   then pause,end
@@ -280,8 +280,8 @@ if regexp('blah)'                                   ,'/^(\()?blah(?(1)(\)))$/'  
 if regexp('(blah'                                   ,'/^(\()?blah(?(1)(\)))$/'               ,'r') <>  []  then pause,end
 if regexp('blah)'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then pause,end
 if regexp('(blah'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then pause,end
-if regexp('a'                                       ,'/(?(?{0})a|b)/'                        ,'r') <>  []  then pause,end
-if regexp('a'                                       ,'/(?(?{1})b|a)/'                        ,'r') <>  []  then pause,end
+//if regexp('a'                                       ,'/(?(?{0})a|b)/'                        ,'r') <>  []  then pause,end
+//if regexp('a'                                       ,'/(?(?{1})b|a)/'                        ,'r') <>  []  then pause,end
 if regexp('a'                                       ,'/(?(?!a)a|b)/'                         ,'r') <>  []  then pause,end
 if regexp('a'                                       ,'/(?(?!a)b|a)/'                         ,'r') <>  1   then pause,end
 if regexp('a'                                       ,'/(?(?=a)b|a)/'                         ,'r') <>  []  then pause,end
@@ -434,20 +434,20 @@ if regexp('b\nca'                                   ,'/abb\z/m'                 
 if regexp('b\nca'                                   ,'/abb$/m'                               ,'r') <>  []  then pause,end
 if regexp('x'                                       ,'/a*abc?xyz+pqr{3}ab{2,}xy{4,5}pq{0,6}AB{0,}zz/','r') <>  []  then pause,end
 if regexp('foo.bart'                                ,'/foo.bart/'                            ,'r') <>  1   then pause,end
-if regexp('abcd\ndxxx'                              ,'/^d[x][x][x]/m'                        ,'r') <>  1   then pause,end
-if regexp('xxxtt'                                   ,'/tt+$/'                                ,'r') <>  1   then pause,end
+if regexp('abcd\ndxxx'                              ,'/^d[x][x][x]/m'                        ,'r') <>  6   then pause,end
+if regexp('xxxtt'                                   ,'/tt+$/'                                ,'r') <>  4   then pause,end
 if regexp('aaaXbX'                                  ,'/\GX.*X/'                              ,'r') <>  []  then pause,end
 if regexp('Changes'                                 ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  []  then pause,end
-if regexp('IO.c'                                    ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  1   then pause,end
+if regexp('IO.c'                                    ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  3   then pause,end
 if regexp('C:/'                                     ,'/^([a-z]:)/'                           ,'r') <>  []  then pause,end
-if regexp('\nx aa'                                  ,'/^\S\s+aa$/m'                          ,'r') <>  1   then pause,end
+if regexp('\nx aa'                                  ,'/^\S\s+aa$/m'                          ,'r') <>  2   then pause,end
 if regexp('ab'                                      ,'/(^|a)b/'                              ,'r') <>  1   then pause,end
 if regexp('abcab'                                   ,'/(\w)?(abc)\1b/'                       ,'r') <>  []  then pause,end
 if regexp('a,b,c'                                   ,'/^(?:.,){2}c/'                         ,'r') <>  1   then pause,end
 if regexp('a,b,c'                                   ,'/^(?:[^,]*,){2}c/'                     ,'r') <>  1   then pause,end
-if regexp(''                                        ,'/(?i)/'                                ,'r') <>  []  then pause,end
-if regexp('a\nxb\n'                                 ,'/(?!\A)x/m'                            ,'r') <>  1   then pause,end
-if regexp('123\nabcabcabcabc\n'                     ,'/^.{9}abc.*\n/m'                       ,'r') <>  1   then pause,end
+if regexp(''                                        ,'/(?i)/'                                ,'r') <>  1  then pause,end
+if regexp('a\nxb\n'                                 ,'/(?!\A)x/m'                            ,'r') <>  3   then pause,end
+if regexp('123\nabcabcabcabc\n'                     ,'/^.{9}abc.*\n/m'                       ,'r') <>  5   then pause,end
 if regexp('a'                                       ,'/^(a)?(?(1)a|b)+$/'                    ,'r') <>  []  then pause,end
 if regexp('x1'                                      ,'/^(0+)?(?:x(1))?/'                     ,'r') <>  1   then pause,end
 if regexp('012cxx0190'                              ,'/^([0-9a-fA-F]+)(?:x([0-9a-fA-F]+)?)(?:x([0-9a-fA-F]+))?/','r') <>  1   then pause,end
@@ -463,32 +463,3 @@ if regexp('......abef'                              ,'/.*a(?!(b|cd)*e).*f/'     
 if regexp('fools'                                   ,'/(foo|fool|x.|money|parted)$/'         ,'r') <>  []  then pause,end
 if regexp('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ,'r') <>  []  then pause,end
 if regexp('fools'                                   ,'/(foo|fool|money|parted)$/'            ,'r') <>  []  then pause,end
-//========================================================================================
-// depend of PCRE library options
-//if regexp('a\b'                                     ,'/a\\b/'                                ,'r') <>  1   then pause,end
-//if regexp('bbbbXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.X(.+)+X/'                            ,'r') <>  1   then pause,end
-//if regexp('bbbbXcXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.X(.+)+XX/'                           ,'r') <>  1   then pause,end
-//if regexp('bbbbXXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.XX(.+)+X/'                           ,'r') <>  1   then pause,end
-//if regexp('bbbbXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.X(.+)+X/'                            ,'r') <>  []  then pause,end
-//if regexp('bbbbXXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.X(.+)+XX/'                           ,'r') <>  []  then pause,end
-//if regexp('bbbbXXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.XX(.+)+X/'                           ,'r') <>  []  then pause,end
-//if regexp('bbbbXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.X(.+)+[X]/'                          ,'r') <>  1   then pause,end
-//if regexp('bbbbXcXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.X(.+)+[X][X]/'                       ,'r') <>  1   then pause,end
-//if regexp('bbbbXXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.XX(.+)+[X]/'                         ,'r') <>  1   then pause,end
-//if regexp('bbbbXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.X(.+)+[X]/'                          ,'r') <>  []  then pause,end
-//if regexp('bbbbXXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.X(.+)+[X][X]/'                       ,'r') <>  []  then pause,end
-//if regexp('bbbbXXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.XX(.+)+[X]/'                         ,'r') <>  []  then pause,end
-//if regexp('bbbbXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.[X](.+)+[X]/'                        ,'r') <>  1   then pause,end
-//if regexp('bbbbXcXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.[X](.+)+[X][X]/'                     ,'r') <>  1   then pause,end
-//if regexp('bbbbXXcXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.[X][X](.+)+[X]/'                     ,'r') <>  1   then pause,end
-//if regexp('bbbbXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  ,'/.[X](.+)+[X]/'                        ,'r') <>  []  then pause,end
-//if regexp('bbbbXXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.[X](.+)+[X][X]/'                     ,'r') <>  []  then pause,end
-//if regexp('bbbbXXXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' ,'/.[X][X](.+)+[X]/'                     ,'r') <>  []  then pause,end
-//if regexp('cabd'                                    ,'/a(?{})b/'                             ,'r') <>  1   then pause,end
-//if regexp('a'                                       ,'/(?(?{0})b|a)/'                        ,'r') <>  1   then pause,end
-//if regexp('a'                                       ,'/(?(?{1})a|b)/'                        ,'r') <>  1   then pause,end
-//if regexp('x'                                       ,'/(??{})/'                              ,'r') <>  1   then pause,end
-//if regexp('cabd'                                    ,'/a(?{"\{"})b/'                         ,'r') <>  1   then pause,end
-//if regexp('A\B'                                     ,'/a\\b/i'                               ,'r') <>  1   then pause,end
-//if regexp('aaaaaaaaaaaaaaab'                        ,'/(a|aa|aaa|aaaa|aaaaa|aaaaaa)(??{$1&&"foo"})(b|c)/','r') <>  []  then pause,end
-//========================================================================================
