@@ -44,6 +44,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	global %helps_modules;
 	%HELPS=[%helps_modules;%helps];
 	
+	SCI_long = pathconvert(getlongpathname(SCI),%F,%F);
+	
 	//--------------------------------------------------------------------------
 	// Gestion des messages d'erreur
 	//--------------------------------------------------------------------------
@@ -321,9 +323,9 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 							printf(_("\nCopying missing files copied from\n"));
 							displaydone = 1;
 						end
-						printf(_("\t%s\n"),strsubst(default_language_path,SCI,"SCI"));
+						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 					else
-						printf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI,"SCI"));
+						printf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 					end
 					complete_with_df_lang(dirs(k),directory_language(k),default_language(k));
 				end
@@ -343,9 +345,9 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 							printf(_("\nCreating whatis.htm\n"));
 							displaydone = 1;
 						end
-						printf(_("\t%s\n"),strsubst(dirs(k),SCI,"SCI"));
+						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					else
-						printf(_("\nCreating whatis.htm in %s\n"),strsubst(dirs(k),SCI,"SCI"));
+						printf(_("\nCreating whatis.htm in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					end
 					dirs(k)=pathconvert(dirs(k),%f,%f);
 					chdir(dirs(k));
@@ -365,7 +367,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			for k=1:size(dirs,'*');
 				if need_to_be_build_tab(k) then
 					
-					printf(_("\nProcessing chapter %s\n"),strsubst(dirs(k),SCI,"SCI"));
+					printf(_("\nProcessing chapter %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					
 					chdir(dirs(k));
 					xml = gsort(listfiles('*.xml'),"lr","i");
@@ -454,9 +456,9 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 							printf(_("\nDeleting files copied from\n"));
 							displaydone = 1;
 						end
-						printf(_("\t%s\n"),strsubst(default_language_path,SCI,"SCI"));
+						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 					else
-						printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI,"SCI"));
+						printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
 					end
 					del_df_lang_xml_files(dirs(k),directory_language(k));
 				end
