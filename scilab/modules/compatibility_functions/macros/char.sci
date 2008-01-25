@@ -34,7 +34,7 @@ function y=char(varargin)
 	    end
 	    y=[y;t]
 	  else
-	    error(gettext("Cell elements must be characters arrays."));
+	    error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be characters arrays.\n"),"char"));
 	  end
 	elseif  type(lst)==10 then //cell elements are a string matrix
 	  t=emptystr(size(lst,1),1)
@@ -43,7 +43,7 @@ function y=char(varargin)
 	  end
 	  y=[y,t]
 	else // cell contains more than one element
-	  error(gettext("Cell elements must be arrays chars."));
+	  error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be arrays chars.\n"),"char"));
 	end
       else
 	for i=1:size(lst)
@@ -57,7 +57,7 @@ function y=char(varargin)
 	      end
 	      y=[y;t]
 	    else
-	      error(gettext("Cell elements must be arrays chars."));
+		  error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be arrays chars.\n"),"char"));
 	    end
 	  elseif type(lst(i))==10 then
 	    t=emptystr(size(lst(i),1),1)
@@ -66,7 +66,7 @@ function y=char(varargin)
 	    end	
 	    y=[y;t]
 	  else
-	    error(gettext("Cell elements must be arrays chars."));
+ 		  error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be arrays chars.\n"),"char"));
 	  end
 	end
       end    
@@ -91,10 +91,10 @@ function y=char(varargin)
       elseif type(varargin(1).entries)==1|type(varargin(1).entries)==8 then ////Input is a hypermatrix of integers (or reals) 
 	y=asciimat(varargin(1))
       else
-	error(gettext("Not implemented."));
+	error(msprintf(gettext("%s: This feature has not been implemented.\n"),"char"));
       end
     else 
-      error(gettext("Invalid type of input argument: Cell expected."));
+      error(msprintf(gettext("%s: Wrong type for input argument: Cell expected.\n"),"char"));
     end 
     //More than one input argument
   elseif rhs>1 then
@@ -109,7 +109,7 @@ function y=char(varargin)
 	  end
 	  y=[y;t]
 	else
-	  error(gettext("Inputs arguments must be characters arrays."));
+	  error(msprintf(gettext("%s: Wrong type for input arguments: String expected.\n"),"char"));
 	end
       elseif  type(varargin(i))==10 then //Input sti is a matrix of strings
 	lst=varargin(i)
@@ -119,7 +119,7 @@ function y=char(varargin)
 	end
 	y=[y;t]
       else 
-	error(gettext("Inputs arguments must be characters arrays."));
+	  error(msprintf(gettext("%s: Wrong type for input arguments: String expected.\n"),"char"));
       end
     end
     //Add blanks at the length of strings

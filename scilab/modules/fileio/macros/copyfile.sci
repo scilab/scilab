@@ -41,7 +41,7 @@ function [status,msg]=copyfile(varargin)
     end
     break
   else
-    error('Number of parameters incorrect.');
+    error(msprintf(gettext("%s: Wrong number of input arguments.'),fname));
   end
 
   [SourceDir,SourceFile]=GetDirFile(SourceFile);
@@ -54,7 +54,7 @@ function [status,msg]=copyfile(varargin)
   if (Rep==%F) then
 // Check the source directory is a directory
     Status=0;
-    ErrorMessage='Source directory '+SourceDir+' does not exist or is unreadable.';
+    ErrorMessage=msprintf(gettext("%s: Source directory %s does not exist or is unreadable."), SourceDir);
   else
 
    if MSDOS then
