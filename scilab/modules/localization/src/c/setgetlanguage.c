@@ -44,7 +44,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
 	if (lang)
 	{
-		if ( LanguageIsOK(lang))
+		if (LanguageIsOK(lang))
 		{
 			if (needtochangelanguage(lang))
 			{
@@ -73,9 +73,17 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 					/* The lang is the default one... ie en_US */
 					strcpy(CURRENTLANGUAGESTRING,"en_US");
 				}else{
-					strcpy(CURRENTLANGUAGESTRING,lang);
+					if (strcmp(lang,"")==0 && ret!=NULL){
+						/* The requested language is the one of the system ... 
+						 * which we don't really know which one is it
+						 * but if setlocale worked, we get it from the return 
+						 */
+						strncpy(CURRENTLANGUAGESTRING,ret,5); /* 5 is the number of char in fr_FR for example */
+					}else{
+						strcpy(CURRENTLANGUAGESTRING,lang);
+					}
 				}
-				setlanguagecode(lang);
+				setlanguagecode(CURRENTLANGUAGESTRING);
 
 				if (updateHelpIndex)
 				{
@@ -136,7 +144,8 @@ BOOL LanguageIsOK(char *lang)
 {
 	int i=0;
 
-	if (strlen(lang)==0){ /* Empty language declaration... it is the default one */
+	if (strlen(lang)==0){ /* Empty language declaration... it is the default 
+						   * language from the system */
 		return TRUE;
 	}
 
@@ -207,16 +216,11 @@ char *getlanguagealias(void)
 	return FindAlias(CURRENTLANGUAGESTRING);
 }
 /*--------------------------------------------------------------------------*/
-int comparelanguages(char *language1,char *language2)
-{
-	return strcmp(language1,language2);
-}
-/*--------------------------------------------------------------------------*/
 BOOL needtochangelanguage(char *language)
 {
   char *currentlanguage=getlanguage();
 
-  if (comparelanguages(language,currentlanguage)) {
+  if (strcmp(language,currentlanguage)) {
     return TRUE;
   }
 

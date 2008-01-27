@@ -55,6 +55,8 @@ BOOL InitializeLocalization(void)
 		return FALSE;
 	}
 
+	/* Here, the "" means that we will try to use the language of the system
+	 * first. If it doesn't work, we switch back to default (English) */
 	setlanguage("", FALSE, FALSE); /* Booleans are : BOOL updateHelpIndex, BOOL updateMenus */
 
 	return TRUE;
