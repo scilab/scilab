@@ -211,9 +211,9 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 		else
 		{
 			/* sprintf() */
-			while (*currentchar != '%')
+			while (*currentchar != '%') /* loop while we meet a % */
 			{
-				if (*currentchar == 0)
+				if (*currentchar == 0) /* End of the char * */
 				{
 					if (target > sprintf_limit)	/* over sprintf_limit */
 					{
@@ -245,6 +245,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					/* %%%c is a crappy workaround ... when xxprintf is 
 					 * calling sciprint2, it is correctly changing %% to % 
 					 * but it is removed by the function sciprint
+					 * see bug 2602
 					 */
 					(*xxprintf) ((VPTR) target, "%%%c",*currentchar); 
 				}else{
