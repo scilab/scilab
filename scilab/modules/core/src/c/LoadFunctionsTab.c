@@ -94,7 +94,7 @@ static BOOL Load_primitives_from_file(char *filename)
 
 			if (doc == NULL) 
 			{
-				printf(_("Error: could not parse file %s\n"), filename);
+				fprintf(stderr,_("Error: could not parse file %s\n"), filename);
 				if (encoding) {FREE(encoding);encoding=NULL;}
 				return FALSE;
 			}
@@ -150,7 +150,7 @@ static BOOL Load_primitives_from_file(char *filename)
 			}
 			else
 			{
-				printf(_("Error : Not a valid gateway file %s (should start with <GATEWAY> and contains <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"), filename);
+				fprintf(stderr,_("Error : Not a valid gateway file %s (should start with <GATEWAY> and contain <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"), filename);
 				return FALSE;
 			}
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
@@ -164,7 +164,7 @@ static BOOL Load_primitives_from_file(char *filename)
 		}
 		else
 		{
-			printf(_("Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' found\n"), filename, encoding);
+			fprintf(stderr,_("Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' found\n"), filename, encoding);
 		}
 
 		if (encoding) {FREE(encoding);encoding=NULL;}

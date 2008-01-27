@@ -32,7 +32,7 @@ BOOL getversionmodule(char *modulename,
 		SciPath=getSCIpath();
 		len=(int)strlen(FORMATVERSIONFILENAME)+(int)strlen(SciPath)+(int)strlen(modulename)+1;
 		filename_VERSION_module=(char*)MALLOC(sizeof(char)*len);
-		sprintf(filename_VERSION_module,FORMATVERSIONFILENAME,SciPath,modulename);
+		sfprintf(stderr,filename_VERSION_module,FORMATVERSIONFILENAME,SciPath,modulename);
 		if (SciPath){FREE(SciPath);SciPath=NULL;}
 
 		if (FileExist(filename_VERSION_module))
@@ -59,7 +59,7 @@ BOOL getversionmodule(char *modulename,
 
 				if (doc == NULL) 
 				{
-					printf(_("Error: could not parse file %s\n"), filename_VERSION_module);
+					fprintf(stderr,_("Error: could not parse file %s\n"), filename_VERSION_module);
 					return FALSE;
 				}
 
@@ -115,7 +115,7 @@ BOOL getversionmodule(char *modulename,
 				}
 			else
 				{
-					printf(_("Error : Not a valid version file %s (should start with <MODULE_VERSION> and contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
+					fprintf(stderr,_("Error : Not a valid version file %s (should start with <MODULE_VERSION> and contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
 					return FALSE;
 				}
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
@@ -129,7 +129,7 @@ BOOL getversionmodule(char *modulename,
 			}
 			else
 			{
-				printf(_("Error : Not a valid version file %s (encoding not 'utf-8') Encoding '%s' found\n"), filename_VERSION_module, encoding);
+				fprintf(stderr,_("Error : Not a valid version file %s (encoding not 'utf-8') Encoding '%s' found\n"), filename_VERSION_module, encoding);
 			}
 
 			if (encoding) {FREE(encoding);encoding=NULL;}
