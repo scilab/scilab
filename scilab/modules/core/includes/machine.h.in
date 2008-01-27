@@ -346,6 +346,15 @@
 /* The default path separator character. */
 #undef PATH_SEPARATOR
 
+/* PCRE flags */
+#undef PCRE_FLAGS
+
+/* PCRE library */
+#undef PCRE_LIBS
+
+/* PCRE version */
+#undef PCRE_VERSION
+
 /* Define as the return type of signal handlers (`int' or `void'). */
 #undef RETSIGTYPE
 
@@ -367,7 +376,7 @@
 /* Without SCICOS */
 #undef WITHOUT_SCICOS
 
-/* With FFTW */
+/* With the FFTW library */
 #undef WITH_FFTW
 
 /* With the JAVA stuff (GUI, Console, JOGL... */
@@ -387,6 +396,15 @@
 
 /* If trailing underscores */
 #undef WTU
+
+/* libXML2 flags */
+#undef XML_FLAGS
+
+/* libXML2 library */
+#undef XML_LIBS
+
+/* libXML2 version */
+#undef XML_VERSION
 
 /* Define to 1 if the X Window System is missing or not being used. */
 #undef X_DISPLAY_MISSING
