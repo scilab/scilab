@@ -1268,11 +1268,13 @@ echo ""
 echo "XML configuration:"
 echo "  XML_FLAGS ...... = $XML_FLAGS"
 echo "  XML_LIBS ....... = $XML_LIBS"
+echo "  XML_VERSION .... = $XML_VERSION"
 
 echo "" 
 echo "PCRE configuration:"
 echo "  PCRE_CFLAGS .... = $PCRE_CFLAGS"
 echo "  PCRE_LIBS ...... = $PCRE_LIBS"
+echo "  PCRE_VERSION ... = $PCRE_VERSION"
 
 
 echo ""

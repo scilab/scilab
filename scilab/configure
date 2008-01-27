@@ -928,6 +928,7 @@ PVM_FALSE
 XML_CONFIG
 XML_FLAGS
 XML_LIBS
+XML_VERSION
 ALL_LINGUAS
 MSGCAT
 MSGFMT
@@ -944,6 +945,7 @@ USE_EMBEDDED_LAPACK_FALSE
 PCRE_CONFIG
 PCRE_FLAGS
 PCRE_LIBS
+PCRE_VERSION
 XMKMF
 X_CFLAGS
 X_PRE_LIBS
@@ -9760,7 +9762,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 9763 "configure"
+// #line 9765 "configure"
 
 
 public class conftest {
@@ -9810,7 +9812,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9813 "configure"
+// #line 9815 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -9858,7 +9860,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 9861 "configure"
+// #line 9863 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -9885,7 +9887,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 9888 "configure"
+// #line 9890 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11101,7 +11103,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11104 "configure"
+// #line 11106 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11167,7 +11169,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11170 "configure"
+// #line 11172 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11233,7 +11235,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11236 "configure"
+// #line 11238 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11299,7 +11301,7 @@ echo $ECHO_N "checking jrosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11302 "configure"
+// #line 11304 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -11365,7 +11367,7 @@ echo $ECHO_N "checking jrosetta-engine... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11368 "configure"
+// #line 11370 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -11431,7 +11433,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11434 "configure"
+// #line 11436 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -17006,6 +17008,7 @@ saved_LIBS="$LIBS"
 
 XML_FLAGS=`$XML_CONFIG --cflags`
 XML_LIBS=`$XML_CONFIG --libs`
+XML_VERSION=`$XML_CONFIG --version`
 
 
 { echo "$as_me:$LINENO: checking for xmlReaderForFile in -lxml2" >&5
@@ -17094,6 +17097,23 @@ CFLAGS=$saved_cflags
 LIBS="$saved_LIBS"
 
 
+
+
+
+
+cat >>confdefs.h <<_ACEOF
+#define XML_FLAGS "$XML_FLAGS"
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define XML_LIBS "$XML_LIBS"
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define XML_VERSION "$XML_VERSION"
+_ACEOF
 
 
 #CFLAGS="$CFLAGS $XML_FLAGS"
@@ -19931,6 +19951,7 @@ saved_LIBS="$LIBS"
 
 PCRE_CFLAGS=`$PCRE_CONFIG --cflags`
 PCRE_LIBS=`$PCRE_CONFIG --libs-posix`
+PCRE_VERSION=`$PCRE_CONFIG --version`
 
 
 
@@ -20255,6 +20276,23 @@ LIBS="$saved_LIBS"
 CFLAGS=$saved_cflags
 
 
+
+
+
+
+cat >>confdefs.h <<_ACEOF
+#define PCRE_FLAGS "$PCRE_FLAGS"
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define PCRE_LIBS "$PCRE_LIBS"
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define PCRE_VERSION "$PCRE_VERSION"
+_ACEOF
 
 
 #CFLAGS="$CFLAGS $PCRE_FLAGS"
@@ -21868,7 +21906,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 21871 "configure"
+#line 21909 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -22247,7 +22285,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 22250 "configure"
+#line 22288 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -23593,13 +23631,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:23596: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:23634: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:23599: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:23637: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:23602: output\"" >&5)
+  (eval echo "\"\$as_me:23640: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -24684,7 +24722,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 24687 "configure"' > conftest.$ac_ext
+  echo '#line 24725 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -26317,11 +26355,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26320: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26358: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:26324: \$? = $ac_status" >&5
+   echo "$as_me:26362: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26639,11 +26677,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26642: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26680: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:26646: \$? = $ac_status" >&5
+   echo "$as_me:26684: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26744,11 +26782,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26747: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26785: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26751: \$? = $ac_status" >&5
+   echo "$as_me:26789: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -26799,11 +26837,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26802: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26840: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26806: \$? = $ac_status" >&5
+   echo "$as_me:26844: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -29628,7 +29666,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29631 "configure"
+#line 29669 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -29728,7 +29766,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29731 "configure"
+#line 29769 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31766,11 +31804,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31769: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31807: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:31773: \$? = $ac_status" >&5
+   echo "$as_me:31811: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -31865,11 +31903,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31868: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31906: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:31872: \$? = $ac_status" >&5
+   echo "$as_me:31910: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -31917,11 +31955,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31920: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31958: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:31924: \$? = $ac_status" >&5
+   echo "$as_me:31962: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33300,11 +33338,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33303: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33341: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:33307: \$? = $ac_status" >&5
+   echo "$as_me:33345: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -33399,11 +33437,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33402: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33440: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33406: \$? = $ac_status" >&5
+   echo "$as_me:33444: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33451,11 +33489,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33454: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33492: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33458: \$? = $ac_status" >&5
+   echo "$as_me:33496: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -37210,6 +37248,7 @@ PVM_FALSE!$PVM_FALSE$ac_delim
 XML_CONFIG!$XML_CONFIG$ac_delim
 XML_FLAGS!$XML_FLAGS$ac_delim
 XML_LIBS!$XML_LIBS$ac_delim
+XML_VERSION!$XML_VERSION$ac_delim
 ALL_LINGUAS!$ALL_LINGUAS$ac_delim
 MSGCAT!$MSGCAT$ac_delim
 MSGFMT!$MSGFMT$ac_delim
@@ -37226,6 +37265,7 @@ USE_EMBEDDED_LAPACK_FALSE!$USE_EMBEDDED_LAPACK_FALSE$ac_delim
 PCRE_CONFIG!$PCRE_CONFIG$ac_delim
 PCRE_FLAGS!$PCRE_FLAGS$ac_delim
 PCRE_LIBS!$PCRE_LIBS$ac_delim
+PCRE_VERSION!$PCRE_VERSION$ac_delim
 XMKMF!$XMKMF$ac_delim
 X_CFLAGS!$X_CFLAGS$ac_delim
 X_PRE_LIBS!$X_PRE_LIBS$ac_delim
@@ -37238,8 +37278,6 @@ TCLTK_TRUE!$TCLTK_TRUE$ac_delim
 TCLTK_FALSE!$TCLTK_FALSE$ac_delim
 OCAMLC!$OCAMLC$ac_delim
 OCAMLOPT!$OCAMLOPT$ac_delim
-OCAMLDEP!$OCAMLDEP$ac_delim
-WITH_OCAML!$WITH_OCAML$ac_delim
 _ACEOF
 
   if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 97; then
@@ -37281,6 +37319,8 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
+OCAMLDEP!$OCAMLDEP$ac_delim
+WITH_OCAML!$WITH_OCAML$ac_delim
 WITH!$WITH$ac_delim
 MANGENERATOR!$MANGENERATOR$ac_delim
 INSTALL_HELP_XML_TRUE!$INSTALL_HELP_XML_TRUE$ac_delim
@@ -37305,7 +37345,7 @@ STRING_V1_FALSE!$STRING_V1_FALSE$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 22; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 24; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -38870,11 +38910,13 @@ echo ""
 echo "XML configuration:"
 echo "  XML_FLAGS ...... = $XML_FLAGS"
 echo "  XML_LIBS ....... = $XML_LIBS"
+echo "  XML_VERSION .... = $XML_VERSION"
 
 echo ""
 echo "PCRE configuration:"
 echo "  PCRE_CFLAGS .... = $PCRE_CFLAGS"
 echo "  PCRE_LIBS ...... = $PCRE_LIBS"
+echo "  PCRE_VERSION ... = $PCRE_VERSION"
 
 
 echo ""

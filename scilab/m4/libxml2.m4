@@ -1,6 +1,6 @@
 dnl
 dnl Sylvestre Ledru <sylvestre.ledru@inria.fr>
-dnl INRIA - Scilab 2007
+dnl INRIA - Scilab 2007/2008
 dnl
 
 dnl libxml is now mandatory in Scilab 
@@ -38,6 +38,7 @@ saved_LIBS="$LIBS"
 		
 XML_FLAGS=`$XML_CONFIG --cflags`
 XML_LIBS=`$XML_CONFIG --libs`
+XML_VERSION=`$XML_CONFIG --version`
 
 AC_CHECK_LIB([xml2], [xmlReaderForFile],
                [],
@@ -55,6 +56,11 @@ LIBS="$saved_LIBS"
 
 AC_SUBST(XML_FLAGS)
 AC_SUBST(XML_LIBS)
+AC_SUBST(XML_VERSION)
+
+AC_DEFINE_UNQUOTED([LIBXML_FLAGS],["$XML_FLAGS"],[libXML2 flags])
+AC_DEFINE_UNQUOTED([LIBXML_LIBS],["$XML_LIBS"],[libXML2 library])
+AC_DEFINE_UNQUOTED([LIBXML_VERSION],["$XML_VERSION"],[libXML2 version])
 
 #CFLAGS="$CFLAGS $XML_FLAGS"
 #AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([libxml2 : library missing])])

@@ -1,6 +1,6 @@
 dnl
 dnl Sylvestre Ledru <sylvestre.ledru@inria.fr>
-dnl INRIA - Scilab 2007
+dnl INRIA - Scilab 2007/2008
 dnl
 
 dnl pcre is now mandatory in Scilab 
@@ -50,6 +50,7 @@ saved_LIBS="$LIBS"
 		
 PCRE_CFLAGS=`$PCRE_CONFIG --cflags`
 PCRE_LIBS=`$PCRE_CONFIG --libs-posix`
+PCRE_VERSION=`$PCRE_CONFIG --version`
 
 
 
@@ -71,6 +72,11 @@ CFLAGS=$saved_cflags
 
 AC_SUBST(PCRE_FLAGS)
 AC_SUBST(PCRE_LIBS)
+AC_SUBST(PCRE_VERSION)
+
+AC_DEFINE_UNQUOTED([PCRE_FLAGS],["$PCRE_FLAGS"],[PCRE flags])
+AC_DEFINE_UNQUOTED([PCRE_LIBS],["$PCRE_LIBS"],[PCRE library])
+AC_DEFINE_UNQUOTED([PCRE_VERSION],["$PCRE_VERSION"],[PCRE version])
 
 #CFLAGS="$CFLAGS $PCRE_FLAGS"
 #AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([pcre : library missing])])

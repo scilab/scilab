@@ -10,7 +10,5 @@ AC_DEFUN([AC_FFTW], [
             [AC_MSG_ERROR([libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c). Check if libfftw3 is installed and if the version is correct])]
 			)
        AC_SUBST(FFTW3_LIB)
-	   AC_DEFINE([WITH_FFTW], [], [With FFTW])
+	   AC_DEFINE([WITH_FFTW], [], [With the FFTW library])
 ])
-
-
