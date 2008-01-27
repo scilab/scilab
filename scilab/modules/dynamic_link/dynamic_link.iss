@@ -31,6 +31,7 @@ Source: modules\{#DYNAMIC_LINK}\help\addchapter.sce; DestDir: {app}\modules\{#DY
 Source: modules\{#DYNAMIC_LINK}\help\*.htm; DestDir: {app}\modules\{#DYNAMIC_LINK}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DYNAMIC_LINK}\src\scripts\Makedll.incl; DestDir: {app}\modules\{#DYNAMIC_LINK}\src\scripts; Components: {#COMPN_SCILAB}
+Source: modules\{#DYNAMIC_LINK}\src\scripts\TEMPLATE_MAKEFILE.VC; DestDir: {app}\modules\{#DYNAMIC_LINK}\src\scripts; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DYNAMIC_LINK}\includes\*.h; DestDir: {app}\modules\{#DYNAMIC_LINK}\includes; Components: {#COMPN_SCILAB}
 ;
