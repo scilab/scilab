@@ -11,7 +11,7 @@
 /*--------------------------------------------------------------------------*/ 
 int int_objsprintf(char *fname,unsigned long fname_len)
 {
-	char **lstr = NULL;
+	char **lstr=NULL;
 	static int l1, m1, n1,n2,lcount,rval,blk=200;
 	static int k;
 	char ** strs;
@@ -70,18 +70,30 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 					if (n==nmax) 
 					{
 						nmax+=blk;
-						if (strs) strs = (char **) REALLOC(strs,nmax*sizeof(char **));
-						else strs = (char **) MALLOC(nmax*sizeof(char **));
-						if ( strs == NULL) goto mem;
+						if (strs) {
+							strs = (char **) REALLOC(strs,nmax*sizeof(char **));
+						} else {
+							strs = (char **) MALLOC(nmax*sizeof(char **));
+						}
+						if ( strs == NULL) {
+							Scierror(999,_("%s: No more memory.\n"),fname);
+							return 0;
+						}
 					}
-					if ((strs[n]=MALLOC((k+1))) == NULL) goto mem;
+					if ((strs[n]=MALLOC((k+1))) == NULL) {
+						Scierror(999,_("%s: No more memory.\n"),fname);
+						return 0;
+					}
 					strncpy(strs[n],str1, k);
 					strs[n][k]='\0';
 					n++;
 				}
 				else { /* cat to previous line */
 					ll=(int)strlen(strs[n-1]);
-					if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) goto mem;
+					if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) {
+						Scierror(999,_("%s: No more memory.\n"),fname);
+						return 0;
+					}
 					strncpy(&(strs[n-1][ll]),str1, k);
 					strs[n-1][k+ll]='\0';
 				}
@@ -91,24 +103,35 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 				cat_to_last=0;
 			}
 			else
-				str++;
+				{
+					str++;
+				}
 		}
-		k=(int)(str-str1);
+		k=(int)(str-str1); /* @TODO add comment */
 		if (k>0) {
 			if ((! cat_to_last) || (n == 0)) { /*add a new line */
 				if (n==nmax) {
 					nmax+=blk;
 					if (strs)
 					{
-						if ((strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) goto mem;
+						if ((strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) {
+							Scierror(999,_("%s: No more memory.\n"),fname);
+							return 0;
+						}
 					}
 					else
 					{
-						if ( (strs = (char **) MALLOC(nmax*sizeof(char **))) == NULL) goto mem;
+						if ( (strs = (char **) MALLOC(nmax*sizeof(char **))) == NULL) {
+							Scierror(999,_("%s: No more memory.\n"),fname);
+							return 0;
+						}
 					}
 
 				}
-				if ((strs[n]=MALLOC((k+1))) == NULL) goto mem;
+				if ((strs[n]=MALLOC((k+1))) == NULL) {
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				}
 				strncpy(strs[n],str1, k);
 				strs[n][k]='\0';
 				n++;
@@ -116,7 +139,10 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 			}
 			else { /* cat to previous line */
 				ll=(int)strlen(strs[n-1]);
-				if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) goto mem;
+				if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) {
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				}
 				strncpy(&(strs[n-1][ll]),str1, k);
 				strs[n-1][k+ll]='\0';
 			}
@@ -133,9 +159,6 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	FREE(strs);
 	LhsVar(1)=Rhs+1;
 	PutLhsVar();    
-	return 0;
-mem:
-	Scierror(999,_("%s: No more memory\n"),fname);
 	return 0;
 }  
 /*--------------------------------------------------------------------------*/ 
