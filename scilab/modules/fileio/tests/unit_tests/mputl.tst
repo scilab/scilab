@@ -13,11 +13,21 @@ cd TMPDIR;
 // Deleting an existing file... Just in case...
 mdelete("dummyFile.dummy")
 
-mputl('I am a dummy String', 'dummyFile.dummy')
-lsResult = ls("dummyFile.dummy")
+TXT = [ 'I am a dummy String'; ..
+        'Multi lines '; ..
+        'to check that'; ..
+        ' mputl is okay'; ..
+        ' on linux and windows ... '];
 
+mputl(TXT, 'dummyFile.dummy')
+TXT2 = mgetl('dummyFile.dummy');
+
+if TXT2 <> TXT then pause,end
+// =============================================================================
 // Testing if the file created exists
+lsResult = ls("dummyFile.dummy");
 if lsResult == []      then pause,end
 
 // Now delete it
 mdelete("dummyFile.dummy")
+// =============================================================================
