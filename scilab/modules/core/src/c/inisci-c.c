@@ -107,9 +107,9 @@ int SetSci()
 	if ( ierr== 1) 
 	{
 		#ifdef  _MSC_VER
-		MessageBox(NULL,_("SCI not defined."),"Warning",MB_ICONWARNING);
+		MessageBox(NULL,_("SCI environment variable not defined.\n"),"Warning",MB_ICONWARNING);
 		#else
-		printf(_("SCI not defined.\n"));
+		fprintf(stderr, _("SCI environment variable not defined.\n"));
 		#endif
 		exit(1);
 	}
@@ -147,9 +147,10 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 		if (!setSCIHOME())
 		{
 			#ifdef  _MSC_VER
-				MessageBox(NULL,_("SCIHOME not defined."),_("Warning"),MB_ICONWARNING);
+				MessageBox(NULL,_("SCIHOME not defined.\n"),_("Warning"),MB_ICONWARNING);
 			#else
-				printf(_("SCIHOME not defined.\n"));
+				/* @TODO change that to the error output */
+				fprintf(stderr,_("SCIHOME not defined.\n"));
 			#endif
 			exit(1);
 		}
@@ -174,9 +175,9 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 	if ( ierr== 1) 
 	{
 #ifdef  _MSC_VER
-		MessageBox(NULL,_("TMPDIR not defined."),_("Warning"),MB_ICONWARNING);
+		MessageBox(NULL,_("TMPDIR not defined.\n"),_("Warning"),MB_ICONWARNING);
 #else
-		printf(_("TMPDIR not defined.\n"));
+		fprintf(stderr,_("TMPDIR not defined.\n"));
 #endif
 		exit(1);
 	}
@@ -226,15 +227,15 @@ int ExistJavaSciUnix(void)
 	struct utsname uname_pointer;
 	FILE *fp;
 
-	char OperatinSystem[256];
+	char OperatingSystem[256];
 	char Release[256];
 	char extension[5];
 
 	uname(&uname_pointer);
-	strcpy(OperatinSystem,uname_pointer.sysname);
+	strcpy(OperatingSystem,uname_pointer.sysname);
 	strcpy(Release,uname_pointer.release);
 
-	if ( strcmp(OperatinSystem,"HP-UX") == 0 )
+	if ( strcmp(OperatingSystem,"HP-UX") == 0 )
 	{
 		strcpy(extension,".sl");
 	}
