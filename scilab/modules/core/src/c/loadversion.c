@@ -32,7 +32,7 @@ BOOL getversionmodule(char *modulename,
 		SciPath=getSCIpath();
 		len=(int)strlen(FORMATVERSIONFILENAME)+(int)strlen(SciPath)+(int)strlen(modulename)+1;
 		filename_VERSION_module=(char*)MALLOC(sizeof(char)*len);
-		sfprintf(stderr,filename_VERSION_module,FORMATVERSIONFILENAME,SciPath,modulename);
+		fprintf(stderr,filename_VERSION_module,FORMATVERSIONFILENAME,SciPath,modulename);
 		if (SciPath){FREE(SciPath);SciPath=NULL;}
 
 		if (FileExist(filename_VERSION_module))
