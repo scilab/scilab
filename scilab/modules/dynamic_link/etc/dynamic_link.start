@@ -16,17 +16,17 @@ end
 // Configure Environment Variables for Ms Visual C ====================
 if MSDOS then
 	if (~isdef('WSCI')) then
-	 WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
+	 WSCI = getlongpathname( pathconvert(SCI, %f, %f, 'w') );
 	end
 	if (findmsvccompiler()<>'unknown') then
     configure_msvc();
     LCC=%F; // Always choose MsVc if it is installed by default
-    clear configure_msvc setmsvc71 setmsvc70 setmsvc60 setmsvc50
-    clear setmsvc80std setmsvc80pro setmsvc90express setmsvc80express
+    clear configure_msvc
   else
-    if (findlcccompiler()) then
+    if ( findlcccompiler() ) then
       LCC=%T;
       configure_lcc();
+      clear configure_lcc findlcccompiler
     end
   end
   clear findmsvccompiler
