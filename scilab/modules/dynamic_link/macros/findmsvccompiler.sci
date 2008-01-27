@@ -4,6 +4,7 @@
 //==========================================
 function MSCompiler = findmsvccompiler()
 
+//==========================================
 //  functions defined only in findmsvccompiler
 //==========================================
 function bOK = is_msvc90pro()
