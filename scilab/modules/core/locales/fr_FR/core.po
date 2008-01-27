@@ -37,7 +37,7 @@ msgstr "%s: Impossible de trouver Perl dans ''%s''"
 # File: macros/perl.sci, line: 58
 #, c-format
 msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Impossible de trouver Perl."
+msgstr "%s: Impossible de trouver Perl.\n"
 
 #
 # File: macros/perl.sci, line: 63
