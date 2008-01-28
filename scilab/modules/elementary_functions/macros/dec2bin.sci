@@ -15,11 +15,11 @@ rhs=argn(2)
 
 // check type and size of the inputs arguments
 if or(type(x)<>8) & (or(type(x)<>1) | or(x<0)) then
-	error("first input argument must be a scalar/vector/matrix of positives integers")
+	error(msprintf(gettext("%s: Wrong value for first input argument: Scalar/vector/matrix of positive integers expected.\n"),"dec2bin"));
 end
 
 if rhs==2 & ((type(n)<>8 & (type(n)<>1 | n<0)) | prod(size(n))<>1) then
-	error("second input argument must be a positive scalar")
+	error(msprintf(gettext("%s: Wrong value for second input argument: Scalar positive integer expected"),"dec2bin"));
 end
 
 // empty matrix

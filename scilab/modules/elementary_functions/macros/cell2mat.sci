@@ -11,12 +11,12 @@ if isempty(c) then
   return
 else
   if typeof(c) <> "ce" then //input argument must be a cell
-    error('input argument must be a cell')
+    error(msprintf(gettext("%s: Wrong type for input argument: Cell expected.\n"),"cell2mat"));
   end
   cecomptype=typeof(c(1).entries) //cecomptype is the type of the first component of the cell
   for i=1:prod(size(c))
     if typeof(c(i).entries) <> cecomptype then //all components of input cell must have the same type
-      error("all components of input cell must have the same type")
+      error(msprintf(gettext("%s: Wrong type for input argument: Same type expected for all cell contents"),"cell2mat"));
     end
   end
   if  0 < size(size(c),"*") & size(size(c),"*") <= 2 then //size of cell is least or equal to 2

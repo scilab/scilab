@@ -14,7 +14,7 @@ function  y=cat(dims,varargin)
 if type(dims)==1 & dims>=0 & size(dims,"*")==1 
   dims = max(1,round(dims));
 else
-  error("first input argument must be a positive real scalar");
+  error(msprintf(gettext("%s: Wrong value for first input argument: Positive real scalar expected.\n"),"cat"));
 end
 
 // verify if dims value is superior to the dimension of the input arguments 
@@ -55,7 +55,7 @@ end
 
 for i=2:size(varargin)
   if or(sizevarless(i-1)<> sizevarless(i))
-    error("wrong input arguments sizes");
+    error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"cat"));
   end
 end
 
@@ -77,12 +77,12 @@ for j=2:size(varargin)
     if typeof(varargin(j).entries) ==vartype
       vartype = typeof(varargin(j).entries); 
     else 
-      error("input arguments must have the same type");
+      error(msprintf(gettext("%s: Wrong type for input arguments: Same types expected.\n"),"cat"));
     end
   elseif  typeof(varargin(j)) ==vartype
     vartype = typeof(varargin(j));
   else 
-    error("input arguments must have the same type");
+    error(msprintf(gettext("%s: Wrong type for input arguments: Same types expected.\n"),"cat"));
   end
 end
 

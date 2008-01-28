@@ -13,9 +13,9 @@ function y=factor(x)
 // F.Belahcene
 
 if prod(size(x,"*"))<>1 | type(x)<>1  
-	error("input argument must be a positive integer")
+	error(msprintf(gettext("%s: Wrong value for input argument: Scalar positive integer expected.\n"),"factor"));
 elseif x<0 | x-floor(x)<>0
-	error("input argument must be a positive integer")
+	error(msprintf(gettext("%s: Wrong value for input argument: Scalar positive integer expected.\n"),"factor"));
 elseif or(x==[0 1 2 3])
 	y=x
 else

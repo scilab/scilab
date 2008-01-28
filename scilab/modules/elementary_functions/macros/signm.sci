@@ -11,9 +11,13 @@ function x=signm(a)
 //!
 // Copyright INRIA
 [m,n]=size(a)
-if m<>n then error(20,1),end
+if m<>n then
+  error(20,1)
+end
 flag=or(a<>a');
-if flag then error('signm: non hermitian matrix'),end
+if flag then
+  error(msprintf(gettext("%s: Non-hermitian matrix.\n"),"signm"));
+end
 [u,s]=schur(a)
 x=u'*diag(sign(real(diag(s))))*u
 endfunction

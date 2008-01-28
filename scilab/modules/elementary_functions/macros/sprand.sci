@@ -13,10 +13,10 @@ function a=sprand(m,n,density,typ)
   //---- Check arguments----------------------------------------------
   if argn(1)<4 then typ='uniform',end
   if type(typ)<>10 then
-    error('typ argument of sprand must be ''uniform'' or ''normal''')
+    error(msprintf(gettext("%s: Wrong value for fourth input argument: ''%s'' or ''%s'' expected.\n"),"sprand","uniform","normal"));
   end
   if part(typ,1)<>'u'&part(typ,1)<>'n' then
-    error('typ argument of sprand must be ''uniform'' or ''normal''')
+    error(msprintf(gettext("%s: Wrong value for fourth input argument: ''%s'' or ''%s'' expected.\n"),"sprand","uniform","normal"));
   end 
   density=maxi(mini(density,1),0);
   

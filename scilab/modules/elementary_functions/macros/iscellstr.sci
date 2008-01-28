@@ -4,7 +4,7 @@ function   bool=iscellstr(c)
 // F.B
 
 if argn(2)<>1 then
-  error("Bad number of inputs arguments")
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"iscellstr",1));
 else
   if isempty(c) then
     bool=bool2s(%f)

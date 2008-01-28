@@ -15,9 +15,9 @@ function  varargout=meshgrid(varargin)
 
 [lhs,rhs]=argn();
 if lhs>3 then
-  error("wrong number of lhs arguments");
+  error(msprintf(gettext("%s: Wrong number of output arguments: At most %d expected.\n"),"meshgrid",3));
 elseif rhs>3 then
-  error("wrong number of rhs arguments");
+  error(msprintf(gettext("%s: Wrong number of input arguments: At most %3 expected.\n"),"meshgrid",3));
 end
 if or(lhs==[1 2]) & rhs==1 then
   [x,y]=ndgrid(varargin(1),varargin(1));
@@ -41,6 +41,6 @@ elseif lhs==3 & rhs==3 then
     varargout(3)=permute(z,[2,1,3]);
   end
 else 
-  error("incompatible number of input arguments and output arguments");
+  error(msprintf(gettext("%s: Wrong number of output arguments vs. input arguments: Same number expected.\n"),"meshgrid"));
 end
 endfunction

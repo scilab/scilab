@@ -6,7 +6,9 @@ if a==[] then x=[],return,end
 if m<>n then error(20),end
 //diagonalization
 [x,t,bs]=bdiag(a+0*%i*ones(a),1/%eps)
-if find(bs>1)<>[] then error('Matrix is not diagonalisable'),end
+if find(bs>1)<>[] then
+  error(msprintf(gettext("%s: Matrix is not diagonalisable.\n"),"tanhm"));
+end
 x=t*diag(tanh(diag(x)))/t
 if and(imag(a)==0) then x=real(x),end
 endfunction

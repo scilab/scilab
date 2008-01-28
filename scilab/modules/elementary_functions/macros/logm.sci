@@ -19,7 +19,7 @@ if ~flag then
   zw=find(w==0);
   if zw<>[] then
     w(zw)=%eps*ones(zw);w1=log(w);w1(zw)=-%inf*ones(zw);
-    warning('Log of a singular matrix')
+    warning(msprintf(gettext("%s: Log of a singular matrix.\n"),"logm"));
   else
     w1=log(w)
   end
@@ -36,13 +36,14 @@ r=and(imag(a)==0)
 a=a+0*%i;   //Set complex
 [s,u,bs]=bdiag(a);
   if maxi(bs)>1 then
-    error('logm: unable to diagonalize!');return
+    error(msprintf(gettext("%s: Unable to diagonalize.\n"),"logm"));
+    return
   end
   w=diag(s);
   zw=find(w==0);
   if zw<>[] then
     w(zw)=%eps*ones(zw);w1=log(w);w1(zw)=-%inf*ones(zw);
-    warning('Log of a singular matrix')
+    warning(msprintf(gettext("%s: Log of a singular matrix.\n"),"logm"));
   else
     w1=log(w)
   end

@@ -15,10 +15,16 @@ function x=integrate(expr,var,x0,x1,ea,er)
 //!
 // Copyright INRIA
 [lhs,rhs]=argn(0)
-if size(x0,'*')<>1 then error('x0 must be a real scalar number'),end
-if imag(x0)<>0 then error('x0 doit etre un scalaire reel'),end
+if size(x0,'*')<>1 then
+  error(msprintf(gettext("%s: Wrong size for third input argument: Real scalar expected.\n"),"integrate"));
+end
+if imag(x0)<>0 then
+  error(msprintf(gettext("%s: Wrong value for third input argument: Real scalar expected.\n"),"integrate"));
+end
 [m,n]=size(x1),x1=matrix(x1,1,m*n)
-if norm(imag(x1),1)<>0 then error('x1 is not real!'),end
+if norm(imag(x1),1)<>0 then
+  error(msprintf(gettext("%s: Wrong value for fourth input argument: Real scalar expected.\n"),"integrate"));
+end
 //
 deff('[ans]=func('+var+')',expr,'n')
 x=[]

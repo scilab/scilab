@@ -22,7 +22,7 @@ end
 xsize=size(x)
 // check the number of input arguments
 if argn(2)<1 then
-  error("wrong number of input arguments")
+  error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"num2cell",1));
 elseif argn(2)==1 then
     for i=1:size(x,"*")
       y(i).entries=x(i)
@@ -32,7 +32,7 @@ elseif argn(2)==1 then
 // check the second input argument is a scalar (or a vector) of positive integers
 else
   if type(dimens)<>1 | or(dimens<=0) | or(dimens-floor(dimens)<>0) | ndims(dimens)>2 then
-    error("second argument must be a positive integer")
+    error(msprintf(gettext("%s: Wrong second argument: Positive integer expected.\n"),"num2cell"));
   end
   dimens=matrix(dimens,1,-1)
 end

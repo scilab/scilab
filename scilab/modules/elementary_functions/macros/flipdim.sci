@@ -11,13 +11,13 @@ function y=flipdim(x,dim)
 // F.Belahcene
 
 if or(size(dim)<>[1 1]) | type(dim)<>8 & (type(dim)<>1 | dim<1) then
-	error("second input argument must be a positive scalar")
+	error(msprintf(gettext("%s: Wrong value for second input argument: Scalar positive integer expected.\n"),"flipdim"));
 end
 
 if ndims(x)==2 & type(x)<>1 then
-	error("first input argument must be a scalar/vector/array of reals")
+	error(msprintf(gettext("%s: Wrong value for first input argument: Scalar/vector/array of reals expected.\n"),"flipdim"));
 elseif ndims(x)>2 & type(x.entries)<>1
-	error("first input argument must be a scalar/vector/array of reals")
+	error(msprintf(gettext("%s: Wrong value for first input argument: Scalar/vector/array of reals expected.\n"),"flipdim"));
 end
 
 dim=floor(dim)

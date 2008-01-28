@@ -13,16 +13,16 @@ if rhs == 1 then
   a = varargin(1);
   if isreal(a) then
     y = a+imult(zeros(a)); 
-    else
-    error("input argument must be real");
+  else
+    error(msprintf(gettext("%s: Wrong type for input argument: Real expected.\n"),"complex"));
   end
 elseif rhs == 2 then
   a = varargin(1);
   b = varargin(2);
   if isreal(a) & isreal(b) then
-  y = a+imult(b);
+    y = a+imult(b);
   else
-   error("input arguments must be real");
+    error(msprintf(gettext("%s: Wrong type for input arguments: Reals expected.\n"),"complex"));
   end
 else 
   error(58);

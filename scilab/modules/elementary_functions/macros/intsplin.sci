@@ -16,7 +16,7 @@ if rhs<2 then
   v=sum((d(1:$-1)-d(2:$))/12 + (s(1:$-1)+s(2:$))/2);
 else
   if size(x,'*')<>size(s,'*') then
-    error('input vectors must have the same dimension');
+    error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"intsplin"));
   end
 end
 x=x(:);s=s(:);

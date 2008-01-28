@@ -12,7 +12,7 @@ select name1
 	case "sce" then exec(name),
 	case "scg" then xload(name),
 	case "bin" then load(name), 
-	else error("Gload : unknown suffix in file name "+name);
+	else error(msprintf(gettext("%s: Unknown file extension in ''%s''"),"GLoad",name));
 end
 
 	

@@ -6,7 +6,7 @@ function y=factorial(n)
 // F.B
 
 if (type(n) <> 1 & (typeof(n)<>"hypermat" | type(n.entries)<>1)) | (~isempty(n) & (or((n-floor(n)<>0)) | or(n<0))) then 
-	error("input argument must be a scalar/vector/matrix/hypermatrix of positives integers")
+	error(msprintf(gettext("%s: Wrong value for input argument: Scalar/vector/matrix/hypermatrix of positive integers expected.\n"),"factorial"));
 elseif isempty(n)
 	y=n
 	return

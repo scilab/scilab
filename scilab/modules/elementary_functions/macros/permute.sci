@@ -10,16 +10,16 @@ function   y=permute(x,dims)
 
 // Verify inputs arguments number
 if argn(2)<>2 then
-error("Incorrect number of inputs arguments")
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d expected."),"permute",2));
 end
 
 // Verify if the size of dims corresponds to dimension of x 
 if ndims(dims)<>2 then
-  error("Second input argument must be a vector")
+  error(msprintf(gettext("%s: Wrong size for second argument: Vector expected.\n"),"permute"));
 elseif or(gsort(dims,"c","i")<>(1:prod(size(dims)))) then
-  error("Incorrect dimensions permutation")
+  error(msprintf(gettext("%s: Wrong size for second input argument.\n"),"permute"));
 elseif prod(size(dims))<ndims(x) then
-  error("Size of the second input argument must be equal or superior to x dimensions")
+  error(msprintf(gettext("%s: Wrong size for second input argument: At least the size of first input argument expected.\n"),"permute"));
 end
 
 // Case x is empty

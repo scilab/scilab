@@ -10,7 +10,7 @@ function y=primes(x)
 // F.Belahcene
 
 if prod(size(x,"*"))<>1 | type(x)<>1 
-	error("input agument must be a real scalar")
+	error(msprintf(gettext("%s: Wrong input argument: Real scalar expected.\n"),"primes"));
 elseif x<1 
 	y = [];
 else

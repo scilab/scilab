@@ -17,7 +17,7 @@ function y=bin2dec(str)
 	// Check length of given string ( must be 47 bits or less )
 	
 	if type(str)<>10 
-		error(msprintf(gettext("%s: Input argument must be a string"),"bin2dec"));
+		error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"bin2dec"));
 	end
 	
 	// delete all spaces included in the str
