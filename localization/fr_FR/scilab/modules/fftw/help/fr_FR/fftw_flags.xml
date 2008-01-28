@@ -38,7 +38,7 @@
     </P>
     <P>
     Les entrées possibles sont :
-    </p>
+    </P>
     <ITEMIZE>
       <ITEM><SP>FFTW_MEASURE or 0</SP></ITEM>
       <ITEM><SP>FFTW_DESTROY_INPUT or 1</SP></ITEM>
