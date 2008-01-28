@@ -27,3 +27,33 @@ me=3;
 [x,lagr,f]=quapro(Q,p,C,b,ci,cs,me)
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
 [x,lagr,f]=quapro(Q,p,C,b,[],[],me)   //Same result as above
+
+
+// Example retrieved from: 
+// http://www.linbox.com/ucome.rvt/any/doc_distrib/scilab-2.6/enpc/Berthaud_reponses
+
+r=1; k=400; m=1; g=10;
+Q=1/2*k*[1,-1,0,0;-1,2,-1,0;0,-1,2,-1;0,0,-1,1];
+P=m*g*r*[3;2;1;0];
+
+C=[0,0,0,1]; b=0; m=1;
+alphai=[];alphau=[];
+
+[alpha,lag,Umin]=quapro(Q,P,C,b,alphai,alphau,m)
+
+// Example retrieved from:
+// http://matman.uwm.edu.pl/~kulesza/Symulacje_komputerowe/SciLab/scilab12.pdf
+
+Q = [2,-1; -1,3]; c=[2;4]; C=[-2, -3; -5, -1]; d=[-5; -1]
+
+XL = [0; 0]; XU = [1e10;1e10];
+
+[xopt, larg, fopt] = quapro(Q, c, C, d, XL, XU)
+
+// Example retrieved from:
+// http://www.poli.usp.br/d/pmr5215/Introscilab.pdf
+H = [ 2 0; 0 2];
+c = [-6; -8];
+A = [ 1 2; 3 1];
+b = [ 3 ; 4];
+[x, lagr, qx ] = quapro(H, c, A, b, zeros(2,1), [])
