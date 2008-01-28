@@ -134,67 +134,33 @@ BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix)
 /*--------------------------------------------------------------------------*/
 BOOL Set_SCI_PATH(char *DefaultPath)
 {
-	BOOL bOK=FALSE;
+	BOOL bOK = FALSE;
 	char env[PATH_MAX + 1 + 10];
-	char *GetSCIpath=NULL;
+	char ShortPath[PATH_MAX+1];
+	char *CopyOfDefaultPath = NULL;
 
-	GetSCIpath=getenv ("SCI");
-
-	if (GetSCIpath) 
+	CopyOfDefaultPath = (char*) MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
+	if (CopyOfDefaultPath)
 	{
-		char ShortPath[PATH_MAX+1];
-		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=MALLOC(((int)strlen(GetSCIpath)+1)*sizeof(char));
+		/* to be sure that it's unix 8.3 format */
+		/* c:/progra~1/scilab-5.0 */
+		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
+		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 
-		if (GetShortPathName(GetSCIpath,ShortPath,PATH_MAX) == 0)
+		sprintf (env, "SCI=%s",ShortPath);
+		setSCIpath(ShortPath);
+
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+
+		if (_putenv (env))
 		{
-			fprintf(stderr,"\n%s%s%s.\n","Incorrect SCI path. Please verify your SCI environment variable.\n","SCI has been redefined to ",DefaultPath);
-			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-			CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
-
-			/* to be sure that it's unix format */
-			/* c:/progra~1/scilab-3.1 */
-			GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
-			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
-			sprintf (env, "SCI=%s",ShortPath);
-			setSCIpath(ShortPath);
-			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-			
+			bOK=FALSE;
 		}
 		else
 		{
-			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
-			sprintf (env, "SCI=%s",CopyOfDefaultPath);
-			setSCIpath(CopyOfDefaultPath);
-			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			bOK=TRUE;
 		}
 	}
-	else
-	{
-		char ShortPath[PATH_MAX+1];
-		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
-
-		/* to be sure that it's unix format */
-		/* c:/progra~1/scilab-3.1 */
-		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
-		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
-		sprintf (env, "SCI=%s",ShortPath);
-		setSCIpath(ShortPath);
-		
-		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-	}
-
-	
-	if (_putenv (env))
-	{
-		bOK=FALSE;
-	}
-	else
-	{
-		bOK=TRUE;
-	}
-
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/
