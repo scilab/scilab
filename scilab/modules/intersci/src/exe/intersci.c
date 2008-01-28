@@ -18,7 +18,7 @@ static int pass = 0 ;  /* flag for couting pass on code generation */
 #ifdef _MSC_VER
 static void SciEnv ();
 #define putenv _putenv
-#pragma comment(lib,"../../../../../bin/intl.lib")
+#pragma comment(lib,"../../../../../bin/libintl.lib")
 #endif 
 
 int main(argc,argv)

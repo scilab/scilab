@@ -27,7 +27,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/libxml2.lib")
-#pragma comment(lib,"../../bin/intl.lib")
+#pragma comment(lib,"../../bin/libintl.lib")
 /*-----------------------------------------------------------------------------------*/ 
 /* force linking fortran libraries */
 #pragma comment(lib,"../../bin/blasplus.lib")

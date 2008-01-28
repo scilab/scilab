@@ -5,7 +5,7 @@
 #include <windows.h> 
 #include "tcl.h"
 /*--------------------------------------------------------------------------*/ 
-#pragma comment(lib,"../../bin/intl.lib")
+#pragma comment(lib,"../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/ 
 #if defined(TCL_MAJOR_VERSION) && defined(TCL_MAJOR_VERSION)
 	#if TCL_MAJOR_VERSION == 8 

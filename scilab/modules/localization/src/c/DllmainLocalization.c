@@ -6,7 +6,7 @@
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../../bin/libxml2.lib")
 #pragma comment(lib,"../../../bin/hashtable.lib")
-#pragma comment(lib,"../../../bin/intl.lib")
+#pragma comment(lib,"../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

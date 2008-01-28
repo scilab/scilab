@@ -5,7 +5,7 @@
 #include <windows.h> 
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/LibScilab.lib")
-#pragma comment(lib,"../../bin/intl.lib")
+#pragma comment(lib,"../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
