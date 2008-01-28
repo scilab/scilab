@@ -77,17 +77,12 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-
-regexp('xabyabbbz'                               ,'/ab*/'                                 ,'r')
-
-regexp('a!'                                      ,'/((((((((((a))))))))))\041/'           ,'r')
-regexp('ABCC'                                    ,'/^abc$/i'                              ,'r')
-
-regexp('ABC'                                     ,'/ab|cd/i'                              ,'r')
-[a b c]=regexp('XABYABBBZ'                               ,'/ab*/i'                                ,'r')
-
- 
-  ]]></EXAMPLE>
+regexp('xabyabbbz','/ab*/','r')
+regexp('a!','/((((((((((a))))))))))\041/','r')
+regexp('ABCC','/^abc$/i','r')
+regexp('ABC','/ab|cd/i','r')
+[a b c]=regexp('XABYABBBZ','/ab*/i','r')
+]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
