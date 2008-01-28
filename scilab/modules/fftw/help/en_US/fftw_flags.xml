@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
+  <LANGUAGE>eng</LANGUAGE>
   <TITLE>fftw_flags</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>October 2006</DATE>
-  <SHORT_DESCRIPTION name="fftw_flags">choix de la méthode de calcul pour la fonction fftw</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="fftw_flags"> set computation method of fast fourier transform of the fftw function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[a,[S]]=fftw_flags([x1;x2;...])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,31 +14,28 @@
       <PARAM_ITEM>
         <PARAM_NAME>[x1;x2;...]</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: Matrice de chaînes de caractères ou bien d'entiers. Sert à sélectionner la méthode de calcul de la fonction fftw.</SP>
+          <SP>: Matrix of string or integers. Entry to switch the method of fft computation for fftw.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: Entier. Donne sous forme d'entier la méthode courante utilisée par la fonction fftw.</SP>
+          <SP>: Integer. Give the current value of the flag of the fftw function.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: Matrice de chaînes de caractères. Donne sous forme de chaînes de caractères la méthode utilisée par fftw.</SP>
+          <SP>: String matrix. Give the string value of the fftw flag.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    Cette fonction permet de sélectionner le paramètre <VERB>unsigned flags</VERB> de la fonction <VERB>fftw_plan_guru_split_dft</VERB>
-    qui est utilisée dans l'interface scilab de la fonction fftw. La valeur par défault est FFTW_ESTIMATE.
-    </P>
-    <P>
-    Les entrées possibles sont :
-    </P>
+    This function enables the change of the <VERB>unsigned flags</VERB> parameter of the
+    <VERB>fftw_plan_guru_split_dft</VERB> function that is used in <A href='fftw.htm'><VERB>fftw</VERB></A> function. Default value is FFTW_ESTIMATE</P>
+    <P>Accepted entries are :</P>
     <ITEMIZE>
       <ITEM><SP>FFTW_MEASURE or 0</SP></ITEM>
       <ITEM><SP>FFTW_DESTROY_INPUT or 1</SP></ITEM>
@@ -64,24 +61,23 @@
       <ITEM><SP>FFTW_ALLOW_PRUNING or 1048576</SP></ITEM>
     </ITEMIZE>
     <P>
-     Rmq : Lors de l'utilisation des méthodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit être appélée au moins deux fois.
-     (le premier appel est pour l'initalisation, le second et les autres pour le calcul)
+     Rmk : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must call two times fftw.
+     (first call for initialisation, second and others calls for computation)
    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
- //retourne sous forme entière la valeur du flag
+ //return the integer value of the flag
  fftw_flags()
 
- //changement de méthode
+ //change flags
  fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
 
- //changement de méthode de affichage des flags (sous forme d'entiers et de chaînes)
+ //change flags and display current value of fftw flags (both integer and strings)
  [a,S]=fftw_flags("FFTW_PATIENT")
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM><LINK>fftw</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
-
 </MAN>
