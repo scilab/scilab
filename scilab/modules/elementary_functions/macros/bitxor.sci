@@ -25,11 +25,11 @@ elseif isempty(x) & isempty(x)
 end
 
 if (type(x)==1 & (x-floor(x)<>0 | x<0)) | (type(x)==8 & x<0) | (type(x)==17 & (type(x.entries<>1) | type(x.entries<>8)) & find(x.entries>0)<>[])  | (type(x)<>1 & type(x)<>8 & type(x)<>17)
-	error(msprintf(gettext("%s: Wrong type for first input argument: Scalar/vector/matrix of positive integers expected.\n"),"bitxor"));
+	error(msprintf(gettext("%s: Wrong first input argument: Scalar/vector/matrix of positive integers expected.\n"),"bitxor"));
 end
 
 if (type(y)==1 & (y-floor(y)<>0 | y<0)) | (type(y)==8 & y<0) | (type(y)==17 & (type(y.entries<>1) | type(y.entries<>8)) & find(y.entries>0)<>[]) | (type(y)<>1 & type(y)<>8 & type(y)<>17)
-	error(msprintf(gettext("%s: Wrong type for second input argument: Scalar/vector/matrix of positive integers expected.\n"),"bitxor"));
+	error(msprintf(gettext("%s: Wrong second input argument: Scalar/vector/matrix of positive integers expected.\n"),"bitxor"));
 end
 
 for i=1:prod(size(x))

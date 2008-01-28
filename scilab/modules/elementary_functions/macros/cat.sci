@@ -14,7 +14,7 @@ function  y=cat(dims,varargin)
 if type(dims)==1 & dims>=0 & size(dims,"*")==1 
   dims = max(1,round(dims));
 else
-  error(msprintf(gettext("%s: Wrong value for first input argument: Positive real scalar expected.\n"),"cat"));
+  error(msprintf(gettext("%s: Wrong first input argument: Positive real scalar expected.\n"),"cat"));
 end
 
 // verify if dims value is superior to the dimension of the input arguments 
