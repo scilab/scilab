@@ -1,28 +1,28 @@
-//-----------------------------------------------------------------------------
+//==========================================
 // Allan CORNET
-// INRIA 2007
+// INRIA 2008
 // Detect LCC-Win32 compiler
-//-----------------------------------------------------------------------------
-function res=findlcccompiler()
+//==========================================
+function res = findlcccompiler()
+  res = %F;
   if MSDOS then
-    res=%F;
     try
-      winqueryreg('HKEY_CURRENT_USER','Software\lcc\compiler','includepath')
-      res=%T;
+      winqueryreg('HKEY_CURRENT_USER', ..
+                  'Software\lcc\compiler', ..
+                  'includepath');
     catch
-      res=%F;
+      return;
     end
-    if (res) then
-      try
-        winqueryreg('HKEY_CURRENT_USER','Software\lcc\lcclnk','libpath')
-        res=%T;
-      catch
-        res=%F;
-      end
+  
+    try
+      winqueryreg('HKEY_CURRENT_USER', ..
+                  'Software\lcc\lcclnk', ..
+                  'libpath');
+      res = %T;
+    catch
+      return; 
     end
-  else
-    res=%F
   end
 endfunction
-//-----------------------------------------------------------------------------
+//==========================================
 

@@ -1,4 +1,9 @@
-function r=with_lcc()
-global LCC
-  r=LCC;
+//==========================================
+// INRIA 2008
+// Allan CORNET
+//==========================================
+function r = with_lcc()
+  global LCC
+  r = LCC;
 endfunction
+//==========================================

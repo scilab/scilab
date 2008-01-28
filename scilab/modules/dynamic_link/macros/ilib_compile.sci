@@ -23,24 +23,27 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ilib_compil
   lib_name_make = lib_name;
   
   if MSDOS then // WINDOWS
-    if ( with_lcc() == %T ) then // LCC-WIN32
   
-    	makename = makename + '.lcc' ; 
-      make_command = 'make -f ';
-      
-      if files<>[] then 
-        files = files + '.obj' ;
-      end
-      
-    else // Visual Studio C++ 
-    
+    // Visual Studio C++ 
+    if ( findmsvccompiler() <> 'unknown' ) then 
       makename = makename + '.mak' ; 
       make_command = 'nmake /Y /nologo /f '
       
       if files<>[] then 
 	      files = files + '.obj' ;
       end
+    else
+      // LCC-WIN32
+      if findlcccompiler() then
+        makename = makename + '.lcc' ; 
+        make_command = 'make -f ';
       
+        if files<>[] then 
+          files = files + '.obj' ;
+        end
+      else
+      // TO DO : Add another compiler here
+      end
     end
   else // LINUX
   
@@ -54,9 +57,6 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ilib_compil
   
 endfunction 
 //==========================================
-
-
-
 
   if ~haveacompiler() then
   	error(_('A Fortran or C compiler is required.'))  
