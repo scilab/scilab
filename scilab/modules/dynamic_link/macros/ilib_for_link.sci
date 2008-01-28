@@ -23,18 +23,12 @@ function libn = ilib_for_link(names, ..
   if rhs <= 9 then fflags  = ""; end 
   if rhs <= 10 then cc  = ""; end 
   
-  warningmode = warning('query');
-  
   // generate a loader file
-  if ( warningmode == 'on' ) then
-    write(%io(2),'   Generate a loader file');
-  end
+  write(%io(2),'   Generate a loader file');
   ilib_link_gen_loader(names,flag,loadername,libs,libname);
   
   // generate a Makefile
-  if ( warningmode == 'on' ) then
-    write(%io(2),'   Generate a Makefile');
-  end
+  write(%io(2),'   Generate a Makefile');
   ilib_link_gen_Make(names, ..
                      files, ..
                      libs, ..
@@ -47,9 +41,7 @@ function libn = ilib_for_link(names, ..
 		                 flag);
 		                 
   // we call make
-  if ( warningmode == 'on' ) then
-    write(%io(2),'   Running the Makefile');
-  end
+  write(%io(2),'   Running the Makefile');
   if (libname == "") then libname = names(1);end
   libn = ilib_compile('lib' + libname, makename, files);
   
@@ -144,17 +136,17 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   nl=size(libs,'*') ;
   for i=1:nl 
     if ( part(libs(i),1) == '/') then
-      mfprintf(fd,"link(''%s.%s'');\n",libs(i),lib_suf);
+      mfprintf(fd,"link(''%s%s'');\n",libs(i),lib_suf);
     else
       [diri, basenamei, exti] = fileparts(libs(i));
       if (diri == '') then
-         mfprintf(fd,"link(%s_path+''%s.%s'');\n",libname,libs(i),lib_suf);
+         mfprintf(fd,"link(%s_path+''%s%s'');\n",libname,libs(i),lib_suf);
       else
-        mfprintf(fd,"link(''%s.%s'');\n",libs(i),lib_suf);
+        mfprintf(fd,"link(''%s%s'');\n",libs(i),lib_suf);
       end
     end
   end 
-  mfprintf(fd,"link(%s_path+''lib%s.%s'',[",libname,libname,lib_suf);
+  mfprintf(fd,"link(%s_path+''lib%s%s'',[",libname,libname,lib_suf);
   names=names(:)';
   n = size(names,'*');
   for i=1:n
@@ -182,13 +174,13 @@ function ilib_link_gen_Make_unix(names, ..
   
   if libname == "" then libname = names(1);end 
   oldPath = pwd();
-  linkpath = TMPDIR();
+  linkpath = TMPDIR;
   commandpath = SCI+"/modules/incremental_link/src/scripts/";
   
 	// We launch ./configure in order to produce a "generic" Makefile 
 	// for this computer
 	printf(gettext("configure : Generate Makefile in %s\n"),commandpath );
-	[msg,ierr] = unix_g(commandpath+"/compilerDetection.sh");
+	[msg,ierr] = unix_g(commandpath+"compilerDetection.sh");
 	if ierr <> 0 then
 	  disp(msg);
 	  return;
@@ -243,7 +235,7 @@ function ilib_link_gen_Make_unix(names, ..
 
 	// Alter the Makefile in order to compile the right files
 	printf("Modification of the Makefile in " + linkpath+"\n");
-	[msg,ierr] = unix_g("" + commandpath + "/scicompile.sh " + libname + " " + filelist);
+	[msg,ierr] = unix_g("" + commandpath + "scicompile.sh " + libname + " " + filelist);
 	if ierr <> 0 then
 	  disp(msg);
 	  return;
@@ -258,7 +250,7 @@ function ilib_link_gen_Make_unix(names, ..
 	  return;
 	end
 
-	lib_name = "lib" + libname + '.' + ilib_unix_soname();
+	lib_name = "lib" + libname + getdynlibext();
 	copyfile(".libs/" + lib_name, oldPath);
 	chdir(oldPath);
 
