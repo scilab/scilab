@@ -296,6 +296,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			match[i][j+1-values[i]]=Str[0][j];
 		}
+		/* A char* always finished by \0 */
+                match[i][j+1-values[i]]='\0';
 	}
 
 
