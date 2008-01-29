@@ -8,6 +8,7 @@ checkrhs_
 IsAScalar
 createvar_
 createvarfromptr_
+getlistrhsvar_
 putlhsvar_
 stack_
 getrhsvar_
