@@ -4,7 +4,6 @@
 package org.scilab.modules.gui.bridge.frame;
 
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
