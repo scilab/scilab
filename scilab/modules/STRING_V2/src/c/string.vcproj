@@ -247,6 +247,9 @@
 			<File
 				RelativePath=".\pcre_private.c"
 				>
+			<File
+				RelativePath=".\pcre_error.c"
+				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_ascii.c"

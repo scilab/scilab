@@ -19,6 +19,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "pcre_private.h"
+#include "pcre_error.h"
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
 #define CHAR_R 'r'
@@ -153,49 +154,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					else
 					{
-						switch (answer)
-						{
-						case NO_MATCH:
-							/*No match */
-
-						break;
-						case NOT_ENOUGH_MEMORY_FOR_VECTOR:
-							Scierror(999,_("%s: No more memory.\n"),fname);
-							return 0;
-							break;
-						case DELIMITER_NOT_ALPHANUMERIC:
-							Scierror(999,_("%s: Delimiter must not be alphameric\n"),fname);
-							return 0;
-							break;
-						case CAPTURING_SUBPATTERNS_ERROR:
-							Scierror(999,_("%s: Capturing subpatterns error\n"),fname);
-							return 0;
-						break;
-						case PARTIAL_MATCHING_NOT_SUPPORTED:
-							Scierror(999,_("%s: Partial matching not supported\n"),fname);
-							return 0;
-						break;
-						case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
-							Scierror(999,_("%s: Contains explicit CR or LF match\n"),fname);
-							return 0;
-						break;
-						case DUPLICATE_NAME_STATUS_CHANGES:
-							Scierror(999,_("%s: Duplicate name status changes\n"),fname);
-							return 0;
-						break;
-						case TOO_BIG_FOR_OFFSET_SIZE:
-							Scierror(999,_("%s: Returned count is too big for offset size\n"),fname);
-							return 0;
-						break;
-						case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
-							Scierror(999,_("%s: Match limit not relevant for DFA matching: ignored\n"),fname);
-							return 0;
-						break;
-						default :
-							 return 0;
-						break;	
-
-						}
+						pcre_error(fname,answer);
+						return 0;
 					}
 				}while(answer == 0 && Output_Start!=Output_End);
 				if (save) {FREE(save);save=NULL;}
@@ -230,49 +190,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
                 }    
 				else
 				{
-					switch (answer)
-					{
-					case NO_MATCH:
-						/*No match */
-
-					break;
-						case NOT_ENOUGH_MEMORY_FOR_VECTOR:
-							Scierror(999,_("%s: No more memory.\n"),fname);
-							return 0;
-							break;
-						case DELIMITER_NOT_ALPHANUMERIC:
-							Scierror(999,_("%s: Delimiter must not be alphameric\n"),fname);
-							return 0;
-							break;
-						case CAPTURING_SUBPATTERNS_ERROR:
-							Scierror(999,_("%s: Capturing subpatterns error\n"),fname);
-							return 0;
-						break;
-						case PARTIAL_MATCHING_NOT_SUPPORTED:
-							Scierror(999,_("%s: Partial matching not supported\n"),fname);
-							return 0;
-						break;
-						case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
-							Scierror(999,_("%s: Contains explicit CR or LF match\n"),fname);
-							return 0;
-						break;
-						case DUPLICATE_NAME_STATUS_CHANGES:
-							Scierror(999,_("%s: Duplicate name status changes\n"),fname);
-							return 0;
-						break;
-						case TOO_BIG_FOR_OFFSET_SIZE:
-							Scierror(999,_("%s: Returned count is too big for offset size\n"),fname);
-							return 0;
-						break;
-						case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
-							Scierror(999,_("%s: Match limit not relevant for DFA matching: ignored\n"),fname);
-							return 0;
-						break;
-					default :
-						 return 0;
-					break;	
-
-					}
+					pcre_error(fname,answer);
+					return 0;
 				}
             }
         

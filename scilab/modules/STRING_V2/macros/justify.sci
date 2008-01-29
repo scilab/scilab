@@ -16,7 +16,7 @@ function t=justify(t,job)
 	t(l,k)=part(' ',1:nl)+t(l,k)+part(' ',1:nr)
       end
     else
-      error(gettext("justify: Invalid option"))
+      error(msprintf(gettext("%s: Invalid option.\n"),"justify"))
     end
   end
 endfunction

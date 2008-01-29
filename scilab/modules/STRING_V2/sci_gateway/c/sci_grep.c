@@ -131,49 +131,8 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 			}
 			else
 			{
-				switch (answer)
-				{
-				case NO_MATCH:
-					/*No match */
-
-				break;
-				case NOT_ENOUGH_MEMORY_FOR_VECTOR:
-					Scierror(999,_("%s: No more memory.\n"),"GREP_NEW");
-				  return 0;
-					break;
-				case DELIMITER_NOT_ALPHANUMERIC:
-					Scierror(999,_("%s: Delimiter must not be alphameric.\n"),"GREP_NEW");
-					return 0;
-					break;
-				case CAPTURING_SUBPATTERNS_ERROR:
-					Scierror(999,_("%s: Capturing subpatterns error.\n"),"GREP_NEW");
-					return 0;
-				break;
-				case PARTIAL_MATCHING_NOT_SUPPORTED:
-					Scierror(999,_("%s: Partial matching not supported.\n"),"GREP_NEW");
-					return 0;
-				break;
-				case CONTAINS_EXPLICIT_CR_OR_LF_MATCH:
-					Scierror(999,_("%s: Contains explicit CR or LF match.\n"),"GREP_NEW");
-					return 0;
-				break;
-				case DUPLICATE_NAME_STATUS_CHANGES:
-					Scierror(999,_("%s: Duplicate name status changes.\n"),"GREP_NEW");
-					return 0;
-				break;
-				case TOO_BIG_FOR_OFFSET_SIZE:
-					Scierror(999,_("%s: Returned count is too big for offset size.\n"),"GREP_NEW");
-					return 0;
-				break;
-				case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
-					Scierror(999,_("%s: Match limit not relevant for DFA matching: ignored.\n"),"GREP_NEW");
-					return 0;
-				break;
-				default :
-			         return 0;
-		        break;	
-
-				}
+				pcre_error("GREP_NEW",answer);
+				return 0;
 			}
 			if (save) {FREE(save);save=NULL;}
 		}

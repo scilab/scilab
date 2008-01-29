@@ -14,6 +14,7 @@ src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
 src/c/getfastcode.c \
 src/c/pcre_private.c \
+src/c/pcre_error.c \
 src/c/isletter.c \
 src/c/isdigit.c \
 src/c/strsubst.c \
