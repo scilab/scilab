@@ -5,7 +5,7 @@
 //==========================================
 function VCtoLCCLib()
   // LCC-Win32 only on Windows
-  if (findlcccompiler() == %t) then
+  if (findlcccompiler() == %T) then
 		DirCur = pwd();
 		chdir(WSCI+'\bin');
 		mkdir('lcclib');
@@ -22,8 +22,6 @@ function VCtoLCCLib()
 	
 		chdir(DirCur);
 	end
-	
-end
 
 endfunction
 //==========================================
