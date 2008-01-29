@@ -9,7 +9,7 @@
 #define _SURFACE_MARK_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-#include "SurfaceMArkDrawerGL.hxx"
+#include "SurfaceMarkDrawerGL.hxx"
 
 namespace sciGraphics
 {

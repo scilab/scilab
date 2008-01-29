@@ -211,15 +211,15 @@ src/jni/TitlePositionerGL.cpp \
 src/cpp/labelDrawing/TitlePositionerJavaMapper.cpp \
 src/cpp/labelDrawing/TitlePositionerJoGL.cpp \
 src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceBridge.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
 src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
 src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
 src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
 src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
-src/cpp/surfaceDrawing/SaurfaceMarkDrawerJavaMapper.cpp \
+src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp \
 src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
 src/jni/DrawableSurfaceGL.cpp \
 src/jni/SurfaceFacetDrawerGL.cpp \
 src/jni/SurfaceLineDrawerGL.cpp \

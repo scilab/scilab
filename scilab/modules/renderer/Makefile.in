@@ -277,7 +277,19 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/jni/TitlePositionerGL.cpp \
 	src/cpp/labelDrawing/TitlePositionerJavaMapper.cpp \
 	src/cpp/labelDrawing/TitlePositionerJoGL.cpp \
-	sci_gateway/c/gw_renderer.c
+	src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
+	src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
+	src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
+	src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
+	src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
+	src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
+	src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
+	src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp \
+	src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
+	src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
+	src/jni/DrawableSurfaceGL.cpp src/jni/SurfaceFacetDrawerGL.cpp \
+	src/jni/SurfaceLineDrawerGL.cpp \
+	src/jni/SurfaceMarkDrawerGL.cpp sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -480,7 +492,21 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-ZLabelPositionerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-TitlePositionerGL.lo \
 @GUI_TRUE@	libscirenderer_la-TitlePositionerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-TitlePositionerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-TitlePositionerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-ConcreteDrawableSurface.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSurfaceJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSurfaceJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceFacetDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceLineDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceLineDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSurfaceBridgeFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSurfaceGL.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceFacetDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceLineDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -899,7 +925,21 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/labelDrawing/ZLabelPositionerJavaMapper.cpp \
 @GUI_TRUE@src/jni/TitlePositionerGL.cpp \
 @GUI_TRUE@src/cpp/labelDrawing/TitlePositionerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/TitlePositionerJoGL.cpp
+@GUI_TRUE@src/cpp/labelDrawing/TitlePositionerJoGL.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
+@GUI_TRUE@src/jni/DrawableSurfaceGL.cpp \
+@GUI_TRUE@src/jni/SurfaceFacetDrawerGL.cpp \
+@GUI_TRUE@src/jni/SurfaceLineDrawerGL.cpp \
+@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.cpp
 
 
 # List of the gateway c files
@@ -946,7 +986,11 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/PolylineFillDrawer.giws.xml \
 @GUI_TRUE@src/jni/RectangleMarkDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/DrawableTextGL.giws.xml \
-@GUI_TRUE@src/jni/StandardTextDrawerGL.giws.xml
+@GUI_TRUE@src/jni/StandardTextDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableSurfaceGL.giws.xml \
+@GUI_TRUE@src/jni/SurfaceLineDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/SurfaceFacetDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -1132,6 +1176,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableText.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawTextBoxStrategy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArc.Plo@am__quote@
@@ -1185,7 +1230,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurface.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurfaceBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurfaceFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurfaceGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurfaceJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSurfaceJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableText.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextFactory.Plo@am__quote@
@@ -1268,6 +1317,15 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StandardTextDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StandardTextDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StandardTextDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceLineDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextContentDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextFillBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TextLineBoxDrawerJoGL.Plo@am__quote@
@@ -2785,6 +2843,104 @@ libscirenderer_la-TitlePositionerJoGL.lo: src/cpp/labelDrawing/TitlePositionerJo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/TitlePositionerJoGL.cpp' object='libscirenderer_la-TitlePositionerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TitlePositionerJoGL.lo `test -f 'src/cpp/labelDrawing/TitlePositionerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/TitlePositionerJoGL.cpp
+
+libscirenderer_la-ConcreteDrawableSurface.lo: src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableSurface.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Tpo -c -o libscirenderer_la-ConcreteDrawableSurface.lo `test -f 'src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp' object='libscirenderer_la-ConcreteDrawableSurface.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableSurface.lo `test -f 'src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp
+
+libscirenderer_la-DrawableSurfaceJavaMapper.lo: src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSurfaceJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSurfaceJavaMapper.Tpo -c -o libscirenderer_la-DrawableSurfaceJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSurfaceJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableSurfaceJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp' object='libscirenderer_la-DrawableSurfaceJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSurfaceJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp
+
+libscirenderer_la-DrawableSurfaceJoGL.lo: src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSurfaceJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSurfaceJoGL.Tpo -c -o libscirenderer_la-DrawableSurfaceJoGL.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSurfaceJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSurfaceJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp' object='libscirenderer_la-DrawableSurfaceJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSurfaceJoGL.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp
+
+libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo: src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJavaMapper.Tpo -c -o libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp' object='libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp
+
+libscirenderer_la-SurfaceFacetDrawerJoGL.lo: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceFacetDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJoGL.Tpo -c -o libscirenderer_la-SurfaceFacetDrawerJoGL.lo `test -f 'src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp' object='libscirenderer_la-SurfaceFacetDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceFacetDrawerJoGL.lo `test -f 'src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp
+
+libscirenderer_la-SurfaceLineDrawerJavaMapper.lo: src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceLineDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJavaMapper.Tpo -c -o libscirenderer_la-SurfaceLineDrawerJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp' object='libscirenderer_la-SurfaceLineDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceLineDrawerJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp
+
+libscirenderer_la-SurfaceLineDrawerJoGL.lo: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceLineDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJoGL.Tpo -c -o libscirenderer_la-SurfaceLineDrawerJoGL.lo `test -f 'src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp' object='libscirenderer_la-SurfaceLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceLineDrawerJoGL.lo `test -f 'src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp
+
+libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo: src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJavaMapper.Tpo -c -o libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp' object='libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo `test -f 'src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp
+
+libscirenderer_la-SurfaceMarkDrawerJoGL.lo: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceMarkDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJoGL.Tpo -c -o libscirenderer_la-SurfaceMarkDrawerJoGL.lo `test -f 'src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp' object='libscirenderer_la-SurfaceMarkDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceMarkDrawerJoGL.lo `test -f 'src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp
+
+libscirenderer_la-DrawableSurfaceBridgeFactory.lo: src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSurfaceBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSurfaceBridgeFactory.Tpo -c -o libscirenderer_la-DrawableSurfaceBridgeFactory.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSurfaceBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableSurfaceBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp' object='libscirenderer_la-DrawableSurfaceBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSurfaceBridgeFactory.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp
+
+libscirenderer_la-DrawableSurfaceGL.lo: src/jni/DrawableSurfaceGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSurfaceGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSurfaceGL.Tpo -c -o libscirenderer_la-DrawableSurfaceGL.lo `test -f 'src/jni/DrawableSurfaceGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSurfaceGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSurfaceGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSurfaceGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableSurfaceGL.cpp' object='libscirenderer_la-DrawableSurfaceGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSurfaceGL.lo `test -f 'src/jni/DrawableSurfaceGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSurfaceGL.cpp
+
+libscirenderer_la-SurfaceFacetDrawerGL.lo: src/jni/SurfaceFacetDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceFacetDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerGL.Tpo -c -o libscirenderer_la-SurfaceFacetDrawerGL.lo `test -f 'src/jni/SurfaceFacetDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SurfaceFacetDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SurfaceFacetDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SurfaceFacetDrawerGL.cpp' object='libscirenderer_la-SurfaceFacetDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceFacetDrawerGL.lo `test -f 'src/jni/SurfaceFacetDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SurfaceFacetDrawerGL.cpp
+
+libscirenderer_la-SurfaceLineDrawerGL.lo: src/jni/SurfaceLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceLineDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerGL.Tpo -c -o libscirenderer_la-SurfaceLineDrawerGL.lo `test -f 'src/jni/SurfaceLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SurfaceLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SurfaceLineDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SurfaceLineDrawerGL.cpp' object='libscirenderer_la-SurfaceLineDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceLineDrawerGL.lo `test -f 'src/jni/SurfaceLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SurfaceLineDrawerGL.cpp
+
+libscirenderer_la-SurfaceMarkDrawerGL.lo: src/jni/SurfaceMarkDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SurfaceMarkDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerGL.Tpo -c -o libscirenderer_la-SurfaceMarkDrawerGL.lo `test -f 'src/jni/SurfaceMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SurfaceMarkDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SurfaceMarkDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SurfaceMarkDrawerGL.cpp' object='libscirenderer_la-SurfaceMarkDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceMarkDrawerGL.lo `test -f 'src/jni/SurfaceMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SurfaceMarkDrawerGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
