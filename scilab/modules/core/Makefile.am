@@ -290,7 +290,7 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
-      -I$(top_srcdir)/modules/incremental_link/includes \
+		      	-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/elementary_functions/includes
 
 
@@ -310,7 +310,7 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-  $(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/fileio/libscifileio.la

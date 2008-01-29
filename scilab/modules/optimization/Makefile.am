@@ -137,7 +137,7 @@ sci_gateway/fortran/Ex-lsqrsolve.f
 
 libscioptimization_la_CFLAGS=  	-Iincludes/ \
 -I$(top_builddir)/modules/output_stream/includes \
--I$(top_builddir)/modules/incremental_link/includes
+-I$(top_builddir)/modules/dynamic_link/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscioptimization.la
 
@@ -145,7 +145,7 @@ libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN
 
 libscioptimization_la_LIBADD = \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/core/libscicore.la
 
 

@@ -128,7 +128,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_5) $(am__append_6) $(am__append_7) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
@@ -168,7 +168,7 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = polynomials string STRING_V2 intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
-	incremental_link linear_algebra differential_equations \
+	dynamic_link linear_algebra differential_equations \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
@@ -363,7 +363,7 @@ top_srcdir = @top_srcdir@
 #endif
 SUBDIRS = polynomials $(am__append_1) STRING_V2 intersci cacsd \
 	elementary_functions arnoldi boolean output_stream \
-	incremental_link linear_algebra differential_equations \
+	dynamic_link linear_algebra differential_equations \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
@@ -424,7 +424,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_5) $(am__append_6) $(am__append_7) \
 	$(top_builddir)/modules/jvm/libscijvm.la \

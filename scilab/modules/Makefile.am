@@ -18,7 +18,7 @@ elementary_functions \
 arnoldi \
 boolean \
 output_stream \
-incremental_link \
+dynamic_link \
 linear_algebra \
 differential_equations \
 signal_processing \
@@ -142,7 +142,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # Temp stuff

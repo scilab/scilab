@@ -124,7 +124,7 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/libs/hashtable \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/incremental_link/includes \
+			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-Isrc/cpp/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
@@ -159,7 +159,7 @@ libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_S
 
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
     $(top_builddir)/modules/tclsci/libscitclsci.la
 
 if STRING_V1

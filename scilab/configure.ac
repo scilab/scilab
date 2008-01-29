@@ -1088,7 +1088,7 @@ modules/fftw/Makefile
 modules/scicos/Makefile
 modules/scicos/src/ocaml/Makefile
 modules/functions/Makefile
-modules/incremental_link/Makefile
+modules/dynamic_link/Makefile
 modules/others/Makefile
 modules/overloading/Makefile
 modules/javasci/Makefile

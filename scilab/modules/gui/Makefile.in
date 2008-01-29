@@ -90,7 +90,7 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la $(am__append_4) \
 	$(am__append_5)
 am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
@@ -638,7 +638,7 @@ JARMASK = *.jar
 @GUI_TRUE@	-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @GUI_TRUE@	-I$(top_srcdir)/libs/hashtable \
 @GUI_TRUE@	-I$(top_srcdir)/modules/output_stream/includes \
-@GUI_TRUE@	-I$(top_srcdir)/modules/incremental_link/includes \
+@GUI_TRUE@	-I$(top_srcdir)/modules/dynamic_link/includes \
 @GUI_TRUE@	-Isrc/cpp/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 @GUI_TRUE@	$(JAVA_JNI_INCLUDE) \
@@ -660,7 +660,7 @@ libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
 libscigui_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/incremental_link/libsciincremental_link.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la $(am__append_4) \
 	$(am__append_5)
 
