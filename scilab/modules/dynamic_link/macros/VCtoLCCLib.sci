@@ -19,6 +19,7 @@ function VCtoLCCLib()
 		Exportalibrary('dynamic_link');
 		Exportalibrary('scioutput_stream');
 		Exportalibrary('MALLOC');
+		Exportalibrary('libintl');
 	
 		chdir(DirCur);
 	end
