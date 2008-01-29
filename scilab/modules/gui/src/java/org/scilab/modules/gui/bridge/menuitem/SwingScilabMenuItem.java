@@ -40,6 +40,15 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	}
 
 	/**
+	 * set a mnemonic to a MenuItem
+	 * @param mnemonic the mnemonic to add to the MenuItem
+	 * @see org.scilab.modules.gui.widget.MenuItem#setMnemonic(org.scilab.modules.gui.widget.int)
+	 */
+	public void setMnemonic(int mnemonic) {
+		super.setMnemonic(mnemonic); 	 
+	}
+	
+	/**
 	 * Add a Scilab MenuItemBar to a Scilab MenuItem
 	 * @param menuBarToAdd the Scilab MenuBar to add to the Scilab MenuItem
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
