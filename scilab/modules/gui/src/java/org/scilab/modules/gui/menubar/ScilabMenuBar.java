@@ -24,8 +24,6 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	protected ScilabMenuBar() {
 		component = ScilabBridge.createMenuBar();
 		component.setElementId(UIElementMapper.add(this));
-		
-		//setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**
@@ -54,14 +52,14 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 * @return nothing
 	 */
 	public Size getDims() {
@@ -69,7 +67,7 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 * @return nothing
 	 */
 	public Position getPosition() {
@@ -77,7 +75,7 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 * @return nothing
 	 */
 	public boolean isVisible() {
@@ -85,7 +83,7 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 * @param newSize is not used
 	 */
 	public void setDims(Size newSize) {
@@ -93,7 +91,7 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 * @param newPosition is not used
 	 */
 	public void setPosition(Position newPosition) {
@@ -101,7 +99,7 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 * @param newVisibleState is not used
 	 */
 	public void setVisible(boolean newVisibleState) {
