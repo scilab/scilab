@@ -8,11 +8,6 @@ load('SCI/modules/dynamic_link/macros/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('dynamic_link');
-// LCC initialization =================================================
-global LCC; 
-if ~MSDOS then
- LCC=%F;
-end
 // Configure Environment Variables for Ms Visual C ====================
 if MSDOS then
 	if (~isdef('WSCI')) then
@@ -20,14 +15,13 @@ if MSDOS then
 	end
 	if (findmsvccompiler()<>'unknown') then
     configure_msvc();
-    LCC=%F; // Always choose MsVc if it is installed by default
-    clear configure_msvc
+    clear configure_msvc 
   else
     if ( findlcccompiler() ) then
-      LCC=%T;
       configure_lcc();
-      clear configure_lcc findlcccompiler
+      clear configure_lcc
     end
+    clear findlcccompiler
   end
   clear findmsvccompiler
 end

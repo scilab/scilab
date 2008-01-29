@@ -7,9 +7,10 @@ function res = findlcccompiler()
   res = %F;
   if MSDOS then
     try
-      winqueryreg('HKEY_CURRENT_USER', ..
-                  'Software\lcc\compiler', ..
-                  'includepath');
+      lccincludepath = winqueryreg('HKEY_CURRENT_USER', ..
+                                   'Software\lcc\compiler', ..
+                                   'includepath');
+                        
     catch
       return;
     end
@@ -18,7 +19,14 @@ function res = findlcccompiler()
       winqueryreg('HKEY_CURRENT_USER', ..
                   'Software\lcc\lcclnk', ..
                   'libpath');
-      res = %T;
+      index = strindex(lccincludepath,filesep());
+      szindex = size(index);
+      lccbasepath = part(lccincludepath,[1:index(szindex(2))]);
+      lccbinpath = lccbasepath + 'bin';
+      lccexe = lccbinpath + filesep() + 'lcc.exe';
+      if ( fileinfo(lccexe) <> [] ) then
+        res = %T;
+      end
     catch
       return; 
     end

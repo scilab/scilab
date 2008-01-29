@@ -33,11 +33,29 @@ function bOK = configure_lcc()
                 PATH;
       err = setenv('PATH',NEWPATH);
       if (err == %F) then bOK = %F,return,end
-      bOK=%T;
+      
+      LCCLIB_DIR = SCI+'/bin/lcclib';
+      
+      if ( (fileinfo(LCCLIB_DIR) == []) | (ls(LCCLIB_DIR+'/*.lib') == []) ) then
+        printf('\nConverts libraries to use LCC-Win32.\n');
+        bOK = call_VCtoLCCLib();
+      else
+        bOK = %T;
+      end
+      
     else
       bOK=%F;
     end
   end
   
+endfunction
+//==========================================
+function r = call_VCtoLCCLib()
+  try
+    VCtoLCCLib();
+    r = %T;
+  catch
+    r = %F;
+  end
 endfunction
 //==========================================
