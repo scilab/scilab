@@ -245,10 +245,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\pcre_private.c"
-				>
-			<File
 				RelativePath=".\pcre_error.c"
+				>
+			</File>
+			<File
+				RelativePath=".\pcre_private.c"
 				>
 			</File>
 			<File
@@ -450,6 +451,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\men_Sutils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\pcre_error.h"
 				>
 			</File>
 			<File
