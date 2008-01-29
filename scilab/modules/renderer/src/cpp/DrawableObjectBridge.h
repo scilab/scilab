@@ -5,8 +5,8 @@
 /* desc : Parent interface for routine independent algorithms             */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_OBJECT_BRIDGE_
-#define _DRAWABLE_OBJECT_BRIDGE_
+#ifndef _DRAWABLE_OBJECT_BRIDGE_HXX_
+#define _DRAWABLE_OBJECT_BRIDGE_HXX_
 
 
 extern "C"
@@ -71,4 +71,4 @@ protected:
 };
 }
 
-#endif /* _DRAWABLE_OBJECT_BRIDGE_ */
+#endif /* _DRAWABLE_OBJECT_BRIDGE_HXX_ */

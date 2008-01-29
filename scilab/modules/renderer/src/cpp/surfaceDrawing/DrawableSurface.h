@@ -35,6 +35,16 @@ protected:
    */
   virtual void show( void ) ;
 
+  /**
+   * Actually draw the surface on the screen
+   */
+  virtual void drawSurface(void) = 0;
+
+  /**
+   * Actually show the stored data.
+   */
+  virtual void showSurface(void) = 0;
+
 
 } ;
 

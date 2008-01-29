@@ -2,7 +2,7 @@
 /* file: DrawablePolylineBridgeFactory.h                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Factory for DrawablePolylineBridge                             */
+/* desc : Factory for DrawablePolylineBridge                              */
 /*------------------------------------------------------------------------*/
 
 #ifndef _DRAWABLE_POLYLINE_BRIDGE_FACTORY_H_

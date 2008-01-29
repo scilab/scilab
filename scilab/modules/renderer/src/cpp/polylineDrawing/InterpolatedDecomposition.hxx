@@ -6,10 +6,10 @@
 /*        data (this is the default mode)                                 */
 /*------------------------------------------------------------------------*/
 
-#include "DecomposeLineStrategy.hxx"
-
 #ifndef _INTERPOLATED_DECOMPOSITION_HXX_
 #define _INTERPOLATED_DECOMPOSITION_HXX_
+
+#include "DecomposeLineStrategy.hxx"
 
 namespace sciGraphics
 {

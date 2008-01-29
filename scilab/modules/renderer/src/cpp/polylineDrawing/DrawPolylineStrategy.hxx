@@ -5,8 +5,8 @@
 /* desc : Strategy interface for the drawPolyline algorithm               */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAW_POLYLINE_STRATEGY_H_
-#define _DRAW_POLYLINE_STRATEGY_H_
+#ifndef _DRAW_POLYLINE_STRATEGY_HXX_
+#define _DRAW_POLYLINE_STRATEGY_HXX_
 
 namespace sciGraphics
 {
@@ -41,4 +41,4 @@ protected:
 
 }
 
-#endif /* _DRAW_POLYLINE_STRATEGY_H_ */
+#endif /* _DRAW_POLYLINE_STRATEGY_HXX_ */

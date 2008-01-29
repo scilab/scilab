@@ -5,8 +5,8 @@
 /* desc : Contains mapping of java method used by TextContentDrawerJoGL   */
 /*------------------------------------------------------------------------*/
 
-#ifndef _TEXT_CONTENT_DRAWER_JAVA_MAPPER_
-#define _TEXT_CONTENT_DRAWER_JAVA_MAPPER_
+#ifndef _TEXT_CONTENT_DRAWER_JAVA_MAPPER_HXX_
+#define _TEXT_CONTENT_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
 
@@ -33,4 +33,4 @@ public:
 
 }
 
-#endif /* _TEXT_CONTENT_DRAWER_JAVA_MAPPER_ */
+#endif /* _TEXT_CONTENT_DRAWER_JAVA_MAPPER_HXX_ */

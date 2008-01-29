@@ -6,11 +6,12 @@
 /*        drawer with the right algorithms from the garphic handle        */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_SURFACE_FACTORY_H_
-#define _DRAWABLE_SURFACE_FACTORY_H_
+#ifndef _DRAWABLE_SURFACE_FACTORY_HXX_
+#define _DRAWABLE_SURFACE_FACTORY_HXX_
 
 
 #include "../DrawableObjectFactory.h"
+#include "ConcreteDrawableSurface.hxx"
 
 namespace sciGraphics
 {
@@ -31,8 +32,16 @@ public:
    */
   virtual void update( void ) ;
 
+protected:
+
+  /**
+   * Create the drawing strategies.
+   * @param surface Object on which to create the strategies
+   */
+  void setStrategies( ConcreteDrawableSurface * surface ) ;
+
 } ;
 
 }
 
-#endif /* _DRAWABLE_SURFACE_FACTORY_H_  */
+#endif /* _DRAWABLE_SURFACE_FACTORY_HXX_  */

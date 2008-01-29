@@ -6,6 +6,9 @@
 /*        text object with JoGL                                           */
 /*------------------------------------------------------------------------*/
 
+#ifndef _DRAWABLE_TEXT_JOGL_HXX_
+#define _DRAWABLE_TEXT_JOGL_HXX_
+
 #include "DrawableTextBridge.hxx"
 #include "DrawableText.h"
 #include "DrawableTextJavaMapper.hxx"
@@ -37,3 +40,5 @@ protected:
 };
 
 }
+
+#endif /* _DRAWABLE_TEXT_JOGL_HXX_ */

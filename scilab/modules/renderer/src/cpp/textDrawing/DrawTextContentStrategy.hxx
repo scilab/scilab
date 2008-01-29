@@ -5,8 +5,8 @@
 /* desc : Interface for drawing text box                                  */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAW_TEXT_CONTENT_STRATEGY_
-#define _DRAW_TEXT_CONTENT_STRATEGY_
+#ifndef _DRAW_TEXT_CONTENT_STRATEGY_HXX_
+#define _DRAW_TEXT_CONTENT_STRATEGY_HXX_
 
 #include "DrawableText.h"
 
@@ -49,4 +49,4 @@ protected:
 
 }
 
-#endif /* _DRAW_TEXT_CONTENT_STRATEGY_ */
+#endif /* _DRAW_TEXT_CONTENT_STRATEGY_HXX_ */

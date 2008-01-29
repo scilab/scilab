@@ -5,8 +5,8 @@
 /* desc : Contains mapping of java method used by ArcFillDrawer           */
 /*------------------------------------------------------------------------*/
 
-#ifndef _RECTANGLE_FILL_DRAWER_JAVA_MAPPER_HXX_
-#define _RECTANGLE_FILL_DRAWER_JAVA_MAPPER_HXX_
+#ifndef _ARC_FILL_DRAWER_JAVA_MAPPER_HXX_
+#define _ARC_FILL_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
 #include "ArcFillDrawerGL.hxx"
@@ -56,4 +56,4 @@ protected:
 
 }
 
-#endif /* _RECTANGLE_LINE_DRAWER_JAVA_MAPPER_HXX_ */
+#endif /* _ARC_FILL_DRAWER_JAVA_MAPPER_HXX_ */

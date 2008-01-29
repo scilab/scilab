@@ -50,7 +50,7 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 	public void drawRectangle() {
 		drawMarks(cornersPos);
 	}
-	
+
 	/**
 	 * create the display list for the rectangle
 	 * @param corner1X first corner X coordinate

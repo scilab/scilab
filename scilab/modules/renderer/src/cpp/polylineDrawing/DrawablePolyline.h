@@ -68,12 +68,12 @@ protected:
   virtual void show( void ) ;
 
   /**
-   * Actually draw the arc on the screen
+   * Actually draw the polyline on the screen
    */
   virtual void drawPolyline(void) = 0;
 
   /**
-  * Actually show the arc stored data
+  * Actually show the polyline stored data
   */
   virtual void showPolyline(void) = 0;
   /*---------------------------------------------------------------------------------*/

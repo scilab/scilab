@@ -6,8 +6,8 @@
 /*        algorithms                                                      */
 /*------------------------------------------------------------------------*/
 
-#ifndef _CONCRETE_DRAWABLE_ARC_
-#define _CONCRETE_DRAWABLE_ARC_
+#ifndef _CONCRETE_DRAWABLE_ARC_HXX_
+#define _CONCRETE_DRAWABLE_ARC_HXX_
 
 #include "DrawableArc.h"
 #include "DrawArcStrategy.h"
@@ -71,4 +71,4 @@ protected:
 
 }
 
-#endif /* _CONCRETE_DRAWABLE_ARC_ */
+#endif /* _CONCRETE_DRAWABLE_ARC_HXX_ */

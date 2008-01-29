@@ -5,8 +5,8 @@
 /* desc : Abstract class for text drawing                                 */
 /*------------------------------------------------------------------------*/
 
-#ifndef _TEXT_CONTENT_DRAWER_JOGL_
-#define _TEXT_CONTENT_DRAWER_JOGL_
+#ifndef _TEXT_CONTENT_DRAWER_JOGL_HXX_
+#define _TEXT_CONTENT_DRAWER_JOGL_HXX_
 
 #include "DrawableObjectJoGL.h"
 #include "DrawTextContentStrategy.hxx"
@@ -75,4 +75,4 @@ protected:
 
 }
 
-#endif /* _TEXT_CONTENT_DRAWER_JOGL_ */
+#endif /* _TEXT_CONTENT_DRAWER_JOGL_HXX_ */

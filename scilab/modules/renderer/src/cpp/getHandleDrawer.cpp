@@ -122,4 +122,14 @@ DrawableLabel * getLabelDrawer( sciPointObj * pLabel )
   return dynamic_cast<DrawableLabel *>(getHandleDrawer(pLabel));
 }
 /*---------------------------------------------------------------------------------*/
+DrawableSurface * getSurfaceDrawer( sciPointObj * pSurface )
+{
+  if ( sciGetEntityType(pSurface) != SCI_SURFACE )
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableSurface *>(getHandleDrawer(pSurface));
+}
+/*---------------------------------------------------------------------------------*/
 }

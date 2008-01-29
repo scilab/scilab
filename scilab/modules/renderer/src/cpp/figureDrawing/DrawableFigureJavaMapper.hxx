@@ -6,7 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #ifndef _DRAWABLE_FIGURE_JAVA_MAPPER_HXX_
-#define _DRAWABLE_FIGURE_JAVA_MAPPER_HXX
+#define _DRAWABLE_FIGURE_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
 #include <string>
@@ -76,4 +76,4 @@ protected:
 
 }
 
-#endif /* _DRAWABLE_FIGURE_JAVA_MAPPER_HXX */
+#endif /* _DRAWABLE_FIGURE_JAVA_MAPPER_HXX_ */

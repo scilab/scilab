@@ -37,7 +37,8 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for rectangle fill drawer
-  virtual void setMarkParameters(int background, int foreground, int markSizeUnit, int markSize, int markStyleIndex);
+  virtual void setMarkParameters(int background, int foreground,
+                                 int markSizeUnit, int markSize, int markStyleIndex);
 
   virtual void drawRectangle(double corner1X, double corner1Y, double corner1Z,
                              double corner2X, double corner2Y, double corner2Z,

@@ -6,6 +6,7 @@
 /*        algorithms                                                      */
 /*------------------------------------------------------------------------*/
 
+
 #ifndef _CONCRETE_DRAWABLE_POLYLINE_HXX_
 #define _CONCRETE_DRAWABLE_POLYLINE_HXX_
 
@@ -73,12 +74,12 @@ protected:
 
   /*---------------------------------------------------------------------------------*/
   /**
-   * Actually draw the arc on the screen
+   * Actually draw the polyline on the screen
    */
   virtual void drawPolyline(void);
 
   /**
-   * Actually show the arc stored data
+   * Actually show the polyline stored data
    */
   virtual void showPolyline(void);
   /*---------------------------------------------------------------------------------*/

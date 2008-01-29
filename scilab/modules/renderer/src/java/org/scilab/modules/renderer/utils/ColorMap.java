@@ -67,6 +67,20 @@ public class ColorMap {
 	}
 	
 	/**
+	 * Get the 3 color channels of several color indices
+	 * @param colorIndices color indices in the colormap
+	 * @return Array of same size as colorIndices
+	 */
+	public double[][] getColors(int[] colorIndices) {
+		int nbIndices = colorIndices.length;
+		double[][] res = new double[nbIndices][];
+		for (int i = 0; i < nbIndices; i++) {
+			res[i] = getColor(colorIndices[i]);
+		}
+		return res;
+	}
+	
+	/**
 	 * @param colorIndex color index in the colormap
 	 * @return the red channel of the color corresponding to the colorIndex
 	 */
@@ -151,5 +165,18 @@ public class ColorMap {
 		return colormapSize;
 	}
 	
-	
+	/**
+	 * Convert scilab color index to colormap index
+	 * @param scilabIndex index in scilab
+	 * @return correspondinf index in the colormap
+	 */
+	public int convertScilabToColorMapIndex(int scilabIndex) {
+		if (scilabIndex == -1 || scilabIndex == 0) {
+			return colormapSize;
+		} else if (scilabIndex == -2) {
+			return colormapSize + 1;
+		} else {
+			return scilabIndex - 1;
+		}
+	}
 }

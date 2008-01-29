@@ -21,6 +21,7 @@ extern "C"
 #include "textDrawing/DrawableText.h"
 #include "subwinDrawing/DrawableSubwin.h"
 #include "labelDrawing/DrawableLabel.h"
+#include "surfaceDrawing/DrawableSurface.h"
 
 namespace sciGraphics
 {
@@ -99,6 +100,12 @@ DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin );
  * @return the corresponding label to pLabel if pLabel if of type label, NULL otherwise
  */
 DrawableLabel * getLabelDrawer( sciPointObj * pLabel );
+
+/**
+ * Return a DrawableSurface object corresponding to a sciPointObj object.
+ * @return the corresponding surface to pSurface if pSurface if of type surface, NULL otherwise
+ */
+DrawableSurface * getSurfaceDrawer( sciPointObj * pSurface );
 
 }
 

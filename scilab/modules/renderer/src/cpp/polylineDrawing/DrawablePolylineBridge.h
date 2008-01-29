@@ -6,11 +6,13 @@
 /*        polyline object                                                 */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_POLYLINE_BRIDGE_
-#define _DRAWABLE_POLYLINE_BRIDGE_
+#ifndef _DRAWABLE_POLYLINE_BRIDGE_HXX_
+#define _DRAWABLE_POLYLINE_BRIDGE_HXX_
 
 #include "../DrawableObject.h"
 #include "../DrawableClippedObjectBridge.h"
+
+namespace toto {}
 
 namespace sciGraphics
 {
@@ -35,4 +37,4 @@ public:
 
 }
 
-#endif /* _DRAWABLE_POLYLINE_BRIDGE_ */
+#endif /* _DRAWABLE_POLYLINE_BRIDGE_HXX_ */

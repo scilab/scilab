@@ -2,7 +2,7 @@
 /* file: DrawablePolylineBridgeFactory.h                                  */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Factory for DrawableRectangleBridge                             */
+/* desc : Factory for DrawablePolylineBridge                              */
 /*------------------------------------------------------------------------*/
 
 #include "DrawablePolylineBridgeFactory.h"

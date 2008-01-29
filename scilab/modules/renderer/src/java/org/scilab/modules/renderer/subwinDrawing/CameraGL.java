@@ -23,7 +23,7 @@ import javax.media.opengl.GL;
 public abstract class CameraGL extends ObjectGL {
 
 	/** Distance of the far clipping plane, should be greater than 1.0 and not to high */
-	public static final double FAR_PLANE_DISTANCE = 100.0;
+	public static final double FAR_PLANE_DISTANCE = 10.0;
 	
 	/** Default rotation angles, 2D view */
 	private static final double DEFAULT_ALPHA = 0.0;

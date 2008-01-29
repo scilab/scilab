@@ -6,6 +6,9 @@
 /*        polyline object with JoGL                                       */
 /*------------------------------------------------------------------------*/
 
+#ifndef _DRAWABLE_POLYLINE_JOGL_HXX_
+#define _DRAWABLE_POLYLINE_JOGL_HXX_
+
 #include "DrawablePolylineBridge.h"
 #include "DrawablePolyline.h"
 #include "DrawablePolylineJavaMapper.hxx"
@@ -37,3 +40,5 @@ protected:
 };
 
 }
+
+#endif /* _DRAWABLE_POLYLINE_JOGL_HXX_ */

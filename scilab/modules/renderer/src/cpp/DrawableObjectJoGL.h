@@ -8,7 +8,6 @@
 #ifndef _DRAWABLE_OBJECT_JOGL_H_
 #define _DRAWABLE_OBJECT_JOGL_H_
 
-#include <jni.h>
 #include "DrawableObjectBridge.h"
 #include "DrawableObject.h"
 #include "DrawableObjectJavaMapper.hxx"

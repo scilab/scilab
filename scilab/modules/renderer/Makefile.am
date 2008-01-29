@@ -209,7 +209,21 @@ src/cpp/labelDrawing/LabelPositioner.cpp \
 src/cpp/labelDrawing/ZLabelPositionerJavaMapper.cpp \
 src/jni/TitlePositionerGL.cpp \
 src/cpp/labelDrawing/TitlePositionerJavaMapper.cpp \
-src/cpp/labelDrawing/TitlePositionerJoGL.cpp
+src/cpp/labelDrawing/TitlePositionerJoGL.cpp \
+src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceBridge.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
+src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
+src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
+src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
+src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
+src/cpp/surfaceDrawing/SaurfaceMarkDrawerJavaMapper.cpp \
+src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
+src/jni/DrawableSurfaceGL.cpp \
+src/jni/SurfaceFacetDrawerGL.cpp \
+src/jni/SurfaceLineDrawerGL.cpp \
+src/jni/SurfaceMarkDrawerGL.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
@@ -253,8 +267,11 @@ src/jni/DrawableFigureGL.giws.xml \
 src/jni/PolylineFillDrawer.giws.xml \
 src/jni/RectangleMarkDrawerGL.giws.xml \
 src/jni/DrawableTextGL.giws.xml \
-src/jni/StandardTextDrawerGL.giws.xml
-
+src/jni/StandardTextDrawerGL.giws.xml \
+src/jni/DrawableSurfaceGL.giws.xml \
+src/jni/SurfaceLineDrawerGL.giws.xml \
+src/jni/SurfaceFacetDrawerGL.giws.xml \
+src/jni/SurfaceMarkDrawerGL.giws.xml
 
 else
 

@@ -5,8 +5,8 @@
 /* desc : Factory for CameraBridge class                                  */
 /*------------------------------------------------------------------------*/
 
-#ifndef _CAMERA_BRIDGE_FACTORY_
-#define _CAMERA_BRIDGE_FACTORY_
+#ifndef _CAMERA_BRIDGE_FACTORY_HXX_
+#define _CAMERA_BRIDGE_FACTORY_HXX_
 
 #include "CameraBridge.h"
 #include "DrawableSubwin.h"
@@ -41,4 +41,4 @@ protected:
 
 }
 
-#endif /* _CAMERA_BRIDGE_FACTORY_ */
+#endif /* _CAMERA_BRIDGE_FACTORY_HXX_ */

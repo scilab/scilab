@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="renderer"
 	ProjectGUID="{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	RootNamespace="renderer"
@@ -233,14 +233,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\compoundDrawing\DrawableCompound.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\compoundDrawing\DrawableCompoundFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\fecDrawing\DrawableFec.cpp"
 				>
 			</File>
@@ -282,14 +274,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\segsDrawing\DrawableSegsFactory.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\surfaceDrawing\DrawableSurface.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceFactory.cpp"
 				>
 			</File>
 			<File
@@ -1052,6 +1036,86 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="SurfaceDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\ConcreteDrawableSurface.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurface.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceBridgeFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableSurfaceGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SurfaceFacetDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceFacetDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceFacetDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SurfaceLineDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceLineDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceLineDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SurfaceMarkDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceMarkDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="CompoundDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\compoundDrawing\DrawableCompound.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\compoundDrawing\DrawableCompoundFactory.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1063,7 +1127,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\BuildDrawingObserver.h"
+				RelativePath=".\includes\BuildDrawingObserver.h"
 				>
 			</File>
 			<File
@@ -1088,14 +1152,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\DrawableClippedObjectJoGL.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\compoundDrawing\DrawableCompound.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\compoundDrawing\DrawableCompoundFactory.h"
 				>
 			</File>
 			<File
@@ -1148,14 +1204,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\segsDrawing\DrawableSegsFactory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\surfaceDrawing\DrawableSurface.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceFactory.h"
 				>
 			</File>
 			<File
@@ -1999,6 +2047,94 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\labelDrawing\ZLabelPositionerJoGL.hxx"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="SurfaceDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\ConcreteDrawableSurface.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurface.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceBridge.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceBridgeFactory.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceFactory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableSurfaceGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawableSurfaceJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\DrawSurfaceStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SurfaceFacetDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceFacetDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceFacetDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SurfaceLineDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceLineDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceLineDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SurfaceMarkDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceMarkDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.hxx"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="CompoundDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\compoundDrawing\DrawableCompound.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\compoundDrawing\DrawableCompoundFactory.h"
 					>
 				</File>
 			</Filter>

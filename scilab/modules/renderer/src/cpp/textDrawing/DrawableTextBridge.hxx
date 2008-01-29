@@ -6,8 +6,8 @@
 /*        text object                                                 */
 /*------------------------------------------------------------------------*/
 
-#ifndef _DRAWABLE_TEXT_BRIDGE_
-#define _DRAWABLE_TEXT_BRIDGE_
+#ifndef _DRAWABLE_TEXT_BRIDGE_HXX_
+#define _DRAWABLE_TEXT_BRIDGE_HXX_
 
 #include "../DrawableObject.h"
 #include "../DrawableClippedObjectBridge.h"
@@ -35,4 +35,4 @@ public:
 
 }
 
-#endif /* _DRAWABLE_TEXT_BRIDGE_ */
+#endif /* _DRAWABLE_TEXT_BRIDGE_HXX_ */

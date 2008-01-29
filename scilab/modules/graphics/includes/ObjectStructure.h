@@ -1061,11 +1061,11 @@ sciRectangle;  /** */
 
 typedef enum
   {
-    SCI_FAC3D,
+    SCI_FAC3D = 0,
+    SCI_PLOT3D = 1,
     SCI_CONTOUR,
     SCI_PARAM3D,
-    SCI_PARAM3D1,
-    SCI_PLOT3D,
+    SCI_PARAM3D1
   }
 sciTypeOf3D;
 
@@ -1082,32 +1082,38 @@ typedef struct
   double * pvecz; /* z data */
   double *inputCMoV; /* Adding here in order to always have the input data*/
   /* We will determinate if it is a vector or matrix data with m3n and n3n values*/
-  double *zcol;
+  /* temporary variable, useless for drawing */
+  /* name means input color or vector */
+  double *zcol; /* temporary variable, useless for drawing */
   double *color;  /* Final matrix used only for drawing :  */
                   /*  color == zcol if 'direct' mode used (direct indices on colormap)  */
                   /* else 'scaled' mode used => color == linear interp. of zcol on the colormap */
+                  /* if flag_color = 0 or 1, color is null */
+                  /* if flag_color = 2, color is a vector */
+                  /* if flag_color = 3, color is a matrix */
+                  /* if flag_color = 4, color is a vector */
 
   int cdatamapping; /* like in Matlab, it determines how the color is computed ('scaled' or 'direct' mode) */
                     /* 0: scaled */
                     /* 1: direct (default) */
   integer izcol; /* 0 : no color; 1 : color is a vector, 2 : color is a matrix */
-  integer dimzx;
-  integer dimzy;
+  integer dimzx; /* == m3 */
+  integer dimzy; /* == n3 */
 
   /*F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz*/
 
-  int nc; /* number of colors */
+  int nc; /* number of colors = m3n * n3n */
   int nx; /* number of x data */
   int ny; /* number of y data */
   int nz; /* number of z data */
-  int isfac;
-  int m1,n1;
-  int m2,n2;
-  int m3,n3;
-  int m3n,n3n;
+  int isfac; /* redondant with typof3d */
+  int m1,n1; /* size of pvecx */
+  int m2,n2; /* size of pvecy */
+  int m3,n3; /* size of pvecz */
+  int m3n,n3n; /* size of color */
 
-  integer flag[3];
-  double ebox[6];
+  integer flag[3]; /* only the first value is used as color_mode */
+  double ebox[6]; /* apparently unused */
   int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored 
 		    0: uniformed color
 		    1: facet's color are computed with z*/ /* in case of a simple plot...!!! F.Leray 19.03.04 */

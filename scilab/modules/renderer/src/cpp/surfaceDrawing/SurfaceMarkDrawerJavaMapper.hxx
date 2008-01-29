@@ -1,0 +1,62 @@
+/*------------------------------------------------------------------------*/
+/* file: SurfaceMarkDrawerJavaMapper.hxx                                  */
+/* Copyright INRIA 2008                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Contains mapping of java method used by SurfaceMarkDrawerJoGL   */
+/*------------------------------------------------------------------------*/
+
+#ifndef _SURFACE_MARK_DRAWER_JAVA_MAPPER_HXX_
+#define _SURFACE_MARK_DRAWER_JAVA_MAPPER_HXX_
+
+#include "DrawableObjectJavaMapper.hxx"
+#include "SurfaceMArkDrawerGL.hxx"
+
+namespace sciGraphics
+{
+
+class SurfaceMarkDrawerJavaMapper : public virtual DrawableObjectJavaMapper
+{
+public:
+
+  SurfaceMarkDrawerJavaMapper(void);
+
+  virtual ~SurfaceMarkDrawerJavaMapper(void);
+
+  /*----------------------------------------------------------------------*/
+  // Inherited From DrawableObjectJavaMapper
+  virtual void display(void);
+
+  virtual void initializeDrawing(int figureIndex);
+  virtual void endDrawing(void);
+
+  virtual void show(int figureIndex);
+
+  virtual void destroy(int figureIndex);
+
+  virtual void setFigureIndex(int figureIndex);
+  /*----------------------------------------------------------------------*/
+  // specific for surface mark drawer
+  virtual void setMarkParameters(int background, int foreground, int markSizeUnit,
+                                 int markSize, int markStyleIndex);
+
+  virtual void setSurfaceType(int typeOfSurface);
+
+  virtual void drawSurface(double xCoords[], int sizeX,
+                           double yCoords[], int sizeY,
+                           double zCoords[], int sizeZ,
+                           int nbFacets);
+  /*----------------------------------------------------------------------*/
+
+protected:
+
+  /**
+   * Giws generated wrapper.
+   */
+  org_scilab_modules_renderer_surfaceDrawing::SurfaceMarkDrawerGL * m_pJavaObject;
+
+
+};
+
+}
+
+#endif /* _SURFACE_MARK_DRAWER_JAVA_MAPPER_HXX_ */

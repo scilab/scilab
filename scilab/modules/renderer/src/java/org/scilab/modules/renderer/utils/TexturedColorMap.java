@@ -25,6 +25,9 @@ public class TexturedColorMap extends ColorMap {
 	private static final int GREEN_SHIFT = 8;
 	private static final int BLUE_SHIFT = 0;
 	
+	/** Move a little the indice in order to get the right color in the colormap */
+	private static final double COLOR_OFFSET = 0.5;
+	
 	private Texture colorMapTexture;
 	private BufferedImage textureImage;
 	
@@ -147,6 +150,17 @@ public class TexturedColorMap extends ColorMap {
 			colorMapTexture.dispose();
 			colorMapTexture = null;
 		}
+	}
+	
+	/**
+	 * Apply a texture on the facet
+	 * @param gl current Gl pipeline
+	 * @param colorIndex color index to apply
+	 */
+	public void applyTexCoord(GL gl, int colorIndex) {
+		// use texture
+		// color offset is here to put the index in the missdle of the color
+		gl.glTexCoord1d((colorIndex - COLOR_OFFSET) / getSize());
 	}
 	
 }

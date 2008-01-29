@@ -14,12 +14,28 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 void DrawableSurface::draw( void )
 {
-  //drawSurfaceEntity( m_pDrawed ) ;
+  if ( !checkVisibility() )
+  {
+    return ;
+  }
+  initializeDrawing();
+  clip();
+  drawSurface();
+  unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableSurface::show( void )
 {
-  draw() ;
+  if ( !checkVisibility() )
+  {
+    return ;
+  }
+  initializeDrawing();
+  clip();
+  showSurface();
+  unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 
