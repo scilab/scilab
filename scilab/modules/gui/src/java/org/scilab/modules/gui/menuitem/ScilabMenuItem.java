@@ -66,6 +66,15 @@ public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 	 * @param mnemonic the mnemonic to add to the Menu
 	 * @see org.scilab.modules.gui.menu.Menu#setMnemonic(org.scilab.modules.gui.widget.int)
 	 */
+	public void setMnemonic(char mnemonic) {
+		ScilabBridge.setMnemonic(this, mnemonic);
+	}
+
+	/**
+	 * set a mnemonic to a Menu
+	 * @param mnemonic the mnemonic to add to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#setMnemonic(org.scilab.modules.gui.widget.int)
+	 */
 	public void setMnemonic(int mnemonic) {
 		ScilabBridge.setMnemonic(this, mnemonic);
 	}

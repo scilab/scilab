@@ -15,6 +15,12 @@ public interface SimpleMenuItem extends Widget {
 	 * set a mnemonic to a MenuItem
 	 * @param mnemonic the mnemonic for  the MenuItem
 	 */
+	void setMnemonic(char mnemonic);
+
+	/**
+	 * set a mnemonic to a MenuItem
+	 * @param mnemonic the mnemonic for  the MenuItem
+	 */
 	void setMnemonic(int mnemonic);
 	
 	/**

@@ -22,6 +22,12 @@ public interface MenuItem extends Widget {
 	 * set a mnemonic to a MenuItem
 	 * @param mnemonic the Mnemonic of the MenuItem
 	 */
+	void setMnemonic(char mnemonic);
+	
+	/**
+	 * set a mnemonic to a MenuItem
+	 * @param mnemonic the Mnemonic of the MenuItem
+	 */
 	void setMnemonic(int mnemonic);
 	
 	/**
