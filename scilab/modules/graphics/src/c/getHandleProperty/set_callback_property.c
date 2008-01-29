@@ -17,19 +17,23 @@
 /*------------------------------------------------------------------------*/
 int set_callback_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    sciprint(_("Incompatible type for property %s.\n"),"callback") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
   if (sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
     {
+      if ( (!isParameterStringMatrix( valueType )) && (valueType != sci_list) )
+        {
+          sciprint(_("Incompatible type for property %s.\n"),"callback") ;
+          return SET_PROPERTY_ERROR ;
+        }
       return SetUiobjectCallback(pobj, stackPointer, valueType, nbRow, nbCol);
     }
   else
     {
-      return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;
+      if ( !isParameterStringMatrix( valueType ) )
+        {
+          sciprint(_("Incompatible type for property %s.\n"),"callback") ;
+          return SET_PROPERTY_ERROR ;
+        }
+     return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;
     }
 }
 /*------------------------------------------------------------------------*/

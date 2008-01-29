@@ -159,7 +159,12 @@ int sci_set(char *fname, unsigned long fname_len)
 				{
 					GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				}
-		  }
+                        }
+			else if ( valueType == sci_list ) /* Added for callbacks */
+			{ 
+                          GetRhsVar(3,LIST_DATATYPE,&numrow3,&numcol3,&l3);
+                          l3 = 3; /* In this case l3 is the list position in stack */
+                        }
 		  break;
 
 		case sci_strings:/* first is a string argument so it's a gset("command",[param]) */ 
