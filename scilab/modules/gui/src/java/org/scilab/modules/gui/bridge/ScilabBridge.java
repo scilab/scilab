@@ -1062,6 +1062,125 @@ public class ScilabBridge {
 	public static void setEnabled(MenuItem menuItem, boolean status) {
 		ScilabMenuItemBridge.setEnabled(menuItem, status);
 	}
+	
+	/**
+	 * Get the text to a MenuItem
+	 * @param menuItem the MenuItem which we want to get the text of
+	 * @return the text of the MenuItem
+	 */
+	public static String getText(MenuItem menuItem) {
+		return ScilabMenuItemBridge.getText(menuItem);
+	}
+	
+	/**
+	 * set a mnemonic to a MenuItem
+	 * @param menuItem the MenuItem which we want to set the mnemonic to
+	 * @param mnemonic the new mnemonic to set to the MenuItem
+	 */
+	public static void setMnemonic(MenuItem menuItem, int mnemonic) {
+		ScilabMenuItemBridge.setMnemonic(menuItem, mnemonic);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab MenuItem
+	 * @param menuItem the MenuItem we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the MenuItem (true to set the MenuItem visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(MenuItem menuItem, boolean newVisibleState) {
+		ScilabMenuItemBridge.setVisible(menuItem, newVisibleState);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab MenuItem
+	 * @param menuItem the MenuItem we want to get the visiblity status of
+	 * @return the visibility status of the MenuItem (true if the MenuItem is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(MenuItem menuItem) {
+		return ScilabMenuItemBridge.isVisible(menuItem);
+	}
+
+	/**
+	 * Set the Background color of the MenuItem
+	 * @param menuItem the MenuItem we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(MenuItem menuItem, Color color) {
+		ScilabMenuItemBridge.setBackground(menuItem, color);
+	}
+	
+	/**
+	 * Get the Background color of the MenuItem
+	 * @param menuItem the MenuItem we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(MenuItem menuItem) {
+		return ScilabMenuItemBridge.getBackground(menuItem);
+	}
+
+	/**
+	 * Set the Foreground color of the MenuItem
+	 * @param menuItem the MenuItem we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(MenuItem menuItem, Color color) {
+		ScilabMenuItemBridge.setForeground(menuItem, color);
+	}
+	
+	/**
+	 * Get the Foreground color of the MenuItem
+	 * @param menuItem the MenuItem we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(MenuItem menuItem) {
+		return ScilabMenuItemBridge.getForeground(menuItem);
+	}
+
+	/**
+	 * Set the font of the MenuItem.
+	 * @param menuItem the MenuItem we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(MenuItem menuItem, Font font) {
+		ScilabMenuItemBridge.setFont(menuItem, font);
+	}
+	
+	/**
+	 * Get the font of the MenuItem.
+	 * @param menuItem the MenuItem we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(MenuItem menuItem) {
+		return ScilabMenuItemBridge.getFont(menuItem);
+	}
+
+	/**
+	 * Set the horizontal alignment for the MenuItem text
+	 * @param menuItem the MenuItem we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(MenuItem menuItem, String alignment) {
+		ScilabMenuItemBridge.setHorizontalAlignment(menuItem, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the MenuItem text
+	 * @param menuItem the MenuItem we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(MenuItem menuItem, String alignment) {
+		ScilabMenuItemBridge.setVerticalAlignment(menuItem, alignment);
+	}
+
+	/**
+	 * Set the Relief of the MenuItem
+	 * @param menuItem the MenuItem which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(MenuItem menuItem, String reliefType) {
+		ScilabMenuItemBridge.setRelief(menuItem, reliefType);
+	}
 
 	/*****************/
 	/* Menu Bridge */

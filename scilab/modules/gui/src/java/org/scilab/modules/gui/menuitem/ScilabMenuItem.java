@@ -3,13 +3,20 @@
 
 package org.scilab.modules.gui.menuitem;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.ScilabWidget;
 
 /**
  * Class for Scilab MenuItem in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class ScilabMenuItem implements MenuItem {
+public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 
 	private SimpleMenuItem component;
 	
@@ -37,23 +44,135 @@ public class ScilabMenuItem implements MenuItem {
 	}
 	
 	/**
-	 * Sets the text of a Scilab MenuItem
-	 * @param newText the Text to set to the MenuItem
-	 * @see org.scilab.modules.gui.widget.MenuItem#setText(java.lang.String)
+	 * Sets the text of a Scilab Menu
+	 * @param newText the Text to set to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#setText(java.lang.String)
 	 */
 	public void setText(String newText) {
 		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
-	 * set a mnemonic to a MenuItem
-	 * @param mnemonic the mnemonic to add to the MenuItem
-	 * @see org.scilab.modules.gui.widget.MenuItem#setMnemonic(org.scilab.modules.gui.widget.int)
+	 * Gets the text of a Scilab Menu
+	 * @return the Text to set to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#getText(java.lang.String)
 	 */
-	public void setMnemonic(char mnemonic) {
+	public String getText() {
+		return ScilabBridge.getText(this);
+	}
+	
+	/**
+	 * set a mnemonic to a Menu
+	 * @param mnemonic the mnemonic to add to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#setMnemonic(org.scilab.modules.gui.widget.int)
+	 */
+	public void setMnemonic(int mnemonic) {
 		ScilabBridge.setMnemonic(this, mnemonic);
 	}
 
+	/**
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
+	 */
+	public void draw() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
+	 * @return nothing
+	 */
+	public Size getDims() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
+	 * @return nothing
+	 */
+	public Position getPosition() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
+	 * @return nothing
+	 */
+	public boolean isVisible() {
+		return ScilabBridge.isVisible(this);
+	}
+
+	/**
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
+	 * @param newSize is not used
+	 */
+	public void setDims(Size newSize) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
+	 * @param newPosition is not used
+	 */
+	public void setPosition(Position newPosition) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
+	 * @param newVisibleState is not used
+	 */
+	public void setVisible(boolean newVisibleState) {
+		ScilabBridge.setVisible(this, newVisibleState);
+	}
+	
+	/**
+	 * Set the Background color of the menu
+	 * @param color the Color
+	 */
+	public void setBackground(Color color) {
+		ScilabBridge.setBackground(this, color);
+	}
+	
+	/**
+	 * Get the Background color of the menu
+	 * @return the Color
+	 */
+	public Color getBackground() {
+		return ScilabBridge.getBackground(this);
+	}
+	
+	/**
+	 * Set the Foreground color of the menu
+	 * @param color the Color
+	 */
+	public void setForeground(Color color) {
+		ScilabBridge.setForeground(this, color);
+	}
+	
+	/**
+	 * Get the Foreground color of the menu
+	 * @return the Color
+	 */
+	public Color getForeground() {
+		return ScilabBridge.getForeground(this);
+	}
+
+	/**
+	 * Set the font of the menu.
+	 * @param font the font
+	 */
+	public void setFont(Font font) {
+		ScilabBridge.setFont(this, font);
+	}
+	
+	/**
+	 * Get the font of the menu.
+	 * @return the font
+	 */
+	public Font getFont() {
+		return ScilabBridge.getFont(this);
+	}
+	
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command
 	 * @param command the Scilab command to execute when the menu is activated
@@ -61,6 +180,30 @@ public class ScilabMenuItem implements MenuItem {
 	 */
 	public void setCallback(String command, int commandType) {
 		ScilabBridge.setCallback(this, command, commandType);
+	}
+
+	/**
+	 * Set the horizontal alignment for the Menu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setHorizontalAlignment(String alignment) {
+		ScilabBridge.setHorizontalAlignment(this, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the Menu text
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public void setVerticalAlignment(String alignment) {
+		ScilabBridge.setVerticalAlignment(this, alignment);
+	}
+
+	/**
+	 * Set the Relief of the Menu
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public void setRelief(String reliefType) {
+		ScilabBridge.setRelief(this, reliefType);
 	}
 
 	/**

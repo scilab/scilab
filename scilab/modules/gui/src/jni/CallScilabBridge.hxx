@@ -101,9 +101,9 @@ jmethodID voidsetWidgetPositionjintjintjintjintjintID; // cache method id
 jmethodID jintArraygetWidgetPositionjintID; // cache method id
 jmethodID voidsetFramePositionjintjintjintjintjintID; // cache method id
 jmethodID jintArraygetFramePositionjintID; // cache method id
-jmethodID voidsetWidgetCallbackjintjstringID; // cache method id
+jmethodID voidsetWidgetCallbackjintjstringjintID; // cache method id
 jmethodID jstringgetWidgetCallbackjintID; // cache method id
-jmethodID voidsetFrameCallbackjintjstringID; // cache method id
+jmethodID voidsetFrameCallbackjintjstringjintID; // cache method id
 jmethodID jstringgetFrameCallbackjintID; // cache method id
 jmethodID voidsetWidgetHorizontalAlignmentjintjstringID; // cache method id
 jmethodID voidsetWidgetVerticalAlignmentjintjstringID; // cache method id
@@ -284,11 +284,11 @@ static void setFramePosition(JavaVM * jvm_, long objID, long x, long y, long wid
 
 static long * getFramePosition(JavaVM * jvm_, long objID);
 
-static void setWidgetCallback(JavaVM * jvm_, long objID, char * text);
+static void setWidgetCallback(JavaVM * jvm_, long objID, char * text, long type);
 
 static char * getWidgetCallback(JavaVM * jvm_, long objID);
 
-static void setFrameCallback(JavaVM * jvm_, long objID, char * text);
+static void setFrameCallback(JavaVM * jvm_, long objID, char * text, long type);
 
 static char * getFrameCallback(JavaVM * jvm_, long objID);
 

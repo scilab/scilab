@@ -24,7 +24,8 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.menubar.ScilabMenuBarBridge;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.popupmenu.ScilabPopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -33,7 +34,6 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
-import org.scilab.modules.gui.tab.ScilabTabBridge;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
@@ -176,8 +176,8 @@ public class CallScilabBridge {
 	 * @return the ID of the menu in the UIElementMapper
 	 */
 	public static int newMenu() {
-		Menu menu = ScilabMenu.createMenu();
-		return UIElementMapper.add(menu);
+		MenuItem menuItem = ScilabMenuItem.createMenuItem();
+		return UIElementMapper.add(menuItem);
 	}
 	
 	/**
@@ -406,27 +406,22 @@ public class CallScilabBridge {
 	public static void setFigureAsParent(int figureID, int objID) {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 
-		MenuBar menuBar;
-		//int menuBarId;
-
-		// Create a menuBar if not already one associated to the parentTab
-		if (parentTab.getMenuBar() == null) {
-			menuBar = ScilabMenuBar.createMenuBar();
-			//menuBarId = UIElementMapper.add(menuBar);
-
-			parentTab.addMenuBar(menuBar);
-			// parentTab.setMenuBarId(menuBarId);
+		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+			// Add the menu to the tab
+			parentTab.getMenuBar().add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 		} else {
-			menuBar = parentTab.getMenuBar();
-			//menuBarId = parentTab.getMenuBarId();
-		}
-		// Add the menu to the tab
-		ScilabMenuBarBridge.add(menuBar, (Menu) UIElementMapper.getCorrespondingUIElement(objID));
-
-		// If parent tab is the currently "on top" tab, then the MenuBar is also added to the parent window
-		if (ScilabTabBridge.isCurrentTab(parentTab)) {
-			UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(parentTab)).addMenuBar(menuBar);
-			//UIElementMapper.getCorrespondingUIElement(ScilabTabBridge.getParentWindowId(parentTab)).setMenuBarId(menuBarId);
+			// obj is a MenuItem that has to be converted to a Menu
+			MenuItem menuItem = (MenuItem) UIElementMapper.getCorrespondingUIElement(objID);
+			
+			Menu menuToAdd = ScilabMenu.createMenu();
+			UIElementMapper.removeMapping(objID);
+			UIElementMapper.addMapping(objID, menuToAdd);
+			// Copy all properties from MenuItem to Menu
+			menuToAdd.setText(menuItem.getText());
+			// TODO Add other properties
+			
+			// Add the menu to the tab
+			parentTab.getMenuBar().add(menuToAdd);
 		}
 	}
 	
@@ -534,7 +529,23 @@ public class CallScilabBridge {
 	 * @param objID the id of the menu
 	 */
 	public static void setRootAsParent(int objID) {
-		ScilabConsole.getConsole().getMenuBar().add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+			// Add the menu to the tab
+			ScilabConsole.getConsole().getMenuBar().add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+		} else {
+			// obj is a MenuItem that has top be converted to a Menu
+			MenuItem menuItem = (MenuItem) UIElementMapper.getCorrespondingUIElement(objID);
+			
+			Menu menuToAdd = ScilabMenu.createMenu();
+			UIElementMapper.removeMapping(objID);
+			UIElementMapper.addMapping(objID, menuToAdd);
+			// Copy all properties from MenuItem to Menu
+			menuToAdd.setText(menuItem.getText());
+			menuToAdd.setCallback("1+2", 1);
+			// TODO Add other properties
+
+			ScilabConsole.getConsole().getMenuBar().add(menuToAdd);
+		}
 	}
 	
 	/**
@@ -543,9 +554,29 @@ public class CallScilabBridge {
 	 * @param objID the id of the menu
 	 */
 	public static void setMenuAsParent(int menuID, int objID) {
-		Menu parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
-		Menu menu = (Menu) UIElementMapper.getCorrespondingUIElement(objID);
-		ScilabBridge.add(parentMenu, menu);
+
+		Menu parentMenu = null;
+		if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof Menu) {
+			// Add the menu to the tab
+			parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
+		} else {
+			// obj is a MenuItem that has to be converted to a Menu
+			MenuItem menuItem = (MenuItem) UIElementMapper.getCorrespondingUIElement(objID);
+			
+			parentMenu = ScilabMenu.createMenu();
+			UIElementMapper.removeMapping(objID);
+			UIElementMapper.addMapping(objID, parentMenu);
+			
+			// Copy all properties from MenuItem to Menu
+			parentMenu.setText(menuItem.getText());
+			// TODO Add other properties
+		}
+		
+		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+			parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+		} else {
+			parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
+		}
 	}
 	
 	/*******************/
@@ -557,10 +588,11 @@ public class CallScilabBridge {
 	/**
 	 * Set a callback for a Widget
 	 * @param objID the ID of the object in the UIElementMapper
-	 * @param callback the text of the callback
+	 * @param callbackString the text of the callback
+	 * @param callbackType the type of the callback
 	 */
-	public static void setWidgetCallback(int objID, String callback) {
-		System.out.println("setWidgetCallback is not implemented");
+	public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(callbackString, callbackType);
 	}
 	
 	/**

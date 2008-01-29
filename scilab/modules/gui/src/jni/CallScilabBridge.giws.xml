@@ -177,6 +177,7 @@
 	<method name="setWidgetCallback" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="text"/>
+	  <parameter type="int" name="type"/>
 	</method>
 	<method name="getWidgetCallback" returnType="String" modifier="static">
 	  <parameter type="int" name="objID"/>
@@ -185,6 +186,7 @@
 	<method name="setFrameCallback" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="text"/>
+	  <parameter type="int" name="type"/>
 	</method>
 	<method name="getFrameCallback" returnType="String" modifier="static">
 	  <parameter type="int" name="objID"/>

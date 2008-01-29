@@ -8,26 +8,67 @@ using namespace org_scilab_modules_gui_bridge;
 
 int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
 {
-  // Label must be only one character string
-  if (valueType != sci_strings) {
-    sciprint(_("%s property value must be a single string.\n"), "Callback");
-    return SET_PROPERTY_ERROR;
-  }
-  if (nbCol != 1) {
-    sciprint(_("%s property value must be a single string.\n"), "Callback");
-    return SET_PROPERTY_ERROR;
-  }
+  char * cbString = NULL;
+  int cbType = 0;
 
-  if (nbRow == 0) {
-    // This case should never happen because if nbRow==0 then nbCol is also 0
-    sciprint(_("%s property value must be a single string.\n"), "Callback");
-    return SET_PROPERTY_ERROR;
-  }
+  int strNbRow = 0, strNbCol = 0;
+  int typeNbRow = 0, typeNbCol = 0;
+  int typeStackPointer = 0, stringStackPointer = 0;
+
+  // Label must be only one character string
+  if (valueType == sci_strings)
+    {
+      if (nbCol != 1) {
+        sciprint(_("%s property value must be a single string.\n"), "Callback");
+        return SET_PROPERTY_ERROR;
+      }
+      
+      if (nbRow == 0) {
+        // This case should never happen because if nbRow==0 then nbCol is also 0
+        sciprint(_("%s property value must be a single string.\n"), "Callback");
+        return SET_PROPERTY_ERROR;
+      }
+
+      cbString = getStringFromStack(stackPointer);
+    }
+  else if (valueType == sci_list)
+    {
+      if (nbRow * nbCol != 2)
+        {
+          sciprint(_("%s property value must be a 2-items list.%d %d\n"), "Callback", nbRow , nbCol);
+          return SET_PROPERTY_ERROR;
+        }
+
+      GetListRhsVar(stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
+      if (typeNbRow * typeNbCol !=1)
+        {
+          sciprint(_("%s property value must be a single value.\n"), "CallbackType");
+          return SET_PROPERTY_ERROR;
+        }
+      else
+        {
+          cbType = (int) (*stk(typeStackPointer));
+        }
+
+      GetListRhsVar(stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
+      if (strNbCol !=1)
+        {
+          sciprint(_("%s property value must be a single string.\n"), "Callback");
+          return SET_PROPERTY_ERROR;
+        }
+      else
+        {
+          cbString = cstk(stringStackPointer);
+        }
+    }
 
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
       // Send the label to Java
-      CallScilabBridge::setWidgetCallback(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex, getStringFromStack(stackPointer));
+      CallScilabBridge::setWidgetCallback(getScilabJavaVM(),
+                                          pUIMENU_FEATURE(sciObj)->hashMapIndex,
+                                          cbString,
+                                          cbType);
       return SET_PROPERTY_SUCCEED;
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
@@ -36,14 +77,16 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
         {
           CallScilabBridge::setFrameCallback(getScilabJavaVM(), 
-                                              pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                              getStringFromStack(stackPointer));
+                                             pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                             cbString,
+                                             cbType);
         }
       else /* All other uicontrol styles */
         {
           CallScilabBridge::setWidgetCallback(getScilabJavaVM(), 
                                               pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                              getStringFromStack(stackPointer));
+                                              cbString,
+                                              cbType);
         }
       return SET_PROPERTY_SUCCEED;
     }

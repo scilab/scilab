@@ -3,23 +3,19 @@
 
 package org.scilab.modules.gui.menuitem;
 
+import org.scilab.modules.gui.widget.Widget;
+
 /**
  * Interface for SimpleMenuItem the associated object to Scilab GUIs MenuItem
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public interface SimpleMenuItem {
-	
-	/**
-	 * Sets the text of a MenuItem
-	 * @param newText the text we want to set
-	 */
-	void setText(String newText);
-	
+public interface SimpleMenuItem extends Widget {
 	/**
 	 * set a mnemonic to a MenuItem
-	 * @param mnemonic the int to add to the MenuItem
+	 * @param mnemonic the mnemonic for  the MenuItem
 	 */
-	void setMnemonic(char mnemonic);
+	void setMnemonic(int mnemonic);
 	
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command

@@ -107,7 +107,7 @@ case 3
     
     addMenuSubMenus(scf(varargin(1)), varargin(2), varargin(3));
     
-  elseif type(varargin(1))==1 & type(varargin(2))==10 & type(varargin(3))==10
+  elseif type(varargin(1))==1 & type(varargin(2))==10 & type(varargin(3))==15
     // addmenu(graphic_window_id, menu_label, action_in_a_list)
     // Create a menu in Scilab main Window with submenus
     // The callbacks are the items of variable named menu_label
@@ -172,14 +172,14 @@ function addSingleMenuCallback(fig, menulabel, callback)
 
 [callbackStr, callbackType] = getCallbackProperties(callback);
 
-h = UImenu("parent", fig, "label", menulabel, "callbacktype", 0);
+h = UImenu("parent", fig, "label", menulabel);
 if callbackType <> 2
-  set(h, "callback", "execstr("""+callbackStr+""")");
+  set(h, "callback", list(0, "execstr("""+callbackStr+""")"));
 else
   if fig==0
-    set(h, "callback", "execstr("""+callbackStr+"(1)"")");
+    set(h, "callback", list(0, "execstr("""+callbackStr+"(1)"")"));
   else
-    set(h, "callback", "execstr("""+callbackStr+"(1,"+string(fig)+")"")");
+    set(h, "callback", list(0, "execstr("""+callbackStr+"(1,"+string(fig)+")"")"));
   end
 end
 
@@ -195,7 +195,11 @@ function addMenuSubMenus(fig, menulabel, submenuslabels)
 h0 = UImenu("parent", fig, "label", menulabel);
 
 for K=1:size(submenuslabels,"*")
-  UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("""+submenuslabels+"("+string(K)+")"")");
+  if (type(fig)==1)
+    UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"("+string(K)+"))");
+  else
+    UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"("+string(K)+"))");
+  end    
 end
 
 endfunction
@@ -212,14 +216,14 @@ function addMenuSubMenusCallback(fig, menulabel, submenuslabels, callback)
 h0 = UImenu("parent",fig,"label",menulabel);
 
 for K=1:size(submenuslabels,"*")
-  h = UImenu("parent", h0, "label", submenuslabels(K), "callbacktype", 0);
+  h = UImenu("parent", h0, "label", submenuslabels(K));
   if callbackType <> 2
-    set(h, "callback", "execstr("""+callbackStr+""")");
+    set(h, "callback", list(0, "execstr("""+callbackStr+""")"));
   else
     if fig == 0
-      set(h, "callback", "execstr("""+callbackStr+"(1)"")");
+      set(h, "callback", list(0, "execstr("""+callbackStr+"(1)"")"));
     else
-      set(h, "callback", "execstr("""+callbackStr+"("+string(K)+","+string(fig)+")"")");
+      set(h, "callback", list(0, "execstr("""+callbackStr+"("+string(K)+","+string(fig)+")"")"));
     end
   end
 end

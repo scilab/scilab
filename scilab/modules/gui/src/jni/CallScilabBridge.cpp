@@ -145,9 +145,9 @@ voidsetWidgetPositionjintjintjintjintjintID=NULL;
 jintArraygetWidgetPositionjintID=NULL; 
 voidsetFramePositionjintjintjintjintjintID=NULL; 
 jintArraygetFramePositionjintID=NULL; 
-voidsetWidgetCallbackjintjstringID=NULL; 
+voidsetWidgetCallbackjintjstringjintID=NULL; 
 jstringgetWidgetCallbackjintID=NULL; 
-voidsetFrameCallbackjintjstringID=NULL; 
+voidsetFrameCallbackjintjstringjintID=NULL; 
 jstringgetFrameCallbackjintID=NULL; 
 voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
@@ -258,9 +258,9 @@ voidsetWidgetPositionjintjintjintjintjintID=NULL;
 jintArraygetWidgetPositionjintID=NULL; 
 voidsetFramePositionjintjintjintjintjintID=NULL; 
 jintArraygetFramePositionjintID=NULL; 
-voidsetWidgetCallbackjintjstringID=NULL; 
+voidsetWidgetCallbackjintjstringjintID=NULL; 
 jstringgetWidgetCallbackjintID=NULL; 
-voidsetFrameCallbackjintjstringID=NULL; 
+voidsetFrameCallbackjintjstringjintID=NULL; 
 jstringgetFrameCallbackjintID=NULL; 
 voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
@@ -1541,22 +1541,22 @@ return myArray;
 
 }
 
-void CallScilabBridge::setWidgetCallback (JavaVM * jvm_, long objID, char * text){
+void CallScilabBridge::setWidgetCallback (JavaVM * jvm_, long objID, char * text, long type){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
                 jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
-jmethodID voidsetWidgetCallbackjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetCallback", "(ILjava/lang/String;)V" ) ;
-if (voidsetWidgetCallbackjintjstringID == NULL) {
+jmethodID voidsetWidgetCallbackjintjstringjintID = curEnv->GetStaticMethodID(cls, "setWidgetCallback", "(ILjava/lang/String;I)V" ) ;
+if (voidsetWidgetCallbackjintjstringjintID == NULL) {
 std::cerr << "Could not access to the method " << "setWidgetCallback" << std::endl;
 exit(EXIT_FAILURE);
 }
 
 jstring text_ = curEnv->NewStringUTF( text );
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetCallbackjintjstringID ,objID, text_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetCallbackjintjstringjintID ,objID, text_, type);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -1594,22 +1594,22 @@ return myStringBuffer;
 
 }
 
-void CallScilabBridge::setFrameCallback (JavaVM * jvm_, long objID, char * text){
+void CallScilabBridge::setFrameCallback (JavaVM * jvm_, long objID, char * text, long type){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
                 jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
-jmethodID voidsetFrameCallbackjintjstringID = curEnv->GetStaticMethodID(cls, "setFrameCallback", "(ILjava/lang/String;)V" ) ;
-if (voidsetFrameCallbackjintjstringID == NULL) {
+jmethodID voidsetFrameCallbackjintjstringjintID = curEnv->GetStaticMethodID(cls, "setFrameCallback", "(ILjava/lang/String;I)V" ) ;
+if (voidsetFrameCallbackjintjstringjintID == NULL) {
 std::cerr << "Could not access to the method " << "setFrameCallback" << std::endl;
 exit(EXIT_FAILURE);
 }
 
 jstring text_ = curEnv->NewStringUTF( text );
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetFrameCallbackjintjstringID ,objID, text_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameCallbackjintjstringjintID ,objID, text_, type);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

@@ -3,11 +3,14 @@
 
 package org.scilab.modules.gui.menuitem;
 
+import org.scilab.modules.gui.widget.Widget;
+
 /**
  * Interface for MenuItem associated to objects in Scilab GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public interface MenuItem {
+public interface MenuItem extends Widget {
 	
 	/**
 	 * Gets this Bridge component object
@@ -16,16 +19,10 @@ public interface MenuItem {
 	SimpleMenuItem getAsSimpleMenuItem();
 	
 	/**
-	 * Sets the text of a MenuItem
-	 * @param newText the text we want to set for the MenuItem
-	 */
-	void setText(String newText);
-	
-	/**
 	 * set a mnemonic to a MenuItem
-	 * @param mnemonic the int to add to the MenuItem
+	 * @param mnemonic the Mnemonic of the MenuItem
 	 */
-	void setMnemonic(char mnemonic);
+	void setMnemonic(int mnemonic);
 	
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command

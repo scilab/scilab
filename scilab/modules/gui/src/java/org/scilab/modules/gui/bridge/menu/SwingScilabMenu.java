@@ -3,9 +3,13 @@
 
 package org.scilab.modules.gui.bridge.menu;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JMenu;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.SimpleMenu;
@@ -13,7 +17,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.SciActionListener;
 import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
@@ -27,6 +30,12 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 
 	private static final long serialVersionUID = 1L;
 
+	private CallBack callback;
+	
+	private MouseListener[] nativeMouseListeners;
+	
+	private MouseListener customedMouseListener;
+	
 	/**
 	 * Constructor
 	 */
@@ -40,6 +49,16 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
 	 */
 	public void add(MenuItem newMenuItem) {
+		/* Back to Java Mouse Listeners */
+		if (customedMouseListener != null) {
+			removeMouseListener(customedMouseListener);
+		}
+		if (nativeMouseListeners != null) {
+			for (int i = 0; i < nativeMouseListeners.length; i++) {
+				addMouseListener(nativeMouseListeners[i]);
+			}
+		}
+
 		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
 	}
 	
@@ -49,55 +68,17 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.Menu)
 	 */
 	public void add(Menu newSubMenu) {
+		/* Back to Java Mouse Listeners */
+		if (customedMouseListener != null) {
+			removeMouseListener(customedMouseListener);
+		}
+		if (nativeMouseListeners != null) {
+			for (int i = 0; i < nativeMouseListeners.length; i++) {
+				addMouseListener(nativeMouseListeners[i]);
+			}
+		}
+		
 		super.add((SwingScilabMenu) newSubMenu.getAsSimpleMenu());
-	}
-	
-	/**
-	 * Sets the Text of a swing Scilab Menu
-	 * @param newText the Text to set to the Menu
-	 * @see javax.swing.AbstractButton#setText(java.lang.String)
-	 */
-	@Override
-	public void setText(String newText) {
-		super.setText(newText);
-	}
-	
-	/**
-	 * Get the Text of a swing Scilab Menu
-	 * @return the label of the Menu
-	 * @see javax.swing.AbstractButton#setText(java.lang.String)
-	 */
-	@Override
-	public String getText() {
-		return super.getText();
-	}
-
-	/**
-	 * set a mnemonic to a Menu
-	 * @param mnemonic the mnemonic to set to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#setMnemonic(org.scilab.modules.gui.widget.int)
-	 */
-	@Override
-	public void setMnemonic(int mnemonic) {
-		super.setMnemonic(mnemonic);
-	}
-
-	/**
-	 * Add a Separator to a Menu
-	 * @see org.scilab.modules.gui.menu.Menu#addSeparator(org.scilab.modules.gui..)
-	 */
-	@Override
-	public void addSeparator() {
-		// TODO correct this it should be something like super.add(SwingScilabSeparator) ... ???
-		super.addSeparator();
-	}
-
-	/**
-	 * Add a callback to the menu, this callback is a Scilab command
-	 * @param command the Scilab command to execute when the menu is activated
-	 */
-	public void setCallback(String command) {
-		super.addMenuListener(new SciActionListener(command));
 	}
 
 	/**
@@ -106,8 +87,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
 	public void addMenuBar(MenuBar menuBarToAdd) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -116,8 +96,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.menubar.ToolBar)
 	 */
 	public void addToolBar(ToolBar toolBarToAdd) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -125,8 +104,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -135,8 +113,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.UIElement#getDims()
 	 */
 	public Size getDims() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -145,8 +122,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -155,8 +131,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -165,8 +140,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -175,8 +149,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
 	 */
 	public MenuBar getMenuBar() {
-		// Must not be there...
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -185,8 +158,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getToolBarId()
 	 */
 	public ToolBar getToolBar() {
-		// Must not be there...
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -195,7 +167,48 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @param commandType the type of the command that will be executed.
 	 */
 	public void setCallback(String command, int commandType) {
-		addActionListener(ScilabCallBack.create(command, commandType));
+		callback = ScilabCallBack.create(command, commandType);
+		
+		/* Remove Java MouseListeners */
+		/* Save them so that they can be put back */
+		nativeMouseListeners = getMouseListeners();
+		for (int i = 0; i < nativeMouseListeners.length; i++) {
+			removeMouseListener(nativeMouseListeners[i]);
+		}
+		
+		/* Create a customed MouseListener */
+		customedMouseListener = new MouseListener() {
+
+			public void mouseClicked(MouseEvent arg0) {
+				/* Mouse button released over the menu */
+				/* Deselect the menu and execute the callback */
+				setSelected(false);
+				callback.actionPerformed(null);
+			}
+
+			public void mouseEntered(MouseEvent arg0) {
+				/* Nothing to do */
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+				/* Nothing to do */
+			}
+
+			public void mousePressed(MouseEvent arg0) {
+				/* Select the menu */
+				setSelected(true);
+			}
+
+			public void mouseReleased(MouseEvent arg0) {
+				/* Mouse button released out of the menu */
+				/* Deselect the menu */
+				setSelected(false);
+			}
+			
+		};
+		
+		/* Add the mouse listener */
+		addMouseListener(customedMouseListener);
 	}
 
 	/**
