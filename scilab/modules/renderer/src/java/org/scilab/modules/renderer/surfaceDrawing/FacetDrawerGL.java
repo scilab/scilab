@@ -54,7 +54,11 @@ public abstract class FacetDrawerGL {
 	 * @return color array containin gthe 3 channels of the color
 	 */
 	public double[] getHiddenColor() {
-		return colorMap.getColor(hiddenColor);
+		if (hiddenColor >= 0 && hiddenColor < colorMap.getSize()) {
+			return colorMap.getColor(hiddenColor);
+		} else {
+			return null;
+		}
 	}
 
 	/**
