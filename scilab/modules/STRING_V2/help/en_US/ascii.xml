@@ -34,6 +34,14 @@
     If <VERB>txt</VERB> is a matrix of string, <VERB>ascii(txt)</VERB> is equivalent
     to <VERB>ascii(strcat(txt))</VERB></P>
   </DESCRIPTION>
+  
+  <EXAMPLE>
+<![CDATA[
+ascii["hello";"world"]
+ascii([115 99 105 108 97 98])
+]]>
+  </EXAMPLE>
+  
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>code2str</LINK>
