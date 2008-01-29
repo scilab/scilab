@@ -92,7 +92,8 @@ int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len))
 static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two)
 {
 	int x = 0,y = 0;
-
+    char *save=NULL;
+	int answer = 0;
 	for (x = 0; x <  mn_one ;x++) 
 	{
 		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
@@ -115,7 +116,9 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 		{
 			int Output_Start = 0;
 			int Output_End = 0;
-			pcre_error_code answer = pcre_private(Inputs_param_one[y],Inputs_param_two[x],&Output_Start,&Output_End);
+			save = (char *)MALLOC( sizeof(char) * ( strlen(Inputs_param_two[x]) +1) );
+			strcpy(save,Inputs_param_two[x]);
+			answer = pcre_private(Inputs_param_one[y],save,&Output_Start,&Output_End);
 
 			if ( answer == 0 )
 			{
@@ -172,6 +175,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 
 				}
 			}
+			if (save) {FREE(save);save=NULL;}
 		}
 	}
 
