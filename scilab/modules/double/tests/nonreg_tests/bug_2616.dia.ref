@@ -1,0 +1,62 @@
+// <-- Non-regression test for bug 2616 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2616
+//
+// <-- Short Description -->
+//    "eye variable undefined in this context" wrongly reported when a loop range is
+//    defined concatenating ranges, inside a function
+// Scilab Project - Serge Steer
+// Copyright INRIA 2007
+// Date : June 2007
+T=[];
+//simple case uncompiled
+s=0;for k=1:3,s=s+1;end
+if s<>3 then bugmes();quit;end
+s=0;for k=(1:3)+1,s=s+1;end
+if s<>3 then bugmes();quit;end
+s=0;for k=[(1:3) 1],s=s+1;end
+if s<>4 then bugmes();quit;end
+function s=foo(),s=0;for k=1:3,s=s+1;end,endfunction
+if foo()<>3 then bugmes();quit;end
+function s=foo(),s=0;for k=(1:3)+1,s=s+1;end,endfunction
+Warning : redefining function : foo                     
+
+if foo()<>3 then bugmes();quit;end
+function s=foo(),s=0;for k=[(1:3) 1],s=s+1;end,endfunction
+Warning : redefining function : foo                     
+
+if foo()<>4 then bugmes();quit;end
+//check if implicit  vector is created or not
+old=stacksize();
+stacksize(180000)
+//should evaluate
+ierr=execstr('s=0;for k=1:200000,s=s+1;end','errcatch')
+ ierr  =
+ 
+    0.  
+if ierr<>0   then bugmes();quit;end
+if s<>200000 then bugmes();quit;end
+//should produce a stacksize error
+ierr=execstr('s=0;for k=(1:200000)+1,s=s+1;end','errcatch')
+ ierr  =
+ 
+    17.  
+if ierr<>17 then bugmes();quit;end
+ierr=execstr('s=0;for k=[(1:200000) 1],s=s+1;end','errcatch')
+ ierr  =
+ 
+    17.  
+if ierr<>17 then bugmes();quit;end
+function s=foo(),s=0;for k=1:200000,s=s+1;end,endfunction
+Warning : redefining function : foo                     
+
+ierr=execstr('s=foo();','errcatch');
+if ierr<>0   then bugmes();quit;end
+if s<>200000 then bugmes();quit;end
+function s=foo(),s=0;for k=1+(1:200000),s=s+1;end,endfunction
+Warning : redefining function : foo                     
+
+ierr=execstr('s=foo();','errcatch');
+if ierr<>17 then bugmes();quit;end
+stacksize(old(1))
