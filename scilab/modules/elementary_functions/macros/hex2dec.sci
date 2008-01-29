@@ -1,20 +1,36 @@
-function d=hex2dec(h)
-//hex2dec(h) returns in vector d the numbers corresponding to the 
-//hexadecimal representation h.
-
+// =============================================================================
 // Copyright INRIA
-[nr,nc]=size(h)
-n=length(h)
-p=cumprod([1,16*ones(1,max(n)-1)]);
+// hex2dec function
+//
+// hex2dec(h) returns in vector d the numbers corresponding to the 
+// hexadecimal representation h.
+//
+// -Input :
+//    str : a string (or a vector/matrix of strings)
+// -Output :
+//    y : a scalar/vector/matrix
+//
+// =============================================================================
 
-d=zeros(h)
-for i=1:nr
-  for j=1:nc
-    s=abs(str2code(h(i,j)))
-    if max(s)>15 then
-      error(msprintf(gettext("%s: Wrong value for input argument(s): Valid hexadecimal representations expected.\n"),"hex2dec"));
-    end
-    d(i,j)=p(n(i,j):-1:1)*abs(str2code(h(i,j)))
-  end
-end
+function d=hex2dec(h)
+	
+	if type(h)<> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument: Matrix of strings expected.\n"),"hex2dec"));
+	end
+	
+	[nr,nc] = size(h)
+	n       = length(h)
+	p       = cumprod([1,16*ones(1,max(n)-1)]);
+	d       = zeros(h);
+	
+	for i=1:nr
+		for j=1:nc
+			s = abs(str2code(h(i,j)));
+			if max(s)>15 then
+				error(msprintf(gettext("%s: Wrong value for input argument(s): Valid hexadecimal representations expected.\n"),"hex2dec"));
+			end
+			d(i,j) = p(n(i,j):-1:1)*s;
+		end
+	end
+	
 endfunction
