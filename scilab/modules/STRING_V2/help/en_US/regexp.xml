@@ -1,92 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
-  <LANGUAGE>eng</LANGUAGE>
-
-  <TITLE>regexp</TITLE>
-
-  <TYPE>Scilab Function</TYPE>
-
-  <DATE>$LastChangedDate: 2008-01-16 16:57:13 +0200 (The, 16 Jan 2008)$</DATE>
-
-  <SHORT_DESCRIPTION name="regexp">find a substring that matches the regular
-  expression string</SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[start]=regexp(str1,str2,,["flag"])</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>[start,end,match]=regexp(str1,str2,,["flag"])</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>[start,end]=regexp(str1,str2,,["flag"])</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>[start,end,match,token]=regexp(str1,str2,,["flag"])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>str1</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a vector of strings.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>str2</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a character string (under the rules of regular
-          expression)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>start</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: the starting index of each substring of str that matches the
-          regular expression string str2</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>end</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>:the ending index of each substring of str that matches the
-          regular expression string str2</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>match</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: the text of each substring of str that matches str2.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>The rules of regular expression is similar to perl language.For a quick
-    start , see http://perldoc.perl.org/perlrequick.html. For a more in-depth
-    tutorial on , see http://perldoc.perl.org/perlretut.html and for the
-    reference page, see http://perldoc.perl.org/perlre.html</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+    <LANGUAGE>eng</LANGUAGE>
+    <TITLE>regexp</TITLE>
+    <TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate: 2008-01-16 16:57:13 +0200 (The, 16 Jan 2008)$</DATE>
+    <SHORT_DESCRIPTION name="regexp">find a substring that matches the regular expression string</SHORT_DESCRIPTION>
+    
+    <CALLING_SEQUENCE>
+        <CALLING_SEQUENCE_ITEM>[start]=regexp(input,pattern,[flag])</CALLING_SEQUENCE_ITEM>
+        <CALLING_SEQUENCE_ITEM>[start,end,match]=regexp(input,pattern,[flag])</CALLING_SEQUENCE_ITEM>
+        <CALLING_SEQUENCE_ITEM>[start,end]=regexp(input,pattern,[flag])</CALLING_SEQUENCE_ITEM>
+        <CALLING_SEQUENCE_ITEM>[start,end,match,token]=regexp(input,pattern,[flag])</CALLING_SEQUENCE_ITEM>
+    </CALLING_SEQUENCE>
+    
+    <PARAM>
+        <PARAM_INDENT>
+            
+            <PARAM_ITEM>
+                <PARAM_NAME>input</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>
+                        : a matrix of strings.
+                    </SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            
+            <PARAM_ITEM>
+                <PARAM_NAME>pattern</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>
+                        : a character string (under the rules of regular expression)
+                    </SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            
+            <PARAM_ITEM>
+                <PARAM_NAME>start</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>
+                        : the starting index of each substring of str that matches the
+                        regular expression string pattern
+                    </SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            
+            <PARAM_ITEM>
+                <PARAM_NAME>end</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>
+                        :the ending index of each substring of str that matches the
+                        regular expression string pattern
+                    </SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            
+            <PARAM_ITEM>
+                <PARAM_NAME>match</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>
+                        : the text of each substring of str that matches
+                        <verb>pattern</verb>.
+                    </SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            
+        </PARAM_INDENT>
+    </PARAM>
+    
+    <DESCRIPTION>
+        <P>
+            The rules of regular expression is similar to perl language. For a
+            quick start , see http://perldoc.perl.org/perlrequick.html. For a
+            more in-depth tutorial on , see http://perldoc.perl.org/perlretut.html
+            and for the reference page, see http://perldoc.perl.org/perlre.html
+        </P>
+    </DESCRIPTION>
+    
+    <EXAMPLE><![CDATA[
 regexp('xabyabbbz','/ab*/','r')
 regexp('a!','/((((((((((a))))))))))\041/','r')
 regexp('ABCC','/^abc$/i','r')
 regexp('ABC','/ab|cd/i','r')
 [a b c]=regexp('XABYABBBZ','/ab*/i','r')
-]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>strindex</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    ]]></EXAMPLE>
+    
+    <SEE_ALSO>
+        <SEE_ALSO_ITEM>
+            <LINK>strindex</LINK>
+        </SEE_ALSO_ITEM>
+    </SEE_ALSO>
+    
 </MAN>
