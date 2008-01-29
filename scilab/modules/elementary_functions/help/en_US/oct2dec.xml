@@ -2,13 +2,13 @@
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
     <LANGUAGE>eng</LANGUAGE>
-    <TITLE>hex2dec</TITLE>
+    <TITLE>oct2dec</TITLE>
     <TYPE>Scilab Function</TYPE>
     <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006) $</DATE>
-    <SHORT_DESCRIPTION name="hex2dec">conversion from hexadecimal representation to integers</SHORT_DESCRIPTION>
+    <SHORT_DESCRIPTION name="oct2dec">conversion from octal representation to integers</SHORT_DESCRIPTION>
     
     <CALLING_SEQUENCE>
-        <CALLING_SEQUENCE_ITEM>d=hex2dec(h)</CALLING_SEQUENCE_ITEM>
+        <CALLING_SEQUENCE_ITEM>d=oct2dec(o)</CALLING_SEQUENCE_ITEM>
     </CALLING_SEQUENCE>
     
     <PARAM>
@@ -20,9 +20,9 @@
                 </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-                <PARAM_NAME>h</PARAM_NAME>
+                <PARAM_NAME>o</PARAM_NAME>
                 <PARAM_DESCRIPTION>
-                    <SP>: matrix of character strings corresponding to hexadecimal representation</SP>
+                    <SP>: matrix of character strings corresponding to octal representation</SP>
                 </PARAM_DESCRIPTION>
             </PARAM_ITEM>
         </PARAM_INDENT>
@@ -30,13 +30,13 @@
     
     <DESCRIPTION>
         <P>
-            <VERB>hex2dec(x)</VERB> returns the  matrix of numbers corresponding
-            to the hexadecimal representation.
+            <VERB>oct2dec(x)</VERB> returns the  matrix of numbers corresponding
+            to the octal representation.
         </P>
     </DESCRIPTION>
     <EXAMPLE>
 <![CDATA[
-hex2dec(['ABC','0','A'])
+oct2dec(['856115','0','23'])
 ]]>
     </EXAMPLE>
 </MAN>
