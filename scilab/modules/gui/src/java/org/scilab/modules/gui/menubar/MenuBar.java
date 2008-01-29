@@ -12,7 +12,6 @@ import org.scilab.modules.gui.uielement.UIElement;
  * @author Marouane BEN JELLOUL
  */
 public interface MenuBar extends UIElement {
-	//	 TODO : Add the methods that are usefull for a MenuBar
 	
 	/**
 	 * Gets this Bridge component object
