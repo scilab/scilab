@@ -550,7 +550,9 @@ variable-length repeat, or a anything other than literal characters. */
 
 /* Miscellaneous definitions */
 
-typedef int BOOL;
+/* Already defined in scilab modules/core/includes/BOOL.h */
+/* typedef int BOOL; */
+
 
 #define FALSE   0
 #define TRUE    1
