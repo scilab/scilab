@@ -90,9 +90,13 @@ grep(txt,'strings')
 grep(txt,['strings' 'Strings'])
 
 [r,w]=grep(txt,['strings' 'Strings'])
-grep('2' ,'/2(]*)?$\1/' ,'r') 
 
- 
+str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
+
+grep(str,'/[hc]+at/','r')
+grep(str,'/[hc]?at/','r')
+grep(str,'/cat|dog/','r')
+
   ]]></EXAMPLE>
 
   <SEE_ALSO>

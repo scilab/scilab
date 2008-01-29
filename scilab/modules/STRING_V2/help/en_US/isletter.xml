@@ -26,7 +26,11 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>res = isletter(str)</VERB> returns an array the same size as str containing logical %t (true) where the elements of str are letters of the alphabet and logical %f (false) where they are not.</P>
+    <P>
+        <VERB>res = isletter(str)</VERB> returns an array the same size as str
+        containing logical %t (true) where the elements of str are letters of
+        the alphabet and logical %f (false) where they are not.
+    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

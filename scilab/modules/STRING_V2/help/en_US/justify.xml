@@ -63,7 +63,7 @@ t=['1234','x','adfdfgdfghfgj'
 
 justify(t,'l')
 justify(t,'c')
-
+justify(t,'r')
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

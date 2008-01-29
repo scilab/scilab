@@ -77,7 +77,6 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-
 k=strindex('SCI/demos/scicos','/')
 k=strindex('SCI/demos/scicos','SCI/')
 k=strindex('SCI/demos/scicos','!')

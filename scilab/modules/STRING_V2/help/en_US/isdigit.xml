@@ -26,7 +26,11 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>res = isdigit(str)</VERB> returns an array the same size as str containing logical %t (true) where the elements of str are digits and logical %f (false) where they are not.</P>
+    <P>
+        <VERB>res = isdigit(str)</VERB> returns an array the same size as str
+        containing logical %T (TRUE) where the elements of str are digits and
+        logical %F (FALSE) where they are not.
+    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -26,7 +26,11 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>res = isascii(str)</VERB>  returns %T if c is a 7-bit US-ASCII character code between 0 and octal 0177 inclusive; otherwise returns %F</P>
+    <P>
+        <VERB>res = isascii(str)</VERB> returns TRUE (%T) if c is a 7-bit
+        US-ASCII character code between 0 and octal 0177 inclusive.
+        otherwise returns FALSE (%F)
+    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
