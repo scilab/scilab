@@ -212,7 +212,7 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 	 * @param space the increment value
 	 */
 	public void setMajorTickSpacing(int space) {
-		ScilabBridge.setMinorTickSpacing(this, space);	
+		ScilabBridge.setMajorTickSpacing(this, space);	
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 	 * @param value the maximum value
 	 */
 	public void setMaximumValue(int value) {
-		ScilabBridge.setMinimumValue(this, value);	
+		ScilabBridge.setMaximumValue(this, value);	
 	}
 
 	/**

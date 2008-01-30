@@ -225,7 +225,7 @@ public class ScilabSliderBridge {
 	 * @param space the increment value
 	 */
 	public static void setMajorTickSpacing(Slider slider, int space) {
-		slider.getAsSimpleSlider().setMinorTickSpacing(space);	
+		slider.getAsSimpleSlider().setMajorTickSpacing(space);	
 	}
 
 	/**
@@ -243,7 +243,7 @@ public class ScilabSliderBridge {
 	 * @param value the maximum value
 	 */
 	public static void setMaximumValue(Slider slider, int value) {
-		slider.getAsSimpleSlider().setMinimumValue(value);	
+		slider.getAsSimpleSlider().setMaximumValue(value);	
 	}
 
 	/**

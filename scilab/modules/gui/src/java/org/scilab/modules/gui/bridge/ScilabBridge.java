@@ -2808,7 +2808,7 @@ public class ScilabBridge {
 	 * @param space the increment value
 	 */
 	public static void setMajorTickSpacing(Slider slider, int space) {
-		ScilabSliderBridge.setMinorTickSpacing(slider, space);	
+		ScilabSliderBridge.setMajorTickSpacing(slider, space);	
 	}
 
 	/**
@@ -2826,7 +2826,7 @@ public class ScilabBridge {
 	 * @param value the maximum value
 	 */
 	public static void setMaximumValue(Slider slider, int value) {
-		ScilabSliderBridge.setMinimumValue(slider, value);	
+		ScilabSliderBridge.setMaximumValue(slider, value);	
 	}
 
 	/**
