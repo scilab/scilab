@@ -1,60 +1,86 @@
 // -----------------------------------------------------------
-// Allan CORNET
-// INRIA 2005
+// Allan CORNET - INRIA 2005
+// Vincent COUVERT - INRIA 2008 (Java version of uicontrols)
 // -----------------------------------------------------------
 function h=figure(varargin)
-	
-  Rhs=length(varargin);
-  if (Rhs == 0) then
-    h=TCL_scf(0);
+
+Rhs=length(varargin);
+
+if (Rhs == 0) then
+  // Create a new graphic window
+  h=scf();
+  // Set its default background for compatibility with versions < 5.0
+  set(h,"background",addcolor([0.8 0.8 0.8]))
+else
+  if (Rhs == 1) then
+    
+    if IsAScalar(varargin(1)) then
+      // Create a new graphic window or set it (if already exists)
+      h = createOrSetFigure(varargin(1));
+    else
+      error(gettext("figure: invalid value type."),999);
+    end
+    
   else
- 		if (Rhs == 1) then
- 		  if (IsAScalar(varargin(1))==%T) then
-    		h=TCL_scf(varargin(1));
- 		  else
- 		    error(gettext('figure : invalid value type.'),999);
- 		  end
- 		else
- 		  if (modulo(Rhs,2)==0) then
- 		    // nbr params paire
- 		    if (IsAScalar(varargin(1))==%T) then
- 		      error(gettext('figure : invalid value type.'),999) 
- 		    else
- 		      h=TCL_scf(0);
-					for i=1:2:Rhs
-					  if ( type(varargin(i+1)) <> GetUiControlValueType(GetUiControlPropertyName(varargin(i))) ) then
-					    if ( GetUiControlValueType(GetUiControlPropertyName(varargin(i))) == 10) then
-					      error(string(varargin(i+1))+' Value must be a string.',999);
-					    else
-					      error(string(varargin(i+1))+gettext(' Value must be numeric.'),999);
-					    end
-					  else
-					    set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
-					  end
-					end
- 		    end
- 		  else
- 		    // nbr params impaire
- 		    if (IsAScalar(varargin(1))==%T) then
- 		      h=TCL_scf(varargin(1));
-    		  for i=2:2:Rhs
-					   if ( type(varargin(i+1)) <> GetUiControlValueType(GetUiControlPropertyName(varargin(i))) ) then
-					     if ( GetUiControlValueType(GetUiControlPropertyName(varargin(i))) == 10) then
-					       error(string(varargin(i+1))+gettext(' Value must be a string.'),999);
-					     else
-					       error(string(varargin(i+1))+gettext(' Value must be numeric.'),999);
-					     end
-					   else
-					     set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
-					   end
-					end
- 		    else
- 		      error(gettext('figure : invalid value type.'),999) ;
- 		    end
- 		  end
- 		end
+    
+    if (modulo(Rhs,2)==0) then
+      // nbr params paire
+      if (IsAScalar(varargin(1))==%T) then
+	error(gettext("figure: invalid value type."),999) 
+      else
+	// Create a new graphic window or set it (if already exists)
+	h = createOrSetFigure([]);
+	
+	// Set all properties
+	for i=1:2:Rhs
+	  set(h,varargin(i),varargin(i+1));
+	end
+	
+      end
+    else
+      // nbr params impaire
+      if (IsAScalar(varargin(1))==%T) then
+	// Create a new graphic window or set it (if already exists)
+	h = createOrSetFigure(varargin(1));
+
+	// Set all properties
+	for i=2:2:Rhs
+	  set(h,varargin(i),varargin(i+1));
+	end
+      else
+	error(gettext("figure: invalid value type."),999) ;
+      end
+    end
   end
-  
- endfunction
- // -----------------------------------------------------------
- 
+end
+
+endfunction
+// -----------------------------------------------------------
+
+// -----------------------------------------------------------
+function h = createOrSetFigure(numOrHandle)
+// Vincent COUVERT - INRIA 2008
+// This function create a figure or set if if already exists
+// The figure background is set to default for new figures
+
+if isempty(numOrHandle)
+  alreadyExists = %F;
+elseif type(numOrHandle)==1 // Single value
+  alreadyExists = ~isempty(find(winsid()==numOrHandle));
+else // Handle
+  alreadyExists = ~isempty(find(winsid()==get(numOrHandle,"figure_id")));
+end
+
+if isempty(numOrHandle)
+  h = scf();
+else
+  h=scf(numOrHandle);
+end
+
+if ~alreadyExists
+  // Set the default background if figure has just been created (compatibility with versions < 5.0)
+  set(h,"background",addcolor([0.8 0.8 0.8]))
+end
+
+endfunction
+// -----------------------------------------------------------
