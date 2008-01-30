@@ -310,8 +310,11 @@ if grep('a\nb\nc\n'                               ,'/()^b/'                     
 //  This is actually not compatible with Perl, which accepts such patterns, but
 //  treats the conditional as always being FALSE (as PCRE used to), but it
 //    seems to me that giving a diagnostic is better.
-if execstr("grep(''a'' ,''/(?(1)a|b)/'',''r''),"errcatch") <>  -9  then pause,end
-//if grep('a'                                       ,'/(?(1)b|a)/'                           ,'r') <>  1   then pause,end
+if execstr("grep(''a'' ,''/(?(1)a|b)/'',''r'')","errcatch") <>  999  then pause,end
+if execstr("grep(''a'',''/(?(?{0})a|b)/'',''r'')","errcatch") <>  999  then pause,end
+if execstr("grep(''a'',''/(?(?{1})b|a)/'',''r'')","errcatch") <>  999  then pause,end
+if execstr("grep(''a'',''/(?(1)b|a)/'',''r'')","errcatch") <>  999  then pause,end
+//
 if grep('a'                                       ,'/(x)?(?(1)a|b)/'                       ,'r') <>  []  then pause,end
 if grep('a'                                       ,'/(x)?(?(1)b|a)/'                       ,'r') <>  1   then pause,end
 if grep('a'                                       ,'/()?(?(1)b|a)/'                        ,'r') <>  1   then pause,end
@@ -321,8 +324,6 @@ if grep('blah)'                                   ,'/^(\()?blah(?(1)(\)))$/'    
 if grep('(blah'                                   ,'/^(\()?blah(?(1)(\)))$/'               ,'r') <>  []  then pause,end
 if grep('blah)'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then pause,end
 if grep('(blah'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then pause,end
-//if grep('a'                                       ,'/(?(?{0})a|b)/'                        ,'r') <>  []  then pause,end
-//if grep('a'                                       ,'/(?(?{1})b|a)/'                        ,'r') <>  []  then pause,end
 if grep('a'                                       ,'/(?(?!a)a|b)/'                         ,'r') <>  []  then pause,end
 if grep('a'                                       ,'/(?(?!a)b|a)/'                         ,'r') <>  1   then pause,end
 if grep('a'                                       ,'/(?(?=a)b|a)/'                         ,'r') <>  []  then pause,end
