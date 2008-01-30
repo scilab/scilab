@@ -9,7 +9,8 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
 	-Iincludes/ \
 	-Isrc/c/ \
 	-Isrc/c/getHandleProperty/ \
-	-I$(top_srcdir)/modules/gui/includes/
+	-I$(top_srcdir)/modules/gui/includes/ \
+	-I$(top_srcdir)/modules/STRING_V2/includes/
 
 if GUI
 

@@ -1,12 +1,14 @@
 /*------------------------------------------------------------------------*/
 /* file: setGetHashTable.h                                                */
 /* Copyright INRIA 2006                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
+/* Authors : Jean-Baptiste Silvy, Vincent Couvert (lower case comparison) */
 /* desc : define two hash table to be used in sci_set and sci_get         */
 /*        These hash table are based on the Scilab hashTable              */
 /*------------------------------------------------------------------------*/
 
 #include <string.h>
+#include <ctype.h> /* tolower */
+#include "stricmp.h"
 
 #include "setGetHashTable.h"
 #include "MALLOC.h"
@@ -21,7 +23,7 @@ static unsigned int setGetHashTableHash( void * key )
   int c ;
   char * str = key ;
 
-  while ( (c = *str++) )
+  while ( (c = tolower(*str++)) )
   {
     hash = ((hash << 5) + hash) + c ; /* hash * 33 + c */
   }
@@ -32,7 +34,7 @@ static unsigned int setGetHashTableHash( void * key )
 /*--------------------------------------------------------------------------*/
 static int setGetHashTableEqualKeys( void * k1, void * k2 )
 {
-  if ( strcmp( (char *)k1, (char *)k2 ) == 0 )
+  if ( stricmp( (char *)k1, (char *)k2 ) == 0 )
   {
     return 1 ;
   }

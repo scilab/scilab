@@ -226,7 +226,7 @@ int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nb
   setPropertyFunc accessor = searchSetHashtable( setHashTable, propertyName ) ;
   if ( accessor == NULL )
   {
-    sciprint( "Unknown property: %s.\n", propertyName ) ;
+    sciprint( "Unknown property!!: %s.\n", propertyName ) ;
     return -1 ;
   }
   return accessor( pObj, stackPointer, valueType, nbRow, nbCol ) ;
