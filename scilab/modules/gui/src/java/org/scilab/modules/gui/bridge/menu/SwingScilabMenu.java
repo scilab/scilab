@@ -169,13 +169,20 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	public void setCallback(String command, int commandType) {
 		callback = ScilabCallBack.create(command, commandType);
 		
-		/* Remove Java MouseListeners */
+		/* Remove Java MouseListeners if not already done */
 		/* Save them so that they can be put back */
-		nativeMouseListeners = getMouseListeners();
-		for (int i = 0; i < nativeMouseListeners.length; i++) {
-			removeMouseListener(nativeMouseListeners[i]);
+		if (nativeMouseListeners == null) {
+			nativeMouseListeners = getMouseListeners();
+			for (int i = 0; i < nativeMouseListeners.length; i++) {
+				removeMouseListener(nativeMouseListeners[i]);
+			}
 		}
 		
+		/* Remove previous listener */
+		if (customedMouseListener != null) {
+			removeMouseListener(customedMouseListener);
+		}
+
 		/* Create a customed MouseListener */
 		customedMouseListener = new MouseListener() {
 
