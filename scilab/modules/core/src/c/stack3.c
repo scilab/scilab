@@ -68,18 +68,18 @@ int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned 
     /* read   : from scilab stack -> fortran variable */
     Fin = -1;
     C2F(stackg)(id);
-    if (Err > 0) return FALSE_ ;
+    if (Err > 0) return FALSE ;
     if (Fin == 0) {
 		Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
-      return FALSE_;
+      return FALSE;
     }
     if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     /* get matrix data pointer */
-    if (! C2F(getrmat)("creadmat", &Fin, &Fin, m, n, &l, 8L)) 	return FALSE_;
+    if (! C2F(getrmat)("creadmat", &Fin, &Fin, m, n, &l, 8L)) 	return FALSE;
 
     C2F(dmcopy)(stk(l ), m, scimat, m, m, n);
 
-    return TRUE_;
+    return TRUE;
 }
 /*----------------------------------------------------------------
  * creadcmat reads vector/matrix in scilab's internal stack
@@ -117,19 +117,19 @@ int C2F(creadcmat)(char *namex, integer *m, integer *n, double *scimat, unsigned
     /* read   : from scilab stack -> fortran variable */
     Fin = -1;
     C2F(stackg)(id);
-    if (Err > 0) return FALSE_ ;
+    if (Err > 0) return FALSE ;
     if (Fin == 0) {
       Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
-      return FALSE_;
+      return FALSE;
     }
     if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     /* get matrix data pointer */
-    if (! C2F(getcmat)("creadcmat", &Fin, &Fin, m, n, &l, 8L)) 	return FALSE_;
+    if (! C2F(getcmat)("creadcmat", &Fin, &Fin, m, n, &l, 8L)) 	return FALSE;
     ix1 = *m * *n;
     C2F(dmcopy)(stk(l ), m, scimat, m, m, n);
     C2F(dmcopy)(stk(l+ix1 ), m, scimat+ix1, m, m, n);
 
-    return TRUE_;
+    return TRUE;
 }
 
 /*----------------------------------------------------------------
@@ -150,7 +150,7 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
   C2F(str2name)(namex, id, name_len);
 
   Top = Top + Nbvars + 1;
-  if (! C2F(cremat)("cwritemat", &Top, &cx0, m, n, &lr, &lc, 9L)) return  FALSE_;
+  if (! C2F(cremat)("cwritemat", &Top, &cx0, m, n, &lr, &lc, 9L)) return  FALSE;
   C2F(dcopy)(&ix1, mat, &cx1, stk(lr ), &cx1);
   Rhs = 0;
   l4 = C2F(iop).lct[3];
@@ -159,8 +159,8 @@ int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned l
   C2F(iop).lct[3] = l4;
   Top = Top_k;
   Rhs = Rhs_k;
-  if (Err > 0)  return FALSE_;
-  return TRUE_;
+  if (Err > 0)  return FALSE;
+  return TRUE;
 }
 
 
@@ -184,7 +184,7 @@ int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long 
 	C2F(str2name)(namex, id, name_len);
 
 	Top = Top + Nbvars + 1;
-	if (! C2F(cremat)("cwritecmat", &Top, &IT, m, n, &lr, &lc, 10L)) return  FALSE_;
+	if (! C2F(cremat)("cwritecmat", &Top, &IT, m, n, &lr, &lc, 10L)) return  FALSE;
 	C2F(dcopy)(&ix1, mat, &cx1, stk(lr ), &cx1);
 	Rhs = 0;
 	l4 = C2F(iop).lct[3];
@@ -193,8 +193,8 @@ int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long 
 	C2F(iop).lct[3] = l4;
 	Top = Top_k;
 	Rhs = Rhs_k;
-	if (Err > 0)  return FALSE_;
-	return TRUE_;
+	if (Err > 0)  return FALSE;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
  /* Put variable number into Scilab internal stack with name "namex" */
@@ -212,8 +212,8 @@ int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
   C2F(iop).lct[3] = l4;
   Top = Top_k;
   Rhs = Rhs_k;
-  if (Err > 0)  return FALSE_;
-  return TRUE_;
+  if (Err > 0)  return FALSE;
+  return TRUE;
 }
 
 /*------------------------------------------------------
@@ -256,27 +256,27 @@ int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long n
     C2F(str2name)(namex, id, name_len);
     Fin = -1;
     C2F(stackg)(id);
-    if (Err > 0) return FALSE_ ;
+    if (Err > 0) return FALSE ;
     if (Fin == 0) {
       Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
-      return FALSE_ ;
+      return FALSE ;
     }
     if (*Infstk(Fin ) == 2) {
 	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getsmat)("creadchain", &Fin, &Fin, &m1, &n1, &cx1, &cx1, &lr1, &nlr1, 10L)) {
-	return FALSE_;
+	return FALSE;
     }
     if (m1 * n1 != 1) {
       Scierror(999,_("%s: argument must be a string.\n"),"creadchain");
-      return FALSE_ ;
+      return FALSE ;
     }
 
     ix1 = *itslen - 1;
     *itslen = Min(ix1,nlr1);
     C2F(cvstr)(itslen, istk(lr1 ), chai, &cx1, chai_len);
     chai[*itslen] = '\0';
-    return TRUE_ ;
+    return TRUE ;
 }
 
 /*----------------------------------------------------------------------
@@ -312,11 +312,11 @@ int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, cha
     C2F(str2name)(namex, id, name_len);
     Fin = -1;
     C2F(stackg)(id);
-    if (Err > 0) return FALSE_ ;
+    if (Err > 0) return FALSE ;
 
     if (Fin == 0) {
       Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
-      return FALSE_ ;
+      return FALSE ;
     }
 
     if (*Infstk(Fin ) == 2) {
@@ -324,19 +324,19 @@ int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, cha
     }
     if (*ir == -1 && *ic == -1) {
 	if (! C2F(getsmat)("creadchain", &Fin, &Fin, ir, ic, &cx1, &cx1, &lr1, &nlr1, 10L))
-	  return FALSE_;
+	  return FALSE;
 	else
-	  return TRUE_ ;
+	  return TRUE ;
     } else {
 	if (! C2F(getsmat)("creadchain", &Fin, &Fin, &m1, &n1, ir, ic, &lr1, &nlr1, 10L)) {
-	  return FALSE_;
+	  return FALSE;
 	}
     }
     ix1 = *itslen - 1;
     *itslen = Min(ix1,nlr1);
     C2F(cvstr)(itslen, istk(lr1 ), chai, &cx1, chai_len);
     chai[*itslen]='\0';
-    return TRUE_;
+    return TRUE;
 }
 
 /*----------------------------------------------------------------
@@ -358,7 +358,7 @@ int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len
 
     Top = Top + Nbvars + 1;
     if (! C2F(cresmat2)("cwritechain", &Top, m, &lr, 11L)) {
-	return FALSE_;
+	return FALSE;
     }
     C2F(cvstr)(m, istk(lr ), chai, &cx0, chai_len);
     Rhs_k = Rhs;
@@ -369,8 +369,8 @@ int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len
     C2F(iop).lct[3] = l4;
     Top = Top_k ;
     Rhs = Rhs_k ;
-    if (Err > 0)  return FALSE_;
-    return TRUE_ ;
+    if (Err > 0)  return FALSE;
+    return TRUE ;
 }
 
 /*----------------------------------------------------------------
@@ -417,16 +417,16 @@ int C2F(cmatptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long n
       Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
       *m = -1;
       *n = -1;
-      return FALSE_;
+      return FALSE;
     }
     /* get data */
     if (*Infstk(Fin ) == 2) {
 	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getrmat)("creadmat", &Fin, &Fin, m, n, lp, 8L)) {
-	return FALSE_;
+	return FALSE;
     }
-    return TRUE_ ;
+    return TRUE ;
 }
 
 /*----------------------------------------------------------------
@@ -469,16 +469,16 @@ int C2F(cmatcptr)(char *namex, integer *m, integer *n, integer *lp, unsigned lon
       Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
       *m = -1;
       *n = -1;
-      return FALSE_;
+      return FALSE;
     }
     /* get data */
     if (*Infstk(Fin ) == 2) {
 	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getcmat)("creadmat", &Fin, &Fin, m, n, lp, 8L)) {
-	return FALSE_;
+	return FALSE;
     }
-    return TRUE_ ;
+    return TRUE ;
 }
 
 /*----------------------------------------------------------------
@@ -515,16 +515,16 @@ int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *ix,integer *j,int
       Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
       *m = -1;
       *n = -1;
-      return FALSE_;
+      return FALSE;
     }
     /* get data */
     if (*Infstk(Fin ) == 2) {
 	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getsmat)("creadmat", &Fin, &Fin, m, n, ix, j, lp, nlr, 8L)) {
-	return FALSE_;
+	return FALSE;
     }
-    return TRUE_ ;
+    return TRUE ;
 }
 
 /*  Returns a pointer to the Scilab variable with name namex
@@ -624,14 +624,14 @@ int C2F(objptr)(char *namex, integer *lp, integer *fin, unsigned long name_len)
       C2F(putid)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], id);
       /*         we juste return false and lp is set to zero */
       /*         call error(4) */
-      return FALSE_;
+      return FALSE;
     }
     *fin = Fin;
     *lp = *Lstk(Fin );
     if (*Infstk(Fin ) == 2) {
 	*lp = *Lstk(*istk(iadr(*lp) + 1 +1) );
     }
-    return  TRUE_;
+    return  TRUE;
 }
 /*--------------------------------------------------------------------------*/
 /* read and write a boolean matrix in scilab stack */
@@ -647,20 +647,20 @@ int C2F(creadbmat)(char *namex, integer *m, integer *n, int *scimat, unsigned lo
 	/* read   : from scilab stack -> fortran variable */
 	Fin = -1;
 	C2F(stackg)(id);
-	if (Err > 0) return FALSE_ ;
+	if (Err > 0) return FALSE ;
 	if (Fin == 0) {
 		Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
-		return FALSE_;
+		return FALSE;
 	}
 	if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
 
 	/* get matrix data pointer */
-	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, &l , 9L))	return FALSE_;
+	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, &l , 9L))	return FALSE;
 
 	N = *n * *m;
 	C2F(icopy)(&N,istk(l),&c_x,scimat,&c_x);
 
-	return TRUE_;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned long name_len)
@@ -671,7 +671,7 @@ int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned lon
 
 	C2F(str2name)(namex, id, name_len);
 	Top = Top + Nbvars + 1;
-	if (! C2F(crebmat)("cwritebmat", &Top, m, n, &lr, 10L)) return  FALSE_;
+	if (! C2F(crebmat)("cwritebmat", &Top, m, n, &lr, 10L)) return  FALSE;
 
 	C2F(icopy)(&ix1, mat, &cx1, istk(lr ), &cx1);
 	Rhs = 0;
@@ -681,8 +681,8 @@ int C2F(cwritebmat)(char *namex, integer *m, integer *n,  int *mat, unsigned lon
 	C2F(iop).lct[3] = l4;
 	Top = Top_k;
 	Rhs = Rhs_k;
-	if (Err > 0)  return FALSE_;
-	return TRUE_;
+	if (Err > 0)  return FALSE;
+	return TRUE;
 
 }
 /*--------------------------------------------------------------------------*/
@@ -698,7 +698,7 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 		Scierror(4,_("Undefined variable %s.\n"),get_fname(namex,name_len));
 		*m = -1;
 		*n = -1;
-		return FALSE_;
+		return FALSE;
 	}
 	/* get data */
 	if (*Infstk(Fin ) == 2)
@@ -706,9 +706,9 @@ int C2F(cmatbptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long 
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
 	}
 
-	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, lp , 9L))	return FALSE_;
+	if (! C2F(getbmat)("creadbmat", &Fin, &Fin, m, n, lp , 9L))	return FALSE;
 
-	return TRUE_ ;
+	return TRUE ;
 }
 
 /*--------------------------------------------------------------------------*/

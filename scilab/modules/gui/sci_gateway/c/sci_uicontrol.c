@@ -106,7 +106,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       if((propertiesValuesIndices = (int*)MALLOC(sizeof(int)*NBPROPERTIES))==NULL)
         {
           Scierror(999,_("No more memory.\n"));
-          return FALSE_;
+          return FALSE;
         }
 
       /* Init all positions to NOT_FOUND */

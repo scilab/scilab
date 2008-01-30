@@ -194,7 +194,7 @@ int C2F(getval)(double *s, int *dotdet)
            here we only test for the dot and let the others cases
 	   to be treated after ... */
     if (abs(C2F(com).char1) == dot) {
-      detdot = TRUE_;
+      detdot = TRUE;
       C2F(fortrangetch)();
     }
   }

@@ -2173,20 +2173,20 @@ int CopyVarFromlistentry(int lw, int *header, int i)
    int n;
 
    /* Test if we receive a NULL ptr header */
-   if (header==NULL) return FALSE_;
+   if (header==NULL) return FALSE;
 
    /* Get the start address of the i element of the input list*/
-   if ((l = (double *) listentry(header,i))==NULL) return FALSE_;
+   if ((l = (double *) listentry(header,i))==NULL) return FALSE;
 
    /* Compute the length of the i element in double word */
    n = header[i+2]-header[i+1];
 
    /* Create empty data of a size n*sizeof(double) at the position lw */
-   if ((ret=C2F(createdata)(&lw, n*sizeof(double)))==FALSE_) return ret;
+   if ((ret=C2F(createdata)(&lw, n*sizeof(double)))==FALSE) return ret;
 
    /* Copy the element i to position lw*/
    C2F(unsfdcopy)(&n,l,&un,stk(*Lstk(lw + Top - Rhs)),&un);
-   return TRUE_; 
+   return TRUE; 
 }
 
 /* var2sci function to convert an array of scicos
@@ -2864,7 +2864,7 @@ int intgetscicosvarsc(fname,fname_len)
     C2F(cvstr)(&sz_str,&l_str[0],&C2F(cha1).buf[0],(i=1,&i),sz_str);
     C2F(cha1).buf[sz_str]='\0';
     /* search if string is in accordance with entry*/
-    ierr=TRUE_;
+    ierr=TRUE;
     for (i=0;i<nentries;i++)
     {
      if (strcmp(C2F(cha1).buf,entry[i]) == 0) 
@@ -2878,12 +2878,12 @@ int intgetscicosvarsc(fname,fname_len)
       }
       else strcpy(dyn_char[j+1],entry[i]);
 
-      ierr=FALSE_;
+      ierr=FALSE;
       break;
      }
     }
     /* if failed then display an error message and exit*/
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      FREE(dyn_char);
      Scierror(999,"%s : Undefined field in string matrix position : %d.\n",fname,j+1);
@@ -3000,7 +3000,7 @@ int intgetscicosvarsc(fname,fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      l_tmp = I_INT32; /* define type of integer */
      CreateVar(j+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
@@ -3027,7 +3027,7 @@ int intgetscicosvarsc(fname,fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      ptr_dd = (double *) ptr;
      CreateVar(j+2,MATRIX_OF_DOUBLE_DATATYPE,&nv,&mv,&l_tmp); /* Create double variable at the top+j+1 addr. of the stack */
@@ -3045,7 +3045,7 @@ int intgetscicosvarsc(fname,fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      /* store ptr in ptrscs_blk */
      ptr_scsblk = (scicos_block *) ptr;
@@ -3122,14 +3122,14 @@ int intgetscicosvarsc(fname,fname_len)
       ierr=createblklist(&ptr_scsblk[k], &errc,i);
 
       /* if an error occurs in createblklist */
-      if (ierr==FALSE_)
+      if (ierr==FALSE)
       {
        Top=Topsave;
        break;
       }
      }
      /* if success, create a list of Typed list scicos_block */
-     if (ierr==TRUE_)
+     if (ierr==TRUE)
      {
       C2F(mklist)(&nblk);
       Top=Topsave; /* adjust Top counter */
@@ -3148,7 +3148,7 @@ int intgetscicosvarsc(fname,fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      l_tmp = I_INT32; /* define type of integer */
      CreateVar(j+2,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
@@ -3172,10 +3172,10 @@ int intgetscicosvarsc(fname,fname_len)
     return 0;
    }
 
-   /* if return a FALSE_ value in
+   /* if return a FALSE value in
     * error flag then display an error message.
     */
-   if(ierr!=TRUE_)
+   if(ierr!=TRUE)
    {
     Scierror(999,"%s : Error.\n",fname);
     FREE(dyn_char);

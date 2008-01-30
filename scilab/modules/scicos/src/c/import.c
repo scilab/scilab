@@ -663,10 +663,10 @@ int *mv;      /* size 1 of the imported data */
       *mv = 2;
       *v  = (outtb_el *) (scicos_imp.outtb_elem);
     }
-    else /*return FALSE_*/
+    else /*return FALSE*/
         return 0;
 
-    /* return TRUE_ */
+    /* return TRUE */
     return 1;
 }
 

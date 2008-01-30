@@ -17,6 +17,8 @@
 
 #include "error.h"
 
+#include "BOOL.h"
+
 /*-------------------------------------------------
  * types
  * -------------------------------------------------*/
@@ -137,8 +139,6 @@ static void initial_c1_local()
 }
 
 
-#define TRUE_ 1
-#define FALSE_ 0
 
 #define iadr(l) ((l)+(l)-1)
 #define sadr(l) (((l)/2)+1)

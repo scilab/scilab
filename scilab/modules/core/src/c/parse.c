@@ -294,7 +294,7 @@ int C2F(parse)(void)
   Ids[2 + Pt * nsiz] = Top;
   C2F(iop).rio = C2F(iop).rte;
   Rstk[Pt] = 701;
-  C2F(basbrk).iflag = FALSE_;
+  C2F(basbrk).iflag = FALSE;
   Fin = 2;
   if (Lct[4] <= -10) {
     Fin = -1;
@@ -538,7 +538,7 @@ int C2F(parse)(void)
     if (C2F(com).sym == dot) {
       goto L33;
     }
-    dotsep = FALSE_;
+    dotsep = FALSE;
     excnt = 1;
     goto L36;
   }
@@ -969,7 +969,7 @@ int C2F(parse)(void)
 
     imode = (i__2 = C2F(errgst).errct / 100000, abs(i__2));
     if (imode - (imode / 8 << 3) == 2) {
-      C2F(basbrk).iflag = TRUE_;
+      C2F(basbrk).iflag = TRUE;
     }
   }
   C2F(errgst).toperr = Top;
@@ -1000,7 +1000,7 @@ int C2F(parse)(void)
 	    sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8] - nlc);
 	    Msgs(32, 0);
 	    /* raise the interruption flag */
-	    C2F(basbrk).iflag = TRUE_;
+	    C2F(basbrk).iflag = TRUE;
 	    goto L79;
 	  }
 	}
@@ -1387,7 +1387,7 @@ int C2F(parse)(void)
   goto L88;
  L97:
   Top = Pstk[Pt] - 1;
-  C2F(basbrk).interruptible = TRUE_;
+  C2F(basbrk).interruptible = TRUE;
   iret = Ids[1 + Pt * nsiz];
   --Pt;
   if (iret == 1) {
@@ -1408,7 +1408,7 @@ int C2F(parse)(void)
     return 0;
   }
  L98:
-  C2F(basbrk).interruptible = TRUE_;
+  C2F(basbrk).interruptible = TRUE;
   /*     error recovery */
   /* ------------------- */
   imode = abs(C2F(errgst).errct) / 100000;

@@ -162,7 +162,7 @@ int C2F(run)()
   if (Err > 0)  return 0;
 
   if (C2F(basbrk).iflag) {
-    C2F(basbrk).iflag = FALSE_;
+    C2F(basbrk).iflag = FALSE;
     goto L91;
   }
   if (C2F(errgst).err1 != 0 ) {
@@ -545,7 +545,7 @@ int C2F(run)()
  L57:
   if (nc == 0) {
     /* if nc=0 the instruction correspond to the else */
-    ok = TRUE_;
+    ok = TRUE;
     if (Istk[Pstk[Pt]] == 10) {
       --Top;
     }
@@ -880,7 +880,7 @@ int C2F(run)()
     }
     imode = (i2 = C2F(errgst).errct / 100000, abs(i2));
     if (imode - (imode / 8 << 3) == 2) {
-      C2F(basbrk).iflag = TRUE_;
+      C2F(basbrk).iflag = TRUE;
     }
   }
   /*     gestion des points d'arrets dynamiques */
@@ -900,7 +900,7 @@ int C2F(run)()
 	    sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8]);
 	    Msgs(32, 0);
 	    /* raise the interruption flag */
-	    C2F(basbrk).iflag = TRUE_;
+	    C2F(basbrk).iflag = TRUE;
 	    goto L107;
 	  }
 	}
@@ -949,7 +949,7 @@ int C2F(run)()
   /*     *call* macro */
   return 0;
  L116:
-  C2F(basbrk).interruptible = TRUE_;
+  C2F(basbrk).interruptible = TRUE;
   lc = Ids[1 + Pt * nsiz];
   l0 = Ids[2 + Pt * nsiz];
   nc = Ids[3 + Pt * nsiz];
