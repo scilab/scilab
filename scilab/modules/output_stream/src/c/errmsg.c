@@ -52,19 +52,19 @@ try,catch */
     {
 		case 1:
 		{
-			displayAndStoreError(_("Incorrect assignment\n"));
+			displayAndStoreError(_("Incorrect assignment.\n"));
 
 		}
 		break;
 		case 2:
 		{
-			displayAndStoreError(("Invalid factor\n"));
+			displayAndStoreError(("Invalid factor.\n"));
 			*errtyp = 1;
 		}
 		break;
 		case 3:
 		{
-			displayAndStoreError(_("Waiting for right parenthesis\n"));
+			displayAndStoreError(_("Waiting for right parenthesis.\n"));
 			*errtyp = 1;
 		}
 		break;
@@ -81,57 +81,57 @@ try,catch */
 		break;
 		case 5:
 		{
-			displayAndStoreError(_("Inconsistent column/row dimensions\n"));
+			displayAndStoreError(_("Inconsistent column/row dimensions.\n"));
 		}
 		break;
 		case 6:
 		{
-			displayAndStoreError(_("Inconsistent row/column dimensions\n"));
+			displayAndStoreError(_("Inconsistent row/column dimensions.\n"));
 		}
 		break;
 		case 7:
 		{
-			displayAndStoreError(_("Dot cannot be used as modifier for this operator\n"));
+			displayAndStoreError(_("Dot cannot be used as modifier for this operator.\n"));
 		}
 		break;
 		case 8:
 		{
-			displayAndStoreError(_("Inconsistent addition\n"));
+			displayAndStoreError(_("Inconsistent addition.\n"));
 		}
 		break;
 		case 9:
 		{
-			displayAndStoreError(_("Inconsistent subtraction\n"));
+			displayAndStoreError(_("Inconsistent subtraction.\n"));
 		}
 		break;
 		case 10:
 		{
-			displayAndStoreError(_("Inconsistent multiplication\n"));
+			displayAndStoreError(_("Inconsistent multiplication.\n"));
 		}
 		break;
 		case 11:
 		{
-			displayAndStoreError(_("Inconsistent right division\n"));
+			displayAndStoreError(_("Inconsistent right division.\n"));
 		}
 		break;
 		case 12:
 		{
-			displayAndStoreError(_("Inconsistent left division\n"));
+			displayAndStoreError(_("Inconsistent left division.\n"));
 		}
 		break;
 		case 13:
 		{
-			displayAndStoreError(_("Redefining permanent variable\n"));
+			displayAndStoreError(_("Redefining permanent variable.\n"));
 		}
 		break;
 		case 14:
 		{
-			displayAndStoreError(_("Eye variable undefined in this context\n"));
+			displayAndStoreError(_("Eye variable undefined in this context.\n"));
 		}
 		break;
 		case 15:
 		{
-			displayAndStoreError(_("Submatrix incorrectly defined\n"));
+			displayAndStoreError(_("Submatrix incorrectly defined.\n"));
 		}
 		break;
 		case 16:
@@ -163,24 +163,24 @@ try,catch */
 		break;
 		case 19:
 		{
-			displayAndStoreError(_("Problem is singular\n"));
+			displayAndStoreError(_("Problem is singular.\n"));
 		}
 		break;
 		case 20:
 		{
 			if (Err == 1)
 			{
-				displayAndStoreError(_("First argument must be square matrix.\n"));
+				displayAndStoreError(_("Wrong type for first argument: Square matrix expected.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("%dth argument must be square matrix.\n"),Err);
+				displayAndStoreError(_("Wrong type for argument %d: Square matrix expected.\n"),Err);
 			}
 		}
 		break;
 		case 21:
 		{
-			displayAndStoreError(_("Invalid index\n"));
+			displayAndStoreError(_("Invalid index.\n"));
 		}
 		break;
 		case 22:
@@ -190,7 +190,7 @@ try,catch */
 		break;
 		case 23:
 		{
-			displayAndStoreError(_("Matrix norms available are 1, 2, inf, and fro\n"));
+			displayAndStoreError(_("Matrix norms available are 1, 2, inf, and fro.\n"));
 		}
 		break;
 		case 24:
@@ -203,7 +203,7 @@ try,catch */
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Bad call to primitive : %s\n"),NameVarOnStack);
+				displayAndStoreError(_("Bad call to primitive: %s\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -211,7 +211,7 @@ try,catch */
 		break;
 		case 26:
 		{
-			displayAndStoreError(_("Too complex recursion! (recursion tables are full))\n"));
+			displayAndStoreError(_("Too complex recursion! (recursion tables are full)\n"));
 			/* break recursion */
 			C2F(recu).pt = Min(C2F(recu).pt,psiz);
 			*errtyp = 1; /* error not recoverable */
@@ -229,23 +229,23 @@ try,catch */
 		break;
 		case 29:
 		{
-			displayAndStoreError(_("Matrix is not positive definite\n"));
+			displayAndStoreError(_("Matrix is not positive definite.\n"));
 		}
 		break;
 		case 30:
 		{
-			displayAndStoreError(_("Invalid exponent\n"));
+			displayAndStoreError(_("Invalid exponent.\n"));
 		}
 		break;
 		case 31:
 		{
-			displayAndStoreError(_( "Incorrect string\n"));
+			displayAndStoreError(_( "Incorrect string.\n"));
 			*errtyp = 1; /* error not recoverable */
 		}
 		break;
 		case 32:
 		{
-			displayAndStoreError(_("Singularity of log or tan function\n"));
+			displayAndStoreError(_("Singularity of log or tan function.\n"));
 		}
 		break;
 		case 33:
@@ -264,15 +264,15 @@ try,catch */
 			switch (C2F(recu).ids[C2F(recu).pt * nsiz - nsiz]) /* find instruction type */
 			{
 				case 1: /* if */
-					displayAndStoreError(_("Syntax error in a 'if' instruction.\n"));
+					displayAndStoreError(_("Syntax error in a '%s' instruction.\n"),"if");
 				break;
 
 				case 2: /* while */
-					displayAndStoreError(_("Syntax error in a 'while' instruction.\n"));
+					displayAndStoreError(_("Syntax error in a '%s' instruction.\n"),"while");
 				break;
 
 				default: /* select/case */
-					displayAndStoreError(_("Syntax error in a 'select/case' instruction.\n"));
+					displayAndStoreError(_("Syntax error in a '%s' instruction.\n"),"select/case");
 				break;
 			}
 			*errtyp = 1; /* error not recoverable */
@@ -282,11 +282,11 @@ try,catch */
 		{
 			if (Err == 1)
 			{
-				displayAndStoreError(_("First argument is incorrect.\n"));
+				displayAndStoreError(_("Wrong first argument.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("%dth input argument is incorrect here.\n"),Err);
+				displayAndStoreError(_("Wrong input argument %d.\n"),Err);
 			}
 		}
 		break;
@@ -297,12 +297,12 @@ try,catch */
 		break;
 		case 38:
 		{
-			displayAndStoreError(_("File name incorrect\n"));
+			displayAndStoreError(_("Wrong file name.\n"));
 		}
 		break;
 		case 39:
 		{
-			displayAndStoreError(_("Incorrect number of input arguments\n"));
+			displayAndStoreError(_("Incorrect number of input arguments.\n"));
 		}
 		break;
 		case 40:
@@ -313,12 +313,12 @@ try,catch */
 		break;
 		case 41:
 		{
-			displayAndStoreError(_("Incompatible output argument (LHS)\n"));
+			displayAndStoreError(_("Incompatible output argument.\n"));
 		}
 		break;
 		case 42:
 		{
-			displayAndStoreError(_("Incompatible input argument (RHS)\n"));
+			displayAndStoreError(_("Incompatible input argument.\n"));
 		}
 		break;
 		case 43:
@@ -330,11 +330,11 @@ try,catch */
 		{
 			if (Err == 1)
 			{
-				displayAndStoreError(_("First argument is incorrect.\n"));
+				displayAndStoreError(_("Wrong first argument.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("%dth argument is incorrect.\n"),Err);
+				displayAndStoreError(_("Wrong argument %d.\n"),Err);
 			}
 
 		}
@@ -363,7 +363,7 @@ try,catch */
 		break;
 		case 49:
 		{
-			displayAndStoreError(_("Incorrect file or format\n"));
+			displayAndStoreError(_("Incorrect file or format.\n"));
 		}
 		break;
 		case 50:
@@ -371,7 +371,7 @@ try,catch */
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("subroutine not found : %s\n"),NameVarOnStack);
+				displayAndStoreError(_("subroutine not found: %s\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -384,62 +384,27 @@ try,catch */
 		break;
 		case 52:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a real matrix.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be a real matrix.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: Real matrix expected.\n"),Err);
 		}
 		break;
 		case 53:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth input is invalid (waiting for real or complex matrix.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("invalid input (waiting for real or complex matrix.\n"));
-			}
+			displayAndStoreError(_("Wrong type for input argument %d: Real or complex matrix expected.\n"),Err);
 		}
 		break;
 		case 54:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument type must be polynomial.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument type must be polynomial.\n"));
-			}
+			displayAndStoreError(_("Wrong type for input argument %d: Polynomial expected.\n"),Err);
 		}
 		break;
 		case 55:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument type must be character string.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument type must be  character string.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: String expected.\n"),Err);
 		}
 		break;
 		case 56:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a list.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be a list.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: List expected.\n"),Err);
 		}
 		break;
 		case 57:
@@ -451,12 +416,12 @@ try,catch */
 		{
 			if (Rhs == 0)
 			{
-				displayAndStoreError(_("function has no input argument...\n"));
+				displayAndStoreError(_("Function has no input argument...\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("incorrect number of arguments in function call...\n"));
-				displayAndStoreError(_("arguments are :\n"));
+				displayAndStoreError(_("Wrong number of arguments in function call...\n"));
+				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
 				C2F(prntid)(&((integer *)&C2F(stack))[C2F(recu).pstk[C2F(recu).pt - 1] - 1], &Rhs, &C2F(iop).wte);
 			}
@@ -467,12 +432,12 @@ try,catch */
 		{
 			if (Lhs == 0)
 			{
-				displayAndStoreError(_("function has no output\n"));
+				displayAndStoreError(_("Function has no output.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("incorrect # of outputs in the function\n"));
-				displayAndStoreError(_("arguments are :\n"));
+				displayAndStoreError(_("Incorrect # of outputs in the function\n"));
+				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
 				C2F(prntid)(&((integer *)&C2F(stack))[C2F(recu).pstk[C2F(recu).pt - 1] - 1], &Lhs, &C2F(iop).wte);
 			}
@@ -480,17 +445,17 @@ try,catch */
 		break;
 		case 60:
 		{
-			displayAndStoreError(_("Argument with incompatible dimensions\n"));
+			displayAndStoreError(_("Wrong size for argument: Incompatible dimensions.\n"));
 		}
 		break;
 		case 61:
 		{
-			displayAndStoreError(_("Direct access : give format\n"));
+			displayAndStoreError(_("Direct access : give format.\n"));
 		}
 		break;
 		case 62:
 		{
-			displayAndStoreError(_("end of file at line %d\n"),Err);
+			displayAndStoreError(_("End of file at line %d.\n"),Err);
 		}
 		break;
 		case 63:
@@ -500,12 +465,12 @@ try,catch */
 		break;
 		case 64:
 		{
-			displayAndStoreError(_("Integration fails\n"));
+			displayAndStoreError(_("Integration fails.\n"));
 		}
 		break;
 		case 65:
 		{
-			displayAndStoreError(_("%d : logical unit already used\n"),Err);
+			displayAndStoreError(_("%d: logical unit already used.\n"),Err);
 		}
 		break;
 		case 66:
@@ -528,17 +493,17 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 69:
 		{
-			displayAndStoreError(_("Floating point exception\n"));
+			displayAndStoreError(_("Floating point exception.\n"));
 		}
 		break;
 		case 70:
 		{
-			displayAndStoreError(_("Too many arguments in fort (max 30)\n"));
+			displayAndStoreError(_("Too many arguments in fort (max 30).\n"));
 		}
 		break;
 		case 71:
 		{
-			displayAndStoreError(_("This variable is not valid in fort\n"));
+			displayAndStoreError(_("This variable is not valid in fort.\n"));
 		}
 		break;
 		case 72:
@@ -554,17 +519,17 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 73:
 		{
-			displayAndStoreError(_("Error while linking\n"));
+			displayAndStoreError(_("Error while linking.\n"));
 		}
 		break;
 		case 74:
 		{
-			displayAndStoreError(_("Leading coefficient is zero\n"));
+			displayAndStoreError(_("Leading coefficient is zero.\n"));
 		}
 		break;
 		case 75:
 		{
-			displayAndStoreError(_("Too high degree (max 100)\n"));
+			displayAndStoreError(_("Too high degree (max 100).\n"));
 		}
 		break;
 		case 76:
@@ -577,7 +542,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("%s  : wrong number of rhs arguments.\n"),NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong number of input arguments.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -588,7 +553,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("%s  :wrong number of lhs arguments.\n"),NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong number of output arguments.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -609,7 +574,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real or complex matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -620,7 +585,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Real matrix expected.\n"),NameVarOnStack, Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -631,7 +596,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Real vector expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -642,7 +607,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Scalar expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -660,137 +625,73 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 87:
 		{
-			displayAndStoreError(_("Unobservable system\n"));
+			displayAndStoreError(_("Unobservable system.\n"));
 		}
 		break;
 		case 88:
 		{
-			displayAndStoreError(_("sfact : singular or assymetric problem.\n"));
+			displayAndStoreError(_("%s: singular or assymetric problem.\n"),"sfact");
 		}
 		break;
 		case 89:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument has incorrect dimensions.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument has incorrect dimensions.\n"));
-			}
+			displayAndStoreError(_("Wrong size for argument %d.\n"),Err);
 		}
 		break;
 		case 90:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a transfer matrix.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be a transfer matrix.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: Transfer matrix expected.\n"),Err);
 		}
 		break;
 		case 91:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be in state space form.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be in state space form.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: In state space form expected.\n"),Err);
 		}
 		break;
 		case 92:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a rational matrix.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be a rational matrix.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: Rational matrix expected.\n"),Err);
 		}
 		break;
 		case 93:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be in continuous time.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("waiting for continuous time...\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: In continuous time expected.\n"),Err);
 		}
 		break;
 		case 94:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be in discrete time.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be in discrete time.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: In discrete time expected.\n"),Err);
 		}
 		break;
 		case 95:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be SISO.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be SISO.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: SISO expected.\n"),Err);
 		}
 		break;
 		case 96:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("time domain of %dth argument is not defined.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("time domain of argument is not defined.\n"));
-			}
+			displayAndStoreError(_("time domain of argument %d is not defined.\n"),Err);
 		}
 		break;
 		case 97:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a system in state space or transfer matrix form.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("input argument must be a system in state space or transfer matrix form.\n"));
-			}
-
+			displayAndStoreError(_("Wrong type for argument %d: A system in state space or transfer matrix form expected.\n"),Err);
 		}
 		break;
 		case 98:
 		{
-			displayAndStoreError(_("variable returned by scilab argument function is incorrect.\n"));
+			displayAndStoreError(_("Variable returned by scilab argument function is incorrect.\n"));
 		}
 		break;
 		case 99:
 		{
 			if (Err != 1)
 			{
-				displayAndStoreError(_(" elements of %dth th must be in increasing order!.\n"),Err);
+				displayAndStoreError(_("Elements of %dth argument must be in increasing order.\n"),Err);
 			}
 			else
 			{
-				displayAndStoreError(_("elements of first argument are not (strictly) increasing.\n"));
+				displayAndStoreError(_("Elements of first argument are not (strictly) increasing.\n"));
 			}
 		}
 		break;
@@ -798,11 +699,11 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		{
 			if (Err != 1)
 			{
-				displayAndStoreError(_("the elements of %dth argument are not in (strictly) decreasing order.\n"),Err);
+				displayAndStoreError(_("Elements of %dth argument are not in (strictly) decreasing order.\n"),Err);
 			}
 			else
 			{
-				displayAndStoreError(_("elements of first argument are not in (strictly) decreasing order.\n"));
+				displayAndStoreError(_("Elements of first argument are not in (strictly) decreasing order.\n"));
 			}
 		}
 		break;
@@ -810,11 +711,11 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		{
 			if (Err != 1)
 			{
-				displayAndStoreError(_("last element of %dth argument <>  first.\n"),Err);
+				displayAndStoreError(_("Last element of %dth argument <> first.\n"),Err);
 			}
 			else
 			{
-				displayAndStoreError(_("last element of first argument does not matches the first one.\n"));
+				displayAndStoreError(_("Last element of first argument does not match the first one.\n"));
 			}
 		}
 		break;
@@ -823,7 +724,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("variable or function %s is not in file.\n"),NameVarOnStack);
+				displayAndStoreError(_("Variable or function %s are not in file.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -834,7 +735,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("variable %s is not a valid rational function.\n"),NameVarOnStack);
+				displayAndStoreError(_("Variable %s is not a valid rational function.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -845,7 +746,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_3);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("variable %s is not a valid state space representation.\n"),NameVarOnStack);
+				displayAndStoreError(_("Variable %s is not a valid state space representation.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -863,17 +764,17 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 107:
 		{
-			displayAndStoreError(_("too many functions are defined (maximum #:%d).\n"),Err);
+			displayAndStoreError(_("Too many functions are defined (maximum #:%d).\n"),Err);
 		}
 		break;
 		case 108:
 		{
-			displayAndStoreError(_("too complex for scilab, may be a too long control instruction.\n"));
+			displayAndStoreError(_("Too complex for scilab, may be a too long control instruction.\n"));
 		}
 		break;
 		case 109:
 		{
-			displayAndStoreError(_("Too large, cant be displayed.\n"));
+			displayAndStoreError(_("Too large, can't be displayed.\n"));
 		}
 		break;
 		case 110:
@@ -892,7 +793,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_2);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("trying to re-define function %s .\n"),NameVarOnStack);
+				displayAndStoreError(_("Trying to re-define function %s.\n"),NameVarOnStack);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -900,7 +801,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 112:
 		{
-			displayAndStoreError(_("Cannot allocate more memory.\n"));
+			displayAndStoreError(_("No more memory.\n"));
 		}
 		break;
 		case 113:
@@ -915,7 +816,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 115:
 		{
-			displayAndStoreError(_("Stack problem detected within a loop.\nA primitive function has been called with a wrong number of output arguments (LHS).\nNo output argument (LHS) test has been made for this function.\nPlease report this bug :\n"));
+			displayAndStoreError(_("Stack problem detected within a loop.\nA primitive function has been called with a wrong number of output arguments.\nNo output argument test has been made for this function.\nPlease report this bug :\n"));
 			displayAndStoreError("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n");
 
 			C2F(showstack)(); /* display of calling tree */
@@ -923,31 +824,19 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 116:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument has incorrect value.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("first argument has incorrect value.\n"));
-			}
+
+			displayAndStoreError(_("Wrong value for argument %d.\n"),Err);
 		}
 		break;
 		case 117:
 		{
-			displayAndStoreError(_("list element number %d is Undefined.\n"),Err);
+			displayAndStoreError(_("List element number %d is Undefined.\n"),Err);
 		}
 		break;
 		case 118:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a named variable not an expression.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument must be a named variable not an expression.\n"));
-			}
+			
+			displayAndStoreError(_("Wrong type for argument %d: Named variable not an expression expected.\n"),Err);
 		}
 		break;
 		case 119:
@@ -967,7 +856,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 122:
 		{
-			displayAndStoreError(_("logical unit number should be larger than %d.\n"),Err);
+			displayAndStoreError(_("Logical unit number should be larger than %d.\n"),Err);
 		}
 		break;
 		case 123:
@@ -982,7 +871,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 125:
 		{
-			displayAndStoreError(_("Problem may be unbounded : too high distance between two consecutive iterations.\n"));
+			displayAndStoreError(_("Problem may be unbounded: too high distance between two consecutive iterations.\n"));
 		}
 		break;
 		case 126:
@@ -1012,12 +901,12 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 131:
 		{
-			displayAndStoreError(_("Optim: stop requested by simulator (ind=0)\n"));
+			displayAndStoreError(_("%s: Stop requested by simulator (ind=0)\n"),"optim");
 		}
 		break;
 		case 132:
 		{
-			displayAndStoreError(_("Optim: incorrect input parameters.\n"));
+			displayAndStoreError(_("%s: Wrong input parameters.\n"),"optim");
 		}
 		break;
 		case 133:
@@ -1027,17 +916,17 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 134:
 		{
-			displayAndStoreError(_("Optim: problem with initial constants in simul.\n"));
+			displayAndStoreError(_("%s: Problem with initial constants in simul.\n"),"optim");
 		}
 		break;
 		case 135:
 		{
-			displayAndStoreError(_("Optim : bounds and initial guess are incompatible.\n"));
+			displayAndStoreError(_("%s: Bounds and initial guess are incompatible.\n"),"optim");
 		}
 		break;
 		case 136:
 		{
-			displayAndStoreError(_("Optim : this method is NOT implemented.\n"));
+			displayAndStoreError(_("%: This method is NOT implemented.\n"),"optim");
 		}
 		break;
 		case 137:
@@ -1047,12 +936,12 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 138:
 		{
-			displayAndStoreError(_("Optim : incorrect stopping parameters.\n"));
+			displayAndStoreError(_("%s: Incorrect stopping parameters.\n"),"optim");
 		}
 		break;
 		case 139:
 		{
-			displayAndStoreError(_("Optim : incorrect bounds.\n"));
+			displayAndStoreError(_("%s: Incorrect bounds.\n"),"optim");
 		}
 		break;
 		case 140:
@@ -1067,12 +956,12 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 142:
 		{
-			displayAndStoreError(_("hot restart : dimension of working table (argument n:%d).\n"),Err);
+			displayAndStoreError(_("Hot restart: dimension of working table (argument n:%d).\n"),Err);
 		}
 		break;
 		case 143:
 		{
-			displayAndStoreError(_("Optim : df0 must be positive !\n"));
+			displayAndStoreError(_("%s: df0 must be positive !\n"),"optim");
 		}
 		break;
 		case 144:
@@ -1106,7 +995,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s: wrong type argument, expecting a real or complex matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1119,7 +1008,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Real matrix expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1132,7 +1021,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a real vector.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Real vector expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1145,7 +1034,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a scalar.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Scalar expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1159,7 +1048,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong matrix size %d,%d) expected.\n"),Err,NameVarOnStack,minvalue,maxvalue);
+				displayAndStoreError(_("%s: Wrong size for argument %d: (%d,%d) expected.\n"),NameVarOnStack,Err,minvalue,maxvalue);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1172,7 +1061,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong vector size (%d) expected.\n"),Err,NameVarOnStack,vectorsize);
+				displayAndStoreError(_("%s: Wrong size for argument %d: %d expected.\n"),NameVarOnStack,Err,vectorsize);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1183,7 +1072,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a matrix of strings.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Matrix of strings expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1194,7 +1083,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a boolean matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Boolean matrix expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1205,7 +1094,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Matrix expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1216,7 +1105,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a list.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: List expected.\n"),NameVarOnStack, Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1227,7 +1116,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a function or string (external function).\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Function or string (external function) expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1238,7 +1127,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a polynomial.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Polynomial expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1249,7 +1138,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a working integer matrix.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Working integer matrix expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1260,7 +1149,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Argument %d of %s : wrong type argument, expecting a  vector.\n"),Err,NameVarOnStack);
+				displayAndStoreError(_("%s: Wrong type for argument %d: Vector expected.\n"),NameVarOnStack,Err);
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
@@ -1280,50 +1169,23 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 216:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument type must be boolean or scalar.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("Argument type must be boolean or scalar.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: Boolean or scalar expected.\n"),Err);
 		}
 		break;
 		case 217:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a sparse matrix of scalars.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument type must be a sparse matrix of scalars.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: Sparse matrix of scalars expected.\n"),Err);
 		}
 		break;
 		case 218:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a handle to sparse lu factors.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument type must be a handle to sparse lu factors.\n"));
-			}
+			displayAndStoreError(_("Wrong type for argument %d: Handle to sparse lu factors expected.\n"),Err);
 		}
 		break;
 		case 219:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must be a sparse or full scalar matrix.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("argument type must be a sparse or full scalar matrix.\n"));
-			}
+
+			displayAndStoreError(_("Wrong type argument %d: Sparse or full scalar matrix expected.\n"),Err);
 		}
 		break;
 		case 220:
@@ -1338,7 +1200,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 222:
 		{
-			displayAndStoreError(_("lusolve not yet implemented for full input parameter (RHS)\n"));
+			displayAndStoreError(_("%s not yet implemented for full input parameter.\n"),"lusolve");
 		}
 		break;
 		case 223:
@@ -1395,7 +1257,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 231:
 		{
-			displayAndStoreError(_("First input argument must be a single string.\n"));
+			displayAndStoreError(_("Wrong type for first input argument: Single string expected.\n"));
 		}
 		break;
 		case 232:
@@ -1410,27 +1272,27 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 234:
 		{
-			displayAndStoreError(_("Link: expecting more than one argument.\n"));
+			displayAndStoreError(_("%s: expecting more than one argument.\n"),"Link");
 		}
 		break;
 		case 235:
 		{
-			displayAndStoreError(_("Link: problem with one of the entry point.\n"));
+			displayAndStoreError(_("%s: problem with one of the entry point.\n"),"Link");
 		}
 		break;
 		case 236:
 		{
-			displayAndStoreError(_("Link: the shared archive was not loaded.\n"));
+			displayAndStoreError(_("%s: the shared archive was not loaded.\n"),"Link");
 		}
 		break;
 		case 237:
 		{
-			displayAndStoreError(_("link: Only one entry point allowed on this operating system.\n"));
+			displayAndStoreError(_("%s: Only one entry point allowed on this operating system.\n"),"Link");
 		}
 		break;
 		case 238:
 		{
-			displayAndStoreError(_("Link: First argument cannot be a number.\n"));
+			displayAndStoreError(_("%s: First argument cannot be a number.\n"),"Link");
 		}
 		break;
 		case 239:
@@ -1498,27 +1360,13 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		}
 		break;
 		case 248:
-		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument is not a valid variable name.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("Argument is not a valid variable name.\n"));
-			}
+		{			
+			displayAndStoreError(_("Wrong value for argument %d: Valid variable name expected.\n"),Err);
 		}
 		break;
 		case 249:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must not be an empty string.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("Argument must not be an empty string.\n"));
-			}
+			displayAndStoreError(_("Wrong value for argument %d: Empty string expected.\n"),Err);
 		}
 		break;
 		case 250:
@@ -1528,47 +1376,47 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 251:
 		{
-			displayAndStoreError(_("bvode: ipar dimensioned at least 11.\n"));
+			displayAndStoreError(_("%s: ipar dimensioned at least 11.\n"),"bvode");
 		}
 		break;
 		case 252:
 		{
-			displayAndStoreError(_("bvode: ltol must be of size ipar(4).\n"));
+			displayAndStoreError(_("%s: ltol must be of size ipar(4).\n"),"bvode");
 		}
 		break;
 		case 253:
 		{
-			displayAndStoreError(_("bvode: fixpnt must be of size ipar(11).\n"));
+			displayAndStoreError(_("%s: fixpnt must be of size ipar(11).\n"),"bvode");
 		}
 		break;
 		case 254:
 		{
-			displayAndStoreError(_("bvode: ncomp < 20 requested.\n"));
+			displayAndStoreError(_("%s: ncomp < 20 requested.\n"),"bvode");
 		}
 		break;
 		case 255:
 		{
-			displayAndStoreError(_("bvode: m must be of size ncomp.\n"));
+			displayAndStoreError(_("%s: m must be of size ncomp.\n"),"bvode");
 		}
 		break;
 		case 256: case 257:
 		{
-			displayAndStoreError(_("bvode: sum(m) must be less than 40.\n"));
+			displayAndStoreError(_("%s: sum(m) must be less than 40.\n"),"bvode");
 		}
 		break;
 		case 258:
 		{
-			displayAndStoreError(_("bvode: input data error.\n"));
+			displayAndStoreError(_("%s: input data error.\n"),"bvode");
 		}
 		break;
 		case 259:
 		{
-			displayAndStoreError(_("bvode: no. of subintervals exceeds storage.\n"));
+			displayAndStoreError(_("%s: no. of subintervals exceeds storage.\n"),"bvode");
 		}
 		break;
 		case 260:
 		{
-			displayAndStoreError(_("bvode: Th colocation matrix is singular.\n"));
+			displayAndStoreError(_("%s: Th colocation matrix is singular.\n"),"bvode");
 		}
 		break;
 		case 261:
@@ -1589,29 +1437,22 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 264:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument must not contain NaN or Inf.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("Argument must not contain NaN or Inf.\n"));
-			}
+			displayAndStoreError(_("Wrong value for argument %d: Must not contain NaN or Inf.\n"),Err);
 		}
 		break;
 		case 265:
 		{
-			displayAndStoreError(_("A and B must have equal number of rows.\n"));
+			displayAndStoreError(_("%s and %s must have equal number of rows.\n"),"A","B");
 		}
 		break;
 		case 266:
 		{
-			displayAndStoreError(_("A and B must have equal number of columns.\n"));
+			displayAndStoreError(_("%s and %s must have equal number of columns.\n"),"A","B");
 		}
 		break;
 		case 267:
 		{
-			displayAndStoreError(_("A and B must have equal dimensions.\n"));
+			displayAndStoreError(_("%s and %s must have equal dimensions.\n"),"A","B");
 		}
 		break;
 		case 268:
@@ -1621,38 +1462,17 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 269:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument eigenvalues must have negative real parts.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("Argument eigenvalues must have negative real parts.\n"));
-			}
+			displayAndStoreError(_("Wrong value for argument %d: eigenvalues must have negative real parts.\n"),Err);
 		}
 		break;
 		case 270:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("%dth argument eigenvalues modulus must be less than one.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("Argument eigenvalues modulus must be less than one.\n"));
-			}
+			displayAndStoreError(_("Wrong value for argument %d: eigenvalues modulus must be less than one.\n"),Err);
 		}
 		break;
 		case 271:
 		{
-			if (Err != 1)
-			{
-				displayAndStoreError(_("Size varying argument a*eye(), (arg %d) not allowed here.\n"),Err);
-			}
-			else
-			{
-				displayAndStoreError(_("Size varying argument a*eye() not allowed here.\n"));
-			}
+			displayAndStoreError(_("Size varying argument a*eye(), (arg %d) not allowed here.\n"),Err);
 		}
 		break;
 		case 272:

@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2008-01-30 18:01+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-26 18:05+0100\n"
+"Revision-Date: 2008-01-30 18:01+0100\n"
 
 # File: src/c/sciprint_full.c, line: 38
 # File: src/c/sciprint_full.c, line: 56
@@ -32,353 +32,328 @@ msgstr ""
 msgid "     (end) %s"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 56
-msgid "Incorrect assignment\n"
+# File: src/c/errmsg.c, line: 55
+msgid "Incorrect assignment.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 68
-msgid "Waiting for right parenthesis\n"
+# File: src/c/errmsg.c, line: 67
+msgid "Waiting for right parenthesis.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 77
+# File: src/c/errmsg.c, line: 76
 #, c-format
 msgid "Undefined variable : %s\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 85
-msgid "Inconsistent column/row dimensions\n"
+# File: src/c/errmsg.c, line: 84
+msgid "Inconsistent column/row dimensions.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 90
-msgid "Inconsistent row/column dimensions\n"
+# File: src/c/errmsg.c, line: 89
+msgid "Inconsistent row/column dimensions.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 95
-msgid "Dot cannot be used as modifier for this operator\n"
+# File: src/c/errmsg.c, line: 94
+msgid "Dot cannot be used as modifier for this operator.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 100
-msgid "Inconsistent addition\n"
+# File: src/c/errmsg.c, line: 99
+msgid "Inconsistent addition.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 105
-msgid "Inconsistent subtraction\n"
+# File: src/c/errmsg.c, line: 104
+msgid "Inconsistent subtraction.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 110
-msgid "Inconsistent multiplication\n"
+# File: src/c/errmsg.c, line: 109
+msgid "Inconsistent multiplication.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 115
-msgid "Inconsistent right division\n"
+# File: src/c/errmsg.c, line: 114
+msgid "Inconsistent right division.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 120
-msgid "Inconsistent left division\n"
+# File: src/c/errmsg.c, line: 119
+msgid "Inconsistent left division.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 125
-msgid "Redefining permanent variable\n"
+# File: src/c/errmsg.c, line: 124
+msgid "Redefining permanent variable.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 130
-msgid "Eye variable undefined in this context\n"
+# File: src/c/errmsg.c, line: 129
+msgid "Eye variable undefined in this context.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 135
-msgid "Submatrix incorrectly defined\n"
+# File: src/c/errmsg.c, line: 134
+msgid "Submatrix incorrectly defined.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 140
+# File: src/c/errmsg.c, line: 139
 msgid "Incorrect command!\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 153
+# File: src/c/errmsg.c, line: 152
 msgid "stack size exceeded!\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 154
+# File: src/c/errmsg.c, line: 153
 msgid "Use stacksize function to increase it.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 155
+# File: src/c/errmsg.c, line: 154
 #, c-format
 msgid "Memory used for variables : %d\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 156
+# File: src/c/errmsg.c, line: 155
 #, c-format
 msgid "Intermediate memory needed : %d\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 157
+# File: src/c/errmsg.c, line: 156
 #, c-format
 msgid "Total memory available : %d\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 162
+# File: src/c/errmsg.c, line: 161
 msgid "Too many variables!\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 167
-msgid "Problem is singular\n"
+# File: src/c/errmsg.c, line: 166
+msgid "Problem is singular.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 174
-msgid "First argument must be square matrix.\n"
+# File: src/c/errmsg.c, line: 173
+msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 178
+# File: src/c/errmsg.c, line: 177
 #, c-format
-msgid "%dth argument must be square matrix.\n"
+msgid "Wrong type for argument %d: Square matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 184
-msgid "Invalid index\n"
+# File: src/c/errmsg.c, line: 183
+msgid "Invalid index.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 189
+# File: src/c/errmsg.c, line: 188
 msgid "Recursion problems. Sorry...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 194
-msgid "Matrix norms available are 1, 2, inf, and fro\n"
+# File: src/c/errmsg.c, line: 193
+msgid "Matrix norms available are 1, 2, inf, and fro.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 199
+# File: src/c/errmsg.c, line: 198
 msgid "Convergence problem...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 207
+# File: src/c/errmsg.c, line: 206
 #, c-format
-msgid "Bad call to primitive : %s\n"
+msgid "Bad call to primitive: %s\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 215
-msgid "Too complex recursion! (recursion tables are full))\n"
+# File: src/c/errmsg.c, line: 214
+msgid "Too complex recursion! (recursion tables are full)\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 223
+# File: src/c/errmsg.c, line: 222
 msgid "Division by zero...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 228
+# File: src/c/errmsg.c, line: 227
 msgid "Empty function...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 233
-msgid "Matrix is not positive definite\n"
+# File: src/c/errmsg.c, line: 232
+msgid "Matrix is not positive definite.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 238
-msgid "Invalid exponent\n"
+# File: src/c/errmsg.c, line: 237
+msgid "Invalid exponent.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 243
-msgid "Incorrect string\n"
+# File: src/c/errmsg.c, line: 242
+msgid "Incorrect string.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 249
-msgid "Singularity of log or tan function\n"
+# File: src/c/errmsg.c, line: 248
+msgid "Singularity of log or tan function.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 254
+# File: src/c/errmsg.c, line: 253
 msgid "Too many ':'\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 259
+# File: src/c/errmsg.c, line: 258
 msgid "Incorrect control instruction syntax.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 268
-msgid "Syntax error in a 'if' instruction.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 272
-msgid "Syntax error in a 'while' instruction.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 276
-msgid "Syntax error in a 'select/case' instruction.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 286
-# File: src/c/errmsg.c, line: 334
-msgid "First argument is incorrect.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 290
+# File: src/c/errmsg.c, line: 267
+# File: src/c/errmsg.c, line: 271
+# File: src/c/errmsg.c, line: 275
 #, c-format
-msgid "%dth input argument is incorrect here.\n"
+msgid "Syntax error in a '%s' instruction.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 296
+# File: src/c/errmsg.c, line: 285
+# File: src/c/errmsg.c, line: 333
+msgid "Wrong first argument.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 289
+#, c-format
+msgid "Wrong input argument %d.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 295
 #, c-format
 msgid "Incorrect function at line %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 301
-msgid "File name incorrect\n"
+# File: src/c/errmsg.c, line: 300
+msgid "Wrong file name.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 306
-msgid "Incorrect number of input arguments\n"
+# File: src/c/errmsg.c, line: 305
+msgid "Incorrect number of input arguments.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 311
+# File: src/c/errmsg.c, line: 310
 msgid "Waiting for end of command.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 317
-msgid "Incompatible output argument (LHS)\n"
+# File: src/c/errmsg.c, line: 316
+msgid "Incompatible output argument.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 322
-msgid "Incompatible input argument (RHS)\n"
+# File: src/c/errmsg.c, line: 321
+msgid "Incompatible input argument.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 327
+# File: src/c/errmsg.c, line: 326
 msgid "Not implemented in scilab...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 338
+# File: src/c/errmsg.c, line: 337
 #, c-format
-msgid "%dth argument is incorrect.\n"
+msgid "Wrong argument %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 345
+# File: src/c/errmsg.c, line: 344
 #, c-format
 msgid "null matrix (argument # %d).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 350
+# File: src/c/errmsg.c, line: 349
 msgid "Incorrect syntax.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 356
+# File: src/c/errmsg.c, line: 355
 msgid " end or else is missing...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 362
+# File: src/c/errmsg.c, line: 361
 #, c-format
 msgid " input line longer than buffer size: %d\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 367
-msgid "Incorrect file or format\n"
+# File: src/c/errmsg.c, line: 366
+msgid "Incorrect file or format.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 375
+# File: src/c/errmsg.c, line: 374
 #, c-format
-msgid "subroutine not found : %s\n"
+msgid "subroutine not found: %s\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 390
+# File: src/c/errmsg.c, line: 387
 #, c-format
-msgid "%dth argument must be a real matrix.\n"
+msgid "Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 394
-msgid "argument must be a real matrix.\n"
+# File: src/c/errmsg.c, line: 392
+#, c-format
+msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 397
+#, c-format
+msgid "Wrong type for input argument %d: Polynomial expected.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 402
 #, c-format
-msgid "%dth input is invalid (waiting for real or complex matrix.\n"
+msgid "Wrong type for argument %d: String expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 406
-msgid "invalid input (waiting for real or complex matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 414
+# File: src/c/errmsg.c, line: 407
 #, c-format
-msgid "%dth argument type must be polynomial.\n"
+msgid "Wrong type for argument %d: List expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 418
-msgid "argument type must be polynomial.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 426
-#, c-format
-msgid "%dth argument type must be character string.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 430
-msgid "argument type must be  character string.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 438
-#, c-format
-msgid "%dth argument must be a list.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 442
-msgid "argument must be a list.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 448
+# File: src/c/errmsg.c, line: 412
 msgid "Problem with comparison symbol...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 455
-msgid "function has no input argument...\n"
+# File: src/c/errmsg.c, line: 419
+msgid "Function has no input argument...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 459
-msgid "incorrect number of arguments in function call...\n"
+# File: src/c/errmsg.c, line: 423
+msgid "Wrong number of arguments in function call...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 460
-# File: src/c/errmsg.c, line: 476
-msgid "arguments are :\n"
+# File: src/c/errmsg.c, line: 424
+# File: src/c/errmsg.c, line: 440
+msgid "Arguments are :\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 471
-msgid "function has no output\n"
+# File: src/c/errmsg.c, line: 435
+msgid "Function has no output.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 475
-msgid "incorrect # of outputs in the function\n"
+# File: src/c/errmsg.c, line: 439
+msgid "Incorrect # of outputs in the function\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 484
-msgid "Argument with incompatible dimensions\n"
+# File: src/c/errmsg.c, line: 448
+msgid "Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 489
-msgid "Direct access : give format\n"
+# File: src/c/errmsg.c, line: 453
+msgid "Direct access : give format.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 494
+# File: src/c/errmsg.c, line: 458
 #, c-format
-msgid "end of file at line %d\n"
+msgid "End of file at line %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 499
+# File: src/c/errmsg.c, line: 463
 #, c-format
 msgid "%d graphic terminal?\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 504
-msgid "Integration fails\n"
+# File: src/c/errmsg.c, line: 468
+msgid "Integration fails.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 509
+# File: src/c/errmsg.c, line: 473
 #, c-format
-msgid "%d : logical unit already used\n"
+msgid "%d: logical unit already used.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 514
+# File: src/c/errmsg.c, line: 478
 msgid "No more logical units available!\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 519
+# File: src/c/errmsg.c, line: 483
 msgid "Unknown file format.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 524
+# File: src/c/errmsg.c, line: 488
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
@@ -386,768 +361,703 @@ msgid ""
 "Otherwise, send a bug report to :\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 532
-msgid "Floating point exception\n"
+# File: src/c/errmsg.c, line: 496
+msgid "Floating point exception.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 537
-msgid "Too many arguments in fort (max 30)\n"
+# File: src/c/errmsg.c, line: 501
+msgid "Too many arguments in fort (max 30).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 542
-msgid "This variable is not valid in fort\n"
+# File: src/c/errmsg.c, line: 506
+msgid "This variable is not valid in fort.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 550
+# File: src/c/errmsg.c, line: 514
 #, c-format
 msgid "%s is not valid in this context.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 558
-msgid "Error while linking\n"
+# File: src/c/errmsg.c, line: 522
+msgid "Error while linking.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 563
-msgid "Leading coefficient is zero\n"
+# File: src/c/errmsg.c, line: 527
+msgid "Leading coefficient is zero.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 568
-msgid "Too high degree (max 100)\n"
+# File: src/c/errmsg.c, line: 532
+msgid "Too high degree (max 100).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 573
+# File: src/c/errmsg.c, line: 537
 #, c-format
 msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 581
+# File: src/c/errmsg.c, line: 545
 #, c-format
-msgid "%s  : wrong number of rhs arguments.\n"
+msgid "%s: Wrong number of input arguments.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 592
+# File: src/c/errmsg.c, line: 556
 #, c-format
-msgid "%s  :wrong number of lhs arguments.\n"
+msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 605
-# File: src/c/errmsg.c, line: 1066
+# File: src/c/errmsg.c, line: 569
+# File: src/c/errmsg.c, line: 954
 #, c-format
 msgid "Incorrect function (argument n: %d).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 613
+# File: src/c/errmsg.c, line: 577
+# File: src/c/errmsg.c, line: 998
 #, c-format
-msgid ""
-"Argument %d of %s : wrong type argument, expecting a real or complex "
-"matrix.\n"
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 624
-# File: src/c/errmsg.c, line: 1123
+# File: src/c/errmsg.c, line: 588
+# File: src/c/errmsg.c, line: 1011
 #, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a real matrix.\n"
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 635
-# File: src/c/errmsg.c, line: 1136
+# File: src/c/errmsg.c, line: 599
+# File: src/c/errmsg.c, line: 1024
 #, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a real vector.\n"
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 646
-# File: src/c/errmsg.c, line: 1149
+# File: src/c/errmsg.c, line: 610
+# File: src/c/errmsg.c, line: 1037
 #, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a scalar.\n"
+msgid "%s: Wrong type for argument %d: Scalar expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 654
+# File: src/c/errmsg.c, line: 618
 msgid "Host does not answer...\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 659
+# File: src/c/errmsg.c, line: 623
 msgid "Uncontrollable system.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 664
-msgid "Unobservable system\n"
+# File: src/c/errmsg.c, line: 628
+msgid "Unobservable system.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 669
-msgid "sfact : singular or assymetric problem.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 676
+# File: src/c/errmsg.c, line: 633
 #, c-format
-msgid "%dth argument has incorrect dimensions.\n"
+msgid "%s: singular or assymetric problem.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 680
-msgid "argument has incorrect dimensions.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 688
+# File: src/c/errmsg.c, line: 638
 #, c-format
-msgid "%dth argument must be a transfer matrix.\n"
+msgid "Wrong size for argument %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 692
-msgid "argument must be a transfer matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 700
+# File: src/c/errmsg.c, line: 643
 #, c-format
-msgid "%dth argument must be in state space form.\n"
+msgid "Wrong type for argument %d: Transfer matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 704
-msgid "argument must be in state space form.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 712
+# File: src/c/errmsg.c, line: 648
 #, c-format
-msgid "%dth argument must be a rational matrix.\n"
+msgid "Wrong type for argument %d: In state space form expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 716
-msgid "argument must be a rational matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 724
+# File: src/c/errmsg.c, line: 653
 #, c-format
-msgid "%dth argument must be in continuous time.\n"
+msgid "Wrong type for argument %d: Rational matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 728
-msgid "waiting for continuous time...\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 736
+# File: src/c/errmsg.c, line: 658
 #, c-format
-msgid "%dth argument must be in discrete time.\n"
+msgid "Wrong type for argument %d: In continuous time expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 740
-msgid "argument must be in discrete time.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 748
+# File: src/c/errmsg.c, line: 663
 #, c-format
-msgid "%dth argument must be SISO.\n"
+msgid "Wrong type for argument %d: In discrete time expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 752
-msgid "argument must be SISO.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 760
+# File: src/c/errmsg.c, line: 668
 #, c-format
-msgid "time domain of %dth argument is not defined.\n"
+msgid "Wrong type for argument %d: SISO expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 764
-msgid "time domain of argument is not defined.\n"
+# File: src/c/errmsg.c, line: 673
+#, c-format
+msgid "time domain of argument %d is not defined.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 772
+# File: src/c/errmsg.c, line: 678
 #, c-format
 msgid ""
-"%dth argument must be a system in state space or transfer matrix form.\n"
+"Wrong type for argument %d: A system in state space or transfer matrix form "
+"expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 776
-msgid ""
-"input argument must be a system in state space or transfer matrix form.\n"
+# File: src/c/errmsg.c, line: 683
+msgid "Variable returned by scilab argument function is incorrect.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 783
-msgid "variable returned by scilab argument function is incorrect.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 790
+# File: src/c/errmsg.c, line: 690
 #, c-format
-msgid " elements of %dth th must be in increasing order!.\n"
+msgid "Elements of %dth argument must be in increasing order.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 794
-msgid "elements of first argument are not (strictly) increasing.\n"
+# File: src/c/errmsg.c, line: 694
+msgid "Elements of first argument are not (strictly) increasing.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 802
+# File: src/c/errmsg.c, line: 702
 #, c-format
-msgid "the elements of %dth argument are not in (strictly) decreasing order.\n"
+msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 806
-msgid "elements of first argument are not in (strictly) decreasing order.\n"
+# File: src/c/errmsg.c, line: 706
+msgid "Elements of first argument are not in (strictly) decreasing order.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 814
+# File: src/c/errmsg.c, line: 714
 #, c-format
-msgid "last element of %dth argument <>  first.\n"
+msgid "Last element of %dth argument <> first.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 818
-msgid "last element of first argument does not matches the first one.\n"
+# File: src/c/errmsg.c, line: 718
+msgid "Last element of first argument does not match the first one.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 827
+# File: src/c/errmsg.c, line: 727
 #, c-format
-msgid "variable or function %s is not in file.\n"
+msgid "Variable or function %s are not in file.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 838
+# File: src/c/errmsg.c, line: 738
 #, c-format
-msgid "variable %s is not a valid rational function.\n"
+msgid "Variable %s is not a valid rational function.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 849
+# File: src/c/errmsg.c, line: 749
 #, c-format
-msgid "variable %s is not a valid state space representation.\n"
+msgid "Variable %s is not a valid state space representation.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 857
+# File: src/c/errmsg.c, line: 757
 msgid "Undefined fonction.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 862
+# File: src/c/errmsg.c, line: 762
 msgid "Function name already used.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 867
+# File: src/c/errmsg.c, line: 767
 #, c-format
-msgid "too many functions are defined (maximum #:%d).\n"
+msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 872
-msgid "too complex for scilab, may be a too long control instruction.\n"
+# File: src/c/errmsg.c, line: 772
+msgid "Too complex for scilab, may be a too long control instruction.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 877
-msgid "Too large, cant be displayed.\n"
+# File: src/c/errmsg.c, line: 777
+msgid "Too large, can't be displayed.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 885
+# File: src/c/errmsg.c, line: 785
 #, c-format
 msgid "%s was a function when compiled but is now a primitive!\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 896
+# File: src/c/errmsg.c, line: 796
 #, c-format
-msgid "trying to re-define function %s .\n"
+msgid "Trying to re-define function %s.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 904
-msgid "Cannot allocate more memory.\n"
+# File: src/c/errmsg.c, line: 804
+msgid "No more memory.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 909
+# File: src/c/errmsg.c, line: 809
 msgid "Too large string.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 914
+# File: src/c/errmsg.c, line: 814
 msgid "Too many linked routines.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 919
+# File: src/c/errmsg.c, line: 819
 msgid ""
 "Stack problem detected within a loop.\n"
-"A primitive function has been called with a wrong number of output arguments "
-"(LHS).\n"
-"No output argument (LHS) test has been made for this function.\n"
+"A primitive function has been called with a wrong number of output "
+"arguments.\n"
+"No output argument test has been made for this function.\n"
 "Please report this bug :\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 929
+# File: src/c/errmsg.c, line: 828
 #, c-format
-msgid "%dth argument has incorrect value.\n"
+msgid "Wrong value for argument %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 933
-msgid "first argument has incorrect value.\n"
+# File: src/c/errmsg.c, line: 833
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 839
+#, c-format
+msgid ""
+"Wrong type for argument %d: Named variable not an expression expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 849
+msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 854
+msgid "Incompatible indices for non-zero elements.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 859
+#, c-format
+msgid "Logical unit number should be larger than %d.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 864
+msgid "Function not bounded from below.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 874
+msgid ""
+"Problem may be unbounded: too high distance between two consecutive "
+"iterations.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 879
+msgid "Inconsistent constraints.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 884
+msgid "No feasible solution.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 889
+msgid "Degenerate starting point.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 894
+msgid "No feasible point has been found.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 899
+msgid "Optimization fails: back to initial point.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 904
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0)\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 909
+#, c-format
+msgid "%s: Wrong input parameters.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 914
+msgid "Too small memory.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 919
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 924
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 929
+msgid "%: This method is NOT implemented.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 934
+msgid "NO hot restart available in this method.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 939
 #, c-format
-msgid "list element number %d is Undefined.\n"
+msgid "%s: Incorrect stopping parameters.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 946
+# File: src/c/errmsg.c, line: 944
 #, c-format
-msgid "%dth argument must be a named variable not an expression.\n"
+msgid "%s: Incorrect bounds.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 950
-msgid "argument must be a named variable not an expression.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 961
-msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 966
-msgid "Incompatible indices for non-zero elements.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 971
+# File: src/c/errmsg.c, line: 959
 #, c-format
-msgid "logical unit number should be larger than %d.\n"
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 976
-msgid "Function not bounded from below.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 986
-msgid ""
-"Problem may be unbounded : too high distance between two consecutive "
-"iterations.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 991
-msgid "Inconsistent constraints.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 996
-msgid "No feasible solution.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1001
-msgid "Degenerate starting point.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1006
-msgid "No feasible point has been found.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1011
-msgid "Optimization fails: back to initial point.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1016
-msgid "Optim: stop requested by simulator (ind=0)\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1021
-msgid "Optim: incorrect input parameters.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1026
-msgid "Too small memory.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1031
-msgid "Optim: problem with initial constants in simul.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1036
-msgid "Optim : bounds and initial guess are incompatible.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1041
-msgid "Optim : this method is NOT implemented.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1046
-msgid "NO hot restart available in this method.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1051
-msgid "Optim : incorrect stopping parameters.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1056
-msgid "Optim : incorrect bounds.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1071
+# File: src/c/errmsg.c, line: 964
 #, c-format
-msgid "hot restart : dimension of working table (argument n:%d).\n"
+msgid "%s: df0 must be positive !\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1076
-msgid "Optim : df0 must be positive !\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1084
+# File: src/c/errmsg.c, line: 972
 msgid "Undefined operation for the given operands.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1085
+# File: src/c/errmsg.c, line: 973
 #, c-format
 msgid "check or define function %s for overloading.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1110
+# File: src/c/errmsg.c, line: 1051
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 1064
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 1075
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 1086
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 1097
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 1108
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 1119
 #, c-format
 msgid ""
-"Argument %d of %s: wrong type argument, expecting a real or complex matrix.\n"
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1163
+# File: src/c/errmsg.c, line: 1130
 #, c-format
-msgid "Argument %d of %s : wrong matrix size %d,%d) expected.\n"
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1176
+# File: src/c/errmsg.c, line: 1141
 #, c-format
-msgid "Argument %d of %s : wrong vector size (%d) expected.\n"
+msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1187
+# File: src/c/errmsg.c, line: 1152
 #, c-format
-msgid ""
-"Argument %d of %s : wrong type argument, expecting a matrix of strings.\n"
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1198
-#, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a boolean matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1209
-#, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1220
-#, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a list.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1231
-#, c-format
-msgid ""
-"Argument %d of %s : wrong type argument, expecting a function or string "
-"(external function).\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1242
-#, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a polynomial.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1253
-#, c-format
-msgid ""
-"Argument %d of %s : wrong type argument, expecting a working integer "
-"matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1264
-#, c-format
-msgid "Argument %d of %s : wrong type argument, expecting a  vector.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1274
+# File: src/c/errmsg.c, line: 1162
 #, c-format
 msgid "%dth argument type must be boolean.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1278
+# File: src/c/errmsg.c, line: 1166
 msgid "Argument type must be boolean.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1286
+# File: src/c/errmsg.c, line: 1172
 #, c-format
-msgid "%dth argument type must be boolean or scalar.\n"
+msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1290
-msgid "Argument type must be boolean or scalar.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1298
+# File: src/c/errmsg.c, line: 1177
 #, c-format
-msgid "%dth argument must be a sparse matrix of scalars.\n"
+msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1302
-msgid "argument type must be a sparse matrix of scalars.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1310
+# File: src/c/errmsg.c, line: 1182
 #, c-format
-msgid "%dth argument must be a handle to sparse lu factors.\n"
+msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1314
-msgid "argument type must be a handle to sparse lu factors.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1322
+# File: src/c/errmsg.c, line: 1188
 #, c-format
-msgid "%dth argument must be a sparse or full scalar matrix.\n"
+msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1326
-msgid "argument type must be a sparse or full scalar matrix.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1332
+# File: src/c/errmsg.c, line: 1193
 msgid "Null variable cannot be used here.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1337
+# File: src/c/errmsg.c, line: 1198
 msgid "A sparse matrix entry is defined with two differents values.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1342
-msgid "lusolve not yet implemented for full input parameter (RHS)\n"
+# File: src/c/errmsg.c, line: 1203
+#, c-format
+msgid "%s not yet implemented for full input parameter.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1350
+# File: src/c/errmsg.c, line: 1211
 #, c-format
 msgid ""
 "It is not possible to redefine the %s primitive this way (see clearfun).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1358
+# File: src/c/errmsg.c, line: 1219
 msgid "Type data base is full.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1363
+# File: src/c/errmsg.c, line: 1224
 msgid "This data type is already defined.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1368
+# File: src/c/errmsg.c, line: 1229
 msgid "Inequality comparison with empty matrix.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1373
+# File: src/c/errmsg.c, line: 1234
 msgid "Missing index.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1381
+# File: src/c/errmsg.c, line: 1242
 #, c-format
 msgid "reference to the cleared global variable %s.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1394
+# File: src/c/errmsg.c, line: 1255
 msgid "semi def fails.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1399
-msgid "First input argument must be a single string.\n"
+# File: src/c/errmsg.c, line: 1260
+msgid "Wrong type for first input argument: Single string expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1404
+# File: src/c/errmsg.c, line: 1265
 msgid "Entry name not found.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1409
+# File: src/c/errmsg.c, line: 1270
 msgid "Maximum number of dynamic interfaces reached.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1414
-msgid "Link: expecting more than one argument.\n"
+# File: src/c/errmsg.c, line: 1275
+#, c-format
+msgid "%s: expecting more than one argument.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1419
-msgid "Link: problem with one of the entry point.\n"
+# File: src/c/errmsg.c, line: 1280
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1424
-msgid "Link: the shared archive was not loaded.\n"
+# File: src/c/errmsg.c, line: 1285
+#, c-format
+msgid "%s: the shared archive was not loaded.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1429
-msgid "link: Only one entry point allowed on this operating system.\n"
+# File: src/c/errmsg.c, line: 1290
+#, c-format
+msgid "%s: Only one entry point allowed on this operating system.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1434
-msgid "Link: First argument cannot be a number.\n"
+# File: src/c/errmsg.c, line: 1295
+#, c-format
+msgid "%s: First argument cannot be a number.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1439
+# File: src/c/errmsg.c, line: 1300
 msgid "You cannot link more functions, maxentry reached.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1447
+# File: src/c/errmsg.c, line: 1308
 #, c-format
 msgid "File %s already exists or directory write access denied.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1458
+# File: src/c/errmsg.c, line: 1319
 #, c-format
 msgid "File %s does not exist or read access denied.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1466
+# File: src/c/errmsg.c, line: 1327
 msgid "Binary direct acces files must be opened by 'file'.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1471
+# File: src/c/errmsg.c, line: 1332
 msgid "C file logical unit not allowed here.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1476
+# File: src/c/errmsg.c, line: 1337
 msgid "Fortran file logical unit not allowed here.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1481
+# File: src/c/errmsg.c, line: 1342
 #, c-format
 msgid "No input file associated to logical unit %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1487
+# File: src/c/errmsg.c, line: 1348
 msgid "Function not defined for given argument type(s),\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1490
+# File: src/c/errmsg.c, line: 1351
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1505
+# File: src/c/errmsg.c, line: 1364
 #, c-format
-msgid "%dth argument is not a valid variable name.\n"
+msgid "Wrong value for argument %d: Valid variable name expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1509
-msgid "Argument is not a valid variable name.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1517
+# File: src/c/errmsg.c, line: 1369
 #, c-format
-msgid "%dth argument must not be an empty string.\n"
+msgid "Wrong value for argument %d: Empty string expected.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1521
-msgid "Argument must not be an empty string.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1527
+# File: src/c/errmsg.c, line: 1374
 msgid "Recursive extraction is not valid in this context.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1532
-msgid "bvode: ipar dimensioned at least 11.\n"
+# File: src/c/errmsg.c, line: 1379
+#, c-format
+msgid "%s: ipar dimensioned at least 11.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1537
-msgid "bvode: ltol must be of size ipar(4).\n"
+# File: src/c/errmsg.c, line: 1384
+#, c-format
+msgid "%s: ltol must be of size ipar(4).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1542
-msgid "bvode: fixpnt must be of size ipar(11).\n"
+# File: src/c/errmsg.c, line: 1389
+#, c-format
+msgid "%s: fixpnt must be of size ipar(11).\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1547
-msgid "bvode: ncomp < 20 requested.\n"
+# File: src/c/errmsg.c, line: 1394
+#, c-format
+msgid "%s: ncomp < 20 requested.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1552
-msgid "bvode: m must be of size ncomp.\n"
+# File: src/c/errmsg.c, line: 1399
+#, c-format
+msgid "%s: m must be of size ncomp.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1557
-msgid "bvode: sum(m) must be less than 40.\n"
+# File: src/c/errmsg.c, line: 1404
+#, c-format
+msgid "%s: sum(m) must be less than 40.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1562
-msgid "bvode: input data error.\n"
+# File: src/c/errmsg.c, line: 1409
+#, c-format
+msgid "%s: input data error.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1567
-msgid "bvode: no. of subintervals exceeds storage.\n"
+# File: src/c/errmsg.c, line: 1414
+#, c-format
+msgid "%s: no. of subintervals exceeds storage.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1572
-msgid "bvode: Th colocation matrix is singular.\n"
+# File: src/c/errmsg.c, line: 1419
+#, c-format
+msgid "%s: Th colocation matrix is singular.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1577
+# File: src/c/errmsg.c, line: 1424
 msgid "Interface property table is full.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1583
+# File: src/c/errmsg.c, line: 1430
 #, c-format
 msgid "Too many global variables! , max number is %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1588
+# File: src/c/errmsg.c, line: 1435
 msgid "Error while writing in file,(disk full or deleted file.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1595
+# File: src/c/errmsg.c, line: 1440
 #, c-format
-msgid "%dth argument must not contain NaN or Inf.\n"
+msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1599
-msgid "Argument must not contain NaN or Inf.\n"
+# File: src/c/errmsg.c, line: 1445
+#, c-format
+msgid "%s and %s must have equal number of rows.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1605
-msgid "A and B must have equal number of rows.\n"
+# File: src/c/errmsg.c, line: 1450
+#, c-format
+msgid "%s and %s must have equal number of columns.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1610
-msgid "A and B must have equal number of columns.\n"
+# File: src/c/errmsg.c, line: 1455
+#, c-format
+msgid "%s and %s must have equal dimensions.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1615
-msgid "A and B must have equal dimensions.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1620
+# File: src/c/errmsg.c, line: 1460
 #, c-format
 msgid "Invalid return value for function passed in arg %d.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1627
+# File: src/c/errmsg.c, line: 1465
 #, c-format
-msgid "%dth argument eigenvalues must have negative real parts.\n"
+msgid ""
+"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1631
-msgid "Argument eigenvalues must have negative real parts.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1639
+# File: src/c/errmsg.c, line: 1470
 #, c-format
-msgid "%dth argument eigenvalues modulus must be less than one.\n"
+msgid ""
+"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1643
-msgid "Argument eigenvalues modulus must be less than one.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1651
+# File: src/c/errmsg.c, line: 1475
 #, c-format
 msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1655
-msgid "Size varying argument a*eye() not allowed here.\n"
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 1661
+# File: src/c/errmsg.c, line: 1480
 msgid "endfunction is missing.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1666
+# File: src/c/errmsg.c, line: 1485
 msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1671
+# File: src/c/errmsg.c, line: 1490
 msgid "Instruction left hand side: waiting for a name.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1676
+# File: src/c/errmsg.c, line: 1495
 msgid "varargout keyword cannot be used here.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1681
+# File: src/c/errmsg.c, line: 1500
 msgid "Missing operator, comma, or semicolon.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1687
+# File: src/c/errmsg.c, line: 1506
 msgid "Too many commands defined.\n"
 msgstr ""
 #
-# File: src/c/errmsg.c, line: 1795
+# File: src/c/errmsg.c, line: 1614
 msgid "\"unknown data\""
 msgstr ""
 #
@@ -1157,7 +1067,6 @@ msgstr ""
 # File: src/c/msgs.c, line: 525
 # File: src/c/msgs.c, line: 540
 # File: src/c/msgs.c, line: 760
-# File: src/c/msgs.c, line: 988
 msgid "Warning :\n"
 msgstr ""
 #
@@ -1210,7 +1119,7 @@ msgid "results may be inaccurate. rcond = %s\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 548
-msgid "Warning: obsolete use of '=' instead of '==' .\n"
+msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 555
@@ -1241,7 +1150,7 @@ msgid "Optimization stops because too small variations for x.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 603
-msgid "Optim stops:  maximum number of calls to f is reached.\n"
+msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 609
@@ -1274,7 +1183,7 @@ msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 653
-msgid "help file inconsistent...\n"
+msgid "Help file inconsistent...\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 664
@@ -1319,16 +1228,16 @@ msgid " has been truncated to: %s.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 770
-msgid "real part\n"
+msgid "Real part\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 776
-msgid "imaginary part\n"
+msgid "Imaginary part\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 782
 #, c-format
-msgid "maximum size of buffer : %d characters.\n"
+msgid "Maximum size of buffer : %d characters.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 793
@@ -1337,12 +1246,12 @@ msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 799
-msgid "Your variables are :\n"
+msgid "Your variables are:\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 811
 #, c-format
-msgid "Using %s elements  out of %s.\n"
+msgid "Using %s elements out of %s.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 815
@@ -1351,7 +1260,7 @@ msgid " and %s variables out of %s.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 821
-msgid "System functions :\n"
+msgid "System functions:\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 827
@@ -1360,7 +1269,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 843
 #, c-format
-msgid "Warning : redefining function : %s"
+msgid "Warning : redefining function: %s"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 870
@@ -1377,31 +1286,40 @@ msgid "Your global variables are...\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 919
-msgid "arl2: Loop on two orders detected.\n"
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 925
+#, c-format
 msgid ""
-"arl2: Impossible to reach required order.\n"
+"%s: Impossible to reach required order.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 931
+#, c-format
 msgid ""
-"arl2: Failure when looking for the intersection with domains boundaries.\n"
+"%s: Failure when looking for the intersection with domains boundaries.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 937
+#, c-format
 msgid ""
-"arl2: Too many solutions found.\n"
+"%s: Too many solutions found.\n"
 "   previous order computed solution returned.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 979
 msgid ""
-"Warning : loaded file has been created with a previous version of scilab\n"
+"Warning: loaded file has been created with a previous version of Scilab\n"
 "or you are trying to load a file saved on a different architecture.\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 988
+# File: src/c/msgs.c, line: 1329
+msgid "Warning:\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 989
@@ -1411,7 +1329,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 995
 msgid ""
-"Warning : use of standard list to define typed structures\n"
+"Warning: Use of standard list to define typed structures\n"
 "          is obsolete. Use tlist.\n"
 msgstr ""
 #
@@ -1425,7 +1343,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1045
 #, c-format
-msgid "at time : %s ,Too many iteration to achieve required precision.\n"
+msgid "At time: %s ,Too many iteration to achieve required precision.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1051
@@ -1434,16 +1352,16 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1057
 #, c-format
-msgid "Warning : variable %%ODEOPTIONS not found.\n"
+msgid "Warning: variable %%ODEOPTIONS not found.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1063
-msgid "Warning : integration up to tcrit.\n"
+msgid "Warning: integration up to tcrit.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1069
 msgid ""
-"Warning : integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! check tolerance parameters or step "
 "size.\n"
 msgstr ""
 #
@@ -1476,24 +1394,28 @@ msgid "Warning: function is already compiled.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1111
-msgid "int2d: termination for lack of space to divide triangle.\n"
+#, c-format
+msgid "%s: termination for lack of space to divide triangle.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1117
-msgid "int2d: termination because of roundoff noise.\n"
+#, c-format
+msgid "%s: termination because of roundoff noise.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1123
 #, c-format
-msgid "int2d: termination for relative error < (5.0*%eps).\n"
+msgid "%s: termination for relative error < (5.0*%eps).\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1129
-msgid "int2d: termination: function evaluations > MEVALS.\n"
+#, c-format
+msgid "%s: termination: function evaluations > MEVALS.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1135
-msgid "int3d:maxpts was too small to obtain the required accuracy.\n"
+#, c-format
+msgid "%s: maxpts was too small to obtain the required accuracy.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1165
@@ -1510,7 +1432,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1243
 #, c-format
-msgid "Warning : primitive function %s has moved.\n"
+msgid "Warning: primitive function %s has moved.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1244
@@ -1520,7 +1442,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1263
 #, c-format
-msgid "Warning : primitive function %s is now a Scilab function.\n"
+msgid "Warning: primitive function %s is now a Scilab function.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1272
@@ -1539,13 +1461,10 @@ msgid "Unknown key <%s> ignored.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1294
-msgid "xset: window dimensions have been set less than 2^16.\n"
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1300
 msgid "Some data have not been computed they are replaced by NaN.\n"
-msgstr ""
-#
-# File: src/c/msgs.c, line: 1329
-msgid "Warning:\n"
 msgstr ""
