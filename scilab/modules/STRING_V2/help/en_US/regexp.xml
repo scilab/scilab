@@ -60,7 +60,7 @@
                 <PARAM_DESCRIPTION>
                     <SP>
                         : the text of each substring of str that matches
-                        <verb>pattern</verb>.
+                        <VERB>pattern</VERB>.
                     </SP>
                 </PARAM_DESCRIPTION>
             </PARAM_ITEM>
