@@ -257,4 +257,6 @@ int check_list_col __PARAMS((int lpos,int pos,int m,int n));
 int check_list_scalar __PARAMS((int lpos,int pos,int m,int n));
 int check_list_one_dim __PARAMS((int lpos,int pos,int dim,int val,int valref));
 
+int C2F(overload)(int *lw,char *fname,unsigned long l);
+
 #endif
