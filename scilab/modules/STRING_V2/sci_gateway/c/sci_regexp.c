@@ -114,8 +114,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 
 			int Output_Start = 0;
 			int Output_End = 0;
-            
-			/*When we use the regexp;*/
+            			
             for (x = 0; x < mn2; ++x)
             {
 				save = (char *)MALLOC( sizeof(char) * ( strlen(Str2[x]) +1) );
@@ -129,14 +128,16 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					{         
 						if (Output_Start!=Output_End || Output_Start==0) 
 						{
-							values[nbValues++]=Output_Start+start_point+1;         /*adding the answer into the outputmatrix*/
+							/*adding the answer into the outputmatrix*/
+							values[nbValues++]=Output_Start+start_point+1;         
 						}
 						else 
 						{
 							values[nbValues++]=Output_Start+start_point; 
 						}
 						values_end[nbValues_end++]=Output_End+start_point; 
-						position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
+						/*The number according to the str2 matrix*/
+						position[nbposition++]=x+1;                
 	                    pointer=pointer+Output_End;	
 						start_point=start_point+Output_End;
 					}
@@ -144,7 +145,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					{
 						pcre_error(fname,answer);
 					}
-				}while(answer == 0 && Output_Start!=Output_End);
+				}
+				while( (answer == 0) && (Output_Start != Output_End) );
 				if (save) {FREE(save);save=NULL;}
             }
 		}
@@ -158,8 +160,6 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
         GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 
         if ( m3*n3 != 0) typ = cstk(l3)[0];
-
-		
         
 		if (typ== STR_ONCE)
 		{
@@ -177,8 +177,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
                 {      
 					if (Output_Start!=Output_End || Output_Start==0) 
 					{
-						values[nbValues++]=Output_Start+1;         /*adding the answer into the outputmatrix*/
-
+						/*adding the answer into the outputmatrix*/
+						values[nbValues++]=Output_Start+1;         
 					}
 					else
 					{
@@ -186,7 +186,8 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					}
 					
 					values_end[nbValues_end++]=Output_End; 
-                    position[nbposition++]=x+1;                /*The number according to the str2 matrix*/
+					/*The number according to the str2 matrix*/
+                    position[nbposition++]=x+1;                
                 }    
 				else
 				{
@@ -206,23 +207,28 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		match = (char**)MALLOC(sizeof(char*)*(1));
 
 	}
-	for( i=0;i<nbValues;i++)
+
+	for( i = 0; i < nbValues; i++)
 	{
-		if (values_end[i]-values[i]>1) match[i] = (char*)MALLOC(sizeof(char)*(values_end[i]-values[i]+1));
-		else match[i] = (char*)MALLOC(sizeof(char)*(1));
-		for(j=values[i]-1;j<values_end[i];j++)
+		if ( (values_end[i] - values[i]) > 1 ) 
+		{
+			match[i] = (char*)MALLOC(sizeof(char)*(values_end[i] - values[i] + 1));
+		}
+		else 
+		{
+			match[i] = (char*)MALLOC(sizeof(char)*(1));
+		}
+
+		for(j = values[i] - 1; j < values_end[i] ; j++)
 		{
 			match[i][j+1-values[i]]=Str[0][j];
 		}
 		/* A char* always finished by \0 */
-                match[i][j+1-values[i]]='\0';
+        match[i][j+1-values[i]]='\0';
 	}
-
 
 	freeArrayOfString(Str,mn);
 	freeArrayOfString(Str2,mn2);
-
-
 
     numRow   = 1;/* Output values[] */ 
     outIndex = 0;
@@ -233,7 +239,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
     }
     LhsVar(1) = Rhs+1 ;
     
-	if (Lhs>=2)
+	if (Lhs >= 2)
 	{
 		numRow   = 1;
 		outIndex = 0;
@@ -245,7 +251,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		LhsVar(2) = Rhs+2;  
 	}
 
-    if (Lhs==3)
+    if (Lhs == 3)
 	{
 		numRow =  nbValues;
 		outIndex = 1 ;

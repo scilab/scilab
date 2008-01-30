@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "pcre_private.h"
+#include "pcre_error.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
