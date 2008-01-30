@@ -515,7 +515,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if (re == NULL)
 		{
 		    SKIP_DATA:
-			goto CONTINUE;
+			return -10;
 		}
 		true_size = ((real_pcre *)re)->size;
 		regex_gotten_store = gotten_store;

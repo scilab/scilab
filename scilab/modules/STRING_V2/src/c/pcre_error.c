@@ -37,6 +37,9 @@ void pcre_error(char *fname,int errorCode){
 			case LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING:
 				Scierror(999,_("%s: Match limit not relevant for DFA matching: ignored.\n"),fname);
 				break;
+			case CAN_NOT_COMPILE_PATTERN:
+				Scierror(999,_("%s: Can not compile pattern.\n"),fname);
+				break;
 			default:
 				Scierror(999,_("%s: Unknown error.\n"),fname);
 				break;
