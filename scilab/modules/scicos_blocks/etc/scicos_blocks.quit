@@ -1,0 +1,10 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for scicos_blocks module
+// Copyright INRIA 2006
+// ====================================================================
+if %scicos then
+// delete help chapter
+//del_help_chapter('scicos_blocks',%T);
+end
+// ====================================================================

@@ -1,0 +1,1 @@
+readme.txt about scicos_blocks module
