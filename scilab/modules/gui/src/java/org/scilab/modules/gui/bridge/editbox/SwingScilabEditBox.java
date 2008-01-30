@@ -3,8 +3,6 @@
 
 package org.scilab.modules.gui.bridge.editbox;
 
-import java.awt.Color;
-
 import javax.swing.JTextField;
 
 import org.scilab.modules.gui.editbox.SimpleEditBox;
@@ -29,10 +27,6 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	 */
 	public SwingScilabEditBox() {
 		super();
-		/* Default properties */
-		setBackground(Color.GRAY);
-		setForeground(Color.BLACK);
-		setRelief(ScilabRelief.SUNKEN);
 	}
 
 	/**

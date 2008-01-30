@@ -64,7 +64,19 @@ public class CallScilabBridge {
 	private static final String ITALICFONT = "italic";
 	private static final String BOLDFONT = "bold";
 	private static final int DEFAULTFONTSIZE = 12;
+	private static final String DEFAULTFONTNAME = "helvetica";
 
+	private static final double DEFAULT_RED_BACKGROUND = 0.8 * 255;
+	private static final double DEFAULT_GREEN_BACKGROUND = 0.8 * 255;
+	private static final double DEFAULT_BLUE_BACKGROUND = 0.8 * 255;
+	
+	private static final double BUTTON_RED_BACKGROUND = 0.6 * 255;
+	private static final double BUTTON_GREEN_BACKGROUND = 0.6 * 255;
+	private static final double BUTTON_BLUE_BACKGROUND = 0.6 * 255;
+	
+	private static final double DEFAULT_RED_FOREGROUND = 0;
+	private static final double DEFAULT_GREEN_FOREGROUND = 0;
+	private static final double DEFAULT_BLUE_FOREGROUND = 0;
 	/**
 	 * Constructor
 	 */
@@ -196,10 +208,16 @@ public class CallScilabBridge {
 	public static int newPushButton() {
 		PushButton pushButton = ScilabPushButton.createPushButton();
 		int id = UIElementMapper.add(pushButton);
-		// Scilab default font
+		
+		/* Default font */
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
+		
 		setWidgetRelief(id, ScilabRelief.RAISED);
+		
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) BUTTON_RED_BACKGROUND, (int) BUTTON_GREEN_BACKGROUND, (int) BUTTON_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
 		return id;
 	}
 
@@ -210,10 +228,16 @@ public class CallScilabBridge {
 	public static int newEditBox() {
 		EditBox editBox = ScilabEditBox.createEditBox();
 		int id = UIElementMapper.add(editBox);
-		// Scilab default font
+		
+		/* Default font */
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
+		
 		setWidgetRelief(id, ScilabRelief.SUNKEN);
+		
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
 		return id;
 	}
 
@@ -224,12 +248,16 @@ public class CallScilabBridge {
 	public static int newLabel() {
 		Label label = ScilabLabel.createLabel();
 		int id = UIElementMapper.add(label);
-		// Scilab default font
+		
+		/* Default font */
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		label.setBackground(Color.LIGHT_GRAY);
-		label.setForeground(Color.BLACK);
+		
 		setWidgetRelief(id, ScilabRelief.FLAT);
+		
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
 		return id;
 	}
 
@@ -240,12 +268,16 @@ public class CallScilabBridge {
 	public static int newCheckBox() {
 		CheckBox checkBox = ScilabCheckBox.createCheckBox();
 		int id = UIElementMapper.add(checkBox);
-		// Scilab default font
+		
+		/* Default font */
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		checkBox.setBackground(Color.LIGHT_GRAY);
-		checkBox.setForeground(Color.BLACK);
+
 		setWidgetRelief(id, ScilabRelief.FLAT);
+		
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
 		return id;
 	}
 
@@ -256,12 +288,16 @@ public class CallScilabBridge {
 	public static int newRadioButton() {
 		RadioButton radioButton = ScilabRadioButton.createRadioButton();
 		int id = UIElementMapper.add(radioButton);
-		// Scilab default font
+
+		/* Default font */
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		radioButton.setBackground(Color.LIGHT_GRAY);
-		radioButton.setForeground(Color.BLACK);
+
 		setWidgetRelief(id, ScilabRelief.FLAT);
+		
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
 		return id;
 	}
 
@@ -272,16 +308,24 @@ public class CallScilabBridge {
 	public static int newSlider() {
 		Slider slider = ScilabSlider.createSlider();
 		int id = UIElementMapper.add(slider);
-		// Scilab default font
+
+		/* Default font */
+		/* Set a default font because is null when JScrollBar is created */
+		slider.setFont(new Font(DEFAULTFONTNAME, Font.PLAIN, DEFAULTFONTSIZE));
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		slider.setBackground(Color.LIGHT_GRAY);
-		slider.setForeground(Color.BLACK);
+		
 		setWidgetRelief(id, ScilabRelief.FLAT);
+		
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+		
 		slider.setText(""); /* Because Name property is null at creation */
 		slider.setMinimumValue(0);
 		slider.setMaximumValue(1);
 		slider.setValue(0);
+		
 		return id;
 	}
 
@@ -292,12 +336,16 @@ public class CallScilabBridge {
 	public static int newListBox() {
 		ListBox listBox = ScilabListBox.createListBox();
 		int id = UIElementMapper.add(listBox);
-		// Scilab default font
+
+		/* Default font */
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		listBox.setBackground(Color.LIGHT_GRAY);
-		listBox.setForeground(Color.BLACK);
+		
 		setWidgetRelief(id, ScilabRelief.FLAT);
+
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
 		return id;
 	}
 
@@ -308,12 +356,16 @@ public class CallScilabBridge {
 	public static int newPopupMenu() {
 		PopupMenu popupMenu = ScilabPopupMenu.createPopupMenu();
 		int id = UIElementMapper.add(popupMenu);
-		// Scilab default font
+
+		/* Default font */
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
-		popupMenu.setBackground(Color.LIGHT_GRAY);
-		popupMenu.setForeground(Color.BLACK);
+		
 		setWidgetRelief(id, ScilabRelief.FLAT);
+		
+		/* Default colors */
+		setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
 		return id;
 	}
 
@@ -324,12 +376,17 @@ public class CallScilabBridge {
 	public static int newFrame() {
 		Frame frame = ScilabFrame.createFrame();
 		int id = UIElementMapper.add(frame);
-		// Scilab default font
+
+		/* Default font */
 		setFrameFontWeight(id, NORMALFONT);
 		setFrameFontSize(id, DEFAULTFONTSIZE);
-		frame.setBackground(Color.LIGHT_GRAY);
-		frame.setForeground(Color.BLACK);
-		setFrameRelief(id, ScilabRelief.FLAT);
+		
+		setFrameRelief(id, ScilabRelief.RIDGE);
+		
+		/* Default colors */
+		setFrameBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+		setFrameForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+		
 		frame.setText(""); /* Because Name property is null at creation */
 		return id;
 	}
