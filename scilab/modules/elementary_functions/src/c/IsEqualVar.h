@@ -79,7 +79,6 @@ int C2F(overload)(int *lw,char *fname,unsigned long l);
  * @see isequal
  */
 int C2F(intisequalvar)(char * fname, int *job, long int fl); /* the gateway */
-void SetDoubleCompMode(int mode);
 
 
 #endif /* !__ISEQUALVAR__ */
