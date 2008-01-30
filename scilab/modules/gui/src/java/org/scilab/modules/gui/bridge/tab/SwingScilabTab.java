@@ -2,6 +2,8 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
@@ -49,12 +51,16 @@ public class SwingScilabTab extends View implements SimpleTab {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private static final int TOP_LAYER = 0;
+	
+	private static final int BOTTOM_LAYER = 1;
+
 	private int parentWindowId;
 	
 	private MenuBar menuBar;
 	
 	private ToolBar toolBar;
-
+	
 	/**
 	 * Constructor
 	 * @param name the name of the tab (used to identify it)
@@ -196,6 +202,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	private int addMember(SwingScilabFrame member) {
 		this.add(member);
+		setComponentZOrder(member, BOTTOM_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -216,6 +223,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int addMember(SwingScilabPushButton member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -236,6 +244,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int addMember(SwingScilabEditBox member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -256,6 +265,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int addMember(SwingScilabLabel member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -276,6 +286,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int addMember(SwingScilabCheckBox member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -296,6 +307,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int addMember(SwingScilabRadioButton member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -316,6 +328,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int addMember(SwingScilabSlider member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -338,6 +351,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
 		//return this.getComponentZOrder(member.getScrollPane());
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
@@ -358,6 +372,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	private int addMember(SwingScilabPopupMenu member) {
 		this.add(member);
 		this.revalidate(); // If do not revalidate then the component do not appear
+		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
 	}
 
