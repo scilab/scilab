@@ -18,7 +18,7 @@
 
 function y=dec2bin(x,n)
 	
-	rhs=argn(2)
+	rhs = argn(2);
 	
 	// check type and size of the inputs arguments
 	if or(type(x)<>8) & (or(type(x)<>1) | or(x<0)) then
@@ -31,19 +31,20 @@ function y=dec2bin(x,n)
 	
 	// empty matrix
 	if x==[]
-		y=string([])
-		return
+		y=string([]);
+		return;
 	end
 	
+	[nr,nc] = size(x);
 	x=x(:);
 	
 	// input argument is a scalar/vector/matrix of zeros
 	
 	if and(x==0)
 		if rhs==2
-			y=strcat(string([zeros(1,round(n-prod(size(x)))) x]))
+			y = strcat(string(zeros(1:n))) + emptystr(nr,nc);
 		else
-			y=string(x)
+			y = "0" + emptystr(nr,nc);
 		end
 		return
 	end
@@ -77,5 +78,7 @@ function y=dec2bin(x,n)
 			y(i)=strcat(string(ytemp(i,size(ytemp,2):-1:1)));
 		end
 	end
+	
+	y = matrix(y,nr,nc);
 	
 endfunction
