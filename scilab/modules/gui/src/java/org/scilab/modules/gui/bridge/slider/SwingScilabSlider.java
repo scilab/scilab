@@ -3,8 +3,13 @@
 
 package org.scilab.modules.gui.bridge.slider;
 
-import javax.swing.JSlider;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
+import javax.swing.JScrollBar;
+
+import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -17,17 +22,20 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabSlider extends JSlider implements SimpleSlider {
+public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 
 	private static final long serialVersionUID = -4262320156090829309L;
 
+	private CallBack callback;
+	
+	private AdjustmentListener adjustmentListener;
+	
 	/**
 	 * Constructor
 	 */
 	public SwingScilabSlider() {
-		super();
-		// Scilab slider always snap to ticks
-		setSnapToTicks(true);
+		super(JScrollBar.HORIZONTAL);
+		
 	}
 
 	/**
@@ -81,8 +89,23 @@ public class SwingScilabSlider extends JSlider implements SimpleSlider {
 	 * @param commandType the type of the command that will be executed.
 	 */
 	public void setCallback(String command, int commandType) {
-		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabSlider");
-		//addActionListener(ScilabCallBack.create(command, commandType));
+		/* Create a callback */
+		callback = ScilabCallBack.create(command, commandType);
+		
+		/* Remove previous listener if exists */
+		if (adjustmentListener != null) {
+			removeAdjustmentListener(adjustmentListener);
+		}
+		
+		/* Create a listener for Adjustment events */
+		adjustmentListener = new AdjustmentListener() {
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+				callback.actionPerformed(null);
+			}
+		};
+		
+		/* Add this listener */
+		addAdjustmentListener(adjustmentListener);
 	}
 
 	/**
@@ -179,4 +202,21 @@ public class SwingScilabSlider extends JSlider implements SimpleSlider {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Set the major tick spacing for a Slider
+	 * @param space the increment value
+	 */
+	public void setMajorTickSpacing(int space) {
+		setBlockIncrement(space);
+		/* Set the size of the knob */
+		getModel().setExtent(getBlockIncrement());
+	}
+
+	/**
+	 * Set the minor tick spacing for a Slider
+	 * @param space the increment value
+	 */
+	public void setMinorTickSpacing(int space) {
+		setUnitIncrement(space);
+	}
 }
