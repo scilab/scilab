@@ -107,19 +107,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		values_end = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
 		position = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
 	}
-
-    if (Rhs >= 3)
-    {
-		int m3 = 0;
-		int n3 = 0;
-		int l3 = 0;
-
-        GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-
-        if ( m3*n3 != 0) typ = cstk(l3)[0];
-
-		/* TODO : What do you when it is not 'R' ? ? ? */
-        if (typ == CHAR_R )
+	if (Rhs == 2 )
         {
 			int x = 0;
 			int answer = 0;
@@ -130,7 +118,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 			/*When we use the regexp;*/
             for (x = 0; x < mn2; ++x)
             {
-				save = (char *)MALLOC( sizeof(char) * ( strlen(Str2[x]) ) );
+				save = (char *)MALLOC( sizeof(char) * ( strlen(Str2[x]) +1) );
                 pointer=Str[0];
 				start_point=0;
 				do
@@ -155,13 +143,25 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					else
 					{
 						pcre_error(fname,answer);
-						return 0;
 					}
 				}while(answer == 0 && Output_Start!=Output_End);
 				if (save) {FREE(save);save=NULL;}
             }
 		}
-		else if (typ== STR_ONCE)
+
+    if (Rhs >= 3)
+    {
+		int m3 = 0;
+		int n3 = 0;
+		int l3 = 0;
+
+        GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+
+        if ( m3*n3 != 0) typ = cstk(l3)[0];
+
+		
+        
+		if (typ== STR_ONCE)
 		{
 		
 			int x = 0;
@@ -191,7 +191,6 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 				else
 				{
 					pcre_error(fname,answer);
-					return 0;
 				}
             }
         
