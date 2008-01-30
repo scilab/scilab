@@ -43,7 +43,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 	if (VarType(1) == sci_strings)
 	{
 		char **routinename = NULL;
-		int m1 = 0, n1 = 0, l1 = 0;
+		int m1 = 0, n1 = 0;
 		GetRhsVar(1,"S",&m1,&n1,&routinename);
 
 		if ( (m1 == 1) && (n1 == 1) )

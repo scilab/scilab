@@ -21,9 +21,9 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 		char **spname = NULL;
 		char **fcts = NULL;
 
-		int m1 = 0, n1 = 0, l1 = 0;
-		int m2 = 0, n2 = 0, l2 = 0;
-		int m3 = 0, n3 = 0, l3 = 0;
+		int m1 = 0, n1 = 0;
+		int m2 = 0, n2 = 0;
+		int m3 = 0, n3 = 0;
 
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&sharedlibname);
 		if ( (m1 != n1) && (n1 != 1) )
