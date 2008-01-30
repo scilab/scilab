@@ -32,10 +32,10 @@ function [resultat,status] = powershell(varargin)
       end
       [resultat,status]=dos(Chainecmd);
     else
-      error(msprintf(gettext("%s: Wrong input argument: String expected."),"powershell"));
+      error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"powershell"));
     end
   else
-    error(msprintf(gettext("%s: Wrong input argument: String expected."),"powershell"));
+    error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"powershell"));
   end
   
 endfunction

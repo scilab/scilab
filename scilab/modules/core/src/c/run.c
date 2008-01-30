@@ -115,9 +115,6 @@ int C2F(run)()
   /* @TODO Why 80 ? */
   static char tmp[80];
 
-  /* Retrieve the current Scilab Mode */
-  scilabMode sciMode=getScilabMode();
-
   tref = 0;
 
   /* @TODO What is 4 ? */

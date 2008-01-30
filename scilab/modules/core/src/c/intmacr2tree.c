@@ -582,7 +582,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
       }
     else
       {
-	Scierror(999,_("%S: Unknown code %d at index2 %d.\n"),"GetInstruction",data[*index2],*index2 );
+	Scierror(999,_("%s: Unknown code %d at index2 %d.\n"),"GetInstruction",data[*index2],*index2 );
 	return 0;
       }
     break;

@@ -309,13 +309,13 @@ static int getversion_two_rhs(void)
 			}
 			else
 			{
-				Scierror(999,_("%S: Wrong module name %s.\n"),"getversion",ParamRhs1);
+				Scierror(999,_("%s: Wrong module name %s.\n"),"getversion",ParamRhs1);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong second input argument: %s expected\n"),"getversion",VERSION_STRING);
+			Scierror(999,_("%s: Wrong value for second input argument: '%s' expected.\n"),"getversion",VERSION_STRING);
 			return 0;
 		}
 	}

@@ -1175,7 +1175,7 @@ int C2F(getmatdims)(integer *number,integer *m,integer *n)
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   typ = *istk(il );
   if (typ > sci_strings) {
-    Scierror(199,_("%s: argument %d should be a matrix.\n"), fname,*number);
+    Scierror(199,_("%s: Wrong type for argument %d: Mmatrix expected.\n"), fname,*number);
     return  FALSE;
   }
   *m = *istk(il + 1);
@@ -1259,7 +1259,7 @@ int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr
       ix2 = *m * *n;
       if ((it != 1) && (ix2 !=0))
 	  {
-		Scierror(999,_("Waiting for a complex argument(z).\n"));
+		Scierror(999,_("%s: Wrong type for argument: Complex expected.\n"),fname);
 		return FALSE;
       };
       if (!(*lr % 2) ) {  /* bad adress (lr is even) shift up the stack */
@@ -1305,7 +1305,9 @@ int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr
       C2F(intersci).iwhere[*number - 1] = *Lstk(lw);
       C2F(intersci).lad[*number - 1] = *lr;
       break;
-    case 'l' :    case 't' :    case 'm' :
+		case 'l' :    
+		case 't' :    
+		case 'm' :
       *n = 1;
       if (! C2F(getilist)(fname, &topk, &lw, m, n, lr, nlgh))  return FALSE;
       /* No data conversion for list members ichar(type)='$' */
@@ -1466,7 +1468,7 @@ int C2F(elementtype)(integer *lnumber, integer *number)
   if (*istk(il) < 0) il = iadr(*istk(il + 1));
   itype = *istk(il ); /* type of the variable numbered *lnumber */
   if (itype <  sci_list || itype > sci_mlist) { /* check if it is really a list */
-    Scierror(210,_("%s: Argument %d: wrong type argument, expecting a list.\n"),fname,*lnumber);
+    Scierror(210,_("%s: Wrong type for argument %d: List expected.\n"),fname,*lnumber);
     return FALSE;
   }
   n = *istk(il + 1);/* number of elements in the list */
@@ -2036,7 +2038,7 @@ int C2F(scistring)(integer *ifirst,char *thestring,integer *mlhs,integer *mrhs,u
     Top = tops;
     if (Fin == 0)
 	{
-      Scierror(999,_("scistring: %s is not a Scilab function.\n"),get_fname(thestring,thestring_len));
+      Scierror(999,_("%s: %s is not a Scilab function.\n"),"scistring",get_fname(thestring,thestring_len));
       return ret;
     }
     if (C2F(com).fun <= 0) {
@@ -2810,15 +2812,16 @@ static char *Get_Iname()
  * Utility for error message
  *---------------------------------------------------------------------*/
 
-static char *pos[] ={"first","second","third","fourth"};
+static char *pos[4] ={"first","second","third","fourth"};
 static char arg_position[56]; /* @TODO WTF is 56 ? */
 
 char *ArgPosition(int i)
 {
-  if ( i > 0 && i <= 4 )
-    sprintf(arg_position,_("%s argument"),pos[i-1]);
-  else
-    sprintf(arg_position,_("argument number %d"),i);
+	if ( i > 0 && i <= 4 ) {
+		sprintf(arg_position,_("%s argument"),pos[i-1]);
+	}else{
+		sprintf(arg_position,_("argument number %d"),i);
+	}
   return arg_position;
 }
 

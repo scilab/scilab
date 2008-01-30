@@ -162,7 +162,7 @@ int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
 					FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 					FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-					Scierror(999,_("%s: Wrong value for first input argument: '%s' , '%s' or '%s'.\n"),fname,"local","get","global");
+					Scierror(999,_("%s: Wrong value for first input argument: '%s', '%s' or '%s'.\n"),fname,"local","get","global");
 					return 0;
 				 }
 			  }

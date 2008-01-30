@@ -69,7 +69,7 @@ static BOOL ReadModulesFile(void)
 	SciPath=getSCIpath();
 	if (SciPath==NULL)
 	{
-		sciprint(_("The SCI environment variable is not set\n"));
+		sciprint(_("The SCI environment variable is not set.\n"));
 		return FALSE;
 	}
 

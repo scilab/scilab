@@ -9,7 +9,7 @@ function whos(%_opt,%_sel)
   if %_rhs==2 then 
     %_nams($-1:$)=[],
     if %_opt<>'-type'&%_opt<>'-name' then 
-      error(msprintf(gettext("%s: Wrong first input argument: ''%s'' or ''%s'' expected.\n"),'whos','-name','-type'))
+      error(msprintf(gettext("%s: Wrong value for first input argument: ''%s'' or ''%s'' expected.\n"),'whos','-name','-type'))
     end
   end
   //write the display header
