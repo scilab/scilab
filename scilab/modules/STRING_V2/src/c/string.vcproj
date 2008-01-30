@@ -466,6 +466,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\stricmp.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stringsCompare.h"
 				>
 			</File>

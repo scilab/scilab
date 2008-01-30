@@ -9,10 +9,7 @@
 #include "md5.h"
 #include "localization.h"
 #include "Scierror.h"
-/*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#define stricmp _stricmp
-#endif
+#include "stricmp.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -74,11 +71,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
 			Param2=cstk(l1);
 
-#ifdef _MSC_VER
 			if ( stricmp(Param2,"string")==0 )
-#else
-			if ( strcmp(Param2,"string")==0 )
-#endif
 			{
 				char *MD5=NULL;
 				MD5=md5_str(Param1);

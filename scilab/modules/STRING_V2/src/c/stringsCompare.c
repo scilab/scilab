@@ -5,10 +5,7 @@
 #include <string.h>
 #include "stringsCompare.h"
 #include "MALLOC.h"
-/*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#define stricmp _stricmp
-#endif
+#include "stricmp.h"
 /*--------------------------------------------------------------------------*/
 int * stringsCompare(char **Input_String_One,int dim_One,char **Input_String_Two,int dim_Two,BOOL dostricmp)
 {
@@ -26,11 +23,7 @@ int * stringsCompare(char **Input_String_One,int dim_One,char **Input_String_Two
 
 			if (dostricmp) 
 			{
-				#ifdef _MSC_VER
 				returnedValues[i] = stricmp(Input_String_One[i],Input_String_Two[j]);
-				#else
-				returnedValues[i] = strcasecmp (Input_String_One[i],Input_String_Two[j]);
-				#endif
 			}
 			else returnedValues[i] = strcmp(Input_String_One[i],Input_String_Two[j]);
 		}

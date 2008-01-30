@@ -10,12 +10,7 @@
 #include "../../../action_binding/includes/dynamic_menus.h" /* storecommand */
 #include "../../../fileio/includes/FindFileExtension.h"
 #include "../../../fileio/includes/URIFileToFilename.h"
-/*--------------------------------------------------------------------------*/
-#if _MSC_VER
-	#define stricmp _stricmp
-#else
-	#define stricmp strcasecmp
-#endif
+#include "../../../STRING_V2/includes/stricmp.h"
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
 #define SAV_EXTENSION_FILE ".sav"
