@@ -35,7 +35,7 @@
 
   <EXAMPLE><![CDATA[res=javalibrarypath();
 javalibrarypath(SCI);
-javalibrarypath([SCI,SCI+'/.lib']);
+javalibrarypath([SCI,SCI+'/libs']);
 ]]></EXAMPLE>
 
   <SEE_ALSO>

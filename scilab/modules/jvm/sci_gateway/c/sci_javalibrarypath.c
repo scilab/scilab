@@ -48,8 +48,8 @@ int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
 				bOK=addToLibrarypath(libraryPaths[i]);
 				if (!bOK)
 				{
-					freeArrayOfString(libraryPaths,m1*n1);
 					Scierror(999,_("%s: Could not add path to java.library.path: %s.\n"),fname, libraryPaths[i]);
+					freeArrayOfString(libraryPaths,m1*n1);
 					return 0;
 				}
 			}
