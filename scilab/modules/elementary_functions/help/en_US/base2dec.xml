@@ -48,16 +48,22 @@ base2dec(12,['ABC','0','A'])
     
     <SEE_ALSO>
         <SEE_ALSO_ITEM>
+            <LINK>bin2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
             <LINK>oct2dec</LINK>
         </SEE_ALSO_ITEM>
         <SEE_ALSO_ITEM>
             <LINK>hex2dec</LINK>
         </SEE_ALSO_ITEM>
         <SEE_ALSO_ITEM>
-            <LINK>dec2hex</LINK>
+            <LINK>dec2bin</LINK>
         </SEE_ALSO_ITEM>
         <SEE_ALSO_ITEM>
-            <LINK>dec2bin</LINK>
+            <LINK>dec2oct</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2hex</LINK>
         </SEE_ALSO_ITEM>
     </SEE_ALSO>
     

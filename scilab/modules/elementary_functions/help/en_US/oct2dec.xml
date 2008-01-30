@@ -42,16 +42,22 @@ oct2dec(['856115','0','23'])
     
     <SEE_ALSO>
         <SEE_ALSO_ITEM>
-            <LINK>hex2dec</LINK>
-        </SEE_ALSO_ITEM>
-        <SEE_ALSO_ITEM>
             <LINK>base2dec</LINK>
         </SEE_ALSO_ITEM>
         <SEE_ALSO_ITEM>
-            <LINK>dec2hex</LINK>
+            <LINK>bin2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>hex2dec</LINK>
         </SEE_ALSO_ITEM>
         <SEE_ALSO_ITEM>
             <LINK>dec2bin</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2oct</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2hex</LINK>
         </SEE_ALSO_ITEM>
     </SEE_ALSO>
     
