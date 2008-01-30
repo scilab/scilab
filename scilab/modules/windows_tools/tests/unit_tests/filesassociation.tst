@@ -3,6 +3,8 @@
 // Tests files Association by Inno Setup in registry
 // Tests for Default Installation
 //---------------------------------------------------------------------------------
+// TO DO : REWRITE test with new file association
+
 v=getversion('scilab');
 
 if (v(4)<>0) then
