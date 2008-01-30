@@ -17,7 +17,7 @@ if rhs==1 then
   A = getrhs(tree)
   // %c_sparse and %b_sparse are not defined
   A = convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs_tlist(A)
   
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=Type(Sparse,A.property)
@@ -28,7 +28,7 @@ elseif rhs==2 then
   // %c_sparse and %b_sparse are not defined
   m = convert2double(m)
   n = convert2double(n)
-  tree.rhs=Rhs([],[],Operation("rc",list(m,n),list()))
+  tree.rhs=Rhs_tlist([],[],Operation("rc",list(m,n),list()))
   
   dims=list(Unknown,Unknown)
   if typeof(m)=="cste" then
@@ -47,7 +47,7 @@ elseif rhs==3 then
   i = convert2double(i)
   j = convert2double(j)
   s = convert2double(s)
-  tree.rhs=Rhs(i,j,s)
+  tree.rhs=Rhs_tlist(i,j,s)
   
   // Matlab tolerates length(i)<>length(j)...
   if size(i.dims)<>size(j.dims) | size(i.dims)<>size(s.dims) then
@@ -55,9 +55,9 @@ elseif rhs==3 then
   end
   
   if i.dims(2)==1 & j.dims(2)==1 then
-    tree.rhs=Rhs(Operation("rc",list(i,j),list()),s)
+    tree.rhs=Rhs_tlist(Operation("rc",list(i,j),list()),s)
   elseif typeof(i)=="variable" & typeof(j)=="variable" then
-    tree.rhs=Rhs(Operation("rc",list(Operation("ext",list(i,Cste(":")),list()),Operation("ext",list(j,Cste(":")),list())),list()),s)
+    tree.rhs=Rhs_tlist(Operation("rc",list(Operation("ext",list(i,Cste(":")),list()),Operation("ext",list(j,Cste(":")),list())),list()),s)
   else
     if typeof(i)<>"variable" then
       V1=gettempvar(1)
@@ -71,7 +71,7 @@ elseif rhs==3 then
     else
       V2=j
     end
-    tree.rhs=Rhs(Operation("rc",list(Operation("ext",list(V1,Cste(":")),list()),Operation("ext",list(V2,Cste(":")),list())),list()),s)
+    tree.rhs=Rhs_tlist(Operation("rc",list(Operation("ext",list(V1,Cste(":")),list()),Operation("ext",list(V2,Cste(":")),list())),list()),s)
   end
   tree.lhs(1).dims=list(Unknown,Unknown)
   tree.lhs(1).type=Type(Sparse,s.property)
@@ -87,14 +87,14 @@ elseif rhs==5 then
   m = convert2double(m)
   n = convert2double(n)
 
-  tree.rhs=Rhs(i,j,s,m,n)
+  tree.rhs=Rhs_tlist(i,j,s,m,n)
 
   if i.dims(2)==1 & j.dims(2)=="1" then
-    tree.rhs=Rhs(Operation("rc",list(i,j),list()),s)
+    tree.rhs=Rhs_tlist(Operation("rc",list(i,j),list()),s)
   elseif typeof(i)=="variable" & typeof(j)=="variable" then
     rhs1=Operation("rc",list(Operation("ext",list(i,Cste(":")),list()),Operation("ext",list(j,Cste(":")),list())),list())
     rhs3=Operation("rc",list(m,n),list())
-    tree.rhs=Rhs(rhs1,s,rhs3)
+    tree.rhs=Rhs_tlist(rhs1,s,rhs3)
   else
     if typeof(i)<>"variable" then
       V1=gettempvar(1)
@@ -110,7 +110,7 @@ elseif rhs==5 then
     end
     rhs1=Operation("rc",list(Operation("ext",list(V1,Cste(":")),list()),Operation("ext",list(V2,Cste(":")),list())),list())
     rhs3=Operation("rc",list(m,n),list())
-    tree.rhs=Rhs(rhs1,s,rhs3)
+    tree.rhs=Rhs_tlist(rhs1,s,rhs3)
   end
   tree.lhs(1).dims=list(Unknown,Unknown)
   tree.lhs(1).type=Type(Sparse,s.property)

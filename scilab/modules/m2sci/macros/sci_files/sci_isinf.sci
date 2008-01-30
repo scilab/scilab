@@ -9,7 +9,7 @@ function [tree]=sci_isinf(tree)
 // %c_isinf and %b_isinf are not defined in Scilab
 A = getrhs(tree)
 A = convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 tree.lhs(1).dims=A.dims
 tree.lhs(1).type=Type(Boolean,Real)

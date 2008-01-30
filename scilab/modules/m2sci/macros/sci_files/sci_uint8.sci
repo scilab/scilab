@@ -20,7 +20,7 @@ end
 
 x = convert2double(x)
 
-tree.rhs=Rhs(x)
+tree.rhs=Rhs_tlist(x)
 
 if is_complex(x) then
   set_infos(msprintf(gettext("Scilab %s() does not work with Complex values: %s() call IGNORED."),"uint8","uint8"),2);

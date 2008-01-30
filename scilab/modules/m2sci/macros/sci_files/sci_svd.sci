@@ -10,12 +10,12 @@ function [tree]=sci_svd(tree)
 if rhs==1 then
   A = getrhs(tree)
   A = convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs_tlist(A)
 // svd(A,0)
 else
   A = getrhs(tree)
   A = convert2double(A)
-  tree.rhs=Rhs(A,"e")
+  tree.rhs=Rhs_tlist(A,"e")
 end
 
 tree.lhs(1).dims=list(Unknown,1)

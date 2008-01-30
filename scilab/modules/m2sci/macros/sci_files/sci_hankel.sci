@@ -22,14 +22,14 @@ if rhs==1 then
   end
   
   n=gettempvar()
-  insert(Equal(list(n),Funcall("size",1,Rhs(c,"*"),list())));
+  insert(Equal(list(n),Funcall("size",1,Rhs_tlist(c,"*"),list())));
   
   if is_a_scalar(tree.rhs(1)) then
     v=c
   else
     // v=[matrix(c,1,-1),zeros(1,n)]
-    matrix_funcall=Funcall("matrix",1,Rhs(c,1,-1),list())
-    zeros_funcall=Funcall("zeros",1,Rhs(1,n),list())
+    matrix_funcall=Funcall("matrix",1,Rhs_tlist(c,1,-1),list())
+    zeros_funcall=Funcall("zeros",1,Rhs_tlist(1,n),list())
     v=Operation("rc",list(matrix_funcall,zeros_funcall),list())
   end
 
@@ -46,7 +46,7 @@ if rhs==1 then
   tree.lhs(1).dims=list(dim,dim)
   tree.lhs(1).type=tree.rhs(1).type
 
-  tree.rhs=Rhs(n,n,v);
+  tree.rhs=Rhs_tlist(n,n,v);
 // H = hankel(c,r)
 else
   // %c_hank and %b_hank are not defined
@@ -73,15 +73,15 @@ else
 
   m=gettempvar();
   n=gettempvar();
-  insert(Equal(list(m),Funcall("size",1,Rhs(c,"*"),list())));
-  insert(Equal(list(n),Funcall("size",1,Rhs(r,"*"),list())));
+  insert(Equal(list(m),Funcall("size",1,Rhs_tlist(c,"*"),list())));
+  insert(Equal(list(n),Funcall("size",1,Rhs_tlist(r,"*"),list())));
   
   
   // v=[matrix(c,1,-1),matrix(r(2:$),1,-1)]
-  cmatrix_funcall=Funcall("matrix",1,Rhs(c,1,-1),list())
+  cmatrix_funcall=Funcall("matrix",1,Rhs_tlist(c,1,-1),list())
   imp=Operation(":",list(Cste(2),Cste("$")),list())
   ext=Operation("ext",list(r,imp),list())
-  rmatrix_funcall=Funcall("matrix",1,Rhs(ext,1,-1),list())
+  rmatrix_funcall=Funcall("matrix",1,Rhs_tlist(ext,1,-1),list())
   v=Operation("rc",list(cmatrix_funcall,rmatrix_funcall),list())
 
   dim1=1
@@ -106,6 +106,6 @@ else
   tree.lhs(1).dims=list(dim1,dim2)
   tree.lhs(1).type=tree.rhs(1).type
   
-  tree.rhs=Rhs(m,n,v);
+  tree.rhs=Rhs_tlist(m,n,v);
 end
 endfunction

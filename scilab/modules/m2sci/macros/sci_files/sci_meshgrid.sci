@@ -9,12 +9,12 @@ function [tree]=sci_meshgrid(tree)
 if rhs==1
   A=getrhs(tree);
   A=convert2double(A);
-  tree.rhs=Rhs(A);
+  tree.rhs=Rhs_tlist(A);
 elseif rhs==2
   [A,B]=getrhs(tree);
   A=convert2double(A);
   B=convert2double(B);
-  tree.rhs=Rhs(A,B);
+  tree.rhs=Rhs_tlist(A,B);
 end
 
 if lhs==1

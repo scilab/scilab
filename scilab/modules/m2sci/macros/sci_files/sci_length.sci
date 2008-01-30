@@ -14,10 +14,10 @@ if or(X.vtype==[String,Unknown]) then
 end
 
 if is_a_vector(X) then
-  tree=Funcall("size",1,Rhs(X,"*"),tree.lhs)
+  tree=Funcall("size",1,Rhs_tlist(X,"*"),tree.lhs)
 else
   tree.name="size"
-  tree=Funcall("max",1,Rhs(tree),tree.lhs)
+  tree=Funcall("max",1,Rhs_tlist(tree),tree.lhs)
 end
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=Type(Double,Real)

@@ -19,10 +19,10 @@ elseif rhs==1 then
   if typeof(opt)=="cste" then
     if opt.value=="on" then
       tree.name="set";
-      tree.rhs=Rhs(ax,"grid",on);
+      tree.rhs=Rhs_tlist(ax,"grid",on);
     elseif opt.value=="off" then
       tree.name="set";
-      tree.rhs=Rhs(ax,"grid",off);
+      tree.rhs=Rhs_tlist(ax,"grid",off);
     else
       set_infos(gettext("No minor grid in Scilab."),2);
       tree.name="mtlb_grid";

@@ -17,7 +17,7 @@ if rhs==2 then
   if or(X.vtype==[String,Unknown]) then
     X = convert2double(X)
   end
-  tree.rhs=Rhs(X,dim)
+  tree.rhs=Rhs_tlist(X,dim)
   
   // Matlab can work with dim > size(size(X),2) but not Scilab
   if typeof(dim)=="cste" then
@@ -40,7 +40,7 @@ else
   if or(X.vtype==[String,Unknown]) then
     X = convert2double(X)
   end
-  tree.rhs=Rhs(X)
+  tree.rhs=Rhs_tlist(X)
   
   // d1 = size(X)
   if lhs==1 then

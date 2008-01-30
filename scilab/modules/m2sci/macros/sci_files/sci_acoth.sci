@@ -13,7 +13,7 @@ set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output o
 
 tree.name="atanh"
 Op=Operation("./",list(Cste(1),X),list())
-tree.rhs=Rhs(Op)
+tree.rhs=Rhs_tlist(Op)
 
 tree.lhs(1).dims=X.dims
 // Property unknown because result can be complex for real input

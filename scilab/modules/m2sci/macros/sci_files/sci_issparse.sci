@@ -7,7 +7,7 @@ function [tree]=sci_issparse(tree)
 // V.C.
 
 A = getrhs(tree)
-A=Funcall("type",1,Rhs(A),list())
+A=Funcall("type",1,Rhs_tlist(A),list())
 mat=Operation("rc",list(Cste(5),Cste(6)),list())
 tree=Operation("==",list(A,mat),tree.lhs)
 tree=Funcall("or",1,list(tree),tree.out)

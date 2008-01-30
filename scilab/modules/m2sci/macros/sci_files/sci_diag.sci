@@ -12,7 +12,7 @@ if rhs==2 then
   [A,k] = getrhs(tree)
   // In Scilab k must be a real or complex matrix
   k = convert2double(k)
-  tree.rhs=Rhs(A,k)
+  tree.rhs=Rhs_tlist(A,k)
 
   // Compute dims to for inference
   if typeof(k)=="cste" then
@@ -37,7 +37,7 @@ if rhs==2 then
     tree.lhs(1).type=A.type
   else
     if A.vtype==Boolean then
-      tree.rhs=Rhs(Funcall("bool2s",1,list(A),list()),k)
+      tree.rhs=Rhs_tlist(Funcall("bool2s",1,list(A),list()),k)
       tree.lhs(1).type=Type(Boolean,Real)
     else
       tree.lhs(1).type=A.type
@@ -72,7 +72,7 @@ else
     tree.lhs(1).type=A.type
   else
     if A.vtype==Boolean then
-      tree.rhs=Rhs(Funcall("bool2s",1,list(A),list()))
+      tree.rhs=Rhs_tlist(Funcall("bool2s",1,list(A),list()))
       tree.lhs(1).type=Type(Boolean,Real)
     else
       tree.lhs(1).type=A.type

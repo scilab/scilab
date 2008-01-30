@@ -13,10 +13,10 @@ tree.name="set"
 rc=Operation("rc",list(Cste(0.75),Cste(0.5)),list());
 rc=Operation("rc",list(rc,Cste(0.25)),list());
 transp=Operation("''",list(rc),list())
-ones_funcall=Funcall("ones",1,Rhs(1,3),list())
+ones_funcall=Funcall("ones",1,Rhs_tlist(1,3),list())
 mult=Operation("*",list(transp,ones_funcall),list())
 
 gdf_funcall=Funcall("gdf",1,list(),list())
 
-tree.rhs=Rhs(gdf_funcall,"color_map",mult);
+tree.rhs=Rhs_tlist(gdf_funcall,"color_map",mult);
 endfunction

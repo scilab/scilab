@@ -13,7 +13,7 @@ if rhs==1 then
 
   // Because %b_median and %C_median are not defined
   A = convert2double(A)
-  tree.rhs=Rhs(A,"m")
+  tree.rhs=Rhs_tlist(A,"m")
   
   if is_real(A) then
     tree.lhs(1).type=Type(Double,Real)
@@ -44,7 +44,7 @@ else
   // Because %b_median and %C_median are not defined
   A=convert2double(A)
   dim=convert2double(dim)
-  tree.rhs=Rhs(A,dim)
+  tree.rhs=Rhs_tlist(A,dim)
   
   if typeof(dim)=="cste" then
     if dim.value>size(A.dims) then

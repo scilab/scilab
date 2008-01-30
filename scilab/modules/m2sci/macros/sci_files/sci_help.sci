@@ -14,7 +14,7 @@ else
   if k<>[] & min(k)<>2 then // help toolbox/
     no_equiv(expression2code(tree));
   elseif topic.value=="syntax" then
-    tree.rhs=Rhs("names")
+    tree.rhs=Rhs_tlist("names")
   else
     // Nothing to do
   end

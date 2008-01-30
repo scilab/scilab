@@ -15,7 +15,7 @@ if S.vtype==String then
   tree.lhs(1).type=S.type
 elseif S.vtype==Boolean then
   S = convert2double(S)
-  tree.rhs=Rhs(S)
+  tree.rhs=Rhs_tlist(S)
   tree.lhs(1).dims=S.dims
   tree.lhs(1).type=Type(Boolean,Real)
 elseif S.vtype==Double then

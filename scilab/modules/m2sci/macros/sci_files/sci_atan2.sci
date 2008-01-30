@@ -10,7 +10,7 @@ function [tree]=sci_atan2(tree)
 [Y,X]=getrhs(tree)
 //Y=convert2double(Y)
 //X=convert2double(X)
-tree.rhs=Rhs(Y,X)
+tree.rhs=Rhs_tlist(Y,X)
 
 // Scilab atan() does not work with complex
 if is_complex(Y) then

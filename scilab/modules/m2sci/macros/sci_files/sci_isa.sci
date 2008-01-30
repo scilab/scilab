@@ -10,8 +10,8 @@ function [tree]=sci_isa(tree)
 
 if typeof(class)=="cste" then
   
-  typetree=Funcall("type",1,Rhs(OBJ),list())
-  typeoftree=Funcall("typeof",1,Rhs(OBJ),list())
+  typetree=Funcall("type",1,Rhs_tlist(OBJ),list())
+  typeoftree=Funcall("typeof",1,Rhs_tlist(OBJ),list())
   
   select class.value
   case "logical"

@@ -11,12 +11,12 @@ function [tree]=sci_norm(tree)
 if rhs==1 then
   A = getrhs(tree)
   A = convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs_tlist(A)
 // n = norm(A,p)
 else
   [A,p] = getrhs(tree)
   A = convert2double(A)
-  tree.rhs=Rhs(A,p)
+  tree.rhs=Rhs_tlist(A,p)
 end
 
 tree.lhs(1).dims=list(1,1)

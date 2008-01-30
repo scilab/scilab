@@ -10,8 +10,8 @@ function [tree]=sci_strcmpi(tree)
 [A,B] = getrhs(tree)
 
 if A.vtype==String & B.vtype==String then
-  A = Funcall("convstr",1,Rhs(A),list())
-  B = Funcall("convstr",1,Rhs(B),list())
+  A = Funcall("convstr",1,Rhs_tlist(A),list())
+  B = Funcall("convstr",1,Rhs_tlist(B),list())
   tree = Operation("==",list(A,B),tree.lhs)
   tree.out(1).dims=list(1,1)
   tree.out(1).type=Type(Boolean,Real)

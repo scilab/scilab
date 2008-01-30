@@ -7,7 +7,7 @@ function  [tree]=sci_cellstr(tree)
 // F.B
 
 A=getrhs(tree)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 Aknowndim=%t // Aknowndim is a boolean, true if all dimennsions of A are known
 tree.lhs(1).dims=list()
 for i=1:size(A.dims) 

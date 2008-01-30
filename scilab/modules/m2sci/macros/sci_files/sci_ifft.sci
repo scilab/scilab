@@ -14,24 +14,24 @@ if rhs==1 then
   X = getrhs(tree)
   // %c_ifft and %b_ifft are not defined
   X = convert2double(X)
-  tree.rhs=Rhs(X,1)
+  tree.rhs=Rhs_tlist(X,1)
   
   if size(X.dims)==2 then
     if is_a_scalar(X) | is_a_vector(X) then
-      tree.rhs=Rhs(X,1)
+      tree.rhs=Rhs_tlist(X,1)
     elseif not_a_vector(X) then
       if X.dims(2)<>Unknown then
-	tree.rhs=Rhs(X,1,X.dims(1),1)
+	tree.rhs=Rhs_tlist(X,1,X.dims(1),1)
       else
 	tmp=Funcall("size",1,list(X,1),list())
-	tree.rhs=Rhs(X,1,tmp,1)
+	tree.rhs=Rhs_tlist(X,1,tmp,1)
       end
     else
       tree.name="mtlb_ifft"
-      tree.rhs=Rhs(X)
+      tree.rhs=Rhs_tlist(X)
     end
   else
-    tree.rhs=Rhs(X,1,Funcall("firstnonsingleton",1,list(X,"num"),list()),1)
+    tree.rhs=Rhs_tlist(X,1,Funcall("firstnonsingleton",1,list(X,"num"),list()),1)
   end
   tree.lhs(1).dims=X.dims
   tree.lhs(1).type=Type(Double,Unknown)
@@ -41,7 +41,7 @@ elseif rhs==2 then
   [X,n] = getrhs(tree)
   X = convert2double(X)
   n = convert2double(n)
-  tree.rhs=Rhs(X,n)
+  tree.rhs=Rhs_tlist(X,n)
   
   tree.name="mtlb_ifft"
   
@@ -58,7 +58,7 @@ elseif rhs==3 then
   X = convert2double(X)
   n = convert2double(n)
   dim = convert2double(dim)
-  tree.rhs=Rhs(X,n,dim)
+  tree.rhs=Rhs_tlist(X,n,dim)
   
   tree.name="mtlb_ifft"
   

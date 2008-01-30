@@ -14,7 +14,7 @@ tree.out(1).type=A.type
 
 // Scilab and Matlab transposition do not work in the same way for strings
 if or(A.vtype==[String,Unknown]) then
-  tree=Funcall("mtlb_t",1,Rhs(A),tree.out)
+  tree=Funcall("mtlb_t",1,Rhs_tlist(A),tree.out)
 end
   
 endfunction

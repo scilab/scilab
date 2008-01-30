@@ -10,7 +10,7 @@ X = getrhs(tree)
 
 // %c_det and %b_det are not defined
 X = convert2double(X)
-tree.rhs=Rhs(X)
+tree.rhs=Rhs_tlist(X)
 
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=X.type

@@ -57,7 +57,7 @@ if rhs==1 then
     if bval then
       varslist(index).infer.dims=allunknown(to.dims)
     end
-    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs(to,from,ind),list(to))),1)
+    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,ind),list(to))),1)
   // --- Insertion with just one index ---
   elseif type(ind)<>15 then
     if ind.vtype==String then
@@ -146,7 +146,7 @@ else
     if bval then
       varslist(index).infer.dims=allunknown(to.dims)
     end
-    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs(to,from,tree.operands(2),tree.operands(3)),list(to))),1)
+    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,tree.operands(2),tree.operands(3)),list(to))),1)
   else
     tree.out(1).dims=list()
     for k=1:lstsize(tree.operands)-2
@@ -167,12 +167,12 @@ else
    if is_empty(to) then
       // a(k,:)=b with a==[] is converted by a(1,1:length(b))=b
       if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-1))=="cste" & tree.operands($-1).value==":" then
-	length_funcall=Funcall("length",1,Rhs(tree.operands($)),list())
+	length_funcall=Funcall("length",1,Rhs_tlist(tree.operands($)),list())
 	tree.operands($-1)=Operation(":",list(Cste(1),length_funcall),list())
       end
       // a(:,k)=b with a==[] is converted by a(1:length(b),1)=b
       if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-2))=="cste" & tree.operands($-2).value==":" then
-	length_funcall=Funcall("length",1,Rhs(tree.operands($)),list())
+	length_funcall=Funcall("length",1,Rhs_tlist(tree.operands($)),list())
 	tree.operands($-2)=Operation(":",list(Cste(1),length_funcall),list())
       end
     end

@@ -68,7 +68,7 @@ if rhs==1 then
     end
     error(msprintf(gettext("recursive extraction from a variable %s of type %s."),var.name,string(var.vtype)))
   elseif var.vtype==String then // Character string extraction
-    tree=Funcall("part",1,Rhs(var,ind),tree.out)
+    tree=Funcall("part",1,Rhs_tlist(var,ind),tree.out)
     if is_a_scalar(ind) then
       tree.lhs(1).dims=list(1,1)
     else
@@ -77,7 +77,7 @@ if rhs==1 then
     tree.lhs(1).type=var.type
   else // Extraction x(i)
     if var.vtype==Unknown then // Unknown type -> can be String
-      tree=Funcall("mtlb_e",1,Rhs(var,ind),tree.out)
+      tree=Funcall("mtlb_e",1,Rhs_tlist(var,ind),tree.out)
       tree.lhs(1).dims=list(Unknown,Unknown)
       tree.lhs(1).type=var.type
     else
@@ -114,7 +114,7 @@ if rhs==1 then
 	tree.out(1).dims=list(Unknown,1)
 	tree.out(1).type=var.type
       else // at leat one dimension unknown
-	tree=Funcall("mtlb_e",1,Rhs(var,ind),tree.out)
+	tree=Funcall("mtlb_e",1,Rhs_tlist(var,ind),tree.out)
 	tree.lhs(1).dims=list(Unknown,Unknown)
 	tree.lhs(1).type=var.type
       end
@@ -150,7 +150,7 @@ else
   if var.vtype==String then // extraction in strings
     if rhs==2 then
       rhsarg=Operation("ext",list(var,tree.operands(2)),list())
-      tree=Funcall("part",1,Rhs(rhsarg,tree.operands(3)),tree.out)
+      tree=Funcall("part",1,Rhs_tlist(rhsarg,tree.operands(3)),tree.out)
       tree.lhs(1).dims=list(dims(1:2))
       tree.lhs(1).type=var.type
     else

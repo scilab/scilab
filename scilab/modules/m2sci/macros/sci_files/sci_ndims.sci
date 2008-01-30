@@ -14,7 +14,7 @@ if or(A.vtype==[String,Unknown]) then
 end
 
 tree.name="size"
-tree=Funcall("size",1,Rhs(tree,"*"),tree.lhs)
+tree=Funcall("size",1,Rhs_tlist(tree,"*"),tree.lhs)
 
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=Type(Double,Real)

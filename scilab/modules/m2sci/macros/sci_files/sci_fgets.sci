@@ -9,7 +9,7 @@ function [tree]=sci_fgets(tree)
 
 if rhs==2 then
   tree.name="mgetstr"
-  tree.rhs=Rhs(tree.rhs(2),tree.rhs(1))
+  tree.rhs=Rhs_tlist(tree.rhs(2),tree.rhs(1))
   if typeof(tree.rhs(1))=="cste" then
     tree.lhs(1).dims=list(1,tree.rhs(1).value)
   else

@@ -20,9 +20,9 @@ else // Number of arguments of M-file
   end
   set_infos(msprintf(gettext("%s considered to be a Scilab macro."),rhs2code(tree.rhs)),2);
   evstrtree=Funcall("evstr",1,tree.rhs,list())
-  macrovartree=Funcall("macrovar",1,Rhs(evstrtree),list())
-  getfieldtree=Funcall("getfield",1,Rhs(fieldnb,macrovartree),list())
-  tree=Funcall("size",1,Rhs(getfieldtree,"*"),tree.lhs)
+  macrovartree=Funcall("macrovar",1,Rhs_tlist(evstrtree),list())
+  getfieldtree=Funcall("getfield",1,Rhs_tlist(fieldnb,macrovartree),list())
+  tree=Funcall("size",1,Rhs_tlist(getfieldtree,"*"),tree.lhs)
   tree.lhs(1).dims=list(1,1)
   tree.lhs(1).type=Type(Double,Real)
 end

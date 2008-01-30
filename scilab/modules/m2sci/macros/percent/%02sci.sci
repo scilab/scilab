@@ -11,7 +11,7 @@ A = getoperands(tree)
 
 // Scilab and Matlab transposition do not work in the same way for strings
 if or(A.vtype==[String,Unknown]) then
-  tree=Funcall("mtlb_0",1,Rhs(A),tree.out)
+  tree=Funcall("mtlb_0",1,Rhs_tlist(A),tree.out)
   tree.lhs(1).dims=list(A.dims(2),A.dims(1))
   tree.lhs(1).type=A.type
 else

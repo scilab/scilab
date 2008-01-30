@@ -1,4 +1,4 @@
-function rhs_tlist=Rhs(varargin)
+function rhs_tlist=Rhs_tlist(varargin)
 // Copyright INRIA
 // Create a new rhs tlist
 

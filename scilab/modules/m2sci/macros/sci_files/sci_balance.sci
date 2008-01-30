@@ -10,7 +10,7 @@ A = getrhs(tree)
 
 // %c_balance and %b_balance are not defined
 A=convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 tree.name="balanc"
 

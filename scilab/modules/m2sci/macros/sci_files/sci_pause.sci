@@ -13,7 +13,7 @@ else
   if n.vtype==String then // pause on/off
     no_equiv(expression2code(tree));
   else
-    tree.rhs=Rhs(Operation("*",list(Cste(1000),n),list()))
+    tree.rhs=Rhs_tlist(Operation("*",list(Cste(1000),n),list()))
     tree.name="xpause"
   end
 end

@@ -11,7 +11,7 @@ tree.name="loadmatfile"
 // If no rhs, then load all environnement
 if rhs<=0 then
   tree.name="loadmatfile"
-  tree.rhs=Rhs("scilab.mat")
+  tree.rhs=Rhs_tlist("scilab.mat")
   return
 end
 

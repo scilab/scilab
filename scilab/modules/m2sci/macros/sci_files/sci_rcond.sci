@@ -9,7 +9,7 @@ function [tree]=sci_rcond(tree)
 
 A = getrhs(tree)
 A = convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 // If A can be an empty matrix...
 if ~not_empty(A) then

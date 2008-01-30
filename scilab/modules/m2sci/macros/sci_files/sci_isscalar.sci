@@ -7,7 +7,7 @@ function [tree]=sci_isscalar(tree)
 // V.C.
 
 lgth_funcall=Funcall("length",1,tree.rhs,list())
-sum_funcall=Funcall("sum",1,Rhs(lgth_funcall),list())
+sum_funcall=Funcall("sum",1,Rhs_tlist(lgth_funcall),list())
 tree=Operation("==",list(sum_funcall,Cste(1)),tree.lhs)
 
 tree.out(1).dims=list(1,1)

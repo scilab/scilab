@@ -17,15 +17,15 @@ else
   if A.vtype==String then
     lhslist=list();
     lhslist($+1)=Variable("ans",Infer(A.dims,Type(Double,Real)))
-    dble=Funcall("asciimat",1,Rhs(A),lhslist)
+    dble=Funcall("asciimat",1,Rhs_tlist(A),lhslist)
   elseif A.vtype==Boolean then
     lhslist=list();
     lhslist($+1)=Variable("ans",Infer(A.dims,Type(Double,Real)))
-    dble=Funcall("bool2s",1,Rhs(A),lhslist)
+    dble=Funcall("bool2s",1,Rhs_tlist(A),lhslist)
   elseif A.vtype==Unknown then
     lhslist=list();
     lhslist($+1)=Variable("ans",Infer(A.dims,Type(Double,Unknown)))
-    dble=Funcall("mtlb_double",1,Rhs(A),lhslist)
+    dble=Funcall("mtlb_double",1,Rhs_tlist(A),lhslist)
   else
     error(msprintf(gettext("%s is not yet implemented."),string(A.vtype)))
   end

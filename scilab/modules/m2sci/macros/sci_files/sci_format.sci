@@ -61,11 +61,11 @@ elseif ratf|loose|compact|bank|hex then
   no_equiv("format "+f.value)
 else
   if rhs1==1 then
-    tree.rhs=Rhs(d+1)
+    tree.rhs=Rhs_tlist(d+1)
   elseif rhs1==2 then
-    tree.rhs=Rhs(fp,d+1)
+    tree.rhs=Rhs_tlist(fp,d+1)
   else
-    tree.rhs=Rhs("v",6)
+    tree.rhs=Rhs_tlist("v",6)
   end
 end
 endfunction

@@ -8,7 +8,7 @@ function [tree]=sci_logm(tree)
 // F.B
 
 A=getrhs(tree)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 tree.lhs(1).dims=A.dims
 tree.lhs(1).type=Type(Double,Unknown)

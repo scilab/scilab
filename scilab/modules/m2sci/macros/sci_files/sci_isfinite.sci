@@ -9,7 +9,7 @@ function [tree]=sci_isfinite(tree)
 // %c_isfinite and %b_isfinite are not defined in Scilab
 A = getrhs(tree)
 A = convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 tree=Funcall("abs",1,list(A),tree.lhs)
 tree=Operation("<",list(tree,Cste(%inf)),tree.lhs)

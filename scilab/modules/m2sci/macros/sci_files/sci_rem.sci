@@ -10,7 +10,7 @@ function [tree]=sci_rem(tree)
 [X,Y] = getrhs(tree)
 X = convert2double(X)
 Y = convert2double(Y)
-tree.rhs=Rhs(X,Y)
+tree.rhs=Rhs_tlist(X,Y)
 
 // X./Y
 drd=Operation("./",tree.rhs,list())

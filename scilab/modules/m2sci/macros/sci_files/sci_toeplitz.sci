@@ -19,7 +19,7 @@ if rhs==1 then
 // T = toeplitz(c,r)
 else
   [c,r]=getrhs(tree)
-  tree.rhs=Rhs(convert2double(c),convert2double(r))
+  tree.rhs=Rhs_tlist(convert2double(c),convert2double(r))
   tree.name="mtlb_toeplitz"
   if c.property==Complex | r.property==Complex then
     tree.lhs(1).type=Type(Double,Complex)

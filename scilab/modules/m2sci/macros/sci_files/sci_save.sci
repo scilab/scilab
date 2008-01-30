@@ -10,7 +10,7 @@ tree.name="savematfile"
 
 // If no rhs, save Scilab environnement
 if rhs<=0 then
-  tree.rhs=Rhs("scilab.mat")
+  tree.rhs=Rhs_tlist("scilab.mat")
   return
 end
 

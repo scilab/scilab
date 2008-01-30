@@ -10,7 +10,7 @@ function [tree]=sci_lu(tree)
 if rhs==1 then
   X = getrhs(tree)
   X = convert2double(X)
-  tree.rhs=Rhs(X)
+  tree.rhs=Rhs_tlist(X)
   // Y = lu(X)
   if lhs==1 then
     if tree.lhs(1).name=="ans" then

@@ -9,7 +9,7 @@ function [tree]=sci_log2(tree)
 // %c_log2/%c_frexp and %b_log2/%b_frexp are not defined in Scilab
 X = getrhs(tree)
 X = convert2double(X)
-tree.rhs=Rhs(X)
+tree.rhs=Rhs_tlist(X)
 
 // Y = log2(X)
 if lhs==1 then
@@ -23,7 +23,7 @@ else
     repl_poss(newX,X,X,gettext("is Real."));
     X=newX
   end
-  tree.rhs=Rhs(X)
+  tree.rhs=Rhs_tlist(X)
   tree.name="frexp"
   tree.lhs(1).dims=X.dims
   tree.lhs(1).type=Type(Double,Real)

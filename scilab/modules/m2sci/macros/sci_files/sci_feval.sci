@@ -37,7 +37,7 @@ else
   end
   LHS=LHS+"]"
 
-  tree.rhs=Rhs(Operation("+",list(Cste(LHS+" = "),RHS),list()))
+  tree.rhs=Rhs_tlist(Operation("+",list(Cste(LHS+" = "),RHS),list()))
   
   tree.lhs=list(Variable("ans",Infer()))
 end

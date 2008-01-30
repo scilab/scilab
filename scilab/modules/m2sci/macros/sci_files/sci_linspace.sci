@@ -24,12 +24,12 @@ end
 
 // y = linspace(A,B)
 if rhs==2 then
-  tree.rhs=Rhs(A,B)
+  tree.rhs=Rhs_tlist(A,B)
   tree.lhs(1).dims=list(1,100);
 else
 // y = linspace(A,B,n)
   n=tree.rhs(3)
-  tree.rhs=Rhs(A,B,n)
+  tree.rhs=Rhs_tlist(A,B,n)
   if typeof(n)=="cste" then
     if isempty(n.value) then
       tree.lhs(1).dims=list(1,1)

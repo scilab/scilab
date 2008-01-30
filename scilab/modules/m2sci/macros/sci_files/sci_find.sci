@@ -11,7 +11,7 @@ x = getrhs(tree)
 
 // Because %c_find is not defined
 x = convert2double(x)
-tree.rhs=Rhs(x)
+tree.rhs=Rhs_tlist(x)
 
 // k = find(x)
 if lhs==1 then
@@ -22,10 +22,10 @@ if lhs==1 then
     repl_poss(newx,x,x,gettext("is Real."));
     x=newx
   end
-  tree.rhs=Rhs(x)
+  tree.rhs=Rhs_tlist(x)
     
   tree1=Operation("''",list(tree),tree.lhs)
-  tree2=Funcall("matrix",1,Rhs(tree,-1,1),tree.lhs)
+  tree2=Funcall("matrix",1,Rhs_tlist(tree,-1,1),tree.lhs)
   
   tree.lhs(1).type=Type(Double,Real)
 
@@ -51,7 +51,7 @@ elseif lhs==2 then
     repl_poss(newx,x,x,gettext("is Real."));
     x=newx
   end
-  tree.rhs=Rhs(x)
+  tree.rhs=Rhs_tlist(x)
 
   tree.lhs(1).type=Type(Double,Real)
   tree.lhs(2).type=Type(Double,Real)

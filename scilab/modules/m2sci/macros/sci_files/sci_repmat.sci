@@ -110,7 +110,7 @@ else
   elseif A.vtype==String then
     A=convert2double(A)
   end
-  tree.rhs=Rhs(m,n)
+  tree.rhs=Rhs_tlist(m,n)
   tree.name="ones";
   tree=Operation(".*.",list(tree,A),tree.lhs)
 

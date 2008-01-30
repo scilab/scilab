@@ -7,7 +7,7 @@ function [tree]=sci_isinteger(tree)
 // V.C.
 
 A = getrhs(tree)
-A=Funcall("type",1,Rhs(A),list())
+A=Funcall("type",1,Rhs_tlist(A),list())
 tree=Operation("==",list(A,Cste(8)),tree.lhs)
 
 tree.out(1).dims=list(1,1)

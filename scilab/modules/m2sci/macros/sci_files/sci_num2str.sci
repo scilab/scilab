@@ -12,7 +12,7 @@ if rhs==1 then
 else
   if tree.rhs(2).vtype==String then
     tree.name="msprintf"
-    tree.rhs=Rhs(tree.rhs(2),tree.rhs(1))
+    tree.rhs=Rhs_tlist(tree.rhs(2),tree.rhs(1))
   elseif tree.rhs(2).vtype<>Unknown then
     no_equiv(expression2code(tree))
     set_infos(gettext("See msprintf for solutions."),1);

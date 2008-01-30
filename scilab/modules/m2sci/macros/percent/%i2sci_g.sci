@@ -9,7 +9,7 @@ from=tree.operands($)
 to=tree.operands(1)
 ind=tree.operands(2)
 
-newtree=Funcall("mtlb_i",1,Rhs(to,ind,from),list(to))
+newtree=Funcall("mtlb_i",1,Rhs_tlist(to,ind,from),list(to))
 insert(Equal(list(to),newtree))
 tree=list()
 endfunction

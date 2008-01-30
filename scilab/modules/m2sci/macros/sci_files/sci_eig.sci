@@ -13,7 +13,7 @@ if rhs==1 then
   // Because %c_spec and %b_spec are not defined
   A = getrhs(tree)
   A = convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs_tlist(A)
 
   // d = eig(A)
   if lhs==1 then
@@ -36,7 +36,7 @@ elseif rhs==2 then
   // 'nobalance'
   if B.vtype==String then
     no_equiv(gettext("''nobalance'' option, IGNORED."))
-    tree.rhs=Rhs(tree.rhs(1))
+    tree.rhs=Rhs_tlist(tree.rhs(1))
     if lhs==1 then
       tree.name="spec"
       tree.lhs(1).dims=list(A.dims(1),1)
@@ -44,7 +44,7 @@ elseif rhs==2 then
     else
       tree.rhs(1)=Operation("+",list(tree.rhs(1),Variable("%i",Infer()),list()))
       rhs2=Operation("+",list(Cste(1),Variable("%eps",Infer()),list()))
-      tree.rhs=Rhs(tree.rhs(1),rhs2)
+      tree.rhs=Rhs_tlist(tree.rhs(1),rhs2)
       tree.name="bdiag"
       tree.lhs(1).dims=list(A.dims(1),A.dims(1))
       tree.lhs(1).type=Type(Double,Unknown)

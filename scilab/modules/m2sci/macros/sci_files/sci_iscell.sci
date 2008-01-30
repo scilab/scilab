@@ -7,7 +7,7 @@ function [tree]=sci_iscell(tree)
 // V.C.
 
 A = getrhs(tree)
-A=Funcall("typeof",1,Rhs(A),list())
+A=Funcall("typeof",1,Rhs_tlist(A),list())
 tree=Operation("==",list(A,Cste("ce")),tree.lhs)
 
 tree.out(1).dims=list(1,1)

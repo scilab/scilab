@@ -8,7 +8,7 @@ function [tree]=sci_hess(tree)
 
 A = getrhs(tree)
 A = convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 // H = hess(A)
 if lhs==1 then

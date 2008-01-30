@@ -25,9 +25,9 @@ else
   end
   LHS="["+strcat(LHS,",")+"]"
   if typeof(tree.rhs(1))=="cste" then
-    tree.rhs=Rhs(LHS+" = "+tree.rhs(1).value)
+    tree.rhs=Rhs_tlist(LHS+" = "+tree.rhs(1).value)
   else
-    tree.rhs=Rhs(LHS+" = "+expression2code(tree.rhs(1)))
+    tree.rhs=Rhs_tlist(LHS+" = "+expression2code(tree.rhs(1)))
   end
   tree.lhs=list(Variable("ans",Infer()))
 end

@@ -11,9 +11,9 @@ opt=getrhs(tree)
 tree.name="lines"
 if typeof(opt)=="cste" then
   if opt.value=="off" then
-    tree.rhs=Rhs(0)
+    tree.rhs=Rhs_tlist(0)
   elseif opt.value=="on" then
-    tree.rhs=Rhs(60)
+    tree.rhs=Rhs_tlist(60)
   else
     // Nothing to do
   end

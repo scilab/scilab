@@ -7,7 +7,7 @@ function [tree]=sci_ishold(tree)
 // V.C.
 
 gca_funcall=Funcall("gca",1,list(),list())
-get_funcall=Funcall("get",1,Rhs(gca_funcall,"auto_clear"),list())
+get_funcall=Funcall("get",1,Rhs_tlist(gca_funcall,"auto_clear"),list())
 tree=Operation("==",list(get_funcall,Cste("off")),tree.lhs)
 
 tree.out(1).dims=list(1,1)

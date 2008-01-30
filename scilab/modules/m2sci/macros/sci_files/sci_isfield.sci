@@ -17,13 +17,13 @@ elseif st.vtype==Unknown then
 else
   // allf=getfield(1,st);tf=or(allf(3:$)==f);
   allf=gettempvar()
-  insert(Equal(list(allf),Funcall("getfield",1,Rhs(1,st),list())))
+  insert(Equal(list(allf),Funcall("getfield",1,Rhs_tlist(1,st),list())))
   
   imp=Operation(":",list(Cste(3),Cste("$")),list())
   ext=Operation("ext",list(allf,imp),list())
   eq=Operation("==",list(ext,f),list())
   
-  tree=Funcall("or",1,Rhs(eq),tree.lhs)
+  tree=Funcall("or",1,Rhs_tlist(eq),tree.lhs)
   tree.lhs(1).dims=list(1,1)
   tree.lhs(1).type=Type(Boolean,Real)  
 end

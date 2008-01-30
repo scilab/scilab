@@ -16,7 +16,7 @@ end
 
 // %c_chol and %b_chol are not defined
 X=convert2double(X)
-tree.rhs=Rhs(X)
+tree.rhs=Rhs_tlist(X)
 
 // R = chol(X)
 if lhs==1 then

@@ -7,6 +7,6 @@ function [tree]=sci_frewind(tree)
 // V.C.
 
 tree.name="mseek"
-tree.rhs=Rhs(0,tree.rhs(1))
+tree.rhs=Rhs_tlist(0,tree.rhs(1))
 
 endfunction

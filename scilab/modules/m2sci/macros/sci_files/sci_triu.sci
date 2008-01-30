@@ -21,7 +21,7 @@ if rhs==2 then
     repl_poss(newk,k,k,gettext("is Real."));
     k=newk
   end
-  tree.rhs=Rhs(X,k)
+  tree.rhs=Rhs_tlist(X,k)
 // L = triu(X)
 else
   X = getrhs(tree)
@@ -32,7 +32,7 @@ if or(X.vtype==[String,Unknown]) then
   tree.name="mtlb_triu"
 else
   if X.vtype==Boolean then
-    X=Funcall("bool2s",1,Rhs(X),list(Variable("",X.infer)))
+    X=Funcall("bool2s",1,Rhs_tlist(X),list(Variable("",X.infer)))
     tree.rhs(1)=X
   end
 end

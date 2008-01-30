@@ -11,7 +11,7 @@ X=getrhs(tree)
 
 tree.name="asin"
 Op=Operation("./",list(Cste(1),X),list())
-tree.rhs=Rhs(Op)
+tree.rhs=Rhs_tlist(Op)
 
 tree.lhs(1).dims=X.dims
 tree.lhs(1).type=Type(Double,Unknown)

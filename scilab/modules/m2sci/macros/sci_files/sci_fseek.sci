@@ -40,7 +40,7 @@ else
 end
 
 tree.name="mseek"
-tree.rhs=Rhs(offset,fid,flag)
+tree.rhs=Rhs_tlist(offset,fid,flag)
 
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=Type(Double,Real)

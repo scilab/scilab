@@ -12,7 +12,7 @@ ind=tree.operands(2)
 if from.dims(1)==1 & from.dims(2)==1 then // Insert a scalar
 elseif from.dims(1)==1 then // Insert a row vector
 elseif from.dims(1)<>Unknown & from.dims(2)<>Unknown then // Insert a matrix with known sizes
-  tree.operands($)=Funcall("matrix",1,Rhs(from,1,Operation("-",list(Cste(1)),list())))
+  tree.operands($)=Funcall("matrix",1,Rhs_tlist(from,1,Operation("-",list(Cste(1)),list())))
 else
   if ~isdefinedvar(from) then
     w=gettempvar()

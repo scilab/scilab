@@ -11,7 +11,7 @@ if rhs == 1 then
   X = getrhs(tree)
   // %c_fft2 and %b_fft2 are not defined
   X = convert2double(X)
-  tree.rhs=Rhs(X)
+  tree.rhs=Rhs_tlist(X)
   
   tree.lhs(1).dims=X.dims
   tree.lhs(1).type=Type(Double,Unknown)
@@ -22,7 +22,7 @@ elseif rhs == 3 then
   X = convert2double(X)
   m = convert2double(m)
   n = convert2double(n)
-  tree.rhs=Rhs(X,m,n)
+  tree.rhs=Rhs_tlist(X,m,n)
   
   tree.lhs(1).type=Type(Double,Unknown)
   

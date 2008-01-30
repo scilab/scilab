@@ -10,8 +10,8 @@ if or(tree.rhs(1).vtype==[String,Unknown]) then
   tree.rhs(1)=convert2double(tree.rhs(1))
 end
 
-rowsize=Funcall("size",1,Rhs(tree.rhs(1),1),list())
-colsize=Funcall("size",1,Rhs(tree.rhs(1),2),list())
+rowsize=Funcall("size",1,Rhs_tlist(tree.rhs(1),1),list())
+colsize=Funcall("size",1,Rhs_tlist(tree.rhs(1),2),list())
 
 rowsizeeq=Operation("==",list(rowsize,Cste(1)),list())
 colsizeeq=Operation("==",list(colsize,Cste(1)),list())

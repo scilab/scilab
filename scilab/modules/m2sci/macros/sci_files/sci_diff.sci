@@ -14,7 +14,7 @@ if rhs==1 then
   X=getrhs(tree)
   // %c_diff and %b_diff are not defined in Scilab
   X=convert2double(X)
-  tree.rhs=Rhs(X)
+  tree.rhs=Rhs_tlist(X)
   
   dim = first_non_singleton(X)
   
@@ -22,13 +22,13 @@ if rhs==1 then
     // All output dims are unknown
     tree.lhs(1).dims=allunknown(X.dims)
     // First non singleton dimension will be computed at execution
-    tree.rhs=Rhs(X,1,Funcall("firstnonsingleton",1,list(X),list()))
+    tree.rhs=Rhs_tlist(X,1,Funcall("firstnonsingleton",1,list(X),list()))
   else
     tree.lhs(1).dims=X.dims
     if dim==0 then
-      tree.rhs=Rhs(X)
+      tree.rhs=Rhs_tlist(X)
     else
-      tree.rhs=Rhs(X,1,dim)
+      tree.rhs=Rhs_tlist(X,1,dim)
       tree.lhs(1).dims(dim)=max(X.dims(dim)-1,-1)
     end
   end
@@ -38,7 +38,7 @@ elseif rhs==2 then
   [X,n] = getrhs(tree);
   X = convert2double(X)
   n = convert2double(n)
-  tree.rhs=Rhs(X,n)
+  tree.rhs=Rhs_tlist(X,n)
   
   if ~is_a_vector(X) then
     tree.name="mtlb_diff"
@@ -52,7 +52,7 @@ else
   X = convert2double(X)
   n = convert2double(n)
   dim = convert2double(dim)
-  tree.rhs=Rhs(X,n,dim)
+  tree.rhs=Rhs_tlist(X,n,dim)
   
   tree.lhs(1).dims=allunknown(X.dims)
   tree.lhs(1).type=Type(Double,Unknown)

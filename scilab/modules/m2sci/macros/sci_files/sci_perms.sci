@@ -7,7 +7,7 @@ function [tree]=sci_perms(tree)
 // F.Belahcene.
 
 A=getrhs(tree)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 if (type(tree.rhs(1).dims(1))==1 & tree.rhs(1).dims(1)==1) & (type(tree.rhs(1).dims(2))==1 & tree.rhs(1).dims(2)<>-1) then
 	tree.lhs(1).dims(1)=prod(1:tree.rhs(1).dims(2))

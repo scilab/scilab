@@ -12,7 +12,7 @@ for klhs=1:lhs
 end
 
 // Add trailing / or \ to path
-pathconvert_funcall=Funcall("pathconvert",1,Rhs("/"),list())
+pathconvert_funcall=Funcall("pathconvert",1,Rhs_tlist("/"),list())
 if lhs==1 then
   tree=Operation("+",list(tree,pathconvert_funcall),tree.lhs)
 else

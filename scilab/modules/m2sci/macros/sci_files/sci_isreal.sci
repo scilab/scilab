@@ -9,10 +9,10 @@ function [tree]=sci_isreal(tree)
 // %c_isreal and %b_isreal are not defined in Scilab
 A = getrhs(tree)
 A = convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 // eps set to 0
-tree.rhs=Rhs(A,0)
+tree.rhs=Rhs_tlist(A,0)
 
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=Type(Boolean,Real)

@@ -10,7 +10,7 @@ function [tree]=sci_isspace(tree)
 A = getrhs(tree)
 
 if A.vtype==String then
-  A = Funcall("asciimat",1,Rhs(A),list(Variable("",A.infer)))
+  A = Funcall("asciimat",1,Rhs_tlist(A),list(Variable("",A.infer)))
   tree = Operation("==",list(A,Cste(32)),tree.lhs)
   tree.out(1).dims=A.dims
   tree.out(1).type=Type(Boolean,Real)
