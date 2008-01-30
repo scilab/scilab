@@ -999,7 +999,7 @@ AH_BOTTOM([
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
-AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos/src/c/GenBlocks.sh])
+
 
 dnl #########################
 dnl ## substituting variables
@@ -1085,8 +1085,6 @@ modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
 modules/fftw/Makefile
-modules/scicos/Makefile
-modules/scicos/src/ocaml/Makefile
 modules/functions/Makefile
 modules/dynamic_link/Makefile
 modules/others/Makefile
@@ -1107,7 +1105,13 @@ libs/Makefile
 Makefile
 etc/modules.xml
 scilab-lib.properties
-])#MAN_FR MAN_ENG
+])
+#Scicos stuff
+#modules/scicos/Makefile
+#modules/scicos/src/ocaml/Makefile
+AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos/src/c/GenBlocks.sh])
+
+#MAN_FR MAN_ENG
 #modules/mpi/Makefile
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
 #  test -f $top_builddir/configure && break
