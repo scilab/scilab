@@ -10,21 +10,23 @@ int C2F(gw_cscicos)(void);
 /*--------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*--------------------------------------------------------------------------*/ 
-int inttimescicos _PARAMS((char *fname,unsigned long l));
-int intduplicate _PARAMS((char *fname,unsigned long l));
-int intdiffobjs _PARAMS((char *fname,unsigned long l));
-int intxproperty _PARAMS((char *fname,unsigned long l));
-int intphasesim _PARAMS((char *fname,unsigned long l));
-int intsetxproperty _PARAMS((char *fname,unsigned long l));
-int intcpass2 _PARAMS((char *fname,unsigned long l));
-int intsetblockerror _PARAMS((char *fname,unsigned long l));
-int inttree2 _PARAMS((char *fname,unsigned long l));
-int inttree3 _PARAMS((char *fname,unsigned long l));
-int inttree4 _PARAMS((char *fname,unsigned long l));
-int intscicosimc _PARAMS((char *fname, unsigned long l));
-int intgetscicosvarsc _PARAMS((char *fname, unsigned long l));
-int intcurblkc _PARAMS((char *fname, unsigned long l));
-int intbuildouttb _PARAMS((char *fname));
+int sci_scicos_time _PARAMS((char *fname,unsigned long fname_len));
+int sci_duplicate _PARAMS((char *fname,unsigned long fname_len));
+int sci_diffobjs _PARAMS((char *fname,unsigned long fname_len));
+int sci_pointer_xproperty _PARAMS((char *fname,unsigned long fname_len));
+int sci_phase_simulation _PARAMS((char *fname,unsigned long fname_len));
+int sci_set_xproperty _PARAMS((char *fname,unsigned long fname_len));
+int sci_set_blockerror _PARAMS((char *fname,unsigned long fname_len));
+int sci_ctree2 _PARAMS((char *fname,unsigned long fname_len));
+int sci_ctree3 _PARAMS((char *fname,unsigned long fname_len));
+int sci_ctree4 _PARAMS((char *fname,unsigned long fname_len));
+int sci_scicosim _PARAMS((char *fname,unsigned long fname_len));
+int sci_getscicosvars _PARAMS((char *fname,unsigned long fname_len));
+int sci_curblockc _PARAMS((char *fname,unsigned long fname_len));
+int sci_buildouttb _PARAMS((char *fname,unsigned long fname_len));
+int sci_permutobj _PARAMS((char *fname,unsigned long fname_len));
+int sci_xstringb2 _PARAMS((char *fname,unsigned long fname_len));
+int sci_end_scicosim _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CSCICOS__ */
 /*--------------------------------------------------------------------------*/
