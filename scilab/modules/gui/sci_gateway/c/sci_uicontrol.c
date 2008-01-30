@@ -3,13 +3,12 @@
 /* Copyright INRIA 2007                                                   */
 /* Authors : Vincent COUVERT                                              */
 /*------------------------------------------------------------------------*/
-#include <ctype.h> /* tolower */
-/*------------------------------------------------------------------------*/
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
 #include "CreateUIControl.h"
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
+#include "stricmp.h"
 #include "stack-c.h"
 #include "sciprint.h"
 #include "ObjectStructure.h"
@@ -175,14 +174,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               GetRhsVar(inputIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
               propertyName = cstk(stkAdr);
 
-              /* Convert the property name to lower string */
-              for(k=0; propertyName[k]; k++)
-                propertyName[k] = tolower(propertyName[k]);
-
               found = 0;
               for(k=0; k<NBPROPERTIES; k++)
                 {
-                  if (strcmp(propertyName, propertiesNames[k]) == 0)
+                  if (stricmp(propertyName, propertiesNames[k]) == 0)
                     {
                       propertiesValuesIndices[k] = inputIndex+1; /* Position of value for property */
                       found = 1;
