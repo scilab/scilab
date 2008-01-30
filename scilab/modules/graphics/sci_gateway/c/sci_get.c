@@ -2,7 +2,10 @@
 /* file: sci_get.c                                                        */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
+/*           Vincent Couvert                                              */
 /* desc : interface for sci_get routine                                   */
+/*------------------------------------------------------------------------*/
+#include <ctype.h> /* tolower */
 /*------------------------------------------------------------------------*/
 #include "sci_get.h"
 /*--------------------------------------------------------------------------*/
@@ -26,8 +29,17 @@ int sciGet(sciPointObj *pobj,char *marker);
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker)
 {
+  int k = 0;
+
   /* get the hash_table to retrieve functions */
   createScilabGetHashTable() ;
+
+  /* Added for uiobjects: convert property name to lower string */
+  if (sciGetEntityType(pobj)==SCI_UIMENU || sciGetEntityType(pobj)==SCI_UICONTROL)
+    {
+      for(k=0; marker[k]; k++)
+        marker[k] = tolower(marker[k]);
+    }
 
   /* find the function in the hashtable relative to the property name */
   /* and call it */

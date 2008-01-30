@@ -2,11 +2,12 @@
 /* file: sci_set.h                                                        */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
+/*           Vincent Couvert                                              */
 /* desc : interface for sci_set routine                                   */
 /*------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
+#include <ctype.h> /* tolower */
 #include <stdio.h>
-
+/*------------------------------------------------------------------------*/
 #include "sci_set.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
@@ -36,8 +37,16 @@ static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, in
 */
 static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol)
 {
+  int k = 0;
 
   /*createScilabSetHashTable() ;*/
+
+  /* Added for uiobjects: convert property name to lower string */
+  if (sciGetEntityType(pobj)==SCI_UIMENU || sciGetEntityType(pobj)==SCI_UICONTROL)
+    {
+      for(k=0; marker[k]; k++)
+        marker[k] = tolower(marker[k]);
+    }
 
   return callSetProperty( pobj, *value, valueType, *numrow, *numcol, marker ) ;
 
@@ -151,7 +160,8 @@ int sci_set(char *fname, unsigned long fname_len)
 				  && strcmp( cstk(l2), "axes_visible" ) != 0
 				  && strcmp( cstk(l2), "axes_reverse" ) != 0
 				  && strcmp( cstk(l2), "text"         ) != 0 
-                                        && strcmp( cstk(l2), "string"       ) != 0   ) /* Added for uicontrols */
+                                  && strcmp( cstk(l2), "string"       ) != 0   
+                                  && strcmp( cstk(l2), "String"       ) != 0) /* string and String added for uicontrols */
 				{
 					GetRhsVar(3,STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				} 
