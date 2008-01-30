@@ -65,7 +65,6 @@ static int *Pstk    = C2F(recu).pstk-1;
 #define Pt (C2F(recu).pt)
 
 int Ptover(int n);
-int C2F(overload)(int *lw,char *fname,unsigned long l);
 
 /**intisequalvar
  * Gateway for isequalbitwise and isequal builtins
