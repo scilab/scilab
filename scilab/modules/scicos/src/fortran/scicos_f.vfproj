@@ -7,125 +7,36 @@
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
-				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmtd.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremdd.lib /DLL libmmdd.lib /DLL scicos.lib" OutputFile="$(SolutionDir)bin\scicos_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="scicos_f.def" GenerateDebugInformation="true" ProgramDatabaseFile="$(OUTDIR)/scicos_f.pdb" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\scicos_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul
 copy *.def scicos_f.def &gt;nul
 copy scicos_f.def ..\scicos_f.vcdef &gt;nul
 del *.def &gt;nul
 cd ..
-copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build scicos.def"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build scicos.def"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
-				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib  /DLL scicos.lib" OutputFile="$(SolutionDir)bin\scicos_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="scicos_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\scicos_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_f.dll %%f &gt;nul
 copy *.def scicos_f.def &gt;nul
 copy scicos_f.def ..\scicos_f.vcdef &gt;nul
 del *.def &gt;nul
 cd ..
-copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build scicos.def"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build scicos.def"/></Configuration></Configurations>
 	<Files>
-		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="affich.f"/>
-		<File RelativePath="constraint.f"/>
-		<File RelativePath="csslti.f"/>
-		<File RelativePath="cstblk.f"/>
-		<File RelativePath="ddaskr.f"/>
-		<File RelativePath="delay.f"/>
-		<File RelativePath="delayv.f"/>
-		<File RelativePath="demux.f"/>
-		<File RelativePath="diffblk.f"/>
-		<File RelativePath="dlradp.f"/>
-		<File RelativePath="dollar.f"/>
-		<File RelativePath="dsslti.f"/>
-		<File RelativePath="eselect.f"/>
-		<File RelativePath="evscpe.f"/>
-		<File RelativePath="evtdly.f"/>
-		<File RelativePath="expblk.f"/>
-		<File RelativePath="forblk.f"/>
-		<File RelativePath="fscope.f"/>
-		<File RelativePath="fsv.f"/>
-		<File RelativePath="ftree2.f"/>
-		<File RelativePath="ftree3.f"/>
-		<File RelativePath="ftree4.f"/>
-		<File RelativePath="gensin.f"/>
-		<File RelativePath="gensqr.f"/>
-		<File RelativePath="hltblk.f"/>
-		<File RelativePath="ifthel.f"/>
-		<File RelativePath="integr.f"/>
-		<File RelativePath="intplt.f"/>
-		<File RelativePath="intpol.f"/>
-		<File RelativePath="intrp2.f"/>
-		<File RelativePath="intrpl.f"/>
-		<File RelativePath="invblk.f"/>
-		<File RelativePath="iocopy.f"/>
-		<File RelativePath="list2vars.f"/>
-		<File RelativePath="logblk.f"/>
-		<File RelativePath="lookup.f"/>
-		<File RelativePath="lsodar2.f"/>
-		<File RelativePath="lsplit.f"/>
-		<File RelativePath="lusat.f"/>
-		<File RelativePath="maxblk.f"/>
-		<File RelativePath="memo.f"/>
-		<File RelativePath="mfclck.f"/>
-		<File RelativePath="minblk.f"/>
-		<File RelativePath="mscope.f"/>
-		<File RelativePath="mux.f"/>
-		<File RelativePath="pload.f"/>
-		<File RelativePath="powblk.f"/>
-		<File RelativePath="qzcel.f"/>
-		<File RelativePath="qzflr.f"/>
-		<File RelativePath="qzrnd.f"/>
-		<File RelativePath="qztrn.f"/>
-		<File RelativePath="readf.f"/>
-		<File RelativePath="rndblk.f"/>
-		<File RelativePath="samphold.f"/>
-		<File RelativePath="sawtth.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_ctree.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_curblock.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_debug_count.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_getblocklabel.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_scicos_debug.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_tree2.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_tree3.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_tree4.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_var2vec.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_vec2var.f"/>
-		<File RelativePath="sciblk.f"/>
-		<File RelativePath="scierr.f"/>
-		<File RelativePath="scifunc.f"/>
-		<File RelativePath="scitod.f"/>
-		<File RelativePath="scitoi.f"/>
-		<File RelativePath="scitovv.f"/>
-		<File RelativePath="scope.f"/>
-		<File RelativePath="scopxy.f"/>
-		<File RelativePath="scoxy.f"/>
-		<File RelativePath="sctree.f"/>
-		<File RelativePath="selblk.f"/>
-		<File RelativePath="sinblk.f"/>
-		<File RelativePath="skipvars.f"/>
-		<File RelativePath="sqrblk.f"/>
-		<File RelativePath="sum2.f"/>
-		<File RelativePath="sum3.f"/>
-		<File RelativePath="tanblk.f"/>
-		<File RelativePath="tcslti.f"/>
-		<File RelativePath="tcsltj.f"/>
-		<File RelativePath="timblk.f"/>
-		<File RelativePath="trash.f"/>
-		<File RelativePath="vvtosci.f"/>
-		<File RelativePath="writef.f"/>
-		<File RelativePath="zcross.f"/></Filter>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl"/>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
