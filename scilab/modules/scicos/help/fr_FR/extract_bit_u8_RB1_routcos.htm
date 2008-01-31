@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>extract_bit_u8_RB1_routcos</TITLE>
+<META NAME="description" CONTENT="extract_bit_u8_RB1_routcos">
+<META NAME="keywords" CONTENT="extract_bit_u8_RB1_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="extract_bit_u8_RB1_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction de calcul
+<BR><A NAME="tex2html1"
+  HREF="./extract_bit_u8_RB1_routcos.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="extract_bit_u8_RB1_routcos"></A>
+<BR>
+extract_bit_u8_RB1
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block4.h"
+#include &lt;math.h&gt;
+
+void extract_bit_u8_RB1(scicos_block *block,int flag)
+{
+   int i,maxim,numb;
+   unsigned char *y,*u,ref,n;
+   int *ipar;
+   y=Getuint8OutPortPtrs(block,1);
+   u=Getuint8InPortPtrs(block,1);
+   ipar=GetIparPtrs(block);
+   maxim=8;
+   ref=0;
+   numb=*(ipar+1)-*ipar+1;
+   for(i=0;i&lt;numb;i++)
+       {n=(unsigned char)pow(2,*ipar+i);
+        ref=ref+n;}
+   *y=(*u)&amp;(ref);
+   *y=*y&gt;&gt;*ipar;
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

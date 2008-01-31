@@ -1,0 +1,548 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>scicos_sim</TITLE>
+<META NAME="description" CONTENT="scicos_sim">
+<META NAME="keywords" CONTENT="scicos_sim">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="scicos_sim.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Liste Scicos
+<BR><A NAME="tex2html1"
+  HREF="./scicos_sim.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/scicos_sim.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="scicos_sim"></A>
+<BR>
+<b>scicos_sim</b> - Définit une structure sim
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+sim</A>
+</font></H3>
+ Une liste typée scilab de type scs. Cette
+ liste contient des tableaux statiques issus
+ du résultat de la compilation. Ces tableaux
+ n'évoluent pas pendant la simulation.
+<BR>
+<BR>
+<P>
+Taille : 33.
+<BR>
+Type : tlist scilab.
+<BR>
+<P>
+
+<UL>
+<LI><B>funs</B>
+<BR>
+Une liste qui contient les noms des
+          fonctions de calculs ou des fonctions
+          scilab.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs.
+<BR>
+Type : liste scilab.
+<BR>
+<P>
+</LI>
+<LI><B>xptr</B>
+<BR>
+Un vecteur pointant vers le registre des états
+          continus x. Le registre des états continus
+          du bloc i peut-être retrouvé par :
+          state.x(sim.xptr(i):sim.xptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>zptr</B>
+<BR>
+Un vecteur pointant vers le registre des états
+          discret z. Le registre des états discrets
+          du bloc i peut-être retrouvé par :
+          state.z(sim.zptr(i):sim.zptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>ozptr</B>
+<BR>
+Un vecteur pointant vers le registre des états
+          objets discret oz. Le registre des états objets
+          du bloc i peut-être retrouvé par :
+          state.oz(sim.ozptr(i):sim.ozptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>zcptr</B>
+<BR>
+Un vecteur pointant vers le registre des
+          détections de surfaces. Ce vecteur indique
+          par bloc le nombre de passages à zéro utilisé.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>inpptr</B>
+<BR>          (sim.inpptr(i+1)-sim.inpptr(i)) donne le nombre
+          de ports réguliers d'entrée du bloc i.
+<BR>
+inpptr(i) pointe vers le début des ports d'entrée
+          du bloc i et les connections à ces ports peuvent
+          retrouvées par la table d'indirection inplnk.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>outptr</B>
+<BR>          (sim.outptr(i+1)-sim.outptr(i)) donne le nombre
+          de ports réguliers de sortie du bloc i.
+<BR>
+outptr(i) pointe vers le début des ports de sortie
+          du bloc i et les connections à ces ports peuvent
+          retrouvées par la table d'indirection outlnk.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>inplnk</B>
+<BR>          (cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j))
+          est l'index du lien connecté à l'entrée j
+          du bloc i, où j va de 1 jusqu'à
+          (cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i)).
+<BR>
+<BR>
+<P>
+Taille : nombre total de port réguliers d'entrée.
+<BR>
+Type : vecteur colonne de nombre entier.
+<BR>
+<P>
+</LI>
+<LI><B>outlnk</B>
+<BR>          (cpr.sim.outlnk(cpr.sim.outptr(i)-1+j))
+          est l'index du lien connecté à la sortie j
+          du bloc i, où j va de 1 jusqu'à
+          (cpr.sim.outptr(i+1)-cpr.sim.outptr(i)).
+<BR>
+<BR>
+<P>
+Taille : nombre total de port réguliers de sortie.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>rpar</B>
+<BR>
+Vecteur des paramètres réels qui est
+          obtenu en concatenant les registres
+          des paramètres réels de tous les blocs.
+<BR>
+<BR>
+<P>
+Taille : nombre total de paramètres réels.
+<BR>
+Type : vecteur colonne de nombre réels.
+<BR>
+<P>
+</LI>
+<LI><B>rpptr</B>
+<BR>
+Un vecteur pointant vers le registre des
+          paramètres réels rpar. Les paramètres 
+          réels du bloc i peuvent être retrouvés par :
+          sim.rpar(sim.rpptr(i):sim.rpptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>ipar</B>
+<BR>
+Vecteur des paramètres entiers qui est
+          obtenu en concatenant les registres
+          des paramètres entiers de tous les blocs.
+<BR>
+<BR>
+<P>
+Taille : nombre total de paramètres entiers.
+<BR>
+Type : vecteur colonne de nombre réels.
+<BR>
+<P>
+</LI>
+<LI><B>ipptr</B>
+<BR>
+Un vecteur pointant vers le registre des
+          paramètres entier ipar. Les paramètres 
+          entiers du bloc i peuvent être retrouvés par :
+          sim.ipar(sim.ipptr(i):sim.ipptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entier.
+<BR>
+<P>
+</LI>
+<LI><B>opar</B>
+<BR>
+Liste des paramètres objets qui est
+          obtenue en concatenant les listes
+          des paramètres objets de tous les blocs.
+<BR>
+<BR>
+<P>
+Taille : nombre total de paramètres objets.
+<BR>
+Type : liste scilab.
+<BR>
+<P>
+</LI>
+<LI><B>opptr</B>
+<BR>
+Un vecteur pointant vers la liste des
+          paramètres objets opar. Les paramètres 
+          entiers du bloc i peuvent être retrouvés par :
+          sim.opar(sim.opptr(i):sim.opptr(i+1)-1).
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>clkptr</B>
+<BR>
+Un vecteur pointant vers les ports 
+          d'activation de sortie.
+<BR>          (cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1)
+          donne les numéros des ports de sortie
+          événementiel du bloc i.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>ordptr</B>
+<BR>
+Un vecteur pointant vers ordclk
+          (cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1)
+          pointe vers la zone de ordclk qui
+          indique les numéros des blocs activés par
+          le port événementiel numérotés i.
+<BR>
+<BR>
+<P>
+Taille : nombre de source d'activations + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>execlk</B>
+<BR>
+Non utilisé.
+<BR>
+<BR>
+<P>
+Taille : 
+          Type : 
+
+<P>
+</LI>
+<LI><B>ordclk</B>
+<BR>
+Une matrice associé aux blocs activés par
+          événements. La première colonne contient
+          les numéros des blocs et la deuxième le
+          code de l'événement par lequel le bloc
+          sera appelé pendant la simulation.
+<BR>
+<BR>
+<P>
+Taille : nombre total de bloc sommé par source d'activations.
+<BR>
+Type : matrice de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>cord</B>
+<BR>
+Une matrice associé aux blocs activés en
+          permanence. La première colonne contient
+          les numéros des blocs et la deuxième le
+          code de l'événement par lequel le bloc
+          sera appelé pendant la simulation.
+<BR>
+<BR>
+<P>
+Taille : ncord.
+<BR>
+Type : matrice de nombres entiers.
+<BR>
+<P>
+</LI>
+<LI><B>oord</B>
+<BR>
+Sous-ensemble de cord. Les blocs de cette
+          matrice ont des sorties qui affectent le 
+          calcul des états continus.
+<BR>
+<BR>
+<P>
+Taille : noord.
+<BR>
+Type : matrice de nombres entiers.
+<BR>
+<P>
+</LI>
+<LI><B>zord</B>
+<BR>
+Sous-ensemble de cord. Les blocs de cette
+          matrice ont des sorties qui affectent le 
+          calcul des détections de surface.
+<BR>
+<BR>
+<P>
+Taille : nzord.
+<BR>
+Type : matrice de nombres entiers.
+<BR>
+<P>
+</LI>
+<LI><B>critev</B>
+<BR>
+Un vecteur de taille égale au nombre
+          d'activation. Ce vecteur est composé de
+          0 et de 1 qui indiquent si des événements
+          sont critiques dans le sens où le solveur
+          doit redémarrer à froid.
+<BR>
+<BR>
+<P>
+Taille : nombre de sources d'activation.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>nb</B>
+<BR>
+Nombre de blocs. Notez que le nombre de
+          blocs peut être différent du nombre
+          original de blocs dans le diagramme
+          car la fonction c_pass2 du compilateur
+          peut dupliquer des blocs synchrones.
+<BR>
+<BR>
+<P>
+Taille : 1.
+<BR>
+Type : entier.
+<BR>
+<P>
+</LI>
+<LI><B>ztyp</B>
+<BR>
+Un vecteur de taille égale au nombre de blocs.
+<BR>
+Une entrée égale à 1 indique que le bloc possède
+          une détection de surface.
+<BR>
+<BR>
+<P>
+Taille : nombre de source d'activations + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>nblk</B>
+<BR>
+Pas utilisé. Mis à nb.
+<BR>
+<BR>
+<P>
+Taille : 1.
+<BR>
+Type : entier.
+<BR>
+<P>
+</LI>
+<LI><B>ndcblk</B>
+<BR>
+Pas utilisé.
+<BR>
+<BR>
+<P>
+Taille : -.
+<BR>
+Type : entier.
+<BR>
+<P>
+</LI>
+<LI><B>subscr</B>
+<BR>
+Pas utilisé.
+<BR>
+<BR>
+<P>
+Taille : 0.
+<BR>
+Type : vide.
+<BR>
+<P>
+</LI>
+<LI><B>funtyp</B>
+<BR>
+Un vecteur de taille égale au nombre de blocs
+          qui indique le type de la fonction de calcul.
+<BR>
+Le type de bloc peut aller de 0 à 5.
+<BR>
+Les blocs courants de Scicos sont les blocs
+          de type 4 (bloc C) et de type 5 (bloc scilab).
+<BR>
+Les anciens blocs restent compatibles.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+<LI><B>iord</B>
+<BR>
+Une matrice qui associe les blocs à activer 
+          au début de la simulation. Celà inclue les
+          blocs Constante et les blocs activés en
+          permanence.
+<BR>
+<BR>
+<P>
+Taille : niord.
+<BR>
+Type : matrice de nombres entiers.
+<BR>
+<P>
+</LI>
+<LI><B>labels</B>
+<BR>
+Un vecteur de chaîne de caractères de
+          taille égale au nombre de blocs 
+          contenant les labels des blocs.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs.
+<BR>
+Type : vecteur colonne de chaînes de caractères.
+<BR>
+<P>
+</LI>
+<LI><B>modptr</B>
+<BR>
+Un vecteur pointant sur les modes des blocs.
+<BR>
+<BR>
+<P>
+Taille : nombre de blocs + 1.
+<BR>
+Type : vecteur colonne de nombre entiers.
+<BR>
+<P>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Contenu du ficher</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos/scicos_sim.sci <A NAME="tex2html4"
+  HREF="scicos_sim_scifunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>phase_simulation</TITLE>
+<META NAME="description" CONTENT="phase_simulation">
+<META NAME="keywords" CONTENT="phase_simulation">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="phase_simulation.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction Scilab
+<BR><A NAME="tex2html1"
+  HREF="./phase_simulation.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/phase_simulation.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="phase_simulation"></A>
+<BR>
+<b>phase_simulation</b> - Retourne la phase actuelle de simulation
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Cette fonction permet de savoir si le simulateur scicos est dans sa phase d'intégration temporelle.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Séquence d'appel</A>
+</font></H3>
+<PRE>
+[psim]=phase_simulation()
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
+Paramètres</A>
+</font></H3>
+
+<UL>
+<LI><b>psim :</b>
+   retourne la  phase courante de la simulation.
+
+<UL>
+<LI><b>1 :</b>
+   Le simulateur est sur un point temporel d'activation discrète.
+</LI>
+<LI><b>2 :</b>
+   Le simulateur est entrain de réaliser une intégration temporelle à temps continu.
+</LI>
+</UL>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

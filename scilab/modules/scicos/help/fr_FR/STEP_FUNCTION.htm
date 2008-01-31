@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>STEP_FUNCTION</TITLE>
+<META NAME="description" CONTENT="STEP_FUNCTION">
+<META NAME="keywords" CONTENT="STEP_FUNCTION">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="STEP_FUNCTION.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./STEP_FUNCTION.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/STEP_FUNCTION.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="STEP_FUNCTION"></A>
+<BR>
+Générateur de marche d'escalier
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=STEP_FUNCTION.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/STEP_FUNCTION_blk.gif"
+ ALT="\epsfig{file=STEP_FUNCTION.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="STEP_FUNCTION.htm#SECTION00010000000000000000">Générateur de marche d'escalier</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="STEP_FUNCTION.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html7"
+  HREF="STEP_FUNCTION.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html8"
+  HREF="STEP_FUNCTION.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html9"
+  HREF="STEP_FUNCTION.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html10"
+  HREF="STEP_FUNCTION.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html11"
+  HREF="STEP_FUNCTION.htm#SECTION00026000000000000000">Contenu du super-bloc compilé</A>
+<LI><A NAME="tex2html12"
+  HREF="STEP_FUNCTION.htm#SECTION00027000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Sources_pal.htm">Sources - Palette Sources</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Le bloc 'Step' réalise un saut entre deux niveaux définis à un temps
+spécifié.
+Si le temps de simulation est inférieur au paramètre <B>Step time</B>, la 
+sortie est égale à la valeur du paramètre <B>Initial value</B>.
+Pour les temps de simulation supérieurs, la sortie est égale à la valeur
+du paramètre <B>Final value</B>.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="382" HEIGHT="148" BORDER="0"
+ SRC="../../images/scicos/STEP_FUNCTION_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=STEP_FUNCTION_gui.eps,width=240pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Step time</B> 
+<BR>
+Le temps en seconde à partir duquel la sortie saute de
+        la valeur du paramètre <B>Initial value</B> à la valeur
+        du paramètre <B>Final value</B>.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><B>Initial value</B>
+<BR>
+La valeur de la sortie du bloc jusqu'à ce que
+        le temps de la simulation arrive à la valeur du
+        paramètre <B>Step time</B>.
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
+</LI>
+<LI><B>Final value</B> 
+<BR>
+La valeur de la sortie du bloc lorsque le temps de
+        simulation est supérieur à la valeur du paramètre
+        <B>Step time</B>.
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> non
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>csuper</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Sources/STEP_FUNCTION.sci <A NAME="tex2html4"
+  HREF="STEP_FUNCTION_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Contenu du super-bloc compilé</A>
+</font></H3>
+ <!-- MATH
+ $\epsfig{file=STEP_FUNCTION_super.eps,width=150.00pt}$
+ -->
+<IMG
+ WIDTH="239" HEIGHT="200" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/STEP_FUNCTION_img3_fr.gif"
+ ALT="\epsfig{file=STEP_FUNCTION_super.eps,width=150.00pt}">
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

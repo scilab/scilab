@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Lorentz_diagr</TITLE>
+<META NAME="description" CONTENT="Lorentz_diagr">
+<META NAME="keywords" CONTENT="Lorentz_diagr">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lorentz_diagr.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Diagramme Scicos
+<BR><A NAME="tex2html1"
+  HREF="./Lorentz_diagr.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/Lorentz_diagr.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="Lorentz_diagr"></A>
+<BR>
+Equation de Lorentz
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=Lorentz_diagr.eps,width=400pt}$
+ -->
+<IMG
+ WIDTH="637" HEIGHT="674" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/Lorentz_diagr_blk.gif"
+ ALT="\epsfig{file=Lorentz_diagr.eps,width=400pt}">
+</DIV>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html16"
+  HREF="Lorentz_diagr.htm#SECTION00010000000000000000">Equation de Lorentz</A>
+<UL>
+<LI><A NAME="tex2html17"
+  HREF="Lorentz_diagr.htm#SECTION00011000000000000000">Module</A>
+<LI><A NAME="tex2html18"
+  HREF="Lorentz_diagr.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html19"
+  HREF="Lorentz_diagr.htm#SECTION00022000000000000000">Contexte</A>
+<LI><A NAME="tex2html20"
+  HREF="Lorentz_diagr.htm#SECTION00023000000000000000">Résultats des oscilloscopes</A>
+<LI><A NAME="tex2html21"
+  HREF="Lorentz_diagr.htm#SECTION00024000000000000000">Blocs utilisés</A>
+<LI><A NAME="tex2html22"
+  HREF="Lorentz_diagr.htm#SECTION00025000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Le système de Lorentz est défini par le système continu
+d'équations non-linéaires différentielles suivant :
+<BR>
+<DIV ALIGN="RIGHT" CLASS="mathdisplay">
+<P ALIGN="LEFT"><!-- MATH
+ \begin{eqnarray}
+\htmlimage{align=left}
+\frac{dx(t)}{dt}&=&a\left(-x(t)+y(t)\right)\\
+\frac{dy(t)}{dt}&=&bx(t)-y(t)-x(t)y(t)\\
+\frac{dz(t)}{dt}&=&-cx(t)+x(t)y(t)
+\end{eqnarray}
+ -->
+<IMG
+ WIDTH="556" HEIGHT="130" ALIGN="LEFT"
+ SRC="../../images/scicos/Lorentz_diagr_img2_fr.gif"
+ ALT="\begin{eqnarray}
+\frac{dx(t)}{dt}&amp;=&amp;a\left(-x(t)+y(t)\right)\\
+\frac{dy(t)}{dt}&amp;=&amp;bx(t)-y(t)-x(t)y(t)\\
+\frac{dz(t)}{dt}&amp;=&amp;-cx(t)+x(t)y(t)
+\end{eqnarray}">
+<BR CLEAR="ALL">
+<P>
+<BR CLEAR="ALL"></DIV><P></P>
+Les variables d'états <SPAN CLASS="MATH"><IMG
+ WIDTH="34" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Lorentz_diagr_img3_fr.gif"
+ ALT="$ x(t)$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="34" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Lorentz_diagr_img4_fr.gif"
+ ALT="$ y(t)$"></SPAN> et <SPAN CLASS="MATH"><IMG
+ WIDTH="33" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Lorentz_diagr_img5_fr.gif"
+ ALT="$ z(t)$"></SPAN> sont respectivement la température de
+l'air, la vitesse du vent et une troisième variable qui représente la variation de la
+température en fonction de l'altitude.
+
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Contexte</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">//set sampling time
+Tsampl=3e-3
+
+//set parameters
+a=10
+b=28
+c=8/3
+
+//set initial conditions
+ci1=[5.5;5.49;5.51;5.511]
+ci2=[5;4.99;5.01;5.011]
+ci3=[20;19.99;20.01;20.011]
+
+//set colors for scopes
+vcol=[0;3;5;9]
+
+//set end simulation time
+Tfin=30
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Résultats des oscilloscopes</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="525" HEIGHT="997" BORDER="0"
+ SRC="../../images/scicos/Lorentz_diagr_img6_fr.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=Lorentz_scope_1.eps,width=330.00pt}
+\end{center}\end{figure}">
+</DIV>
+<DIV ALIGN="CENTER">
+<b>Figure :</b> (a) Time domain waveforms of state variables (x,y,z)
+
+</DIV>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="525" HEIGHT="610" BORDER="0"
+ SRC="../../images/scicos/Lorentz_diagr_img7_fr.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=Lorentz_scope_2.eps,width=330.00pt}
+\end{center}\end{figure}">
+</DIV>
+<DIV ALIGN="CENTER">
+<b>Figure :</b> (b) Trajectories in the phase plan (x,y,z)
+
+</DIV>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="525" HEIGHT="397" BORDER="0"
+ SRC="../../images/scicos/Lorentz_diagr_img8_fr.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=Lorentz_scope_3.eps,width=330.00pt}
+\end{center}\end{figure}">
+</DIV>
+<DIV ALIGN="CENTER">
+<b>Figure :</b> Scope results
+
+</DIV>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Blocs utilisés</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="CANIMXY.htm">CANIMXY - Scope animé y=f(x)</A>
+</LI>
+<LI><A NAME="tex2html5"
+  HREF="CANIMXY3D.htm">CANIMXY3D - Scope animé z=f(x,y)</A>
+</LI>
+<LI><A NAME="tex2html6"
+  HREF="CLKSPLIT_f.htm">CLKSPLIT_f - Croisement de liens événementiels</A>
+</LI>
+<LI><A NAME="tex2html7"
+  HREF="CLOCK_f.htm">CLOCK_f - Horloge d'activation (Ancien bloc)</A>
+</LI>
+<LI><A NAME="tex2html8"
+  HREF="CMSCOPE.htm">CMSCOPE - Scope à affichage multiple</A>
+</LI>
+<LI><A NAME="tex2html9"
+  HREF="ENDBLK.htm">ENDBLK - Bloc fin de simulation</A>
+</LI>
+<LI><A NAME="tex2html10"
+  HREF="GAINBLK.htm">GAINBLK - Gain</A>
+</LI>
+<LI><A NAME="tex2html11"
+  HREF="INTEGRAL.htm">INTEGRAL - Integration (Ancien bloc)</A>
+</LI>
+<LI><A NAME="tex2html12"
+  HREF="PROD_f.htm">PROD_f - Multiplication</A>
+</LI>
+<LI><A NAME="tex2html13"
+  HREF="SPLIT_f.htm">SPLIT_f - Croisement de liens réguliers</A>
+</LI>
+<LI><A NAME="tex2html14"
+  HREF="SUM_f.htm">SUM_f - Addition</A>
+</LI>
+<LI><A NAME="tex2html15"
+  HREF="TEXT_f.htm">TEXT_f - Texte</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Alan Layec</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

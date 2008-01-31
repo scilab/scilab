@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>scicos_params</TITLE>
+<META NAME="description" CONTENT="scicos_params">
+<META NAME="keywords" CONTENT="scicos_params">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="scicos_params.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Liste Scicos
+<BR><A NAME="tex2html1"
+  HREF="./scicos_params.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/scicos_params.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="scicos_params"></A>
+<BR>
+<b>scicos_params</b> - Définit une structure params
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+params</A>
+</font></H3>
+
+<P>
+Size : 11.
+<BR>
+Type : liste scilab.
+<BR>
+<P>
+
+<UL>
+<LI><B>wpar</B>
+<BR>
+Ce vecteur n'est actuellement pas utilisé.
+<BR>
+Il devrait être utilisé dans le futur
+          pour enregistrer les paramètres de la
+          fenêtre tels que la position et la taille.
+<BR>
+<BR>
+<P>
+Taille : 6.
+<BR>
+Type : vecteur colonne de nombre réels.
+<BR>
+<P>
+</LI>
+<LI><B>title</B>
+<BR>
+Vecteur de chaîne de caractères, où la première contient
+          le titre du diagramme (le nom par défaut du ficher de
+          sauvegarde) et la deuxième est le chemim du répertoire.
+<BR>
+<BR>
+<P>
+Taille : 2.
+<BR>
+Type : vecteur line de chaîne de caractères.
+<BR>
+<P>
+</LI>
+<LI><B>tol</B>
+<BR>
+Un vecteur contenant les paramètres de la simulation qui
+          inclue les tolérances utilisées par le solveur: 
+
+<P>
+
+<UL>
+<LI><B>atol  </B>
+<BR>
+tolérance absolue pour l'intégration
+
+<P>
+</LI>
+<LI><B>rtol  </B>
+<BR>
+tolérance relative pour l'intégration.
+<BR>
+<P>
+</LI>
+<LI><B>ttol  </B>
+<BR>
+tolérance sur le temps. Si une période d'intégration est
+                        inférieure à ttol, le solveur n'est pas appellé.
+<BR>
+<P>
+</LI>
+<LI><B>deltat</B>
+<BR>
+Interval temporel maximal entre deux points d'intégration.
+<BR>
+Si une période d'intégration est plus grande que deltat, 
+                        le solveur est appelé plus d'une fois de manière à maintenir
+                        le pas au niveau de deltat
+
+<P>
+</LI>
+<LI><B>scale </B>
+<BR>
+Facteur d'échelle temps-réel (Real-time scaling);
+                        la valeur 0 correspond à un facteur d'échelle nul.
+<BR>
+Ce facteur associe le temps de la simulation au temps
+                        réel en seconde. Une valeur égale à 1, signifie que 
+                        chaque untité de temps Scicos correspond à une seconde.
+<BR>
+<P>
+</LI>
+<LI><B>solver</B>
+<BR>
+Choix du solveur numérique. Une valeur 0 signifie qu'un
+                        solveur ODE sera utilisé et 100 signifie qu'un solveur
+                        DAE sera utilisé.
+<BR>
+<P>
+</LI>
+<LI><B>hmax  </B>
+<BR>
+Pas maximal d'intégration pour le solveur.
+<BR>
+0 signifie pas de limites.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Taille : 7.
+<BR>
+Type : vecteur colonne de nombre réels.
+<BR>
+<P>
+</LI>
+<LI><B>tf</B>
+<BR>
+Le temps final de simulation.
+<BR>
+La simulation s'arrête a ce temps.
+<BR>
+La valeur par défaut est 100000.
+<BR>
+<BR>
+<P>
+Taille : 1.
+<BR>
+Type : réel.
+<BR>
+<P>
+</LI>
+<LI><B>context</B>
+<BR>
+Un vecteur de chaînes de caractères contenant des
+          instructions Scilab définissant des variables
+          Scilab à utiliser dans les boîtes de dialogues 
+          des blocs (comme paramètres symboliques).
+<BR>
+Toutes instructions valides Scilab peuvent être
+          utilisées ainsi que des commentaires.
+<BR>
+<BR>
+<P>
+Taille : nombre de lignes du contexte.
+<BR>
+Type : Vecteur colonne de chaînes de caractères.
+<BR>
+<P>
+</LI>
+<LI><B>void1</B>
+<BR>
+Champ inutilisé.
+<BR>
+<BR>
+<P>
+Taille : -.
+<BR>
+Type : -.
+<BR>
+<P>
+</LI>
+<LI><B>options</B>
+<BR>
+Liste Scilab de type scsopt définissant les
+          propriétés graphiques de l'éditeur telles que
+          la couleur de fond et la couleur des liens.
+<BR>
+<P>
+Les champs sont les suivant:
+
+<P>
+
+<UL>
+<LI><B>3D        </B>
+<BR>
+Une liste à deux entrées. La première est un booléen
+                            indiquant si les blocs doivent avoir un aspect 3D.
+<BR>
+La seconde entrée indique la couleur dans la palette de
+                            couleur courante (colormap) qui doit être utilisée pour
+                            créer l'effet 3D. Par défaut celle ci est 33 ce qui
+                            correspond à gris, couleur ajoutée par Scicos à la palette
+                            standard qui contients 32 couleurs.
+<BR>
+<P>
+La valeur par défault de cette list est donc list(%t,33).
+<BR></LI>
+<LI><B>Background</B>
+<BR>
+Un vecteur avec deux entrées: la couleur d'arrière plan et
+                            la couleur d'avant plan. La valeur par défaut est [8,1].
+<BR>
+<P>
+</LI>
+<LI><B>link      </B>
+<BR>
+Les couleurs par défauts pour les liens réguleurs et les
+                            liens d'activations. Ces couleurs sont utilisées uniquement
+                            pour de nouvelles constructions. Ces choix n'affectent pas
+                            les liens déjà présent sur le diagramme.
+<BR>
+<P>
+Les valeurs par défaut sont [1,5] ce qui correspond à noir
+                            et rouge pour la palette de couleurs standard de Scilab.
+<BR></LI>
+<LI><B>ID        </B>
+<BR>
+Une liste de deux vecteurs qui définit le type de la police
+                            et la taille de la police. Les valeurs par défaut sont
+                            [5,1],[4,1].
+<BR>
+<P>
+</LI>
+<LI><B>Cmap      </B>
+<BR>
+Une matrice de taille 3,n contenant les valeurs RGB des
+                            couleurs à ajouter à la palette de couleur. La valeur par
+                            défaut est [0.8,0.8,0.8] (couleur grise).
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Taille : 6.
+<BR>
+Type : tlist scilab de type scsopt.
+<BR>
+<P>
+</LI>
+<LI><B>void2</B>
+<BR>
+Champ inutilisé.
+<BR>
+<BR>
+<P>
+Taille : -.
+<BR>
+Type : -.
+<BR>
+<P>
+</LI>
+<LI><B>void3</B>
+<BR>
+Champ inutilisé.
+<BR>
+<BR>
+<P>
+Taille : -.
+<BR>
+Type : -.
+<BR>
+<P>
+</LI>
+<LI><B>doc</B>
+<BR>
+Structure utilisateur pour la documentation des diagrammes.
+<BR>
+<BR>
+<P>
+Taille : 1.
+<BR>
+Type : Chaînes de caractères.
+<BR>
+<P>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Contenu du ficher</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos/scicos_params.sci <A NAME="tex2html4"
+  HREF="scicos_params_scifunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

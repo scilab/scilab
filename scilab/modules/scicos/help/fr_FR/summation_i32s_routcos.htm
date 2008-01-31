@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>summation_i32s_routcos</TITLE>
+<META NAME="description" CONTENT="summation_i32s_routcos">
+<META NAME="keywords" CONTENT="summation_i32s_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="summation_i32s_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction de calcul
+<BR><A NAME="tex2html1"
+  HREF="./summation_i32s_routcos.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="summation_i32s_routcos"></A>
+<BR>
+summation_i32s
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include &lt;math.h&gt;
+#include "scicos_block4.h"
+#include &lt;stdio.h&gt;
+
+void summation_i32s(scicos_block *block,int flag)
+{
+ if((flag==1)|(flag==6)) {
+    int j,k;
+    int nu,mu,nin;
+    long *y;
+    int *ipar;
+    double v,l;
+    double *rpar;
+    long *u;
+
+    y=Getint32OutPortPtrs(block,1);
+    nu=GetInPortRows(block,1);
+    mu=GetInPortCols(block,1);
+    ipar=GetIparPtrs(block);
+    rpar=GetRparPtrs(block);
+    nin=GetNin(block);
+    l=pow(2,32)/2;
+    if (nin==1){
+      v=0;
+      u=Getint32InPortPtrs(block,1);
+      for (j=0;j&lt;nu*mu;j++) {
+	v=v+(double)u[j];
+      }
+      if (v&gt;=l)  v=l-1;
+      else if (v&lt;-l) v=-l;
+      y[0]=(long)v; 
+    }
+    else {
+      for (j=0;j&lt;nu*mu;j++) {
+        v=0;
+	for (k=0;k&lt;nin;k++) {
+	  u=Getint32InPortPtrs(block,k+1);
+          if(ipar[k]&gt;0){
+	     v=v+(double)u[j];
+	    }
+	  else{
+	     v=v-(double)u[j];}
+      }
+      if (v&gt;=l)  v=l-1;
+      else if (v&lt;-l) v=-l;
+      y[j]=(long)v;
+    }
+   }
+  }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

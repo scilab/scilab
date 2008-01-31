@@ -1,0 +1,458 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>C_macros</TITLE>
+<META NAME="description" CONTENT="C_macros">
+<META NAME="keywords" CONTENT="C_macros">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="C_macros.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Programmation des blocs scicos
+<BR><A NAME="tex2html1"
+  HREF="./C_macros.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/C_macros.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="C_macros"></A>
+<BR>
+<b>C_macros</b> - Macros C utilitaires
+
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="C_macros.htm#SECTION00010000000000000000">C_macros - Macros C utilitaires</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="C_macros.htm#SECTION00021000000000000000">Module</A>
+<LI><A NAME="tex2html7"
+  HREF="C_macros.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html8"
+  HREF="C_macros.htm#SECTION00023000000000000000">Inputs/outputs</A>
+<LI><A NAME="tex2html9"
+  HREF="C_macros.htm#SECTION00024000000000000000">Events</A>
+<LI><A NAME="tex2html10"
+  HREF="C_macros.htm#SECTION00025000000000000000">Parameters</A>
+<LI><A NAME="tex2html11"
+  HREF="C_macros.htm#SECTION00026000000000000000">States and work</A>
+<LI><A NAME="tex2html12"
+  HREF="C_macros.htm#SECTION00027000000000000000">Zero crossing surfaces and modes</A>
+<LI><A NAME="tex2html13"
+  HREF="C_macros.htm#SECTION00028000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The following C macros are avialable by including the file <A NAME="tex2html4"
+  HREF="scicos_block4_rout.htm">scicos_block4.h</A>
+in a C computational function.
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Inputs/outputs</A>
+</font></H3>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>Macro</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567><B>Description</B>
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNin(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of regular input port.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetInPortRows(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of rows (first dimension) of regular input port number
+x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetInPortCols(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of columns (second dimension) of regular input port number
+x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetInPortSize(blk,x,y)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get regular input port size number x. (y=1 for the first dimension,
+y=2 for the second dimension)
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetInType(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get type of regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetInPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get regular input port pointer of port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetRealInPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of real part of regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetImagInPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of imaginary part of regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint8InPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int8 typed regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint16InPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int16 typed regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint32InPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int32 typed regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint8InPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint8 typed regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint16InPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint16 typed regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint32InPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint32 typed regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetSizeOfIn(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the sizeof of the regular input port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNout(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of regular output port.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOutPortRows(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of rows (first dimension) of regular output port number
+x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOutPortCols(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of columns (second dimension) of regular output port number
+x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOutPortSize(blk,x,y)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get regular output port size number x. (y=1 for the first dimension,
+y=2 for the second dimension)
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOutType(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get type of regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get regular output port pointer of port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetRealOutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of real part of regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetImagOutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of imaginary part of regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint8OutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int8 typed regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint16OutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int16 typed regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint32OutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int32 typed regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint8OutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint8 typed regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint16OutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint16 typed regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint32OutPortPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint32 typed regular output port number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetSizeOfOut(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the sizeof of the regular output port number x.
+<BR></TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Events</A>
+</font></H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>Macro</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567><B>Description</B>
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNevIn(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the input event number.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNevOut(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of event output port.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNevOutPtrs(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of event output register.
+<BR></TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Parameters</A>
+</font></H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>Macro</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567><B>Description</B>
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNipar(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of integer parameters.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetIparPtrs(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the integer parameters register
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNrpar(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of real parameters.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetRparPtrs(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the real parameters register.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNopar(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of object parameters.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOparType(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get type of object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOparSize(blk,x,y)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get size of object parameters number x. (y=1 for the first dimension,
+y=2 for the second dimension)
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetRealOparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of real object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetImagOparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of imaginary part of object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint8OparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int8 typed object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint16OparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int16 typed object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint32OparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int32 typed object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint8OparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint8 typed object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint16OparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint16 typed object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint32OparPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint32 typed object parameters number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetSizeOfOpar(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the sizeof of the object parameters number x.
+<BR></TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+States and work</A>
+</font></H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>Macro</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567><B>Description</B>
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNstate(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of continuous state.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetState(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the continuous state register.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetDstate(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of discrete state.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNdstate(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the discrete state register.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNoz(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of object state.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOzType(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get type of object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOzSize(blk,x,y)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get size of object state number x. (y=1 for the first dimension, y=2
+for the second dimension)
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetOzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetRealOzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of real object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetImagOzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of imaginary part of object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint8OzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int8 typed object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint16OzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int16 typed object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getint32OzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of int32 typed object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint8OzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint8 typed object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint16OzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint16 typed object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>Getuint32OzPtrs(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of uint32 typed object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetSizeOfOz(blk,x)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the sizeof of the object state number x.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetWorkPtrs(blk)(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get the pointer of the Work array.
+<BR></TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Zero crossing surfaces and modes</A>
+</font></H3>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>Macro</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567><B>Description</B>
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNg(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of zero crossing surface.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetGPtrs(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the zero crossing register.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetNmode(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get number of modes.
+<BR></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227>GetModePtrs(blk)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=567>Get pointer of the mode register.
+<BR></TD>
+</TR>
+</TABLE>
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Auteurs</A>
+</font></H3>
+<b>Alan Layec</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

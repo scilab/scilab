@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>TrigFun</TITLE>
+<META NAME="description" CONTENT="TrigFun">
+<META NAME="keywords" CONTENT="TrigFun">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="TrigFun.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./TrigFun.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/TrigFun.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="TrigFun"></A>
+<BR>
+Fonction trigonométrique
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=TrigFun.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/TrigFun_blk.gif"
+ ALT="\epsfig{file=TrigFun.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="TrigFun.htm#SECTION00010000000000000000">Fonction trigonométrique</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="TrigFun.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="TrigFun.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="TrigFun.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="TrigFun.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="TrigFun.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="TrigFun.htm#SECTION00026000000000000000">Fonction de calcul</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Non_linear_pal.htm">Non_linear - Palette Non-linéaire</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The Trigonometric Function block performs numerous common
+trigonometric functions. You can select one of these functions from
+the Function list: sin, cos, tan, asin, acos, atan, atan2, sinh, cosh,
+and tanh. The block output is the result of the operation of the
+function on the input or inputs. 
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="349" HEIGHT="105" BORDER="0"
+ SRC="../../images/scicos/TrigFun_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=TrigFun_gui.eps,width=220pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Function</B>
+<BR>
+La fonction trigonométrique à utiliser.
+<BR>
+Propriétés : Type 'str' de taille 1
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>entrée régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 0
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>sin_blk</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/NonLinear/TrigFun.sci <A NAME="tex2html4"
+  HREF="TrigFun_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/sin_blk.c (Type 4) <A NAME="tex2html5"
+  HREF="sin_blk_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

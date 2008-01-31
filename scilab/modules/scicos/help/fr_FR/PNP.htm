@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>PNP</TITLE>
+<META NAME="description" CONTENT="PNP">
+<META NAME="keywords" CONTENT="PNP">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="PNP.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./PNP.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/PNP.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="PNP"></A>
+<BR>
+Transistor PNP
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=PNP.eps,height=54pt}$
+ -->
+<IMG
+ WIDTH="137" HEIGHT="86" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/PNP_blk.gif"
+ ALT="\epsfig{file=PNP.eps,height=54pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html7"
+  HREF="PNP.htm#SECTION00010000000000000000">Transistor PNP</A>
+<UL>
+<LI><A NAME="tex2html8"
+  HREF="PNP.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html9"
+  HREF="PNP.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html10"
+  HREF="PNP.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html11"
+  HREF="PNP.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html12"
+  HREF="PNP.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html13"
+  HREF="PNP.htm#SECTION00026000000000000000">Modèle Modelica</A>
+<LI><A NAME="tex2html14"
+  HREF="PNP.htm#SECTION00027000000000000000">Voir aussi</A>
+<LI><A NAME="tex2html15"
+  HREF="PNP.htm#SECTION00028000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Electrical_pal.htm">Electrical.cosf - Boîte à outils  des composants électriques</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Ce bloc est un modèle simple pour le transistor bipolaire PNP basé sur le modèle  Ebers-Moll.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="387" BORDER="0"
+ SRC="../../images/scicos/PNP_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=PNP_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Paramètre</TD>
+<TD ALIGN="LEFT">Valeur pas d&#233;faut</TD>
+<TD ALIGN="LEFT">Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Bf</TD>
+<TD ALIGN="LEFT">50</TD>
+<TD ALIGN="LEFT">Forward beta</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Br</TD>
+<TD ALIGN="LEFT">0.1</TD>
+<TD ALIGN="LEFT">Reverse beta</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Is</TD>
+<TD ALIGN="LEFT">1.e-16</TD>
+<TD ALIGN="LEFT">Transport saturation current [A]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Vak</TD>
+<TD ALIGN="LEFT">0.02</TD>
+<TD ALIGN="LEFT">Early voltage (inverse), 1/Volt [1/V]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Tauf</TD>
+<TD ALIGN="LEFT">0.12e-9</TD>
+<TD ALIGN="LEFT">Ideal forward transit time [s]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Taur</TD>
+<TD ALIGN="LEFT">5e-9</TD>
+<TD ALIGN="LEFT">Ideal reverse transit time [s]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Ccs</TD>
+<TD ALIGN="LEFT">1e-12</TD>
+<TD ALIGN="LEFT">Collector-substrat(ground) cap. [F]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Cje</TD>
+<TD ALIGN="LEFT">0.4e-12</TD>
+<TD ALIGN="LEFT">Base-emitter zero bias depletion cap. [F]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Cjc</TD>
+<TD ALIGN="LEFT">0.5e-12</TD>
+<TD ALIGN="LEFT">Base-coll. zero bias depletion cap. [F]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Phie</TD>
+<TD ALIGN="LEFT">0.8</TD>
+<TD ALIGN="LEFT">Base-emitter diffusion voltage [V]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Me</TD>
+<TD ALIGN="LEFT">0.4</TD>
+<TD ALIGN="LEFT">Base-emitter gradation exponent</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Phic</TD>
+<TD ALIGN="LEFT">0.8</TD>
+<TD ALIGN="LEFT">Base-collector diffusion voltage [V]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Mc</TD>
+<TD ALIGN="LEFT">0.333</TD>
+<TD ALIGN="LEFT">Base-collector gradation exponent</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Gbc</TD>
+<TD ALIGN="LEFT">1e-15</TD>
+<TD ALIGN="LEFT">Base-collector conductance [S]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Gbe</TD>
+<TD ALIGN="LEFT">1e-15</TD>
+<TD ALIGN="LEFT">Base-emitter conductance [S]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Vt</TD>
+<TD ALIGN="LEFT">0.02585</TD>
+<TD ALIGN="LEFT">Voltage equivalent of temperature [V]</TD>
+</TR>
+<TR><TD ALIGN="LEFT">EMin</TD>
+<TD ALIGN="LEFT">-100</TD>
+<TD ALIGN="LEFT">if x &lt; EMin, the exp(x) function is linearized</TD>
+</TR>
+<TR><TD ALIGN="LEFT">EMax</TD>
+<TD ALIGN="LEFT">40</TD>
+<TD ALIGN="LEFT">if x &gt; EMax, the exp(x) function is linearized</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><B>Entrées :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'B'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Sorties :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'C'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+<LI><B>Nom de la variable Modelica :</B> 'E'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Paramètres :</B>
+  
+<UL>
+<LI><B>Nom du paramètre Modelica :</B> 'Bf'
+<BR>         <B>Valeur par défaut :</B> 50
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Br'
+<BR>         <B>Valeur par défaut :</B> 0.1
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Is'
+<BR>         <B>Valeur par défaut :</B> 0
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Vak'
+<BR>         <B>Valeur par défaut :</B> 0.02
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Tauf'
+<BR>         <B>Valeur par défaut :</B> 1.200E-10
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Taur'
+<BR>         <B>Valeur par défaut :</B> 5.000E-09
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Ccs'
+<BR>         <B>Valeur par défaut :</B> 1.000E-12
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Cje'
+<BR>         <B>Valeur par défaut :</B> 4.000E-13
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Cjc'
+<BR>         <B>Valeur par défaut :</B> 5.000E-13
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Phie'
+<BR>         <B>Valeur par défaut :</B> 0.8
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Me'
+<BR>         <B>Valeur par défaut :</B> 0.4
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Phic'
+<BR>         <B>Valeur par défaut :</B> 0.8
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Mc'
+<BR>         <B>Valeur par défaut :</B> 0.333
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Gbc'
+<BR>         <B>Valeur par défaut :</B> 1.000E-15
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Gbe'
+<BR>         <B>Valeur par défaut :</B> 1.000E-15
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Vt'
+<BR>         <B>Valeur par défaut :</B> 0.02585
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'EMinMax'
+<BR>         <B>Valeur par défaut :</B> 40
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Nom du fichier model :</B> PNP
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/PNP.sci <A NAME="tex2html4"
+  HREF="PNP_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Modèle Modelica</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/PNP.mo <A NAME="tex2html5"
+  HREF="PNP_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="NPN.htm">NPN - Transistor NPN (Bloc Scicos)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Auteurs</A>
+</font></H3>
+www.modelica.org
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>matz_lu_routcos</TITLE>
+<META NAME="description" CONTENT="matz_lu_routcos">
+<META NAME="keywords" CONTENT="matz_lu_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="matz_lu_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction de calcul
+<BR><A NAME="tex2html1"
+  HREF="./matz_lu_routcos.htm">fr</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="matz_lu_routcos"></A>
+<BR>
+matz_lu
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Contenu du fichier</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim"># include "scicos_block4.h"
+# include "../machine.h"
+#include &lt;stdio.h&gt;
+extern int C2F(zgetrf)();
+extern int C2F(dlaswp)();
+
+#if WIN32
+#define NULL    0
+#endif
+
+#ifndef min
+#define min(a,b) ((a) &lt;= (b) ? (a) : (b))
+#endif
+
+#ifndef max
+#define max(a,b) ((a) &gt;= (b) ? (a) : (b))
+#endif
+
+typedef struct
+{         int *ipiv;
+          double *dwork;
+	  double *IL;
+	  double *IU;
+} mat_lu_struct ;
+void matz_lu(scicos_block *block,int flag)
+{
+ double *ur;
+ double *ui;
+ double *y1r;
+ double *y1i;
+ double *y2r;
+ double *y2i;
+ int mu;
+ int nu;
+ int info;
+ int i,j,l,ij,ik,ij1;
+ mat_lu_struct *ptr;
+ 
+ mu =GetInPortRows(block,1);
+ nu =GetInPortCols(block,1);
+ ur=GetRealInPortPtrs(block,1);
+ ui=GetImagInPortPtrs(block,1);
+ y1r=GetRealOutPortPtrs(block,1);
+ y1i=GetImagOutPortPtrs(block,1);
+ y2r=GetRealOutPortPtrs(block,2);
+ y2i=GetImagOutPortPtrs(block,2);
+ l=min(mu,nu);
+             /*init : initialization*/
+if (flag==4)
+   {if((*(block-&gt;work)=(mat_lu_struct*) scicos_malloc(sizeof(mat_lu_struct)))==NULL)
+	{set_block_error(-16);
+	 return;}
+    ptr=*(block-&gt;work);
+    if((ptr-&gt;ipiv=(int*) scicos_malloc(sizeof(int)*nu))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;dwork=(double*) scicos_malloc(sizeof(double)*(2*mu*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;IL=(double*) scicos_malloc(sizeof(double)*(mu*l)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+    if((ptr-&gt;IU=(double*) scicos_malloc(sizeof(double)*(l*nu)))==NULL)
+	{set_block_error(-16);
+	 scicos_free(ptr-&gt;IL);
+	 scicos_free(ptr-&gt;dwork);
+	 scicos_free(ptr-&gt;ipiv);
+	 scicos_free(ptr);
+	 return;}
+   }
+
+       /* Terminaison */
+else if (flag==5)
+   {ptr=*(block-&gt;work);
+    if((ptr-&gt;IU)!=NULL){
+    	scicos_free(ptr-&gt;ipiv);
+    	scicos_free(ptr-&gt;dwork);
+    	scicos_free(ptr-&gt;IL);
+    	scicos_free(ptr-&gt;IU);
+    	scicos_free(ptr);
+    	return;}
+   }
+
+else
+   {
+    ptr=*(block-&gt;work);
+    for (i=0;i&lt;(mu*nu);i++)
+	{ptr-&gt;dwork[2*i]=ur[i];
+	ptr-&gt;dwork[2*i+1]=ui[i];}
+    C2F(zgetrf)(&amp;mu,&amp;nu,ptr-&gt;dwork,&amp;mu,ptr-&gt;ipiv,&amp;info);
+    if (info !=0)
+       {if (flag!=6)
+   	{set_block_error(-7);
+        return;}}
+   for (j=0;j&lt;l;j++)
+	{for (i=0;i&lt;mu;i++)
+	     {ij=i+j*mu;
+	      ij1=2*ij;
+	      if (i==j)
+		{*(y2r+ij)=1;
+		 *(y2i+ij)=0;}
+	      else if (i&gt;j)
+		{*(y2r+ij)=*(ptr-&gt;dwork+ij1);
+		 *(y2i+ij)=*(ptr-&gt;dwork+ij1+1);}
+	      else 
+		{*(y2r+ij)=0;
+		 *(y2i+ij)=0;}
+	      }
+	}
+	for (j=0;j&lt;nu;j++)
+	{for (i=0;i&lt;l;i++)
+	     {ij=i+j*l;
+	      ik=2*(i+j*mu);
+	      if (i&lt;=j)
+		{*(y1r+ij)=*(ptr-&gt;dwork+ik);
+		 *(y1i+ij)=*(ptr-&gt;dwork+ik+1);}
+	      else
+		{*(y1r+ij)=0;
+		 *(y1i+ij)=0;}
+	     }
+ 	}
+   }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

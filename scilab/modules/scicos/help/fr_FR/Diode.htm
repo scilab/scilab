@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Diode</TITLE>
+<META NAME="description" CONTENT="Diode">
+<META NAME="keywords" CONTENT="Diode">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Diode.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./Diode.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/Diode.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="Diode"></A>
+<BR>
+Diode électrique
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=Diode.eps,height=45pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="72" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/Diode_blk.gif"
+ ALT="\epsfig{file=Diode.eps,height=45pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="Diode.htm#SECTION00010000000000000000">Diode électrique</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="Diode.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="Diode.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="Diode.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="Diode.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="Diode.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="Diode.htm#SECTION00026000000000000000">Modèle Modelica</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Electrical_pal.htm">Electrical.cosf - Boîte à outils  des composants électriques</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Ce composant consiste en une diode simple mise en parallèle avec une résistance
+ohmique <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/Diode_img2_fr.gif"
+ ALT="$ R$"></SPAN>. Le courant qui passe dans la diode est défini en
+fonction de la tension aux bornes de le diode, <I>c.-à-d.</I>,
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+I = I_{ds} (\exp^{v/V_t} - 1) + \frac {v} {R}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="190" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Diode_img3_fr.gif"
+ ALT="$\displaystyle I = I_{ds} (\exp^{v/V_t} - 1) + \frac {v} {R} $">
+</DIV><P></P>
+
+<P>
+où <SPAN CLASS="MATH"><IMG
+ WIDTH="26" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Diode_img4_fr.gif"
+ ALT="$ I_{ds}$"></SPAN> et <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Diode_img5_fr.gif"
+ ALT="$ V_t$"></SPAN> sont le courant de saturation et la tension
+équivalente de la température, respectivement. Si la valeur de <SPAN CLASS="MATH"><IMG
+ WIDTH="38" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Diode_img6_fr.gif"
+ ALT="$ v/V_t$"></SPAN>
+atteint une certaine limite (<SPAN CLASS="MATH"><IMG
+ WIDTH="69" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/Diode_img7_fr.gif"
+ ALT="$ Maxexp$"></SPAN>), la courbe caractéristique de
+la diode devient linéaire pour éviter un dépassement numérique.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="151" BORDER="0"
+ SRC="../../images/scicos/Diode_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=Diode_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Saturation cuurent (A)</b>
+<BR>
+Courant de saturation
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>Voltage equivalent to temperature (Volt)</b>
+<BR>
+Tension équivalente de la température
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>Max exponent for linear continuation</b>
+<BR>
+Exposant maximum
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>R (ohm)</b>
+<BR>
+La resistance parallele
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><B>Entrées :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'p'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Sorties :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'n'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Paramètres :</B>
+  
+<UL>
+<LI><B>Nom du paramètre Modelica :</B> 'Ids'
+<BR>         <B>Valeur par défaut :</B> 0.000001
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Vt'
+<BR>         <B>Valeur par défaut :</B> 0.04
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'Maxexp'
+<BR>         <B>Valeur par défaut :</B> 15
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'R'
+<BR>         <B>Valeur par défaut :</B> 1.000E+08
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Nom du fichier model :</B> Diode
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/Diode.sci <A NAME="tex2html4"
+  HREF="Diode_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Modèle Modelica</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/Diode.mo <A NAME="tex2html5"
+  HREF="Diode_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

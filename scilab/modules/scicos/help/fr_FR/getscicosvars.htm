@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>getscicosvars</TITLE>
+<META NAME="description" CONTENT="getscicosvars">
+<META NAME="keywords" CONTENT="getscicosvars">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="getscicosvars.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction Scilab
+<BR><A NAME="tex2html1"
+  HREF="./getscicosvars.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/getscicosvars.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="getscicosvars"></A>
+<BR>
+<b>getscicosvars</b> - Fonction superviseur utilitaire
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Cette fonction utilitaire est utilisée pour retrouver les tableaux de travail du compilateur et du simulateur scicos pendant la simulation.  
+<BR>
+Elle peut-être utilisée dans un bloc scilab pour retourner des informations de tous types de blocs. Cette fonction est très utile pour débugger les diagrammes et pour prototyper des simulations.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Séquence d'appel</A>
+</font></H3>
+<PRE>
+[myvar]=getscicosvars(str)
+[myvar]=getscicosvars([str1;str2;...])
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
+Paramètres</A>
+</font></H3>
+
+<UL>
+<LI><b>str,str1,str2,... :</b>
+   Ce paramètre est soit une chaîne de caractères ou une matrice de chaine de caractère. Les entrées suivantes sont permises :
+<BR>   "x" : retourne le registre des états continus.
+<BR>   "nx" : retourne la longueur du registre des états continus.
+<BR>   "xptr" : retourne le registre des pointeurs du registre des états continus.
+<BR>   "zcptr" : retourne le registre des pointeurs du registre des détections de surfaces.
+<BR>   "z" : retourne le registre des états discrets.
+<BR>   "nz" : retourne la longueur des registres des états discrets.
+<BR>   "zptr" : retourne le registre des pointeurs du registre des états discrets.
+<BR>   "noz" : retourne le nombre d'éléments de la liste de l'état discret objet.
+<BR>   "oz" : retourne la liste de l'état discret objet.
+<BR>   "ozsz" : retourne les tailles des éléments de la liste l'état discret objet.
+<BR>   "oztyp" : retourne les types des éléments de la liste l'état discret objet.
+<BR>   "ozptr" : retourne le registre des pointeurs de la liste l'état discret objet.
+<BR>   "rpar" : retourne le registre des paramètres réels.
+<BR>   "rpptr" : retourne le registre des pointeurs du registre des paramètres réels.
+<BR>   "ipar" : retourne le registre des paramètres entiers.
+<BR>   "ipptr" : retourne le registre des pointeurs du registre des paramètres entiers.
+<BR>   "opar" : retourne la liste des paramètres objets.
+<BR>   "oparsz" : retourne les tailles des éléments de la liste des paramètres objets.
+<BR>   "opartyp" : retourne les types des éléments de la liste des paramètres objets.
+<BR>   "opptr" : retourne le registre des pointeurs de la liste des paramètres objets.
+<BR>   "outtb" : retourne le registre des sorties.
+<BR>   "inpptr" : retourne le registre des pointeurs des ports réguliers d'entrée.
+<BR>   "outptr" : retourne le registre des pointeurs des ports réguliers de sorties.
+<BR>   "inplnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers d'entrée.
+<BR>   "outlnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers de sortie.
+<BR>   "subs" : pas utilisé.
+<BR>   "tevts" : retourne le registre des dates courantes de l'agenda.
+<BR>   "evtspt" : retourne le registre des événements courants de l'agenda.
+<BR>   "pointi" : retourne le prochain événement à activer.
+<BR>   "iord" : retourne le vecteur des blocs activés au début de la simulation.
+<BR>   "oord" : retourne le vecteur des blocs dont les sorties affectent le calcul des états continus.
+<BR>   "zord" : retourne le vecteur des blocs dont les sorties affectent le calcul des détections de surfaces.
+<BR>   "funtyp" : retourne le vecteur des types des fonctions de calcul.
+<BR>   "ztyp" : retourne le vecteur de pointeurs pour les blocs utilisant les détections de surface.
+<BR>   "cord" : retourne le vecteur des blocs dont les sorties évoluent continuellement.
+<BR>   "ordclk" : retourne la matrice associée aux blocs activés par événements.
+<BR>   "clkptr" : retourne le vecteur de pointeurs pour les ports de sortie d'activation.
+<BR>   "ordptr" : retourne le vecteur de pointeurs (à partir de ordclk) qui désigne les parties de ordclk correspondant à une activation donnée.
+<BR>   "critev" : retourne le vecteur des événements critiques.
+<BR>   "mod" : retourne le vecteur de pointeurs des modes des blocs.
+<BR>   "nmod" : retourne la longueur du vecteur de pointeurs des modes des blocs.
+<BR>   "iz" : retourne le registre qui contient les pointeurs C sur block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_fr.gif"
+ ALT="$ &gt;$"></SPAN>work.
+<BR>   "izptr" : retourne le vecteur de pointeurs sur le registre qui contient les pointeurs C sur block-<SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/getscicosvars_img1_fr.gif"
+ ALT="$ &gt;$"></SPAN>work.
+<BR>   "nblk" : retourne le nombre de blocs.
+<BR>   "outtbptr" : retourne le registre qui contient les pointeurs C de outtb.
+<BR>   "outtbpsz" : retourne le registre qui contient les tailles des éléments de outtb.
+<BR>   "outtbtyp" : retourne le registre qui contient les types des éléments de outtb.
+<BR>   "nlnk" : retourne le nombre de sortie.
+<BR>   "ncord" : retourne le nombre de blocs qui évoluent continuellement.
+<BR>   "nordptr" : retourne le nombre de blocs qui évoluent par activation.
+<BR>   "iwa" : n.d.
+<BR>   "blocks" : retourne une liste scilab qui contient toutes les structures des blocs contenus dans le diagramme.
+<BR>   "ng" : retourne la longueur du registre des détections de surface.
+<BR>   "g" : retourne le registre des détections de surfaces.
+<BR>   "t0" : retourne le temps courant de la simulation.
+<BR>   "tf" : retourne le temps final de la simulation.
+<BR>   "Atol" : retourne la tolérance absolue de l'intégrateur du solveur numérique.
+<BR>   "rtol" : retourne la tolérance relative de l'intégrateur du solveur numérique.
+<BR>   "ttol" : retourne la tolérance sur le temps du simulateur.
+<BR>   "deltat" : retourne le temps maximal d'intégration.
+<BR>   "hmax" : retourne le pas maximal d'intégration du solveur numérique.
+<BR>   "nelem" : retourne le nombre d'éléments dans outtb.
+<BR>   "outtb_elem" : retourne le vecteur contenant les numéro d'éléments dans outtb.
+</LI>
+<LI><b>myvar :</b>
+   Ce paramètre de sortie peut-être soit une matrice de nombre int32, une matrice de nombre réel (double) ou bien une Tlist, suivant le paramètre donné en entrée.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="DEBUG_SCICOS.htm">DEBUG_SCICOS - Bloc debug (Bloc Scicos)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00016000000000000000">
+Auteurs</A>
+</font></H3>
+
+<UL>
+<LI><b>Alan Layec</b> INRIA
+</LI>
+<LI><b>Ramine Nikoukhah</b> INRIA
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

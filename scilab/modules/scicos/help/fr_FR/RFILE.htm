@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>RFILE</TITLE>
+<META NAME="description" CONTENT="RFILE">
+<META NAME="keywords" CONTENT="RFILE">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="RFILE.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./RFILE.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/RFILE.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="RFILE"></A>
+<BR>
+Lecture à partir d'un fichier
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=RFILE.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/RFILE_blk.gif"
+ ALT="\epsfig{file=RFILE.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="RFILE.htm#SECTION00010000000000000000">Lecture à partir d'un fichier</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="RFILE.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html8"
+  HREF="RFILE.htm#SECTION00022000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html9"
+  HREF="RFILE.htm#SECTION00023000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html10"
+  HREF="RFILE.htm#SECTION00024000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html11"
+  HREF="RFILE.htm#SECTION00025000000000000000">Fonction de calcul</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Ce bloc permet à l'utilisateur de lire des données dans un fichier.
+Ces données peuvent être formatées ou binaires.
+Les paramètres <B>Output record selection</B> et <B>Time record selection</B>
+permettent de selectionner des données parmi les enregistrements du fichier.
+Chaque appel au bloc avance d'un enregistrement.
+<BR>
+Ce bloc fonctionne de paire avec le bloc <A NAME="tex2html3"
+  HREF="WFILE.htm">WFILE</A>.
+
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="382" HEIGHT="203" BORDER="0"
+ SRC="../../images/scicos/RFILE_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=RFILE_gui.eps,width=240pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+  <UL>
+<LI><B>Time record selection</B> 
+<BR>
+une matrice vide ou un entier positif.
+<BR>
+Si un entier <SPAN CLASS="MATH"><IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/RFILE_img3_fr.gif"
+ ALT="$ i$"></SPAN> est donnée, le <!-- MATH
+ $i^{\rm\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="35" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/RFILE_img4_fr.gif"
+ ALT="$ i^{\rm\grave{e}me}$"></SPAN> élément de 
+	l'enregistrement lu est supposé être la date de
+	l'événement de sortie.
+	Si ce paramètre est vide, alors le bloc ne fournit pas d'événements
+	de sortie.
+	Propriétés : Type 'vec' de taille -1.
+
+<P>
+</LI>
+<LI><B>Outputs record selection</B> 
+<BR>
+un vecteur d'entiers positifs. 
+<BR>        <!-- MATH
+ $[k_1,\cdots,k_n]$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/RFILE_img5_fr.gif"
+ ALT="$ [k_1,\cdots,k_n]$"></SPAN>. Le <!-- MATH
+ $k_i^{\rm i\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="42" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/RFILE_img6_fr.gif"
+ ALT="$ k_i^{\rm i\grave{e}me}$"></SPAN> élément de
+	l'enregistrement lu donne la valeur de la <!-- MATH
+ $i^{\rm i\grave{e}me}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="38" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/RFILE_img7_fr.gif"
+ ALT="$ i^{\rm i\grave{e}me}$"></SPAN> sortie.
+<BR>
+Propriétés : Type 'vec' de taille -1.
+
+<P>
+</LI>
+<LI><B>Input file name</B> 
+<BR>
+une chaîne de caractères définissant le chemin du fichier.
+<BR>
+Propriétés : Type 'str' de taille 1.
+
+<P>
+</LI>
+<LI><B>Input Format</B> 
+<BR>
+une chaîne de caractères définissant le format d'enregistrement 
+        (de type fortran ou bien vide pour aucun format).
+        Si ce paramètre est renseigné alors il doit être encadrer 
+        par des paranthèses. Par exemple : <SPAN CLASS="MATH"><IMG
+ WIDTH="57" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/RFILE_img8_fr.gif"
+ ALT="$ (e10.3)$"></SPAN>.
+<BR>
+Propriétés : Type 'str' de taille 1.
+
+<P>
+</LI>
+<LI><B>Buffer size</B> 
+<BR>
+Pour améliorer l'efficacité de la lecture, il est possible d'enregistrer
+	les données d'entrée dans un buffer. Les données sont alors délivrées à
+	chaque appel du bloc lorsque le buffer est rempli.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> non
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>sorties régulières:</b>
+<BR>   <b>   - port 1 : taille [1,1] / type 1</b>
+<BR></LI>
+<LI><b>nombre des entrées évènementielles:</b> 1
+</LI>
+<LI><b>nombre des sorties évènementielles:</b> 0
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> oui
+</LI>
+<LI><b>possède un état objet:</b> non
+</LI>
+<LI><b>nom de la fonction de calcul:</b> <EM>readf4</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Sources/RFILE.sci <A NAME="tex2html4"
+  HREF="RFILE_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction de calcul</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/readf4.c (Type 4) <A NAME="tex2html5"
+  HREF="readf4_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

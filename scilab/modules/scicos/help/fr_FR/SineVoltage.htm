@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>SineVoltage</TITLE>
+<META NAME="description" CONTENT="SineVoltage">
+<META NAME="keywords" CONTENT="SineVoltage">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="SineVoltage.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./SineVoltage.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/SineVoltage.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="SineVoltage"></A>
+<BR>
+Source de tension sinusoïdale
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=SineVoltage.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/SineVoltage_blk.gif"
+ ALT="\epsfig{file=SineVoltage.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="SineVoltage.htm#SECTION00010000000000000000">Source de tension sinusoïdale</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="SineVoltage.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="SineVoltage.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="SineVoltage.htm#SECTION00023000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html10"
+  HREF="SineVoltage.htm#SECTION00024000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html11"
+  HREF="SineVoltage.htm#SECTION00025000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html12"
+  HREF="SineVoltage.htm#SECTION00026000000000000000">Modèle Modelica</A>
+<LI><A NAME="tex2html13"
+  HREF="SineVoltage.htm#SECTION00027000000000000000">Auteurs</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Electrical_pal.htm">Electrical.cosf - Boîte à outils  des composants électriques</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Ce bloc est un bloc Modelica pour une source de tension sinusoïdale. La résistance ohmique interne de ce bloc est zéro.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="413" HEIGHT="202" BORDER="0"
+ SRC="../../images/scicos/SineVoltage_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=SineVoltage_gui.eps,width=260pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Amplitude (Volt)</b>
+<BR>
+Amplitude de la sinusoïde.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>phase (rad)</b>
+<BR>
+Phase de la sinusoïde.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>Frequency (Hz)</b>
+<BR>
+Fréquence de la sinusoïde.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>Voltageoffset (V)</b>
+<BR>
+Tension de décalage de la sinusoïde.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+
+<P>
+</LI>
+<LI><b>Timeoffset (s)</b>
+<BR>
+Décalage temporel. Durant ce temps, le signal de sortie reste constant et égal à la tension de décalage.
+<BR>
+Propriétés : Type 'vec' de taille 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><B>Entrées :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'p'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Sorties :</B>
+  
+<UL>
+<LI><B>Nom de la variable Modelica :</B> 'n'
+<BR>          <B>Variable</B> implicite.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Paramètres :</B>
+  
+<UL>
+<LI><B>Nom du paramètre Modelica :</B> 'V'
+<BR>         <B>Valeur par défaut :</B> 1
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'phase'
+<BR>         <B>Valeur par défaut :</B> 0
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'freqHz'
+<BR>         <B>Valeur par défaut :</B> 1
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'offset'
+<BR>         <B>Valeur par défaut :</B> 0
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+<LI><B>Nom du paramètre Modelica :</B> 'startTime'
+<BR>         <B>Valeur par défaut :</B> 0
+<BR>         <B>Variable d'état :</B> non.
+
+<P>
+</LI>
+</UL>
+</LI>
+<LI><B>Nom du fichier model :</B> SineVoltage
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Fonction d'interface</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/SineVoltage.sci <A NAME="tex2html4"
+  HREF="SineVoltage_intfunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Modèle Modelica</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Electrical/SineVoltage.mo <A NAME="tex2html5"
+  HREF="SineVoltage_routcos.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Auteurs</A>
+</font></H3>
+www.modelica.org
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

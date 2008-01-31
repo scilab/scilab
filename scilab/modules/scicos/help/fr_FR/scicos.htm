@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>scicos</TITLE>
+<META NAME="description" CONTENT="scicos">
+<META NAME="keywords" CONTENT="scicos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="scicos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Fonction Scilab
+<BR><A NAME="tex2html1"
+  HREF="./scicos.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/scicos.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="scicos"></A>
+<BR>
+<b>scicos</b> - Editeur de schéma bloc et interface graphique pour le simulateur hybride
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Scicos est un éditeur graphique pour construire des modèles
+de systèmes dynamiques hybrides.
+<BR>
+L'appel à Scicos sans argument ouvre une fenêtre vierge de l'éditeur.
+Les modèles peuvent alors être assemblés, chargés, sauvegardés,
+compilés, simulés en utilisant les différentes interfaces utilisateur
+graphiques (GUI) de l'éditeur.
+Scicos est en fait une interface pour la compilation et le
+simulateur 'scicosim'.
+Des arguments en entrée et en sortie de la commande scicos peuvent
+aussi être utilisées pour réaliser des opérations de débogage.
+
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Séquence d'appel</A>
+</font></H3>
+<PRE>
+scs_m = scicos([toto])
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
+Paramètres</A>
+</font></H3>
+
+<UL>
+<LI><B>input : </B> ce paramètre peut aussi bien être une structure de diagramme Scicos
+    (scs_m) qu'une chaîne de caractères indiquant le chemin du fichier
+    du diagramme à charger dans l'éditeur (extension .cos ou .cosf). Si 
+    aucun argument d'entrée est utilisé, un diagramme vide est ouvert 
+    (avec un nom par défaut 'Untitled').
+
+<P>
+</LI>
+<LI><B>scs_m : </B> une structure de diagramme Scicos après édition.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Exemple</A>
+</font></H3>
+<PRE>
+// Ouvrir un nouveau diagramme 
+scicos();
+scicos
+// Charge un diagramme  
+scicos SCI/demos/scicos/bounce.cosf; 
+scs_m=scicos('SCI/demos/scicos/bounce.cosf'); 
+// Charge une structure 
+load('mondiagr.cos'); 
+scs_m=scicos(scs_m);
+</PRE>
+
+<H3><font color="blue"><A NAME="SECTION00016000000000000000">
+Contenu du fichier</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/auto/scicos.sci <A NAME="tex2html4"
+  HREF="scicos_scifunc.htm">[voir code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00017000000000000000">
+Voir aussi</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html5"
+  HREF="scicosim.htm">scicosim - Fonction de simulation scicos en ligne de commande (Fonction Scilab)</A>
+</LI>
+<LI><A NAME="tex2html6"
+  HREF="scicos_simulate.htm">scicos_simulate - Fonction pour éxécuter une simulation scicos en ligne de commmande (Fonction Scilab)</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>
