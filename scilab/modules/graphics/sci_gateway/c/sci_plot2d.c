@@ -21,6 +21,7 @@
 #include "sci_plot2d.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "CurrentObjectsManagement.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
@@ -183,8 +184,6 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   GetNax( 7+iskip, opts, &nax, &flagNax ) ;
   if (iskip==0) { GetLogflags( fname, 8, opts, &logFlags ) ; }
 
-  SciGerase() ;
-
   if ( isDefStrf( strf ) )
   {
     char strfl[4];
@@ -294,8 +293,10 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     break;
   }
 
+  // open a figure if none already exists
+  sciGetCurrentFigure();
   Objplot2d (1,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect,nax,flagNax);
-  
+
   LhsVar(1)=0;
   return 0;
 }
