@@ -80,6 +80,9 @@
 <module name="demo_tools" activate="1"/>
 <module name="spreadsheet" activate="1"/>
 <!-- comments -->
+<module name="scicos" activate="0"/>
+<module name="scicos_blocks" activate="0"/>
+<!-- comments -->
 <module name="pvm" activate="0"/>
 <module name="sci2c" activate="0"/>
 <module name="fftw" activate="1"/>
