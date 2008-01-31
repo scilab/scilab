@@ -1,0 +1,38 @@
+#!/bin/sh
+# Generates block.h file given file Fblocknames and Cblocknames
+# Fblocknames  contains list of Fortran Blocks 
+# Cblocknames  contains list of C Blocks 
+# Copyright INRIA
+Fin=Fblocknames
+Cin=Cblocknames
+fout=blocks.h
+links=`cat $Fin`
+rm -f $fout 
+echo "#ifndef __SCICOS_BLOCKS__ " >> $fout 
+echo "#define __SCICOS_BLOCKS__ " >> $fout 
+echo "/******* Copyright INRIA *************/" >> $fout 
+echo "/******* Please do not edit *************/" >> $fout 
+for i in $links
+	do ( echo "extern void F2C($i) __PARAMS((ARGS_scicos));"  >> $fout ;); done
+links=`cat $Cin`
+for i in $links
+	do ( echo "extern void $i __PARAMS((ARGS_scicos));"  >> $fout ;); done
+echo " " >> $fout 
+echo "OpTab tabsim[] ={" >> $fout
+rm -f $fout-temp$$
+links=`cat $Fin`
+for i in $links
+	do  (  echo "{\"$i\",(ScicosF) F2C($i)}," >> $fout-temp$$ ;); done ;
+links=`cat $Cin`
+for i in $links
+	do  (  echo "{\"$i\",(ScicosF) $i}," >> $fout-temp$$ ;); done ;
+sort $fout-temp$$ >> $fout; 
+echo "{(char *) 0, (ScicosF) 0}};" >> $fout ;
+
+x=`cat $Fin $Cin| wc -l `;
+echo " " >> $fout 
+echo "int ntabsim=" $x ";" >> $fout ;
+echo "#endif " >> $fout;
+rm -f $fout-temp$$
+echo "/***********************************/" >> $fout 
+
