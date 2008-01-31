@@ -289,7 +289,23 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
 	src/jni/DrawableSurfaceGL.cpp src/jni/SurfaceFacetDrawerGL.cpp \
 	src/jni/SurfaceLineDrawerGL.cpp \
-	src/jni/SurfaceMarkDrawerGL.cpp sci_gateway/c/gw_renderer.c
+	src/jni/SurfaceMarkDrawerGL.cpp src/jni/DrawableSegsGL.cpp \
+	src/jni/SegsArrowDrawerGL.cpp src/jni/SegsLineDrawerGL.cpp \
+	src/jni/SegsMarkDrawerGL.cpp \
+	src/cpp/segsDrawing/ChampDecomposer.cpp \
+	src/cpp/segsDrawing/ConcreteDrawableSegs.cpp \
+	src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp \
+	src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp \
+	src/cpp/segsDrawing/DrawableSegsJoGL.cpp \
+	src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
+	src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
+	src/cpp/segsDrawing/SegsDecomposer.cpp \
+	src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
+	src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
+	src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
+	src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
+	src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
+	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -506,7 +522,24 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-DrawableSurfaceGL.lo \
 @GUI_TRUE@	libscirenderer_la-SurfaceFacetDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-SurfaceLineDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerGL.lo
+@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSegsGL.lo \
+@GUI_TRUE@	libscirenderer_la-SegsArrowDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-SegsLineDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-SegsMarkDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-ChampDecomposer.lo \
+@GUI_TRUE@	libscirenderer_la-ConcreteDrawableSegs.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSegsBridgeFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSegsJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableSegsJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-SegsArrowDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-SegsArrowDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-SegsDecomposer.lo \
+@GUI_TRUE@	libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-SegsLineDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-SegsLineDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-SegsMarkDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-SegsMarkDrawerJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -939,7 +972,24 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/DrawableSurfaceGL.cpp \
 @GUI_TRUE@src/jni/SurfaceFacetDrawerGL.cpp \
 @GUI_TRUE@src/jni/SurfaceLineDrawerGL.cpp \
-@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.cpp
+@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.cpp \
+@GUI_TRUE@src/jni/DrawableSegsGL.cpp \
+@GUI_TRUE@src/jni/SegsArrowDrawerGL.cpp \
+@GUI_TRUE@src/jni/SegsLineDrawerGL.cpp \
+@GUI_TRUE@src/jni/SegsMarkDrawerGL.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/ChampDecomposer.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/ConcreteDrawableSegs.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsJoGL.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsDecomposer.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp
 
 
 # List of the gateway c files
@@ -990,7 +1040,11 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/DrawableSurfaceGL.giws.xml \
 @GUI_TRUE@src/jni/SurfaceLineDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SurfaceFacetDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml
+@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableSegsGL.giws.xml \
+@GUI_TRUE@src/jni/SegsArrowdrawerGL.giws.xml \
+@GUI_TRUE@src/jni/SegsLineDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/SegsMarkDrawerGL.giws.xml
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -1171,10 +1225,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableText.Plo@am__quote@
@@ -1222,7 +1278,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableRectangleJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Plo@am__quote@
@@ -1312,6 +1372,17 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYTicksDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYTicksDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsDecomposer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLineDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLineDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLineDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsMarkDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsMarkDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsMarkDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StairCaseDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StandardTextDrawerGL.Plo@am__quote@
@@ -2941,6 +3012,125 @@ libscirenderer_la-SurfaceMarkDrawerGL.lo: src/jni/SurfaceMarkDrawerGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SurfaceMarkDrawerGL.cpp' object='libscirenderer_la-SurfaceMarkDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SurfaceMarkDrawerGL.lo `test -f 'src/jni/SurfaceMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SurfaceMarkDrawerGL.cpp
+
+libscirenderer_la-DrawableSegsGL.lo: src/jni/DrawableSegsGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSegsGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSegsGL.Tpo -c -o libscirenderer_la-DrawableSegsGL.lo `test -f 'src/jni/DrawableSegsGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSegsGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSegsGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSegsGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableSegsGL.cpp' object='libscirenderer_la-DrawableSegsGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSegsGL.lo `test -f 'src/jni/DrawableSegsGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSegsGL.cpp
+
+libscirenderer_la-SegsArrowDrawerGL.lo: src/jni/SegsArrowDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsArrowDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Tpo -c -o libscirenderer_la-SegsArrowDrawerGL.lo `test -f 'src/jni/SegsArrowDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SegsArrowDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SegsArrowDrawerGL.cpp' object='libscirenderer_la-SegsArrowDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsArrowDrawerGL.lo `test -f 'src/jni/SegsArrowDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SegsArrowDrawerGL.cpp
+
+libscirenderer_la-SegsLineDrawerGL.lo: src/jni/SegsLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsLineDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsLineDrawerGL.Tpo -c -o libscirenderer_la-SegsLineDrawerGL.lo `test -f 'src/jni/SegsLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SegsLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsLineDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SegsLineDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SegsLineDrawerGL.cpp' object='libscirenderer_la-SegsLineDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsLineDrawerGL.lo `test -f 'src/jni/SegsLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SegsLineDrawerGL.cpp
+
+libscirenderer_la-SegsMarkDrawerGL.lo: src/jni/SegsMarkDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsMarkDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsMarkDrawerGL.Tpo -c -o libscirenderer_la-SegsMarkDrawerGL.lo `test -f 'src/jni/SegsMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SegsMarkDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsMarkDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SegsMarkDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SegsMarkDrawerGL.cpp' object='libscirenderer_la-SegsMarkDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsMarkDrawerGL.lo `test -f 'src/jni/SegsMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SegsMarkDrawerGL.cpp
+
+libscirenderer_la-ChampDecomposer.lo: src/cpp/segsDrawing/ChampDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ChampDecomposer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ChampDecomposer.Tpo -c -o libscirenderer_la-ChampDecomposer.lo `test -f 'src/cpp/segsDrawing/ChampDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/ChampDecomposer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ChampDecomposer.Tpo $(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/ChampDecomposer.cpp' object='libscirenderer_la-ChampDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ChampDecomposer.lo `test -f 'src/cpp/segsDrawing/ChampDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/ChampDecomposer.cpp
+
+libscirenderer_la-ConcreteDrawableSegs.lo: src/cpp/segsDrawing/ConcreteDrawableSegs.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableSegs.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Tpo -c -o libscirenderer_la-ConcreteDrawableSegs.lo `test -f 'src/cpp/segsDrawing/ConcreteDrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/ConcreteDrawableSegs.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/ConcreteDrawableSegs.cpp' object='libscirenderer_la-ConcreteDrawableSegs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableSegs.lo `test -f 'src/cpp/segsDrawing/ConcreteDrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/ConcreteDrawableSegs.cpp
+
+libscirenderer_la-DrawableSegsBridgeFactory.lo: src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSegsBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSegsBridgeFactory.Tpo -c -o libscirenderer_la-DrawableSegsBridgeFactory.lo `test -f 'src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSegsBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableSegsBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp' object='libscirenderer_la-DrawableSegsBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSegsBridgeFactory.lo `test -f 'src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp
+
+libscirenderer_la-DrawableSegsJavaMapper.lo: src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSegsJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSegsJavaMapper.Tpo -c -o libscirenderer_la-DrawableSegsJavaMapper.lo `test -f 'src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSegsJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableSegsJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp' object='libscirenderer_la-DrawableSegsJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSegsJavaMapper.lo `test -f 'src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp
+
+libscirenderer_la-DrawableSegsJoGL.lo: src/cpp/segsDrawing/DrawableSegsJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSegsJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSegsJoGL.Tpo -c -o libscirenderer_la-DrawableSegsJoGL.lo `test -f 'src/cpp/segsDrawing/DrawableSegsJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableSegsJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSegsJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DrawableSegsJoGL.cpp' object='libscirenderer_la-DrawableSegsJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSegsJoGL.lo `test -f 'src/cpp/segsDrawing/DrawableSegsJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegsJoGL.cpp
+
+libscirenderer_la-SegsArrowDrawerJavaMapper.lo: src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsArrowDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsArrowDrawerJavaMapper.Tpo -c -o libscirenderer_la-SegsArrowDrawerJavaMapper.lo `test -f 'src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsArrowDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SegsArrowDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp' object='libscirenderer_la-SegsArrowDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsArrowDrawerJavaMapper.lo `test -f 'src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp
+
+libscirenderer_la-SegsArrowDrawerJoGL.lo: src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsArrowDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsArrowDrawerJoGL.Tpo -c -o libscirenderer_la-SegsArrowDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsArrowDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SegsArrowDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp' object='libscirenderer_la-SegsArrowDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsArrowDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp
+
+libscirenderer_la-SegsDecomposer.lo: src/cpp/segsDrawing/SegsDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsDecomposer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsDecomposer.Tpo -c -o libscirenderer_la-SegsDecomposer.lo `test -f 'src/cpp/segsDrawing/SegsDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsDecomposer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsDecomposer.Tpo $(DEPDIR)/libscirenderer_la-SegsDecomposer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsDecomposer.cpp' object='libscirenderer_la-SegsDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsDecomposer.lo `test -f 'src/cpp/segsDrawing/SegsDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsDecomposer.cpp
+
+libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo: src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Tpo -c -o libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp' object='libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp
+
+libscirenderer_la-SegsLineDrawerJavaMapper.lo: src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsLineDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsLineDrawerJavaMapper.Tpo -c -o libscirenderer_la-SegsLineDrawerJavaMapper.lo `test -f 'src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsLineDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SegsLineDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp' object='libscirenderer_la-SegsLineDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsLineDrawerJavaMapper.lo `test -f 'src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp
+
+libscirenderer_la-SegsLineDrawerJoGL.lo: src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsLineDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsLineDrawerJoGL.Tpo -c -o libscirenderer_la-SegsLineDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsLineDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SegsLineDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp' object='libscirenderer_la-SegsLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsLineDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp
+
+libscirenderer_la-SegsMarkDrawerJavaMapper.lo: src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsMarkDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsMarkDrawerJavaMapper.Tpo -c -o libscirenderer_la-SegsMarkDrawerJavaMapper.lo `test -f 'src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsMarkDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SegsMarkDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp' object='libscirenderer_la-SegsMarkDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsMarkDrawerJavaMapper.lo `test -f 'src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp
+
+libscirenderer_la-SegsMarkDrawerJoGL.lo: src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsMarkDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsMarkDrawerJoGL.Tpo -c -o libscirenderer_la-SegsMarkDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsMarkDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SegsMarkDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp' object='libscirenderer_la-SegsMarkDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsMarkDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

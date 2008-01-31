@@ -225,10 +225,10 @@ src/jni/SurfaceFacetDrawerGL.cpp \
 src/jni/SurfaceLineDrawerGL.cpp \
 src/jni/SurfaceMarkDrawerGL.cpp \
 src/jni/DrawableSegsGL.cpp \
-src/jni/SegsArrowdrawerGL.cpp \
+src/jni/SegsArrowDrawerGL.cpp \
 src/jni/SegsLineDrawerGL.cpp \
 src/jni/SegsMarkDrawerGL.cpp \
-src/cpp/segsDrawing/ChamDecomposer.cpp \
+src/cpp/segsDrawing/ChampDecomposer.cpp \
 src/cpp/segsDrawing/ConcreteDrawableSegs.cpp \
 src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp \
 src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp \
@@ -240,7 +240,7 @@ src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
 src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
-src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
+src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp
 
 
 # List of the gateway c files
