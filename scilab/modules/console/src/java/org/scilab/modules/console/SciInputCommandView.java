@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.SynchronousQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -45,6 +46,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 */
 	private Semaphore canReadBuffer;
 	
+	private SynchronousQueue<String> queue;
+	
 	/**
 	 * Constructor
 	 */
@@ -55,6 +58,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		// Input command line is not editable when created
 		this.setEditable(false);
 		canReadBuffer = new Semaphore(1);
+		queue = new SynchronousQueue<String>();
 	}
 
 	/**
@@ -94,14 +98,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		this.setEditable(true);
 		this.setFocusable(true);
 		this.grabFocus();
-		// Have to be allowed to write...
-		// Try to acquire semaphore, if not, executes Scilab event loop for callbacks
-		try {
-			canReadBuffer.acquire();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		// TCl/TK event loop
 		// InterpreterManagement.execScilabEventLoop();
 		// Callback events handling
@@ -110,13 +107,14 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		//			canReadBuffer.release();
 		//			return "";
 		//		}
-		// Store command in an temp 
-		String tmp = cmdBuffer;
 
-		// Leave the buffer allowed
-		canReadBuffer.release();
-
-		return tmp;
+		String command = null;
+		try {
+			command = queue.take();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return command;
 	}
 	
 	/**
@@ -124,13 +122,11 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 * @param command the string to set to the buffer
 	 */
 	public void setCmdBuffer(String command) {
-		// The console do not wait to be allowed to write
-		// Sure to have right to read
-		// See SwingScilabConsole.readLine
-		cmdBuffer = command;
-		
-		// Leave the buffer allowed
-		canReadBuffer.release();
+		try {
+			queue.put(command);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -144,6 +140,9 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		}
 	}
 
+	/**
+	 * Allow Scilab to read the buffer
+	 */
 	public void unlockBuffer() {
 			canReadBuffer.release();
 	}

@@ -77,9 +77,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		((JTextPane) inputCmdView).grabFocus();
 
 		updateScrollPosition();
-
-		// Avoids reading of an empty buffer
-		((SciInputCommandView) inputCmdView).setBufferProtected();
 	}
 
 	/**
