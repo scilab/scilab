@@ -1085,6 +1085,7 @@ modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
 modules/fftw/Makefile
+modules/scicos/Makefile
 modules/functions/Makefile
 modules/dynamic_link/Makefile
 modules/others/Makefile
