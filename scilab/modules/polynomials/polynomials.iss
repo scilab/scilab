@@ -12,7 +12,7 @@
 ;
 Source: modules\{#POLYNOMIALS}\VERSION.xml; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\readme.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
-Source: modules\{#POLYNOMIALS}\licence.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\license.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\changelog.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\sci_gateway\polynomials_gateway.xml; DestDir: {app}\modules\{#POLYNOMIALS}\sci_gateway; Components: {#COMPN_POLY}

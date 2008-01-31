@@ -12,7 +12,7 @@
 ;
 Source: modules\{#STATS}\VERSION.xml; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\readme.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
-Source: modules\{#STATS}\licence.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
+Source: modules\{#STATS}\license.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\changelog.txt; DestDir: {app}\modules\{#STATS}; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATS}\sci_gateway\statistics_gateway.xml; DestDir: {app}\modules\{#STATS}\sci_gateway; Components: {#COMPN_STATS}

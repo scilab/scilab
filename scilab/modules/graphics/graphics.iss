@@ -12,7 +12,7 @@
 ;
 Source: modules\{#GRAPHICS}\VERSION.xml; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\readme.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\licence.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
+Source: modules\{#GRAPHICS}\license.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\changelog.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\graphics.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}

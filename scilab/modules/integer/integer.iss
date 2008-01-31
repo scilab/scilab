@@ -14,7 +14,7 @@ Source: bin\integer_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\VERSION.xml; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\readme.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
-Source: modules\{#INTEGER}\licence.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
+Source: modules\{#INTEGER}\license.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\changelog.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\sci_gateway\integer_gateway.xml; DestDir: {app}\modules\{#INTEGER}\sci_gateway; Components: {#COMPN_SCILAB}

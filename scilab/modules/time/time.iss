@@ -14,7 +14,7 @@ Source: bin\time.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\time.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\changelog.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\licence.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\license.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\readme.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\VERSION.xml; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 ;

@@ -17,7 +17,7 @@ Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\jar\org.scilab.modules.jvm.jar;DestDir: {app}\modules\{#JVM}\jar; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\licence.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\license.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\readme.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\VERSION.xml; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\changelog.txt; DestDir: {app}\modules\{#JVM}; Components: {#COMPN_SCILAB}

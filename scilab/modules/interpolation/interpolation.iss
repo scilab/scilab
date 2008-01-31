@@ -12,7 +12,7 @@
 ;
 Source: modules\{#INTERPOLATION}\VERSION.xml; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\readme.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
-Source: modules\{#INTERPOLATION}\licence.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\license.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\changelog.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\sci_gateway\interpolation_gateway.xml; DestDir: {app}\modules\{#INTERPOLATION}\sci_gateway; Components: {#COMPN_INTERP}

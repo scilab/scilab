@@ -61,7 +61,7 @@ modulename=graphic_export
 
 #### graphic_export : Conf files ####
 libscigraphic_export_la_rootdir = $(mydatadir)
-libscigraphic_export_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libscigraphic_export_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### graphic_export : init scripts ####
 libscigraphic_export_la_etcdir = $(mydatadir)/etc

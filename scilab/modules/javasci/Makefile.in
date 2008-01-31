@@ -349,7 +349,7 @@ modulename = javasci
 
 #### javasci : Conf files ####
 @JAVASCI_TRUE@libjavasci_la_rootdir = $(mydatadir)
-@JAVASCI_TRUE@libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+@JAVASCI_TRUE@libjavasci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### javasci : init scripts ####
 @JAVASCI_TRUE@libjavasci_la_etcdir = $(mydatadir)/etc

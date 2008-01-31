@@ -20,7 +20,7 @@ Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;
 ;Source: modules\{#SCICOS}\VERSION.xml; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\readme.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
-;Source: modules\{#SCICOS}\licence.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
+;Source: modules\{#SCICOS}\license.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\changelog.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 ;
 ;Source: modules\{#SCICOS}\sci_gateway\scicos_gateway.xml; DestDir: {app}\modules\{#SCICOS}\sci_gateway; Components: {#COMPN_SCICOS}

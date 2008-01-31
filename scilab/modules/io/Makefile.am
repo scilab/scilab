@@ -98,7 +98,7 @@ modulename=io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(mydatadir)
-libsciio_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libsciio_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
 #### io : init scripts ####

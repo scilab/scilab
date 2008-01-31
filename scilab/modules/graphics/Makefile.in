@@ -1464,7 +1464,7 @@ libscigraphics_la_CFLAGS =  \
 
 #### graphics : Conf files ####
 @GUI_TRUE@libscigraphics_la_rootdir = $(mydatadir)
-@GUI_TRUE@libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+@GUI_TRUE@libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### graphics : init scripts ####
 @GUI_TRUE@libscigraphics_la_etcdir = $(mydatadir)/etc

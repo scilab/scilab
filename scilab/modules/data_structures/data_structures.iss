@@ -12,7 +12,7 @@
 ;
 Source: modules\{#DATASTRUCT}\VERSION.xml; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\readme.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
-Source: modules\{#DATASTRUCT}\licence.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
+Source: modules\{#DATASTRUCT}\license.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 Source: modules\{#DATASTRUCT}\changelog.txt; DestDir: {app}\modules\{#DATASTRUCT}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DATASTRUCT}\sci_gateway\data_structures_gateway.xml; DestDir: {app}\modules\{#DATASTRUCT}\sci_gateway; Components: {#COMPN_SCILAB}

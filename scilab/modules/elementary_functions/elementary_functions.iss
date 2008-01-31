@@ -14,7 +14,7 @@ Source: bin\slatec_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
-Source: modules\{#ELEMFUNCTIONS}\licence.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
+Source: modules\{#ELEMFUNCTIONS}\license.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\sci_gateway\elementary_functions_gateway.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}

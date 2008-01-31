@@ -16,7 +16,7 @@ Source: bin\nometanet.dll; DestDir: {app}\bin; DestName: metanet.dll; Components
 ;
 Source: modules\{#METANET}\VERSION.xml; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\readme.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
-Source: modules\{#METANET}\licence.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\license.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\changelog.txt; DestDir: {app}\modules\{#METANET}; Components: {#COMPN_METANET}
 ;
 Source: modules\{#METANET}\sci_gateway\metanet_gateway.xml; DestDir: {app}\modules\{#METANET}\sci_gateway; Components: {#COMPN_METANET}

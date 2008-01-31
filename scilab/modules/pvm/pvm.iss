@@ -13,7 +13,7 @@
 Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#PVM}\changelog.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
-;Source: modules\{#PVM}\licence.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
+;Source: modules\{#PVM}\license.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\readme.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\VERSION.xml; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
 ;

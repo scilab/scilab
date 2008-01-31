@@ -12,7 +12,7 @@
 ;
 Source: modules\{#SCIPAD}\VERSION.xml; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\readme.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
-Source: modules\{#SCIPAD}\licence.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\license.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\changelog.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.quit; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_SCIPAD}

@@ -12,7 +12,7 @@
 ;
 Source: modules\{#SIGPROC}\VERSION.xml; DestDir: {app}\modules\{#SIGPROC}; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\readme.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
-Source: modules\{#SIGPROC}\licence.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
+Source: modules\{#SIGPROC}\license.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\changelog.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\sci_gateway\signal_processing_gateway.xml; DestDir: {app}\modules\signal_processing\sci_gateway; Components: {#COMPN_SIGPROC}

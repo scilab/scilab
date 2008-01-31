@@ -12,7 +12,7 @@
 ;
 Source: modules\{#OTHERS}\VERSION.xml; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\readme.txt; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}
-Source: modules\{#OTHERS}\licence.txt; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}
+Source: modules\{#OTHERS}\license.txt; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}
 Source: modules\{#OTHERS}\changelog.txt; DestDir: {app}\modules\{#OTHERS}; Components: {#COMPN_OTHERS}
 ;
 Source: modules\{#OTHERS}\etc\{#OTHERS}.quit; DestDir: {app}\modules\{#OTHERS}\etc; Components: {#COMPN_OTHERS}

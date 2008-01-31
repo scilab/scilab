@@ -10,7 +10,7 @@ modulename=scipad
 
 #### scipad : Conf files ####
 libsciscipad_la_rootdir = $(mydatadir)
-libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libsciscipad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 MACROSDIRSEXT = macros/scipad_internals
 
@@ -120,7 +120,7 @@ modulename=scipad
 
 #### scipad : Conf files ####
 libsciscipad_la_rootdir = $(mydatadir)
-libsciscipad_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libsciscipad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 MACROSDIRSEXT = macros/scipad_internals
 

@@ -24,7 +24,7 @@ Source: modules\{#RENDERER}\jar\org.scilab.modules.renderer.jar;DestDir: {app}\m
 ;
 
 Source: modules\{#RENDERER}\changelog.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS};
-Source: modules\{#RENDERER}\licence.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
+Source: modules\{#RENDERER}\license.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#RENDERER}\readme.txt; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#RENDERER}\version.xml; DestDir: {app}\modules\{#RENDERER}; Components: {#COMPN_GRAPHICS}
 ;

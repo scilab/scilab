@@ -12,7 +12,7 @@
 ;
 Source: modules\{#DIFFEQU}\VERSION.xml; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\readme.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
-Source: modules\{#DIFFEQU}\licence.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\license.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\changelog.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 ;
 Source: modules\{#DIFFEQU}\sci_gateway\differential_equations_gateway.xml; DestDir: {app}\modules\{#DIFFEQU}\sci_gateway; Components: {#COMPN_EQUDIF}

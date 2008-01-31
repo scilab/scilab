@@ -34,7 +34,7 @@ modulename=dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
-libscidynamic_link_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libscidynamic_link_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc

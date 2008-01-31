@@ -63,7 +63,7 @@ modulename=randlib
 
 #### randlib : Conf files ####
 libscirandlib_la_rootdir = $(mydatadir)
-libscirandlib_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libscirandlib_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
 #### randlib : init scripts ####

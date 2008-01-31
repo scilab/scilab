@@ -15,7 +15,7 @@ Source: bin\string_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\VERSION.xml; DestDir: {app}\modules\{#STRING}; Components: {#COMPN_SCILAB}
 Source: modules\{#STRING}\readme.txt; DestDir: {app}\modules\{#STRING}; Components: {#COMPN_SCILAB}
-Source: modules\{#STRING}\licence.txt; DestDir: {app}\modules\{#STRING}; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\license.txt; DestDir: {app}\modules\{#STRING}; Components: {#COMPN_SCILAB}
 Source: modules\{#STRING}\changelog.txt; DestDir: {app}\modules\{#STRING}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\sci_gateway\STRING_V2_gateway.xml; DestDir: {app}\modules\{#STRING}\sci_gateway; Components: {#COMPN_SCILAB}

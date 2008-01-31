@@ -12,7 +12,7 @@
 ;
 Source: modules\{#CORE}\VERSION.xml; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\readme.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\licence.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\license.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\changelog.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CORE}\sci_gateway\core_gateway.xml; DestDir: {app}\modules\{#CORE}\sci_gateway; Components: {#COMPN_SCILAB}

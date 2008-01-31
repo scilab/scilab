@@ -20,7 +20,7 @@ Source: thirdparty\skinlf.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SC
 ;
 Source: modules\{#GUI}\VERSION.xml; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
 Source: modules\{#GUI}\readme.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
-Source: modules\{#GUI}\licence.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
+Source: modules\{#GUI}\license.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
 Source: modules\{#GUI}\changelog.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GUI}\sci_gateway\gui_gateway.xml; DestDir: {app}\modules\{#GUI}\sci_gateway; Components: {#COMPN_SCILAB}

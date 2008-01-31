@@ -15,7 +15,7 @@ Source: bin\symbolic_f.dll; DestDir: {app}\bin; DestName: symbolic_f.dll; Compon
 ;
 Source: modules\{#SYMBOLIC}\VERSION.xml; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\readme.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\licence.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\license.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 Source: modules\{#SYMBOLIC}\changelog.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
 ;
 Source: modules\{#SYMBOLIC}\sci_gateway\symbolic_gateway.xml; DestDir: {app}\modules\{#SYMBOLIC}\sci_gateway; Components: {#COMPN_SYMB}

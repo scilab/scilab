@@ -183,7 +183,7 @@ modulename=sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
-libscisparse_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libscisparse_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
 #### sparse : init scripts ####

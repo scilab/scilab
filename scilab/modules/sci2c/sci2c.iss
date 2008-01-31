@@ -12,7 +12,7 @@
 ;
 Source: modules\{#SCI2C}\VERSION.xml; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
 Source: modules\{#SCI2C}\readme.txt; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
-Source: modules\{#SCI2C}\licence.txt; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
+Source: modules\{#SCI2C}\license.txt; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
 Source: modules\{#SCI2C}\changelog.txt; DestDir: {app}\modules\{#SCI2C}; Components: {#COMPN_SCI2C}
 ;
 Source: modules\{#SCI2C}\sci_gateway\SCI2C; DestDir: {app}\modules\{#SCI2C}\sci_gateway; Components: {#COMPN_SCI2C}

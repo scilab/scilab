@@ -12,7 +12,7 @@
 ;
 Source: modules\{#TCLSCI}\VERSION.xml; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\readme.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
-Source: modules\{#TCLSCI}\licence.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\license.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\changelog.txt; DestDir: {app}\modules\{#TCLSCI}; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\sci_gateway\tclsci_gateway.xml; DestDir: {app}\modules\{#TCLSCI}\sci_gateway; Components: {#COMPN_TCLSCI}

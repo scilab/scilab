@@ -18,7 +18,7 @@ Source: bin\dynamic_link_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DYNAMIC_LINK}\VERSION.xml; DestDir: {app}\modules\{#DYNAMIC_LINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#DYNAMIC_LINK}\readme.txt; DestDir: {app}\modules\{#DYNAMIC_LINK}; Components: {#COMPN_SCILAB}
-Source: modules\{#DYNAMIC_LINK}\licence.txt; DestDir: {app}\modules\{#DYNAMIC_LINK}; Components: {#COMPN_SCILAB}
+Source: modules\{#DYNAMIC_LINK}\license.txt; DestDir: {app}\modules\{#DYNAMIC_LINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#DYNAMIC_LINK}\changelog.txt; DestDir: {app}\modules\{#DYNAMIC_LINK}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DYNAMIC_LINK}\etc\{#DYNAMIC_LINK}.quit; DestDir: {app}\modules\{#DYNAMIC_LINK}\etc; Components: {#COMPN_SCILAB}

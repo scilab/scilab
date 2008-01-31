@@ -40,7 +40,7 @@ modulename=incremental_link
 
 #### incremental_link : Conf files ####
 libsciincremental_link_la_rootdir = $(mydatadir)
-libsciincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libsciincremental_link_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### incremental_link : init scripts #### 
 libsciincremental_link_la_etcdir = $(mydatadir)/etc

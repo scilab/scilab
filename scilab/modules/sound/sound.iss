@@ -15,7 +15,7 @@ Source: bin\sound.dll; DestDir: {app}\bin; Components: {#COMPN_SOUND}
 Source: bin\nosound.dll; DestDir: {app}\bin; DestName: sound.dll; Components: not ({#COMPN_SOUND})
 ;
 Source: modules\{#SOUND}\changelog.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
-Source: modules\{#SOUND}\licence.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
+Source: modules\{#SOUND}\license.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\readme.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\VERSION.xml; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SOUND}
 ;

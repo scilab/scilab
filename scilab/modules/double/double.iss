@@ -12,7 +12,7 @@
 ;
 Source: modules\{#DOUBLE}\VERSION.xml; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\readme.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\licence.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
+Source: modules\{#DOUBLE}\license.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\changelog.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.quit; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}

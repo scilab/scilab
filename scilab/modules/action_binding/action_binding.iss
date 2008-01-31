@@ -18,7 +18,7 @@ Source: modules\{#ACTION_BINDING}\jar\org.scilab.modules.action_binding.jar;Dest
 ;Source: bin\noaction_binding.dll; DestDir: {app}\bin; DestName: sciaction_binding.dll; Components: not ({#COMPN_ACTION_BINDING})
 ;
 Source: modules\{#ACTION_BINDING}\changelog.txt; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB};
-Source: modules\{#ACTION_BINDING}\licence.txt; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB}
+Source: modules\{#ACTION_BINDING}\license.txt; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB}
 Source: modules\{#ACTION_BINDING}\readme.txt; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB}
 Source: modules\{#ACTION_BINDING}\version.xml; DestDir: {app}\modules\{#ACTION_BINDING}; Components: {#COMPN_SCILAB}
 ;

@@ -18,7 +18,7 @@ Source: bin\incremental_link_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCIL
 ;
 Source: modules\{#INCRLINK}\VERSION.xml; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\readme.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
-Source: modules\{#INCRLINK}\licence.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
+Source: modules\{#INCRLINK}\license.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
 Source: modules\{#INCRLINK}\changelog.txt; DestDir: {app}\modules\{#INCRLINK}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INCRLINK}\etc\{#INCRLINK}.quit; DestDir: {app}\modules\{#INCRLINK}\etc; Components: {#COMPN_SCILAB}

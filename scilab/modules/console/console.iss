@@ -21,7 +21,7 @@ Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSO
 ;Source: bin\noconsole.dll; DestDir: {app}\bin; DestName: sciconsole.dll; Components: not ({#COMPN_CONSOLE})
 ;
 Source: modules\{#CONSOLE}\changelog.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB};
-Source: modules\{#CONSOLE}\licence.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
+Source: modules\{#CONSOLE}\license.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
 Source: modules\{#CONSOLE}\readme.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
 Source: modules\{#CONSOLE}\version.xml; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB}
 ;

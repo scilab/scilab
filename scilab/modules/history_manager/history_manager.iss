@@ -17,7 +17,7 @@ Source: modules\{#HISTORY_MANAGER}\jar\org.scilab.modules.history_manager.jar;De
 ;Source: bin\noscihistory_manger.dll; DestDir: {app}\bin; DestName: scihistory_manager.dll; Components: not ({#COMPN_SCILAB})
 ;
 Source: modules\{#HISTORY_MANAGER}\changelog.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB};
-Source: modules\{#HISTORY_MANAGER}\licence.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
+Source: modules\{#HISTORY_MANAGER}\license.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\readme.txt; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\version.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}; Components: {#COMPN_SCILAB}
 ;

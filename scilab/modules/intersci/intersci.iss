@@ -12,7 +12,7 @@
 ;
 Source: modules\{#INTERSCI}\VERSION.xml; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\readme.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\licence.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\license.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
 Source: modules\{#INTERSCI}\changelog.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
 ;
 Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}

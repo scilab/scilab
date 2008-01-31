@@ -17,7 +17,7 @@ Source: modules\{#COMPLETION}\jar\org.scilab.modules.completion.jar;DestDir: {ap
 ;Source: bin\noscicompletion.dll; DestDir: {app}\bin; DestName: scicompletion.dll; Components: not ({#COMPN_SCILAB})
 ;
 Source: modules\{#COMPLETION}\changelog.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB};
-Source: modules\{#COMPLETION}\licence.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\license.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\readme.txt; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\version.xml; DestDir: {app}\modules\{#COMPLETION}; Components: {#COMPN_SCILAB}
 ;

@@ -427,7 +427,7 @@ endif
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA = changelog.txt licence.txt readme.txt version.xml
+libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
 #### graphics : init scripts ####

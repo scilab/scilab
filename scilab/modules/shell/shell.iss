@@ -16,7 +16,7 @@ Source: modules\{#SHELL}\jar\org.scilab.modules.shell.jar;DestDir: {app}\modules
 ;
 ;
 Source: modules\{#SHELL}\changelog.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB};
-Source: modules\{#SHELL}\licence.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
+Source: modules\{#SHELL}\license.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\readme.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\VERSION.xml; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 ;

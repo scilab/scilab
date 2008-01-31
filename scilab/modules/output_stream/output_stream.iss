@@ -14,7 +14,7 @@ Source: bin\scioutput_stream.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB
 Source: bin\scioutput_stream.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OUTPUT_STREAM}\changelog.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB};
-Source: modules\{#OUTPUT_STREAM}\licence.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
+Source: modules\{#OUTPUT_STREAM}\license.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\readme.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\version.xml; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 ;
