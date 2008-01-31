@@ -321,6 +321,14 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\gw_cscicos.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_scicos.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"
