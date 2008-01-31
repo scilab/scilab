@@ -1,9 +1,20 @@
 <?xml version="1.0"?>
 <menubar>
     <menu label="File" mnemonic="F">
-        <submenu label="New figure..." mnemonic="N" enabled="false"/> 
+        <submenu label="New figure..." mnemonic="N"> 
+            <callback instruction="scf();" type="1"/>
+        </submenu>
         <separator/>
-        <submenu label="Load..." mnemonic="L" enabled="false"/> 
+        <submenu label="Load..." mnemonic="L"> 
+            <callback 
+            instruction="
+              %fileToLoad = xgetfile('*.scg', getcwd(), 'Select a file to load');
+              if ~isempty(%fileToLoad) then 
+                xload(%fileToLoad);
+              end
+              clear %fileToLoad"
+            type="1"/>
+        </submenu> 
         <submenu label="Save..." mnemonic="S" enabled="false"/> 
         <separator/>
         <submenu label="Export" mnemonic="E" enabled="false"/> 
@@ -12,7 +23,9 @@
         <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
         <submenu label="Print" mnemonic="P" enabled="false"/> 
         <separator/>
-        <submenu label="Close" mnemonic="L" enabled="false"/> 
+        <submenu label="Close" mnemonic="C">
+            <callback instruction="delete(gcf());" type="1"/>
+        </submenu> 
     </menu>
 
     <menu label="Tools" mnemonic="T">
@@ -27,7 +40,9 @@
     <menu label="Edit" mnemonic="E">
         <submenu label="Select as current figure" mnemonic="S" enabled="false"/> 
         <submenu label="Redraw figure" mnemonic="R" enabled="false"/> 
-        <submenu label="Clear figure" mnemonic="C" enabled="false"/> 
+        <submenu label="Clear figure" mnemonic="C">
+            <callback instruction="clf();" type="1"/>
+        </submenu> 
         <separator/>
         <submenu label="Figure properties" mnemonic="F" enabled="false"/> 
         <submenu label="Axes properties" mnemonic="A" enabled="false"/> 
