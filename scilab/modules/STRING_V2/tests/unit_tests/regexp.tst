@@ -275,8 +275,11 @@ if regexp('a\nb\nc\n'                               ,'/()^b/'                   
 //  This is actually not compatible with Perl, which accepts such patterns, but
 //  treats the conditional as always being FALSE (as PCRE used to), but it
 //    seems to me that giving a diagnostic is better.
-//if regexp('a'                                       ,'/(?(1)a|b)/'                           ) <>  []  then pause,end
-//if regexp('a'                                       ,'/(?(1)b|a)/'                           ) <>  1   then pause,end
+if execstr("regexp(''a'' ,''/(?(1)a|b)/'')","errcatch") <>  999  then pause,end
+if execstr("regexp(''a'',''/(?(?{0})a|b)/'')","errcatch") <>  999  then pause,end
+if execstr("regexp(''a'',''/(?(?{1})b|a)/'')","errcatch") <>  999  then pause,end
+if execstr("regexp(''a'',''/(?(1)b|a)/'')","errcatch") <>  999  then pause,end
+//
 if regexp('a'                                       ,'/(x)?(?(1)a|b)/'                       ) <>  []  then pause,end
 if regexp('a'                                       ,'/(x)?(?(1)b|a)/'                       ) <>  1   then pause,end
 if regexp('a'                                       ,'/()?(?(1)b|a)/'                        ) <>  1   then pause,end
@@ -286,8 +289,6 @@ if regexp('blah)'                                   ,'/^(\()?blah(?(1)(\)))$/'  
 if regexp('(blah'                                   ,'/^(\()?blah(?(1)(\)))$/'               ) <>  []  then pause,end
 if regexp('blah)'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ) <>  []  then pause,end
 if regexp('(blah'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ) <>  []  then pause,end
-//if regexp('a'                                       ,'/(?(?{0})a|b)/'                      ) <>  []  then pause,end
-//if regexp('a'                                       ,'/(?(?{1})b|a)/'                      ) <>  []  then pause,end
 if regexp('a'                                       ,'/(?(?!a)a|b)/'                         ) <>  []  then pause,end
 if regexp('a'                                       ,'/(?(?!a)b|a)/'                         ) <>  1   then pause,end
 if regexp('a'                                       ,'/(?(?=a)b|a)/'                         ) <>  []  then pause,end
