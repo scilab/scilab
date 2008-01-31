@@ -18,7 +18,7 @@ function Rep=isLeapYear(year)
 	if rhs==1 & type(year)==1 then
 		Rep = ((modulo(year,100)<>0) & (modulo(year,4)==0)) | (modulo(year,400)== 0);
 	else
-		error(gettext('Number of parameters incorrect.'));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"isLeapYear",1));
 	end
 	
 endfunction

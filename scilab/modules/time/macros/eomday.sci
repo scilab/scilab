@@ -15,7 +15,7 @@ function E=eomday(Y,M)
 	leap_year   = [31,29,31,30,31,30,31,31,30,31,30,31];
 	
 	if size(Y) <> size(M) then
-		error(msprintf(gettext("%s: Wrong size for input argument: same size expected.\n"),"eomday"));
+		error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"eomday"));
 	end
 	
 	if rhs <> 2 then
@@ -31,7 +31,7 @@ function E=eomday(Y,M)
 	end
 	
 	if (min(M) < 1) | (max(M) > 12) then
-		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between 1 and 12.\n"),"eomday"));
+		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"eomday",1,12));
 	end
 	
 	[nr,nc] = size(M);

@@ -35,35 +35,35 @@ function n=datenum(varargin)
 			// Checks
 			
 			if type(DateIn)<> 1 then
-				error(gettext('Type of parameters incorrect.'));
+				error(msprintf(gettext("%s: Wrong type for first input argument: Real matrix expected.\n"),"datenum"));
 			end
 			
 			[nr,nc] = size(DateIn);
 			
 			if (nc <> 3) & (nc <> 6) then
-				error(gettext('Argument must be a m*3 matrix or a m*6 matrix.'));
+				error(msprintf(gettext("%s: Wrong size for first input argument: m*3 matrix or a m*6 matrix expected.\n"),"datenum"));
 			end
 			
 			if min(DateIn(:,2))<1 | max(DateIn(:,2))>12 then
-				error(gettext('Month argument must be between 1 and 12.'));
+				error(msprintf(gettext("%s: Wrong value for first input argument: Month must be between %d and %d.\n"),"datenum",1,12));
 			end
 			
 			if min(DateIn(:,3))<1 | max(DateIn(:,3))>31 then
-				error(gettext('Day argument must be between 1 and 31.'));
+				error(msprintf(gettext("%s: Wrong value for first input argument: Day must be between %d and %d.\n"),"datenum",1,31));
 			end
 			
 			if nc == 6 then
 				
 				if min(DateIn(:,4))<0 | max(DateIn(:,4))>23 then
-					error(gettext('Hour argument must be between 0 and 23.'));
+					error(msprintf(gettext("%s: Wrong value for first input argument: Hour must be between %d and %d.\n"),"datenum",0,23));
 				end
 				
 				if min(DateIn(:,5))<0 | max(DateIn(:,5))>59 then
-					error(gettext('Minute argument must be between 0 and 59.'));
+					error(msprintf(gettext("%s: Wrong value for first input argument: Minute must be between %d and %d.\n"),"datenum",0,59));
 				end
 				
 				if min(DateIn(:,6))<0 | max(DateIn(:,6))>59 then
-					error(gettext('Second argument must be between 0 and 59.'));
+					error(msprintf(gettext("%s: Wrong value for first input argument: Second must be between %d and %d.\n"),"datenum",0,59));
 				end
 				
 			end
@@ -84,19 +84,19 @@ function n=datenum(varargin)
 			// checks
 			
 			if (type(YearIn)<> 1) | (type(MonthIn)<> 1) | (type(DayIn)<> 1) then
-				error(gettext('Type of parameters incorrect.'));
+				error(msprintf(gettext("%s: Wrong type for input arguments.\n"),"datenum"));
 			end
 			
 			if (size(YearIn) <> size(MonthIn)) | (size(YearIn) <> size(DayIn)) then
-				error(gettext('The three arguments must have the same size.'));
+				error(msprintf(gettext("%s: Wrong size for input arguments: Must have the same size.\n"),"datenum"));
 			end
 			
 			if min(MonthIn)<1 | max(MonthIn)>12 then
-				error(gettext('The second argument must be between 1 and 12.'));
+				error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"datenum",1,12));
 			end
 			
 			if min(DayIn)<1 | max(DayIn)>31 then
-				error(gettext('The third argument must be between 1 and 31.'));
+				error(msprintf(gettext("%s: Wrong value for third input argument: Must be between %d and %d.\n"),"datenum",1,31));
 			end
 			
 			[nr,nc]  = size(YearIn);
@@ -121,7 +121,7 @@ function n=datenum(varargin)
 				(type(HourIn) <> 1) | ..
 				(type(MinIn)  <> 1) | ..
 				(type(SecIn)  <> 1) then
-				error(gettext("Type of parameters incorrect."));
+				error(msprintf(gettext("%s: Wrong type for input arguments.\n"),"datenum"));
 			end
 			
 			if  (size(YearIn) <> size(MonthIn)) | ..
@@ -129,34 +129,34 @@ function n=datenum(varargin)
 				(size(YearIn) <> size(HourIn))  | ..
 				(size(YearIn) <> size(MinIn))   | ..
 				(size(YearIn) <> size(SecIn))  then
-				error(gettext("The six arguments must have the same size."));
+				error(msprintf(gettext("%s: Wrong size for input arguments: Must have the same size.\n"),"datenum"));
 			end
 			
 			if min(MonthIn)<1 | max(MonthIn)>12 then
-				error(gettext("The second argument must be between 1 and 12."));
+				error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"datenum",1,12));
 			end
 			
 			if min(DayIn)<1 | max(DayIn)>31 then
-				error(gettext("The third argument must be between 1 and 31."));
+				error(msprintf(gettext("%s: Wrong value for third input argument: Must be between %d and %d.\n"),"datenum",1,31));
 			end
 			
 			if min(HourIn)<0 | max(HourIn)>23 then
-				error(gettext("The fourth argument must be between 0 and 23."));
+				error(msprintf(gettext("%s: Wrong value for fourth input argument: Must be between %d and %d.\n"),"datenum",0,23));
 			end
 			
 			if min(MinIn)<0 | max(MinIn)>59 then
-				error(gettext("The fifth argument must be between 0 and 59."));
+				error(msprintf(gettext("%s: Wrong value for fifth input argument: Must be between %d and %d.\n"),"datenum",0,59));
 			end
 			
 			if min(SecIn)<0 | max(SecIn)>59 then
-				error(gettext("The sixth argument must be between 0 and 59."));
+				error(msprintf(gettext("%s: Wrong value for sixth input argument: Must be between %d and %d.\n"),"datenum",0,59));
 			end
 			
 			n = ymdhmns_to_scalar(YearIn,MonthIn,DayIn,HourIn,MinIn,SecIn);
 			
 			break
 		else
-			error(gettext('Number of parameters incorrect.'));
+			error(msprintf(gettext("%s: Wrong number of input argument.\n"),"datenum"));
 	end
 	
 
@@ -167,7 +167,7 @@ function scalaire=ymdhmns_to_scalar (annee,mois,jour,heure,mn,sec)
 	
 	decimal_part = (sec*(1/(24*3600)))+(mn*(1/(24*60)))+(heure*(1/24));
 	
-	// Concersion des mois et jour
+	// convert of month and day
 	integer_part = jour + floor((mois * 3057 - 3007) / 100);
 	
 	// On retranche 1 si le mois est au dela de février

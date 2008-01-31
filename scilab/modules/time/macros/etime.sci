@@ -10,20 +10,20 @@ function t=etime(t1,t0)
 // V.C. 2004
 
 if type(t1)<>1 then
-  error(gettext('Wrong type for first input: must be a real vector.'));
+  error(msprintf(gettext("%s: Wrong type for first input argument: Real vector expected.\n"),"etime"));
 end
 if type(t0)<>1 then
-  error(gettext('Wrong type for second input: must be a real vector.'));
+  error(msprintf(gettext("%s: Wrong type for second input argument: Real vector expected.\n'),"etime"));
 end
 if and(size(t1,2)<>[6,10]) then
-  error(gettext('Wrong size for first input: must be a 6 or 10 element long vector.'));
+  error(msprintf(gettext("%s: Wrong size for first input argument: Must be between %d or %d.\n'),"etime",6,10));
 end
 if and(size(t0,2)<>[6,10]) then
-  error(gettext('Wrong size for second input: must be a 6 or 10 element long vector.'));
+  error(msprintf(gettext("%s: Wrong size for second input argument: Must be between %d or %d.\n"),"etime",6,10));
 end
 
 if size(t1,"*")<>size(t0,"*") then
-  error(gettext('Both operands must have the same size.'));
+  error(msprintf(gettext("%s: Both operands must have the same size.\n"),"etime"));
 end
 
 if size(t1,2)==10 then

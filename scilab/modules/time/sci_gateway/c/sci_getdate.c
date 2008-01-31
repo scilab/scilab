@@ -72,7 +72,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for first input argument: '%s' or an integer expected.\n"),fname,"s");
+				Scierror(999,_("%s: Wrong type for first input argument: Integer or '%s' expected.\n"),fname,"s");
 				return 0;
 			}
 		}
@@ -128,7 +128,7 @@ int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for first input argument: '%s' or an integer expected.\n"),fname,"s");
+				Scierror(999,_("%s: Wrong type for first input argument: Integer or '%s' expected.\n"),fname,"s");
 				return 0;
 			}
 		}
