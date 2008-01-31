@@ -44,7 +44,7 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	 * @param gridColor color index in the color map
 	 */
 	public void setGridColor(int gridColor) {
-		this.gridColor = gridColor;
+		this.gridColor = getColorMap().convertScilabToColorMapIndex(gridColor);
 	}
 	
 	/**
