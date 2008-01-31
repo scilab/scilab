@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>ENDBLK</TITLE>
+<META NAME="description" CONTENT="ENDBLK">
+<META NAME="keywords" CONTENT="ENDBLK">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ENDBLK.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/ENDBLK.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./ENDBLK.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="ENDBLK"></A>
+<BR>
+END block
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=ENDBLK.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/ENDBLK_blk.gif"
+ ALT="\epsfig{file=ENDBLK.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html6"
+  HREF="ENDBLK.htm#SECTION00010000000000000000">END block</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="ENDBLK.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html8"
+  HREF="ENDBLK.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html9"
+  HREF="ENDBLK.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html10"
+  HREF="ENDBLK.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html11"
+  HREF="ENDBLK.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html12"
+  HREF="ENDBLK.htm#SECTION00026000000000000000">Compiled Super Block content</A>
+<LI><A NAME="tex2html13"
+  HREF="ENDBLK.htm#SECTION00027000000000000000">See also</A>
+<LI><A NAME="tex2html14"
+  HREF="ENDBLK.htm#SECTION00028000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Others_pal.htm">Others - Others palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+That block can be used to set the final time of the simulation.
+When that block is truely parametrized then the simulator will jump
+to the 'final integration time' defined in the Setup item of the simulate Menu 
+from the time defined by the parameter 'Final simulation time' of the dialog box.
+That parameter can be a numerical value or a symbolic variable defined
+in the scicos context.
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="413" HEIGHT="89" BORDER="0"
+ SRC="../../images/scicos/ENDBLK_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=ENDBLK_gui.eps,width=260pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Final simulation time</b>
+<BR>
+Set the final time of the simulation.
+<BR>
+When simulator reaches that value then the current time will jump to the final integration time.
+<BR>
+Properties : Type 'vec' of size 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> no
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>number/sizes of activation inputs:</b> 0
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>csuper</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Misc/ENDBLK.sci <A NAME="tex2html4"
+  HREF="ENDBLK_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Compiled Super Block content</A>
+</font></H3>
+ <!-- MATH
+ $\epsfig{file=ENDBLK_super.eps,width=60pt}$
+ -->
+<IMG
+ WIDTH="96" HEIGHT="135" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/ENDBLK_img3_eng.gif"
+ ALT="\epsfig{file=ENDBLK_super.eps,width=60pt}">
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+See also</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html5"
+  HREF="END_c.htm">END_c - END_c block (Scicos Block)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Authors</A>
+</font></H3>
+<b>Alan Layec</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

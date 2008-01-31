@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>EDGE_TRIGGER</TITLE>
+<META NAME="description" CONTENT="EDGE_TRIGGER">
+<META NAME="keywords" CONTENT="EDGE_TRIGGER">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="EDGE_TRIGGER.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/EDGE_TRIGGER.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./EDGE_TRIGGER.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="EDGE_TRIGGER"></A>
+<BR>
+EDGE_TRIGGER block
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=EDGE_TRIGGER.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/EDGE_TRIGGER_blk.gif"
+ ALT="\epsfig{file=EDGE_TRIGGER.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="EDGE_TRIGGER.htm#SECTION00010000000000000000">EDGE_TRIGGER block</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="EDGE_TRIGGER.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html7"
+  HREF="EDGE_TRIGGER.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html8"
+  HREF="EDGE_TRIGGER.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html9"
+  HREF="EDGE_TRIGGER.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html10"
+  HREF="EDGE_TRIGGER.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html11"
+  HREF="EDGE_TRIGGER.htm#SECTION00026000000000000000">Compiled Super Block content</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Branching_pal.htm">Branching - Branching palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block generates an event on rising, falling or both edges of the input signal (depending on block parameter). A rising edge is a change in value from strictly negative to positive or zero, or a change in value from zero to strictly positive. A falling edge is the opposite. Note that this block only generates an event if the input jumps due to an event. The generated event is synchronous with the event causing the jump. This block does not detect continuous-time zero-crossings.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="89" BORDER="0"
+ SRC="../../images/scicos/EDGE_TRIGGER_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=EDGE_TRIGGER_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>rising (1), falling (-1), both (0)</b>
+<BR>
+Properties : Type 'vec' of size 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> no
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 1
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>csuper</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Misc/EDGE_TRIGGER.sci <A NAME="tex2html4"
+  HREF="EDGE_TRIGGER_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Compiled Super Block content</A>
+</font></H3>
+ <!-- MATH
+ $\epsfig{file=EDGE_TRIGGER_super.eps,width=150.00pt}$
+ -->
+<IMG
+ WIDTH="239" HEIGHT="144" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/EDGE_TRIGGER_img3_eng.gif"
+ ALT="\epsfig{file=EDGE_TRIGGER_super.eps,width=150.00pt}">
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

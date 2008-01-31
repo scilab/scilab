@@ -1,0 +1,638 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>scicos_model</TITLE>
+<META NAME="description" CONTENT="scicos_model">
+<META NAME="keywords" CONTENT="scicos_model">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="scicos_model.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos list
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/scicos_model.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./scicos_model.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="scicos_model"></A>
+<BR>
+<b>scicos_model</b> - Define a model structure
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+model</A>
+</font></H3>
+ Scilab list that contains the features
+ of the block used for the compilation.
+<BR>
+<BR>
+<P>
+Size : 23.
+<BR>
+Type : Scilab list.
+<BR>
+<P>
+
+<UL>
+<LI><B>sim</B>
+<BR>
+A list containing two elements. The first element is
+         a string containing the name of the computational function
+         (C, Fortran,or Scilab). The second element is an integer
+         specifying the type of the computational function. Currently
+         type 4 and 5 are used, but older types continue to work to 
+         ensure backward compatibility.
+<BR>
+For some older case, sim can be a single string and that
+         means that the type is supposed to be 0.
+<BR>
+<BR>
+<P>
+Size : 2.
+<BR>
+Type : Scilab list.
+<BR>
+<P>
+</LI>
+<LI><B>in</B>
+<BR>
+A vector specifying the number and size of the first
+          dimension of regular input ports indexed from top to
+          bottom of the block. If no input port exist in==[].
+<BR>
+<P>
+The size can be negative, equal to zero or positive :
+
+<P>
+
+<UL>
+<LI>If a size is less than zero, the compiler will
+              try to find the appropriate size.
+<BR>
+<P>
+</LI>
+<LI>If a size is equal to zero, the compiler will
+              affect this dimension by added all positive size
+              found in that vector
+
+<P>
+</LI>
+<LI>If a size is greater than zero, then the size is
+              explicitly given.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : number of regular input ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>in2</B>
+<BR>
+A vector specifying the second dimension of regular
+          input ports indexed from top to bottom of the block.
+<BR>
+in with in2 formed then the regular input sizes matrix.
+<BR>
+For compatibility, this dimension can stay empty ([]).
+<BR>
+That means that the dimensions of input ports will be in,1
+
+<P>
+The size can be negative, equal to zero or positive :
+
+<P>
+
+<UL>
+<LI>If a size is less than zero, the compiler will
+              try to find the appropriate size.
+<BR>
+<P>
+</LI>
+<LI>If a size is equal to zero, the compiler will
+              affect this dimension by added all positive size
+              found in that vector.
+<BR>
+<P>
+</LI>
+<LI>If a size is greater than zero, then the size is
+              explicitly given.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : number of regular input ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>intyp</B>
+<BR>
+A vector specifying the types of regular input ports.
+<BR>
+Its sizes is equal to the sizes of in.
+<BR>
+The types of regular input ports can be :
+
+<P>
+
+<UL>
+<LI>1  real matrix,
+</LI>
+<LI>2  complex matrix,
+</LI>
+<LI>3  int32 matrix,
+</LI>
+<LI>4  int16 matrix,
+</LI>
+<LI>5  int8 matrix,
+</LI>
+<LI>6  uint32 matrix,
+</LI>
+<LI>7  uint16 matrix,
+</LI>
+<LI>8  uint8 matrix.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : number of regular input ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>out</B>
+<BR>
+<P>
+A vector specifying the number and size of the first
+          dimension of regular output ports indexed from top to
+          bottom of the block. If no output port exist out==[].
+<BR>
+<P>
+The size can be negative, equal to zero or positive :
+
+<P>
+
+<UL>
+<LI>If a size is less than zero, the compiler will
+              try to find the appropriate size.
+<BR>
+<P>
+</LI>
+<LI>If a size is equal to zero, the compiler will
+              affect this dimension by added all positive size
+              found in that vector
+
+<P>
+</LI>
+<LI>If a size is greater than zero, then the size is
+              explicitly given.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : number of regular output ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>out2</B>
+<BR>
+A vector specifying the second dimension of regular
+          output ports indexed from top to bottom of the block.
+<BR>
+out with out2 formed then the regular output sizes matrix.
+<BR>
+For compatibility, this dimension can stay empty ([]). That
+          means that the dimensions of output ports will be out,1
+
+<P>
+That dimension can be negative, equal to zero or positive :
+
+<P>
+
+<UL>
+<LI>If a size is less than zero, the compiler will
+              try to find the appropriate size.
+<BR>
+<P>
+</LI>
+<LI>If a size is equal to zero, the compiler will
+              affect this dimension by added all positive size
+              found in that vector.
+<BR>
+<P>
+</LI>
+<LI>If a size is greater than zero, then the size is
+              explicitly given.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : number of regular output ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>outtyp</B>
+<BR>
+A vector specifying the types of regular output ports.
+<BR>
+Its sizes is equal to the sizes of out.
+<BR>
+The types of regular output ports can be :
+
+<P>
+
+<UL>
+<LI>1  real matrix,
+</LI>
+<LI>2  complex matrix,
+</LI>
+<LI>3  int32 matrix,
+</LI>
+<LI>4  int16 matrix,
+</LI>
+<LI>5  int8 matrix,
+</LI>
+<LI>6  uint32 matrix,
+</LI>
+<LI>7  uint16 matrix,
+</LI>
+<LI>8  uint8 matrix.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : number of regular output ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>evtin</B>
+<BR>
+A vector specifying the number and sizes of
+          activation inputs. Currently activation ports
+          can be only of size one.
+<BR>
+If no event input port exists evtin must be 
+          equal to [].
+<BR>
+<BR>
+<P>
+Size : number of input event ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>evtout</B>
+<BR>
+A vector specifying the number and sizes of
+          activation outputs.
+<BR>
+Currently activation ports can be only of 
+          size one.
+<BR>
+If no event output port exists evtout must be 
+          equal to [].
+<BR>
+<BR>
+<P>
+Size : number of output event ports.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>state</B>
+<BR>
+Vector containing initial values of continuous-time state.
+<BR>
+Must be [] if no continuous state.
+<BR>
+<BR>
+<P>
+Size : number of continuous-time state.
+<BR>
+Type : column vector of real numbers.
+<BR>
+<P>
+</LI>
+<LI><B>dstate</B>
+<BR>
+Vector containing initial values of discrete-time state.
+<BR>
+Must be [] if no discrete state.
+<BR>
+<BR>
+<P>
+Size : number of discrete-time state.
+<BR>
+Type : column vector of real numbers.
+<BR>
+<P>
+</LI>
+<LI><B>odstate</B>
+<BR>
+List containing initial values of objects state.
+<BR>
+Must be list() if no objects state.
+<BR>
+<P>
+Objects state can be any types of scilab variable.
+<BR>
+In the computational function case of type 4 (C blocks)
+          only elements containing matrix of real, complex,
+          int32, int16 ,int8 ,uint32, uit16 and uint8 will be correctly
+          provided for readind/writing.
+<BR>
+<BR>
+<P>
+Size : number of objects state.
+<BR>
+Type : scilab list of scilab objects.
+<BR>
+<P>
+</LI>
+<LI><B>rpar</B>
+<BR>
+The vector of floating point block parameters.
+<BR>
+Must be [] if no floating point parameters.
+<BR>
+<BR>
+<P>
+Size : number of real parameters.
+<BR>
+Type : column vector of real numbers.
+<BR>
+<P>
+</LI>
+<LI><B>ipar</B>
+<BR>
+The vector of integer block parameters.
+<BR>
+Must be [] if no integer parameters.
+<BR>
+<BR>
+<P>
+Size : number of integer parameters.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>opar</B>
+<BR>
+List of objects block parameters. 
+          Must be list() if no objects parameters.
+<BR>
+<P>
+Objects parameters can be any types of scilab variable.
+<BR>
+In the computational function case of type 4 (C blocks)
+          only elements containing matrix of real, complex,
+          int32, int16 ,int8 ,uint32, uit16 and uint8 will be correctly
+          provided for reading.
+<BR>
+<BR>
+<P>
+Size : number of objetcs parameters.
+<BR>
+Type : list of scilab object.
+<BR>
+<P>
+</LI>
+<LI><B>blocktype</B>
+<BR>
+Character that can be set to 'c' or 'd'
+          indifferently for standard blocks. 'x' is used
+          if we want to force the computational function to
+          be called during the simulation phase even if
+          the block does not contribute to computation of
+          the state derivative.
+<BR>          'l', 'm' and 's' are reserved. Not to be used.
+<BR>
+<BR>
+<P>
+Size : 1.
+<BR>
+Type : Character.
+<BR>
+<P>
+</LI>
+<LI><B>firing</B>
+<BR>
+Vector of initial event firing times of size 
+          equal to the number of activation output ports
+          (see evout). It contains output initial event dates
+          (Events generated before any input event arises). 
+          Negative values stands for no initial event on the 
+          corresponding port. 
+
+<P>
+Size : number of output event ports.
+<BR>
+Type : column vector of real numbers.
+<BR>
+<P>
+</LI>
+<LI><B>dep_ut</B>
+<BR>
+Boolean vector [dep_u, dep_t].
+<BR>
+<P>
+
+<UL>
+<LI><B>dep_u</B>
+<BR>
+true if block is always active.
+<BR>                   (output depends continuously of the time)
+
+<P>
+</LI>
+<LI><B>dep_t</B>
+<BR>
+true if block has direct feed-through,
+                   i.e., at least one of the outputs depends
+                   directly (not through the states) on one
+                   of the inputs.   
+                   In other words, when the computational
+                   function is called with flag 1, the value 
+                   of an input is used to compute the output.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : 2.
+<BR>
+Type : Boolean vector.
+<BR>
+<P>
+</LI>
+<LI><B>label</B>
+<BR>
+String that defines a label. 
+          It can be used to identify a block 
+          in order to access or modify its 
+          parameters during simulation.
+<BR>
+<BR>
+<P>
+Size : 1.
+<BR>
+Type : string.
+<BR>
+<P>
+</LI>
+<LI><B>nzcross</B>
+<BR>
+Number of zero-crossing surfaces.
+<BR>
+<BR>
+<P>
+Size : Number of zero-crossing surfaces.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>nmode</B>
+<BR>
+Length of the mode register. Note that this gives the size of
+          the vector mode and not the total number of modes
+          in which a block can operate in. Suppose a block 
+          has 3 modes and each mode can take two values, then
+          the block can have up to 23=8 modes.
+<BR>
+<BR>
+<P>
+Size : Number of modes.
+<BR>
+Type : column vector of integer numbers.
+<BR>
+<P>
+</LI>
+<LI><B>equations</B>
+<BR>
+Used in case of implicit blocks.
+<BR>
+Data structure of type modelica which contains modelica
+          code description if any. That list contains four entries :
+
+<P>
+
+<UL>
+<LI><B>model</B>
+<BR>
+a string given the name of the file that contains
+                      the modelica function.
+<BR>
+<P>
+</LI>
+<LI><B>inputs</B>
+<BR>
+a colunm vector of strings that contains the names of
+                       the modelica variables used as inputs.
+<BR>
+<P>
+</LI>
+<LI><B>outputs</B>
+<BR>
+a colunm vector of strings that contains the names of
+                        the modelica variables used as outputs.
+<BR>
+<P>
+</LI>
+<LI><B>parameters</B>
+<BR>
+a list with two entries. The first is a vector of strings
+                           for the name of modelica variable names used as parameters
+                           and the second entries is a list that contains the value of
+                           parameters.
+<BR>
+Names of modelica states can also be informed with
+                           parameters. In that case a third entry is used to do the
+                           difference between parameters and states.
+<BR>
+For i,e :
+                             mo.parameters=list(['C','v'],list(C,v),[0,1])
+                           means that 'C' is a parameter(0) of value C, and 'v'
+                           is a state(1) with initial value v.
+<BR>
+<BR>           
+</LI>
+</UL>
+
+<P>
+Size : 5.
+<BR>
+Type : scilab list.
+<BR>
+<P>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+File content</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos/scicos_model.sci <A NAME="tex2html4"
+  HREF="scicos_model_scifunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

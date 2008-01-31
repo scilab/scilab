@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>C_utils</TITLE>
+<META NAME="description" CONTENT="C_utils">
+<META NAME="keywords" CONTENT="C_utils">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="C_utils.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Programming scicos blocks
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/C_utils.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./C_utils.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="C_utils"></A>
+<BR>
+<b>C_utils</b> - Utilities C functions
+
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html5"
+  HREF="C_utils.htm#SECTION00010000000000000000">C_utils - Utilities C functions</A>
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="C_utils.htm#SECTION00021000000000000000">Module</A>
+<LI><A NAME="tex2html7"
+  HREF="C_utils.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html8"
+  HREF="C_utils.htm#SECTION00023000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The <A NAME="tex2html4"
+  HREF="scicos_block4_rout.htm">scicos_block4.h</A>
+header provides some utilities
+functions to interact with the simulator in the C computational functions.
+
+<P>
+
+<UL>
+<LI><B>void do_cold_restart();</B>
+<BR>
+This function forces the solver to do a cold restart. It should be used in situations
+where the block creates a non smooth signal. Note that in most situations, non smooth
+situations are detected by zero-crossings and this function is not needed. This block is
+used in very exceptional situations.
+
+<P>
+</LI>
+<LI><B>int get_phase_simulation();</B> 
+<BR>
+That function returns an integer which says if the simulator is realizing time domain
+      integration. It can returns :
+      
+<UL>
+<LI><B>1 :</B> The simulator is on a discrete activation time.
+</LI>
+<LI><B>2 :</B> The simulator is realizing a continuous time domain integration.
+      
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><B>double get_scicos_time();</B> 
+<BR>
+That function returns the current time of simulator.
+
+<P>
+</LI>
+<LI><B>int get_block_number();</B>
+<BR>
+That function returns an integer : the block index in the compiled structure. Each
+      block in the simulated diagram have a single index, and blocks are numbered from
+      1 to nblk (the total number of blocks in the compiled structure).
+
+<P>
+</LI>
+<LI><B>void set_block_error(int);</B>
+<BR>
+Function to set a specific error during the simulation for the current block. If it is used, then
+       after the execution of the computational function of the block, the simulator will end and will
+       return an error message associated to the number given in the integer argument.
+<BR>
+The following calls are allowed :
+       
+<UL>
+<LI><B>set_block_error(-1); :</B> the block has been called with input out of its domain,
+</LI>
+<LI><B>set_block_error(-2); :</B> singularity in a block,
+</LI>
+<LI><B>set_block_error(-3); :</B> block produces an internal error,
+</LI>
+<LI><B>set_block_error(-16); :</B> cannot allocate memory in block.
+       
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><B>void end_scicos_sim();</B>
+<BR>
+A very specific function to set the current time of the simulator to the final time integration.
+<BR>
+Only expert user should use this function.
+
+<P>
+</LI>
+<LI><B>void set_pointer_xproperty(int* pointer);</B>
+<BR>
+This function set a vector of integer to inform the type (algebraic or differential) of the 
+       continuous state variables of the block.
+
+<P>
+</LI>
+<LI><B>void * scicos_malloc(size_t);</B>
+<BR>
+That function must be used to do allocation of scicos pointers inside a C computational function and
+      in particular for <TT>flag</TT>=4 for the work pointer <TT>*block-&gt;work</TT>.
+
+<P>
+</LI>
+<LI><B>void scicos_free(void *p);</B>
+<BR>
+That function must be used to free scicos pointers inside a C computational function and
+      in particular for <TT>flag</TT>=5 for the work pointer <TT>*block-&gt;work</TT>.
+
+<P>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Authors</A>
+</font></H3>
+
+<UL>
+<LI><b>Alan Layec</b> INRIA
+</LI>
+<LI><b>Ramine Nikoukhah</b> INRIA
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>canimxy_routcos</TITLE>
+<META NAME="description" CONTENT="canimxy_routcos">
+<META NAME="keywords" CONTENT="canimxy_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="canimxy_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Computational routine
+<BR><A NAME="tex2html1"
+  HREF="./canimxy_routcos.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="canimxy_routcos"></A>
+<BR>
+canimxy
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">/**
+   \file canimxy.c
+   \author Benoit Bayol
+   \version 1.0
+   \date September 2006 - January 2007
+   \brief CANIMXY is a scope in 2D which draw its input as a XY scope, there is animation.
+   \see CANIMXY.sci in macros/scicos_blocks/Sinks/
+*/
+
+#include "scoMemoryScope.h"
+#include "scoWindowScope.h"
+#include "scoMisc.h"
+#include "scoGetProperty.h"
+#include "scoSetProperty.h"
+#include "scicos_block4.h"
+
+/** \fn canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+    \brief Function to draw or redraw the window
+*/
+void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+{
+  /* Declarations*/
+  int i;
+  int gomme_color; //As usual
+  int * ipar; //Integer Parameters
+  int color_flag; //Flag on Color
+  int color[2];
+  int line_size;
+  int animed;
+  int win; //Windows ID : To give a name to the window
+  int buffer_size; //Buffer Size
+  int win_pos[2]; //Position of the Window
+  int win_dim[2]; //Dimension of the Window
+  int nipar;
+  double * rpar; //Reals parameters
+  double xmin, xmax, ymin, ymax; //Ymin and Ymax are vectors here
+  scoGraphicalObject Pinceau; //Pointer to each polyline of each axes
+  scoGraphicalObject Gomme; //Pointer to each polyline of each axes
+  scoGraphicalObject Trait; //Pointer to each trache of each axes
+  int number_of_subwin;
+  int number_of_curves_by_subwin;
+  int dimension = 2;
+  int nbr_curves;
+
+  ipar = GetIparPtrs(block);
+  nipar = GetNipar(block);
+  rpar = GetRparPtrs(block);
+  win = ipar[0];
+  color_flag = ipar[1];
+  buffer_size = ipar[2];
+  color[0] = ipar[3];
+  color[1] = ipar[3];
+  line_size = ipar[4];
+  animed = ipar[5];
+  win_pos[0] = ipar[6];
+  win_pos[1] = ipar[7];
+  win_dim[0] = ipar[8];
+  win_dim[1] = ipar[9];
+  nbr_curves = ipar[10];
+  xmin = rpar[0];
+  xmax = rpar[1];
+  ymin = rpar[2];
+  ymax = rpar[3]; 
+  number_of_subwin = 1;
+
+  /* If only one element to draw*/
+  if (buffer_size == 1)
+    {
+      number_of_curves_by_subwin = nbr_curves;
+      if(firstdraw == 1)
+	{
+	  scoInitScopeMemory(block-&gt;work,pScopeMemory, number_of_subwin, &amp;number_of_curves_by_subwin);
+	  scoSetShortDrawSize(*pScopeMemory,0,1);
+	  scoSetLongDrawSize(*pScopeMemory,0,0);
+	}
+      scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &amp;xmin, &amp;xmax, &amp;ymin, &amp;ymax, NULL, NULL);
+      if(scoGetScopeActivation(*pScopeMemory) == 1)
+	{
+
+	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))-&gt;pixmap = 1;
+	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))-&gt;wshow = 1;
+
+
+	  for(i = 0 ; i &lt; scoGetNumberOfCurvesBySubwin(*pScopeMemory, 0) ; i++)
+	    {
+	      scoAddPolylineForShortDraw(*pScopeMemory,0,i,color[0]);
+	      Pinceau = scoGetPointerShortDraw(*pScopeMemory,0,i);
+	      pPOLYLINE_FEATURE(Pinceau)-&gt;n1 = 1;
+	      sciSetMarkSize(Pinceau, line_size);
+
+	    }
+	}
+    }
+  /*else if 2 or more elements*/
+  else
+    {
+      number_of_curves_by_subwin = 2*nbr_curves; //it is a trick to recognize the type of scope, not sure it is a good way because normally a curve is the combination of a short and a longdraw
+      if(firstdraw == 1)
+	{
+	  scoInitScopeMemory(block-&gt;work,pScopeMemory, number_of_subwin, &amp;number_of_curves_by_subwin);
+	}
+
+      scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &amp;xmin, &amp;xmax, &amp;ymin, &amp;ymax, NULL, NULL);
+      if(scoGetScopeActivation(*pScopeMemory) == 1)
+	{
+	  gomme_color = sciGetBackground(scoGetPointerAxes(*pScopeMemory,0));
+	  //sciSetIsBoxed(scoGetPointerAxes(*pScopeMemory,0),FALSE);
+	  /*if mark style*/
+	  if(color[0] &lt;= 0)
+	    {
+	      if(firstdraw == 1)
+		{
+		  scoSetShortDrawSize(*pScopeMemory,0,1);
+		  scoSetLongDrawSize(*pScopeMemory,0,buffer_size-1);
+		}
+	      for(i = 0 ; i &lt; nbr_curves ; i++)
+		{
+		  //because of color[0] is negative it will add a black mark with style number color[0]
+		  scoAddPolylineForShortDraw(*pScopeMemory,0,i,color[0]);
+		  scoAddPolylineForShortDraw(*pScopeMemory,0,i+nbr_curves,color[0]); //same type of mark and black for the rubber
+		  scoAddPolylineForLongDraw(*pScopeMemory,0,i,color[0]);
+		    
+		  Pinceau = scoGetPointerShortDraw(*pScopeMemory,0,i);
+		  Gomme = scoGetPointerShortDraw(*pScopeMemory,0,i+nbr_curves);
+		  Trait = scoGetPointerLongDraw(*pScopeMemory,0,i);
+		    
+		  pPOLYLINE_FEATURE(Pinceau)-&gt;n1 = 1;
+		  pPOLYLINE_FEATURE(Gomme)-&gt;n1 = 1;
+		  sciSetMarkForeground(Gomme, gomme_color); //here the rubber becomes colored like the background of the axes
+		  pPOLYLINE_FEATURE(Trait)-&gt;n1 = buffer_size-1;
+
+		  sciSetMarkSize(Pinceau, line_size);
+		  sciSetMarkSize(Gomme, line_size);
+		  sciSetMarkSize(Trait, line_size);
+		}
+	    }
+	  /*if line style*/
+	  else
+	    {
+	      if(firstdraw == 1)
+		{
+		  scoSetShortDrawSize(*pScopeMemory,0,2);
+		  scoSetLongDrawSize(*pScopeMemory,0,buffer_size-1);
+		}		
+	      for(i = 0 ; i &lt; nbr_curves ; i++)
+		{
+		  scoAddPolylineForShortDraw(*pScopeMemory,0,i,color[0]);
+		  scoAddPolylineForShortDraw(*pScopeMemory,0,i+nbr_curves,gomme_color);
+		  scoAddPolylineForLongDraw(*pScopeMemory,0,i,color[0]);
+		    
+		  Pinceau = scoGetPointerShortDraw(*pScopeMemory,0,i);
+		  Gomme = scoGetPointerShortDraw(*pScopeMemory,0,i+nbr_curves);
+		  Trait = scoGetPointerLongDraw(*pScopeMemory,0,i);
+		    
+		  pPOLYLINE_FEATURE(Pinceau)-&gt;n1 = 2;
+		  pPOLYLINE_FEATURE(Gomme)-&gt;n1 = 2;
+		  pPOLYLINE_FEATURE(Trait)-&gt;n1 = buffer_size-1;
+
+		  sciSetLineWidth(Pinceau, line_size);
+		  sciSetLineWidth(Gomme, line_size);
+		  sciSetLineWidth(Trait, line_size);
+		}
+	    }
+	}
+    }
+  if(scoGetScopeActivation(*pScopeMemory) == 1)
+    {
+      scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
+    }
+}
+
+/** \fn void canimxy(scicos_block * block, int flag)
+    \brief the computational function
+    \param block A pointer to a scicos_block
+    \param flag An integer which indicates the state of the block (init, update, ending)
+*/
+void canimxy(scicos_block * block, int flag)
+{
+  /*Declarations*/
+  ScopeMemory * pScopeMemory;
+  double *u1,*u2;
+  scoGraphicalObject pShortDraw;
+  /* State Machine Control */
+  switch(flag)
+    {
+    case Initialization:
+      {	
+	canimxy_draw(block,&amp;pScopeMemory,1);
+	break; //Break of the switch condition don t forget it
+      } //End of Initialization
+
+    case StateUpdate:
+      {
+	scoRetrieveScopeMemory(block-&gt;work,&amp;pScopeMemory);
+	if(scoGetScopeActivation(pScopeMemory) == 1)
+	  {
+
+	    /* Charging Elements */
+	    if (scoGetPointerScopeWindow(pScopeMemory) == NULL) // If the window has been destroyed we recreate it
+	      {
+		canimxy_draw(block,&amp;pScopeMemory,0);
+	      }
+
+	    /*Retrieve Elements*/
+	    u1 = GetRealInPortPtrs(block,1);
+	    u2 = GetRealInPortPtrs(block,2);
+
+	    scoDrawScopeAnimXYStyle(pScopeMemory,u1,u2,NULL);
+	  }
+	break; //Break of the switch don t forget it !
+      }//End of stateupdate
+      
+      //This case is activated when the simulation is done or when we close scicos
+    case Ending:
+      {
+	scoRetrieveScopeMemory(block-&gt;work, &amp;pScopeMemory);
+	if(scoGetScopeActivation(pScopeMemory) == 1)
+	  {
+	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	    pShortDraw = sciGetCurrentFigure();
+	    pFIGURE_FEATURE(pShortDraw)-&gt;user_data = NULL;
+	    pFIGURE_FEATURE(pShortDraw)-&gt;size_of_user_data = 0;
+	  }
+	scoFreeScopeMemory(block-&gt;work, &amp;pScopeMemory);
+	break; //Break of the switch
+      }
+      //free the memory which is allocated at each turn by some variables
+ 
+    }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

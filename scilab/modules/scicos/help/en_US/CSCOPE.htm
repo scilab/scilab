@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>CSCOPE</TITLE>
+<META NAME="description" CONTENT="CSCOPE">
+<META NAME="keywords" CONTENT="CSCOPE">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="CSCOPE.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/CSCOPE.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./CSCOPE.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="CSCOPE"></A>
+<BR>
+Single Display Scope
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=CSCOPE.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/CSCOPE_blk.gif"
+ ALT="\epsfig{file=CSCOPE.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html7"
+  HREF="CSCOPE.htm#SECTION00010000000000000000">Single Display Scope</A>
+<UL>
+<LI><A NAME="tex2html8"
+  HREF="CSCOPE.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html9"
+  HREF="CSCOPE.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html10"
+  HREF="CSCOPE.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html11"
+  HREF="CSCOPE.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html12"
+  HREF="CSCOPE.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html13"
+  HREF="CSCOPE.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html14"
+  HREF="CSCOPE.htm#SECTION00027000000000000000">See also</A>
+<LI><A NAME="tex2html15"
+  HREF="CSCOPE.htm#SECTION00028000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Sinks_pal.htm">Sinks - Sinks palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The Scope block displays its input with respect to simulation
+time. Both axes have a common range.  The Scope allows you to adjust
+the amount of time and the range of input values displayed.   
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="477" HEIGHT="282" BORDER="0"
+ SRC="../../images/scicos/CSCOPE_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=CSCOPE_gui.eps,width=300pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><B>Color </B>
+<BR>
+a vector of integers. The i-th element is the color
+	number (<SPAN CLASS="MATH"><IMG
+ WIDTH="32" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CSCOPE_img3_eng.gif"
+ ALT="$ &gt;0$"></SPAN>) or dash type (<SPAN CLASS="MATH"><IMG
+ WIDTH="32" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="../../images/scicos/CSCOPE_img4_eng.gif"
+ ALT="$ &lt;0$"></SPAN>) used to draw the evolution
+	of the i-th input port signal. See <B>plot2d</B> for color
+	(dash type) definitions. 
+<BR>
+Properties : Type 'vec' of size 8
+
+<P>
+</LI>
+<LI><B>Output window number </B>
+<BR>
+The number of graphic window used for 
+	the display. It is often good to use high values to avoid
+	conflict with palettes and Super Block windows. If default
+	value is used <B>(1)</B>, Scicos define the output window
+	number. 
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Output window position</B>
+<BR>
+a 2 vector specifying the coordinates
+	of the upper left corner of the graphic window.
+	Answer [] for default window position.
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Output window sizes</B>
+<BR>
+a 2 vector specifying the coordinates of
+        the upper left corner of the graphic window.
+	Answer [] for default window position.
+<BR>
+Properties : Type 'vec' of size -1
+
+<P>
+</LI>
+<LI><B>Ymin</B>
+<BR>
+Minimum  values of the input; used to set up the Y-axis
+	of the plot in the graphics window.
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Ymax</B>
+<BR>
+Maximum values of the input; used to set up the Y-axis
+	of the plot in the graphics window.
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Refresh period</B>
+<BR>
+Maximum value on the X-axis (time). The plot
+	is redrawn when time reaches a multiple of this value.
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Buffer size</B>
+<BR>
+To improve efficiency it is possible to buffer the
+	input data. The drawing is only done after each  <B>Buffer size</B>
+	call to the block.
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Accept herited events 0/1</B>
+<BR>
+if 0  <B>CSCOPE_f</B>  draws a new point
+	only when an event occurs on its event input port. 
+	If 1 <B>CSCOPE_f</B> draws a new point when an event occurs
+        on its event input port and when it's regular input changes
+	due to an event on an other upstream block (herited events). 
+<BR>
+Properties : Type 'vec' of size 1
+
+<P>
+</LI>
+<LI><B>Name of Scope </B>
+<BR>
+Name/label of the block. 
+<BR>
+Properties : Type 'str' of size 1
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> yes
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [-1,1] / type 1</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 1
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>cscope</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/Sinks/CSCOPE.sci <A NAME="tex2html4"
+  HREF="CSCOPE_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/cscope.c (Type 4) <A NAME="tex2html5"
+  HREF="cscope_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+See also</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html6"
+  HREF="CMSCOPE.htm">CMSCOPE - Multi display scope (Scicos Block)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Authors</A>
+</font></H3>
+
+<UL>
+<LI><b>Ramine Nikoukhah</b> INRIA
+</LI>
+<LI><b>Benoit Bayol</b> 
+</LI>
+</UL>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,991 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>fromws_c_routcos</TITLE>
+<META NAME="description" CONTENT="fromws_c_routcos">
+<META NAME="keywords" CONTENT="fromws_c_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="fromws_c_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Computational routine
+<BR><A NAME="tex2html1"
+  HREF="./fromws_c_routcos.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="fromws_c_routcos"></A>
+<BR>
+fromws_c
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block4.h"
+/*    Masoud Najafi, Alan Layec September 2007 */
+/*    Copyright INRIA
+ *    Scicos block simulator
+ *    From workspace block
+ */
+#include "../stack-c.h"
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include "../machine.h"
+#include &lt;math.h&gt;
+
+#if WIN32
+#define NULL    0
+#endif
+
+#define Fnlength  block-&gt;ipar[0]
+#define FName     block-&gt;ipar[1]
+#define Method     block-&gt;ipar[1+Fnlength]
+#define ZC        block-&gt;ipar[2+Fnlength]
+#define OutEnd    block-&gt;ipar[3+Fnlength]
+#define T0        ptr-&gt;workt[0]
+#define TNm1      ptr-&gt;workt[nPoints-1]
+#define TP        (TNm1-0)
+
+extern int C2F(cvstr) __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
+extern int C2F(mgetnc)();
+extern void C2F(mopen)();
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,
+                                long int nams_len));
+extern void C2F(mclose) __PARAMS((integer *fd, double *res));
+extern void sciprint __PARAMS((char *fmt,...));
+int Mytridiagldltsolve(double *d__, double * l, double * b, int n);
+int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
+
+//int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
+
+static char fmtd[3]={'d','l','\000'};
+static char fmti[3]={'i','l','\000'};
+static char fmtl[3]={'l','l','\000'};
+static char fmts[3]={'s','l','\000'}; 
+static char fmtc[3]={'c','l','\000'};
+static char fmtul[3]={'u','l','\000'};
+static char fmtus[3]={'u','s','\000'};
+static char fmtuc[3]={'u','c','\000'};
+
+#ifdef hppa
+#undef FILENAME_MAX
+#define FILENAME_MAX 4096
+#endif
+/* work struct for that block */
+typedef struct {
+  int nPoints;
+  int Yt;
+  int Yst;
+  int cnt1;
+  int cnt2;
+  int EVindex;
+  int PerEVcnt;
+  int firstevent;
+  double *D;
+  void *work;
+  double *workt;
+} fromwork_struct ;
+
+
+void fromws_c(scicos_block *block,int flag)
+{
+  double t,y1,y2,t1,t2,r;
+  int i,inow;
+  double *spline, *A_d, *A_sd, *qdy;
+  /* double  a,b,c,*y;*/
+  double d1,d2,h, dh, ddh, dddh;
+  int fd;
+  char *status;
+  int swap = 1;
+  double res;
+  int out_n;
+  long int lout;
+  char filename[FILENAME_MAX];
+  char str[100];
+  int ierr;
+  int Ytype, nPoints, mY, YsubType, my, ytype,j,jfirst;
+  int Ydim[10];
+  int cnt1, cnt2, EVindex, PerEVcnt;
+  /* generic pointer */
+  SCSREAL_COP *y_d,*y_cd,*ptr_d, *ptr_T, *ptr_D;
+  SCSINT8_COP *y_c,*ptr_c;
+  SCSUINT8_COP *y_uc, *ptr_uc;
+  SCSINT16_COP *y_s,*ptr_s;
+  SCSUINT16_COP *y_us,*ptr_us;
+  SCSINT32_COP *y_l,*ptr_l;
+  SCSUINT32_COP *y_ul,*ptr_ul;
+ /* the struct ptr of that block */
+  fromwork_struct *ptr;
+
+ /* for path of TMPDIR/workspace */
+  char env[256];
+  char sep[2];
+#ifdef _MSC_VER
+  sep[0]='\\';
+#else
+  sep[0]='/';
+#endif
+  sep[1]='\0';
+
+ my=GetOutPortRows(block,1); /* number of rows of Outputs*/
+
+
+ if (flag==4){
+   C2F(cvstr)(&amp;(Fnlength),&amp;(FName),str,(j=1,&amp;j),(unsigned long)strlen(str));
+   str[Fnlength] = '\0';
+
+   /* retrieve path of TMPDIR/workspace */
+   strcpy(env,getenv("TMPDIR"));
+   strcat(env,sep);
+   strcat(env,"Workspace");
+   strcat(env,sep);
+   strcat(env,str);
+
+   /* open tmp file */
+   status = "r";
+   lout=FILENAME_MAX;
+   C2F(cluni0)(env, filename, &amp;out_n,1,lout);
+   C2F(mopen)(&amp;fd,env,status,&amp;swap,&amp;res,&amp;ierr);
+
+   if (ierr!=0) {
+     sciprint("The '%s' variable does not exist.\n",str);
+     set_block_error(-3);
+     return;
+   }
+
+   /* read x */
+   C2F(mgetnc) (&amp;fd, &amp;Ydim[0], (j=nsiz,&amp;j), fmti, &amp;ierr);  /* read sci id */
+   C2F(mgetnc) (&amp;fd, &amp;Ydim[6], (j=1,&amp;j), fmti, &amp;ierr);  /* read sci type */
+   C2F(mgetnc) (&amp;fd, &amp;Ydim[7], (j=3,&amp;j), fmti, &amp;ierr);  /* read sci header */
+
+   Ytype=Ydim[6];
+   nPoints=Ydim[7];
+   mY=Ydim[8]; 
+   YsubType=Ydim[9];
+   ytype=GetOutType(block,1);     /* output type */
+
+   if (mY!=my) {
+     sciprint("Data dimensions are inconsistent:\n\r Variable size=%d \n\r Block output size=%d.\n",mY,my);
+     set_block_error(-3);
+     return;
+   }
+
+   if (Ytype==1) { /*real/complex cases*/
+     switch (YsubType)
+     {
+     case 0: if (ytype!=10) {
+               sciprint("Output should be of Real type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+
+     case 1: if (ytype!=11) {
+               sciprint("Output should be of complex type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+     }
+   }
+   else if(Ytype==8) { /*integer cases*/
+     switch (YsubType)
+     {
+     case 1: if (ytype!=81) {
+               sciprint("Output should be of int8 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+
+     case 2: if (ytype!=82) {
+               sciprint("Output should be of int16 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+
+     case 4: if (ytype!=84) {
+               sciprint("Output should be of int32 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+
+     case 11:if (ytype!=811) {
+               sciprint("Output should be of uint8 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+
+     case 12:if (ytype!=812) {
+               sciprint("Output should be of uint16 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+
+     case 14:if (ytype!=814) {
+               sciprint("Output should be of uint32 type.\n");
+               set_block_error(-3);
+               C2F(mclose)(&amp;fd,&amp;res);
+               return;
+             }
+             break;
+     }
+   }
+   if((*(block-&gt;work)=(fromwork_struct*) scicos_malloc(sizeof(fromwork_struct)))==NULL) {
+     set_block_error(-16);
+     C2F(mclose)(&amp;fd,&amp;res);
+     return;
+   }
+   ptr = *(block-&gt;work);  
+   ptr-&gt;D=NULL;
+   ptr-&gt;workt=NULL;
+   ptr-&gt;work=NULL;
+
+   if (Ytype==1) { /*real/complex case*/
+     switch (YsubType) {
+     case 0 : // Real
+       if((ptr-&gt;work=(void *) scicos_malloc(nPoints*mY*sizeof(double)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_d = (SCSREAL_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_d, (j=nPoints*mY,&amp;j), fmtd, &amp;ierr);  /* read double data */
+       break;
+     case 1:  // complex
+       if((ptr-&gt;work=(void *) scicos_malloc(2*nPoints*mY*sizeof(double)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_d = (SCSREAL_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_d, (j=2*nPoints*mY,&amp;j), fmtd, &amp;ierr);  /* read double data */
+       break;
+     }
+   }else if(Ytype==8) { /*integer case*/
+     switch (YsubType) {
+     case 1 ://int8
+       if((ptr-&gt;work=(void *) scicos_malloc(nPoints*mY*sizeof(char)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_c = (SCSINT8_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_c, (j=nPoints*mY,&amp;j), fmtc, &amp;ierr);  /* read char data */
+       break;
+     case 2 :  // int16
+       if((ptr-&gt;work=(void *) scicos_malloc(nPoints*mY*sizeof(short)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_s = (SCSINT16_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_s, (j=nPoints*mY,&amp;j), fmts, &amp;ierr);  /* read short data */
+       break;
+     case 4 :   // int32
+       if((ptr-&gt;work=(void *) scicos_malloc(nPoints*mY*sizeof(long)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_l = (SCSINT32_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_l, (j=nPoints*mY,&amp;j), fmtl, &amp;ierr);  /* read short data */
+       break;
+     case 11 :   // uint8
+       if((ptr-&gt;work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned char)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_uc = (SCSUINT8_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_uc, (j=nPoints*mY,&amp;j), fmtuc, &amp;ierr);  /* read short data */
+       break;
+     case 12 : // uint16
+       if((ptr-&gt;work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned short)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_us = (SCSUINT16_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_us, (j=nPoints*mY,&amp;j), fmtus, &amp;ierr);  /* read short data */
+       break;
+     case 14 :  // uint32
+       if((ptr-&gt;work=(void *) scicos_malloc(nPoints*mY*sizeof(unsigned long)))==NULL) {
+         set_block_error(-16);
+         scicos_free(ptr);
+         *(block-&gt;work)=NULL;
+         C2F(mclose)(&amp;fd,&amp;res);
+         return;
+       }
+       ptr_ul = (SCSUINT32_COP *) ptr-&gt;work;
+       C2F(mgetnc) (&amp;fd, ptr_ul, (j=nPoints*mY,&amp;j), fmtul, &amp;ierr);  /* read short data */
+       break;
+     }
+   }
+
+   /* read t */
+   C2F(mgetnc) (&amp;fd, &amp;Ydim[0], (j=nsiz,&amp;j), fmti, &amp;ierr);  /* read sci id */
+   C2F(mgetnc) (&amp;fd, &amp;Ydim[6], (j=1,&amp;j), fmti, &amp;ierr);  /* read sci type */
+   C2F(mgetnc) (&amp;fd, &amp;Ydim[7], (j=3,&amp;j), fmti, &amp;ierr);  /* read sci header */
+
+   if (nPoints!=Ydim[7]) {
+     sciprint("The size of the Time(%d) and Data(%d) vectors are inconsistent.\n",Ydim[7],nPoints);
+     set_block_error(-3);
+     *(block-&gt;work)=NULL;
+     scicos_free(ptr-&gt;work);
+     scicos_free(ptr);
+     C2F(mclose)(&amp;fd,&amp;res);
+     return;
+   }
+
+   if ((Ydim[6]!=1) | (Ydim[9]!=0)) {
+     sciprint("The Time vector type is not ""double"".\n"); 
+     set_block_error(-3);
+     *(block-&gt;work)=NULL;
+     scicos_free(ptr-&gt;work);
+     scicos_free(ptr);
+     C2F(mclose)(&amp;fd,&amp;res);
+     return;
+   }
+
+   if((ptr-&gt;workt=(double *) scicos_malloc(nPoints*sizeof(double)))==NULL) {
+     set_block_error(-16);
+     *(block-&gt;work)=NULL;
+     scicos_free(ptr-&gt;work);
+     scicos_free(ptr);
+     C2F(mclose)(&amp;fd,&amp;res);
+     return;
+   }
+   ptr_T = (SCSREAL_COP *) ptr-&gt;workt;
+   C2F(mgetnc) (&amp;fd, ptr_T, (j=nPoints,&amp;j), fmtd, &amp;ierr);  /* read data of t */
+   /* close the file*/
+   C2F(mclose)(&amp;fd,&amp;res);
+
+   //================================
+   // check for an increasing time data
+   for(j = 0; j &lt; nPoints-1; j++) {
+     if(ptr_T[j] &gt; ptr_T[j+1]) {
+       sciprint("The time vector should be an increasing vector.\n");
+       set_block_error(-3);
+       *(block-&gt;work)=NULL;
+       scicos_free(ptr-&gt;workt);
+       scicos_free(ptr-&gt;work);
+       scicos_free(ptr);
+       return;
+     }
+   }
+   //=================================
+   if ((Method&gt;1)&amp;&amp;((Ytype==1)&amp;&amp;( YsubType==0))) {/* double */
+
+     if((ptr-&gt;D=(double *) scicos_malloc(nPoints*mY*sizeof(double)))==NULL) {
+       set_block_error(-16);
+       *(block-&gt;work)=NULL;
+       scicos_free(ptr-&gt;workt);
+       scicos_free(ptr-&gt;work);
+       scicos_free(ptr);
+       return;
+     }
+
+     if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL){
+       sciprint("Allocation problem in spline.\n");
+       set_block_error(-16);
+       *(block-&gt;work)=NULL;
+       scicos_free(ptr-&gt;D);
+       scicos_free(ptr-&gt;workt);
+       scicos_free(ptr-&gt;work);
+       scicos_free(ptr);
+       return;
+     }
+     A_d=spline;
+     A_sd=A_d+nPoints;
+     qdy=A_sd+nPoints-1;
+
+     for (j=0;j&lt;mY;j++){
+
+       for (i=0;i&lt;=nPoints-2;i++){
+	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
+	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];
+       }
+
+       for (i=1;i&lt;=nPoints-2;i++){
+	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
+	 ptr-&gt;D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
+       }
+
+       if (Method==2){
+	 A_d[0] =  2.0*A_sd[0];
+	 ptr-&gt;D[0+j*nPoints] = 3.0 * qdy[0];
+         A_d[nPoints-1] =  2.0*A_sd[nPoints-2];
+         ptr-&gt;D[nPoints-1+j*nPoints] =  3.0 * qdy[nPoints-2];
+	 Mytridiagldltsolve(A_d, A_sd, &amp;ptr-&gt;D[j*nPoints], nPoints);
+       }
+
+       if (Method==3){
+	 /*  s'''(x(2)-) = s'''(x(2)+) */
+	 r = A_sd[1]/A_sd[0];
+	 A_d[0]= A_sd[0]/(1.0 + r);
+	 ptr-&gt;D[j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+	 /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+	 r = A_sd[nPoints-3]/A_sd[nPoints-2];
+	 A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+	 ptr-&gt;D[nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+	 Mytridiagldltsolve(A_d, A_sd, &amp;ptr-&gt;D[j*nPoints], nPoints);
+       }
+     }
+     scicos_free(spline);
+     /*-----------------------------------------------------------*/
+   }else if ((Method&gt;1)&amp;&amp;((Ytype==1)&amp;&amp;( YsubType==1))) {/* Complex */
+
+    if((ptr-&gt;D=(double *) scicos_malloc(2*nPoints*mY*sizeof(double)))==NULL) {
+       set_block_error(-16);
+       *(block-&gt;work)=NULL;
+       scicos_free(ptr-&gt;workt);
+       scicos_free(ptr-&gt;work);
+       scicos_free(ptr);
+       return;
+     }
+
+     if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL){
+       sciprint("Allocation problem in spline"); 
+       set_block_error(-16);
+       *(block-&gt;work)=NULL;
+       scicos_free(ptr-&gt;D);
+       scicos_free(ptr-&gt;workt);
+       scicos_free(ptr-&gt;work);
+       scicos_free(ptr);
+       return;
+     }
+     A_d=spline;
+     A_sd=A_d+nPoints;
+     qdy=A_sd+nPoints-1;
+     for (j=0;j&lt;mY;j++){
+       for (i=0;i&lt;=nPoints-2;i++){
+	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
+	 qdy[i] = (ptr_d[i+1+j*nPoints] - ptr_d[i+j*nPoints]) * A_sd[i]*A_sd[i];
+       }
+
+       for (i=1;i&lt;=nPoints-2;i++){
+	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
+	 ptr-&gt;D[i+j*nPoints] = 3.0*(qdy[i-1]+qdy[i]);
+       }
+
+       if (Method==2){
+	 A_d[0] =  2.0*A_sd[0];
+	 ptr-&gt;D[0+j*nPoints] = 3.0 * qdy[0];
+         A_d[nPoints-1] =  2.0*A_sd[nPoints-2];
+         ptr-&gt;D[nPoints-1+j*nPoints] =  3.0 * qdy[nPoints-2];
+	 Mytridiagldltsolve(A_d, A_sd, &amp;ptr-&gt;D[j*nPoints], nPoints);
+       }
+
+       if (Method==3){
+	 /*  s'''(x(2)-) = s'''(x(2)+) */
+	 r = A_sd[1]/A_sd[0];
+	 A_d[0]= A_sd[0]/(1.0 + r);
+	 ptr-&gt;D[+j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+	 /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+	 r = A_sd[nPoints-3]/A_sd[nPoints-2];
+	 A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+	 ptr-&gt;D[nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+	 Mytridiagldltsolve(A_d, A_sd, &amp;ptr-&gt;D[j*nPoints], nPoints);
+       }
+       /* ********* */
+       for (i=0;i&lt;=nPoints-2;i++){
+	 A_sd[i] = 1.0 / (ptr_T[i+1] - ptr_T[i]);
+	 qdy[i] = (ptr_d[nPoints+i+1+j*nPoints] - ptr_d[nPoints+i+j*nPoints]) * A_sd[i]*A_sd[i];
+       }
+
+       for (i=1;i&lt;=nPoints-2;i++){
+	 A_d[i] = 2.0*(A_sd[i-1] +A_sd[i]);
+	 ptr-&gt;D[i+j*nPoints+nPoints] = 3.0*(qdy[i-1]+qdy[i]);
+       }
+
+       if (Method==2){
+	 A_d[0] =  2.0*A_sd[0];
+	 ptr-&gt;D[nPoints+0+j*nPoints] = 3.0 * qdy[0];
+         A_d[nPoints-1] =  2.0*A_sd[nPoints-2];
+         ptr-&gt;D[nPoints+nPoints-1+j*nPoints] =  3.0 * qdy[nPoints-2];
+	 Mytridiagldltsolve(A_d, A_sd, &amp;ptr-&gt;D[nPoints+j*nPoints], nPoints);
+       }
+
+       if (Method==3){
+	 /*  s'''(x(2)-) = s'''(x(2)+) */
+	 r = A_sd[1]/A_sd[0];
+	 A_d[0]= A_sd[0]/(1.0 + r);
+	 ptr-&gt;D[nPoints+j*nPoints]=((3.0*r+2.0)*qdy[0]+r*qdy[1])/((1.0+r)*(1.0+r));
+	 /*  s'''(x(n-1)-) = s'''(x(n-1)+) */
+	 r = A_sd[nPoints-3]/A_sd[nPoints-2];
+	 A_d[nPoints-1] = A_sd[nPoints-2]/(1.0 + r);
+	 ptr-&gt;D[nPoints+nPoints-1+j*nPoints] = ((3.0*r+2.0)*qdy[nPoints-2]+r*qdy[nPoints-3])/((1.0+r)*(1.0+r));
+	 Mytridiagldltsolve(A_d, A_sd, &amp;ptr-&gt;D[nPoints+j*nPoints], nPoints);
+       }
+     }
+     /* ********* */
+     scicos_free(spline);
+   }
+
+   //===================================
+   cnt1=nPoints-1;
+   cnt2=nPoints;
+   for (i=0;i&lt;nPoints;i++){ // finding the first positive time instant
+     if (ptr-&gt;workt[i]&gt;=0 ) {
+       cnt1=i-1;
+       cnt2=i;
+       break;
+     }
+   }
+   ptr-&gt;nPoints=nPoints;
+   ptr-&gt;Yt=Ytype;
+   ptr-&gt;Yst=YsubType;
+   ptr-&gt;cnt1=cnt1;
+   ptr-&gt;cnt2=cnt2;
+   ptr-&gt;EVindex=0;
+   ptr-&gt;PerEVcnt=0;
+   ptr-&gt;firstevent=1;
+   return;   
+   /*******************************************************/
+   /*******************************************************/
+ }else if (flag==1){   /* event date computation */
+   ptr = *(block-&gt;work);
+   nPoints=ptr-&gt;nPoints;
+   t=get_scicos_time();
+   cnt1=ptr-&gt;cnt1;
+   cnt2=ptr-&gt;cnt2;
+   EVindex= ptr-&gt;EVindex;
+   PerEVcnt=ptr-&gt;PerEVcnt;
+   t1=t;
+
+   if (ZC==1){
+     if (OutEnd==2) t-=(PerEVcnt)*TP;
+     inow=nPoints-1;
+     for (i=cnt1;i&lt;nPoints;i++){
+       if (i==-1) continue;
+       if (t&lt;ptr-&gt;workt[i]) {
+	 inow=i-1;
+	 if (inow&lt;cnt2){
+	   cnt2=inow;
+	 }else{
+	   cnt1=cnt2;
+	   cnt2=inow;
+	 }
+	 break;
+       }
+     }
+   }else{
+     if (OutEnd==2){ if (TP!=0) r=floor((t/TP));else r=0;t-=((int)r)*TP;};
+     inow=nPoints-1;
+     for (i=0;i&lt;nPoints;i++){
+       if (t&lt;ptr-&gt;workt[i]){inow=i-1; break;}
+     }
+   }
+   ptr-&gt;cnt1=cnt1;
+   ptr-&gt;cnt2=cnt2;
+   ptr-&gt;EVindex=EVindex;
+   ptr-&gt;PerEVcnt=PerEVcnt;
+   for (j=0;j&lt;my;j++){
+ 
+     if (ptr-&gt;Yt==1){
+       if ((ptr-&gt;Yst==0)||(ptr-&gt;Yst==1)){ /*  if Real or complex*/
+	 y_d = GetRealOutPortPtrs(block,1);
+	 ptr_d=(double*) ptr-&gt;work;
+	 ptr_D=(double*) ptr-&gt;D;
+
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_d[j]=0.0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_d[j]=ptr_d[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_d[j]=0.0;
+	   }else{
+	     y_d[j]=ptr_d[inow+(j)*nPoints];
+	   }
+	 }else if (Method==1){
+	   if (inow&lt;0){inow=0;}
+	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=ptr_d[inow+j*nPoints];
+	   y2=ptr_d[inow+1+j*nPoints];
+	   y_d[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;
+	 }else if (Method&gt;=2){
+	   t1=ptr-&gt;workt[inow]; 
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=ptr_d[inow+j*nPoints];
+	   y2=ptr_d[inow+1+j*nPoints];
+	   d1=ptr_D[inow+j*nPoints];
+	   d2=ptr_D[inow+1+j*nPoints];
+	   Myevalhermite2(&amp;t, &amp;t1,&amp;t2, &amp;y1,&amp;y2, &amp;d1,&amp;d2, &amp;h, &amp;dh, &amp;ddh, &amp;dddh, &amp;inow);
+	   y_d[j]=h;
+	 }
+       }
+       if (ptr-&gt;Yst==1){/*  --------------Complex----------------------*/
+	 y_cd = GetImagOutPortPtrs(block,1);	 
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_cd[j]=0.0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_cd[j]=ptr_d[nPoints*my+nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_cd[j]=0.0;// outputs set to zero
+	   }else{
+	     y_cd[j]=ptr_d[nPoints*my+inow+(j)*nPoints];
+	   }
+	 }else if (Method==1){
+	   if (inow&lt;0){inow=0;} // extrapolation for 0&lt;t&lt;X(0)
+	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=ptr_d[nPoints*my+inow+j*nPoints];
+	   y2=ptr_d[nPoints*my+inow+1+j*nPoints];
+	   y_cd[j]=(y2-y1)*(t-t1)/(t2-t1)+y1;
+	 }else if (Method&gt;=2){
+	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=ptr_d[inow+j*nPoints+nPoints];
+	   y2=ptr_d[inow+1+j*nPoints+nPoints];
+	   d1=ptr_D[inow+j*nPoints+nPoints];
+	   d2=ptr_D[inow+1+j*nPoints+nPoints];
+	   Myevalhermite2(&amp;t, &amp;t1,&amp;t2, &amp;y1,&amp;y2, &amp;d1,&amp;d2, &amp;h, &amp;dh, &amp;ddh, &amp;dddh, &amp;inow);
+	   y_cd[j]=h;
+	 }
+       }
+     }else if (ptr-&gt;Yt==8){
+       switch (ptr-&gt;Yst){
+       case 1: // ---------------------int8 char  ----------------------------
+	 y_c = Getint8OutPortPtrs(block,1);
+	 ptr_c=(char*) ptr-&gt;work;
+	 //y_c[j]=ptr_c[inow+(j)*nPoints];
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_c[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_c[j]=ptr_c[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_c[j]=0;
+	   }else{
+	     y_c[j]=ptr_c[inow+(j)*nPoints];
+	   }
+	 }else if (Method&gt;=1){	 
+    	   if (inow&lt;0){inow=0;}
+	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=(double)ptr_c[inow+j*nPoints];
+	   y2=(double)ptr_c[inow+1+j*nPoints];
+	   y_c[j] =(char)((y2-y1)*(t-t1)/(t2-t1)+y1);
+	 }
+	 break;
+       case 2: // ---------------------int16 short---------------------
+	 y_s = Getint16OutPortPtrs(block,1);
+	 ptr_s=(short*) ptr-&gt;work;
+	 // y_s[j]=ptr_s[inow+(j)*nPoints];
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_s[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_s[j]=ptr_s[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_s[j]=0;
+	   }else{
+	     y_s[j]=ptr_s[inow+(j)*nPoints];
+	   }
+	 }else if (Method&gt;=1){
+	   if (inow&lt;0){inow=0;}
+	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=(double)ptr_s[inow+j*nPoints];
+	   y2=(double)ptr_s[inow+1+j*nPoints];
+	   y_s[j] =(short)((y2-y1)*(t-t1)/(t2-t1)+y1);
+	 }
+	 break;
+       case 4: // ---------------------int32 long---------------------
+	 y_l = Getint32OutPortPtrs(block,1);
+	 ptr_l=(long*) ptr-&gt;work;
+	 //y_l[j]=ptr_l[inow+(j)*nPoints];
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_l[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_l[j]=ptr_l[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_l[j]=0;
+	   }else{
+	     y_l[j]=ptr_l[inow+(j)*nPoints];
+	   }
+	 }else if (Method&gt;=1){
+	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=(double)ptr_l[inow+j*nPoints];
+	   y2=(double)ptr_l[inow+1+j*nPoints];
+	   y_l[j] =(long)((y2-y1)*(t-t1)/(t2-t1)+y1);
+	   
+	 }
+	 break;
+       case 11: //--------------------- uint8 uchar---------------------
+	 y_uc = Getuint8OutPortPtrs(block,1);
+	 ptr_uc=(unsigned char*) ptr-&gt;work;
+	 //y_uc[j]=ptr_uc[inow+(j)*nPoints];
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_uc[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_uc[j]=ptr_uc[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_uc[j]=0;
+	   }else{
+	     y_uc[j]=ptr_uc[inow+(j)*nPoints];
+	   }
+	 }else if (Method&gt;=1){
+  	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=(double)ptr_uc[inow+j*nPoints];
+	   y2=(double)ptr_uc[inow+1+j*nPoints];
+	   y_uc[j] =(unsigned char)((y2-y1)*(t-t1)/(t2-t1)+y1);
+	 }
+       break;
+       case 12: // ---------------------uint16 ushort---------------------
+	 y_us = Getuint16OutPortPtrs(block,1);
+	 ptr_us=(unsigned short*) ptr-&gt;work;
+	 // y_us[j]=ptr_us[inow+(j)*nPoints];
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_us[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_us[j]=ptr_us[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_us[j]=0;
+	   }else{
+	     y_us[j]=ptr_us[inow+(j)*nPoints];
+	   }
+	 }else if (Method&gt;=1){
+       	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=(double)ptr_us[inow+j*nPoints];
+	   y2=(double)ptr_us[inow+1+j*nPoints];
+	   y_us[j] =(unsigned short)((y2-y1)*(t-t1)/(t2-t1)+y1);
+	 }
+	 break;
+       case 14: // ---------------------uint32 ulong---------------------
+	 y_ul = Getuint32OutPortPtrs(block,1);
+	 ptr_ul=(unsigned long*) ptr-&gt;work;
+	 // y_ul[j]=ptr_ul[inow+(j)*nPoints];
+	 if (inow&gt;=nPoints-1){
+	   if (OutEnd==0){
+	     y_ul[j]=0;// outputs set to zero
+	   }else if (OutEnd==1){
+	     y_ul[j]=ptr_ul[nPoints-1+(j)*nPoints]; // hold outputs at the end
+	   }
+	 }else if (Method==0){
+	   if (inow&lt;0){
+	     y_ul[j]=0;
+	   }else{
+	     y_ul[j]=ptr_ul[inow+(j)*nPoints];
+	   }
+	 }else if (Method&gt;=1){
+	   t1=ptr-&gt;workt[inow];
+	   t2=ptr-&gt;workt[inow+1];
+	   y1=(double)ptr_ul[inow+j*nPoints];
+	   y2=(double)ptr_ul[inow+1+j*nPoints];
+	   y_ul[j] =(unsigned long)((y2-y1)*(t-t1)/(t2-t1)+y1);
+	 }
+	 break;
+       }
+     }
+   }// for j loop
+   /********************************************************************/
+ }else if(flag==3){   /* event date computation */
+  t=get_scicos_time();
+   ptr = *(block-&gt;work);
+   nPoints=ptr-&gt;nPoints;
+   cnt1=ptr-&gt;cnt1;
+   cnt2=ptr-&gt;cnt2;
+   EVindex= ptr-&gt;EVindex;
+   PerEVcnt=ptr-&gt;PerEVcnt;
+   if (ZC==1) {/* generate Events only if ZC is active */
+     if ((Method==1)||(Method==0)){
+       //-------------------------
+       if (ptr-&gt;firstevent==1){
+	 jfirst=nPoints-1; // finding first positive time instant
+	 for (j=0;j&lt;nPoints;j++){
+	   if (ptr-&gt;workt[j]&gt;0) {
+	     jfirst=j;
+	     break;
+	   }
+	 }
+	 block-&gt;evout[0]=ptr-&gt;workt[jfirst];
+	 EVindex=jfirst;
+	 ptr-&gt;EVindex=EVindex;
+	 ptr-&gt;firstevent=0;
+	 return;
+       }
+       //------------------------
+       i=EVindex;
+       //------------------------
+       if (i&lt;nPoints-1) {
+	 block-&gt;evout[0]=ptr-&gt;workt[i+1]-ptr-&gt;workt[i];
+	 EVindex=i+1;
+       }
+       //------------------------
+       if (i==nPoints-1){ 
+	 if (OutEnd==2) {/*  Periodic*/
+	   cnt1=-1;
+	   cnt2=0;	
+	   PerEVcnt++;/* When OutEnd==2 (perodic output)*/
+	   jfirst=nPoints-1; // finding first positive time instant
+	   for (j=0;j&lt;nPoints;j++){
+	     if (ptr-&gt;workt[j]&gt;0) {
+	       jfirst=j;
+	       break;
+	     }
+	   }
+	   block-&gt;evout[0]=ptr-&gt;workt[jfirst];
+	   EVindex=jfirst;
+	 }
+       }
+       //--------------------------
+     }else if (Method&lt;=3){
+       if (ptr-&gt;firstevent==1){
+	   block-&gt;evout[0]=TP;
+	   ptr-&gt;firstevent=0;
+       }else{
+	 if (OutEnd==2){
+	   block-&gt;evout[0]=TP;
+	 }
+	 PerEVcnt++;
+       }
+       cnt1=-1;
+       cnt2=0;
+     }
+     ptr-&gt;cnt1=cnt1;
+     ptr-&gt;cnt2=cnt2;
+     ptr-&gt;EVindex=EVindex;
+     ptr-&gt;PerEVcnt=PerEVcnt;
+   }
+   /***********************************************************************/
+ }else if (flag==5){   /* finish */
+   ptr = *(block-&gt;work);
+   if (ptr!=NULL) {
+     if (ptr-&gt;D!=NULL) {
+       scicos_free(ptr-&gt;D);
+     }
+     if (ptr-&gt;work!=NULL) {
+       scicos_free(ptr-&gt;work);
+     }
+     if (ptr-&gt;workt!=NULL) {
+       scicos_free(ptr-&gt;workt);
+     }
+     scicos_free(ptr);
+   }
+ }
+ /*************************************************************************/
+}
+int Mytridiagldltsolve(double *d__, double * l, double * b, int n)
+{
+    int i__1;
+    double temp;
+    int i__;
+    --b;
+    --l;
+    --d__;
+
+    i__1 = n;
+    for (i__ = 2; i__ &lt;= i__1; ++i__) {
+	temp = l[i__ - 1];
+	l[i__ - 1] /= d__[i__ - 1];
+	d__[i__] -= temp * l[i__ - 1];
+	b[i__] -= l[i__ - 1] * b[i__ - 1];
+    }
+    b[n] /= d__[n];
+    for (i__ = n - 1; i__ &gt;= 1; --i__) {
+	b[i__] = b[i__] / d__[i__] - l[i__] * b[i__ + 1];
+    }
+    return 0;
+}
+
+int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i)
+{
+  double tmxa, p, c2, c3, dx;
+
+  /*    if (old_i != *i) {*/
+/*        compute the following Newton form : */
+/*           h(t) = ya + da*(t-xa) + c2*(t-xa)^2 + c3*(t-xa)^2*(t-xb) */
+	dx = 1. / (*xb - *xa);
+	p = (*yb - *ya) * dx;
+	c2 = (p - *da) * dx;
+	c3 = (*db - p + (*da - p)) * (dx * dx);
+	/*	}	 old_i = *i;*/
+
+/*     eval h(t), h'(t), h"(t) and h"'(t), by a generalised Horner 's scheme */
+    tmxa = *t - *xa;
+    *h = c2 + c3 * (*t - *xb);
+    *dh = *h + c3 * tmxa;
+    *ddh = (*dh + c3 * tmxa) * 2.;
+    *dddh = c3 * 6.;
+    *h = *da + *h * tmxa;
+    *dh = *h + *dh * tmxa;
+    *h = *ya + *h * tmxa;
+    return 0; 
+} /* evalhermite_ */
+
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

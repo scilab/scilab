@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>selector_m_routcos</TITLE>
+<META NAME="description" CONTENT="selector_m_routcos">
+<META NAME="keywords" CONTENT="selector_m_routcos">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="selector_m_routcos.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Computational routine
+<BR><A NAME="tex2html1"
+  HREF="./selector_m_routcos.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="selector_m_routcos"></A>
+<BR>
+selector_m
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+File content</A>
+</font></H3>
+<BR>
+<PRE  CLASS="verbatim">#include "scicos_block4.h"
+#include "../machine.h"
+#include &lt;memory.h&gt;
+
+void selector_m(scicos_block *block,int flag)
+ {
+  void *u;
+  void *y;
+  double *z;
+  int nu,mu,ic,nev,nin,so;
+
+  z=GetDstate(block);
+  nin=GetNin(block);
+  ic=(int)z[0];
+  if (flag&lt;3)
+     {ic=0;
+      nev=GetNevIn(block);
+      while (nev&gt;=1) 
+           {
+     	    ic=ic+1;
+     	    nev=nev/2;
+    	   }
+     }
+  if (nin&gt;1)
+     {
+      mu=GetInPortRows(block,ic);
+      nu=GetInPortCols(block,ic);
+      u=GetInPortPtrs(block,ic);
+      so=GetSizeOfOut(block,1);
+      y=GetOutPortPtrs(block,1);
+      memcpy(y,u,mu*nu*so);
+      }
+   else
+      {
+       mu=GetInPortRows(block,1);
+       nu=GetInPortCols(block,1);
+       u=GetRealInPortPtrs(block,1);
+       y=GetRealOutPortPtrs(block,ic);
+       so=GetSizeOfIn(block,1);
+       memcpy(y,u,mu*nu*so);
+       }
+}
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

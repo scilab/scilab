@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Multiwindow</TITLE>
+<META NAME="description" CONTENT="Multiwindow">
+<META NAME="keywords" CONTENT="Multiwindow">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Multiwindow.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Editor
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/Multiwindow.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./Multiwindow.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="Multiwindow"></A>
+<BR>
+<b>Multiwindow</b> - New Scicos multi-window editor
+
+
+<H3><font color="blue"><A NAME="SECTION00011000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00012000000000000000">
+Introduction</A>
+</font></H3>
+A serious limitation of the Scicos editor has been its inability to
+handle more than one diagram at a time. This limitation has been
+lifted; it is now possible to open and edit multiple diagrams as
+long as they are sub-diagrams of the same Scicos model. In most cases,
+the multi-window editing is needed in this situation. The extension
+that would allow the simultaneous editing of multiple Scicos models is
+forthcoming.  
+
+<P>
+There are a number of new functionalities available in the new editor
+for taking advantage of its muti-windows capabilites. This document
+gives a brief description of these functionalities.
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00013000000000000000">
+Active diagram</A>
+</font></H3>
+In the new editor multiple diagrams can be simultaneously
+open. Standard object editing capabilities are available in all of the
+diagrams as usual (but not palettes which are read only). But editing
+across diagrams is also allowed. For example a block can be ``copied''
+in one diagram and ``pasted'' to another one. 
+
+<P>
+Any action on a diagram window, such as clicking or selecting a menu,
+activates the diagram. In most cases the user does not care which
+diagram is active because most operations activate the diagram in
+which the action has taken place immediately in a completely
+transparent manner. 
+
+<P>
+When a diagram is activated, all the necessary steps are taken by
+Scicos to make sure that the environment of the diagram is up to
+date. In particular, the symbolic parameters defined in the context of
+the diagram and all other diagrams above it are available. This
+implies that the user can start editing the diagram without any risk
+of inconsistency with the rest of the model.
+
+<P>
+In most cases, inactive diagrams are also up to date. There is however
+an exception. If the number of input/output ports of a Super Block is
+modified, the parent diagram is affected. If the parent diagram is
+open, it should be updated. This modification however is not
+materialized until either the first diagram is closed or the parent
+diagram is activated. Once again there is no risk in creating any
+inconsistency because the parent diagram, which may not be up to date
+at a given time, cannot be edited without being activated.
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00014000000000000000">
+Scicos Browser</A>
+</font></H3>
+It is very easy to lose track of the topology of a model when many
+diagrams are open at the same time. To obtain a hierachical view of
+the structure of the model, a Browser functionality has been made
+available. The Browser gives a global view of the full model as a tree
+like structure. It also indicates the node corresponding to the active
+diagram (diagram in which the Browser operation has been launched). 
+
+<P>
+The Browser is more than just a viewing facility. By double clicking
+on a node in the Browser, the corresponding diagram is activated
+(opened first if not already open). The main diagram, which
+is the root of the tree like structure in the Browser, is not a
+node. To activate the main diagram use the
+``Diagram/Up_to_Main_diagram'' menu. 
+
+<P>
+Note that the Browser display is not updated dynamically as the diagram is
+edited. So if a Super Block is removed or a new one is created, the
+tree structure would no longer be correct. In that case the Browser must
+be launched again.
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00015000000000000000">
+Limited Undo operations</A>
+</font></H3>
+Scicos has always had a single step undo facility. This has not
+been really improved in the new editor, however, now each diagram has
+its own single step undo facility. In most cases the undo operations
+are independent from one window to another, but there is an
+exception. If a low-level diagram of a diagram is edited, the undo
+operation in this latter diagram can undo all the editing done in the
+low-level diagram since it has been opened. To avoid loss of work by an
+inadvertent undo operation, a warning message is displayed in such situations. 
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00016000000000000000">
+Scilab window activation</A>
+</font></H3>
+One of the most important features of the new editor is that it allows the user
+to activate the Scilab shell without really leaving Scicos. Such a
+functionality did exist previously through the Calc command. But Calc activated
+the Scilab shell under the pause environment. Even though user could have used this
+environment to perform calculations, the result was lost upon leaving the shell
+back to Scicos. This was particularly annoying for loaded functions which were
+not usable in Scicos.
+
+<P>
+The Activate Scilab Window operation in Tools menu activates the Scilab prompt
+at normal level. This operation is particularly useful for From/To workspace
+blocks. For most usages, except perhaps very advanced debugging, this operation
+replaces the Calc operation.
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00017000000000000000">
+Authors</A>
+</font></H3>
+<b>Ramine Nikoukhah</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

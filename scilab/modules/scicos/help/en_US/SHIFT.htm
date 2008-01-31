@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>SHIFT</TITLE>
+<META NAME="description" CONTENT="SHIFT">
+<META NAME="keywords" CONTENT="SHIFT">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="SHIFT.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/SHIFT.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./SHIFT.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="SHIFT"></A>
+<BR>
+SHIFT Shift Bits
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=SHIFT.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/SHIFT_blk.gif"
+ ALT="\epsfig{file=SHIFT.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html22"
+  HREF="SHIFT.htm#SECTION00010000000000000000">SHIFT Shift Bits</A>
+<UL>
+<LI><A NAME="tex2html23"
+  HREF="SHIFT.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html24"
+  HREF="SHIFT.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html25"
+  HREF="SHIFT.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html26"
+  HREF="SHIFT.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html27"
+  HREF="SHIFT.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html28"
+  HREF="SHIFT.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html29"
+  HREF="SHIFT.htm#SECTION00027000000000000000">See also</A>
+<LI><A NAME="tex2html30"
+  HREF="SHIFT.htm#SECTION00028000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Integer_pal.htm">Integer - Integer palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block shifts the bits of the input signal. In this operation the digits are moved to the right or to the left. The user can choose the rule to shifts the bits. It can be normal or cycle by setting the "Shifttype" parameter to "0" or "1".  
+<BR>
+When the Shifttype is 0, an arithmetic shift is applied to the input signal. In this case, the bits that are shifted out of either end are discarded. Zeros are shifted in on the right, in the case of left shift; in the case of right shifts, copies of the sign bit is shifted in on the left.  
+<BR>
+When the "Shifttype" is 1,a circular shift is applied to the input signal. In this case, the bits are rotated as if the left and right ends of the register are joined. The value that is shifted in on the right during a left-shift is whatever values was shifted out on the left, and vice versa.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="573" HEIGHT="122" BORDER="0"
+ SRC="../../images/scicos/SHIFT_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=SHIFT_gui.eps,width=360pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Datatype (3=int32  4=int16 5=int8 ...)</b>
+<BR>
+It indicates the type of the input/output data. It support all the integer datatype, number must be between 3 and 8.
+<BR>
+Properties : Type 'vec' of size 1.
+
+<P>
+</LI>
+<LI><b>Number of bits to shift left (use negative number to shift right)</b>
+<BR>
+It indicates the number of bits the input signal is shifted. A positive value indicates a shift left, negative values indicates shift right.
+<BR>
+Properties : Type 'vec' of size 1.
+
+<P>
+</LI>
+<LI><b>Shifttype(0=Arithmetic 1=Circular)</b>
+<BR>
+It indicate the rule used to shift the bits. It can be arithmetic or circular. When the Shifttype is normal, an arithmetic shift is applied to the input signal. In this case, the bits that are shifted.
+<BR>
+Properties : Type 'vec' of size 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> yes
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [-1,-2] / type 3</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [-1,-2] / type 3</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>shift_32_LA</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/IntegerOp/SHIFT.sci <A NAME="tex2html4"
+  HREF="SHIFT_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/shift_32_LA.c <A NAME="tex2html5"
+  HREF="shift_32_LA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_32_LC.c <A NAME="tex2html6"
+  HREF="shift_32_LC_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_32_RA.c <A NAME="tex2html7"
+  HREF="shift_32_RA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_u32_RA.c <A NAME="tex2html8"
+  HREF="shift_u32_RA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_32_RC.c <A NAME="tex2html9"
+  HREF="shift_32_RC_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_16_LA.c <A NAME="tex2html10"
+  HREF="shift_16_LA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_16_LC.c <A NAME="tex2html11"
+  HREF="shift_16_LC_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_16_RA.c <A NAME="tex2html12"
+  HREF="shift_16_RA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_u16_RA.c <A NAME="tex2html13"
+  HREF="shift_u16_RA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_16_RC.c <A NAME="tex2html14"
+  HREF="shift_16_RC_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_8_LA.c <A NAME="tex2html15"
+  HREF="shift_8_LA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_8_LC.c <A NAME="tex2html16"
+  HREF="shift_8_LC_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_8_RA.c <A NAME="tex2html17"
+  HREF="shift_8_RA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_u8_RA.c <A NAME="tex2html18"
+  HREF="shift_u8_RA_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/shift_8_RC.c <A NAME="tex2html19"
+  HREF="shift_8_RC_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+See also</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html20"
+  HREF="BITSET.htm">BITSET - BITSET Set a Bit (Scicos Block)</A>
+</LI>
+<LI><A NAME="tex2html21"
+  HREF="BITCLEAR.htm">BITCLEAR - BITCLEAR Clear a Bit (Scicos Block)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Authors</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

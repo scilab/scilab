@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>INTMUL</TITLE>
+<META NAME="description" CONTENT="INTMUL">
+<META NAME="keywords" CONTENT="INTMUL">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="INTMUL.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/INTMUL.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./INTMUL.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="INTMUL"></A>
+<BR>
+INTMUL integer matrix multiplication
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=INTMUL.eps,height=90pt}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="../../images/scicos/INTMUL_blk.gif"
+ ALT="\epsfig{file=INTMUL.eps,height=90pt}">
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html24"
+  HREF="INTMUL.htm#SECTION00010000000000000000">INTMUL integer matrix multiplication</A>
+<UL>
+<LI><A NAME="tex2html25"
+  HREF="INTMUL.htm#SECTION00021000000000000000">Palette</A>
+<LI><A NAME="tex2html26"
+  HREF="INTMUL.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html27"
+  HREF="INTMUL.htm#SECTION00023000000000000000">Dialog box</A>
+<LI><A NAME="tex2html28"
+  HREF="INTMUL.htm#SECTION00024000000000000000">Default properties</A>
+<LI><A NAME="tex2html29"
+  HREF="INTMUL.htm#SECTION00025000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html30"
+  HREF="INTMUL.htm#SECTION00026000000000000000">Computational function</A>
+<LI><A NAME="tex2html31"
+  HREF="INTMUL.htm#SECTION00027000000000000000">See also</A>
+<LI><A NAME="tex2html32"
+  HREF="INTMUL.htm#SECTION00028000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Palette</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="Integer_pal.htm">Integer - Integer palette</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The INTMUL block computes the matrix multiplication of two integers inputs matrices.The number of rows of the second matrix must be equal to the number of columns of the first matrix. The output is a matrix where the number of rows is equal to the number of rows of the first input matrix and the number of columns is equal to the number of columns of the second input matrix. This block support all the integer data type.  
+<BR>
+On overflow, the result can take different forms:  
+<BR>
+1- A normal non saturated result. 
+<BR>
+2- A saturated result. 
+<BR>
+3- An error message warning the user about the overflow. 
+<BR>
+The user can select one of these three forms by setting the "DO ON OVERFLOW" field to 0,1 or 2.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Dialog box</A>
+</font></H3>
+
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="541" HEIGHT="108" BORDER="0"
+ SRC="../../images/scicos/INTMUL_gui.gif"
+ ALT="\begin{figure}\begin{center}
+\epsfig{file=INTMUL_gui.eps,width=340pt}
+\end{center}\end{figure}">
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Datatype (3=int32  4=int16 5=int8 ...)</b>
+<BR>
+It indicates the type of the input/output data. It support all the integer datatype, number must be between 3 and 8.
+<BR>
+Properties : Type 'vec' of size 1.
+
+<P>
+</LI>
+<LI><b>Do on Overflow(0=Nothing 1=Saturate 2=Error)</b>
+<BR>
+When this parameter is set to zero the result is similar to a normal multiplication of two integer matrix. When it is set to 1, on overflow the block saturate the result. When it is set to 2, on overflow an error message box appears.
+<BR>
+Properties : Type 'vec' of size 1.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> yes
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>regular inputs:</b>
+<BR>   <b>   - port 1 : size [-1,-2] / type 3</b>
+<BR>   <b>   - port 2 : size [-2,-3] / type 3</b>
+<BR></LI>
+<LI><b>regular outputs:</b>
+<BR>   <b>   - port 1 : size [-1,-3] / type 3</b>
+<BR></LI>
+<LI><b>number/sizes of activation inputs:</b> 0
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>object discrete-time state:</b> no
+</LI>
+<LI><b>name of computational function:</b> <EM>matmul_i32</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Interfacing function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/macros/scicos_blocks/IntegerOp/INTMUL.sci <A NAME="tex2html4"
+  HREF="INTMUL_intfunc.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+Computational function</A>
+</font></H3>
+
+<UL>
+<LI>SCI/routines/scicos/matmul_i32n.c <A NAME="tex2html5"
+  HREF="matmul_i32n_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i16n.c <A NAME="tex2html6"
+  HREF="matmul_i16n_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i8n.c <A NAME="tex2html7"
+  HREF="matmul_i8n_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui32n.c <A NAME="tex2html8"
+  HREF="matmul_ui32n_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui16n.c <A NAME="tex2html9"
+  HREF="matmul_ui16n_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui8n.c <A NAME="tex2html10"
+  HREF="matmul_ui8n_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i32s.c <A NAME="tex2html11"
+  HREF="matmul_i32s_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i16s.c <A NAME="tex2html12"
+  HREF="matmul_i16s_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i8s.c <A NAME="tex2html13"
+  HREF="matmul_i8s_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui32s.c <A NAME="tex2html14"
+  HREF="matmul_ui32s_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui16s.c <A NAME="tex2html15"
+  HREF="matmul_ui16s_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui8s.c <A NAME="tex2html16"
+  HREF="matmul_ui8s_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i32e.c <A NAME="tex2html17"
+  HREF="matmul_i32e_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i16e.c <A NAME="tex2html18"
+  HREF="matmul_i16e_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_i8e.c <A NAME="tex2html19"
+  HREF="matmul_i8e_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui32e.c <A NAME="tex2html20"
+  HREF="matmul_ui32e_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui16e.c <A NAME="tex2html21"
+  HREF="matmul_ui16e_routcos.htm">[view code]</A>
+</LI>
+<LI>SCI/routines/scicos/matmul_ui8e.c <A NAME="tex2html22"
+  HREF="matmul_ui8e_routcos.htm">[view code]</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+See also</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html23"
+  HREF="MATMUL.htm">MATMUL - MATMUL Matrix Multiplication (Scicos Block)</A>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Authors</A>
+</font></H3>
+<b>Fady NASSIF</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

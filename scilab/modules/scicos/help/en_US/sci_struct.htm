@@ -1,0 +1,460 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>sci_struct</TITLE>
+<META NAME="description" CONTENT="sci_struct">
+<META NAME="keywords" CONTENT="sci_struct">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="sci_struct.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Programming scicos blocks
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/sci_struct.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./sci_struct.htm">eng</A>
+
+</DIV>
+<BR><A NAME="SECTION00010000000000000000"></A><A NAME="sci_struct"></A>
+<BR>
+<b>sci_struct</b> - Scicos block structure of a scilab computational function
+
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html15"
+  HREF="sci_struct.htm#SECTION00010000000000000000">sci_struct - Scicos block structure of a scilab computational function</A>
+<UL>
+<LI><A NAME="tex2html16"
+  HREF="sci_struct.htm#SECTION00021000000000000000">Module</A>
+<LI><A NAME="tex2html17"
+  HREF="sci_struct.htm#SECTION00022000000000000000">Description</A>
+<LI><A NAME="tex2html18"
+  HREF="sci_struct.htm#SECTION00023000000000000000">Inputs/outputs</A>
+<LI><A NAME="tex2html19"
+  HREF="sci_struct.htm#SECTION00024000000000000000">Events</A>
+<LI><A NAME="tex2html20"
+  HREF="sci_struct.htm#SECTION00025000000000000000">Parameters</A>
+<LI><A NAME="tex2html21"
+  HREF="sci_struct.htm#SECTION00026000000000000000">States</A>
+<LI><A NAME="tex2html22"
+  HREF="sci_struct.htm#SECTION00027000000000000000">Zero crossing surfaces and modes</A>
+<LI><A NAME="tex2html23"
+  HREF="sci_struct.htm#SECTION00028000000000000000">Miscallaneous</A>
+<LI><A NAME="tex2html24"
+  HREF="sci_struct.htm#SECTION00029000000000000000">Authors</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Module</A>
+</font></H3>
+
+<UL>
+<LI><A NAME="tex2html3"
+  HREF="whatis_scicos.htm">Scicos</A>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+A Scicos computational function of type 5 can be realized by the use of a Scilab function.
+That function doesn't really differs from all other scilab function : one can use all functions and
+instructions of the scilab language inside that function to do the computation.
+
+<P>
+Such a function must be written in a file with extension .sci, must be loaded inside scilab by the
+common loading scilab function (<TT>exec</TT>, <TT>getf</TT>, <TT>getd</TT>, <TT>genlib</TT>,...) and must have
+two right hand side arguments and one left hand side argument, as the following calling sequence :
+
+<P>
+<TT>function block=myblock(block,flag)
+<BR>...
+<BR>//your computational instructions 
+<BR>...
+<BR>
+endfunction
+<BR></TT>
+
+<P>
+When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named <TT>block</TT> rhs/lhs arguments) from his own internal C reprensation of a block structure (see <A NAME="tex2html4"
+  HREF="C_struct.htm">C_struct</A>
+for more details about the C structure of scicos
+blocks).
+
+<P>
+That scilab structure is a scilab typed list variable that have the following fields :
+
+<P>
+<TT>!scicos_block  nevprt  funpt  type  scsptr  nz  z  noz  ozsz  oztyp  !
+<BR>!oz  nx  x  xd  res  nin  insz  inptr  nout  outsz  outptr  nevout  !
+<BR>!evout  nrpar  rpar  nipar  ipar  nopar  oparsz  opartyp  opar  ng  g  !
+<BR>!ztyp  jroot  label  work  nmode  mode  !
+</TT>
+
+<P>
+Each fields are then accessible inside the scilab computational function by the use of :
+
+<P>
+<TT> block.field
+</TT>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Inputs/outputs</A>
+</font></H3>
+
+<P>
+
+<UL>
+<LI><B>block.nin :</B> a scalar that gives the number of regular input ports.
+                         This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.insz :</B> a vector of size <TT>3*nin</TT>, that gives the dimensions and types of the regular input ports.
+                          
+<UL>
+<LI><B><TT>block.insz(1:nin)</TT> :</B> are the first dimensions.
+</LI>
+<LI><B><TT>block.insz(nin+1:2*nin)</TT> :</B> are the second dimensions.
+</LI>
+<LI><B><TT>block.insz(2*nin+1:3*nin)</TT> :</B> are the type of data (C coding).
+                          
+</LI>
+</UL>
+                          This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.inptr :</B> a list of size <TT>nin</TT> that enclosed typed matrices for regular input ports.
+                           Each element correspond to only one regular input port. Then i-th matrix
+                           of the block.inptr list will have the dimensions [<TT>block.insz(i)</TT>, <TT>block.insz(nin+i)</TT>] and
+                           the type <TT>block.insz(2*nin+i)</TT>.
+<BR>
+The data type that can be provided by regular input ports are :
+                           
+<UL>
+<LI><B>1 :</B> matrix of real numbers,
+</LI>
+<LI><B>2 :</B> matrix of complex numbers,
+</LI>
+<LI><B>3 :</B> matrix of int32 numbers,
+</LI>
+<LI><B>4 :</B> matrix of int16 numbers,
+</LI>
+<LI><B>5 :</B> matrix of int8 numbers,
+</LI>
+<LI><B>6 :</B> matrix of uint32 numbers,
+</LI>
+<LI><B>7 :</B> matrix of uint16 numbers,
+</LI>
+<LI><B>8 :</B> matrix of uint8 numbers.
+                           
+</LI>
+</UL>
+                          This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.nout :</B> a scalar that gives the number of regular output ports.
+                          This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.outsz :</B> a vector of size <TT>3*nout</TT>, that gives the dimensions and types of the regular output ports.
+                          
+<UL>
+<LI><B><TT>block.outsz(1:nout)</TT> :</B> are the first dimensions.
+</LI>
+<LI><B><TT>block.outsz(nout+1:2*nout)</TT> :</B> are the second dimensions.
+</LI>
+<LI><B><TT>block.outsz(2*nout+1:3*nout)</TT> :</B> are the type of data (C coding).
+                          
+</LI>
+</UL>
+                          This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.outptr :</B> a list of size <TT>nout</TT> that enclosed typed matrices for regular output ports.
+                            Each element correspond to only one regular output port. Then i-th matrix
+                            of the block.outptr list will have the dimensions [<TT>block.outsz(i)</TT>, <TT>block.outsz(nin+i)</TT>] and
+                            the type <TT>block.outsz(2*nin+i)</TT>.
+<BR>
+The data type that can be provided by regular output ports are :
+                            
+<UL>
+<LI><B>1 :</B> matrix of real numbers,
+</LI>
+<LI><B>2 :</B> matrix of complex numbers,
+</LI>
+<LI><B>3 :</B> matrix of int32 numbers,
+</LI>
+<LI><B>4 :</B> matrix of int16 numbers,
+</LI>
+<LI><B>5 :</B> matrix of int8 numbers,
+</LI>
+<LI><B>6 :</B> matrix of uint32 numbers,
+</LI>
+<LI><B>7 :</B> matrix of uint16 numbers,
+</LI>
+<LI><B>8 :</B> matrix of uint8 numbers.
+                            
+</LI>
+</UL>
+                            Values of regular output ports will be saved in the <A NAME="tex2html5"
+  HREF="C_struct.htm">C structure</A>
+of
+                            the block only for <TT>flag</TT>=6 and <TT>flag</TT>=1.
+</LI>
+</UL>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Events</A>
+</font></H3>
+
+<P>
+
+<UL>
+<LI><B>block.nevprt :</B> a scalar given the event input port number (binary coding)
+                            which have activated the block. This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.nevout :</B> a scalar given the number of output event port of the block.
+                            This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.evout :</B> a vector of size <TT>nevout</TT> corresponding to the register
+                           of output event.
+                           Values of  output event register will be saved in the <A NAME="tex2html6"
+  HREF="C_struct.htm">C structure</A>
+of
+                           the block only for <TT>flag</TT>=3.
+</LI>
+</UL>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Parameters</A>
+</font></H3>
+
+<P>
+
+<UL>
+<LI><B>block.nrpar :</B> a scalar given the number of real parameters.
+                           This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.rpar :</B> a vector of size <TT>nrpar</TT> corresponding to the real parameter register.
+                          This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.nipar :</B> a scalar given the number of integer parameters.
+                           This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.ipar :</B> a vector of size <TT>nipar</TT> correspondig to the integer parameter register.
+                          This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.nopar :</B> a scalar given the number of object parameters.
+                           This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.oparsz :</B> a matrix of size <TT>nopar,2</TT>, that respectively gives the first and the second
+                            dimension of object parameters. This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.opartyp :</B> a vector of size <TT>nopar</TT> given the C coding type of data.
+                            This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.opar :</B> a list of size <TT>nopar</TT> given the values of object parameters.
+                          Each element of <TT>opar</TT> can be either a typed matrix or a list.
+                          Only matrix that encloses numbers of type real, complex, int32, int16, int8,
+                          uint32, uint16 and uint8 are allowed, all other types of scilab data will
+                          be enclosed in a sub-list. This is a read only data.
+</LI>
+</UL>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00026000000000000000">
+States</A>
+</font></H3>
+
+<P>
+
+<UL>
+<LI><B>block.nz :</B> a scalar given the number of discrete state for the block.
+                        This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.z :</B> a vector of size <TT>nz</TT> corresponding to the discrete state register.
+                       Values of discrete state register will be saved in the <A NAME="tex2html7"
+  HREF="C_struct.htm">C structure</A>
+of
+                       the block only for <TT>flag</TT>=4, <TT>flag</TT>=6, <TT>flag</TT>=2 and <TT>flag</TT>=5.
+
+<P>
+</LI>
+<LI><B>block.noz :</B> a scalar that gives the number of discrete object state.
+                         This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.ozsz :</B> a matrix of size <TT>noz,2</TT>, that respectively gives the first and the second
+                          dimension of discrete object state. This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.oztyp :</B> a vector of size <TT>noz</TT> given the C coding type of data.
+
+<P>
+</LI>
+<LI><B>block.oz :</B> a list of size <TT>noz</TT> given the values of discrete object states.
+                          Each element of <TT>oz</TT> can be either a typed matrix or a list.
+                          Only matrix that encloses numbers of type real, complex, int32, int16, int8,
+                          uint32, uint16 and uint8 are allowed, all other types of scilab data will
+                          be enclosed in a sub-list.
+                          Values of discrete object state will be saved in the <A NAME="tex2html8"
+  HREF="C_struct.htm">C structure</A>
+of
+                          the block only for <TT>flag</TT>=4, <TT>flag</TT>=6, <TT>flag</TT>=2 and <TT>flag</TT>=5.
+
+<P>
+</LI>
+<LI><B>block.nx :</B> a scalar given the number of continuous state for the block.
+                        This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.x :</B> a vector of size <TT>nx</TT> given the value of the continuous state register.
+                       Values of the continuous state register will be saved in the <A NAME="tex2html9"
+  HREF="C_struct.htm">C structure</A>
+of
+                       the block only for <TT>flag</TT>=4, <TT>flag</TT>=6 and <TT>flag</TT>=2.
+
+<P>
+</LI>
+<LI><B>block.xd :</B> a vector of size <TT>nx</TT> given the value of the derivative continuous state register.
+                       Values of the derivative continuous state register will be saved in the <A NAME="tex2html10"
+  HREF="C_struct.htm">C structure</A>
+of
+                       the block only for <TT>flag</TT>=4, <TT>flag</TT>=6, <TT>flag</TT>=0 and <TT>flag</TT>=2.
+
+<P>
+</LI>
+<LI><B>block.res :</B> a vector of size <TT>nx</TT> corresponding to the Differential Algebraic Equation (DAE) residual.
+                       Values of that register will be saved in the <A NAME="tex2html11"
+  HREF="C_struct.htm">C structure</A>
+of
+                       the block only for <TT>flag</TT>=0, and <TT>flag</TT>=10.
+ </LI>
+</UL>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00027000000000000000">
+Zero crossing surfaces and modes</A>
+</font></H3>
+
+<P>
+
+<UL>
+<LI><B>block.ng :</B> a scalar given the number of zero crossing surfaces for the block.
+                        This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.g :</B> a vector of size <TT>ng</TT> corresponding to the zero crossing register.
+                       Values of that register will be saved in the <A NAME="tex2html13"
+  HREF="C_struct.htm">C structure</A>
+of
+                       the block only for <TT>flag</TT>=9.
+
+<P>
+</LI>
+<LI><B>block.nmode :</B> a scalar given the number of mode for the block.
+                           This is a read only data.
+
+<P>
+</LI>
+<LI><B>block.mode :</B> a vector of size <TT>mode</TT> that corresponds to the mode register.
+                       Values of that register will be saved in the <A NAME="tex2html14"
+  HREF="C_struct.htm">C structure</A>
+of
+                       the block only for <TT>flag</TT>=9, with <TT><A NAME="tex2html12"
+  HREF="phase_simulation.htm">phase_simulation</A></TT>=1.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00028000000000000000">
+Miscallaneous</A>
+</font></H3>
+
+<P>
+
+<UL>
+<LI><B>block.type :</B> a scalar given the type of the block.
+                          This is a read only data.
+</LI>
+<LI><B>block.label :</B> a string given the label of the block.
+                          This is a read only data.
+ </LI>
+</UL>
+
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00029000000000000000">
+Authors</A>
+</font></H3>
+<b>Alan Layec</b> INRIA
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>
