@@ -150,7 +150,8 @@ if nci>0&nco>0 then
 	'at event time. '],txt3)
     if txt3==[] then return,end	
     mac=null();deff('[]=mac()',txt3,'n')
-   alan.layec ok1=check_mac(mac)	
+//   alan.layec 
+   ok1=check_mac(mac)	
     if ok1 then
       vars=macrovar(mac)
       if ~or(vars(5)=='t_evo') then txt3=[txt3;'t_evo=[]'];end
