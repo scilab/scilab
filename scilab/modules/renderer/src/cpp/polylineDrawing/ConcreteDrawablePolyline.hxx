@@ -6,7 +6,6 @@
 /*        algorithms                                                      */
 /*------------------------------------------------------------------------*/
 
-
 #ifndef _CONCRETE_DRAWABLE_POLYLINE_HXX_
 #define _CONCRETE_DRAWABLE_POLYLINE_HXX_
 

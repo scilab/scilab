@@ -1,40 +1,28 @@
 /*------------------------------------------------------------------------*/
-/* file: DrawableSegs.cpp                                                 */
+/* file: DrawableSegsBridgeFactory.cpp                                    */
 /* Copyright INRIA 2007                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the drawing routine for a segs object          */
+/* desc : Factory for DrawableRectangleBridge                             */
 /*------------------------------------------------------------------------*/
 
-#include "DrawableSegs.h"
+#include "DrawableSegsBridgeFactory.hxx"
+#include "DrawableSegsJoGL.hxx"
+#include "DrawableSegsJavaMapper.hxx"
 
 namespace sciGraphics
 {
 
 /*---------------------------------------------------------------------------------*/
-void DrawableSegs::draw( void )
+DrawableSegsBridge * DrawableSegsBridgeFactory::create( void )
 {
-  if(!checkVisibility())
-  {
-    return;
-  }
-  initializeDrawing();
-  clip();
-  drawSegs();
-  unClip();
-  endDrawing();
+  DrawableSegsJoGL * imp = new DrawableSegsJoGL( m_pDrawable ) ;
+  imp->setJavaMapper(new DrawableSegsJavaMapper()) ;
+  return imp ;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSegs::show( void )
+void DrawableSegsBridgeFactory::setDrawedSegs( DrawableSegs * poly )
 {
-  if(!checkVisibility())
-  {
-    return;
-  }
-  initializeDrawing();
-  clip();
-  showSegs();
-  unClip();
-  endDrawing();
+  m_pDrawable = poly ;
 }
 /*---------------------------------------------------------------------------------*/
 

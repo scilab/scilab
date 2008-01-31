@@ -269,14 +269,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\segsDrawing\DrawableSegs.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\segsDrawing\DrawableSegsFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\DrawingBridge.cpp"
 				>
 			</File>
@@ -1116,6 +1108,86 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="SegsDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\ChampDecomposer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\ConcreteDrawableSegs.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegs.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsBridgeFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableSegsGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SegsArrowDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsArrowDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsArrowDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsDecomposer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsLengthDependentArrowDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SegsLineDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsLineDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsLineDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SegsMarkDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsMarkDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsMarkDrawerJoGL.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1196,14 +1268,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\DrawableObjectJoGL.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\segsDrawing\DrawableSegs.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\segsDrawing\DrawableSegsFactory.h"
 				>
 			</File>
 			<File
@@ -2123,6 +2187,98 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.hxx"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="SegsDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\ChampDecomposer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\ConcreteDrawableSegs.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DecomposeSegsStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegs.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsBridge.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsBridgeFactory.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsFactory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableSegsGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawableSegsJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\DrawSegsStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SegsArrowDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsArrowDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsArrowDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsDecomposer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsLengthDependentArrowDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SegsLineDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsLineDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsLineDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\SegsMarkDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsMarkDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\segsDrawing\SegsMarkDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

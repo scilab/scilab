@@ -79,7 +79,15 @@ void PolylineArrowDrawerJoGL::drawPolyline( void )
 /*---------------------------------------------------------------------------------*/
 void PolylineArrowDrawerJoGL::showPolyline( void )
 {
+  initializeDrawing();
+  // axes may have changed
+  double bounds[6];
+  sciGetRealDataBounds(sciGetParentSubwin(m_pDrawed->getDrawedObject()), bounds);
+  getArrowDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1],
+                                            bounds[2], bounds[3],
+                                            bounds[4], bounds[5]);
   show();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 PolylineArrowDrawerJavaMapper * PolylineArrowDrawerJoGL::getArrowDrawerJavaMapper(void)

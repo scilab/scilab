@@ -223,7 +223,25 @@ src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
 src/jni/DrawableSurfaceGL.cpp \
 src/jni/SurfaceFacetDrawerGL.cpp \
 src/jni/SurfaceLineDrawerGL.cpp \
-src/jni/SurfaceMarkDrawerGL.cpp
+src/jni/SurfaceMarkDrawerGL.cpp \
+src/jni/DrawableSegsGL.cpp \
+src/jni/SegsArrowdrawerGL.cpp \
+src/jni/SegsLineDrawerGL.cpp \
+src/jni/SegsMarkDrawerGL.cpp \
+src/cpp/segsDrawing/ChamDecomposer.cpp \
+src/cpp/segsDrawing/ConcreteDrawableSegs.cpp \
+src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp \
+src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp \
+src/cpp/segsDrawing/DrawableSegsJoGL.cpp \
+src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
+src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
+src/cpp/segsDrawing/SegsDecomposer.cpp \
+src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
+src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
+src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
+src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
+src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
+
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
@@ -271,7 +289,11 @@ src/jni/StandardTextDrawerGL.giws.xml \
 src/jni/DrawableSurfaceGL.giws.xml \
 src/jni/SurfaceLineDrawerGL.giws.xml \
 src/jni/SurfaceFacetDrawerGL.giws.xml \
-src/jni/SurfaceMarkDrawerGL.giws.xml
+src/jni/SurfaceMarkDrawerGL.giws.xml \
+src/jni/DrawableSegsGL.giws.xml \
+src/jni/SegsArrowdrawerGL.giws.xml \
+src/jni/SegsLineDrawerGL.giws.xml \
+src/jni/SegsMarkDrawerGL.giws.xml
 
 else
 

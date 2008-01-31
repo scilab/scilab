@@ -132,4 +132,14 @@ DrawableSurface * getSurfaceDrawer( sciPointObj * pSurface )
   return dynamic_cast<DrawableSurface *>(getHandleDrawer(pSurface));
 }
 /*---------------------------------------------------------------------------------*/
+DrawableSegs * getSegsDrawer( sciPointObj * pSegs )
+{
+  if ( sciGetEntityType(pSegs) != SCI_SEGS )
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableSegs *>(getHandleDrawer(pSegs));
+}
+/*---------------------------------------------------------------------------------*/
 }

@@ -156,7 +156,7 @@ extern int sciDelHandle
  */
 long sciGetHandle (sciPointObj * pobj)
 {
-  return (sciGetRelationship(pobj))->phandle->index ;
+  return (pobj == NULL ? 0 : (sciGetRelationship(pobj))->phandle->index) ;
 }
 
 

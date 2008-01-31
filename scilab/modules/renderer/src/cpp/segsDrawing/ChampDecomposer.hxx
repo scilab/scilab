@@ -1,0 +1,86 @@
+/*------------------------------------------------------------------------*/
+/* file: ChampDecomposer.hxx                                              */
+/* Copyright INRIA 2008                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Strategy decomposing only champ objects                         */
+/*------------------------------------------------------------------------*/
+
+#ifndef _CHAMP_DECOMPOSER_HXX_ 
+#define _CHAMP_DECOMPOSER_HXX_
+
+#include "DecomposeSegsStrategy.hxx"
+
+namespace sciGraphics
+{
+
+class ChampDecomposer : public DecomposeSegsStrategy
+{
+public:
+
+  ChampDecomposer(DrawableSegs * segs);
+
+  virtual ~ChampDecomposer(void);
+
+  /**
+  * Compute the postions of the arraows to display
+  */
+  virtual void getSegsPos(double startXCoords[], double endXCoords[],
+                          double startYCoords[], double endYCoords[],
+                          double startZCoords[], double endZCoords[]);
+
+  /**
+  * Get the number of arrows in the segs or champ object
+  */
+  virtual int getNbSegment(void);
+
+  /**
+  * To know if each segs object has a distinct color
+  */
+  virtual bool isColored(void);
+
+  /**
+  * Get the color of each segement if needed
+  */
+  virtual void getSegsColors(int colors[]);
+
+protected:
+
+  /**
+   * Get coordinates for a champ object (not colored)
+   */
+  void getChampPos(double startXCoords[], double endXCoords[],
+                   double startYCoords[], double endYCoords[]);
+
+  /**
+   * Get coordinates for a champ1 object (colored).
+   */
+  void getChamp1Pos(double startXCoords[], double endXCoords[],
+                    double startYCoords[], double endYCoords[]);
+
+  /**
+   * Get colors for champ object (single color)
+   */
+  void getChampColors(int colors[]);
+
+  /**
+   * Get colors for champ1 object (color depending on vectors length).
+   */
+  void getChamp1Colors(int colors[]);
+
+  /**
+   * Get the length of the longest vector
+   */
+  double getMaxLength(void);
+
+private:
+
+  /**
+   * Find the maximum length usable by segments in colored mode
+   */
+  double computeChamp1VectorLength(void);
+
+};
+
+}
+
+#endif /* _CHAMP_DECOMPOSER_HXX_ */

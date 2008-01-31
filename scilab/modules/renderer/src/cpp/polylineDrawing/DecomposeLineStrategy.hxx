@@ -5,10 +5,10 @@
 /* desc : Strategy interface for the getArcRepresentation algorithm       */
 /*------------------------------------------------------------------------*/
 
-#include "DrawablePolyline.h"
-
 #ifndef _DECOMPOSE_LINE_STRATEGY_HXX_
 #define _DECOMPOSE_LINE_STRATEGY_HXX_
+
+#include "DrawablePolyline.h"
 
 namespace sciGraphics
 {

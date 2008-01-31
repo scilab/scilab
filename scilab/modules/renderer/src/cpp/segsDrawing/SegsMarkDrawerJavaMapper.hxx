@@ -1,26 +1,27 @@
 /*------------------------------------------------------------------------*/
-/* file: PolylineMarkDrawerJavaMapper.hxx                                 */
-/* Copyright INRIA 2007                                                   */
+/* file: SegsMarkDrawerJavaMapper.hxx                                     */
+/* Copyright INRIA 2008                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Contains mapping of java method used by PolylineMarkDrawer      */
+/* desc : Contains mapping of java method used by SegsMarkDrawer          */
 /*------------------------------------------------------------------------*/
 
-#ifndef _POLYLINE_MARK_DRAWER_JAVA_MAPPER_HXX_
-#define _POLYLINE_MARK_DRAWER_JAVA_MAPPER_HXX_
+#ifndef _SEGS_MARK_DRAWER_JAVA_MAPPER_HXX_
+#define _SEGS_MARK_DRAWER_JAVA_MAPPER_HXX_
 
 #include "DrawableObjectJavaMapper.hxx"
-#include "PolylineMarkDrawerGL.hxx"
+#include "SegsMarkDrawerGL.hxx"
 
 namespace sciGraphics
 {
 
-class PolylineMarkDrawerJavaMapper : public virtual DrawableObjectJavaMapper
+class SegsMarkDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
+
 public:
 
-  PolylineMarkDrawerJavaMapper(void);
+  SegsMarkDrawerJavaMapper(void);
 
-  virtual ~PolylineMarkDrawerJavaMapper(void);
+  virtual ~SegsMarkDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
   // Inherited From DrawableObjectJavaMapper
@@ -35,26 +36,26 @@ public:
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
-  // specific for polyline line drawer
+  // specific for segs mark drawer
   virtual void setMarkParameters(int background, int foreground, int markSizeUnit,
                                  int markSize, int markStyleIndex);
 
-  virtual void drawPolyline(const double xCoords[],
-                            const double yCoords[],
-                            const double zCoords[],
-                            int nbCoords);
+  virtual void drawSegs(const double startXCoords[], const double endXCoords[],
+                        const double startYCoords[], const double endYCoords[],
+                        const double startZCoords[], const double endZCoords[],
+                        int nbSegments);
   /*----------------------------------------------------------------------*/
 
-protected:
+private:
 
   /**
    * Giws generated wrapper.
    */
-  org_scilab_modules_renderer_polylineDrawing::PolylineMarkDrawerGL * m_pJavaObject;
+  org_scilab_modules_renderer_segsDrawing::SegsMarkDrawerGL * m_pJavaObject;
 
 
 };
 
 }
 
-#endif /* _RECTANGLE_LINE_DRAWER_JAVA_MAPPER_HXX_ */
+#endif /* _SEGS_MARK_DRAWER_JAVA_MAPPER_HXX_ */

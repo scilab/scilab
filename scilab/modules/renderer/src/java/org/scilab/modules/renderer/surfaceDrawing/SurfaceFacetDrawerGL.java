@@ -106,11 +106,6 @@ public class SurfaceFacetDrawerGL extends AutoDrawableObjectGL {
 		
 		GL gl = getGL();
 		
-		// enable polygon offset because we need to draw lines on polygons
-		// and consequently they are drawn with the same Z.
-		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
-		gl.glPolygonOffset(1.0f, 1.0f);
-		
 		drawer.initializeDrawing(gl);
 		
 		while (decomposer.hasNext()) {
@@ -124,8 +119,6 @@ public class SurfaceFacetDrawerGL extends AutoDrawableObjectGL {
 		}
 		
 		drawer.endDrawing(gl);
-		
-		gl.glDisable(GL.GL_POLYGON_OFFSET_FILL);
 		
 		
 	}
