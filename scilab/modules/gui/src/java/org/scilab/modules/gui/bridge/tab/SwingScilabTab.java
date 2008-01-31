@@ -2,8 +2,6 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
