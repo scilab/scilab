@@ -18,10 +18,11 @@
 //
 // See the file ../license.txt
 //
-
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('scssinkslib','SCI/macros/scicos_blocks/Sinks');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('Sinkslib','SCI/modules/scicos_blocks/macros/Sinks',%f,%t);
 //------------------------------------
 

@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - Author : METALAU Project <scicos@inria.fr>
+//  Author : Allan CORNET Scilab 5
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,5 +19,10 @@
 //
 // See the file ../license.txt
 //
-
-genlib('PDElib','SCI/macros/scicos_blocks/PDE');
+//------------------------------------
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('PDElib','SCI/modules/scicos_blocks/macros/PDE',%f,%t);
+//------------------------------------

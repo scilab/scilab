@@ -1,6 +1,6 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - Allan Cornet <allan.cornet@inria.fr>
+//  Copyright (C) INRIA - Allan CORNET
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,10 +19,16 @@
 // See the file ../license.txt
 //
 
-//------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+lines(0);
+CurrentDirScicos=pwd();
+ SubDirsScicos = ["scicos_auto",
+		    "scicos_utils",
+		    "scicos_scicos"];
+ 
+Dim=size(SubDirsScicos);
+for i=1:Dim(1) do 
+  chdir(SubDirsScicos(i));
+  exec('buildmacros.sce');
+  chdir(CurrentDirScicos);
 end
-//------------------------------------
-genlib('Eventslib','SCI/modules/scicos_blocks/macros/Events',%f,%t);
-//------------------------------------
+clear Dim CurrentDirScicos SubDirsScicos

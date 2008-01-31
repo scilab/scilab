@@ -18,10 +18,10 @@
 //
 // See the file ../license.txt
 //
-
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-stacksize(5000000);
-genlib('scicoslib','SCI/macros/scicos');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('scicos_scicoslib','SCI/modules/scicos/macros/scicos_scicos',%f,%t);
 //------------------------------------

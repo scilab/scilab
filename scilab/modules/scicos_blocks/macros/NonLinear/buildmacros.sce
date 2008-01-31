@@ -18,9 +18,10 @@
 //
 // See the file ../license.txt
 //
-
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('scsnonlinearlib','SCI/macros/scicos_blocks/NonLinear');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('Nonlinearlib','SCI/modules/scicos_blocks/macros/NonLinear',%f,%t);
 //------------------------------------

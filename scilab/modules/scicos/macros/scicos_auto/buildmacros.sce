@@ -18,11 +18,10 @@
 //
 // See the file ../license.txt
 //
-
 //------------------------------------
 if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-genlib('Eventslib','SCI/modules/scicos_blocks/macros/Events',%f,%t);
+genlib('scicos_autolib','SCI/modules/scicos/macros/scicos_auto',%f,%t);
 //------------------------------------

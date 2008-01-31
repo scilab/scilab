@@ -18,12 +18,12 @@
 //
 // See the file ../license.txt
 //
-
-MSDOS=(getos()=='Windows');
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('scshydraulicslib','SCI/macros/scicos_blocks/Hydraulics'); 
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('Hydraulicslib','SCI/modules/scicos_blocks/macros/Hydraulics',%f,%t);
 //------------------------------------
 //if MSDOS then
 //  unix("dir /B *.mo >models");
@@ -33,6 +33,6 @@ genlib('scshydraulicslib','SCI/macros/scicos_blocks/Hydraulics');
 if with_ocaml() then 
   models=['Bache.mo';'PerteDP.mo';'PortPHQ1.mo';'PortPHQ2.mo ';
           'Puits.mo';'Source.mo';'ThermoCarre.mo';'VanneReglante.mo'];
-  exec("../../../util/genmoc.sce");
+//  exec("../../../util/genmoc.sce");
 end;
 //------------------------------------

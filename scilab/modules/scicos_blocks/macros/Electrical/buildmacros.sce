@@ -18,12 +18,12 @@
 //
 // See the file ../license.txt
 //
-
-MSDOS=(getos()=='Windows');
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('scselectricallib','SCI/macros/scicos_blocks/Electrical');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('Electricallib','SCI/modules/scicos_blocks/macros/Electrical',%f,%t);
 //------------------------------------
 //if MSDOS then
 //  unix("dir /B *.mo >models");
@@ -37,6 +37,6 @@ if with_ocaml() then
           'Inductor.mo'; 'Pin.mo'; 'VariableResistor.mo'; 'Diode.mo'; 'InPutPort.mo';
 	  'PotentialSensor.mo';'VoltageSensor.mo';'SineVoltage.mo';
 	  'Switch.mo';'OpAmp.mo';'NMOS.mo';'PMOS.mo';'CVS.mo';'CCS.mo';'IdealTransformer.mo';'Gyrator.mo'];
-  exec("../../../util/genmoc.sce");
+//  exec("../../../util/genmoc.sce");
 end;
 //------------------------------------

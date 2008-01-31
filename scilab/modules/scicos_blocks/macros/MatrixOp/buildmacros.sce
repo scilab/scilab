@@ -18,9 +18,10 @@
 //
 // See the file ../license.txt
 //
-
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('scsmatrixoplib','SCI/macros/scicos_blocks/MatrixOp');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('Matrixoplib','SCI/modules/scicos_blocks/macros/MatrixOp',%f,%t);
 //------------------------------------

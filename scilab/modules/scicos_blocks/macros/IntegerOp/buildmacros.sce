@@ -18,9 +18,10 @@
 //
 // See the file ../license.txt
 //
-
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('scsintegeroplib','SCI/macros/scicos_blocks/IntegerOp');
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('Integeroplib','SCI/modules/scicos_blocks/macros/IntegerOp',%f,%t);
 //------------------------------------

@@ -18,9 +18,13 @@
 //
 // See the file ../license.txt
 //
-
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('scsbranchinglib','SCI/macros/scicos_blocks/Branching');
+// INRIA 2008
+// Allan CORNET
+//------------------------------------
+if (isdef('genlib') == %f) then
+  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+//------------------------------------
+genlib('Branchinglib','SCI/modules/scicos_blocks/macros/Branching',%f,%t);
 //------------------------------------
