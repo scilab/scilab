@@ -419,16 +419,17 @@ libsciscicos_blocks_la_LIBADD = \
 libsciscicos_blocks_la_rootdir = $(mydatadir)
 libsciscicos_blocks_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-
 #### scicos : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
 libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
-
-
 #### scicos : include files ####
 libsciscicos_blocks_la_includedir=$(pkgincludedir)/scicos_blocks
 libsciscicos_blocks_la_include_HEADERS = 
+
+else
+
+libsciscicos_blocks_la_SOURCES =
 
 endif
 

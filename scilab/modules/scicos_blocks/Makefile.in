@@ -1181,6 +1181,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos/includes
 
+@SCICOS_FALSE@libsciscicos_blocks_la_SOURCES = 
 @SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) $(SCICOS_BLOCKS_FORTRAN_SOURCES) 
 #$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
