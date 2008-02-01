@@ -3,8 +3,8 @@
 <MAN>
 	<LANGUAGE>fr</LANGUAGE>
 	<TITLE>startup</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>November 2006</DATE>
+	<TYPE>Scilab Documentation</TYPE>
+	<DATE>January 2008</DATE>
 	<SHORT_DESCRIPTION name="startup"> startup file</SHORT_DESCRIPTION>
 	<DESCRIPTION>
 		<P>Les fichiers de démarrage <VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>

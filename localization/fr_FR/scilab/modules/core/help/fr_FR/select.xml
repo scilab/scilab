@@ -25,11 +25,12 @@
   </P>
  
 <DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM  label='- La seule contrainte est que chaque mot-clé &quot;then&quot; soit sur la même ligne que le &quot;case&quot; correspondant.'> 
+  <DESCRIPTION_ITEM  label="-">
+  <SP>La seule contrainte est que chaque mot-clé &quot;then&quot; soit sur la même ligne que le &quot;case&quot; correspondant.</SP> 
   </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='- Le mot-clé then peut être remplacé par un passage à la ligne ou une virgule.'> 
-  <SP>
+  <DESCRIPTION_ITEM  label="-">
+  <SP>Le mot-clé then peut être remplacé par un passage à la ligne ou une virgule.
      Les <VERB>instructions1</VERB> sont exécutées si <VERB>expr1=expr</VERB>, etc. 
 </SP>
   </DESCRIPTION_ITEM>

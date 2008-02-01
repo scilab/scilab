@@ -14,25 +14,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-  <SP>
-    : deux matrices de taille (n1,n2) (coordonnées d&apos;un ensemble de points).
-</SP>
+  <SP> : deux matrices de taille (n1,n2) (coordonnées d&apos;un ensemble de points).</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dir</PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP> : spécifie la conversion à réaliser (Voir la rubrique "Description" pour plus d'informations).</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>x1,y1  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-  <SP>
-    : deux matrices de taille (n1,n2) (coordonnées transformées).
-</SP>
+  <SP> : deux matrices de taille (n1,n2) (coordonnées transformées).</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-  <SP>
-    : un vecteur de taille 4.
-</SP>
+  <SP> : un vecteur de taille 4.</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
