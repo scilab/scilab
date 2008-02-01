@@ -1,4 +1,5 @@
-getf(SCI+'/modules/metanet/demos/metro.sci','c');
+mode(-1)
+demopath=get_absolute_file_path('meta.dem')
 // Copyright INRIA
 mode(0);
 num=x_message([' ';
@@ -11,6 +12,6 @@ num=x_message([' ';
 'Try the demo?'],['Yes','No'])
 
 if num==1 then
-  metro()
-  set('old_style','off')
+  exec(demopath+'/metro.sci',-1);
+  metro(demopath)
 end

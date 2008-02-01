@@ -1,12 +1,12 @@
-function []=metro()
+function []=metro(demopath)
 //Scilab program for the travel by the tube in Paris
 //needs the file 'node2station' giving the fit between nodes and the names
 //of the stations
 //needs the execution of the program 'metrostart' for the data of the graph
 // Copyright INRIA
-  inin=file('open',SCI+'/modules/metanet/demos/node2station','old');
-  mamat=read(inin,388,1,'(a40)');
-  file('close',inin);
+  //les noms des stations
+  mamat=mgetl(demopath+'node2station')
+  //Les lignes
   La=['Abbesses','Alesia','Alexandre Dumas','Alfort-Ecole Veterinaire',..
       'Alma-Marceau','Anatole-France','Anvers','Argentine','Arts et Metiers',..
       'Auber','Aubervilliers-Pantin','Avron'];
@@ -111,8 +111,8 @@ function []=metro()
     Depart=108;Arrivee=108;Gr_typ='null';
     while (Lnode(Depart)==-1|Lnode(Arrivee)==-1),
       Lnode(1)=-2;
-      Depart=tk_choose(Lstation,'Choose the station of departure');
-      Arrivee=tk_choose(Lstation,'Choose the station of arrival');
+      Depart=x_choose(Lstation,'Choose the station of departure');
+      Arrivee=x_choose(Lstation,'Choose the station of arrival');
       if(Depart==0|Arrivee==0) then return  end;
 	if (Lnode(Depart)==-1|Lnode(Arrivee)==-1) then
 	  x_message(['You have chosen an RER station to the suburbs'; 
@@ -148,14 +148,13 @@ function []=metro()
 	  Lnode(Arrivee)=-1;  
 	end
       end
-      g=load_graph(SCI+'/modules/metanet/demos/paris');
-      gg=load_graph(SCI+'/modules/metanet/demos/paris2');
-      gg.default_font_size=8;
-      gg.node_y=abs(gg.node_y-max(gg.node_y))
+      g=load_graph(demopath+'paris.graph');
+      gg=load_graph(demopath+'paris2.graph');
       win=show_graph(gg,'rep');
-      la1=g('node_name');lp1=g('node_type');ls1=g('node_x');
+      
+      la1=g.nodes.graphics.name;lp1=g.nodes.graphics.nodetype;ls1=g.nodes.graphics.x;
       NodeN=lp1(Lnode(Depart)+1)-lp1(Lnode(Depart))+1;
-      duration=g('edge_length');tail=g('tail');
+      duration=g.edges.data.length;tail=g.edges.tail;
       i=1;
       Ldepart(1)=Lnode(Depart);
       for j=1:NodeN,
@@ -196,10 +195,9 @@ function []=metro()
       //show_arcs(EndP)
       ttt=path_2_nodes(EndP,g);
       ppp=nodes_2_path(ttt,gg);
-      //show_arcs(ppp);
-      //for i=1:5, show_nodes(ttt);show_arcs(ppp);end;
-      show_arcs(ppp);show_nodes(ttt,'sup');
-      name=g('node_name');
+      
+      show_arcs(ppp,'sup');show_nodes(ttt,'sup');
+      name=g.nodes.graphics.name;
       road=name(ttt)';
       kk=size(road);
       clic='.'; v=[1];
@@ -229,14 +227,9 @@ function []=metro()
 	end
       end
       w=string(win)
-      execstr(['global EGdata_'+w
-	       'EGdata_'+w+'.GraphList.node_label(TTT)=matrix(mamat(TTT),1,-1)'
-	       'EGdata_'+w+'.NodeId=4'])
-      show_nodes(TTT,'sup')
-
-      xpause(1d6)
-      execstr('EGdata_'+w+'.GraphList.node_label(TTT)='' ''')
-
+      
+      set_nodes_id(TTT,'  '+strsubst(mamat(TTT),'.',' '),'right')
+    
       x_message(['Duration of the travel (in minutes): '+string(EndTemps) ; 
 		 ' ' ;
 		 'The number of changes is: '+string(EndChange);
@@ -245,6 +238,8 @@ function []=metro()
 		 string(routef);]);
       road=[];route=[];routef=[];changename=[];
       iter=tk_choose(['yes','no'],'Another travel?');
+      set_nodes_id(TTT,emptystr(TTT),'right')
+ 
       TTT=[];routef=[];road=[];
     end
     seteventhandler("")
