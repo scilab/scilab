@@ -206,8 +206,9 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	prot=funcprot();
 	funcprot(0);
 
-	//** to load functions of ged in scicos
-	exec(SCI+'/macros/util/ged.sci',-1);
+
+	//** to load functions of ged in scico
+        //** exec(SCI+'/macros/util/ged.sci',-1); //** <----- DEBUG ONLY Not Yet Available 
 
 	//** Scicos internal functions override in order to assure full
 	//** compatibility with NGI (J.B. Silvy)
@@ -220,10 +221,10 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	
 	//** check and - eventually - load the Scicos function library  
 	if exists('scicoslib')==0 then 
-	  load('SCI/macros/scicos/lib') ; 
+	  load('SCI/modules/scicos/macros/scicos_scicos/lib') ; 
 	end
 
-	exec(loadpallibs, 1) //** load library that contains the INTERFACING
+	exec(loadpallibs, 1) //** load library that contains the INTERFACING functions
 
 
   end //** end of the main if() not superblock initialization 
