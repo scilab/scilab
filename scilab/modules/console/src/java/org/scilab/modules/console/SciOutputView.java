@@ -18,8 +18,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyleContext;
 
 import com.artenum.rosetta.interfaces.ui.OutputView;
-import com.artenum.rosetta.util.StringConstants;
 import com.artenum.rosetta.util.BufferedWriter;
+import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Scilab Console UI which contains the previous commands and their outputs
@@ -63,57 +63,23 @@ public class SciOutputView extends JTextPane implements OutputView {
 		// Enabled Drag&Drop with this component
 		this.setDragEnabled(true);
 
+		
 		activeStyle = StyleContext.DEFAULT_STYLE;
 		bufferQueue = new ArrayBlockingQueue<StringBuffer>(BUFFER_SIZE);
 		styleQueue = new LinkedList<String>();
-		thread = new Thread() {
-			public void run() {
-				while (!bufferQueue.isEmpty() && console != null) {
-					displayLineBuffer();
-				}
-				if (console != null && console.isWorkDone()) {
-					console.waitForInput();
-				}
-			}
-		};
-		thread.setPriority(Thread.MIN_PRIORITY);
-	}
-
-	/**
-	 * Thread used to display data in console
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
-	public void run() {
-			while (!bufferQueue.isEmpty() && console != null) {
-				displayLineBuffer();
-			}
-			if (console != null && console.isWorkDone()) {
-				console.waitForInput();
-			}
 	}
 
 	/**
 	 * Display a buffer entry in the console
 	 */
-	private void displayLineBuffer() {
+	private void displayLineBuffer(String buff, String style) {
 		
-		StringBuffer buffer = null;
-		try {
-			buffer = bufferQueue.take();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String style = styleQueue.poll();
-
 		/*
 		 * Temporary variables created to avoid to long line (checkstyle
 		 */
-		String dispBuffer = buffer.toString();
 		int sDocLength = getStyledDocument().getLength();
 		try {
-			getStyledDocument().insertString(sDocLength, dispBuffer,
+			getStyledDocument().insertString(sDocLength, buff,
 					getStyledDocument().getStyle(style));
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
@@ -121,7 +87,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 		}
 
 		/* Special case for Scilab when clc or tohome have been used */
-		String[] lines = buffer.toString().split(
+		String[] lines = buff.split(
 				StringConstants.NEW_LINE);
 		/* Change the size of the input command view if necessary */
 		/* - if the console size has been forced to a value */
@@ -193,10 +159,10 @@ public class SciOutputView extends JTextPane implements OutputView {
 					.getInputCommandView()).doLayout();
 		}
 		/* Update scroll only if console has been set */
+		/* TODO : Must not do this each time... consume pretty much computing ressources */
 		if (console != null) {
 			console.updateScrollPosition();
 		}
-		
 	}
 	
 	/**
@@ -207,7 +173,8 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 *            text to add
 	 */
 	public void append(String content) {
-		append(content, activeStyle);
+		//append(content, activeStyle);
+		displayLineBuffer(content, activeStyle);
 	}
 
 	/**
@@ -265,11 +232,12 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#reset()
 	 */
 	public void reset() {
-		try {
-			getStyledDocument().remove(0, getStyledDocument().getLength());
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
+	//	try {
+			//getStyledDocument().remove(0, getStyledDocument().getLength());
+			setText("");
+		//} catch (BadLocationException e) {
+		//	e.printStackTrace();
+		//}
 		setCaretPosition(0);
 	}
 
@@ -288,7 +256,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#setCaretPositionToEnd()
 	 */
 	public void setCaretPositionToEnd() {
-		setCaretPosition(getStyledDocument().getLength());
+		//setCaretPosition(getStyledDocument().getLength());
 	}
 
 	/**
