@@ -5,12 +5,14 @@ package org.scilab.modules.console;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 import javax.xml.parsers.ParserConfigurationException;
@@ -198,7 +200,6 @@ public abstract class SciConsole extends JPanel {
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
-		/*
 		 SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				jSP.getViewport().setViewPosition(new Point(0,
@@ -206,11 +207,10 @@ public abstract class SciConsole extends JPanel {
 				jSP.revalidate();
 			}
 		});
-		*/
+		 //jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
     	//jSP.invalidate();
     	//jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
  		//jSP.revalidate();
-       	jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
    }
 
     /**
