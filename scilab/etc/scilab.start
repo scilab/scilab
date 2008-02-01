@@ -94,16 +94,6 @@ clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variabl
 // Protect variable previously defined  ================================
 predef('all')
 
-// Graphic mode and Startup info ======================================
-if %gui then
-  verbose=sciargs()<>"-nb"
-  if verbose then
-	  show_startupinfo();
-	  clear show_startupinfo;
-  end
-  clear verbose;
-end
-
 // load contrib menu if present ========================================
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');
 if ierr== 0 then;
