@@ -1086,6 +1086,7 @@ modules/windows_tools/Makefile
 modules/core/Makefile
 modules/fftw/Makefile
 modules/scicos/Makefile
+modules/scicos_blocks/Makefile
 modules/functions/Makefile
 modules/dynamic_link/Makefile
 modules/others/Makefile
@@ -1108,9 +1109,10 @@ etc/modules.xml
 scilab-lib.properties
 ])
 #Scicos stuff
-#modules/scicos/Makefile
 #modules/scicos/src/ocaml/Makefile
-AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos/src/c/GenBlocks.sh])
+
+# This script is used by Scicos in order to regenerate the function/block list
+AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh])
 
 #MAN_FR MAN_ENG
 #modules/mpi/Makefile
@@ -1343,4 +1345,5 @@ echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
-echo ""
+echo "
+"

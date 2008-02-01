@@ -133,6 +133,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(am__append_5) $(am__append_6) $(am__append_7) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
@@ -176,8 +177,8 @@ DIST_SUBDIRS = polynomials string STRING_V2 intersci cacsd \
 	action_binding console renderer graphic_export gui graphics \
 	windows_tools functions others overloading maple2scilab m2sci \
 	texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm spreadsheet \
-	jvm demo_tools . javasci
+	compatibility_functions helptools scicos_blocks scicos fftw \
+	pvm spreadsheet jvm demo_tools . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -371,8 +372,8 @@ SUBDIRS = polynomials $(am__append_1) STRING_V2 intersci cacsd \
 	action_binding console renderer graphic_export gui graphics \
 	windows_tools functions others overloading maple2scilab m2sci \
 	texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools scicos fftw pvm spreadsheet \
-	jvm demo_tools . $(am__append_2)
+	compatibility_functions helptools scicos_blocks scicos fftw \
+	pvm spreadsheet jvm demo_tools . $(am__append_2)
 modulename = 
 
 #### Basic files ####
@@ -429,6 +430,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(am__append_5) $(am__append_6) $(am__append_7) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \

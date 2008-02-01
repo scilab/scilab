@@ -62,6 +62,7 @@ scilab2fortran \
 development_tools \
 compatibility_functions \
 helptools \
+scicos_blocks \
 scicos \
 fftw \
 pvm \
@@ -164,6 +165,7 @@ endif
 libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
 
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
+libscilab_la_LIBADD += $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
 
 ## Libs
 libscilab_la_LIBADD += \
