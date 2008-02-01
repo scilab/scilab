@@ -1,13 +1,15 @@
 // ====================================================================
-// metanet module initialisation file 
-// Copyright INRIA 2006
+// metanet module initialisation file
+// Copyright INRIA 2008
 // ====================================================================
+
 //Load  functions librarie
-load('SCI/modules/metanet/macros/lib');
-// ====================================================================
+load('SCI/modules/metanet/macros/editor/lib');
+load('SCI/modules/metanet/macros/graph_tools/lib');
+
 //add help chapter
 add_module_help_chapter('metanet');
-// ====================================================================
+
 //add demos
 path = get_absolute_file_path('metanet.start');
 path = getshortpathname(path);
@@ -15,5 +17,3 @@ pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/meta.dem',%f,%f);
 add_demo("Metanet",pathdemos);
 
 clear path pathdemos ;
-
-// ====================================================================

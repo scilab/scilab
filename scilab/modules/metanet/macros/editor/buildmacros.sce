@@ -6,4 +6,4 @@ if ~isdef("genlib") then
 	exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 
-genlib("metanetgraph_toolslib",'SCI/modules/metanet/macros/graph_tools',%f,%t);
+genlib("metaneteditorlib",'SCI/modules/metanet/macros/editor',%f,%t);
