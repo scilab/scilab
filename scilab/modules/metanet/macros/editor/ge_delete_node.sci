@@ -4,19 +4,14 @@ function GraphList=ge_delete_node(GraphList,K)
 
   if K==[] then return,end
 
-  I=1:size(GraphList.node_x,'*')
-  for f=ge_node_fields()
-    GraphList(f)(K)= [];
-  end
-  //renumber arcs head and tail
+  I=1:GraphList.nodes.number
+  GraphList.nodes(K)=[]
 
-  //   kept=1:size(GraphList.node_x,'*');kept(K)==[]
-  //   GraphList.tail=I(dsearch(GraphList.tail,kept,'d'))
-  //   GraphList.head=I(dsearch(GraphList.head,kept,'d'))
+  //renumber arcs head and tail
 
   for k=1:size(K,'*')
     I(K(k)+1:$)=I(K(k)+1:$)-1
   end
-  GraphList.head=I(GraphList.head)
-  GraphList.tail=I(GraphList.tail)
+  GraphList.edges.head=I(GraphList.edges.head)
+  GraphList.edges.tail=I(GraphList.edges.tail)
 endfunction

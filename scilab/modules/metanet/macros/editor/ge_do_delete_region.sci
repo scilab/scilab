@@ -3,66 +3,72 @@ function GraphList=ge_do_delete_region(GraphList,xc,yc)
 //Author : Serge Steer 2002
 // EGData is passed by context
 // Copyright INRIA
-xinfo('Click, drag to select region and click to fix the selection')
+  xinfo('Click, drag to select region and click to fix the selection')
 
-ge_disablemenus()
-[rect,btn]=rubberbox([xc,yc])
-if btn==2 then  ge_enablemenus();return;end
-[del,keep]=ge_get_nodes_in_rect(GraphList,rect)
+  ge_disablemenus()
+  drawnow()
 
-edited=del<>[]
-if edited then
+  [rect,btn]=rubberbox([xc,yc])
+  if btn==2 then  ge_enablemenus();return;end
+  [del_nodes,keep]=ge_get_nodes_in_rect(GraphList,rect)
 
-  del_arcs=find(dsearch(GraphList.tail,del,'d')<>0|..
-		dsearch(GraphList.head,del,'d')<>0)
+  edited=del_nodes<>[]
 
+  if edited then
+    ge_axes_handle=gca();n=size(ge_axes_handle.children,'*')
+    gindex=ge_axes_handle.user_data;
+    hedges=gindex.edge;hnodes=gindex.node;
 
- if del_arcs<>[] then
-   Hista=list("delete_edges",del_arcs)
-   for f=ge_arc_fields()
-     Hista($+1)=GraphList(f)(del_arcs)
-   end
- else
-   Hista=list()
- end
- 
- Histn=list("delete_nodes",del)
- for f=ge_node_fields() 
-   Histn($+1)=GraphList(f)(del)
- end
- if size(Hista)==0 then
-   ge_add_history(Histn)
- else
-   ge_add_history(list("compound",Histn,Hista))
- end
+      
+    drawlater()
+    del_nodes=gsort(del_nodes,'g','i')
 
- //erase deleted and renumbered objects 
- NodeId=EGdata.NodeId
- if NodeId==1 then 
-   ge_drawnodes(min(del):$),// deleted and renumbered
- else
-   ge_drawnodes(del)// deleted
- end
- ArcId=EGdata.ArcId
- if ArcId==1 then 
-   ge_drawarcs(min(del_arcs):$),// deleted and renumbered
- else
-   ge_drawarcs(del_arcs)// deleted
- end
-   
- 
- GraphList=ge_delete_arc(GraphList,del_arcs)
- GraphList=ge_delete_node(GraphList,del)
- //redraw renumbered objs
+    del_arcs=find(dsearch(GraphList.edges.tail,del_nodes,'d')>0|..
+		  dsearch(GraphList.edges.head,del_nodes,'d')>0)
+    if del_arcs<>[] then
+      del_arcs=gsort(del_arcs,'g','i')
+      Hista=list("delete_edges",del_arcs)
+      Hista($+1)=GraphList.edges(del_arcs)
+    else
+      Hista=list()
+    end
+    
+    Histn=list("delete_nodes",del_nodes)
+    Histn($+1)=GraphList.nodes(del_nodes)
+    if size(Hista)==0 then
+      ge_add_history(Histn)
+    else
+      ge_add_history(list("compound",Histn,Hista))
+    end
+    
+    //destroy the graphic entities associated with deleted arcs
+    if del_arcs<>[] then
+      delete(hedges(del_arcs));hedges(del_arcs)=[];
+      //renumbers the arcs with index higher than first deleted arc
+      for i=del_arcs(1):size(hedges,'*')
+	ak=hedges(i);
+	ak.children(1).text=string(i);
+      end
+      GraphList.edges(del_arcs)=[];
+    end
 
- if NodeId==1 then ge_drawnodes(min(del):$),end
- if ArcId==1 then ge_drawarcs(min(del_arcs):$),end 
- 
- ge_enablemenus()
- edited=return(%t)
-else
+    //delete the graphics entities associated with deleted nodes
+    if del_nodes<>[] then
+      delete(hnodes(del_nodes));hnodes(del_nodes)=[];
+      // renumber all the nodes
+      for i=del_nodes(1):size(hnodes,'*')
+	ak=hnodes(i);
+	ak.children(1).text=string(i);
+      end
+      GraphList=ge_delete_node(GraphList,del_nodes)
+    end
+    gindex.edge=hedges;gindex.node=hnodes;
+    ge_axes_handle.user_data=gindex
+    edited=%t
+  else
+    edited=%f
+  end
   ge_enablemenus()  
-end
-
-
+  drawnow();show_pixmap()
+  edited=return(edited)
 endfunction

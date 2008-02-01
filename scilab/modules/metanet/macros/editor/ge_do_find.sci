@@ -2,54 +2,76 @@ function ge_do_find(key,GraphList)
 //Copyright INRIA
 //Author : Serge Steer 2002
   
+//hauteur de la  barre de menus used because figure_size is the
+//size of the graphic window, not the size of the visiblze part
+//of the drawable
+  hmen=60;
+  ge_win_handle=gcf();
+  wpd=ge_win_handle.figure_size;wpd(2)=wpd(2)-hmen;
+
   select key
-  case "Node" then
-    r=x_dialog('Enter a Node number or a Node name:','')
-    if r<>[] then
-      ierr=execstr('n='+r,'errcatch')
-      if ierr==0 then // a node number
-	if n<1|n>size(GraphList.node_x,'*') then
-	  x_message('Incorrect node number:'+r)
-	end
+   case "Node" then
+    while %t
+      ok=%t
+      r=x_dialog('Enter a Node number or a Node name:','')
+      if r==[] then return,end
+      r=stripblanks(r);
+      r(r=='')=[]
+      if size(r,'*')>1 then
+	x_message('Only one node should be selected:'+r)
+	ok=%f
       else
-	n=find(GraphList.node_name==r)
-	if n==[] then
-	  x_message('Unknown node :'+r)
-	  return
+	ierr=execstr('n='+r,'errcatch')
+	if ierr==0 then // a node number
+	  if n<1|n>size(GraphList.nodes) then
+	    x_message('Incorrect node number:'+r)
+	    ok=%f
+	  end
+	else
+	  n=find(GraphList.nodes.graphics.name==r)
+	  if n==[] then
+	    x_message('Unknown node :'+r)
+	    ok=%f
+	  end
 	end
-	
       end
-      [x,y]=xchange(GraphList.node_x(n),GraphList.node_y(n),"f2i") ;
-      wd=xget("wdim");
-      wpd=xget("wpdim");wpd(2)=wpd(2)-60;// -60 hauteur de la barre de menus
-      xset("viewport",x-wpd(1)/2,y-wpd(2)/2)
-      ge_hilite_nodes(n,GraphList)
+      if ok then break,end
     end
-  case "Arc" then
-    r=x_dialog('Enter an Arc number or an Arc name:','')
-    if r<>[] then
-      ierr=execstr('n='+r,'errcatch')
-      if ierr==0 then // a node number
-	if n<1|n>size(GraphList.tail,'*') then
-	  x_message('Incorrect arc number:'+r)
-	end
+    [x,y]=xchange(GraphList.nodes.graphics.x(n),GraphList.nodes.graphics.y(n),"f2i") ;
+    ge_set_viewport(x-wpd(1)/2,y-wpd(2)/2)
+    ge_hilite_nodes(n,GraphList)
+   case "Arc" then
+    while %t
+      ok=%t
+      r=x_dialog('Enter an Arc number or an Arc name:','')
+      if r==[] then return,end
+      r=stripblanks(r);
+      r(r=='')=[]
+      if size(r,'*')>1 then
+	x_message('Only one arc should be selected:'+r)
+	ok=%f
       else
-	n=find(GraphList.edge_name==r)
-	if n==[] then
-	  x_message('Unknown arc :'+r)
-	  return
+	ierr=execstr('n='+r,'errcatch')
+	if ierr==0 then // a node number
+	  if n<1|n>size(GraphList.edges) then
+	    x_message('Incorrect arc number:'+r)
+	    ok=%f
+	  end
+	else
+	  n=find(GraphList.edges.graphics.name==r)
+	  if n==[] then
+	    x_message('Unknown arc :'+r)
+	    ok=%f
+	  end
 	end
-	
       end
-      t=GraphList.tail(n)
-      h=GraphList.head(n)
-      [x,y]=xchange(sum(GraphList.node_x([t h]))/2,sum(GraphList.node_y([t h]))/2,"f2i") ;
-      wd=xget("wdim");
-      wpd=xget("wpdim");wpd(2)=wpd(2)-60;// -60 hauteur de la barre de menus
-      xset("viewport",x-wpd(1)/2,y-wpd(2)/2)
-      ge_hilite_arcs(n,GraphList) 
+      if ok then break, end
     end
-  else
+    t=GraphList.edges.tail(n)
+    h=GraphList.edges.head(n)
+    [x,y]=xchange(sum(GraphList.nodes.graphics.x([t h]))/2,sum(GraphList.nodes.graphics.y([t h]))/2,"f2i") ;
+    ge_set_viewport(x-wpd(1)/2,y-wpd(2)/2)
+    ge_hilite_edges(n,GraphList) 
   end
 endfunction
 

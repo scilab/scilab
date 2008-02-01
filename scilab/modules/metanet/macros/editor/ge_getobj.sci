@@ -4,9 +4,9 @@ function [k,wh]=ge_getobj(GraphList,pt)
 
 // Copyright INRIA
   wh=[],
-  k=ge_getnode(GraphList,pt)
+  k=ge_getnode(pt)
   if k<>[] then wh='node',return,end
-  k=ge_getarc(GraphList,pt)
+  k=ge_getedge(GraphList,pt)
   if k<>[] then wh='arc',return,end
 
 endfunction

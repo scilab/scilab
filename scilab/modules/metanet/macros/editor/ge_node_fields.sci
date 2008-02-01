@@ -1,8 +1,9 @@
-function fn=ge_node_fields()
+function [fn,fd]=ge_node_fields(nodes)
 //Copyright INRIA
 //Author : Serge Steer 2002
-
-fn = ['node_name','node_type','node_x',..
-	'node_y','node_color','node_diam','node_border',..
-	'node_font_size','node_demand','node_label']
+  if argn(2)<1 then nodes=GraphList.nodes;end
+  F=getfield(1,nodes)
+  fn = F(2:$) //skip the type,
+  F=getfield(1,nodes.data)
+  fd = F(2:$);
 endfunction

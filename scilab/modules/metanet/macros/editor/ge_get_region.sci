@@ -3,7 +3,6 @@ function [reg,rect,keep]=ge_get_region(xc,yc,win)
 //Author : Serge Steer 2002
 
 // Copyright INRIA
-  xset('window',win)
   reg=list();rect=[]
   [rect,btn]=rubberbox([xc,yc])
   if btn==2 then return,end
@@ -15,26 +14,21 @@ function [reg,rect,keep]=ge_get_region(xc,yc,win)
   if del==[] then reg=GraphList,return,end
   if size(keep,'*')>1 then  
     del_arcs=[];
-    na=size(GraphList.head,'*')
+    na=size(GraphList.edges)
     keep=gsort(keep,'g','i')
-    k_arcs=find(dsearch(GraphList.tail,keep,'d')<>0&dsearch(GraphList.head,keep,'d')<>0)
+    k_arcs=find(dsearch(GraphList.edges.tail,keep,'d')>0&dsearch(GraphList.edges.head,keep,'d')>0)
     del_arcs=1:na;del_arcs(k_arcs)=[]
   else
     k_arcs=[]
   end
 
-  reg=editgraph_diagram()
-
-  for f=ge_node_fields(),
-    reg(f)=[GraphList(f)(keep)];
-  end
+  reg=ge_new_graph()
+  reg.nodes=GraphList.nodes(keep)
+  reg.edges=GraphList.edges(k_arcs)
   if k_arcs<>[] then
-    for f=ge_arc_fields(),
-      reg(f)=[GraphList(f)(k_arcs)];
-    end
     //renumber
-    k1=1:size(reg.node_x,'*')
-    reg.tail=k1(dsearch(reg.tail,keep,'d'))
-    reg.head=k1(dsearch(reg.head,keep,'d'))
+    k1=(1:size(reg.nodes))
+    reg.edges.tail=k1(dsearch(reg.edges.tail,keep,'d'))
+    reg.edges.head=k1(dsearch(reg.edges.head,keep,'d'))
   end
 endfunction

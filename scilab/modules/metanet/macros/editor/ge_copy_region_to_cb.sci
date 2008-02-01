@@ -9,4 +9,4 @@ function ge_copy_region_to_cb(GraphList,xc,yc)
   GClipBoard=list(reg,rect)
   ge_enablemenus()
 endfunction
-  
+

@@ -1,16 +1,21 @@
-function EGdata=ge_do_options(EGdata)
+function GraphList=ge_do_options(GraphList)
 //Copyright INRIA
 //Author : Serge Steer 2002
+  df=getfield(1,GraphList.nodes.data)
+  NodeDataFields=['nothing','number','name', df(2:$)];
+  kn=find( NodeDataFields==GraphList.nodes.graphics.display)
+  if kn==[] then kn=1,end
+  node=list('Nodes',kn,NodeDataFields);
 
-  node=list('Nodes',EGdata.NodeId+1,['Nothing','Number','Name','Demand','Label'])
-  arc=list('Arcs',EGdata.ArcId+1,['Nothing','Number','Name','Cost','Min cap','Max cap',..
-		     'Length', 'Quadratic weight','Quadratic origin', ...
-		    'Weight','Label'])
-  rep=x_choices("Select information to display",list(node,arc))
+  ef=getfield(1, GraphList.edges.data);
+  EdgeDataFields=['nothing','number','name',ef(2:$)];
+  ka=find( EdgeDataFields== GraphList.edges.graphics.display)
+  if ka==[] then ka=1,end
   
-  if EGdata.NodeId<>rep(1)-1 | ...
-	EGdata.ArcId<>rep(2)-1 then
-    EGdata.NodeId=rep(1)-1
-    EGdata.ArcId=rep(2)-1
+  arc=list('Arcs',ka,EdgeDataFields)
+  rep=x_choices("Select information to display",list(node,arc))
+  if rep<>[] then
+    GraphList.nodes.graphics.display=NodeDataFields(rep(1))
+    GraphList.edges.graphics.display=EdgeDataFields(rep(2))
   end
 endfunction

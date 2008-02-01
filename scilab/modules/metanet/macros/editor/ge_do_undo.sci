@@ -6,127 +6,200 @@ function GraphList=ge_do_undo(GraphList,op)
 		 'EGhist_'+w+'($)=null()','errcatch')
     if ierr<>0 then return,end
   end
-   xset('alufunction',6)   
-   select  op(1)
-   case "add_node" then
-     K=op(2)
-     karcs=find(GraphList.tail==K|GraphList.head==K)
-     ge_drawobjs(GraphList,K,karcs) //erase node and connected arcs
-     GraphList=ge_delete_node(GraphList,K)
-     GraphList=ge_delete_arc(GraphList,karcs)
-   case "add_arc" then
-     K=op(2)
-     nt=GraphList.tail(K)
-     nh=GraphList.head(K)
-     sel=find((GraphList.head==nt&GraphList.tail==nh)|..
-	      (GraphList.head==nh&GraphList.tail==nt))
-     ge_drawarcs(sel) //erase
-     GraphList=ge_delete_arc(GraphList,K)
-     sel=find((GraphList.head==nt&GraphList.tail==nh)|..
-	      (GraphList.head==nh&GraphList.tail==nt))
-     ge_drawarcs(sel) //redraw
-   case "node_property" then
-     k=op(2)
-     karcs=find(GraphList.tail==k|GraphList.head==k)
-     ge_drawarcs(karcs);ge_drawnodes(k); //erase arcs and node
-     for i=3:2:size(op)
-       GraphList(op(i))(k)=op(i+1);
-     end
-     ge_drawnodes(k);ge_drawarcs(karcs) //redraw 
-   case "edge_property" then
-     k=op(2)
-     T=GraphList.tail(k);H=GraphList.head(k)
-     karcs=find((GraphList.tail==T&GraphList.head==H)|(GraphList.tail==H&GraphList.head==T))
-     ge_drawarcs(karcs) //erase arc
-     for i=3:2:size(op)
-       GraphList(op(i))(k)=op(i+1);
-     end
-     ge_drawarcs(karcs) //redraw
-   case "move" then
-     ksel=op(2)
-     karcs=find(GraphList.tail==ksel|GraphList.head==ksel)
-     ge_drawobjs(GraphList,ksel,karcs) //erase
-     GraphList.node_x(ksel)=op(3)(1)
-     GraphList.node_y(ksel)=op(3)(2)
-     ge_drawobjs(GraphList,ksel,karcs) //draw
-   case "delete_edges" then
-     n=size(GraphList.tail,'*')
-     // reorganize edges to make room edge to recreate
-     ind=1:n
-     ge_drawarcs(min(op(2)):n)//erase
-     inc=0
-     for k=op(2)
-       if k<=n+inc then ind(k-inc:n)=ind(k-inc:n)+1;inc=inc+1;end
-     end
-     k=3;
-     for f=ge_arc_fields(),
-       GraphList(f)(1,ind)=GraphList(f);
-       GraphList(f)(1,op(2))=op(k);
-       k=k+1;
-     end
-     ge_drawarcs(min(op(2)):size(GraphList.tail,'*'))
-   case "delete_nodes" then
-     n=size(GraphList.node_x,'*')
-     // reorganize node to make room edge to recreate
-     ind=1:n
-     ge_drawnodes(min(op(2)):n)//erase
-     inc=0
-     for k=op(2)
-       if k<=n+inc then 
-	 ind(k-inc:n)=ind(k-inc:n)+1;inc=inc+1
-	 s=find(GraphList.tail>=k)
-	 if s<>[] then
-	   GraphList.tail(s)=GraphList.tail(s)+1
-	 end
-	 s=find(GraphList.head>=k)
-	 if s<>[] then
-	   GraphList.head(s)=GraphList.head(s)+1
-	 end
-       end
-     end
-     k=3;
-     for f=ge_node_fields(),
-       GraphList(f)(1,ind)=GraphList(f);
-       GraphList(f)(1,op(2))=op(k);
-       k=k+1;
-     end
-     ge_drawnodes(min(op(2)):size(GraphList.node_x,'*'))
-   case "compound" then
-     for k=2:size(op)
-       GraphList=ge_do_undo(GraphList,op(k))
-     end
-   case "move_region" then
-     keep=op(2); karcs=[]
-     for ksel=keep
-       //get arcs connected to this node
-       karcs=[karcs,find(GraphList.tail==ksel|GraphList.head==ksel)];
-     end
-     karcs=unique(karcs)
-     ge_drawarcs(karcs);ge_drawnodes(keep) //erase
-     GraphList.node_x(keep)=GraphList.node_x(keep)+op(3)(1);
-     GraphList.node_y(keep)=GraphList.node_y(keep)+op(3)(2);
-     ge_drawnodes(keep);ge_drawarcs(karcs) //redraw at the new position
-   case "paste" then
-     //erase
-     na=size(GraphList.head,'*')
-     nn=size(GraphList.node_x,'*')
-     ge_drawarcs(op(3)+1:na)
-     ge_drawnodes(op(2)+1:nn)
-     //remove
-     for f=ge_node_fields(),
-       GraphList(f)(op(2)+1:nn)=[]
-     end
-     for f=ge_arc_fields(),
-       GraphList(f)(op(3)+1:na)=[]
-     end
-   case  "shortestpath" then
-     GraphList.edge_color(op(2))=op(3)
-     ge_drawarcs(op(2))
-   end
+  drawlater()
+  ge_axes_handle=gca();
+  gindex=ge_axes_handle.user_data
+  hedges=gindex.edge;hnodes=gindex.node;
 
-   xset('alufunction',3)
-  edited=return(%t)
+  select  op(1)
+   case "add_node" then
+    K=op(2)
+    karcs=find(GraphList.edges.tail==K|GraphList.edges.head==K)
+    GraphList=ge_delete_node(GraphList,K)
+    delete(hnodes(K));hnodes(K)=[];
+    
+    if karcs<>[] then //??
+      GraphList.edges(karcs)=[];
+      delete(hedges(karcs));hedges(karcs)=[];
+    end
+   case "add_arc" then
+    K=op(2)
+    GraphList.edges(K)=[];
+    delete(hedges(K));hedges(K)=[];
+    
+   case "node_property" then
+    k=op(2)
+    karcs=find(GraphList.edges.tail==k|GraphList.edges.head==k)
+    delete(hnodes(k));
+    //update data structure
+    for i=3:2:size(op)
+      opi=op(i)
+      if opi(1)=='graphics' then
+	GraphList.nodes.graphics(opi(2))(:,k)=op(i+1); 
+      else
+	GraphList.nodes.data(opi(2))(:,k)=op(i+1); 
+      end
+    end
+    // recreate the node
+    hnodes(k)=ge_draw_node(k)
+    if karcs<>[] then
+      //update arcs
+      modified=hedges(karcs)
+      ge_update_edges(karcs,modified)
+    end
+   case "edge_property" then
+    k=op(2)
+    delete(hedges(k))
+    for i=3:2:size(op)
+      if op(i)(1)=='graphics' then
+	GraphList.edges.graphics(op(i)(2))(:,k)=op(i+1);
+      else
+	GraphList.edges.data(op(i)(2))(:,k)=op(i+1);
+      end
+    end
+    hedges(k)=ge_draw_edge(k)
+   case "move" then
+    ksel=op(2)
+    karcs=find(GraphList.edges.tail==ksel|GraphList.edges.head==ksel)
+    loops=find(GraphList.edges.tail(karcs)==GraphList.edges.head(karcs))
+    kloops=karcs(loops)
+    karcs(loops)=[]
+    //selected node and loop arcs will be simply moved whilst other arcs
+    //need to be recomputed
+    moved=[hnodes(ksel);hedges(kloops)]
+    nmoved=size(moved,'*')
+    modified=hedges(karcs)
+    x=GraphList.nodes.graphics.x(ksel);
+    y=GraphList.nodes.graphics.y(ksel);
+    GraphList.nodes.graphics.x(ksel)=op(3)(1)
+    GraphList.nodes.graphics.y(ksel)=op(3)(2)
+    for k=1:nmoved,move(moved(k),op(3)-[x y]),end
+    ge_update_edges(karcs,modified)
+   case "delete_edges" then
+    n=size(GraphList.edges.tail,'*')
+    // reorganize edges to make room edge to recreate
+    del_arcs=op(2) //index of deleted arcs
+    
+    ind=1:n
+    inc=0
+    for k=del_arcs
+      if k<=n+inc then ind(k-inc:n)=ind(k-inc:n)+1;inc=inc+1;end
+    end
+    k=3;
+    //insert destroyed arcs at their original location in GraphList
+    //data structure
+    GraphList.edges(ind)=GraphList.edges;
+    GraphList.edges(op(2))=op(3);
+    
+    
+    //rebuild the associated data structures
+    new_edges=[];
+    for k=del_arcs
+      e=ge_draw_edge(k);
+      new_edges=[new_edges;e]
+      ind($+1)=k;
+    end
+    // insert  the handles on the restred arcs at their original locations
+    hedges=[hedges;new_edges];
+    hedges(ind)= hedges
+    
+    // renumber  the arcs
+    for i=del_arcs(1):size(hedges,'*')
+      ak=hedges(i);
+      ak.children(1).text=string(i);
+    end
+   case "delete_nodes" then
+    n=size(GraphList.nodes)
+    // reorganize node to make room edge to recreate
+    ind=1:n
+    inc=0
+    del_nodes=op(2)
+    
+    //insert destroyed nodes at their original location in GraphList
+    //data structure
+    for k=del_nodes
+      if k<=n+inc then 
+	ind(k-inc:n)=ind(k-inc:n)+1;inc=inc+1
+	s=find(GraphList.edges.tail>=k)
+	if s<>[] then
+	  GraphList.edges.tail(s,1)=GraphList.edges.tail(s)+1
+	end
+	s=find(GraphList.edges.head>=k)
+	if s<>[] then
+	  GraphList.edges.head(s,1)=GraphList.edges.head(s)+1
+	end
+      end
+    end
+
+    GraphList.nodes(ind)=GraphList.nodes
+    GraphList.nodes(del_nodes)=op(3)
+    
+    //rebuild the associated data structures
+    new_nodes=[];
+    for k=del_nodes
+      e=ge_draw_node(k)
+      new_nodes=[new_nodes;e]
+      ind($+1)=k;
+    end
+
+    // insert  the handles on the restred arcs at their original locations
+    hnodes=[hnodes;new_nodes];
+    hnodes(ind)= hnodes
+    
+    // renumber  the nodes
+    for i=del_nodes(1):size(hnodes,'*')
+      ak=hnodes(i);
+      ak.children(1).text=string(i);
+    end
+
+    
+   case "compound" then
+    for k=2:size(op)
+      GraphList=ge_do_undo(GraphList,op(k))
+    end
+    edited=return(%t)
+   case "move_region" then
+    ksel=op(2);
+    karcs=find(dsearch(GraphList.edges.tail,ksel,'d')>0|...
+	       dsearch(GraphList.edges.head,ksel,'d')>0)
+    
+    //find arcs connected with two internal node
+    kinternals=find(dsearch(GraphList.edges.tail,ksel,'d')>0& ...
+		    dsearch(GraphList.edges.head,ksel,'d')>0)
+    //find arcs connected with only one internal node
+    karcs(kinternals)=[]
+    
+    moved=[hnodes(ksel);hedges(kinternals)]
+    nmoved=size(moved,'*')
+    modified=hedges(karcs)
+    x=GraphList.nodes.graphics.x(ksel);
+    y=GraphList.nodes.graphics.y(ksel);
+    GraphList.nodes.graphics.x(ksel)=GraphList.nodes.graphics.x(ksel)-op(3)(1);
+    GraphList.nodes.graphics.y(ksel)=GraphList.nodes.graphics.y(ksel)-op(3)(2);
+    for k=1:nmoved,move(moved(k),-op(3)),end
+    ge_update_edges(karcs,modified)
+   case "paste" then
+    na=size(GraphList.edges)
+    nn=size(GraphList.nodes)
+    added=op(2)+1:nn;
+    if added<>[] then delete(hnodes(added)),hnodes(added)=[];end
+    added=op(3)+1:na
+    if added<>[] then delete(hedges(added)),hedges(added)=[];end
+    
+    //remove
+    GraphList=ge_delete_node(GraphList,op(2)+1:nn)
+    GraphList.edges(op(3)+1:na)=[]
+   case  "shortestpath" then
+    for k=op(2)
+      e=hedges(k);
+      e.children(2).foreground=op(3)
+      e.children(3).foreground=op(3)
+    end
+  end
+  drawnow();show_pixmap()
+  gindex.edge=hedges;gindex.node=hnodes;
+  ge_axes_handle.user_data=gindex
 
 endfunction
 
-     
+

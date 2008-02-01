@@ -1,5 +1,11 @@
 function ge_do_replot(GraphList)
-  xbasc()
+  ge_disablemenus()
+  clf()
   ge_set_winsize()
-  ge_drawobjs(GraphList),
+  ge_axes_handle=gca()
+  
+  set(ge_axes_handle,'user_data',tlist(['gindex','node','edge'],[],[]))
+  ge_draw_graph(GraphList)
+  ge_enablemenus();
+
 endfunction

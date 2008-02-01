@@ -4,82 +4,92 @@ function GraphList=ge_do_delete(GraphList,xc,yc)
 
 // ge_do_delete - delete a scicos object
 // get first object to delete
-  //EGdata is passed by context
+//EGdata is passed by context
 //!
 // Copyright INRIA
+  ge_disablemenus()
+  //mprintf("number of edges %d before deletion\n",size(GraphList.edges))
   edited =%f
   [K,wh]=ge_getobj(GraphList,[xc;yc])
   if K==[] then return,end
+  
+  ge_axes_handle=gca();
+  gindex=ge_axes_handle.user_data
+  hedges=gindex.edge;hnodes=gindex.node;
 
+  drawlater()
   edited=%t
+  //mprintf("selected %s to delete %d\n",wh,K)
   if wh=='node' then
-    karcs=find(GraphList.tail==K|GraphList.head==K)
+    karcs=find(GraphList.edges.tail==K|GraphList.edges.head==K)
+    //mprintf("arcs to remove %s\n",strcat(string(karcs),','))
     //Preserve history
     if karcs<>[] then
-      Hista=list("delete_edges",karcs)
-      for f=ge_arc_fields()
-      	Hista($+1)=GraphList(f)(karcs)
-      end
+      Hista=list("delete_edges",karcs,GraphList.edges(karcs));
     else
       Hista=list()
     end
-    Histn=list("delete_nodes",K)
-    for f=ge_node_fields() 
-	Histn($+1)=GraphList(f)(K)
-    end
+    Histn=list("delete_nodes",K,GraphList.nodes(K))
+
     if size(Hista)==0 then
       ge_add_history(Histn)
     else
       ge_add_history(list("compound",Histn,Hista))
     end
-    ArcId=EGdata.ArcId
-    NodeId=EGdata.NodeId
-    if ArcId==1 then 
-      ge_drawarcs(min(karcs):$),// deleted and renumbered
-    else
-      ge_drawarcs(karcs)// deleted
+    // renumber all the nodes display
+    for k=K:size(GraphList.nodes)
+      ak=hnodes(k)
+      ak.children(1).text=string(k-1);
     end
-    if NodeId==1 then 
-      ge_drawnodes(K:$),// deleted and renumbered
-    else
-      ge_drawnodes(K)// deleted
-    end
-
-    GraphList=ge_delete_node(GraphList,K)
-    GraphList=ge_delete_arc(GraphList,karcs)
-    if ArcId==1 then 
-      ge_drawarcs(min(karcs):$),// deleted and renumbered
-    end
-    if NodeId==1 then 
-      ge_drawnodes(K:$),// deleted and renumbered
-    end
-  else
-    nt=GraphList.tail(K)
-    nh=GraphList.head(K)
-    //preverve history
-    Hista=list("delete_edges",K)
-    for f=ge_arc_fields()
-      Hista($+1)=GraphList(f)(K)
-    end
-    ge_add_history(Hista)
-    sel=find((GraphList.head==nt&GraphList.tail==nh)|..
-	     (GraphList.head==nh&GraphList.tail==nt))
     
-    ArcId=EGdata.ArcId
-    if ArcId==1 then 
-      ge_drawarcs(sel(sel<K))
-      ge_drawarcs(K:$),// deleted and renumbered
-    else
-      ge_drawarcs(sel)// deleted
+    karcs=gsort(karcs,'g','i')
+
+    // renumber all the arcs
+    ka=[karcs size(GraphList.edges)]
+    for i=1:size(ka,'*')-1
+      for k=ka(i):ka(i+1)
+	ak=hedges(k)
+	ak.children(1).text=string(k-i);
+      end
+    end
+    
+    //delete the graphics entities associated with deleted node and arcs
+
+    delete(hnodes(K));hnodes(K)=[];
+    if karcs<>[] then
+      delete(hedges(karcs));hedges(karcs)=[];
+    end
+    
+    //delete the node and arcs out of the data structure
+    GraphList=ge_delete_node(GraphList,K)
+    GraphList.edges(karcs)=[]
+    
+  else //delete arc
+    nt=GraphList.edges.tail(K)
+    nh=GraphList.edges.head(K)
+    //preverve history
+    Hista=list("delete_edges",K,GraphList.edges(K))
+    ge_add_history(Hista)
+    
+    // renumber all the arcs
+    for k=K+1:size(GraphList.edges)
+      ak=hedges(k)
+      ak.children(1).text=string(k-1);
     end
 
-    GraphList=ge_delete_arc(GraphList,K)
-    sel=find((GraphList.head==nt&GraphList.tail==nh)|..
-	     (GraphList.head==nh&GraphList.tail==nt))
-    if ArcId==1 then 
-      ge_drawarcs(sel(sel<K))
-      ge_drawarcs(K:$),// deleted and renumbered
-    end
+    delete(hedges(K));hedges(K)=[]
+    
+    //delete the  arc out of the datastructure
+    GraphList.edges(K)=[];
+    sel=find((GraphList.edges.head==nt&GraphList.edges.tail==nh)|..
+	     (GraphList.edges.head==nh&GraphList.edges.tail==nt))
+
   end
+  //mprintf("number of edges %d after deletion\n",size(GraphList.edges))
+
+  drawnow();show_pixmap()
+  gindex.edge=hedges;gindex.node=hnodes;
+  ge_axes_handle.user_data=gindex
+  ge_enablemenus()
   edited=resume(%t)
 endfunction

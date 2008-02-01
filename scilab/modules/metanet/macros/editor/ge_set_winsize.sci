@@ -1,30 +1,55 @@
-function ge_set_winsize(a)
-//Copyright INRIA
-//Author : Serge Steer 2002
-
-  [lhs,rhs]=argn(0)
-
-  rect=ge_dig_bound(GraphList);
-  if rect<>[] then
-    w=max(rect(3)-rect(1),1);
-    h=max(rect(4)-rect(2),1);
-    if rhs==0 then j=1.5;a=max(600/(j*w),400/(j*h),j); end
-  else
-    w=600;h=400;rect=[0,0,w,h];
-    if rhs==0 then a=1.5; end
-  end
+function ge_set_winsize()
+  %zoom=EGdata.Zoom
+  gh_curwin = gcf()
+  if exists('%wsiz')==1 &%wsiz<>[] then gh_curwin.figure_size=%wsiz,end
+  r = gh_curwin.figure_size ; 
 
 
-  xbasc()
+  //** diagram size
+  rect = ge_dig_bound(GraphList);
 
-  xset("wresize",0);
-  width=EGdata.Zoom*w*a;height=EGdata.Zoom*h*a
-  xset('wdim',width,height);
-  b=(1-1/a)/2;
-  xsetech([b,b,1/a,1/a],rect)
-  
-  r=xget('wpdim');
-  %XSHIFT=max((width-r(1))/2,0)
-  %YSHIFT=max((height-r(2))/2,0)
-  xset('viewport',%XSHIFT,%YSHIFT)
+  w = (rect(3)-rect(1));
+  h = (rect(4)-rect(2));
+
+  j = min(1.5,max(1,1600/(%zoom*w)),max(1,1200/(%zoom*h)))  ;
+  ax = (max(r(1)/(%zoom*w),j)); //** amplitute correction if the user  resize the window
+  ay = (max(r(2)/(%zoom*h),j));
+  width  = %zoom * w * ax  ;   //** compute and set the axes dimensions
+  height = %zoom * h * ay  ;
+  bx = (1-1/ax)/2; 
+  by = (1-1/ay)/2; 
+
+  gh_curwin.auto_resize = "off" ; 
+  gh_curwin.axes_size = [width height];
+
+  //** axes settings
+  gh_axes = gh_curwin.children ; 
+  gh_axes.tight_limits = "on"  ; 
+  gh_axes.margins = [0,0,0,0] ;   
+
+  //** Margins can be re-introduced here now
+  margins = [0.02 0.02 0.02 0.02]
+  wp=w*(ax+margins(1)+margins(2));
+  hp=h*(ay+margins(3)+margins(4));
+  xmin=rect(3)-wp*(bx+(1/ax))+margins(1)*wp;
+  ymin=rect(4)-hp*(by+(1/ay))+margins(3)*hp;
+  xmax=xmin+wp; ymax=ymin+hp;
+
+  mrect = [xmin ymin ; xmax ymax] ; //** vector to matrix conversion
+  gh_axes.data_bounds = mrect ; 
+
+  wrect = [0 , 0, 1, 1] ;
+  gh_axes.axes_bounds = wrect ;
+  //** xleft,yup : upper left corner
+  //** width height : ratio
+
+  %XSHIFT = max( (width - r(1) ) / 2, 0) ;
+  %YSHIFT = max( (height- r(2) ) / 2, 0) ;
+
+  if ~MSDOS then %YSHIFT = %YSHIFT+30 ; end //** correction for the UNIX system
+  ge_set_viewport(%XSHIFT, %YSHIFT) ; 
+
+  xselect(); 
+
 endfunction
+
