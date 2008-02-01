@@ -54,7 +54,7 @@
         <SP>: which are copied to the output stream.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="Conversion specifications">
-        <SP>: each of which causes zero or more items to be fetched from the <VERB>value</VERB> parameter list. see <VERB>printf_conversion</VERB> for details</SP>
+        <SP>: each of which causes zero or more items to be fetched from the <VERB>value</VERB> parameter list. see <LINK>printf_conversion</LINK> for details</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <P>
@@ -98,6 +98,9 @@ file('close',u) //close the result file
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>sprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>printf_conversion</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

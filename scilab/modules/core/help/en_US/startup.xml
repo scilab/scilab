@@ -3,8 +3,8 @@
 <MAN>
 	<LANGUAGE>eng</LANGUAGE>
 	<TITLE>startup</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>November 2006</DATE>
+	<TYPE>Scilab Documentation</TYPE>
+	<DATE>January 2008</DATE>
 	<SHORT_DESCRIPTION name="startup"> startup file</SHORT_DESCRIPTION>
 	
 	<DESCRIPTION>

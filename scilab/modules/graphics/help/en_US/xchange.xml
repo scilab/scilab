@@ -18,6 +18,12 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
+        <PARAM_NAME>dir</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: parameter used to specify the conversion type (See "Description" for details)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
         <PARAM_NAME>x1,y1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two matrices of size (n1,n2) (coordinates of the set of points).</SP>

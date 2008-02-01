@@ -194,5 +194,8 @@
     <SEE_ALSO_ITEM>
       <LINK>mdelete</LINK>
     </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>scanf_conversion</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

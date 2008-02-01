@@ -5,8 +5,7 @@
 	<TITLE>dsaupd</TITLE>
 	<TYPE>Scilab Function  </TYPE>
 	<DATE>$LastChangedDate: 2006-09-01 10:59:08 +0200 (ven., 01 sept. 2006) $</DATE>
-	<SHORT_DESCRIPTION name="dsaupd">
-		Interface for the Implicitly Restarted Arnoldi Iteration,  to compute approximations to a
+	<SHORT_DESCRIPTION name="dsaupd">Interface for the Implicitly Restarted Arnoldi Iteration,  to compute approximations to a
 		few eigenpairs of a real and symmetric linear operator
 	</SHORT_DESCRIPTION>
 	
@@ -22,16 +21,15 @@
 			<PARAM_ITEM>
 				<PARAM_NAME>ID0</PARAM_NAME>
 				<PARAM_DESCRIPTION>
-					<P>
-						: Integer.  (INPUT/OUTPUT) Reverse communication flag.  IDO must be zero on the first
+					<SP>: Integer.  (INPUT/OUTPUT) Reverse communication flag.  IDO must be zero on the first
 						call to dsaupd .  IDO will be set internally to
 						indicate the type of operation to be performed.  Control is
 						then given back to the calling routine which has the
 						responsibility to carry out the requested operation and call
 						dsaupd  with the result.  The operand is given in
 						WORKD(IPNTR(1)), the result must be put in WORKD(IPNTR(2)).
-						(If Mode = 2 see remark 5 below)
-					</P>
+						(If Mode = 2 see remark 5 below)</SP>
+					
 					<P>
 						IDO =  0: first call to the reverse communication interface
 					</P>
@@ -606,7 +604,7 @@
 	
 	<USED_FUNCTIONS>
 		<SP>
-			Based on ARPACK routine dnaupd
+			Based on ARPACK routine dsaupd
 		</SP>
 	</USED_FUNCTIONS>
 </MAN>

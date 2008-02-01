@@ -5,7 +5,7 @@
 
   <TITLE>param3d1</TITLE>
 
-  <TYPE>Scilab Functio</TYPE>
+  <TYPE>Scilab Function</TYPE>
 
   <DATE>$LastChangedDate$</DATE>
 
@@ -24,8 +24,7 @@
         <PARAM_NAME>x,y,z</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <P>: matrices of the same size (nl,nc).</P>
-
+          <SP>: matrices of the same size (nl,nc).</SP>
           <P>Each column i of the matrices corresponds to the coordinates of
           the ith curve. You can give a specific color for each curve by using
           <VERB>list(z,colors)</VERB> instead of <VERB>z</VERB>, where

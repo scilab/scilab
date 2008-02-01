@@ -139,5 +139,8 @@ mprintf('%d\t%s\t%f\t%f\t%f\n',(1:5)',colors,RGB)
     <SEE_ALSO_ITEM>
       <LINK>mdelete</LINK>
     </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>printf_conversion</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

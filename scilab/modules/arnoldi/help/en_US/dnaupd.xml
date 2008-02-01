@@ -5,14 +5,13 @@
 	<TITLE>dnaupd</TITLE>
 	<TYPE>Scilab Function</TYPE>
 	<DATE>$LastChangedDate: 2006-09-01 10:59:08 +0200 (ven., 01 sept. 2006) $</DATE>
-	<SHORT_DESCRIPTION name="dnaupd">
-		Interface for the Implicitly Restarted Arnoldi Iteration,
+	<SHORT_DESCRIPTION name="dnaupd">Interface for the Implicitly Restarted Arnoldi Iteration,
 		to compute approximations to a few eigenpairs of a real linear operator
 	</SHORT_DESCRIPTION>
 	
 	<CALLING_SEQUENCE>
 		<CALLING_SEQUENCE_ITEM>
-			[IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,INFO] = dsaupd(ID0,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,INFO)
+			[IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,INFO] = dnaupd(ID0,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,INFO)
 		</CALLING_SEQUENCE_ITEM>
 	</CALLING_SEQUENCE>
 	
@@ -21,15 +20,14 @@
 			<PARAM_ITEM>
 				<PARAM_NAME>ID0</PARAM_NAME>
 				<PARAM_DESCRIPTION>
-					<P>
-						: Integer.  (INPUT/OUTPUT) Reverse communication flag.  IDO must be zero on the first
+					<SP>: Integer.  (INPUT/OUTPUT) Reverse communication flag.  IDO must be zero on the first
 						call to dnaupd.  IDO will be set internally to
 						indicate the type of operation to be performed.  Control is
 						then given back to the calling routine which has the
 						responsibility to carry out the requested operation and call
 						dnaupd with the result.  The operand is given in
-						WORKD(IPNTR(1)), the result must be put in WORKD(IPNTR(2)).
-					</P> <P>
+						WORKD(IPNTR(1)), the result must be put in WORKD(IPNTR(2)).</SP>
+					 <P>
 						IDO =  0: first call to the reverse communication interface
 					</P> <P>
 						IDO = -1: compute  Y = OP * X  where
@@ -210,12 +208,12 @@
 					</P><P>
 						IPARAM(7) = MODE
 						On INPUT determines what type of eigenproblem is being solved.
-						Must be 1,2,3,4; See under Description of dsaupd  for the
+						Must be 1,2,3,4; See under Description of dnaupd  for the
 						five modes available.
 					</P><P>
 						IPARAM(8) = NP
 						When ido = 3 and the user provides shifts through reverse
-						communication (IPARAM(1)=0), dsaupd  returns NP, the number
+						communication (IPARAM(1)=0), dnaupd  returns NP, the number
 						of shifts the user is to provide. 0  &lt; NP  &lt;= NCV-NEV. See Remark
 						5 below.
 					</P><P>
@@ -258,7 +256,7 @@
 					</P><P>
 						IPNTR(14): pointer to the NP shifts in WORKL. See Remark 5 below.
 					</P><P>
-						Note: IPNTR(9:13) is only referenced by dseupd . See Remark 2.
+						Note: IPNTR(9:13) is only referenced by dneupd . See Remark 2.
 					</P><P>
 						IPNTR(9): pointer to the real part of the NCV RITZ values of the
 						original system.
@@ -546,7 +544,7 @@
 	
 	<USED_FUNCTIONS>
 		<SP>
-			Based on ARPACK routine dsaupd
+			Based on ARPACK routine dnaupd
 		</SP>
 	</USED_FUNCTIONS>
 </MAN>

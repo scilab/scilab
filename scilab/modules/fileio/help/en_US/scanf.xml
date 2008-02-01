@@ -41,7 +41,7 @@
         <SP>Any character except % (percent sign), which must match the next character of the input stream.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>A conversion specification that directs the conversion of the next input field. see <VERB>scanf_conversion</VERB> for details.</SP>
+        <SP>A conversion specification that directs the conversion of the next input field. see <LINK>scanf_conversion</LINK> for details.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
@@ -57,6 +57,9 @@
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>sscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>scanf_conversion</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
