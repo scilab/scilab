@@ -36,7 +36,7 @@
   <SP>: valeurs des niveaux ou nombre de niveaux</SP>
   <PARAM_INDENT>
     <PARAM_ITEM>
-    <PARAM_NAME>-  </PARAM_NAME>
+    <PARAM_NAME></PARAM_NAME>
     <PARAM_DESCRIPTION>
     <SP>
      Si <VERB>nz</VERB> est un entier, sa valeur définit le nombre de courbes
@@ -60,11 +60,9 @@
     </PARAM_DESCRIPTION> 
     </PARAM_ITEM>
     <PARAM_ITEM>
-    <PARAM_NAME>-  </PARAM_NAME>
+    <PARAM_NAME></PARAM_NAME>
     <PARAM_DESCRIPTION>
-    <SP>
-     - Si <VERB>nz</VERB>est un vecteur, <VERB>nz(i)</VERB> done la valeur de
-		  la ième courbe de niveau.</SP>
+    <SP>Si <VERB>nz</VERB>est un vecteur, <VERB>nz(i)</VERB> done la valeur de la ième courbe de niveau.</SP>
 	
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
