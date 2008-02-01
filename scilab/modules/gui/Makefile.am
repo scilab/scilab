@@ -115,7 +115,7 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/core/src/c/ \
-			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/STRING_V2/includes/ \
 			-I$(top_srcdir)/modules/tclsci/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/shell/includes/ \
