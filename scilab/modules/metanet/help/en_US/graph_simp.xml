@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>graph_simp</TITLE>
@@ -14,13 +14,13 @@
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list of the old graph</SP>
+          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list of the new graph</SP>
+          <SP>: graph data structure of the new graph</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -28,18 +28,27 @@
   <DESCRIPTION>
     <P><VERB>graph_simp</VERB> returns the simple undirected graph <VERB>g1</VERB> corresponding to 
     multigraph <VERB>g</VERB>. It deletes loops in <VERB>g</VERB>, replaces directed edges 
-    with undirected edges and replaces multiple edges with single edges.</P>
+    with undirected edges and replaces multiple edges with single edges.A simple graph is also called a strict graph.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 ta=[1 1  1 2 2 2 3 4 4 4 5 5 6 7 7 8 8 9 9 10 10 10 10 10 11 12 12 13 13 13 14 15 16 16 17 17];
 he=[1 2 10 3 5 7 4 2 9 9 4 6 6 8 2 6 9 7 4  7 11 13 13 15 12 11 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
-g('node_x')=[283 163  63  98 164 162 273 235 267 384 504 493 409 573 601 627 642];
-g('node_y')=[ 59 133 223 311 227 299 221 288 384 141 209 299 398 383 187 121 301];
+g.nodes.graphics.x=[283 163  63  98 164 162 273 235 267 384 504 493 409 573 601 627 642];
+g.nodes.graphics.y=[ 59 133 223 311 227 299 221 288 384 141 209 299 398 383 187 121 301];
 show_graph(g);
 g1=graph_simp(g);
 show_graph(g1,'new');
  ]]>
   </EXAMPLE>
+<BIBLIO>
+<P>Bronshtein, I. N. and Semendyayev, K. A. Handbook of Mathematics, 4th ed. New York: Springer-Verlag, 2004.</P>
+<P>Gibbons, A. Algorithmic Graph Theory. Cambridge, England: Cambridge University Press, 1985.</P>
+<P>Harary, F. "The Number of Linear, Directed, Rooted, and Connected Graphs." Trans. Amer. Math. Soc. 78, 445-463, 1955.</P>
+<P>Harary, F. "Enumeration of Graphs." In Graph Theory. Reading, MA: Addison-Wesley, pp. 185-187, 1994.</P>
+<P>Steinbach, P. Field Guide to Simple Graphs. Albuquerque, NM: Design Lab, 1990.</P>
+<P>Tutte, W. T. Graph Theory as I Have Known It. Oxford, England: Oxford University Press, 1998.</P>
+<P>West, D. B. Introduction to Graph Theory, 2nd ed. Englewood Cliffs, NJ: Prentice-Hall, 2000. </P>
+</BIBLIO>
 </MAN>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>show_edges</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="show_arcs"> highlights a set of arcs</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="show_edges"> highlights a set of edges</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>show_edges(p [,sup])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>show_edges(p ,sup=value)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>show_edges(p ,leg=value)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>show_edges(p ,sup=value,leg=value)  </CALLING_SEQUENCE_ITEM>
+
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of arc numbers (directed graph) or edge numbers (undirected graph)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sup</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, superposition flag. The default value is  <VERB>'no'</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>leg</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, data field to be displayed. The default value is <VERB>'nothing'</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>show_arcs</VERB> or similarily <VERB>show_edges</VERB>
+    highlights the set of arcs or edges <VERB>p</VERB> of the
+    displayed graph in the current <LINK>edit_graph</LINK> window (see <LINK>netwindow</LINK>).  If
+    the optional argument <VERB>sup</VERB> is equal to the string
+    'sup', the highlighting is superposed on the previous one.</P>
+    <P>If leg is equal to <VERB>'number'</VERB> the edge numbers are also drawn.</P>
+    <P>If leg is equal to <VERB>'name'</VERB> the edge names are  also drawn.</P>
+    <P>If leg is equal to one of the edges data fields
+    <VERB>'name'</VERB> the corresponding values are also drawn.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+g=make_graph('foo',1,17,ta,he);
+g.nodes.graphics.x=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642]/2;
+g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301]/2;
+show_graph(g);
+
+t=min_weight_tree(1,g);
+show_arcs(t);
+show_arcs(t,leg='number');
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>edit_graph</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>hilite_edges</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unhilite_edges</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>show_nodes</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>netwindow</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>netwindows</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///usr/local/lib/scilab-4.1.2/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>set_nodes_id</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="set_nodes_id">displays labels near selected nodes in a graph display.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>set_nodes_id(nodes,Id,loc)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>nodes</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       :  vector of integers, the selected nodes
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Id</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : vector of strings: the labels to be drawn with the nodes;
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>loc</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, with possible values : <VERB>"center"</VERB>,
+       <VERB>"right"</VERB>, <VERB>"left"</VERB>, <VERB>"up"</VERB>
+       and <VERB>"downn</VERB>. Specify where the labels will be
+       drawn.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+  <SP><VERB>set_nodes_id(nodes,Id,loc) </VERB> allows to display
+  labels near selected nodes  of the displayed graph in the current
+    <VERB>edit_graph</VERB> window (see <LINK>netwindow</LINK>). Note that these
+  labels are not stored in the corresponding graph data
+  structure.</SP>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+ ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+g=make_graph('foo',1,17,ta,he);
+g.nodes.graphics.x=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642]/2;
+g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301]/2;
+show_graph(g);
+set_nodes_id(1:3,'n'+string(1:3),'right')
+  ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>edit_graph</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>hilite_nodes</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unhilite_nodes</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>ngraphic_data_structure</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>show_nodes</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>netwindow</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>netwindows</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+</MAN>

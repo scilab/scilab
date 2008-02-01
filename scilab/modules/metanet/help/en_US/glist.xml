@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>glist</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="glist"> graph list creation</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="glist">Scilab-4.x graph list creation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g = glist(a1, ... ,a34)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
+    <SP> This is an obsolete function, replaced by <LINK>make_graph</LINK> </SP>
     <P><VERB>glist(a1,....a34)</VERB> is a shortcut to  to </P>
     <VERBATIM>
        tlist(['graph','name','directed','node_number','tail','head',..
@@ -30,9 +31,6 @@
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>check_graph</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>graph-list</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>make_graph</LINK>

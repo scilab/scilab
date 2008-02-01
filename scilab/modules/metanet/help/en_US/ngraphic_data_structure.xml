@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ngraphic_data_structure</TITLE>
+  <TYPE>Scilab type</TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="ngraphic_data_structure">data structure representing the graphic properties used for nodes graphical display</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <SP> A  data structure  represented by a Scilab <VERB>mlist</VERB> with type  <VERB>ngraphic</VERB>
+    and 10 fields:</SP>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>display</VERB> a string. Gives the information that
+	is displayed with the nodes. The possible values are
+	<VERB>'nothing'</VERB>, <VERB>'number'</VERB>,
+	<VERB>'name'</VERB> or any node data field name as given by
+	the <VERB>nodedatafields</VERB> function. Of course if
+	<VERB>display</VERB> is set to <VERB>'nothing'</VERB> no
+	information is displayed.</SP>
+      </DESCRIPTION_ITEM>	  
+      <DESCRIPTION_ITEM>
+	<SP><VERB>defaults</VERB> A Scilab tlist data structure of
+	type <VERB>nodedefs</VERB>. Contains the default values for
+	<VERB>'type'</VERB>, <VERB>'diam'</VERB>,<VERB>'border'</VERB>,
+	<VERB>'font'</VERB>, <VERB>'colors'</VERB>
+	properties.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>name</VERB> A row vector of strings. The name associated with each node.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>x</VERB> A row vector which gives the abscissae of each node.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>y</VERB> A row vector which gives the ordinate of each node.</SP>
+      </DESCRIPTION_ITEM>
+ 
+      <DESCRIPTION_ITEM>
+	<SP><VERB>type</VERB> A row vector with integer values 
+	which stores the type index for each node. A zero value stands for the default value.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>diam</VERB> A row vector
+	which stores the diameter of each node. A zero value stands for the default value.</SP>
+      </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM>
+	<SP><VERB>border</VERB>a row vector. The thickness of the
+	polyline used to draw the border of each node.  A zero value stands for the default value.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>colors</VERB>a matrix with to rows. The first row
+	contains the color index of the node border, the second row
+	contains the index of the node's background color. A zero
+	value of either color index stands for the corresponding default value.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>font</VERB>a matrix with 3
+	rows: <VERB>font(1,i)</VERB> is the font size,
+	<VERB>font(2,i)</VERB> is the font
+	style,<VERB>font(2,i)</VERB> is the font color used to draw
+	information on the i th node.A zero
+	value of either entry stands for the corresponding default value.</SP>
+      </DESCRIPTION_ITEM>
+  
+    </DESCRIPTION_INDENT>
+  
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//create a simple graph
+ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13 4];
+he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10 4];
+g=make_graph('simple',1,13,ta,he);
+g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159];
+g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107];
+show_graph(g,'new')
+
+g.nodes.graphics.defaults.border=2;
+g.nodes.graphics.defaults.diam=22;
+g.nodes.graphics.defaults.colors=[color('red');color('blue')];
+show_graph(g)
+
+g.nodes.graphics.border(1:5)=1;
+g.nodes.graphics.diam(6)=40;
+g.nodes.graphics.type(11)=1;
+
+show_graph(g)
+
+g.nodes.graphics.display='number';
+show_graph(g)
+
+g.nodes.graphics
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>graph_data_structure</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

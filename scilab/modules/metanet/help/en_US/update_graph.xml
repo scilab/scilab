@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>update_graph</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="update_graph"> converts an old graph data structure to the current one.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Gnew = update_graph(G)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>G</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : Scilab-4.x graph data structure.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Gnew</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : new graph data structure (see  <LINK>graph_data_structure</LINK>).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+   <SP>Converts a Scilab-4.x graph data structure to the new one.</SP>
+   <P> In the future this function will be used to adapt graph data structures according to their versions.</P>
+  </DESCRIPTION>
+
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>graph_data_structure</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graph-list</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+ 
+</MAN>

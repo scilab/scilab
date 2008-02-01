@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>edit_graph_menus</TITLE>
@@ -11,13 +11,13 @@
   The edit_graph editor  supports the following menus: 
   </P>
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Graph/New: ">
+      <DESCRIPTION_ITEM label="File/New: ">
         <SP>This menu erases the currently edited network.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Zoom: ">
+      <DESCRIPTION_ITEM label="View/Zoom: ">
         <SP>This menu allows to set the scale factor for the display</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Replot: ">
+      <DESCRIPTION_ITEM label="View/Replot: ">
         <SP>This menu erases and re-displays the network.</SP>
         <P>
     This edition mode  can also be entered pressing the
@@ -25,29 +25,32 @@
     edition window. 
     </P>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Find Node: ">
+      <DESCRIPTION_ITEM label="View/Find Node: ">
         <SP>This menu asks for a node number or a node name. If this node
     exists the view is modified such as the node appears in the middle
     of the graphic window.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Find Arc: ">
+      <DESCRIPTION_ITEM label="View/Find Arc: ">
         <SP>This menu asks for an arc number or aa arc name. If this arc
     exists the view is modified such as the arc appears in the middle
     of the graphic window.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/SaveAs: ">
+      <DESCRIPTION_ITEM label="File/SaveAs: ">
         <SP>This menu  allows to save the graph under a specified name</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Save: ">
+      <DESCRIPTION_ITEM label="File/Save: ">
         <SP>This menu  allows to save the graph under its current name</SP>
         <P>
     This edition mode  can also be entered pressing the &quot;<VERB>s</VERB>&quot; key while locator is in the
     edition window. </P>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Load: ">
+      <DESCRIPTION_ITEM label="File/Load: ">
         <SP>This menu  allows to load a &quot;graph&quot; file.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Options: ">
+      <DESCRIPTION_ITEM label="File/Export: ">
+        <SP>This menu  allows to export the view of the graph in a regular graphic window.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="View/Options: ">
         <SP>This menu  allows to set global graph properties
     This edition mode  can also be entered pressing the &quot;<VERB>o</VERB>&quot; key while locator is in the
     edition window.</SP>
@@ -57,11 +60,17 @@
     default values for node diameter, node
     border width, edge width, and font size.</SP>
       </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Graph/Add Node Data Field: ">
+        <SP>This menu  allows to add a new data field in the nodes data structure.</SP>
+      </DESCRIPTION_ITEM>
+       <DESCRIPTION_ITEM label="Graph/Add Edge Data Field: ">
+        <SP>This menu  allows to add a new data field in the edges data structure.</SP>
+      </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="Information: ">
         <SP>This menu  outputs  graph informations, like number of nodes,
     number of arcs, nodes properties ans arc properties.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Quit: ">
+      <DESCRIPTION_ITEM label="File/Quit: ">
         <SP>Use this menu to exit out of the editor.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="Edit/NewNode: ">
@@ -185,7 +194,7 @@
     </DESCRIPTION_INDENT>
     <P>
     Note that Under windows, the shortcuts are taken into accound only if
-    the edition  have  the focus.</P>
+    the edition window have  the focus.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

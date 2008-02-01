@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>bandwr</TITLE>
@@ -100,38 +100,44 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
+//Build the initial graph
 ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
 he=[1 10 2 5 7 3 2 4 5 8 6 9 7 7 11 13 15 12 13  9 14 11 16 1 17 14 15];
 g=make_graph('foo',0,17,ta,he);
-g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
-g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
-// THE GRAPH
+g.nodes.graphics.x=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+//Initial Display
+g.nodes.graphics.name=string(1:17);
+g.nodes.graphics.display='name';
 show_graph(g);
+
 a=graph_2_mat(g,'node-node');
 ww=tril(a)'+eye();
 ww1=full(ww);
-xset('window',1)
+scf(1);
 hist3d((ww1+tril(ww1',-1)+tril(ww1,-1)'),52,85); 
 // BANDWIDTH REDUCTION FOR THE MATRIX
 [iperm,mrepi,prof,ierr]=bandwr(ww);
-max(prof(2:$)-prof(1:($-1)))
+disp(max(prof(2:$)-prof(1:($-1))));
+
 // GRAPH WITH THE NEW NUMBERING
-g2=g;g2('node_name')=string(iperm);
+g2=g;
+g2.nodes.graphics.name=string(iperm);
 show_graph(g2,'new')
 // NEW MATRIX
-n=g('node_number');
+n=g.nodes.number;
 yy=ww1(mrepi,mrepi);
-xset('window',3)
+scf(3)
 hist3d((yy+tril(yy',-1)+tril(yy,-1)'),52,85); 
 // STARTING WITH THE SAME MATRIX
 [ij,v,mn]=spget(ww);
 g1=make_graph('foo',0,n,ij(:,1)',ij(:,2)');
-g1('node_x')=g('node_x');g1('node_y')=g('node_y');
+g1.nodes.graphics.x=g.nodes.graphics.x;g1.nodes.graphics.y=g.nodes.graphics.y;
 // GRAPH
 //show_graph(g1,'rep');
-[lp,la,ls] = adj_lists(1,n,g1('tail'),g1('head'));
+[lp,la,ls] = adj_lists(1,n,g1.edges.tail,g1.edges.head);
 [iperm,mrepi,prof,ierr]=bandwr(lp,ls,n,0);
-g2=g;g2('node_name')=string(iperm);
+g2=g;g2.nodes.graphics.name=string(iperm);
 show_graph(g2,'new');
  ]]>
   </EXAMPLE>

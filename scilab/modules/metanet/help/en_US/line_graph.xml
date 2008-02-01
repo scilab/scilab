@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>line_graph</TITLE>
@@ -14,13 +14,13 @@
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list of the old graph</SP>
+          <SP>:  a  <LINK>graph_data_structure</LINK>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list of the new graph</SP>
+          <SP>: graph data structure of the new graph</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -41,11 +41,15 @@
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
 he=[2 6 3 6 7 8 8 8 4 7 3 5];
 g=make_graph('foo',0,8,ta,he);
-g('node_x')=[281  284  360  185  405  182  118  45];
-g('node_y')=[262  179  130  154  368  248  64  309];
+g.nodes.graphics.x=[281  284  360  185  405  182  118  45];
+g.nodes.graphics.y=[262  179  130  154  368  248  64  309];
 show_graph(g);
-g1=line_graph(g);
-show_graph(g1,'new');
+g1=line_graph(g);show_graph(g,'new');
+
+g1.nodes.graphics.colors(2,:)=color('red')
+g1.edges.graphics.foreground(:)=color('red')
+
+show_graph(graph_union(g,g1,%f),'new')
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

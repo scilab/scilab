@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>plot_graph</TITLE>
   <TYPE>Scilab function</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="plot_graph"> general plot of a graph</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="plot_graph"> general plot of a graph (obsolete)</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>plot_graph(g,[rep,rep1])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list</SP>
+          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -32,6 +32,8 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
+    <P> This function is osolete, use show_graph instead</P>
+
     <P><VERB>plot_graph</VERB> plots graph <VERB>g</VERB> in a Scilab graphical window.
     The optional arguments <VERB>rep</VERB> and <VERB>rep1</VERB> define the parameters
     of the plot. If there are not given, a dialog box for the definition
@@ -77,21 +79,23 @@
 ta=[2 2 1 1 2 4 3 3 4];
 he=[2 2 3 2 3 2 1 2 1];
 g=make_graph('foo',1,4,ta,he);
-g('node_type')=[1 1 1 2];g('node_name')=string([1:4]);
-g('node_x')=[73 737 381 391]; g('node_y')=[283 337 458 142];
-g('node_color')=[3 3 3 11];
-g('node_diam')=[30 30 30 60];
-g('edge_color')=[10 0 2 6 11 11 0 0 11];
+g.nodes.graphics.type=[1 1 1 2];
+g.nodes.graphics.name=string([1:4]);
+g.nodes.graphics.x=[73 737 381 391]; 
+g.nodes.graphics.y=[283 337 458 142];
+g.nodes.graphics.colors(1,:)=[3 3 3 11];
+g.nodes.graphics.diam=[30 30 30 60];
+g.edges.graphics.foreground=[10 0 2 6 11 11 0 0 11];
 rep=[2 2 1 1 2 2 2 2 2 2 2 2 2];
-rep1=[100 -400 650 300];
-xbasc(); plot_graph(g,rep,rep1);
+rep1=[0 0 850 500];
+clf(); plot_graph(g,rep,rep1);
+
 rep=[2 1 1 1 2 2 2 2 2 2 2 2 2];
-x_message('plot the graph with different parameters');
-xbasc(); plot_graph(g,rep,rep1);
+clf(); plot_graph(g,rep,rep1);
 // plotting using dialogs
-xbasc(); plot_graph(g);
+clf(); plot_graph(g);
 xset("thickness",4);
-xbasc();
+clf();
 plot_graph(g);
  ]]>
   </EXAMPLE>

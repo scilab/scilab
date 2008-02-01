@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>chain_struct</TITLE>
@@ -15,43 +15,54 @@
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list</SP>
+          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>lp</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: row vector, pointer array of the adjacency lists description of the graph  (its size is the number of nodes of the graph + 1)</SP>
+          <SP>: row vector, pointer array of the adjacency lists
+          description of the graph (its size is the number of nodes of
+          the graph + 1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>la</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: row vector, arc array of the adjacency lists description of the graph  (its size is the number of edges of the graph)</SP>
+          <SP>: row vector, arc array of the adjacency lists
+          description of the graph (its size is the number of edges of
+          the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>ls</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: row vector, node array of the adjacency lists description of the graph  (its size is the number of edges of the graph)</SP>
+          <SP>: row vector, node array of the adjacency lists
+          description of the graph (its size is the number of edges of
+          the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>fe</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: row vector of the numbers of the first edges starting from nodes (its size is the number of nodes of the graph)</SP>
+          <SP>: row vector of the numbers of the first edges starting
+          from nodes (its size is the number of nodes of the
+          graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>che</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: row vector of the numbers of the chained edges  (its size is the number of edges of the graph)</SP>
+          <SP>: row vector of the numbers of the chained edges (its
+          size is the number of edges of the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>fn</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: row vector of the numbers of the first nodes reached by the edges of  <VERB>fe</VERB> (its size is the number of nodes of the graph)</SP>
+          <SP>: row vector of the numbers of the first nodes reached
+          by the edges of <VERB>fe</VERB> (its size is the number of
+          nodes of the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -71,7 +82,7 @@
     <P>
     The vectors <VERB>fe</VERB>, <VERB>che</VERB>, <VERB>fn</VERB> and <VERB>chn</VERB> describe the
     chained structure in the following way:</P>
-    <P><VERB>fe(i))</VERB> is the number of the first edge starting from node i</P>
+    <P><VERB>fe(i)</VERB> is the number of the first edge starting from node i</P>
     <P><VERB>che(fe(i))</VERB> is the number of the second edge starting from
     node i, <VERB>che(che(fe(i)))</VERB> is the number of the third edge starting from
     node i and so on until the value is 0</P>
@@ -83,10 +94,17 @@
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
 he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
 g=make_graph('foo',1,8,ta,he);
-g('node_x')=[116 231 192 323 354 454 305 155];
-g('node_y')=[118 116 212 219 117 185 334 316];
+g.nodes.graphics.x=[116 231 192 323 354 454 305 155];
+g.nodes.graphics.y=[118 116 212 219 117 185 334 316];
 show_graph(g);
 [fe,che,fn,chn] = chain_struct(g)
+for i=1:node_number(g)
+  hilite_nodes(i); xpause(1d6)
+  cur=fe(i);while cur<>0;hilite_edges(cur);cur=che(cur);xpause(5d5);end
+
+  unhilite_nodes(i);
+  cur=fe(i);while cur<>0;unhilite_edges(cur);cur=che(cur);end
+end
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

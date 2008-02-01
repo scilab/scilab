@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>max_flow</TITLE>
@@ -26,7 +26,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list</SP>
+          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -56,39 +56,51 @@
     integer numbers. The graph must be directed. If the problem is not 
     feasible, <VERB>flag</VERB> is equal to 0, otherwise it is equal to 1.</P>
     <P>
-    The bounds of the flow are given by the elements <VERB>edge_min_cap</VERB> and
-    <VERB>edge_max_cap</VERB> of the graph list. 
-    The value of the maximum capacity must be greater than or equal to the 
-    value of the minimum capacity.
-    If the value of <VERB>edge_min_cap</VERB> or <VERB>edge_max_cap</VERB> is not given (empty
-    row vector <VERB>[]</VERB>), it is assumed to be equal to 0 on each edge.</P>
+    The bounds of the flow are given by the
+    <VERB>min_cap</VERB> and <VERB>max_cap</VERB> fields of the
+    <LINK>edges_data_structure</LINK>.  The value of the maximum
+    capacity must be greater than or equal to the value of the minimum
+    capacity.  If the value of <VERB>min_cap</VERB> or
+    <VERB>max_cap</VERB> is not given, they are assumed to be equal to
+    0 on each edge.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
-ta=[ta, 15 8 9 10 11 12 13 14];
-he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4];
-he=[he, 5 6 7 16 16 16 16 16 16 16];
-n=16;
-g=make_graph('foo',1,n,ta,he);
-g('node_x')=[42 615 231 505 145 312 403 233 506 34 400 312 142 614 260 257];
-g('node_y')=[143 145 154 154 147 152 157 270 273 279 269 273 273 274 50 376];
+ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15 15 8 9 10 11 12 13 14];
+he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4 5 6 7 16 16 16 16 16 16 16];
+g=make_graph('foo',1,16,ta,he);
+g.nodes.graphics.x=[53,430,202,374,116,250,325,176,373,34,330,233,114,429,208,206];
+g.nodes.graphics.y=[86,114,115,129,118,122,133,222,222,221,214,219,218,246,40,301];
 ma=edge_number(g);
-g('edge_max_cap')=ones(1,ma);
-g('edge_min_cap')=zeros(1,ma);
-source=15; sink=16;
-nodetype=0*ones(1,n); nodetype(source)=2; nodetype(sink)=1;
-g('node_type')=nodetype;
-nodecolor=0*ones(1,n); nodecolor(source)=11; nodecolor(sink)=11;
-g('node_color')=nodecolor;
+g=add_edge_data(g,'max_cap',[2,4,3,3,3,2,3,3,5,2,3,1,2,1,4,1,2,2,2,2,4,1,5,3,2,1,5,4,3,4,2]);
+g=add_edge_data(g,'min_cap',ones(1,ma))
+source=15;g.nodes.graphics.type(source)=2; //source node
+sink=16;g.nodes.graphics.type(sink)=1; //sink node
 show_graph(g);
+
 [v,phi,ierr]=max_flow(source,sink,g);
-ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
-g('edge_color')=edgecolor;
-edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
-g('edge_font_size')=edgefontsize;
-g('edge_label')=string(phi);
+g.edges.graphics.foreground(ii)=11;
+g=add_edge_data(g,'flow',phi)
+g.edges.graphics.display='flow';
 show_graph(g);
  ]]>
   </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>min_lcost_flow1</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>min_lcost_flow2</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>min_qcost_flow</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>edges_data_structure</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>add_edge_data</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
 </MAN>

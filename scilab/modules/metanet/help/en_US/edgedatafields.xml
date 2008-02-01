@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>edgedatafields</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="edgedatafields"> returns the vector of edge data fields names</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>F = edgedatafields(g)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>g</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a graph data structure (see <LINK>graph_data_structure</LINK> )
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>F</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a row vector of strings. Each element is a field name of the edges data data structure.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+  <SP>It is possible to associate data to the edges of a graph. This
+  can be done with the <LINK>add_edge_data</LINK> function. the
+  <VERB>edgedatafields</VERB> function allows to retreive the field
+  names of these data. A given  edge data can be referenced by its field name
+  <VERB>g.edges.data(field_name)</VERB>.</SP>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+//create a simple graph
+ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
+he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
+g=make_graph('simple',1,13,ta,he);
+g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159];
+g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107];
+show_graph(g,'new')
+
+
+g=add_edge_data(g,'length',round(10*rand(1,14,'u')));
+g=add_edge_data(g,'label','e'+string(1:14));
+edgedatafields(g)
+g.edges.data.label
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>graph_data_structure</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>add_edge_data</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+
+ 
+</MAN>

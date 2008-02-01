@@ -1,48 +1,70 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>load_graph</TITLE>
   <TYPE>Scilab function</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="load_graph"> loads a graph</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="load_graph"> loads a graph from a file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g = load_graph(name)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[g,modified,mgs] = load_graph(name)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>name</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: string, the path of the graph to load</SP>
+          <SP>: string, the path of the file to load</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list</SP>
+          <SP>:  a  <LINK>graph_data_structure</LINK>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM> <PARAM_ITEM>
+        <PARAM_NAME>modified</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean, if true it indicates that the  graph list has been updated to the current version</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>msg</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. if this argument is required the
+          <VERB>load_graph</VERB> function returns on errors instead
+          of calling the error manager. In such a case msg contains
+          the error message. If no error occurs <VERB>msg</VERB> is an
+          empty matrix.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>name</VERB> is the name of a graph file which contains the ASCII 
-    description of a graph. Such a file must have the <VERB>&quot;graph&quot;</VERB> extension.
-    <VERB>name</VERB> can be the name or the pathname of the file; if the 
-    <VERB>&quot;graph&quot;</VERB> extension is missing in <VERB>name</VERB>, it is assumed.
-    <VERB>load_graph</VERB> returns the corresponding graph list.</P>
+    <SP> <VERB>load_graph</VERB> loads a graph from a file. This file
+    may be either an ascii file (scilab4.x versions) or a binary file
+    compatible with the <VERB>load</VERB> and <VERB>save</VERB> functions.</SP>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-g=load_graph(SCI+'/demos/metanet/mesh100.graph');
+g=load_graph(metanet_module_path()+'/demos/mesh100.graph');
 show_graph(g);
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(metanet_module_path()+'/demos/colored.graph');
 show_graph(g,'new');
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>save_graph</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>graph_data_structure</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>load</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

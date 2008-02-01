@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>max_cap_path</TITLE>
@@ -20,7 +20,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list</SP>
+          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -42,8 +42,8 @@
     <VERB>i</VERB> to node <VERB>j</VERB> for the graph <VERB>g</VERB> if it exists and returns 
     the empty vector <VERB>[]</VERB> otherwise.</P>
     <P>
-    The capacities of the edges are given by the element <VERB>edge_max_cap</VERB>
-    of the graph list. If its value is not given (empty vector <VERB>[]</VERB>), 
+    The capacities of the edges are given by the field <VERB>max_cap</VERB>
+    of the edges sub field of the graph data structure. If its value is not given (empty vector <VERB>[]</VERB>), 
     <VERB>max_cap_path</VERB> returns the empty vector <VERB>[]</VERB>.
     The capacities must be strictly positive, i.e negative capacities
     are considered as equal to 0 (no capacity at all).</P>
@@ -53,16 +53,16 @@
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
-g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
-g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+g.nodes.graphics.x=[142,82,32,29,82,82,137,136,170,192,252,257,220,312,316,379,321]*1.2;
+g.nodes.graphics.y=[30,67,112,159,114,160,111,162,216,71,105,160,214,222,94,76,151]*1.2;
+g = add_edge_data(g,'max_cap',int(rand(1,edge_number(g))*16)+5)
+g.edges.graphics.display='max_cap';
+g.nodes.graphics.display='number';
 show_graph(g);
-ma=edge_number(g);
-g('edge_max_cap')=int(rand(1,ma)*16)+5;
+
+hilite_nodes([1 14])
 [p,cap]=max_cap_path(1,14,g);
-edgecolor=1*ones(1,ma); edgecolor(p)=11*ones(p); g('edge_color')=edgecolor;
-x_message(['The maximum capacity is: '+string(cap);
-           'Showing the corresponding path']);
-show_graph(g); show_arcs(p);
+hilite_edges(p);
  ]]>
   </EXAMPLE>
 </MAN>

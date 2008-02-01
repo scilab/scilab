@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>circuit</TITLE>
@@ -14,7 +14,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: graph list</SP>
+          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -32,11 +32,17 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>circuit</VERB> tries to find a circuit for the directed graph <VERB>g</VERB>.
-    It returns the circuit <VERB>p</VERB> as a row vector of the
-    corresponding arc numbers if it exists and it returns the empty vector <VERB>[]</VERB>
-    otherwise.
-    If the graph has no circuit, the rank function is returned in <VERB>r</VERB>, 
+    <SP>A cycle of a graph <VERB>g</VERB>, also called a
+    circuit, is a subset of the edges  of <VERB>g</VERB> that forms
+    a path such that the first node of the path corresponds to the
+    last.</SP> 
+    <P><VERB>circuit</VERB> tries to find surch a circuit
+    for the directed graph <VERB>g</VERB>.  It returns the circuit
+    <VERB>p</VERB> as a row vector of the corresponding arc numbers if
+    it exists and it returns the empty vector <VERB>[]</VERB>
+    otherwise.</P>
+    
+    <P>If the graph has no circuit, the rank function is returned in <VERB>r</VERB>, 
     otherwise its value is the empty vector <VERB>[]</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
@@ -45,14 +51,28 @@
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
 he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
 g=make_graph('foo',1,8,ta,he);
-g('node_x')=[116 231 192 323 354 454 305 155];
-g('node_y')=[ 118 116 212 219 117 185 334 316];
+g.nodes.graphics.x=[116 231 192 323 354 454 305 155];
+g.nodes.graphics.y=[ 118 116 212 219 117 185 334 316];
+g.nodes.graphics.display='number';
+g.edges.graphics.display='number';
+
 show_graph(g);
 p=circuit(g)
-show_arcs(p)
+hilite_edges(p)
+
+
 // graph without circuit
-g=make_graph('foo',1,4,[1 2 2 3],[2 3 4 4]);
+g1=make_graph('foo',1,4,[1 2 2 3],[2 3 4 4]);
+g1.nodes.graphics.x=[116 231 192 323];
+g1.nodes.graphics.y=[ 118 116 212 219];
+g1.nodes.graphics.display='number';
+g1.edges.graphics.display='number';
+
+show_graph(g1,'new');
 [p,r]=circuit(g)
  ]]>
   </EXAMPLE>
+<BIBLIO>
+<P>Stanley, R. P. Enumerative Combinatorics, Vol. 1. Cambridge, England: Cambridge University Press, 1999.</P>
+</BIBLIO>
 </MAN>

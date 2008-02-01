@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>knapsack</TITLE>
@@ -50,42 +50,54 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>knapsack</VERB> solve a 0-1 multiple knapsack problem with  n (n &gt;= 2)
-    items and  m  knapsacks (m &gt;= 1).
-    <VERB>profit</VERB> is the vector of the (integer) profits of the n items and
-    <VERB>weight</VERB> is the vector of the corresponding (integer) weights.
-    <VERB>capa</VERB> is the vector of the (integer) capacities of the m 
-    knapsacks. 
-    <VERB>bck</VERB> is an optional integer: the maximum number of backtrackings to be 
-    performed, if heuristic solution is required. If the exact solution is 
-    required <VERB>bck</VERB> can be omitted or can have a negative value.
-    <VERB>earn</VERB> is the value of the criterium for the &quot;optimal&quot; solution and 
-    <VERB>ind</VERB> is a vector giving the optimal location:  <VERB>ind(i)</VERB> gives the 
-    number of the knapsack where item i is inserted and this value is 0 if the
-    item i is not in the optimal solution.</P>
-    <P>
-    We recall that the problem to be solved is the following:
-    <VERB>p(i)</VERB> and <VERB>w</VERB> denote respectively the profit and the weight of the 
-    item <VERB>i</VERB> 1=1,...,n; 
-    <VERB>c(j)</VERB> denotes the capacity of the knapsack <VERB>j</VERB> j=1,...,m;  
-    <VERB>q(j,i)</VERB> denotes the quantity of item <VERB>i</VERB> in knapsack <VERB>j</VERB> (in fact 
-    0 or 1).</P>
-    <P>
-    We want to maximize the global profit <VERB>E</VERB>:
-     <VERB>E=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]</VERB></P>
-    <P>
-    under the constraints:
-     <VERB>[w(1)*x(j,1)+...+w(n)*x(j,m)] &lt;= c(j) ; j=1,...,m</VERB>
-     <VERB>[x(1,i)+...+x(m,i)] &lt;= 1 ; i=1,...,n</VERB>
-     <VERB>x(j,i)= 0 or 1</VERB>
-     <VERB>p(),w(),c()</VERB> are positive integers.</P>
+    <SP>The 0-1 multiple knapsack problem with  n (n &gt;= 2)
+    items and  m  knapsacks (m &gt;= 1) is defined as follow:</SP>
+    <P>Maximize the global profit  <VERB>E=profit*sum(X,1)</VERB> under the constraints:</P>
+    <P><VERB>X*weight &lt;= capa</VERB></P>
+    <P><VERB>sum(X,1) &lt;= 1 ; i=1,...,n</VERB></P>
+    <P><VERB>X(j,i)= 0 or 1</VERB></P>
+    <P> Where</P>
+    <P><VERB>profit</VERB> is the vector of the profits of the n items. The entries must be positive integers.</P>
+    <P><VERB>weight</VERB> is the vector of the corresponding weights. The entries must be positive integers</P>
+    <P><VERB>capa</VERB> is the vector of the (integer) capacities of the m knapsacks.The entries must be positive integers </P> 
+    <P><VERB>X</VERB> is a <VERB>m</VERB> by <VERB>n</VERB> matrix.</P>
+    <P> </P>
+    <P><VERB>[earn,ind] = knapsack(profit,weight,capa)</VERB> solves
+    the problem. It returns in<VERB>earn</VERB> the value of the
+    criterium <VERB>E</VERB> for the &quot;optimal&quot; solution. It
+    also return in the vector <VERB>ind</VERB> the optimal locations:
+    <VERB>ind(i)</VERB> gives the number of the knapsack where item i
+    is inserted and this value is 0 if the item i is not in the
+    optimal solution. The matrix <VERB>X</VERB> can be derived from
+    <VERB>ind</VERB> by  </P>
+    <VERBATIM>
+      items=1:n;
+      items(ind==0)==[];
+      ind(ind==0)=[];
+      X=sparse([ind;items]',ones(n,1),[m,n])
+    </VERBATIM>
+    <P></P>
+    <P><VERB>bck</VERB> is an optional integer: the maximum number of
+    backtrackings to be performed, if heuristic solution is
+    required. If the exact solution is required <VERB>bck</VERB> can
+    be omitted or can have a negative value.</P> 
+ 
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 weight=ones(1,15).*.[1:4];
 profit=ones(1,60);
-capa=[15 45 30 60];
+capa=[15 40 30 60];
 [earn,ind]=knapsack(profit,weight,capa)
+
+items=1:60;
+items(ind==0)=[];
+ind(ind==0)=[];
+X=full(sparse([ind;items]',ones(ind),[4,60])) //one row per sacks
+X*weight' //sack weights
+x=sum(X,1);
+and(x<=1) //contraints check
+profit*x'==earn
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
@@ -93,4 +105,9 @@ capa=[15 45 30 60];
       <LINK>qassign</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<BIBLIO>
+<P>Coppersmith, D. "Knapsack Used in Factoring." §4.6 in Open Problems in Communication and Computation (Ed. T. M. Cover and B. Gopinath). New York: Springer-Verlag, pp. 117-119, 1987.</P>
+<P>Honsberger, R. Mathematical Gems III. Washington, DC: Math. Assoc. Amer., pp. 163-166, 1985.</P>
+</BIBLIO>
+
 </MAN>

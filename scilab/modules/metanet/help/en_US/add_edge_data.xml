@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>add_edge_data</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="add_edge_data">associates new data fields to the edges data structure of a graph </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g = add_edge_data(g,name [,value])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>g</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a graph data structure (see <LINK>graph_data_structure</LINK> )
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>name</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a character string, the name of the data field.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>value</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a row vector or a matrix with column size equal to the number of edges. This parameter is optional. If it is omitted the data field is set to <VERB>[]</VERB>.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <SP><VERB>g = add_edge_data(g,name [,value])</VERB> associates the
+     data fields named <VERB>name</VERB> to the edges data structure
+     of the graph <VERB>g</VERB> and assign it the value given by the
+     parameter <VERB>value</VERB>. If the last argument is not given
+     the empty matrix <VERB>[]</VERB> is assigned.</SP>
+     <P> <VERB>value</VERB> can be a matrix of any type. The
+     <VERB>i</VERB>th column is associated with the<VERB>i</VERB>th
+     edge. </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+//create a simple graph
+ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
+he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
+g=make_graph('simple',1,13,ta,he);
+g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159];
+g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107];
+show_graph(g,'new')
+
+
+g=add_edge_data(g,'length',round(10*rand(1,14,'u')));
+g=add_edge_data(g,'label','e'+string(1:14));
+edgedatafields(g)
+g.edges.data.label
+
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>edgedatafield</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>edges_data_structure</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  
+</MAN>

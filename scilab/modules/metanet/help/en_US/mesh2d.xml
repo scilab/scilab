@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mesh2d</TITLE>
@@ -95,9 +95,9 @@ ast=tril(as+abs(as'-as));
 [jj,v,mn]=spget(ast);
 n=size(x,2);
 g=make_graph('foo',0,n,jj(:,1)',jj(:,2)');
-g('node_x')=300*x;
-g('node_y')=300*y;
-g('default_node_diam')=10;
+g.nodes.graphics.x=300*x;
+g.nodes.graphics.y=300*y;
+g.nodes.graphics.defaults.diam=10;
 show_graph(g)
 // SECOND CASE !!! NEEDS x,y FROM FIRST CASE
 x3=2.*rand(1:200);
@@ -124,9 +124,9 @@ ast=tril(as+abs(as'-as));
 [jj,v,mn]=spget(ast);
 n=size(xnew,2);
 g=make_graph('foo',0,n,jj(:,1)',jj(:,2)');
-g('node_x')=300*xnew;
-g('node_y')=300*ynew;
-g('default_node_diam')=10;
+g.nodes.graphics.x=300*xnew;
+g.nodes.graphics.y=300*ynew;
+g.nodes.graphics.defaults.diam=10;
 show_graph(g)
 // REGULAR CASE !!! NEEDS PREVIOUS CASES FOR x,y,front
 xx=0.1*[1:20];
@@ -151,9 +151,9 @@ ast=tril(as+abs(as'-as));
 [jj,v,mn]=spget(ast);
 n=size(xnew,2);
 g=make_graph('foo',0,n,jj(:,1)',jj(:,2)');
-g('node_x')=300*xnew;
-g('node_y')=300*ynew;
-g('default_node_diam')=3;
+g.nodes.graphics.x=300*xnew;
+g.nodes.graphics.y=300*ynew;
+g.nodes.graphics.defaults.diam=3;
 show_graph(g)
 
 //An example with a random set of points

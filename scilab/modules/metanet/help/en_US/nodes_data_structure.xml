@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>nodes_data_structure</TITLE>
+  <TYPE>Scilab type</TYPE>
+  <DATE>$LastChangedDate$</DATE>
+  <SHORT_DESCRIPTION name="nodes_data_structure"> description of the data structure representing the nodes of a graph </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <SP> A  nodes data structure is represented by a Scilab <VERB>mlist</VERB> with type  <VERB>nodes</VERB>
+    and 3 fields:</SP>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>number</VERB> the number of nodes.</SP>
+      </DESCRIPTION_ITEM>	  
+      <DESCRIPTION_ITEM>
+	<SP><VERB>graphics</VERB>> A Scilab <VERB>mlist</VERB>  data structure of type <VERB>ngraphic</VERB> 
+	which stores the information relative to nodes display (see  <LINK>ngraphic_data_structure</LINK></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP><VERB>data</VERB> A Scilab  <VERB>mlist</VERB>  data structure of type
+	<VERB>nodedata</VERB>.  which stores the data associated with
+	nodes.  By defaut this data structure is empty. User can add
+	its own fields using the <VERB>add_node_data</VERB>
+	function..</SP>
+	<P> For a given field the associated data should be a
+	row vector or a matrix. In the matrix case a column is
+	associated to a node.</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//create a simple graph
+ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
+he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
+g=make_graph('simple',1,13,ta,he);
+g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159];
+g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107];
+show_graph(g,'new')
+
+GraphList.nodes.number
+GraphList.nodes
+
+g=add_node_data(GraphList,'Size',rand(1,GraphList.nodes.number,'u'));    
+g.nodes(1:10)
+
+nodedatafields(g)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>graph_data_structure</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>add_node</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>delete_nodes</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>nodedatafields</LINK>
+    </SEE_ALSO_ITEM>
+ 
+    <SEE_ALSO_ITEM>
+      <LINK>add_node_data</LINK>
+    </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+</MAN>
