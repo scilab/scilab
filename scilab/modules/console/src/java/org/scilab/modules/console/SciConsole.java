@@ -8,17 +8,14 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
-import javax.swing.SwingUtilities;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.xml.sax.SAXException;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -201,13 +198,19 @@ public abstract class SciConsole extends JPanel {
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
-		SwingUtilities.invokeLater(new Runnable() {
+		/*
+		 SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				jSP.getViewport().setViewPosition(new Point(0,
 						sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
 				jSP.revalidate();
 			}
 		});
+		*/
+    	//jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
+    	jSP.invalidate();
+    	jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
+		jSP.revalidate();
     }
 
     /**
@@ -335,9 +338,9 @@ public abstract class SciConsole extends JPanel {
 		while (nbStatements < linesToExec.length) {
 
 			// Send data to the console only if the prompt is visible
-			boolean bufferAvailable = ((SciPromptView) config.getPromptView()).isVisible();
+			//boolean bufferAvailable = ((SciPromptView) config.getPromptView()).isVisible();
 
-			if (bufferAvailable) {
+			//if (bufferAvailable) {
 				// This loop contains code very similar to the code of ValidationAction.java
 				InputParsingManager inputParsingManager = config.getInputParsingManager();
 				OutputView outputView = config.getOutputView();
@@ -348,7 +351,7 @@ public abstract class SciConsole extends JPanel {
 				promptView.updatePrompt();
 
 				// Reset history settings
-				config.getHistoryManager().setInHistory(false);
+				//config.getHistoryManager().setInHistory(false);
 
 				// Hide the prompt and command line
 				config.getInputCommandView().setEditable(false);
@@ -385,7 +388,7 @@ public abstract class SciConsole extends JPanel {
 				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 				nbStatements++;
-			}
+			//}
 		}
 
 	}
@@ -431,26 +434,18 @@ public abstract class SciConsole extends JPanel {
 	 */
 	public String readLine() {
 
-		workDone = true;
-
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 
-		// Force the prompt to be displayed
-		if (!((SciOutputView) this.getConfiguration().getOutputView()).getThread().isAlive()) {
-			((SciOutputView) this.getConfiguration().getOutputView()).getThread().run();
-		}
-
-		workDone = false;
+		displayPrompt();
+		
 		// Reads the buffer
-		String cmd = ((SciInputCommandView) inputCmdView).getCmdBuffer();
-
-		return cmd;
+		return ((SciInputCommandView) inputCmdView).getCmdBuffer();
 	}
 
 	/**
 	 * This method is used to display the prompt
 	 */
-	public abstract void waitForInput();
+	public abstract void displayPrompt();
 
 	/**
 	 * Does Scilab have finished its work ?
