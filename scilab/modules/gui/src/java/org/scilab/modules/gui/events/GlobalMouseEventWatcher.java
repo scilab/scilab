@@ -88,8 +88,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 			case MouseEvent.MOUSE_CLICKED :
 				if (lastMouse.getClickCount() == 1) {
 					setAction(CLICKED);
-				}
-				else {
+				} else {
 					/*
 					 * Means mouseEvent.getClickCount() >= 2
 					 */ 
@@ -128,14 +127,13 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 			default:
 				break;
 			}
-		}
+		} else {
 		/*
 		 * Manage RELEASED on a Canvas
 		 * Means we are still in a Canvas (ENTERED && !EXITED)
 		 * and the event is not comming from a Canvas itself.
 		 * and got a RELEASED
 		 */
-		else {
 			if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas) {
 				this.action = RELEASED;
 				mouseEventFilter(lastMouse, canvas, this.action);	

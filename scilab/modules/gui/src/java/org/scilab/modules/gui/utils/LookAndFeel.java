@@ -14,7 +14,7 @@ public class LookAndFeel {
 	/**
 	 * Constructor
 	 */
-	public LookAndFeel() {
+	protected LookAndFeel() {
 		availableLookAndFeels = UIManager.getInstalledLookAndFeels();
 	}
 	

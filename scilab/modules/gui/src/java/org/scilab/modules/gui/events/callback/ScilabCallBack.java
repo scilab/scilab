@@ -15,6 +15,10 @@ import org.scilab.modules.gui.events.GlobalEventWatcher;
  */
 public abstract class ScilabCallBack extends CallBack {
 
+	private String command;
+	
+	private int type;
+
 	/**
 	 * @param command : the command to execute.
 	 * @param type : the type of this command. 
@@ -33,9 +37,12 @@ public abstract class ScilabCallBack extends CallBack {
 	 */
 	public static ScilabCallBack create(String command, int type) {
 		return (new ScilabCallBack(command, type) {
-				public void callBack() {
-					this.storeCommand(this.getCommand(), this.getType());
-				}
+
+			private static final long serialVersionUID = -7286803341046313407L;
+
+			public void callBack() {
+				this.storeCommand(this.getCommand(), this.getType());
+			}
 		});
 	}
 	
@@ -79,7 +86,4 @@ public abstract class ScilabCallBack extends CallBack {
 	public int getType() {
 		return type;
 	}
-	
-	private String command;
-	private int type;
 }

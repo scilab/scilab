@@ -15,10 +15,10 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class ScilabConsole extends ScilabDockable implements Console {
 
-	private SimpleConsole component;
-
 	private static Console instance;
 	
+	private SimpleConsole component;
+
 	/**
 	 * Constructor
 	 */

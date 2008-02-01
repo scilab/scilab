@@ -39,6 +39,8 @@ import org.scilab.modules.gui.window.SimpleWindow;
  */
 public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
+	private static final long serialVersionUID = -5661926417765805660L;
+
 	private static final int DEFAULTWIDTH = 500;
 	private static final int DEFAULTHEIGHT = 500;
 

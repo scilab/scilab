@@ -4,10 +4,8 @@ package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.AWTEvent;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;

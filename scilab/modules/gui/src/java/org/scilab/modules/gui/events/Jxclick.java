@@ -104,18 +104,15 @@ public final class Jxclick {
 		if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
 			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
 				keyChar = keyEvent.getKeyChar(); 
-			}
-			else {
+			} else {
 				if (keyEvent.isShiftDown()) {
 					keyChar = keyEvent.getKeyCode();
-				}
-				else {
+				} else {
 					keyChar = Character.toLowerCase(keyEvent.getKeyCode());
 				}
 			}
 			isControlDown = ((KeyEvent) keyEvent).isControlDown();
-		}
-		else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
+		} else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
 			if (keyEvent.getSource() instanceof SwingScilabCanvas) {
 				if (GlobalEventWatcher.isActivated()) {
 					GlobalEventFilter.filterKey(keyChar, isControlDown);

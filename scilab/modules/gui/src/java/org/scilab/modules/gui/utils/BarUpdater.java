@@ -9,6 +9,14 @@ import org.scilab.modules.gui.uielement.UIElement;
  *
  */
 public final class BarUpdater {
+	
+	/**
+	 * Constructor
+	 */
+	private BarUpdater() {
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Local update for MenuBar and ToolBar
 	 * Called when a Dock is complete.
@@ -18,7 +26,7 @@ public final class BarUpdater {
 	 */
 	public static void updateBars(int parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar) {
 		UIElement element = UIElementMapper.getCorrespondingUIElement(parentWindowsID);
-		if(element != null) {
+		if (element != null) {
 			element.addMenuBar(newMenuBar);
 			element.addToolBar(newToolBar);
 		}

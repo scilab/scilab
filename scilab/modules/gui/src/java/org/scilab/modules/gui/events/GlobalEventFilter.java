@@ -62,8 +62,7 @@ public class GlobalEventFilter {
 			ClickInfos.getInstance().setYCoordinate(mouseEvent.getPoint().getY());
 			if (mouseEvent.isControlDown()) {
 				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton() + SCILAB_CTRL_OFFSET);
-			}
-			else {
+			} else {
 				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton());
 			}
 			// @TODO : Find a way to get the ID.
