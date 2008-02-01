@@ -45,7 +45,7 @@
 
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>-</PARAM_NAME>
+              <PARAM_NAME></PARAM_NAME>
 
               <PARAM_DESCRIPTION>
                 <SP>If <VERB>nz</VERB> is an integer, its value gives the
@@ -64,7 +64,7 @@ plot2d(x(im)',y(jm)',-9,"000")</VERBATIM>
             </PARAM_ITEM>
 
             <PARAM_ITEM>
-              <PARAM_NAME>-</PARAM_NAME>
+              <PARAM_NAME></PARAM_NAME>
 
               <PARAM_DESCRIPTION>
                 <SP>If <VERB>nz</VERB> is a vector, <VERB>nz(i)</VERB> gives

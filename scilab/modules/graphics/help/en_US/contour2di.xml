@@ -29,7 +29,7 @@
           <SP>: the level values or the number of levels.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>-  </PARAM_NAME>
+              <PARAM_NAME></PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>If <VERB>nz</VERB> is an integer, its value gives the number of
   level curves  equally spaced from zmin to zmax as follows:</SP>
@@ -47,9 +47,12 @@
  plot2d(x(im)',y(jm)',-9,"000")
    ]]>
                 </VERBATIM>
-                <P>
-     - If <VERB>nz</VERB> is a vector, <VERB>nz(i)</VERB> gives the value of the ith level curve.
-  </P>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME></PARAM_NAME>
+             <PARAM_DESCRIPTION>
+                <P>If <VERB>nz</VERB> is a vector, <VERB>nz(i)</VERB> gives the value of the ith level curve.</P>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
