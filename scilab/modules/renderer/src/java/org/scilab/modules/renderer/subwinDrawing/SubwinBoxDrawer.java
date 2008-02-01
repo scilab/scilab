@@ -64,7 +64,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 												      {{1, 0}, {1, 3}, {1, 5}},
 												   	  {{0, 1}, {0, 4}, {0, 2}}};
 	
-	private static final double UNMERGE_FACTOR = 0.01;	
 	private int hiddenAxisColor;
 	private int backgroundColor;
 	private int lineColor;
@@ -72,7 +71,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	private float lineThickness;
 	
 	private Vector3D[] boxCorners;
-	private Vector3D[] largerBoxCorners;
 	
 	/**
 	 * Default constructor
@@ -85,7 +83,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		lineStyle = 0;
 		lineThickness = 0.0f;
 		boxCorners = null;
-		largerBoxCorners = new Vector3D[BOX_NB_CORNERS];
 	}
 	
 	/**
@@ -211,12 +208,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 									new Vector3D(xMax, yMax, zMax)};
 		boxCorners = newBoxCorners;
 		
-		// create a slighly smaller box to avoid merging between lines and background.
-		Vector3D boxCenter = findBoxCenter();
-		for (int i = 0; i < BOX_NB_CORNERS; i++) {
-			largerBoxCorners[i] = boxCorners[i].add(boxCorners[i].substract(boxCenter).scalarMult(UNMERGE_FACTOR));
-		}
-		
 		drawBox();
 	}
 	
@@ -244,19 +235,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		return farthestCornerIndex;
 		
 	}
-	
-	/**
-	 * @return center of the clipping box
-	 */
-	private Vector3D findBoxCenter() {
-		Vector3D center = new Vector3D(0.0, 0.0, 0.0);
-		
-		for (int i = 0; i < BOX_NB_CORNERS; i++) {
-			center = center.add(boxCorners[i]);
-		}
-		center.scalarMultSelf(1.0 / BOX_NB_CORNERS);
-		return center;
-	}
 	/**
 	 * Draw the back triedre of the subwin box
 	 * @param concealedCornerIndex index of the concealed corner
@@ -269,14 +247,20 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		double[] backColor = getBackgroundColor();
 		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
 		
+		// push back polygons from the box lines
+		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
+		gl.glPolygonOffset(1.0f, 1.0f);
+		
 		gl.glBegin(GL.GL_QUADS);
 		for (int i = 0; i < BACK_FACETS[concealedCornerIndex].length; i++) {
 			for (int j = 0; j < BACK_FACETS[concealedCornerIndex][i].length; j++) {
-				Vector3D curVertex = largerBoxCorners[BACK_FACETS[concealedCornerIndex][i][j]];
+				Vector3D curVertex = boxCorners[BACK_FACETS[concealedCornerIndex][i][j]];
 				gl.glVertex3d(curVertex.getX(), curVertex.getY(), curVertex.getZ());
 			}
 		}
 		gl.glEnd();
+		
+		gl.glDisable(GL.GL_POLYGON_OFFSET_FILL);
 		
 		// the concealed line is draw wiht dashes
 		gl.glLineWidth(getThickness());
