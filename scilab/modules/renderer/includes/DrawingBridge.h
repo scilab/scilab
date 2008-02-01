@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#include "../../../graphics/includes/ObjectStructure.h"
+#include "ObjectStructure.h"
 
   /**
    * Create a render for this object
