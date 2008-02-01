@@ -32,23 +32,19 @@
 
 /*----------------------------------INCLUDES-----------------------*/
 
-#include "../machine.h"
+#include "machine.h"
 
 /*Graphic Library*/
-#include "../graphics/SetProperty.h"
-#include "../graphics/GetProperty.h"
-#include "../graphics/InitObjects.h"
-#include "../graphics/bcg.h"
-#include "../graphics/DrawObjects.h"
-#include "../graphics/BuildObjects.h"
-#include "../graphics/ObjectStructure.h"
-#include "../graphics/DestroyObjects.h"
+#include "SetProperty.h"
+#include "GetProperty.h"
+#include "InitObjects.h"
+#include "DrawObjects.h"
+#include "BuildObjects.h"
+#include "ObjectStructure.h"
+#include "DestroyObjects.h"
+#include "ObjectStructure.h"
 
-#if WIN32
-#include "../os_specific/win_mem_alloc.h"
-#else
-#include "../os_specific/sci_mem_alloc.h"
-#endif
+#include "MALLOC.h"
 
 /*--------------------------------TYPEDEF---------------------*/
 
@@ -143,7 +139,5 @@ typedef struct
 } ScopeMemory;
 
 /*External function of malloc/free - Don't forget to use these and not malloc or MALLOC*/
-extern void * scicos_malloc(size_t);
-extern void scicos_free(void *p);
 
 #endif

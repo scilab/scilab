@@ -27,7 +27,7 @@ c     at positions top-mrhs+1:top
 c     function adress is given by the integer ptr in the common /scsptr/
 c
 c     Copyright INRIA
-      include "../stack.h"
+      include "stack.h"
       integer ptr
       integer mlhs,mrhs
       logical allowptr
@@ -53,7 +53,7 @@ C
 C     
       icall = 5
       krec = -1
-      include "../callinter.h"
+      include "callinter.h"
  200  lhs = ids(1,pt)
       rhs = ids(2,pt)
       pt = pt - 1

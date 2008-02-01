@@ -24,7 +24,7 @@
 #include "intcscicos.h"
 #include "scoMisc.h"
 #undef Top
-#include "../stack-c.h"
+#include "stack-c.h"
 #define Top C2F(vstk).top
 #include "../interf/intcommongraphics.h"
 

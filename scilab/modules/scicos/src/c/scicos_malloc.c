@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#include "MALLOC.h"  /* malloc */
 
 #include "scicos_block.h"
 

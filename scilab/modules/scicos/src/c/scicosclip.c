@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
-#include "../machine.h"
 #include <math.h>
-#include "../graphics/Math.h" 
-#include "../graphics/Graphics.h"
-#include "../graphics/PloEch.h"
+#include "machine.h"
+#include "math_graphics.h" 
+#include "PloEch.h"
 
 void C2F(scicosclip)(int *n)
 {

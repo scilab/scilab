@@ -21,6 +21,8 @@
 #ifndef __IMPORT_H__
 #define __IMPORT_H__
 #include "scicos_block4.h"
+#include "machine.h"
+
 /* Copyright INRIA */
 typedef struct
 {

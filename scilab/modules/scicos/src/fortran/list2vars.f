@@ -28,7 +28,7 @@ c     Copyright INRIA
 c     WARNING : if topk is the entry value of top, lstk(topk) is
 c     incremented by sadr(3+n). Previous value is returned in ltop.
 c
-      include '../stack.h'
+      include 'stack.h'
       integer iadr,sadr
 c
       iadr(l) = l + l - 1
@@ -61,7 +61,7 @@ c
       return
       end
       subroutine ltopadj(ltop)
-      include '../stack.h'
+      include 'stack.h'
       lstk(top+1)=ltop
       return
       end

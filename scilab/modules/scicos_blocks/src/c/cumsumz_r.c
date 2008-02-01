@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 #include "scicos_block4.h"
-#include "../machine.h"
+#include "machine.h"
 
 void cumsumz_r(scicos_block *block,int flag)
 {

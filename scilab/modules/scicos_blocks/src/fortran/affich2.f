@@ -215,7 +215,7 @@ c	   write(*,*) 'value2=',value2,'ln2=',ln2
 
 
       subroutine getgeom2(g)
-      include "../stack.h"
+      include "stack.h"
       double precision g(*)
       integer scicstring,ret
       integer sadr,iadr

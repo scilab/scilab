@@ -28,7 +28,7 @@ c     Copyright INRIA
       integer  l
 c
       external scidcopy, error
-      include "../stack.h"
+      include "stack.h"
 c
       integer iadr
 c

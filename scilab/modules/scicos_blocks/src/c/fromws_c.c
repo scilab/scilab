@@ -24,10 +24,10 @@
  *    Scicos block simulator
  *    From workspace block
  */
-#include "../stack-c.h"
+#include "stack-c.h"
 #include <stdio.h>
 #include <string.h>
-#include "../machine.h"
+#include "machine.h"
 #include <math.h>
 
 #if WIN32

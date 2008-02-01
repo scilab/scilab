@@ -831,8 +831,8 @@ function ok=gen_ccode42();
 
   //** copy source code of machine.h/scicos_block4.h
   //   in target path
-  txt=mgetl(SCI+'/routines/machine.h');
-  ierr=execstr('mputl(txt,rpat+''/machine.h'')','errcatch')
+  txt=mgetl(SCI+'/routinmachine.h');
+  ierr=execstr('mputl(txt,rpat+machine.h'')','errcatch')
   if ierr<>0 then
     message(lasterror())
     ok=%f
@@ -2011,9 +2011,9 @@ function Code=make_computational42()
         '#include <stdio.h>'
         '#include <memory.h>'
         '#include <string.h>'
-        '#include '"'+SCI+'/routines/machine.h'"'
-        '#include '"'+SCI+'/routines/os_specific/link.h'"'
-        '#include '"'+SCI+'/routines/scicos/scicos.h'"'
+        '#include '"'+SCI+'/modules/core/includes/machine.h'"'
+        '#include '"'+SCI+'/modules/dynamic_link/includes/dynamic_link.h'"'
+        '#include '"'+SCI+'/modules/scicos/includes/scicos.h'"'
         '']
 
   if MSDOS then

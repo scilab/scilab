@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 #include "scicos_block4.h"
-#include "../machine.h"
+#include "machine.h"
 
 #ifndef min
 #define min(a,b) ((a) <= (b) ? (a) : (b))

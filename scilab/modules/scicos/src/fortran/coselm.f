@@ -35,7 +35,7 @@ c     evaluate scicos utility functions
 c =================================================
 c
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c
       return
       end

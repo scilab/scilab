@@ -35,7 +35,7 @@ C.. External Calls ..
       external dcopy, error
 C 
 C.. Include Statements ..
-      include "../stack.h"
+      include "stack.h"
 C 
 C.. Statement Functions ..
       integer  iadr

@@ -158,7 +158,7 @@ c     .  get geometry of the block
 
 
       subroutine getgeom(g)
-      include "../stack.h"
+      include "stack.h"
       double precision g(*)
       integer scicstring,ret
       integer sadr,iadr

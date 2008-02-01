@@ -36,25 +36,28 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include "machine.h"
 
-#include "../machine.h"
-#include "../os_specific/link.h"
+#include "dynamic_link.h"
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
-#include <math.h>
-#include "../graphics/Math.h"
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#include "core_math.h"
 
-#include "sundials/cvode.h"           /* prototypes for CVODES fcts. and consts. */
-#include "sundials/cvode_dense.h"     /* prototype for CVDense */
-#include "sundials/ida.h"
-#include "sundials/ida_dense.h"
-#include "sundials/nvector_serial.h"  /* serial N_Vector types, fcts., and macros */
-#include "sundials/sundials_dense.h" /* definitions DenseMat and DENSE_ELEM */
-#include "sundials/sundials_types.h" /* definition of type realtype */
-#include "sundials/sundials_math.h"
-#include "sundials/ida_impl.h"
+#include "math_graphics.h"
+#include "MALLOC.h"  /* malloc */
+
+/* Sundials includes */
+#include "cvode.h"           /* prototypes for CVODES fcts. and consts. */
+#include "cvode_dense.h"     /* prototype for CVDense */
+#include "ida.h"
+#include "ida_dense.h"
+#include "nvector_serial.h"  /* serial N_Vector types, fcts., and macros */
+#include "sundials_dense.h" /* definitions DenseMat and DENSE_ELEM */
+#include "sundials_types.h" /* definition of type realtype */
+#include "sundials_math.h"
+#include "ida_impl.h"
 
 typedef struct {
   void *ida_mem;
@@ -74,11 +77,6 @@ typedef struct {
 #endif
 
 
-#define abs(x) ((x) >= 0 ? (x) : -(x))
-#ifndef WIN32
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
 #define freeall \
               if (*neq>0) CVodeFree(&cvode_mem);\
               if (*neq>0) N_VDestroy_Serial(y);\

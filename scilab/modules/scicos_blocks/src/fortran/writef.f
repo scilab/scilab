@@ -37,7 +37,7 @@ c
       integer nipar,nu,ny
 
 
-      include '../stack.h'
+      include 'stack.h'
       integer i,n
       integer mode(2)
 c     

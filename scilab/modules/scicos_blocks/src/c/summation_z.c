@@ -1,5 +1,5 @@
 #include "scicos_block4.h"
-#include "../machine.h"
+#include "machine.h"
 void summation_z(scicos_block *block,int flag)
 {
  double *ur;

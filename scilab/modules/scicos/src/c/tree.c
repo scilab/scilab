@@ -20,9 +20,9 @@
 */
 #include <stdio.h>
 #include <memory.h>
-#include "../machine.h"
+#include "machine.h"
 
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#include "MALLOC.h"  /* malloc */
 
 int ctree2(int* vect,int nb,int* deput,int* depuptr,int* outoin,int* outoinptr,
 	   int* ord,int* nord,int* ok);

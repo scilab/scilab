@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 /* Copyright INRIA */
-#include "../machine.h"
+#include "machine.h"
 
 void 
 selector(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 /* Copyright INRIA */
-#include "../machine.h"
+#include "machine.h"
 
 extern integer C2F(scierr)();
 extern void C2F(itosci)();

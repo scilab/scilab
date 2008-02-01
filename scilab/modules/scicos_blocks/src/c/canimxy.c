@@ -97,7 +97,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{
 
-	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmap = 1;
+		sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
 	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->wshow = 1;
 
 

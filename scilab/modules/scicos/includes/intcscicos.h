@@ -21,7 +21,7 @@
 #ifndef INTCSCICOS_SCI
 #define INTCSCICOS_SCI
 
-#include "../machine.h"
+#include "machine.h"
 #include "scicos_block4.h"
 
 /* function declaration */

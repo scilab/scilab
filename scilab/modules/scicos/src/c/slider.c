@@ -19,7 +19,8 @@
 * See the file ./license.txt
 */
 #include <stdio.h>
-#include "../graphics/Math.h"
+#include "machine.h"
+#include "math_graphics.h"
 
 
 extern int C2F(getgeom)(double *);

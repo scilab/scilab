@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <math.h> 
 #include <string.h> 
-#include "../machine.h"
+#include "machine.h"
 extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
 extern void sciprint __PARAMS((char *fmt,...));
 extern void mget2 __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));

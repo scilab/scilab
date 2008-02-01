@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 #include <math.h>
-#include "../machine.h"
+#include "machine.h"
 #include "scicos_block4.h"
 extern int sciprint();
 void gainblk_ui16e(scicos_block *block,int flag)

@@ -36,7 +36,7 @@ C        flag   integer
 C        y      column vector block output
 C        xd     column vector block state derivative
 C!
-      include "../stack.h"
+      include "stack.h"
 C
 
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
@@ -95,7 +95,7 @@ C
 C     
       icall = 5
       krec = -1
-      include "../callinter.h"
+      include "callinter.h"
  200  lhs = ids(1,pt)
       rhs = ids(2,pt)
       flag= ids(3,pt)

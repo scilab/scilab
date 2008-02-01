@@ -31,7 +31,7 @@ C.. Local Scalars ..
 C.. External Calls .. 
       external dcopy, error
 C.. Include Statements ..
-      include "../stack.h"
+      include "stack.h"
 C.. Statement Functions ..
       integer  iadr
       integer  sadr

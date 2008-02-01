@@ -32,6 +32,8 @@
 #include "scoMisc.h"
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
+#include "SetProperty.h"
+#include "BuildObjects.h"
 #include <stdio.h>
 
 void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
@@ -92,7 +94,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	  else
 	    {
 	      //Here pTemp is the pointer on the ScopeWindow
-	      scoSetHandleAxes(pScopeMemory,i,sciGetHandle(ConstructSubWin(pTemp, win_id)));
+	      scoSetHandleAxes(pScopeMemory,i,sciGetHandle(ConstructSubWin(pTemp)));
 	    }
 	  //Here pTemp2 is the pointer on the current Axes
 	  pTemp2 = scoGetPointerAxes(pScopeMemory,i);
@@ -249,7 +251,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
 	{
 	  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 	  //pixmap mode
-	  if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+	  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	    {
 	      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
@@ -375,7 +377,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 		  //Not sure that this trick is useful - leak of code ?
 		  pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
 		  //pixmap
-		  if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
 		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    }
@@ -485,12 +487,12 @@ scoGraphicalObject scoCreatePolyline(scoGraphicalObject pAxes, scoInteger polyli
       for (i=0;i<polyline_size;i++) {
         vz[i] = 0.0;
       }
-      pPolyline=ConstructPolyline(pAxes,vx,vy,vz,0,polyline_size,1,1, NULL,NULL,NULL,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
+      pPolyline=ConstructPolyline(pAxes,vx,vy,vz,0,polyline_size,1, NULL,NULL,NULL,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
       scicos_free(vz);
     }
   else //2D
     {
-      pPolyline=ConstructPolyline(pAxes,vx,vy,NULL,0,polyline_size,1,1, NULL,NULL,NULL,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
+      pPolyline=ConstructPolyline(pAxes,vx,vy,NULL,0,polyline_size,1, NULL,NULL,NULL,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
     }
 
   scicos_free(vx);
@@ -787,9 +789,9 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));
   for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
-      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title,title[i],strlen(title[i]));
-      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label,x_title,strlen(x_title));
-      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,y_title,strlen(y_title));
+		sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title,title[i],1,1); /* 1,1 is nbrow, nbcol */
+      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label,x_title,1,1); /* 1,1 is nbrow, nbcol */
+      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,y_title,1,1);/* 1,1 is nbrow, nbcol */
 
       
       sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 0);
@@ -805,7 +807,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
 	{
 	  sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
-	  sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,z_title,strlen(z_title));
+	  sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,z_title,1,1); /* 1,1 is nbrow, nbcol */
 	}
     }
   for(i = 0; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
@@ -855,7 +857,7 @@ void scoDrawScopeXYStyle(ScopeMemory * pScopeMemory)
 	{
 	  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 	  //pixmap
-	  if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+	  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	    {
 	      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
@@ -912,7 +914,7 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 	}
 
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-      if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+      if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	{
 	  C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
@@ -954,7 +956,7 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];		
 
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
 		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    }
@@ -987,7 +989,7 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
 
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
 		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    }
@@ -1036,7 +1038,7 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];
 
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
 		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    }
@@ -1075,7 +1077,7 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
 
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
 		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    }

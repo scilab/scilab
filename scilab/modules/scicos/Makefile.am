@@ -1,11 +1,9 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
+### INRIA - Scilab 2006/2008
 ##########
 
 # SUBDIRS = src/ocaml/
-
-pkglib_LTLIBRARIES = libsciscicos.la
 
 #### Target ######
 modulename=scicos
@@ -14,7 +12,37 @@ include $(top_srcdir)/Makefile.incl.am
 
 if SCICOS
 
-SCICOS_C_SOURCES = src/c/ExistScicos.c
+pkglib_LTLIBRARIES =  libscisundials.la libsciscicos.la
+
+SCICOS_C_SOURCES = src/c/tree.c \
+src/c/ExistScicos.c \
+src/c/sciblk2i.c \
+src/c/scicos_malloc.c \
+src/c/import.c \
+src/c/scicosexit.c \
+src/c/slider.c \
+src/c/scicos.c \
+src/c/scicos_free.c \
+src/c/sciblk2.c \
+src/c/str2sci.c \
+src/c/scicosclip.c \
+src/c/sciblk4.c
+
+SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
+src/fortran/vvtosci.f \
+src/fortran/skipvars.f \
+src/fortran/coselm.f \
+src/fortran/scitod.f \
+src/fortran/dtosci.f \
+src/fortran/sctree.f \
+src/fortran/scierr.f \
+src/fortran/ftree2.f \
+src/fortran/ftree3.f \
+src/fortran/list2vars.f \
+src/fortran/ftree4.f \
+src/fortran/scitoi.f \
+src/fortran/scifunc.f \
+src/fortran/itosci.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_cscicos.c \
 sci_gateway/c/gw_scicos.c \
@@ -48,26 +76,23 @@ sci_gateway/c/sci_xstringb2.c
 
 
 
-#BUILT_SOURCES = includes/blocks.h
-
-#includes/blocks.h:
-#	if test ! -d build; then mkdir build; fi
-# Get the filename, strip the extension and put into a file
-#	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/#Fblocknames
-#	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
-#	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
-
-
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
 libsciscicos_la_CFLAGS= -Iincludes/ \
+			-Isrc/scicos_sundials/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+			-I$(top_srcdir)/modules/graphics/includes \
+			-I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/scicos_blocks/includes
+
 #libsciscicos_la_LDFLAGS = -lf2c
 
-libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
 
 libsciscicos_la_LIBADD = \
+	$(top_builddir)/modules/scicos/libscisundials.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -193,8 +218,29 @@ macros/scicos_blocks/Misc \
 macros/scicos_blocks/Threshold \
 macros/scicos
 
+
+
+#################### SUNDIALS STUFF ###################"
+
+SUNDIALS_SOURCES = src/scicos_sundials/cvode.c \
+src/scicos_sundials/sundials_dense.c \
+src/scicos_sundials/ida_ic.c \
+src/scicos_sundials/ida_dense.c \
+src/scicos_sundials/cvode_dense.c \
+src/scicos_sundials/nvector_serial.c \
+src/scicos_sundials/sundials_nvector.c \
+src/scicos_sundials/ida_io.c \
+src/scicos_sundials/cvode_io.c \
+src/scicos_sundials/sundials_smalldense.c \
+src/scicos_sundials/sundials_math.c \
+src/scicos_sundials/ida.c
+
+
+libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
+
 else
 
+pkglib_LTLIBRARIES = libsciscicos.la 
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)

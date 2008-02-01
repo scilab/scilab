@@ -27,7 +27,7 @@ c      interface function
 c     ********************
       subroutine  intscicos
 c
-      include '../stack.h'
+      include 'stack.h'
       integer id(nsiz)
       integer kfun
       common /curblk/ kfun
@@ -175,7 +175,7 @@ c     ********************
       subroutine intcurblk
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       integer kfun
       common /curblk/ kfun
       integer iadr, sadr
@@ -198,7 +198,7 @@ c     **********************
       subroutine intgetlabel
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       integer iadr, sadr
       integer kfun
       integer getscilabel
@@ -266,7 +266,7 @@ c     *****************************
       subroutine scicosdebug(fname)
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       common /cosdebug/ cosd
       logical getrhsvar, createvar,checklhs,checkrhs
       integer cosd
@@ -292,7 +292,7 @@ c     **********************************
       subroutine scicosdebugcount(fname)
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       common /cosdebugcounter/ counter
       logical getrhsvar, createvar,checklhs,checkrhs
       integer counter
@@ -311,7 +311,7 @@ c     *******************
       subroutine intctree
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       integer iadr, sadr
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -377,7 +377,7 @@ c     **************************
       subroutine  intree2(fname)
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       logical createvar,getrhsvar
       character*(*) fname
 c
@@ -404,7 +404,7 @@ c     *************************
       subroutine intree3(fname)
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       logical createvar,getrhsvar
       character*(*) fname
 c
@@ -435,7 +435,7 @@ c     **************************
       subroutine  intree4(fname)
 c
 c
-      include '../stack.h'
+      include 'stack.h'
       logical createvar,getrhsvar
       character*(*) fname
 c

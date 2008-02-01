@@ -1,5 +1,5 @@
 /* Copyright INRIA */
-#include "../machine.h"
+#include "machine.h"
 
 void 
 switchn(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

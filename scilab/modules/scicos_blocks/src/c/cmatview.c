@@ -149,7 +149,7 @@ void cmatview(scicos_block * block, int flag)
 		  }
 	      }
 	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	    if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+	    if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	      {
 	    C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }

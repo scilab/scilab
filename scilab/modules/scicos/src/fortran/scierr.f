@@ -25,7 +25,7 @@ c     other cases
 c     
 
 c     Copyright INRIA
-      include "../stack.h"
+      include "stack.h"
       if(err.gt.0) then
          scierr=1
       elseif(err1.gt.0.or.err2.gt.0) then

@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 #include "scicos_block.h"
-#include "../os_specific/sci_mem_alloc.h"
+#include "MALLOC.h"
 
 #ifndef NULL
 	#define NULL 0

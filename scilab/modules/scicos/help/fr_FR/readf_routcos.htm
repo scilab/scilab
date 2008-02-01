@@ -44,7 +44,7 @@ c     Copyright INRIA
 
 c     Scicos block simulator
 c     write read from a binary or formatted file
-      include '../stack.h'
+      include 'stack.h'
 c     ipar(1) = lfil : file name length
 c     ipar(2) = lfmt : format length (0) if binary file
 c     ipar(3) = ievt  : 1 if each data have a an associated time
@@ -153,7 +153,7 @@ c     buffer initialisation
 
       subroutine bfrdr(lunit,ipar,z,no,kmax,ierr)
 c     buffered and masked read
-      include '../stack.h'
+      include 'stack.h'
       integer lunit,ipar(*),ierr
       double precision z(*)
       double precision tmp(100)

@@ -31,7 +31,7 @@ C.. Local Scalars ..
 C.. External Calls .. 
       external entier, error
 C.. Include Statements ..
-      include "../stack.h"
+      include "stack.h"
 C     
       integer  iadr
       integer  sadr

@@ -33,6 +33,8 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "ObjectStructure.h"
+#include "DrawingBridge.h"
 
 /** \fn bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
@@ -106,8 +108,8 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   (pSUBWIN_FEATURE(pAxes)->axes).axes_visible[1] = FALSE;
 
   sciSetIsBoxed(pAxes, FALSE);
+  sciSetPixmapMode(pTemp, TRUE);
 
-  pFIGURE_FEATURE(pTemp)->pixmap = 1;
   pFIGURE_FEATURE(pTemp)->wshow = 1;
 
   for(j = 0 ; j < number_of_curves_by_subwin ; j++)
@@ -177,8 +179,7 @@ void bouncexy(scicos_block * block,int flag)
 	  }
 
 	sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	
-	if(pFIGURE_FEATURE(scoGetPointerScopeWindow(pScopeMemory))->pixmap == 1)
+	if (sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	  {
 	    C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));

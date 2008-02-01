@@ -22,8 +22,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "../machine.h"
-#include "../stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 #include "scicos_block4.h"
 
 /* Define external function */

@@ -1,8 +1,8 @@
 #include <math.h>
 #include <memory.h>
-#include "../machine.h"
+#include "machine.h"
 #include "scicos_block.h"
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#include "MALLOC.h"  /* malloc */
 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();

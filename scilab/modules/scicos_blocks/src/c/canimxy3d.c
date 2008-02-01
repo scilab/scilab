@@ -107,8 +107,8 @@ void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
       scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax);
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{ 
-	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmap = 1;
-	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->wshow = 1;
+		sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
+		pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->wshow = 1;
 
 	  for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory, 0) ; i++)
 	    {

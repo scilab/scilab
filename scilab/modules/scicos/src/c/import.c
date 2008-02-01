@@ -18,7 +18,6 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
 
 /* 21/06/06, Alan : update import structure with
  * noord, nzord, ncord, nordptr, niord, iord, nmod, mod.
@@ -36,10 +35,10 @@
  * 08/02/07, Alan : Update with oz,opar
  */
 
-#include "../machine.h"
+#include <stdio.h>
 #include <string.h>
 #include "import.h"
-#include <stdio.h>
+#include "machine.h"
 
 /*********************************************
  * external structure and function declaration

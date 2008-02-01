@@ -19,8 +19,8 @@
 * See the file ./license.txt
 */
 #include "scicos_block4.h"
-#include "../machine.h"
-#include "../stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 #include <stdio.h>
 #include <string.h>
 

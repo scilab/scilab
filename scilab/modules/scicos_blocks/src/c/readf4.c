@@ -20,7 +20,7 @@
 */
 #include "scicos_block.h"
 #include <math.h>
-#include "../machine.h"
+#include "machine.h"
 
 /* Common Block Declarations */
 int bfrdr();
@@ -149,7 +149,7 @@ int readf4(scicos_block *block,int flag)
 
      Scicos block simulator
      write read from a binary or formatted file
-     include '../stack.h'
+     include 'stack.h'
      ipar(1) = lfil : file name length
      ipar(2) = lfmt : format length (0) if binary file
      ipar(3) = ievt  : 1 if each data have a an associated time
