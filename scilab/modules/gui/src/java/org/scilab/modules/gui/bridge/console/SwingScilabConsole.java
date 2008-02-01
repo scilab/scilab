@@ -41,13 +41,15 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 * @see fr.scilab.console.Console#display(java.lang.String)
 	 */
 	public void display(String dataToDisplay) {
+		//System.out.println("[JAVA - SwingScilabConsole] --> Call ConsolePrint :");
+		//System.out.println(dataToDisplay);
 		this.getConfiguration().getOutputView().append(dataToDisplay);
 	}
 
 	/**
 	 * This method is used to display the prompt
 	 */
-	public void waitForInput() {
+	public void displayPrompt() {
 		
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 		// Show the prompt
@@ -55,8 +57,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 		// Show the input command view and its hidden components
 		inputCmdView.setEditable(true);
-
-		((JTextPane) inputCmdView).grabFocus();
 
 		((JTextPane) inputCmdView).setCaretColor(Color.black);
 		
