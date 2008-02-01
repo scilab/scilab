@@ -1,14 +1,14 @@
 function win=show_graph(GraphList,smode,scale,winsize)
 //Copyright INRIA
 //Author : Serge Steer 2002
-  //
+//
   p=funcprot();funcprot(0) 
   deff('ge_eventhandler(win,x,y,ibut)',' ') //just to avoid defered asynchronous actions
   global EGcurrent
   select argn(2)
-  case 1 then
+   case 1 then
     smode='rep',scale=1,winsize=[600 400]
-  case 2 then
+   case 2 then
     if type(smode)==10 then
       scale=1,
     else
@@ -16,7 +16,7 @@ function win=show_graph(GraphList,smode,scale,winsize)
       smode='rep'
     end
     winsize=[600 400]
-  case 3 then
+   case 3 then
     winsize=[600 400]
   end
   if and(smode<>['rep','new']) then 
@@ -40,9 +40,9 @@ function win=show_graph(GraphList,smode,scale,winsize)
   if smode=='new' then
     win=edit_graph(GraphList,scale,winsize)
   else //replace
-    old=[];if winsid()<>[] then old=xget('window'),end
+    old=[];if winsid()<>[] then old=gcf(),end
     win=EGcurrent;
-    xset('window',win);seteventhandler("") 
+    scf(win);seteventhandler("") 
     GraphList=ge_complete_defaults(GraphList)
     
     w=string(win)
@@ -50,7 +50,7 @@ function win=show_graph(GraphList,smode,scale,winsize)
     
     clear ge_eventhandler 
     seteventhandler("ge_eventhandler"),
-    if old<>[] then xset('window',old),end
+    if old<>[] then scf(old),end
   end
   funcprot(p)
 endfunction

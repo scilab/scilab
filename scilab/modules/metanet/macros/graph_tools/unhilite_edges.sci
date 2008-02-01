@@ -1,0 +1,24 @@
+function unhilite_edges(p)
+//Copyright INRIA
+//Author : Serge Steer 2008
+  //get current editgraph window
+  global EGcurrent
+  if type(EGcurrent)<>1|size(EGcurrent,'*')<>1 then
+    error('No current edit_graph window defined, use netwindow')
+  end
+  win=EGcurrent;w=string(win)
+  old=gcf();scf(win)
+  execstr(['global EGdata_'+w
+	   'EGdata=EGdata_'+w])
+  if typeof(EGdata)=='egdata' then
+    GraphList=EGdata.GraphList
+    p=unique(p)
+    if min(p)<1|max(p)>edge_number(GraphList) then
+      error('Edge numbers should be in [1 '+string(edge_number(GraphList))+']')
+    end
+    ge_unhilite_edges(p,GraphList)
+    show_pixmap()
+  end
+  scf(old)
+endfunction
+

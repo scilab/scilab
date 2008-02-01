@@ -1,256 +1,217 @@
-function check_graph(g)
-// Copyright INRIA
-[lhs,rhs]=argn(0)
-if rhs<>1 then error(39), end
-if type(g)<>16 then
-  error('Graph list check: the graph must be a typed list')
-end
-l=34
-if size(g)<>l then
-  error('Graph list check: the graph must be a list of size '+string(l))
-end
-// type
-if g(1)(1)<>'graph' then 
-  error('Graph list check: the list is not a graph')
-end
-// name
-s=size(g(2))
-if type(g(2))<>10|prod(s)<>1 then
-  error('Graph list check: ""name"" must be a string')
-end
-// directed
-if g(3)<>1&g(3)<>0 then
-  error('Graph list check: ""directed"" must be 0 or 1')
-end
-// node_number
-if prod(size(g(4)))<>1|g(4)<1
-  error('Graph list check: ""node_number"" must be greater than 1')
-end
-n=g(4)
-// tail
-s=size(g(5))
-if s(1)<>1 then
-  error('Graph list check: ""tail"" must be a row vector')
-end
-ma=s(2)
-// head
-s=size(g(6))
-if s(1)<>1 then
-  error('Graph list check: ""head"" must be a row vector')
-end
-if s(2)<>ma then
-  error('Graph list check: ""tail"" and ""head"" must have identical sizes')
-end
-// tail and head
-if min(min(g(5)),min(g(6)))<1|max(max(g(5)),max(g(6)))>n then
-  error('Graph list check: ""tail"" and ""head"" do not represent a graph')
-end
-// node_name
-s=size(g(7))
-if prod(s)<>0 then
-  if type(g(7))<>10 then
-    error('Graph list check: ""node_name"" must be a string row vector')
+function check_graph(g,checkgraphics)
+// checks if g is really a graph data structure
+// Copyright INRIA, Authors: Claude Gomez,  Serge Steer 
+  if argn(2)==1 then checkgraphics=%t, end
+  
+  // The fields, types and size reference
+  // ------------------------------------
+  // The ttgraph, ttnodes, ttdefnodes, ttedges, ttdefedges are copied from ge_new_graph
+
+  // - main graph data structure
+  ttgraph = ['graph','version','name','directed','nodes','edges'];
+  GraphFieldTypes=['string','string','constant','nodes','edges']
+  GraphFieldSizes=list([1 1],[1 1],[1 1],-1,-2)
+
+  //Checking graph data structure
+  //-----------------------------
+  if type(g)<>16|typeof(g)<>'graph' then
+    error('Graph list check: Invalid data type')
   end
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_name"" must be a row vector of size '+string(n))
+  if or(getfield(1,g)<>ttgraph) then
+    error('Graph list check: invalid graph fields')
   end
-end
-// node_type
-s=size(g(8))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_type"" must be a row vector of size '+string(n))
-  end  
-end
-// node_x
-s=size(g(9))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_x"" must be a row vector of size '+string(n))
-  end  
-end
-// node_y 
-s=size(g(10))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_y"" must be a row vector of size '+string(n))
-  end  
-end
-// node_color
-s=size(g(11))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_color"" must be a row vector of size '+string(n))
-  end  
-end
-// node_diam
-s=size(g(12))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_diam"" must be a row vector of size '+string(n))
-  end  
-end
-// node_border
-s=size(g(13))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_border"" must be a row vector of size '+string(n))
-  end  
-end
-// node_font_size
-s=size(g(14))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_font_size"" must be a row vector of size '+string(n))
-  end  
-end
-// node_demand
-s=size(g(15))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_demand"" must be a row vector of size '+string(n))
-  end  
-end
-// edge_name
-s=size(g(16))
-if prod(s)<>0 then
-  if type(g(16))<>10 then
-    error('Graph list check: ""edge_name"" must be a string row vector')
+  for k=2:size(ttgraph,2)
+    gk=g(ttgraph(k))
+    if typeof(gk)<>GraphFieldTypes(k-1) then
+      error('Graph list check: incorrect type for field '''+ttgraph(k)+'''')
+    end
+    sgk=size(gk)
+    if prod(sgk)<>0 then
+      if or(GraphFieldSizes(k-1)>0&sgk<>GraphFieldSizes(k-1)) then
+	error('Graph list check: incorrect dimension for field '''+ttgraph(k)+'''')
+      end
+    end
   end
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_name"" must be a row vector of size '+string(ma))
+  th=[g.edges.tail g.edges.head]
+  if min(th)<=0|max(th)>g.nodes.number then
+    error('Graph list check: invalid edges')
   end
-end
-// edge_color
-s=size(g(17))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_color"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_width
-s=size(g(18))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_width"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_hi_width
-s=size(g(19))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_hi_width"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_font_size
-s=size(g(20))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_font_size"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_length
-s=size(g(21))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_length"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_cost
-s=size(g(22))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_cost"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_min_cap
-s=size(g(23))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_min_cap"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_max_cap
-s=size(g(24))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_max_cap"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_q_weight
-s=size(g(25))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_q_weight"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_q_orig
-s=size(g(26))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_q_orig"" must be a row vector of size '+string(ma))
-  end  
-end
-// edge_weight
-s=size(g(27))
-if prod(s)<>0 then
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_weight"" must be a row vector of size '+string(ma))
-  end  
-end
-// default_node_diam
-s=size(g(28))
-if prod(s)<>0 then
-  if prod(s)<>1 then
-    error('Graph list check: ""default_node_diam"" must be a scalar')
-  end  
-end
-// default_node_border
-s=size(g(29))
-if prod(s)<>0 then
-  if prod(s)<>1 then
-    error('Graph list check: ""default_node_border"" must be a scalar')
-  end  
-end
-// default_edge_width
-s=size(g(30))
-if prod(s)<>0 then
-  if prod(s)<>1 then
-    error('Graph list check: ""default_edge_width"" must be a scalar')
-  end  
-end
-// default_edge_hi_width
-s=size(g(31))
-if prod(s)<>0 then
-  if prod(s)<>1 then
-    error('Graph list check: ""default_edge_hi_width"" must be a scalar')
-  end  
-end
-// default_font_size
-s=size(g(32))
-if prod(s)<>0 then
-  if prod(s)<>1 then
-    error('Graph list check: ""default_font_size"" must be a scalar')
-  end  
-end
-// node_label
-s=size(g(33))
-if prod(s)<>0 then
-  if type(g(33))<>10 then
-    error('Graph list check: ""node_label"" must be a string row vector')
+  if and(g.directed<>[0 1]) then
+    error('Graph list check: ""directed"" must be 0 or 1')
   end
-  if s(1)<>1|s(2)<>n then
-    error('Graph list check: ""node_label"" must be a row vector of size '+string(n))
+  check_nodes(g.nodes,checkgraphics)
+  check_edges(g.edges,checkgraphics)
+endfunction
+
+
+function check_nodes(nodes,checkgraphics)
+  
+  
+// -  main nodes data structure
+  ttnodes=           ['nodes','number','graphics','data'];
+  NodeFieldTypes=    ['constant','ngraphic','nodedata']
+  NodeFieldSizes=    list([1 1],-1,-1);
+  // - graphic nodes data structure
+  ttgnodes=          ['ngraphic','display','defaults','name','x','y','type','diam','border','colors','font']
+  GNodeFieldTypes=   ['string','nodedefs','string','constant','constant','constant','constant','constant','constant','constant']
+  GNodeFieldSizes=   list([1 1],6,[1 -1],[1 -1], [1 -1],[1 -1], [1 -1],[1 -1],[2 -1],[3 -1])
+  // - default node graphic properties data structure
+  ttdefnodes=        ['nodedefs','type','diam','border','colors','font']
+  DefNodeFieldTypes= ['constant', 'constant', 'constant', 'constant', 'constant']
+  DefNodeFieldSizes= list([1 1], [1 1], [1,1],[2 1], [3 1])
+
+  //Checking main node data structure
+  //---------------------------------
+  if or(getfield(1,nodes)<>ttnodes) then
+    error('Graph list check: invalid graphic node fields')
   end
-end
-// edge_label
-s=size(g(34))
-if prod(s)<>0 then
-  if type(g(34))<>10 then
-    error('Graph list check: ""edge_label"" must be a string row vector')
+  
+  n=nodes.number
+  for k=2:size(ttnodes,2)
+    nk=nodes(ttnodes(k))
+    if typeof(nk)<>NodeFieldTypes(k-1) then
+      error('Graph list check: incorrect type for nodes field '''+ttnodes(k)+'''')
+    end
+    snk=size(nk)
+    if prod(snk)<>0 then
+      if or(NodeFieldSizes(k-1)>0&size(nk)<>NodeFieldSizes(k-1)) then
+	error('Graph list check: incorrect dimension for nodes field '''+ttnodes(k)+'''')
+      end
+      //cross dimension validation
+      if or(NodeFieldSizes(k-1)==-1) then
+	if n<>snk(NodeFieldSizes(k-1)==-1) then
+	  error('Graph list check: incorrect dimension for nodes field '''+ttnodes(k)+'''')
+	end
+      end
+    end
   end
-  if s(1)<>1|s(2)<>ma then
-    error('Graph list check: ""edge_label"" must be a row vector of size '+string(ma))
+  if ~checkgraphics then return,end
+  
+  //Checking graphic node data structure  
+  //------------------------------------
+  if or(getfield(1,nodes.graphics)<>ttgnodes) then
+    error('Graph list check: invalid node fields')
   end
-end
+  for k=2:size(ttgnodes,2)
+    nk=nodes.graphics(ttgnodes(k))
+    if typeof(nk)<>GNodeFieldTypes(k-1) then
+      error('Graph list check: incorrect type for graphic nodes field '''+ttgnodes(k)+'''')
+    end
+    snk=size(nk)
+    if prod(snk)<>0 then
+      if or(GNodeFieldSizes(k-1)>0&size(nk)<>GNodeFieldSizes(k-1)) then
+	error('Graph list check: incorrect dimension for nodes field '''+ttgnodes(k)+'''')
+      end
+      //cross dimension validation
+      if or(GNodeFieldSizes(k-1)==-1) then
+	if n<>snk(GNodeFieldSizes(k-1)==-1) then
+	  error('Graph list check: incorrect dimension for graphic nodes field '''+ttgnodes(k)+'''')
+	end
+      end
+    end
+  end
+  
+  // Checking nodes graphic defaults subfields
+  //------------------------------------------
+  if or(getfield(1,nodes.graphics.defaults)<>ttdefnodes) then
+      error('Graph list check: invalid node graphic defaults fields')
+  end
+  for k=2:size(ttdefnodes,2)
+    nk=nodes.graphics.defaults(ttdefnodes(k))
+    if typeof(nk)<>DefNodeFieldTypes(k-1) then
+      error('Graph list check: incorrect type for node graphic defaults field '''+ttdefnodes(k)+'''')
+    end
+    snk=size(nk)
+    if prod(snk)<>0 then
+      if or(DefNodeFieldSizes(k-1)>0&size(nk)<>DefNodeFieldSizes(k-1)) then
+	error('Graph list check: incorrect dimension for node graphic defaults field '''+ttdefnodes(k)+'''')
+      end
+    end
+  end
+endfunction
+
+function check_edges(edges,checkgraphics)
+  // - main edges data structure
+  ttedges=           ['edges','tail','head','graphics','data'];
+  EdgeFieldTypes=    ['constant','constant','egraphic','edgedata']
+  EdgeFieldSizes=    list([1 -1],[1 -1], -1,-1)
+  // - graphic edges data structure
+  ttgedges=          ['egraphic','display','defaults','profiles','name','width','foreground','font','profile_index']
+  GEdgeFieldTypes=   ['string','edgedefs','list','string','constant', 'constant', 'constant', 'constant']
+  GEdgeFieldSizes=   list([1 1],5,-2,[1 -1],[1 -1],[1 -1],[3 -1],[1 -1])
+  // - default edge graphic properties data structure
+  ttdefedges=        ['edgedefs','width','foreground','font','profile_index'];
+  DefEdgeFieldTypes= ['constant', 'constant', 'constant', 'constant']
+  DefEdgeFieldSizes=  list([1 1], [1 1], [3 1], [1 1])
+
+  //Checking main edges data structure fields
+  //-----------------------------------------
+  if or(getfield(1,edges)<>ttedges) then
+    error('Graph list check: invalid edge fields')
+  end
+  
+  n=-1
+  for k=2:size(ttedges,2)
+    ek=edges(ttedges(k))
+    if typeof(ek)<>EdgeFieldTypes(k-1) then
+      error('Graph list check: incorrect type for edges field '''+ttedges(k)+'''')
+    end
+    sek=size(ek)
+    if prod(sek)<>0 then
+      if or(EdgeFieldSizes(k-1)>0&size(ek)<>EdgeFieldSizes(k-1)) then
+	error('Graph list check: incorrect dimension for edges field '''+ttedges(k)+'''')
+      end
+      //cross dimension validation
+      if or(EdgeFieldSizes(k-1)==-1) then
+	if n==-1 then n= sek(EdgeFieldSizes(k-1)==-1),end
+	if n<>sek(EdgeFieldSizes(k-1)<0) then
+	  error('Graph list check: incorrect dimension for edges field '''+ttedges(k)+'''')
+	end
+      end
+    end
+  end
+  if ~checkgraphics then return,end
+  
+  //Checking  edges graphic data structure fields
+  //---------------------------------------------
+  if or(getfield(1,edges.graphics)<>ttgedges) then
+    error('Graph list check: invalid edges graphic fields')
+  end
+  for k=2:size(ttgedges,2)
+    ek=edges.graphics(ttgedges(k))
+    if typeof(ek)<>GEdgeFieldTypes(k-1) then
+      error('Graph list check: incorrect type for edges graphic field '''+ttgedges(k)+'''')
+    end
+    sek=size(ek)
+    if prod(sek)<>0 then
+      if or(GEdgeFieldSizes(k-1)>0&size(ek)<>GEdgeFieldSizes(k-1)) then
+	error('Graph list check: incorrect dimension for edges graphic field '''+ttgedges(k)+'''')
+      end
+      //cross dimension validation
+      if or(GEdgeFieldSizes(k-1)==-1) then
+	if n<>sek(GEdgeFieldSizes(k-1)<0) then
+	  error('Graph list check: incorrect dimension for edges graphic field '''+ttgedges(k)+'''')
+	end
+      end
+    end
+  end
+
+  
+  // Checking edges graphic defaults subfield
+  //-----------------------------------------
+  if or(getfield(1,edges.graphics.defaults)<>ttdefedges) then
+      error('Graph list check: invalid edge defaults fields')
+  end
+  for k=2:size(ttdefedges,2)
+    ek=edges.graphics.defaults(ttdefedges(k))
+    if typeof(ek)<>DefEdgeFieldTypes(k-1) then
+      error('Graph list check: incorrect type for edge defaults field '''+ttdefedges(k)+'''')
+    end
+    sek=size(ek)
+    if prod(sek)<>0 then
+      if or(DefEdgeFieldSizes(k-1)>0&size(ek)<>DefEdgeFieldSizes(k-1)) then
+	error('Graph list check: incorrect dimension for edge defaults field '''+ttdefedges(k)+'''')
+      end
+    end
+  end
 endfunction

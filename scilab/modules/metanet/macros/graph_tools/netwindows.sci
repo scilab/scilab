@@ -1,5 +1,5 @@
 function l=netwindows()
-  //w=winsid()
+//w=winsid()
   G=who('global')
   G=G(part(G,1:7)=='EGdata_')
   if G==[] then

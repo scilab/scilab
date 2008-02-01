@@ -1,29 +1,38 @@
 function show_nodes(p,sup,leg)
 //Copyright INRIA
 //Author : Serge Steer 2002
-  if argn(2)<2 then sup='no',end
-  if exists('leg','local')==0 then leg='',end
-  opt=find(['Number','Name','Demand','Label']==leg)
-  if opt==[] then opt=0,end
+  if exists('leg','local')==0 then leg='nothing',end
+  if exists('sup','local')==0 then sup='no',end
+  if type(p)<>1 then error(52,1),end
   sup=sup=='sup'
   //get current editgraph window
   global EGcurrent
   if type(EGcurrent)<>1|size(EGcurrent,'*')<>1 then
     error('No current edit_graph window defined, use netwindow')
   end
+  
   win=EGcurrent;w=string(win)
-  old=xget('window');xset('window',win)
+  old=gcf();scf(win)
   execstr(['global EGdata_'+w
-	   'if typeof(EGdata_'+w+')==''egdata'' then';
-	   'EGdata=EGdata_'+w
-	   'EGdata.NodeId=opt'
-	   'GraphList=EGdata.GraphList'
-	   'if ~sup then xbasc();ge_set_winsize();ge_drawobjs(GraphList),end'
-	   'b=GraphList.node_border(p)'
-	   'b(b==0)=GraphList.default_node_border'
-	   'b=3*b'
-	   'GraphList.node_border(p)=b'
-	   'ge_drawnodes(p)'
-	   'end'])
-   xset('window',old)
+	   '  EGdata=EGdata_'+w])
+  if typeof(EGdata)=='egdata' then
+    GraphList=EGdata.GraphList
+    p=unique(p)
+    if min(p)<1|max(p)>node_number(GraphList) then
+      error('Node numbers should be in [1 '+string(node_number(GraphList))+']')
+    end
+
+    df=getfield(1,GraphList.nodes.data)
+    NodeDataFields=['nothing','number','name', df(2:$)];
+    if and(stripblanks(leg)<>NodeDataFields) then
+      error('Invalid data field')
+    end
+    GraphList.nodes.graphics.display=leg //NodeId
+    if ~sup then 
+      ge_do_replot(GraphList)
+    end
+    ge_hilite_nodes(p,GraphList)
+    show_pixmap()
+  end
+  scf(old)
 endfunction
