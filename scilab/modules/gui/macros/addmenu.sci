@@ -179,7 +179,7 @@ else
   if fig==0
     set(h, "callback", list(0, "execstr("""+callbackStr+"(1)"")"));
   else
-    set(h, "callback", list(0, "execstr("""+callbackStr+"(1,"+string(fig)+")"")"));
+    set(h, "callback", list(0, "execstr("""+callbackStr+"(1,"+string(get(fig,"figure_id"))+")"")"));
   end
 end
 
@@ -223,7 +223,7 @@ for K=1:size(submenuslabels,"*")
     if fig == 0
       set(h, "callback", list(0, "execstr("""+callbackStr+"(1)"")"));
     else
-      set(h, "callback", list(0, "execstr("""+callbackStr+"("+string(K)+","+string(fig)+")"")"));
+      set(h, "callback", list(0, "execstr("""+callbackStr+"("+string(K)+","+string(get(fig,"figure_id"))+")"")"));
     end
   end
 end
