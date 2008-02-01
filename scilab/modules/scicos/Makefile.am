@@ -94,61 +94,91 @@ libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
 #### scicos : include files ####
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
-libsciscicos_la_include_HEADERS = includes/import.h \
-includes/cc_pass2.h \
-includes/scicos_block.h \
-includes/scicos-def.h \
-includes/gw_scicos.h \
+libsciscicos_la_include_HEADERS = includes/ExistScicos.h \
 includes/intcscicos.h \
-includes/scicos_block4.h \
-includes/gw_cscicos.h \
 includes/scicos.h \
-includes/blocks.h
-
+includes/matscicos.h \
+includes/gw_scicos.h \
+includes/gw_cscicos.h
 
 #### scicos : demos files ####
 libsciscicos_la_demosdir=$(mydatadir)
-nobase_libsciscicos_la_demos_DATA = demos/CodeGen/Fibo_standalone.c \
+nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
+	demos/Bouncing_ball.cosf \
+	demos/CodeGen \
+	demos/Cont.Disc-Observer.cosf \
+	demos/Controller.cosf \
+	demos/demo_Datatype.cosf \
+	demos/demo_flipflop.cosf \
+	demos/demo_watertank.cosf \
+	demos/dialogs_learn.sci \
+	demos/dialogs_play.sci \
+	demos/dialogs.sci \
+	demos/Discrete-KalmanFilter.cosf \
+	demos/Electrical \
+	demos/fibo.cosf \
+	demos/Finite_state_Buck.cosf \
+	demos/Finite_state_SwingUp.cosf \
+	demos/goto_demo.cosf \
+	demos/Hydraulics.cosf \
+	demos/Ifsub.cosf \
+	demos/imppart_Hydraulics.mo \
+	demos/Inverted_pendulum.cosf \
+	demos/Kalman_1.cosf \
+	demos/live.dat \
+	demos/Lorentz.cosf \
+	demos/MBlock \
+	demos/Plant_DiscreteController.cosf \
+	demos/scicos.dem \
+	demos/scicos_learn.sci \
+	demos/scicos_play.sci \
+	demos/Scilab_Block.cosf \
+	demos/setw.sci \
+	demos/Signal_Builder.cosf \
+	demos/Simple_Demo.cosf \
+	demos/Simple_Thermostat.cosf \
+	demos/sound.cosf \
+	demos/System-Observer.cosf \
+	demos/Table_Lookup.cosf \
+	demos/Temp.cosf \
+	demos/Thermique_bloc.cosf \
+	demos/Threshold_ZeroCrossing.cosf \
+	demos/tut1 \
+	demos/tut2 \
+	demos/tut3 \
+	demos/tut4 \
+	demos/tut5 \
+	demos/tut6
+
+libsciscicos_la_demosCodeGendir=$(mydatadir)/demos/CodeGen/
+nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/Fibo_standalone.c \
 demos/CodeGen/Therm.cosf \
 demos/CodeGen/Therm_standalone.c \
 demos/CodeGen/fibo.cosf \
 demos/CodeGen/data \
-demos/CodeGen/controller.cosf \
-demos/CodeGen/foo.cosf \
-demos/sound.cosf \
-demos/dialogs_play.sci \
-demos/Thermique_bloc.cosf \
-demos/tut1 \
-demos/tut2 \
-demos/Temp.cosf \
-demos/tut3 \
-demos/demo2.cosf \
-demos/tut4 \
-demos/Ifsub.cosf \
-demos/demo4.cosf \
-demos/tut5 \
-demos/Cont.Disc-Observer.cosf \
-demos/tut6 \
-demos/demo6.cosf \
-demos/bounce.cosf \
-demos/Rectifier.cosf \
-demos/imppart_Hydraulics.mo \
-demos/dialogs_learn.sci \
-demos/scicos_learn.sci \
-demos/scicos_play.sci \
-demos/scicos.dem \
-demos/rlc1.cosf \
-demos/demo1.cosf \
-demos/dialogs.sci \
-demos/Hydraulics.cosf \
-demos/demo3.cosf \
-demos/System-Observer.cosf \
-demos/demo5.cosf \
-demos/demo7.cosf \
-demos/live.dat \
-demos/fibo.cosf \
-demos/Controller.cosf
+demos/CodeGen/controller.cosf
 
+libsciscicos_la_demosElectricaldir=$(mydatadir)/demos/Electrical/
+nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/DC_DC_Buck_Converter.cosf \
+demos/Electrical/Bridge_Rectifier.cosf \
+demos/Electrical/Colpitts_Oscillator.cosf \
+demos/Electrical/Boost_Converter.cosf \
+demos/Electrical/Switched_capacitor_integrator.cosf \
+demos/Electrical/NOR_Gate.cosf \
+demos/Electrical/AND_Gate.cosf \
+demos/Electrical/Difference_amplifier.cosf \
+demos/Electrical/RLC_circuit.cosf \
+demos/Electrical/Transformer.cosf \
+demos/Electrical/Opamp_Amplifier.cosf
+
+libsciscicos_la_demosMBlockdir=$(mydatadir)/demos/MBlock/
+nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Chaos_Modelica.cosf \
+demos/MBlock/BouncingBall_Modelica.cosf \
+demos/MBlock/RLC_Modelica.cosf \
+demos/MBlock/Ball_Platform.cosf
+
+
+########### MACROS #####################
 MACROSDIRSEXT= macros/scicos_blocks \
 macros/scicos_blocks/Sources \
 macros/scicos_blocks/Events \

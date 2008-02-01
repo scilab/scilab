@@ -85,6 +85,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_la_rootdir)" \
 	"$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciscicos_la_demosdir)" \
+	"$(DESTDIR)$(libsciscicos_la_demosCodeGendir)" \
+	"$(DESTDIR)$(libsciscicos_la_demosElectricaldir)" \
+	"$(DESTDIR)$(libsciscicos_la_demosMBlockdir)" \
 	"$(DESTDIR)$(libsciscicos_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -171,14 +174,19 @@ libsciscicos_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libsciscicos_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsciscicos_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libsciscicos_la_demosDATA_INSTALL = $(install_sh_DATA)
+nobase_libsciscicos_la_demosCodeGenDATA_INSTALL = $(install_sh_DATA)
+nobase_libsciscicos_la_demosElectricalDATA_INSTALL = $(install_sh_DATA)
+nobase_libsciscicos_la_demosMBlockDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_root_DATA) \
 	$(libsciscicos_la_sci_gateway_DATA) \
-	$(nobase_libsciscicos_la_demos_DATA)
+	$(nobase_libsciscicos_la_demos_DATA) \
+	$(nobase_libsciscicos_la_demosCodeGen_DATA) \
+	$(nobase_libsciscicos_la_demosElectrical_DATA) \
+	$(nobase_libsciscicos_la_demosMBlock_DATA)
 am__libsciscicos_la_include_HEADERS_DIST = src/c/noscicos/resource.h \
-	includes/import.h includes/cc_pass2.h includes/scicos_block.h \
-	includes/scicos-def.h includes/gw_scicos.h \
-	includes/intcscicos.h includes/scicos_block4.h \
-	includes/gw_cscicos.h includes/scicos.h includes/blocks.h
+	includes/ExistScicos.h includes/intcscicos.h includes/scicos.h \
+	includes/matscicos.h includes/gw_scicos.h \
+	includes/gw_cscicos.h
 libsciscicos_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciscicos_la_include_HEADERS)
 ETAGS = etags
@@ -506,61 +514,92 @@ JARMASK = *.jar
 #### scicos : include files ####
 @SCICOS_TRUE@libsciscicos_la_includedir = $(pkgincludedir)/scicos
 @SCICOS_FALSE@libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
-@SCICOS_TRUE@libsciscicos_la_include_HEADERS = includes/import.h \
-@SCICOS_TRUE@includes/cc_pass2.h \
-@SCICOS_TRUE@includes/scicos_block.h \
-@SCICOS_TRUE@includes/scicos-def.h \
-@SCICOS_TRUE@includes/gw_scicos.h \
+@SCICOS_TRUE@libsciscicos_la_include_HEADERS = includes/ExistScicos.h \
 @SCICOS_TRUE@includes/intcscicos.h \
-@SCICOS_TRUE@includes/scicos_block4.h \
-@SCICOS_TRUE@includes/gw_cscicos.h \
 @SCICOS_TRUE@includes/scicos.h \
-@SCICOS_TRUE@includes/blocks.h
+@SCICOS_TRUE@includes/matscicos.h \
+@SCICOS_TRUE@includes/gw_scicos.h \
+@SCICOS_TRUE@includes/gw_cscicos.h
 
 
 #### scicos : demos files ####
 @SCICOS_TRUE@libsciscicos_la_demosdir = $(mydatadir)
-@SCICOS_TRUE@nobase_libsciscicos_la_demos_DATA = demos/CodeGen/Fibo_standalone.c \
+@SCICOS_TRUE@nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
+@SCICOS_TRUE@	demos/Bouncing_ball.cosf \
+@SCICOS_TRUE@	demos/CodeGen \
+@SCICOS_TRUE@	demos/Cont.Disc-Observer.cosf \
+@SCICOS_TRUE@	demos/Controller.cosf \
+@SCICOS_TRUE@	demos/demo_Datatype.cosf \
+@SCICOS_TRUE@	demos/demo_flipflop.cosf \
+@SCICOS_TRUE@	demos/demo_watertank.cosf \
+@SCICOS_TRUE@	demos/dialogs_learn.sci \
+@SCICOS_TRUE@	demos/dialogs_play.sci \
+@SCICOS_TRUE@	demos/dialogs.sci \
+@SCICOS_TRUE@	demos/Discrete-KalmanFilter.cosf \
+@SCICOS_TRUE@	demos/Electrical \
+@SCICOS_TRUE@	demos/fibo.cosf \
+@SCICOS_TRUE@	demos/Finite_state_Buck.cosf \
+@SCICOS_TRUE@	demos/Finite_state_SwingUp.cosf \
+@SCICOS_TRUE@	demos/goto_demo.cosf \
+@SCICOS_TRUE@	demos/Hydraulics.cosf \
+@SCICOS_TRUE@	demos/Ifsub.cosf \
+@SCICOS_TRUE@	demos/imppart_Hydraulics.mo \
+@SCICOS_TRUE@	demos/Inverted_pendulum.cosf \
+@SCICOS_TRUE@	demos/Kalman_1.cosf \
+@SCICOS_TRUE@	demos/live.dat \
+@SCICOS_TRUE@	demos/Lorentz.cosf \
+@SCICOS_TRUE@	demos/MBlock \
+@SCICOS_TRUE@	demos/Plant_DiscreteController.cosf \
+@SCICOS_TRUE@	demos/scicos.dem \
+@SCICOS_TRUE@	demos/scicos_learn.sci \
+@SCICOS_TRUE@	demos/scicos_play.sci \
+@SCICOS_TRUE@	demos/Scilab_Block.cosf \
+@SCICOS_TRUE@	demos/setw.sci \
+@SCICOS_TRUE@	demos/Signal_Builder.cosf \
+@SCICOS_TRUE@	demos/Simple_Demo.cosf \
+@SCICOS_TRUE@	demos/Simple_Thermostat.cosf \
+@SCICOS_TRUE@	demos/sound.cosf \
+@SCICOS_TRUE@	demos/System-Observer.cosf \
+@SCICOS_TRUE@	demos/Table_Lookup.cosf \
+@SCICOS_TRUE@	demos/Temp.cosf \
+@SCICOS_TRUE@	demos/Thermique_bloc.cosf \
+@SCICOS_TRUE@	demos/Threshold_ZeroCrossing.cosf \
+@SCICOS_TRUE@	demos/tut1 \
+@SCICOS_TRUE@	demos/tut2 \
+@SCICOS_TRUE@	demos/tut3 \
+@SCICOS_TRUE@	demos/tut4 \
+@SCICOS_TRUE@	demos/tut5 \
+@SCICOS_TRUE@	demos/tut6
+
+@SCICOS_TRUE@libsciscicos_la_demosCodeGendir = $(mydatadir)/demos/CodeGen/
+@SCICOS_TRUE@nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/Fibo_standalone.c \
 @SCICOS_TRUE@demos/CodeGen/Therm.cosf \
 @SCICOS_TRUE@demos/CodeGen/Therm_standalone.c \
 @SCICOS_TRUE@demos/CodeGen/fibo.cosf \
 @SCICOS_TRUE@demos/CodeGen/data \
-@SCICOS_TRUE@demos/CodeGen/controller.cosf \
-@SCICOS_TRUE@demos/CodeGen/foo.cosf \
-@SCICOS_TRUE@demos/sound.cosf \
-@SCICOS_TRUE@demos/dialogs_play.sci \
-@SCICOS_TRUE@demos/Thermique_bloc.cosf \
-@SCICOS_TRUE@demos/tut1 \
-@SCICOS_TRUE@demos/tut2 \
-@SCICOS_TRUE@demos/Temp.cosf \
-@SCICOS_TRUE@demos/tut3 \
-@SCICOS_TRUE@demos/demo2.cosf \
-@SCICOS_TRUE@demos/tut4 \
-@SCICOS_TRUE@demos/Ifsub.cosf \
-@SCICOS_TRUE@demos/demo4.cosf \
-@SCICOS_TRUE@demos/tut5 \
-@SCICOS_TRUE@demos/Cont.Disc-Observer.cosf \
-@SCICOS_TRUE@demos/tut6 \
-@SCICOS_TRUE@demos/demo6.cosf \
-@SCICOS_TRUE@demos/bounce.cosf \
-@SCICOS_TRUE@demos/Rectifier.cosf \
-@SCICOS_TRUE@demos/imppart_Hydraulics.mo \
-@SCICOS_TRUE@demos/dialogs_learn.sci \
-@SCICOS_TRUE@demos/scicos_learn.sci \
-@SCICOS_TRUE@demos/scicos_play.sci \
-@SCICOS_TRUE@demos/scicos.dem \
-@SCICOS_TRUE@demos/rlc1.cosf \
-@SCICOS_TRUE@demos/demo1.cosf \
-@SCICOS_TRUE@demos/dialogs.sci \
-@SCICOS_TRUE@demos/Hydraulics.cosf \
-@SCICOS_TRUE@demos/demo3.cosf \
-@SCICOS_TRUE@demos/System-Observer.cosf \
-@SCICOS_TRUE@demos/demo5.cosf \
-@SCICOS_TRUE@demos/demo7.cosf \
-@SCICOS_TRUE@demos/live.dat \
-@SCICOS_TRUE@demos/fibo.cosf \
-@SCICOS_TRUE@demos/Controller.cosf
+@SCICOS_TRUE@demos/CodeGen/controller.cosf
 
+@SCICOS_TRUE@libsciscicos_la_demosElectricaldir = $(mydatadir)/demos/Electrical/
+@SCICOS_TRUE@nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/DC_DC_Buck_Converter.cosf \
+@SCICOS_TRUE@demos/Electrical/Bridge_Rectifier.cosf \
+@SCICOS_TRUE@demos/Electrical/Colpitts_Oscillator.cosf \
+@SCICOS_TRUE@demos/Electrical/Boost_Converter.cosf \
+@SCICOS_TRUE@demos/Electrical/Switched_capacitor_integrator.cosf \
+@SCICOS_TRUE@demos/Electrical/NOR_Gate.cosf \
+@SCICOS_TRUE@demos/Electrical/AND_Gate.cosf \
+@SCICOS_TRUE@demos/Electrical/Difference_amplifier.cosf \
+@SCICOS_TRUE@demos/Electrical/RLC_circuit.cosf \
+@SCICOS_TRUE@demos/Electrical/Transformer.cosf \
+@SCICOS_TRUE@demos/Electrical/Opamp_Amplifier.cosf
+
+@SCICOS_TRUE@libsciscicos_la_demosMBlockdir = $(mydatadir)/demos/MBlock/
+@SCICOS_TRUE@nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Chaos_Modelica.cosf \
+@SCICOS_TRUE@demos/MBlock/BouncingBall_Modelica.cosf \
+@SCICOS_TRUE@demos/MBlock/RLC_Modelica.cosf \
+@SCICOS_TRUE@demos/MBlock/Ball_Platform.cosf
+
+
+########### MACROS #####################
 @SCICOS_TRUE@MACROSDIRSEXT = macros/scicos_blocks \
 @SCICOS_TRUE@macros/scicos_blocks/Sources \
 @SCICOS_TRUE@macros/scicos_blocks/Events \
@@ -990,6 +1029,63 @@ uninstall-nobase_libsciscicos_la_demosDATA:
 	  echo " rm -f '$(DESTDIR)$(libsciscicos_la_demosdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsciscicos_la_demosdir)/$$f"; \
 	done
+install-nobase_libsciscicos_la_demosCodeGenDATA: $(nobase_libsciscicos_la_demosCodeGen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscicos_la_demosCodeGendir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_demosCodeGendir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsciscicos_la_demosCodeGen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libsciscicos_la_demosCodeGenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscicos_la_demosCodeGendir)/$$f'"; \
+	  $(nobase_libsciscicos_la_demosCodeGenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscicos_la_demosCodeGendir)/$$f"; \
+	done
+
+uninstall-nobase_libsciscicos_la_demosCodeGenDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsciscicos_la_demosCodeGen_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libsciscicos_la_demosCodeGendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscicos_la_demosCodeGendir)/$$f"; \
+	done
+install-nobase_libsciscicos_la_demosElectricalDATA: $(nobase_libsciscicos_la_demosElectrical_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscicos_la_demosElectricaldir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_demosElectricaldir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsciscicos_la_demosElectrical_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libsciscicos_la_demosElectricalDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscicos_la_demosElectricaldir)/$$f'"; \
+	  $(nobase_libsciscicos_la_demosElectricalDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscicos_la_demosElectricaldir)/$$f"; \
+	done
+
+uninstall-nobase_libsciscicos_la_demosElectricalDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsciscicos_la_demosElectrical_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libsciscicos_la_demosElectricaldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscicos_la_demosElectricaldir)/$$f"; \
+	done
+install-nobase_libsciscicos_la_demosMBlockDATA: $(nobase_libsciscicos_la_demosMBlock_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscicos_la_demosMBlockdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_demosMBlockdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsciscicos_la_demosMBlock_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libsciscicos_la_demosMBlockDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscicos_la_demosMBlockdir)/$$f'"; \
+	  $(nobase_libsciscicos_la_demosMBlockDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscicos_la_demosMBlockdir)/$$f"; \
+	done
+
+uninstall-nobase_libsciscicos_la_demosMBlockDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsciscicos_la_demosMBlock_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libsciscicos_la_demosMBlockdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscicos_la_demosMBlockdir)/$$f"; \
+	done
 install-libsciscicos_la_includeHEADERS: $(libsciscicos_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscicos_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_includedir)"
@@ -1087,7 +1183,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_demosdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_demosdir)" "$(DESTDIR)$(libsciscicos_la_demosCodeGendir)" "$(DESTDIR)$(libsciscicos_la_demosElectricaldir)" "$(DESTDIR)$(libsciscicos_la_demosMBlockdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1139,7 +1235,10 @@ install-data-am: install-data-local install-libsciscicos_la_etcDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
 	install-libsciscicos_la_sci_gatewayDATA \
-	install-nobase_libsciscicos_la_demosDATA
+	install-nobase_libsciscicos_la_demosCodeGenDATA \
+	install-nobase_libsciscicos_la_demosDATA \
+	install-nobase_libsciscicos_la_demosElectricalDATA \
+	install-nobase_libsciscicos_la_demosMBlockDATA
 
 install-dvi: install-dvi-am
 
@@ -1181,7 +1280,10 @@ uninstall-am: uninstall-libsciscicos_la_etcDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \
+	uninstall-nobase_libsciscicos_la_demosCodeGenDATA \
 	uninstall-nobase_libsciscicos_la_demosDATA \
+	uninstall-nobase_libsciscicos_la_demosElectricalDATA \
+	uninstall-nobase_libsciscicos_la_demosMBlockDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1198,7 +1300,10 @@ uninstall-am: uninstall-libsciscicos_la_etcDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
 	install-libsciscicos_la_sci_gatewayDATA install-man \
-	install-nobase_libsciscicos_la_demosDATA install-pdf \
+	install-nobase_libsciscicos_la_demosCodeGenDATA \
+	install-nobase_libsciscicos_la_demosDATA \
+	install-nobase_libsciscicos_la_demosElectricalDATA \
+	install-nobase_libsciscicos_la_demosMBlockDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1208,7 +1313,10 @@ uninstall-am: uninstall-libsciscicos_la_etcDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \
+	uninstall-nobase_libsciscicos_la_demosCodeGenDATA \
 	uninstall-nobase_libsciscicos_la_demosDATA \
+	uninstall-nobase_libsciscicos_la_demosElectricalDATA \
+	uninstall-nobase_libsciscicos_la_demosMBlockDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
