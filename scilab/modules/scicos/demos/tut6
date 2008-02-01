@@ -1,0 +1,129 @@
+-2,0,-2,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  Scicos tutorial: Defining a new block using CBlock2.
+  This requires the presence of a C compiler on the
+  system.
+  We start with the diagram from the previous tutorial.
+  o //OK
+-2,0,-2,-1,"execstr(Diagram_1000(8))"// Diagram/Load
+//xgetfile: 
+diagram5.cos
+-2,0,-2,-1,"execstr(Edit_1000(1))"// Edit/Palettes
+//x_choose:  Choose a Palette
+  7//Others
+0,368,20.8,1001,"void"// Palette: Others, Block: 6 CBLOCK
+257.9,277.2,-1//xgemouse
+243,272.7,-1//xgemouse
+242.3,273.4,-1//xgemouse
+241.5,274.2,-1//xgemouse
+240.8,274.9,-1//xgemouse
+240.8,275.7,-1//xgemouse
+240.8,276.4,-1//xgemouse
+240.8,277.2,-1//xgemouse
+240.1,277.2,-1//xgemouse
+240.1,278.6,-1//xgemouse
+243,284.6,-1//xgemouse
+243,283.9,-1//xgemouse
+244.5,283.9,-1//xgemouse
+245.3,283.1,-1//xgemouse
+246,282.4,-1//xgemouse
+249,279.4,-1//xgemouse
+250.5,278.6,-1//xgemouse
+252,278.6,-1//xgemouse
+256.4,277.2,-1//xgemouse
+257.9,277.2,-1//xgemouse
+258.7,276.4,-1//xgemouse
+259.4,276.4,-1//xgemouse
+260.2,276.4,-1//xgemouse
+259.4,276.4,-1//xgemouse
+259.4,277.2,-1//xgemouse
+259.4,276.4,-1//xgemouse
+260.2,276.4,-1//xgemouse
+260.2,275.7,-1//xgemouse
+260.2,274.9,-1//xgemouse
+260.2,274.2,-1//xgemouse
+260.2,273.4,-1//xgemouse
+260.2,272.7,-1//xgemouse
+260.2,271.9,-1//xgemouse
+260.2,271.2,-1//xgemouse
+260.2,271.9,-1//xgemouse
+260.9,271.9,-1//xgemouse
+260.9,271.9,0//xgemouse
+-2,0,-2,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  We grab the Cblock2 block from the Others palette.
+  This block is used to define block behavior on line
+  in C language.
+  o //OK
+0,281,292.8,1000,"void"// Block: 17 CBLOCK
+//x_mdialog: Set C-Block2 block parameters
+  toto
+  n
+  1
+  1
+  1
+  []
+  []
+  0
+  [0;0;0]
+  []
+  []
+  []
+  n
+  n
+  o //OK
+//x_dialog:Function definition in C
+  #include <math.h>
+  #include <stdlib.h>
+  #include <scicos/scicos_block.h>
+  void toto(scicos_block *block,int flag)
+  {
+    if (flag == 4) { /* initialization */
+     toto_bloc_init(block,flag);
+   
+    } else if(flag == 1) { /* output computation*/
+     set_block_error(toto_bloc_outputs(block,flag));
+    } else if(flag == 2) { /* computation of next discrte state*/ 
+       set_block_error(toto_bloc_states(block,flag));
+    } else  if (flag == 5) { /* ending */
+       set_block_error(toto_bloc_ending(block,flag));
+    }
+  }
+  int toto_bloc_init(scicos_block *block,int flag)
+  {
+  return 0;}
+  int toto_bloc_outputs(scicos_block *block,int flag)
+  {
+  block->outptr[0][0]=block->z[2];
+  return 0;}
+  int toto_bloc_states(scicos_block *block,int flag)
+  {
+  block->z[2]=block->z[2]+(get_scicos_time()-block->z[0])*block->z[1];
+  block->z[0]=get_scicos_time();
+  block->z[1]=block->inptr[0][0];
+  return 0;}
+  int toto_bloc_ending(scicos_block *block,int flag)
+  {
+  return 0;}
+  o //OK
+-2,0,-2,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  we now replace the Scifunc with the new Cblock2 block
+  which is supposed to do the same thing a lot more efficiently.
+  o //OK
+-2,0,-2,-1,"execstr(Edit_1000(7))"// Edit/Replace
+0,278.8,289.8,1000,"void"// Block: 17 CBLOCK
+0,222.9,224.2,1000,"void"// Block: 2 scifunc_block
+-2,0,-2,-1,"execstr(Edit_1000(10))"// Edit/Delete
+0,288.4,294.3,1000,"void"// Block: 17 CBLOCK
+-2,0,-2,-1,"execstr(Diagram_1000(5))"// Diagram/Rename
+//x_dialog:Enter the new diagram name
+  diagram6
+  o //OK
+-2,0,-2,-1,"execstr(Diagram_1000(6))"// Diagram/Save
+-2,0,-2,-1,"execstr(Simulate_1000(5))"// Simulate/Run
+-2,0,-2,-1,"execstr(Misc_1000(15))"// Misc/Comment
+//x_dialog:Enter comments
+  This is confirmed by simulation.
+  o //OK
+-2,0,-2,-1,"execstr(Diagram_1000(16))"// Diagram/Quit

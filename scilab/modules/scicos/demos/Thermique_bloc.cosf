@@ -1,0 +1,1980 @@
+scicos_ver = "scicos2.7.3"
+scs_m=scicos_diagram()
+scs_m.props=tlist(..
+["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
+"doc"],[600,450,0,0,600,450],["Thermique_bloc","/home/ramin/EDP/Tests/"],..
+[0.0001;0.000001;1.000E-10;100001;0;100;0],15000," ",[],..
+tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[12,9],[1,5],..
+list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
+scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+              "gr_i","id","in_implicit","out_implicit"],[-134.89583,502.27913],..
+              [80,80],%t,..
+              list(..
+              tlist(..
+              ["paramspde";
+              "a";
+              "b";
+              "txt_exp";
+              "check_op1";
+              "a1";
+              "b1";
+              "check_op2";
+              "a2";
+              "b2";
+              "check_op3";
+              "a3";
+              "b3";
+              "check_op4";
+              "a4";
+              "b4";
+              "check_op5";
+              "a5";
+              "b5";
+              "check_op6";
+              "a6";
+              "b6";
+              "check_op7";
+              "a7";
+              "b7";
+              "discr_cst";
+              "discr_non_cst";
+              "signe";
+              "rad_automatique";
+              "rad_manuel";
+              "methode";
+              "ord1";
+              "ord2";
+              "ord3";
+              "degre";
+              "nnode";
+              "txt_pas";
+              "CI";
+              "dCI";
+              "CLa";
+              "CLa_exp";
+              "CLb";
+              "CLb_exp";
+              "points"],"0","10","(-1)*b2(t)*d2u/dx2+(1)*b3(t)*du/dt=0","0","",..
+              "IN_EDP1(t)","1","-1","IN_EDP2(t)","1","1","IN_EDP3(t)","0","",..
+              "IN_EDP4(t)","0","","IN_EDP5(t)","0","","IN_EDP6(t)","0","",..
+              "IN_EDP7(t)","1","0","1","0","1","1","","","","2","101","0.1","0",..
+              "","0","IN_CL1(t)","0","IN_CL2(t)",["2","4","5","6","8"]),..
+              ["#include <scicos/scicos_block.h>";
+              "#include <math.h>";
+              " ";
+              "void  termique_implicite(scicos_block *block,int flag)";
+              "{";
+              " ";
+              " double **inptr = block->inptr;";
+              " double **outptr = block->outptr;";
+              " double *x = block->x;";
+              " int nx = block->nx;";
+              " double *xd = block->xd;";
+              " double *res = block->res;";
+              " int property[101];";
+              " ";
+              " int i;";
+              " double t = get_scicos_time();";
+              " ";
+              " if (flag == 0){";
+              "   res[0]=inptr[2][0]-x[0];";
+              "   res[1]=-inptr[1][0]*xd[1]-(-99.99999999999999*x[0]+200*x[1]-99.99999999999999*x[2])*inptr[0][0];";
+              "   res[2]=-inptr[1][0]*xd[2]-(-99.99999999999999*x[1]+200*x[2]-99.99999999999999*x[3])*inptr[0][0];";
+              "   res[3]=-inptr[1][0]*xd[3]-(-99.99999999999999*x[2]+200*x[3]-99.99999999999999*x[4])*inptr[0][0];";
+              "   res[4]=-inptr[1][0]*xd[4]-(-99.99999999999999*x[3]+200*x[4]-99.99999999999999*x[5])*inptr[0][0];";
+              "   res[5]=-inptr[1][0]*xd[5]-(-99.99999999999999*x[4]+200*x[5]-99.99999999999999*x[6])*inptr[0][0];";
+              "   res[6]=-inptr[1][0]*xd[6]-(-99.99999999999999*x[5]+200*x[6]-99.99999999999999*x[7])*inptr[0][0];";
+              "   res[7]=-inptr[1][0]*xd[7]-(-99.99999999999999*x[6]+200*x[7]-99.99999999999999*x[8])*inptr[0][0];";
+              "   res[8]=-inptr[1][0]*xd[8]-(-99.99999999999999*x[7]+200*x[8]-99.99999999999999*x[9])*inptr[0][0];";
+              "   res[9]=-inptr[1][0]*xd[9]-(-99.99999999999999*x[8]+200*x[9]-99.99999999999999*x[10])*inptr[0][0];";
+              "   res[10]=-inptr[1][0]*xd[10]-(-99.99999999999999*x[9]+200*x[10]-99.99999999999999*x[11])*inptr[0][0];";
+              "   res[11]=-inptr[1][0]*xd[11]-(-99.99999999999999*x[10]+200*x[11]-99.99999999999999*x[12])*inptr[0][0];";
+              "   res[12]=-inptr[1][0]*xd[12]-(-99.99999999999999*x[11]+200*x[12]-99.99999999999999*x[13])*inptr[0][0];";
+              "   res[13]=-inptr[1][0]*xd[13]-(-99.99999999999999*x[12]+200*x[13]-99.99999999999999*x[14])*inptr[0][0];";
+              "   res[14]=-inptr[1][0]*xd[14]-(-99.99999999999999*x[13]+200*x[14]-99.99999999999999*x[15])*inptr[0][0];";
+              "   res[15]=-inptr[1][0]*xd[15]-(-99.99999999999999*x[14]+200*x[15]-99.99999999999999*x[16])*inptr[0][0];";
+              "   res[16]=-inptr[1][0]*xd[16]-(-99.99999999999999*x[15]+200*x[16]-99.99999999999999*x[17])*inptr[0][0];";
+              "   res[17]=-inptr[1][0]*xd[17]-(-99.99999999999999*x[16]+200*x[17]-99.99999999999999*x[18])*inptr[0][0];";
+              "   res[18]=-inptr[1][0]*xd[18]-(-99.99999999999999*x[17]+200*x[18]-99.99999999999999*x[19])*inptr[0][0];";
+              "   res[19]=-inptr[1][0]*xd[19]-(-99.99999999999999*x[18]+200*x[19]-99.99999999999999*x[20])*inptr[0][0];";
+              "   res[20]=-inptr[1][0]*xd[20]-(-99.99999999999999*x[19]+200*x[20]-99.99999999999999*x[21])*inptr[0][0];";
+              "   res[21]=-inptr[1][0]*xd[21]-(-99.99999999999999*x[20]+200*x[21]-99.99999999999999*x[22])*inptr[0][0];";
+              "   res[22]=-inptr[1][0]*xd[22]-(-99.99999999999999*x[21]+200*x[22]-99.99999999999999*x[23])*inptr[0][0];";
+              "   res[23]=-inptr[1][0]*xd[23]-(-99.99999999999999*x[22]+200*x[23]-99.99999999999999*x[24])*inptr[0][0];";
+              "   res[24]=-inptr[1][0]*xd[24]-(-99.99999999999999*x[23]+200*x[24]-99.99999999999999*x[25])*inptr[0][0];";
+              "   res[25]=-inptr[1][0]*xd[25]-(-99.99999999999999*x[24]+200*x[25]-99.99999999999999*x[26])*inptr[0][0];";
+              "   res[26]=-inptr[1][0]*xd[26]-(-99.99999999999999*x[25]+200*x[26]-99.99999999999999*x[27])*inptr[0][0];";
+              "   res[27]=-inptr[1][0]*xd[27]-(-99.99999999999999*x[26]+200*x[27]-99.99999999999999*x[28])*inptr[0][0];";
+              "   res[28]=-inptr[1][0]*xd[28]-(-99.99999999999999*x[27]+200*x[28]-99.99999999999999*x[29])*inptr[0][0];";
+              "   res[29]=-inptr[1][0]*xd[29]-(-99.99999999999999*x[28]+200*x[29]-99.99999999999999*x[30])*inptr[0][0];";
+              "   res[30]=-inptr[1][0]*xd[30]-(-99.99999999999999*x[29]+200*x[30]-99.99999999999999*x[31])*inptr[0][0];";
+              "   res[31]=-inptr[1][0]*xd[31]-(-99.99999999999999*x[30]+200*x[31]-99.99999999999999*x[32])*inptr[0][0];";
+              "   res[32]=-inptr[1][0]*xd[32]-(-99.99999999999999*x[31]+200*x[32]-99.99999999999999*x[33])*inptr[0][0];";
+              "   res[33]=-inptr[1][0]*xd[33]-(-99.99999999999999*x[32]+200*x[33]-99.99999999999999*x[34])*inptr[0][0];";
+              "   res[34]=-inptr[1][0]*xd[34]-(-99.99999999999999*x[33]+200*x[34]-99.99999999999999*x[35])*inptr[0][0];";
+              "   res[35]=-inptr[1][0]*xd[35]-(-99.99999999999999*x[34]+200*x[35]-99.99999999999999*x[36])*inptr[0][0];";
+              "   res[36]=-inptr[1][0]*xd[36]-(-99.99999999999999*x[35]+200*x[36]-99.99999999999999*x[37])*inptr[0][0];";
+              "   res[37]=-inptr[1][0]*xd[37]-(-99.99999999999999*x[36]+200*x[37]-99.99999999999999*x[38])*inptr[0][0];";
+              "   res[38]=-inptr[1][0]*xd[38]-(-99.99999999999999*x[37]+200*x[38]-99.99999999999999*x[39])*inptr[0][0];";
+              "   res[39]=-inptr[1][0]*xd[39]-(-99.99999999999999*x[38]+200*x[39]-99.99999999999999*x[40])*inptr[0][0];";
+              "   res[40]=-inptr[1][0]*xd[40]-(-99.99999999999999*x[39]+200*x[40]-99.99999999999999*x[41])*inptr[0][0];";
+              "   res[41]=-inptr[1][0]*xd[41]-(-99.99999999999999*x[40]+200*x[41]-99.99999999999999*x[42])*inptr[0][0];";
+              "   res[42]=-inptr[1][0]*xd[42]-(-99.99999999999999*x[41]+200*x[42]-99.99999999999999*x[43])*inptr[0][0];";
+              "   res[43]=-inptr[1][0]*xd[43]-(-99.99999999999999*x[42]+200*x[43]-99.99999999999999*x[44])*inptr[0][0];";
+              "   res[44]=-inptr[1][0]*xd[44]-(-99.99999999999999*x[43]+200*x[44]-99.99999999999999*x[45])*inptr[0][0];";
+              "   res[45]=-inptr[1][0]*xd[45]-(-99.99999999999999*x[44]+200*x[45]-99.99999999999999*x[46])*inptr[0][0];";
+              "   res[46]=-inptr[1][0]*xd[46]-(-99.99999999999999*x[45]+200*x[46]-99.99999999999999*x[47])*inptr[0][0];";
+              "   res[47]=-inptr[1][0]*xd[47]-(-99.99999999999999*x[46]+200*x[47]-99.99999999999999*x[48])*inptr[0][0];";
+              "   res[48]=-inptr[1][0]*xd[48]-(-99.99999999999999*x[47]+200*x[48]-99.99999999999999*x[49])*inptr[0][0];";
+              "   res[49]=-inptr[1][0]*xd[49]-(-99.99999999999999*x[48]+200*x[49]-99.99999999999999*x[50])*inptr[0][0];";
+              "   res[50]=-inptr[1][0]*xd[50]-(-99.99999999999999*x[49]+200*x[50]-99.99999999999999*x[51])*inptr[0][0];";
+              "   res[51]=-inptr[1][0]*xd[51]-(-99.99999999999999*x[50]+200*x[51]-99.99999999999999*x[52])*inptr[0][0];";
+              "   res[52]=-inptr[1][0]*xd[52]-(-99.99999999999999*x[51]+200*x[52]-99.99999999999999*x[53])*inptr[0][0];";
+              "   res[53]=-inptr[1][0]*xd[53]-(-99.99999999999999*x[52]+200*x[53]-99.99999999999999*x[54])*inptr[0][0];";
+              "   res[54]=-inptr[1][0]*xd[54]-(-99.99999999999999*x[53]+200*x[54]-99.99999999999999*x[55])*inptr[0][0];";
+              "   res[55]=-inptr[1][0]*xd[55]-(-99.99999999999999*x[54]+200*x[55]-99.99999999999999*x[56])*inptr[0][0];";
+              "   res[56]=-inptr[1][0]*xd[56]-(-99.99999999999999*x[55]+200*x[56]-99.99999999999999*x[57])*inptr[0][0];";
+              "   res[57]=-inptr[1][0]*xd[57]-(-99.99999999999999*x[56]+200*x[57]-99.99999999999999*x[58])*inptr[0][0];";
+              "   res[58]=-inptr[1][0]*xd[58]-(-99.99999999999999*x[57]+200*x[58]-99.99999999999999*x[59])*inptr[0][0];";
+              "   res[59]=-inptr[1][0]*xd[59]-(-99.99999999999999*x[58]+200*x[59]-99.99999999999999*x[60])*inptr[0][0];";
+              "   res[60]=-inptr[1][0]*xd[60]-(-99.99999999999999*x[59]+200*x[60]-99.99999999999999*x[61])*inptr[0][0];";
+              "   res[61]=-inptr[1][0]*xd[61]-(-99.99999999999999*x[60]+200*x[61]-99.99999999999999*x[62])*inptr[0][0];";
+              "   res[62]=-inptr[1][0]*xd[62]-(-99.99999999999999*x[61]+200*x[62]-99.99999999999999*x[63])*inptr[0][0];";
+              "   res[63]=-inptr[1][0]*xd[63]-(-99.99999999999999*x[62]+200*x[63]-99.99999999999999*x[64])*inptr[0][0];";
+              "   res[64]=-inptr[1][0]*xd[64]-(-99.99999999999999*x[63]+200*x[64]-99.99999999999999*x[65])*inptr[0][0];";
+              "   res[65]=-inptr[1][0]*xd[65]-(-99.99999999999999*x[64]+200*x[65]-99.99999999999999*x[66])*inptr[0][0];";
+              "   res[66]=-inptr[1][0]*xd[66]-(-99.99999999999999*x[65]+200*x[66]-99.99999999999999*x[67])*inptr[0][0];";
+              "   res[67]=-inptr[1][0]*xd[67]-(-99.99999999999999*x[66]+200*x[67]-99.99999999999999*x[68])*inptr[0][0];";
+              "   res[68]=-inptr[1][0]*xd[68]-(-99.99999999999999*x[67]+200*x[68]-99.99999999999999*x[69])*inptr[0][0];";
+              "   res[69]=-inptr[1][0]*xd[69]-(-99.99999999999999*x[68]+200*x[69]-99.99999999999999*x[70])*inptr[0][0];";
+              "   res[70]=-inptr[1][0]*xd[70]-(-99.99999999999999*x[69]+200*x[70]-99.99999999999999*x[71])*inptr[0][0];";
+              "   res[71]=-inptr[1][0]*xd[71]-(-99.99999999999999*x[70]+200*x[71]-99.99999999999999*x[72])*inptr[0][0];";
+              "   res[72]=-inptr[1][0]*xd[72]-(-99.99999999999999*x[71]+200*x[72]-99.99999999999999*x[73])*inptr[0][0];";
+              "   res[73]=-inptr[1][0]*xd[73]-(-99.99999999999999*x[72]+200*x[73]-99.99999999999999*x[74])*inptr[0][0];";
+              "   res[74]=-inptr[1][0]*xd[74]-(-99.99999999999999*x[73]+200*x[74]-99.99999999999999*x[75])*inptr[0][0];";
+              "   res[75]=-inptr[1][0]*xd[75]-(-99.99999999999999*x[74]+200*x[75]-99.99999999999999*x[76])*inptr[0][0];";
+              "   res[76]=-inptr[1][0]*xd[76]-(-99.99999999999999*x[75]+200*x[76]-99.99999999999999*x[77])*inptr[0][0];";
+              "   res[77]=-inptr[1][0]*xd[77]-(-99.99999999999999*x[76]+200*x[77]-99.99999999999999*x[78])*inptr[0][0];";
+              "   res[78]=-inptr[1][0]*xd[78]-(-99.99999999999999*x[77]+200*x[78]-99.99999999999999*x[79])*inptr[0][0];";
+              "   res[79]=-inptr[1][0]*xd[79]-(-99.99999999999999*x[78]+200*x[79]-99.99999999999999*x[80])*inptr[0][0];";
+              "   res[80]=-inptr[1][0]*xd[80]-(-99.99999999999999*x[79]+200*x[80]-99.99999999999999*x[81])*inptr[0][0];";
+              "   res[81]=-inptr[1][0]*xd[81]-(-99.99999999999999*x[80]+200*x[81]-99.99999999999999*x[82])*inptr[0][0];";
+              "   res[82]=-inptr[1][0]*xd[82]-(-99.99999999999999*x[81]+200*x[82]-99.99999999999999*x[83])*inptr[0][0];";
+              "   res[83]=-inptr[1][0]*xd[83]-(-99.99999999999999*x[82]+200*x[83]-99.99999999999999*x[84])*inptr[0][0];";
+              "   res[84]=-inptr[1][0]*xd[84]-(-99.99999999999999*x[83]+200*x[84]-99.99999999999999*x[85])*inptr[0][0];";
+              "   res[85]=-inptr[1][0]*xd[85]-(-99.99999999999999*x[84]+200*x[85]-99.99999999999999*x[86])*inptr[0][0];";
+              "   res[86]=-inptr[1][0]*xd[86]-(-99.99999999999999*x[85]+200*x[86]-99.99999999999999*x[87])*inptr[0][0];";
+              "   res[87]=-inptr[1][0]*xd[87]-(-99.99999999999999*x[86]+200*x[87]-99.99999999999999*x[88])*inptr[0][0];";
+              "   res[88]=-inptr[1][0]*xd[88]-(-99.99999999999999*x[87]+200*x[88]-99.99999999999999*x[89])*inptr[0][0];";
+              "   res[89]=-inptr[1][0]*xd[89]-(-99.99999999999999*x[88]+200*x[89]-99.99999999999999*x[90])*inptr[0][0];";
+              "   res[90]=-inptr[1][0]*xd[90]-(-99.99999999999999*x[89]+200*x[90]-99.99999999999999*x[91])*inptr[0][0];";
+              "   res[91]=-inptr[1][0]*xd[91]-(-99.99999999999999*x[90]+200*x[91]-99.99999999999999*x[92])*inptr[0][0];";
+              "   res[92]=-inptr[1][0]*xd[92]-(-99.99999999999999*x[91]+200*x[92]-99.99999999999999*x[93])*inptr[0][0];";
+              "   res[93]=-inptr[1][0]*xd[93]-(-99.99999999999999*x[92]+200*x[93]-99.99999999999999*x[94])*inptr[0][0];";
+              "   res[94]=-inptr[1][0]*xd[94]-(-99.99999999999999*x[93]+200*x[94]-99.99999999999999*x[95])*inptr[0][0];";
+              "   res[95]=-inptr[1][0]*xd[95]-(-99.99999999999999*x[94]+200*x[95]-99.99999999999999*x[96])*inptr[0][0];";
+              "   res[96]=-inptr[1][0]*xd[96]-(-99.99999999999999*x[95]+200*x[96]-99.99999999999999*x[97])*inptr[0][0];";
+              "   res[97]=-inptr[1][0]*xd[97]-(-99.99999999999999*x[96]+200*x[97]-99.99999999999999*x[98])*inptr[0][0];";
+              "   res[98]=-inptr[1][0]*xd[98]-(-99.99999999999999*x[97]+200*x[98]-99.99999999999999*x[99])*inptr[0][0];";
+              "   res[99]=-inptr[1][0]*xd[99]-(-99.99999999999999*x[98]+200*x[99]-99.99999999999999*x[100])*inptr[0][0];";
+              "   res[100]=inptr[3][0]-x[100];";
+              " }else if (flag == 1){";
+              "   /* la première sortie */ ";
+              "   for (i=0;i<101;i++){";
+              "     outptr[0][i]=x[i];";
+              "   }";
+              "   /* la deuxième sortie */ ";
+              "   outptr[1][0]=x[20];";
+              "   outptr[1][1]=x[40];";
+              "   outptr[1][2]=x[50];";
+              "   outptr[1][3]=x[60];";
+              "   outptr[1][4]=x[80];";
+              " }else if (flag == 4){";
+              "   x[0]=0;";
+              "   x[1]=0;";
+              "   x[2]=0;";
+              "   x[3]=0;";
+              "   x[4]=0;";
+              "   x[5]=0;";
+              "   x[6]=0;";
+              "   x[7]=0;";
+              "   x[8]=0;";
+              "   x[9]=0;";
+              "   x[10]=0;";
+              "   x[11]=0;";
+              "   x[12]=0;";
+              "   x[13]=0;";
+              "   x[14]=0;";
+              "   x[15]=0;";
+              "   x[16]=0;";
+              "   x[17]=0;";
+              "   x[18]=0;";
+              "   x[19]=0;";
+              "   x[20]=0;";
+              "   x[21]=0;";
+              "   x[22]=0;";
+              "   x[23]=0;";
+              "   x[24]=0;";
+              "   x[25]=0;";
+              "   x[26]=0;";
+              "   x[27]=0;";
+              "   x[28]=0;";
+              "   x[29]=0;";
+              "   x[30]=0;";
+              "   x[31]=0;";
+              "   x[32]=0;";
+              "   x[33]=0;";
+              "   x[34]=0;";
+              "   x[35]=0;";
+              "   x[36]=0;";
+              "   x[37]=0;";
+              "   x[38]=0;";
+              "   x[39]=0;";
+              "   x[40]=0;";
+              "   x[41]=0;";
+              "   x[42]=0;";
+              "   x[43]=0;";
+              "   x[44]=0;";
+              "   x[45]=0;";
+              "   x[46]=0;";
+              "   x[47]=0;";
+              "   x[48]=0;";
+              "   x[49]=0;";
+              "   x[50]=0;";
+              "   x[51]=0;";
+              "   x[52]=0;";
+              "   x[53]=0;";
+              "   x[54]=0;";
+              "   x[55]=0;";
+              "   x[56]=0;";
+              "   x[57]=0;";
+              "   x[58]=0;";
+              "   x[59]=0;";
+              "   x[60]=0;";
+              "   x[61]=0;";
+              "   x[62]=0;";
+              "   x[63]=0;";
+              "   x[64]=0;";
+              "   x[65]=0;";
+              "   x[66]=0;";
+              "   x[67]=0;";
+              "   x[68]=0;";
+              "   x[69]=0;";
+              "   x[70]=0;";
+              "   x[71]=0;";
+              "   x[72]=0;";
+              "   x[73]=0;";
+              "   x[74]=0;";
+              "   x[75]=0;";
+              "   x[76]=0;";
+              "   x[77]=0;";
+              "   x[78]=0;";
+              "   x[79]=0;";
+              "   x[80]=0;";
+              "   x[81]=0;";
+              "   x[82]=0;";
+              "   x[83]=0;";
+              "   x[84]=0;";
+              "   x[85]=0;";
+              "   x[86]=0;";
+              "   x[87]=0;";
+              "   x[88]=0;";
+              "   x[89]=0;";
+              "   x[90]=0;";
+              "   x[91]=0;";
+              "   x[92]=0;";
+              "   x[93]=0;";
+              "   x[94]=0;";
+              "   x[95]=0;";
+              "   x[96]=0;";
+              "   x[97]=0;";
+              "   x[98]=0;";
+              "   x[99]=0;";
+              "   x[100]=0;";
+              "/* }else if (flag == 5){ */";
+              " }else if (flag == 7){";
+              "   property[0]=-1;";
+              "   property[1]=1;";
+              "   property[2]=1;";
+              "   property[3]=1;";
+              "   property[4]=1;";
+              "   property[5]=1;";
+              "   property[6]=1;";
+              "   property[7]=1;";
+              "   property[8]=1;";
+              "   property[9]=1;";
+              "   property[10]=1;";
+              "   property[11]=1;";
+              "   property[12]=1;";
+              "   property[13]=1;";
+              "   property[14]=1;";
+              "   property[15]=1;";
+              "   property[16]=1;";
+              "   property[17]=1;";
+              "   property[18]=1;";
+              "   property[19]=1;";
+              "   property[20]=1;";
+              "   property[21]=1;";
+              "   property[22]=1;";
+              "   property[23]=1;";
+              "   property[24]=1;";
+              "   property[25]=1;";
+              "   property[26]=1;";
+              "   property[27]=1;";
+              "   property[28]=1;";
+              "   property[29]=1;";
+              "   property[30]=1;";
+              "   property[31]=1;";
+              "   property[32]=1;";
+              "   property[33]=1;";
+              "   property[34]=1;";
+              "   property[35]=1;";
+              "   property[36]=1;";
+              "   property[37]=1;";
+              "   property[38]=1;";
+              "   property[39]=1;";
+              "   property[40]=1;";
+              "   property[41]=1;";
+              "   property[42]=1;";
+              "   property[43]=1;";
+              "   property[44]=1;";
+              "   property[45]=1;";
+              "   property[46]=1;";
+              "   property[47]=1;";
+              "   property[48]=1;";
+              "   property[49]=1;";
+              "   property[50]=1;";
+              "   property[51]=1;";
+              "   property[52]=1;";
+              "   property[53]=1;";
+              "   property[54]=1;";
+              "   property[55]=1;";
+              "   property[56]=1;";
+              "   property[57]=1;";
+              "   property[58]=1;";
+              "   property[59]=1;";
+              "   property[60]=1;";
+              "   property[61]=1;";
+              "   property[62]=1;";
+              "   property[63]=1;";
+              "   property[64]=1;";
+              "   property[65]=1;";
+              "   property[66]=1;";
+              "   property[67]=1;";
+              "   property[68]=1;";
+              "   property[69]=1;";
+              "   property[70]=1;";
+              "   property[71]=1;";
+              "   property[72]=1;";
+              "   property[73]=1;";
+              "   property[74]=1;";
+              "   property[75]=1;";
+              "   property[76]=1;";
+              "   property[77]=1;";
+              "   property[78]=1;";
+              "   property[79]=1;";
+              "   property[80]=1;";
+              "   property[81]=1;";
+              "   property[82]=1;";
+              "   property[83]=1;";
+              "   property[84]=1;";
+              "   property[85]=1;";
+              "   property[86]=1;";
+              "   property[87]=1;";
+              "   property[88]=1;";
+              "   property[89]=1;";
+              "   property[90]=1;";
+              "   property[91]=1;";
+              "   property[92]=1;";
+              "   property[93]=1;";
+              "   property[94]=1;";
+              "   property[95]=1;";
+              "   property[96]=1;";
+              "   property[97]=1;";
+              "   property[98]=1;";
+              "   property[99]=1;";
+              "   property[100]=-1;";
+              "  set_pointer_xproperty(property);";
+              " }";
+              " return;";
+              "}"],"termique"),[16;17;21;33],[45;35],[],[],..
+              list(..
+              ["txt=CCC;";"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],..
+              32),"",["E";"E";"E";"E"],["E";"E"]),..
+              mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+              "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+              "equations"],list("termique_implicite",12004),[1;1;1;1],[101;5],[],..
+              [],..
+              [0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+              0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+              0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+              0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+              0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+              0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+              0;0;0;0;0;0;0;0;0;0],[],[],[],"c",[],[%f,%t],"",0,0,list()),"PDE",..
+              list())
+scs_m_1=scicos_diagram()
+scs_m_1.props=tlist(..
+["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
+"doc"],[600,450,0,0,600,450],"Untitled",[0.0001,0.000001,1.000E-10,100001,0,0],..
+100000,[],[],..
+tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
+list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
+scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],[399,162],..
+                [20,20],%t,"1",[],[],5,[],list(" ",8),"",[],[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"output",[],[],1,[],[],[],[],1,"d",[],..
+                [%f,%f],"",0,0,list()),"CLKOUT_f",list())
+scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],[320,232],..
+                [40,40],%t,["1";"0"],[],[],6,3,..
+                list(..
+                ["dt=o.model.rpar;";
+                "txt=[''Delay'';string(dt)];";
+                "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"",[],..
+                []),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"evtdly",[],[],1,1,[],[],1,[],"d",0,[%f,%f],..
+                "",0,0,list()),"EVTDLY_f",list())
+scs_m_1.objs(3)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [340;340;380.71],[226.29;172;172],"drawlink",[0,0],[5,-1],[2,1],..
+                [4,1])
+scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [380.71066;172],[0.3333333,0.3333333],%t,[],[],[],3,[5;6],..
+                list([],8),"",[],[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"split",[],[],1,[1;1],[],[],[],[],"d",..
+                [%f,%f,%f],[%f,%f],"",0,0,list()),"CLKSPLIT_f",list())
+scs_m_1.objs(5)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [380.71;399],[172;172],"drawlink",[0,0],[5,-1],[4,1],[1,1])
+scs_m_1.objs(6)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [380.71;380.71;340;340],[172;302;302;277.71],"drawlink",[0,0],..
+                [5,-1],[4,2],[2,1])
+scs_m.objs(2)=mlist(..
+              ["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout","gr_i","id",..
+              "in_implicit","out_implicit"],[-44.870941,649.713],[40,40],%f,[],[],[],[],18,..
+              list(..
+              ["wd=xget(''wdim'').*[1.016,1.12];";
+              "thick=xget(''thickness'');xset(''thickness'',2);";
+              "p=wd(2)/wd(1);p=1;";
+              "rx=sz(1)*p/2;ry=sz(2)/2;";
+              "xarcs([orig(1)+0.05*sz(1);";
+              "orig(2)+0.95*sz(2);";
+              "   0.9*sz(1)*p;";
+              "   0.9*sz(2);";
+              "   0;";
+              "   360*64],scs_color(5));";
+              "xset(''thickness'',1);";
+              "xx=[orig(1)+rx    orig(1)+rx;";
+              "    orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];";
+              "yy=[orig(2)+ry    orig(2)+ry ;";
+              "  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];";
+              "xsegs(xx,yy,scs_color(10));";
+              "xset(''thickness'',thick);"],8),"",[],[]),mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar","ipar",..
+              "blocktype","firing","dep_ut","label","nzcross","nmode","equations"],..
+              "csuper",[],[],[],1,[],[],scs_m_1,[],"h",%f,[%f,%f],"",0,0,list()),..
+              "CLOCK_f",list())
+scs_m.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+              "gr_i","id","in_implicit","out_implicit"],[81.27082,566.49352],..
+              [40,40],%t,..
+              ["1 2 3 4 5 6 7 8";
+              "3";
+              "[0;500]";
+              "[400;200]";
+              "0";
+              "20";
+              "15000";
+              "100";
+              "0";
+              "Pts mesure"],23,[],26,[],..
+              list(..
+              ["thick=xget(''thickness'');xset(''thickness'',2);";
+              "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
+              "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
+              "orig(1)+(1-1/4)*sz(1),orig(1)+sz(1)/5];";
+              "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
+              "orig(2)+sz(2)/5,orig(2)+(1-1/3)*sz(2)];";
+              "xarrows(xx,yy);";
+              "t=(0:0.3:2*%pi)'';";
+              "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
+              "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+              "xpoly(xx,yy,''lines'');";
+              "xset(''thickness'',thick)"],8),"Pts mesure","E",[]),..
+              mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+              "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+              "equations"],list("cscope",4),-1,[],1,[],[],[],[0;0;20;15000],..
+              [3;1;100;1;2;3;4;5;6;7;8;0;500;400;200],"c",[],[%t,%f],..
+              "Pts mesure",0,0,list()),"CSCOPE",list())
+scs_m.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+              "gr_i","id","in_implicit","out_implicit"],[-17.737629,472.6183],..
+              [40,40],%t,"3",37,40,[],[],..
+              list(..
+              ["txt=[''Extractor''];";
+              "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"","E",..
+              "E"),..
+              mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+              "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+              "equations"],list("extractor",4),-1,1,[],[],[],[],[],3,"c",[],..
+              [%t,%f],"",0,0,list()),"EXTRACTOR",list())
+scs_m.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+              "gr_i","id","in_implicit","out_implicit"],[-16.993206,524.76777],..
+              [40,40],%t,"10",[],39,[],[],..
+              list(..
+              ["dx=sz(1)/5;dy=sz(2)/10;";
+              "w=sz(1)-2*dx;h=sz(2)-2*dy;";
+              "txt=C;";
+              "xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');"],30),"",[],"E"),..
+              mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+              "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+              "equations"],list("cstblk",1),[],1,[],[],[],[],10,[],"d",[],..
+              [%f,%f],"",0,0,list()),"CONST_f",list())
+scs_m.objs(6)=mlist(["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+              "gr_i","id","in_implicit","out_implicit"],[-116.84555,407.52218],..
+              [40,40],%t,..
+              ["1 3 5 7 9 11 13 15";
+              "4";
+              "[650;500]";
+              "[400;200]";
+              "-1";
+              "1";
+              "15000";
+              "100";
+              "0";
+              "Ecart"],31,[],30,[],..
+              list(..
+              ["thick=xget(''thickness'');xset(''thickness'',2);";
+              "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
+              "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
+              "orig(1)+(1-1/4)*sz(1),orig(1)+sz(1)/5];";
+              "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
+              "orig(2)+sz(2)/5,orig(2)+(1-1/3)*sz(2)];";
+              "xarrows(xx,yy);";
+              "t=(0:0.3:2*%pi)'';";
+              "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
+              "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+              "xpoly(xx,yy,''lines'');";
+              "xset(''thickness'',thick)"],8),"Ecart","E",[]),..
+              mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+              "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+              "equations"],list("cscope",4),-1,[],1,[],[],[],[0;-1;1;15000],..
+              [4;1;100;1;3;5;7;9;11;13;15;650;500;400;200],"c",[],[%t,%f],..
+              "Ecart",0,0,list()),"CSCOPE",list())
+scs_m.objs(7)=mlist(["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+              "gr_i","id","in_implicit","out_implicit"],[-170.78433,444.10798],..
+              [40,40],%t,..
+              ["1 3 5 7 9 11 13 15";
+              "2";
+              "[650;0]";
+              "[400;200]";
+              "10";
+              "25";
+              "15000";
+              "100";
+              "0";
+              "Commande"],34,[],29,[],..
+              list(..
+              ["thick=xget(''thickness'');xset(''thickness'',2);";
+              "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
+              "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
+              "orig(1)+(1-1/4)*sz(1),orig(1)+sz(1)/5];";
+              "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
+              "orig(2)+sz(2)/5,orig(2)+(1-1/3)*sz(2)];";
+              "xarrows(xx,yy);";
+              "t=(0:0.3:2*%pi)'';";
+              "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
+              "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+              "xpoly(xx,yy,''lines'');";
+              "xset(''thickness'',thick)"],8),"Commande","E",[]),..
+              mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+              "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+              "equations"],list("cscope",4),-1,[],1,[],[],[],[0;10;25;15000],..
+              [2;1;100;1;3;5;7;9;11;13;15;650;0;400;200],"c",[],[%t,%f],..
+              "Commande",0,0,list()),"CSCOPE",list())
+scs_m_1=scicos_diagram()
+scs_m_1.props=tlist(..
+["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
+"doc"],[600,450,0,0,600,450],"Untitled",[0.0001,0.000001,1.000E-10,100001,0,0],..
+100000,[],[],..
+tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
+list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
+scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],[399,162],..
+                [20,20],%t,"1",[],[],5,[],list(" ",8),"",[],[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"output",[],[],1,[],[],[],[],1,"d",[],..
+                [%f,%f],"",0,0,list()),"CLKOUT_f",list())
+scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],[320,232],..
+                [40,40],%t,["1";"0"],[],[],6,3,..
+                list(..
+                ["dt=o.model.rpar;";
+                "txt=[''Delay'';string(dt)];";
+                "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"",[],..
+                []),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"evtdly",[],[],1,1,[],[],1,[],"d",0,[%f,%f],..
+                "",0,0,list()),"EVTDLY_f",list())
+scs_m_1.objs(3)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [340;340;380.71],[226.29;172;172],"drawlink",[0,0],[5,-1],[2,1],..
+                [4,1])
+scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [380.71066;172],[0.3333333,0.3333333],%t,[],[],[],3,[5;6],..
+                list([],8),"",[],[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"split",[],[],1,[1;1],[],[],[],[],"d",..
+                [%f,%f,%f],[%f,%f],"",0,0,list()),"CLKSPLIT_f",list())
+scs_m_1.objs(5)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [380.71;399],[172;172],"drawlink",[0,0],[5,-1],[4,1],[1,1])
+scs_m_1.objs(6)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [380.71;380.71;340;340],[172;302;302;277.71],"drawlink",[0,0],..
+                [5,-1],[4,2],[2,1])
+scs_m.objs(8)=mlist(..
+              ["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout","gr_i","id",..
+              "in_implicit","out_implicit"],[-362.0093,630.47724],[40,40],%f,[],[],[],[],19,..
+              list(..
+              ["wd=xget(''wdim'').*[1.016,1.12];";
+              "thick=xget(''thickness'');xset(''thickness'',2);";
+              "p=wd(2)/wd(1);p=1;";
+              "rx=sz(1)*p/2;ry=sz(2)/2;";
+              "xarcs([orig(1)+0.05*sz(1);";
+              "orig(2)+0.95*sz(2);";
+              "   0.9*sz(1)*p;";
+              "   0.9*sz(2);";
+              "   0;";
+              "   360*64],scs_color(5));";
+              "xset(''thickness'',1);";
+              "xx=[orig(1)+rx    orig(1)+rx;";
+              "    orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];";
+              "yy=[orig(2)+ry    orig(2)+ry ;";
+              "  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];";
+              "xsegs(xx,yy,scs_color(10));";
+              "xset(''thickness'',thick);"],8),"",[],[]),mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar","ipar",..
+              "blocktype","firing","dep_ut","label","nzcross","nmode","equations"],..
+              "csuper",[],[],[],1,[],[],scs_m_1,[],"h",%f,[%f,%f],"",0,0,list()),..
+              "CLOCK_f",list())
+scs_m.objs(9)=mlist(["Block","graphics","model","gui","doc"],..
+              mlist(..
+              ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+              "gr_i","id","in_implicit","out_implicit"],[45.441414,566.14839],..
+              [10,40],%t,"2",[38;42],23,[],[],list(" ",8),"Mux",["E";"E"],"E"),..
+              mlist(..
+              ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+              "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+              "equations"],list("multiplex",4),[-1;-2],0,[],[],[],[],[],2,"c",[],..
+              [%t,%f],"",0,0,list()),"MUX",list())
+scs_m.objs(10)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-235.85334,589.58212],..
+               [40,40],%t,"0.1",[],16,[],[],..
+               list(..
+               ["dx=sz(1)/5;dy=sz(2)/10;";
+               "w=sz(1)-2*dx;h=sz(2)-2*dy;";
+               "txt=C;";
+               "xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');"],8),"",[],"E"),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],list("cstblk",1),[],1,[],[],[],[],0.1,[],"d",[],..
+               [%f,%f],"",0,0,list()),"CONST_f",list())
+scs_m.objs(11)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-237.34218,541.9026],..
+               [40,40],%t,"1",[],17,[],[],..
+               list(..
+               ["dx=sz(1)/5;dy=sz(2)/10;";
+               "w=sz(1)-2*dx;h=sz(2)-2*dy;";
+               "txt=C;";
+               "xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');"],8),"",[],"E"),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],list("cstblk",1),[],1,[],[],[],[],1,[],"d",[],..
+               [%f,%f],"",0,0,list()),"CONST_f",list())
+scs_m.objs(12)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-362.0093,565.61596],..
+               [40,40],%f,..
+               ["1 3 5 7 9 11 13 15";
+               "1";
+               "[0;0]";
+               "[400;200]";
+               "-5";
+               "5";
+               "1500";
+               "10";
+               "0";
+               "Perturbation"],22,[],19,[],..
+               list(..
+               ["thick=xget(''thickness'');xset(''thickness'',2);";
+               "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
+               "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
+               "orig(1)+(1-1/4)*sz(1),orig(1)+sz(1)/5];";
+               "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
+               "orig(2)+sz(2)/5,orig(2)+(1-1/3)*sz(2)];";
+               "xarrows(xx,yy);";
+               "t=(0:0.3:2*%pi)'';";
+               "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
+               "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+               "xpoly(xx,yy,''lines'');";
+               "xset(''thickness'',thick)"],8),"Perturbation","E",[]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],list("cscope",4),-1,[],1,[],[],[],[0;-5;5;1500],..
+               [1;1;10;1;3;5;7;9;11;13;15;0;0;400;200],"c",[],[%t,%f],..
+               "Perturbation",0,0,list()),"CSCOPE",list())
+scs_m_1=scicos_diagram()
+scs_m_1.props=tlist(..
+["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
+"doc"],[600,450,0,0,600,450],..
+["Untitled","/home/regis/EDP_Fourniture_09_12_2005/"],..
+[0.0001;0.000001;1.000E-10;100001;0;100;0],15000," ",[],..
+tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[27,9],[1,5],..
+list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
+scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-455.55766,538.21579],[60,40],%t,["0";"-1";"2";"0"],[],10,11,[],..
+                list(..
+                ["txt=[''random'';''generator''];";
+                "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],8),"",[],..
+                "E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"rndblk",[],1,1,[],[],[0;0],[-1;2],0,"d",[],..
+                [%f,%f],"",0,0,list()),"RAND_f",list())
+scs_m_2=scicos_diagram()
+scs_m_2.props=tlist(..
+["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
+"doc"],[600,450,0,0,600,450],"Untitled",[0.0001,0.000001,1.000E-10,100001,0,0],..
+100000,[],[],..
+tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
+list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
+scs_m_2.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],[399,162],..
+                [20,20],%t,"1",[],[],5,[],list(" ",8),"",[],[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"output",[],[],1,[],[],[],[],1,"d",[],..
+                [%f,%f],"",0,0,list()),"CLKOUT_f",list())
+scs_m_2.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],[320,232],..
+                [40,40],%t,["4";"0"],[],[],6,3,..
+                list(..
+                ["dt=o.model.rpar;";
+                "txt=[''Delay'';string(dt)];";
+                "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"",[],..
+                []),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"evtdly",[],[],1,1,[],[],4,[],"d",0,[%f,%f],..
+                "",0,0,list()),"EVTDLY_f",list())
+scs_m_2.objs(3)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [340;340;380.71],[226.29;172;172],"drawlink",[0,0],[5,-1],[2,1],..
+                [4,1])
+scs_m_2.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [380.71066;172],[0.3333333,0.3333333],%t,[],[],[],3,[5;6],..
+                list([],8),"",[],[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"split",[],[],1,[1;1],[],[],[],[],"d",..
+                [%f,%f,%f],[%f,%f],"",0,0,list()),"CLKSPLIT_f",list())
+scs_m_2.objs(5)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [380.71;399],[172;172],"drawlink",[0,0],[5,-1],[4,1],[1,1])
+scs_m_2.objs(6)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [380.71;380.71;340;340],[172;302;302;277.71],"drawlink",[0,0],..
+                [5,-1],[4,2],[2,1])
+scs_m_1.objs(2)=mlist(..
+                ["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout","gr_i","id",..
+                "in_implicit","out_implicit"],[-445.12471,615.02491],[40,40],%t,[],[],[],[],11,..
+                list(..
+                ["wd=xget(''wdim'').*[1.016,1.12];";
+                "thick=xget(''thickness'');xset(''thickness'',2);";
+                "p=wd(2)/wd(1);p=1;";
+                "rx=sz(1)*p/2;ry=sz(2)/2;";
+                "xarcs([orig(1)+0.05*sz(1);";
+                "orig(2)+0.95*sz(2);";
+                "   0.9*sz(1)*p;";
+                "   0.9*sz(2);";
+                "   0;";
+                "   360*64],scs_color(5));";
+                "xset(''thickness'',1);";
+                "xx=[orig(1)+rx    orig(1)+rx;";
+                "    orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];";
+                "yy=[orig(2)+ry    orig(2)+ry ;";
+                "  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];";
+                "xsegs(xx,yy,scs_color(10));";
+                "xset(''thickness'',thick);"],8),"",[],[]),mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate","rpar","ipar",..
+                "blocktype","firing","dep_ut","label","nzcross","nmode","equations"],..
+                "csuper",[],[],[],1,[],[],scs_m_2,[],"h",%f,[%f,%f],"",0,0,..
+                list()),"CLOCK_f",list())
+scs_m_1.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-172.5443,514.7799],[40,40],%t,["0";"0";"0";"1";"-1"],6,8,[],[],..
+                list(..
+                ["thick=xget(''thickness'')";
+                "pat=xget(''pattern'')";
+                "fnt=xget(''font'')";
+                "xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),''lines'')";
+                "xset(''thickness'',thick)";
+                "xset(''pattern'',pat)";
+                "xset(''font'',fnt(1),fnt(2))"],8),"1/s","E","E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("integral_func",4),1,1,[],[],0,[],..
+                [1;-1],[],"c",[],[%f,%t],"",0,0,list()),"INTEGRAL",list())
+scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-369.84933,477.06678],[60,40],%t,["0.075";"0.05";"0"],[],13,[],..
+                [],..
+                list(..
+                ["txt=[''sinusoid'';''generator''];";
+                "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"",[],..
+                "E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"gensin",[],1,[],[],[],[],[0.075;0.05;0],[],..
+                "c",[],[%f,%t],"",0,0,list()),"GENSIN_f",list())
+scs_m_1.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-266.37172,505.11426],[40,60],%t,"[1;1]",[12;13],6,[],[],..
+                list(..
+                ["[x,y,typ]=standard_inputs(o) ";
+                "dd=sz(1)/8,de=0,";
+                "if ~arg1.graphics.flip then dd=6*sz(1)/8,de=-sz(1)/8,end";
+                "for k=1:size(x,''*'')";
+                "if size(sgn,1)>1 then";
+                "  if sgn(k)>0 then";
+                "    xstring(orig(1)+dd,y(k)-4,''+'')";
+                "  else";
+                "    xstring(orig(1)+dd,y(k)-4,''-'')";
+                "  end";
+                "end";
+                "end";
+                "xx=sz(1)*[.8 .4 0.75 .4 .8]+orig(1)+de";
+                "yy=sz(2)*[.8 .8 .5 .2 .2]+orig(2)";
+                "xpoly(xx,yy,''lines'')"],8),"",["E";"E"],"E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("summation",4),[-1;-1],-1,[],[],[],[],..
+                [],[1;1],"c",[],[%t,%f],"",0,0,list()),"SUMMATION",list())
+scs_m_1.objs(6)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [-217.8003;-181.11573],[535.11426;534.7799],"drawlink",[0,0],..
+                [1,1],[5,1,0],[3,1,1])
+scs_m_1.objs(7)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-83.10476,524.7799],[20,20],%t,"1",8,[],[],[],list(" ",8),"",..
+                "E",[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"output",-1,[],[],[],[],[],[],1,"c",[],..
+                [%f,%f],"",0,0,list()),"OUT_f",list())
+scs_m_1.objs(8)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [-123.97287;-83.10476],[534.7799;534.7799],"drawlink",[0,0],..
+                [1,1],[3,1,0],[7,1,1])
+scs_m_1.objs(9)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-363.14173,538.21579],[40,40],%t,"0.03",10,12,[],[],list("",8),..
+                "","E","E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("gainblk",4),-1,-1,[],[],[],[],0.03,[],..
+                "c",[],[%t,%f],"",0,0,list()),"GAINBLK",list())
+scs_m_1.objs(10)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-386.98623;-371.71316],[558.21579;558.21579],"drawlink",[0,0],..
+                 [1,1],[1,1,0],[9,1,1])
+scs_m_1.objs(11)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-425.12471;-425.55766],[609.31063;583.93007],"drawlink",[0,0],..
+                 [5,-1],[2,1,0],[1,1,1])
+scs_m_1.objs(12)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-314.5703;-298.30152;-298.30152;-274.94315],..
+                 [558.21579;558.21579;545.11426;545.11426],"drawlink",[0,0],..
+                 [1,1],[9,1,0],[5,1,1])
+scs_m_1.objs(13)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-301.27791;-287.86746;-287.86746;-274.94315],..
+                 [497.06678;497.06678;525.11426;525.11426],"drawlink",[0,0],..
+                 [1,1],[4,1,0],[5,2,1])
+scs_m.objs(13)=mlist(..
+               ["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout","gr_i","id",..
+               "in_implicit","out_implicit"],[-363.89396,514.33788],[40,40],%t,[],[],15,[],[],..
+               list(..
+               ["thick=xget(''thickness'');xset(''thickness'',2);";
+               "xx=orig(1)+      [2 4 4]*(sz(1)/7);";
+               "yy=orig(2)+sz(2)-[2 2 6]*(sz(2)/10);";
+               "xrects([xx;yy;[sz(1)/7;sz(2)/5]*ones(1,3)]);";
+               "xx=orig(1)+      [1 2 3 4 5 6 3.5 3.5 3.5 4 5 5.5 5.5 5.5]*sz(1)/7;";
+               "yy=orig(2)+sz(2)-[3 3 3 3 3 3 3   7   7   7 7 7   7   3  ]*sz(2)/10;";
+               "xsegs(xx,yy,0);";
+               "xset(''thickness'',thick)"],19),"",[],"E"),mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar","ipar",..
+               "blocktype","firing","dep_ut","label","nzcross","nmode","equations"],..
+               "super",[],-1,[],[],[],[],scs_m_1,[],"h",[],[%f,%f],..
+               "Random input",0,0,list()),"SUPER_f",list())
+scs_m_1=scicos_diagram()
+scs_m_1.props=tlist(..
+["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
+"doc"],[600,450,0,0,600,450],..
+["Untitled","/home/regis/EDP_Fourniture_09_12_2005/"],..
+[0.0001;0.000001;1.000E-10;100001;0;100;0],15000," ",[],..
+tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[15,9],[1,5],..
+list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
+scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-252.08283,469.15107],[40,60],%t,"[1;-1]",[7;9],11,[],[],..
+                list(..
+                ["[x,y,typ]=standard_inputs(o) ";
+                "dd=sz(1)/8,de=0,";
+                "if ~arg1.graphics.flip then dd=6*sz(1)/8,de=-sz(1)/8,end";
+                "for k=1:size(x,''*'')";
+                "if size(sgn,1)>1 then";
+                "  if sgn(k)>0 then";
+                "    xstring(orig(1)+dd,y(k)-4,''+'')";
+                "  else";
+                "    xstring(orig(1)+dd,y(k)-4,''-'')";
+                "  end";
+                "end";
+                "end";
+                "xx=sz(1)*[.8 .4 0.75 .4 .8]+orig(1)+de";
+                "yy=sz(2)*[.8 .8 .5 .2 .2]+orig(2)";
+                "xpoly(xx,yy,''lines'')"],8),"",["E";"E"],"E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("summation",4),[-1;-1],-1,[],[],[],[],..
+                [],[1;-1],"c",[],[%t,%f],"",0,0,list()),"SUMMATION",list())
+scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-100.44589,479.06923],[40,40],%t,["0";"0";"0";"1";"-1"],8,10,[],..
+                [],..
+                list(..
+                ["thick=xget(''thickness'')";
+                "pat=xget(''pattern'')";
+                "fnt=xget(''font'')";
+                "xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),''lines'')";
+                "xset(''thickness'',thick)";
+                "xset(''pattern'',pat)";
+                "xset(''font'',fnt(1),fnt(2))"],8),"1/s","E","E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("integral_func",4),1,1,[],[],0,[],..
+                [1;-1],[],"c",[],[%f,%t],"",0,0,list()),"INTEGRAL",list())
+scs_m_1.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-169.92462,478.72694],[40,40],%t,"0.005",14,8,[],[],list("",8),..
+                "","E","E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("gainblk",4),-1,-1,[],[],[],[],0.005,..
+                [],"c",[],[%t,%f],"",0,0,list()),"GAINBLK",list())
+scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-329.15421,507.48424],[20,20],%t,"1",[],7,[],[],list(" ",8),"",..
+                [],"E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"input",[],-1,[],[],[],[],[],1,"c",[],..
+                [%f,%f],"",0,0,list()),"IN_f",list())
+scs_m_1.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-328.92857,479.14603],[20,20],%t,"2",[],9,[],[],list(" ",8),"",..
+                [],"E"),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"input",[],-1,[],[],[],[],[],2,"c",[],..
+                [%f,%f],"",0,0,list()),"IN_f",list())
+scs_m_1.objs(6)=mlist(["Block","graphics","model","gui","doc"],..
+                mlist(..
+                ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                "peout","gr_i","id","in_implicit","out_implicit"],..
+                [-28.898223,489.06923],[20,20],%t,"1",10,[],[],[],list(" ",8),"",..
+                "E",[]),..
+                mlist(..
+                ["model","sim","in","out","evtin","evtout","state","dstate",..
+                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"output",-1,[],[],[],[],[],[],1,"c",[],..
+                [%f,%f],"",0,0,list()),"OUT_f",list())
+scs_m_1.objs(7)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [-309.15421;-283.76651;-283.76651;-260.65426],..
+                [517.48424;517.48424;509.15107;509.15107],"drawlink",[0,0],[1,1],..
+                [4,1,0],[1,1,1])
+scs_m_1.objs(8)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [-121.3532;-109.01732],[498.72694;499.06923],"drawlink",[0,0],..
+                [1,1],[3,1,0],[2,1,1])
+scs_m_1.objs(9)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                [-308.92857;-260.65426],[489.14603;489.15107],"drawlink",[0,0],..
+                [1,1],[5,1,0],[1,2,1])
+scs_m_1.objs(10)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-51.874466;-28.898223],[499.06923;499.06923],"drawlink",[0,0],..
+                 [1,1],[2,1,0],[6,1,1])
+scs_m_1.objs(11)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-203.5114;-195.96458;-187.66367],..
+                 [499.15107;499.01919;499.23388],"drawlink",[0,0],[1,1],[1,1,0],..
+                 [13,1,1])
+scs_m_1.objs(12)=mlist(["Block","graphics","model","gui","doc"],..
+                 mlist(..
+                 ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                 "peout","gr_i","id","in_implicit","out_implicit"],..
+                 [-31.267294,432.93083],[20,20],%t,"2",15,[],[],[],list(" ",8),..
+                 "","E",[]),..
+                 mlist(..
+                 ["model","sim","in","out","evtin","evtout","state","dstate",..
+                 "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                 "nmode","equations"],"output",-1,[],[],[],[],[],[],2,"c",[],..
+                 [%f,%f],"",0,0,list()),"OUT_f",list())
+scs_m_1.objs(13)=mlist(["Block","graphics","model","gui","doc"],..
+                 mlist(..
+                 ["graphics","orig","sz","flip","exprs","pin","pout","pein",..
+                 "peout","gr_i","id","in_implicit","out_implicit"],..
+                 [-187.66367;499.23388],[0.3333333,0.3333333],%t,[],11,[14;15],..
+                 [],[],list([],8),"","E",["E";"E";"E"]),..
+                 mlist(..
+                 ["model","sim","in","out","evtin","evtout","state","dstate",..
+                 "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
+                 "nmode","equations"],"lsplit",-1,[-1;-1;-1],[],[],[],[],[],[],..
+                 "c",[],[%t,%f],"",0,0,list()),"SPLIT_f",list())
+scs_m_1.objs(14)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-187.66367;-178.49605],[499.23388;498.72694],"drawlink",[0,0],..
+                 [1,1],[13,1,0],[3,1,1])
+scs_m_1.objs(15)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+                 [-187.66367;-187.66367;-31.267294],..
+                 [499.23388;442.93083;442.93083],"drawlink",[0,0],[1,1],[13,2,0],..
+                 [12,1,1])
+scs_m.objs(14)=mlist(..
+               ["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout","gr_i","id",..
+               "in_implicit","out_implicit"],[-273.17703,485.7182],[40,40],%t,[],[43;40],..
+               [24;31],[],[],..
+               list(..
+               ["thick=xget(''thickness'');xset(''thickness'',2);";
+               "xx=orig(1)+      [2 4 4]*(sz(1)/7);";
+               "yy=orig(2)+sz(2)-[2 2 6]*(sz(2)/10);";
+               "xrects([xx;yy;[sz(1)/7;sz(2)/5]*ones(1,3)]);";
+               "xx=orig(1)+      [1 2 3 4 5 6 3.5 3.5 3.5 4 5 5.5 5.5 5.5]*sz(1)/7;";
+               "yy=orig(2)+sz(2)-[3 3 3 3 3 3 3   7   7   7 7 7   7   3  ]*sz(2)/10;";
+               "xsegs(xx,yy,0);";
+               "xset(''thickness'',thick)"],13),"",["E";"E"],["E";"E"]),mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar","ipar",..
+               "blocktype","firing","dep_ut","label","nzcross","nmode","equations"],..
+               "super",[-1;-1],[-1;-1],[],[],[],[],scs_m_1,[],"h",[],[%f,%f],"",..
+               0,0,list()),"SUPER_f",list())
+scs_m.objs(15)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-315.32253;-276.79686;-269.74458],[534.33788;534.32471;534.3223],..
+               "drawlink",[0,0],[1,1],[13,1,0],[20,1,1])
+scs_m.objs(16)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-187.28191;-161.41111;-161.41111;-143.46726],..
+               [609.58212;609.58212;566.27913;566.27913],"drawlink",[0,0],[1,1],..
+               [10,1,0],[1,1,1])
+scs_m.objs(17)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-188.77075;-168.11091;-168.11091;-143.46726],..
+               [561.9026;561.9026;550.27913;550.27913],"drawlink",[0,0],[1,1],..
+               [11,1,0],[1,2,1])
+scs_m.objs(18)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-24.870941;-24.870941;-24.535534],..
+               [643.99871;639.49661;639.49661],"drawlink",[0,0],[5,-1],[2,1,0],..
+               [25,1,1])
+scs_m.objs(19)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-342.0093;-342.0093],[624.76296;611.33025],"drawlink",[0,0],..
+               [5,-1],[8,1,0],[12,1,1])
+scs_m.objs(20)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-269.74458;534.3223],..
+               [0.3333333,0.3333333],%t,[],15,[21;22],[],[],list([],8),"","E",..
+               ["E";"E";"E"]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"lsplit",-1,[-1;-1;-1],[],[],[],[],[],[],"c",[],..
+               [%t,%f],"",0,0,list()),"SPLIT_f",list())
+scs_m.objs(21)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-269.74458;-143.46726],[534.3223;534.27913],"drawlink",[0,0],..
+               [1,1],[20,1,0],[1,3,1])
+scs_m.objs(22)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-269.74458;-269.74458;-316.29501],[534.3223;585.61596;585.61596],..
+               "drawlink",[0,0],[1,1],[20,2,0],[12,1,1])
+scs_m.objs(23)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [64.012843;72.699392],[586.14839;586.49352],"drawlink",[0,0],..
+               [1,1],[9,1,0],[3,1,1])
+scs_m.objs(24)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-224.6056;-186.07806;-186.07806;-186.07806],..
+               [512.38487;512.38487;512.52826;512.52826],"drawlink",[0,0],[1,1],..
+               [14,1,0],[32,1,1])
+scs_m.objs(25)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-24.535534;639.49661],..
+               [0.3333333,0.3333333],%t,[],[],[],18,[26;27],list([],8),"",[],[]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"split",[],[],1,[1;1],[],[],[],[],"d",[%f,%f,%f],..
+               [%f,%f],"",0,0,list()),"CLKSPLIT_f",list())
+scs_m.objs(26)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-24.535534;101.27082;101.27082],[639.49661;639.49661;612.20781],..
+               "drawlink",[0,0],[5,-1],[25,1,0],[3,1,1])
+scs_m.objs(27)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-24.535534;-94.289907],[639.49661;639.49661],"drawlink",[0,0],..
+               [5,-1],[25,2,0],[46,1,1])
+scs_m.objs(28)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-150.78433;497.63378],..
+               [0.3333333,0.3333333],%t,[],[],[],47,[29;30],list([],8),"",[],[]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"split",[],[],1,[1;1],[],[],[],[],"d",[%f,%f,%f],..
+               [%f,%f],"",0,0,list()),"CLKSPLIT_f",list())
+scs_m.objs(29)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-150.78433;-150.78433],[497.63378;489.82226],"drawlink",[0,0],..
+               [5,-1],[28,1,0],[7,1,1])
+scs_m.objs(30)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-150.78433;-96.845551;-96.845551],..
+               [497.63378;497.63378;453.23647],"drawlink",[0,0],[5,-1],[28,2,0],..
+               [6,1,1])
+scs_m.objs(31)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-224.6056;-201.71121;-201.71121;-125.41698],..
+               [499.05153;499.05153;427.52218;427.52218],"drawlink",[0,0],[1,1],..
+               [14,2,0],[6,1,1])
+scs_m.objs(32)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-186.07806;512.52826],..
+               [0.3333333,0.3333333],%t,[],24,[33;34],[],[],list([],8),"","E",..
+               ["E";"E";"E"]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"lsplit",-1,[-1;-1;-1],[],[],[],[],[],[],"c",[],..
+               [%t,%f],"",0,0,list()),"SPLIT_f",list())
+scs_m.objs(33)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-186.07806;-186.07806;-143.46726],..
+               [512.52826;518.27913;518.27913],"drawlink",[0,0],[1,1],[32,1,0],..
+               [1,4,1])
+scs_m.objs(34)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-186.07806;-186.07806;-179.35576],..
+               [512.52826;464.10798;464.10798],"drawlink",[0,0],[1,1],[32,2,0],..
+               [7,1,1])
+scs_m.objs(35)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-46.324405;-31.97989;-31.97989],[528.9458;528.9458;527.42274],..
+               "drawlink",[0,0],[1,1],[1,2,0],[36,1,1])
+scs_m.objs(36)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-31.97989;527.42274],..
+               [0.3333333,0.3333333],%t,[],35,[37;38],[],[],list([],8),"","E",..
+               ["E";"E";"E"]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"lsplit",-1,[-1;-1;-1],[],[],[],[],[],[],"c",[],..
+               [%t,%f],"",0,0,list()),"SPLIT_f",list())
+scs_m.objs(37)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-31.97989;-31.97989;-26.309057],[527.42274;492.6183;492.6183],..
+               "drawlink",[0,0],[1,1],[36,1,0],[4,1,1])
+scs_m.objs(38)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-31.97989;-31.97989;36.869986],[527.42274;592.81506;592.81506],..
+               "drawlink",[0,0],[1,1],[36,2,0],[9,1,1])
+scs_m.objs(39)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [31.578222;36.508187;36.508187],[544.76777;544.76777;544.76777],..
+               "drawlink",[0,0],[1,1],[5,1,0],[41,1,1])
+scs_m.objs(40)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [30.8338;39.485929;39.485929;-304.44333;-304.44333;-281.74846],..
+               [492.6183;492.6183;397.84077;397.84077;499.05153;499.05153],..
+               "drawlink",[0,0],[1,1],[4,1,0],[14,2,1])
+scs_m.objs(41)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[36.508187;544.76777],..
+               [0.3333333,0.3333333],%t,[],39,[42;43],[],[],list([],8),"","E",..
+               ["E";"E";"E"]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"lsplit",-1,[-1;-1;-1],[],[],[],[],[],[],"c",[],..
+               [%t,%f],"",0,0,list()),"SPLIT_f",list())
+scs_m.objs(42)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [36.508187;36.508187;36.869986],[544.76777;579.48173;579.48173],..
+               "drawlink",[0,0],[1,1],[41,1,0],[9,2,1])
+scs_m.objs(43)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [36.508187;57.352384;57.352384;-323.05422;-323.05422;-281.74846],..
+               [544.76777;544.76777;380.71212;380.71212;512.38487;512.38487],..
+               "drawlink",[0,0],[1,1],[41,2,0],[14,1,1])
+scs_m.objs(44)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-124.28991,587.74539],..
+               [60,40],%f,..
+               ["101";"Thermique.txt";"(102(e10.8,1x))";"200"],45,[],..
+               48,[],..
+               list(..
+               ["txt=[''write to'';''output file''];";
+               "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],8),"","E",..
+               []),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"writef",101,[],1,[],[],..
+               [-1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0],[],..
+               [23;15;0;200;-27;14;28;30;21;29;10;29;28;48;-29;17;14;27;22;18;
+               26;30;14;51;29;33;29;41;1;0;2;41;14;1;0;51;8;52;1;33;42;42],"d",..
+               [],[%t,%f],"",0,0,list()),"WFILE_f",list())
+scs_m.objs(45)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-46.324405;-38.679811;-38.679811;-58.575621],..
+               [555.61247;555.61247;607.74539;607.74539],"drawlink",[0,0],[1,1],..
+               [1,1,0],[44,1,1])
+scs_m.objs(46)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[-94.289907,639.49661],..
+               [0.3333333,0.3333333],%t,[],[],[],27,[47;48],list([],8),"",[],[]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"split",[],[],1,[1;1],[],[],[],[],"d",[%f,%f,%f],..
+               [%f,%f],"",0,0,list()),"CLKSPLIT_f",list())
+scs_m.objs(47)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-94.289907;-150.78433;-150.78433],..
+               [639.49661;639.49661;497.63378],"drawlink",[0,0],[5,-1],[46,1,0],..
+               [28,1,1])
+scs_m.objs(48)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
+               [-94.289907;-94.289907],[639.49661;633.45967],"drawlink",[0,0],..
+               [5,-1],[46,2,0],[44,1,1])

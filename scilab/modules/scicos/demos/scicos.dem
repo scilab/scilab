@@ -1,0 +1,144 @@
+mode(-1)
+// Copyright INRIA
+demos_name=[
+    'Simple Thermostat'
+    'Continuous Plant discrete controller'
+    'Simple demo'
+    'Bouncing ball'
+    'Table lookup example'
+    'Threshold'
+    'Scilab Block'
+    'Thermostat'
+    'Fibonacci'
+    'Cont.Disc-Observer.cosf'
+    'Controller.cosf'
+    'System-Observer.cosf'
+	'bouncing balls'	
+    'Synchro Block demo'
+    'Kalman filter'
+    'Discrete-Kalman Filter'
+    'Inverted Pendulum'
+    'Lorentz attractor'
+    'Datatype'
+    'Digital Pulse Generator'
+    'WaterTank'
+    'Goto/From Demonstration'];
+
+// disabled problem with .au file
+//if ~MSDOS then demos_name=[demos_name;'sound demo'];end
+if with_modelica_compiler() then
+  demos_name=[demos_name;
+              'Colpitts oscillator'
+	      'Electrical circuit: RLC'
+	      'Electrical circuit: Rectifier'
+              'Regulated Thermo Hydraulic plant'];
+end
+
+//    demos_name=[demos_name;'Live tutorials']        
+
+while %t do
+  n=tk_choose(demos_name,'Choose a demo')
+  if n ==0 then break,end
+  select demos_name(n)
+  case 'Goto/From Demonstration' then
+   scicos('SCI/demos/scicos/goto_demo.cosf');
+  case 'Discrete-Kalman Filter' then
+   scicos('SCI/demos/scicos/Discrete-KalmanFilter.cosf');
+  case 'Inverted Pendulum' then
+   exec (SCI+'/demos/scicos/setw.sci');
+   getf(SCI+'/macros/scicos_blocks/Sources/RAND_m.sci');
+   scicos('SCI/demos/scicos/Inverted_pendulum.cosf');
+  case 'Lorentz attractor' then
+   scicos('SCI/demos/scicos/Lorentz.cosf');
+  case 'Datatype' then
+   scicos('SCI/demos/scicos/demo_Datatype.cosf');
+  case 'Digital Pulse Generator' then
+   scicos('SCI/demos/scicos/demo_flipflop.cosf');
+  case 'WaterTank' then
+   scicos('SCI/demos/scicos/demo_watertank.cosf');
+  case 'Kalman filter' then  
+    scicos('SCI/demos/scicos/Kalman_1.cosf');
+  case 'Simple Thermostat' then  
+    scicos('SCI/demos/scicos/Simple_Thermostat.cosf');
+  case 'Continuous Plant discrete controller' then  
+    scicos('SCI/demos/scicos/Plant_DiscreteController.cosf');
+  case 'Simple demo' then  
+    scicos('SCI/demos/scicos/Simple_Demo.cosf');
+  case 'Bouncing ball' then  
+    scicos('SCI/demos/scicos/Bouncing_ball.cosf');	
+  case 'Table lookup example' then  
+    scicos('SCI/demos/scicos/Table_Lookup.cosf');	
+  case 'Threshold' then  
+    scicos('SCI/demos/scicos/Threshold_ZeroCrossing.cosf');	
+  case 'Scilab Block' then  
+    scicos('SCI/demos/scicos/Scilab_Block.cosf');	
+  case 'Thermostat' then  
+    scicos('SCI/demos/scicos/Temp.cosf');	
+  case 'Fibonacci' then  
+    scicos('SCI/demos/scicos/fibo.cosf');
+  case 'Cont.Disc-Observer.cosf' then  
+    scicos('SCI/demos/scicos/Cont.Disc-Observer.cosf');
+  case 'Controller.cosf' then  
+    scicos('SCI/demos/scicos/Controller.cosf');
+  case 'System-Observer.cosf' then  
+    scicos('SCI/demos/scicos/System-Observer.cosf');
+  case 	'bouncing balls' then
+    scicos('SCI/demos/scicos/bounce.cosf');
+//  case 'Live demo' then
+//    getf('SCI/demos/scicos/scicos_play.sci','n')
+//    scicos_play('SCI/demos/scicos/live.dat')
+  case 'sound demo' then  
+    scicos('SCI/demos/scicos/sound.cosf');
+  case 'Synchro Block demo' then  
+    scicos('SCI/demos/scicos/Ifsub.cosf');
+  case 'Colpitts oscillator' then
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+      scicos('SCI/demos/scicos/Electrical/Colpitts_Oscillator.cosf');
+    end
+  case 'Electrical circuit: RLC' then  
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+      scicos('SCI/demos/scicos/Electrical/RLC_circuit.cosf');
+    end
+  case 'Electrical circuit: Rectifier' then  
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+     scicos('SCI/demos/scicos/Electrical/Bridge_Rectifier.cosf');
+    end
+  case 'Regulated Thermo Hydraulic plant' then  
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+      scicos('SCI/demos/scicos/Hydraulics.cosf');
+    end
+   case 'Live tutorials' then
+    tuti=['Simple block construction';
+	  'Use of Super block'
+	  'Use of symbolic parameters'
+	  'Constructing a new block'
+	  'the Scifunc block'
+	  'The Cblock2 block'
+	  ];
+    while %t do
+      n=tk_choose(tuti,'Choose a tutorial (must be played in order).')
+      if n ==0 then break,end
+      dirr=pwd()
+      chdir(TMPDIR)
+      if n>4 then err=execstr('getf(''toto.sci'')','errcatch'),
+	if err<>0 then 
+	  x_message('tutorials must be played in order!'),
+	  break
+	end
+      end
+      str='SCI/demos/scicos/tut'+string(n)
+      getf('SCI/demos/scicos/scicos_play.sci')
+      scicos_play(str)
+      chdir(dirr)
+    end
+  end
+
+end
