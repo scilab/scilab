@@ -54,7 +54,8 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       btn=10;xc=scicos_dblclk(1);yc=scicos_dblclk(2);win=scicos_dblclk(3);str=''
       scicos_dblclk=[]
     end
-  else
+  
+  else //** the standard NON GTK operation 
   
     if rhs==1 then
       [btn, xc, yc, win, str] = xclick(flag) //** not used now (was used in the past) 
@@ -62,6 +63,8 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:
     end                                      //**    CLEAR ANY PREVIOUS
                                              //EVENT in the queue
+    disp(str,"..Sci5..");
+ 
   end					     
   //**--------------------------------------------------------------------------- //
 
