@@ -41,8 +41,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 * @see fr.scilab.console.Console#display(java.lang.String)
 	 */
 	public void display(String dataToDisplay) {
-		//System.out.println("[JAVA - SwingScilabConsole] --> Call ConsolePrint :");
-		//System.out.println(dataToDisplay);
 		this.getConfiguration().getOutputView().append(dataToDisplay);
 	}
 
@@ -72,9 +70,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 			e.printStackTrace();
 		}
 		
-		// Gets the focus to have the caret visible
-		((JTextPane) inputCmdView).grabFocus();
-
 		updateScrollPosition();
 	}
 
@@ -86,9 +81,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	public int getCharWithoutOutput() {
 		int retChar;
 		
-		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
-		this.requestFocus();
-		
 		updateScrollPosition();
 		
 		// Avoids reading of an empty buffer
@@ -98,6 +90,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
+		this.requestFocus();
 		
 		// Add a keylistener which will set the returned char
 		OneCharKeyEventListener keyListener = new OneCharKeyEventListener(this);
@@ -112,6 +107,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.display(StringConstants.NEW_LINE);
 
 		this.removeKeyListener(keyListener);
+		
+		// Send back the focus the the input view
+		this.getConfiguration().getInputCommandView().requestFocus();
+		((JTextPane) this.getConfiguration().getInputCommandView()).getCaret().setVisible(true);
 
 		return retChar;
 	}

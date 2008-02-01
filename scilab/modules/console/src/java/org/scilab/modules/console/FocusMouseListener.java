@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
 /**
+ * NO MORE USED BECAUSE NOW THE CARET OF THE OUTPUT VIEW IS USED TO DO THIS WORK
  * Mouse listener for the output view
  * Automatically forward the focus to input view
  * @author Vincent COUVERT
@@ -32,13 +33,13 @@ public class FocusMouseListener implements MouseListener {
      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
      */
     public void mouseClicked(MouseEvent e) {
-    	// If the user clicks in the Outputview then the focus is given to the input command view
-    	if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
-    		((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
-    	} else {
-    		// In case of "more ?"
-    		c.grabFocus();
-    	}
+ 			// If the user clicks in the Outputview then the focus is given to the input command view
+			if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
+				((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+			} else {
+				// In case of "more ?"
+				c.grabFocus();
+			}
     }
 
     /**

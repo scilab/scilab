@@ -82,19 +82,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 * @return the command buffer
 	 */
 	public String getCmdBuffer() {
-		//this.setEditable(true);
-		//this.setFocusable(true);
-		//this.grabFocus();
-
-		// TCl/TK event loop
-		// InterpreterManagement.execScilabEventLoop();
-		// Callback events handling
-		//		if (InterpreterManagement.haveCommandsInTheQueue()) {
-		//			// Leave the buffer allowed
-		//			canReadBuffer.release();
-		//			return "";
-		//		}
-
 		String command = null;
 		try {
 			command = queue.take();
@@ -112,7 +99,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 			try {
 				queue.put(command);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}

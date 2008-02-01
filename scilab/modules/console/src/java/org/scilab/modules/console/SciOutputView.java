@@ -3,8 +3,15 @@
 package org.scilab.modules.console;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.io.Writer;
 import java.util.LinkedList;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -14,7 +21,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
+import javax.swing.text.JTextComponent;
 import javax.swing.text.StyleContext;
 
 import com.artenum.rosetta.interfaces.ui.OutputView;
@@ -67,13 +77,76 @@ public class SciOutputView extends JTextPane implements OutputView {
 		activeStyle = StyleContext.DEFAULT_STYLE;
 		bufferQueue = new ArrayBlockingQueue<StringBuffer>(BUFFER_SIZE);
 		styleQueue = new LinkedList<String>();
+		setFocusable(false);
+		
+		/**
+		 * Default caret for output view (to handle paste actions using middle button)
+		 * @author Vincent COUVERT
+		 */
+		final class FixedCaret extends DefaultCaret {
+			
+			private static final long serialVersionUID = 8230195712653828841L;
+
+			/**
+			 * Constructor
+			 */
+			private FixedCaret() {
+				super();
+			}
+
+			/**
+			 * Manages mouse clicks
+			 * @param e the event
+			 * @see javax.swing.text.DefaultCaret#mouseClicked(java.awt.event.MouseEvent)
+			 */
+			public void mouseClicked(MouseEvent e) {
+				if (SwingUtilities.isMiddleMouseButton(e) && e.getClickCount() == 1) {
+					/*** PASTE USING MIDDLE BUTTON ***/
+					JTextComponent c = (JTextComponent) e.getSource();
+					if (c != null) {
+						Toolkit tk = c.getToolkit();
+						Clipboard buffer = tk.getSystemSelection();
+						if (buffer != null) {
+							Transferable trans = buffer.getContents(null);
+							if (trans.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+								try {
+									String pastedText = (String) trans.getTransferData(DataFlavor.stringFlavor);
+									((JTextPane) getConsole()
+											.getConfiguration()
+											.getInputCommandView())
+											.replaceSelection(pastedText);
+								} catch (UnsupportedFlavorException e1) {
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+							}
+						}
+					}
+				} else if (SwingUtilities.isLeftMouseButton(e) && e.getClickCount() == 1) {
+					/*** SEND THE FOCUS TO THE INPUT COMMAND VIEW ***/
+					((JTextPane) getConsole().getConfiguration().getInputCommandView()).requestFocus();
+					((JTextPane) getConsole().getConfiguration().getInputCommandView()).getCaret().setVisible(true);
+				} else {
+					/*** DELEGATE TO THE SYSTEM ***/
+					super.mouseClicked(e);
+				}
+			}
+		}
+
+		// Set the caret
+		setCaret(new FixedCaret());
+		// Selection is forced to be visible because the component is not editable
+		getCaret().setSelectionVisible(true);
 	}
 
 	/**
 	 * Display a buffer entry in the console
+	 * @param buff the string  to write
+	 * @param style the style to use to format the string
 	 */
 	private void displayLineBuffer(String buff, String style) {
-		
+
 		/*
 		 * Temporary variables created to avoid to long line (checkstyle
 		 */
@@ -232,12 +305,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#reset()
 	 */
 	public void reset() {
-	//	try {
-			//getStyledDocument().remove(0, getStyledDocument().getLength());
-			setText("");
-		//} catch (BadLocationException e) {
-		//	e.printStackTrace();
-		//}
+		setText("");
 		setCaretPosition(0);
 	}
 
@@ -256,7 +324,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#setCaretPositionToEnd()
 	 */
 	public void setCaretPositionToEnd() {
-		//setCaretPosition(getStyledDocument().getLength());
+		setCaretPosition(getStyledDocument().getLength());
 	}
 
 	/**
@@ -284,8 +352,9 @@ public class SciOutputView extends JTextPane implements OutputView {
 				DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(
 						console)));
 
-		FocusMouseListener focusGrabber = new FocusMouseListener(console);
-		this.addMouseListener(focusGrabber);
+		// Commented because now done by the caret class
+		//FocusMouseListener focusGrabber = new FocusMouseListener(console);
+		//this.addMouseListener(focusGrabber);
 	}
 
 	/**
@@ -304,4 +373,5 @@ public class SciOutputView extends JTextPane implements OutputView {
 	public Thread getThread() {
 		return thread;
 	}
+	
 }

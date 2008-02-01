@@ -5,7 +5,6 @@ package org.scilab.modules.console;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
@@ -85,6 +84,7 @@ public abstract class SciConsole extends JPanel {
 	 */
 	public SciConsole() {
 		super(new BorderLayout());
+
 		String configFilePath = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 		String profileName = null;
 
@@ -207,11 +207,11 @@ public abstract class SciConsole extends JPanel {
 			}
 		});
 		*/
-    	//jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
-    	jSP.invalidate();
-    	jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-		jSP.revalidate();
-    }
+    	//jSP.invalidate();
+    	//jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
+ 		//jSP.revalidate();
+       	jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
+   }
 
     /**
      * Clears the console and the output view
@@ -336,59 +336,53 @@ public abstract class SciConsole extends JPanel {
 		boolean firstPrompt = true;
 
 		while (nbStatements < linesToExec.length) {
+			// This loop contains code very similar to the code of ValidationAction.java
+			InputParsingManager inputParsingManager = config.getInputParsingManager();
+			OutputView outputView = config.getOutputView();
+			PromptView promptView = config.getPromptView();
 
-			// Send data to the console only if the prompt is visible
-			//boolean bufferAvailable = ((SciPromptView) config.getPromptView()).isVisible();
+			// Reset command line
+			inputParsingManager.reset();
+			promptView.updatePrompt();
 
-			//if (bufferAvailable) {
-				// This loop contains code very similar to the code of ValidationAction.java
-				InputParsingManager inputParsingManager = config.getInputParsingManager();
-				OutputView outputView = config.getOutputView();
-				PromptView promptView = config.getPromptView();
+			// Reset history settings
+			config.getHistoryManager().setInHistory(false);
 
-				// Reset command line
-				inputParsingManager.reset();
-				promptView.updatePrompt();
+			// Hide the prompt and command line
+			config.getInputCommandView().setEditable(false);
+			config.getPromptView().setVisible(false);
 
-				// Reset history settings
-				//config.getHistoryManager().setInHistory(false);
+			// Remove the prompt if present at the beginning of the text to execute
+			// TODO what about pause mode prompts ??
+			String prompt = config.getPromptView().getDefaultPrompt();
+			if (linesToExec[nbStatements].startsWith(prompt)) {
+				linesToExec[nbStatements] = linesToExec[nbStatements].substring(prompt.length());
+			}
 
-				// Hide the prompt and command line
-				config.getInputCommandView().setEditable(false);
-				config.getPromptView().setVisible(false);
-
-				// Remove the prompt if present at the beginning of the text to execute
-				// TODO what about pause mode prompts ??
-				String prompt = config.getPromptView().getDefaultPrompt();
-				if (linesToExec[nbStatements].startsWith(prompt)) {
-					linesToExec[nbStatements] = linesToExec[nbStatements].substring(prompt.length());
+			// TODO must be linked to Scilab parser to know if we are in a block
+			if (displayCmdInOutput) {
+				outputView.append(StringConstants.NEW_LINE);
+				if (firstPrompt) {
+					firstPrompt = false;
+					outputView.append(promptView.getDefaultPrompt());
+				} else {
+					outputView.append(promptView.getInBlockPrompt());
 				}
+				outputView.append(linesToExec[nbStatements]);
 
-				// TODO must be linked to Scilab parser to know if we are in a block
-				if (displayCmdInOutput) {
-					outputView.append(StringConstants.NEW_LINE);
-					if (firstPrompt) {
-						firstPrompt = false;
-						outputView.append(promptView.getDefaultPrompt());
-					} else {
-						outputView.append(promptView.getInBlockPrompt());
-					}
-					outputView.append(linesToExec[nbStatements]);
+				outputView.append(StringConstants.NEW_LINE);
+			}
+			// Store the command in the buffer so that Scilab can read it
+			if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
+				config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH
+						+ " characters long): could not send it to Scilab\n");
+				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("");
+				return;
+			}
 
-					outputView.append(StringConstants.NEW_LINE);
-				}
-				// Store the command in the buffer so that Scilab can read it
-				if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
-					config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH
-							+ " characters long): could not send it to Scilab\n");
-					((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("");
-					return;
-				}
-
-				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
-				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
-				nbStatements++;
-			//}
+			((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
+			((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
+			nbStatements++;
 		}
 
 	}

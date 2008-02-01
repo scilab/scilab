@@ -4,8 +4,10 @@ package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.AWTEvent;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 
 import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
@@ -127,4 +129,25 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		this.setLocation(newPosition.getX(), newPosition.getY());
 	}
 	
+	public void display() {
+		if (EventQueue.isDispatchThread()) {
+			// Want display() to be synchronous, so call paintImmediately()
+			paintImmediately(0, 0, getWidth(), getHeight());
+		} else {
+	        //	 Multithreaded redrawing of Swing components is not allowed,
+		    // so do everything on the event dispatch thread
+		    try {
+		    	class PaintImmediatelyAction implements Runnable {
+		    		public void run() {
+		    			System.out.println("Before...");
+		    			paintImmediately(0, 0, getWidth(), getHeight());
+		    			System.out.println("After...");
+		    		}
+		    	}
+		    	EventQueue.invokeAndWait(new PaintImmediatelyAction());
+		    } catch (Exception e) {
+		        throw new GLException(e);
+		    }
+		}
+	}
 }
