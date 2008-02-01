@@ -62,8 +62,6 @@ scilab2fortran \
 development_tools \
 compatibility_functions \
 helptools \
-scicos_blocks \
-scicos \
 fftw \
 pvm \
 spreadsheet \
@@ -73,6 +71,11 @@ demo_tools
 #if MPI
 #SUBDIRS += mpi
 #endif
+
+if SCICOS
+SUBDIRS += scicos_blocks \
+scicos
+endif 
 
 SUBDIRS += .
 
@@ -165,7 +168,9 @@ endif
 libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
 
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libsciscicos.la
+if SCICOS
 libscilab_la_LIBADD += $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
+endif
 
 ## Libs
 libscilab_la_LIBADD += \
