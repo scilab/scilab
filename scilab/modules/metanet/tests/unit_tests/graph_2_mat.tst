@@ -8,7 +8,7 @@
 // unit tests for graph_2_mat function
 // =============================================================================
 
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(SCI+"/modules/metanet/tests/unit_tests/colored");
 a=graph_2_mat(g)
 a=graph_2_mat(g,'node-node')
 

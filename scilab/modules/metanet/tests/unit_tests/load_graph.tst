@@ -8,9 +8,7 @@
 // unit tests for load_graph function
 // =============================================================================
 
-g=load_graph(SCI+'/demos/metanet/mesh100.graph');
+g=load_graph(SCI+"/modules/metanet/tests/unit_tests/mesh100.graph");
 show_graph(g);
 g=load_graph(SCI+'/demos/metanet/colored');
 show_graph(g,'new');
-
-
