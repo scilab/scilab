@@ -17,7 +17,16 @@
         </submenu> 
         <submenu label="Save..." mnemonic="S" enabled="false"/> 
         <separator/>
-        <submenu label="Export" mnemonic="E" enabled="false"/> 
+        <submenu label="Export to BMP..." mnemonic="E"> 
+            <callback 
+            instruction="
+              %fileToWrite = xgetfile('*.bmp', getcwd(), 'Select a file name');
+              if ~isempty(%fileToWrite) then 
+                xs2bmp(get(gcf(),'figure_id'), %fileToWrite);
+              end
+              clear %fileToWrite"
+            type="1"/>
+        </submenu>
         <submenu label="Copy to clipboard" mnemonic="C" enabled="false"/> 
         <separator/>
         <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
