@@ -31,10 +31,22 @@ Source: modules\{#METANET}\help\*.htm; DestDir: {app}\modules\{#METANET}\help; F
 ;
 Source: modules\{#METANET}\includes\*.h; DestDir: {app}\modules\{#METANET}\includes; Components: {#COMPN_METANET}
 ;
-Source: modules\{#METANET}\macros\lib; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
-Source: modules\{#METANET}\macros\names; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
-Source: modules\{#METANET}\macros\*.bin; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
-Source: modules\{#METANET}\macros\*.sci; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\editor\lib; DestDir: {app}\modules\{#METANET}\macros\editor; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\editor\names; DestDir: {app}\modules\{#METANET}\macros\editor; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\editor\*.bin; DestDir: {app}\modules\{#METANET}\macros\editor; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\editor\*.sci; DestDir: {app}\modules\{#METANET}\macros\editor; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\editor\buildmacros.sce; DestDir: {app}\modules\{#METANET}\macros\editor; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\editor\buildmacros.bat; DestDir: {app}\modules\{#METANET}\macros\editor; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\editor\cleanmacros.bat; DestDir: {app}\modules\{#METANET}\macros\editor; Components: {#COMPN_METANET}
+;
+Source: modules\{#METANET}\macros\graph_tools\lib; DestDir: {app}\modules\{#METANET}\macros\graph_tools; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\graph_tools\names; DestDir: {app}\modules\{#METANET}\macros\graph_tools; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\graph_tools\*.bin; DestDir: {app}\modules\{#METANET}\macros\graph_tools; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\graph_tools\*.sci; DestDir: {app}\modules\{#METANET}\macros\graph_tools; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\graph_tools\buildmacros.sce; DestDir: {app}\modules\{#METANET}\macros\graph_tools; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\graph_tools\buildmacros.bat; DestDir: {app}\modules\{#METANET}\macros\graph_tools; Components: {#COMPN_METANET}
+Source: modules\{#METANET}\macros\graph_tools\cleanmacros.bat; DestDir: {app}\modules\{#METANET}\macros\graph_tools; Components: {#COMPN_METANET}
+;
 Source: modules\{#METANET}\macros\buildmacros.sce; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\macros\buildmacros.bat; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
 Source: modules\{#METANET}\macros\cleanmacros.bat; DestDir: {app}\modules\{#METANET}\macros; Components: {#COMPN_METANET}
