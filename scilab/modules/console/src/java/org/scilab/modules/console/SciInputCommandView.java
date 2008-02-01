@@ -9,8 +9,8 @@ import java.awt.FontMetrics;
 import java.awt.Point;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -27,26 +27,15 @@ import com.artenum.rosetta.util.StringConstants;
  * @author Vincent COUVERT
  */
 public class SciInputCommandView extends ConsoleTextPane implements InputCommandView {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final String END_LINE = "\n";
 	private static final Point ERROR_POINT = new Point(0, 0);
 	private static final int TOP_BORDER = 1;
 	private static final int BOTTOM_BORDER = 2;
+	private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
 
 	private SciConsole console;
-
-	/**
-	 * Variable used to store the command entered by the user 
-	 */
-	private String cmdBuffer = "";
-	
-	/**
-	 * Protection for safe reading
-	 */
-	private Semaphore canReadBuffer;
-	
-	private SynchronousQueue<String> queue;
 	
 	/**
 	 * Constructor
@@ -54,11 +43,9 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	public SciInputCommandView() {
 		super();
 		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
-		
+
 		// Input command line is not editable when created
 		this.setEditable(false);
-		canReadBuffer = new Semaphore(1);
-		queue = new SynchronousQueue<String>();
 	}
 
 	/**
@@ -95,9 +82,9 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	 * @return the command buffer
 	 */
 	public String getCmdBuffer() {
-		this.setEditable(true);
-		this.setFocusable(true);
-		this.grabFocus();
+		//this.setEditable(true);
+		//this.setFocusable(true);
+		//this.grabFocus();
 
 		// TCl/TK event loop
 		// InterpreterManagement.execScilabEventLoop();
@@ -116,47 +103,30 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		}
 		return command;
 	}
-	
+
 	/**
 	 * Sets the command buffer after a user input in input command view
 	 * @param command the string to set to the buffer
 	 */
 	public void setCmdBuffer(String command) {
-		try {
-			queue.put(command);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets a protection on the buffer to forbid reading it
-	 */
-	public void setBufferProtected() {
-		try {
-			canReadBuffer.acquire();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+			try {
+				queue.put(command);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	/**
-	 * Allow Scilab to read the buffer
-	 */
-	public void unlockBuffer() {
-			canReadBuffer.release();
-	}
-	
-	/**
 	 * Sets the console object containing this input view
-	 * @param c the console associated 
+	 * @param c the console associated
 	 */
 	public void setConsole(SciConsole c) {
 		console = c;
-		
+
 		// Drag n' Drop handling
 		this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
-		
+
 		// BUG 2510 fix: automatic validation of pasted lines
 		this.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
