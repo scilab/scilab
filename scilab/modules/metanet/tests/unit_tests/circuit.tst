@@ -1,0 +1,23 @@
+//==============================================================================
+// Authors : Claude GOMEZ, Serge STEER
+// Scilab team
+// Copyright INRIA
+// Date : 01 Feb, 2008
+//==============================================================================
+
+// unit tests for circuit function
+// =============================================================================
+
+// graph with circuit
+ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
+he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
+g=make_graph('foo',1,8,ta,he);
+g('node_x')=[116 231 192 323 354 454 305 155];
+g('node_y')=[ 118 116 212 219 117 185 334 316];
+show_graph(g);
+p=circuit(g)
+show_arcs(p)
+// graph without circuit
+g=make_graph('foo',1,4,[1 2 2 3],[2 3 4 4]);
+[p,r]=circuit(g)
+ 
