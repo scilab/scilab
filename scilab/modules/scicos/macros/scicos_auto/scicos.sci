@@ -66,8 +66,16 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   super_block = slevel > 1 ; //** ... means that the actual SCICOS is a superblock diagram
 
 
-  //** (1)  
   if ~super_block then
+    global next_scicos_call
+    if next_scicos_call==[] then
+      next_scicos_call=1
+      verscicos=get_scicos_version()
+      ttxxtt=['Scicos version '+part(verscicos,7:length(verscicos))
+              'Copyright (c) 1992-2008 Metalau project INRIA'
+              'Licensed under the GNU Public License (GPL)']
+      write(%io(2),ttxxtt)
+    end
     //prepare from and to workspace stuff
     curdir=getcwd()
     chdir(TMPDIR)
@@ -96,7 +104,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     inactive_windows=list(list(),[])
     Scicos_commands=[]
   end
-  //** (1) end of the first 
 
   %diagram_open=%t   //default choice
   if super_path<>[] then
@@ -111,8 +118,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     end
   end
 
-
-  //** (2) ---------------------------------------------------------------------------------------
+  //**-----------------------------------------------------------------------------------------------
   if ~super_block then
 
     // Check and define SCICOS palette , menu , shortcut , display mode , palette libraries
@@ -181,7 +187,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
         %scicos_contrib = %scicos_contrib_d ;
       end
     end //** ... of the initialization variable
-
 	//**--------------------------------------------------------------
 
 	//** initialize the "scicos_contex" datastructure (Scilab script inside SCICOS simulation)
@@ -200,7 +205,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	if ~exists('%scicos_with_grid') then
 	  %scicos_with_grid = %f;
 	end
-
 	if ~exists('%scs_wgrid') then
 	  //** %scs_wgrid(1:2) : space of grid
 	  //** %scs_wgrid(3) : color
@@ -208,21 +212,20 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	end
 
 	//** disable scilab function protection
-	prot = funcprot();
+	prot=funcprot();
 	funcprot(0);
 
-	  //** BEWARE : ask serge about the graphics editor 
-          //** to load functions of ged in scico
-          //** exec(SCI+'/macros/util/ged.sci',-1); //** <----- DEBUG ONLY Not Yet Available 
 
-	  //** Scicos internal functions override in order to assure full
-	  //** compatibility with NGI (J.B. Silvy)
-	
-          swap_handles = permutobj; // TO be removed in Scilab 5 : I will do ASAP 
+	//** to load functions of ged in scico
+        //** exec(SCI+'/macros/util/ged.sci',-1); //** <----- DEBUG ONLY Not Yet Available 
 
-	  xstringb = xstringb2; //** BEWARE: TO be removed in Scilab 5
+	//** Scicos internal functions override in order to assure full
+	//** compatibility with NGI (J.B. Silvy)
+	swap_handles = permutobj; //TO be removed in Scilab 5
 
-	  //** restore scilab function protection
+	xstringb = xstringb2; //** BEWARE: TO be removed in Scilab 5
+
+	//** restore scilab function protection
 	funcprot(prot)
 	
 	//** check and - eventually - load the Scicos function library  
@@ -233,8 +236,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	exec(loadpallibs, 1) //** load library that contains the INTERFACING functions
 
 
-  end //** (2)  end of the main if() not superblock initialization 
-
+  end //** end of the main if() not superblock initialization 
 
   //** ----------------------------- End the NOT-Superbloc initialization and check ----------------------
 
@@ -249,9 +251,10 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   %path='./'
   %exp_dir = PWD
 
+
   global %tableau
 
-  //** (3) ----------------------------------------------------------------------------------
+  //**----------------------------------------------------------------------------------
   if ~super_block then // init of some global variables
     %zoom    = 1.4      ; //** original value by Ramine
     pal_mode = %f       ;  // Palette edition mode
@@ -269,7 +272,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     execstr('load(''.scicos_short'')','errcatch')  // keyboard shortcuts
     
   end
-  //**-(3) ------------------------------------------------------------------------------
+  //**----------------------------------------------------------------------------------
   
   [lhs, rhs] = argn(0) ; //** recover the arguments of "scicos(<rhs>)" 
   
@@ -311,11 +314,12 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     end
   end
 
+  //
+
   if typeof(scs_m)<>'diagram' then
     error("First argument must be a Scicos diagram");
   end
 
-  //** (4) ----------------------------------------------------------------------------------------------------
   if ~super_block then
 
     //**----------------------- Dynamic menu and shortcut preparation -----------------------------------------
@@ -353,7 +357,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 		      'Select All'    , 'SelectAll_'     
 		     ];
 
-    menus = tlist('xxx'); 
+    menus = tlist('xxx')
 
     for %Y=1:length(%scicos_menu)
       menus(1)  = [menus(1), %scicos_menu(%Y)(1)];
@@ -375,7 +379,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     //----------------------------------------------------------------
 
   end
-  //** (4) -------------------------------------------------------------
 
   // viewport
   options = scs_m.props.options
@@ -385,7 +388,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
   //** ------- GRAPHICS INITIALIZATION: Palettes, TK functions, ---------
   //**-------------------------- I'm NOT inside a superblock  -----------
-  //** (5) -------------------------------------------------------------
   if ~super_block then
 
     gh_current_window = scf(Main_Scicos_window);
@@ -398,15 +400,11 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     
     
     if ~exists('%scicos_gui_mode') then
-      if with_tk() then
-        %scicos_gui_mode=1
-      else
-        %scicos_gui_mode=0
-      end
+      if with_tk() then %scicos_gui_mode=1, else %scicos_gui_mode=0, end
     end
     
-    %diagram_i_h = generic_i_h // pour pouvoir ecrire dans le champ user_data
-                               // des fenetre graphiques
+    %diagram_i_h=generic_i_h // pour pouvoir ecrire dans le champ user_data
+                       // des fenetre graphiques
     
     if %scicos_gui_mode==1 then
       //** scicos is active in graphical mode   
@@ -456,6 +454,8 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
   end //** end of not superblock
 
+ 
+
   //**------------------------- CONTEXT -----------------------
   //set context (variable definition...)
 
@@ -463,7 +463,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
     gh_percent_now_win = gcf(); //** save current figure handle
 
-    [%scicos_context,ierr] = script2var(scs_m.props.context, %scicos_context)
+    [%scicos_context,ierr] = script2var(scs_m.props.context,%scicos_context)
     //for backward compatibility for scifunc
     if ierr==0 then
       %mm = getfield(1,%scicos_context)
@@ -486,7 +486,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       //different results from one execution to next
       if or(%outfun(4)=='rand')|or(%outfun(4)=='exec')|or(%outfun(4)=='load') then
 	DisableAllMenus()
-	  [scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr);
+	[scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr);
 	EnableAllMenus()
       end
     end
@@ -505,6 +505,8 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
   // state machine variables
 
+
+
   //** Initial conditions 
   Cmenu = []     ; //** valid command = empty
   %pt   = []     ; //** valid last mouse position = empty
@@ -519,18 +521,15 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
   Select_back = [] ; //** empty
   %ppt = []; //** used to store last valid click position for "Paste" operation 
   //Clipboard = []; //** used in Copy Cut and Paste function 
-  
-  //** ------------------- GRAPHICS INITIALIZATION ---------
+   //** ------------------- GRAPHICS INITIALIZATION ---------
 
   //** This section is executed in any case
   //   initialize graphics
 
   if %diagram_open then
-    //** True in the initialization (empty diagram) 
     gh_current_window = gcf() ; //** get the current graphics window
-    
-    if (gh_current_window.user_data==[]) | (~isequalbitwise(gh_current_window.user_data(1),scs_m) ) then
-      %zoom = restore(gh_current_window)
+     if (gh_current_window.user_data==[])| (~isequalbitwise(gh_current_window.user_data(1),scs_m)) then
+      %zoom=restore(gh_current_window)
       execstr('drawobjs(scs_m)', 'errcatch') ; 
      else
       Select=gh_current_window.user_data(2)
@@ -539,24 +538,22 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       nc_save=gh_current_window.user_data(5)
       xselect()
      end
-
   else
-
+//    pause
     if or(curwin==winsid()) then
       gh_current_window = scf(curwin)
       if (gh_current_window.user_data~=[])&(isequalbitwise(gh_current_window.user_data(1),scs_m)) then
 	Select=gh_current_window.user_data(2)
       end
     end
-
   end 
-
   exec(restore_menu,-1)
   
 //** --- End of initialization ----------------------------------------------------------- 
   
+  
   global Clipboard  // to make it possible to copy and paste from one
-                    // super block to another
+  // super block to another
   
   //** --------- Command Interpreter / State Machine / Main Loop ------------
   
@@ -567,51 +564,47 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     if %stack(2)/%stack(1)> 0.3 then                      //
       stacksize(2*%stack(1))                              //
       disp("Stacksize increased to "+string(2*%stack(1))) //
-    end                                                   //
+    end    
     
-    //** ---------------- Figure adjustements --------------------------------------------
     if or(winsid()==curwin) then
-      winsize = gh_current_window.figure_size;
-      axsize  = gh_current_window.axes_size;
+      winsize=gh_current_window.figure_size;
+      axsize=gh_current_window.axes_size;
       
       if or(winsize > axsize+21) then   // +21 is to compensate for
-					// scrollbar under Windows
-					// disp(winsize,axsize)
-        
-        //** viewport = xget('viewport'); //** OLD Graphics instruction / to be removed 
-        //** viewport = max( [0,0], min(viewport,-winsize+axsize) ) ; 
-        viewport = [0,0] ;
-	window_set_size(gh_current_window, viewport) ; 
-	drawnow()     ;
+					// scrollbar under windows
+					//disp(winsize,axsize)
+        viewport=xget('viewport')
+        viewport=max([0,0],min(viewport,-winsize+axsize))
+	window_set_size(gh_current_window,viewport)
+	drawnow();
 	show_pixmap() ;
       end
 
       if edited then
 	// store win dims, it should only be in do_exit but not possible
 	// now
-	data_bounds = gh_current_window.children.data_bounds
-	winpos      = gh_current_window.figure_position;
-	//** BEWARE : update this code 
-        //** %curwpar    = [data_bounds(:)',gh_current_window.axes_size, xget('viewport'),winsize,winpos,%zoom] ;
-
+	data_bounds=gh_current_window.children.data_bounds
+	
+	winpos=gh_current_window.figure_position;
+	%curwpar=[data_bounds(:)',gh_current_window.axes_size,..
+		  xget('viewport'),winsize,winpos,%zoom]
 	if ~isequal(scs_m.props.wpar,%curwpar) then
 	  scs_m.props.wpar=%curwpar  // keep window dimensions  
 	end
-
       end    
-
     end
-    //**------------ End of figure adjustements ------------------------------------------
+ 
+//pause   
     
     if %scicos_navig==[] then 
       if Scicos_commands<>[] then
-	//**  disp(Scicos_commands(1)) ; //** debug only 
-	execstr(Scicos_commands(1)) ; 
-	Scicos_commands(1)=[] ; 
+	//	    disp(Scicos_commands(1))
+	execstr(Scicos_commands(1))
+	Scicos_commands(1)=[]
       end
     end
     
-    if Cmenu=='Quit' then break, end
+    if Cmenu=='Quit' then break,end
     
     //**--------------------------------------------------------------------
     if %scicos_navig<>[] then //** navigation mode active 
@@ -685,6 +678,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       //** clear the %pt information for backward compatibility
       //** if 'Cmenu' is empty (no command) but '%pt' is not , it is better to clear '%pt'
 
+
       if ( Cmenu == [] & %pt <> []  ) then %pt=[]; end
       
       //** if 'Cmenu' is NOT empty and 'CmenuType' is "0" I don't' need '%pt' then clear '%pt'
@@ -702,9 +696,9 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       if ( Cmenu==[] | (CmenuType==1 & %pt==[] & Select==[]) ) then
 	
 	//** I'm not ready to exec a command: I need more information using cosclik()
-        EnableAllMenus();
-	  [btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
-        DisableAllMenus();
+        EnableAllMenus()
+	[btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
+        DisableAllMenus()
 
 	if (Cmenu_n=='SelectLink' | Cmenu_n=='MoveLink') & Cmenu<>[] & CmenuType==1 & %pt==[] then
 	  if %pt_n<>[] then %pt = %pt_n; end
@@ -846,10 +840,10 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     
   end
 
-endfunction 
 
-//** scicos(); end here :) : you had a good day
+endfunction //** scicos(); end here :) : you had a good day
 //**------------------------------------------------------------------------------------
+  
 
 function [itype, mess] = CmType(Cmenu)
 //** look inside "%CmenuTypeOneVector" if the command is type 1 (need both Cmenu and %pt)
