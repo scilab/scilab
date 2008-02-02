@@ -1,10 +1,8 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
+### INRIA - Scilab 2006/2007/2008
 ##########
 dnl Process this file with autoconf to produce a configure script.
-
-## Copyright INRIA
 
 #shared library versioning
 #GENERIC_LIBRARY_VERSION=1:2:0
@@ -709,15 +707,31 @@ AC_SUBST(TERMCAP_LIB)
 ## SCICOS
 #################
 
+AC_ARG_WITH(scicos,
+    [  --with-scicos        Compile with Scicos ])
+
+# We will be used in the future
+#AC_ARG_WITH(scicos,
+#    [  --without-scicos        Compile without Scicos ])
+
 AC_ARG_WITH(ocaml,
     [  --without-ocaml         do not compile ocaml modules ])
 
-AC_ARG_WITH(scicos,
-    [  --without-scicos        do not compile scicos ])
+
 
 if test "$with_scicos" = yes; then
-   AC_DEFINE([WITHOUT_SCICOS], [], [Without SCICOS])
+   AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
+
+#################
+## ocaml which only called with using Scicos
+#################
+
+		if test "$with_ocaml" != no; then
+		   AC_CHECK_PROG_OCAML()
+		fi
+
 fi
+
 AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 
 
@@ -885,14 +899,6 @@ if test "$with_tk" != no; then
 
 fi
 AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
-
-#################
-## ocaml
-#################
-
-if test "$with_ocaml" != no; then
-   AC_CHECK_PROG_OCAML()
-fi
 
 
 #################
@@ -1164,8 +1170,19 @@ echo "TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
 echo "TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
 echo "Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
 echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
-echo "Do not compile Scicos (--without-scicos) ......... = $without_scicos"
 echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
+
+echo ""
+if test "$with_scicos" != no; then
+   echo "Scicos enable"
+   echo ""
+   echo "Ocaml Configuration (for Modelica compiler):"
+   echo "OCAMLC ............. = $OCAMLC"
+   echo "OCAMLOPT ........... = $OCAMLOPT"
+   echo "OCAMLDEP ........... = $OCAMLDEP"
+else 
+   echo "Not using Scicos"
+fi
 
 echo ""
 if test ! -z "$PVM_INCLUDE"; then
