@@ -28,9 +28,6 @@ function set_viewport(viewport)
   x = viewport(1) ;
   y = viewport(2) ;
   //** This correction is really needed BUT uses old graphics primitives :(
-  
-  //** BEWARE : this primitive need update 
-  
   xset("viewport",x,y); //** Set the position of the panner.
 
 endfunction

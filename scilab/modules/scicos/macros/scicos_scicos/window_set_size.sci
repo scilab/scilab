@@ -121,7 +121,7 @@ function window_set_size(gh_window, viewport)
   end 
   
    viewport = [%XSHIFT, %YSHIFT]; 
-   set_viewport(viewport) ; //**
+    set_viewport(viewport) ; //**
 
   xselect(); //** put the current window in foreground
 
