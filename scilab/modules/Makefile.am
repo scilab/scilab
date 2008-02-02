@@ -73,9 +73,10 @@ demo_tools
 #endif
 
 if SCICOS
-SUBDIRS += scicos_blocks \
-scicos
+SUBDIRS += scicos_blocks
 endif 
+
+SUBDIRS += scicos
 
 SUBDIRS += .
 

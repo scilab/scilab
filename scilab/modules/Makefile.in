@@ -42,9 +42,7 @@ host_triplet = @host@
 #if MPI
 #SUBDIRS += mpi
 #endif
-@SCICOS_TRUE@am__append_2 = scicos_blocks \
-@SCICOS_TRUE@scicos
-
+@SCICOS_TRUE@am__append_2 = scicos_blocks
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
@@ -376,7 +374,7 @@ SUBDIRS = polynomials $(am__append_1) STRING_V2 intersci cacsd \
 	windows_tools functions others overloading maple2scilab m2sci \
 	texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools fftw pvm spreadsheet jvm \
-	demo_tools $(am__append_2) . $(am__append_3)
+	demo_tools $(am__append_2) scicos . $(am__append_3)
 modulename = 
 
 #### Basic files ####
