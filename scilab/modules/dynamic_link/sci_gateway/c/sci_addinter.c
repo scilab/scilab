@@ -17,9 +17,12 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 		(VarType(2) == sci_strings) && 
 		(VarType(3) == sci_strings) )
 	{
+		
 		char **sharedlibname = NULL;
 		char **spname = NULL;
 		char **fcts = NULL;
+		int nbfcts = 0;
+		int ierr = 0;
 
 		int m1 = 0, n1 = 0;
 		int m2 = 0, n2 = 0;
@@ -41,23 +44,35 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 			return 0;
 		}
 
+		if ( (m3 > 1) &&  (n3 > 1) ) /* check vector string */
 		{
-			int ierr = 0;
+			Scierror(999,_("%s: Wrong size for third input argument.\n"),fname);
+			return 0;
+		}
+		
+		if ( (m3 == 1) && (n3 >= 1) )
+		{
+			nbfcts = n3;
+		}
+		else if ( (n3 == 1) && (m3 >= 1) )
+		{
+			nbfcts = m3;
+		}
 
-			ierr = AddInterfaceToScilab(sharedlibname[0],spname[0],fcts,n3);
-			if (ierr == 0)
+		ierr = AddInterfaceToScilab(sharedlibname[0],spname[0],fcts,nbfcts);
+		if (ierr == 0)
+		{
+			LhsVar(1) = 0;
+			C2F(putlhsvar)();
+		}
+		else
+		{
+			switch (ierr)
 			{
-				LhsVar(1) = 0;
-				C2F(putlhsvar)();
-			}
-			else
-			{
-				switch (ierr)
-				{
-				default :
-					Scierror(999,_("%s : unknow error.\n"),fname);
-					break;
-				}
+			/* TODO !: extend error code */
+			default :
+				Scierror(999,_("%s : unknow error.\n"),fname);
+				break;
 			}
 		}
 	}
