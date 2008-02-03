@@ -22,7 +22,7 @@ public class LookAndFeelManager {
 	 * Get Installed Look and Feels
 	 * @return a array of String
 	 */
-	public static String[] getInstalledLookAndFeels() {
+	public String[] getInstalledLookAndFeels() {
 		String[] retStrings = new String[availableLookAndFeels.length];
 		for (int i = 0; i < availableLookAndFeels.length; i++) {
 			retStrings[i] =  availableLookAndFeels[i].getClassName();
@@ -34,7 +34,7 @@ public class LookAndFeelManager {
 	 * Get Look and Feel
 	 * @return a String
 	 */
-	public static String getCurrentLookAndFeel() {
+	public String getCurrentLookAndFeel() {
 		return UIManager.getLookAndFeel().getClass().getName();
 	}
 
@@ -43,7 +43,7 @@ public class LookAndFeelManager {
 	 * @param lookandfeel the name of the lookandfeel we want check if exists
      * @return if it exists or not
 	 */
-	public static boolean isSupportedLookAndFeel(String lookandfeel) {
+	public boolean isSupportedLookAndFeel(String lookandfeel) {
 		for (int i = 0; i < availableLookAndFeels.length; i++) {
 			if (availableLookAndFeels[i].getClassName().equals(lookandfeel)) {
 				return true;
@@ -57,7 +57,7 @@ public class LookAndFeelManager {
 	 * @param lookandfeel a String 
 	 * @return a boolean
 	 */
-	public static boolean setLookAndFeel(String lookandfeel) {
+	public boolean setLookAndFeel(String lookandfeel) {
 		try {
 			UIManager.setLookAndFeel(lookandfeel);
 			return true;
@@ -82,7 +82,7 @@ public class LookAndFeelManager {
 	 * Set System Look and Feel
 	 * @return a boolean
 	 */
-	public static boolean setSystemLookAndFeel() {
+	public boolean setSystemLookAndFeel() {
 		return setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	}
 	

@@ -17,7 +17,7 @@ BOOL setlookandfeel(char *lookandfeekstr)
 		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeelManager");
 		if (classLookAndFeel)
 		{
-			jmethodID methodgetInstalledLookAndFeels = (*env)->GetStaticMethodID(env,classLookAndFeel, "setLookAndFeel", "(Ljava/lang/String;)Z"); 
+			jmethodID methodgetInstalledLookAndFeels = (*env)->GetStaticMethodID(env,classLookAndFeel, "setLookAndFeel", "(Ljava/lang/String;)"); 
 			jobjectArray jStrings = (*env)->CallStaticObjectMethod(env,classLookAndFeel,methodgetInstalledLookAndFeels,NULL);
 			jstring jstr = (*env)->NewStringUTF(env,lookandfeekstr);
 			jboolean jbool = (*env)->CallStaticBooleanMethod(env,classLookAndFeel,methodgetInstalledLookAndFeels,jstr);
@@ -37,7 +37,7 @@ BOOL setsystemlookandfeel(void)
 		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeelManager");
 		if (classLookAndFeel)
 		{
-			jmethodID methodgetInstalledLookAndFeels = (*env)->GetStaticMethodID(env,classLookAndFeel, "setSystemLookAndFeel", "()Z"); 
+			jmethodID methodgetInstalledLookAndFeels = (*env)->GetStaticMethodID(env,classLookAndFeel, "setSystemLookAndFeel", "()"); 
 			jboolean jbool = (*env)->CallStaticBooleanMethod(env,classLookAndFeel,methodgetInstalledLookAndFeels);
 			bOK = (BOOL) jbool;
 		}
