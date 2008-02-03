@@ -210,6 +210,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(pushButton);
 		
 		/* Default font */
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		
@@ -230,6 +231,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(editBox);
 		
 		/* Default font */
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		
@@ -250,6 +252,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(label);
 		
 		/* Default font */
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		
@@ -270,6 +273,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(checkBox);
 		
 		/* Default font */
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 
@@ -290,6 +294,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(radioButton);
 
 		/* Default font */
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 
@@ -312,6 +317,7 @@ public class CallScilabBridge {
 		/* Default font */
 		/* Set a default font because is null when JScrollBar is created */
 		slider.setFont(new Font(DEFAULTFONTNAME, Font.PLAIN, DEFAULTFONTSIZE));
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		
@@ -338,6 +344,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(listBox);
 
 		/* Default font */
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		
@@ -358,6 +365,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(popupMenu);
 
 		/* Default font */
+		setWidgetFontName(id, DEFAULTFONTNAME);
 		setWidgetFontWeight(id, NORMALFONT);
 		setWidgetFontSize(id, DEFAULTFONTSIZE);
 		
@@ -378,6 +386,7 @@ public class CallScilabBridge {
 		int id = UIElementMapper.add(frame);
 
 		/* Default font */
+		setFrameFontName(id, DEFAULTFONTNAME);
 		setFrameFontWeight(id, NORMALFONT);
 		setFrameFontSize(id, DEFAULTFONTSIZE);
 		
