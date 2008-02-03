@@ -17275,11 +17275,6 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-cat >>confdefs.h <<_ACEOF
-#define LIBXML_VERSION "$XML_VERSION"
-_ACEOF
-
-
 #CFLAGS="$CFLAGS $XML_FLAGS"
 #AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([libxml2 : library missing])])
 
@@ -20513,7 +20508,6 @@ if test "${with_tk_include+set}" = set; then
 fi
 
 
-
 ###########################
 ########## X11 checks
 ###########################
@@ -22070,7 +22064,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 22073 "configure"
+#line 22067 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -22115,10 +22109,13 @@ cat >>conftest.$ac_ext <<_ACEOF
 int main() {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
+        FILE *serial = fopen("tclserial","w");
         fprintf(maj,"%d",TCL_MAJOR_VERSION);
         fprintf(min,"%d",TCL_MINOR_VERSION);
+        fprintf(serial,"%s",TCL_PATCH_LEVEL);
         fclose(maj);
         fclose(min);
+        fclose(serial);
         return 0;
 }
 
@@ -22146,7 +22143,9 @@ eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
 
   TCL_MAJOR_VERSION=`cat tclmajor`
   TCL_MINOR_VERSION=`cat tclminor`
+  TCL_SERIAL_VERSION=`cat tclserial`
   TCL_VERSION=$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION
+  rm -f tclmajor tclminor tclserial
 
 else
   echo "$as_me: program exited with status $ac_status" >&5
@@ -22449,7 +22448,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 22452 "configure"
+#line 22451 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -22483,10 +22482,13 @@ cat > conftest.$ac_ext <<EOF
 int main(int argc,char **argv) {
         FILE *maj = fopen("tkmajor","w");
         FILE *min = fopen("tkminor","w");
+        FILE *serial = fopen("tkserial","w");
         fprintf(maj,"%d",TK_MAJOR_VERSION);
         fprintf(min,"%d",TK_MINOR_VERSION);
+        fprintf(serial,"%s",TK_PATCH_LEVEL);
         fclose(maj);
         fclose(min);
+        fclose(serial);
         return 0;
 }
 EOF
@@ -22495,8 +22497,9 @@ eval $ac_link
 if test -s conftest && (./conftest; exit) 2>/dev/null; then
   TK_MAJOR_VERSION=`cat tkmajor`
   TK_MINOR_VERSION=`cat tkminor`
+  TK_SERIAL_VERSION=`cat tkserial`
   TK_VERSION=$TK_MAJOR_VERSION.$TK_MINOR_VERSION
-  rm -f tkmajor tkminor
+  rm -f tkmajor tkminor tkserial
 else
   TK_VERSION="can't happen"
 fi
@@ -23639,13 +23642,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:23642: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:23645: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:23645: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:23648: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:23648: output\"" >&5)
+  (eval echo "\"\$as_me:23651: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -24730,7 +24733,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 24733 "configure"' > conftest.$ac_ext
+  echo '#line 24736 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -26363,11 +26366,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26366: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26369: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:26370: \$? = $ac_status" >&5
+   echo "$as_me:26373: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26685,11 +26688,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26688: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26691: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:26692: \$? = $ac_status" >&5
+   echo "$as_me:26695: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26790,11 +26793,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26793: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26796: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26797: \$? = $ac_status" >&5
+   echo "$as_me:26800: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -26845,11 +26848,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26848: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:26851: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26852: \$? = $ac_status" >&5
+   echo "$as_me:26855: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -29674,7 +29677,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29677 "configure"
+#line 29680 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -29774,7 +29777,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29777 "configure"
+#line 29780 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31812,11 +31815,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31815: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31818: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:31819: \$? = $ac_status" >&5
+   echo "$as_me:31822: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -31911,11 +31914,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31914: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31917: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:31918: \$? = $ac_status" >&5
+   echo "$as_me:31921: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -31963,11 +31966,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31966: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31969: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:31970: \$? = $ac_status" >&5
+   echo "$as_me:31973: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33346,11 +33349,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33349: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33352: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:33353: \$? = $ac_status" >&5
+   echo "$as_me:33356: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -33445,11 +33448,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33448: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33451: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33452: \$? = $ac_status" >&5
+   echo "$as_me:33455: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33497,11 +33500,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33500: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33503: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33504: \$? = $ac_status" >&5
+   echo "$as_me:33507: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -38928,28 +38931,30 @@ fi
 
 echo ""
 echo "TCL/TK configuration:"
-echo "  TK_INC_PATH .... = $TK_INC_PATH"
-echo "  TCL_INC_PATH ... = $TCL_INC_PATH"
-echo "  TCLTK_LIBS ..... = $TCLTK_LIBS"
+echo "  TK_INC_PATH ....... = $TK_INC_PATH"
+echo "  TCL_INC_PATH ...... = $TCL_INC_PATH"
+echo "  TCLTK_LIBS ........ = $TCLTK_LIBS"
+echo "  TCL_SERIAL_VERSION  = $TCL_SERIAL_VERSION"
+echo "  TK_SERIAL_VERSION . = $TK_SERIAL_VERSION"
 
 echo ""
 echo "XML configuration:"
-echo "  XML_FLAGS ...... = $XML_FLAGS"
-echo "  XML_LIBS ....... = $XML_LIBS"
-echo "  XML_VERSION .... = $XML_VERSION"
+echo "  XML_FLAGS ......... = $XML_FLAGS"
+echo "  XML_LIBS .......... = $XML_LIBS"
+echo "  XML_VERSION ....... = $XML_VERSION"
 
 echo ""
 echo "PCRE configuration:"
-echo "  PCRE_CFLAGS .... = $PCRE_CFLAGS"
-echo "  PCRE_LIBS ...... = $PCRE_LIBS"
-echo "  PCRE_VERSION ... = $PCRE_VERSION"
+echo "  PCRE_CFLAGS ....... = $PCRE_CFLAGS"
+echo "  PCRE_LIBS ......... = $PCRE_LIBS"
+echo "  PCRE_VERSION ...... = $PCRE_VERSION"
 
 
 echo ""
 echo "SWIG Configuration:"
 if test ! -z "$SWIG_BIN"; then
-echo "  SWIG_BIN ............ = $SWIG_BIN"
-echo "  SWIG_JAVA ........... = $SWIG_JAVA"
+echo "  SWIG_BIN .......... = $SWIG_BIN"
+echo "  SWIG_JAVA ......... = $SWIG_JAVA"
 else
 echo "  SWIG generation disabled"
 fi
@@ -38957,7 +38962,7 @@ fi
 echo ""
 echo "GIWS Configuration:"
 if test ! -z "$GIWS_BIN"; then
-echo "  GIWS_BIN ............ = $GIWS_BIN"
+echo "  GIWS_BIN .......... = $GIWS_BIN"
 else
 echo "  GIWS generation disabled"
 fi

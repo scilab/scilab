@@ -75,17 +75,22 @@ AC_RUN_IFELSE(
 int main() {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
+        FILE *serial = fopen("tclserial","w");
         fprintf(maj,"%d",TCL_MAJOR_VERSION);
         fprintf(min,"%d",TCL_MINOR_VERSION);
+        fprintf(serial,"%s",TCL_PATCH_LEVEL);
         fclose(maj);
         fclose(min);
+        fclose(serial);
         return 0;
 }
 ])],
        [
   TCL_MAJOR_VERSION=`cat tclmajor`
   TCL_MINOR_VERSION=`cat tclminor`
+  TCL_SERIAL_VERSION=`cat tclserial`
   TCL_VERSION=$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION
+  rm -f tclmajor tclminor tclserial
 ],
 [AC_MSG_FAILURE([The TCL detection of the version failed. 
 If you are using Intel Compiler, check if Intel Library (ex : libimf.so) is available (in the LD_LIBRARY_PATH for example)])])
@@ -227,10 +232,13 @@ cat > conftest.$ac_ext <<EOF
 int main(int argc,char **argv) {
         FILE *maj = fopen("tkmajor","w");
         FILE *min = fopen("tkminor","w");
+        FILE *serial = fopen("tkserial","w");
         fprintf(maj,"%d",TK_MAJOR_VERSION);
         fprintf(min,"%d",TK_MINOR_VERSION);
+        fprintf(serial,"%s",TK_PATCH_LEVEL);
         fclose(maj);
         fclose(min);
+        fclose(serial);
         return 0;
 }
 EOF
@@ -239,8 +247,9 @@ eval $ac_link
 if test -s conftest && (./conftest; exit) 2>/dev/null; then
   TK_MAJOR_VERSION=`cat tkmajor`
   TK_MINOR_VERSION=`cat tkminor`
+  TK_SERIAL_VERSION=`cat tkserial`
   TK_VERSION=$TK_MAJOR_VERSION.$TK_MINOR_VERSION
-  rm -f tkmajor tkminor
+  rm -f tkmajor tkminor tkserial
 else
   TK_VERSION="can't happen"
 fi

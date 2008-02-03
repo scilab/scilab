@@ -871,7 +871,6 @@ if test "$with_tk" != no; then
 		[  USER_TK_INC_PATH=$withval
 	])
 
-
 ###########################
 ########## X11 checks
 ########################### 	 
@@ -1284,28 +1283,30 @@ fi
 
 echo "" 
 echo "TCL/TK configuration:"
-echo "  TK_INC_PATH .... = $TK_INC_PATH"
-echo "  TCL_INC_PATH ... = $TCL_INC_PATH"
-echo "  TCLTK_LIBS ..... = $TCLTK_LIBS"
+echo "  TK_INC_PATH ........ = $TK_INC_PATH"
+echo "  TCL_INC_PATH ....... = $TCL_INC_PATH"
+echo "  TCLTK_LIBS ......... = $TCLTK_LIBS"
+echo "  TCL_SERIAL_VERSION . = $TCL_SERIAL_VERSION"
+echo "  TK_SERIAL_VERSION .. = $TK_SERIAL_VERSION"
 
 echo "" 
 echo "XML configuration:"
-echo "  XML_FLAGS ...... = $XML_FLAGS"
-echo "  XML_LIBS ....... = $XML_LIBS"
-echo "  XML_VERSION .... = $XML_VERSION"
+echo "  XML_FLAGS .......... = $XML_FLAGS"
+echo "  XML_LIBS ........... = $XML_LIBS"
+echo "  XML_VERSION ........ = $XML_VERSION"
 
 echo "" 
 echo "PCRE configuration:"
-echo "  PCRE_CFLAGS .... = $PCRE_CFLAGS"
-echo "  PCRE_LIBS ...... = $PCRE_LIBS"
-echo "  PCRE_VERSION ... = $PCRE_VERSION"
+echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
+echo "  PCRE_LIBS .......... = $PCRE_LIBS"
+echo "  PCRE_VERSION ....... = $PCRE_VERSION"
 
 
 echo ""
 echo "SWIG Configuration:"
 if test ! -z "$SWIG_BIN"; then
-echo "  SWIG_BIN ............ = $SWIG_BIN"
-echo "  SWIG_JAVA ........... = $SWIG_JAVA"
+echo "  SWIG_BIN ........... = $SWIG_BIN"
+echo "  SWIG_JAVA .......... = $SWIG_JAVA"
 else
 echo "  SWIG generation disabled"
 fi
@@ -1313,7 +1314,7 @@ fi
 echo ""
 echo "GIWS Configuration:"
 if test ! -z "$GIWS_BIN"; then
-echo "  GIWS_BIN ............ = $GIWS_BIN"
+echo "  GIWS_BIN ........... = $GIWS_BIN"
 else
 echo "  GIWS generation disabled"
 fi
