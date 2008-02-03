@@ -11,7 +11,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.utils.LookAndFeel;
+import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
@@ -42,10 +42,16 @@ public class Scilab {
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
-
+		LookAndFeelManager lookAndFeel=new LookAndFeelManager ();
+		String gtkLookAndFeel="com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
 		this.mode = mode;
-		LookAndFeel.setSystemLookAndFeel();
-		//LookAndFeel.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+		/* @TODO: Manages also windows */
+
+		if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)){
+			lookAndFeel.setLookAndFeel(gtkLookAndFeel);
+		}else{
+			lookAndFeel.setSystemLookAndFeel();
+		}
 		if (mode == 2) { /* Mode GUI */
 
 			try {
