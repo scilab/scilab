@@ -8,7 +8,7 @@ using namespace org_scilab_modules_gui_bridge;
 
 int SetUicontrolFontName(sciPointObj* sciObj, int stackPointer, int valueType, int nbRow, int nbCol)
 {
-  // Label must be only one character string
+  // Font Name must be only one character string
   if (valueType != sci_strings) {
     sciprint(_("%s property value must be a single string.\n"), "FontName");
     return SET_PROPERTY_ERROR;
@@ -20,16 +20,21 @@ int SetUicontrolFontName(sciPointObj* sciObj, int stackPointer, int valueType, i
 
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
-      // No test needed about the style because not implemented in Java code
 
-      // Free old tag is exists
-      if(pUICONTROL_FEATURE(sciObj)->fontName != NULL)
+      // The value is not tested because the visible Java Font is not changed if the name given is unknown
+      
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
         {
-          delete (pUICONTROL_FEATURE(sciObj)->fontName);
+           CallScilabBridge::setFrameFontName(getScilabJavaVM(), 
+                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                getStringFromStack(stackPointer));
+       }
+      else /* All other uicontrol styles */
+        {
+          CallScilabBridge::setWidgetFontName(getScilabJavaVM(), 
+                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                getStringFromStack(stackPointer));
         }
-      // Set the new tag
-      pUICONTROL_FEATURE(sciObj)->fontName = new char[strlen(getStringFromStack(stackPointer)) + 1];
-      strcpy(pUICONTROL_FEATURE(sciObj)->fontName, getStringFromStack(stackPointer));
       
       return SET_PROPERTY_SUCCEED;
     }

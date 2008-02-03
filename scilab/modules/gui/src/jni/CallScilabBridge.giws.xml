@@ -120,6 +120,13 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Widget Font setting -->
+	<method name="setWidgetFontName" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="name"/>
+	</method>
+	<method name="getWidgetFontName" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
 	<method name="setWidgetFontWeight" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="weight"/>
@@ -136,6 +143,13 @@
 	  <parameter type="String" name="angle"/>
 	</method>
 <!-- Frame Font setting -->
+	<method name="setFrameFontName" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="name"/>
+	</method>
+	<method name="getFrameFontName" returnType="String" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
 	<method name="setFrameFontWeight" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="String" name="weight"/>

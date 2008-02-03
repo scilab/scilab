@@ -168,7 +168,20 @@ if get(h, "fontweight") <> "normal" then
 end
 // TODO test with wrong values
 
-// TODO Fontname tests
+// --- Fontname tests ---
+if get(h, "fontname") <> "helvetica" then
+  pause
+end
+// Try to set an existing font
+set(h, "fontname", "courier new");
+if get(h, "fontname") <> "courier new" then
+  pause
+end
+// Try to set a not-existing font
+set(h, "fontname", "an invented font");
+if get(h, "fontname") <> "an invented font" then
+  pause
+end
 
 // --- ForegroundColor --- 
 // TODO test default value

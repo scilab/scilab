@@ -133,10 +133,14 @@ voidsetFrameBackgroundColorjintjintjintjintID=NULL;
 jintArraygetFrameBackgroundColorjintID=NULL; 
 voidsetFrameForegroundColorjintjintjintjintID=NULL; 
 jintArraygetFrameForegroundColorjintID=NULL; 
+voidsetWidgetFontNamejintjstringID=NULL; 
+jstringgetWidgetFontNamejintID=NULL; 
 voidsetWidgetFontWeightjintjstringID=NULL; 
 voidsetWidgetFontSizejintjintID=NULL; 
 jintgetWidgetFontSizejintID=NULL; 
 voidsetWidgetFontAnglejintjstringID=NULL; 
+voidsetFrameFontNamejintjstringID=NULL; 
+jstringgetFrameFontNamejintID=NULL; 
 voidsetFrameFontWeightjintjstringID=NULL; 
 voidsetFrameFontSizejintjintID=NULL; 
 jintgetFrameFontSizejintID=NULL; 
@@ -248,10 +252,14 @@ voidsetFrameBackgroundColorjintjintjintjintID=NULL;
 jintArraygetFrameBackgroundColorjintID=NULL; 
 voidsetFrameForegroundColorjintjintjintjintID=NULL; 
 jintArraygetFrameForegroundColorjintID=NULL; 
+voidsetWidgetFontNamejintjstringID=NULL; 
+jstringgetWidgetFontNamejintID=NULL; 
 voidsetWidgetFontWeightjintjstringID=NULL; 
 voidsetWidgetFontSizejintjintID=NULL; 
 jintgetWidgetFontSizejintID=NULL; 
 voidsetWidgetFontAnglejintjstringID=NULL; 
+voidsetFrameFontNamejintjstringID=NULL; 
+jstringgetFrameFontNamejintID=NULL; 
 voidsetFrameFontWeightjintjstringID=NULL; 
 voidsetFrameFontSizejintjintID=NULL; 
 jintgetFrameFontSizejintID=NULL; 
@@ -1241,6 +1249,59 @@ return myArray;
 
 }
 
+void CallScilabBridge::setWidgetFontName (JavaVM * jvm_, long objID, char * name){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetWidgetFontNamejintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetFontName", "(ILjava/lang/String;)V" ) ;
+if (voidsetWidgetFontNamejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetFontName" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring name_ = curEnv->NewStringUTF( name );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetFontNamejintjstringID ,objID, name_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+char * CallScilabBridge::getWidgetFontName (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jstringgetWidgetFontNamejintID = curEnv->GetStaticMethodID(cls, "getWidgetFontName", "(I)Ljava/lang/String;" ) ;
+if (jstringgetWidgetFontNamejintID == NULL) {
+std::cerr << "Could not access to the method " << "getWidgetFontName" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetWidgetFontNamejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
+}
+
 void CallScilabBridge::setWidgetFontWeight (JavaVM * jvm_, long objID, char * weight){
 
 JNIEnv * curEnv = NULL;
@@ -1333,6 +1394,59 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+void CallScilabBridge::setFrameFontName (JavaVM * jvm_, long objID, char * name){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetFrameFontNamejintjstringID = curEnv->GetStaticMethodID(cls, "setFrameFontName", "(ILjava/lang/String;)V" ) ;
+if (voidsetFrameFontNamejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameFontName" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring name_ = curEnv->NewStringUTF( name );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameFontNamejintjstringID ,objID, name_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+char * CallScilabBridge::getFrameFontName (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jstringgetFrameFontNamejintID = curEnv->GetStaticMethodID(cls, "getFrameFontName", "(I)Ljava/lang/String;" ) ;
+if (jstringgetFrameFontNamejintID == NULL) {
+std::cerr << "Could not access to the method " << "getFrameFontName" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetFrameFontNamejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
 }
 
 void CallScilabBridge::setFrameFontWeight (JavaVM * jvm_, long objID, char * weight){

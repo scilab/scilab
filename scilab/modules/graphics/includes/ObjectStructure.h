@@ -717,9 +717,6 @@ typedef struct
   /* Style property: Must be a value from UicontrolStyle enum */
   int style;
 
-  /* FontName property */
-  char * fontName;
-
   /* FontAngle property: Must be a value from UicontrolFontProperties enum */
   int fontAngle;
 

@@ -89,10 +89,14 @@ jmethodID voidsetFrameBackgroundColorjintjintjintjintID; // cache method id
 jmethodID jintArraygetFrameBackgroundColorjintID; // cache method id
 jmethodID voidsetFrameForegroundColorjintjintjintjintID; // cache method id
 jmethodID jintArraygetFrameForegroundColorjintID; // cache method id
+jmethodID voidsetWidgetFontNamejintjstringID; // cache method id
+jmethodID jstringgetWidgetFontNamejintID; // cache method id
 jmethodID voidsetWidgetFontWeightjintjstringID; // cache method id
 jmethodID voidsetWidgetFontSizejintjintID; // cache method id
 jmethodID jintgetWidgetFontSizejintID; // cache method id
 jmethodID voidsetWidgetFontAnglejintjstringID; // cache method id
+jmethodID voidsetFrameFontNamejintjstringID; // cache method id
+jmethodID jstringgetFrameFontNamejintID; // cache method id
 jmethodID voidsetFrameFontWeightjintjstringID; // cache method id
 jmethodID voidsetFrameFontSizejintjintID; // cache method id
 jmethodID jintgetFrameFontSizejintID; // cache method id
@@ -262,6 +266,10 @@ static void setFrameForegroundColor(JavaVM * jvm_, long objID, long red, long gr
 
 static long * getFrameForegroundColor(JavaVM * jvm_, long objID);
 
+static void setWidgetFontName(JavaVM * jvm_, long objID, char * name);
+
+static char * getWidgetFontName(JavaVM * jvm_, long objID);
+
 static void setWidgetFontWeight(JavaVM * jvm_, long objID, char * weight);
 
 static void setWidgetFontSize(JavaVM * jvm_, long objID, long size);
@@ -269,6 +277,10 @@ static void setWidgetFontSize(JavaVM * jvm_, long objID, long size);
 static long getWidgetFontSize(JavaVM * jvm_, long objID);
 
 static void setWidgetFontAngle(JavaVM * jvm_, long objID, char * angle);
+
+static void setFrameFontName(JavaVM * jvm_, long objID, char * name);
+
+static char * getFrameFontName(JavaVM * jvm_, long objID);
 
 static void setFrameFontWeight(JavaVM * jvm_, long objID, char * weight);
 

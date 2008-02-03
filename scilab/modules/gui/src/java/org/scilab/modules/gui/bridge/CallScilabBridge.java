@@ -925,6 +925,26 @@ public class CallScilabBridge {
 	/**********************/
 
 	/**
+	 * Set the name of a Widget font
+	 * @param id the id of the Widget
+	 * @param name the name of the Widget font
+	 */
+	public static void setWidgetFontName(int id, String name) {
+		Font font = ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+		font = new Font(name, font.getStyle(), font.getSize());
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
+	}
+
+	/**
+	 * Get the name of a Widget font
+	 * @param id the id of the Widget
+	 * @return the name of the Widget font
+	 */
+	public static String getWidgetFontName(int id) {
+		return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).getFont().getName();
+	}
+
+	/**
 	 * Set the weight of a Widget font
 	 * @param id the id of the Widget
 	 * @param weight the weight of the Widget font
@@ -1062,6 +1082,26 @@ public class CallScilabBridge {
 	 */
 	public static int getFrameFontSize(int id) {
 		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont().getSize();
+	}
+
+	/**
+	 * Set the name of a Frame font
+	 * @param id the id of the Frame
+	 * @param name the name of the Frame font
+	 */
+	public static void setFrameFontName(int id, String name) {
+		Font font = ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont();
+		font = new Font(name, font.getStyle(), font.getSize());
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setFont(font);
+	}
+
+	/**
+	 * Get the name of a Frame font
+	 * @param id the id of the Frame
+	 * @return the name of the Frame font
+	 */
+	public static String getFrameFontName(int id) {
+		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).getFont().getName();
 	}
 
 	/**************************/

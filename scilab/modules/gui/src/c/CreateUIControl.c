@@ -65,12 +65,6 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE (pobj)->min = 0;
 
   /* Font default */
-  if ((pUICONTROL_FEATURE (pobj)->fontName = CALLOC(1,sizeof(char))) == NULL )
-    {
-      sciprint(_("No more place to allocates text string, try a shorter string.\n"));
-      return (sciPointObj *) NULL;
-    }
-  strcpy(pUICONTROL_FEATURE (pobj)->fontName, "");
   pUICONTROL_FEATURE(pobj)->fontWeight = NORMAL_FONT;
   pUICONTROL_FEATURE(pobj)->fontUnits = POINTS_UNITS;
   pUICONTROL_FEATURE(pobj)->fontAngle = NORMAL_FONT;
