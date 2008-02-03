@@ -34,7 +34,7 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * Constructor
 	 */
 	public SwingScilabSlider() {
-		super(JScrollBar.HORIZONTAL);
+		super();
 		
 	}
 
@@ -72,6 +72,7 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 */
 	public void setDims(Size newSize) {
 		super.setSize(newSize.getWidth(), newSize.getHeight());
+		super.doLayout(); // Usefull in case of resize
 	}
 
 	/**
@@ -219,4 +220,19 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	public void setMinorTickSpacing(int space) {
 		setUnitIncrement(space);
 	}
+	
+	/**
+	 * Set the slider orientation to vertical
+	 */
+	public void setVertical() {
+		setOrientation(JScrollBar.VERTICAL);
+	}
+
+	/**
+	 * Set the slider orientation to horizontal
+	 */
+	public void setHorizontal() {
+		setOrientation(JScrollBar.HORIZONTAL);
+	}
+
 }

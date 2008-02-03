@@ -47,5 +47,13 @@ public interface SimpleSlider extends Widget {
 	 */
 	void setValue(int value);
 
+	/**
+	 * Set the slider orientation to vertical
+	 */
+	void setVertical();
 
+	/**
+	 * Set the slider orientation to horizontal
+	 */
+	void setHorizontal();
 }

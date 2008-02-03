@@ -1200,6 +1200,28 @@ public class CallScilabBridge {
 		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setMaximumValue(value);
 	}
 	
+	/*****************************/
+	/*                           */
+	/* SLIDER ORIENTATION BRIDGE */
+	/*                           */
+	/*****************************/
+	
+	/**
+	 * Set the slider orientation to vertical
+	 * @param id the id of the slider
+	 */
+	public static void setSliderVertical(int id) {
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setVertical();
+	}
+
+	/**
+	 * Set the slider orientation to horizontal
+	 * @param id the id of the slider
+	 */
+	public static void setSliderHorizontal(int id) {
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setHorizontal();
+	}
+
 	/******************/
 	/*                */
 	/* LISTBOX BRIDGE */

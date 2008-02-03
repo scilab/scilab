@@ -273,4 +273,20 @@ public class ScilabSliderBridge {
 		slider.getAsSimpleSlider().setRelief(reliefType);
 	}
 
+	/**
+	 * Set the slider orientation to vertical
+	 * @param slider the slider we want to set the orientation of
+	 */
+	public static void setVertical(Slider slider) {
+		slider.getAsSimpleSlider().setVertical();
+	}
+
+	/**
+	 * Set the slider orientation to horizontal
+	 * @param slider the slider we want to set the orientation of
+	 */
+	public static void setHorizontal(Slider slider) {
+		slider.getAsSimpleSlider().setHorizontal();
+	}
+
 }

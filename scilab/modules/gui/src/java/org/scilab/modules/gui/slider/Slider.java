@@ -53,4 +53,14 @@ public interface Slider extends Widget {
 	 * @param value the maximum value
 	 */
 	void setMaximumValue(int value);
+	
+	/**
+	 * Set the slider orientation to vertical
+	 */
+	void setVertical();
+
+	/**
+	 * Set the slider orientation to horizontal
+	 */
+	void setHorizontal();
 }

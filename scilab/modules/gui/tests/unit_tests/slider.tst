@@ -33,3 +33,8 @@ end
 //end
 // TODO test with wrong values
 
+// Create an horizontal slider
+h = uicontrol("parent", gcf(), "style", "slider", "position", [20,20,100,20]);
+
+// Create a vertical slider
+h = uicontrol("parent", gcf(), "style", "slider", "position", [20,20,20,100]);

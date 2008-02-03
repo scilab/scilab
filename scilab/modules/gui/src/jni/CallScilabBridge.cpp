@@ -166,6 +166,8 @@ voidsetCheckBoxCheckedjintjbooleanID=NULL;
 jbooleanisCheckBoxCheckedjintID=NULL; 
 voidsetSliderMinValuejintjintID=NULL; 
 voidsetSliderMaxValuejintjintID=NULL; 
+voidsetSliderVerticaljintID=NULL; 
+voidsetSliderHorizontaljintID=NULL; 
 voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL; 
 jobjectArraygetListBoxAllItemsTextjintID=NULL; 
 jintgetListBoxNumberOfItemsjintID=NULL; 
@@ -279,6 +281,8 @@ voidsetCheckBoxCheckedjintjbooleanID=NULL;
 jbooleanisCheckBoxCheckedjintID=NULL; 
 voidsetSliderMinValuejintjintID=NULL; 
 voidsetSliderMaxValuejintjintID=NULL; 
+voidsetSliderVerticaljintID=NULL; 
+voidsetSliderHorizontaljintID=NULL; 
 voidsetListBoxMultipleSelectionEnabledjintjbooleanID=NULL; 
 jobjectArraygetListBoxAllItemsTextjintID=NULL; 
 jintgetListBoxNumberOfItemsjintID=NULL; 
@@ -2048,6 +2052,50 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetSliderMaxValuejintjintID ,objID, value);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setSliderVertical (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetSliderVerticaljintID = curEnv->GetStaticMethodID(cls, "setSliderVertical", "(I)V" ) ;
+if (voidsetSliderVerticaljintID == NULL) {
+std::cerr << "Could not access to the method " << "setSliderVertical" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetSliderVerticaljintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setSliderHorizontal (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetSliderHorizontaljintID = curEnv->GetStaticMethodID(cls, "setSliderHorizontal", "(I)V" ) ;
+if (voidsetSliderHorizontaljintID == NULL) {
+std::cerr << "Could not access to the method " << "setSliderHorizontal" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetSliderHorizontaljintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

@@ -122,6 +122,8 @@ jmethodID voidsetCheckBoxCheckedjintjbooleanID; // cache method id
 jmethodID jbooleanisCheckBoxCheckedjintID; // cache method id
 jmethodID voidsetSliderMinValuejintjintID; // cache method id
 jmethodID voidsetSliderMaxValuejintjintID; // cache method id
+jmethodID voidsetSliderVerticaljintID; // cache method id
+jmethodID voidsetSliderHorizontaljintID; // cache method id
 jmethodID voidsetListBoxMultipleSelectionEnabledjintjbooleanID; // cache method id
 jmethodID jobjectArraygetListBoxAllItemsTextjintID; // cache method id
 jmethodID jintgetListBoxNumberOfItemsjintID; // cache method id
@@ -325,6 +327,10 @@ static bool isCheckBoxChecked(JavaVM * jvm_, long objID);
 static void setSliderMinValue(JavaVM * jvm_, long objID, long value);
 
 static void setSliderMaxValue(JavaVM * jvm_, long objID, long value);
+
+static void setSliderVertical(JavaVM * jvm_, long objID);
+
+static void setSliderHorizontal(JavaVM * jvm_, long objID);
 
 static void setListBoxMultipleSelectionEnabled(JavaVM * jvm_, long objID, bool status);
 

@@ -248,7 +248,7 @@
 	<method name="isCheckBoxChecked" returnType="boolean" modifier="static">
 	  <parameter type="int" name="objID"/>
 	</method>
-<!-- Min/Max Slider setting -->
+<!-- Slider setting -->
 	<method name="setSliderMinValue" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="value"/>
@@ -256,6 +256,12 @@
 	<method name="setSliderMaxValue" returnType="void" modifier="static">
 	  <parameter type="int" name="objID"/>
 	  <parameter type="int" name="value"/>
+	</method>
+	<method name="setSliderVertical" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setSliderHorizontal" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
 	</method>
 <!-- Listbox setting -->
 	<method name="setListBoxMultipleSelectionEnabled" returnType="void" modifier="static">

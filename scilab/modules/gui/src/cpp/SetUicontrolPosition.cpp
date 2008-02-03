@@ -77,6 +77,21 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
                                           sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
                                           widthInt, 
                                           heightInt);
+      
+      /* Special case for Sliders: set orientation */
+      if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
+        {
+          if (widthInt > heightInt) /* Horizontal ScrollBar */
+            {
+              CallScilabBridge::setSliderHorizontal(getScilabJavaVM(), 
+                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+            }
+          else /* Vertical ScrollBar */
+            {
+              CallScilabBridge::setSliderVertical(getScilabJavaVM(), 
+                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+            }
+        }
     }
   return SET_PROPERTY_SUCCEED;
 }

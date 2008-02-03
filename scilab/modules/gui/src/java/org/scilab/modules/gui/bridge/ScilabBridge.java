@@ -2856,6 +2856,22 @@ public class ScilabBridge {
 		ScilabSliderBridge.setRelief(slider, reliefType);
 	}
 
+	/**
+	 * Set the slider orientation to vertical
+	 * @param slider the slider we want to set the orientation of
+	 */
+	public static void setVertical(Slider slider) {
+		ScilabSliderBridge.setVertical(slider);
+	}
+
+	/**
+	 * Set the slider orientation to horizontal
+	 * @param slider the slider we want to set the orientation of
+	 */
+	public static void setHorizontal(Slider slider) {
+		ScilabSliderBridge.setHorizontal(slider);
+	}
+
 	/******************/
 	/* ListBox Bridge */
 	/******************/

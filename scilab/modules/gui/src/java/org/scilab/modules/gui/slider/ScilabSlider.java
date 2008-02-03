@@ -255,4 +255,18 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Set the slider orientation to vertical
+	 */
+	public void setVertical() {
+		ScilabBridge.setVertical(this);
+	}
+
+	/**
+	 * Set the slider orientation to horizontal
+	 */
+	public void setHorizontal() {
+		ScilabBridge.setHorizontal(this);
+	}
+
 }
