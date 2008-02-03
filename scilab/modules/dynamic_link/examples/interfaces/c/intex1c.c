@@ -2,6 +2,7 @@
 
 int ex1c (char *ch, int *a, int *ia, float *b, int *ib, double *c, int *mc, int *nc, double *d, double *w, int *err);
 
+
 /**************************************************
  * An example of an hand written interface 
  * the interface program is intex1c, the
@@ -97,7 +98,7 @@ int intex1c(char *fname)
  *     w is a working array of size [mc,nc] 
  *********************************************/
 
-int ex1c (char *ch, int *a, int *ia, float *b, int *ib, double *c, int *mc, int *nc, double *d, double *w, int *err)
+int ex1c(char *ch,int *a,int *ia, float *b,int *ib,double *c,int *mc,int *nc, double *d, double *w, int *err)
 {
   static int i, j, k;
   *err = 0;
