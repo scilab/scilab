@@ -25,7 +25,7 @@
    \date September 2006 - January 2007
    \brief Source Code of all functions wich interact with the window like creation of graphical object or refreshing the window
 */
-
+#include <stdio.h>
 #include "scoBase.h"
 #include "scoWindowScope.h"
 #include "scoMemoryScope.h"
@@ -34,7 +34,11 @@
 #include "scoSetProperty.h"
 #include "SetProperty.h"
 #include "BuildObjects.h"
-#include <stdio.h>
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "sciprint.h"
+#include "WindowList.h"
+#include "DrawingBridge.h"
 
 void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
 {

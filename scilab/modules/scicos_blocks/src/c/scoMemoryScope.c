@@ -25,13 +25,13 @@
    \date September 2006 - January 2007
    \brief Source Code of all functions interacting with the memory of the computer for the ScopeMemory structure
 */
-
+#include <stdio.h>
 #include "scoBase.h"
 #include "scoMisc.h"
 #include "scoMemoryScope.h"
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
-#include "stdio.h"
+#include "sciprint.h"
 
 /** This function use scicos_malloc on the whole structure and set up 0 for whole properties*/
 void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int number_of_subwin, int * number_of_curves_by_subwin)

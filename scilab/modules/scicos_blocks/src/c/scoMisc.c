@@ -30,6 +30,7 @@
 #include "scoMisc.h"
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
+#include "sciprint.h"
 
 void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 {

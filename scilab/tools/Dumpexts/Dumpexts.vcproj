@@ -282,6 +282,10 @@
 			Name="Rename Header Files"
 			>
 			<File
+				RelativePath="..\..\modules\scicos_blocks\includes\blocks.h.vc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\modules\core\includes\machine.h.vc"
 				>
 			</File>
