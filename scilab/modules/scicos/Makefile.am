@@ -44,7 +44,8 @@ src/fortran/scitoi.f \
 src/fortran/scifunc.f \
 src/fortran/itosci.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_cscicos.c \
+GATEWAY_C_SOURCES = sci_gateway/c/intcscicos.c \
+sci_gateway/c/gw_cscicos.c \
 sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
 sci_gateway/c/sci_ctree2.c \
@@ -93,9 +94,11 @@ libsciscicos_la_CFLAGS= -Iincludes/ \
 			-Isrc/scicos_sundials/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/STRING_V2/includes \
+			-I$(top_srcdir)/modules/intersci/src/lib \
 			-I$(top_srcdir)/modules/scicos_blocks/includes
 
 #libsciscicos_la_LDFLAGS = -lf2c

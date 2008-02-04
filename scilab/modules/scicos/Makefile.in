@@ -112,12 +112,13 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/fortran/scierr.f src/fortran/ftree2.f src/fortran/ftree3.f \
 	src/fortran/list2vars.f src/fortran/ftree4.f \
 	src/fortran/scitoi.f src/fortran/scifunc.f \
-	src/fortran/itosci.f sci_gateway/c/gw_cscicos.c \
-	sci_gateway/c/gw_scicos.c sci_gateway/c/sci_buildouttb.c \
-	sci_gateway/c/sci_ctree2.c sci_gateway/c/sci_ctree3.c \
-	sci_gateway/c/sci_ctree4.c sci_gateway/c/sci_curblock.c \
-	sci_gateway/c/sci_curblockc.c sci_gateway/c/sci_diffobjs.c \
-	sci_gateway/c/sci_duplicate.c sci_gateway/c/sci_end_scicosim.c \
+	src/fortran/itosci.f sci_gateway/c/intcscicos.c \
+	sci_gateway/c/gw_cscicos.c sci_gateway/c/gw_scicos.c \
+	sci_gateway/c/sci_buildouttb.c sci_gateway/c/sci_ctree2.c \
+	sci_gateway/c/sci_ctree3.c sci_gateway/c/sci_ctree4.c \
+	sci_gateway/c/sci_curblock.c sci_gateway/c/sci_curblockc.c \
+	sci_gateway/c/sci_diffobjs.c sci_gateway/c/sci_duplicate.c \
+	sci_gateway/c/sci_end_scicosim.c \
 	sci_gateway/c/sci_getblocklabel.c \
 	sci_gateway/c/sci_getscicosvars.c \
 	sci_gateway/c/sci_permutobj.c \
@@ -129,7 +130,17 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	sci_gateway/c/sci_scicos_time.c sci_gateway/c/sci_scicosim.c \
 	sci_gateway/c/sci_sctree.c sci_gateway/c/sci_set_blockerror.c \
 	sci_gateway/c/sci_set_xproperty.c sci_gateway/c/sci_var2vec.c \
-	sci_gateway/c/sci_vec2var.c sci_gateway/c/sci_xstringb2.c
+	sci_gateway/c/sci_vec2var.c sci_gateway/c/sci_xstringb2.c \
+	sci_gateway/fortran/sci_ctree.f \
+	sci_gateway/fortran/sci_curblock.f \
+	sci_gateway/fortran/sci_debug_count.f \
+	sci_gateway/fortran/sci_getblocklabel.f \
+	sci_gateway/fortran/sci_scicos_debug.f \
+	sci_gateway/fortran/sci_tree2.f \
+	sci_gateway/fortran/sci_tree3.f \
+	sci_gateway/fortran/sci_tree4.f \
+	sci_gateway/fortran/sci_var2vec.f \
+	sci_gateway/fortran/sci_vec2var.f
 @SCICOS_FALSE@am__objects_1 = libsciscicos_la-noscicos.lo
 @SCICOS_TRUE@am__objects_2 = libsciscicos_la-tree.lo \
 @SCICOS_TRUE@	libsciscicos_la-ExistScicos.lo \
@@ -148,7 +159,8 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 @SCICOS_TRUE@	coselm.lo scitod.lo dtosci.lo sctree.lo scierr.lo \
 @SCICOS_TRUE@	ftree2.lo ftree3.lo list2vars.lo ftree4.lo \
 @SCICOS_TRUE@	scitoi.lo scifunc.lo itosci.lo
-@SCICOS_TRUE@am__objects_4 = libsciscicos_la-gw_cscicos.lo \
+@SCICOS_TRUE@am__objects_4 = libsciscicos_la-intcscicos.lo \
+@SCICOS_TRUE@	libsciscicos_la-gw_cscicos.lo \
 @SCICOS_TRUE@	libsciscicos_la-gw_scicos.lo \
 @SCICOS_TRUE@	libsciscicos_la-sci_buildouttb.lo \
 @SCICOS_TRUE@	libsciscicos_la-sci_ctree2.lo \
@@ -177,9 +189,14 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 @SCICOS_TRUE@	libsciscicos_la-sci_var2vec.lo \
 @SCICOS_TRUE@	libsciscicos_la-sci_vec2var.lo \
 @SCICOS_TRUE@	libsciscicos_la-sci_xstringb2.lo
+@SCICOS_TRUE@am__objects_5 = sci_ctree.lo sci_curblock.lo \
+@SCICOS_TRUE@	sci_debug_count.lo sci_getblocklabel.lo \
+@SCICOS_TRUE@	sci_scicos_debug.lo sci_tree2.lo sci_tree3.lo \
+@SCICOS_TRUE@	sci_tree4.lo sci_var2vec.lo sci_vec2var.lo
 @SCICOS_FALSE@am_libsciscicos_la_OBJECTS = $(am__objects_1)
 @SCICOS_TRUE@am_libsciscicos_la_OBJECTS = $(am__objects_2) \
-@SCICOS_TRUE@	$(am__objects_3) $(am__objects_4)
+@SCICOS_TRUE@	$(am__objects_3) $(am__objects_4) \
+@SCICOS_TRUE@	$(am__objects_5)
 libsciscicos_la_OBJECTS = $(am_libsciscicos_la_OBJECTS)
 @SCICOS_FALSE@am_libsciscicos_la_rpath = -rpath $(pkglibdir)
 @SCICOS_TRUE@am_libsciscicos_la_rpath = -rpath $(pkglibdir)
@@ -193,11 +210,11 @@ am__libscisundials_la_SOURCES_DIST = src/scicos_sundials/cvode.c \
 	src/scicos_sundials/ida_io.c src/scicos_sundials/cvode_io.c \
 	src/scicos_sundials/sundials_smalldense.c \
 	src/scicos_sundials/sundials_math.c src/scicos_sundials/ida.c
-@SCICOS_TRUE@am__objects_5 = cvode.lo sundials_dense.lo ida_ic.lo \
+@SCICOS_TRUE@am__objects_6 = cvode.lo sundials_dense.lo ida_ic.lo \
 @SCICOS_TRUE@	ida_dense.lo cvode_dense.lo nvector_serial.lo \
 @SCICOS_TRUE@	sundials_nvector.lo ida_io.lo cvode_io.lo \
 @SCICOS_TRUE@	sundials_smalldense.lo sundials_math.lo ida.lo
-@SCICOS_TRUE@am_libscisundials_la_OBJECTS = $(am__objects_5)
+@SCICOS_TRUE@am_libscisundials_la_OBJECTS = $(am__objects_6)
 libscisundials_la_OBJECTS = $(am_libscisundials_la_OBJECTS)
 @SCICOS_TRUE@am_libscisundials_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -514,7 +531,8 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/fortran/scifunc.f \
 @SCICOS_TRUE@src/fortran/itosci.f
 
-@SCICOS_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_cscicos.c \
+@SCICOS_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/intcscicos.c \
+@SCICOS_TRUE@sci_gateway/c/gw_cscicos.c \
 @SCICOS_TRUE@sci_gateway/c/gw_scicos.c \
 @SCICOS_TRUE@sci_gateway/c/sci_buildouttb.c \
 @SCICOS_TRUE@sci_gateway/c/sci_ctree2.c \
@@ -544,6 +562,17 @@ JARMASK = *.jar
 @SCICOS_TRUE@sci_gateway/c/sci_vec2var.c \
 @SCICOS_TRUE@sci_gateway/c/sci_xstringb2.c 
 
+@SCICOS_TRUE@GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_curblock.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_debug_count.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_getblocklabel.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_scicos_debug.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_tree2.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_tree3.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_tree4.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_var2vec.f \
+@SCICOS_TRUE@sci_gateway/fortran/sci_vec2var.f
+
 @SCICOS_FALSE@libsciscicos_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_FALSE@-I$(top_srcdir)/modules/scicos/includes
 
@@ -553,15 +582,17 @@ JARMASK = *.jar
 @SCICOS_TRUE@			-Isrc/scicos_sundials/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
-@SCICOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+@SCICOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/graphics/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/STRING_V2/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/intersci/src/lib \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos_blocks/includes
 
 @SCICOS_FALSE@libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 
 #libsciscicos_la_LDFLAGS = -lf2c
-@SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
+@SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 @SCICOS_TRUE@libsciscicos_la_LIBADD = \
 @SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -793,6 +824,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-gw_cscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-gw_scicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-import.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-intcscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-noscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_buildouttb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_ctree2.Plo@am__quote@
@@ -956,6 +988,13 @@ libsciscicos_la-sciblk4.lo: src/c/sciblk4.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciblk4.c' object='libsciscicos_la-sciblk4.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-sciblk4.lo `test -f 'src/c/sciblk4.c' || echo '$(srcdir)/'`src/c/sciblk4.c
+
+libsciscicos_la-intcscicos.lo: sci_gateway/c/intcscicos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-intcscicos.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-intcscicos.Tpo -c -o libsciscicos_la-intcscicos.lo `test -f 'sci_gateway/c/intcscicos.c' || echo '$(srcdir)/'`sci_gateway/c/intcscicos.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_la-intcscicos.Tpo $(DEPDIR)/libsciscicos_la-intcscicos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/intcscicos.c' object='libsciscicos_la-intcscicos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-intcscicos.lo `test -f 'sci_gateway/c/intcscicos.c' || echo '$(srcdir)/'`sci_gateway/c/intcscicos.c
 
 libsciscicos_la-gw_cscicos.lo: sci_gateway/c/gw_cscicos.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-gw_cscicos.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-gw_cscicos.Tpo -c -o libsciscicos_la-gw_cscicos.lo `test -f 'sci_gateway/c/gw_cscicos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_cscicos.c
@@ -1297,6 +1336,36 @@ scifunc.lo: src/fortran/scifunc.f
 
 itosci.lo: src/fortran/itosci.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o itosci.lo `test -f 'src/fortran/itosci.f' || echo '$(srcdir)/'`src/fortran/itosci.f
+
+sci_ctree.lo: sci_gateway/fortran/sci_ctree.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ctree.lo `test -f 'sci_gateway/fortran/sci_ctree.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_ctree.f
+
+sci_curblock.lo: sci_gateway/fortran/sci_curblock.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_curblock.lo `test -f 'sci_gateway/fortran/sci_curblock.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_curblock.f
+
+sci_debug_count.lo: sci_gateway/fortran/sci_debug_count.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_debug_count.lo `test -f 'sci_gateway/fortran/sci_debug_count.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_debug_count.f
+
+sci_getblocklabel.lo: sci_gateway/fortran/sci_getblocklabel.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_getblocklabel.lo `test -f 'sci_gateway/fortran/sci_getblocklabel.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_getblocklabel.f
+
+sci_scicos_debug.lo: sci_gateway/fortran/sci_scicos_debug.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_scicos_debug.lo `test -f 'sci_gateway/fortran/sci_scicos_debug.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_scicos_debug.f
+
+sci_tree2.lo: sci_gateway/fortran/sci_tree2.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_tree2.lo `test -f 'sci_gateway/fortran/sci_tree2.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_tree2.f
+
+sci_tree3.lo: sci_gateway/fortran/sci_tree3.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_tree3.lo `test -f 'sci_gateway/fortran/sci_tree3.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_tree3.f
+
+sci_tree4.lo: sci_gateway/fortran/sci_tree4.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_tree4.lo `test -f 'sci_gateway/fortran/sci_tree4.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_tree4.f
+
+sci_var2vec.lo: sci_gateway/fortran/sci_var2vec.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_var2vec.lo `test -f 'sci_gateway/fortran/sci_var2vec.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_var2vec.f
+
+sci_vec2var.lo: sci_gateway/fortran/sci_vec2var.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_vec2var.lo `test -f 'sci_gateway/fortran/sci_vec2var.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_vec2var.f
 
 mostlyclean-libtool:
 	-rm -f *.lo
