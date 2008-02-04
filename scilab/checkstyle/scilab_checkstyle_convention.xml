@@ -126,7 +126,9 @@ Description:
     <module name="PackageHtml"/>
     <module name="NewlineAtEndOfFile"/>
     <module name="Translation"/>
-    <module name="StrictDuplicateCode">
+<!--    
+Commented because we do need it (copy and paste for create bridges)
+<module name="StrictDuplicateCode">
         <property name="severity" value="info"/>
-    </module>
+    </module>-->
 </module>
