@@ -17,6 +17,13 @@ public class GlobalEventFilter {
 
 	private static final int SCILAB_CTRL_OFFSET = 1000;
 	private static final int SCILAB_CALLBACK = -2;
+
+	/**
+	 * Constructor
+	 */
+	protected GlobalEventFilter() {
+		throw new UnsupportedOperationException();
+	}
 	
 	/**
 	 * Update ClickInfos structure when a KeyEvent occurs.
