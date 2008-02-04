@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_scicos_time _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_scicos_time) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return inttimescicos(fname,fname_len);
 }

@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_diffobjs _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_diffobjs) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return intdiffobjs(fname,fname_len);
 }

@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_end_scicosim _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_end_scicosim) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return intendscicosim(fname,fname_len);
 }

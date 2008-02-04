@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_set_blockerror _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_set_blockerror) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return intsetblockerror(fname,fname_len);
 }

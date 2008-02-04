@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_cscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_xstringb2 _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_xstringb2) _PARAMS((char *fname,unsigned long fname_len))
 {
 	/* Later */
 	/* we try to use xstringb of scilab 5 */

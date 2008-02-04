@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_pointer_xproperty _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_pointer_xproperty) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return intxproperty(fname,fname_len);
 }

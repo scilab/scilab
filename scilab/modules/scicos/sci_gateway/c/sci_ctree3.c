@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_ctree3 _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ctree3) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return inttree3(fname,fname_len);
 }

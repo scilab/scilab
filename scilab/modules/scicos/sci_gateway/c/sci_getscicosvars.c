@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_getscicosvars _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getscicosvars) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return intgetscicosvarsc(fname,fname_len);
 }

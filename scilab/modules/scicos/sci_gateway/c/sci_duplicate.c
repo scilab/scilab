@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_duplicate _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_duplicate) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return intduplicate(fname,fname_len);
 }

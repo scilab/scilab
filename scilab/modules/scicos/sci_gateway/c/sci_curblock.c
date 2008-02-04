@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intcurblk)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int sci_curblock _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_curblock) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(intcurblk)();
 	return 0;

@@ -26,7 +26,7 @@
 #include "gw_cscicos.h"
 #include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_curblockc _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_curblockc) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return intcurblkc(fname,fname_len);
 }
