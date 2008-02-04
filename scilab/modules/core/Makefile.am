@@ -73,7 +73,9 @@ src/c/librarieslist.c \
 src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
-src/c/freeArrayOfString.c
+src/c/freeArrayOfString.c \
+src/c/getstaticdebuginfo.c \
+src/c/getdynamicdebuginfo.c
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
@@ -236,6 +238,7 @@ sci_gateway/c/sci_mode.c \
 sci_gateway/c/sci_macr2tree.c \
 sci_gateway/c/sci_iserror.c \
 sci_gateway/c/sci_getversion.c \
+sci_gateway/c/sci_getdebuginfo.c \
 sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
@@ -293,6 +296,12 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
 		    -I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/elementary_functions/includes \
             -I$(top_srcdir)/modules/string/includes
+
+# Used by sci_getdebuginfo:
+if TCLTK 
+libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
+		                  $(TK_INC_PATH)
+endif
 
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la

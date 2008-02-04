@@ -47,11 +47,16 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+
+# Used by sci_getdebuginfo:
+@TCLTK_TRUE@am__append_1 = $(TCL_INC_PATH) \
+@TCLTK_TRUE@		                  $(TK_INC_PATH)
+
 DIST_COMMON = $(libscicore_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@am__append_2 = java
+@SWIG_TRUE@am__append_3 = swig
+@GIWS_TRUE@am__append_4 = giws
 subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -134,7 +139,9 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-librarieslist.lo libscicore_la-libraryinfo.lo \
 	libscicore_la-getvariablesname.lo \
 	libscicore_la-commandwords.lo \
-	libscicore_la-freeArrayOfString.lo
+	libscicore_la-freeArrayOfString.lo \
+	libscicore_la-getstaticdebuginfo.lo \
+	libscicore_la-getdynamicdebuginfo.lo
 am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
 	functionsforbasout.lo setgetmode.lo showstack.lo misops.lo \
@@ -180,10 +187,10 @@ am__objects_3 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_type.lo libscicore_la-sci_typename.lo \
 	libscicore_la-sci_mode.lo libscicore_la-sci_macr2tree.lo \
 	libscicore_la-sci_iserror.lo libscicore_la-sci_getversion.lo \
-	libscicore_la-sci_debug.lo libscicore_la-gw_core.lo \
-	libscicore_la-gw_user.lo libscicore_la-gw_user2.lo \
-	libscicore_la-sci_error.lo libscicore_la-sci_sciargs.lo \
-	libscicore_la-sci_with_module.lo \
+	libscicore_la-sci_getdebuginfo.lo libscicore_la-sci_debug.lo \
+	libscicore_la-gw_core.lo libscicore_la-gw_user.lo \
+	libscicore_la-gw_user2.lo libscicore_la-sci_error.lo \
+	libscicore_la-sci_sciargs.lo libscicore_la-sci_with_module.lo \
 	libscicore_la-sci_islittleendian.lo \
 	libscicore_la-sci_getscilabmode.lo \
 	libscicore_la-sci_librarieslist.lo \
@@ -483,7 +490,9 @@ src/c/librarieslist.c \
 src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
-src/c/freeArrayOfString.c
+src/c/freeArrayOfString.c \
+src/c/getstaticdebuginfo.c \
+src/c/getdynamicdebuginfo.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -645,6 +654,7 @@ sci_gateway/c/sci_mode.c \
 sci_gateway/c/sci_macr2tree.c \
 sci_gateway/c/sci_iserror.c \
 sci_gateway/c/sci_getversion.c \
+sci_gateway/c/sci_getdebuginfo.c \
 sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
@@ -689,19 +699,16 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS = -Iincludes/ \
-			-Isrc/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			$(XML_FLAGS) \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/tclsci/includes \
-		    -I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(top_srcdir)/modules/elementary_functions/includes \
-            -I$(top_srcdir)/modules/string/includes
-
+libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes \
+	-I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/tclsci/includes \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+	-I$(top_srcdir)/modules/string/includes $(am__append_1)
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
@@ -805,7 +812,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
 
 ################ MACROS ######################"
 # Rule to build a macro
@@ -951,8 +958,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getcommandlineargs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getdynamicdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmodules.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getstaticdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getval.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getvariablesname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_core.Plo@am__quote@
@@ -996,6 +1005,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_funcprot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_funptr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getcwd.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getmd5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getmodules.Plo@am__quote@
@@ -1567,6 +1577,20 @@ libscicore_la-freeArrayOfString.lo: src/c/freeArrayOfString.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-freeArrayOfString.lo `test -f 'src/c/freeArrayOfString.c' || echo '$(srcdir)/'`src/c/freeArrayOfString.c
 
+libscicore_la-getstaticdebuginfo.lo: src/c/getstaticdebuginfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getstaticdebuginfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getstaticdebuginfo.Tpo -c -o libscicore_la-getstaticdebuginfo.lo `test -f 'src/c/getstaticdebuginfo.c' || echo '$(srcdir)/'`src/c/getstaticdebuginfo.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-getstaticdebuginfo.Tpo $(DEPDIR)/libscicore_la-getstaticdebuginfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getstaticdebuginfo.c' object='libscicore_la-getstaticdebuginfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getstaticdebuginfo.lo `test -f 'src/c/getstaticdebuginfo.c' || echo '$(srcdir)/'`src/c/getstaticdebuginfo.c
+
+libscicore_la-getdynamicdebuginfo.lo: src/c/getdynamicdebuginfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getdynamicdebuginfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getdynamicdebuginfo.Tpo -c -o libscicore_la-getdynamicdebuginfo.lo `test -f 'src/c/getdynamicdebuginfo.c' || echo '$(srcdir)/'`src/c/getdynamicdebuginfo.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-getdynamicdebuginfo.Tpo $(DEPDIR)/libscicore_la-getdynamicdebuginfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getdynamicdebuginfo.c' object='libscicore_la-getdynamicdebuginfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getdynamicdebuginfo.lo `test -f 'src/c/getdynamicdebuginfo.c' || echo '$(srcdir)/'`src/c/getdynamicdebuginfo.c
+
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_stacksize.Tpo $(DEPDIR)/libscicore_la-sci_stacksize.Plo
@@ -1909,6 +1933,13 @@ libscicore_la-sci_getversion.lo: sci_gateway/c/sci_getversion.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getversion.c' object='libscicore_la-sci_getversion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getversion.lo `test -f 'sci_gateway/c/sci_getversion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getversion.c
+
+libscicore_la-sci_getdebuginfo.lo: sci_gateway/c/sci_getdebuginfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getdebuginfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getdebuginfo.Tpo -c -o libscicore_la-sci_getdebuginfo.lo `test -f 'sci_gateway/c/sci_getdebuginfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdebuginfo.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_getdebuginfo.Tpo $(DEPDIR)/libscicore_la-sci_getdebuginfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getdebuginfo.c' object='libscicore_la-sci_getdebuginfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getdebuginfo.lo `test -f 'sci_gateway/c/sci_getdebuginfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdebuginfo.c
 
 libscicore_la-sci_debug.lo: sci_gateway/c/sci_debug.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_debug.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_debug.Tpo -c -o libscicore_la-sci_debug.lo `test -f 'sci_gateway/c/sci_debug.c' || echo '$(srcdir)/'`sci_gateway/c/sci_debug.c
