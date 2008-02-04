@@ -74,7 +74,7 @@
 #endif
 
 #include "machine.h"
-#include "JoGLinterface.h"
+#include "JoGLInterface.h"
 
 /********************************************************************* 
  *

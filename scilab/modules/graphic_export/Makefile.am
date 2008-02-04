@@ -17,9 +17,7 @@ src/jni/JOGLConstant.cpp
 GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
 src/jni/GL2PSConstant_wrap.c \
 src/jni/GL2PSWrapping_wrap.c \
-src/c/gl2ps/gl2ps.c \
-src/jni/GL2PSConstant_wrap.c \
-src/jni/GL2PSWrapping_wrap.c
+src/c/gl2ps/gl2ps.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
@@ -42,11 +40,13 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-Iincludes/ \
 				-Isrc/cpp/ \
 				-Isrc/jni/ \
+				-Isrc/c/ \
 				-I$(top_srcdir)/modules/jvm/includes \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/renderer/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes
+
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
