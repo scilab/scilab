@@ -230,8 +230,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensosce", "tools\gensosce\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "modules\helptools\src\BuildHelp.vcproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modelicac", "modules\scicos\src\ocaml\Modelicac.vcproj", "{BB476641-07F4-488E-AA87-21795FFA8F4A}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmex", "modules\mexlib\src\libmex\libmex.vcproj", "{0AEC8745-BB5B-4E66-A59A-7251412C3605}"
 	ProjectSection(ProjectDependencies) = postProject
 		{80C0F142-184B-4E08-A8EE-5E71437CF904} = {80C0F142-184B-4E08-A8EE-5E71437CF904}
@@ -861,6 +859,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_sundials", "modules\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modelicac", "modules\scicos\src\modelica_compiler\Modelicac.vcproj", "{BB476641-07F4-488E-AA87-21795FFA8F4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -961,8 +961,6 @@ Global
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release|Win32.Build.0 = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug|Win32.ActiveCfg = Debug|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release|Win32.ActiveCfg = Release|Win32
-		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release|Win32.ActiveCfg = Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug|Win32.ActiveCfg = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug|Win32.Build.0 = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release|Win32.ActiveCfg = Release|Win32
@@ -1361,6 +1359,8 @@ Global
 		{C781737A-7C97-4CF9-ACBC-F68C2BBF0FFA}.Debug|Win32.Build.0 = Debug|Win32
 		{C781737A-7C97-4CF9-ACBC-F68C2BBF0FFA}.Release|Win32.ActiveCfg = Release|Win32
 		{C781737A-7C97-4CF9-ACBC-F68C2BBF0FFA}.Release|Win32.Build.0 = Release|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release|Win32.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
