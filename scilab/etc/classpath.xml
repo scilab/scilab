@@ -29,6 +29,7 @@
 <path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
 <path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
 <path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
+<path value="$SCILAB/modules/gui/etc"/> <!-- Temporary fix for Flexdock using GTK theme -->
 <path value="$SCILAB/modules/javasci/jar/javasci.jar"/>
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 <path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
