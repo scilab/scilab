@@ -142,7 +142,7 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
 	   " "+ fflags +"\n"); 
 	end
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
-  mfprintf(fd,"!include $(SCIDIR1)\\modules\\incremental_link\\src\\scripts\\Makedll.incl \n");
+  mfprintf(fd,"!include $(SCIDIR1)\\modules\\dynamic_link\\src\\scripts\\Makedll.incl \n");
   mclose(fd);
 endfunction
 //---------------------------------------------------------------------------------------
