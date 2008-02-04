@@ -34,12 +34,10 @@ GATEWAY_C_SOURCES =
 GATEWAY_FORTRAN_SOURCES =
 
 libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
--Iincludes/ -I$(top_srcdir)/modules/core/include -Isrc/c/ 
-if STRING_V1
-libscioutput_stream_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
-else
-libscioutput_stream_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
-endif	
+-Iincludes/ \
+-I$(top_srcdir)/modules/core/includes \
+-Isrc/c/ \
+-I$(top_srcdir)/modules/string/includes
 
 libscioutput_stream_la_LDFLAGS =
 pkglib_LTLIBRARIES = libscioutput_stream.la
@@ -48,11 +46,7 @@ libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORT
 
 #libscioutput_stream_la_LIBADD =
 
-if STRING_V1
 libscioutput_stream_la_LIBADD= $(top_builddir)/modules/string/libscistring.la
-else
-libscioutput_stream_la_LIBADD= $(top_builddir)/modules/STRING_V2/libscistring.la
-endif
 
 #### Target ######
 modulename=output_stream

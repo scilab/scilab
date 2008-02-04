@@ -291,15 +291,9 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
 			-I$(top_srcdir)/modules/STRING_V2/includes \
-		      	-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(top_srcdir)/modules/elementary_functions/includes
-
-
-if STRING_V1
-libscicore_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
-else
-libscicore_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
-endif
+		    -I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/elementary_functions/includes \
+            -I$(top_srcdir)/modules/string/includes
 
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
@@ -314,13 +308,9 @@ libscicore_la_LIBADD = \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+	$(top_builddir)/modules/fileio/libscifileio.la \
+    $(top_builddir)/modules/string/libscistring.la
 
-if STRING_V1
-libscicore_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
-else
-libscicore_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
-endif
 
 #### Target ######
 modulename=core

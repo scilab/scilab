@@ -47,15 +47,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V1_TRUE@am__append_1 = -I$(top_srcdir)/modules/STRING_V2/includes
-@STRING_V1_FALSE@am__append_2 = -I$(top_srcdir)/modules/STRING_V2/includes
-@STRING_V1_TRUE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
-@STRING_V1_FALSE@am__append_4 = $(top_builddir)/modules/STRING_V2/libscistring.la
 DIST_COMMON = $(libscifileio_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_5 = java
-@SWIG_TRUE@am__append_6 = swig
-@GIWS_TRUE@am__append_7 = giws
+@GUI_TRUE@am__append_1 = java
+@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@am__append_3 = giws
 subdir = modules/fileio
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -91,8 +87,8 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifileio_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/libs/libst/libscilibst.la $(am__append_3) \
-	$(am__append_4)
+	$(top_builddir)/libs/libst/libscilibst.la \
+	$(top_builddir)/modules/string/libscistring.la
 am__objects_1 = libscifileio_la-FileExist.lo libscifileio_la-fileio.lo \
 	libscifileio_la-do_xxprintf.lo libscifileio_la-do_xxscanf.lo \
 	libscifileio_la-findfiles.lo libscifileio_la-Status2Mode.lo \
@@ -403,15 +399,19 @@ sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
 sci_gateway/c/sci_createdir.c
 
-libscifileio_la_CFLAGS = -Iincludes/ -Isrc/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes $(am__append_1) \
-	$(am__append_2)
+libscifileio_la_CFLAGS = -Iincludes/ \
+				-Isrc/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+                -I$(top_srcdir)/modules/string/includes
+
 pkglib_LTLIBRARIES = libscifileio.la
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
-libscifileio_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/libs/libst/libscilibst.la $(am__append_3) \
-	$(am__append_4)
+libscifileio_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+    $(top_builddir)/libs/libst/libscilibst.la \
+    $(top_builddir)/modules/string/libscistring.la
+
 
 #### Target ######
 modulename = fileio
@@ -455,7 +455,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
+TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
 ################ MACROS ######################"
 # Rule to build a macro

@@ -29,13 +29,8 @@ libsciinterpolation_la_FFLAGS=  -Iincludes/
 libsciinterpolation_la_CFLAGS= 	-Iincludes/ \
 				-Isrc/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes 
-if STRING_V1
-libsciinterpolation_la_CFLAGS += -I$(top_srcdir)/modules/string/includes
-else
-libsciinterpolation_la_CFLAGS += -I$(top_srcdir)/modules/STRING_V2/includes
-endif					
-
+				-I$(top_srcdir)/modules/output_stream/includes \
+                -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
@@ -43,14 +38,9 @@ libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORT
 
 libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
-
-if STRING_V1
-libsciinterpolation_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
-else
-libsciinterpolation_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
-endif
-
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+    $(top_builddir)/modules/string/libscistring.la
+    
 
 #### Target ######
 modulename=interpolation

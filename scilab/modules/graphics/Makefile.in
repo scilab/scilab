@@ -59,16 +59,13 @@ host_triplet = @host@
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphic_export/includes/
 
-# Temp stuff
-@GUI_TRUE@@STRING_V1_TRUE@am__append_2 = $(top_builddir)/modules/string/libscistring.la
-@GUI_TRUE@@STRING_V1_FALSE@am__append_3 = $(top_builddir)/modules/STRING_V2/libscistring.la
-@GUI_FALSE@am__append_4 = -I$(top_srcdir)/modules/output_stream/includes
+@GUI_FALSE@am__append_2 = -I$(top_srcdir)/modules/output_stream/includes
 DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_5 = java
-@SWIG_TRUE@am__append_6 = swig
-@GIWS_TRUE@am__append_7 = giws
+@GUI_TRUE@am__append_3 = java
+@SWIG_TRUE@am__append_4 = swig
+@GIWS_TRUE@am__append_5 = giws
 subdir = modules/graphics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -107,7 +104,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @GUI_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
 @GUI_TRUE@	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 @GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
-@GUI_TRUE@	$(am__append_2) $(am__append_3)
+@GUI_TRUE@	$(top_builddir)/modules/string/libscistring.la
 am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/GetCommandArg.c src/c/WindowList.c src/c/Events.c \
 	src/c/getHandleProperty/get_figure_position_property.c \
@@ -1068,7 +1065,7 @@ libscigraphics_la_CFLAGS =  \
 	-Isrc/c/ -Isrc/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/STRING_V2/includes/ $(am__append_1) \
-	$(am__append_4)
+	$(am__append_2)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 @GUI_TRUE@src/c/WindowList.c \
@@ -1456,11 +1453,12 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@libscigraphics_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 @GUI_FALSE@libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
 @GUI_TRUE@libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
-@GUI_TRUE@libscigraphics_la_LIBADD =  \
+@GUI_TRUE@libscigraphics_la_LIBADD = \
 @GUI_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
-@GUI_TRUE@	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-@GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
-@GUI_TRUE@	$(am__append_2) $(am__append_3)
+@GUI_TRUE@    $(top_builddir)/modules/data_structures/libscidata_structures.la \
+@GUI_TRUE@    $(top_builddir)/modules/tclsci/libscitclsci.la \
+@GUI_TRUE@    $(top_builddir)/modules/string/libscistring.la
+
 
 #### graphics : Conf files ####
 @GUI_TRUE@libscigraphics_la_rootdir = $(mydatadir)
@@ -1722,7 +1720,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
+TARGETS_ALL = $(am__append_3) $(am__append_4) $(am__append_5)
 
 ################ MACROS ######################"
 # Rule to build a macro

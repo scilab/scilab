@@ -47,16 +47,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V1_TRUE@am__append_1 = -I$(top_srcdir)/modules/STRING_V2/includes
-@STRING_V1_FALSE@am__append_2 = -I$(top_srcdir)/modules/string/includes
-@STRING_V1_TRUE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
-@STRING_V1_FALSE@am__append_4 = $(top_builddir)/modules/STRING_V2/libscistring.la
 DIST_COMMON = $(libscidata_structures_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_5 = java
-@SWIG_TRUE@am__append_6 = swig
-@GIWS_TRUE@am__append_7 = giws
+@GUI_TRUE@am__append_1 = java
+@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@am__append_3 = giws
 subdir = modules/data_structures
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -93,8 +89,8 @@ libscidata_structures_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la $(am__append_3) \
-	$(am__append_4)
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/string/libscistring.la
 am__objects_1 = libscidata_structures_la-stcreate.lo \
 	libscidata_structures_la-hmops.lo
 am__objects_2 = extractfields.lo forcerhs.lo intl_i.lo lsstyp.lo \
@@ -365,17 +361,19 @@ sci_gateway/fortran/sci_lstcat.f \
 sci_gateway/fortran/sci_list.f
 
 libscidata_structures_la_CFLAGS = -Iincludes/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes $(am__append_1) \
-	$(am__append_2)
+					-I$(top_srcdir)/libs/MALLOC/includes/ \
+					-I$(top_srcdir)/modules/output_stream/includes \
+                    -I$(top_srcdir)/modules/string/includes
+
 pkglib_LTLIBRARIES = libscidata_structures.la
 libscidata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscidata_structures_la_LIBADD =  \
+libscidata_structures_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la $(am__append_3) \
-	$(am__append_4)
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+    $(top_builddir)/modules/string/libscistring.la
+
 
 #### Target ######
 modulename = data_structures
@@ -406,7 +404,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
+TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
 ################ MACROS ######################"
 # Rule to build a macro

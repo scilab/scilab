@@ -52,8 +52,6 @@ DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 @GUI_TRUE@am__append_1 = java
 @SWIG_TRUE@am__append_2 = swig
 @GIWS_TRUE@am__append_3 = giws
-@STRING_V1_TRUE@am__append_4 = $(top_builddir)/modules/string/libscistring.la
-@STRING_V1_FALSE@am__append_5 = $(top_builddir)/modules/STRING_V2/libscistring.la
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -91,8 +89,8 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la $(am__append_4) \
-	$(am__append_5)
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/string/libscistring.la
 am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/c/getlookandfeel.c src/c/setlookandfeel.c \
 	src/c/getinstalledlookandfeels.c src/c/TerminateGui.c \
@@ -659,10 +657,12 @@ JARMASK = *.jar
 libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
-libscigui_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscigui_la_LIBADD = \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la $(am__append_4) \
-	$(am__append_5)
+    $(top_builddir)/modules/tclsci/libscitclsci.la \
+    $(top_builddir)/modules/string/libscistring.la
+
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libscigraphics.la

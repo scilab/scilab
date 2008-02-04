@@ -47,15 +47,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V1_TRUE@am__append_1 = -I$(top_srcdir)/modules/string/includes
-@STRING_V1_FALSE@am__append_2 = -I$(top_srcdir)/modules/STRING_V2/includes
-@STRING_V1_TRUE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
-@STRING_V1_FALSE@am__append_4 = $(top_builddir)/modules/STRING_V2/libscistring.la
 DIST_COMMON = $(libscicore_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_5 = java
-@SWIG_TRUE@am__append_6 = swig
-@GIWS_TRUE@am__append_7 = giws
+@GUI_TRUE@am__append_1 = java
+@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@am__append_3 = giws
 subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -98,8 +94,8 @@ libscicore_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la $(am__append_3) \
-	$(am__append_4)
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/string/libscistring.la
 am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-tmpdir.lo libscicore_la-intmacr2tree.lo \
 	libscicore_la-fromjava.lo libscicore_la-run.lo \
@@ -693,29 +689,34 @@ sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ $(XML_FLAGS) \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes \
-	-I$(top_srcdir)/modules/action_binding/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/tclsci/includes \
-	-I$(top_srcdir)/modules/STRING_V2/includes \
-	-I$(top_srcdir)/modules/dynamic_link/includes \
-	-I$(top_srcdir)/modules/elementary_functions/includes \
-	$(am__append_1) $(am__append_2)
+libscicore_la_CFLAGS = -Iincludes/ \
+			-Isrc/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			$(XML_FLAGS) \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/localization/includes \
+			-I$(top_srcdir)/modules/tclsci/includes \
+			-I$(top_srcdir)/modules/STRING_V2/includes \
+		    -I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/elementary_functions/includes \
+            -I$(top_srcdir)/modules/string/includes
+
 libscicore_la_LDFLAGS = $(XML_LIBS)
 pkglib_LTLIBRARIES = libscicore.la
 libscicore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
-libscicore_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
+libscicore_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/fileio/libscifileio.la $(am__append_3) \
-	$(am__append_4)
+	$(top_builddir)/modules/fileio/libscifileio.la \
+    $(top_builddir)/modules/string/libscistring.la
+
 
 #### Target ######
 modulename = core
@@ -805,7 +806,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
+TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
 ################ MACROS ######################"
 # Rule to build a macro

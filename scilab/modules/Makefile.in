@@ -37,32 +37,27 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V1_TRUE@am__append_1 = string
 
 #if MPI
 #SUBDIRS += mpi
 #endif
-@SCICOS_TRUE@am__append_2 = scicos_blocks
+@SCICOS_TRUE@am__append_1 = scicos_blocks
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-@JAVASCI_TRUE@am__append_3 = javasci
-@USE_EMBEDDED_LAPACK_FALSE@am__append_4 = $(LAPACK_LIBS)
-@USE_EMBEDDED_BLAS_FALSE@am__append_5 = $(BLAS_LIBS)
-
-# Temp stuff
-@STRING_V1_TRUE@am__append_6 = $(top_builddir)/modules/string/libscistring.la
-@STRING_V1_FALSE@am__append_7 = $(top_builddir)/modules/STRING_V2/libscistring.la
+@JAVASCI_TRUE@am__append_2 = javasci
+@USE_EMBEDDED_LAPACK_FALSE@am__append_3 = $(LAPACK_LIBS)
+@USE_EMBEDDED_BLAS_FALSE@am__append_4 = $(BLAS_LIBS)
 
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
 #endif
-@FFTW_TRUE@am__append_8 = $(top_builddir)/modules/fftw/libscifftw.la
-@SCICOS_TRUE@am__append_9 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_10 = \
+@FFTW_TRUE@am__append_5 = $(top_builddir)/modules/fftw/libscifftw.la
+@SCICOS_TRUE@am__append_6 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
+@USE_EMBEDDED_BLAS_TRUE@am__append_7 = \
 @USE_EMBEDDED_BLAS_TRUE@$(top_builddir)/libs/blas/libsciblas.la
 
-@USE_EMBEDDED_LAPACK_TRUE@am__append_11 = \
+@USE_EMBEDDED_LAPACK_TRUE@am__append_8 = \
 @USE_EMBEDDED_LAPACK_TRUE@$(top_builddir)/libs/lapack/libscilapack.la
 
 subdir = modules
@@ -136,14 +131,14 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_6) $(am__append_7) $(am__append_8) \
+	$(top_builddir)/modules/string/libscistring.la $(am__append_5) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_9) \
+	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_6) \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/libs/libst/libscilibst.la $(am__append_10) \
-	$(am__append_11)
+	$(top_builddir)/libs/libst/libscilibst.la $(am__append_7) \
+	$(am__append_8)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -172,18 +167,17 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = polynomials string STRING_V2 intersci cacsd \
-	elementary_functions arnoldi boolean output_stream \
-	dynamic_link linear_algebra differential_equations \
-	signal_processing fileio core metanet optimization \
-	interpolation localization sound statistics time integer \
-	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell completion history_manager \
-	action_binding console renderer graphic_export gui graphics \
-	windows_tools functions others overloading maple2scilab m2sci \
-	texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools fftw pvm spreadsheet jvm \
-	demo_tools scicos_blocks scicos . javasci
+DIST_SUBDIRS = polynomials string intersci cacsd elementary_functions \
+	arnoldi boolean output_stream dynamic_link linear_algebra \
+	differential_equations signal_processing fileio core metanet \
+	optimization interpolation localization sound statistics time \
+	integer special_functions double randlib data_structures \
+	mexlib symbolic tclsci sparse io shell completion \
+	history_manager action_binding console renderer graphic_export \
+	gui graphics windows_tools functions others overloading \
+	maple2scilab m2sci texmacs scipad scilab2fortran \
+	development_tools compatibility_functions helptools fftw pvm \
+	spreadsheet jvm demo_tools scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -363,18 +357,18 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # The order DOES matter !!!
-SUBDIRS = polynomials $(am__append_1) STRING_V2 intersci cacsd \
-	elementary_functions arnoldi boolean output_stream \
-	dynamic_link linear_algebra differential_equations \
-	signal_processing fileio core metanet optimization \
-	interpolation localization sound statistics time integer \
-	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io shell completion history_manager \
-	action_binding console renderer graphic_export gui graphics \
-	windows_tools functions others overloading maple2scilab m2sci \
-	texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools fftw pvm spreadsheet jvm \
-	demo_tools $(am__append_2) scicos . $(am__append_3)
+SUBDIRS = polynomials string intersci cacsd elementary_functions \
+	arnoldi boolean output_stream dynamic_link linear_algebra \
+	differential_equations signal_processing fileio core metanet \
+	optimization interpolation localization sound statistics time \
+	integer special_functions double randlib data_structures \
+	mexlib symbolic tclsci sparse io shell completion \
+	history_manager action_binding console renderer graphic_export \
+	gui graphics windows_tools functions others overloading \
+	maple2scilab m2sci texmacs scipad scilab2fortran \
+	development_tools compatibility_functions helptools fftw pvm \
+	spreadsheet jvm demo_tools $(am__append_1) scicos . \
+	$(am__append_2)
 modulename = 
 
 #### Basic files ####
@@ -383,9 +377,11 @@ libscilab_la_rootdir = $(mydatadir)
 #
 pkglib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
-libscilab_la_LDFLAGS = $(am__append_4) $(am__append_5)
+libscilab_la_LDFLAGS = $(am__append_3) $(am__append_4)
 
 # Core modules
+
+# Temp stuff
 libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
@@ -428,14 +424,14 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_6) $(am__append_7) $(am__append_8) \
+	$(top_builddir)/modules/string/libscistring.la $(am__append_5) \
 	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_9) \
+	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_6) \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/libs/libst/libscilibst.la $(am__append_10) \
-	$(am__append_11)
+	$(top_builddir)/libs/libst/libscilibst.la $(am__append_7) \
+	$(am__append_8)
 all: all-recursive
 
 .SUFFIXES:

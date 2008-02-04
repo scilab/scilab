@@ -49,7 +49,6 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in \
 	config/compile config/config.guess config/config.rpath \
 	config/config.sub config/depcomp config/install-sh \
 	config/ltmain.sh config/missing
@@ -73,8 +72,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
-	modules/scicos/src/ocaml/Makefile etc/modules.xml \
-	scilab-lib.properties
+	etc/modules.xml scilab-lib.properties
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
@@ -395,8 +393,6 @@ $(top_srcdir)/modules/core/includes/machine.h.in: @MAINTAINER_MODE_TRUE@ $(am__c
 distclean-hdr:
 	-rm -f modules/core/includes/machine.h modules/core/includes/stamp-h1
 modules/helptools/macros/xmlfiletohtml.sci: $(top_builddir)/config.status $(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-modules/scicos/src/ocaml/Makefile: $(top_builddir)/config.status $(top_srcdir)/modules/scicos/src/ocaml/Makefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@

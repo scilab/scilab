@@ -46,17 +46,7 @@
 <module name="signal_processing" activate="1"/>
 <module name="sparse" activate="1"/>
 <module name="special_functions" activate="1"/>
-<!-- comments -->
-<!--
- If you want to use previous string,
- modify next lines with :
- module name="string" activate="1"
- module name="STRING_V2" activate="0"
- -->
- <!-- comments -->
-<module name="string" activate="0"/>
-<module name="STRING_V2" activate="1"/>
-<!-- comments -->
+<module name="string" activate="1"/>
 <module name="symbolic" activate="1"/>
 <module name="time" activate="1"/>
 <module name="windows_tools" activate="1"/>

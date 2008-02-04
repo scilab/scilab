@@ -160,13 +160,8 @@ libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_S
 libscigui_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-    $(top_builddir)/modules/tclsci/libscitclsci.la
-
-if STRING_V1
-libscigui_la_LIBADD += $(top_builddir)/modules/string/libscistring.la
-else
-libscigui_la_LIBADD += $(top_builddir)/modules/STRING_V2/libscistring.la
-endif
+    $(top_builddir)/modules/tclsci/libscitclsci.la \
+    $(top_builddir)/modules/string/libscistring.la
 
 
 # Cyclic dep

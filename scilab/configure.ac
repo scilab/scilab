@@ -1015,14 +1015,6 @@ AC_SUBST(tcldir)
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
 
-##############�TEMP Stuff ##################
-
-AC_ARG_WITH(string-v1,
-    [  --with-string-v1	           Use the old version of the String  ])
-
-AM_CONDITIONAL(STRING_V1, test "$with_string_v1" = yes)
-
-
 #################
 ## stop on warning
 #################
@@ -1077,7 +1069,6 @@ modules/double/Makefile
 modules/fileio/Makefile
 modules/spreadsheet/Makefile
 modules/string/Makefile
-modules/STRING_V2/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/graphic_export/Makefile

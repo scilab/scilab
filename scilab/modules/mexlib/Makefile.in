@@ -47,17 +47,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@STRING_V1_TRUE@am__append_1 = -I$(top_srcdir)/modules/string/includes
-@STRING_V1_FALSE@am__append_2 = -I$(top_srcdir)/modules/STRING_V2/includes
-#	$(top_builddir)/libs/blas/libsciblas.la \
-#	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
-@STRING_V1_TRUE@am__append_3 = $(top_builddir)/modules/string/libscistring.la
-@STRING_V1_FALSE@am__append_4 = $(top_builddir)/modules/STRING_V2/libscistring.la
 DIST_COMMON = $(libmex_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_5 = java
-@SWIG_TRUE@am__append_6 = swig
-@GIWS_TRUE@am__append_7 = giws
+@GUI_TRUE@am__append_1 = java
+@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@am__append_3 = giws
 subdir = modules/mexlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -313,12 +307,15 @@ top_srcdir = @top_srcdir@
 MEXLIB_C_SOURCES = src/c/mexlib.c
 MEXLIB_FLAGS = -Iincludes/ \
 	-I$(top_builddir)/modules/output_stream/includes/ \
-	$(am__append_1) $(am__append_2)
+	-I$(top_srcdir)/modules/string/includes
 MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la \
+$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_3) $(am__append_4)
+    $(top_builddir)/modules/string/libscistring.la
+
+#	$(top_builddir)/libs/blas/libsciblas.la \
+#	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmex_la_LIBADD = $(MEXLIB_DEP)
@@ -353,7 +350,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
+TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
 
 ################ MACROS ######################"
 # Rule to build a macro
