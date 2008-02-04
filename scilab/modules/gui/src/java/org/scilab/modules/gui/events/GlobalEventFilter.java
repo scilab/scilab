@@ -72,8 +72,7 @@ public class GlobalEventFilter {
 			} else {
 				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton());
 			}
-			// @TODO : Find a way to get the ID.
-			ClickInfos.getInstance().setWindowID(0);
+			ClickInfos.getInstance().setWindowID(source.getFigureIndex());
 			ClickInfos.getInstance().notify();
 		}
 	}
