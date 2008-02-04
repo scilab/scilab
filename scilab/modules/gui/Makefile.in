@@ -628,7 +628,7 @@ JARMASK = *.jar
 @GUI_TRUE@	-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/libs/MALLOC/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/core/src/c/ \
-@GUI_TRUE@	-I$(top_srcdir)/modules/STRING_V2/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/string/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/tclsci/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/shell/includes/ \

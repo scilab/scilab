@@ -1064,7 +1064,7 @@ libscigraphics_la_CFLAGS =  \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes -Iincludes/ \
 	-Isrc/c/ -Isrc/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
-	-I$(top_srcdir)/modules/STRING_V2/includes/ $(am__append_1) \
+	-I$(top_srcdir)/modules/string/includes/ $(am__append_1) \
 	$(am__append_2)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
