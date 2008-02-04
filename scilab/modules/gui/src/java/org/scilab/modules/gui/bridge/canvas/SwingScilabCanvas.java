@@ -28,6 +28,12 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	private static final long serialVersionUID = 6101347094617535625L;
 
 	/**
+	 * Figure Index
+	 * Used in Scilab to remember who is who.
+	 */
+	private int figureIndex;
+	
+	/**
 	 * Constructor
 	 * 
 	 * @param cap
@@ -40,6 +46,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		// TODO to remove, just for testing
 		this.setLayout(null);
 		this.addGLEventListener(new SciRenderer(figureIndex));
+		this.figureIndex = figureIndex;
 		
 		/**
 		 * FIXed : No more Magical Hack !!!
@@ -125,5 +132,13 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public void setPosition(Position newPosition) {
 		this.setLocation(newPosition.getX(), newPosition.getY());
+	}
+	/**
+	 * Get the Figuer Index : the Scilab ID of the figure.
+	 * 
+	 * @return the ID.
+	 */
+	public int getFigureIndex() {
+		return figureIndex;
 	}
 }
