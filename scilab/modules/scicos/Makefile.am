@@ -97,7 +97,7 @@ libsciscicos_la_CFLAGS= -Iincludes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(top_srcdir)/modules/STRING_V2/includes \
+			-I$(top_srcdir)/modules/string/includes \
 			-I$(top_srcdir)/modules/intersci/src/lib \
 			-I$(top_srcdir)/modules/scicos_blocks/includes
 
