@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="scicos"
 	ProjectGUID="{B7A0273E-8E71-4663-8497-0895945ED54D}"
 	RootNamespace="scicos"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../STRING_V2/includes;../../../intersci/src/lib"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -130,7 +130,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../STRING_V2/includes;../../../intersci/src/lib"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -210,6 +210,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_scicos.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\intcscicos.c"
 				>
 			</File>
 			<File
@@ -335,6 +339,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_scicos.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\intcscicos.h"
 				>
 			</File>
 		</Filter>

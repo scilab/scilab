@@ -24,9 +24,14 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
+#include "stack-c.h"
+/*--------------------------------------------------------------------------*/
+extern int C2F(scicosdebug) (char *fname,unsigned long fname_len); /* fortran */
 /*--------------------------------------------------------------------------*/
 int sci_scicos_debug _PARAMS((char *fname,unsigned long fname_len))
 {
+	C2F(scicosdebug)(fname,fname_len);
+	C2F(putlhsvar)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

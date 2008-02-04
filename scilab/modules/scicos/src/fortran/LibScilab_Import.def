@@ -26,8 +26,9 @@ itosci_
 recu_
 parse_
 scistring_
+putlhsvar_
 ;
-;elementaries_fucntions
+;elementary_fucntions
 dgefa_
 dgesl_
 unsfdcopy_
@@ -42,6 +43,7 @@ urand_
 int2db_
 entier_
 iset_
+scidcopy_
 ;
 ;differential_equations
 dgbfa_
@@ -63,9 +65,3 @@ ls0001_
 wprxc_
 ;
 ;
-;graphics
-setscale2d_
-sciwin_
-plot2d_
-dr_
-dr1_

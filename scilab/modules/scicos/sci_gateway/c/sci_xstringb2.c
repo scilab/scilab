@@ -26,6 +26,8 @@
 /*--------------------------------------------------------------------------*/
 int sci_xstringb2 _PARAMS((char *fname,unsigned long fname_len))
 {
+	/* Later */
+	/* we try to use xstringb of scilab 5 */
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

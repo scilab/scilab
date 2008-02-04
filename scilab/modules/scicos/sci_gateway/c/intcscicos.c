@@ -26,7 +26,19 @@
 #undef Top
 #include "stack-c.h"
 #define Top C2F(vstk).top
-#include "../interf/intcommongraphics.h"
+
+/* REORGANIZATION */
+#include "BuildObjects.h"
+/* #include "../interf/intcommongraphics.h" */
+
+#include "cvstr.h"
+#include "sciprint.h"
+#include "libinter.h"
+
+/* TO BE REMOVED */
+#include "BOOL.h"
+#define TRUE_ TRUE
+#define FALSE_ FALSE
 
 /*to be removed*/
 extern void Objstring(char *fname,
@@ -520,9 +532,7 @@ void  comp_size(v,nw,n)
      FREE(l_pointi)
 
 /* prototype */
-int intscicosimc(fname,fname_len)
-                 char *fname;
-                 unsigned long fname_len;
+int intscicosimc(char *fname,unsigned long fname_len)
 {
  /*********************************************
   * external structure and function declaration
@@ -3259,9 +3269,7 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int kfun)
  *
  */
 
-int intgetscicosvarsc(fname,fname_len)
-                 char *fname;
-                 unsigned long fname_len;
+int intgetscicosvarsc(char *fname,unsigned long fname_len)
 {
   /************************************
    * variables and constants d?inition
@@ -3723,9 +3731,7 @@ int intgetscicosvarsc(fname,fname_len)
  * 12/02/07 : update lhs to double output
  *
  */
-int intcurblkc(fname,fname_len)
-                 char *fname;
-                 unsigned long fname_len;
+int intcurblkc(char *fname,unsigned long fname_len)
 {
   /***********************
    * variables declaration
@@ -3785,9 +3791,7 @@ int intcurblkc(fname,fname_len)
  *
  */
 
-int intbuildouttb(fname,fname_len)
- char *fname;
- unsigned long fname_len;
+int intbuildouttb(char *fname,unsigned long fname_len)
 {
  static int l1, m1,   n1;
  static int l2, m2,   n2;

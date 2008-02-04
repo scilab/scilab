@@ -25,8 +25,10 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
 /*--------------------------------------------------------------------------*/
+extern int C2F(intgetlabel)(char *fname,unsigned long fname_len); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
 int sci_getblocklabel _PARAMS((char *fname,unsigned long fname_len))
 {
-	return 0;
+	return C2F(intgetlabel)(fname,fname_len);
 }
 /*--------------------------------------------------------------------------*/

@@ -74,6 +74,17 @@ sci_gateway/c/sci_var2vec.c \
 sci_gateway/c/sci_vec2var.c \
 sci_gateway/c/sci_xstringb2.c 
 
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
+sci_gateway/fortran/sci_curblock.f \
+sci_gateway/fortran/sci_debug_count.f \
+sci_gateway/fortran/sci_getblocklabel.f \
+sci_gateway/fortran/sci_scicos_debug.f \
+sci_gateway/fortran/sci_tree2.f \
+sci_gateway/fortran/sci_tree3.f \
+sci_gateway/fortran/sci_tree4.f \
+sci_gateway/fortran/sci_var2vec.f \
+sci_gateway/fortran/sci_vec2var.f
+
 
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
@@ -89,7 +100,7 @@ libsciscicos_la_CFLAGS= -Iincludes/ \
 
 #libsciscicos_la_LDFLAGS = -lf2c
 
-libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
+libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libsciscicos_la_LIBADD = \
 	$(top_builddir)/modules/scicos/libscisundials.la \

@@ -24,9 +24,10 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_cscicos.h"
+#include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
 int sci_end_scicosim _PARAMS((char *fname,unsigned long fname_len))
 {
-	return 0;
+	return intendscicosim(fname,fname_len);
 }
 /*--------------------------------------------------------------------------*/

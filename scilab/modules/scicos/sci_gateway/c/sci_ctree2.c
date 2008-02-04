@@ -24,9 +24,10 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_cscicos.h"
+#include "intcscicos.h"
 /*--------------------------------------------------------------------------*/
 int sci_ctree2 _PARAMS((char *fname,unsigned long fname_len))
 {
-	return 0;
+	return inttree2(fname,fname_len);
 }
 /*--------------------------------------------------------------------------*/
