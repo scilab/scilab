@@ -112,7 +112,10 @@ void CameraJoGL::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
   
   // get the two pixels coordinates
   pixCoord[0] = (int) pixCoordsD[0];
-  pixCoord[1] = (int) pixCoordsD[1];
+  // in OpenGL, pixel coordinates are taken from the bottom left point
+  // of the window, however, in Scilab it is from the top left
+  // so we have to invert Y coordinate
+  pixCoord[1] = (int) m_aViewPort[3] - pixCoordsD[1];
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
@@ -128,12 +131,18 @@ void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], int pixCoo
 
   // get the two pixels coordinates
   pixCoord[0] = (int) pixCoordsD[0];
-  pixCoord[1] = (int) pixCoordsD[1];
+  // in OpenGL, pixel coordinates are taken from the bottom left point
+  // of the window, however, in Scilab it is from the top left
+  // so we have to invert Y coordinate
+  pixCoord[1] = (int) m_aViewPort[3] - pixCoordsD[1];
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::get2dViewCoordinates(const int pixCoords[2], double userCoord2D[2])
 {
-  double pixCoordsD[3] = {pixCoords[0], pixCoords[1], 0.0};
+  // in OpenGL, pixel coordinates are taken from the bottom left point
+  // of the window, however, in Scilab it is from the top left
+  // so we have to invert Y coordinate
+  double pixCoordsD[3] = {pixCoords[0], m_aViewPort[3] - pixCoords[1], 0.0};
   double sceneCoords[3];
   unProject(m_aUnprojMatrix2D, m_aViewPort, pixCoordsD, sceneCoords);
 
