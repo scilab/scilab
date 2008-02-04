@@ -55,6 +55,7 @@ void SegsDecomposer::getSegsPos(double startXCoords[], double endXCoords[],
   {
     char logFlags[3];
     double defaultZvalue;
+    sciGetLogFlags(sciGetParentSubwin(pSegs), logFlags);
     if (logFlags[2] == 'l')
     {
       defaultZvalue = 1.0;

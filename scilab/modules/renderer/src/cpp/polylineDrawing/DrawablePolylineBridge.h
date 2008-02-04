@@ -12,8 +12,6 @@
 #include "../DrawableObject.h"
 #include "../DrawableClippedObjectBridge.h"
 
-namespace toto {}
-
 namespace sciGraphics
 {
 

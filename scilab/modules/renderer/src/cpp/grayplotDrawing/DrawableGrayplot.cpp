@@ -14,13 +14,25 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 void DrawableGrayplot::draw( void )
 {
-
+  if(!checkVisibility())
+  {
+    return ;
+  }
+  initializeDrawing();
+  clip();
+  drawGrayplot();
+  unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableGrayplot::show( void )
 {
-  draw() ;
+  showGrayplot();
 }
 /*---------------------------------------------------------------------------------*/
-
+DrawableGrayplotBridge * DrawableGrayplot::getGrayplotImp( void )
+{
+  return dynamic_cast<DrawableGrayplotBridge *>(getDrawableImp());
+}
+/*---------------------------------------------------------------------------------*/
 }

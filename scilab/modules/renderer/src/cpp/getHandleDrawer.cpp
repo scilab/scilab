@@ -142,4 +142,16 @@ DrawableSegs * getSegsDrawer( sciPointObj * pSegs )
   return dynamic_cast<DrawableSegs *>(getHandleDrawer(pSegs));
 }
 /*---------------------------------------------------------------------------------*/
+DrawableGrayplot * getGrayplotDrawer( sciPointObj * pGrayplot )
+{
+
+  if (sciGetEntityType(pGrayplot) != SCI_GRAYPLOT)
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableGrayplot *>(getHandleDrawer(pGrayplot));
+
+}
+/*---------------------------------------------------------------------------------*/
 }

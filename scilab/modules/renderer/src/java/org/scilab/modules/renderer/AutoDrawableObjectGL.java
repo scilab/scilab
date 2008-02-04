@@ -14,7 +14,7 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Class which can be automatically shown.
  * @author Jean-Baptiste Silvy
  */
-public class AutoDrawableObjectGL extends DrawableObjectGL {
+public class AutoDrawableObjectGL extends DrawableClippedObjectGL {
 
 	
 	/**

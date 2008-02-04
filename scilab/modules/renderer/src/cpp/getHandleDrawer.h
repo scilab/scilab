@@ -23,6 +23,7 @@ extern "C"
 #include "labelDrawing/DrawableLabel.h"
 #include "surfaceDrawing/DrawableSurface.h"
 #include "segsDrawing/DrawableSegs.h"
+#include "grayplotDrawing/DrawableGrayplot.h"
 
 namespace sciGraphics
 {
@@ -113,6 +114,12 @@ DrawableSurface * getSurfaceDrawer( sciPointObj * pSurface );
  * @return the corresponding segs to pSegs if pSegs if of type segs, NULL otherwise
  */
 DrawableSegs * getSegsDrawer( sciPointObj * pSegs );
+
+/**
+ * Return a DrawableGrayplot object corresponding to a sciPointObj object.
+ * @return the corresponding grayplot to pGrayplot if pGrayplot if of type grayplot, NULL otherwise
+ */
+DrawableGrayplot * getGrayplotDrawer( sciPointObj * pGrayplot );
 
 }
 

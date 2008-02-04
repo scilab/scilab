@@ -10,6 +10,7 @@
 
 
 #include "../DrawableClippedObject.h"
+#include "DrawableGrayplotBridge.hxx"
 
 namespace sciGraphics
 {
@@ -20,6 +21,8 @@ class DrawableGrayplot : public DrawableClippedObject
 public:
 
   DrawableGrayplot( sciPointObj * pObj ) : DrawableClippedObject( pObj ) {}
+
+  virtual ~DrawableGrayplot(void) {}
 
 protected:
 
@@ -34,6 +37,21 @@ protected:
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
   virtual void show( void ) ;
+
+  /**
+   * Actually draw the object
+   */
+  virtual void drawGrayplot(void) = 0;
+
+  /**
+   * show the object
+   */ 
+  virtual void showGrayplot(void) = 0;
+
+  /**
+   * Return the real type of implementation object
+   */
+  DrawableGrayplotBridge * getGrayplotImp( void ) ;
 
 } ;
 

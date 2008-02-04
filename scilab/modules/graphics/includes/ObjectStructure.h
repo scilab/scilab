@@ -1303,8 +1303,8 @@ typedef struct
   double *pvecz;  /** vz vector of size nx*ny **/  
   int nx; 
   int ny;
-  int type;   /** 0 if a grayplot, 1if a matplot **/  
-  char datamapping[7];
+  int type;   /** 0 if a grayplot, 1if a matplot, 2 if matplot 1 **/  
+  char datamapping[7]; /* "scaled" or "direct" */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */   

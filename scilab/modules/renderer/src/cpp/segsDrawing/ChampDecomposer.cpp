@@ -228,6 +228,12 @@ void ChampDecomposer::getChamp1Colors(int colors[])
   int colorMapSize = sciGetNumColors(sciGetParentFigure(pSegs));
   double maxLength = getMaxLength();
 
+  // prevent from dividing by 0.
+  if (maxLength < SMDOUBLE)
+  {
+    maxLength = SMDOUBLE;
+  }
+
   for (int i = 0; i < nbSegs; i++)
   {
     double curVectorNorm = sqrt(ppSegs->vfx[i] * ppSegs->vfx[i] + ppSegs->vfy[i] * ppSegs->vfy[i]);

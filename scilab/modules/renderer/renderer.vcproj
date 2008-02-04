@@ -241,14 +241,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplot.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\legendDrawing\DrawableLegend.cpp"
 				>
 			</File>
@@ -1188,6 +1180,46 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="GrayplotDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\ConcreteDrawableGrayplot.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawabelGrayplotJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplot.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotBridgeFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableGrayplotGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\GrayplotDecomposer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\MatplotDecomposer.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1232,14 +1264,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\fecDrawing\DrawableFecFactory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplot.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotFactory.h"
 				>
 			</File>
 			<File
@@ -2187,6 +2211,54 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.hxx"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="GrayplotDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\ConcreteDrawableGrayplot.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplot.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotBridge.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotBridgeFactory.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotFactory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableGrayplotGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\DrawableGrayplotJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\GrayplotDecomposer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\GrayplotDecompositionStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\grayplotDrawing\MatplotDecomposer.hxx"
 					>
 				</File>
 			</Filter>

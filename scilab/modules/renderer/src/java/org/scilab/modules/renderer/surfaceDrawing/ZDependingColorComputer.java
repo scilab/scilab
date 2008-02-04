@@ -21,6 +21,7 @@ public class ZDependingColorComputer extends FacetColorComputer {
 	
 	private double zMin;
 	private double zMax;
+	private double zRange;
 	
 	private boolean areMinMaxInit;
 	
@@ -46,6 +47,12 @@ public class ZDependingColorComputer extends FacetColorComputer {
 			double[] minAndMax = getDecomposer().getZminAndMax();
 			zMin = minAndMax[0];
 			zMax = minAndMax[1];
+			
+			// avoid dividing by 0
+			zRange = zMax - zMin;
+			if (zRange < Double.MIN_VALUE) {
+				zRange = Double.MIN_VALUE;
+			}
 			areMinMaxInit = true;
 		}
 		
@@ -59,7 +66,7 @@ public class ZDependingColorComputer extends FacetColorComputer {
 		// only one color for the facet
 		int[] res = new int[1];
 		// code taken from old Scilab C code
-		res[0] = (int) Math.floor(((getColorMap().getSize() - 1) * (facetHeight - zMin) / (zMax - zMin)) + OFFSET);
+		res[0] = (int) Math.floor(((getColorMap().getSize() - 1) * (facetHeight - zMin) / (zRange)) + OFFSET);
 		
 		return res;
 	}

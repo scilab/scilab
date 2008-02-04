@@ -11,6 +11,7 @@
 
 
 #include "../DrawableObjectFactory.h"
+#include "ConcreteDrawableGrayplot.hxx"
 
 namespace sciGraphics
 {
@@ -30,6 +31,13 @@ public:
    * To be used when an object was deeply modified and to avoid to create it again completely.
    */
   virtual void update( void ) ;
+
+protected:
+
+  /**
+   * Set the startegies used by the grayplot object
+   */
+  void setStrategies(ConcreteDrawableGrayplot * grayplot);
 
 } ;
 

@@ -240,7 +240,14 @@ src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
 src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
-src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp
+src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
+src/jni/DrawableGrayplotGL.cpp \
+src/cpp/ConcreteDrawableGrayplot.cpp \
+src/cpp/DrawabelGrayplotJavaMapper.cpp \
+src/cpp/DrawableGrayplotBridgeFactory.cpp \
+src/cpp/DrawableGrayplotJoGL.cpp \
+src/cpp/GrayplotDecomposer.cpp \
+src/cpp/MatplotDecomposer.cpp
 
 
 # List of the gateway c files
@@ -293,7 +300,8 @@ src/jni/SurfaceMarkDrawerGL.giws.xml \
 src/jni/DrawableSegsGL.giws.xml \
 src/jni/SegsArrowdrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
-src/jni/SegsMarkDrawerGL.giws.xml
+src/jni/SegsMarkDrawerGL.giws.xml \
+src/jni/DrawableGrayplotGL.giws.xml
 
 else
 
