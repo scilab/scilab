@@ -13,7 +13,9 @@
 #include "CurrentObjectsManagement.h"
 #include "gw_graphics.h"
 #include "CallJxclick.h"
-
+#include "GetProperty.h"
+#include "ObjectSelection.h"
+#include "WindowList.h"
 /*--------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)
 {
@@ -22,10 +24,10 @@ int sci_xclick(char *fname,unsigned long fname_len)
   //int iflag = 0;
 
   int mouseButtonNumber = 0;
-  double xCoordinate = 0.0;
-  double yCoordinate = 0.0;
   int windowID = 0;
   char * menuCallback;
+  int pixelCoords[2];
+  double userCoords2D[2];
 
   CheckRhs(-1,1) ;
   CheckLhs(1,5) ;
@@ -40,18 +42,21 @@ int sci_xclick(char *fname,unsigned long fname_len)
 
   // Get return values
   mouseButtonNumber = getJxclickMouseButtonNumber();
-  xCoordinate = getJxclickXCoordinate();
-  yCoordinate = getJxclickYCoordinate();
+  pixelCoords[0] = getJxclickXCoordinate();
+  pixelCoords[1] = getJxclickYCoordinate();
   windowID = getJxclickWindowID();
   menuCallback = getJxclickMenuCallback();
+
+  // Convert pixel coordinates to user coordinates
+  sciGet2dViewCoordFromPixel(sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN), pixelCoords, userCoords2D);
 
   if (Lhs == 1)
   {
     LhsVar(1) = Rhs+1;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&three,&rep);
     *stk(rep) = (double) mouseButtonNumber;
-    *stk(rep + 1) = xCoordinate;
-    *stk(rep + 2) = yCoordinate;
+    *stk(rep + 1) = userCoords2D[0];
+    *stk(rep + 2) = userCoords2D[1];
   }
   else 
   {
@@ -64,14 +69,14 @@ int sci_xclick(char *fname,unsigned long fname_len)
   { 
     LhsVar(2) = Rhs+2;
     CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
-    *stk(rep) = xCoordinate;
+    *stk(rep) = userCoords2D[0];
   }
  
   if (Lhs >= 3)
   { 
     LhsVar(3) = Rhs+3;
     CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
-    *stk(rep) = yCoordinate;
+    *stk(rep) = userCoords2D[1];
   }
   
   if (Lhs >=4) 

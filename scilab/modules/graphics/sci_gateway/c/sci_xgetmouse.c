@@ -11,15 +11,18 @@
 #include "GetProperty.h" /* sciGetNum */
 #include "CurrentObjectsManagement.h" /* sciGetCurrentFigure */
 #include "CallJxgetmouse.h"
-
+#include "GetProperty.h"
+#include "ObjectSelection.h"
+#include "WindowList.h"
 /*--------------------------------------------------------------------------*/
 int sci_xgetmouse( char *fname,unsigned long fname_len )
 {
   integer  m1=1,n1=3,l1,l2;
   int mouseButtonNumber = 0;
   integer sel[2],m,n;
-  double xCoordinate = 0.0;
-  double yCoordinate = 0.0;
+
+  int pixelCoords[2];
+  double userCoords2D[2];
 
   CheckRhs(0,2);
   CheckLhs(1,2);
@@ -49,19 +52,15 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
           // Call Java xgetmouse
          CallJxgetmouse();
         }
-/*       if (Rhs==2) */
-/*         { */
-/*           GetRhsVar(2,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1); */
-/*           CheckDims(2,m*n,1,2,1); */
-/*           sel[0]=*istk(l1); */
-/*           sel[1]=*istk(l1+1); */
-/*         } */
     }
   
   // Get return values
   mouseButtonNumber = getJxgetmouseMouseButtonNumber();
-  xCoordinate = getJxgetmouseXCoordinate();
-  yCoordinate = getJxgetmouseYCoordinate();
+  pixelCoords[0] = getJxgetmouseXCoordinate();
+  pixelCoords[1] = getJxgetmouseYCoordinate();
+
+  // Convert pixel coordinates to user coordinates
+  sciGet2dViewCoordFromPixel(sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN), pixelCoords, userCoords2D);
 
   switch (Lhs) {
   case 1: 
@@ -74,8 +73,8 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     }
     else
     {
-      *stk(l1) = xCoordinate;
-      *stk(l1+1) = yCoordinate;
+      *stk(l1) = userCoords2D[0];
+      *stk(l1+1) = userCoords2D[1];
       *stk(l1+2) = (double) mouseButtonNumber;
     }
     LhsVar(1) = Rhs+1;
@@ -90,8 +89,8 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     }
     else
     {
-      *stk(l1) = xCoordinate;
-      *stk(l1+1) = yCoordinate;
+      *stk(l1) = userCoords2D[0];
+      *stk(l1+1) = userCoords2D[1];
       *stk(l1+2) = (double) mouseButtonNumber;
     }
     LhsVar(1) = Rhs+1;
