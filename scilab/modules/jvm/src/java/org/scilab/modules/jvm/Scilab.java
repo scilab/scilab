@@ -42,16 +42,17 @@ public class Scilab {
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
-		LookAndFeelManager lookAndFeel=new LookAndFeelManager ();
+		LookAndFeelManager lookAndFeel=new LookAndFeelManager();
 		String gtkLookAndFeel="com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
 		this.mode = mode;
-		/* @TODO: Manages also windows */
+		/* TODO: Manages also windows */
 
-		if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)){
+		if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)) {
 			lookAndFeel.setLookAndFeel(gtkLookAndFeel);
-		}else{
+		} else {
 			lookAndFeel.setSystemLookAndFeel();
 		}
+
 		if (mode == 2) { /* Mode GUI */
 
 			try {
