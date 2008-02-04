@@ -27,6 +27,46 @@
               clear %fileToWrite"
             type="0"/>
         </submenu>
+		<submenu label="Export to GIF..." mnemonic="E"> 
+            <callback 
+            instruction="
+              %fileToWrite = xgetfile('*.gif', getcwd(), 'Select a file name');
+              if ~isempty(%fileToWrite) then 
+                xs2gif(get(gcf(),'figure_id'), %fileToWrite);
+              end
+              clear %fileToWrite"
+            type="0"/>
+        </submenu>
+		<submenu label="Export to JPG..." mnemonic="E"> 
+            <callback 
+            instruction="
+              %fileToWrite = xgetfile('*.jpg', getcwd(), 'Select a file name');
+              if ~isempty(%fileToWrite) then 
+                xs2jpg(get(gcf(),'figure_id'), %fileToWrite);
+              end
+              clear %fileToWrite"
+            type="0"/>
+		</submenu>
+		<submenu label="Export to PNG..." mnemonic="E"> 
+            <callback 
+            instruction="
+              %fileToWrite = xgetfile('*.png', getcwd(), 'Select a file name');
+              if ~isempty(%fileToWrite) then 
+                xs2png(get(gcf(),'figure_id'), %fileToWrite);
+              end
+              clear %fileToWrite"
+            type="0"/>
+		</submenu>
+		        <submenu label="Export to PPM..." mnemonic="E"> 
+            <callback 
+            instruction="
+              %fileToWrite = xgetfile('*.ppm', getcwd(), 'Select a file name');
+              if ~isempty(%fileToWrite) then 
+                xs2ppm(get(gcf(),'figure_id'), %fileToWrite);
+              end
+              clear %fileToWrite"
+            type="0"/>
+        </submenu>
         <submenu label="Copy to clipboard" mnemonic="C" enabled="false"/> 
         <separator/>
         <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
