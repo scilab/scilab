@@ -39,8 +39,16 @@ public class InterruptScilabWork extends AbstractConsoleAction {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		
-		/* No text selected in the input --> interrupt Scilab work */
-		if (((JTextPane) configuration.getInputCommandView()).getSelectedText() == null) {
+		if (((JTextPane) configuration.getInputCommandView()).getSelectedText() != null) {
+			/* Text selected in the input --> Copy */
+			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
+		} else if (((JTextPane) configuration.getOutputView()).getSelectedText() != null) {
+			/* Text selected in the output --> Copy */
+			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getOutputView()).getSelectedText());
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
+		} else {
+			/* Interrupt Scilab */
 			InterpreterManagement.interruptScilab();
 		
 			// If Scilab is on prompt, then emulate a user entry
@@ -52,9 +60,6 @@ public class InterruptScilabWork extends AbstractConsoleAction {
 				((SciInputCommandView) configuration.getInputCommandView()).setCmdBuffer("");
 				configuration.getInputParsingManager().reset();
 			}
-		} else { /* Some text selected in the input --> put selection in the clipboard (bug 2592 fix) */
-			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
 		}
 	}
 
