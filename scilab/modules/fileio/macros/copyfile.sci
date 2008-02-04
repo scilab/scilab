@@ -6,6 +6,8 @@
 function [status,msg]=copyfile(varargin)
   lhs=argn(1);
   rhs=argn(2);
+  
+  fname = 'copyfile';
 
   SourceFile='';
   DestinationFile='';
@@ -54,7 +56,7 @@ function [status,msg]=copyfile(varargin)
   if (Rep==%F) then
 // Check the source directory is a directory
     Status=0;
-    ErrorMessage=msprintf(gettext("%s: Source directory %s does not exist or is unreadable."), SourceDir);
+    ErrorMessage=msprintf(gettext("%s: Source directory %s does not exist or is unreadable."), fname ,SourceDir);
   else
 
    if MSDOS then
