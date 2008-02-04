@@ -7,9 +7,19 @@
 if GUI
 # List of the c files
 GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
-src/jni/FileExporter.cpp
+src/jni/FileExporter.cpp \
+src/cpp/GL2PSConstant.cpp \
+src/cpp/GL2PSWrapping.cpp \
+src/cpp/JoGLInterface.cpp  \
+src/jni/GL2PSToJOGL.cpp \
+src/jni/JOGLConstant.cpp
 
-GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c
+GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
+src/jni/GL2PSConstant_wrap.c \
+src/jni/GL2PSWrapping_wrap.c \
+src/c/gl2ps/gl2ps.c \
+src/jni/GL2PSConstant_wrap.c \
+src/jni/GL2PSWrapping_wrap.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
@@ -19,7 +29,12 @@ sci_gateway/c/sci_xs2fig.c \
 sci_gateway/c/sci_xs2gif.c \
 sci_gateway/c/sci_xs2ppm.c \
 sci_gateway/c/sci_xs2ps.c \
-sci_gateway/c/sci_xg2ps.c
+sci_gateway/c/sci_xg2ps.c \
+sci_gateway/c/sci_xs2svg.c \
+sci_gateway/c/sci_xs2jpg.c \
+sci_gateway/c/sci_xs2png.c \
+sci_gateway/c/sci_xs2eps.c \
+sci_gateway/c/sci_xs2pdf.c
 
 
 # Includes need for the compilation
@@ -40,7 +55,9 @@ libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCE
 ## Change to include other Scilab modules/lib
 #libscigraphic_export_la_LIBADD = $(top_builddir)/modules/graphic_export/libscigraphic_export.la
 
-GIWS_WRAPPERS=
+GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
+src/jni/GL2PSToJOGL.giws.xml \
+src/jni/JOGLConstant.giws.xml
 
 
 else
@@ -81,7 +98,12 @@ includes/sci_xs2emf.h \
 includes/sci_xs2bmp.h \
 includes/sci_xs2ps.h \
 includes/sci_xs2fig.h \
-includes/sci_xg2ps.h
+includes/sci_xg2ps.h \
+includes/sci_xs2eps.h \
+includes/sci_xs2jpg.h \
+includes/sci_xs2pdf.h \
+includes/sci_xs2png.h \
+includes/sci_xs2svg.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

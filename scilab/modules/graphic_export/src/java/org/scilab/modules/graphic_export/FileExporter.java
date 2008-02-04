@@ -5,9 +5,7 @@
 /* desc : Static class used to create file export of graphic figures      */
 /*------------------------------------------------------------------------*/
 
-
 package org.scilab.modules.graphic_export;
-
 
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
@@ -38,23 +36,16 @@ public class FileExporter {
 		
 		if (exportedFig == null) {
 			// figure no longer exists
-			return ExportToFile.IOEXCEPTION_ERROR;
-		}
+			return ExportRenderer.IOEXCEPTION_ERROR;
+		}		
 		
-		
-		ExportRenderer export = new ExportRenderer(figureIndex);
-		export.setRenderedFile(fileName, fileType);
-		
-		// add a glevent linstener dedicated at exporting files
+		ExportRenderer export;		
+		export = ExportRenderer.createExporter(figureIndex, fileName, fileType);
+				
 		exportedFig.getRenderingTarget().addGLEventListener(export);
-		
-		// will draw the scene with the standard Gl eventlistener and then export it
-		// with the added one
 		exportedFig.drawCanvas();
-		
-		// remove the exporter
 		exportedFig.getRenderingTarget().removeGLEventListener(export);
-		return ExportToFile.SUCCESS;
-	}
-	
+
+		return ExportRenderer.SUCCESS;		
+	}	
 }

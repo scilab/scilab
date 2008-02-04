@@ -7,7 +7,6 @@ import javax.media.opengl.GLException;
 import org.scilab.modules.graphic_export.convertToPPM.PPMEncoder;
 import com.sun.opengl.util.Screenshot;
 
-
 /**
  * Class which allows to export screen-shots in format PPM
  * @author Sylvestre Koumar
@@ -47,10 +46,10 @@ public class ExportPPM  extends ExportToFile {
 			int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
 			encoder.encodePixels(0, 0, image.getWidth(), image.getHeight(),	pixels, 0, image.getWidth());
 		} catch (GLException e1) {
-			return GLEXCEPTION_ERROR;
+			return ExportRenderer.GLEXCEPTION_ERROR;
 		} catch (IOException e1) {
-			return IOEXCEPTION_ERROR;
+			return ExportRenderer.IOEXCEPTION_ERROR;
 		}
-		return SUCCESS;			
+		return ExportRenderer.SUCCESS;			
 	}
 }

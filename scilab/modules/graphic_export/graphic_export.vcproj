@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -134,7 +134,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -157,7 +157,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib"
+				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib OpenGL32.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="graphic_export.def"
@@ -215,12 +215,44 @@
 					RelativePath=".\src\jni\FileExporter.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\src\cpp\GL2PSConstant.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\GL2PSToJOGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\GL2PSWrapping.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\JOGLConstant.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\JoGLInterface.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="c"
 				>
 				<File
 					RelativePath=".\src\c\DllmainGraphics_export.c"
+					>
+				</File>
+				<File
+					RelativePath=".\src\c\gl2ps\gl2ps.c"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\GL2PSConstant_wrap.c"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\GL2PSWrapping_wrap.c"
 					>
 				</File>
 				<File
@@ -240,6 +272,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\sci_gateway\c\sci_xs2eps.c"
+					>
+				</File>
+				<File
 					RelativePath=".\sci_gateway\c\sci_xs2fig.c"
 					>
 				</File>
@@ -248,11 +284,27 @@
 					>
 				</File>
 				<File
+					RelativePath=".\sci_gateway\c\sci_xs2jpg.c"
+					>
+				</File>
+				<File
+					RelativePath=".\sci_gateway\c\sci_xs2pdf.c"
+					>
+				</File>
+				<File
+					RelativePath=".\sci_gateway\c\sci_xs2png.c"
+					>
+				</File>
+				<File
 					RelativePath=".\sci_gateway\c\sci_xs2ppm.c"
 					>
 				</File>
 				<File
 					RelativePath=".\sci_gateway\c\sci_xs2ps.c"
+					>
+				</File>
+				<File
+					RelativePath=".\sci_gateway\c\sci_xs2svg.c"
 					>
 				</File>
 				<File
@@ -270,7 +322,15 @@
 				Name="h"
 				>
 				<File
+					RelativePath=".\src\c\gl2ps\gl2ps.h"
+					>
+				</File>
+				<File
 					RelativePath=".\includes\gw_graphic_export.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\JoGLInterface.h"
 					>
 				</File>
 				<File
@@ -286,11 +346,23 @@
 					>
 				</File>
 				<File
+					RelativePath=".\includes\sci_xs2eps.h"
+					>
+				</File>
+				<File
 					RelativePath=".\includes\sci_xs2fig.h"
 					>
 				</File>
 				<File
-					RelativePath=".\includes\sci_xs2gif.h"
+					RelativePath=".\includes\sci_xs2jpg.h"
+					>
+				</File>
+				<File
+					RelativePath=".\includes\sci_xs2pdf.h"
+					>
+				</File>
+				<File
+					RelativePath=".\includes\sci_xs2png.h"
 					>
 				</File>
 				<File
@@ -299,6 +371,10 @@
 				</File>
 				<File
 					RelativePath=".\includes\sci_xs2ps.h"
+					>
+				</File>
+				<File
+					RelativePath=".\includes\sci_xs2svg.h"
 					>
 				</File>
 				<File
@@ -315,6 +391,22 @@
 				</File>
 				<File
 					RelativePath=".\src\jni\FileExporter.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\GL2PSConstant.hxx"
+					>
+				</File>
+				<File
+					RelativePath="C:\Documents and Settings\koumar\Desktop\GL2PSToJOGL\GL2PSToJOGL\GL2PSToJOGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\GL2PSWrapping.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\JOGLConstant.hxx"
 					>
 				</File>
 			</Filter>

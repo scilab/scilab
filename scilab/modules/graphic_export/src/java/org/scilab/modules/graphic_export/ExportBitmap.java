@@ -32,26 +32,26 @@ public class ExportBitmap extends ExportToFile {
 		
 		/** Select the screen-shot format */
 		switch (getFiletype()) {
-		case BMP_EXPORT:  file = new File(getFilename() + ".bmp");
+		case ExportRenderer.BMP_EXPORT:  file = new File(getFilename() + ".bmp");
 		break;
-		case GIF_EXPORT:  file = new File(getFilename() + ".gif");
+		case ExportRenderer.GIF_EXPORT:  file = new File(getFilename() + ".gif");
 		break;
-		case JPG_EXPORT:  file = new File(getFilename() + ".jpg");
+		case ExportRenderer.JPG_EXPORT:  file = new File(getFilename() + ".jpg");
 		break;
-		case PNG_EXPORT:  file = new File(getFilename() + ".png");
+		case ExportRenderer.PNG_EXPORT:  file = new File(getFilename() + ".png");
 		break;					  
-		default: return INVALID_FILE;
+		default: return ExportRenderer.INVALID_FILE;
 		}
 
 		try {
 			/** Generate the screen-shot */
 			Screenshot.writeToFile(file, getWidth(), getHeight());			
 		} catch (GLException ex1) {
-			return GLEXCEPTION_ERROR;
+			return ExportRenderer.GLEXCEPTION_ERROR;
 		} catch (IOException ex2) {
-			return IOEXCEPTION_ERROR;			
+			return ExportRenderer.IOEXCEPTION_ERROR;			
 		}
-		return SUCCESS;			
+		return ExportRenderer.SUCCESS;			
 	}
 }
 

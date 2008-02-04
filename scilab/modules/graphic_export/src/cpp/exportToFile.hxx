@@ -22,7 +22,11 @@ typedef enum
   GIF_EXPORT = 2,
   JPG_EXPORT = 3,
   PNG_EXPORT = 4,
-  PPM_EXPORT = 5
+  PPM_EXPORT = 5,
+  EPS_EXPORT = 6,
+  PDF_EXPORT = 7,
+  SVG_EXPORT = 8,
+  PS_EXPORT = 9
 } ExportFileType;
 
 void exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType);

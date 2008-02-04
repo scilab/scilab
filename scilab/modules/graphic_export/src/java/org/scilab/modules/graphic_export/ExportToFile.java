@@ -1,28 +1,12 @@
 package org.scilab.modules.graphic_export;
 
-
-import com.sun.opengl.util.FileUtil;
-
 /**
  * Abstract Class allows to export screen-shots in format Bitmap (BMP, GIF, JPG, PNG and PPM)
  * @author Sylvestre Koumar
  *
  */
-public abstract class ExportToFile {	
+public abstract class ExportToFile {
 	
-	/** Code-number for each bitmap format */
-	public static final int BMP_EXPORT = 1;
-	public static final int GIF_EXPORT = 2;
-	public static final int JPG_EXPORT = 3;
-	public static final int PNG_EXPORT = 4;
-	public static final int PPM_EXPORT = 5;
-	
-	public static final int SUCCESS = 0;
-	public static final int GLEXCEPTION_ERROR = 1;
-	public static final int IOEXCEPTION_ERROR = 2;
-	public static final int INVALID_FILE = 3;
-	
-		
 	/** Width and height of the figure  */
 	private int width;
 	private int height;
@@ -39,7 +23,6 @@ public abstract class ExportToFile {
 	protected ExportToFile(String filename, int filetype) {
 		this.filename = filename;
 		this.filetype = filetype;		
-		removeExtension();
 	}
 
 	/**
@@ -107,7 +90,7 @@ public abstract class ExportToFile {
 	public abstract int exportToBitmap();
 	
 	/**
-	 * Choose which kind of filetype will be exported /*
+	 * Choose which kind of filetype will be exported 
 	 * @param filetype type of the file
 	 * @param fileName name of the file
 	 * @return new ExportBitmap of
@@ -115,37 +98,15 @@ public abstract class ExportToFile {
 	public static ExportToFile createExporter(String fileName, int filetype) {	
 		/** Select in which type the file will be exported */
 		switch (filetype) {
-		case BMP_EXPORT:  
-		case GIF_EXPORT:
-		case JPG_EXPORT:
-		case PNG_EXPORT:
+		case ExportRenderer.BMP_EXPORT:  
+		case ExportRenderer.GIF_EXPORT:
+		case ExportRenderer.JPG_EXPORT:
+		case ExportRenderer.PNG_EXPORT:
 			return new ExportBitmap(fileName, filetype);
-		case PPM_EXPORT:
+		case ExportRenderer.PPM_EXPORT:
 			return new ExportPPM(fileName, filetype);	  
-		default: System.err.println(INVALID_FILE);
+		default: System.err.println(ExportRenderer.INVALID_FILE);
 		}
 		return null;		
-	}
-	
-	/**
-	 * Function allowing to format the extension of the screen-shot file  
-	 */
-	public void removeExtension() {		
-		String suffix = FileUtil.getFileSuffix(this.filename).toLowerCase(); //get the suffix(extension) of the file name
-		int pos = this.filename.lastIndexOf('.'); // position of the dot
-
-		if (suffix != null) {
-			if (suffix.equals("bmp") && this.filetype == BMP_EXPORT) {
-				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("gif") && this.filetype == GIF_EXPORT) {
-				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("jpg") && this.filetype == JPG_EXPORT) {
-				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("png") && this.filetype == PNG_EXPORT) {
-				this.filename = filename.substring(0, pos);
-			} else if (suffix.equals("ppm") && this.filetype == PPM_EXPORT) {
-				this.filename = filename.substring(0, pos);
-			}	
-		}
 	}
 }

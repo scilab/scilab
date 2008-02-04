@@ -1,0 +1,120 @@
+package org.scilab.modules.graphic_export;
+
+import javax.media.opengl.GL;
+import javax.media.opengl.GLAutoDrawable;
+import org.scilab.modules.renderer.figureDrawing.SciRenderer;
+
+/**
+ * 
+ * @author Sylvestre Koumar
+ *
+ */
+public class GL2PSRenderer extends ExportRenderer {
+	
+	/** BufferSize */
+	public static final int BUFFER_WIDTH = 2048;
+	public static final int BUFFER_HEIGHT = 2048;
+	
+	private SciRenderer sciRend;
+	private int figureIndex;
+	private int format;
+
+	
+	/**
+	 * GL2PSRenderer
+	 * @param figureIndex index of the figure
+	 * @param fileName file name
+	 * @param fileType file type
+	 */
+	public GL2PSRenderer(int figureIndex, String fileName, int fileType) {
+		super(fileName, fileType);
+		this.figureIndex = figureIndex;
+		setGL2PSFile(fileName, fileType);		
+	}
+	
+	/**
+	 * setGL2PSFile 
+	 * @param fileName fileName
+	 * @param fileType fileName
+	 * @return ExportRenderer.INVALID_FILE if the file is not valid
+	 */
+	public int setGL2PSFile(String fileName, int fileType) {
+		
+		switch (getFileType()) {
+		case ExportRenderer.EPS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".eps");
+									   format = GL2PS.GL2PS_EPS;
+		break;
+		case ExportRenderer.PDF_EXPORT:  setFileName(ExportRenderer.getFileName() + ".pdf");
+									   format = GL2PS.GL2PS_PDF;
+		break;
+		case ExportRenderer.SVG_EXPORT:  setFileName(ExportRenderer.getFileName() + ".svg");
+									   format = GL2PS.GL2PS_SVG;
+		break;				  
+		case ExportRenderer.PS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".ps");
+		   format = GL2PS.GL2PS_PS;
+		break;	
+		default: return ExportRenderer.INVALID_FILE;
+		}
+		return ExportRenderer.SUCCESS;			
+	}
+	
+	/**
+	 * display
+	 * @param gLDrawable gLDrawable
+	 */
+	public void display(GLAutoDrawable gLDrawable) {
+		GL2PS gl2ps = new GL2PS();
+		int buffsize = BUFFER_WIDTH * BUFFER_HEIGHT;			
+		sciRend = new SciRenderer(this.figureIndex);
+		
+		GL gl = gLDrawable.getGL();
+		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
+		
+		
+		//int[] viewPort = {0, 0, gLDrawable.getWidth(), gLDrawable.getHeight()};
+		
+		gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, 
+							  format, GL2PS.GL2PS_BSP_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT 
+							  | GL2PS.GL2PS_BEST_ROOT, GL.GL_RGBA, 0, null, null, null, null, 
+							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
+		
+
+		gLDrawable.setGL(newGL);
+		//gl.glRasterPos2d(0, 0);		
+		
+		sciRend.display(gLDrawable);	
+		gl2ps.gl2psEndPage();
+		gLDrawable.setGL(gl);
+	}	
+
+	/**
+	 * GLEventListener method
+	 * @param arg0 GLAutoDrawable
+	 * @param arg1 boolean
+	 * @param arg2 boolean
+	 */
+	public void displayChanged(GLAutoDrawable arg0, boolean arg1, boolean arg2) {
+		
+	}
+
+	/**
+	 * GLEventListener method
+	 * @param arg0 GLAutoDrawable
+	 */
+	public void init(GLAutoDrawable arg0) {
+		
+	}
+
+	/**
+	 * GLEventListener method
+	 * @param arg0 GLAutoDrawable
+	 * @param arg1 int
+	 * @param arg2 int
+	 * @param arg3 int
+	 * @param arg4 int
+	 */
+	public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3,
+			int arg4) {
+	}
+	
+}

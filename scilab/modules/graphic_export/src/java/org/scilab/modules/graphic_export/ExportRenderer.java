@@ -1,99 +1,137 @@
-/*------------------------------------------------------------------------*/
-/* file: ExportRenderer.java                                              */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : GLEventListener used to export figures into files               */
-/*------------------------------------------------------------------------*/
-
-
 package org.scilab.modules.graphic_export;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
+import com.sun.opengl.util.FileUtil;
 
 /**
- * GLEventListener used to export figures into files
- * @author Jean-Baptiste Silvy
+ * Main export class
+ * @author Sylvestre Koumar
+ *
  */
-public class ExportRenderer implements GLEventListener {
+public abstract class ExportRenderer implements GLEventListener {
 
-	private String fileName;
-	private int fileType;
+	/** Code-number for the function statue */
+	public static final int SUCCESS = 0;
+	public static final int GLEXCEPTION_ERROR = 1;
+	public static final int IOEXCEPTION_ERROR = 2;
+	public static final int INVALID_FILE = 3;
+
+	/** Code-number for each bitmap format */
+	public static final int BMP_EXPORT = 1;
+	public static final int GIF_EXPORT = 2;
+	public static final int JPG_EXPORT = 3;
+	public static final int PNG_EXPORT = 4;
+	public static final int PPM_EXPORT = 5;
+
+	/** Code-number for each postscript format */
+	public static final int EPS_EXPORT = 6;
+	public static final int PDF_EXPORT = 7;
+	public static final int SVG_EXPORT = 8;
+	public static final int PS_EXPORT = 9;
+
+	private static String fileName;
+	private static int fileType;
 
 	/**
-	 * Default constructor
-	 * @param figureIndex index of the figure to render
+	 * Constructor
+	 * @param fileName name of the file
+	 * @param fileType type of the file
 	 */
-	public ExportRenderer(int figureIndex) {
+	protected ExportRenderer(String fileName, int fileType) {
+		this.fileName = fileName;
+		this.fileType = fileType;	
+		removeExtension();
+	}	
 
+	/**
+	 * Choose which kind of filetype will be exported 
+	 * @param figureIndex type of the file
+	 * @param fileName name of the file
+	 * @param fileType type of the file
+	 * @return GL2PSRenderer export a postscript screen-shot
+	 */
+	public static ExportRenderer createExporter(int figureIndex, String fileName, int fileType) {
+		
+		GL2PS gl2ps = new GL2PS();
+		
+		/** Select in which type the file will be exported */		
+		switch (fileType) {
+		case BMP_EXPORT:  
+		case GIF_EXPORT:
+		case JPG_EXPORT:
+		case PNG_EXPORT:
+		case PPM_EXPORT:
+			return new BitmapRenderer(fileName, fileType);
+		case EPS_EXPORT:
+		case PDF_EXPORT:
+		case SVG_EXPORT:
+		case PS_EXPORT:
+			return new GL2PSRenderer(figureIndex, fileName, fileType);
+		default: System.err.println(ExportRenderer.INVALID_FILE);
+		}
+		return null;			
 	}
 
 	/**
-	 * Set the name and type of the file to render
-	 * @param fileName name of the file to render
-	 * @param fileType type of the file to render
+	 * getter 
+	 * @return fileName get the file name
 	 */
-	public void setRenderedFile(String fileName, int fileType) {
-		this.fileName = new String(fileName);
+	public static String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * setter 
+	 * @param fileName set the file name
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	/**
+	 * getter
+	 * @return fileType get the file type
+	 */
+	public static int getFileType() {
+		return fileType;
+	}
+
+	/**
+	 * setter 
+	 * @param fileType set the file name
+	 */
+	public void setFileType(int fileType) {
 		this.fileType = fileType;
 	}
 
-	/** Called by the drawable to initiate OpenGL rendering by the client.
-	 * After all GLEventListeners have been notified of a display event, the 
-	 * drawable will swap its buffers if necessary.
-	 * @param gLDrawable The GLDrawable object.
-	 */    
-	public void display(GLAutoDrawable gLDrawable) {
-		// normaly it is not needed to render the scene again
-		// it should be already in the front buffer
-		//super.display(gLDrawable);
+	/**
+	 * Function allowing to format the extension of the screen-shot file  
+	 */
+	public void removeExtension() {		
+		String suffix = FileUtil.getFileSuffix(this.fileName); //get the suffix(extension) of the file name
+		int pos = this.fileName.lastIndexOf('.'); // position of the dot
 
-		// export it to a file
-		GL gl = gLDrawable.getGL();
-		// use the lastly modified buffer
-		gl.glReadBuffer(GL.GL_FRONT);
-		ExportToFile export = ExportToFile.createExporter(fileName, fileType);
-		export.setFileSize(gLDrawable.getWidth(), gLDrawable.getHeight());
-		export.exportToBitmap();
-		// back to defautl value
-		gl.glReadBuffer(GL.GL_BACK);  
-
-		// one shot renderer
-		gLDrawable.removeGLEventListener(this);
-
+		if (suffix != null) {
+			suffix = suffix.toLowerCase();
+			if (suffix.equalsIgnoreCase("bmp") && this.fileType == ExportRenderer.BMP_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("gif") && this.fileType == ExportRenderer.GIF_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("jpg") && this.fileType == ExportRenderer.JPG_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("png") && this.fileType == ExportRenderer.PNG_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("ppm") && this.fileType == ExportRenderer.PPM_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("eps") && this.fileType == ExportRenderer.EPS_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("pdf") && this.fileType == ExportRenderer.PDF_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("svg") && this.fileType == ExportRenderer.SVG_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			} else if (suffix.equalsIgnoreCase("ps") && this.fileType == ExportRenderer.PS_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+			}		
+		}
 	}
-
-	/** Called when the display mode has been changed.  <B>!! CURRENTLY UNIMPLEMENTED IN JOGL !!</B>
-	 * @param gLDrawable The GLDrawable object.
-	 * @param modeChanged Indicates if the video mode has changed.
-	 * @param deviceChanged Indicates if the video device has changed.
-	 */
-	public void displayChanged(GLAutoDrawable gLDrawable, boolean modeChanged, boolean deviceChanged) { }
-
-	/** Called by the drawable immediately after the OpenGL context is 
-	 * initialized for the first time. Can be used to perform one-time OpenGL 
-	 * initialization such as setup of lights and display lists.
-	 * @param gLDrawable The GLDrawable object.
-	 */
-	public void init(GLAutoDrawable gLDrawable) {
-		// nothing needs to be initialized, we just export
-	}
-
-
-	/** Called by the drawable during the first repaint after the component has 
-	 * been resized. The client can update the viewport and view volume of the 
-	 * window appropriately, for example by a call to 
-	 * GL.glViewport(int, int, int, int); note that for convenience the component
-	 * has already called GL.glViewport(int, int, int, int)(x, y, width, height)
-	 * when this method is called, so the client may not have to do anything in
-	 * this method.
-	 * @param gLDrawable The GLDrawable object.
-	 * @param x The X Coordinate of the viewport rectangle.
-	 * @param y The Y coordinate of the viewport rectanble.
-	 * @param width The new width of the window.
-	 * @param height The new height of the window.
-	 */
-	public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height) { }
-
 }
