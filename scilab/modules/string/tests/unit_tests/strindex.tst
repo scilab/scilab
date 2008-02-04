@@ -54,7 +54,7 @@ refw = [1 3 4];
 if (k <> refk ) then pause,end
 if (w <> refw ) then pause,end
 //===============================
-fd = mopen(SCI+'/modules/string/tests/unit_tests/text.txt','r');
+fd = mopen(SCI+'/modules/STRING_V2/tests/unit_tests/text.txt','r');
 txt = mgetl( fd );
 mclose( fd );
 //===============================
@@ -348,8 +348,10 @@ if strindex('a\nb\nc\n'                               ,'/()^b/'                 
 //  This is actually not compatible with Perl, which accepts such patterns, but
 //  treats the conditional as always being FALSE (as PCRE used to), but it
 //    seems to me that giving a diagnostic is better.
-//if strindex('a'                                       ,'/(?(1)a|b)/'                           ,'r') <>  []  then pause,end
-//if strindex('a'                                       ,'/(?(1)b|a)/'                           ,'r') <>  1   then pause,end
+if execstr("strindex(''a'' ,''/(?(1)a|b)/'',''r'')","errcatch") <>  999  then pause,end
+if execstr("strindex(''a'',''/(?(?{0})a|b)/'',''r'')","errcatch") <>  999  then pause,end
+if execstr("strindex(''a'',''/(?(?{1})b|a)/'',''r'')","errcatch") <>  999  then pause,end
+if execstr("strindex(''a'',''/(?(1)b|a)/'',''r'')","errcatch") <>  999  then pause,end
 if strindex('a'                                       ,'/(x)?(?(1)a|b)/'                       ,'r') <>  []  then pause,end
 if strindex('a'                                       ,'/(x)?(?(1)b|a)/'                       ,'r') <>  1   then pause,end
 if strindex('a'                                       ,'/()?(?(1)b|a)/'                        ,'r') <>  1   then pause,end
@@ -359,8 +361,6 @@ if strindex('blah)'                                   ,'/^(\()?blah(?(1)(\)))$/'
 if strindex('(blah'                                   ,'/^(\()?blah(?(1)(\)))$/'               ,'r') <>  []  then pause,end
 if strindex('blah)'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then pause,end
 if strindex('(blah'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then pause,end
-//if strindex('a'                                       ,'/(?(?{0})a|b)/'                        ,'r') <>  []  then pause,end
-//if strindex('a'                                       ,'/(?(?{1})b|a)/'                        ,'r') <>  []  then pause,end
 if strindex('a'                                       ,'/(?(?!a)a|b)/'                         ,'r') <>  []  then pause,end
 if strindex('a'                                       ,'/(?(?!a)b|a)/'                         ,'r') <>  1   then pause,end
 if strindex('a'                                       ,'/(?(?=a)b|a)/'                         ,'r') <>  []  then pause,end
