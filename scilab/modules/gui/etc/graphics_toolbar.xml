@@ -14,6 +14,6 @@
 
     <!-- Help -->
     <button icon="help-browser.png">
-        <callback instruction="help();" type="1"/>
+        <callback instruction="help();" type="0"/>
     </button>
 </toolbar>

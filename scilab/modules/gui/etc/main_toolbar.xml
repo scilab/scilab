@@ -7,7 +7,7 @@
 
     <!-- Scipad -->
     <button icon="accessories-text-editor.png">
-        <callback instruction="scipad();" type="1"/>
+        <callback instruction="scipad();" type="0"/>
     </button>
     <!-- Open File -->
     <button icon="document-open.png">
@@ -18,7 +18,7 @@
             scipad(%fileToOpen);
           end
           clear %fileToOpen"
-        type="1"/>
+        type="0"/>
     </button> 
 
     <separator/>
@@ -39,7 +39,7 @@
             cd(%newDir);
           end
           clear %newDir"
-        type="1"/>
+        type="0"/>
     </button> 
 
     <separator/>
@@ -53,6 +53,6 @@
 
     <!-- Help -->
     <button icon="help-browser.png">
-        <callback instruction="help();" type="1"/>
+        <callback instruction="help();" type="0"/>
     </button>
 </toolbar>

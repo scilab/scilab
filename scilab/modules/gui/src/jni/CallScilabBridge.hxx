@@ -106,9 +106,7 @@ jmethodID jintArraygetWidgetPositionjintID; // cache method id
 jmethodID voidsetFramePositionjintjintjintjintjintID; // cache method id
 jmethodID jintArraygetFramePositionjintID; // cache method id
 jmethodID voidsetWidgetCallbackjintjstringjintID; // cache method id
-jmethodID jstringgetWidgetCallbackjintID; // cache method id
 jmethodID voidsetFrameCallbackjintjstringjintID; // cache method id
-jmethodID jstringgetFrameCallbackjintID; // cache method id
 jmethodID voidsetWidgetHorizontalAlignmentjintjstringID; // cache method id
 jmethodID voidsetWidgetVerticalAlignmentjintjstringID; // cache method id
 jmethodID voidsetSliderMinorTickSpacingjintjintID; // cache method id
@@ -300,11 +298,7 @@ static long * getFramePosition(JavaVM * jvm_, long objID);
 
 static void setWidgetCallback(JavaVM * jvm_, long objID, char * text, long type);
 
-static char * getWidgetCallback(JavaVM * jvm_, long objID);
-
 static void setFrameCallback(JavaVM * jvm_, long objID, char * text, long type);
-
-static char * getFrameCallback(JavaVM * jvm_, long objID);
 
 static void setWidgetHorizontalAlignment(JavaVM * jvm_, long objID, char * alignment);
 

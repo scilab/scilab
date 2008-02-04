@@ -662,16 +662,6 @@ public class CallScilabBridge {
 	}
 	
 	/**
-	 * Get the callback for a Widget
-	 * @param objID the ID of the object in the UIElementMapper
-	 * @return the text of the callback
-	 */
-	public static String getWidgetCallback(int objID) {
-		System.out.println("getWidgetCallback is not implemented");
-		return "";
-	}
-
-	/**
 	 * Set a callback for a Frame
 	 * @param objID the ID of the object in the UIElementMapper
 	 * @param callback the text of the callback
@@ -680,16 +670,6 @@ public class CallScilabBridge {
 		System.out.println("setFrameCallback is not implemented");
 	}
 	
-	/**
-	 * Get the callback for a Frame
-	 * @param objID the ID of the object in the UIElementMapper
-	 * @return the text of the callback
-	 */
-	public static String getFrameCallback(int objID) {
-		System.out.println("getFrameCallback is not implemented");
-		return "";
-	}
-
 	/************************/
 	/*                      */
 	/* ENABLE/DISABLE MENUS */

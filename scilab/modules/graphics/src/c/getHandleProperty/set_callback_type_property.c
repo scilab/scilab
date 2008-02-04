@@ -17,40 +17,35 @@
 /*------------------------------------------------------------------------*/
 int set_callback_type_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  int cbType = -1;
 
-  if ( !isParameterStringMatrix( valueType ) )
+  if ( !isParameterDoubleMatrix(valueType) || nbRow !=1 || nbCol != 1 )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"callback_type") ;
+    sciprint(_("Incompatible value for property %s: must be -1, 0, 1 or 2.\n"),"callback_type") ;
     return SET_PROPERTY_ERROR ;
   }
 
-  if (sciGetEntityType (pobj) != SCI_UIMENU)
-  {
-    sciprint(_("%s property does not exist for this handle.\n"),"callback_type");
-    return SET_PROPERTY_ERROR ;
-  }
+  cbType = getDoubleFromStack(stackPointer);
 
-  if ( isStringParamEqual( stackPointer, "string" ) )
-  {
-    pUIMENU_FEATURE(pobj)->CallbackType = 0 ;
-  }
-  else if ( isStringParamEqual( stackPointer, "C" ) )
-  {
-    pUIMENU_FEATURE(pobj)->CallbackType = 1 ;
-  }
-  else if ( isStringParamEqual( stackPointer, "internal" ) )
-  {
-    pUIMENU_FEATURE(pobj)->CallbackType = 2 ;
-  }
-  else if ( isStringParamEqual( stackPointer, "addmenu" ) )
-  {
-    pUIMENU_FEATURE(pobj)->CallbackType = 3 ;
-  }
+  if (cbType < -1 || cbType > 2)
+    {
+      sciprint(_("Incompatible value for property %s: must be -1, 0, 1 or 2.\n"),"callback_type") ;
+      return SET_PROPERTY_ERROR ;
+    }
+
+  if (sciGetEntityType (pobj) == SCI_UIMENU)
+    {
+      pUIMENU_FEATURE(pobj)->callbackType = cbType;
+    }
+  else if (sciGetEntityType (pobj) == SCI_UICONTROL)
+    {
+      pUICONTROL_FEATURE(pobj)->callbackType = cbType;
+    }
   else
-  {
-    sciprint("Value must be 'string','C','internal','addmenu'.\n" ) ;
-    return SET_PROPERTY_ERROR ;
-  }
+    {
+      sciprint(_("%s property does not exist for this handle.\n"),"callback_type");
+      return SET_PROPERTY_ERROR ;
+    }
 
   return SET_PROPERTY_SUCCEED ;
 }

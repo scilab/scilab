@@ -21,35 +21,14 @@ int get_callback_type_property( sciPointObj * pobj )
     {
       if(sciGetEntityType (pobj) == SCI_UIMENU)
         {
-          type = pUIMENU_FEATURE(pobj)->CallbackType;
+          type = pUIMENU_FEATURE(pobj)->callbackType;
         }
       else
         {
-          type = pUICONTROL_FEATURE(pobj)->CallbackType;
+          type = pUICONTROL_FEATURE(pobj)->callbackType;
         }
       
-      switch (type)
-        {
-        case -1:
-          return sciReturnString( "disabled" ) ;
-          break;
-        case 0:
-          return sciReturnString( "string" ) ;
-          break;
-        case 1:
-          return sciReturnString( "C" ) ;
-          break;
-        case 2:
-          return sciReturnString( "internal" ) ;
-          break;
-        case 3:
-          return sciReturnString( "addmenu" ) ;
-          break;
-        default:
-          sciprint("Unknown callback type\n");
-          return -1;
-          break;
-        }
+      return sciReturnDouble(type);
     }
   else
     {

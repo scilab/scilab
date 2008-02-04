@@ -135,16 +135,6 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
       break;
     case SCI_UICONTROL:
     case SCI_UIMENU:
-/*       if ((pUIMENU_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL) */
-/* 	{ */
-/* 	  sciprint("No more Memory allocation !\n"); */
-/* 	  return -1; */
-/* 	} */
-/*       else  */
-/* 	{ */
-/* 	  strncpy(pUIMENU_FEATURE (pthis)->callback, code, len); */
-/* 	  pUIMENU_FEATURE (pthis)->callbacklen = len; */
-/* 	} */
       break;
     case SCI_TEXT:
     case SCI_TITLE:
@@ -385,10 +375,10 @@ sciGetCallbackLen (sciPointObj * pthis)
       return pPOLYLINE_FEATURE (pthis)->callbacklen;
       break;    
     case SCI_UIMENU:
-      return pUIMENU_FEATURE(pthis)->callbacklen;
+      return strlen(pUIMENU_FEATURE(pthis)->callback);
       break;
     case SCI_UICONTROL:
-      return pUICONTROL_FEATURE(pthis)->callbacklen;
+      return strlen(pUICONTROL_FEATURE(pthis)->callback);
       break;
     case SCI_TEXT:
     case SCI_TITLE:

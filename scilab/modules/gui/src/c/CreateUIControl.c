@@ -37,15 +37,11 @@ sciPointObj * CreateUIControl(char *style)
       return (sciPointObj *) NULL;
     }
 
-  if ((pUICONTROL_FEATURE (pobj)->callback = CALLOC(1,sizeof(char))) == NULL )
-    {
-      sciprint(_("No more place to allocates text string, try a shorter string.\n"));
-      return (sciPointObj *) NULL;
-    }
+  /* Callback */
+  /* The getter for Callback returns "" if Callback is NULL */
+  pUICONTROL_FEATURE (pobj)->callback = NULL;
+  pUICONTROL_FEATURE (pobj)->callbackType = -1; /* Disabled */
 
-  strcpy(pUICONTROL_FEATURE (pobj)->callback,"");
-  pUICONTROL_FEATURE (pobj)->callbacklen = 0;
-  pUICONTROL_FEATURE (pobj)->CallbackType = 0;
   pUICONTROL_FEATURE (pobj)->Enable = TRUE;
 
   /* Tag is set to NULL as default */
@@ -57,7 +53,7 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE (pobj)->valueSize = 0;
 
   /* ListboxTop is set to NULL as default */
-  /* The getter for ListboxTop returns [] is ListboxTop is NULL */
+  /* The getter for ListboxTop returns [] if ListboxTop is NULL */
   pUICONTROL_FEATURE (pobj)->listboxTop = NULL;
 
   /* Min/Max default values */

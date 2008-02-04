@@ -2730,16 +2730,13 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
     }
   ppobj=pUIMENU_FEATURE (pobj);
 
-  if ((pUIMENU_FEATURE (pobj)->callback = CALLOC(1,sizeof(char))) == NULL )
-    {
-      sciprint(_("No more place to allocates text string, try a shorter string"));
-      return (sciPointObj *) NULL;
-    }
+  /* Callback property */
+  /* Callback getter returns "" if callback is NULL */
+  pUIMENU_FEATURE (pobj)->callback = NULL;
+  pUIMENU_FEATURE (pobj)->callbackType=0;
 
-  strcpy(pUIMENU_FEATURE (pobj)->callback,"");
-  pUIMENU_FEATURE (pobj)->callbacklen = 0;
   pUIMENU_FEATURE (pobj)->MenuPosition=0;
-  pUIMENU_FEATURE (pobj)->CallbackType=0;
+
   pUIMENU_FEATURE (pobj)->Enable=TRUE;
 
   /* Initialize the tag */

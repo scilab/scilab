@@ -150,9 +150,7 @@ jintArraygetWidgetPositionjintID=NULL;
 voidsetFramePositionjintjintjintjintjintID=NULL; 
 jintArraygetFramePositionjintID=NULL; 
 voidsetWidgetCallbackjintjstringjintID=NULL; 
-jstringgetWidgetCallbackjintID=NULL; 
 voidsetFrameCallbackjintjstringjintID=NULL; 
-jstringgetFrameCallbackjintID=NULL; 
 voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
 voidsetSliderMinorTickSpacingjintjintID=NULL; 
@@ -269,9 +267,7 @@ jintArraygetWidgetPositionjintID=NULL;
 voidsetFramePositionjintjintjintjintjintID=NULL; 
 jintArraygetFramePositionjintID=NULL; 
 voidsetWidgetCallbackjintjstringjintID=NULL; 
-jstringgetWidgetCallbackjintID=NULL; 
 voidsetFrameCallbackjintjstringjintID=NULL; 
-jstringgetFrameCallbackjintID=NULL; 
 voidsetWidgetHorizontalAlignmentjintjstringID=NULL; 
 voidsetWidgetVerticalAlignmentjintjstringID=NULL; 
 voidsetSliderMinorTickSpacingjintjintID=NULL; 
@@ -1683,35 +1679,6 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-char * CallScilabBridge::getWidgetCallback (JavaVM * jvm_, long objID){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread((void **) &curEnv, NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-
-jmethodID jstringgetWidgetCallbackjintID = curEnv->GetStaticMethodID(cls, "getWidgetCallback", "(I)Ljava/lang/String;" ) ;
-if (jstringgetWidgetCallbackjintID == NULL) {
-std::cerr << "Could not access to the method " << "getWidgetCallback" << std::endl;
-exit(EXIT_FAILURE);
-}
-
-                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetWidgetCallbackjintID ,objID);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-const char *tempString = curEnv->GetStringUTFChars(res, 0);
-char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
-strcpy(myStringBuffer, tempString);
-curEnv->ReleaseStringUTFChars(res, tempString);
-
-return myStringBuffer;
-
-}
-
 void CallScilabBridge::setFrameCallback (JavaVM * jvm_, long objID, char * text, long type){
 
 JNIEnv * curEnv = NULL;
@@ -1734,35 +1701,6 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
-}
-
-char * CallScilabBridge::getFrameCallback (JavaVM * jvm_, long objID){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread((void **) &curEnv, NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-
-jmethodID jstringgetFrameCallbackjintID = curEnv->GetStaticMethodID(cls, "getFrameCallback", "(I)Ljava/lang/String;" ) ;
-if (jstringgetFrameCallbackjintID == NULL) {
-std::cerr << "Could not access to the method " << "getFrameCallback" << std::endl;
-exit(EXIT_FAILURE);
-}
-
-                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetFrameCallbackjintID ,objID);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-const char *tempString = curEnv->GetStringUTFChars(res, 0);
-char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
-strcpy(myStringBuffer, tempString);
-curEnv->ReleaseStringUTFChars(res, tempString);
-
-return myStringBuffer;
-
 }
 
 void CallScilabBridge::setWidgetHorizontalAlignment (JavaVM * jvm_, long objID, char * alignment){

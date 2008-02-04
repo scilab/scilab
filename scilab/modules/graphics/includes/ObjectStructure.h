@@ -659,15 +659,17 @@ typedef struct
   sciRelationShip relationship;
   /** */
   char *label;
+
+  /* Callback property */
   char *callback;
-  int callbacklen;
+  int callbackType;
+
   /** specifies if this object is visible             */
   BOOL visible;
   BOOL handle_visible;
   BOOL Enable;
 
   int MenuPosition;
-  int CallbackType;
 
   #ifdef _MSC_VER
 	HMENU hMenu;
@@ -689,16 +691,15 @@ sciUimenu;
 typedef struct
 {
   sciRelationShip relationship;
-  /** */
-  char *label;
-  char *callback;
-  int callbacklen;
+
   /** specifies if this object is visible             */
   BOOL visible;
   BOOL handle_visible;
   BOOL Enable;
 
-  int CallbackType;
+  /* Callback property */
+  char *callback;
+  int callbackType;
 
   /* Userdata property */
   int * user_data;

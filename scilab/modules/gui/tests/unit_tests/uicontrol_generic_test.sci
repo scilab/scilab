@@ -94,7 +94,31 @@ if ~and(get(h, "backgroundcolor") == [0.2 0.3 0.4]) then
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
-// TODO Callback tests
+// --- Callback tests ---
+// Default values
+if get(h, "callback") <> "" then
+  pause
+end
+if get(h, "callback_type") <> -1 then
+  pause
+end
+// Set a callback and do not precise type
+set(h, "callback", "exit();");
+if get(h, "callback") <> "exit();" then
+  pause
+end
+if get(h, "callback_type") <> 0 then
+  pause
+end
+set(h, "callback", "quit();");
+set(h, "callback_type", 0);
+if get(h, "callback") <> "quit();" then
+  pause
+end
+if get(h, "callback_type") <> 0 then
+  pause
+end
+// TODO tests with wrong callbackType ??
 
 // --- FontAngle ---
 // Default value

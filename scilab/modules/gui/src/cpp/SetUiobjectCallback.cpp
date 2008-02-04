@@ -2,6 +2,7 @@
 /* Vincent COUVERT */
 /* Set the callback of an uicontrol or uimenu */
 
+#include <cstring>
 #include "SetUiobjectCallback.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
@@ -64,11 +65,25 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
 
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
-      // Send the label to Java
+      // Send the callback to Java
       CallScilabBridge::setWidgetCallback(getScilabJavaVM(),
                                           pUIMENU_FEATURE(sciObj)->hashMapIndex,
                                           cbString,
                                           cbType);
+
+      // Store the value in Scilab
+      // Clear previous callback
+      if (pUIMENU_FEATURE(sciObj)->callback != NULL)
+        {
+          delete (pUIMENU_FEATURE(sciObj)->callback);
+        }
+
+      // Set the new callback
+      pUIMENU_FEATURE(sciObj)->callback = new char[strlen(getStringFromStack(stackPointer)) + 1];
+      strcpy(pUIMENU_FEATURE(sciObj)->callback, getStringFromStack(stackPointer));
+
+      pUIMENU_FEATURE(sciObj)->callbackType = cbType;
+
       return SET_PROPERTY_SUCCEED;
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
@@ -88,6 +103,27 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
                                               cbString,
                                               cbType);
         }
+
+      // Store the value in Scilab
+      // Clear previous callback
+      if (pUICONTROL_FEATURE(sciObj)->callback != NULL)
+        {
+          delete (pUICONTROL_FEATURE(sciObj)->callback);
+        }
+
+      // Set the new callback
+      pUICONTROL_FEATURE(sciObj)->callback = new char[strlen(cbString) + 1];
+      strcpy(pUICONTROL_FEATURE(sciObj)->callback, cbString);
+
+      if (strcmp(pUICONTROL_FEATURE(sciObj)->callback, "") == 0)
+        {
+          pUICONTROL_FEATURE(sciObj)->callbackType = -1; /* Disabled */
+        }
+      else
+        {
+          pUICONTROL_FEATURE(sciObj)->callbackType = cbType;
+        }
+
       return SET_PROPERTY_SUCCEED;
     }
   else

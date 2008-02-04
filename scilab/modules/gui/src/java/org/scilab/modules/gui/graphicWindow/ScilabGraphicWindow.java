@@ -86,7 +86,6 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 	 * @return Scilab command used to close a window.
 	 */
 	private String getClosingWindowCommand(int figureIndex) {
-		// delete(scf(i));
 		return "delete(scf(" + figureIndex + "));";
 	}
 	

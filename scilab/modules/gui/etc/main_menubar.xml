@@ -16,7 +16,7 @@
                 disp('Exec done.');
               end
               clear %fileToExec"
-            type="1"/>
+            type="0"/>
         </submenu> 
         <separator/>
         <submenu label="Open..." mnemonic="O"> 
@@ -27,7 +27,7 @@
                 scipad(%fileToOpen);
               end
               clear %fileToOpen"
-            type="1"/>
+            type="0"/>
         </submenu> 
         <submenu label="Load..." mnemonic="L"> 
             <callback 
@@ -38,7 +38,7 @@
                 disp('File loaded.');
               end
               clear %fileToLoad"
-            type="1"/>
+            type="0"/>
         </submenu> 
         <submenu label="Save..." mnemonic="S" enabled="false"/> 
         <separator/>
@@ -50,17 +50,17 @@
                 cd(%newDir);
               end
               clear %newDir"
-            type="1"/>
+            type="0"/>
         </submenu> 
         <submenu label="Display current directory" mnemonic="D">
-            <callback instruction="if iswaitingforinput() then printf('\n%s\n\n%s\n',prompt(),getcwd()); else printf('\n\n%s\n\n',getcwd());end" type="1"/>
+            <callback instruction="if iswaitingforinput() then printf('\n%s\n\n%s\n',prompt(),getcwd()); else printf('\n\n%s\n\n',getcwd());end" type="0"/>
         </submenu> 
         <separator/>
         <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
         <submenu label="Print" mnemonic="P" enabled="false"/> 
         <separator/>
         <submenu label="Quit" mnemonic="Q"> 
-            <callback instruction="exit();" type="1"/>
+            <callback instruction="exit();" type="0"/>
         </submenu>
     </menu>
 
@@ -87,43 +87,43 @@
     <!-- Control menu -->
     <menu label="Control" mnemonic="C" enabled="false">
         <submenu label="Resume" mnemonic="R" enabled="false"> 
-            <callback instruction="resume;" type="1"/>
+            <callback instruction="resume;" type="0"/>
         </submenu>
         <submenu label="Abort" mnemonic="A"> 
-            <callback instruction="abort;" type="1"/>
+            <callback instruction="abort;" type="0"/>
         </submenu>
         <submenu label="Interrupt" mnemonic="I"> 
-            <callback instruction="pause;" type="1"/>
+            <callback instruction="pause;" type="0"/>
         </submenu>
     </menu>
 
     <!-- Applications menu -->
     <menu label="Applications" mnemonic="A" enabled="false">
         <submenu label="Editor" mnemonic="S"> 
-            <callback instruction="scipad();" type="1"/>
+            <callback instruction="scipad();" type="0"/>
         </submenu>
         <separator/>
         <submenu label="Scicos" mnemonic="S" enabled="false"> 
-            <callback instruction="scicos();" type="1"/>
+            <callback instruction="scicos();" type="0"/>
         </submenu>
         <separator/>
         <submenu label="EditGraph" mnemonic="E" enabled="false"> 
-            <callback instruction="edit_graph();" type="1"/>
+            <callback instruction="edit_graph();" type="0"/>
         </submenu>
         <separator/>
         <submenu label="Matlab to Scilab translator" mnemonic="M"> 
-            <callback instruction="mfile2sci();" type="1"/>
+            <callback instruction="mfile2sci();" type="0"/>
         </submenu>
         <separator/>
         <submenu label="Variable Editor" mnemonic="V"> 
-            <callback instruction="browsevar();" type="1"/>
+            <callback instruction="browsevar();" type="0"/>
         </submenu>
     </menu>
 
     <!-- Help menu -->
     <menu label="?" mnemonic="?" enabled="false">
         <submenu label="Scilab Help" mnemonic="S"> 
-            <callback instruction="help();" type="1"/>
+            <callback instruction="help();" type="0"/>
         </submenu>
         <submenu label="Configure" mnemonic="C" enabled="false"/> 
         <separator/>

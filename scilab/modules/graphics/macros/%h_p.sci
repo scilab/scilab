@@ -714,7 +714,7 @@ function %h_p(h)
   "VerticalAlignment = "+h.verticalalignment
   "Visible = "+sci2exp(h.visible)
   "Callback = "+h.callback
-  "CallbackType = "+h.callback_type
+  "CallbackType = "+sci2exp(h.callback_type,0)
   //"handle_visible = "+sci2exp(h.handle_visible)
   "Userdata = "+h.user_data
   "Tag = "+h.tag

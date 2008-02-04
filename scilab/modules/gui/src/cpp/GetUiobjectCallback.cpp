@@ -10,21 +10,28 @@ int GetUiobjectCallback(sciPointObj* sciObj)
 {
   if (sciGetEntityType( sciObj ) == SCI_UIMENU)
     {
-      // Get the callback from Java
-      return sciReturnString(CallScilabBridge::getWidgetCallback(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex));
+      /* Do not read from Java because can be diffucult to get back the callback */
+
+      if (pUIMENU_FEATURE(sciObj)->callback == NULL) /* Callback not set */
+        {
+          return sciReturnString("");
+        }
+      else /* Callback has been set */
+        {
+          return sciReturnString(pUIMENU_FEATURE(sciObj)->callback);
+        }
     }
   else if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
-      // Get the callback from Java
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+      /* Do not read from Java because can be diffucult to get back the callback */
+
+      if (pUICONTROL_FEATURE(sciObj)->callback == NULL) /* Callback not set */
         {
-          return sciReturnString(CallScilabBridge::getFrameCallback(getScilabJavaVM(),
-                                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+          return sciReturnString("");
         }
-      else /* All other uicontrol styles */
+      else /* Callback has been set */
         {
-          return sciReturnString(CallScilabBridge::getWidgetCallback(getScilabJavaVM(),
-                                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex));
+          return sciReturnString(pUICONTROL_FEATURE(sciObj)->callback);
         }
     }
   else
