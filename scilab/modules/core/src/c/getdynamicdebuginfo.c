@@ -5,9 +5,10 @@
 #include "machine.h"
 #include <string.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <errno.h>
-
+#ifndef _MSC_VER
+	#include <unistd.h>
+	#include <errno.h>
+#endif
 #ifdef HAVE_UNAME
 #include <sys/utsname.h>
 #endif
@@ -34,6 +35,11 @@ char **getDynamicDebugInfo(int *sizeArray)
 	char **outputDynamicList=NULL;
 	int i,position=0;
 	static debug_message dynamicDebug[NB_DEBUG_ELEMENT];
+
+#ifdef _MSC_VER
+	*sizeArray = 0;
+	return outputDynamicList;
+#else
 
 #ifdef HAVE_UNAME
 	/* Host info */
@@ -99,4 +105,5 @@ char **getDynamicDebugInfo(int *sizeArray)
 	}
 	*sizeArray=i;
 	return outputDynamicList;
+#endif
 }

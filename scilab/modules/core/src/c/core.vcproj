@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
@@ -252,6 +252,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getdynamicdebuginfo.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getdynamicdebuginfo.c"
+				>
+			</File>
+			<File
 				RelativePath=".\GetenvB.c"
 				>
 			</File>
@@ -274,6 +282,10 @@
 						CompileAs="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\getstaticdebuginfo.c"
+				>
 			</File>
 			<File
 				RelativePath=".\getval.c"
@@ -472,6 +484,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_getdebuginfo.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getdebuginfo.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_getmd5.c"
 				>
 			</File>
@@ -623,9 +643,6 @@
 				RelativePath="..\..\sci_gateway\c\sci_with_module.c"
 				>
 			</File>
-			<File RelativePath="..\..\sci_gateway\c\sci_getdebuginfo.c"
-				>
-			</File>
 			<File
 				RelativePath=".\scicurdir.c"
 				>
@@ -726,14 +743,6 @@
 				RelativePath=".\xscion.c"
 				>
 			</File>
-			<File 
-				RelativePath=".\getdynamicdebuginfo.c"
-				>
-			</File>
-			<File
-				RelativePath=".\getstati5Bcdebuginfo.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -820,6 +829,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getdebuginfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\getdynamicdebuginfo.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetExceptionCode.h"
 				>
 			</File>
@@ -833,6 +850,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\getmodules.h"
+				>
+			</File>
+			<File
+				RelativePath=".\getstaticdebuginfo.h"
 				>
 			</File>
 			<File
@@ -924,11 +945,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File

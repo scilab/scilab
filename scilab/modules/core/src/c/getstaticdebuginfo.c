@@ -7,13 +7,20 @@
 #include <string.h>
 #include <stdio.h>
 #include <libxml/xmlversion.h>
-#ifdef WITH_TK
-#include <tcl.h>
-#include <tk.h>
+
+
+/* TO DO : modify this WITH_TK is not defined on Windows */
+/* it will be better to not have ref. about TCL/TK on core */
+/* create a function in tclsci & notclsi to return value */
+#ifndef _MSC_VER
+	#ifdef WITH_TK
+		#include <tcl.h>
+		#include <tk.h>
+	#endif
 #endif
 #include "MALLOC.h"
 #include "getstaticdebuginfo.h"
-#define NB_DEBUG_ELEMENT 100
+
 
 char **getStaticDebugInfo(int *sizeArray)
 {
