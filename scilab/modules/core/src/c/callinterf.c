@@ -126,23 +126,30 @@ int C2F(callinterf) (int *k)
   static int count = 0;
   if ( count == 0)
     {
-      if (sig_ok) signal(SIGINT,sci_sigint_addinter);
+      if (sig_ok) {
+		  signal(SIGINT,sci_sigint_addinter);
+	  }
       if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
-	{
-	  if (sig_ok) signal(SIGINT, controlC_handler);
-	  Scierror(999,_("SIGSTP: aborting current computation\n"));
-	  count = 0;
-	  return 0;
-	}
+		  {
+			  if (sig_ok) {
+				  signal(SIGINT, controlC_handler);
+			  }
+			  Scierror(999,_("SIGSTP: aborting current computation\n"));
+			  count = 0;
+			  return 0;
+		  }
     }
   count++;
-  if (*k > DynInterfStart)
+  if (*k > DynInterfStart) {
     C2F(userlk)(k);
-  else
+  } else {
     (*(Interfaces[*k-1].fonc))();
+  }
   count--;
   if (count == 0) {
-    if (sig_ok) signal(SIGINT, controlC_handler);
+    if (sig_ok) {
+		signal(SIGINT, controlC_handler);
+	}
   }
   return 0;
 }
