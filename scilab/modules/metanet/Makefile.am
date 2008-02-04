@@ -178,4 +178,8 @@ demos/node2station \
 demos/mesh100.graph \
 demos/paris.graph
 
+
+#### metanet : Macros ####
+MACROSDIRSEXT =  macros/editor macros/graph_tools
+
 include $(top_srcdir)/Makefile.incl.am

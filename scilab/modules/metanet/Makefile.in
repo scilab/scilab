@@ -503,6 +503,9 @@ demos/mesh100.graph \
 demos/paris.graph
 
 
+#### metanet : Macros ####
+MACROSDIRSEXT = macros/editor macros/graph_tools
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
