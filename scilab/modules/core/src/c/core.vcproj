@@ -623,6 +623,9 @@
 				RelativePath="..\..\sci_gateway\c\sci_with_module.c"
 				>
 			</File>
+			<File RelativePath="..\..\sci_gateway\c\sci_getdebuginfo.c"
+				>
+			</File>
 			<File
 				RelativePath=".\scicurdir.c"
 				>
@@ -721,6 +724,14 @@
 			</File>
 			<File
 				RelativePath=".\xscion.c"
+				>
+			</File>
+			<File 
+				RelativePath=".\getdynamicdebuginfo.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getstati5Bcdebuginfo.c"
 				>
 			</File>
 		</Filter>
