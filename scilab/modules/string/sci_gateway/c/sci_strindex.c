@@ -21,6 +21,7 @@
 #include "freeArrayOfString.h"
 #include "pcre_private.h"
 #include "BOOL.h"
+#include "pcre_error.h"
 /*------------------------------------------------------------------------*/
 #define CHAR_S "s"
 #define CHAR_R "r"
@@ -173,6 +174,10 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 					values[nbValues++].data = Output_Start+1; /* adding the answer into the outputmatrix */
 					values[nbposition++].position = x+1;        /* The number according to the str2 matrix */
 				}     
+				else
+				{
+					pcre_error("GREP_NEW",w);
+				}
 			}
             
 		
@@ -215,7 +220,6 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 					while(w != 0);/* w is the answer of the kmp algorithem*/
 
 					/* values are sorted */
-					/* TO DO : Optimize this , with a qsort */
 					qsort(values,nbValues,sizeof(values[0]),cmp); 
 				}
 			}
