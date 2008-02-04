@@ -8,12 +8,12 @@ SUBDIRS = polynomials
 
 SUBDIRS += \
 string \
-intersci \
 cacsd \
 elementary_functions \
 arnoldi \
 boolean \
 output_stream \
+intersci \
 dynamic_link \
 linear_algebra \
 differential_equations \

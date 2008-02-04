@@ -167,8 +167,8 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = polynomials string intersci cacsd elementary_functions \
-	arnoldi boolean output_stream dynamic_link linear_algebra \
+DIST_SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
+	boolean output_stream intersci dynamic_link linear_algebra \
 	differential_equations signal_processing fileio core metanet \
 	optimization interpolation localization sound statistics time \
 	integer special_functions double randlib data_structures \
@@ -357,8 +357,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # The order DOES matter !!!
-SUBDIRS = polynomials string intersci cacsd elementary_functions \
-	arnoldi boolean output_stream dynamic_link linear_algebra \
+SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
+	boolean output_stream intersci dynamic_link linear_algebra \
 	differential_equations signal_processing fileio core metanet \
 	optimization interpolation localization sound statistics time \
 	integer special_functions double randlib data_structures \
