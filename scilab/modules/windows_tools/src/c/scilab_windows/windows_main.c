@@ -125,7 +125,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		}
 	}
 
-	if (ShowMessageBoxInfo) StartupMessageBox();
+        // No more needed
+	//if (ShowMessageBoxInfo) StartupMessageBox();
 
 	for (i=1;i<my_argc;i++)
 	{
