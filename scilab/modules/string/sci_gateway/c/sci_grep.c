@@ -14,10 +14,10 @@
 #include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "pcre_private.h"
-#include "pcre_error.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "pcre_error.h"
 /*------------------------------------------------------------------------*/
 #define GREP_OK             0
 #define MEMORY_ALLOC_ERROR -1
@@ -133,7 +133,6 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 			else
 			{
 				pcre_error("GREP_NEW",answer);
-				return 0;
 			}
 			if (save) {FREE(save);save=NULL;}
 		}
