@@ -242,12 +242,12 @@ src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
 src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
 src/jni/DrawableGrayplotGL.cpp \
-src/cpp/ConcreteDrawableGrayplot.cpp \
-src/cpp/DrawabelGrayplotJavaMapper.cpp \
-src/cpp/DrawableGrayplotBridgeFactory.cpp \
-src/cpp/DrawableGrayplotJoGL.cpp \
-src/cpp/GrayplotDecomposer.cpp \
-src/cpp/MatplotDecomposer.cpp
+src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp \
+src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
+src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
+src/cpp/grayplotDrawing/MatplotDecomposer.cpp
 
 
 # List of the gateway c files
