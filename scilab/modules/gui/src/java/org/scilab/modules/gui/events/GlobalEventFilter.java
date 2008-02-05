@@ -52,6 +52,9 @@ public class GlobalEventFilter {
 		synchronized (ClickInfos.getInstance()) {
 			ClickInfos.getInstance().setMouseButtonNumber(SCILAB_CALLBACK);
 			ClickInfos.getInstance().setMenuCallback(command);
+			ClickInfos.getInstance().setWindowID(-1);
+			ClickInfos.getInstance().setXCoordinate(-1);
+			ClickInfos.getInstance().setYCoordinate(-1);
 			ClickInfos.getInstance().notify();
 		}
 	}	

@@ -48,7 +48,16 @@ int sci_xclick(char *fname,unsigned long fname_len)
   menuCallback = getJxclickMenuCallback();
 
   // Convert pixel coordinates to user coordinates
-  sciGet2dViewCoordFromPixel(sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN), pixelCoords, userCoords2D);
+  // Conversion is not done if the user clicked on a menu (pixelCoords[*] == -1)
+  if (pixelCoords[0]!=-1 && pixelCoords[1]!=-1)
+    {
+      sciGet2dViewCoordFromPixel(sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN), pixelCoords, userCoords2D);
+    }
+  else
+    {
+      userCoords2D[0] = pixelCoords[0];
+      userCoords2D[1] = pixelCoords[1];
+    }
 
   if (Lhs == 1)
   {
