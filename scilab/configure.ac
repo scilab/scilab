@@ -826,7 +826,7 @@ AC_MSG_CHECKING([if BLAS, ATLAS or MKL is available])
 echo ""
 EMBEDDED_BLAS=0
 ACX_BLAS(
-		[]
+		[AC_MSG_RESULT([$BLAS_TYPE found])]
 		,
 		AC_MSG_WARN([Impossible to find a blas compatible library (see BLAS or ATLAS). Use the version of generic blas embedded])
 		EMBEDDED_BLAS=1
@@ -838,7 +838,7 @@ AC_MSG_CHECKING([if LAPACK is available])
 echo ""
 EMBEDDED_LAPACK=0
 ACX_LAPACK(
-		[],
+		[AC_MSG_RESULT([$LAPACK_TYPE found])],
 		AC_MSG_WARN([Impossible to find the LAPACK library. Use the version of lapack embedded])
 		EMBEDDED_LAPACK=1
 		)

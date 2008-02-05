@@ -222,7 +222,7 @@ fi
 if test "x$LAPACK_LIBS" != x; then
         save_LIBS="$LIBS"; LIBS="$LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
         AC_MSG_CHECKING([for $cheev in $LAPACK_LIBS])
-        AC_TRY_LINK_FUNC($cheev, [acx_lapack_ok=yes], [LAPACK_LIBS=""])
+        AC_TRY_LINK_FUNC($cheev, [acx_lapack_ok=yes; LAPACK_TYPE="LAPACK_LIBS env variable"], [LAPACK_LIBS=""])
         AC_MSG_RESULT($acx_lapack_ok)
         LIBS="$save_LIBS"
         if test acx_lapack_ok = no; then
@@ -233,7 +233,7 @@ fi
 # LAPACK linked to by default?  (is sometimes included in BLAS lib)
 if test $acx_lapack_ok = no; then
         save_LIBS="$LIBS"; LIBS="$LIBS $BLAS_LIBS $FLIBS"
-        AC_CHECK_FUNC($cheev, [acx_lapack_ok=yes])
+        AC_CHECK_FUNC($cheev, [acx_lapack_ok=yes; LAPACK_TYPE="Default link"])
         LIBS="$save_LIBS"
 fi
 
@@ -242,7 +242,7 @@ for lapack in lapack lapack_rs6k; do
         if test $acx_lapack_ok = no; then
                 save_LIBS="$LIBS"; LIBS="$BLAS_LIBS $LIBS"
                 AC_CHECK_LIB($lapack, $cheev,
-                    [acx_lapack_ok=yes; LAPACK_LIBS="-l$lapack"], [], [$FLIBS])
+                    [acx_lapack_ok=yes; LAPACK_TYPE="Library -l$lapack"; LAPACK_LIBS="-l$lapack"], [], [$FLIBS])
                 LIBS="$save_LIBS"
         fi
 done
