@@ -1,5 +1,6 @@
 //==========================================
-// INRIA 2008
+// Copyright ENPC
+// Copyright INRIA 2008
 //==========================================
 function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,ismex)
 

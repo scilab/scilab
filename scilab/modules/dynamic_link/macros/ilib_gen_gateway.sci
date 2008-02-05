@@ -3,6 +3,8 @@
 // from table table taking into account 
 // attributes of function i.e mex fmex or scilab interface 
 // if name is a full path just extract the filename 
+// Copyright ENPC 
+// Copyright INRIA
 //==========================================
 // ilib_gen_gateway used by ilib_build
 //==========================================

@@ -1,5 +1,6 @@
 function ilib_gen_loader(name,tables,libs)
-
+// Copyright ENPC 
+// Copyright INRIA
   if rhs < 3 then 
     libs = [];
   end 
