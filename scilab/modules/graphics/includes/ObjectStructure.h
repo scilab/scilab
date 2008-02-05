@@ -607,7 +607,7 @@ typedef enum
     /** */
     SCI_TITLE_IN_TOP = 0,
     /** */
-    SCI_TITLE_IN_BOTTOM = 1,
+    SCI_TITLE_IN_BOTTOM = 1
   }/** */
 sciTitlePlace;	
 
