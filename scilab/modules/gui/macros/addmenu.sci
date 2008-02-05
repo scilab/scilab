@@ -182,9 +182,9 @@ endfunction
 function addSingleMenu(fig, menulabel)
 h = UImenu("parent", fig, "label", menulabel);
 if fig==0
-  set(h, "callback", list(0, "execstr("""+menulabel+"(1)"")"));
+  set(h, "callback", list(0, "execstr("+menulabel+"(1))"));
 else
-  set(h, "callback", list(0, "execstr("""+menulabel+"_"+string(get(fig,"figure_id"))+"(1)"")"));
+  set(h, "callback", list(0, "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"(1))"));
 end
 endfunction
 //------------------------------------------------------------------------------
@@ -199,12 +199,12 @@ function addSingleMenuCallback(fig, menulabel, callback)
 
 h = UImenu("parent", fig, "label", menulabel);
 if callbackType <> 2
-  set(h, "callback", list(0, "execstr("""+callbackStr+""")"));
+  set(h, "callback", list(0, "execstr("+callbackStr+")"));
 else
   if fig==0
-    set(h, "callback", list(0, "execstr("""+callbackStr+"(1)"")"));
+    set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
   else
-    set(h, "callback", list(0, "execstr("""+callbackStr+"(1,"+string(get(fig,"figure_id"))+")"")"));
+    set(h, "callback", list(0, "execstr("+callbackStr+"(1,"+string(get(fig,"figure_id"))+"))"));
   end
 end
 
@@ -243,12 +243,12 @@ h0 = UImenu("parent",fig,"label",menulabel);
 for K=1:size(submenuslabels,"*")
   h = UImenu("parent", h0, "label", submenuslabels(K));
   if callbackType <> 2
-    set(h, "callback", list(0, "execstr("""+callbackStr+""")"));
+    set(h, "callback", list(0, "execstr("+callbackStr+")"));
   else
     if fig == 0
-      set(h, "callback", list(0, "execstr("""+callbackStr+"(1)"")"));
+      set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
     else
-      set(h, "callback", list(0, "execstr("""+callbackStr+"("+string(K)+","+string(get(fig,"figure_id"))+")"")"));
+      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(K)+","+string(get(fig,"figure_id"))+"))"));
     end
   end
 end
