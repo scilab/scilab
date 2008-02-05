@@ -16,7 +16,10 @@ import javax.media.opengl.GL;
  */
 public class GLAdapter implements GL {
 
-
+	
+	/**
+	 * getExtension
+	 */
 	public Object getExtension(String arg0) {
 		throw new UnsupportedOperationException();
 	}
