@@ -33,7 +33,7 @@ public class Scilab {
 	
 	private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
 	
-		private int mode;
+	private int mode;
 
 	private Window mainView;
 
@@ -45,7 +45,7 @@ public class Scilab {
 		LookAndFeelManager lookAndFeel = new LookAndFeelManager();
 		String gtkLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
 		this.mode = mode;
-		/* TODO: Manages also windows */
+		/* TODO Manages also windows */
 
 		if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)) {
 			lookAndFeel.setLookAndFeel(gtkLookAndFeel);
@@ -82,8 +82,7 @@ public class Scilab {
 			try {
 				/* CONSOLE */
 				/* Create a tab to put console into */
-				consoleTab = ScilabTab.createTab("Console Scilab");
-				consoleTab.setName("Console");
+				consoleTab = ScilabTab.createTab("Console");
 				/* Exit Scilab when the console is closed */
 				consoleTab.setCallback("exit();", CallBack.SCILAB_INSTRUCTION);
 

@@ -78,7 +78,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      */
 	public void repaint() {
 		super.repaint();
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar());
+		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getName());
 		}
 	
 	/**
