@@ -56,6 +56,8 @@ AC_DEFUN([AC_PVM], [
 
 if test ! -z "$PVM_INCLUDE" -a ! -z "$PVM_LIB"; then
 	PVM_OK=1
+else
+    AC_MSG_ERROR([Cannot find headers (pvm3.h) or PVM library. Please install the dev package.])
 fi 
 AC_SUBST(PVMARCH)
 AC_SUBST(PVM_LIB)

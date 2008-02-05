@@ -643,7 +643,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h syslog.h termio.h termios.h wchar.h wctype.h libintl.h])
+AC_CHECK_HEADERS([fcntl.h float.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h libintl.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -740,7 +740,7 @@ AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 #################
 
 AC_ARG_WITH(fftw,
-    [  --with-fftw	           compile with the FFTW 3 library ])
+    [  --with-fftw	           compile with the FFTW 3 library])
 # @TODO change that to add the possibility to specify a directory
 if test "$with_fftw" = yes; then
    AC_FFTW()
@@ -752,7 +752,7 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
 #################
 
 AC_ARG_WITH(mpi,
-    [  --with-mpi	           compile with MPI library ])
+    [  --with-mpi	           compile with MPI library])
 
 if test "$with_mpi" = yes; then
    AC_OPENMPI()
@@ -765,12 +765,12 @@ AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 #################
 
 AC_ARG_WITH(pvm,
-    [  --with-pvm	           compile with PVM library ])
+    [  --with-pvm	           compile with PVM library])
 
 if test "$with_pvm" = yes; then
    AC_PVM()
 fi
-AM_CONDITIONAL(PVM, test "$PVM_OK" = "1")
+AM_CONDITIONAL(PVM, test "$with_pvm" = yes)
 
 #######################
 ## Test for libxml
