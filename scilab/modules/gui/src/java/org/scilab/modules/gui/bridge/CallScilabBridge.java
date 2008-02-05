@@ -607,7 +607,6 @@ public class CallScilabBridge {
 			UIElementMapper.addMapping(objID, menuToAdd);
 			// Copy all properties from MenuItem to Menu
 			menuToAdd.setText(menuItem.getText());
-			menuToAdd.setCallback("1+2", 1);
 			// TODO Add other properties
 
 			ScilabConsole.getConsole().getMenuBar().add(menuToAdd);
