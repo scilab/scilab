@@ -1,5 +1,7 @@
 //==========================================
 // Generate a shared library which can be used by link command. 
+// Author: ENPC 
+// Author: INRIA
 //==========================================
 function libn = ilib_for_link(names, ..
                               files, ..
