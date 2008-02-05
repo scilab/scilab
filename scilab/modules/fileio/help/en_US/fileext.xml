@@ -12,7 +12,7 @@
   <SHORT_DESCRIPTION name="fileext">returns extension for a file path</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>extension = fileparts(fullpath)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>extension = fileext(fullpath)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -36,7 +36,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>extension=fileparts(fullpath)</VERB> splits the fullpath character string in the extension part including the dot.</P>
+    <P><VERB>extension=fileext(fullpath)</VERB> splits the fullpath character string in the extension part including the dot.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[ extension = fileext('SCI/etc/scilab.start')

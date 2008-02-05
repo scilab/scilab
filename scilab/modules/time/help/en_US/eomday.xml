@@ -4,9 +4,9 @@
 	<LANGUAGE>eng</LANGUAGE>
 	<TITLE>eomday</TITLE>
 	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
+	<DATE>$LastChangedDate$</DATE>
 	
-	<SHORT_DESCRIPTION name="eomday">Return last day o month</SHORT_DESCRIPTION>
+	<SHORT_DESCRIPTION name="eomday">Return last day of month</SHORT_DESCRIPTION>
 	
 	<CALLING_SEQUENCE>
 		<CALLING_SEQUENCE_ITEM>E = eomday(Y, M)</CALLING_SEQUENCE_ITEM>
@@ -16,9 +16,11 @@
 		<P>E = eomday(Y, M) returns the last day of the year and month given by corresponding elements of arrays Y and M.</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE><![CDATA[
+	<EXAMPLE>
+<![CDATA[
 eomday(2006,3);
-	]]></EXAMPLE>
+]]>
+	</EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>
