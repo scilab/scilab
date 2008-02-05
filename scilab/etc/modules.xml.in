@@ -68,12 +68,12 @@
 <module name="demo_tools" activate="1"/>
 <module name="spreadsheet" activate="1"/>
 <!-- comments -->
-<module name="scicos" activate="0"/>
-<module name="scicos_blocks" activate="0"/>
+<module name="scicos" activate="@SCICOS_ENABLE@"/>
+<module name="scicos_blocks" activate="@SCICOS_ENABLE@"/>
 <!-- comments -->
-<module name="pvm" activate="0"/>
+<module name="pvm" activate="@PVM_ENABLE@"/>
 <module name="sci2c" activate="0"/>
-<module name="fftw" activate="0"/>
+<module name="fftw" activate="@FFTW_ENABLE@"/>
 <module name="module_skeleton" activate="0"/>
  </modules>
  

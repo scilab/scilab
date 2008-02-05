@@ -718,7 +718,7 @@ AC_ARG_WITH(ocaml,
     [  --without-ocaml         do not compile ocaml modules ])
 
 
-
+SCICOS_ENABLE=0
 if test "$with_scicos" = yes; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
@@ -729,8 +729,10 @@ if test "$with_scicos" = yes; then
 		if test "$with_ocaml" != no; then
 		   AC_CHECK_PROG_OCAML()
 		fi
-
+		SCICOS_ENABLE=1
 fi
+AC_SUBST(SCICOS_ENABLE)
+
 
 AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 
@@ -742,23 +744,29 @@ AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 AC_ARG_WITH(fftw,
     [  --with-fftw	           compile with the FFTW 3 library])
 # @TODO change that to add the possibility to specify a directory
+
+FFTW_ENABLE=0
 if test "$with_fftw" = yes; then
    AC_FFTW()
+   FFTW_ENABLE=1
 fi
+
+AC_SUBST(FFTW_ENABLE)
 AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
 
 #################
 ## MPI
 #################
 
-AC_ARG_WITH(mpi,
-    [  --with-mpi	           compile with MPI library])
-
-if test "$with_mpi" = yes; then
-   AC_OPENMPI()
-   # We will have to detect other implementation of OpenMPI
-fi
-AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
+# Not in Scilab 5.0
+#AC_ARG_WITH(mpi,
+#    [  --with-mpi	           compile with MPI library])
+#
+#if test "$with_mpi" = yes; then
+#   AC_OPENMPI()
+#   # We will have to detect other implementation of OpenMPI
+#fi
+#AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
 ## PVM
@@ -767,9 +775,13 @@ AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 AC_ARG_WITH(pvm,
     [  --with-pvm	           compile with PVM library])
 
+PVM_ENABLE=0
 if test "$with_pvm" = yes; then
-   AC_PVM()
+   AC_PVM()	
+   PVM_ENABLE=1
 fi
+AC_SUBST(PVM_ENABLE)
+
 AM_CONDITIONAL(PVM, test "$with_pvm" = yes)
 
 #######################
