@@ -7,10 +7,15 @@
 
 #include "sci_xs2fig.h"
 #include "xs2file.h"
+#include "sciprint.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xs2fig(char *fname,unsigned long fname_len)
 {
-  return xs2file( fname, NO_EXPORT ) ;
+  //return xs2file( fname, NO_EXPORT ) ;
+  sciprint(_("%s: This feature has not been implemented.\n"),fname);
+  C2F(putlhsvar)();
+  return 0;
 }
 /*--------------------------------------------------------------------------*/
