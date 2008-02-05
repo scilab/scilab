@@ -278,7 +278,7 @@ c     . %tk
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1
-c     . %tk 
+c     . %fftw 
       vname = ' '
       vname(1:5) = "%fftw"
       call withfftw(irep)
