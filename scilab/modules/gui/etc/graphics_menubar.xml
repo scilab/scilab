@@ -88,17 +88,29 @@
     </menu>
 
     <menu label="Edit" mnemonic="E">
-        <submenu label="Select as current figure" mnemonic="S" enabled="false"/> 
-        <submenu label="Redraw figure" mnemonic="R" enabled="false"/> 
+        <submenu label="Select as current figure" mnemonic="S"> 
+            <callback instruction="scf([SCILAB_FIGURE_ID]);" type="0"/>
+        </submenu> 
+        <submenu label="Redraw figure" mnemonic="R"> 
+            <callback instruction="xbasr([SCILAB_FIGURE_ID]);" type="0"/>
+        </submenu> 
         <submenu label="Clear figure" mnemonic="C">
             <callback instruction="clf(scf([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Figure properties" mnemonic="F" enabled="false"/> 
-        <submenu label="Axes properties" mnemonic="A" enabled="false"/> 
+        <submenu label="Figure properties" mnemonic="F" enabled="false"> 
+            <callback instruction="ged(8,[SCILAB_FIGURE_ID]);" type="0"/>
+        </submenu> 
+        <submenu label="Axes properties" mnemonic="A" enabled="false"> 
+            <callback instruction="ged(9,[SCILAB_FIGURE_ID]);" type="0"/>
+        </submenu> 
         <separator/>
-        <submenu label="Start entity picker" mnemonic="S" enabled="false"/> 
-        <submenu label="Stop entity picker" mnemonic="T" enabled="false"/> 
+        <submenu label="Start entity picker" mnemonic="S" enabled="false"> 
+            <callback instruction="ged(10,[SCILAB_FIGURE_ID]);" type="0"/>
+        </submenu> 
+        <submenu label="Stop entity picker" mnemonic="T" enabled="false"> 
+            <callback instruction="ged(11,[SCILAB_FIGURE_ID]);" type="0"/>
+        </submenu>
     </menu>
 
     <menu label="?" mnemonic="?">
