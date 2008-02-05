@@ -16,7 +16,6 @@ int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_opentk) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_close) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_findobj) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_get) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_gcf) _PARAMS((char *fname,unsigned long fname_len));

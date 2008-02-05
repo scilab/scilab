@@ -31,7 +31,6 @@ sci_gateway/c/sci_TCL_SetVar.c \
 sci_gateway/c/sci_TCL_ExistVar.c \
 sci_gateway/c/sci_TCL_DoOneEvent.c \
 sci_gateway/c/sci_TCL_UnsetVar.c \
-sci_gateway/c/sci_findobj.c \
 sci_gateway/c/sci_get.c \
 sci_gateway/c/sci_TCL_ExistInterp.c \
 sci_gateway/c/gw_tclsci.c \

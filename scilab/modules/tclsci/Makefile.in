@@ -117,9 +117,9 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 	sci_gateway/c/sci_close.c sci_gateway/c/sci_TCL_SetVar.c \
 	sci_gateway/c/sci_TCL_ExistVar.c \
 	sci_gateway/c/sci_TCL_DoOneEvent.c \
-	sci_gateway/c/sci_TCL_UnsetVar.c sci_gateway/c/sci_findobj.c \
-	sci_gateway/c/sci_get.c sci_gateway/c/sci_TCL_ExistInterp.c \
-	sci_gateway/c/gw_tclsci.c sci_gateway/c/sci_TCL_EvalStr.c \
+	sci_gateway/c/sci_TCL_UnsetVar.c sci_gateway/c/sci_get.c \
+	sci_gateway/c/sci_TCL_ExistInterp.c sci_gateway/c/gw_tclsci.c \
+	sci_gateway/c/sci_TCL_EvalStr.c \
 	sci_gateway/c/sci_TCL_DeleteInterp.c \
 	sci_gateway/c/sci_TCL_GetVersion.c \
 	sci_gateway/c/sci_TCL_EvalFile.c \
@@ -151,7 +151,6 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_ExistVar.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_DoOneEvent.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_UnsetVar.lo \
-@TCLTK_TRUE@	libscitclsci_la-sci_findobj.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_get.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_ExistInterp.lo \
 @TCLTK_TRUE@	libscitclsci_la-gw_tclsci.lo \
@@ -409,7 +408,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistVar.c \
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_DoOneEvent.c \
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_UnsetVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_findobj.c \
 @TCLTK_TRUE@sci_gateway/c/sci_get.c \
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistInterp.c \
 @TCLTK_TRUE@sci_gateway/c/gw_tclsci.c \
@@ -925,7 +923,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_UpVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_gcf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_close.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_findobj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_get.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_opentk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_set.Plo@am__quote@
@@ -1128,13 +1125,6 @@ libscitclsci_la-sci_TCL_UnsetVar.lo: sci_gateway/c/sci_TCL_UnsetVar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_TCL_UnsetVar.c' object='libscitclsci_la-sci_TCL_UnsetVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-sci_TCL_UnsetVar.lo `test -f 'sci_gateway/c/sci_TCL_UnsetVar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_TCL_UnsetVar.c
-
-libscitclsci_la-sci_findobj.lo: sci_gateway/c/sci_findobj.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-sci_findobj.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-sci_findobj.Tpo -c -o libscitclsci_la-sci_findobj.lo `test -f 'sci_gateway/c/sci_findobj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_findobj.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitclsci_la-sci_findobj.Tpo $(DEPDIR)/libscitclsci_la-sci_findobj.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_findobj.c' object='libscitclsci_la-sci_findobj.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-sci_findobj.lo `test -f 'sci_gateway/c/sci_findobj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_findobj.c
 
 libscitclsci_la-sci_get.lo: sci_gateway/c/sci_get.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-sci_get.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-sci_get.Tpo -c -o libscitclsci_la-sci_get.lo `test -f 'sci_gateway/c/sci_get.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get.c

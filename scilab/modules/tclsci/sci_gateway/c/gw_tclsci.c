@@ -22,7 +22,6 @@
   {C2F(sci_TCL_SetVar),"TCL_SetVar"},
   {C2F(sci_opentk),"opentk"},
   {C2F(sci_close),"close"},
-  {C2F(sci_findobj),"findobj"},
   {C2F(sci_TCL_set),"%s_set"},
   {C2F(sci_TCL_get),"%s_get"},
   {C2F(sci_TCL_gcf),"TCL_gcf"},

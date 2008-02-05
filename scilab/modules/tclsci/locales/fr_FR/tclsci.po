@@ -96,7 +96,6 @@ msgstr ""
 # File: sci_gateway/c/sci_TCL_gcf.c, line: 45
 # File: sci_gateway/c/sci_TCL_gcf.c, line: 108
 # File: sci_gateway/c/sci_close.c, line: 73
-# File: sci_gateway/c/sci_findobj.c, line: 41
 #, c-format
 msgid "Tcl Error : %s\n"
 msgstr ""
@@ -115,7 +114,6 @@ msgstr ""
 # File: src/c/TclUiSet.c, line: 104
 # File: src/c/TclUiSet.c, line: 207
 # File: sci_gateway/c/sci_TCL_gcf.c, line: 84
-# File: sci_gateway/c/sci_findobj.c, line: 68
 # File: sci_gateway/c/sci_get.c, line: 38
 msgid "Invalid parameter(s) type.\n"
 msgstr ""
