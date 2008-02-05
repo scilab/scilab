@@ -36,6 +36,9 @@ public final class ToolBarBuilder {
 
 	private static final String CANNOT_CREATE_TOOLBAR = "Cannot create ToolBar.\n"
 							+ "Check if file *_toolbar.xml is available and valid.";	
+	
+	private static int figureIndex;
+
 	/**
 	 * Default constructor
 	 */
@@ -65,6 +68,19 @@ public final class ToolBarBuilder {
 	 * @return the toolbar created
 	 */
 	public static ToolBar buildToolBar(String fileToLoad) {
+		return buildToolBar(fileToLoad, 0);
+	}
+	
+	/**
+	 * Create a Scilab toolbar from data in a XML file
+	 * @param fileToLoad XML file to load
+	 * @param figureIndex the index of the figure in Scilab (for graphics figures only)
+	 * @return the toolbar created
+	 */
+	public static ToolBar buildToolBar(String fileToLoad, int figureIndex) {
+		
+		ToolBarBuilder.figureIndex = figureIndex;
+		
 		ToolBar toolbar = ScilabToolBar.createToolBar();
 		
 		try {
@@ -211,7 +227,7 @@ public final class ToolBarBuilder {
 								}
 							}
 						if (command != null && commandType != CallBack.UNTYPED) {
-							pushButton.setCallback(command, commandType);
+							pushButton.setCallback(replaceFigureID(command), commandType);
 							}
 						}
 						// Read next child
@@ -226,5 +242,16 @@ public final class ToolBarBuilder {
 				button = button.getNextSibling();
 			}
 		}
+		
+		
+		/**
+		 * Replace pattern [SCILAB_FIGURE_ID] by the figure index
+		 * @param initialString string read in XML file
+		 * @return callback string
+		 */
+		private String replaceFigureID(String initialString) {
+			return initialString.replaceAll("\\[SCILAB_FIGURE_ID\\]", Integer.toString(ToolBarBuilder.figureIndex));
+		}
+
 	}
 }

@@ -36,6 +36,9 @@ public final class MenuBarBuilder {
 	
 	private static final String CANNOT_CREATE_MENUBAR = "Cannot create MenuBar.\n"
 								+ "Check if file *_menubar.xml is available and valid.";
+	
+	private static int figureIndex;
+	
 	/**
 	 * Default constructor
 	 */
@@ -65,6 +68,19 @@ public final class MenuBarBuilder {
 	 * @return the menubar created
 	 */
 	public static MenuBar buildMenuBar(String fileToLoad) {
+		return buildMenuBar(fileToLoad, 0);
+	}
+	
+	/**
+	 * Create a Scilab menubar from data in a XML file
+	 * @param fileToLoad XML file to load
+	 * @param figureIndex the index of the figure in Scilab (for graphics figures only)
+	 * @return the menubar created
+	 */
+	public static MenuBar buildMenuBar(String fileToLoad, int figureIndex) {
+		
+		MenuBarBuilder.figureIndex = figureIndex;
+		
 		MenuBar menubar = ScilabMenuBar.createMenuBar();
 		
 		try {
@@ -165,7 +181,7 @@ public final class MenuBarBuilder {
 		 * @see org.scilab.modules.gui.utils.MenuBarConfiguration#addMenus(org.scilab.modules.gui.menubar.MenuBar)
 		 */
 		public void addMenus(MenuBar mb) {
-			// TODO Auto-generated method stub
+
 			NodeList menus = dom.getElementsByTagName(MENU);
 			Menu menu = ScilabMenu.createMenu();
 			for (int i = 0; i < menus.getLength(); i++) {
@@ -180,6 +196,7 @@ public final class MenuBarBuilder {
 				addSubMenus(menu, i);
 				mb.add(menu);
 			}
+			
 		}
 
 		/**
@@ -207,7 +224,6 @@ public final class MenuBarBuilder {
 						} else if (attributes.item(i).getNodeName() == MNEMONIC) {
 							menuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
 						} else if (attributes.item(i).getNodeName() == ENABLED) {
-							// TODO uncomment the line after writing setEnabled ;)
 							menuItem.setEnabled(attributes.item(i).getNodeValue().equals(TRUE));
 						}
 					}
@@ -227,7 +243,7 @@ public final class MenuBarBuilder {
 								}
 							}
 						if (command != null && commandType != CallBack.UNTYPED) {
-							menuItem.setCallback(command, commandType);
+							menuItem.setCallback(replaceFigureID(command), commandType);
 							}
 						}
 						// Read next child
@@ -239,6 +255,15 @@ public final class MenuBarBuilder {
 				// Read next child
 				submenu = submenu.getNextSibling();
 			}
+		}
+		
+		/**
+		 * Replace pattern [SCILAB_FIGURE_ID] by the figure index
+		 * @param initialString string read in XML file
+		 * @return callback string
+		 */
+		private String replaceFigureID(String initialString) {
+			return initialString.replaceAll("\\[SCILAB_FIGURE_ID\\]", Integer.toString(MenuBarBuilder.figureIndex));
 		}
 
 	}

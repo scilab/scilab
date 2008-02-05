@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure --> 
 <toolbar>
     <!-- Rotate -->
     <button icon="view-refresh.png" enabled="false"/>

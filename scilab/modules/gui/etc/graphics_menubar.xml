@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure --> 
 <menubar>
     <menu label="File" mnemonic="F">
         <submenu label="New figure..." mnemonic="N"> 
@@ -10,7 +11,7 @@
             instruction="
               %fileToLoad = xgetfile('*.scg', getcwd(), 'Select a file to load');
               if ~isempty(%fileToLoad) then 
-                xload(%fileToLoad);
+                xload(%fileToLoad,[SCILAB_FIGURE_ID]);
               end
               clear %fileToLoad"
             type="0"/>
@@ -22,7 +23,7 @@
             instruction="
               %fileToWrite = xgetfile('*.bmp', getcwd(), 'Select a file name');
               if ~isempty(%fileToWrite) then 
-                xs2bmp(get(gcf(),'figure_id'), %fileToWrite);
+                xs2bmp([SCILAB_FIGURE_ID], %fileToWrite);
               end
               clear %fileToWrite"
             type="0"/>
@@ -32,7 +33,7 @@
             instruction="
               %fileToWrite = xgetfile('*.gif', getcwd(), 'Select a file name');
               if ~isempty(%fileToWrite) then 
-                xs2gif(get(gcf(),'figure_id'), %fileToWrite);
+                xs2gif([SCILAB_FIGURE_ID], %fileToWrite);
               end
               clear %fileToWrite"
             type="0"/>
@@ -42,7 +43,7 @@
             instruction="
               %fileToWrite = xgetfile('*.jpg', getcwd(), 'Select a file name');
               if ~isempty(%fileToWrite) then 
-                xs2jpg(get(gcf(),'figure_id'), %fileToWrite);
+                xs2jpg([SCILAB_FIGURE_ID], %fileToWrite);
               end
               clear %fileToWrite"
             type="0"/>
@@ -52,7 +53,7 @@
             instruction="
               %fileToWrite = xgetfile('*.png', getcwd(), 'Select a file name');
               if ~isempty(%fileToWrite) then 
-                xs2png(get(gcf(),'figure_id'), %fileToWrite);
+                xs2png([SCILAB_FIGURE_ID], %fileToWrite);
               end
               clear %fileToWrite"
             type="0"/>
@@ -62,7 +63,7 @@
             instruction="
               %fileToWrite = xgetfile('*.ppm', getcwd(), 'Select a file name');
               if ~isempty(%fileToWrite) then 
-                xs2ppm(get(gcf(),'figure_id'), %fileToWrite);
+                xs2ppm([SCILAB_FIGURE_ID], %fileToWrite);
               end
               clear %fileToWrite"
             type="0"/>
@@ -73,7 +74,7 @@
         <submenu label="Print" mnemonic="P" enabled="false"/> 
         <separator/>
         <submenu label="Close" mnemonic="C">
-            <callback instruction="delete(gcf());" type="0"/>
+            <callback instruction="delete(scf([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
     </menu>
 
@@ -90,7 +91,7 @@
         <submenu label="Select as current figure" mnemonic="S" enabled="false"/> 
         <submenu label="Redraw figure" mnemonic="R" enabled="false"/> 
         <submenu label="Clear figure" mnemonic="C">
-            <callback instruction="clf();" type="0"/>
+            <callback instruction="clf(scf([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
         <separator/>
         <submenu label="Figure properties" mnemonic="F" enabled="false"/> 

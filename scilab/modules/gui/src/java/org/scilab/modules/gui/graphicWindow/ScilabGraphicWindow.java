@@ -49,9 +49,9 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 	public void setFigureIndex(int figureIndex) {
 		this.setTitle(FIGURE_TITLE + figureIndex);
 		/* MENUBAR */
-		MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
+		MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
 		/* TOOLBAR */
-		ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
+		ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
 		
 		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
