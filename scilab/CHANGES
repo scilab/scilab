@@ -4,9 +4,11 @@
 
 Graphical User Interface:
 =========================
+ - Advanced docking system
 
 Rendering:
 ==========
+ - Based on JoGL (Java openGL)
 
 Console:
 ========
@@ -32,6 +34,9 @@ Functions:
 	+ Conversion: dec2bin, dec2oct, hex2dec ...
 	+ listfiles 
 	+ getdebuginfo
+	+ gettext(string) / _(string)
+	+ setlanguage(string)
+	+ getlanguage()
  - Rewrite in native code:
 	+ isdir
 
@@ -45,10 +50,15 @@ Java/Scilab API:
 
 Source reorganisation:
 ======================
+ - Source code split into dedicated and clear modules
+ - Clear separation between the Scilab gateway (argument management, etc) and 
+	the code 
  - Use XML declaration for the list of functions
- 
+ - Use XML declaration for the list of modules (and activation or not)
+
 New Scilab Functions:
 =====================
+ - Function rewrited from fortran to C for better maintenance
 
 Scipad editor:
 ==============
