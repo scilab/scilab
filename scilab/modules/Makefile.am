@@ -59,6 +59,7 @@ development_tools \
 compatibility_functions \
 helptools \
 fftw \
+umfpack \
 pvm \
 spreadsheet \
 jvm \
