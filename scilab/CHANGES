@@ -31,46 +31,123 @@ GNU/Linux - Unix:
 Functions:
 ==========
  - New functions:
-	+ Conversion: dec2bin, dec2oct, hex2dec ...
-	+ listfiles 
 	+ getdebuginfo
-	+ gettext(string) / _(string)
-	+ setlanguage(string)
-	+ getlanguage()
- - Rewrite in native code:
-	+ isdir
+
 
 Signal processing:
 ==================
- - FFTW (Fastest Fourier Transform in the West) features added in Scilab
+ - FFTW (Fastest Fourier Transform in the West) features added in Scilab.
+	+ fftw                - fast fourier transform that use fftw library
+	+ fftw_flags          - set computation method of fast fourier transform of
+	                        the fftw function
+	+ fftw_forget_wisdom  - reset fftw wisdom
+	+ get_fftw_wisdom     - return fftw wisdom
+	+ set_fftw_wisdom     - set fftw wisdom
+	+ disposefftwlibrary  -
+	+ fftwlibraryisloaded -
+
 
 Java/Scilab API:
 ================
  - Refactoring of the Java API
 
+
 Source reorganisation:
 ======================
  - Source code split into dedicated and clear modules
  - Clear separation between the Scilab gateway (argument management, etc) and 
-	the code 
+	the code
  - Use XML declaration for the list of functions
  - Use XML declaration for the list of modules (and activation or not)
+
 
 New Scilab Functions:
 =====================
  - Function rewrited from fortran to C for better maintenance
 
+
 Scipad editor:
 ==============
 
-New String management:
-======================
+
+Time and date functions
+=======================
+ - New functions:
+	+ clock   - return current time as date vector
+	+ eomday  - return last day of month
+	+ weekday - return day of week
+	+ now     - return current date and time
+
+
+Binary, octal and hexadecimal representation
+============================================
+ - New functions:
+	+ bin2dec  - return integer corresponding to a binary form
+	+ bitand   - AND applied to binary representation of inputs argument
+	+ bitcmp
+	+ bitget
+	+ bitor    - OR applied to binary representation of inputs arguments
+	+ bitxor   - XOR applied to binary representation of inputs arguments
+	+ dec2bin  - return binary representation
+	+ dec2oct  - return octal representation of integers
+
+
+Input/Output functions (files)
+==============================
+ - New functions:
+	+ getdrives           - get the drive letters of all mounted filesystems on
+	                        the computer.
+	+ removedir           - remove a directory
+	+ getrelativefilename - given an absolute directory and an absolute filename,
+	                        returns a relative file name.
+	+ fullpath            - creates an full path name for the specified relative
+	                        path name.
+	+ is_absolute_path    -
+	+ createdir           - make new directory
+	+ removedir           - remove a directory
+	+ deletefile          - delete a file
+	+ fileext             - returns extension for a file path
+	+ filesep             - returns directory separator for current platform
+	+ pathsep             - returns path separator for current platform
+	
+ - Rewrite in native code:
+	+ isdir
+
 
 Regular expression features:
 ============================
+ - Involved functions
+	+ grep(...,'r')
+	+ regexp
+	+ strindex(...,'r')
+	+ strsubst(...,'r')
+
+
+String manipulation
+===================
+ - New functions:
+	+ blanks     - create string of blank characters 
+	+ isalphanum - check that characters of a string are alphanumerics
+	+ isascii    - tests if character is a 7-bit US-ASCII character
+	+ isdigit    - check that characters of a string are digits between 0 and 9
+	+ isletter   - check that characters of a string are alphabetics letters
+	+ regexp     - find a substring that matches the regular expression string
+	+ strchr     - locate first occurrence of character in string
+	+ strcmp     - compare character strings
+	+ strcmpi    - compare character strings (case independent)
+	+ strcspn    - get span until character in string
+	+ strncpy
+	+ strrchr    - locate last occurrence of character in string
+	+ strrev     - returns string reversed
+	+ strspn     - get span of character set in string
+	+ strstr     - locate substring
+	+ strtod     - convert string to double
+	+ strtok     - split string into tokens
+
 
 Dynamic link:
 =============
+
 
 TCL/TK:
 =======
@@ -78,8 +155,49 @@ TCL/TK:
 	+ @TODO detail
  - Provided with version 8.5 of TCL/TK
 
+
 Localization:
 =============
+ - New functions:
+	+ dgettext                    - get text translated into the current
+	                                locale and a specific domain domain
+	+ gettext(string) / _(string) - get text translated into the current locale
+	                                and domain
+	+ setlanguage(string)
+	+ getlanguage()
+
+
+Online Help management
+======================
+ - New functions:
+	+ check_help
+	+ del_help_chapter
+	+ add_module_help_chapter
+	+ del_module_help_chapter
+
+
+Metanet : graph and network toolbox
+===================================
+ - New functions:
+	+ hilite_edges   - highlights a set of edges
+	+ unhilite_edges - unhighlights a set of edges
+	+ hilite_nodes   - highlights a set of nodes
+	+ unhilite_nodes - unhighlights a set of nodes
+	+ add_edge_data  - associates new data fields to the edges data structure 
+	                   of a graph
+	+ add_node_data  - associates new data fields to the nodes data structure
+	                   of a graph
+	+ arc_length
+	+ nodedatafields - returns the vector of node data fields names
+	+ set_edges_id
+	+ set_nodes_id
+	+ show_arcs      - highlights a set of arcs
+	+ show_edges     - highlights a set of edges
+	+ update_graph   - converts an old graph data structure to the current one
+
+
+
+
 
 
                      Main Changes Scilab 3.0 -> 4.0
@@ -411,7 +529,7 @@ THANKS
 ======
 Scilab group wants to thank the increasing number of people who have
 contributed to this new version of Scilab, with special mention to 
-Anders Blomdell, Stéphane Mottelet, Dan McMahill
+Anders Blomdell, Stï¿½phane Mottelet, Dan McMahill
 Ton van Overbeek, Bruno Pincon and Enrico Segre.
 
 
