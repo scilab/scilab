@@ -1,6 +1,7 @@
 //==========================================
 // INRIA 2008
 // Allan CORNET
+// Sylvestre LEDRU
 //==========================================
 function bOK = haveacompiler()
   if MSDOS then
@@ -14,7 +15,9 @@ function bOK = haveacompiler()
       bOK = %T;
     end
   else
-    // To do under Unix
+    // Very hard to detect under Linux/Unix since there are plenty of 
+	// compiler... Then, we return all the time TRUE
+	// The actual detection is done by the dedicated ./configure
     bOK = %T;
   end
 endfunction
