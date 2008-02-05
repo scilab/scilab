@@ -1222,6 +1222,7 @@ fi
 
 if test $EMBEDDED_LAPACK = 0; then
    echo "LAPACK LIBS ........... = $LAPACK_LIBS"
+   echo "LAPACK TYPE ........... = $LAPACK_TYPE"
 else
    echo "LAPACK LIBS ........... = Use the LAPACK embedded"
 fi
