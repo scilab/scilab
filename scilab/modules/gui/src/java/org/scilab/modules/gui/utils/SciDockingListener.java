@@ -6,6 +6,7 @@ package org.scilab.modules.gui.utils;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.event.DockingListener;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Listener for docking operations in Scilab
@@ -71,6 +72,10 @@ public class SciDockingListener implements DockingListener {
 	public void undockingComplete(DockingEvent e) {
 		// DEBUG
 		debug("undockingComplete");
+		// If the dock is empty, we close the parent Window
+		if (e.getOldDockingPort().getDockables().isEmpty()) {
+			((Window) UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId)).getAsSimpleWindow().close();
+		}
 	}
 
 	/**

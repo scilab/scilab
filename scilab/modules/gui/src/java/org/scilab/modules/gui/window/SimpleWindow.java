@@ -111,4 +111,10 @@ public interface SimpleWindow {
 	 * @return id the id of the corresponding window object
 	 */
 	int getElementId();
+	
+	/**
+	 * Close this window
+	 */
+	void close();
+
 }

@@ -255,4 +255,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		this.elementId = id;
 		sciDockingListener.setAssociatedWindowId(id);
 	}
+	
+	/**
+	 * Close the window
+	 * @see org.scilab.modules.gui.window.SimpleWindow#close()
+	 */
+	public void close() {
+		dispose();
+	}
 }
