@@ -16,6 +16,11 @@ case 1
     // Create a menu in Scilab main Window
     // The callback is the variable named menu_label
 
+    // Error message in not in standard mode
+    if getscilabmode() <> "STD" then
+      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+    end
+    
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
@@ -31,6 +36,11 @@ case 2
     // Create a menu in Scilab main Window with submenus
     // The callbacks are the items of variable named menu_label
 
+    // Error message in not in standard mode
+    if getscilabmode() <> "STD" then
+      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+    end
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
@@ -43,6 +53,11 @@ case 2
     // addmenu(menu_label, action_in_a_list)
     // Create a menu in Scilab main Window with submenus
     // The callbacks are the items of variable named menu_label
+
+    // Error message in not in standard mode
+    if getscilabmode() <> "STD" then
+      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+    end
 
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
@@ -77,6 +92,11 @@ case 3
     // addmenu(menu_label, submenus_labels, actions_in_a_list)
     // Create a menu in Scilab main Window with submenus
     // The callbacks are given in the third input argument
+
+    // Error message in not in standard mode
+    if getscilabmode() <> "STD" then
+      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+    end
 
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));

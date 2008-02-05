@@ -8,6 +8,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "InitUIMenu.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
 int sci_delmenu(char *fname,unsigned long fname_len)
 {
@@ -20,6 +21,13 @@ int sci_delmenu(char *fname,unsigned long fname_len)
 
   if (Rhs == 1)
     {
+
+      // Error message in not in standard mode
+      if(getScilabMode() != SCILAB_STD)
+        {
+          Scierror(999,_("%s: figure number must be given when used in no window mode."),"delmenu");
+        }
+
       // Unset a Menu of Scilab Main Window
       if (VarType(1) != sci_strings)
         {
