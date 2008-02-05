@@ -59,11 +59,12 @@ development_tools \
 compatibility_functions \
 helptools \
 fftw \
-umfpack \
 pvm \
 spreadsheet \
 jvm \
 demo_tools
+
+#umfpack
 
 #if MPI
 #SUBDIRS += mpi

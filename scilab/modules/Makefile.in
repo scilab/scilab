@@ -38,6 +38,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 
+#umfpack
+
 #if MPI
 #SUBDIRS += mpi
 #endif
@@ -176,9 +178,8 @@ DIST_SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
 	history_manager action_binding console renderer graphic_export \
 	gui graphics windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools fftw \
-	umfpack pvm spreadsheet jvm demo_tools scicos_blocks scicos . \
-	javasci
+	development_tools compatibility_functions helptools fftw pvm \
+	spreadsheet jvm demo_tools scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -367,9 +368,9 @@ SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
 	history_manager action_binding console renderer graphic_export \
 	gui graphics windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools fftw \
-	umfpack pvm spreadsheet jvm demo_tools $(am__append_1) scicos \
-	. $(am__append_2)
+	development_tools compatibility_functions helptools fftw pvm \
+	spreadsheet jvm demo_tools $(am__append_1) scicos . \
+	$(am__append_2)
 modulename = 
 
 #### Basic files ####
