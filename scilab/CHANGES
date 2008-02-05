@@ -2,58 +2,74 @@
                      ==============================
 
 
-Graphical User Interface :
-==========================
+Graphical User Interface:
+=========================
 
-Rendering :
-===========
+Rendering:
+==========
 
-Console :
-=========
+Console:
+========
  - Completion
 	+ functions
 	+ variables
  
-Scilab modes :
-==============
+Scilab modes:
+=============
 
-GNU/Linux - Unix :
-==================
- - New compilation process
+GNU/Linux - Unix:
+=================
+ - New configure (based on autoconf)
+ - New compilation process (based on automake and libtool)
+ - Dynamic libraries
  - Better startup script
 	+ Debug
 	+ Profiling
 
-Java/Scilab API :
-=================
+Functions:
+==========
+ - New functions:
+	+ Conversion: dec2bin, dec2oct, hex2dec ...
+	+ listfiles 
+	+ getdebuginfo
+ - Rewrite in native code:
+	+ isdir
 
-Source reorganisation :
-=======================
- - Use XML declaration for the list of function
+Signal processing:
+==================
+ - FFTW (Fastest Fourier Transform in the West) features added in Scilab
+
+Java/Scilab API:
+================
+ - Refactoring of the Java API
+
+Source reorganisation:
+======================
+ - Use XML declaration for the list of functions
  
-New Scilab Functions :
+New Scilab Functions:
+=====================
+
+Scipad editor:
+==============
+
+New String management:
 ======================
 
-Scipad editor :
-===============
-
-New String management :
-=======================
-
-Regular expression features :
-=============================
+Regular expression features:
+============================
 
 Dynamic link:
 =============
 
-TCL/TK :
-========
+TCL/TK:
+=======
  - New event loop 
 	+ @TODO detail
  - Provided with version 8.5 of TCL/TK
 
-Localization :
-==============
+Localization:
+=============
 
 
                      Main Changes Scilab 3.0 -> 4.0
