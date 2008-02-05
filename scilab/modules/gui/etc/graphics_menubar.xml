@@ -57,7 +57,7 @@
               clear %fileToWrite"
             type="0"/>
 		</submenu>
-		        <submenu label="Export to PPM..." mnemonic="E"> 
+		<submenu label="Export to PPM..." mnemonic="E"> 
             <callback 
             instruction="
               %fileToWrite = xgetfile('*.ppm', getcwd(), 'Select a file name');
