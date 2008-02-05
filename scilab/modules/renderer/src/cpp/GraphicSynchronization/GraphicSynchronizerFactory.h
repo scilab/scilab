@@ -19,7 +19,7 @@ class GraphicSynchronizerFactory
 
 public:
 
-  /*---------------------------------------------------------------------------*/;
+  /*---------------------------------------------------------------------------*/
   /**
   * Get the global locking of the graphic.
   * @return global synchronizer used to lock the whole graphic module
