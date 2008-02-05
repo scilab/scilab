@@ -28,7 +28,7 @@ function z=bitor(x,y)
 	end
 	
 	if typeof(x)<>typeof(y)
-		error(msprintf(gettext("%s: Wrong type for inputs arguments: Same type expected.\n"),"bitor"));
+		error(msprintf(gettext("%s: Wrong type for input arguments: Same type expected.\n"),"bitor"));
 	end
 	
 	if or(size(x)<>size(y)) then

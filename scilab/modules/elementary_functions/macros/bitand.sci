@@ -28,7 +28,7 @@ function z=bitand(x,y)
 	end
 	
 	if typeof(x)<>typeof(y)
-		error(msprintf(gettext("%s: Wrong type for inputs arguments: Same type expected.\n"),"bitand"));
+		error(msprintf(gettext("%s: Wrong type for input arguments: Same type expected.\n"),"bitand"));
 	end
 	
 	if or(size(x)<>size(y)) then

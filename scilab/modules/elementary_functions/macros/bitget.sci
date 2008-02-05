@@ -20,7 +20,7 @@ end
 // case empty matrix
 if isempty(x)
 	if ~isempty(pos) & prod(size(pos))<>1
-		error(msprintf(gettext("%s: Wrong size for inputs arguments: Same sizes expected.\n"),"bitget"));
+		error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitget"));
 	else
 		y=[]
 		return

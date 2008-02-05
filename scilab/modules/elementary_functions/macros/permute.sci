@@ -8,7 +8,7 @@ function   y=permute(x,dims)
 // -y the result of the x permutation  
 // F.B
 
-// Verify inputs arguments number
+// Verify input arguments number
 if argn(2)<>2 then
   error(msprintf(gettext("%s: Wrong number of input arguments: %d expected."),"permute",2));
 end

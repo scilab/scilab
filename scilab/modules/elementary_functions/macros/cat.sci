@@ -59,10 +59,10 @@ for i=2:size(varargin)
   end
 end
 
-// case : inputs arguments are cells arrrays
+// case : input arguments are cells arrrays
 if typeof(varargin(1))=="ce"
   ytemp = cell();
-else   // case : inputs arguments are arrays of doubles, strings, characters,...
+else   // case : input arguments are arrays of doubles, strings, characters,...
     ytemp = [];
 end
 
@@ -93,7 +93,7 @@ if ~dimssupvar then
   permuteorder = [dims permuteorder];
 end
 
-// permutevar is a list which contains the permuted inputs arguments arrays
+// permutevar is a list which contains the permuted input arguments arrays
 permutevar = list();
 for j=1:size(varargin)
   permutevar(j) = permute(varargin(j),permuteorder);

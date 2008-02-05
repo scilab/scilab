@@ -25,7 +25,7 @@ function z=bitxor(x,y)
 	end
 	
 	if typeof(x)<>typeof(y)
-		error(msprintf(gettext("%s: Wrong type for inputs arguments: Same type expected.\n"),"bitxor"));
+		error(msprintf(gettext("%s: Wrong type for input arguments: Same type expected.\n"),"bitxor"));
 	end
 	
 	if or(size(x)<>size(y)) then

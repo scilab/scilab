@@ -23,7 +23,7 @@ function yi=interp1(varargin)
 // F.B
 
   rhs=size(varargin)
-  // 2 <= Number of inputs arguments <= 5
+  // 2 <= Number of input arguments <= 5
   if rhs<2 | rhs>5 then 
     error(msprintf(gettext("%s: Wrong number of input arguments: Must be between %d and %d.\n"),"interp1",2,5));
   end
