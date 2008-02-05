@@ -78,8 +78,7 @@ end
 // Vector of 'real' values
 set(h, "backgroundcolor", [0.3 0.4 0.5]);
 if ~and(get(h, "backgroundcolor") == [0.3 0.4 0.5]) then
-  // TODO uncomment this pause once returned values are OK
-  //pause
+  pause
 end
 // String of 'integer' values
 set(h, "backgroundcolor", "1|1|0");
@@ -89,8 +88,7 @@ end
 // String of 'real' values
 set(h, "backgroundcolor", "0.2|0.3|0.4");
 if ~and(get(h, "backgroundcolor") == [0.2 0.3 0.4]) then
-  // TODO uncomment this pause once returned values are OK
-  //pause
+  pause
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
@@ -217,8 +215,7 @@ end
 // Vector of 'real' values
 set(h, "foregroundcolor", [0.6 0.5 0.4]);
 if ~and(get(h, "foregroundcolor") == [0.6 0.5 0.4]) then
-  // TODO uncomment this pause once returned values are OK
-  //pause
+  pause
 end
 // String of 'integer' values
 set(h, "foregroundcolor", "1|1|1");
@@ -228,8 +225,7 @@ end
 // String of 'real' values
 set(h, "foregroundcolor", "0.5|0.6|0.7");
 if ~and(get(h, "foregroundcolor") == [0.5 0.6 0.7]) then
-  // TODO uncomment this pause once returned values are OK
-  //pause
+  pause
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 

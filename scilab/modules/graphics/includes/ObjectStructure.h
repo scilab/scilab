@@ -657,8 +657,11 @@ sciLabel ;
 typedef struct
 {
   sciRelationShip relationship;
-  /** */
+  /* Label property */
   char *label;
+
+  /* Color property */
+  double *foregroundcolor;
 
   /* Callback property */
   char *callback;
@@ -696,6 +699,10 @@ typedef struct
   BOOL visible;
   BOOL handle_visible;
   BOOL Enable;
+
+  /* Colors property */
+  double *backgroundcolor;
+  double *foregroundcolor;
 
   /* Callback property */
   char *callback;

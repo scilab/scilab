@@ -14,7 +14,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
 
   double * allcolors = NULL;
   
-  float redFloat = 0.0, greenFloat = 0.0, blueFloat = 0.0;
+  double redDouble = 0.0, greenDouble = 0.0, blueDouble = 0.0;
   
   if (valueType == sci_strings)
     {
@@ -25,7 +25,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
           return SET_PROPERTY_ERROR;
         }
       
-      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e", &redFloat, &greenFloat, &blueFloat);
+      nbvalues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf", &redDouble, &greenDouble, &blueDouble);
 
       if (nbvalues != 3)
         {
@@ -34,10 +34,18 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
           return SET_PROPERTY_ERROR;
         }
 
-      redInt = (int) (redFloat * 255);
-      greenInt = (int) (greenFloat * 255);
-      blueInt = (int) (blueFloat * 255);
+      redInt = (int) (redDouble * 255);
+      greenInt = (int) (greenDouble * 255);
+      blueInt = (int) (blueDouble * 255);
       
+      /* Store the values in Scilab */
+      if (pUICONTROL_FEATURE(sciObj)->backgroundcolor == NULL)
+        {
+          pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
+        }
+      pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = redDouble;
+      pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = greenDouble;
+      pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = blueDouble;
     }
   else if (valueType == sci_matrix)
     {
@@ -53,6 +61,14 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, int stackPointer, int value
        greenInt = (int) (allcolors[1] * 255);
        blueInt = (int) (allcolors[2] * 255);
      
+       /* Store the values in Scilab */
+       if (pUICONTROL_FEATURE(sciObj)->backgroundcolor == NULL)
+         {
+           pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
+         }
+       pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = allcolors[0];
+       pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = allcolors[1];
+       pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = allcolors[2];
     }
   else
     {

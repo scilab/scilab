@@ -14,7 +14,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
 
   double * allcolors = NULL;
   
-  float redFloat = 0.0, greenFloat = 0.0, blueFloat = 0.0;
+  double redDouble = 0.0, greenDouble = 0.0, blueDouble = 0.0;
   
   if (valueType == sci_strings)
     {
@@ -24,7 +24,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
           return SET_PROPERTY_ERROR;
         }
       
-      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e", &redFloat, &greenFloat, &blueFloat);
+      nbvalues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf", &redDouble, &greenDouble, &blueDouble);
 
       if (nbvalues != 3) /* Wrong format string */
         {
@@ -32,9 +32,32 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
           return SET_PROPERTY_ERROR;
         }
 
-      redInt = (int) (redFloat * 255);
-      greenInt = (int) (greenFloat * 255);
-      blueInt = (int) (blueFloat * 255);
+      redInt = (int) (redDouble * 255);
+      greenInt = (int) (greenDouble * 255);
+      blueInt = (int) (blueDouble * 255);
+
+      /* Store the values in Scilab */
+      if (sciGetEntityType(sciObj) == SCI_UIMENU)
+        {
+          if (pUIMENU_FEATURE(sciObj)->foregroundcolor == NULL)
+            {
+              pUIMENU_FEATURE(sciObj)->foregroundcolor = new double[3];
+            }
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[0] = redDouble;
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[1] = greenDouble;
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[2] = blueDouble;
+
+        }
+      else if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+        {
+          if (pUICONTROL_FEATURE(sciObj)->foregroundcolor == NULL)
+            {
+              pUICONTROL_FEATURE(sciObj)->foregroundcolor = new double[3];
+            }
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[0] = redDouble;
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[1] = greenDouble;
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[2] = blueDouble;
+        }
       
     }
   else if (valueType == sci_matrix)
@@ -50,6 +73,28 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
        greenInt = (int) (allcolors[1] * 255);
        blueInt = (int) (allcolors[2] * 255);
      
+      /* Store the values in Scilab */
+      if (sciGetEntityType(sciObj) == SCI_UIMENU)
+        {
+          if (pUIMENU_FEATURE(sciObj)->foregroundcolor == NULL)
+            {
+              pUIMENU_FEATURE(sciObj)->foregroundcolor = new double[3];
+            }
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[0] = allcolors[0];
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[1] = allcolors[1];
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[2] = allcolors[2];
+
+        }
+      else if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+        {
+          if (pUICONTROL_FEATURE(sciObj)->foregroundcolor == NULL)
+            {
+              pUICONTROL_FEATURE(sciObj)->foregroundcolor = new double[3];
+            }
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[0] = allcolors[0];
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[1] = allcolors[1];
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[2] = allcolors[2];
+        }
     }
   else
     {

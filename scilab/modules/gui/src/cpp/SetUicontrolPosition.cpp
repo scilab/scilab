@@ -15,7 +15,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
 
   double * allValues = NULL;
   
-  float xFloat = 0.0, yFloat = 0.0, widthFloat = 0.0, heightFloat = 0.0;
+  double xDouble = 0.0, yDouble = 0.0, widthDouble = 0.0, heightDouble = 0.0;
   
   if (valueType == sci_strings)
     {
@@ -25,7 +25,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
           return SET_PROPERTY_ERROR;
         }
       
-      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e|%e", &xFloat, &xFloat, &widthFloat, &heightFloat);
+      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e|%e", &xDouble, &xDouble, &widthDouble, &heightDouble);
 
       if (nbvalues != 4)
         {
@@ -33,10 +33,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
           return SET_PROPERTY_ERROR;
         }
 
-      xInt = (int) (xFloat);
-      yInt = (int) (yFloat);
-      widthInt = (int) (widthFloat);
-      heightInt = (int) (heightFloat);
+      xInt = (int) (xDouble);
+      yInt = (int) (yDouble);
+      widthInt = (int) (widthDouble);
+      heightInt = (int) (heightDouble);
       
     }
   else if (valueType == sci_matrix)

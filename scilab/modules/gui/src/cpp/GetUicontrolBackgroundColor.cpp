@@ -26,10 +26,27 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
                                                                     pUICONTROL_FEATURE(sciObj)->hashMapIndex);
         }
       tmp = new double[3];
-      tmp[0] = (double)returnValues[0] / 255; // Red
-      tmp[1] = (double)returnValues[1] / 255; // Green
-      tmp[2] = (double)returnValues[2] / 255; // Blue
       
+      /* If values are stored in Scilab then they are read */
+      /* else they are writen */
+      if (pUICONTROL_FEATURE(sciObj)->backgroundcolor != NULL)
+        {
+          tmp[0] = pUICONTROL_FEATURE(sciObj)->backgroundcolor[0];
+          tmp[1] = pUICONTROL_FEATURE(sciObj)->backgroundcolor[1];
+          tmp[2] = pUICONTROL_FEATURE(sciObj)->backgroundcolor[2];
+        }
+      else
+        {
+          tmp[0] = (double)returnValues[0] / 255; // Red
+          tmp[1] = (double)returnValues[1] / 255; // Green
+          tmp[2] = (double)returnValues[2] / 255; // Blue
+
+          pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
+          pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = tmp[0];
+          pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = tmp[1];
+          pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = tmp[2];
+        }
+
       returnFlag =  sciReturnRowVector(tmp, 3);
       
       delete(tmp);

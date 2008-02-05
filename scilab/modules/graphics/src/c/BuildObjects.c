@@ -2730,6 +2730,9 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
     }
   ppobj=pUIMENU_FEATURE (pobj);
 
+  /* Color property */
+  pUIMENU_FEATURE (pobj)->foregroundcolor = NULL;
+
   /* Callback property */
   /* Callback getter returns "" if callback is NULL */
   pUIMENU_FEATURE (pobj)->callback = NULL;

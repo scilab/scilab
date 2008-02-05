@@ -37,6 +37,11 @@ sciPointObj * CreateUIControl(char *style)
       return (sciPointObj *) NULL;
     }
 
+  /* Color property */
+  /* The getter for Colors returns get the value from Java if ****groundcolor is NULL */
+  pUICONTROL_FEATURE (pobj)->backgroundcolor = NULL;
+  pUICONTROL_FEATURE (pobj)->foregroundcolor = NULL;
+
   /* Callback */
   /* The getter for Callback returns "" if Callback is NULL */
   pUICONTROL_FEATURE (pobj)->callback = NULL;

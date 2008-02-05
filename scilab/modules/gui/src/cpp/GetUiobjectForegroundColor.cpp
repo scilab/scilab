@@ -38,9 +38,49 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
           
   /* Format returned data */
   tmp = new double[3];
-  tmp[0] = (double)returnValues[0] / 255; // Red
-  tmp[1] = (double)returnValues[1] / 255; // Green
-  tmp[2] = (double)returnValues[2] / 255; // Blue
+  
+  /* If values are stored in Scilab then they are read */
+  /* else they are writen */
+  if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
+    {
+      if (pUICONTROL_FEATURE(sciObj)->foregroundcolor != NULL)
+        {
+          tmp[0] = pUICONTROL_FEATURE(sciObj)->foregroundcolor[0];
+          tmp[1] = pUICONTROL_FEATURE(sciObj)->foregroundcolor[1];
+          tmp[2] = pUICONTROL_FEATURE(sciObj)->foregroundcolor[2];
+        }
+      else
+        {
+          tmp[0] = (double)returnValues[0] / 255; // Red
+          tmp[1] = (double)returnValues[1] / 255; // Green
+          tmp[2] = (double)returnValues[2] / 255; // Blue
+          
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor = new double[3];
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[0] = tmp[0];
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[1] = tmp[1];
+          pUICONTROL_FEATURE(sciObj)->foregroundcolor[2] = tmp[2];
+        }
+    }
+  else if (sciGetEntityType( sciObj ) == SCI_UIMENU)
+    {
+      if (pUIMENU_FEATURE(sciObj)->foregroundcolor != NULL)
+        {
+          tmp[0] = pUIMENU_FEATURE(sciObj)->foregroundcolor[0];
+          tmp[1] = pUIMENU_FEATURE(sciObj)->foregroundcolor[1];
+          tmp[2] = pUIMENU_FEATURE(sciObj)->foregroundcolor[2];
+        }
+      else
+        {
+          tmp[0] = (double)returnValues[0] / 255; // Red
+          tmp[1] = (double)returnValues[1] / 255; // Green
+          tmp[2] = (double)returnValues[2] / 255; // Blue
+          
+          pUIMENU_FEATURE(sciObj)->foregroundcolor = new double[3];
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[0] = tmp[0];
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[1] = tmp[1];
+          pUIMENU_FEATURE(sciObj)->foregroundcolor[2] = tmp[2];
+        }
+    }
   
   returnFlag =  sciReturnRowVector(tmp, 3);
   
