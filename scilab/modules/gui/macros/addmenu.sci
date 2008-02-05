@@ -15,11 +15,11 @@ case 1
     // addmenu(menu_label)
     // Create a menu in Scilab main Window
     // The callback is the variable named menu_label
-    
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
-    
+
     addSingleMenu(0, varargin(1));
 
   else
@@ -30,45 +30,45 @@ case 2
     // addmenu(menu_label, submenus_labels)
     // Create a menu in Scilab main Window with submenus
     // The callbacks are the items of variable named menu_label
-    
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
-    
+
     // No verification for submenus labels
-    
+
     addMenuSubMenus(0, varargin(1), varargin(2));
-    
+
   elseif type(varargin(1))==10 & type(varargin(2))==15
     // addmenu(menu_label, action_in_a_list)
     // Create a menu in Scilab main Window with submenus
     // The callbacks are the items of variable named menu_label
-    
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
-    
+
     if size(varargin(2)) <> 2
       error(msprintf(_("%s: Wrong type for second input argument: Two-item list expected."),"addmenu"));
     end
-    
+
     addSingleMenuCallback(0, varargin(1), varargin(2));
 
-  elseif type(varargin(1))==1 & type(varargin(2))==10  
+  elseif type(varargin(1))==1 & type(varargin(2))==10
     // addmenu(graphic_window_id,menu_label)
     // Create a menu in Scilab main Window
     // The callback is the variable named menu_label
-    
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
-    
+
     if size(varargin(2),"*") <> 1
       error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
-    
+
     addSingleMenu(scf(varargin(1)), varargin(2))
-  
+
   else
     error(msprintf(_("%s: Wrong type for two input arguments"),"addmenu"));
   end
@@ -81,32 +81,32 @@ case 3
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
-    
+
     // No verification for submenus labels size
-    
+
     if size(varargin(3)) <> 2
       error(msprintf(_("%s: Wrong type for third input argument: Two-item list expected."),"addmenu"));
     end
 
     addMenuSubMenusCallback(0, varargin(1), varargin(2), varargin(3));
-    
+
   elseif type(varargin(1))==1 & type(varargin(2))==10 & type(varargin(3))==10
     // addmenu(graphic_window_id, menu_label, submenus_labels)
     // Create a menu in Scilab main Window with submenus
     // The callbacks are the items of variable named menu_label
-    
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
-    
+
     if size(varargin(2),"*") <> 1
       error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
-  
+
     // No verification for submenus labels
-    
+
     addMenuSubMenus(scf(varargin(1)), varargin(2), varargin(3));
-    
+
   elseif type(varargin(1))==1 & type(varargin(2))==10 & type(varargin(3))==15
     // addmenu(graphic_window_id, menu_label, action_in_a_list)
     // Create a menu in Scilab main Window with submenus
@@ -115,7 +115,7 @@ case 3
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
-    
+
     if size(varargin(2),"*") <> 1
       error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
@@ -125,7 +125,7 @@ case 3
     end
 
     addSingleMenuCallback(scf(varargin(1)), varargin(2), varargin(3));
-    
+
   else
     error(msprintf(_("%s: Wrong type for three input arguments"),"addmenu"));
   end
@@ -133,17 +133,17 @@ case 4
     // addmenu(graphic_window_id, menu_label, submenus_labels, action_in_a_list)
     // Create a menu in a Scilab graphic Window with submenus
     // The callbacks are given in a list
-    
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single value expected."),"addmenu"));
     end
-    
+
     if size(varargin(2),"*") <> 1
       error(msprintf(_("%s: Wrong type for second input argument: Single string expected."),"addmenu"));
     end
-    
+
     // No verification for submenus labels
-    
+
     if size(varargin(4)) <> 2
       error(msprintf(_("%s: Wrong type for second input argument: Two-item list expected."),"addmenu"));
     end
@@ -160,7 +160,12 @@ endfunction
 // Add a menu with no callback given by the user
 //------------------------------------------------------------------------------
 function addSingleMenu(fig, menulabel)
-UImenu("parent", fig, "label", menulabel, "callback", "execstr(""" + menulabel + """)");
+h = UImenu("parent", fig, "label", menulabel);
+if fig==0
+  set(h, "callback", list(0, "execstr("""+menulabel+"(1)"")"));
+else
+  set(h, "callback", list(0, "execstr("""+menulabel+"_"+string(get(fig,"figure_id"))+"(1)"")"));
+end
 endfunction
 //------------------------------------------------------------------------------
 
@@ -199,7 +204,7 @@ for K=1:size(submenuslabels,"*")
     UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"("+string(K)+"))");
   else
     UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"("+string(K)+"))");
-  end    
+  end
 end
 
 endfunction
