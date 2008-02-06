@@ -137,48 +137,21 @@ c     .  error recovery required: return error number
          l=sadr(il+4)
          stk(l)=max(err2,err1)
          lstk(top+1)=l+1
-         errct=ids(2,pt)
-         err2=0
-         err1=0
-         errpt=ids(5,pt)
          sym=ids(6,pt)/10000
          lct(4)=ids(6,pt)-10000*sym-100
          fun=0
+         err2=ids(3,pt)
+         err1=ids(4,pt)
       else
-c     .  error recovery not required by this execstr
-         if(errct.ne.0.and.err1.gt.0.and.rstk(pt).eq.903) then
-c     .     error recovery required at a higher level
-            pt0=ids(5,pt)
-c     .     following code copied from errmgr
-            pt=pt+1
- 25         pt=pt-1
-            if(pt.eq.pt0) goto 28
-            goto(26,26,27) rstk(pt)-500
-            if(r.eq.904) then
-               if (ids(2,pt).ne.0) then
-c     .           getf(  'c') case, close the file
-                  mode(1)=0
-                  call clunit(-ids(2,pt),buf,mode)
-               endif
-            endif
-            goto 25
-c     .     on depile une fonction
- 26         call depfun(lunit,.false.,.false.)
-            goto 25
-c     .     on depile un exec ou une pause
- 27         call depexec(lunit,.false.,.false.,pflag)
-            if(.not.pflag) goto 25
- 28         top=pstk(pt)
-            goto 24
-         else
-            errpt=ids(5,pt)
-            errct=ids(2,pt)
-            il=iadr(lstk(top))
-            istk(il)=0
-            lstk(top+1)=lstk(top)+1
-            err1=0
-         endif
+         il=iadr(lstk(top))
+         istk(il)=0
+         lstk(top+1)=lstk(top)+1
+         err2=max(ids(3,pt),err2)
+         err1=max(ids(4,pt),err1)
       endif
+c     restore error recovery modes
+      errct=ids(2,pt)
+      errpt=ids(5,pt)
 
       pt=pt-1
 
