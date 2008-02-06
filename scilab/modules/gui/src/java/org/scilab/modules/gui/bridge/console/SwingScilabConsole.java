@@ -3,7 +3,6 @@
 
 package org.scilab.modules.gui.bridge.console;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTextPane;
