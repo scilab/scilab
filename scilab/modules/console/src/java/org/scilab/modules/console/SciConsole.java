@@ -4,6 +4,7 @@
 package org.scilab.modules.console;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.IOException;
@@ -335,6 +336,9 @@ public abstract class SciConsole extends JPanel {
 		int nbStatements = 0;
 		boolean firstPrompt = true;
 
+		// Display Cursor to show Scilab is busy
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		
 		while (nbStatements < linesToExec.length) {
 			// This loop contains code very similar to the code of ValidationAction.java
 			InputParsingManager inputParsingManager = config.getInputParsingManager();
@@ -431,6 +435,9 @@ public abstract class SciConsole extends JPanel {
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 
 		displayPrompt();
+	
+		// Display Cursor to show Scilab is available.
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));		
 		
 		// Reads the buffer
 		return ((SciInputCommandView) inputCmdView).getCmdBuffer();
