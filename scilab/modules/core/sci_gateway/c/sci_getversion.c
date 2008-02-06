@@ -15,7 +15,9 @@
 #include "Scierror.h"
 #include "withtk.h"
 #include "localization.h"
-//#include "with_pvm.h"
+#ifdef _MSC_VER
+#include "with_pvm.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);
