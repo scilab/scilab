@@ -64,16 +64,14 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 	      return FALSE;
             }
 	  pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
-	  if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
+          if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
 	    {
 	      Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
 	      return FALSE;
 	    }
-
+          
           // Set the parent property
-          callSetProperty((sciPointObj*) GraphicHandle, 1, sci_handles, nbRow, nbCol, "parent");
-          return TRUE;
-
+          callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, "parent");
         }
 
       // First input parameter which is a property name
