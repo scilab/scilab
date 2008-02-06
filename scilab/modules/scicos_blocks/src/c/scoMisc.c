@@ -55,7 +55,8 @@ void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
   win_id = scoGetWindowID(pScopeMemory);
   if (pScopeWindow != NULL )
     {
-      C2F(deletewin)(&win_id); //Old graphics ?
+      //C2F(deletewin)(&win_id); Old graphics ?
+	  sciDeleteWindow(win_id );
     }
 
   set_block_error(-16);
