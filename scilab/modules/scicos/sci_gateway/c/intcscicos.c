@@ -4444,7 +4444,7 @@ int intscixstringb(char *fname,unsigned long fname_len)
     Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,FALSE,TRUE,FALSE);
     if (fill) {
       pobj=sciGetCurrentObj();
-      sciSetFontDeciWidth(pobj,largestFont*100);
+      sciSetFontSize(pobj,largestFont);
       C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       /**/
     }
