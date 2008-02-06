@@ -40,6 +40,7 @@
 #include "machine.h"
 
 #include "dynamic_link.h"
+#include "sciprint.h"
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
@@ -1382,10 +1383,13 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 
   while(*told < *tf) {
 
+  // removed in scilab 5
+/*
     if (inxsci == 1 && scilab_timer_check() == 1) {
       C2F(sxevents)();
-      /*     .     sxevents can modify halt */
+      //     .     sxevents can modify halt 
     }
+*/
     if (C2F(coshlt).halt != 0) {
       if (C2F(coshlt).halt ==2) *told=*tf; /* end simulation */
       C2F(coshlt).halt = 0;
@@ -1974,10 +1978,13 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   }
   /*     main loop on time */
   while (*told < *tf) {
+	  // removed in scilab 5
+/*
     if (inxsci == 1 && scilab_timer_check() == 1) {
       C2F(sxevents)();
-      /*     .     sxevents can modify halt */
+      //     .     sxevents can modify halt 
     }
+*/
     if (C2F(coshlt).halt != 0) {
       if (C2F(coshlt).halt ==2) *told=*tf; /* end simulation */
       C2F(coshlt).halt = 0;
@@ -2301,11 +2308,14 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	    }
 	  }
 	}
+	// removed
+	/* 
 	if (inxsci == 1 && scilab_timer_check() == 1) {
 	  C2F(sxevents)();
 	  otimer = ntimer;
-	  /*     .     sxevents can modify halt */
+	  //     .     sxevents can modify halt 
 	}
+	*/
 	if (C2F(coshlt).halt != 0) {
 	  C2F(coshlt).halt = 0;
 	  freeallx;
