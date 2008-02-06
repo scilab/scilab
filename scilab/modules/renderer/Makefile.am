@@ -254,10 +254,11 @@ src/jni/FecFacetDrawerGL.cpp \
 src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
 src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
 src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
+src/cpp/fecDrawing/DrawableFecJoGL.cpp \
 src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
 src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
 src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
-src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp
+src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
 
 
 # List of the gateway c files

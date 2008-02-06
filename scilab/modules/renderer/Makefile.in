@@ -312,6 +312,16 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
 	src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
 	src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
+	src/jni/DrawableFecGL.cpp src/jni/FecLineDrawerGL.cpp \
+	src/jni/FecFacetDrawerGL.cpp \
+	src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
+	src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
+	src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
+	src/cpp/fecDrawing/DrawableFecJoGL.cpp \
+	src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
+	src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
+	src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
+	src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -553,7 +563,18 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-DrawableGrayplotBridgeFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableGrayplotJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-GrayplotDecomposer.lo \
-@GUI_TRUE@	libscirenderer_la-MatplotDecomposer.lo
+@GUI_TRUE@	libscirenderer_la-MatplotDecomposer.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFecGL.lo \
+@GUI_TRUE@	libscirenderer_la-FecLineDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-FecFacetDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-ConcreteDrawableFec.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFecBridgeFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFecJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableFecJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-FecFacetDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-FecFacetDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-FecLineDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-FecLineDrawerJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1010,7 +1031,18 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
 @GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
 @GUI_TRUE@src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/MatplotDecomposer.cpp
+@GUI_TRUE@src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
+@GUI_TRUE@src/jni/DrawableFecGL.cpp \
+@GUI_TRUE@src/jni/FecLineDrawerGL.cpp \
+@GUI_TRUE@src/jni/FecFacetDrawerGL.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/DrawableFecJoGL.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
 
 
 # List of the gateway c files
@@ -1066,7 +1098,10 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/SegsArrowdrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SegsLineDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SegsMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableGrayplotGL.giws.xml
+@GUI_TRUE@src/jni/DrawableGrayplotGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
+@GUI_TRUE@src/jni/FecFacetDrawerGL.giws.xml
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -1249,6 +1284,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo@am__quote@
@@ -1272,7 +1308,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompound.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFec.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Plo@am__quote@
@@ -1329,6 +1369,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableTextJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawingBridge.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecFacetDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecFacetDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecFacetDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecLineDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecLineDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecLineDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FilledTextDrawerGL.Plo@am__quote@
@@ -3209,6 +3255,83 @@ libscirenderer_la-MatplotDecomposer.lo: src/cpp/grayplotDrawing/MatplotDecompose
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/MatplotDecomposer.cpp' object='libscirenderer_la-MatplotDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MatplotDecomposer.lo `test -f 'src/cpp/grayplotDrawing/MatplotDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/MatplotDecomposer.cpp
+
+libscirenderer_la-DrawableFecGL.lo: src/jni/DrawableFecGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFecGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFecGL.Tpo -c -o libscirenderer_la-DrawableFecGL.lo `test -f 'src/jni/DrawableFecGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableFecGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFecGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableFecGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableFecGL.cpp' object='libscirenderer_la-DrawableFecGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFecGL.lo `test -f 'src/jni/DrawableFecGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableFecGL.cpp
+
+libscirenderer_la-FecLineDrawerGL.lo: src/jni/FecLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FecLineDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FecLineDrawerGL.Tpo -c -o libscirenderer_la-FecLineDrawerGL.lo `test -f 'src/jni/FecLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/FecLineDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-FecLineDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-FecLineDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/FecLineDrawerGL.cpp' object='libscirenderer_la-FecLineDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FecLineDrawerGL.lo `test -f 'src/jni/FecLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/FecLineDrawerGL.cpp
+
+libscirenderer_la-FecFacetDrawerGL.lo: src/jni/FecFacetDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FecFacetDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FecFacetDrawerGL.Tpo -c -o libscirenderer_la-FecFacetDrawerGL.lo `test -f 'src/jni/FecFacetDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/FecFacetDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-FecFacetDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-FecFacetDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/FecFacetDrawerGL.cpp' object='libscirenderer_la-FecFacetDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FecFacetDrawerGL.lo `test -f 'src/jni/FecFacetDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/FecFacetDrawerGL.cpp
+
+libscirenderer_la-ConcreteDrawableFec.lo: src/cpp/fecDrawing/ConcreteDrawableFec.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableFec.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableFec.Tpo -c -o libscirenderer_la-ConcreteDrawableFec.lo `test -f 'src/cpp/fecDrawing/ConcreteDrawableFec.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/ConcreteDrawableFec.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ConcreteDrawableFec.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableFec.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/ConcreteDrawableFec.cpp' object='libscirenderer_la-ConcreteDrawableFec.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableFec.lo `test -f 'src/cpp/fecDrawing/ConcreteDrawableFec.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/ConcreteDrawableFec.cpp
+
+libscirenderer_la-DrawableFecBridgeFactory.lo: src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFecBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFecBridgeFactory.Tpo -c -o libscirenderer_la-DrawableFecBridgeFactory.lo `test -f 'src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFecBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableFecBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp' object='libscirenderer_la-DrawableFecBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFecBridgeFactory.lo `test -f 'src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp
+
+libscirenderer_la-DrawableFecJavaMapper.lo: src/cpp/fecDrawing/DrawableFecJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFecJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFecJavaMapper.Tpo -c -o libscirenderer_la-DrawableFecJavaMapper.lo `test -f 'src/cpp/fecDrawing/DrawableFecJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFecJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableFecJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/DrawableFecJavaMapper.cpp' object='libscirenderer_la-DrawableFecJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFecJavaMapper.lo `test -f 'src/cpp/fecDrawing/DrawableFecJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecJavaMapper.cpp
+
+libscirenderer_la-DrawableFecJoGL.lo: src/cpp/fecDrawing/DrawableFecJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFecJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFecJoGL.Tpo -c -o libscirenderer_la-DrawableFecJoGL.lo `test -f 'src/cpp/fecDrawing/DrawableFecJoGL.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableFecJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableFecJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/DrawableFecJoGL.cpp' object='libscirenderer_la-DrawableFecJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFecJoGL.lo `test -f 'src/cpp/fecDrawing/DrawableFecJoGL.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/DrawableFecJoGL.cpp
+
+libscirenderer_la-FecFacetDrawerJavaMapper.lo: src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FecFacetDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FecFacetDrawerJavaMapper.Tpo -c -o libscirenderer_la-FecFacetDrawerJavaMapper.lo `test -f 'src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-FecFacetDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-FecFacetDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp' object='libscirenderer_la-FecFacetDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FecFacetDrawerJavaMapper.lo `test -f 'src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp
+
+libscirenderer_la-FecFacetDrawerJoGL.lo: src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FecFacetDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FecFacetDrawerJoGL.Tpo -c -o libscirenderer_la-FecFacetDrawerJoGL.lo `test -f 'src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-FecFacetDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-FecFacetDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp' object='libscirenderer_la-FecFacetDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FecFacetDrawerJoGL.lo `test -f 'src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp
+
+libscirenderer_la-FecLineDrawerJavaMapper.lo: src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FecLineDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FecLineDrawerJavaMapper.Tpo -c -o libscirenderer_la-FecLineDrawerJavaMapper.lo `test -f 'src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-FecLineDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-FecLineDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp' object='libscirenderer_la-FecLineDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FecLineDrawerJavaMapper.lo `test -f 'src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp
+
+libscirenderer_la-FecLineDrawerJoGL.lo: src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FecLineDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FecLineDrawerJoGL.Tpo -c -o libscirenderer_la-FecLineDrawerJoGL.lo `test -f 'src/cpp/fecDrawing/FecLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-FecLineDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-FecLineDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/FecLineDrawerJoGL.cpp' object='libscirenderer_la-FecLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FecLineDrawerJoGL.lo `test -f 'src/cpp/fecDrawing/FecLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
