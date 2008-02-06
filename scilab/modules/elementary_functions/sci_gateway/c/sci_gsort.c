@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* file: sci_gsort.c                                                      */
 /* Copyright INRIA 2007                                                   */
-/* Authors : Jean-baptiste Silvy, Allan CORNET ,Cong Wu (2007)            */
+/* Authors : Jean-baptiste Silvy, Allan CORNET, Cong Wu (2007)            */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_elementary_functions.h"
@@ -52,7 +52,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&Im);
 			break;
 		default :
-			Scierror(999,_("%s: Wrong type for first argument: Scalar or string matrix expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
 			return 0;
 		}
 	}
@@ -63,13 +63,13 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		if ( m2 == 0 )
 		{
-			Scierror(999,_("%s: Wrong second input argument: Not empty string expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for second input argument: Non-empty string expected.\n"),fname);
 			return 0;
 		}
 		c = *cstk(l2);
 		if (c != ROW_SORT && c != COLUMN_SORT && c != GLOBAL_SORT && c != LIST_SORT)
 		{
-			Scierror(999,_("%s: Wrong value for second input argument: '%s','%s','%s','%s' or '%s' expected.\n"),fname,"r","c","g","lr","lc");
+			Scierror(999,_("%s: Wrong value for second input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),fname,"r","c","g","lr","lc");
 			return 0;
 		}
 		strcpy(typex,cstk(l2));
@@ -81,7 +81,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		CheckLength(3,m3,1);
 		if ( *cstk(l3) != INCREASE_COMMAND && *cstk(l3) != DECREASE_COMMAND)
 		{
-			Scierror(999,_("%s: Wrong value for third input argument: '%s' or '%s' expected.\n"),fname,"i","d");
+			Scierror(999,_("%s: Wrong value for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"i","d");
 			return 0;
 		}
 		iord[0] = *cstk(l3);
@@ -178,6 +178,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			if (tmp_matrix)	{ FREE(tmp_matrix); tmp_matrix = NULL;}
 		}
 		break;
+
 	case sci_strings:
 		{
 			int i;
@@ -245,7 +246,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 				C2F(gsortuint)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
 			default:
-				Scierror(999,_("%s: Wrong type for input argument: Unkown type of the matrix.\n"),fname);
+				Scierror(999,_("%s: Wrong type for first input argument: Unknown type.\n"),fname);
 				return 0;
 			}
 

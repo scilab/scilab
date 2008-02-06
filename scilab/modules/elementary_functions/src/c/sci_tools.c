@@ -103,7 +103,7 @@ void SciToF77(double *ptr, int size, int lda)
   double *tab;
   
   if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    (void) fprintf(stderr, "SciToF77: Error malloc\n");
+    Scierror(999,_("%s: No more memory.\n"),"SciToF77");
     return;
   }
 
@@ -128,7 +128,7 @@ void F77ToSci(double *ptr, int size, int lda)
   double *tab;
   
   if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    (void) fprintf(stderr, "F77ToSci: Error malloc\n");
+    Scierror(999,_("%s: No more memory.\n"),"F77ToSci");
     return;
   }
   
@@ -158,7 +158,7 @@ double2z(double *ptr, double *ptr77z, int size, int lda)
   double *tab;
   
   if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    (void) fprintf(stderr, "Double2z: Error malloc\n");
+    Scierror(999,_("%s: No more memory.\n"),"double2z");
     return;
   }
 
@@ -180,7 +180,7 @@ z2double(double *ptrz, double *ptrsci, int size, int lda)
   double *tab;
   
   if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
-    (void) fprintf(stderr, "z2double: Error malloc\n");
+    Scierror(999,_("%s: No more memory.\n"),"z2double");
     return;
   }
   
