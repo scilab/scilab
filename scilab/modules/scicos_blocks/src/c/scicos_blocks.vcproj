@@ -1438,20 +1438,36 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\LibScilab_Import.def"
+		<Filter
+			Name="Import"
 			>
-		</File>
+			<File
+				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Output_stream_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\scicos_blocks_f_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Scicos_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\String_Import.def"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 		<File
 			RelativePath="..\..\scicos_blocks.iss"
-			>
-		</File>
-		<File
-			RelativePath=".\scicos_blocks_f_Import.def"
 			>
 		</File>
 		<File
