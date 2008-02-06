@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="scicos_blocks"
 	ProjectGUID="{70F677F1-B535-4D0F-A16F-5093B799A540}"
 	RootNamespace="scicos_blocks"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

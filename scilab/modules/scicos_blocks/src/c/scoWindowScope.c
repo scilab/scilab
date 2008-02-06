@@ -40,6 +40,7 @@
 #include "WindowList.h"
 #include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 
 void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
@@ -71,7 +72,9 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
       win_id = 20000 + block_number; 
     }
   //if we restart the simulation this command delete all previous children of the window
-  if ((pTemp = sciIsExistingFigure(&win_id)) != NULL)
+  /* WARNING HERE */
+  /* warning C4047: '=' : 'scoGraphicalObject' differs in levels of indirection from 'BOOL' */
+  if ((pTemp = sciIsExistingFigure(win_id)) != NULL)
     {
       if (pFIGURE_FEATURE(pTemp)->user_data != NULL)
 	{
@@ -95,7 +98,9 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	    {
 	      //We are getting the Handle of the current axes but in the same time we are constructing it (see below)
 	      //Here pTemp is the pointer on the ScopeWindow
-	      scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetSelectedSubWin(pTemp)));
+	      //scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetSelectedSubWin(pTemp)));
+		  // J-B please check this 
+			scoSetHandleAxes(pScopeMemory,i,(long)sciGetFirstTypedSelectedSon( pTemp, SCI_SUBWIN ) );
 	    }
 	  else
 	    {
@@ -145,8 +150,10 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
       if(win_dim != NULL)
 	{
 	  if (win_dim[0] >= 0) {
-	    sciSetDim(pTemp, &win_dim[0], &win_dim[1]);
-	    sciSetDim(pTemp2, &win_dim[0], &win_dim[1]);
+	    /*sciSetDim(pTemp, &win_dim[0], &win_dim[1]);
+	    sciSetDim(pTemp2, &win_dim[0], &win_dim[1]);*/
+		  sciSetDimension(pTemp, win_dim[0], win_dim[1]);
+		  sciSetDimension(pTemp2,win_dim[0], win_dim[1]);
           }
 	}
 
