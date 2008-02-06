@@ -1,18 +1,18 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_UImenu.c                                                     */
+/* file: sci_uimenu.c                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Allan Cornet, Fabrice Leray, Jean-Baptiste Silvy             */
-/* desc : interface for sci_UImenu routine                                */
+/* desc : interface for sci_uimenu routine                                */
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h> 
 #include <string.h> 
 /*--------------------------------------------------------------------------*/
-#include "sci_UImenu.h"
+#include "sci_uimenu.h"
 #include "MALLOC.h" /* MALLOC */
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
+#include "gw_gui.h"
 #include "localization.h"
 #include "stack-c.h"
 #include "GetProperty.h"
@@ -22,7 +22,7 @@
 #include "SetHashTable.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_UImenu( char *fname,unsigned long fname_len )
+int sci_uimenu( char *fname,unsigned long fname_len )
 {
   int nbRow = 0, nbCol = 0, stkAdr = 0;
 
@@ -137,6 +137,8 @@ int sci_UImenu( char *fname,unsigned long fname_len )
   *hstk(stkAdr) = GraphicHandle;
 
   LhsVar(1)=Rhs+1;
+
+  C2F(putlhsvar)();
 
   return TRUE;
 }

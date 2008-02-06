@@ -107,7 +107,8 @@ sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_hidetoolbar.c \
 sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_uigetdir.c \
-sci_gateway/c/sci_uicontrol.c
+sci_gateway/c/sci_uicontrol.c \
+sci_gateway/c/sci_uimenu.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

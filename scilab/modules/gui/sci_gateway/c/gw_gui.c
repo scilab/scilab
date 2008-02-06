@@ -30,7 +30,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_toolbar),"toolbar"},
 	{C2F(sci_hidetoolbar),"hidetoolbar"},
 	{sci_uigetdir,"uigetdir"},
-	{sci_uicontrol,"uicontrol"}
+	{sci_uicontrol,"uicontrol"},
+	{sci_uimenu,"uimenu"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_gui)(void)

@@ -86,7 +86,6 @@ static gw_generic_table Tab[]={
     {sci_relocate_handle,"relocate_handle"},
     {sci_swap_handles,"swap_handles"},
 	{sci_help_gtk,"help_gtk"},
-	{sci_UImenu,"UImenu"},
 	{sci_showalluimenushandles,"showalluimenushandles"}
 };
 

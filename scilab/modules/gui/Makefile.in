@@ -109,17 +109,17 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_setlookandfeel.c sci_gateway/c/sci_about.c \
 	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_hidetoolbar.c \
 	sci_gateway/c/sci_toolbar.c sci_gateway/c/sci_uigetdir.c \
-	sci_gateway/c/sci_uicontrol.c src/cpp/InitUIMenu.cpp \
-	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
-	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
-	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
-	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
-	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
-	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp src/cpp/ListBox.cpp \
-	src/cpp/Frame.cpp src/cpp/SetUimenuLabel.cpp \
-	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
-	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
-	src/cpp/SetUicontrolParent.cpp \
+	sci_gateway/c/sci_uicontrol.c sci_gateway/c/sci_uimenu.c \
+	src/cpp/InitUIMenu.cpp src/jni/CallScilabBridge.cpp \
+	src/jni/Jxclick.cpp src/cpp/CallJxclick.cpp \
+	src/jni/Jxgetmouse.cpp src/cpp/CallJxgetmouse.cpp \
+	src/cpp/CallFileChooser.cpp src/cpp/PushButton.cpp \
+	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
+	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
+	src/cpp/PopupMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
+	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
+	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -185,7 +185,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_hidetoolbar.lo \
 @GUI_TRUE@	libscigui_la-sci_toolbar.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetdir.lo \
-@GUI_TRUE@	libscigui_la-sci_uicontrol.lo
+@GUI_TRUE@	libscigui_la-sci_uicontrol.lo \
+@GUI_TRUE@	libscigui_la-sci_uimenu.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo libscigui_la-CallJxclick.lo \
@@ -619,7 +620,8 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_hidetoolbar.c \
 @GUI_TRUE@sci_gateway/c/sci_toolbar.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetdir.c \
-@GUI_TRUE@sci_gateway/c/sci_uicontrol.c
+@GUI_TRUE@sci_gateway/c/sci_uicontrol.c \
+@GUI_TRUE@sci_gateway/c/sci_uimenu.c
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
@@ -873,6 +875,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_toolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uicontrol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetdir.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose.Plo@am__quote@
@@ -1149,6 +1152,13 @@ libscigui_la-sci_uicontrol.lo: sci_gateway/c/sci_uicontrol.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uicontrol.c' object='libscigui_la-sci_uicontrol.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uicontrol.lo `test -f 'sci_gateway/c/sci_uicontrol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontrol.c
+
+libscigui_la-sci_uimenu.lo: sci_gateway/c/sci_uimenu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uimenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uimenu.Tpo -c -o libscigui_la-sci_uimenu.lo `test -f 'sci_gateway/c/sci_uimenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uimenu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uimenu.Tpo $(DEPDIR)/libscigui_la-sci_uimenu.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uimenu.c' object='libscigui_la-sci_uimenu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uimenu.lo `test -f 'sci_gateway/c/sci_uimenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uimenu.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

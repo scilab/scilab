@@ -29,6 +29,7 @@ int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l));
 int C2F(sci_about) _PARAMS((char *fname,unsigned long l));
 int sci_uicontrol(char *fname,unsigned long l);
+int sci_uimenu(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

@@ -44,4 +44,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="18" primitiveName="hidetoolbar"/>
 <PRIMITIVE gatewayId="25" primitiveId="19" primitiveName="uigetdir"/>
 <PRIMITIVE gatewayId="25" primitiveId="20" primitiveName="uicontrol"/>
+<PRIMITIVE gatewayId="25" primitiveId="21" primitiveName="uimenu"/>
 </GATEWAY>

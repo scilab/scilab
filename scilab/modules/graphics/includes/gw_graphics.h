@@ -57,7 +57,6 @@
 #include "sci_drawlater.h"
 #include "sci_draw.h"
 #include "sci_unzoom.h"
-#include "sci_UImenu.h"
 #include "sci_newaxes.h"
 #include "sci_relocate_handle.h"
 #include "sci_swap_handles.h"

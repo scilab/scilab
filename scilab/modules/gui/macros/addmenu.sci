@@ -180,7 +180,7 @@ endfunction
 // Add a menu with no callback given by the user
 //------------------------------------------------------------------------------
 function addSingleMenu(fig, menulabel)
-h = UImenu("parent", fig, "label", menulabel);
+h = uimenu("parent", fig, "label", menulabel);
 if fig==0
   set(h, "callback", list(0, "execstr("+menulabel+"(1))"));
 else
@@ -197,7 +197,7 @@ function addSingleMenuCallback(fig, menulabel, callback)
 
 [callbackStr, callbackType] = getCallbackProperties(callback);
 
-h = UImenu("parent", fig, "label", menulabel);
+h = uimenu("parent", fig, "label", menulabel);
 if callbackType <> 2
   set(h, "callback", list(0, "execstr("+callbackStr+")"));
 else
@@ -217,13 +217,13 @@ endfunction
 //------------------------------------------------------------------------------
 function addMenuSubMenus(fig, menulabel, submenuslabels)
 
-h0 = UImenu("parent", fig, "label", menulabel);
+h0 = uimenu("parent", fig, "label", menulabel);
 
 for K=1:size(submenuslabels,"*")
   if (type(fig)==1)
-    UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"("+string(K)+"))");
+    uimenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"("+string(K)+"))");
   else
-    UImenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"("+string(K)+"))");
+    uimenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"("+string(K)+"))");
   end
 end
 
@@ -238,10 +238,10 @@ function addMenuSubMenusCallback(fig, menulabel, submenuslabels, callback)
 
 [callbackStr, callbackType] = getCallbackProperties(callback);
 
-h0 = UImenu("parent",fig,"label",menulabel);
+h0 = uimenu("parent",fig,"label",menulabel);
 
 for K=1:size(submenuslabels,"*")
-  h = UImenu("parent", h0, "label", submenuslabels(K));
+  h = uimenu("parent", h0, "label", submenuslabels(K));
   if callbackType <> 2
     set(h, "callback", list(0, "execstr("+callbackStr+")"));
   else

@@ -350,7 +350,6 @@ sci_gateway/c/sci_xname.c \
 sci_gateway/c/sci_xstringl.c \
 sci_gateway/c/sci_xpoly.c \
 sci_gateway/c/sci_xchange.c \
-sci_gateway/c/sci_UImenu.c \
 sci_gateway/c/sci_matplot.c \
 sci_gateway/c/sci_drawaxis.c \
 sci_gateway/c/sci_demo.c \
@@ -498,7 +497,6 @@ includes/sci_driver.h \
 includes/sci_fec.h \
 includes/sci_matplot1.h \
 includes/XsetXgetParameters.h \
-includes/sci_UImenu.h \
 includes/sci_xfpolys.h \
 includes/WindowList.h \
 includes/sci_xget.h \
