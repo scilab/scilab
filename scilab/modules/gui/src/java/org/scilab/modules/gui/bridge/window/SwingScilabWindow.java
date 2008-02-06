@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import org.flexdock.docking.DockingConstants;
@@ -60,7 +61,10 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
 		// TODO : Only for testing : Must be removed
 		this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
-		this.setTitle("Scilab 5.0");
+		this.setTitle("Scilab");
+		System.out.println("Before ico");
+		setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+		System.out.println("After ico");
 		
 		/* defining the Layout */
 		super.setLayout(new java.awt.BorderLayout());
