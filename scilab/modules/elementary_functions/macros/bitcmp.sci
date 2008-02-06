@@ -81,16 +81,25 @@ function y = bitcmp(x,n)
 		n = nmax;
 	end
 	
-	// case empty matrix
-	
-	if isempty(x) then
-		y=[];
-		return;
-	end
-	
 	
 	// Algorithm
 	// =========================================================================
+	
+	// empty matrix shortcut
+	
+	if isempty(x) then
+		y = [];
+		return;
+	end
+	
+	// unit8, uint16 and uint32 shortcut
+	
+	if (type(x)==8) & (rhs==1) then
+		y = ~x;
+		return;
+	end
+	
+	// else
 	
 	xbin = dec2bin(x,nmax)
 	xbin = part(xbin,nmax-n+1:length(xbin(1)))
@@ -98,7 +107,6 @@ function y = bitcmp(x,n)
 	xbin = strsubst(xbin,"0","1");
 	xbin = strsubst(xbin,"2","0");
 	y    = bin2dec(xbin)
-	
 	
 	// Result
 	// =========================================================================

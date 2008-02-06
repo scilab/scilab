@@ -65,31 +65,53 @@ function y = bitget(x,pos)
 	// =========================================================================
 	
 	if size(pos,"*") == 1;
-		pos  = ones(x)*pos;
+		pos  = ones(x)  * pos;
 	end
 	
 	if size(x,"*") == 1;
-		x    = ones(pos)*x;
+		x    = ones(pos) * x;
 	end
-	
-	xbin = strrev(dec2bin(x,max(pos)));
-	
-	for i=1:size(xbin,"*")
-		ytemp = asciimat(xbin(i))-48;
-		y(i)  = ytemp(pos(i));
-	end
-	
-	// Result
-	// =========================================================================
 	
 	if type(x)==8 then
+		
 		select inttype(x)
-			case 11 then y = uint8(y);
-			case 12 then y = uint16(y);
-			case 14 then y = uint32(y);
+			
+			case 11 then
+				mask = uint8(2^(pos-1));
+				y    = uint8(1 * ((x & mask) > 0));
+				return;
+			
+			case 12 then
+				mask = uint16(2^(pos-1));
+				y    = uint16(1 * ((x & mask) > 0));
+				return;
+			
+			case 14 then
+				mask = uint32(2^(pos-1));
+				y    = uint32(1 * ((x & mask) > 0));
+				return;
 		end
+		
+	else
+		
+		// type == 1
+		
+		a     = 2^32;
+		mask  = uint32(zeros(pos));
+		ytemp = uint32(zeros(pos));
+		
+		if or(pos<=32) then
+			mask( pos<=32 )  = uint32( 2^(pos(pos<=32) -1 ));
+			ytemp( pos<=32 ) = uint32( x(pos<=32) - double(uint32(x(pos<=32)/a)) * a ); // permet de récupérer les 32 bits de poid faible
+		end
+		
+		if or(pos>32) then
+			mask( pos>32  )     = uint32( 2^(pos(pos>32) -32 -1 ));
+			ytemp( pos> 32 )    = uint32( x(pos> 32)/a); // permet de récupérer les 32 bits de poid fort
+		end
+		
+		y = 1 * ((ytemp & mask) > 0);
+		
 	end
-	
-	y = matrix(y,size(x));
 	
 endfunction

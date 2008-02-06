@@ -42,16 +42,14 @@ function z = bitand(x,y)
 	
 	if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
 		| (type(x)==8  & (inttype(x)<10) ) ..
-		| (type(x)==17 & (type(x.entries<>1) | type(x.entries<>8)) & find(x.entries>0)<>[]) ..
-		| (type(x)<>1  & type(x)<>8 & type(x)<>17) then
+		| (type(x)<>1  & type(x)<>8) then
 		
 		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand"));
 	end
 	
 	if    (type(y)==1  & (y-floor(y)<>0 | y<0)) ..
 		| (type(y)==8  & (inttype(y)<10) ) ..
-		| (type(y)==17 & (type(y.entries<>1) | type(y.entries<>8)) & find(y.entries>0)<>[]) ..
-		| (type(y)<>1  & type(y)<>8 & type(y)<>17) then
+		| (type(y)<>1  & type(y)<>8) then
 		
 		error(msprintf(gettext("%s: Wrong second input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand"));
 	end
@@ -59,25 +57,12 @@ function z = bitand(x,y)
 	// Algorithm
 	// =========================================================================
 	
-	for i=1:prod(size(x))
-		zbin = dec2bin([x(i);y(i)])
-		zand = strcat((string(sum(asciimat(zbin)-48,1))))
-		zand = strsubst(zand,'1','0')
-		zand = strsubst(zand,'2','1')
-		z(i) = bin2dec(zand)
-	end
-	
-	// Result
-	// =========================================================================
-	
 	if type(x)==8 then
-		select inttype(x)
-			case 11 then z = uint8(z);
-			case 12 then z = uint16(z);
-			case 14 then z = uint32(z);
-		end
+		z = x & y;
+	else
+		a = 2^32;
+		z = double( uint32(x/a) & uint32(y/a) ) * a;
+		z = z + double(uint32(x-z) & uint32(y-z));
 	end
-	
-	z = matrix(z,size(x));
 	
 endfunction
