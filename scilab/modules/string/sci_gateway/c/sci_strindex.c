@@ -177,6 +177,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 				else
 				{
 					pcre_error("GREP_NEW",w);
+					break;
 				}
 			}
             

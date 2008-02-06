@@ -100,18 +100,18 @@ UTF8 support if PCRE is built without it. */
 
 /* Static variables */
 
-static FILE *outfile;
+static FILE *outfile=NULL;
 static int log_store = 0;
-static int callout_count;
-static int callout_extra;
-static int callout_fail_count;
-static int callout_fail_id;
-static int debug_lengths;
-static int first_callout;
+static int callout_count=0;
+static int callout_extra=0;
+static int callout_fail_count=0;
+static int callout_fail_id=0;
+static int debug_lengths=0;
+static int first_callout=0;
 static int locale_set = 0;
-static int show_malloc;
-static int use_utf8;
-static size_t gotten_store;
+static int show_malloc=0;
+static int use_utf8=0;
+static size_t gotten_store=0;
 
 /* The buffers grow automatically if very long input lines are encountered. */
 
@@ -285,8 +285,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	char copynames[1024];
 	char getnames[1024];
 
-	char *copynamesptr;
-	char *getnamesptr;
+	char *copynamesptr=NULL;
+	char *getnamesptr=NULL;
 
 
 	buffer = (char *)MALLOC(strlen(INPUT_LINE)+1);
@@ -308,15 +308,16 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			regex_t preg;
 			int do_posix = 0;
 		#endif
-		const char *error;
-		char *p; 
-		char	*pp, *ppp;
+		const char *error=NULL;
+		char *p=NULL; 
+		char	*pp=NULL;
+		char *ppp=NULL;
 		char *to_file = NULL;
 		const unsigned char *tables = NULL;
 		unsigned long int true_size, true_study_size = 0;
 		size_t regex_gotten_store;
 		int do_study = 0;
-		int do_debug = debug;
+		int do_debug = debug=0;
 		int do_G = 0;
 		int do_g = 0;
 		int do_showinfo = showinfo;
@@ -529,13 +530,14 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
   /* Read data lines and test them */
     {
-		char *q;
-		char *bptr;
+		char *q=NULL;
+		char *bptr=NULL;
 		int *use_offsets = offsets;
 		int use_size_offsets = size_offsets;
 		int callout_data = 0;
 		int callout_data_set = 0;
-		int count, c;
+		int count=0;
+		int c=0;
 		int copystrings = 0;
 		int find_match_limit = 0;
 		int getstrings = 0;

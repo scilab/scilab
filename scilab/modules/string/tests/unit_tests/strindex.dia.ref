@@ -348,8 +348,10 @@ if strindex('a\nb\nc\n'                               ,'/()^b/'                 
 //  This is actually not compatible with Perl, which accepts such patterns, but
 //  treats the conditional as always being FALSE (as PCRE used to), but it
 //    seems to me that giving a diagnostic is better.
-//if strindex('a'                                       ,'/(?(1)a|b)/'                           ,'r') <>  []  then bugmes();quit;end
-//if strindex('a'                                       ,'/(?(1)b|a)/'                           ,'r') <>  1   then bugmes();quit;end
+if execstr("strindex(''a'' ,''/(?(1)a|b)/'',''r'')","errcatch") <>  999  then bugmes();quit;end
+if execstr("strindex(''a'',''/(?(?{0})a|b)/'',''r'')","errcatch") <>  999  then bugmes();quit;end
+if execstr("strindex(''a'',''/(?(?{1})b|a)/'',''r'')","errcatch") <>  999  then bugmes();quit;end
+if execstr("strindex(''a'',''/(?(1)b|a)/'',''r'')","errcatch") <>  999  then bugmes();quit;end
 if strindex('a'                                       ,'/(x)?(?(1)a|b)/'                       ,'r') <>  []  then bugmes();quit;end
 if strindex('a'                                       ,'/(x)?(?(1)b|a)/'                       ,'r') <>  1   then bugmes();quit;end
 if strindex('a'                                       ,'/()?(?(1)b|a)/'                        ,'r') <>  1   then bugmes();quit;end
@@ -359,8 +361,6 @@ if strindex('blah)'                                   ,'/^(\()?blah(?(1)(\)))$/'
 if strindex('(blah'                                   ,'/^(\()?blah(?(1)(\)))$/'               ,'r') <>  []  then bugmes();quit;end
 if strindex('blah)'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then bugmes();quit;end
 if strindex('(blah'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then bugmes();quit;end
-//if strindex('a'                                       ,'/(?(?{0})a|b)/'                        ,'r') <>  []  then bugmes();quit;end
-//if strindex('a'                                       ,'/(?(?{1})b|a)/'                        ,'r') <>  []  then bugmes();quit;end
 if strindex('a'                                       ,'/(?(?!a)a|b)/'                         ,'r') <>  []  then bugmes();quit;end
 if strindex('a'                                       ,'/(?(?!a)b|a)/'                         ,'r') <>  1   then bugmes();quit;end
 if strindex('a'                                       ,'/(?(?=a)b|a)/'                         ,'r') <>  []  then bugmes();quit;end
