@@ -15,6 +15,7 @@ Console:
  - Completion
 	+ functions
 	+ variables
+	+ paths
  
 Scilab modes:
 =============
@@ -27,11 +28,35 @@ GNU/Linux - Unix:
  - Better startup script
 	+ Debug
 	+ Profiling
+	
+Windows:	
+=================
+ - compilation process :
+	+ Visual Studio 2005 solution (requires Intel Fortran 10.x) support
+	+ Visual Studio 2005 express solution (fortran conversion with f2c) support (FREE)
+ - Dynamic libraries	
+ - Atlas 3.8 support (Core 2 Duo and more support)
+ - Intel Math Kernel Library support
+ - better support on Windows Vista
+ - Visual Studio 2008 support for dynamic link (ilib_ primitives)
+
 
 Functions:
 ==========
  - New functions:
 	+ getdebuginfo
+	+ getscilabmode			    - returns scilab mode
+  + getvariablesonstack		- get variable names on stack of scilab
+  + getmd5                - get md5 checksum
+  + getmodules            - returns list of modules installed in Scilab
+  + with_module           - Checks if a Scilab module is installed
+  + islittleendian        - Checks if machine architecture is "little-endian"
+  + librarieslist         - get scilab libraries
+  + libraryinfo           - get macros and path of a scilab library
+  + completion            - returns words that start with the text you pass as parameter.
+
+ - Rewrite in native code:
+  + warning 
 
 
 Signal processing:
@@ -43,8 +68,8 @@ Signal processing:
 	+ fftw_forget_wisdom  - reset fftw wisdom
 	+ get_fftw_wisdom     - return fftw wisdom
 	+ set_fftw_wisdom     - set fftw wisdom
-	+ disposefftwlibrary  -
-	+ fftwlibraryisloaded -
+	+ disposefftwlibrary  - free fttw library
+	+ fftwlibraryisloaded - checks if fftw library is loaded
 
 
 Java/Scilab API:
@@ -97,7 +122,6 @@ Input/Output functions (files)
  - New functions:
 	+ getdrives           - get the drive letters of all mounted filesystems on
 	                        the computer.
-	+ removedir           - remove a directory
 	+ getrelativefilename - given an absolute directory and an absolute filename,
 	                        returns a relative file name.
 	+ fullpath            - creates an full path name for the specified relative
@@ -109,9 +133,12 @@ Input/Output functions (files)
 	+ fileext             - returns extension for a file path
 	+ filesep             - returns directory separator for current platform
 	+ pathsep             - returns path separator for current platform
+	+ maxfiles            - sets the limit for the number of files a scilab is allowed to have open simultaneously.
+	+ findfiles           - Finding all files with a given filespec
 	
  - Rewrite in native code:
 	+ isdir
+	+ newest
 
 
 Regular expression features:
@@ -136,7 +163,7 @@ String manipulation
 	+ strcmp     - compare character strings
 	+ strcmpi    - compare character strings (case independent)
 	+ strcspn    - get span until character in string
-	+ strncpy
+	+ strncpy    - copy characters from strings
 	+ strrchr    - locate last occurrence of character in string
 	+ strrev     - returns string reversed
 	+ strspn     - get span of character set in string
@@ -145,9 +172,16 @@ String manipulation
 	+ strtok     - split string into tokens
 
 
+jvm module:
+===================
+	+ with_embedded_jre        - checks if scilab uses a embedded JRE
+	+ system_getproperty       - gets the system property indicated by a specified key.
+	+ javaclasspath            - set and get dynamic Java class path
+	+ javalibrarypath          - set and get dynamic java.library.path
+
 Dynamic link:
 =============
-
+  + getdynlibext - get the extension of dynamic libraries on your operating system.
 
 TCL/TK:
 =======
@@ -196,6 +230,31 @@ Metanet : graph and network toolbox
 	+ update_graph   - converts an old graph data structure to the current one
 
 
+Windows_tools :
+===================================
+ - New functions:
+  + consolebox          - show or hide console box
+  + findfileassociation - Searches for and retrieves a file association-related string from the registry.
+  + dos                 - shell (cmd) command execution 
+
+History manager :
+===================================
+ - New functions:
+  + displayhistory          - displays current scilab history
+  + addhistory              - add lines to current history
+  + saveconsecutivecommands - Save consecutive duplicate commands
+  + saveafterncommands      - Save the history file after n statements are added to the file.
+  + gethistoryfile          - get filename used for scilab's history
+  + sethistoryfile          - set filename for scilab history
+  + removelinehistory       - remove the Nth line in history.
+  + historysize             - get number of lines in history
+  + historymanager          - enable or disable history manager
+
+ - Rewrite:
+  + loadhistory
+  + savehistory
+  + gethistory
+  + resethistory
 
 
 
