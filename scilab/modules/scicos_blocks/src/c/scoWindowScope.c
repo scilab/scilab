@@ -795,9 +795,9 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));
   for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
-		sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title,title[i],1,1); /* 1,1 is nbrow, nbcol */
-      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label,x_title,1,1); /* 1,1 is nbrow, nbcol */
-      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,y_title,1,1);/* 1,1 is nbrow, nbcol */
+		sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title,&title[i],1,1); /* 1,1 is nbrow, nbcol */
+      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label,&x_title,1,1); /* 1,1 is nbrow, nbcol */
+      sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,&y_title,1,1);/* 1,1 is nbrow, nbcol */
 
       
       sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 0);
@@ -813,7 +813,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
 	{
 	  sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
-	  sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,z_title,1,1); /* 1,1 is nbrow, nbcol */
+	  sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,&z_title,1,1); /* 1,1 is nbrow, nbcol */
 	}
     }
   for(i = 0; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
