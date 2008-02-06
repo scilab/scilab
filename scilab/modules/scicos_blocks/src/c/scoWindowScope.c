@@ -74,8 +74,9 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
   //if we restart the simulation this command delete all previous children of the window
   /* WARNING HERE */
   /* warning C4047: '=' : 'scoGraphicalObject' differs in levels of indirection from 'BOOL' */
-  if ((pTemp = sciIsExistingFigure(win_id)) != NULL)
+  if ((sciIsExistingFigure(win_id)))
     {
+		pTemp = getFigureFromIndex(win_id);
       if (pFIGURE_FEATURE(pTemp)->user_data != NULL)
 	{
       user_data = scoGetUserData(pTemp);
@@ -100,7 +101,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	      //Here pTemp is the pointer on the ScopeWindow
 	      //scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetSelectedSubWin(pTemp)));
 		  // J-B please check this 
-			scoSetHandleAxes(pScopeMemory,i,(long)sciGetFirstTypedSelectedSon( pTemp, SCI_SUBWIN ) );
+			scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetFirstTypedSelectedSon( pTemp, SCI_SUBWIN )) );
 	    }
 	  else
 	    {
@@ -109,7 +110,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	    }
 	  //Here pTemp2 is the pointer on the current Axes
 	  pTemp2 = scoGetPointerAxes(pScopeMemory,i);
-	  sciSetFontDeciWidth(pTemp2, 0);
+	  sciInitFontSize(pTemp2, 0);
 	  sciSetIsBoxed(pTemp2,TRUE);
 	  //Here we don't want "smart" limits
 	  pSUBWIN_FEATURE(pTemp2)->tight_limits = TRUE;
@@ -144,8 +145,9 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	}
       if(win_pos != NULL)
 	{
-	  if (win_pos[0] >= 0)
-	    sciSetFigurePos(pTemp, win_pos[0], win_pos[1]);
+		if (win_pos[0] >= 0) {
+			sciInitScreenPosition(pTemp, win_pos[0], win_pos[1]);
+		}
 	}
       if(win_dim != NULL)
 	{
@@ -266,7 +268,8 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
 	  //pixmap mode
 	  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	    {
-	      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			/* TODO : not implemented */
+			/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 	    }
 	  sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
 	}
@@ -392,7 +395,8 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 		  //pixmap
 		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
-		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				/* TODO : not implemented */
+				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 		    }
 		  sciDrawObj(pShortDraw);
 		  //Here too but - if you delete the line on top dont forget to delete this line
@@ -807,9 +811,9 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
       sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,&y_title,1,1);/* 1,1 is nbrow, nbcol */
 
       
-      sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 0);
-      sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label, 0);
-      sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title, 0);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 0);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label, 0);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title, 0);
     }
 
   if(z!= NULL)
@@ -819,7 +823,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
 
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
 	{
-	  sciSetFontDeciWidth(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
+	  sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
 	  sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,&z_title,1,1); /* 1,1 is nbrow, nbcol */
 	}
     }
@@ -872,7 +876,8 @@ void scoDrawScopeXYStyle(ScopeMemory * pScopeMemory)
 	  //pixmap
 	  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	    {
-	      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			/* TODO : not implemented */
+			/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 	    }
 	  sciDrawObj(Pinceau);
 	  NbrPtsLong = pPOLYLINE_FEATURE(Trait)->n1;
@@ -929,7 +934,8 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
       if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	{
-	  C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		/* TODO : not implemented */
+		/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 	}
       sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
     }
@@ -971,7 +977,8 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
-		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				/* TODO : not implemented */
+				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 		    }
 		  sciDrawObj(Pinceau);
 		  sciDrawObj(Gomme);
@@ -1004,7 +1011,8 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
-		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				/* TODO : not implemented */
+				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 		    }
 		  sciDrawObj(Pinceau);
 		  sciDrawObj(Gomme);
@@ -1053,7 +1061,8 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
-		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				/* TODO : not implemented */
+				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 		    }
 		  sciDrawObj(Pinceau);
 		  sciDrawObj(Gomme);
@@ -1092,7 +1101,8 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
 		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 		    {
-		      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				/* TODO : not implemented */
+				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 		    }
 		  sciDrawObj(Pinceau);
 		  sciDrawObj(Gomme);
