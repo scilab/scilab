@@ -39,6 +39,8 @@
 #include "sciprint.h"
 #include "WindowList.h"
 #include "DrawingBridge.h"
+#include "CurrentObjectsManagement.h"
+
 
 void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
 {

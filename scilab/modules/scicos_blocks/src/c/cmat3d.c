@@ -27,6 +27,7 @@
    \see CMAT3D.sci in macros/scicos_blocks/Sinks/
 */
 #include "CurrentObjectsManagement.h"
+#include "DrawingBridge.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
