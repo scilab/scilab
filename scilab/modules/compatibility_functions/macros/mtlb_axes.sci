@@ -21,8 +21,8 @@ elseif varargin(1)=='position'
 elseif type(varargin(1))==1 then
   xsetech(AXES_T(k)(varargin(1),:))
 else
-  error(gettext("Not yet implemented."))
+  error(msprintf(gettext("%s: This feature has not been implemented.\n"),"mtlb_axes"));
 end
-  
+
   
 endfunction

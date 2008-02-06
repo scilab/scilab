@@ -17,7 +17,7 @@ if rhs==1 then
   end
 // B=any(A,dim)
 else
-  // Because Matlab tolerate dim to be an non-existant dimension of a
+  // Because Matlab tolerate dim to be an non-existent dimension of a
   if dim>size(size(a),"*") then
     if isempty(a) then
       r=[]

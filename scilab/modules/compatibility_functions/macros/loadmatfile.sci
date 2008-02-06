@@ -8,7 +8,7 @@ function loadmatfile(varargin)
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
-    error(gettext("All inputs must be character strings."));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"loadmatfile"));
   end
 end
 
@@ -35,20 +35,20 @@ else // Try to find type binary or ASCII ?
       bin=%F
       k=k+1
     case "-regexp"
-      warning(msprintf(gettext("Option %s not implemented: IGNORED."),"-regexp"));
+      warning(msprintf(gettext("%s: This feature has not been implemented: %s."),"loadmatfile","-regexp"));
       while k<=lstsize(varargin) & and(varargin(k)<>["-mat","-ascii"])
-	k=k+1
+      	k=k+1
       end
     else 
       if isempty(fil) then // Filename
-	fil=varargin(k)
-	if fileparts(fil,"extension")==".mat" & isempty(bin) then // extension .mat and bin not already fixed by options
-	  bin=%T
-	elseif isempty(bin) then
-	  bin=%F
-	end
+      	fil=varargin(k)
+      	if fileparts(fil,"extension")==".mat" & isempty(bin) then // extension .mat and bin not already fixed by options
+      	  bin=%T
+      	elseif isempty(bin) then
+      	  bin=%F
+      	end
       else // Variable names
-	varnames=[varnames;varargin(k)]
+      	varnames=[varnames;varargin(k)]
       end
       k=k+1
     end
@@ -96,12 +96,18 @@ if bin then
     Name='';Names=[];Matrices=list()
     while %t 
       ierr=execstr('[Matrix,Name]=ReadmiMatrix(fd)','errcatch') //read next variable
-      if ierr<>0 then mclose(fd),disp(lasterror()),return,end 
-      if meof(fd) then  break,end //EOF reached 
+      if ierr<>0 then
+        mclose(fd)
+        disp(lasterror())
+        return
+      end 
+      if meof(fd) then
+        break
+      end //EOF reached 
       
       // Old version compatibility | Name has been given
       if isempty(varnames) | or(Name==varnames) then
-	Names=[Names,Name];Matrices($+1)=Matrix
+      	Names=[Names,Name];Matrices($+1)=Matrix
       end
       
     end
@@ -117,7 +123,9 @@ if bin then
     b_flags=['db','fb','lb','sb','ubs','uc']
     deff('Error(msg)',['mclose(fd)' ;'error(msg)'])
     [fd,err]=mopen(fil,'rb',0)
-    if err<>0 then error(msprintf(gettext("File %s cannot be opened for reading."),fil)),end
+    if err<>0 then
+      error(msprintf(gettext("%s: Cannot open file %s.\n"),"loadmatfile",fil));
+    end
     
     vars=list() //list to store loaded variables
     names=[]  // vector of variables names
@@ -125,98 +133,120 @@ if bin then
     while %t 
       offset=mtell(fd)
       mopt=mget(1,'uil',fd)
-      if meof(fd)<>0 then break,end
+      if meof(fd)<>0 then
+        break
+      end
       if mopt>5000 then
-	mseek(offset,fd)
-	mopt=mget(1,'uib',fd)
-	
-	if mopt>5000 then
-	  Error(gettext("Incorrect file."));
-	end
+	      mseek(offset,fd)
+	      mopt=mget(1,'uib',fd)
+	      if mopt>5000 then
+	        Error(msprintf(gettext("%s: Cannot read file %s.\n"),"loadmatfile",fil));
+	      end
       end
       MOPT=[]
       for k=1:4
-	r=mopt-10*int(mopt/10);
-	mopt=int((mopt-r)/10);
-	MOPT=[r MOPT];
+	      r=mopt-10*int(mopt/10);
+	      mopt=int((mopt-r)/10);
+	      MOPT=[r MOPT];
       end
       select MOPT(1)
       case 0
-	fl='uil'
-	flag=l_flags(MOPT(3)+1)
+	      fl='uil'
+	      flag=l_flags(MOPT(3)+1)
       case 1
-	fl='uib'
-	flag=b_flags(MOPT(3)+1)
+	      fl='uib'
+	      flag=b_flags(MOPT(3)+1)
       case 2
-	Error(gettext("VAX D-float not handled."));
+      	Error(msprintf(gettext("%s: VAX D-float not handled."),"loadmatfile"));
       case 3
-	Error(gettext("VAX G-float not handled."));
+      	Error(msprintf(gettext("%s: VAX G-float not handled."),"loadmatfile"));
       case 4
-	Error(gettext("Cray encoding not handled."));
+      	Error(msprintf(gettext("%s: Cray encoding not handled."),"loadmatfile"));
       else
-	Error(gettext("Unknown binary number format."));
+      	Error(msprintf(gettext("%s: Unknown binary number format."),"loadmatfile"));
       end
       t=mget(4,fl,fd);
-      if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
+      if meof(fd)<>0 then
+        Error(msprintf(gettext("%s: Cannot read file %s.\n"),"loadmatfile",fil));
+      end
       m=t(1);n=t(2);it=t(3),namelen=t(4)
       name=mget(namelen,"c",fd);
-      if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
+      if meof(fd)<>0 then
+        Error(msprintf(gettext("%s: Cannot read file %s.\n"),"loadmatfile",fil));
+      end
       name=ascii(name(1:namelen-1))
-      
+    
       // Old version compatibility | Name has been given
       if isempty(varnames) | or(name==varnames) then
-	names=[names name]
+    	  names=[names name]
       end
       
       if MOPT(4)==0 then  // regular matrix
-	v=mget((it+1)*m*n,flag,fd);
-	if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
-	if it==0 then
-	  mat=matrix(v,m,n);
-	elseif it==1
-	  mat=matrix(v(1:m*n),m,n)+%i*matrix(v(m*n+1:$),m,n)
-	end
+    	  v=mget((it+1)*m*n,flag,fd);
+        if meof(fd)<>0 then
+          Error(msprintf(gettext("%s: Cannot read file %s.\n"),"loadmatfile",fil));
+        end
+    	  if it==0 then
+    	    mat=matrix(v,m,n);
+    	  elseif it==1
+    	    mat=matrix(v(1:m*n),m,n)+%i*matrix(v(m*n+1:$),m,n)
+      	end
       elseif MOPT(4)==1 // vector of strings
-	v=mget(m*n,flag,fd);
-	if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
-	mat=matrix(v(1:m*n),m,n);
-	w=mat;
-	mat=[];
-	for k=1:m
-	  mat=[mat;ascii(w(k,:))]
-	end
+        v=mget(m*n,flag,fd);
+    	  if meof(fd)<>0 then
+      	  Error(msprintf(gettext("%s: Cannot read file %s.\n"),"loadmatfile",fil));
+      	end
+      	mat=matrix(v(1:m*n),m,n);
+      	w=mat;
+      	mat=[];
+      	for k=1:m
+      	  mat=[mat;ascii(w(k,:))]
+      	end
       elseif MOPT(4)==2 //sparse matrix
-	//sparse
-	Nnz=m-1;
-	it=n-3;if it<>0&it<>1 then Error(gettext("Unknown sparse type.")),end
-	ir=mget(Nnz,flag,fd);m=mget(1,"d",fd);
-	jc=mget(Nnz,flag,fd);n=mget(1,"d",fd);
-	v=mget(Nnz,flag,fd);junk=mget(1,"d",fd);
-	if meof(fd)<>0 then Error(gettext("Incorrect file.")),end
-	if it==1 then
-	  //complex
-	  v=v+%i*mget(Nnz,flag,fd);
-	end
-	mat=sparse([ir;jc]',v,[m n]);
+      	//sparse
+      	Nnz=m-1;
+      	it=n-3;
+      	if it<>0&it<>1 then
+      	  Error(msprintf(gettext("%s: Unknown sparse type.\n"),"loadmatfile"))
+      	end
+        ir=mget(Nnz,flag,fd);m=mget(1,"d",fd);
+        jc=mget(Nnz,flag,fd);n=mget(1,"d",fd);
+        v=mget(Nnz,flag,fd);junk=mget(1,"d",fd);
+        if meof(fd)<>0 then
+          Error(msprintf(gettext("%s: Cannot read file %s.\n"),"loadmatfile",fil));
+        end
+        if it==1 then
+      	  //complex
+	        v=v+%i*mget(Nnz,flag,fd);
+      	end
+      	mat=sparse([ir;jc]',v,[m n]);
       end
       // Old version compatibility | Name has been given
       if isempty(varnames) | or(name==varnames) then
-	vars($+1)=mat
+      	vars($+1)=mat
       end
     end
     mclose(fd);
     //form execstr instruction to resume variables in the calling environment
     execstr('['+strcat(names,',')+']=resume(vars(:))')  
   else
-    error(gettext("Unknown Matlab binary file format."));
+    error(msprintf(gettext("%s: Unknown Matlab binary file format.\n"),"loadmatfile"));
   end
    
 // --- ASCII FILE (Copy/Paste from mtlb_load.sci) ---
 else
   ke=strindex(fil,'.')
-  if ke==[] then ke=length(fil),else ke=ke($)-1,end
+  if ke==[] then
+    ke=length(fil)
+  else
+    ke=ke($)-1
+  end
   kp=strindex(fil,['/','\'])
-  if kp==[] then kp=1,else kp=kp($)+1,end
+  if kp==[] then
+    kp=1
+  else
+    kp=kp($)+1
+  end
   name=part(fil,kp:ke)
   mat=evstr(mgetl(fil))
   execstr(name+'= resume(mat)')

@@ -2,7 +2,7 @@ function flag=fseek_origin(origin)
 // Copyright INRIA
 // S.S. V.C.
 
-select  origin
+select origin
 case "bof" then
   flag="set"
 case "cof" then
@@ -16,6 +16,6 @@ case 0 then
 case 1 then
   flag="end" 
 else
-  error(gettext("mseek: Unknown reference flag."));
+  error(msprintf(gettext("%s: Wrong value for input argument.\n"),"mseek"));
 end
 endfunction

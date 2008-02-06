@@ -16,20 +16,20 @@ if size(size(x),"*")<=2 then
       end
       nbcol= size(ytemp,'*')*size(x,2)/size(x,'*') 
       if nbcol-floor(nbcol)<>0 then
-        error(msprintf(gettext("%s: Wrong input argument: Inconsistent size."),'asciimat'));
+        error(msprintf(gettext("%s: Wrong input argument: Inconsistent size.\n"),"asciimat"));
       end
       y=[]
       for i=1:size(x,1)
-	y=[y ;ytemp(1+(i-1)*nbcol:i*nbcol)]
+      	y=[y ;ytemp(1+(i-1)*nbcol:i*nbcol)]
       end   
-  end
+    end
   elseif type(x)==1 | type(x)==8 then
     y=[]
     for k=1:size(x,1)
       y(k)=ascii(x(k,:))
     end
   else
-    error(gettext("Not yet implemented."));
+    error(msprintf(gettext("%s: This feature has not been implemented: Input argument of type %d.\n"),"asciimat",type(x)));
   end
 elseif size(size(x),"*")>2 then
   if typeof(x)=="hypermat" then
@@ -43,12 +43,12 @@ elseif size(size(x),"*")>2 then
       V=part(V,ones(1,size(x,2)))
       V=V+emptystr(D,1)
       for l=1:DD
-	V((l-1)*size(x,1)+1:l*size(x,1))=asciimat(x(:,:,l))
+      	V((l-1)*size(x,1)+1:l*size(x,1))=asciimat(x(:,:,l))
       end
       y=mlist(['hm','dims','entries'],int32([dims]),V)
     end
   end
 else
-  error(gettext("Not yet implemented."));
+  error(msprintf(gettext("%s: This feature has not been implemented.\n"),"asciimat"));
 end
 endfunction

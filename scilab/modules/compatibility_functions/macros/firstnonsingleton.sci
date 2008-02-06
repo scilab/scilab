@@ -24,15 +24,15 @@ for k=1:size(sz,"*")
   elseif sz(k)>1 then
     if k==1 then
       if opt=="num" then
-	dim=1
+      	dim=1
       else
-	dim="r"
+      	dim="r"
       end
     elseif k==2 then
       if opt=="num" then
-	dim=2
+      	dim=2
       else
-	dim="c"
+      	dim="c"
       end
     else
       dim=sz(k)

@@ -5,7 +5,7 @@ function [status]=mtlb_close(h)
 
 rhs=argn(2)
 
-warning(gettext("mtlb_close: status ignored."));
+warning(msprintf(gettext("%s: Status ignored.\n"),"mtlb_close"));
 status=1
 
 // close
@@ -29,21 +29,20 @@ elseif rhs==1 then
       
       allwin=winsid()
       for k=1:size(allwin,"*")
-	if get(scf(allwin(k)),"figure_name")==h then
-	  delete(gcf())
-	  break
-	end
+      	if get(scf(allwin(k)),"figure_name")==h then
+      	  delete(gcf())
+      	  break
+      	end
       end
 
       scf(cf_save)
     end
   else // Unknown type for h
-    error(gettext("Not implemented."))
+    error(msprintf(gettext("%s: This feature has not been implemented.\n"),"mtlb_close"));
   end
 else // close('all','hidden')
-  warning(gettext("mtlb_close: all windows deleted."));
+  warning(msprintf(gettext("%s: All windows deleted.\n"),"mtlb_close"));
   xdel(winsid())
 end
 endfunction
-
 

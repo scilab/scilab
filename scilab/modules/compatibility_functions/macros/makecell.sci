@@ -11,7 +11,7 @@ end
 
 dims=varargin(1)
 if prod(dims)<>lstsize(varargin)-1 then
-  error(gettext("Dimensions and entries do not match."));
+  error(msprintf(gettext("%s: Wrong input arguments: Dimensions given as first argument do not match specified cell contents.\n"),"makecell"));
 end
 
 if prod(dims)==1 then

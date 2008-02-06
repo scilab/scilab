@@ -24,118 +24,118 @@ if rhs>0 then
   for krhs=1:rhs
     if type(listvar(krhs))==1 then
         if size(listvar(krhs),1)>1 & size(listvar(krhs),2)>1 then
-	  error(gettext("a.data_bounds must be a vector."));
-	end
+      	  error(msprintf(gettext("%s: Wrong size for data_bounds: Vector expected.\n"),"mtlb_axis"));
+      	end
         listvar(krhs) = matrix(listvar(krhs),1,-1);
 	
       // axis([xmin xmax ymin ymax zmin zmax])
       if size(listvar(krhs),2)==4 then
         set(gca(),"data_bounds",matrix(listvar(krhs),2,-1))
-	set(gca(),"view",'2d')
-	set(gca(),"axes_visible",'on')
+	      set(gca(),"view",'2d')
+	      set(gca(),"axes_visible",'on')
       elseif size(listvar(krhs),2)==6
-	set(gca(),"data_bounds",matrix(listvar(krhs),2,-1))
-	set(gca(),"view",'3d')
-	set(gca(),"axes_visible",'on')
+	      set(gca(),"data_bounds",matrix(listvar(krhs),2,-1))
+	      set(gca(),"view",'3d')
+	      set(gca(),"axes_visible",'on')
       // axis([xmin xmax ymin ymax zmin zmax cmin cmax]) 
       elseif size(listvar(krhs),2)==8 then
-	error(gettext("a.data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax] not implemented."));
+      	error(msprintf(gettext("%s: This feature has not been implemented: data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax].\n"),"mtlb_axis"));
       // Unknown column number for listvar(krhs)
       else
-	error(gettext("Bad affectation for a.data_bounds."));
+      	error(msprintf(gettext("%s: Wrong value for affectation to data_bounds.\n"),"mtlb_axis"));
       end
       
     elseif type(listvar(krhs))==10 then
 	
       // axis auto
       if listvar(krhs)=="auto" then
-	a.auto_scale="on"
+      	a.auto_scale="on"
 	
-	// axis manual
+    	// axis manual
       elseif listvar(krhs)=="manual" then
-	a.auto_scale="off"
+      	a.auto_scale="off"
 	
-	// axis tight
+    	// axis tight
       elseif listvar(krhs)=="tight" then
-	a.tight_limits="on"
+      	a.tight_limits="on"
 	
-	// axis fill
+    	// axis fill
       elseif listvar(krhs)=="fill" then
-	error(gettext("axis fill not implemented."));
+      	error(msprintf(gettext("%s: This feature has not been implemented: axis fill.\n"),"mtlb_axis"));
 
-	// axis ij
+    	// axis ij
       elseif listvar(krhs)=="ij" then
-	a.rotation_angles=[180 270]
+      	a.rotation_angles=[180 270]
 	
-	// axis xy
+    	// axis xy
       elseif listvar(krhs)=="xy" then
-	a.rotation_angles=[0 270]
+      	a.rotation_angles=[0 270]
 	
-	// axis equal
+    	// axis equal
       elseif listvar(krhs)=="equal" then
-	a.isoview="on"
+      	a.isoview="on"
 	
-	// axis image
+	    // axis image
       elseif listvar(krhs)=="image" then
-	error(gettext("axis image not implemented."));
+      	error(msprintf(gettext("%s: This feature has not been implemented: axis image.\n"),"mtlb_axis"));
 
-	// axis square
+    	// axis square
       elseif listvar(krhs)=="square" then
-	if a.view=="2d" then
-	  warning(gettext("cube_scaling only used in 3d mode."));
-	end
-	a.cube_scaling="on"
+	      if a.view=="2d" then
+	        warning(msprintf(gettext("%s: cube_scaling only used in 3d mode."),"mtlb_axis"));
+	      end
+	      a.cube_scaling="on"
 	
-	// axis vis3d
+    	// axis vis3d
       elseif listvar(krhs)=="vis3d" then
-	a.view="3d"
+      	a.view="3d"
 	
-	// axis normal
+    	// axis normal
       elseif listvar(krhs)=="normal" then
-	error(gettext("axis normal not implemented."));
+      	error(msprintf(gettext("%s: This feature has not been implemented: axis normal.\n"),"mtlb_axis"));
 	
-	// axis on
+    	// axis on
       elseif listvar(krhs)=="on" then
-	a.axes_visible="on"
+      	a.axes_visible="on"
 	
-	// axis off
+    	// axis off
       elseif listvar(krhs)=="off" then
-	a.axes_visible="off"
+      	a.axes_visible="off"
 	
-	// [mode,visibility,direction] = axis('state')
+    	// [mode,visibility,direction] = axis('state')
       elseif listvar(krhs)=="state" then
-	if a.auto_scale=="on" then
-	  varargout(1)="auto"
-	else
-	  varargout(1)="manual"
-	end
-	varargout(2)=a.axes_visible
-	if a.rotation_angles==[0 180] then
-	  varargout(3)="xy"
-	else
-	  varargout(3)="ij"
-	end
-	// Unknown character string
+      	if a.auto_scale=="on" then
+      	  varargout(1)="auto"
+	      else
+      	  varargout(1)="manual"
+      	end
+      	varargout(2)=a.axes_visible
+      	if a.rotation_angles==[0 180] then
+      	  varargout(3)="xy"
+      	else
+	        varargout(3)="ij"
+      	end
+    	// Unknown character string
       else
-	error(msprintf(gettext("axis %s not implemented."),listvar(krhs)));
+      	error(msprintf(gettext("%s: This feature has not been implemented: axis %s.\n"),"mtlb_axis",listvar(krhs)));
       end
       
     // axis(axes_handles,...)
     elseif type(listvar(krhs))==9 then
       // krhs must be one
       for khandle=1:lstsize(listvar(krhs))
-	arglist=list()
-	for kvararg=1:lstsize(listvar)-1
-	  arglist($+1)=listvar(kvararg+1)
-	end
-	arglist($+1)=listvar(krhs)(khandle)
-	mtlb_axis(arglist)
+      	arglist=list()
+      	for kvararg=1:lstsize(listvar)-1
+      	  arglist($+1)=listvar(kvararg+1)
+      	end
+      	arglist($+1)=listvar(krhs)(khandle)
+      	mtlb_axis(arglist)
       end
     // Wrong type for listvar(krhs)
     else
-	error(msprintf(gettext("Argument of type %d not implemented."),type(listvar(krhs))));
+    	error(msprintf(gettext("%s: This feature has not been implemented: Argument of type %d."),"mtlb_axis",type(listvar(krhs))));
     end
-    varargout(1)=matrix(a.data_bounds,1,-1);
+      varargout(1)=matrix(a.data_bounds,1,-1);
   end
 
 // v = axis

@@ -8,7 +8,7 @@ if type(y)==10 then
 elseif type(y)==9 then 
   delete(y);
 else
-  error(gettext("Not yet implemented."));
+  error(msprintf(gettext("%s: This feature has not been implemented.\n"),"mtlb_delete"));
 end
 
 endfunction
