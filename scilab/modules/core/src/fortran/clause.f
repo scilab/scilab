@@ -46,7 +46,7 @@ c
       endif
       go to (02,30,30,55,30,55,55,70,80),r
 c     
- 01   r = rstk(pt)
+      r = rstk(pt)
       ir=r/100
       if(ir.ne.8) goto 99
       goto(05,15,40,45,55,65,46,75),r-800
@@ -400,6 +400,7 @@ c     ones symbol back
          char1=ic
       endif
       icall=7
+
 c     *call* parse (for the try instructions)
       return
  75   continue
@@ -437,7 +438,6 @@ c     * call* parse
          if(err.gt.0) return
       endif
  76   pt=pt-1
-
       icall=7
 c     *call* parse
       return

@@ -14,13 +14,9 @@ c!
       include 'stack.h'
       integer errtyp,n
 c
-      integer sadr
-c
       integer num,imess,imode,lunit
-      integer l1,ilk,m,lk,km,k,ll,r,p,mode(2),lpts(6),pt0
+      integer ll,r,p,mode(2),pt0
       logical first,trace,pflag,erecmode
-c
-c      sadr(l)=(l/2)+1
 c
       ll=lct(5)
       first=.true.
@@ -75,8 +71,6 @@ c     .     error has occurred in comp
          endif
       endif
 
-
- 30   continue
 c
 c depilement de l'environnement
       lct(4)=2

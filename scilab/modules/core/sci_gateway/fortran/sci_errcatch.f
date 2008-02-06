@@ -3,9 +3,10 @@
 c     Copyright INRIA
       include 'stack.h'
       integer topk,p
-      logical checkrhs,checklhs,getscalar,cremat,getsmat,checkval
+      logical checkrhs,checklhs,getscalar,getsmat,checkval
       character*9 opt
       character*9 pause,cont,kill,stp,nomess
+      integer name(10)
       integer iadr
 c
       data local/21/
@@ -75,14 +76,20 @@ c
          endif
  201  continue
       top=topk-rhs
-      errct=(8*imess+imode)*100000+abs(num)
-      catch=max(imode,1)
-      if(num.lt.0) errct=-errct
       p=pt+1
  202  p=p-1
       if(p.eq.0) goto 203
+      if(rstk(p).eq.808.or.rstk(p).eq.618) then
+         call cvstr(8,name,'errcatch',0)
+         call namstr(ids(1,pt),name,8,0)
+         call error(72)
+         return
+      endif
       if(int(rstk(p)/100).ne.5) goto 202
  203  errpt=p
+      errct=(8*imess+imode)*100000+abs(num)
+      catch=max(imode,1)
+      if(num.lt.0) errct=-errct
       top=top+1
       call objvide('errcatch',top)
       return
