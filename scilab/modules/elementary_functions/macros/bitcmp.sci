@@ -21,8 +21,6 @@ function y = bitcmp(x,n)
 	// -Output :
 	//  y : an unsigned integer
 	//
-	// F.Belahcene
-	//
 	// P. Marechal, 5 Feb 2008
 	//   - Add argument check
 	
@@ -94,31 +92,38 @@ function y = bitcmp(x,n)
 	
 	// unit8, uint16 and uint32 shortcut
 	
-	if (type(x)==8) & (rhs==1) then
+	if type(x)==8 then
 		y = ~x;
+		if rhs > 1 then
+			select inttype(x)
+				case 11 then y = y & uint8(  2^n - 1);
+				case 12 then y = y & uint16( 2^n - 1);
+				case 14 then y = y & uint32( 2^n - 1);
+			end
+		end
 		return;
 	end
 	
-	// else
+	n = ones(x)*n;
 	
-	xbin = dec2bin(x,nmax)
-	xbin = part(xbin,nmax-n+1:length(xbin(1)))
-	xbin = strsubst(xbin,"1","2");
-	xbin = strsubst(xbin,"0","1");
-	xbin = strsubst(xbin,"2","0");
-	y    = bin2dec(xbin)
-	
-	// Result
-	// =========================================================================
-	
-	if type(x)==8 then
-		select inttype(x)
-			case 11 then y = uint8(y);
-			case 12 then y = uint16(y);
-			case 14 then y = uint32(y);
+	if type(x) == 1 then
+		
+		a     = 2^32;
+		
+		y_LSB = uint32( x - double(uint32(x/a)) * a ); // LSB Less Significant Bits
+		y_MSB = uint32( x/a );                         // MSB Most Significant Bits
+		
+		y_LSB = ~y_LSB;
+		y_MSB = ~y_MSB;
+		
+		if n <= 32 then
+			y_LSB = y_LSB & uint32( 2^n - 1);
+			y_MSB = uint32(0);
+		else
+			y_MSB = y_MSB & uint32( 2^(n-32) - 1);
 		end
+		
+		y = double( a * y_MSB + y_LSB );
 	end
-	
-	y = matrix(y,size(y));
 	
 endfunction

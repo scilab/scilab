@@ -5,7 +5,6 @@ function y = bitset(x,pos,v)
 	// BITSET function
 	// Set bit at specified position
 	
-	
 	// Check input arguments
 	// =========================================================================
 	
