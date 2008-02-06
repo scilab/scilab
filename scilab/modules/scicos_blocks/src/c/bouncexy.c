@@ -26,7 +26,7 @@
    \brief BOUNCEXY has to be used with bounce_ball block
    \see BOUNCEXY.sci in macros/scicos_blocks/Misc/
 */
-
+#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"

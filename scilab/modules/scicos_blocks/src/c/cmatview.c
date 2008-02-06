@@ -26,7 +26,7 @@
    \brief CMATVIEW is a scope that connects a matrix to a grayplot. The values of the matrix are the values at the nodes
   \see CMATVIEW.sci in macros/scicos_blocks/Sinks/
 */
-
+#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"

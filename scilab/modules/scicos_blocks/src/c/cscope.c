@@ -26,7 +26,7 @@
    \brief CSCOPE is a typical scope which links its input to the simulation time but there is only one input instead of CMSCOPE
    \see CSCOPE.sci in macros/scicos_blocks/Sinks/
 */
-
+#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"

@@ -26,7 +26,7 @@
    \brief CFSCOPE This scope has no input port because it displays the values on the designated link
    \see CFSCOPE.sci in macros/scicos_blocks/Sinks/
 */
-
+#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"

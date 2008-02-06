@@ -24,11 +24,13 @@
  *    Scicos block simulator
  *    From workspace block
  */
-#include "stack-c.h"
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "machine.h"
 #include <math.h>
+#include "stack-c.h"
+#include "machine.h"
+
 
 #if WIN32
 #define NULL    0

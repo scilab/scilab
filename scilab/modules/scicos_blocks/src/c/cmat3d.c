@@ -26,7 +26,7 @@
    \brief CMAT3D is a scope which connect a matrix to a plot3d. Values of the matrix are the values at the nodes.
    \see CMAT3D.sci in macros/scicos_blocks/Sinks/
 */
-
+#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"

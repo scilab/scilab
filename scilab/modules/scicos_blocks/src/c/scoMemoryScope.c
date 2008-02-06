@@ -32,6 +32,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "sciprint.h"
+#include "scicos_malloc.h"
 
 /** This function use scicos_malloc on the whole structure and set up 0 for whole properties*/
 void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int number_of_subwin, int * number_of_curves_by_subwin)

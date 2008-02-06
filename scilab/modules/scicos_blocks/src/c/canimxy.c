@@ -26,7 +26,7 @@
    \brief CANIMXY is a scope in 2D which draw its input as a XY scope, there is animation.
    \see CANIMXY.sci in macros/scicos_blocks/Sinks/
 */
-
+#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"

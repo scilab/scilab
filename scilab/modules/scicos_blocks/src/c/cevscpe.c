@@ -26,7 +26,7 @@
    \brief CEVSCPE is a scope that indicates when the clocks is activated
    \see CEVENTSCOPE.sci in macros/scicos_blocks/Sinks/
 */
-
+#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
