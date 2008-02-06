@@ -20,7 +20,7 @@
 #endif
 
 #ifdef WITH_PVM
-#include <pvm.h>
+// #include <pvm.h>
 #endif 
 
 #ifdef WITH_UMFPACK
