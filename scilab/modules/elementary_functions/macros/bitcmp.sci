@@ -47,8 +47,6 @@ function y = bitcmp(x,n)
 		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitcmp"));
 	end
 	
-	
-	
 	if  (rhs == 2) & ( ..
 			(type(n)==1  & (n-floor(n)<>0 | x<0)) ..
 			| (type(n)==8  & (inttype(n)<10)) ..
@@ -60,25 +58,22 @@ function y = bitcmp(x,n)
 	
 	// check n value
 	
-	if type(x)==8 then
+	if rhs>1 then
+		
 		select inttype(x)
+			case 0  then nmax = 52;
 			case 11 then nmax = 8;
 			case 12 then nmax = 16;
 			case 14 then nmax = 32;
 		end
-	else
-		nmax = 53;
-	end
-	
-	if rhs == 2 then
-		if n > nmax then
-			error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitcmp",0,nmax));
+		
+		if (n>nmax) | (n<1) then
+			error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitcmp",1,nmax));
 		end
 		
-	elseif rhs == 1 then
+	else
 		n = nmax;
 	end
-	
 	
 	// Algorithm
 	// =========================================================================

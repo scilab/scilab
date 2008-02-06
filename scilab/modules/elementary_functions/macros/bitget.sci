@@ -45,6 +45,8 @@ function y = bitget(x,pos)
 		error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitget"));
 	end
 	
+	// check type
+	
 	if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
 		| (type(x)==8  & (inttype(x)<10)) ..
 		| (type(x)<>1  & type(x)<>8) then
@@ -52,13 +54,24 @@ function y = bitget(x,pos)
 		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget"));
 	end
 	
-	// check type
-	
 	if    (type(pos)==1  & (pos-floor(pos)<>0 | pos<0)) ..
 		| (type(pos)==8  & (inttype(pos)<10)) ..
 		| (type(pos)<>1  & type(pos)<>8) then
 		
 		error(msprintf(gettext("%s: Wrong second input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget"));
+	end
+	
+	// check pos value
+	
+	select inttype(x)
+		case 0  then posmax = 52;
+		case 11 then posmax = 8;
+		case 12 then posmax = 16;
+		case 14 then posmax = 32;
+	end
+	
+	if (pos>posmax) | (pos<1) then
+		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitget",1,posmax));
 	end
 	
 	// Algorithm

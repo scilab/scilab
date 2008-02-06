@@ -33,14 +33,14 @@ function y = bitset(x,pos,v)
 		error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitset"));
 	end
 	
+	// check type
+	
 	if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
 		| (type(x)==8  & (inttype(x)<10)) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
 		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitset"));
 	end
-	
-	// check type
 	
 	if    (type(pos)==1  & (pos-floor(pos)<>0 | pos<0)) ..
 		| (type(pos)==8  & (inttype(pos)<10)) ..
@@ -51,18 +51,15 @@ function y = bitset(x,pos,v)
 	
 	// check pos value
 	
-	if type(x)==8 then
-		select inttype(x)
-			case 11 then posmax = 8;
-			case 12 then posmax = 16;
-			case 14 then posmax = 32;
-		end
-	else
-		posmax = 53;
+	select inttype(x)
+		case 0  then posmax = 52;
+		case 11 then posmax = 8;
+		case 12 then posmax = 16;
+		case 14 then posmax = 32;
 	end
 	
-	if pos > posmax then
-		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitset",0,posmax));
+	if (pos>posmax) | (pos<1) then
+		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitset",1,posmax));
 	end
 	
 	// check v value
