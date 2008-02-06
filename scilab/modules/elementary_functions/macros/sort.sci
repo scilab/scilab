@@ -58,7 +58,7 @@ function varargout = sort(varargin)
   	case 5 then // vector sparse
   	 S = size(V);
   	 if (S <> 1) then
-  	   error('Sorry: Only sparse VECTORS can be sorted!',10000);
+  	   error(msprintf(gettext("%s: Wrong size for first input argument: Vector expected.\n"),"sort"),10000);
   	 else
   	   // Lhs == 1 only with sparse vectors
   	   if (Lhs == 2) then

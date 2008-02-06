@@ -17,7 +17,7 @@ function  varargout=meshgrid(varargin)
 if lhs>3 then
   error(msprintf(gettext("%s: Wrong number of output arguments: At most %d expected.\n"),"meshgrid",3));
 elseif rhs>3 then
-  error(msprintf(gettext("%s: Wrong number of input arguments: At most %3 expected.\n"),"meshgrid",3));
+  error(msprintf(gettext("%s: Wrong number of input arguments: At most %d expected.\n"),"meshgrid",3));
 end
 if or(lhs==[1 2]) & rhs==1 then
   [x,y]=ndgrid(varargin(1),varargin(1));
