@@ -87,15 +87,13 @@ static int getversion_no_rhs(void)
 		Str[n1]=C2F(cha1).buf;
 		n1++;
 
-		C2F(withpvm)(&irep);
-		if (irep)
+		if (withpvm())
 		{
 			Str[n1]=pvm;
 			n1++;
 		}
 
-		C2F(withtk)(&irep);
-		if (irep)
+		if (withtk())
 		{
 			Str[n1]=tk;
 			n1++;
@@ -105,13 +103,6 @@ static int getversion_no_rhs(void)
 		if (irep)
 		{
 			Str[n1]=modelicac;
-			n1++;
-		}
-
-		C2F(withjavasci)(&irep);
-		if (irep)
-		{
-			Str[n1]=javasci;
 			n1++;
 		}
 

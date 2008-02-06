@@ -1,7 +1,7 @@
-/*************************************************************************************************/
+/*****************************************************************************/
 /* Scilab */
 /* INRIA */
-/*************************************************************************************************/
+/*****************************************************************************/
 #ifdef _MSC_VER
 #include <windows.h>
 #else
@@ -22,19 +22,13 @@
 #include "SCIHOME.h"
 #include "scilabmode.h"
 #include "scilabDefaults.h"
-/*************************************************************************************************/
-int C2F(withgtk)(int *rep)
-{ 
-  *rep =0; 
-  return 0;
-}
-/*************************************************************************************************/
+/*****************************************************************************/
 int C2F(withscicos)(int *rep)
 { 
 	*rep = ExistScicos(); 
 	return 0;
 }
-/*************************************************************************************************/
+/*****************************************************************************/
 int C2F(withmodelicac)(int *rep)
 {
 	if (ExistModelicac())
@@ -47,31 +41,8 @@ int C2F(withmodelicac)(int *rep)
 	}
   return 0;
 }
-/*************************************************************************************************/
-int C2F(withjavasci)(int *rep)
-{
-#ifdef _MSC_VER
-	if (ExistJavaSciWin())
-	{
-		*rep =1;
-	}
-	else
-	{
-		*rep =0; 
-	}
-#else
-	if (ExistJavaSciUnix())
-	{
-		*rep =1;
-	}
-	else
-	{
-		*rep =0; 
-	}
-#endif
-  return 0;
-}
-/*************************************************************************************************/
+
+/*****************************************************************************/
 int C2F(withmsdos)(int *rep)
 {
 #ifdef _MSC_VER
@@ -81,7 +52,7 @@ int C2F(withmsdos)(int *rep)
 #endif
 	return 0;
 }
-/*************************************************************************************************/
+/*****************************************************************************/
 int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
 {
   int ierr,iflag=0,l1buf=lbuf;
@@ -92,7 +63,7 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
 }
 
 
-/*************************************************************************************************/
+/*****************************************************************************/
 /**
  * Set the SCI path and initialize the scilab environement path
  *
@@ -118,7 +89,7 @@ int SetSci()
 	return 0;
 }
 
-/*************************************************************************************************/
+/*****************************************************************************/
 /**
  * Get the SCI path and initialize the scilab environment path
  *
@@ -133,7 +104,7 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
 	return 0;
 }
-/*************************************************************************************************/
+/*****************************************************************************/
 /**
 * Get the SCIHOME path and initialize the scilab environment path
 *
@@ -167,7 +138,7 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 
 	return 0;
 }
-/*************************************************************************************************/
+/*****************************************************************************/
 int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 {
 	int ierr,iflag=0,l1buf=lbuf;
@@ -184,7 +155,7 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 	*nbuf = (int)strlen(buf);
 	return 0;
 }
-/*************************************************************************************************/
+/*****************************************************************************/
 BOOL ExistModelicac(void)
 {
 	BOOL bOK=FALSE;
@@ -199,70 +170,10 @@ BOOL ExistModelicac(void)
 	if (SCIPATH) FREE(SCIPATH);
 	return bOK;
 }
-/*************************************************************************************************/
-#ifdef _MSC_VER
-BOOL ExistJavaSciWin(void)
-{
-
-	BOOL bOK=FALSE;
-	char *SCIPATH = (char*)getSCIpath();
-	char *fullpathJavaSci=NULL;
-	
-	fullpathJavaSci=(char*)MALLOC((strlen(SCIPATH)+strlen(JavaSCIName)+1)*sizeof(char));
-	wsprintf(fullpathJavaSci,"%s%s",SCIPATH,JavaSCIName);
-	bOK=FileExist(fullpathJavaSci);
-	if (fullpathJavaSci) FREE(fullpathJavaSci);
-	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-	return bOK;
-}
-#endif
-/*************************************************************************************************/
-int ExistJavaSciUnix(void)
-{
-	int bOK=0;
-#ifndef _MSC_VER
-	char *SCIPATH = (char*)getSCIpath();
-	char *fullpathJavaSci=NULL;
-
-	struct utsname uname_pointer;
-	FILE *fp;
-
-	char OperatingSystem[256];
-	char Release[256];
-	char extension[5];
-
-	uname(&uname_pointer);
-	strcpy(OperatingSystem,uname_pointer.sysname);
-	strcpy(Release,uname_pointer.release);
-
-	if ( strcmp(OperatingSystem,"HP-UX") == 0 )
-	{
-		strcpy(extension,".sl");
-	}
-	else
-	{
-		strcpy(extension,".so");
-	}
-	fullpathJavaSci=(char*)MALLOC((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSCIName)+strlen(extension)+1)*sizeof(char));
-	sprintf(fullpathJavaSci,"%s/bin/%s%s",SCIPATH,JavaSCIName,extension);
-	fp=fopen(fullpathJavaSci,"r");
-	if (fp)
-	{
-		fclose(fp);
-		bOK=1;
-	}
-	else
-	{
-		bOK=0;
-	}
-	if (fullpathJavaSci) FREE(fullpathJavaSci);
-#endif
-	return bOK;
-}
-/*************************************************************************************************/
+/*****************************************************************************/
 int C2F(withgui)(int *rep)
 { 
 	*rep = (getScilabMode() != SCILAB_NWNI); 
 	return 0;
 }
-/*************************************************************************************************/
+/*****************************************************************************/

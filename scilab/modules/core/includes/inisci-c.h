@@ -19,13 +19,6 @@ int C2F(withpvm)(int *rep);
  * @param rep
  * @return 
  */
-int C2F(withgtk)(int *rep);
-
-/** 
- * TODO : comment
- * @param rep
- * @return 
- */
 int C2F(withscicos)(int *rep);
 
 /** 
