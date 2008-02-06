@@ -1,4 +1,4 @@
-function y=bitget(x,pos)
+function y = bitget(x,pos)
 	
 	// Copyright INRIA
 	// BITGET function
@@ -10,7 +10,7 @@ function y=bitget(x,pos)
 	// pos : a positive integer between 1 and the bitmax of the x type
 	//
 	// -Output :
-	//  y : an unsigned integer 
+	//  y : an unsigned integer
 	//
 	// F.Belahcene
 	
@@ -46,19 +46,19 @@ function y=bitget(x,pos)
 	end
 	
 	if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
-		| (type(x)==8  & x<0) ..
+		| (type(x)==8  & (inttype(x)<10)) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of positive integers expected.\n"),"bitget"));
+		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget"));
 	end
 	
 	// check type
 	
 	if    (type(pos)==1  & (pos-floor(pos)<>0 | pos<0)) ..
-		| (type(pos)==8  & pos<0) ..
+		| (type(pos)==8  & (inttype(pos)<10)) ..
 		| (type(pos)<>1  & type(pos)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong second input argument: Scalar/matrix/hypermatrix of positive integers expected.\n"),"bitget"));
+		error(msprintf(gettext("%s: Wrong second input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget"));
 	end
 	
 	// Algorithm
@@ -84,15 +84,12 @@ function y=bitget(x,pos)
 	
 	if type(x)==8 then
 		select inttype(x)
-			case 1  then y = int8(y),
-			case 2  then y = int16(y),
-			case 4  then y = int32(y),
-			case 11 then y = uint8(y),
-			case 12 then y = uint16(y),
-			case 14 then y = uint32(y),
+			case 11 then y = uint8(y);
+			case 12 then y = uint16(y);
+			case 14 then y = uint32(y);
 		end
 	end
 	
-	y = matrix(y,siye(x));
+	y = matrix(y,size(x));
 	
 endfunction

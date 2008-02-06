@@ -10,51 +10,6 @@
 // Copyright INRIA 2008
 // Date : Feb 2008
 
-// int8
-// =============================================================================
-
-a = int8(77);
-b = int8(89);
-
-c = bitand(a,b);
-if inttype(c) <> 1 then pause, end
-
-c = bitor(a,b);
-if inttype(c) <> 1 then pause, end
-
-c = bitxor(a,b);
-if inttype(c) <> 1 then pause, end
-
-// int16
-// =============================================================================
-
-a = int16(58);
-b = int16(24);
-
-c = bitand(a,b);
-if inttype(c) <> 2 then pause, end
-
-c = bitor(a,b);
-if inttype(c) <> 2 then pause, end
-
-c = bitxor(a,b);
-if inttype(c) <> 2 then pause, end
-
-// int32
-// =============================================================================
-
-a = int32(44);
-b = int32(56);
-
-c = bitand(a,b);
-if inttype(c) <> 4 then pause, end
-
-c = bitor(a,b);
-if inttype(c) <> 4 then pause, end
-
-c = bitxor(a,b);
-if inttype(c) <> 4 then pause, end
-
 
 // uint8
 // =============================================================================

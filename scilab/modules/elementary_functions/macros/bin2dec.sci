@@ -37,8 +37,8 @@ function y=bin2dec(str)
 			error(msprintf(gettext("%s: Wrong value for input argument: Matrix of strings made of zeros and ones expected.\n"),"bin2dec"));
 		end
 		
-		if length(str(i)) > 47 then
-			error(msprintf(gettext("%s: Wrong size for input argument: Must be less than 48 characters.\n"),"bin2dec"));
+		if length(str(i)) > 54 then
+			error(msprintf(gettext("%s: Wrong size for input argument: Must be less than 54 characters.\n"),"bin2dec"));
 		end
 		
 		if ~isempty(ind1)
