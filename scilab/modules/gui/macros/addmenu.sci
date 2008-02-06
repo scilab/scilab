@@ -181,7 +181,7 @@ endfunction
 //------------------------------------------------------------------------------
 function addSingleMenu(fig, menulabel)
 h = uimenu("parent", fig, "label", menulabel);
-if fig==0
+if type(fig)==1
   set(h, "callback", list(0, "execstr("+menulabel+"(1))"));
 else
   set(h, "callback", list(0, "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"(1))"));
@@ -198,13 +198,20 @@ function addSingleMenuCallback(fig, menulabel, callback)
 [callbackStr, callbackType] = getCallbackProperties(callback);
 
 h = uimenu("parent", fig, "label", menulabel);
-if callbackType <> 2
-  set(h, "callback", list(0, "execstr("+callbackStr+")"));
-else
-  if fig==0
+
+if callbackType == 0 then
+  if type(fig)==1
     set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
   else
-    set(h, "callback", list(0, "execstr("+callbackStr+"(1,"+string(get(fig,"figure_id"))+"))"));
+    set(h, "callback", list(0, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"(1))"));
+  end
+elseif callbackType == 1 then
+  error(gettext("addmenu: Setting a C or Fortran procedure for callback is not yet implemented."));
+elseif callbackType == 2 then
+  if type(fig)==1
+    set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
+  else
+    set(h, "callback", list(0, "execstr("+callbackStr+"("+string(get(fig,"figure_id"))+",1))"));
   end
 end
 
@@ -220,7 +227,7 @@ function addMenuSubMenus(fig, menulabel, submenuslabels)
 h0 = uimenu("parent", fig, "label", menulabel);
 
 for K=1:size(submenuslabels,"*")
-  if (type(fig)==1)
+  if type(fig)==1
     uimenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"("+string(K)+"))");
   else
     uimenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"("+string(K)+"))");
@@ -242,13 +249,20 @@ h0 = uimenu("parent",fig,"label",menulabel);
 
 for K=1:size(submenuslabels,"*")
   h = uimenu("parent", h0, "label", submenuslabels(K));
-  if callbackType <> 2
-    set(h, "callback", list(0, "execstr("+callbackStr+")"));
-  else
-    if fig == 0
-      set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
+  
+  if callbackType == 0 then
+    if type(fig)==1
+      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+"))"));
     else
-      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(K)+","+string(get(fig,"figure_id"))+"))"));
+      set(h, "callback", list(0, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"("+string(k)+"))"));
+    end
+  elseif callbackType == 1 then
+    error(gettext("addmenu: Setting a C or Fortran procedure for callback is not yet implemented."));
+  elseif callbackType == 2 then
+    if type(fig)==1
+      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+"))"));
+    else
+      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+","+string(get(fig,"figure_id"))+"))"));
     end
   end
 end
