@@ -17,12 +17,13 @@
 #endif
 
 
-
-#include <unistd.h>
+#ifndef _MSC_VER
 #include <fcntl.h>
-#include <ctype.h>
-#include <string.h>
 #include <getopt.h>
+#include <ctype.h>
+#endif
+#include <string.h>
+
 #include <stdlib.h> /* bsearch / strtoul */
 
 #include "MALLOC.h"

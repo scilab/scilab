@@ -15,6 +15,7 @@
 #include "Scierror.h"
 #include "withtk.h"
 #include "localization.h"
+#include "with_pvm.h"
 /*--------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);
@@ -87,11 +88,13 @@ static int getversion_no_rhs(void)
 		Str[n1]=C2F(cha1).buf;
 		n1++;
 
+
 		if (withpvm())
 		{
 			Str[n1]=pvm;
 			n1++;
 		}
+
 
 		if (withtk())
 		{
