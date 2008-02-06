@@ -55,7 +55,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		// Show the input command view and its hidden components
 		inputCmdView.setEditable(true);
 
-		((JTextPane) inputCmdView).setCaretColor(getForeground());
+		((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
 		
 		// Remove last line returned given by Scilab (carriage return)
 		try {
