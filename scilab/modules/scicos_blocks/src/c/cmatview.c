@@ -152,7 +152,8 @@ void cmatview(scicos_block * block, int flag)
 	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 	    if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
 	      {
-	    C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  /* TODO : not implemented */
+			  /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 	      }
 	    sciDrawObj(scoGetPointerShortDraw(pScopeMemory,0,0));
 	  }
