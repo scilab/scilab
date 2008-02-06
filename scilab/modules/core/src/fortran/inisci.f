@@ -250,13 +250,6 @@ c     . %scicos
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1 
-c     . %gtk 
-      vname = ' '
-      vname(1:4) = "%gtk"
-      call withgtk(irep)
-      call cvname(idloc,vname,0)
-      call crebmatvar(idloc,k,1,1,irep)
-      k=k+1
 c     . %gui
       vname = ' '
       vname(1:4) = "%gui"
