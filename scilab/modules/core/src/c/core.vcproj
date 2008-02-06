@@ -488,10 +488,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getdebuginfo.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getmd5.c"
 				>
 			</File>
