@@ -25,7 +25,7 @@
 #include "core_math.h"
 
 #include "scicos.h"
- 
+#include "elementary_functions.h" /* C2F(dmmul) */
 /*------------------------------------------------
  *     Scicos block simulator 
  *     A set of elementary blocks 
