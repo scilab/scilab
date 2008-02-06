@@ -205,7 +205,7 @@ c     9 booleans
       call getscihome(bufscihome,nbscihome)
       call gettmpdir(buftmp,nbtmpdir)
       lpvar = (sadr(10-1) + 2) 
-     $     + 8*sadr(5) 
+     $     + 9*sadr(5) 
      $     + 4*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
      $     + 1*(sadr(6+nbcomp)+1)
