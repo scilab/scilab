@@ -24,7 +24,7 @@
 #include "ListBox.h" /* setCurentFigureAsListBoxParent */
 #include "Frame.h" /* setCurentFigureAsFrameParent */
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 17 
+#define NBPROPERTIES 23 
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
@@ -47,7 +47,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "position", "fontweight", "min", "max", "tag", "units", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback"};
+  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "position", "fontweight", "min", "max", "tag", "units", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontsize", "fontunits", "listboxtop", "user_data", "value"};
   int *propertiesValuesIndices = NULL;
 
   //CheckRhs(2,2);
