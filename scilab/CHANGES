@@ -30,14 +30,14 @@ GNU/Linux - Unix:
 	+ Profiling
 	
 Windows:	
-=================
- - compilation process :
+========
+ - Compilation process :
 	+ Visual Studio 2005 solution (requires Intel Fortran 10.x) support
 	+ Visual Studio 2005 express solution (fortran conversion with f2c) support (FREE)
  - Dynamic libraries	
  - Atlas 3.8 support (Core 2 Duo and more support)
  - Intel Math Kernel Library support
- - better support on Windows Vista
+ - Better support on Windows Vista
  - Visual Studio 2008 support for dynamic link (ilib_ primitives)
 
 
@@ -77,6 +77,13 @@ Java/Scilab API:
  - Refactoring of the Java API
 
 
+Modules/toolboxes template:
+===========================
+ - A template model has been defined to normalize how modules and toolboxes 
+	should be.
+	+ See http://wiki.scilab.org/Scilab_Module_Architecture for module
+	+ See contrib/toolbox_skeleton/ for toolboxes
+
 Source reorganisation:
 ======================
  - Source code split into dedicated and clear modules
@@ -95,8 +102,8 @@ Scipad editor:
 ==============
 
 
-Time and date functions
-=======================
+Time and date functions:
+========================
  - New functions:
 	+ clock   - return current time as date vector
 	+ eomday  - return last day of month
@@ -104,8 +111,8 @@ Time and date functions
 	+ now     - return current date and time
 
 
-Binary, octal and hexadecimal representation
-============================================
+Binary, octal and hexadecimal representation:
+=============================================
  - New functions:
 	+ bin2dec  - return integer corresponding to a binary form
 	+ bitand   - AND applied to binary representation of inputs argument
@@ -117,8 +124,8 @@ Binary, octal and hexadecimal representation
 	+ dec2oct  - return octal representation of integers
 
 
-Input/Output functions (files)
-==============================
+Input/Output functions (files):
+===============================
  - New functions:
 	+ getdrives           - get the drive letters of all mounted filesystems on
 	                        the computer.
@@ -150,8 +157,8 @@ Regular expression features:
 	+ strsubst(...,'r')
 
 
-String manipulation
-===================
+String manipulation:
+====================
  - New functions:
 	+ blanks     - create string of blank characters 
 	+ isalphanum - check that characters of a string are alphanumerics
@@ -173,7 +180,7 @@ String manipulation
 
 
 jvm module:
-===================
+===========
 	+ with_embedded_jre        - checks if scilab uses a embedded JRE
 	+ system_getproperty       - gets the system property indicated by a specified key.
 	+ javaclasspath            - set and get dynamic Java class path
@@ -193,16 +200,16 @@ TCL/TK:
 Localization:
 =============
  - New functions:
-	+ dgettext                    - get text translated into the current
-	                                locale and a specific domain domain
 	+ gettext(string) / _(string) - get text translated into the current locale
 	                                and domain
+	+ dgettext                    - get text translated into the current
+	                                locale and a specific domain domain
 	+ setlanguage(string)
 	+ getlanguage()
 
 
-Online Help management
-======================
+Online Help management:
+=======================
  - New functions:
 	+ check_help
 	+ del_help_chapter
@@ -230,15 +237,16 @@ Metanet : graph and network toolbox
 	+ update_graph   - converts an old graph data structure to the current one
 
 
-Windows_tools :
-===================================
+Windows_tools:
+===============
  - New functions:
   + consolebox          - show or hide console box
   + findfileassociation - Searches for and retrieves a file association-related string from the registry.
   + dos                 - shell (cmd) command execution 
 
-History manager :
-===================================
+
+History manager:
+================
  - New functions:
   + displayhistory          - displays current scilab history
   + addhistory              - add lines to current history
@@ -256,6 +264,25 @@ History manager :
   + gethistory
   + resethistory
 
+Internal API:
+=============
+ - Used in functions GetRhsVar, PutLhsVar... The datatype naming have been 
+	changed to:
+	+ "c" => STRING_DATATYPE
+	+ "S" => MATRIX_OF_STRING_DATATYPE
+	+ "d" => MATRIX_OF_DOUBLE_DATATYPE
+	+ "r" => MATRIX_OF_RATIONAL_DATATYPE
+	+ "I" => MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE
+	+ "i" => MATRIX_OF_INTEGER_DATATYPE
+	+ "b" => MATRIX_OF_BOOLEAN_DATATYPE
+	+ "z" => MATRIX_OF_COMPLEX_DATATYPE
+	+ "s" => SPARSE_MATRIX_DATATYPE
+	+ "l" => LIST_DATATYPE
+	+ "t" => TYPED_LIST_DATATYPE
+	+ "m" => MATRIX_ORIENTED_TYPED_LIST_DATATYPE
+	+ "p" => SCILAB_POINTER_DATATYPE
+	+ "h" => GRAPHICAL_HANDLE_DATATYPE
+	+ "f" => EXTERNAL_DATATYPE
 
 
 
