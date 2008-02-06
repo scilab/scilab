@@ -65,14 +65,15 @@ c     state evolution
          if(wid.lt.0) return
 
          call setblockwin(int(z(2)),cur)
-         call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
-         call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
-     $        dv,dv,dv,dv)
+c         TO DO implement macro
+c         call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+c         call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
+c    $        dv,dv,dv,dv)
 
          call recterase(z(3))
          z(1)=ur
          call affdraw(ipar(1),ipar(5),z(1),z(3))
-         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+c         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
       elseif(flag.eq.4) then
 c     init
 c     .  initial value         
@@ -82,13 +83,15 @@ c     .  get geometry of the block
 
          if(z(2).lt.0.0d0) return
          call setblockwin(int(z(2)),cur)
-         call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
-         call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
-     $        dv,dv,dv,dv)
+! TODO: create a macro fro divers
+!         call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+!         call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
+!     $        dv,dv,dv,dv)
 
          call recterase(z(3))
          call affdraw(ipar(1),ipar(5),z(1),z(3))
-         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+c         TODO create a macro fro drivers
+c         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
 
       endif
       end
@@ -99,12 +102,13 @@ c     .  get geometry of the block
       double precision dv
       data verb/0/
 
-      call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
-     $     dv,dv,dv,dv)
-      if(cur.ne.win) then
-         call dr1('xset'//char(0),'window'//char(0),win,v,v,v,v,v,
-     $        dv,dv,dv,dv)
-      endif
+c     TODO rewrite function
+c     call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
+c    $     dv,dv,dv,dv)
+c     if(cur.ne.win) then
+c        call dr1('xset'//char(0),'window'//char(0),win,v,v,v,v,v,
+c    $        dv,dv,dv,dv)
+c     endif
       return
       end
 
@@ -118,7 +122,8 @@ c     .  get geometry of the block
       y=r(2)+r(4)
       w=r(3)*(1.0d0-dx)
       h=r(4)*(1.0d0-dy)
-      call  dr1('xclea'//char(0),'v'//char(0),v,v,v,v,v,v,x,y,w,h)
+c     TODO: recreate xclea
+c      call  dr1('xclea'//char(0),'v'//char(0),v,v,v,v,v,v,x,y,w,h)
       return
       end
 
@@ -132,27 +137,29 @@ c     .  get geometry of the block
       data angle/0.0d0/,verb/0/
 
       write(fmt,'(''(f'',i3,''.'',i3,'')'')') form(1),form(2)
-      call dr1('xget'//char(0),'font'//char(0),verb,font,nf,v,v,
-     $     v,dv,dv,dv,dv)
-      call dr1('xset'//char(0),'font'//char(0),fontd(1),fontd(2),v,v,v,
-     $     v,dv,dv,dv,dv)
+c      call dr1('xget'//char(0),'font'//char(0),verb,font,nf,v,v,
+c     $     v,dv,dv,dv,dv)
+c      call dr1('xset'//char(0),'font'//char(0),fontd(1),fontd(2),v,v,v,
+c     $     v,dv,dv,dv,dv)
       value=' '
       write(value,fmt) val
       ln=lnblnk(value)
       value(ln+1:ln+1)=char(0)
 
-      call dr1('xstringl'//char(0),value,v,v,v,v,v,v,r(1),r(2),rect,dv)
+c     call dr1('xstringl'//char(0),value,v,v,v,v,v,v,r(1),r(2),rect,dv)
       x=r(1)+max(0.0d0,(r(3)-rect(3))/2.0d0)
       y=r(2)+max(0.0d0,(r(4)-rect(4))/2.0d0)
-      call dr1('xstring'//char(0),value,v,v,v,0,v,v,x,y,angle,dv)
-      call dr1('xset'//char(0),'font'//char(0),font(1),font(2),v,v,v,
-     $     v,dv,dv,dv,dv)
-      call dr1('xget'//char(0),'pixmap'//char(0),verb,pix,na,v,v,v,
-     $     dv,dv,dv,dv)
-      if(pix.eq.1) then
-         call dr1('xset'//char(0),'wshow'//char(0),v,v,v,v
-     $        ,v,v,dv,dv,dv,dv)
-      endif
+c     call dr1('xstring'//char(0),value,v,v,v,0,v,v,x,y,angle,dv)
+c     call dr1('xset'//char(0),'font'//char(0),font(1),font(2),v,v,v,
+c    $     v,dv,dv,dv,dv)
+c     TODO: not implemented
+c     call dr1('xget'//char(0),'pixmap'//char(0),verb,pix,na,v,v,v,
+c     $     dv,dv,dv,dv)
+c      if(pix.eq.1) then
+c     TODO: not implemented
+c     call dr1('xset'//char(0),'wshow'//char(0),v,v,v,v
+c     $        ,v,v,dv,dv,dv,dv)
+c      endif
       return
       end
 

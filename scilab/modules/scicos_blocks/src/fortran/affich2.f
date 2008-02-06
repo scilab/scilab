@@ -80,9 +80,10 @@ c         if (ur.eq.z(6)) return
          if(wid.lt.0) return
 
          call setblockwin2(int(z(1)),cur)
-         call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
-         call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
-     $        dv,dv,dv,dv)
+c     TODO: create a macro for drivers
+c        call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+c        call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
+c     $        dv,dv,dv,dv)
 
          call recterase2(z(2))
 c         do 3 i=1,2*nu
@@ -95,7 +96,8 @@ c       write(6,'(''z='',F5.3)') z(5+i)
  3       continue
 c         z(6)=ur
          call affdraw2(ipar(1),ipar(5),z(6),z(2),ipar(7),nu2)
-         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+c        TODO: create a macro for driver         
+c         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
       elseif(flag.eq.4) then
 c     init
 c     .  initial value         
@@ -108,13 +110,15 @@ c     .  get geometry of the block
 
          if(z(1).lt.0.0d0) return
          call setblockwin2(int(z(1)),cur)
-         call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
-         call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
-     $        dv,dv,dv,dv)
+c        TODO: create a macro for driver 
+c         call  dr1('xgetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+c         call  dr1('xsetdr'//char(0),'X11'//char(0),v,v,v,v,v,v,
+c     $        dv,dv,dv,dv)
 
          call recterase(z(2))
          call affdraw2(ipar(1),ipar(5),z(6),z(2),ipar(7),nu2)
-         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
+c        TODO: create a macro for driver 
+c         call  dr1('xsetdr'//char(0),drv,v,v,v,v,v,v,dv,dv,dv,dv)
 
       endif
       end
@@ -125,12 +129,13 @@ c     .  get geometry of the block
       double precision dv
       data verb/0/
 
-      call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
-     $     dv,dv,dv,dv)
-      if(cur.ne.win) then
-         call dr1('xset'//char(0),'window'//char(0),win,v,v,v,v,v,
-     $        dv,dv,dv,dv)
-      endif
+c     TO DO new graphic function
+c     call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
+c    $     dv,dv,dv,dv)
+c      if(cur.ne.win) then
+c        call dr1('xset'//char(0),'window'//char(0),win,v,v,v,v,v,
+c     $        dv,dv,dv,dv)
+c     endif
       return
       end
 
@@ -144,7 +149,8 @@ c     .  get geometry of the block
       y=r(2)+r(4)
       w=r(3)*(1.0d0-dx)
       h=r(4)*(1.0d0-dy)
-      call  dr1('xclea'//char(0),'v'//char(0),v,v,v,v,v,v,x,y,w,h)
+c TODO recreate xclea      
+c      call  dr1('xclea'//char(0),'v'//char(0),v,v,v,v,v,v,x,y,w,h)
       return
       end
 
@@ -165,10 +171,11 @@ c      do 1132 i=1,2*nu*nu2
 c      write(*,*) 'val',i,'=',val(i)
 c1132  continue
       write(fmt,'(''(f'',i3,''.'',i3,'')'')') form(1),form(2)
-      call dr1('xget'//char(0),'font'//char(0),verb,font,nf,v,v,
-     $     v,dv,dv,dv,dv)
-      call dr1('xset'//char(0),'font'//char(0),fontd(1),fontd(2),v,v,v,
-     $     v,dv,dv,dv,dv)
+c     replaces functions      
+c      call dr1('xget'//char(0),'font'//char(0),verb,font,nf,v,v,
+c     $     v,dv,dv,dv,dv)
+c      call dr1('xset'//char(0),'font'//char(0),fontd(1),fontd(2),v,v,v,
+c     $     v,dv,dv,dv,dv)
       do 20 j=1,nu
         value=' '
         value2=' '
@@ -196,19 +203,21 @@ c	   write(*,*) 'value2=',value2,'ln2=',ln2
 
         x=r(1)
         y=r(2)
-        call dr1('xstringl'//char(0),value2,v,v,v,v,v,v,x,y,rect,dv)
+c       call dr1('xstringl'//char(0),value2,v,v,v,v,v,v,x,y,rect,dv)
         x=r(1)+max(0.0d0,(r(3)-rect(3))/2.0d0)
         y=max(0.0d0,(r(4)-rect(4)*(1+(nu-1)*1.2d0))/2.0d0)
         y=r(2)+y+(nu-j)*(rect(4)*1.2d0)
-        call dr1('xstring'//char(0),value2,v,v,v,0,v,v,x,y,angle,dv)
+c      call dr1('xstring'//char(0),value2,v,v,v,0,v,v,x,y,angle,dv)
  20   continue
-      call dr1('xset'//char(0),'font'//char(0),font(1),font(2),v,v,v,
-     $     v,dv,dv,dv,dv)
-      call dr1('xget'//char(0),'pixmap'//char(0),verb,pix,na,v,v,v,
-     $     dv,dv,dv,dv)
+c     call dr1('xset'//char(0),'font'//char(0),font(1),font(2),v,v,v,
+c     $     v,dv,dv,dv,dv)
+c     TODO: not implemented
+c      call dr1('xget'//char(0),'pixmap'//char(0),verb,pix,na,v,v,v,
+c     $     dv,dv,dv,dv)
       if(pix.eq.1) then
-         call dr1('xset'//char(0),'wshow'//char(0),v,v,v,v
-     $        ,v,v,dv,dv,dv,dv)
+c     TODO: not implemented
+c         call dr1('xset'//char(0),'wshow'//char(0),v,v,v,v
+c     $        ,v,v,dv,dv,dv,dv)
       endif
       return
       end
