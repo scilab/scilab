@@ -30,6 +30,8 @@
 /* REORGANIZATION */
 #include "BuildObjects.h"
 /* #include "../interf/intcommongraphics.h" */
+#include "CurrentObjectsManagement.h"
+#include "ObjectSelection.h"
 
 #include "cvstr.h"
 #include "sciprint.h"
@@ -4343,7 +4345,8 @@ int intscixstringb(char *fname,unsigned long fname_len)
     /* set the largest font */
     C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-    updateScaleIfRequired(sciGetSelectedSubWin(sciGetCurrentFigure())) ;
+    //updateScaleIfRequired(sciGetSelectedSubWin(sciGetCurrentFigure())) ;
+	updateScaleIfRequired(sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ));
 
     wc=0.;
     i_max=0;
@@ -4354,7 +4357,7 @@ int intscixstringb(char *fname,unsigned long fname_len)
       ib = 0;
       for (j = 0 ; j < n3 ; ++j) {
         strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-        ib += strlen(Str[i+ m3*j]);
+        ib += (int)strlen(Str[i+ m3*j]);
         if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
       C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x1,&y1,rect,&dv,9L,bsiz);
@@ -4373,7 +4376,7 @@ int intscixstringb(char *fname,unsigned long fname_len)
     ib = 0;
     for (j = 0 ; j < n3 ; ++j) {
       strcpy(C2F(cha1).buf + ib,Str[i_max+ m3*j]);
-      ib += strlen(Str[i_max+ m3*j]);
+      ib += (int)strlen(Str[i_max+ m3*j]);
       if ( j != n3-1) {
         C2F(cha1).buf[ib]=' ';
         ib++;
@@ -4412,7 +4415,7 @@ int intscixstringb(char *fname,unsigned long fname_len)
     ib = 0;
     for (j = 0 ; j < n3 ; ++j) {
       strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-      ib += strlen(Str[i+ m3*j]);
+      ib += (int)strlen(Str[i+ m3*j]);
       if ( j != n3-1) {
         C2F(cha1).buf[ib]=' ';
         ib++;
@@ -4432,7 +4435,7 @@ int intscixstringb(char *fname,unsigned long fname_len)
     ib = 0;
     for (j = 0 ; j < n3 ; ++j) {
       strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-      ib += strlen(Str[i+ m3*j]);
+      ib += (int)strlen(Str[i+ m3*j]);
       if ( j != n3-1) {
         C2F(cha1).buf[ib]=' ';
         ib++;
