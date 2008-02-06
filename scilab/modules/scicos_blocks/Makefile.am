@@ -383,7 +383,8 @@ libsciscicos_blocks_la_CFLAGS= -Iincludes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/scicos/includes
+			-I$(top_srcdir)/modules/scicos/includes \
+                        -I$(top_srcdir)/modules/elementary_functions/includes
 
 
 libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) $(SCICOS_BLOCKS_FORTRAN_SOURCES) 
