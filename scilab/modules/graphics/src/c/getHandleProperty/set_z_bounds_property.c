@@ -21,6 +21,7 @@
 int set_z_bounds_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
+  sciFec * ppFec = NULL;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -39,9 +40,10 @@ int set_z_bounds_property( sciPointObj * pobj, int stackPointer, int valueType, 
     sciprint("Second argument must have 2 elements.\n") ;
     return SET_PROPERTY_ERROR ;
   }
+  ppFec = pFEC_FEATURE(pobj);
 
-  pFEC_FEATURE (pobj)->zminmax[0] = values[0] ;
-  pFEC_FEATURE (pobj)->zminmax[1] = values[1] ;
+  ppFec->zminmax[0] = values[0] ;
+  ppFec->zminmax[1] = values[1] ;
 
   return SET_PROPERTY_SUCCEED ;
 }

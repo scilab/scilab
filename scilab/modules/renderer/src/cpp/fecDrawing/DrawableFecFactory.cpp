@@ -7,7 +7,15 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableFecFactory.h"
-#include "DrawableFec.h"
+#include "DrawableFecBridgeFactory.hxx"
+#include "FecLineDrawerJoGL.hxx"
+#include "FecFacetDrawerJoGL.hxx"
+#include "getHandleDrawer.h"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
 
 namespace sciGraphics
 {
@@ -15,12 +23,31 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableFecFactory::create( void )
 {
-  return new DrawableFec( m_pDrawed ) ;
+  ConcreteDrawableFec * newFec = new ConcreteDrawableFec( m_pDrawed ) ;
+  DrawableFecBridgeFactory fact;
+  fact.setDrawedFec(newFec);
+  newFec->setDrawableImp(fact.create());
+
+  return newFec;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFecFactory::update( void )
 {
-  // nothing for now
+  setStrategies(dynamic_cast<ConcreteDrawableFec *>(getFecDrawer(m_pDrawed)));
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFecFactory::setStrategies(ConcreteDrawableFec * fec)
+{
+  sciFec * ppFec = pFEC_FEATURE(m_pDrawed);
+  fec->removeDrawingStrategies();
+  
+  if (ppFec->with_mesh)
+  {
+    fec->addDrawingStrategy(new FecLineDrawerJoGL(fec));
+  }
+
+  fec->addDrawingStrategy(new FecFacetDrawerJoGL(fec));
+
 }
 /*---------------------------------------------------------------------------------*/
 

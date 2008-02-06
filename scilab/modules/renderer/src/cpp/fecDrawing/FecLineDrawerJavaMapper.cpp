@@ -1,0 +1,95 @@
+/*------------------------------------------------------------------------*/
+/* file: FecLineDrawerJavaMapper.cpp                                     */
+/* Copyright INRIA 2008                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Contains mapping of java method used by FecLineDrawer          */
+/*------------------------------------------------------------------------*/
+
+#include "FecLineDrawerJavaMapper.hxx"
+
+extern "C"
+{
+#include "getScilabJavaVM.h"
+}
+
+namespace sciGraphics
+{
+
+/*---------------------------------------------------------------------------------*/
+FecLineDrawerJavaMapper::FecLineDrawerJavaMapper(void)
+{
+  m_pJavaObject = new org_scilab_modules_renderer_fecDrawing::FecLineDrawerGL(getScilabJavaVM());
+}
+/*---------------------------------------------------------------------------------*/
+FecLineDrawerJavaMapper::~FecLineDrawerJavaMapper(void)
+{
+  delete m_pJavaObject;
+  m_pJavaObject = NULL;
+}
+/*---------------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::display(void)
+{
+  m_pJavaObject->display();
+}
+/*---------------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::initializeDrawing(int figureIndex)
+{
+  m_pJavaObject->initializeDrawing(figureIndex);
+}
+/*---------------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::endDrawing(void)
+{
+  m_pJavaObject->endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::show(int figureIndex)
+{
+  m_pJavaObject->show(figureIndex);
+}
+/*---------------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::destroy(int parentFigureIndex)
+{
+  m_pJavaObject->destroy(parentFigureIndex); 
+}
+/*--------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::setFigureIndex(int figureIndex)
+{
+  m_pJavaObject->setFigureIndex(figureIndex);
+}
+/*---------------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, int lineStyle)
+{
+  m_pJavaObject->setLineParameters(lineColor, thickness, lineStyle);
+}
+/*---------------------------------------------------------------------------------*/
+void FecLineDrawerJavaMapper::drawFec(const double xCoords[], const double yCoords[],
+                                      const double values[], int nbNodes,
+                                      const int firstPoints[], const int secondPoints[],
+                                      const int thirdPoints[], int nbTriangles)
+{
+  // convert to long
+  long * javaFirstPoints = new long[nbTriangles];
+  long * javaSecondPoints = new long[nbTriangles];
+  long * javaThirdPoints = new long[nbTriangles];
+  for (int i = 0; i < nbTriangles; i++)
+  {
+    javaFirstPoints[i] = firstPoints[i];
+    javaSecondPoints[i] = secondPoints[i];
+    javaThirdPoints[i] = thirdPoints[i];
+  }
+
+  m_pJavaObject->drawFec((double *)xCoords, nbNodes,
+                         (double *)yCoords, nbNodes,
+                         (double *)values, nbNodes,
+                         javaFirstPoints, nbTriangles,
+                         javaSecondPoints, nbTriangles,
+                         javaThirdPoints, nbTriangles);
+
+
+  delete[] javaFirstPoints;
+  delete[] javaSecondPoints;
+  delete[] javaThirdPoints;
+}
+/*---------------------------------------------------------------------------------*/
+
+}

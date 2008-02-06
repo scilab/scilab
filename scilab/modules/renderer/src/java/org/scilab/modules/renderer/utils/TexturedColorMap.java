@@ -64,6 +64,16 @@ public class TexturedColorMap extends ColorMap {
 	}
 	
 	/**
+	 * Specify a new color for the colorMaps
+	 * @param index index of the color to modify
+	 * @param color array of size 3 containing the 3 channels
+	 */
+	public void setColor(int index, double[] color) {
+		super.setColor(index, color);
+		hasChanged = true;
+	}
+	
+	/**
 	 * Get the texture corresponding to the colormap
 	 * @return 1D texture containing the colormap 
 	 */
@@ -157,7 +167,7 @@ public class TexturedColorMap extends ColorMap {
 	 * @param gl current Gl pipeline
 	 * @param colorIndex color index to apply
 	 */
-	public void applyTexCoord(GL gl, int colorIndex) {
+	public void applyTexCoord(GL gl, double colorIndex) {
 		// use texture
 		// color offset is here to put the index in the missdle of the color
 		gl.glTexCoord1d((colorIndex - COLOR_OFFSET) / getSize());

@@ -15,13 +15,14 @@
 /*------------------------------------------------------------------------*/
 int get_z_bounds_property( sciPointObj * pobj )
 {
+  sciFec * ppFec = NULL;
   if (sciGetEntityType (pobj) != SCI_FEC)
   {
     sciprint(_("%s property does not exist for this handle.\n"),"z_bounds") ;
     return -1 ;
   }
-  
-  return sciReturnRowVector( pFEC_FEATURE(pobj)->zminmax, 2 ) ;
+  ppFec = pFEC_FEATURE(pobj);
+  return sciReturnRowVector( ppFec->zminmax, 2 ) ;
 
 }
 /*------------------------------------------------------------------------*/

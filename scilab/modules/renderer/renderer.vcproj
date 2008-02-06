@@ -233,14 +233,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\fecDrawing\DrawableFec.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\fecDrawing\DrawableFecFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\legendDrawing\DrawableLegend.cpp"
 				>
 			</File>
@@ -1220,6 +1212,62 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="FecDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\ConcreteDrawableFec.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFec.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecBridgeFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableFecGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\FecFacetDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecFacetDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecFacetDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\FecLineDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecLineDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecLineDrawerJoGL.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1256,14 +1304,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\DrawableClippedObjectJoGL.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\fecDrawing\DrawableFec.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\fecDrawing\DrawableFecFactory.h"
 				>
 			</File>
 			<File
@@ -2363,6 +2403,70 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\compoundDrawing\DrawableCompoundFactory.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="FecDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\ConcreteDrawableFec.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFec.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecBridge.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecBridgeFactory.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecFactory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableFecGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawableFecJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\DrawFecStrategy.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\FecFacetDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecFacetDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecFacetDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\FecLineDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecLineDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\fecDrawing\FecLineDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

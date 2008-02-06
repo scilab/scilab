@@ -14,8 +14,13 @@ package org.scilab.modules.renderer.utils;
  */
 public class ColorMap {
 	
+	private static final String COMMA = ", ";
+	
 	/** number of column in the colormap, represent the number of channels (ie RGB)*/
 	private static final int NBCOL = 3;
+	
+	private static final int BLACK_INDEX = -1;
+	private static final int WHITE_INDEX = -2;
 	
 	/** array containing red intensituy for each color */
 	private double[] redChannel;
@@ -112,26 +117,17 @@ public class ColorMap {
 	public void setData(double[] newData) {
 		
 		// new size
-		colormapSize = newData.length / NBCOL;
+		setSize(newData.length / NBCOL);
 		
 		// red channel
-		redChannel = new double[colormapSize + 2]; // +2 for black and white
 		System.arraycopy(newData, 0, redChannel, 0, colormapSize);
-		redChannel[colormapSize    ] = 0.0; // black
-		redChannel[colormapSize + 1] = 1.0; // white
 		
 		// green channel
-		greenChannel = new double[colormapSize + 2]; // +2 for black and white
 		System.arraycopy(newData, colormapSize, greenChannel, 0, colormapSize);
-		greenChannel[colormapSize    ] = 0.0; // black
-		greenChannel[colormapSize + 1] = 1.0; // white
-		
+
 		// blue channel
-		blueChannel = new double[colormapSize + 2]; // +2 for black and white
 		System.arraycopy(newData, 2 * colormapSize, blueChannel, 0, colormapSize);
-		blueChannel[colormapSize    ] = 0.0; // black
-		blueChannel[colormapSize + 1] = 1.0; // white
-		
+
 	}
 	
 	/**
@@ -166,17 +162,62 @@ public class ColorMap {
 	}
 	
 	/**
+	 * Specify a new size for the colorMap
+	 * @param newSize new number of colors in the colormap
+	 */
+	public void setSize(int newSize) {
+		colormapSize = newSize;
+		redChannel = new double[colormapSize + 2]; // +2 for black and white
+		greenChannel = new double[colormapSize + 2]; // +2 for black and white
+		blueChannel = new double[colormapSize + 2]; // +2 for black and white
+		
+		// add black and whit colors
+		redChannel[colormapSize    ] = 0.0; // black
+		redChannel[colormapSize + 1] = 1.0; // white
+		
+		// green channel
+		greenChannel[colormapSize    ] = 0.0; // black
+		greenChannel[colormapSize + 1] = 1.0; // white
+		
+		// blue channel
+		blueChannel[colormapSize    ] = 0.0; // black
+		blueChannel[colormapSize + 1] = 1.0; // white
+	}
+	
+	/**
+	 * Specify a new color for the colorMaps
+	 * @param index index of the color to modify
+	 * @param color array of size 3 containing the 3 channels
+	 */
+	public void setColor(int index, double[] color) {
+		redChannel[index] = color[0];
+		greenChannel[index] = color[1];
+		blueChannel[index] = color[2];
+	}
+	
+	/**
 	 * Convert scilab color index to colormap index
 	 * @param scilabIndex index in scilab
 	 * @return correspondinf index in the colormap
 	 */
 	public int convertScilabToColorMapIndex(int scilabIndex) {
-		if (scilabIndex == -1 || scilabIndex == 0) {
+		if (scilabIndex == BLACK_INDEX || scilabIndex == 0) {
 			return colormapSize;
-		} else if (scilabIndex == -2) {
+		} else if (scilabIndex == WHITE_INDEX) {
 			return colormapSize + 1;
 		} else {
 			return scilabIndex - 1;
 		}
+	}
+	
+	/**
+	 * @return string representation of the class
+	 */
+	public String toString() {
+		String res = "";
+		for (int i = 0; i < getSize() + 2; i++) {
+			res += "[" + redChannel[i] + COMMA + greenChannel[i] + COMMA + blueChannel[i] + "]\n";
+		}
+		return res;
 	}
 }

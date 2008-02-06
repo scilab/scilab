@@ -560,9 +560,6 @@ DestroyFec (sciPointObj * pthis)
   FREE (pFEC_FEATURE (pthis)->pvecy);
   FREE (pFEC_FEATURE (pthis)->pnoeud); 
   FREE (pFEC_FEATURE (pthis)->pfun); 
-  FREE (pFEC_FEATURE (pthis)->zminmax);  
-  FREE (pFEC_FEATURE (pthis)->colminmax);
-  FREE (pFEC_FEATURE (pthis)->colout);
   return sciStandardDestroyOperations(pthis) ;
 }
 

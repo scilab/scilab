@@ -1339,15 +1339,15 @@ typedef struct
   sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
   
-  double *pvecx;  
-  double *pvecy;   
-  double *pnoeud;
-  double *pfun;    
-  int Nnode; 
-  int Ntr;  
-  double *zminmax; 
-  integer *colminmax;
-  integer *colout;
+  double *pvecx; /* X coordinates of nodes */
+  double *pvecy; /* Y coordinates of nodes */
+  double *pnoeud; /* indices of nodes */
+  double *pfun; /* Height value for nodes */
+  int Nnode; /* number of nodes */
+  int Ntr;   /* number of triangles */
+  double zminmax[2]; /* Array of size 2 containing zmin and zmax */
+  integer colminmax[2]; /*  */
+  integer colout[2]; /* */
   BOOL with_mesh;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */

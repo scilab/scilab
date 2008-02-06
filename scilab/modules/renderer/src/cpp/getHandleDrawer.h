@@ -24,6 +24,7 @@ extern "C"
 #include "surfaceDrawing/DrawableSurface.h"
 #include "segsDrawing/DrawableSegs.h"
 #include "grayplotDrawing/DrawableGrayplot.h"
+#include "fecDrawing/DrawableFec.h"
 
 namespace sciGraphics
 {
@@ -120,6 +121,12 @@ DrawableSegs * getSegsDrawer( sciPointObj * pSegs );
  * @return the corresponding grayplot to pGrayplot if pGrayplot if of type grayplot, NULL otherwise
  */
 DrawableGrayplot * getGrayplotDrawer( sciPointObj * pGrayplot );
+
+/**
+* Return a DrawableFec object corresponding to a sciPointObj object.
+* @return the corresponding fec to pFec if pFec if of type fec, NULL otherwise
+*/
+DrawableFec * getFecDrawer( sciPointObj * pFec );
 
 }
 

@@ -154,4 +154,15 @@ DrawableGrayplot * getGrayplotDrawer( sciPointObj * pGrayplot )
 
 }
 /*---------------------------------------------------------------------------------*/
+DrawableFec * getFecDrawer( sciPointObj * pFec )
+{
+  if (sciGetEntityType(pFec) != SCI_FEC)
+  {
+    return NULL;
+  }
+
+  return dynamic_cast<DrawableFec *>(getHandleDrawer(pFec));
+}
+/*---------------------------------------------------------------------------------*/
+
 }

@@ -1980,46 +1980,6 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ((pfec->zminmax = MALLOC (2 * sizeof (double))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  FREE(pFEC_FEATURE (pobj)->pnoeud); 
-	  FREE(pFEC_FEATURE (pobj)->pfun);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	} 
-      if ((pfec->colminmax = MALLOC (2 * sizeof (integer))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  FREE(pFEC_FEATURE (pobj)->pnoeud); 
-	  FREE(pFEC_FEATURE (pobj)->pfun); 
-	  FREE(pFEC_FEATURE (pobj)->zminmax);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      if ((pfec->colout = MALLOC (2 * sizeof (integer))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  FREE(pFEC_FEATURE (pobj)->pnoeud); 
-	  FREE(pFEC_FEATURE (pobj)->pfun); 
-	  FREE(pFEC_FEATURE (pobj)->zminmax);
-	  FREE(pFEC_FEATURE (pobj)->colminmax);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
 
       for (i = 0; i < Nnode; i++)
 	{

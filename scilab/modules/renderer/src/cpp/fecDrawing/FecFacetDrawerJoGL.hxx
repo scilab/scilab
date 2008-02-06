@@ -1,0 +1,57 @@
+/*------------------------------------------------------------------------*/
+/* file: FecFacetDrawerJoGL.hxx                                           */
+/* Copyright INRIA 2008                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Strategy for the facets of a fec object                         */
+/*------------------------------------------------------------------------*/
+
+#ifndef _FEC_FACET_DRAWER_JOGL_HXX_
+#define _FEC_FACET_DRAWER_JOGL_HXX_
+
+#include "DrawFecStrategy.hxx"
+#include "../DrawableObjectJoGL.h"
+#include "FecFacetDrawerJavaMapper.hxx"
+
+namespace sciGraphics
+{
+
+class FecFacetDrawerJoGL : public DrawFecStrategy, DrawableObjectJoGL
+{
+public:
+
+  FecFacetDrawerJoGL(DrawableFec * fec);
+
+  virtual ~FecFacetDrawerJoGL(void);
+
+  /**
+   * Draw the fec using this strategy
+   * @param xCoords X coordinates of nodes
+   * @param yCoords Y coordinates of nodes
+   * @param values value for each node
+   * @param nbNodes number of nodes (size of xCoords and yCoords).
+   * @param firstPoints node indexes of triangles first point
+   * @param seconfPoints node indexes of triangles second point
+   * @param seconfPoints node indexes of triangles third point
+   * @param nbTriangles number of triangle (size of first, second and thirdPoints).
+   */
+  virtual void drawFec(const double xCoords[], const double yCoords[],
+                       const double values[], int nbNodes,
+                       const int firstPoints[], const int secondPoints[],
+                       const int thirdPoints[], int nbTriangles);
+
+  /**
+   * Show the fec using this strategy
+   */
+  virtual void showFec(void);
+
+protected:
+
+  virtual DrawableFec * getFecDrawer(void);
+
+  virtual FecFacetDrawerJavaMapper * getFacetDrawerJavaMapper(void);
+
+};
+
+}
+
+#endif /* _FEC_FACET_DRAWER_JOGL_HXX_ */

@@ -247,7 +247,17 @@ src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp \
 src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
 src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
 src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
-src/cpp/grayplotDrawing/MatplotDecomposer.cpp
+src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
+src/jni/DrawableFecGL.cpp \
+src/jni/FecLineDrawerGL.cpp \
+src/jni/FecFacetDrawerGL.cpp \
+src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
+src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
+src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
+src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
+src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
+src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
+src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp
 
 
 # List of the gateway c files
@@ -301,7 +311,10 @@ src/jni/DrawableSegsGL.giws.xml \
 src/jni/SegsArrowdrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
 src/jni/SegsMarkDrawerGL.giws.xml \
-src/jni/DrawableGrayplotGL.giws.xml
+src/jni/DrawableGrayplotGL.giws.xml \
+src/jni/DrawableFecGL.giws.xml \
+src/jni/DrawableFecGL.giws.xml \
+src/jni/FecFacetDrawerGL.giws.xml
 
 else
 
