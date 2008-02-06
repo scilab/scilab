@@ -1,0 +1,6 @@
+LIBRARY    fileio.dll
+
+
+EXPORTS
+dgelsy1_
+zgelsy1_

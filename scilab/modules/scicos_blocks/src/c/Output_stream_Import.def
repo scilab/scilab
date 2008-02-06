@@ -4,4 +4,5 @@ LIBRARY    scioutput_stream.dll
 EXPORTS
 ;
 ; output_stream
-  
+sciprint  
+basout_
