@@ -441,6 +441,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_uimenu.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_unsetmenu.c"
 				>
 			</File>
@@ -935,6 +939,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_uicontrol.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_uimenu.h"
 				>
 			</File>
 			<File

@@ -1009,10 +1009,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_UImenu.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_unglue.c"
 				>
 			</File>
@@ -2036,10 +2032,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_swap_handles.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_UImenu.h"
 				>
 			</File>
 			<File
