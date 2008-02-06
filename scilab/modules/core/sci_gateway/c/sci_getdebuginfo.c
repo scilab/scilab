@@ -24,12 +24,13 @@ int C2F(sci_getdebuginfo) _PARAMS((char *fname,unsigned long fname_len))
 	
 
 #ifndef _MSC_VER
-	char **outputStaticList=getStaticDebugInfo(&m1);
-	char **outputDynamicList=getDynamicDebugInfo(&m2);
 
-	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, outputStaticList);
+	char **outputDynamicList=getDynamicDebugInfo(&m1);
+	char **outputStaticList=getStaticDebugInfo(&m2);
+
+	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, outputDynamicList);
 	LhsVar(1) = Rhs+1;
-	CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &m2, &n2, outputDynamicList);
+	CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &m2, &n2, outputStaticList);
 	LhsVar(2) = Rhs+2;
 #else
 	/* TO DO : Windows part */
@@ -38,74 +39,5 @@ int C2F(sci_getdebuginfo) _PARAMS((char *fname,unsigned long fname_len))
 #endif
 	C2F(putlhsvar)();
 return 0;
-	/*
-	  C2F(getcomp)( C2F(cha1).buf,&nbuf,128);
-	  Str[n1]=C2F(cha1).buf;
-	  n1++;
-
-	  C2F(withpvm)(&irep);
-	  if (irep)
-	  {
-	  Str[n1]=pvm;
-	  n1++;
-	  }
-
-	  C2F(withtk)(&irep);
-	  if (irep)
-	  {
-	  Str[n1]=tk;
-	  n1++;
-	  }
-
-	  C2F(withmodelicac)(&irep);
-	  if (irep)
-	  {
-	  Str[n1]=modelicac;
-	  n1++;
-	  }
-
-	  C2F(withjavasci)(&irep);
-	  if (irep)
-	  {
-	  Str[n1]=javasci;
-	  n1++;
-	  }
-
-	  #ifdef WITH_ATLAS
-	  {
-	  Str[n1]=atlas;
-	  n1++;
-	  }
-	  #endif
-
-	  #ifdef _MSC_VER
-	  #ifdef _DEBUG
-	  {
-	  Str[n1]=debugmode;
-	  n1++;
-	  }
-	  #else
-	  {
-	  Str[n1]=releasemode;
-	  n1++;
-	  }
-	  #endif
-	  #else
-	  #ifdef NDEBUG
-	  {
-	  Str[n1]=releasemode;
-	  n1++;
-	  }
-	  #else
-	  {
-	  Str[n1]=debugmode;
-	  n1++;
-	  }
-	  #endif
-	  #endif
-
-
-	  #endif
-	*/
 }
 /*--------------------------------------------------------------------------*/

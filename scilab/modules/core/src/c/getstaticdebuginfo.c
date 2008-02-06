@@ -18,6 +18,19 @@
 		#include <tk.h>
 	#endif
 #endif
+
+#ifdef WITH_PVM
+#include <pvm.h>
+#endif 
+
+#ifdef WITH_UMFPACK
+#ifdef UMFPACK_SUITESPARSE
+#include <suitesparse/umfpack.h>
+#else
+#include <umfpack.h>
+#endif
+#endif
+
 #include "MALLOC.h"
 #include "getstaticdebuginfo.h"
 
@@ -71,12 +84,21 @@ char **getStaticDebugInfo(int *sizeArray)
 #endif
 #ifdef WITH_PVM
 		{"PVM","Enable"},
+#ifdef PVM_VER
+		{"PVM version",PVM_VER},
+#endif
 #endif	
 #ifdef PATH_SEPARATOR
 		{"Path separator",PATH_SEPARATOR},
 #endif
 #ifdef DIR_SEPARATOR
 		{"Directory separator",DIR_SEPARATOR},
+#endif
+#ifdef WITH_UMFPACK
+		{"UMFPACK","Enable"},
+#ifdef UMFPACK_VERSION
+		{"UMFPACK version",UMFPACK_VERSION},
+#endif
 #endif
 	};
 

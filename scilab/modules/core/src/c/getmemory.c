@@ -6,6 +6,9 @@
 @sa http://nixdoc.net/man-pages/Tru64/man2/getsysinfo.2.html
 @sa http://www.opensource.apple.com/darwinsource/projects/other/gccfast-1621.1/libiberty/physmem.c
 @sa http://lists.gnu.org/archive/html/bug-gnulib/2003-08/msg00102.html
+* @TODO (Sylvestre Ledru)
+* This file needs some work because the Linux Kernel is caching many memory
+* therefor, the free memory value is pretty wrong
 */
 #include "getmemory.h"
 

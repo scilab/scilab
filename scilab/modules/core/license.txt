@@ -1,1 +1,7 @@
 INRIA 2006
+
+
+Some code in the file src/c/getdynamicdebuginfo.c has been released
+under the term of the LGPL license.
+This piece of code is used to detect the memory available on the system and
+is from the "free" command (package procps).
