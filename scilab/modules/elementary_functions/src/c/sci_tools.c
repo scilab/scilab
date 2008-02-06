@@ -80,6 +80,7 @@
 #include "sci_tools.h"
 #include "MALLOC.h" /* MALLOC */
 
+#include "localization.h"
 
 void 
 C2F(ccomplexf)(int *n, double **ip, double *op)
