@@ -16,39 +16,57 @@ import javax.swing.border.EtchedBorder;
 public final class ScilabRelief {
 	
 	/**
-	 * Border used for FLAT relief property
+	 * Keywork used for FLAT relief property
 	 */
 	public static final String FLAT = "flat";
+	/**
+	 * Border used for FLAT relief property
+	 */
 	public static final Border FLAT_BORDER = BorderFactory.createEmptyBorder();
 	
 	/**
-	 * Border used for GROOVE relief property
+	 * Keyword used for GROOVE relief property
 	 */
 	public static final String GROOVE = "groove";
+	/**
+	 * Border used for GROOVE relief property
+	 */
 	public static final Border GROOVE_BORDER = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 
 	/**
-	 * Border used for RAISED relief property
+	 * Keyword used for RAISED relief property
 	 */
 	public static final String RAISED = "raised";
+	/**
+	 * Border used for RAISED relief property
+	 */
 	public static final Border RAISED_BORDER = BorderFactory.createRaisedBevelBorder();
 	
 	/**
-	 * Border used for RIDGE relief property
+	 * Keyword used for RIDGE relief property
 	 */
 	public static final String RIDGE = "ridge";
+	/**
+	 * Border used for RIDGE relief property
+	 */
 	public static final Border RIDGE_BORDER = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 
 	/**
-	 * Border used for SOLID relief property
+	 * Keyword used for SOLID relief property
 	 */
 	public static final String SOLID = "solid";
+	/**
+	 * Border used for SOLID relief property
+	 */
 	public static final Border SOLID_BORDER = BorderFactory.createLineBorder(Color.BLACK);
 	
 	/**
 	 * Border used for SUNKEN relief property
 	 */
 	public static final String SUNKEN = "sunken";
+	/**
+	 * Keyword used for SUNKEN relief property
+	 */
 	public static final Border SUNKEN_BORDER = BorderFactory.createLoweredBevelBorder();
 	
 	/**
