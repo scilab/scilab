@@ -1,4 +1,4 @@
-function y = bitset(x,pos)
+function y = bitset(x,pos,v)
 	
 	// Copyright INRIA 2008 - Pierre MARECHAL
 	//
@@ -13,8 +13,8 @@ function y = bitset(x,pos)
 	
 	rhs = argn(2);
 	
-	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"bitset",2));
+	if rhs < 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"bitset",2));
 	end
 	
 	// case empty matrix
@@ -66,6 +66,15 @@ function y = bitset(x,pos)
 		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitset",0,posmax));
 	end
 	
+	// check v value
+	
+	if rhs == 3 & ..
+		( ((type(v)<>1) & (type(v)<>8)) ..
+		| ((type(x)==8) & (inttype(x)<10)) ..
+		| ((v<>0) & (v<>1)) ) then
+		error(msprintf(gettext("%s: Wrong third input argument: 0 or 1 expected\n"),"bitset"));
+	end
+	
 	// Algorithm
 	// =========================================================================
 	
@@ -77,6 +86,10 @@ function y = bitset(x,pos)
 		x    = ones(pos)*x;
 	end
 	
+	if rhs<3 then
+		v = 1;
+	end
+	
 	if type(x)==8 then
 		
 		select inttype(x)
@@ -85,7 +98,12 @@ function y = bitset(x,pos)
 			case 14 then mask = uint32(2^(pos-1));
 		end
 		
-		y = x | mask;
+		if v==0 then
+			y = x & (~mask);
+		else
+			y = x | mask;
+		end
+		
 		return;
 		
 	else
@@ -102,13 +120,21 @@ function y = bitset(x,pos)
 		y_MSB = uint32( x/a );                         // MSB Most Significant Bits
 		
 		if or(pos<=32) then
-			mask(  pos<=32 )  = uint32( 2^(pos(pos<=32) -1 ));
-			y_LSB( pos<=32 ) = y_LSB(pos<=32) | mask(pos<=32);
+			mask(  pos<=32 ) = uint32( 2^(pos(pos<=32) -1 ));
+			if v==0 then
+				y_LSB( pos<=32 ) = y_LSB(pos<=32) & (~mask(pos<=32));
+			else
+				y_LSB( pos<=32 ) = y_LSB(pos<=32) | mask(pos<=32);
+			end
 		end
 		
 		if or(pos>32) then
 			mask(  pos>32 ) = uint32( 2^(pos(pos>32) -32 -1 ));
-			y_MSB( pos>32 ) = y_MSB(pos>32) | mask(pos>32);
+			if v==0 then
+				y_MSB( pos>32 ) = y_MSB(pos>32) & (~ mask(pos>32));
+			else
+				y_MSB( pos>32 ) = y_MSB(pos>32) | mask(pos>32);
+			end
 		end
 		
 		y = double( a * y_MSB + y_LSB );
