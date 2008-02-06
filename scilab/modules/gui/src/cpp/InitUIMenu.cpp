@@ -9,6 +9,7 @@ extern "C"{
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
+#include "localization.h"
 #include "sciprint.h"
 }
 
@@ -29,31 +30,48 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
     return SET_PROPERTY_ERROR;
   }
 
-  if (valueType == sci_handles) {
-    if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_FIGURE) {
+  if (valueType == sci_handles)
+    {
+      if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_FIGURE)
+        {
+          
+          // If the parent is a figure
+          parentFigureIndex = sciGetNum(sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
+          CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
+          
+          // Scilab relationship
+          sciSetParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
+          
+          return SET_PROPERTY_SUCCEED;
 
-      // If the parent is a figure
-      parentFigureIndex = sciGetNum(sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
-      CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
+        } 
+      else if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_UIMENU)
+        {
 
-      // Scilab relationship
-      sciSetParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
-      
-    } else {
-      // If the parent is a menu
-      CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
+          // If the parent is a menu
+          CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
+          
+          return SET_PROPERTY_SUCCEED;
+
+        } 
+      else
+        {
+          sciprint(_("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+          return SET_PROPERTY_ERROR;
+        }
     }
-    return SET_PROPERTY_SUCCEED;
-  
-  } else if (valueType == sci_matrix) {
-    // The parent is Scilab Main window (Console Tab)
-    // TODO check that value is 0 
-    CallScilabBridge::setRootAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex);
-    return SET_PROPERTY_SUCCEED;
-  } else {
-    // Do not know how to set the parent
-    return SET_PROPERTY_ERROR;
-  }
+  else if (valueType == sci_matrix)
+    {
+      // The parent is Scilab Main window (Console Tab)
+      // TODO check that value is 0 
+      CallScilabBridge::setRootAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex);
+      return SET_PROPERTY_SUCCEED;
+    } 
+  else
+    {
+      sciprint(_("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+      return SET_PROPERTY_ERROR;
+    }
   
 }
 
