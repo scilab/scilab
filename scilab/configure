@@ -944,6 +944,10 @@ USE_EMBEDDED_BLAS_FALSE
 LAPACK_LIBS
 USE_EMBEDDED_LAPACK_TRUE
 USE_EMBEDDED_LAPACK_FALSE
+UMFPACK_LIB
+UMFPACK_ENABLE
+UMFPACK_TRUE
+UMFPACK_FALSE
 PCRE_CONFIG
 PCRE_FLAGS
 PCRE_LIBS
@@ -1584,11 +1588,16 @@ Optional Features:
 			  (and sometimes confusing) to the casual installer
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
-  --enable-debug           do not optimize and print warning messages (C/C++/Fortran code)
-  --enable-debug-C         do not optimize and print warning messages (C code)
-  --enable-debug-CXX       do not optimize and print warning messages (C++ code)
-  --enable-debug-fortran   do not optimize and print warning messages (Fortran code)
-  --enable-stop-on-warning Stop the compilation on the first warning found in the C/C++ code
+  --enable-debug          Do not optimize and print warning messages
+                          (C/C++/Fortran code)
+  --enable-debug-C        Do not optimize and print warning messages (C code)
+  --enable-debug-CXX      Do not optimize and print warning messages (C++
+                          code)
+  --enable-debug-fortran  Do not optimize and print warning messages (Fortran
+                          code)
+  --enable-stop-on-warning
+                          Stop the compilation on the first warning found in
+                          the C/C++ code
   --enable-shared[=PKGS]  build shared libraries [default=yes]
   --enable-static[=PKGS]  build static libraries [default=yes]
   --enable-fast-install[=PKGS]
@@ -1599,10 +1608,10 @@ Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-gnu-ld           assume the C compiler uses GNU ld default=no
-  --with-gcc              use gcc C compiler
-  --with-g77              use g77, GNU Fortran 77 compiler
-  --with-gfortran         use gfortran, GNU Fortran 95 compiler
-  --with-intelcompilers   use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only)
+  --with-gcc              Use gcc C compiler
+  --with-g77              Use g77, GNU Fortran 77 compiler
+  --with-gfortran         Use gfortran, GNU Fortran 95 compiler
+  --with-intelcompilers   Use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only)
   --without-tk            do not compile with TCL/TK
   --without-javasci       do not compile the Java/Scilab module
   --without-gui           do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab
@@ -1610,26 +1619,29 @@ Optional Packages:
   --with-giws-generation  Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)
   --with-jdk=DIR          use JDK from DIR
   --with-ant=DIR          use ant from DIR
-  --with-scicos        Compile with Scicos
+  --with-scicos			Compile with Scicos
   --without-ocaml         do not compile ocaml modules
-  --with-fftw	           compile with the FFTW 3 library
+  --with-fftw		Compile with the FFTW 3 library
   --with-pvm	           compile with PVM library
-  --with-pvm-include=DIR  PVM include files are in DIR
-  --with-pvm-library=DIR  PVM library files are in DIR
+  --with-pvm-include=DIR  set the path to the PVM headers
+  --with-pvm-library=DIR  set the path to the PVM library
   --with-libxml2=PREFIX    set the path to your libxml2 installation
   --with-localization-generation    enable the localization generation
-  --with-blas-library=DIR BLAS (refblas, Atlas, MKL...) library files are in
-                          DIR
+  --with-blas-library=DIR set the path to the BLAS (refblas, Atlas, MKL...)
+                          library
   --with-lapack-library=DIR
-                          LAPACK library files are in DIR
-  --with-pcre=PREFIX    set the path to your pcre (Perl 5 Compatible Regular Expression Library) installation
-  --with-tcl-library=DIR  Tcl library files are in DIR
-  --with-tcl-include=DIR  Tcl include files are in DIR
-  --with-tk-library=DIR   Tk library files are in DIR
-  --with-tk-include=DIR   Tk include files are in DIR
+                          set the path to the LAPACK library
+  --with-umfpack	compile with the UMFPACK library
+  --with-umfpack-library=DIR    set the path to the UMFPACK libraries
+  --with-umfpack-include=DIR    set the path to the UMFPACK headers
+  --with-pcre=DIR		set the path to your PCRE (Perl 5 Compatible Regular Expression Library) installation
+  --with-tcl-library=DIR  set the path to the TCL library
+  --with-tcl-include=DIR  set the path to the TCL headers
+  --with-tk-library=DIR   set the path to the TK library
+  --with-tk-include=DIR   set the path to the TK headers
   --with-x                use the X Window System
-  --with-sablotron compile man pages using sablotron
-  --with-xsltproc  compile man pages using xsltproc
+  --with-sablotron	Generates man pages using sablotron
+  --with-xsltproc	Generates man pages using xsltproc
   --with-install-help-xml  make install will install XML files
   --with-pic              try to use only PIC/non-PIC objects [default=use
                           both]
@@ -9756,7 +9768,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 9759 "configure"
+// #line 9771 "configure"
 
 
 public class conftest {
@@ -9806,7 +9818,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9809 "configure"
+// #line 9821 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -9854,7 +9866,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 9857 "configure"
+// #line 9869 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -9881,7 +9893,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 9884 "configure"
+// #line 9896 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11097,7 +11109,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11100 "configure"
+// #line 11112 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11163,7 +11175,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11166 "configure"
+// #line 11178 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11229,7 +11241,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11232 "configure"
+// #line 11244 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11295,7 +11307,7 @@ echo $ECHO_N "checking jrosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11298 "configure"
+// #line 11310 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -11361,7 +11373,7 @@ echo $ECHO_N "checking jrosetta-engine... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11364 "configure"
+// #line 11376 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -11427,7 +11439,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11430 "configure"
+// #line 11442 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -15694,7 +15706,7 @@ fi
 
 
 
-SCICOS_ENABLE=0
+SCICOS_ENABLE=no
 if test "$with_scicos" = yes; then
 
 cat >>confdefs.h <<\_ACEOF
@@ -15857,7 +15869,7 @@ _ACEOF
 
 
 		fi
-		SCICOS_ENABLE=1
+		SCICOS_ENABLE=yes
 fi
 
 
@@ -15869,6 +15881,7 @@ else
   SCICOS_TRUE='#'
   SCICOS_FALSE=
 fi
+
 
 
 
@@ -15884,11 +15897,10 @@ fi
 
 # @TODO change that to add the possibility to specify a directory
 
-FFTW_ENABLE=0
+FFTW_ENABLE=no
 if test "$with_fftw" = yes; then
 
-
-       if test "${ac_cv_header_fftw3_h+set}" = set; then
+	if test "${ac_cv_header_fftw3_h+set}" = set; then
   { echo "$as_me:$LINENO: checking for fftw3.h" >&5
 echo $ECHO_N "checking for fftw3.h... $ECHO_C" >&6; }
 if test "${ac_cv_header_fftw3_h+set}" = set; then
@@ -16027,7 +16039,8 @@ echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please i
 fi
 
 
-	   { echo "$as_me:$LINENO: checking for fftw_plan_dft_r2c in -lfftw3" >&5
+	save_LIBS="$LIBS"
+	{ echo "$as_me:$LINENO: checking for fftw_plan_dft_r2c in -lfftw3" >&5
 echo $ECHO_N "checking for fftw_plan_dft_r2c in -lfftw3... $ECHO_C" >&6; }
 if test "${ac_cv_lib_fftw3_fftw_plan_dft_r2c+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -16097,6 +16110,7 @@ echo "$as_me: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_d
 
 fi
 
+	LIBS="$save_LIBS"
 
 
 cat >>confdefs.h <<\_ACEOF
@@ -16104,7 +16118,7 @@ cat >>confdefs.h <<\_ACEOF
 _ACEOF
 
 
-   FFTW_ENABLE=1
+   FFTW_ENABLE=yes
 fi
 
 
@@ -16142,7 +16156,7 @@ if test "${with_pvm+set}" = set; then
 fi
 
 
-PVM_ENABLE=0
+PVM_ENABLE=no
 if test "$with_pvm" = yes; then
 
 
@@ -16762,7 +16776,7 @@ fi
 
 
 
-   PVM_ENABLE=1
+   PVM_ENABLE=yes
 fi
 
 
@@ -19702,6 +19716,977 @@ else
 fi
 
 
+
+
+#################
+## UMFPACK
+#################
+
+
+# Check whether --with-umfpack was given.
+if test "${with_umfpack+set}" = set; then
+  withval=$with_umfpack;
+fi
+
+
+UMFPACK_ENABLE=no
+if test "$with_umfpack" = yes; then
+
+
+BLAS_LIBS="$BLAS_LIBS"
+
+UMFPACK_OK=no
+SUITESPARSE=no
+
+
+# Check whether --with-umfpack_library was given.
+if test "${with_umfpack_library+set}" = set; then
+  withval=$with_umfpack_library; with_umfpack_library=$withval
+else
+  with_umfpack_library='yes'
+
+fi
+
+
+
+# Check whether --with-umfpack_include was given.
+if test "${with_umfpack_include+set}" = set; then
+  withval=$with_umfpack_include; with_umfpack_include=$withval
+else
+  with_umfpack_include='yes'
+
+fi
+
+
+# Include provided... check if you set it as -I/path/ if it can find the header
+if test "x$with_umfpack_include" != "xyes"; then
+	save_CFLAGS="$CFLAGS"
+	CFLAGS="-I$with_umfpack_include"
+	if test "${ac_cv_header_suitesparse_umfpack_h+set}" = set; then
+  { echo "$as_me:$LINENO: checking for suitesparse/umfpack.h" >&5
+echo $ECHO_N "checking for suitesparse/umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_suitesparse_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_suitesparse_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_suitesparse_umfpack_h" >&6; }
+else
+  # Is the header compilable?
+{ echo "$as_me:$LINENO: checking suitesparse/umfpack.h usability" >&5
+echo $ECHO_N "checking suitesparse/umfpack.h usability... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <suitesparse/umfpack.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ echo "$as_me:$LINENO: checking suitesparse/umfpack.h presence" >&5
+echo $ECHO_N "checking suitesparse/umfpack.h presence... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <suitesparse/umfpack.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: present but cannot be compiled" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------------------------- ##
+## Report this to http://www.scilab.org/cgi-bin/bugzilla_bug_II/ ##
+## ------------------------------------------------------------- ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ echo "$as_me:$LINENO: checking for suitesparse/umfpack.h" >&5
+echo $ECHO_N "checking for suitesparse/umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_suitesparse_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_cv_header_suitesparse_umfpack_h=$ac_header_preproc
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_suitesparse_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_suitesparse_umfpack_h" >&6; }
+
+fi
+if test $ac_cv_header_suitesparse_umfpack_h = yes; then
+  UMFPACK_CFLAGS="$CFLAGS"; SUITESPARSE=yes
+else
+  if test "${ac_cv_header_umfpack_h+set}" = set; then
+  { echo "$as_me:$LINENO: checking for umfpack.h" >&5
+echo $ECHO_N "checking for umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_umfpack_h" >&6; }
+else
+  # Is the header compilable?
+{ echo "$as_me:$LINENO: checking umfpack.h usability" >&5
+echo $ECHO_N "checking umfpack.h usability... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <umfpack.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ echo "$as_me:$LINENO: checking umfpack.h presence" >&5
+echo $ECHO_N "checking umfpack.h presence... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <umfpack.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: umfpack.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: present but cannot be compiled" >&5
+echo "$as_me: WARNING: umfpack.h: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: umfpack.h:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: umfpack.h: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: umfpack.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: umfpack.h: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: umfpack.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------------------------- ##
+## Report this to http://www.scilab.org/cgi-bin/bugzilla_bug_II/ ##
+## ------------------------------------------------------------- ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ echo "$as_me:$LINENO: checking for umfpack.h" >&5
+echo $ECHO_N "checking for umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_cv_header_umfpack_h=$ac_header_preproc
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_umfpack_h" >&6; }
+
+fi
+if test $ac_cv_header_umfpack_h = yes; then
+  UMFPACK_CFLAGS="$CFLAGS"; SUITESPARSE=no
+else
+  { { echo "$as_me:$LINENO: error: Cannot find headers (umfpack.h) of the library UMFPACK. Please install the dev package (Debian : libsuitesparse-dev)" >&5
+echo "$as_me: error: Cannot find headers (umfpack.h) of the library UMFPACK. Please install the dev package (Debian : libsuitesparse-dev)" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+
+fi
+
+
+	CFLAGS="$save_CFLAGS"
+fi
+
+# Look in the default paths
+if test "x$UMFPACK_INCLUDE" = "x" ; then
+if test "${ac_cv_header_suitesparse_umfpack_h+set}" = set; then
+  { echo "$as_me:$LINENO: checking for suitesparse/umfpack.h" >&5
+echo $ECHO_N "checking for suitesparse/umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_suitesparse_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_suitesparse_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_suitesparse_umfpack_h" >&6; }
+else
+  # Is the header compilable?
+{ echo "$as_me:$LINENO: checking suitesparse/umfpack.h usability" >&5
+echo $ECHO_N "checking suitesparse/umfpack.h usability... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <suitesparse/umfpack.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ echo "$as_me:$LINENO: checking suitesparse/umfpack.h presence" >&5
+echo $ECHO_N "checking suitesparse/umfpack.h presence... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <suitesparse/umfpack.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: present but cannot be compiled" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: suitesparse/umfpack.h: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: suitesparse/umfpack.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------------------------- ##
+## Report this to http://www.scilab.org/cgi-bin/bugzilla_bug_II/ ##
+## ------------------------------------------------------------- ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ echo "$as_me:$LINENO: checking for suitesparse/umfpack.h" >&5
+echo $ECHO_N "checking for suitesparse/umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_suitesparse_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_cv_header_suitesparse_umfpack_h=$ac_header_preproc
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_suitesparse_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_suitesparse_umfpack_h" >&6; }
+
+fi
+if test $ac_cv_header_suitesparse_umfpack_h = yes; then
+  SUITESPARSE=yes
+else
+  if test "${ac_cv_header_umfpack_h+set}" = set; then
+  { echo "$as_me:$LINENO: checking for umfpack.h" >&5
+echo $ECHO_N "checking for umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_umfpack_h" >&6; }
+else
+  # Is the header compilable?
+{ echo "$as_me:$LINENO: checking umfpack.h usability" >&5
+echo $ECHO_N "checking umfpack.h usability... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <umfpack.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ echo "$as_me:$LINENO: checking umfpack.h presence" >&5
+echo $ECHO_N "checking umfpack.h presence... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <umfpack.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: umfpack.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: umfpack.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: present but cannot be compiled" >&5
+echo "$as_me: WARNING: umfpack.h: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: umfpack.h:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: umfpack.h: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: umfpack.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: umfpack.h: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: umfpack.h: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: umfpack.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------------------------- ##
+## Report this to http://www.scilab.org/cgi-bin/bugzilla_bug_II/ ##
+## ------------------------------------------------------------- ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ echo "$as_me:$LINENO: checking for umfpack.h" >&5
+echo $ECHO_N "checking for umfpack.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_umfpack_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_cv_header_umfpack_h=$ac_header_preproc
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_umfpack_h" >&5
+echo "${ECHO_T}$ac_cv_header_umfpack_h" >&6; }
+
+fi
+if test $ac_cv_header_umfpack_h = yes; then
+  SUITESPARSE=no
+else
+  { { echo "$as_me:$LINENO: error: Cannot find headers (umfpack.h) of the library UMFPACK. Please install the dev package (Debian : libsuitesparse-dev)" >&5
+echo "$as_me: error: Cannot find headers (umfpack.h) of the library UMFPACK. Please install the dev package (Debian : libsuitesparse-dev)" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+
+fi
+
+
+fi
+
+# --with-umfpack-library set then check in this dir
+if test "x$with_umfpack_library" != "xyes"; then
+	{ echo "$as_me:$LINENO: checking for umf_divcomplex in $with_umfpack_library" >&5
+echo $ECHO_N "checking for umf_divcomplex in $with_umfpack_library... $ECHO_C" >&6; }
+	save_LIBS="$LIBS"
+	LIBS="$BLAS_LIBS -L$with_umfpack_library $LIBS"
+
+	{ echo "$as_me:$LINENO: checking for amd_info in -lamd" >&5
+echo $ECHO_N "checking for amd_info in -lamd... $ECHO_C" >&6; }
+if test "${ac_cv_lib_amd_amd_info+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lamd  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char amd_info ();
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+return amd_info ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_amd_amd_info=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_amd_amd_info=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_amd_amd_info" >&5
+echo "${ECHO_T}$ac_cv_lib_amd_amd_info" >&6; }
+if test $ac_cv_lib_amd_amd_info = yes; then
+  UMFPACK_LIB="-lamd"
+else
+  { { echo "$as_me:$LINENO: error: libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct" >&5
+echo "$as_me: error: libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+	{ echo "$as_me:$LINENO: checking for umf_divcomplex in -lumfpack" >&5
+echo $ECHO_N "checking for umf_divcomplex in -lumfpack... $ECHO_C" >&6; }
+if test "${ac_cv_lib_umfpack_umf_divcomplex+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lumfpack  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char umf_divcomplex ();
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+return umf_divcomplex ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_umfpack_umf_divcomplex=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_umfpack_umf_divcomplex=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_umfpack_umf_divcomplex" >&5
+echo "${ECHO_T}$ac_cv_lib_umfpack_umf_divcomplex" >&6; }
+if test $ac_cv_lib_umfpack_umf_divcomplex = yes; then
+  UMFPACK_LIB="-L$with_umfpack_library -lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes
+else
+  { { echo "$as_me:$LINENO: error: libumfpack : Library missing. (Cannot find umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" >&5
+echo "$as_me: error: libumfpack : Library missing. (Cannot find umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+#	AC_TRY_LINK_FUNC(umf_divcomplex, [UMFPACK_OK=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [UMFPACK_LIBS=""])
+	{ echo "$as_me:$LINENO: result: $UMFPACK_OK" >&5
+echo "${ECHO_T}$UMFPACK_OK" >&6; }
+	LIBS="$save_LIBS"
+fi
+
+# check in the default path
+if test $UMFPACK_OK = no; then
+	save_LIBS="$LIBS"
+	LIBS="$BLAS_LIBS $LIBS" # libamd* is mandatory to link umfpack
+
+	{ echo "$as_me:$LINENO: checking for amd_info in -lamd" >&5
+echo $ECHO_N "checking for amd_info in -lamd... $ECHO_C" >&6; }
+if test "${ac_cv_lib_amd_amd_info+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lamd  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char amd_info ();
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+return amd_info ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_amd_amd_info=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_amd_amd_info=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_amd_amd_info" >&5
+echo "${ECHO_T}$ac_cv_lib_amd_amd_info" >&6; }
+if test $ac_cv_lib_amd_amd_info = yes; then
+  UMFPACK_LIB="-lamd"
+else
+  { { echo "$as_me:$LINENO: error: libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct" >&5
+echo "$as_me: error: libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+	LIBS="$UMFPACK_LIB $LIBS"
+	{ echo "$as_me:$LINENO: checking for umf_divcomplex in -lumfpack" >&5
+echo $ECHO_N "checking for umf_divcomplex in -lumfpack... $ECHO_C" >&6; }
+if test "${ac_cv_lib_umfpack_umf_divcomplex+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lumfpack  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char umf_divcomplex ();
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+return umf_divcomplex ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_umfpack_umf_divcomplex=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_umfpack_umf_divcomplex=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_umfpack_umf_divcomplex" >&5
+echo "${ECHO_T}$ac_cv_lib_umfpack_umf_divcomplex" >&6; }
+if test $ac_cv_lib_umfpack_umf_divcomplex = yes; then
+  UMFPACK_LIB="-lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes
+else
+  { { echo "$as_me:$LINENO: error: libumfpack: Library missing. (Cannot find symbol umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" >&5
+echo "$as_me: error: libumfpack: Library missing. (Cannot find symbol umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+		LIBS="$save_LIBS"
+fi
+
+
+if test $SUITESPARSE -eq 1; then
+
+cat >>confdefs.h <<_ACEOF
+#define UMFPACK_SUITESPARSE
+_ACEOF
+
+fi
+
+
+cat >>confdefs.h <<\_ACEOF
+#define WITH_UMFPACK
+_ACEOF
+
+
+
+   UMFPACK_ENABLE=yes
+fi
+
+
+ if test "$with_enable" = yes; then
+  UMFPACK_TRUE=
+  UMFPACK_FALSE='#'
+else
+  UMFPACK_TRUE='#'
+  UMFPACK_FALSE=
+fi
+
+
 #######################
 ## Test for PCRE
 #######################
@@ -21754,7 +22739,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 21757 "configure"
+#line 22742 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -22138,7 +23123,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 22141 "configure"
+#line 23126 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -23332,13 +24317,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:23335: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:24320: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:23338: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:24323: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:23341: output\"" >&5)
+  (eval echo "\"\$as_me:24326: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -24423,7 +25408,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 24426 "configure"' > conftest.$ac_ext
+  echo '#line 25411 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -26056,11 +27041,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26059: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27044: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:26063: \$? = $ac_status" >&5
+   echo "$as_me:27048: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26378,11 +27363,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26381: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27366: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:26385: \$? = $ac_status" >&5
+   echo "$as_me:27370: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -26483,11 +27468,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26486: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27471: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26490: \$? = $ac_status" >&5
+   echo "$as_me:27475: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -26538,11 +27523,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:26541: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27526: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:26545: \$? = $ac_status" >&5
+   echo "$as_me:27530: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -29367,7 +30352,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29370 "configure"
+#line 30355 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -29467,7 +30452,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29470 "configure"
+#line 30455 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31505,11 +32490,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31508: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32493: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:31512: \$? = $ac_status" >&5
+   echo "$as_me:32497: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -31604,11 +32589,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31607: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32592: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:31611: \$? = $ac_status" >&5
+   echo "$as_me:32596: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -31656,11 +32641,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:31659: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32644: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:31663: \$? = $ac_status" >&5
+   echo "$as_me:32648: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33039,11 +34024,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33042: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34027: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:33046: \$? = $ac_status" >&5
+   echo "$as_me:34031: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -33138,11 +34123,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33141: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34126: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33145: \$? = $ac_status" >&5
+   echo "$as_me:34130: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33190,11 +34175,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33193: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34178: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33197: \$? = $ac_status" >&5
+   echo "$as_me:34182: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -35420,7 +36405,7 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/fftw/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/others/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/Makefile libs/Makefile Makefile etc/modules.xml scilab-lib.properties"
+ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/others/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/Makefile libs/Makefile Makefile etc/modules.xml scilab-lib.properties"
 
 #Scicos stuff
 #modules/scicos/src/ocaml/Makefile
@@ -35665,6 +36650,13 @@ if test -z "${USE_EMBEDDED_LAPACK_TRUE}" && test -z "${USE_EMBEDDED_LAPACK_FALSE
   { { echo "$as_me:$LINENO: error: conditional \"USE_EMBEDDED_LAPACK\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"USE_EMBEDDED_LAPACK\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${UMFPACK_TRUE}" && test -z "${UMFPACK_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"UMFPACK\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"UMFPACK\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -36633,6 +37625,7 @@ do
     "modules/windows_tools/Makefile") CONFIG_FILES="$CONFIG_FILES modules/windows_tools/Makefile" ;;
     "modules/core/Makefile") CONFIG_FILES="$CONFIG_FILES modules/core/Makefile" ;;
     "modules/fftw/Makefile") CONFIG_FILES="$CONFIG_FILES modules/fftw/Makefile" ;;
+    "modules/umfpack/Makefile") CONFIG_FILES="$CONFIG_FILES modules/umfpack/Makefile" ;;
     "modules/scicos/Makefile") CONFIG_FILES="$CONFIG_FILES modules/scicos/Makefile" ;;
     "modules/scicos_blocks/Makefile") CONFIG_FILES="$CONFIG_FILES modules/scicos_blocks/Makefile" ;;
     "modules/functions/Makefile") CONFIG_FILES="$CONFIG_FILES modules/functions/Makefile" ;;
@@ -36938,6 +37931,10 @@ USE_EMBEDDED_BLAS_FALSE!$USE_EMBEDDED_BLAS_FALSE$ac_delim
 LAPACK_LIBS!$LAPACK_LIBS$ac_delim
 USE_EMBEDDED_LAPACK_TRUE!$USE_EMBEDDED_LAPACK_TRUE$ac_delim
 USE_EMBEDDED_LAPACK_FALSE!$USE_EMBEDDED_LAPACK_FALSE$ac_delim
+UMFPACK_LIB!$UMFPACK_LIB$ac_delim
+UMFPACK_ENABLE!$UMFPACK_ENABLE$ac_delim
+UMFPACK_TRUE!$UMFPACK_TRUE$ac_delim
+UMFPACK_FALSE!$UMFPACK_FALSE$ac_delim
 PCRE_CONFIG!$PCRE_CONFIG$ac_delim
 PCRE_FLAGS!$PCRE_FLAGS$ac_delim
 PCRE_LIBS!$PCRE_LIBS$ac_delim
@@ -36948,10 +37945,6 @@ X_PRE_LIBS!$X_PRE_LIBS$ac_delim
 X_LIBS!$X_LIBS$ac_delim
 X_EXTRA_LIBS!$X_EXTRA_LIBS$ac_delim
 TCLTK_LIBS!$TCLTK_LIBS$ac_delim
-TCL_INC_PATH!$TCL_INC_PATH$ac_delim
-TK_INC_PATH!$TK_INC_PATH$ac_delim
-TCLTK_TRUE!$TCLTK_TRUE$ac_delim
-TCLTK_FALSE!$TCLTK_FALSE$ac_delim
 _ACEOF
 
   if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 97; then
@@ -36993,6 +37986,10 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
+TCL_INC_PATH!$TCL_INC_PATH$ac_delim
+TK_INC_PATH!$TK_INC_PATH$ac_delim
+TCLTK_TRUE!$TCLTK_TRUE$ac_delim
+TCLTK_FALSE!$TCLTK_FALSE$ac_delim
 WITH!$WITH$ac_delim
 MANGENERATOR!$MANGENERATOR$ac_delim
 INSTALL_HELP_XML_TRUE!$INSTALL_HELP_XML_TRUE$ac_delim
@@ -37015,7 +38012,7 @@ tcldir!$tcldir$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 20; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 24; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -38472,7 +39469,7 @@ echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
 
 echo ""
-if test "$with_scicos" != no; then
+if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
    echo "Ocaml Configuration (for Modelica compiler):"
@@ -38484,7 +39481,7 @@ else
 fi
 
 echo ""
-if test ! -z "$PVM_INCLUDE"; then
+if test $PVM_ENABLE = yes; then
    echo "PVM Configuration:"
    echo "PVM Architecture ... = $PVMARCH"
    echo "PVM INCLUDE ........ = $PVM_INCLUDE"
@@ -38494,11 +39491,24 @@ else
 fi
 
 echo ""
-if test "$with_fftw" != no;  then
+if test $FFTW_ENABLE = yes;  then
    echo "FFTW Configuration:"
    echo "FFTW LIBS .......... = $FFTW3_LIB"
 else
    echo "Not using FFTW"
+fi
+
+echo ""
+if test $UMFPACK_ENABLE = yes;  then
+   echo "UMFPACK Configuration:"
+   echo "UMFPACK LIBS ....... = $UMFPACK_LIB"
+   echo "UMFPACK CFLAGS ..... = $UMFPACK_CFLAGS"
+   if test $SUITESPARSE = yes; then
+      echo "UMFPACK SUITESPARSE  = Yes"
+   else
+      echo "UMFPACK SUITESPARSE  = No"
+   fi
+   echo "Not using UMFPACK"
 fi
 
 echo ""

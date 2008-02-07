@@ -64,46 +64,46 @@ AC_CANONICAL_HOST
 
 
 AC_ARG_ENABLE(debug,
-   [  --enable-debug           do not optimize and print warning messages (C/C++/Fortran code)])
+   AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
 
 AC_ARG_ENABLE(debugC,
-   [  --enable-debug-C         do not optimize and print warning messages (C code)])
+   AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
 
 AC_ARG_ENABLE(debugCXX,
-   [  --enable-debug-CXX       do not optimize and print warning messages (C++ code)])
+   AC_HELP_STRING([--enable-debug-CXX],[Do not optimize and print warning messages (C++ code)]))
 
 AC_ARG_ENABLE(debugFortran,
-   [  --enable-debug-fortran   do not optimize and print warning messages (Fortran code)])
+   AC_HELP_STRING([--enable-debug-fortran],[Do not optimize and print warning messages (Fortran code)]))
 
 AC_ARG_ENABLE(stopOnWarning,
-   [  --enable-stop-on-warning Stop the compilation on the first warning found in the C/C++ code])
+   AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
 
 AC_ARG_WITH(gcc,
-    [  --with-gcc              use gcc C compiler ])
+    AC_HELP_STRING([--with-gcc],[Use gcc C compiler ]))
 
 AC_ARG_WITH(g77,
-    [  --with-g77              use g77, GNU Fortran 77 compiler ])
+    AC_HELP_STRING([--with-g77],[Use g77, GNU Fortran 77 compiler ]))
 
 AC_ARG_WITH(gfortran,
-    [  --with-gfortran         use gfortran, GNU Fortran 95 compiler ])
+    AC_HELP_STRING([--with-gfortran],[Use gfortran, GNU Fortran 95 compiler ]))
 
 AC_ARG_WITH(intelcompilers,
-    [  --with-intelcompilers   use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only) ])
+    AC_HELP_STRING([--with-intelcompilers],[Use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only) ]))
 
 AC_ARG_WITH(tk,
-    [  --without-tk            do not compile with TCL/TK ])
+    AC_HELP_STRING([--without-tk],[do not compile with TCL/TK ]))
 
 AC_ARG_WITH(javasci,
-    [  --without-javasci       do not compile the Java/Scilab module ])
+    AC_HELP_STRING([--without-javasci],[do not compile the Java/Scilab module ]))
 
 AC_ARG_WITH(gui,
-    [  --without-gui           do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ])
+    AC_HELP_STRING([--without-gui],[do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
 AC_ARG_WITH(swig-generation,
-    [  --with-swig-generation  Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)])
+    AC_HELP_STRING([--with-swig-generation],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
 
 AC_ARG_WITH(giws-generation,
-    [  --with-giws-generation  Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)])
+    AC_HELP_STRING([--with-giws-generation],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
 
 
 ##############################
@@ -708,17 +708,17 @@ AC_SUBST(TERMCAP_LIB)
 #################
 
 AC_ARG_WITH(scicos,
-    [  --with-scicos        Compile with Scicos ])
+    AC_HELP_STRING([--with-scicos],[Compile with Scicos ]))
 
 # We will be used in the future
 #AC_ARG_WITH(scicos,
 #    [  --without-scicos        Compile without Scicos ])
 
 AC_ARG_WITH(ocaml,
-    [  --without-ocaml         do not compile ocaml modules ])
+    AC_HELP_STRING([[--without-ocaml],[Do not compile ocaml modules]))
 
 
-SCICOS_ENABLE=0
+SCICOS_ENABLE=no
 if test "$with_scicos" = yes; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
@@ -729,7 +729,7 @@ if test "$with_scicos" = yes; then
 		if test "$with_ocaml" != no; then
 		   AC_CHECK_PROG_OCAML()
 		fi
-		SCICOS_ENABLE=1
+		SCICOS_ENABLE=yes
 fi
 AC_SUBST(SCICOS_ENABLE)
 
@@ -737,18 +737,19 @@ AC_SUBST(SCICOS_ENABLE)
 AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 
 
+
 #################
 ## FFTW
 #################
 
 AC_ARG_WITH(fftw,
-    [  --with-fftw	           compile with the FFTW 3 library])
+    AC_HELP_STRING([--with-fftw],[Compile with the FFTW 3 library]))
 # @TODO change that to add the possibility to specify a directory
 
-FFTW_ENABLE=0
+FFTW_ENABLE=no
 if test "$with_fftw" = yes; then
    AC_FFTW()
-   FFTW_ENABLE=1
+   FFTW_ENABLE=yes
 fi
 
 AC_SUBST(FFTW_ENABLE)
@@ -773,12 +774,12 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
 #################
 
 AC_ARG_WITH(pvm,
-    [  --with-pvm	           compile with PVM library])
+    AC_HELP_STRING([--with-pvm],[Compile with PVM library]))
 
-PVM_ENABLE=0
+PVM_ENABLE=no
 if test "$with_pvm" = yes; then
    AC_PVM()	
-   PVM_ENABLE=1
+   PVM_ENABLE=yes
 fi
 AC_SUBST(PVM_ENABLE)
 
@@ -795,7 +796,7 @@ AC_LIBXML2()
 #######################
 
 AC_ARG_WITH(localization-generation,
-		[  --with-localization-generation    enable the localization generation],
+		AC_HELP_STRING([--with-localization-generation],[enable the localization generation]),
 		[with_localization=yes],
 		[with_localization='no']
 		)
@@ -844,6 +845,24 @@ ACX_LAPACK(
 		)
 AM_CONDITIONAL(USE_EMBEDDED_LAPACK, test $EMBEDDED_LAPACK = 1)
 
+
+
+#################
+## UMFPACK
+#################
+
+AC_ARG_WITH(umfpack,
+    AC_HELP_STRING([--with-umfpack],[Compile with the UMFPACK library]))
+
+UMFPACK_ENABLE=no
+if test "$with_umfpack" = yes; then
+   AC_UMFPACK([$BLAS_LIBS])
+   UMFPACK_ENABLE=yes
+fi
+
+AC_SUBST(UMFPACK_ENABLE)
+AM_CONDITIONAL(UMFPACK, test "$with_enable" = yes)
+
 #######################
 ## Test for PCRE
 #######################
@@ -862,11 +881,11 @@ if test "$with_tk" != no; then
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
 	AC_ARG_WITH(tcl-library,
-		[  --with-tcl-library=DIR  Tcl library files are in DIR ],
+		AC_HELP_STRING([--with-tcl-library=DIR],[Set the path to the TCL library]),
 		[  USER_TCL_LIB_PATH=$withval
 	])
 	AC_ARG_WITH(tcl-include,
-		[  --with-tcl-include=DIR  Tcl include files are in DIR ],
+		AC_HELP_STRING([--with-tcl-include=DIR],[Set the path to the TCL headers]),
 		[  USER_TCL_INC_PATH=$withval
 	])
 
@@ -874,12 +893,12 @@ if test "$with_tk" != no; then
 	USER_TK_INC_PATH=$USER_TCL_INC_PATH
 
 	AC_ARG_WITH(tk-library,
-		[  --with-tk-library=DIR   Tk library files are in DIR ],
+		AC_HELP_STRING([--with-tk-library=DIR],[Set the path to the TK library]),
 		[  USER_TK_LIB_PATH=$withval
 	])
 
 	AC_ARG_WITH(tk-include,
-		[  --with-tk-include=DIR   Tk include files are in DIR ],
+		AC_HELP_STRING([--with-tk-include=DIR],[Set the path to the TK headers]),
 		[  USER_TK_INC_PATH=$withval
 	])
 
@@ -918,13 +937,13 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 
 dnl check for xsltproc
 AC_ARG_WITH(sablotron,
-		[  --with-sablotron compile man pages using sablotron],
+		AC_HELP_STRING([--with-sablotron],[Generates man pages using sablotron]),
 		[with_sablotron=$withval],
 		[with_sablotron='']
 	)
 
 AC_ARG_WITH(xsltproc,
-		[  --with-xsltproc  compile man pages using xsltproc],
+		AC_HELP_STRING([--with-xsltproc],[Generates man pages using xsltproc]),
 		[with_xsltproc=$withval],
 		[with_xsltproc='']
 		)
@@ -940,7 +959,7 @@ fi
 AC_SUBST(MANGENERATOR)
 
 AC_ARG_WITH(install-help-xml,
-		[  --with-install-help-xml  make install will install XML files ],
+		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files]),
 		[with_install_help_xml=$withval],
 		[with_install_help_xml='']
 		)
@@ -976,7 +995,7 @@ AC_C_INLINE()
 ###### Creation of the header file (machine.h)
 #######################
 
-AC_DEFINE_UNQUOTED([PATH_SEPARATOR], "$PATH_SEPARATOR",
+AC_DEFINE_UNQUOTED([PATH_SEPARATOR], ["$PATH_SEPARATOR"],
 [The default path separator character.])
 
 AH_TOP([#ifndef MACHINE_H
@@ -1093,6 +1112,7 @@ modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
 modules/fftw/Makefile
+modules/umfpack/Makefile
 modules/scicos/Makefile
 modules/scicos_blocks/Makefile
 modules/functions/Makefile
@@ -1175,7 +1195,7 @@ echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
 
 echo ""
-if test "$with_scicos" != no; then
+if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
    echo "Ocaml Configuration (for Modelica compiler):"
@@ -1187,7 +1207,7 @@ else
 fi
 
 echo ""
-if test ! -z "$PVM_INCLUDE"; then
+if test $PVM_ENABLE = yes; then
    echo "PVM Configuration:"
    echo "PVM Architecture ... = $PVMARCH"
    echo "PVM INCLUDE ........ = $PVM_INCLUDE"
@@ -1197,11 +1217,24 @@ else
 fi
 
 echo ""
-if test "$with_fftw" != no;  then
+if test $FFTW_ENABLE = yes;  then
    echo "FFTW Configuration:"
    echo "FFTW LIBS .......... = $FFTW3_LIB"
 else
    echo "Not using FFTW"
+fi
+
+echo ""
+if test $UMFPACK_ENABLE = yes;  then
+   echo "UMFPACK Configuration:"
+   echo "UMFPACK LIBS ....... = $UMFPACK_LIB"
+   echo "UMFPACK CFLAGS ..... = $UMFPACK_CFLAGS"
+   if test $SUITESPARSE = yes; then
+      echo "UMFPACK SUITESPARSE  = Yes"
+   else
+      echo "UMFPACK SUITESPARSE  = No"
+   fi
+   echo "Not using UMFPACK"
 fi
 
 echo ""

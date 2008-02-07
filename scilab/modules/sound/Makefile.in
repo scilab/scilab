@@ -65,7 +65,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
 	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
 	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -232,6 +232,8 @@ TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
+UMFPACK_ENABLE = @UMFPACK_ENABLE@
+UMFPACK_LIB = @UMFPACK_LIB@
 VERSION = @VERSION@
 WITH = @WITH@
 WITH_OCAML = @WITH_OCAML@

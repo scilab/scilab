@@ -1,9 +1,10 @@
+dnl PCRE detection
 dnl
 dnl Sylvestre Ledru <sylvestre.ledru@inria.fr>
 dnl INRIA - Scilab 2007/2008
-dnl
 
-dnl pcre is now mandatory in Scilab 
+
+dnl PCRE is mandatory in Scilab 
 dnl When we check :
 dnl * if the path is provided or that we have to find it ourself
 dnl * if it is available
@@ -13,7 +14,7 @@ AC_DEFUN([AC_PCRE], [
 
 
 AC_ARG_WITH(pcre,
-		[  --with-pcre=PREFIX    set the path to your pcre (Perl 5 Compatible Regular Expression Library) installation],
+		AC_HELP_STRING([--with-pcre=DIR],[Set the path to your PCRE (Perl 5 Compatible Regular Expression Library) installation]),
 		[with_pcre=$withval],
 		[with_pcre='yes']
 		)

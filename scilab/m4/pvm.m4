@@ -38,7 +38,7 @@ AC_DEFUN([AC_PVM], [
 	PVMROOTR='$SCI/pvm3'
 	
 	AC_ARG_WITH(pvm-include,
-		[  --with-pvm-include=DIR  PVM include files are in DIR ],
+		AC_HELP_STRING([--with-pvm-include=DIR],[Set the path to the PVM headers]),
 		[  USER_PVMINCLUDE=$withval
 	])
 
@@ -48,7 +48,7 @@ AC_DEFUN([AC_PVM], [
 		
 	PVMLIBDIR=$PVMROOT/lib/$PVMARCH
 	AC_ARG_WITH(pvm-library,
-		[  --with-pvm-library=DIR  PVM library files are in DIR ],
+		AC_HELP_STRING([--with-pvm-library=DIR],[Set the path to the PVM library]),
 		[  USER_PVMLIBDIR=$withval
 	])
 	AC_PVM_LIBRARY($USER_PVMLIBDIR)

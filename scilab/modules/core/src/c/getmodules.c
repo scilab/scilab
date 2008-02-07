@@ -12,6 +12,7 @@
 #include "setgetSCIpath.h"
 #include "localization.h"
 #include "string.h"
+#include "stricmp.h"
 #include "sciprint.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
@@ -135,7 +136,7 @@ static BOOL AppendModules(char *xmlfilename)
 		/* Don't care about line return / empty line */
 		xmlKeepBlanksDefault(0);
 		/* check if the XML file has been encoded with utf8 (unicode) or not */
-		if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
+		if (stricmp("utf-8", encoding)==0)
 		{
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
@@ -179,7 +180,9 @@ static BOOL AppendModules(char *xmlfilename)
 						{ 
 							/* we found the tag activate */
 							const char *str=(const char*)attrib->children->content;
-							activate=atoi(str);
+							if (stricmp(str,"yes")==0 || strcmp(str,"1")==0) {
+								activate=1;
+							}
 						}
 						attrib = attrib->next;
 					}

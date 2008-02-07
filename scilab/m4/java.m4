@@ -553,7 +553,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_WITH_JDK], [
-    AC_ARG_WITH(jdk, [  --with-jdk=DIR          use JDK from DIR], ok=$withval, ok=no)
+    AC_ARG_WITH(jdk, 
+	AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]), 
+	ok=$withval, ok=no)
     if test "$ok" = "no" ; then
         NO=op
     elif test "$ok" = "yes" || test ! -d "$ok"; then
@@ -636,7 +638,9 @@ AC_DEFUN([AC_JAVA_TOOLS], [
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_ANT], [
-    AC_ARG_WITH(ant, [  --with-ant=DIR          use ant from DIR], ANTPATH=$withval, ANTPATH=no)
+    AC_ARG_WITH(ant, 
+	AC_HELP_STRING([--with-ant=DIR],[Use ant from DIR], 
+	ANTPATH=$withval, ANTPATH=no))
     if test "$ANTPATH" = "no" ; then	
 	    AC_JAVA_TOOLS_CHECK(ANT, ant)
 	elif test ! -d "$ANTPATH"; then

@@ -278,6 +278,9 @@
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
 
+/* Define to 1 if you have the <sys/utsname.h> header file. */
+#undef HAVE_SYS_UTSNAME_H
+
 /* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
 #undef HAVE_SYS_WAIT_H
 
@@ -376,6 +379,9 @@
 /* Define to 1 if your <sys/time.h> declares `struct tm'. */
 #undef TM_IN_SYS_TIME
 
+/* If it is UMFPACK/Suitesparse or UMFPACK standalone */
+#undef UMFPACK_SUITESPARSE
+
 /* Version number of package */
 #undef VERSION
 
@@ -396,6 +402,9 @@
 
 /* With TK */
 #undef WITH_TK
+
+/* With the UMFPACK library */
+#undef WITH_UMFPACK
 
 /* If leading underscores */
 #undef WLU
