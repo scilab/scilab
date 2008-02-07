@@ -809,6 +809,10 @@ HELP_CHAPTERFILE = addchapter.sce
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
+
+# All the filename are important here.
+# The filename must be the same as the function name
+# since they are used by genblocks.sh to generate the blocks.h
 @SCICOS_TRUE@SCICOS_BLOCKS_C_SOURCES = src/c/absolute_value.c \
 @SCICOS_TRUE@src/c/acos_blk.c \
 @SCICOS_TRUE@src/c/acosh_blk.c \

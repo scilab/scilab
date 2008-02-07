@@ -12,6 +12,9 @@ include $(top_srcdir)/Makefile.incl.am
 
 if SCICOS
 
+# All the filename are important here.
+# The filename must be the same as the function name
+# since they are used by genblocks.sh to generate the blocks.h
 SCICOS_BLOCKS_C_SOURCES = src/c/absolute_value.c \
 src/c/acos_blk.c \
 src/c/acosh_blk.c \
