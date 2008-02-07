@@ -18,7 +18,8 @@
 		#include <tk.h>
 	#endif
 #endif
-
+/*
+Commented for now
 #ifdef WITH_PVM
 // #include <pvm.h>
 #endif 
@@ -30,7 +31,7 @@
 #include <umfpack.h>
 #endif
 #endif
-
+*/
 #include "MALLOC.h"
 #include "getstaticdebuginfo.h"
 
