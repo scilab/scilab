@@ -22,7 +22,7 @@
 //    a=int8(hypermat({3 2 2}));b=hypermat({1 2 2});
 //    a(1,:,:)=b
 //    Enrico SEGRE on Linux version RH9 distribution  with   as window manager
-//    Israel  
+//    Israel
 //    November 9, 2003 at 13:47:20
 
 
@@ -31,13 +31,10 @@
 // Scilab Project
 // Date : 9 Dec 2005
 
-my_dia_file = TMPDIR+"/bug545.dia";
+// <-- INTERACTIVE TEST -->
 
-diary(my_dia_file);
-a=int8(hypermat({3 2 2}));
-b=hypermat({1 2 2});
-a(1,:,:)=b;
-diary(0);
+a        = int8(hypermat({3 2 2}));
+b        = hypermat({1 2 2});
+a(1,:,:) = b
 
-my_dia_content = mgetl(my_dia_file);
-if grep(my_dia_content,"redefining") <> [] then pause,end
+// Just check if there is no "Warning :redefining function: ndims" displayed
