@@ -70,7 +70,7 @@
     <P></P>
     <P>  The <VERB>errcatch</VERB> actions apply to the current evalution
         context (function, exec, pause ) and all the sub-levels. A  second
-        <VERB>errcatch</VERB> called in a sub-level hides the initial one for
+        <VERB>errcatch</VERB> call in a sub-level hides the initial one for
          this sub-level. If a second <VERB>errcatch</VERB> call is made at the
          same level, the effect of the first one is removed.</P> 
     <P>  When called in the context of  a Scilab function or exec the <VERB>errcatch</VERB> is automatically
