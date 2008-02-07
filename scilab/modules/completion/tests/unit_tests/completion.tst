@@ -17,7 +17,7 @@ if s <> 0 then pause,end
 //===============================
 variables1 = completion('%','variables');
 s = size(variables1,'*');
-if s < 24 then pause,end
+if s < 23 then pause,end
 //===============================
 macros1 = completion('%','macros');
 s = size(macros1,'*');
