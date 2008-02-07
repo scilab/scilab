@@ -27,7 +27,6 @@ IMPORT struct {
 
 static int c__1 = 1;
 static int c__0 = 0;
-static int c_n1 = -1;
 #define comma  52
 #define lparen  41
 #define rparen  42
@@ -50,35 +49,34 @@ static int c_n1 = -1;
 
 #define Pt (C2F(recu).pt)
 /*--------------------------------------------------------------------------*/
-extern int C2F(clause)();
-extern int C2F(fact)();
-extern int C2F(expr)();
-extern int C2F(terme)();
-extern int C2F(stackp)();
-extern int C2F(macro)();
-extern int C2F(getsym)();
+extern int C2F(clause)(void);
+extern int C2F(fact)(void);
+extern int C2F(expr)(void);
+extern int C2F(terme)(void);
+extern int C2F(stackp)(int *,int *);
+extern int C2F(macro)(void);
+extern int C2F(getsym)(void);
 
-extern int C2F(eqid)();
+extern int C2F(eqid)(int *,int *);
 
-extern int C2F(bexec)();
-extern int C2F(getmen)();
+extern int C2F(bexec)(char *,int *,int *);
+extern int C2F(getmen)(char *,int *,int *);
 
-extern int C2F(findequal)();
-extern int C2F(print)();
-extern int C2F(createref1)();
-extern int C2F(command)();
-extern int C2F(getlin)();
-extern int C2F(mrknmd)();
-extern int C2F(stimer)();
-extern int C2F(mkindx)();
-extern int C2F(whatln)();
-extern int C2F(prompt)();
-extern int C2F(seteol)();
-extern int C2F(run)();
-extern int C2F(name2var)();
-extern int C2F(compil)();
-extern int C2F(ptover)(); /* see src/fortran/ptover.f */
-extern int C2F(eptover)();/* see src/fortran/eptover.f */
+extern int C2F(findequal)(int *);
+extern int C2F(print)(int *,int *,int *);
+extern int C2F(createref1)(int *);
+extern int C2F(command)(int *,int *);
+extern int C2F(getlin)(int *,int *);
+extern int C2F(mrknmd)(void);
+extern int C2F(mkindx)(int *,int *);
+extern int C2F(whatln)(int *,int *, int *,int *,int *,int *);
+extern int C2F(prompt)(int *,int *);
+extern int C2F(seteol)(void);
+extern int C2F(run)(void);
+extern int C2F(name2var)(int *);
+extern int C2F(compil)(int *,int *,int *,int *,int *);
+extern int C2F(ptover)(int *,int *); /* see src/fortran/ptover.f */
+extern int C2F(eptover)(int *,int *);/* see src/fortran/eptover.f */
 /*--------------------------------------------------------------------------*/
 void handle_onprompt(int *n);
 /*--------------------------------------------------------------------------*/
@@ -146,7 +144,7 @@ int C2F(parse)(void)
   static char tmp[80];
 
   /* Retrieve the current Scilab Mode */
-  scilabMode sciMode=getScilabMode();
+  /*  scilabMode sciMode=getScilabMode();*/
 
   itime = 10000;
  L1:
@@ -961,7 +959,7 @@ int C2F(parse)(void)
     if (C2F(errgst).err2 == 0) {
       C2F(errgst).err2 = C2F(errgst).err1;
     }
-    if (C2F(errgst).errcatch == 1) {
+    if (C2F(errgst).errcatch > 0) {
       /* running under errcatch(num,....) */
       C2F(errgst).err1 = 0;
       if (Pt<C2F(errgst).errpt) C2F(errgst).errcatch = 0;

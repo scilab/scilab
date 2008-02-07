@@ -10,6 +10,7 @@ c
       integer blank,r,ival(2),ptr,top1,count,iadr,wmacn
       integer varargin(nsiz),varargout(nsiz),id(nsiz)
       integer scivarindex
+      integer p
       equivalence (ival(1),val)
       data blank/40/,eol/99/
       data varargin/169544223,387059739,nz2*673720360/
@@ -469,13 +470,13 @@ c
       pstk(pt)=wmac
       
       if(r.eq.701.or.r.eq.604) then 
-c     .  disable error recovery mode , for pause only
-c     .  disable error recovery mode , for pause only
+c     .  disable error recovery mode , for pause only (is it mandatory?)
 c         print *,'macro ',err1,err2,errct,errpt
          ids(2,pt)=errct
          ids(3,pt)=err2
          ids(4,pt)=err1
          ids(5,pt)=errpt
+         ids(6,pt)=catch
          err1=0
          catch=0
          errct=-1
@@ -510,6 +511,7 @@ c         print *,'macro ',err1,err2,errct,errpt
          err2=ids(3,pt)
          err1=ids(4,pt)
          errpt=ids(5,pt)
+         catch=ids(6,pt)
       endif
 
       pt=pt-1

@@ -43,31 +43,24 @@ static int c__0 = 0;
 #define equal  50
 
 #define Pt (C2F(recu).pt)
-
-extern int C2F(stackp)();
-
-extern int C2F(eqid)();
-
-extern int C2F(bexec)();
-extern int C2F(getmen)();
-
-extern int C2F(print)();
-extern int C2F(createref1)();
-extern int C2F(stimer)();
-
-extern int C2F(mkindx)();
-extern int C2F(whatln)();
-extern int C2F(prompt)();
-extern int C2F(seteol)();
-extern int C2F(name2var)();
-extern int C2F(getendian)();
-extern int C2F(nextj)();
-extern int C2F(isafunptr)();
-extern int C2F(varfunptr)();
-extern int C2F(defmat)();
-
-extern int C2F(clunit)();
-
+extern int C2F(stackp)(int *,int *);
+extern int C2F(eqid)(int *,int *);
+extern int C2F(bexec)(char *,int *,int *);
+extern int C2F(getmen)(char *,int *,int *);
+extern int C2F(print)(int *,int *,int *);
+extern int C2F(createref1)(int *);
+extern int C2F(command)(int *,int *);
+extern int C2F(mkindx)(int *,int *);
+extern int C2F(whatln)(int *,int *, int *,int *,int *,int *);
+extern int C2F(prompt)(int *,int *);
+extern int C2F(seteol)(void);
+extern int C2F(name2var)(int *);
+extern int C2F(getendian)(void);
+extern int C2F(nextj)(int *, int *);
+extern int C2F(isafunptr)(int *, int *,int *,int *);
+extern int C2F(varfunptr)(int *, int *,int *);
+extern int C2F(defmat)(void);
+extern int C2F(clunit)(int *, char *, int *);
 extern int C2F(istrue)(int *);
 
 int Istrue(int n)
@@ -866,20 +859,23 @@ int C2F(run)()
   /*     la gestion de la recuperation des erreurs devrait plutot se trouver */
   /*     a la fin de l'instruction (mais il n'y a pas actuellement d'indicateur */
   /*     de fin d'instruction dans les macros */
-  if (C2F(errgst).err1 != 0) {
+  if (C2F(errgst).err1 != 0) { 
     if (C2F(errgst).err2 == 0) {
       C2F(errgst).err2 = C2F(errgst).err1;
     }
-    if (C2F(errgst).errcatch == 1) {
+    if (C2F(errgst).errcatch > 0) {
       /* running under errcatch(num,....) */
       C2F(errgst).err1 = 0;
-      if (Pt<C2F(errgst).errpt) C2F(errgst).errcatch = 0;
+      if (Pt<C2F(errgst).errpt) {
+	C2F(errgst).errcatch = 0;
+      }
     }
     imode = (i2 = C2F(errgst).errct / 100000, abs(i2));
     if (imode - (imode / 8 << 3) == 2) {
       C2F(basbrk).iflag = TRUE;
     }
   }
+
   /*     gestion des points d'arrets dynamiques */
   if (C2F(dbg).nmacs != 0) { /* there are breakpoints set */
     int kfin=C2F(dbg).wmac-1; /*the stack index of the current function*/
