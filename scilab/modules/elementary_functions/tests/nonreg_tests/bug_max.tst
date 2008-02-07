@@ -1,0 +1,4 @@
+// <-- Non-regression test for max -->
+//
+
+if execstr("[a,b,c]=max([1 2]);","errcatch") <> 78 then pause,end
