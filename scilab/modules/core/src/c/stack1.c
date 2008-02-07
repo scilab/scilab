@@ -2607,10 +2607,11 @@ static char Fname[nlgh+1];
 
 char *get_fname(char *fname,unsigned long fname_len)
 {
-  int i;
-  strncpy(Fname,fname,Min(fname_len,nlgh));
-  Fname[fname_len] = '\0';
-  for ( i= 0 ; i < (int) fname_len ; i++) 
+  int i=0;
+  int minlength = Min(fname_len,nlgh);
+  strncpy(Fname,fname,minlength);
+  Fname[minlength] = '\0';
+  for ( i= 0 ; i < (int) minlength ; i++) 
     if (Fname[i] == ' ') { Fname[i]= '\0'; break;}
   return Fname;
 }
