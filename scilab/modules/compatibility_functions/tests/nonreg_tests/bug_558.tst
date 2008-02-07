@@ -11,6 +11,8 @@
 //
 //    the last 'or' looks superfluous to me.
 
+// <-- INTERACTIVE TEST -->
+
 fileName = TMPDIR+"/bug558.txt";
 diary(fileName);
 x = 20;
