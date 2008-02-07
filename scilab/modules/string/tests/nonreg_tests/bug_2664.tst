@@ -4,13 +4,12 @@
 // http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2664
 //
 // <-- Short Description -->
-// 
 //  strsubst() cannot be called in regexp mode
 //
 // =============================================================================
-// Author : Pierre MARECHAL
+// Author : Cong WU
 // Scilab Project
-// 29 janvier 2008
+// 7 Feb 2008
 // =============================================================================
 
-strsubst('2' ,'/2(]*)?$\1/' ,'0','r')
+if execstr("strsubst(""2"",""/2(]*)?$\1/"",""0"",""r"")","errcatch") <> 0 then pause, end
