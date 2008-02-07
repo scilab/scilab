@@ -11,6 +11,7 @@
 #include "machine.h"
 #include "hashtable_core.h"
 #include "getmodules.h"
+#include "stricmp.h"
 #include "setgetSCIpath.h"
 #include "LoadFunctionsTab.h"
 #include "GetXmlFileEncoding.h"
@@ -79,8 +80,7 @@ static BOOL Load_primitives_from_file(char *filename)
 		xmlKeepBlanksDefault(0); 
 
 		/* check if the XML file has been encoded with utf8 (unicode) or not */
-		if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
-		{
+		if ( stricmp("utf-8", encoding)==0) {
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;

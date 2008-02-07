@@ -12,6 +12,7 @@
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
 #include "localization.h"
+#include "stricmp.h"
 #include "../../../fileio/includes/FileExist.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,
@@ -43,8 +44,7 @@ BOOL getversionmodule(char *modulename,
 			xmlKeepBlanksDefault(0);
 
 			/* check if the XML file has been encoded with utf8 (unicode) or not */
-			if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
-			{
+			if ( stricmp("utf-8", encoding)==0) {
 				xmlDocPtr doc;
 				xmlXPathContextPtr xpathCtxt = NULL;
 				xmlXPathObjectPtr xpathObj = NULL;
