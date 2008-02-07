@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include "strsubst.h"
 #include "MALLOC.h"
+#include "pcre_private.h"
 /*--------------------------------------------------------------------------*/
 char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string)
 {
@@ -110,15 +111,14 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 /*-------------------------------------------------------------------------------------*/
 char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string)
 {
-	char *tail = NULL, *result_str = NULL;
+	char *tail = NULL;
     int w = 0;
-	int i=0;
 
 	int Output_Start = 0;
     int Output_End = 0;
 
 	char *replacedString = NULL;
-	int count = 0, len = 0;
+	int len = 0;
 
 	if (input_string == NULL) return NULL;
 
