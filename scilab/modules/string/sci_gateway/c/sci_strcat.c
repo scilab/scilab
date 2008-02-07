@@ -60,7 +60,7 @@ int C2F(sci_strcat) _PARAMS((char *fname,unsigned long fname_len))
 /* TO DO : update help or remove this case */
 static int sci_strcat_three_rhs(char *fname) 
 { 
-	char typ = NULL;
+	char typ = 0;
 	char **Input_String_One = NULL,**Output_String = NULL;
 	static char def_sep[] ="";
 	char *Input_String_Two = def_sep;
