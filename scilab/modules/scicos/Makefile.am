@@ -26,7 +26,8 @@ src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/str2sci.c \
 src/c/scicosclip.c \
-src/c/sciblk4.c
+src/c/sciblk4.c \
+src/c/haltscicos.c
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 src/fortran/vvtosci.f \
