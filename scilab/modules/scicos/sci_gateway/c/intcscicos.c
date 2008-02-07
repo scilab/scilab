@@ -58,8 +58,11 @@ extern void Objstring(char *fname,
                 BOOL isboxed,
                 BOOL isline,
                 BOOL isfilled);
-extern void updateScaleIfRequired(sciPointObj * pSubWin);
 
+/* TO DO new graphics function */
+/*
+extern void updateScaleIfRequired(sciPointObj * pSubWin);
+*/
 /*
  * int MlistGetFieldNumber(int *ptr, const char *string)
  * int intendscicosim(fname,fname_len)
@@ -4335,7 +4338,9 @@ int intscixstringb(char *fname,unsigned long fname_len)
   }
 
   /*save current font*/
-  C2F(dr1)("xget","font",&verb,cur_font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+  /* disabled */
+  /* TO DO : new graphics version */
+  /* C2F(dr1)("xget","font",&verb,cur_font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);*/
 
   /* good font must be computed here */
   if (fill) {
@@ -4343,11 +4348,15 @@ int intscixstringb(char *fname,unsigned long fname_len)
     smallestFont=0;
 
     /* set the largest font */
-    C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	/* disabled */
+	/* TO DO : new graphics version */
+    /* C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 
     //updateScaleIfRequired(sciGetSelectedSubWin(sciGetCurrentFigure())) ;
+	/* TO DO new graphics function */
+	/*
 	updateScaleIfRequired(sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ));
-
+	*/
     wc=0.;
     i_max=0;
     x1=x;
@@ -4360,7 +4369,9 @@ int intscixstringb(char *fname,unsigned long fname_len)
         ib += (int)strlen(Str[i+ m3*j]);
         if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
-      C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x1,&y1,rect,&dv,9L,bsiz);
+	  /* disabled */
+	  /* TO DO : new graphics version */
+      /* C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x1,&y1,rect,&dv,9L,bsiz);*/
 
       if (rect[2] > wc) {
         i_max =i;
@@ -4371,7 +4382,9 @@ int intscixstringb(char *fname,unsigned long fname_len)
     }
 
     /* set the largest font */
-    C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	/* disabled */
+	/* TO DO : new graphics version */
+    /* C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 
     ib = 0;
     for (j = 0 ; j < n3 ; ++j) {
@@ -4383,7 +4396,9 @@ int intscixstringb(char *fname,unsigned long fname_len)
       }
     }
 
-    C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x,&y,rect,&dv,9L,bsiz);
+	/* disabled */
+	/* TO DO : new graphics version */
+    /*C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x,&y,rect,&dv,9L,bsiz);*/
     wc = rect[2];
     hc = rect[3] * 1.2;
 
@@ -4397,11 +4412,15 @@ int intscixstringb(char *fname,unsigned long fname_len)
     while ((wc > w) || (hc > hx/m3)) {
      /* sciprint("largest = %d \n",largestFont);*/
       largestFont-- ;
-      C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /* disabled */
+	  /* TO DO : new graphics version */
+      /*C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
       if (largestFont == smallestFont) {
          break;
       }
-      C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x,&y,rect,&dv,9L,bsiz);
+	  /* disabled */
+	  /* TO DO : new graphics version */
+      /*C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x,&y,rect,&dv,9L,bsiz);*/
       wc = rect[2];
       hc = rect[3] * 1.2;
     }
@@ -4421,7 +4440,9 @@ int intscixstringb(char *fname,unsigned long fname_len)
         ib++;
       }
     }
-    C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x1,&y1,rect,&dv,9L,bsiz);
+	/* disabled */
+	/* TO DO : new graphics version */
+    /*C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x1,&y1,rect,&dv,9L,bsiz);*/
     wc = Max(wc,rect[2]);
     if (i != 0 ) y1 += rect[3] * 1.2;
     else y1 += rect[3];
@@ -4445,7 +4466,9 @@ int intscixstringb(char *fname,unsigned long fname_len)
     if (fill) {
       pobj=sciGetCurrentObj();
       sciSetFontSize(pobj,largestFont);
-      C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /* disabled */
+	  /* TO DO : new graphics version */
+      /*C2F(dr1)("xset","font",&cur_font_[0],&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
       /**/
     }
 
@@ -4453,7 +4476,9 @@ int intscixstringb(char *fname,unsigned long fname_len)
     if (i != 0 ) y += rect[3] * 1.2;
     else y += rect[3];
   } /* end for(i) */
-  C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* disabled */
+  /* TO DO : new graphics version */
+  /*C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 
   if (m3 > 1) sciSetCurrentObj(ConstructCompoundSeq(m3));
 

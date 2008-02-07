@@ -29,17 +29,20 @@ of type 0 */
 #define TB_SIZE 500
 
 /* common for ? */
-
+/* defined in scicos-def.h */
+/*
 extern struct {
   integer ptr;
 } C2F(scsptr);
-
+*/
 /* scicos common for debug */
 
+/* defined in scicos-def.h */
+/*
 extern struct {
     integer idb;
 } C2F(dbcos);
-
+*/
 typedef void (*voidf)();
 
 /* Blocks prototypes */

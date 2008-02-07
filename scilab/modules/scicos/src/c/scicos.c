@@ -40,6 +40,8 @@
 #include "machine.h"
 
 #include "dynamic_link.h"
+#include "scicos-def.h"
+#include "stack-def.h"
 #include "sciprint.h"
 #include "scicos.h"
 #include "import.h"
@@ -60,6 +62,14 @@
 #include "sundials_math.h"
 #include "ida_impl.h"
 
+
+typedef struct {
+	integer iero;
+} IERSCODE_struct;
+
+IERSCODE_struct C2F(ierscode);
+
+
 typedef struct {
   void *ida_mem;
   N_Vector ewt;
@@ -70,13 +80,14 @@ typedef struct {
 		    when updating mode variables during initialization */
 } *UserData;
 
-
+/* defined in scicos-def.h */
+/*
 #ifdef FORDLL
 #define IMPORT  __declspec (dllimport)
 #else
 #define IMPORT extern
 #endif
-
+*/
 
 #define freeall \
               if (*neq>0) CVodeFree(&cvode_mem);\
@@ -147,6 +158,8 @@ double Get_Scicos_SQUR(void);
 /*void DISP(A,ra ,ca,name);*/
 /* Jacobian*/
 
+/* defined in scicos-def.h */
+/*
 IMPORT struct {
   int cosd;
 } C2F(cosdebug);
@@ -159,7 +172,7 @@ IMPORT struct {
 struct {
   int solver;
 } C2F(cmsolver);
-
+*/
 extern void  F2C(sciblk)();
 extern void  sciblk2();
 extern void  sciblk4();
@@ -189,6 +202,8 @@ static integer *neq;
 static  double Atol, rtol, ttol, deltat,hmax;
 static integer hot;
 
+/* defined in scicos-def.h */
+/*
 extern struct {
   integer iero;
 } C2F(ierode);
@@ -204,7 +219,7 @@ struct {
 extern struct {
   integer halt;
 }  C2F(coshlt);
-
+*/
 /* Table of constant values */
 
 static integer c__90 = 90;

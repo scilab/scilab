@@ -28,6 +28,7 @@ extern int C2F(getgeom)(double *);
 /*----------------------------------------------------
  * erase a rectangle 
  *----------------------------------------------------*/ 
+/*
 extern int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
 			 integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
 			 integer lx0, integer lx1) ;
@@ -35,17 +36,21 @@ extern int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,int
 extern int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
 			integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
 			integer lx0, integer lx1) ;
-
+*/
 static void block_draw_rect_1(double r[],double percent)
 {
   integer alumode,verbose=0,narg;
   static integer in=6;
   double w = r[2]*percent;
   double x = r[0];
-  C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* disabled */
+  /* TO DO : new graphics version */
+
+  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr1)("xfrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&x,r+1,&w,r+3,0L,0L);
   if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  */
 }
 
 static void block_draw_rect_2(double r[],double percent)
@@ -55,14 +60,18 @@ static void block_draw_rect_2(double r[],double percent)
   static integer in=6;
   double x = r[0]+ r[2]*percent-2;
   double w = 4;
-  C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* disabled */
+  /* TO DO : new graphics version */
+  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr1)("xfrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&x,r+1,&w,r+3,0L,0L);
   /* sprintf(foo,"%5.3f",percent);
      C2F(dr1)("xstring",foo,PI0,PI0,PI0,&flag,PI0,PI0,r,r+1,&ang,PD0,0L,0L);
   */
 
-  if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* disabled */
+  /* TO DO : new graphics version */
+  /*if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 }
 
 
@@ -73,11 +82,14 @@ static void block_draw_rect_3(double r[],double percent)
   static integer in=6;
   double x = r[0] + (1.0/10)*r[2];
   double y = r[1] - r[3] + 2 ;
-  C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* disabled */
+  /* TO DO : new graphics version */
+  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   sprintf(foo,"%5.3f",percent);
   C2F(dr1)("xstring",foo,PI0,PI0,PI0,&flag,PI0,PI0,&x,&y,&ang,PD0,0L,0L);
   if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  */
 }
 
 
@@ -87,15 +99,19 @@ static void block_draw_rect_3(double r[],double percent)
  * switch to X11 driver  
  *----------------------------------------------------*/ 
 
-#define REMOVE_REC_DRIVER() char old_rec[4]; int rem_flag ; rem_flag = scig_driverX11(old_rec); 
-#define RESTORE_DRIVER() if (rem_flag == 1) C2F(SetDriver)(old_rec,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+#define REMOVE_REC_DRIVER() /*char old_rec[4]; int rem_flag ; rem_flag = scig_driverX11(old_rec); */
+#define RESTORE_DRIVER() /*if (rem_flag == 1) C2F(SetDriver)(old_rec,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
 
 static int scig_driverX11(char *old) 
 {
-  GetDriver1(old,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+	/* disabled */
+	/* TO DO : new graphics version */
+  /*GetDriver1(old,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
   if ( old[0] == 'R' )
     {
-      C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+		/* disabled */
+		/* TO DO : new graphics version */
+      /*C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
       return 1;
     }
   return 0;
@@ -108,10 +124,13 @@ static int scig_driverX11(char *old)
 
 static int set_block_win( int win)
 {
-  static int verbose = 0, cur,narg;
+  static int verbose = 0, cur=0,narg;
+  /* TO DO : rewrite with new graphics functions */
+  /*
   C2F(dr)("xget","window",&verbose,&cur,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( cur != win ) 
     C2F(dr)("xset","window",&win,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  */
   return cur ;
 }
 
@@ -123,10 +142,13 @@ static int set_block_win( int win)
 
 static int set_slider_color( int color)
 {
-  static int verbose = 0, cur,narg;
+  static int verbose = 0, cur=0,narg;
+  /*
   C2F(dr)("xget","color",&verbose,&cur,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( cur != color ) 
     C2F(dr)("xset","color",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  */
+
   return cur ;
 }
 
@@ -202,7 +224,9 @@ void slider(integer *flag, integer *nevprt, double *t, double *xd,
     {
       REMOVE_REC_DRIVER();
       curcolor=set_slider_color(ipar[1]);
+	  /*
       C2F(dr1)("xclea","v",PI0,PI0,PI0,PI0,PI0,PI0,z+2,z+3,z+4,z+5,0L,0L);
+	  */
       switch (ipar[0]) 
 	{
 	case 1 : 
