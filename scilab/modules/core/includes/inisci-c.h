@@ -12,13 +12,6 @@
  * @param rep
  * @return 
  */
-int C2F(withpvm)(int *rep);
-
-/** 
- * TODO : comment
- * @param rep
- * @return 
- */
 int C2F(withscicos)(int *rep);
 
 /** 
