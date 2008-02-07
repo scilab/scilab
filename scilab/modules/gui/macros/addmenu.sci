@@ -20,7 +20,7 @@ case 1
     if getscilabmode() <> "STD" then
       error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
     end
-    
+
     if size(varargin(1),"*") <> 1
       error(msprintf(_("%s: Wrong type for first input argument: Single string expected."),"addmenu"));
     end
@@ -247,9 +247,9 @@ function addMenuSubMenusCallback(fig, menulabel, submenuslabels, callback)
 
 h0 = uimenu("parent",fig,"label",menulabel);
 
-for K=1:size(submenuslabels,"*")
-  h = uimenu("parent", h0, "label", submenuslabels(K));
-  
+for k=1:size(submenuslabels,"*")
+  h = uimenu("parent", h0, "label", submenuslabels(k));
+
   if callbackType == 0 then
     if type(fig)==1
       set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+"))"));
