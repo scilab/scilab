@@ -14,7 +14,7 @@ static gw_generic_table Tab[]=
 {
 	{C2F(sciimpl),"impl"},
 	{C2F(dassli),"dassl"},
-	{C2F(dasrti),"dasrt"},
+	{C2F(dasrti),"dasrt"}
 };
 
 /*--------------------------------------------------------------------------*/

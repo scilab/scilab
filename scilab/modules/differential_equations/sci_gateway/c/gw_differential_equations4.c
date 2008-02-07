@@ -11,8 +11,10 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
+	{C2F(sci_intg),"intg"},
 	{C2F(sci_int2d),"int2d"},
-	{C2F(sci_int3d),"int3d"}
+	{C2F(sci_int3d),"int3d"},
+	{C2F(sci_feval),"feval"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_differential_equations4)(void)
