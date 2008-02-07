@@ -6,10 +6,36 @@
 //==============================================================================
 // unit tests for dec2bin function
 // =============================================================================
+// Test 0
+// =============================================================================
 if dec2bin(0) <> "0"  then bugmes();quit;end
 if dec2bin(1) <> "1"  then bugmes();quit;end
 if dec2bin(2) <> "10" then bugmes();quit;end
 if dec2bin(3) <> "11" then bugmes();quit;end
+if dec2bin(0)              <> "0"                                             then bugmes();quit;end
+if dec2bin(1)              <> "1"                                             then bugmes();quit;end
+if dec2bin(3)              <> "11"                                            then bugmes();quit;end
+if dec2bin(7)              <> "111"                                           then bugmes();quit;end
+if dec2bin(15)             <> "1111"                                          then bugmes();quit;end
+if dec2bin(255)            <> "11111111"                                      then bugmes();quit;end
+if dec2bin(26556445876512) <> "110000010011100100111100001011110000100100000" then bugmes();quit;end
+if dec2bin((2^32)-1)       <> "11111111111111111111111111111111"              then bugmes();quit;end
+if dec2bin(2^32)           <> "100000000000000000000000000000000"             then bugmes();quit;end
+if dec2bin(0,4)  <> "0000" then bugmes();quit;end
+if dec2bin(1,4)  <> "0001" then bugmes();quit;end
+if dec2bin(3,4)  <> "0011" then bugmes();quit;end
+if dec2bin(7,4)  <> "0111" then bugmes();quit;end
+if dec2bin(15,4) <> "1111" then bugmes();quit;end
+if dec2bin(0,8)  <> "00000000" then bugmes();quit;end
+if dec2bin(1,8)  <> "00000001" then bugmes();quit;end
+if dec2bin(3,8)  <> "00000011" then bugmes();quit;end
+if dec2bin(7,8)  <> "00000111" then bugmes();quit;end
+if dec2bin(15,8) <> "00001111" then bugmes();quit;end
+if dec2bin(0,16)  <> "0000000000000000" then bugmes();quit;end
+if dec2bin(1,16)  <> "0000000000000001" then bugmes();quit;end
+if dec2bin(3,16)  <> "0000000000000011" then bugmes();quit;end
+if dec2bin(7,16)  <> "0000000000000111" then bugmes();quit;end
+if dec2bin(15,16) <> "0000000000001111" then bugmes();quit;end
 // Test 1
 // =============================================================================
 A = [ 1 2 3 ; 89 23 65 ];
