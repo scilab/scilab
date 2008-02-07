@@ -89,7 +89,7 @@ if test $UMFPACK_OK = no; then
 fi
 
 AC_SUBST(UMFPACK_LIB)
-if test $SUITESPARSE -eq 1; then
+if test $SUITESPARSE = yes; then
 	AC_DEFINE_UNQUOTED([UMFPACK_SUITESPARSE],[] , [If it is UMFPACK/Suitesparse or UMFPACK standalone])
 fi
 

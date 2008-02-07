@@ -639,8 +639,8 @@ AC_DEFUN([AC_JAVA_TOOLS], [
 
 AC_DEFUN([AC_JAVA_ANT], [
     AC_ARG_WITH(ant, 
-	AC_HELP_STRING([--with-ant=DIR],[Use ant from DIR], 
-	ANTPATH=$withval, ANTPATH=no))
+	AC_HELP_STRING([--with-ant=DIR],[Use ant from DIR]), 
+	ANTPATH=$withval, ANTPATH=no)
     if test "$ANTPATH" = "no" ; then	
 	    AC_JAVA_TOOLS_CHECK(ANT, ant)
 	elif test ! -d "$ANTPATH"; then
