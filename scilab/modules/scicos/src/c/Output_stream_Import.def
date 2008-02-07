@@ -1,0 +1,11 @@
+LIBRARY    scioutput_stream.dll
+
+
+EXPORTS
+;
+; output_stream
+error_
+Scierror
+msgs_
+sciprint
+

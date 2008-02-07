@@ -12,6 +12,8 @@ SCIGSCH_struct C2F(scigsch);
 SCISCH_struct C2F(scisch);
 SCIZGSCH_union C2F(scizgsch);
 
+IERODE_struct C2F(ierode);
+
 #else
 /***********************************************************
 * Unused function just here to force linker to load some 

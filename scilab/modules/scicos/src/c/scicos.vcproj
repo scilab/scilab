@@ -24,7 +24,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if NOT EXIST {$Solutiondir}bin\noscicos.lib if EXIST {$Solutiondir}bin\scicos.lib copy {$Solutiondir}bin\scicos.lib {$Solutiondir}bin\noscicos.lib&#x0D;&#x0A;if NOT EXIST {$Solutiondir}bin\noscicos.dll if EXIST {$Solutiondir}bin\scicos.dll copy {$Solutiondir}bin\scicos.dll {$Solutiondir}bin\noscicos.dll&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -60,12 +60,12 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicostmp.def &gt;nul&#x0D;&#x0A;copy ..\scicos_header.def+scicostmp.def  ..\scicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Dynamic_link_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)dynamic_link.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_blocks_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos_blocks_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Intersci_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)intersci.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicostmp.def &gt;nul&#x0D;&#x0A;copy ..\scicos_header.def+scicostmp.def  ..\scicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib scioutput_stream.lib string.lib dynamic_link.lib intersci.lib graphics.lib scicos_blocks_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="scicos.def"
@@ -98,7 +98,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="$(SolutionDir)bin\scilex -nb -ns -nwni -e exec(&apos;$(SolutionDir)modules\scicos\macros\buildmacros.sce&apos;);quit;"
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
@@ -111,7 +111,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if NOT EXIST {$Solutiondir}bin\noscicos.lib if EXIST {$Solutiondir}bin\scicos.lib copy {$Solutiondir}bin\scicos.lib {$Solutiondir}bin\noscicos.lib&#x0D;&#x0A;if NOT EXIST {$Solutiondir}bin\noscicos.dll if EXIST {$Solutiondir}bin\scicos.dll copy {$Solutiondir}bin\scicos.dll {$Solutiondir}bin\noscicos.dll&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -130,7 +130,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -149,11 +149,11 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicostmp.def &gt;nul&#x0D;&#x0A;copy ..\scicos_header.def+scicostmp.def  ..\scicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Dynamic_link_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)dynamic_link.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_blocks_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos_blocks_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Intersci_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)intersci.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicostmp.def &gt;nul&#x0D;&#x0A;copy ..\scicos_header.def+scicostmp.def  ..\scicos.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib scioutput_stream.lib string.lib dynamic_link.lib intersci.lib graphics.lib scicos_blocks_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="scicos.def"
@@ -189,7 +189,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="$(SolutionDir)bin\scilex -nb -ns -nwni -e exec(&apos;$(SolutionDir)modules\scicos\macros\buildmacros.sce&apos;);quit;"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
@@ -210,6 +210,14 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_scicos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\haltscicos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\import.c"
 				>
 			</File>
 			<File
@@ -324,6 +332,50 @@
 				RelativePath="..\..\sci_gateway\c\sci_xstringb2.c"
 				>
 			</File>
+			<File
+				RelativePath=".\sciblk2.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sciblk2i.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sciblk4.c"
+				>
+			</File>
+			<File
+				RelativePath=".\scicos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\scicos_free.c"
+				>
+			</File>
+			<File
+				RelativePath=".\scicos_malloc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\scicosclip.c"
+				>
+			</File>
+			<File
+				RelativePath=".\scicosexit.c"
+				>
+			</File>
+			<File
+				RelativePath=".\slider.c"
+				>
+			</File>
+			<File
+				RelativePath=".\str2sci.c"
+				>
+			</File>
+			<File
+				RelativePath=".\tree.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -342,6 +394,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\import.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\intcscicos.h"
 				>
 			</File>
@@ -354,12 +410,44 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Imports"
+			>
+			<File
+				RelativePath=".\Dynamic_link_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Graphics_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Intersci_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Output_stream_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Scicos_blocks_f_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\scicos_f_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\String_Import.def"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\..\..\bin\blasplus.lib"
-			>
-		</File>
-		<File
-			RelativePath=".\LibScilab_Import.def"
 			>
 		</File>
 		<File
