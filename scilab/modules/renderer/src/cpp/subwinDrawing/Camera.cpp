@@ -130,9 +130,19 @@ void Camera::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
   getCameraImp()->getPixelCoordinates(userCoord, pixCoord);
 }
 /*--------------------------------------------------------------------------*/
+void Camera::getPixelCoordinates(const double userCoords[3], double pixCoords[3])
+{
+  getCameraImp()->getPixelCoordinates(userCoords, pixCoords);
+}
+/*--------------------------------------------------------------------------*/
 void Camera::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   getCameraImp()->get2dViewPixelCoordinates(userCoord, pixCoord);
+}
+/*--------------------------------------------------------------------------*/
+void Camera::getSceneCoordinates(const double pixCoords[3], double userCoords[3])
+{
+  getCameraImp()->getSceneCoordinates(pixCoords, userCoords);
 }
 /*--------------------------------------------------------------------------*/
 void Camera::get2dViewCoordinates(const int pixCoords[2], double userCoord2D[2])

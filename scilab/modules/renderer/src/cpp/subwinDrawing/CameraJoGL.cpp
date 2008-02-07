@@ -80,7 +80,7 @@ void CameraJoGL::project(const double projMatrix[4][4], const double viewPort[4]
   mat4DMult(projMatrix, sceneCoordinates, pixCoordinates);
   pixCoordinates[0] = viewPort[0] + viewPort[2] * (pixCoordinates[0] + 1.0) / 2.0;
   pixCoordinates[1] = viewPort[1] + viewPort[3] * (pixCoordinates[1] + 1.0) / 2.0;
-  pixCoordinates[2] = (viewPort[2] + 1.0) / 2.0;
+  pixCoordinates[2] = (pixCoordinates[2] + 1.0) / 2.0;
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::unProject(double unProjMatrix[4][4], double viewPort[4],
@@ -100,22 +100,31 @@ CameraJavaMapper * CameraJoGL::getCameraJavaMapper(void)
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
+{ 
+  // project point on the screen
+  double pixCoords3D[3];
+  getPixelCoordinates(userCoord, pixCoords3D);
+  
+  // get the two pixels coordinates
+  pixCoord[0] = (int) pixCoords3D[0];
+  
+  pixCoord[1] = (int) pixCoords3D[1];
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::getPixelCoordinates(const double userCoords[3], double pixCoords[3])
 {
   double finalUserCoord[3];
   // convert user coordinates to log scale if needed
-  m_pDrawer->pointScale(userCoord[0], userCoord[1], userCoord[2],
+  m_pDrawer->pointScale(userCoords[0], userCoords[1], userCoords[2],
                         &(finalUserCoord[0]), &(finalUserCoord[1]), (&finalUserCoord[2]));
-  
+
   // project point on the screen
-  double pixCoordsD[3];
-  project(m_aProjMatrix3D, m_aViewPort, finalUserCoord, pixCoordsD);
-  
-  // get the two pixels coordinates
-  pixCoord[0] = (int) pixCoordsD[0];
+  project(m_aProjMatrix3D, m_aViewPort, finalUserCoord, pixCoords);
+
   // in OpenGL, pixel coordinates are taken from the bottom left point
   // of the window, however, in Scilab it is from the top left
   // so we have to invert Y coordinate
-  pixCoord[1] = (int) m_aViewPort[3] - pixCoordsD[1];
+  pixCoords[1] = m_aViewPort[3] - pixCoords[1];
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2])
@@ -134,7 +143,20 @@ void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], int pixCoo
   // in OpenGL, pixel coordinates are taken from the bottom left point
   // of the window, however, in Scilab it is from the top left
   // so we have to invert Y coordinate
-  pixCoord[1] = (int) m_aViewPort[3] - pixCoordsD[1];
+  pixCoord[1] = (int)(m_aViewPort[3] - pixCoordsD[1]);
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::getSceneCoordinates(const double pixCoords[3], double userCoords[3])
+{
+  // in OpenGL, pixel coordinates are taken from the bottom left point
+  // of the window, however, in Scilab it is from the top left
+  // so we have to invert Y coordinate
+  double pixCoords3D[3] = {pixCoords[0], m_aViewPort[3] - pixCoords[1], pixCoords[2]};
+  unProject(m_aUnprojMatrix3D, m_aViewPort, pixCoords3D, userCoords);
+
+  // convert user coordinates to log scale if needed
+  m_pDrawer->inversePointScale(userCoords[0], userCoords[1], userCoords[2],
+                              &(userCoords[0]), &(userCoords[1]), &(userCoords[2]));
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::get2dViewCoordinates(const int pixCoords[2], double userCoord2D[2])

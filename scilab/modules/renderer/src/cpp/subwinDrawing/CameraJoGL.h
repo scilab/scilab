@@ -50,9 +50,19 @@ public:
   virtual void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);
 
   /**
+   * Convert user coordinates to pixel coordinates including depth value
+   */
+  virtual void getPixelCoordinates(const double userCoords[3], double pixCoords[3]);
+
+  /**
    * Convert user coordinates to pixel coordinated using the 2d view.
    */
   virtual void get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2]);
+
+  /**
+   * Unproject a 3 position in pixels into the standard scene coordinates
+   */
+  virtual void getSceneCoordinates(const double pixCoords[3], double userCoords[3]);
 
   /**
    * Find coordinates in 2D view from pixel ones
