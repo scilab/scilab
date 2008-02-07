@@ -715,7 +715,7 @@ AC_ARG_WITH(scicos,
 #    [  --without-scicos        Compile without Scicos ])
 
 AC_ARG_WITH(ocaml,
-    AC_HELP_STRING([[--without-ocaml],[Do not compile ocaml modules]))
+    AC_HELP_STRING([--without-ocaml],[Do not compile ocaml modules]))
 
 
 SCICOS_ENABLE=no
