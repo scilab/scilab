@@ -36,7 +36,7 @@
     </DESCRIPTION>
     <EXAMPLE>
 <![CDATA[
-oct2dec(['856115','0','23'])
+oct2dec(["1" "756115"; "0" "23"])
 ]]>
     </EXAMPLE>
     

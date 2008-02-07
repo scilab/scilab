@@ -6,11 +6,11 @@
     <TYPE>Scilab Function</TYPE>
     <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006) $</DATE>
     <SHORT_DESCRIPTION name="base2dec">conversion from base b representation to integers</SHORT_DESCRIPTION>
-    
+
     <CALLING_SEQUENCE>
         <CALLING_SEQUENCE_ITEM>d=base2dec(s,b)</CALLING_SEQUENCE_ITEM>
     </CALLING_SEQUENCE>
-    
+
     <PARAM>
         <PARAM_INDENT>
             <PARAM_ITEM>
@@ -33,7 +33,7 @@
             </PARAM_ITEM>
         </PARAM_INDENT>
     </PARAM>
-    
+
     <DESCRIPTION>
         <P>
             <VERB>base2dec(x,b)</VERB> returns the  matrix of numbers corresponding
@@ -42,10 +42,10 @@
     </DESCRIPTION>
     <EXAMPLE>
 <![CDATA[
-base2dec(12,['ABC','0','A'])
+base2dec(['ABC','0','A'],12)
 ]]>
     </EXAMPLE>
-    
+
     <SEE_ALSO>
         <SEE_ALSO_ITEM>
             <LINK>bin2dec</LINK>
