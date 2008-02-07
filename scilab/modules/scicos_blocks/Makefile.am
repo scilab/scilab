@@ -27,7 +27,6 @@ src/c/bit_clear_8.c \
 src/c/bit_set_16.c \
 src/c/bit_set_32.c \
 src/c/bit_set_8.c \
-src/c/blocks.c \
 src/c/bounce_ball.c \
 src/c/bouncexy.c \
 src/c/canimxy3d.c \
@@ -247,11 +246,6 @@ src/c/samphold4.c \
 src/c/samphold4_m.c \
 src/c/satur.c \
 src/c/scalar2vector.c \
-src/c/scoGetProperty.c \
-src/c/scoMemoryScope.c \
-src/c/scoMisc.c \
-src/c/scoSetProperty.c \
-src/c/scoWindowScope.c \
 src/c/selector.c \
 src/c/selector_m.c \
 src/c/shift_16_LA.c \
@@ -311,6 +305,12 @@ src/c/writec.c \
 src/c/writef4.c \
 src/c/zcross2.c
 
+NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \
+src/c/scoSetProperty.c \
+src/c/blocks.c \
+src/c/scoMisc.c \
+src/c/scoMemoryScope.c\
+src/c/scoWindowScope.c 
 
 SCICOS_BLOCKS_FORTRAN_SOURCES = src/fortran/affich2.f \
 src/fortran/affich.f \
@@ -373,6 +373,8 @@ src/fortran/trash.f \
 src/fortran/writef.f \
 src/fortran/zcross.f
 
+
+
 #GATEWAY_C_SOURCES = 
 
 #GATEWAY_FORTRAN_SOURCES = 
@@ -387,18 +389,28 @@ libsciscicos_blocks_la_CFLAGS= -Iincludes/ \
                         -I$(top_srcdir)/modules/elementary_functions/includes
 
 
-libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) $(SCICOS_BLOCKS_FORTRAN_SOURCES) 
+libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) $(SCICOS_BLOCKS_FORTRAN_SOURCES)  $(NON_BLOCK_C_SOURCES)
 #$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 
 ##### Generation of the  includes/blocks.h Files ###
 BUILT_SOURCES = includes/blocks.h
 
-includes/blocks.h: $(SCICOS_BLOCKS_FORTRAN_SOURCES) $(SCICOS_BLOCKS_C_SOURCES)
+
+build/Cblocknames:
+	if test ! -d build; then mkdir build; fi
+# Get the filename, strip the extension and put into a file
+	for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+
+build/Fblocknames:
 	if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
 	for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
-	for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+
+includes/blocks.h: $(SCICOS_BLOCKS_FORTRAN_SOURCES) $(SCICOS_BLOCKS_C_SOURCES) build/Cblocknames build/Fblocknames
+
+
+
 	$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
 
 CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/Fblocknames
