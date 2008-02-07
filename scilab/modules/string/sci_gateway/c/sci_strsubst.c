@@ -13,10 +13,13 @@
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 #include "localization.h"
+#define CHAR_R "r"
+#define CHAR_S "s"
 /*-------------------------------------------------------------------------------------*/
 int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 {
-	CheckRhs(3,3);
+	BOOL bStrsubst_with_pattern = FALSE;
+	CheckRhs(3,4);
 	CheckLhs(1,1);
 
 	switch (VarType(1))
@@ -87,7 +90,59 @@ int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
 				return 0;
 			}
 
-			Output_StringMatrix = strsubst(Input_StringMatrix_One,m1n1,Input_StringMatrix_Two[0],Input_StringMatrix_Three[0]);
+			if (Rhs == 4)
+			{
+				int m4 = 0;
+				int n4 = 0;
+				char **Strings_Input4 = NULL;
+				int m4n4 = 0; /* m4 * n4 */
+
+				if (VarType(4) != sci_strings)
+				{
+					Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
+					return 0;
+				}
+				GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&m4,&n4,&Strings_Input4);
+				m4n4 = m4*n4;  
+
+				if (m4n4 != 1)
+				{
+					freeArrayOfString(Strings_Input4,m4n4);
+					Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
+					return 0;
+				}
+
+				if ( (strcmp(Strings_Input4[0],CHAR_R) == 0) || (strcmp(Strings_Input4[0],CHAR_S) == 0) )
+				{
+					if (strcmp(Strings_Input4[0],CHAR_R) == 0)
+					{
+						bStrsubst_with_pattern = TRUE;
+					}
+					else
+					{
+						bStrsubst_with_pattern = FALSE;
+					}
+					freeArrayOfString(Strings_Input4,m4n4);
+				}
+				else
+				{
+					freeArrayOfString(Strings_Input4,m4n4);
+					Scierror(999,_("%s: Wrong type for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"s","r");
+					return 0;
+				}
+			}
+
+
+
+
+            if (bStrsubst_with_pattern)
+			{
+				Output_StringMatrix = strsubst_reg(Input_StringMatrix_One,m1n1,Input_StringMatrix_Two[0],Input_StringMatrix_Three[0]);
+			}
+			else
+			{
+				Output_StringMatrix = strsubst(Input_StringMatrix_One,m1n1,Input_StringMatrix_Two[0],Input_StringMatrix_Three[0]);
+			}
 			freeArrayOfString(Input_StringMatrix_One,m1n1);
 			freeArrayOfString(Input_StringMatrix_Two,m2n2);
 			freeArrayOfString(Input_StringMatrix_Three,m3n3);

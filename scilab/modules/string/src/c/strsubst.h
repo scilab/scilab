@@ -14,7 +14,7 @@
 * @return substituted string matrix
 */
 char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string);
-
+char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string);
 /**
 * substitute a character string by another in a character string
 * @param[in] string 
@@ -23,5 +23,6 @@ char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char
 * @return substituted string
 */
 char *strsub(char* input_string, const char* string_to_search, const char* replacement_string);
+char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string);
 
 #endif /* __STRSUBST_H__ */
