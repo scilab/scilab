@@ -8,7 +8,7 @@
   <SHORT_DESCRIPTION name="ls"> show files</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>ls path options</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>files=ls( [path) [,options])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>files=ls( [path] )</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -17,13 +17,6 @@
         <PARAM_DESCRIPTION>
           <SP>: a string matrix giving a directory pathname (eventually  ended
 	    by a pattern built with <VERB>*</VERB>). Default value is <VERB>.</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>options</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a sequence of strings which can be added under Unix systems:
-	    the Unix <VERB>ls</VERB> command options. (default value <VERB>'-C'</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -50,13 +43,15 @@
       pattern for both unix and windows.
     </P>
     <P>
-      Under Unix systems it is possible to add options to rule the output (see
-      the unix manual about the ls command)
-    </P>
-    <P>
       If you want to get a vector of all files matching a pattern use preferabily
       the  <LINK>listfiles</LINK>  or the <LINK>dir</LINK>function.
     </P>
+	<P>
+	  Please note that starting from the version 5.0 of Scilab, the second 
+	  input argument has been removed (<i>a sequence of strings which can 
+	  be added under Unix systems: the Unix ls command options</i>). 
+	  This option has been removed mainly for security and portability reasons.
+	</P>
   </DESCRIPTION>
   <EXAMPLE>
     <![CDATA[
