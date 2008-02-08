@@ -596,9 +596,20 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-	)
+macros:
+	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+		echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+	fi)
+
+# Removes the macros
+clean-macros:
+# Removes macros (*.bin generated from .sci)
+	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+	done
 
 all-local: $(TARGETS_ALL)
 
@@ -650,7 +661,7 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local:
+install-data-local: macros
 # Install the help chapter
 	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 	if test -f $$HELPFILE; then \
@@ -694,13 +705,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@clean-local: clean-java
-@GUI_FALSE@clean-local:
-# Removes macros (*.bin generated from .sci)
-	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-	done
+@GUI_TRUE@clean-local: clean-java clean-macros
+@GUI_FALSE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 	@for dir in $(DOCDIRS) ; do \
 		 if test -d $$dir; then \
@@ -708,6 +714,8 @@ install-data-local:
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
+
+.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

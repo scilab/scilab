@@ -1375,9 +1375,20 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_TRUE@		done; \
 @GIWS_TRUE@@PVM_TRUE@	fi
 
-@PVM_TRUE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@PVM_TRUE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-@PVM_TRUE@	)
+@PVM_TRUE@macros:
+@PVM_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+@PVM_TRUE@		echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_TRUE@	else \
+@PVM_TRUE@		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@PVM_TRUE@	fi)
+
+# Removes the macros
+@PVM_TRUE@clean-macros:
+# Removes macros (*.bin generated from .sci)
+@PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@PVM_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+@PVM_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@PVM_TRUE@	done
 
 @PVM_TRUE@all-local: $(TARGETS_ALL)
 
@@ -1429,7 +1440,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
-@PVM_TRUE@install-data-local:
+@PVM_TRUE@install-data-local: macros
 # Install the help chapter
 @PVM_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_TRUE@	if test -f $$HELPFILE; then \
@@ -1473,13 +1484,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@PVM_TRUE@clean-local: clean-java
-@GUI_FALSE@@PVM_TRUE@clean-local:
-# Removes macros (*.bin generated from .sci)
-@PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-@PVM_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-@PVM_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-@PVM_TRUE@	done
+@GUI_TRUE@@PVM_TRUE@clean-local: clean-java clean-macros
+@GUI_FALSE@@PVM_TRUE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 @PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
 @PVM_TRUE@		 if test -d $$dir; then \
@@ -1487,6 +1493,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
+
+@PVM_TRUE@.PHONY: macros java swig giws
 
 # This target enables tests for Scilab
 @PVM_FALSE@check-local: $(top_builddir)/scilab-bin
@@ -1534,9 +1542,20 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GIWS_TRUE@@PVM_FALSE@		done; \
 @GIWS_TRUE@@PVM_FALSE@	fi
 
-@PVM_FALSE@macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-@PVM_FALSE@	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-@PVM_FALSE@	)
+@PVM_FALSE@macros:
+@PVM_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+@PVM_FALSE@		echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_FALSE@	else \
+@PVM_FALSE@		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+@PVM_FALSE@	fi)
+
+# Removes the macros
+@PVM_FALSE@clean-macros:
+# Removes macros (*.bin generated from .sci)
+@PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+@PVM_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+@PVM_FALSE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@PVM_FALSE@	done
 
 @PVM_FALSE@all-local: $(TARGETS_ALL)
 
@@ -1588,7 +1607,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@		fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
-@PVM_FALSE@install-data-local:
+@PVM_FALSE@install-data-local: macros
 # Install the help chapter
 @PVM_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_FALSE@	if test -f $$HELPFILE; then \
@@ -1632,13 +1651,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@PVM_FALSE@clean-local: clean-java
-@GUI_FALSE@@PVM_FALSE@clean-local:
-# Removes macros (*.bin generated from .sci)
-@PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-@PVM_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-@PVM_FALSE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-@PVM_FALSE@	done
+@GUI_TRUE@@PVM_FALSE@clean-local: clean-java clean-macros
+@GUI_FALSE@@PVM_FALSE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 @PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
 @PVM_FALSE@		 if test -d $$dir; then \
@@ -1646,6 +1660,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @PVM_FALSE@		fi; \
 @PVM_FALSE@	done
+
+@PVM_FALSE@.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

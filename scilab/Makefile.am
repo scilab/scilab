@@ -158,3 +158,4 @@ pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = scilab.pc
 
 
+.PHONY: macros localization doc
