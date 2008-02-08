@@ -1,0 +1,17 @@
+// <-- Non-regression test for bug 2706 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2706
+//
+// <-- Short Description -->
+//    listfiles is giving wrong result under Linux on a file without extension
+
+// Copyright INRIA
+// Scilab Project - Sylvestre LEDRU
+// Copyright INRIA 2008
+// Date : 8 feb. 2008
+
+cd(TMPDIR)
+mputl("","toto")
+file_without_extension=listfiles("toto")
+if file_without_extension == [] then pause,end
