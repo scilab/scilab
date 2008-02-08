@@ -1191,7 +1191,7 @@ public class ScilabBridge {
 	 * @param childMenuItem the MenuItem we want to add
 	 */
 	public static void add(MenuItem parentMenuItem, MenuItem childMenuItem) {
-		ScilabMenuItemBridge.add(parentMenuItem, childMenuItem);
+		//ScilabMenuItemBridge.add(parentMenuItem, childMenuItem);
 	}
 
 	/**
@@ -1199,7 +1199,7 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem we want to destroy
 	 */
 	public static void destroy(MenuItem menuItem) {
-		ScilabMenuItemBridge.destroy(menuItem);
+		//ScilabMenuItemBridge.destroy(menuItem);
 	}
 
 	/*****************/
