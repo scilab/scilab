@@ -24,9 +24,18 @@ void setMessageBoxTitle(int ID, char * title);
  * Set the message of the MessageBox
  *
  * @param ID the ID of the MessageBox    
- * @param title the message to set
+ * @param message the message to set
  */
 void setMessageBoxMessage(int ID, char * message);
+
+/**
+ * Set the message of the MessageBox (multi-line)
+ *
+ * @param ID the ID of the MessageBox    
+ * @param message the message to set
+ * @param nbLines number of lines in message
+ */
+void setMessageBoxMultiLineMessage(int ID, char **message, int nbLines);
 
 /**
  * Display the MessageBox and Wait for a user action
@@ -52,6 +61,30 @@ int getMessageBoxSelectedButton(int ID);
  */
 void setMessageBoxButtonsLabels(int ID, char** labels, int nbLabels);
 
+/**
+ * Set the initial value of the editable text zone of the MessageBox
+ *
+ * @param ID the ID of the MessageBox  
+ * @param value the value
+ * @param nbLines the number of lines in value parameter
+ */
+void setMessageBoxInitialValue(int ID, char** value, int nbLines);
+
+/**
+ * Get the value of the editable text zone of the MessageBox
+ *
+ * @param ID the ID of the MessageBox  
+ * @return the value
+ */
+char ** getMessageBoxValue(int ID);
+
+/**
+ * Get the value size of the editable text zone of the MessageBox
+ *
+ * @param ID the ID of the MessageBox  
+ * @return the value size
+ */
+int getMessageBoxValueSize(int ID);
 
 #endif /* !__CALLMESSAGEBOX_H__ */
 

@@ -363,6 +363,10 @@
             <parameter name="id" type="int"/>
             <parameter name="message" type="String"/>
         </method>      
+	<method name="setMessageBoxMessage" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="message" type="String[]"/>
+        </method>      
 	<method name="messageBoxDisplayAndWait" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
@@ -372,6 +376,16 @@
 	<method name="setMessageBoxButtonsLabels" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
             <parameter name="labels" type="String[]"/>
+        </method>      
+	<method name="setMessageBoxInitialValue" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="value" type="String[]"/>
+        </method>      
+	<method name="getMessageBoxValue" returnType="String[]" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getMessageBoxValueSize" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
         </method>      
   </object>
 </package>

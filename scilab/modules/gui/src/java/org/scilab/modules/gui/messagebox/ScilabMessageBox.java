@@ -60,6 +60,14 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 	}
 
 	/**
+	 * Set the message of the MessageBox (multi-line)
+	 * @param message the message to set
+	 */
+	public void setMessage(String[] message) {
+		ScilabBridge.setMessage(this, message);
+	}
+
+	/**
 	 * Get the index of the button clicked
 	 * @return the index of the button clicked
 	 */
@@ -83,6 +91,30 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 		ScilabBridge.displayAndWait(this);
 	}
 	
+	/**
+	 * Set the initial values of the editable zone in the MessageBox
+	 * @param value the initial values
+	 */
+	public void setInitialValue(String[] value) {
+		ScilabBridge.setInitialValue(this, value);
+	}
+
+	/**
+	 * Get the value of the editable zone in the MessageBox
+	 * @return the value
+	 */
+	public String[] getValue() {
+		return ScilabBridge.getValue(this);
+	}
+
+	/**
+	 * Get the size of the value of the editable zone in the MessageBox
+	 * @return the value size
+	 */
+	public int getValueSize() {
+		return ScilabBridge.getValueSize(this);
+	}
+
 	/**
 	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
 	 */

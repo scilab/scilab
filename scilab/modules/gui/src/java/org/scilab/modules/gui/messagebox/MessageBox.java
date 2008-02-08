@@ -30,6 +30,12 @@ public interface MessageBox extends UIElement {
 	void setMessage(String message);
 	
 	/**
+	 * Set the message of the MessageBox (multi-line)
+	 * @param message the message to set
+	 */
+	void setMessage(String[] message);
+	
+	/**
 	 * Display this MessageBox and wait for user choice 
 	 */
 	void displayAndWait();
@@ -45,4 +51,23 @@ public interface MessageBox extends UIElement {
 	 * @param labels the labels of the buttons
 	 */
 	void setButtonsLabels(String[] labels);
+	
+	/**
+	 * Set the initial values of the editable zone in the MessageBox
+	 * @param value the initial values
+	 */
+	void setInitialValue(String[] value);
+
+	/**
+	 * Get the value of the editable zone in the MessageBox
+	 * @return the value
+	 */
+	String[] getValue();
+
+	/**
+	 * Get the size of the value of the editable zone in the MessageBox
+	 * @return the value size
+	 */
+	int getValueSize();
+
 }

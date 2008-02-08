@@ -837,6 +837,15 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Set the MessageBox message (multi-line)
+	 * @param id the id of the messageBox
+	 * @param message the message of the messageBox
+	 */
+	public static void setMessageBoxMessage(int id, String[] message) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setMessage(message);
+	}
+
+	/**
 	 * Display this chooser and wait for user selection 
 	 * @param id the id of the messageBox
 	 */
@@ -860,6 +869,33 @@ public class CallScilabBridge {
 	 */
 	public static void setMessageBoxButtonsLabels(int id, String[] labels) {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setButtonsLabels(labels);
+	}
+
+	/**
+	 * Set the initial value for the editable part of the MessageBox
+	 * @param id the id of the MessageBox
+	 * @param value the initial value
+	 */
+	public static void setMessageBoxInitialValue(int id, String[] value) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setInitialValue(value);
+	}
+
+	/**
+	 * Get the value of the editable zone in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @return the value
+	 */
+	public static String[] getMessageBoxValue(int id) {
+		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getValue();
+	}
+	
+	/**
+	 * Get the size of the value of the editable zone in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @return the value size
+	 */
+	public static int getMessageBoxValueSize(int id) {
+		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getValueSize();
 	}
 
 	/************************/

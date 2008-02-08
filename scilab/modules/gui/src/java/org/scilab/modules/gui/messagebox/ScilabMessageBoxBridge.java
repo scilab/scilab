@@ -45,6 +45,15 @@ public class ScilabMessageBoxBridge {
 	}
 
 	/**
+	 * Set the message of the MessageBox (multi-line)
+	 * @param messageBox the MessageBox we want to set the message of
+	 * @param message the message to set
+	 */
+	public static void setMessage(MessageBox messageBox, String[] message) {
+		messageBox.getAsSimpleMessageBox().setMessage(message);
+	}
+
+	/**
 	 * Display this MessgeBox and wait for user selection 
 	 * @param messageBox the MessageBox we want to display
 	 */
@@ -69,6 +78,33 @@ public class ScilabMessageBoxBridge {
 	 */
 	public static void setButtonsLabels(MessageBox messageBox, String[] labels) {
 		messageBox.getAsSimpleMessageBox().setButtonsLabels(labels);
+	}
+
+	/**
+	 * Set the initial values of the editable zone in the MessageBox
+	 * @param messageBox the MessageBox we want to set the initial value of
+	 * @param value the initial values
+	 */
+	public static void setInitialValue(MessageBox messageBox, String[] value) {
+		messageBox.getAsSimpleMessageBox().setInitialValue(value);
+	}
+
+	/**
+	 * Set the value of the editable zone in the MessageBox
+	 * @param messageBox the MessageBox we want to get the value of
+	 * @return the value
+	 */
+	public static String[] getValue(MessageBox messageBox) {
+		return messageBox.getAsSimpleMessageBox().getValue();
+	}
+	
+	/**
+	 * Set the value size of the editable zone in the MessageBox
+	 * @param messageBox the MessageBox we want to get the value of
+	 * @return the value size
+	 */
+	public static int getValueSize(MessageBox messageBox) {
+		return messageBox.getAsSimpleMessageBox().getValueSize();
 	}
 
 }

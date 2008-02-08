@@ -152,9 +152,13 @@ jmethodID voidsetFileChooserFileSelectionOnlyjintID; // cache method id
 jmethodID jintnewMessageBoxID; // cache method id
 jmethodID voidsetMessageBoxTitlejintjstringID; // cache method id
 jmethodID voidsetMessageBoxMessagejintjstringID; // cache method id
+jmethodID voidsetMessageBoxMessagejintjobjectArrayID; // cache method id
 jmethodID voidmessageBoxDisplayAndWaitjintID; // cache method id
 jmethodID jintgetMessageBoxSelectedButtonjintID; // cache method id
 jmethodID voidsetMessageBoxButtonsLabelsjintjobjectArrayID; // cache method id
+jmethodID voidsetMessageBoxInitialValuejintjobjectArrayID; // cache method id
+jmethodID jobjectArraygetMessageBoxValuejintID; // cache method id
+jmethodID jintgetMessageBoxValueSizejintID; // cache method id
 
 
 /**
@@ -394,11 +398,19 @@ static void setMessageBoxTitle(JavaVM * jvm_, long id, char * title);
 
 static void setMessageBoxMessage(JavaVM * jvm_, long id, char * message);
 
+static void setMessageBoxMessage(JavaVM * jvm_, long id, char ** message, int messageSize);
+
 static void messageBoxDisplayAndWait(JavaVM * jvm_, long id);
 
 static long getMessageBoxSelectedButton(JavaVM * jvm_, long id);
 
 static void setMessageBoxButtonsLabels(JavaVM * jvm_, long id, char ** labels, int labelsSize);
+
+static void setMessageBoxInitialValue(JavaVM * jvm_, long id, char ** value, int valueSize);
+
+static char ** getMessageBoxValue(JavaVM * jvm_, long id);
+
+static long getMessageBoxValueSize(JavaVM * jvm_, long id);
 
 
                         /**
