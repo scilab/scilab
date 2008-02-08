@@ -70,8 +70,8 @@
 <module name="demo_tools" activate="yes"/>
 <module name="spreadsheet" activate="yes"/>
 <!-- comments -->
-<module name="scicos" activate="no"/>
-<module name="scicos_blocks" activate="no"/>
+<module name="scicos" activate="yes"/>
+<module name="scicos_blocks" activate="yes"/>
 <!-- comments -->
 <module name="pvm" activate="no"/>
 <module name="sci2c" activate="no"/>

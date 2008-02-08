@@ -10,8 +10,8 @@
 ;
 #define SCICOS "scicos"
 
-Source: bin\scicos.lib; DestDir: {app}\bin; DestName: scicos.lib
-Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll
+Source: bin\noscicos.lib; DestDir: {app}\bin; DestName: scicos.lib
+Source: bin\noscicos.dll; DestDir: {app}\bin; DestName: scicos.dll
 ;
 ;Source: bin\scicos_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;Source: bin\scicos.lib; DestDir: {app}\bin; DestName: scicos.lib; Components: {#COMPN_SCICOS}

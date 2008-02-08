@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -130,7 +130,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -399,6 +399,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\intcscicos.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\scicos-def.h"
 				>
 			</File>
 		</Filter>
