@@ -1,11 +1,8 @@
 // ====================================================================
-// graphic_export module initialisation file 
-// Copyright INRIA 2007
+// graphic_export module initialisation file
+// Copyright INRIA 2008
 // ====================================================================
-//Load  functions librarie
-//load('SCI/modules/graphic_export/macros/lib');
-// ====================================================================
+
 //add help chapter
-//add_module_help_chapter('graphic_export');
+add_module_help_chapter("graphic_export");
 clear add_module_help_chapter;
-// ====================================================================
