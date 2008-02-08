@@ -19,15 +19,22 @@ function files= listfiles(paths,flag,flagexpand)
 
   DIR_SEPARATOR=filesep();
   
-  for i=1:size(paths,'*') 
-    [path,fname,extension]=fileparts(paths(i));
-    if isdir(paths(i)) then
+  for i=1:size(paths,'*')  // Loop on the file/path list
+	
+    [path,fname,extension]=fileparts(paths(i)); // Retrieve the information
+	// about the file
+	
+    if isdir(paths(i)) then // It is a directory then returns all the file in the dir
       path = paths(i);
       extension='';
       fname='*';
-    else
-      if path == '' then path='./',end;
-      if extension == '' then extension='.*',end;
+	else
+	  // It is a file 
+	  if path == '' then path='./',end;
+	  if MSDOS // Don't want this case under Linux/Unix 
+		// Windows will return the file toto even if you provided toto.*
+		if extension == '' then extension='.*',end;
+	  end
       if fname == '' then fname='*',end;
     end
 
