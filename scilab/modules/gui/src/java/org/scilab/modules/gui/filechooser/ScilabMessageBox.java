@@ -1,7 +1,7 @@
 
 /* Copyright INRIA 2007 */
 
-package org.scilab.modules.gui.filechooser;
+package org.scilab.modules.gui.messagebox;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
@@ -10,38 +10,36 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
- * Interface for file chooser used by Scilab function such as uigetfile 
+ * Interface for Message Boxes used by Scilab functions such as x_message 
  * @author Vincent COUVERT
  */
-public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
+public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 
-	private SimpleFileChooser component;
+	private SimpleMessageBox component;
 	
-	private String[] selectedFiles;
+	//private int chosenButton;
 	
 	/**
 	 * Constructor
 	 */
-	protected ScilabFileChooser() {
-		component = ScilabBridge.createFileChooser();
+	protected ScilabMessageBox() {
+		component = ScilabBridge.createMessageBox();
 		component.setElementId(UIElementMapper.add(this));
-		
-		//setMenuBarId(UIElementMapper.getDefaultId());
 	}
 
 	/**
-	 * Creates a Scilab FileChooser
-	 * @return the created file chooser
+	 * Creates a Scilab MessageBox
+	 * @return the created MessageBox
 	 */
-	public static FileChooser createFileChooser() {
-		return new ScilabFileChooser();
+	public static MessageBox createMessageBox() {
+		return new ScilabMessageBox();
 	}
 
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public SimpleFileChooser getAsSimpleFileChooser() {
+	public SimpleMessageBox getAsSimpleMessageBox() {
 		return component;
 	}
 
@@ -52,60 +50,39 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	public void setTitle(String title) {
 		ScilabBridge.setTitle(this, title);
 	}
-	
+
 	/**
-	 * Set the mask for files to choose
-	 * @param mask the mask to set
+	 * Set the message of the MessageBox
+	 * @param message the message to set
 	 */
-	public void setMask(String mask) {
-		ScilabBridge.setMask(this, mask);
-	}
-	
-	/**
-	 * Set the initial directory used for file search
-	 * @param path the default path
-	 */
-	public void setInitialDirectory(String path) {
-		ScilabBridge.setInitialDirectory(this, path);
+	public void setMessage(String message) {
+		ScilabBridge.setMessage(this, message);
 	}
 
 	/**
-	 * Display this chooser and wait for user selection 
+	 * Get the index of the button clicked
+	 * @return the index of the button clicked
+	 */
+	public int getSelectedButton() {
+		return ScilabBridge.getSelectedButton(this);
+		
+	}
+
+	/**
+	 * Set the labels of the buttons in the MessageBox
+	 * @param labels the labels of the buttons
+	 */
+	public void setButtonsLabels(String[] labels) {
+		ScilabBridge.setButtonsLabels(this, labels);
+	}
+	
+	/**
+	 * Display this MessageBox and wait for user selection 
 	 */
 	public void displayAndWait() {
 		ScilabBridge.displayAndWait(this);
 	}
 	
-	/**
-	 * Get the number of files selected
-	 * @return the number of files selected
-	 */
-	public int getSelectionSize() {
-		return ScilabBridge.getSelectionSize(this);
-	}
-	
-	/**
-	 * Get the names of selected files
-	 * @return the names of selected files
-	 */
-	public String[] getSelection() {
-		return ScilabBridge.getSelection(this);
-	}
-	
-	/**
-	 * Set the flag indicating that we want only select directories
-	 */
-	public void setDirectorySelectionOnly() {
-		ScilabBridge.setDirectorySelectionOnly(this);
-	}
-
-	/**
-	 * Set the flag indicating that we want only select files
-	 */
-	public void setFileSelectionOnly() {
-		ScilabBridge.setFileSelectionOnly(this);
-	}
-
 	/**
 	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
 	 */
@@ -160,5 +137,5 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	public void setVisible(boolean newVisibleState) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 }
