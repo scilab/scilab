@@ -21,6 +21,7 @@ callinterf_
 funs_
 isbyref_
 errgst_
+ierode_
 ;
 ; elementary_functions
 sciround_

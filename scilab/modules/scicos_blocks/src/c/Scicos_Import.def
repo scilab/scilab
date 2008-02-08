@@ -13,3 +13,4 @@ do_cold_restart
 get_block_number
 getlabel_
 getouttb_
+scsptr_
