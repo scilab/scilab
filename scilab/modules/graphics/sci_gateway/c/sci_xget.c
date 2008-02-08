@@ -161,6 +161,24 @@ int sci_xget(char *fname,unsigned long fname_len)
       x1[0] = sciGetNum(sciGetCurrentFigure());
       x2 = 1;
     }
+    else if(strcmp(cstk(l1),"thickness") == 0)
+    {
+      x1[0] = sciGetLineWidth(sciGetCurrentSubWin());
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"wdim") == 0)
+    {
+      x1[0] = sciGetWindowWidth(sciGetCurrentFigure());
+      x1[1] = sciGetWindowHeight(sciGetCurrentFigure());
+      x2 = 2;
+    }
+    else if(strcmp(cstk(l1),"viewport") == 0)
+    {
+      // TODO; update when we will have viewport
+      x1[0] = 0;
+      x1[1] = 0;
+      x2 = 2;
+    }
     else
     {
       sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
