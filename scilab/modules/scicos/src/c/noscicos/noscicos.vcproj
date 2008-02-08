@@ -69,7 +69,7 @@
 				ModuleDefinitionFile="noscicos.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="../../../../../bin/scicos.lib"
+				ImportLibrary="../../../../../bin/noscicos.lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -157,7 +157,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				LinkTimeCodeGeneration="0"
-				ImportLibrary="../../../../../bin/scicos.lib"
+				ImportLibrary="../../../../../bin/noscicos.lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
