@@ -32,7 +32,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scicos.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 				ExecutionBucket="2"
 			/>
 			<Tool
@@ -81,7 +81,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalDependencies="Libscilab.lib scicos.lib"
+				AdditionalDependencies="LibScilab.lib scioutput_stream.lib scicos.lib"
 				OutputFile="$(SolutionDir)bin\scicos_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="scicos_f.def"
@@ -133,7 +133,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scicos.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scicos.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scioutput_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -175,7 +175,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib scicos.lib"
+				AdditionalDependencies="LibScilab.lib scioutput_stream.lib scicos.lib"
 				OutputFile="$(SolutionDir)bin\scicos_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="scicos_f.def"
@@ -222,79 +222,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\affich.c"
+				RelativePath=".\coselm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\constraint.c"
-				>
-			</File>
-			<File
-				RelativePath=".\csslti.c"
-				>
-			</File>
-			<File
-				RelativePath=".\cstblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\ddaskr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\delay.c"
-				>
-			</File>
-			<File
-				RelativePath=".\delayv.c"
-				>
-			</File>
-			<File
-				RelativePath=".\demux.c"
-				>
-			</File>
-			<File
-				RelativePath=".\diffblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dlradp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dollar.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dsslti.c"
-				>
-			</File>
-			<File
-				RelativePath=".\eselect.c"
-				>
-			</File>
-			<File
-				RelativePath=".\evscpe.c"
-				>
-			</File>
-			<File
-				RelativePath=".\evtdly.c"
-				>
-			</File>
-			<File
-				RelativePath=".\expblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\forblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\fscope.c"
-				>
-			</File>
-			<File
-				RelativePath=".\fsv.c"
+				RelativePath=".\dtosci.c"
 				>
 			</File>
 			<File
@@ -310,135 +242,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gensin.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gensqr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\hltblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\ifthel.c"
-				>
-			</File>
-			<File
-				RelativePath=".\integr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intplt.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intpol.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intrp2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intrpl.c"
-				>
-			</File>
-			<File
-				RelativePath=".\invblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\iocopy.c"
+				RelativePath=".\itosci.c"
 				>
 			</File>
 			<File
 				RelativePath=".\list2vars.c"
-				>
-			</File>
-			<File
-				RelativePath=".\logblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\lookup.c"
-				>
-			</File>
-			<File
-				RelativePath=".\lsodar2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\lsplit.c"
-				>
-			</File>
-			<File
-				RelativePath=".\lusat.c"
-				>
-			</File>
-			<File
-				RelativePath=".\maxblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\memo.c"
-				>
-			</File>
-			<File
-				RelativePath=".\mfclck.c"
-				>
-			</File>
-			<File
-				RelativePath=".\minblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\mscope.c"
-				>
-			</File>
-			<File
-				RelativePath=".\mux.c"
-				>
-			</File>
-			<File
-				RelativePath=".\pload.c"
-				>
-			</File>
-			<File
-				RelativePath=".\powblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\qzcel.c"
-				>
-			</File>
-			<File
-				RelativePath=".\qzflr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\qzrnd.c"
-				>
-			</File>
-			<File
-				RelativePath=".\qztrn.c"
-				>
-			</File>
-			<File
-				RelativePath=".\readf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\rndblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\samphold.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sawtth.c"
 				>
 			</File>
 			<File
@@ -482,10 +290,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sciblk.c"
-				>
-			</File>
-			<File
 				RelativePath=".\scierr.c"
 				>
 			</File>
@@ -506,27 +310,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\scope.c"
-				>
-			</File>
-			<File
-				RelativePath=".\scopxy.c"
-				>
-			</File>
-			<File
-				RelativePath=".\scoxy.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sctree.c"
-				>
-			</File>
-			<File
-				RelativePath=".\selblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sinblk.c"
 				>
 			</File>
 			<File
@@ -534,47 +318,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sqrblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sum2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sum3.c"
-				>
-			</File>
-			<File
-				RelativePath=".\tanblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\tcslti.c"
-				>
-			</File>
-			<File
-				RelativePath=".\tcsltj.c"
-				>
-			</File>
-			<File
-				RelativePath=".\timblk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\trash.c"
-				>
-			</File>
-			<File
 				RelativePath=".\vvtosci.c"
-				>
-			</File>
-			<File
-				RelativePath=".\writef.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zcross.c"
 				>
 			</File>
 		</Filter>
@@ -594,79 +338,11 @@
 			Name="Fortran files"
 			>
 			<File
-				RelativePath=".\affich.f"
+				RelativePath=".\coselm.f"
 				>
 			</File>
 			<File
-				RelativePath=".\constraint.f"
-				>
-			</File>
-			<File
-				RelativePath=".\csslti.f"
-				>
-			</File>
-			<File
-				RelativePath=".\cstblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\ddaskr.f"
-				>
-			</File>
-			<File
-				RelativePath=".\delay.f"
-				>
-			</File>
-			<File
-				RelativePath=".\delayv.f"
-				>
-			</File>
-			<File
-				RelativePath=".\demux.f"
-				>
-			</File>
-			<File
-				RelativePath=".\diffblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dlradp.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dollar.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dsslti.f"
-				>
-			</File>
-			<File
-				RelativePath=".\eselect.f"
-				>
-			</File>
-			<File
-				RelativePath=".\evscpe.f"
-				>
-			</File>
-			<File
-				RelativePath=".\evtdly.f"
-				>
-			</File>
-			<File
-				RelativePath=".\expblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\forblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\fscope.f"
-				>
-			</File>
-			<File
-				RelativePath=".\fsv.f"
+				RelativePath=".\dtosci.f"
 				>
 			</File>
 			<File
@@ -682,135 +358,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gensin.f"
-				>
-			</File>
-			<File
-				RelativePath=".\gensqr.f"
-				>
-			</File>
-			<File
-				RelativePath=".\hltblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\ifthel.f"
-				>
-			</File>
-			<File
-				RelativePath=".\integr.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intplt.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intpol.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intrp2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\intrpl.f"
-				>
-			</File>
-			<File
-				RelativePath=".\invblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\iocopy.f"
+				RelativePath=".\itosci.f"
 				>
 			</File>
 			<File
 				RelativePath=".\list2vars.f"
-				>
-			</File>
-			<File
-				RelativePath=".\logblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\lookup.f"
-				>
-			</File>
-			<File
-				RelativePath=".\lsodar2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\lsplit.f"
-				>
-			</File>
-			<File
-				RelativePath=".\lusat.f"
-				>
-			</File>
-			<File
-				RelativePath=".\maxblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\memo.f"
-				>
-			</File>
-			<File
-				RelativePath=".\mfclck.f"
-				>
-			</File>
-			<File
-				RelativePath=".\minblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\mscope.f"
-				>
-			</File>
-			<File
-				RelativePath=".\mux.f"
-				>
-			</File>
-			<File
-				RelativePath=".\pload.f"
-				>
-			</File>
-			<File
-				RelativePath=".\powblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\qzcel.f"
-				>
-			</File>
-			<File
-				RelativePath=".\qzflr.f"
-				>
-			</File>
-			<File
-				RelativePath=".\qzrnd.f"
-				>
-			</File>
-			<File
-				RelativePath=".\qztrn.f"
-				>
-			</File>
-			<File
-				RelativePath=".\readf.f"
-				>
-			</File>
-			<File
-				RelativePath=".\rndblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\samphold.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sawtth.f"
 				>
 			</File>
 			<File
@@ -854,10 +406,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sciblk.f"
-				>
-			</File>
-			<File
 				RelativePath=".\scierr.f"
 				>
 			</File>
@@ -878,27 +426,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\scope.f"
-				>
-			</File>
-			<File
-				RelativePath=".\scopxy.f"
-				>
-			</File>
-			<File
-				RelativePath=".\scoxy.f"
-				>
-			</File>
-			<File
 				RelativePath=".\sctree.f"
-				>
-			</File>
-			<File
-				RelativePath=".\selblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sinblk.f"
 				>
 			</File>
 			<File
@@ -906,47 +434,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sqrblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sum2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sum3.f"
-				>
-			</File>
-			<File
-				RelativePath=".\tanblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\tcslti.f"
-				>
-			</File>
-			<File
-				RelativePath=".\tcsltj.f"
-				>
-			</File>
-			<File
-				RelativePath=".\timblk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\trash.f"
-				>
-			</File>
-			<File
 				RelativePath=".\vvtosci.f"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Imports"
+			>
 			<File
-				RelativePath=".\writef.f"
+				RelativePath=".\LibScilab_Import.def"
 				>
 			</File>
 			<File
-				RelativePath=".\zcross.f"
+				RelativePath=".\Output_stream_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Scicos_Import.def"
 				>
 			</File>
 		</Filter>

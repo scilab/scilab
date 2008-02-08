@@ -1,0 +1,9 @@
+LIBRARY    scicos.dll
+
+
+EXPORTS
+;
+scsptr_
+dbcos_
+coshlt_
+costol_
