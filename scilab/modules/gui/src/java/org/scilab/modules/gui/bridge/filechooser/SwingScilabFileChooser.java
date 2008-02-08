@@ -54,7 +54,10 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 * @param path the default path
 	 */
 	public void setInitialDirectory(String path) {
-		
+		// When empty string given
+		if (path.length() == 0) {
+			return;
+		}
 		// Replace beginning of the path if is an environment variable
 		String newPath = path;
 		StringTokenizer tok = new StringTokenizer(path, File.separator);
