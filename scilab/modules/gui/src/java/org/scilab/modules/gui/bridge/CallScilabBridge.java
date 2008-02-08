@@ -26,6 +26,8 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.popupmenu.ScilabPopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -199,6 +201,15 @@ public class CallScilabBridge {
 	public static int newFileChooser() {
 		FileChooser fileChooser = ScilabFileChooser.createFileChooser();
 		return UIElementMapper.add(fileChooser);
+	}
+	
+	/**
+	 * Create a new MessageBox in Scilab GUIs
+	 * @return the ID of the MessageBox in the UIElementMapper
+	 */
+	public static int newMessageBox() {
+		MessageBox messageBox = ScilabMessageBox.createMessageBox();
+		return UIElementMapper.add(messageBox);
 	}
 	
 	/**
@@ -635,6 +646,7 @@ public class CallScilabBridge {
 			// Copy all properties from MenuItem to Menu
 			parentMenu.setText(menuItem.getText());
 			// TODO Add other properties
+			//((MenuItem) UIElementMapper.getCorrespondingUIElement(menuID)).add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 		}
 		
 		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
@@ -800,6 +812,56 @@ public class CallScilabBridge {
 		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setFileSelectionOnly();
 	}
 	
+	/**********************/
+	/*                    */
+	/* MESSAGE BOX BRIDGE */
+	/*                    */
+	/**********************/
+	
+	/**
+	 * Set the MessageBox title 
+	 * @param id the id of the messageBox
+	 * @param title the title of the messageBox
+	 */
+	public static void setMessageBoxTitle(int id, String title) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setTitle(title);
+	}
+	
+	/**
+	 * Set the MessageBox message 
+	 * @param id the id of the messageBox
+	 * @param message the message of the messageBox
+	 */
+	public static void setMessageBoxMessage(int id, String message) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setMessage(message);
+	}
+
+	/**
+	 * Display this chooser and wait for user selection 
+	 * @param id the id of the messageBox
+	 */
+	public static void messageBoxDisplayAndWait(int id) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
+	}
+	
+	/**
+	 * Get the index of the selected button
+	 * @param id the id of the messageBox
+	 * @return the index of the selected button
+	 */
+	public static int getMessageBoxSelectedButton(int id) {
+		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectedButton();
+	}
+
+	/**
+	 * Set the labels of the buttons in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @param labels the labels of the buttons
+	 */
+	public static void setMessageBoxButtonsLabels(int id, String[] labels) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setButtonsLabels(labels);
+	}
+
 	/************************/
 	/*                      */
 	/* OBJECT COLORS BRIDGE */

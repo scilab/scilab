@@ -192,6 +192,12 @@ jintgetFileChooserSelectionSizejintID=NULL;
 jobjectArraygetFileChooserSelectionjintID=NULL; 
 voidsetFileChooserDirectorySelectionOnlyjintID=NULL; 
 voidsetFileChooserFileSelectionOnlyjintID=NULL; 
+jintnewMessageBoxID=NULL; 
+voidsetMessageBoxTitlejintjstringID=NULL; 
+voidsetMessageBoxMessagejintjstringID=NULL; 
+voidmessageBoxDisplayAndWaitjintID=NULL; 
+jintgetMessageBoxSelectedButtonjintID=NULL; 
+voidsetMessageBoxButtonsLabelsjintjobjectArrayID=NULL; 
 
 
 }
@@ -309,6 +315,12 @@ jintgetFileChooserSelectionSizejintID=NULL;
 jobjectArraygetFileChooserSelectionjintID=NULL; 
 voidsetFileChooserDirectorySelectionOnlyjintID=NULL; 
 voidsetFileChooserFileSelectionOnlyjintID=NULL; 
+jintnewMessageBoxID=NULL; 
+voidsetMessageBoxTitlejintjstringID=NULL; 
+voidsetMessageBoxMessagejintjstringID=NULL; 
+voidmessageBoxDisplayAndWaitjintID=NULL; 
+jintgetMessageBoxSelectedButtonjintID=NULL; 
+voidsetMessageBoxButtonsLabelsjintjobjectArrayID=NULL; 
 
 
 }
@@ -2751,6 +2763,170 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetFileChooserFileSelectionOnlyjintID ,id);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::newMessageBox (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jintnewMessageBoxID = curEnv->GetStaticMethodID(cls, "newMessageBox", "()I" ) ;
+if (jintnewMessageBoxID == NULL) {
+std::cerr << "Could not access to the method " << "newMessageBox" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewMessageBoxID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setMessageBoxTitle (JavaVM * jvm_, long id, char * title){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxTitlejintjstringID = curEnv->GetStaticMethodID(cls, "setMessageBoxTitle", "(ILjava/lang/String;)V" ) ;
+if (voidsetMessageBoxTitlejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxTitle" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring title_ = curEnv->NewStringUTF( title );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxTitlejintjstringID ,id, title_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setMessageBoxMessage (JavaVM * jvm_, long id, char * message){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxMessagejintjstringID = curEnv->GetStaticMethodID(cls, "setMessageBoxMessage", "(ILjava/lang/String;)V" ) ;
+if (voidsetMessageBoxMessagejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxMessage" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring message_ = curEnv->NewStringUTF( message );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxMessagejintjstringID ,id, message_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::messageBoxDisplayAndWait (JavaVM * jvm_, long id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidmessageBoxDisplayAndWaitjintID = curEnv->GetStaticMethodID(cls, "messageBoxDisplayAndWait", "(I)V" ) ;
+if (voidmessageBoxDisplayAndWaitjintID == NULL) {
+std::cerr << "Could not access to the method " << "messageBoxDisplayAndWait" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidmessageBoxDisplayAndWaitjintID ,id);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::getMessageBoxSelectedButton (JavaVM * jvm_, long id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jintgetMessageBoxSelectedButtonjintID = curEnv->GetStaticMethodID(cls, "getMessageBoxSelectedButton", "(I)I" ) ;
+if (jintgetMessageBoxSelectedButtonjintID == NULL) {
+std::cerr << "Could not access to the method " << "getMessageBoxSelectedButton" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetMessageBoxSelectedButtonjintID ,id);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setMessageBoxButtonsLabels (JavaVM * jvm_, long id, char ** labels, int labelsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxButtonsLabelsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxButtonsLabels", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetMessageBoxButtonsLabelsjintjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxButtonsLabels" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+
+// create java array of strings.
+jobjectArray labels_ = curEnv->NewObjectArray( labelsSize, stringArrayClass, NULL);
+if (labels_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < labelsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( labels[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( labels_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxButtonsLabelsjintjobjectArrayID ,id, labels_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

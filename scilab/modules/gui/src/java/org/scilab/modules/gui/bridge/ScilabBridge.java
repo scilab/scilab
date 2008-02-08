@@ -45,6 +45,9 @@ import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItemBridge;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBoxBridge;
+import org.scilab.modules.gui.messagebox.SimpleMessageBox;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.popupmenu.ScilabPopupMenuBridge;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
@@ -1180,6 +1183,23 @@ public class ScilabBridge {
 	 */
 	public static void setRelief(MenuItem menuItem, String reliefType) {
 		ScilabMenuItemBridge.setRelief(menuItem, reliefType);
+	}
+
+	/**
+	 * Add a MenuItem to the MenuItem
+	 * @param parentMenuItem the MenuItem where we want to add a MenuItem
+	 * @param childMenuItem the MenuItem we want to add
+	 */
+	public static void add(MenuItem parentMenuItem, MenuItem childMenuItem) {
+		ScilabMenuItemBridge.add(parentMenuItem, childMenuItem);
+	}
+
+	/**
+	 * Destroy the MenuItem
+	 * @param menuItem the MenuItem we want to destroy
+	 */
+	public static void destroy(MenuItem menuItem) {
+		ScilabMenuItemBridge.destroy(menuItem);
 	}
 
 	/*****************/
@@ -3483,6 +3503,62 @@ public class ScilabBridge {
 	 */
 	public static void setFileSelectionOnly(FileChooser fileChooser) {
 		ScilabFileChooserBridge.setFileSelectionOnly(fileChooser);
+	}
+
+	/*********************/
+	/* MessageBox Bridge */
+	/*********************/
+
+	/**
+	 * Create a new MessageBox
+	 * @return the created MessageBox
+	 */
+	public static SimpleMessageBox createMessageBox() {
+		return ScilabMessageBoxBridge.createMessageBox();
+	}
+	
+	/**
+	 * Set the title of the MessageBox
+	 * @param messageBox the MessageBox we want to set the title of
+	 * @param title the title to set
+	 */
+	public static void setTitle(MessageBox messageBox, String title) {
+		ScilabMessageBoxBridge.setTitle(messageBox, title);
+	}
+	
+	/**
+	 * Set the message of the MessageBox
+	 * @param messageBox the MessageBox we want to set the mask of
+	 * @param message the message to set
+	 */
+	public static void setMessage(MessageBox messageBox, String message) {
+		ScilabMessageBoxBridge.setMessage(messageBox, message);
+	}
+
+	/**
+	 * Display this MessageBox and wait for user selection 
+	 * @param messageBox the MessageBox we want to display
+	 */
+	public static void displayAndWait(MessageBox messageBox) {
+		ScilabMessageBoxBridge.displayAndWait(messageBox);
+	}
+	
+	/**
+	 * Get the index of the button clicked
+	 * @param messageBox the MessageBox we want to get the answer of
+	 * @return the index of the button clicked
+	 */
+	public static int getSelectedButton(MessageBox messageBox) {
+		return ScilabMessageBoxBridge.getSelectedButton(messageBox);
+	}
+	
+	/**
+	 * Set the labels of the buttons in the MessageBox
+	 * @param messageBox the MessageBox we want to set the buttons labels of
+	 * @param labels the labels of the buttons
+	 */
+	public static void setButtonsLabels(MessageBox messageBox, String[] labels) {
+		ScilabMessageBoxBridge.setButtonsLabels(messageBox, labels);
 	}
 
 }

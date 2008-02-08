@@ -28,6 +28,7 @@ src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
+src/cpp/CallMessageBox.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \

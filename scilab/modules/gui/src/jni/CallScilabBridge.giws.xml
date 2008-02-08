@@ -353,5 +353,25 @@
 	<method name="setFileChooserFileSelectionOnly" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
+<!-- Message Box -->
+	<method name="newMessageBox" returnType="int" modifier="static"/>      
+	<method name="setMessageBoxTitle" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="title" type="String"/>
+        </method>      
+	<method name="setMessageBoxMessage" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="message" type="String"/>
+        </method>      
+	<method name="messageBoxDisplayAndWait" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="getMessageBoxSelectedButton" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
+	<method name="setMessageBoxButtonsLabels" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="labels" type="String[]"/>
+        </method>      
   </object>
 </package>
