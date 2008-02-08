@@ -44,26 +44,6 @@ mfile2sci(MFILE,TMPDIR,%f,%t);
   Syntax modification: Done
   Macro to tree conversion...
   Conversion of M-tree...
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
-Warning : redefining function : Rhs                     
-
   Conversion of M-tree: Done
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******

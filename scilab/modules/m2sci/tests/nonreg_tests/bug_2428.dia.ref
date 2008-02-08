@@ -50,31 +50,7 @@ ierr = execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch");
   Syntax modification: Done
   Macro to tree conversion...
   Conversion of M-tree...
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
 Global variable gui_settings added to M2SCI variable list.
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
-Warning : redefining function : Rhs                     
-       inside function: sort                   0.
-
   Conversion of M-tree: Done
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******
