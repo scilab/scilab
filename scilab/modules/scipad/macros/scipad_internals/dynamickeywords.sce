@@ -52,33 +52,48 @@ function dynamickeywords()
 
   if exists("scicos") then  // was once %scicos==%t -- which test is stabler?
     if scilab5 then
-      scicosdir=SCI+"/modules/scicos/macros/";
+      scicosdir=SCI+"/modules/scicos/macros/scicos_scicos";
+      //scicos basic functions: read the lib
+      [l,s,b]=listvarinfile(scicosdir+"/lib");
+      load(scicosdir+"/lib");
     else 
       scicosdir=SCI+"/macros/";
+      //scicos basic functions: read the lib
+      [l,s,b]=listvarinfile(scicosdir+"scicos/lib");
+      load(scicosdir+"scicos/lib");
     end
+    
     //scicos basic functions: read the lib
-    [l,s,b]=listvarinfile(scicosdir+"scicos/lib");
-    load(scicosdir+"scicos/lib");
     n=string(eval(l)); scicosfun=(n(2:$));
     execstr("clear "+l);
 
 
     //scicos palettes: read each lib
     scicosblocks=[];
-// if %scicos makes the next test (scilab5 only) redundant, not so?
-//    if with_module('scicos') then
-     subdirs=listfiles(scicosdir+"/scicos_blocks");
-     for i=1:size(subdirs,"r")
-       blocklib=scicosdir+"/scicos_blocks/"+subdirs(i)+"/lib";
-       if fileinfo(blocklib)<>[] then
-         [l,s,b]=listvarinfile(blocklib);
-         load(blocklib);
-         n=string(eval(l)); scicosblocks=[scicosblocks;(n(2:$))];
-         execstr("clear "+l);
-       end
-     end
-//   end
-
+    if scilab5 then
+      scicos_blocksdir = SCI+"/modules/scicos_blocks/macros";
+      subdirs=listfiles(scicos_blocksdir);
+      for i=1:size(subdirs,"r")
+        blocklib=scicos_blocksdir+"/"+subdirs(i)+"/lib";
+        if fileinfo(blocklib)<>[] then
+          [l,s,b]=listvarinfile(blocklib);
+          load(blocklib);
+          n=string(eval(l)); scicosblocks=[scicosblocks;(n(2:$))];
+          execstr("clear "+l);
+        end
+      end
+    else
+      subdirs=listfiles(scicosdir+"/scicos_blocks");
+        for i=1:size(subdirs,"r")
+          blocklib=scicosdir+"/scicos_blocks/"+subdirs(i)+"/lib";
+          if fileinfo(blocklib)<>[] then
+            [l,s,b]=listvarinfile(blocklib);
+            load(blocklib);
+            n=string(eval(l)); scicosblocks=[scicosblocks;(n(2:$))];
+            execstr("clear "+l);
+          end
+      end
+    end
 
     setscipadwords([scicosfun;scicosblocks],"scicos")
   end
