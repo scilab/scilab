@@ -34,6 +34,7 @@ createlistcvarfromptr_
 createlistvarfromptr_
 dtosci_
 ierode_
+str2sci
 
 ;
 ; elementary_functions

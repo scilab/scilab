@@ -24,7 +24,6 @@ src/c/slider.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
 src/c/sciblk2.c \
-src/c/str2sci.c \
 src/c/scicosclip.c \
 src/c/sciblk4.c \
 src/c/haltscicos.c
