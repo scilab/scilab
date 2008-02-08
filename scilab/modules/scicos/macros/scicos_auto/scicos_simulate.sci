@@ -34,7 +34,7 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag,Ignb)
 // case, make sure that in the diagram context the variable is defined such
 // that it can be modified. Say a variable "a" is to be defined in the
 // context having value 1, and later in batch mode, we want to change
-// the value of "a". In that case, in the context of the diagram place: 
+// the value of "a". In that case, in the context of the diagram place:
 //  if ~exists('a') then a=1,end
 // If you want then to run the simulation in batch mode using the value
 // a=2, set:
@@ -97,7 +97,11 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag,Ignb)
            'affich2']
 
   //** load macros libraries and palettes
-  load SCI/macros/scicos/lib
+  // Scilab 5 new modules split
+  load('SCI/modules/scicos/macros/scicos_auto/lib')
+  load('SCI/modules/scicos/macros/scicos_utils/lib')
+  load('SCI/modules/scicos/macros/scicos_scicos/lib')
+
   exec(loadpallibs,-1)
 
   //** redefine some gui functions
@@ -193,7 +197,7 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag,Ignb)
   chdir('Workspace')
   %a=who('get');
   %a=%a(1:$-predef()+1);  // exclude protected variables
-  for %ij=1:size(%a,1) 
+  for %ij=1:size(%a,1)
     var=%a(%ij)
     if var<>'ans' & typeof(evstr(var))=='st' then
       ierr=execstr('x='+var+'.values','errcatch')
@@ -234,7 +238,7 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag,Ignb)
   [%scicos_context,ierr]=script2var(scs_m.props.context, ...
 				    %scicos_context);
 
-  if ierr==0 then 
+  if ierr==0 then
     [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
     if needcompile<>4&size(%cpr)>0 then %state0=%cpr.state,end
     alreadyran=%f
@@ -284,7 +288,7 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag,Ignb)
     %tcur=0
     %cpr.state=%state0
     tf=scs_m.props.tf;
-    if tf*tolerances==[] then 
+    if tf*tolerances==[] then
       error(['Simulation parameters not set']);
     end
 
