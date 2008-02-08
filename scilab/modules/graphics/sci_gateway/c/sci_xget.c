@@ -52,9 +52,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
   if ( !keyFound )
   {
-    i = 105;v=m1*n1;
-    strncpy(C2F(cha1).buf,cstk(l1),v);
-    C2F(msgs)(&i,&v);
+    sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
     x2=0;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&x2,&x2,&l3);
     LhsVar(1)=Rhs+1;
@@ -158,9 +156,14 @@ int sci_xget(char *fname,unsigned long fname_len)
       x1[0] = pSUBWIN_FEATURE(psubwin)->hiddencolor;
       x2 = 1;
     }
+    else if(strcmp(cstk(l1),"window")==0)
+    {
+      x1[0] = sciGetNum(sciGetCurrentFigure());
+      x2 = 1;
+    }
     else
     {
-      sciprint(_("Unhandled property.\n"));
+      sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
     }
     if (x2 > 0) {
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
