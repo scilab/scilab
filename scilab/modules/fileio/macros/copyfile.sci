@@ -25,7 +25,7 @@ function [status,msg]=copyfile(varargin)
   Src='';
   Dest='';
 
-  Status=1;
+  noErrorOccurred=1;
 
   select rhs
    case 2
@@ -39,11 +39,11 @@ function [status,msg]=copyfile(varargin)
     if (flag=='WRITABLE') then
       Writable=%T;
     else
-      error('Third parameters incorrect.');
+      error(msprintf(gettext("%s: Wrong value for third input argument: %s expected.\n"),fname,"WRITABLE"));
     end
     break
   else
-    error(msprintf(gettext("%s: Wrong number of input arguments.'),fname));
+    error(msprintf(gettext("%s: Wrong number of input arguments.\n"),fname));
   end
 
   [SourceDir,SourceFile]=GetDirFile(SourceFile);
@@ -55,8 +55,8 @@ function [status,msg]=copyfile(varargin)
   Rep=isdir(SourceDir);
   if (Rep==%F) then
 // Check the source directory is a directory
-    Status=0;
-    ErrorMessage=msprintf(gettext("%s: Source directory %s does not exist or is unreadable."), fname ,SourceDir);
+    noErrorOccurred=0;
+    ErrorMessage=msprintf(gettext("%s: Source directory %s does not exist or is unreadable.\n"), fname ,SourceDir);
   else
 
    if MSDOS then
@@ -64,21 +64,21 @@ function [status,msg]=copyfile(varargin)
    else
      Rep=ls(Src)
    end
-    
+
     if (Rep==[]) then
 // Check the source file existes
-      Status=0;
-      ErrorMessage='Source file '+Src+' does not exists.';
+      noErrorOccurred=0;
+      ErrorMessage=msprintf(gettext("%s: Source file %s does not exist.\n"),fname,Src);
     end
 // Now checking destination directory...
     Rep=isdir(DestDir);
     if (Rep==%F) then
-      Status=0;
-      ErrorMessage='Destination directory '+DestDir+' does not exist or is unreadable.';
+      noErrorOccurred=0;
+      ErrorMessage=msprintf(gettext("%s: Destination directory %s does not exist or is unreadable.\n"),fname,DestDir);
     end
   end
 
-  if (Status==1) then
+  if (noErrorOccurred==1) then
     if MSDOS then
       cmd='copy '+Src+' '+Dest;
 	    batchlog = ' >'+ TMPDIR+'\copyfile.out' +' 2>'+TMPDIR+'\copyfile.err';
@@ -87,6 +87,7 @@ function [status,msg]=copyfile(varargin)
       batchlog = ' >'+ TMPDIR+'/copyfile.out' +' 2>'+TMPDIR+'/copyfile.err';
     end
     cmdline =cmd+batchlog;
+	// TODO: Rewrite this stuff
     status=unix(cmdline);
     if (status~=0) then
       if MSDOS then
@@ -123,7 +124,7 @@ function [status,msg]=copyfile(varargin)
       end
     end
   else
-    msg=ErrorMessage+' Cannot copy file, '+Src+' to '+Dest;
+    msg=ErrorMessage+msprintf(gettext("%s: Cannot copy file %s to %s.\n"),fname,Src,Dest);
   end
 
 endfunction
