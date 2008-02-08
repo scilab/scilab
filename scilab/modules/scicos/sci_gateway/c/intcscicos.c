@@ -36,6 +36,7 @@
 #include "cvstr.h"
 #include "sciprint.h"
 #include "libinter.h"
+#include "scicos-def.h"
 
 /* TO BE REMOVED */
 #include "BOOL.h"
