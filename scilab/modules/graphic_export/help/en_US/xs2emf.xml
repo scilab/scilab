@@ -53,20 +53,45 @@
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>xs2fig</LINK>
-    </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
-      <LINK>xs2ps</LINK>
-    </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
-      <LINK>xs2ppm</LINK>
-    </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
       <LINK>xs2bmp</LINK>
     </SEE_ALSO_ITEM>
+	
+    <SEE_ALSO_ITEM>
+      <LINK>xs2gif</LINK>
+	</SEE_ALSO_ITEM>
+	
+	<SEE_ALSO_ITEM>
+      <LINK>xs2jpg</LINK>
+	</SEE_ALSO_ITEM>
+	
+	<SEE_ALSO_ITEM>
+      <LINK>xs2png</LINK>
+	</SEE_ALSO_ITEM>
+	
+	<SEE_ALSO_ITEM>
+      <LINK>xs2ppm</LINK>
+    </SEE_ALSO_ITEM>
+	
+	<SEE_ALSO_ITEM>
+      <LINK>xs2eps</LINK>
+    </SEE_ALSO_ITEM>
+	
+	<SEE_ALSO_ITEM>
+      <LINK>xs2pdf</LINK>
+    </SEE_ALSO_ITEM>
+	
+	<SEE_ALSO_ITEM>
+      <LINK>xs2svg</LINK>
+    </SEE_ALSO_ITEM>
+	
+	<SEE_ALSO_ITEM>
+      <LINK>xs2ps</LINK>
+    </SEE_ALSO_ITEM>
+  
+    <SEE_ALSO_ITEM>
+      <LINK>xs2fig</LINK>
+    </SEE_ALSO_ITEM>  
+
   </SEE_ALSO>
 
   <AUTHOR>A.C</AUTHOR>
