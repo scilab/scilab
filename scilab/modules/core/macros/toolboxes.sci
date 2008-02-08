@@ -9,7 +9,7 @@ function [y]=toolboxes(path,flag,force)
   y=[];
   if rhs == 1 & typeof(path)=="constant" then 
     // execute the toolbox loader
-    y='exec("""+%toolboxes_dir+%toolboxes(path)+"/"+"loader.sce"+""");";
+    y='exec("""+%toolboxes_dir+%toolboxes(path)+filesep()+"loader.sce"+""");';
     return 
   end
     
@@ -27,7 +27,7 @@ function [y]=toolboxes(path,flag,force)
   files= listfiles('.');
   contribs=[]
   for k=1:size(files,'*') 
-    if fileinfo(files(k)+'/builder.sce')<>[] then 
+    if fileinfo(files(k)+'/loader.sce')<>[] then 
       contribs=[contribs;files(k)];
     end
   end
