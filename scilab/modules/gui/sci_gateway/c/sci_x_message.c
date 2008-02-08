@@ -14,10 +14,8 @@ int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len))
 
   int messageBoxID = 0;
 
-  char **buttonsText = NULL;
   int buttonsTextAdr = 0;
 
-  char *message = NULL;
   int messageAdr = 0;
 
   int buttonNumber = 0;
@@ -28,17 +26,11 @@ int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len))
 
   if (VarType(1) == sci_strings)
     {
-      GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &messageAdr);
-      if (nbCol !=1)
-        {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
-          return FALSE;
-        }
-      message = cstk(messageAdr);
+      GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &messageAdr);
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
+      Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), "sci_x_message");
       return FALSE;
     }
 
@@ -48,14 +40,22 @@ int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len))
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, "Scilab Message");
   /* Message */
-  setMessageBoxMessage(messageBoxID, message);
+  setMessageBoxMultiLineMessage(messageBoxID, (char**)messageAdr, nbCol*nbRow);
     
   if (Rhs == 2)
     {
-      GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonsTextAdr);
-      if ((nbCol*nbRow!=1) && (nbCol*nbRow!=2))
+      if (VarType(2) == sci_strings)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
+          GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonsTextAdr);
+          if ((nbCol*nbRow!=1) && (nbCol*nbRow!=2))
+            {
+              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), "sci_x_message");
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), "sci_x_message");
           return FALSE;
         }
 
