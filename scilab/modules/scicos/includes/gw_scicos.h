@@ -41,6 +41,24 @@ int C2F(sci_sci_tree2) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sci_tree3) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_sci_tree4) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_curblock) _PARAMS((char *fname,unsigned long fname_len));
+
+int C2F(sci_scicos_time) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_duplicate) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_diffobjs) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_pointer_xproperty) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_phase_simulation) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_set_xproperty) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_set_blockerror) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_ctree2) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_ctree3) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_ctree4) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_scicosim) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_getscicosvars) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_curblockc) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_buildouttb) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_permutobj) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_xstringb2) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_end_scicosim) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SCICOS__ */
 /*--------------------------------------------------------------------------*/

@@ -23,11 +23,14 @@
 /* INRIA 2008 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
-#include "gw_cscicos.h"
+#include "gw_scicos.h"
 #include "intcscicos.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_set_xproperty) _PARAMS((char *fname,unsigned long fname_len))
 {
-	return intsetxproperty(fname,fname_len);
+	intsetxproperty(fname,fname_len);
+	C2F(putlhsvar)();
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

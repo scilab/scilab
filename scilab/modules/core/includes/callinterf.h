@@ -62,7 +62,7 @@
 
 /* 45 */						#include "../../scicos/includes/gw_scicos.h"
 
-/* 46 */						#include "../../scicos/includes/gw_cscicos.h"
+/* 46 */						#include "../../dynamic_link/includes/gw_dynamic_link.h"
 
 /* 47 */						#include "../../windows_tools/includes/gw_windows_tools.h"
 
@@ -81,9 +81,7 @@
 
 /* 57 */						#include "../../graphic_export/includes/gw_graphic_export.h"
 
-/* 58 */						#include "../../incremental_link/includes/gw_incremental_link.h"
-
-/* 59 *///                        #include "../../mpi/includes/gw_mpi.h"
+/* 58 *///                        #include "../../mpi/includes/gw_mpi.h"
 
 
 /*-------------------------------------

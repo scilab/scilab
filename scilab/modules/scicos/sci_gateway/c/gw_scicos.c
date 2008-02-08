@@ -37,7 +37,25 @@ static gw_generic_table Tab[]={
 {C2F(sci_sci_tree2),"sci_tree2"},
 {C2F(sci_sci_tree3),"sci_tree3"},
 {C2F(sci_sci_tree4),"sci_tree4"},
-{C2F(sci_curblock),"curblock"}
+{C2F(sci_curblock),"curblock"},
+
+{C2F(sci_scicos_time),"scicos_time"},
+{C2F(sci_duplicate),"duplicate"},
+{C2F(sci_diffobjs),"diffobjs"},
+{C2F(sci_pointer_xproperty),"pointer_xproperty"},
+{C2F(sci_phase_simulation),"phase_simulation"},
+{C2F(sci_set_xproperty),"set_xproperty"},
+{C2F(sci_set_blockerror),"set_blockerror"},
+{C2F(sci_ctree2),"ctree2"},
+{C2F(sci_ctree3),"ctree3"},
+{C2F(sci_ctree4),"ctree4"},
+{C2F(sci_scicosim),"scicosim"},
+{C2F(sci_getscicosvars),"getscicosvars"},
+{C2F(sci_curblockc),"curblockc"},
+{C2F(sci_buildouttb),"buildouttb"},
+{C2F(sci_permutobj),"permutobj"},
+{C2F(sci_xstringb2),"xstringb2"},
+{C2F(sci_end_scicosim),"end_scicosim"}
 };
 /*--------------------------------------------------------------------------*/ 
 int C2F(gw_scicos)()

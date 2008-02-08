@@ -45,7 +45,6 @@ src/fortran/scifunc.f \
 src/fortran/itosci.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/intcscicos.c \
-sci_gateway/c/gw_cscicos.c \
 sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
 sci_gateway/c/sci_ctree2.c \
@@ -137,8 +136,7 @@ libsciscicos_la_include_HEADERS = includes/ExistScicos.h \
 includes/intcscicos.h \
 includes/scicos.h \
 includes/matscicos.h \
-includes/gw_scicos.h \
-includes/gw_cscicos.h
+includes/gw_scicos.h 
 
 #### scicos : demos files ####
 libsciscicos_la_demosdir=$(mydatadir)

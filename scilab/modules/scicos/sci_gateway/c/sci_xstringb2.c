@@ -22,12 +22,15 @@
 /* INRIA 2008 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
-#include "gw_cscicos.h"
+#include "gw_scicos.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_xstringb2) _PARAMS((char *fname,unsigned long fname_len))
 {
 	/* Later */
 	/* we try to use xstringb of scilab 5 */
+	LhsVar(1) = 0;
+	C2F(putlhsvar)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

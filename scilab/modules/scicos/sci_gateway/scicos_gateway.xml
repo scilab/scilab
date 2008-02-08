@@ -34,22 +34,22 @@
 <PRIMITIVE gatewayId="45" primitiveId="9" primitiveName="sci_tree4" />
 <PRIMITIVE gatewayId="45" primitiveId="10" primitiveName="curblock" />
 <!-- =================== -->
-<PRIMITIVE gatewayId="46" primitiveId="1" primitiveName="scicos_time" />
-<PRIMITIVE gatewayId="46" primitiveId="2" primitiveName="duplicate" />
-<PRIMITIVE gatewayId="46" primitiveId="3" primitiveName="diffobjs" />
-<PRIMITIVE gatewayId="46" primitiveId="4" primitiveName="pointer_xproperty" />
-<PRIMITIVE gatewayId="46" primitiveId="5" primitiveName="phase_simulation" />
-<PRIMITIVE gatewayId="46" primitiveId="6" primitiveName="set_xproperty" />
-<PRIMITIVE gatewayId="46" primitiveId="7" primitiveName="set_blockerror" />
-<PRIMITIVE gatewayId="46" primitiveId="8" primitiveName="ctree2" />
-<PRIMITIVE gatewayId="46" primitiveId="9" primitiveName="ctree3" />
-<PRIMITIVE gatewayId="46" primitiveId="10" primitiveName="ctree4" />
-<PRIMITIVE gatewayId="46" primitiveId="11" primitiveName="scicosim" />
-<PRIMITIVE gatewayId="46" primitiveId="12" primitiveName="getscicosvars" />
-<PRIMITIVE gatewayId="46" primitiveId="13" primitiveName="curblockc" />
-<PRIMITIVE gatewayId="46" primitiveId="14" primitiveName="buildouttb" />
-<PRIMITIVE gatewayId="46" primitiveId="15" primitiveName="permutobj" />
-<PRIMITIVE gatewayId="46" primitiveId="16" primitiveName="xstringb2" />
-<PRIMITIVE gatewayId="46" primitiveId="17" primitiveName="end_scicosim" />
+<PRIMITIVE gatewayId="45" primitiveId="11" primitiveName="scicos_time" />
+<PRIMITIVE gatewayId="45" primitiveId="12" primitiveName="duplicate" />
+<PRIMITIVE gatewayId="45" primitiveId="13" primitiveName="diffobjs" />
+<PRIMITIVE gatewayId="45" primitiveId="14" primitiveName="pointer_xproperty" />
+<PRIMITIVE gatewayId="45" primitiveId="15" primitiveName="phase_simulation" />
+<PRIMITIVE gatewayId="45" primitiveId="16" primitiveName="set_xproperty" />
+<PRIMITIVE gatewayId="45" primitiveId="17" primitiveName="set_blockerror" />
+<PRIMITIVE gatewayId="45" primitiveId="18" primitiveName="ctree2" />
+<PRIMITIVE gatewayId="45" primitiveId="19" primitiveName="ctree3" />
+<PRIMITIVE gatewayId="45" primitiveId="20" primitiveName="ctree4" />
+<PRIMITIVE gatewayId="45" primitiveId="21" primitiveName="scicosim" />
+<PRIMITIVE gatewayId="45" primitiveId="22" primitiveName="getscicosvars" />
+<PRIMITIVE gatewayId="45" primitiveId="23" primitiveName="curblockc" />
+<PRIMITIVE gatewayId="45" primitiveId="24" primitiveName="buildouttb" />
+<PRIMITIVE gatewayId="45" primitiveId="25" primitiveName="permutobj" />
+<PRIMITIVE gatewayId="45" primitiveId="26" primitiveName="xstringb2" />
+<PRIMITIVE gatewayId="45" primitiveId="27" primitiveName="end_scicosim" />
 <!-- =================== -->
 </GATEWAY>

@@ -71,7 +71,7 @@ static OpTab Interfaces[] = {
 	/* 43  */ {C2F(gw_integer)},
 	/* 44  */ {C2F(gw_linear_algebra2)},
 	/* 45  */ {C2F(gw_scicos)},
-	/* 46  */ {C2F(gw_cscicos)},
+	/* 46  */ {C2F(gw_dynamic_link)},
 	/* 47  */ {C2F(gw_windows_tools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)},
@@ -82,8 +82,8 @@ static OpTab Interfaces[] = {
 	/* 54  */ {C2F(gw_completion)},
 	/* 55  */ {C2F(gw_history_manager)},
 	/* 56  */ {C2F(gw_spreadsheet)},
-	/* 57  */ {C2F(gw_graphic_export)},
-	/* 58  */ {C2F(gw_dynamic_link)}
+	/* 57  */ {C2F(gw_graphic_export)}
+
 };
 
 

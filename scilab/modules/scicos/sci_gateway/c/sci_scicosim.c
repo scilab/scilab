@@ -23,11 +23,14 @@
 /* INRIA 2008 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
-#include "gw_cscicos.h"
+#include "gw_scicos.h"
 #include "intcscicos.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_scicosim) _PARAMS((char *fname,unsigned long fname_len))
 {
-	return intscicosimc(fname,fname_len);
+	intscicosimc(fname,fname_len);
+	C2F(putlhsvar)();
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

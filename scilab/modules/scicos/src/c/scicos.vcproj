@@ -205,10 +205,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_cscicos.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\gw_scicos.c"
 				>
 			</File>
@@ -379,10 +375,6 @@
 			>
 			<File
 				RelativePath="..\..\includes\ExistScicos.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\gw_cscicos.h"
 				>
 			</File>
 			<File
