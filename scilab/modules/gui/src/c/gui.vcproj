@@ -217,6 +217,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallMessageBox.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\CallScilabBridge.cpp"
 				>
 			</File>
@@ -627,6 +631,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallJxgetmouse.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallMessageBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallMessageBox.hxx"
 				>
 			</File>
 			<File

@@ -69,7 +69,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib libjvm.lib"
 				OutputFile="../../../../bin/sciconsole.dll"
 				LinkIncremental="1"
