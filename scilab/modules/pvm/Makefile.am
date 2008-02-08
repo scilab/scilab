@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
+### INRIA - Scilab 2006
 ##########
 
 if PVM
@@ -52,7 +52,6 @@ sci_gateway/c/sci_pvm_exit.c
 
 libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/  -I$(top_srcdir)/modules/output_stream/includes/
 
-
 pkglib_LTLIBRARIES = libscipvm.la
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -69,21 +68,21 @@ modulename=pvm
 libscipvm_la_rootdir = $(mydatadir)
 libscipvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### pvm : init scripts #### 
+#### pvm : init scripts #### 
 libscipvm_la_etcdir = $(mydatadir)/etc
 libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 
-#### pvm : gateway declaration #### 
+#### pvm : gateway declaration #### 
 libscipvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
-#### pvm : include files ####
+#### pvm : include files ####
 libscipvm_la_includedir=$(pkgincludedir)/pvm
 libscipvm_la_include_HEADERS = includes/gw_pvm.h
 
-#### pvm : demos files ####
+#### pvm : demos files ####
 libscipvm_la_demosdir=$(mydatadir)/demos/
-nobase_libscipvm_la_demos_DATA = demos/pvm.dem \
+libscipvm_la_demos_DATA = demos/pvm.dem \
 demos/pvm1.sce \
 demos/script.sce
 
@@ -91,7 +90,7 @@ include $(top_srcdir)/Makefile.incl.am
 
 else
 
-PVM_C_SOURCES = src/nopvm/nopvm.c 
+PVM_C_SOURCES = src/nopvm/nopvm.c
 
 pkglib_LTLIBRARIES = libscipvm.la
 
@@ -104,12 +103,10 @@ libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/
 
 modulename=pvm
 
-#### pvm : init scripts #### 
+#### pvm : init scripts ####
 libscipvm_la_etcdir = $(mydatadir)/etc
 libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 
 include $(top_srcdir)/Makefile.incl.am
 
 endif
-
-
