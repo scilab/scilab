@@ -1,4 +1,3 @@
 function r=with_javasci()
-  [v,opt]=getversion()
-  r=or(opt=='javasci')
+  r = with_module('javasci');
 endfunction
