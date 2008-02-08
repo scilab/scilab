@@ -1,6 +1,12 @@
                      Main Changes Scilab 4.X -> 5.0
                      ==============================
 
+License:
+========
+ - License changed to CeCILL (fully compatible with the GPL v2)
+	More information about the CeCILL http://www.cecill.info/index.en.html
+	Therefore, Scilab is now a 100% free software.
+
 
 Graphical User Interface:
 =========================
@@ -142,6 +148,9 @@ Input/Output functions (files):
 	+ pathsep             - returns path separator for current platform
 	+ maxfiles            - sets the limit for the number of files a scilab is allowed to have open simultaneously.
 	+ findfiles           - Finding all files with a given filespec
+
+ - Profile changed:
+	+ ls under Linux/Unix has lost his second input argument (unix/linux command line option). It is now based on listfiles.
 	
  - Rewrite in native code:
 	+ isdir
@@ -283,6 +292,7 @@ Internal API:
 	+ "p" => SCILAB_POINTER_DATATYPE
 	+ "h" => GRAPHICAL_HANDLE_DATATYPE
 	+ "f" => EXTERNAL_DATATYPE
+ - define TRUE_ and FALSE_ removed for TRUE and FALSE
 
 
 
