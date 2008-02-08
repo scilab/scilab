@@ -42,7 +42,7 @@
     </DESCRIPTION>
     <EXAMPLE>
 <![CDATA[
-base2dec(['ABC','0','A'],12)
+base2dec(['ABC','0','A'],16)
 ]]>
     </EXAMPLE>
 
