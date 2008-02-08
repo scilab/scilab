@@ -292,6 +292,7 @@ Internal API:
 	+ "p" => SCILAB_POINTER_DATATYPE
 	+ "h" => GRAPHICAL_HANDLE_DATATYPE
 	+ "f" => EXTERNAL_DATATYPE
+	These declarations are in modules/core/includes/stackTypeVariable.h
  - define TRUE_ and FALSE_ removed for TRUE and FALSE
 
 
