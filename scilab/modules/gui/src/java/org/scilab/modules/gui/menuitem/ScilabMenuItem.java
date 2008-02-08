@@ -6,7 +6,12 @@ package org.scilab.modules.gui.menuitem;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -223,4 +228,26 @@ public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 		ScilabBridge.setEnabled(this, status);
 	}
 	
+	/**
+	 * Add a MenuItem to this MenuItem
+	 * @param childMenuItem the MenuItem we want to add
+	 */
+	public void add(Menu childMenuItem) {
+		//ScilabBridge.add(this, childMenuItem);
+		SimpleMenuItem oldComponent = component;
+		component = ScilabMenu.createMenu().getAsSimpleMenu();
+		component.setText(getText());
+		//component.add(childMenuItem);
+		((JMenuItem) oldComponent).getParent().add((JMenu) component);
+		((JMenuItem) oldComponent).getParent().remove((JMenuItem) oldComponent);
+		oldComponent.destroy();
+	}
+
+	/**
+	 * Destroy the MenuItem
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
+
 }
