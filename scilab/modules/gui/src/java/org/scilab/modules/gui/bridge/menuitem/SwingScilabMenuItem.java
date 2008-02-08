@@ -3,10 +3,14 @@
 
 package org.scilab.modules.gui.bridge.menuitem;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -152,5 +156,23 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Add a MenuItem to this MenuItem
+	 * @param childMenuItem the MenuItem we want to add
+	 */
+	public void add(MenuItem childMenuItem) {
+		int index = getParent().getComponentZOrder(this);
+		Menu newMenu = ScilabMenu.createMenu();
+		newMenu.setText(getText());
+		destroy();
+		((JMenu) getParent()).add((JMenu) newMenu.getAsSimpleMenu());
+	}
+
+	/**
+	 * Destroy the MenuItem
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 
 }

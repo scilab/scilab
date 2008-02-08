@@ -242,4 +242,12 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the Menu
+	 * @see org.scilab.modules.gui.menuitem.SimpleMenuItem#destroy()
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
+
 }

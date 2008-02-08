@@ -4,6 +4,7 @@
 package org.scilab.modules.gui.menu;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -11,7 +12,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public interface SimpleMenu extends Widget {
+public interface SimpleMenu extends SimpleMenuItem {
 	
 	/**
 	 * Append a MenuItem to the Menu

@@ -206,12 +206,29 @@ public class ScilabMenuItemBridge {
 	}
 
 	/**
-	 * Set the Relief of the Menu
-	 * @param menuItem the Menu which we want to set the Relief of
+	 * Set the Relief of the MenuItem
+	 * @param menuItem the MenuItem which we want to set the Relief of
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */
 	public static void setRelief(MenuItem menuItem, String reliefType) {
 		menuItem.getAsSimpleMenuItem().setRelief(reliefType);
+	}
+	
+	/**
+	 * Add a MenuItem to the MenuItem
+	 * @param parentMenuItem the MenuItem where we want to add a MenuItem
+	 * @param childMenuItem the MenuItem we want to add
+	 */
+	public static void add(MenuItem parentMenuItem, MenuItem childMenuItem) {
+		parentMenuItem.getAsSimpleMenuItem().add(childMenuItem);
+	}
+	
+	/**
+	 * Destroy the MenuItem
+	 * @param menuItem the MenuItem we want to destroy
+	 */
+	public static void destroy(MenuItem menuItem) {
+		menuItem.getAsSimpleMenuItem().destroy();
 	}
 
 }

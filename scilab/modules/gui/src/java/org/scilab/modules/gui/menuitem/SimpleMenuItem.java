@@ -3,6 +3,7 @@
 
 package org.scilab.modules.gui.menuitem;
 
+import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -35,4 +36,16 @@ public interface SimpleMenuItem extends Widget {
 	 * @param status true if the menu item is enabled
 	 */
 	void setEnabled(boolean status);
+	
+	/**
+	 * Add a MenuItem to this MenuItem
+	 * @param childMenuItem the MenuItem we want to add
+	 */
+	void add(MenuItem childMenuItem);
+
+	/**
+	 * Destroy the MenuItem
+	 */
+	void destroy();
+
 }
