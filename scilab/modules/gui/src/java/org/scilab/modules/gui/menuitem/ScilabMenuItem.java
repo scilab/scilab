@@ -240,7 +240,7 @@ public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 		//component.add(childMenuItem);
 		((JMenuItem) oldComponent).getParent().add((JMenu) component);
 		((JMenuItem) oldComponent).getParent().remove((JMenuItem) oldComponent);
-		oldComponent.destroy();
+		//oldComponent.destroy();
 	}
 
 	/**
