@@ -272,9 +272,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	int size_offsets = 45;
 	int size_offsets_max;
 	int *offsets = NULL;
-	#if !defined NOPOSIX
-		int posix = 0;
-	#endif
 	int debug = 0;
 	int all_use_dfa = 0;
 	BOOL LOOP_PCRE_TST = FALSE;
@@ -304,10 +301,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	{
 		pcre *re = NULL;
 		pcre_extra *extra = NULL;
-		#if !defined NOPOSIX  /* There are still compilers that require no indent */
-			regex_t preg;
-			int do_posix = 0;
-		#endif
 		const char *error=NULL;
 		char *p=NULL; 
 		char	*pp=NULL;
@@ -448,9 +441,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			case 'J': options |= PCRE_DUPNAMES; break;
 			case 'M': log_store = 1; break;
 			case 'N': options |= PCRE_NO_AUTO_CAPTURE; break;
-		#if !defined NOPOSIX
-			case 'P': do_posix = 1; break;
-		#endif
 			case 'S': do_study = 1; break;
 			case 'U': options |= PCRE_UNGREEDY; break;
 			case 'X': options |= PCRE_EXTRA; break;
@@ -910,18 +900,11 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
     continue;
     }    /* End of loop for data lines */
 
-  CONTINUE:
+  
 
-	if (re != NULL) FREE(re);
-	if (extra != NULL) FREE(extra);
-	if (tables != NULL)
-    {
-		FREE((void *)tables);
-		setlocale(LC_CTYPE, "C");
-		locale_set = 0;
-    }
+
   }
-	EXIT:
+	
 	FREE(buffer);
 	FREE(offsets);
 	return PCRE_EXIT;
