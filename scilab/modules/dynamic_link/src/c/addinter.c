@@ -72,8 +72,7 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 
 	if ( inum >=  MAXINTERF ) 
 	{
-		ierr = -1;
-		return ierr;
+		return -1;
 	}
 	else
 	{
@@ -99,8 +98,7 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 		if ( SearchInDynLinks(spname,&DynInterf[inum].func) < 0 ) 
 		{
 			/* Maximum number of dynamic interfaces */
-			ierr = -6;
-			return ierr;
+			return -6;
 		}
 		else
 		{
