@@ -2,8 +2,6 @@
 // scicos module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
-//if %scicos then
-
 clear  scicos_pal // explicitly clear %helps scicos_pal variables
 //Load  functions librarie
 load('SCI/modules/scicos/macros/scicos_auto/lib')
@@ -30,6 +28,4 @@ load('SCI/modules/scicos/macros/scicos_utils/lib')
    clear initial_scicos_tables
 end
 // Define Scicos data tables ===========================================
-
-//end // if %scicos 
 

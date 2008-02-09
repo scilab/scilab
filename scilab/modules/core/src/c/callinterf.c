@@ -14,7 +14,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-
+#include "gw_dynamic_scicos.h"
 
 static  jmp_buf jmp_env;
 
@@ -70,7 +70,7 @@ static OpTab Interfaces[] = {
 	/* 42  */ {C2F(gw_pvm)},
 	/* 43  */ {C2F(gw_integer)},
 	/* 44  */ {C2F(gw_linear_algebra2)},
-	/* 45  */ {C2F(gw_scicos)},
+	/* 45  */ {C2F(gw_dynamic_scicos)},
 	/* 46  */ {C2F(gw_dynamic_link)},
 	/* 47  */ {C2F(gw_windows_tools)},
 	/* 48  */ {C2F(gw_time)},

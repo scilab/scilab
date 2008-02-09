@@ -3,8 +3,6 @@
 // of a scilab session for scicos module
 // Copyright INRIA 2006
 // ====================================================================
-if %scicos then
 // delete help chapter
 del_help_chapter('scicos',%T);
-end
 // ====================================================================

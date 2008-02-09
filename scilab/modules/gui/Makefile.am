@@ -11,7 +11,6 @@ src/c/getlookandfeel.c \
 src/c/setlookandfeel.c \
 src/c/getinstalledlookandfeels.c \
 src/c/TerminateGui.c \
-src/c/guitable.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
 src/c/getScreenProperties.c \

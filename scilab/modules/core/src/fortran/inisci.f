@@ -188,9 +188,9 @@ c     . hard predefined variables
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     18 is the number of predefined variables 
-c     20 - 1 blank not include
-      bot=isiz-18
+c     17 is the number of predefined variables 
+c     18 - 1 blank not include
+      bot=isiz-17
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -199,13 +199,13 @@ c     $        -> size : sadr(10-1) + 2
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
 c     4 strings
-c     9 booleans
+c     7 booleans
       call getcomp(bufcomp,nbcomp)
       call getsci(bufsci,nbsci)
       call getscihome(bufscihome,nbscihome)
       call gettmpdir(buftmp,nbtmpdir)
       lpvar = (sadr(10-1) + 2) 
-     $     + 8*sadr(5) 
+     $     + 7*sadr(5) 
      $     + 4*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
      $     + 1*(sadr(6+nbcomp)+1)
@@ -240,13 +240,6 @@ c     . MSDOS
       vname = ' '
       vname(1:5) = "MSDOS"
       call withmsdos(irep)
-      call cvname(idloc,vname,0)
-      call crebmatvar(idloc,k,1,1,irep)
-      k=k+1 
-c     . %scicos
-      vname = ' '
-      vname(1:7) = "%scicos"
-      call withscicos(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1 

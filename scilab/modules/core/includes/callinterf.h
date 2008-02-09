@@ -60,7 +60,7 @@
 /* 43 */						#include "../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../linear_algebra/includes/gw_linear_algebra2.h"
 
-/* 45 */						#include "../../scicos/includes/gw_scicos.h"
+/* 45 */						#include "gw_dynamic_scicos.h"
 
 /* 46 */						#include "../../dynamic_link/includes/gw_dynamic_link.h"
 

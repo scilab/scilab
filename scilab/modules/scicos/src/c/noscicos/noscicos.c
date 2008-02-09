@@ -4,16 +4,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "Scierror.h"
-#include "ExistScicos.h"
 #include "noscicos.h"
 /*--------------------------------------------------------------------------*/ 
 int C2F(gw_scicos)()
-{
-	Scierror(999,"Scicos interface not installed.\n");
-	return 0;
-}
-/*--------------------------------------------------------------------------*/ 
-int C2F(gw_cscicos)()
 {
 	Scierror(999,"Scicos interface not installed.\n");
 	return 0;
@@ -23,9 +16,4 @@ int haltscicos(char *name, integer *win, integer *entry,long int name_len)
 {
 	return 0;
 } 
-/*--------------------------------------------------------------------------*/ 
-BOOL ExistScicos(void)
-{
-	return FALSE;
-}
 /*--------------------------------------------------------------------------*/ 

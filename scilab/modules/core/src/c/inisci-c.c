@@ -23,12 +23,6 @@
 #include "scilabmode.h"
 #include "scilabDefaults.h"
 /*****************************************************************************/
-int C2F(withscicos)(int *rep)
-{ 
-	*rep = ExistScicos(); 
-	return 0;
-}
-/*****************************************************************************/
 int C2F(withmodelicac)(int *rep)
 {
 	if (ExistModelicac())
@@ -61,8 +55,6 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
   *nbuf = (int)strlen(buf);
   return 0;
 }
-
-
 /*****************************************************************************/
 /**
  * Set the SCI path and initialize the scilab environement path

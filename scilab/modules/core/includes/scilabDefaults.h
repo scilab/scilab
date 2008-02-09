@@ -17,16 +17,9 @@
 /* Where is the modelicac compiler 
  * @TODO : update for Linux ... it is a wrong path */
 #ifdef _MSC_VER
-#define ModelicacName "/modules/scicos/bin/modelicac.exe"
+#define ModelicacName "/bin/modelicac.exe"
 #else
 #define ModelicacName "/modules/scicos/bin/modelicac"
-#endif
-
-/* What is the name of the javasci librairies and where to find it (Windows) */
-#ifdef _MSC_VER
-#define JavaSCIName "/bin/javasci.dll"
-#else
-#define JavaSCIName "libjavasci"
 #endif
 
 /* Where the module list file is */

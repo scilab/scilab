@@ -2,8 +2,4 @@
 // scicos_blocks module initialisation file 
 // Copyright INRIA 2008
 // ====================================================================
-if %scicos then
-
-
-end // if %scicos 
 // ====================================================================

@@ -15,7 +15,6 @@ if SCICOS
 pkglib_LTLIBRARIES =  libscisundials.la libsciscicos.la
 
 SCICOS_C_SOURCES = src/c/tree.c \
-src/c/ExistScicos.c \
 src/c/sciblk2i.c \
 src/c/scicos_malloc.c \
 src/c/import.c \
@@ -132,8 +131,7 @@ libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
 #### scicos : include files ####
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
-libsciscicos_la_include_HEADERS = includes/ExistScicos.h \
-includes/intcscicos.h \
+libsciscicos_la_include_HEADERS = includes/intcscicos.h \
 includes/scicos.h \
 includes/matscicos.h \
 includes/gw_scicos.h 
