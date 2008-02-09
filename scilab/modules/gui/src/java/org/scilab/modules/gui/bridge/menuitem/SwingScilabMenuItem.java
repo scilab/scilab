@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.menuitem;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -26,6 +27,8 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 
 	private static final long serialVersionUID = 1L;
+	
+	private CallBack callback;
 
 	/**
 	 * Constructor
@@ -40,7 +43,8 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * @param commandType the type of the command that will be executed.
 	 */
 	public void setCallback(String command, int commandType) {
-		addActionListener(ScilabCallBack.create(command, commandType));
+		callback = ScilabCallBack.create(command, commandType); 
+		addActionListener(callback);
 	}
 
 	/**
@@ -174,5 +178,20 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	public void destroy() {
 		getParent().remove(this);
 	}
-
+	
+	/**
+	 * Set if the menu item is enabled or not
+	 * @param status true if the menu item is enabled
+	 */
+	public void setEnabled(boolean status) {
+		super.setEnabled(status);
+		/* (Des)Activate the callback */ 
+		if (callback != null) {
+			if (status) {
+				addActionListener(callback);
+			} else {
+				removeActionListener(callback);
+			}
+		}
+	}
 }

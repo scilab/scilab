@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
@@ -25,6 +26,8 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	
 	private static final long serialVersionUID = 2277539556048935959L;
+	
+	private CallBack callback;
 
 	/**
 	 * Constructor
@@ -96,7 +99,8 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @param commandType the type of the command that will be executed.
 	 */
 	public void setCallback(String command, int commandType) {
-		addActionListener(ScilabCallBack.create(command, commandType));
+		callback = ScilabCallBack.create(command, commandType);
+		addActionListener(callback);
 	}
 
 	/**
@@ -105,6 +109,14 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	public void setEnabled(boolean status) {
 		super.setEnabled(status);
+		/* (Des)Activate the callback */ 
+		if (callback != null) {
+			if (status) {
+				addActionListener(callback);
+			} else {
+				removeActionListener(callback);
+			}
+		}
 	}
 
 	/**
@@ -166,6 +178,5 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setRelief(String reliefType) {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
-
 }
 

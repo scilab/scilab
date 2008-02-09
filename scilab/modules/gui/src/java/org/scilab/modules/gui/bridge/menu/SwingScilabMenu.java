@@ -250,4 +250,19 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 		getParent().remove(this);
 	}
 
+	/**
+	 * Set if the menu is enabled or not
+	 * @param status true if the menu is enabled
+	 */
+	public void setEnabled(boolean status) {
+		super.setEnabled(status);
+		/* (Des)Activate the callback */ 
+		if (callback != null) {
+			if (status) {
+				addMouseListener(customedMouseListener);
+			} else {
+				removeMouseListener(customedMouseListener);
+			}
+		}
+	}
 }
