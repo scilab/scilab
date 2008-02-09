@@ -2,6 +2,7 @@
 /* INRIA 2008 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "machine.h"
 #include "gw_dynamic_scicos.h"
 #include "callDynamicGateway.h"

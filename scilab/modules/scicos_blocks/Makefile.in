@@ -4188,7 +4188,7 @@ check-local: $(top_builddir)/scilab-bin
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
-		echo "Error : Cannot build $< : Scilab has not been built"; \
+		echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 	fi)

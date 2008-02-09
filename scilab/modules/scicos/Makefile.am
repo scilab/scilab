@@ -133,7 +133,6 @@ libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/intcscicos.h \
 includes/scicos.h \
-includes/matscicos.h \
 includes/gw_scicos.h 
 
 #### scicos : demos files ####
