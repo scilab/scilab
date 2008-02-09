@@ -3,7 +3,6 @@
 
 package org.scilab.modules.gui.menuitem;
 
-import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
