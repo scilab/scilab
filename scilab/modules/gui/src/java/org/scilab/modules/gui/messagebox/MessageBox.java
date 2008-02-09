@@ -69,5 +69,16 @@ public interface MessageBox extends UIElement {
 	 * @return the value size
 	 */
 	int getValueSize();
+	
+	/**
+	 * Set the items of the listbox in the MessageBox
+	 * @param items the items to set
+	 */
+	void setListBoxItems(String[] items);
 
+	/**
+	 * Get the index of the selected item in the listbox in the MessageBox
+	 * @return the index
+	 */
+	int getSelectedItem();
 }

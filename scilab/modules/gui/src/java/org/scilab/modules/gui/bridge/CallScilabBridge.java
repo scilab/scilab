@@ -898,6 +898,24 @@ public class CallScilabBridge {
 		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getValueSize();
 	}
 
+	/**
+	 * Set the items of the listbox in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @param items the items to set
+	 */
+	public static void setMessageBoxListBoxItems(int id, String[] items) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setListBoxItems(items);
+	}
+
+	/**
+	 * Get the index of the selected item in the listbox in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @return the index
+	 */
+	public static int getMessageBoxSelectedItem(int id) {
+		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectedItem();
+	}
+	
 	/************************/
 	/*                      */
 	/* OBJECT COLORS BRIDGE */

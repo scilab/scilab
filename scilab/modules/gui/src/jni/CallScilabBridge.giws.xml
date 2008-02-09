@@ -387,5 +387,12 @@
 	<method name="getMessageBoxValueSize" returnType="int" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
+	<method name="setMessageBoxListBoxItems" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="items" type="String[]"/>
+        </method>      
+	<method name="getMessageBoxSelectedItem" returnType="int" modifier="static">
+            <parameter name="id" type="int"/>
+        </method>      
   </object>
 </package>

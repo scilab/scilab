@@ -86,5 +86,22 @@ char ** getMessageBoxValue(int ID);
  */
 int getMessageBoxValueSize(int ID);
 
+/**
+ * Set the items of the listbox of the MessageBox
+ *
+ * @param ID the ID of the MessageBox 
+ * @param items the items to set 
+ * @param nbItems the number of items
+ */
+void setMessageBoxListBoxItems(int ID, char** items, int nbItems);
+
+/**
+ * Get the selected item in the listbox of the MessageBox
+ *
+ * @param ID the ID of the MessageBox 
+ * @return the selected item index (0 if canceled)
+ */
+int getMessageBoxSelectedItem(int ID);
+
 #endif /* !__CALLMESSAGEBOX_H__ */
 

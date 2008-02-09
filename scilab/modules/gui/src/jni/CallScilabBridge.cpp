@@ -202,6 +202,8 @@ voidsetMessageBoxButtonsLabelsjintjobjectArrayID=NULL;
 voidsetMessageBoxInitialValuejintjobjectArrayID=NULL; 
 jobjectArraygetMessageBoxValuejintID=NULL; 
 jintgetMessageBoxValueSizejintID=NULL; 
+voidsetMessageBoxListBoxItemsjintjobjectArrayID=NULL; 
+jintgetMessageBoxSelectedItemjintID=NULL; 
 
 
 }
@@ -329,6 +331,8 @@ voidsetMessageBoxButtonsLabelsjintjobjectArrayID=NULL;
 voidsetMessageBoxInitialValuejintjobjectArrayID=NULL; 
 jobjectArraygetMessageBoxValuejintID=NULL; 
 jintgetMessageBoxValueSizejintID=NULL; 
+voidsetMessageBoxListBoxItemsjintjobjectArrayID=NULL; 
+jintgetMessageBoxSelectedItemjintID=NULL; 
 
 
 }
@@ -3084,6 +3088,76 @@ exit(EXIT_FAILURE);
 }
 
                         jint res =  (jint) curEnv->CallIntMethod(cls, jintgetMessageBoxValueSizejintID ,id);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setMessageBoxListBoxItems (JavaVM * jvm_, long id, char ** items, int itemsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxListBoxItemsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxListBoxItems", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetMessageBoxListBoxItemsjintjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxListBoxItems" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+
+// create java array of strings.
+jobjectArray items_ = curEnv->NewObjectArray( itemsSize, stringArrayClass, NULL);
+if (items_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < itemsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( items[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( items_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxListBoxItemsjintjobjectArrayID ,id, items_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::getMessageBoxSelectedItem (JavaVM * jvm_, long id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jintgetMessageBoxSelectedItemjintID = curEnv->GetStaticMethodID(cls, "getMessageBoxSelectedItem", "(I)I" ) ;
+if (jintgetMessageBoxSelectedItemjintID == NULL) {
+std::cerr << "Could not access to the method " << "getMessageBoxSelectedItem" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetMessageBoxSelectedItemjintID ,id);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

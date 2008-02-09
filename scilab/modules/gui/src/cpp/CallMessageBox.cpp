@@ -54,3 +54,16 @@ int getMessageBoxValueSize(int ID)
 {
   return CallScilabBridge::getMessageBoxValueSize(getScilabJavaVM(), ID);
 }
+
+void setMessageBoxListBoxItems(int ID, char** items, int nbItems)
+{
+  CallScilabBridge::setMessageBoxListBoxItems(getScilabJavaVM(), ID, items, nbItems);
+}
+
+int getMessageBoxSelectedItem(int ID)
+{
+  return CallScilabBridge::getMessageBoxSelectedItem(getScilabJavaVM(), ID);
+}
+
+
+

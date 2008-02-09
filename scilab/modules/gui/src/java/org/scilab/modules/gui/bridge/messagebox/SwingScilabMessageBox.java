@@ -23,9 +23,17 @@ public class SwingScilabMessageBox extends JOptionPane implements SimpleMessageB
 	
 	private String[] buttonsLabels;
 	
+	/**
+	 * Used for x_dialog
+	 */
 	private String[] initialValue;
-
 	private String userValue;
+	
+	/**
+	 * Used for x_choose
+	 */
+	private String[] listboxItems;
+	private int selectedItem;
 	
 	/**
 	 * Default constructor
@@ -79,13 +87,30 @@ public class SwingScilabMessageBox extends JOptionPane implements SimpleMessageB
 	 */
 	public void displayAndWait() {
 
-		if (buttonsLabels == null && initialValue == null) {
+		if (buttonsLabels == null && initialValue == null && listboxItems == null) {
 			selectedButton = showConfirmDialog(this, getMessage(), getFrameForComponent(this).getTitle(), JOptionPane.PLAIN_MESSAGE);
 			selectedButton++; // Because Scilab indices begin at 1 and not 0
-		} else if (buttonsLabels != null) {
+		} else if (buttonsLabels != null && listboxItems == null) {
 			selectedButton = showOptionDialog(this, getMessage(), getFrameForComponent(this).getTitle(),
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, buttonsLabels, buttonsLabels[0]);
 			selectedButton++; // Because Scilab indices begin at 1 and not 0
+		} else if (listboxItems != null) {
+			String selection = (String) showInputDialog(this,
+					getMessage(),
+                    getFrameForComponent(this).getTitle(),
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    listboxItems,
+                    listboxItems[0]);
+			
+			/* Compute index to be returned */
+			selectedItem = 0;
+			for (int k = 0; k < listboxItems.length; k++) {
+				if (listboxItems[k] == selection) {
+					selectedItem = k + 1;
+					break;
+				}
+			}
 		} else {
 			// Convert to a single line string
 			String initialValueAsString = "";
@@ -142,6 +167,22 @@ public class SwingScilabMessageBox extends JOptionPane implements SimpleMessageB
 		} else {
 			return userValue.split(SEMI_COLON).length;
 		}
+	}
+
+	/**
+	 * Set the items of the listbox in the MessageBox
+	 * @param items the items to set
+	 */
+	public void setListBoxItems(String[] items) {
+		listboxItems = items;
+	}
+	
+	/**
+	 * Get the index of the selected item in the listbox in the MessageBox
+	 * @return the index
+	 */
+	public int getSelectedItem() {
+		return selectedItem;
 	}
 
 }

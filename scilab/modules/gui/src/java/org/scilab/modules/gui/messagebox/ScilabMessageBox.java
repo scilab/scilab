@@ -116,6 +116,22 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 	}
 
 	/**
+	 * Set the items of the listbox in the MessageBox
+	 * @param items the items to set
+	 */
+	public void setListBoxItems(String[] items) {
+		ScilabBridge.setListBoxItems(this, items);
+	}
+
+	/**
+	 * Get the index of the selected item in the listbox in the MessageBox
+	 * @return the index
+	 */
+	public int getSelectedItem() {
+		return ScilabBridge.getSelectedItem(this);
+	}
+
+	/**
 	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
 	 */
 	public void draw() {

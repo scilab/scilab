@@ -1,18 +1,93 @@
 /*--------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
+/* Allan CORNET - INRIA 2006 */
+/* Vincent COUVERT - INRIA 2008 (Java version) */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_gui.h"
 #include "machine.h"
 #include "stack-c.h"
-/*--------------------------------------------------------------------------*/
-//extern int C2F(scichoose) _PARAMS((char *fname,unsigned long fname_len));
+#include "localization.h"
+#include "CallMessageBox.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
 {
-	//C2F(scichoose)(fname,fname_len);
-	LhsVar(1)=0;
-	C2F(putlhsvar)();
-	return 0;
+  int nbRow = 0, nbCol = 0;
+  int nbRowItems = 0, nbColItems = 0;
+
+  int messageBoxID = 0;
+
+  int itemsAdr = 0;
+  int buttonLabelAdr = 0;
+
+  int messageAdr = 0;
+
+  int userValueAdr = 0;
+  int userValue = 0;
+
+  CheckRhs(2,3);
+  CheckLhs(0,1);
+
+  if (VarType(1) == sci_strings)
+    {
+      GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRowItems, &nbColItems, &itemsAdr);
+    }
+  else
+    {
+      Scierror(999, _("%s: Wrong type for first input argument: String vector expected.\n"), "sci_x_choose");
+      return FALSE;
+    }
+
+  if (VarType(2) == sci_strings)
+    {
+      GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &messageAdr);
+    }
+  else
+    {
+      Scierror(999, _("%s: Wrong type for second input argument: Single String expected.\n"), "sci_x_choose");
+      return FALSE;
+    }
+
+  /* Create the Java Object */
+  messageBoxID = createMessageBox();
+
+  /* Title is a default title */
+  setMessageBoxTitle(messageBoxID, _("Scilab choose message"));
+  /* Message */
+  setMessageBoxMultiLineMessage(messageBoxID, (char **)messageAdr, nbCol*nbRow);
+  /* ListBox Items */
+  setMessageBoxListBoxItems(messageBoxID, (char **)itemsAdr, nbColItems*nbRowItems);
+    
+  if (Rhs == 3)
+    {
+      if (VarType(3) ==  sci_strings)
+        {
+          GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonLabelAdr);
+          if (nbRow*nbCol != 1)
+          {
+            Scierror(999, _("%s: Wrong type for third input argument: Single String expected.\n"), "sci_x_dialog");
+            return FALSE;
+          }
+        }
+      else 
+        {
+          Scierror(999, _("%s: Wrong type for third input argument: Single String expected.\n"), "sci_x_dialog");
+          return FALSE;
+        }
+
+      setMessageBoxButtonsLabels(messageBoxID, (char **)buttonLabelAdr, nbCol*nbRow);
+    }
+
+  /* Display it and wait for a user input */
+  messageBoxDisplayAndWait(messageBoxID);
+
+  /* Read the user answer */
+  userValue = getMessageBoxSelectedItem(messageBoxID);
+
+  nbRow = 1;nbCol = 1;
+  CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &userValueAdr);
+  *stk(userValueAdr) = userValue;
+
+  LhsVar(1) = Rhs+1;
+  C2F(putlhsvar)();
+  return TRUE;
 }
 /*--------------------------------------------------------------------------*/

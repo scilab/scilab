@@ -3597,4 +3597,22 @@ public class ScilabBridge {
 		return ScilabMessageBoxBridge.getValueSize(messageBox);
 	}
 
+	/**
+	 * Set the items of the listbox in the MessageBox
+	 * @param messageBox the MessageBox we want to set the items of
+	 * @param items the items to set
+	 */
+	public static void setListBoxItems(MessageBox messageBox, String[] items) {
+		ScilabMessageBoxBridge.setListBoxItems(messageBox, items);
+	}
+	
+	/**
+	 * Get the index of the selected item in the listbox in the MessageBox
+	 * @param messageBox the MessageBox we want to get the selected item of
+	 * @return the index
+	 */
+	public static int getSelectedItem(MessageBox messageBox) {
+		return ScilabMessageBoxBridge.getSelectedItem(messageBox);
+	}
+
 }
