@@ -137,7 +137,11 @@ public class SwingScilabMessageBox extends JOptionPane implements SimpleMessageB
 	 * @return the value size
 	 */
 	public int getValueSize() {
-		return userValue.split(SEMI_COLON).length;
+		if (userValue == null) {
+			return 0;
+		} else {
+			return userValue.split(SEMI_COLON).length;
+		}
 	}
 
 }
