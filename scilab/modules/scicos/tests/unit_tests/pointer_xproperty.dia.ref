@@ -1,0 +1,2 @@
+ierr=execstr("[xprop]=pointer_xproperty()","errcatch") ;
+if ierr <> 999 then bugmes();quit;end

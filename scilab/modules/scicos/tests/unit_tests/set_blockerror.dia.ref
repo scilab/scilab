@@ -1,0 +1,8 @@
+ierr=execstr("set_blockerror(-1)","errcatch");
+if ierr <> 999 then bugmes();quit;end
+ierr=execstr("set_blockerror(-2)","errcatch");
+if ierr <> 999 then bugmes();quit;end
+ierr=execstr("set_blockerror(-3)","errcatch");
+if ierr <> 999 then bugmes();quit;end
+ierr=execstr("set_blockerror(-16)","errcatch");
+if ierr <> 999 then bugmes();quit;end
