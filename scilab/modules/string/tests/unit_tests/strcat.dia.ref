@@ -14,6 +14,10 @@ if strcat('abc')<>'abc' then bugmes();quit;end
 //===============================
 if strcat('abc','sd')<>'abc' then bugmes();quit;end
 //===============================
+if strcat('') <> '' then bugmes();quit;end
+//===============================
+if strcat(['','']) <> '' then bugmes();quit;end
+//===============================
 if strcat('','')<>'' then bugmes();quit;end
 //===============================
 if strcat([])<>'' then bugmes();quit;end

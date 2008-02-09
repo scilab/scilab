@@ -14,6 +14,10 @@ if strcat('abc')<>'abc' then pause,end
 //===============================
 if strcat('abc','sd')<>'abc' then pause,end
 //===============================
+if strcat('') <> '' then pause,end
+//===============================
+if strcat(['','']) <> '' then pause,end
+//===============================
 if strcat('','')<>'' then pause,end
 //===============================
 if strcat([])<>'' then pause,end

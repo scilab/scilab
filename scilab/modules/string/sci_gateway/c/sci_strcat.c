@@ -393,7 +393,7 @@ static int sci_strcat_one_rhs(char *fname)
 				}
 			}
 
-			if (length_output > 0)
+			if (length_output >= 0)
 			{
 				static int n1 = 0, m1 = 0;
 				int outIndex = 0 ;
