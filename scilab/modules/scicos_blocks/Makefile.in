@@ -84,9 +84,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@SCICOS_TRUE@libsciscicos_blocks_la_DEPENDENCIES =  \
-@SCICOS_TRUE@	$(top_builddir)/modules/scicos/libsciscicos.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+@SCICOS_TRUE@libsciscicos_blocks_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
@@ -1197,7 +1195,6 @@ JARMASK = *.jar
 @SCICOS_TRUE@BUILT_SOURCES = includes/blocks.h
 @SCICOS_TRUE@CLEANFILES = $(top_srcdir)/modules/scicos_blocks/includes/blocks.h $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/Fblocknames
 @SCICOS_TRUE@libsciscicos_blocks_la_LIBADD = \
-@SCICOS_TRUE@  $(top_builddir)/modules/scicos/libsciscicos.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
@@ -4191,7 +4188,7 @@ check-local: $(top_builddir)/scilab-bin
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
-		echo "Error : Cannot build $< : Scilab has not been build"; \
+		echo "Error : Cannot build $< : Scilab has not been built"; \
 	else \
 		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 	fi)

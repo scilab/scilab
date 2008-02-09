@@ -420,7 +420,6 @@ CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h $(top_srcdir)/m
 
 
 libsciscicos_blocks_la_LIBADD = \
-  $(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/core/libscicore.la \
