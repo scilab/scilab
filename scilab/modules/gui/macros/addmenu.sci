@@ -206,7 +206,18 @@ if callbackType == 0 then
     set(h, "callback", list(0, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"(1))"));
   end
 elseif callbackType == 1 then
-  error(gettext("addmenu: Setting a C or Fortran procedure for callback is not yet implemented."));
+  if type(fig)==1
+    cb = "call(""" + callbackStr + """,""" + ..
+	menulabel + """,1,""c""," + ..
+	"-1,2,""d""," + ..
+	"1,3,""d"")";
+  else
+    cb = "call(""" + callbackStr + """,""" + ..
+	menulabel + """,1,""c""," + ..
+	string(get(fig,"figure_id"))+ ",2,""d""," +..
+	"1,3,""d"")";
+  end
+  set(h, "callback", list(0, "execstr("+cb+")"));
 elseif callbackType == 2 then
   if type(fig)==1
     set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
@@ -257,7 +268,18 @@ for k=1:size(submenuslabels,"*")
       set(h, "callback", list(0, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"("+string(k)+"))"));
     end
   elseif callbackType == 1 then
-    error(gettext("addmenu: Setting a C or Fortran procedure for callback is not yet implemented."));
+    if type(fig)==1
+      cb = "call(""" + callbackStr + """,""" + ..
+	  menulabel + """,1,""c""," + ..
+	  "-1,2,""d""," + ..
+	  string(k) +",3,""d"")";
+    else
+      cb = "call(""" + callbackStr + """,""" + ..
+	  menulabel + """,1,""c""," + ..
+	  string(get(fig,"figure_id")) + ",2,""d""," + ..
+	  string(k)+ ",3,""d"")";
+    end
+    set(h, "callback", list(0, "execstr("+cb+")"));
   elseif callbackType == 2 then
     if type(fig)==1
       set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+"))"));
