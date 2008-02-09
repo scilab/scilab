@@ -19,6 +19,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
+import com.artenum.rosetta.interfaces.ui.OutputView;
+import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
 
@@ -34,6 +36,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	private static final int TOP_BORDER = 1;
 	private static final int BOTTOM_BORDER = 2;
 	private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+	private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
 
 	private SciConsole console;
 	
@@ -85,6 +88,11 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 		String command = null;
 		try {
 			command = queue.take();
+			if (displayQueue.take()) {
+				OutputView outputView = console.getConfiguration().getOutputView();
+				PromptView promptView = console.getConfiguration().getPromptView();
+				outputView.append(StringConstants.NEW_LINE + promptView.getDefaultPrompt() + command + StringConstants.NEW_LINE);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -94,10 +102,12 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	/**
 	 * Sets the command buffer after a user input in input command view
 	 * @param command the string to set to the buffer
+	 * @param displayFlag boolean indicating if the command has to be displayed
 	 */
-	public void setCmdBuffer(String command) {
+	public void setCmdBuffer(String command, boolean displayFlag) {
 			try {
 				queue.put(command);
+				displayQueue.put(displayFlag);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -363,28 +363,16 @@ public abstract class SciConsole extends JPanel {
 				linesToExec[nbStatements] = linesToExec[nbStatements].substring(prompt.length());
 			}
 
-			// TODO must be linked to Scilab parser to know if we are in a block
-			if (displayCmdInOutput) {
-				outputView.append(StringConstants.NEW_LINE);
-				if (firstPrompt) {
-					firstPrompt = false;
-					outputView.append(promptView.getDefaultPrompt());
-				} else {
-					outputView.append(promptView.getInBlockPrompt());
-				}
-				outputView.append(linesToExec[nbStatements]);
-
-				outputView.append(StringConstants.NEW_LINE);
-			}
 			// Store the command in the buffer so that Scilab can read it
 			if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
 				config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH
 						+ " characters long): could not send it to Scilab\n");
-				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("");
+				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("", false);
 				return;
 			}
 
-			((SciInputCommandView) config.getInputCommandView()).setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
+			((SciInputCommandView) config.getInputCommandView())
+					.setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""), displayCmdInOutput);
 			((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 			nbStatements++;
 		}
