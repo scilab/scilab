@@ -94,6 +94,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     if (sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
       {
         DestroyUIControl(pobj);
+        sciStandardDestroyOperations(pobj);
       }
     else if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
       {
