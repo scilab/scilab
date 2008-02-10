@@ -21,34 +21,41 @@ int set_user_data_property( sciPointObj * pobj, int stackPointer,  int valueType
 {
 
   /* set pobj->user_data*/
-  int *  size_ptr                             ;
-  int ** user_data_ptr                        ;
-  int    data_size     = GetDataSize( 3 ) * 2 ; /* why 2 ?????? Jb.Silvy */
-  int *  data_ptr      = GetData( 3 )         ;
-
-  /* no type check here user_data can be anything */
+  /* the data to be assigned to the user data property is located in the Scilab Stack at the variable
+     position given by stackPointer.
+     nbRow, nbCol are not used */
+  int *  size_ptr                                        ;
+  int ** user_data_ptr                                   ;
+  int    data_size     = GetDataSize(stackPointer  ) * 2 ; /*GetDataSize returns the size of the variable in double words */
+  int *  data_ptr      = GetData( stackPointer )         ;
 
   /* retrieve current user data matrix */
   sciGetPointerToUserData( pobj, &user_data_ptr, &size_ptr ) ;
 
-  if ( nbRow * nbCol == 0 )
-  {
-    FREE( *user_data_ptr ) ;
-    *user_data_ptr = NULL ;
-    *size_ptr = 0 ;
-    return SET_PROPERTY_SUCCEED ;
+  /* Assigning an empty matrix, free the user_data property. Check for an empty matrix */
+  if ( valueType == 1 ) {
+    int nr, nc, l ;
+    GetRhsVar(stackPointer, MATRIX_OF_DOUBLE_DATATYPE, &nr, &nc, &l);
+    if ( nr * nc == 0 ) /*an empty matrix */
+      {
+	FREE( *user_data_ptr ) ;
+	*user_data_ptr = NULL ;
+	*size_ptr = 0 ;
+	return SET_PROPERTY_SUCCEED ;
+      }
   }
 
-  if( user_data_ptr == NULL )
+  /* Assigning something else than an epty matrix*/
+  if( user_data_ptr == NULL ) /* user_data property is currentlt empty */
   {
     *user_data_ptr = createIntArrayCopy( data_ptr, data_size ) ;
     *size_ptr      = data_size ;
   }
-  else if( *size_ptr == data_size )
+  else if( *size_ptr == data_size ) /* current user_data value as the same size than the value toassign */
   {
     intArrayCopy( *user_data_ptr, data_ptr, data_size ) ;
   }
-  else
+  else  /* current user_data value as a different size than the value toassign */
   {
     FREE( *user_data_ptr ) ;
     *user_data_ptr = createIntArrayCopy( data_ptr, data_size ) ;

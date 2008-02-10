@@ -135,12 +135,20 @@ int sci_set(char *fname, unsigned long fname_len)
 			GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */ 
 
 			valueType = VarType(3) ;
-
-			if ( valueType == 1 )
+			if ( strcmp( cstk(l2), "user_data"  ) == 0 ) {
+			  /* in this case set_user_data_property
+			     directly uses the  third position in the stack
+			     to get the variable which is to be set in
+			     the user_data property (any data type is allowed) S. Steer*/
+                          l3 = 3; /*position in the stack*/
+			  numrow3 = -1; /*unused */
+			  numcol3 = -1; /*unused */
+			}
+			else if ( valueType == 1 )
 			{
 				GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&numrow3,&numcol3,&l3);
 			}
-			else if ( valueType == 9 )
+			else  if ( valueType == 9 )
 			{
 				GetRhsVar(3,GRAPHICAL_HANDLE_DATATYPE,&numrow3,&numcol3,&l3);
 			}
@@ -151,7 +159,7 @@ int sci_set(char *fname, unsigned long fname_len)
 				  && strcmp( cstk(l2), "axes_visible" ) != 0
 				  && strcmp( cstk(l2), "axes_reverse" ) != 0
 				  && strcmp( cstk(l2), "text"         ) != 0 
-                                  && stricmp( cstk(l2), "string"       ) != 0) /* Added for uicontrols */
+                                  && strcmp( cstk(l2), "string"       ) != 0) /* Added for uicontrols */
 				{
 					GetRhsVar(3,STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				} 
