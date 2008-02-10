@@ -159,7 +159,7 @@ int sci_set(char *fname, unsigned long fname_len)
 				  && strcmp( cstk(l2), "axes_visible" ) != 0
 				  && strcmp( cstk(l2), "axes_reverse" ) != 0
 				  && strcmp( cstk(l2), "text"         ) != 0 
-                                  && strcmp( cstk(l2), "string"       ) != 0) /* Added for uicontrols */
+                                  && stricmp( cstk(l2), "string"       ) != 0) /* Added for uicontrols */
 				{
 					GetRhsVar(3,STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				} 
