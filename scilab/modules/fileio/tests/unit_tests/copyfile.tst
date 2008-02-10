@@ -29,3 +29,16 @@ mdelete(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
 rmdir(TMPDIR+'/test_copyfile_source');
 rmdir(TMPDIR+'/test_copyfile_target');
 // =============================================================================
+
+cd TMPDIR;
+dir1="test dir with space"
+dir2="test dir with space number 2"
+file1='dummyFile.dummy'
+mkdir(dir1)
+mkdir(dir2)
+
+mputl('I am a dummy String', dir1+'/'+file1)
+copyfile(dir1+'/'+file1,dir2)
+
+lsResult = ls(dir2+'/'+file1);
+if lsResult == [] then pause,end
