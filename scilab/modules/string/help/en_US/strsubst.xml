@@ -15,7 +15,7 @@
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>str=strsubst(string,searchStr,replaceStr)</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>str=strsubst(string,searchStr,replaceStr，["flag"])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>str=strsubst(string,searchStr,replaceStr,["flag"])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
