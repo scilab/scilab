@@ -11,7 +11,7 @@
 // Copyright INRIA 2008
 // Date : 8 feb. 2008
 
-cd(TMPDIR)
-mputl("","toto")
-file_without_extension=listfiles("toto")
+cd(TMPDIR);
+mputl("","toto");
+file_without_extension=listfiles("toto");
 if file_without_extension == [] then pause,end
