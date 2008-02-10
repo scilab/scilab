@@ -200,4 +200,11 @@ public class ScilabFrameBridge {
 		frame.getAsSimpleFrame().setRelief(reliefType);
 	}
 
+	/**
+	 * Delete the Frame
+	 * @param frame the Frame to be destroyed
+	 */
+	public static void destroy(Frame frame) {
+		frame.getAsSimpleFrame().destroy();
+	}
 }

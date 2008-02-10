@@ -178,5 +178,12 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setRelief(String reliefType) {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
+	
+	/**
+	 * Destroy the PushButton
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }
 

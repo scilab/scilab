@@ -264,4 +264,11 @@ public class ScilabPopupMenuBridge {
 		popupMenu.getAsSimplePopupMenu().setRelief(reliefType);
 	}
 
+	/**
+	 * Delete the PopupMenu
+	 * @param popupMenu the PopupMenu to be destroyed
+	 */
+	public static void destroy(PopupMenu popupMenu) {
+		popupMenu.getAsSimplePopupMenu().destroy();
+	}
 }

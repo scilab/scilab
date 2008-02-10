@@ -236,4 +236,12 @@ public class ScilabRadioButtonBridge {
 	public static void setRelief(RadioButton radioButton, String reliefType) {
 		radioButton.getAsSimpleRadioButton().setRelief(reliefType);
 	}
+	
+	/**
+	 * Delete the RadioButton
+	 * @param radioButton the RadioButton to be destroyed
+	 */
+	public static void destroy(RadioButton radioButton) {
+		radioButton.getAsSimpleRadioButton().destroy();
+	}
 }

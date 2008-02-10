@@ -441,6 +441,14 @@ public class ScilabBridge {
 		ScilabFrameBridge.setRelief(frame, reliefType);
 	}
 
+	/**
+	 * Delete the Frame
+	 * @param frame the frame to be destroyed
+	 */
+	public static void destroy(Frame frame) {
+		ScilabFrameBridge.destroy(frame);
+	}
+
 	/**************/
 	/* Tab Bridge */
 	/**************/
@@ -1196,10 +1204,10 @@ public class ScilabBridge {
 
 	/**
 	 * Destroy the MenuItem
-	 * @param menuItem the MenuItem we want to destroy
+	 * @param menuItem the MenuItem to be destroyed
 	 */
 	public static void destroy(MenuItem menuItem) {
-		//ScilabMenuItemBridge.destroy(menuItem);
+		ScilabMenuItemBridge.destroy(menuItem);
 	}
 
 	/*****************/
@@ -1387,9 +1395,17 @@ public class ScilabBridge {
 		ScilabMenuBridge.setRelief(menu, reliefType);
 	}
 
-	/*****************/
+	/**
+	 * Delete the Menu
+	 * @param menu the Menu to be destroyed
+	 */
+	public static void destroy(Menu menu) {
+		ScilabMenuBridge.destroy(menu);
+	}
+
+	/********************/
 	/* Separator Bridge */
-	/*****************/
+	/********************/
 
 	/**
 	 * Creates a new Separator
@@ -1601,9 +1617,17 @@ public class ScilabBridge {
 		ScilabPushButtonBridge.setRelief(pushButton, reliefType);
 	}
 
-	/*****************/
+	/**
+	 * Delete the PushButton
+	 * @param pushButton the PushButton to be destroyed
+	 */
+	public static void destroy(PushButton pushButton) {
+		ScilabPushButtonBridge.destroy(pushButton);
+	}
+
+	/******************/
 	/* TextBox Bridge */
-	/*****************/
+	/******************/
 
 	/**
 	 * Creates a new TextBox
@@ -1789,6 +1813,14 @@ public class ScilabBridge {
 	 */
 	public static void setRelief(TextBox textBox, String reliefType) {
 		ScilabTextBoxBridge.setRelief(textBox, reliefType);
+	}
+
+	/**
+	 * Delete the TextBox
+	 * @param textBox the TextBox to be destroyed
+	 */
+	public static void destroy(TextBox textBox) {
+		ScilabTextBoxBridge.destroy(textBox);
 	}
 
 	/******************/
@@ -1990,9 +2022,16 @@ public class ScilabBridge {
 		ScilabEditBoxBridge.setRelief(editBox, reliefType);
 	}
 
-	/******************/
+	/**
+	 * Delete the EditBox
+	 * @param editBox the EditBox to be destroyed
+	 */
+	public static void destroy(EditBox editBox) {
+		ScilabEditBoxBridge.destroy(editBox);
+	}
+	/****************/
 	/* Label Bridge */
-	/******************/
+	/****************/
 
 	/**
 	 * Creates a new Label
@@ -2187,6 +2226,14 @@ public class ScilabBridge {
 	 */
 	public static void setRelief(Label label, String reliefType) {
 		ScilabLabelBridge.setRelief(label, reliefType);
+	}
+
+	/**
+	 * Delete the Label
+	 * @param label the Label to be destroyed
+	 */
+	public static void destroy(Label label) {
+		ScilabLabelBridge.destroy(label);
 	}
 
 	/*******************/
@@ -2406,6 +2453,14 @@ public class ScilabBridge {
 		ScilabCheckBoxBridge.setRelief(checkBox, reliefType);
 	}
 
+	/**
+	 * Delete the CheckBox
+	 * @param checkBox the CheckBox to be destroyed
+	 */
+	public static void destroy(CheckBox checkBox) {
+		ScilabCheckBoxBridge.destroy(checkBox);
+	}
+
 	/**********************/
 	/* RadioButton Bridge */
 	/**********************/
@@ -2621,6 +2676,14 @@ public class ScilabBridge {
 	 */
 	public static void setRelief(RadioButton radioButton, String reliefType) {
 		ScilabRadioButtonBridge.setRelief(radioButton, reliefType);
+	}
+
+	/**
+	 * Delete the RadioButton
+	 * @param radioButton the RadioButton to be destroyed
+	 */
+	public static void destroy(RadioButton radioButton) {
+		ScilabRadioButtonBridge.destroy(radioButton);
 	}
 
 	/*****************/
@@ -2892,6 +2955,14 @@ public class ScilabBridge {
 		ScilabSliderBridge.setHorizontal(slider);
 	}
 
+	/**
+	 * Delete the Slider
+	 * @param slider the Slider to be destroyed
+	 */
+	public static void destroy(Slider slider) {
+		ScilabSliderBridge.destroy(slider);
+	}
+
 	/******************/
 	/* ListBox Bridge */
 	/******************/
@@ -3158,6 +3229,14 @@ public class ScilabBridge {
 		ScilabListBoxBridge.setRelief(listBox, reliefType);
 	}
 
+	/**
+	 * Delete the ListBox
+	 * @param listBox the ListBox to be destroyed
+	 */
+	public static void destroy(ListBox listBox) {
+		ScilabListBoxBridge.destroy(listBox);
+	}
+
 	/********************/
 	/* PopupMenu Bridge */
 	/********************/
@@ -3400,6 +3479,14 @@ public class ScilabBridge {
 	 */
 	public static void setRelief(PopupMenu popupMenu, String reliefType) {
 		ScilabPopupMenuBridge.setRelief(popupMenu, reliefType);
+	}
+
+	/**
+	 * Delete the PopupMenu
+	 * @param popupMenu the PopupMenu to be destroyed
+	 */
+	public static void destroy(PopupMenu popupMenu) {
+		ScilabPopupMenuBridge.destroy(popupMenu);
 	}
 
 	/*********************/

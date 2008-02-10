@@ -1312,6 +1312,7 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_UICONTROL:
     case SCI_UIMENU:
       {
         return sciGetParentFigure( sciGetParent( pobj ) ) ; /* jbs 06/2006 */

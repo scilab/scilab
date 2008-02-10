@@ -289,4 +289,11 @@ public class ScilabSliderBridge {
 		slider.getAsSimpleSlider().setHorizontal();
 	}
 
+	/**
+	 * Delete the Slider
+	 * @param slider the Slider to be destroyed
+	 */
+	public static void destroy(Slider slider) {
+		slider.getAsSimpleSlider().destroy();
+	}
 }

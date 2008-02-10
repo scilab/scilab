@@ -111,16 +111,16 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_toolbar.c sci_gateway/c/sci_uigetdir.c \
 	sci_gateway/c/sci_uicontrol.c sci_gateway/c/sci_uimenu.c \
 	src/cpp/InitUIMenu.cpp src/jni/CallScilabBridge.cpp \
-	src/jni/Jxclick.cpp src/cpp/CallJxclick.cpp \
-	src/jni/Jxgetmouse.cpp src/cpp/CallJxgetmouse.cpp \
-	src/cpp/CallFileChooser.cpp src/cpp/CallMessageBox.cpp \
-	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
-	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
-	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp src/cpp/ListBox.cpp \
-	src/cpp/Frame.cpp src/cpp/SetUimenuLabel.cpp \
-	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
-	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
-	src/cpp/SetUicontrolParent.cpp \
+	src/jni/Jxclick.cpp src/cpp/DestroyUIControl.cpp \
+	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
+	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
+	src/cpp/CallMessageBox.cpp src/cpp/PushButton.cpp \
+	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
+	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
+	src/cpp/PopupMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
+	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
+	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -189,7 +189,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_uimenu.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
-@GUI_TRUE@	libscigui_la-Jxclick.lo libscigui_la-CallJxclick.lo \
+@GUI_TRUE@	libscigui_la-Jxclick.lo \
+@GUI_TRUE@	libscigui_la-DestroyUIControl.lo \
+@GUI_TRUE@	libscigui_la-CallJxclick.lo \
 @GUI_TRUE@	libscigui_la-Jxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallJxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallFileChooser.lo \
@@ -539,6 +541,7 @@ JARMASK = *.jar
 @GUI_TRUE@GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 @GUI_TRUE@src/jni/CallScilabBridge.cpp \
 @GUI_TRUE@src/jni/Jxclick.cpp \
+@GUI_TRUE@src/cpp/DestroyUIControl.cpp \
 @GUI_TRUE@src/cpp/CallJxclick.cpp \
 @GUI_TRUE@src/jni/Jxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallJxgetmouse.cpp \
@@ -800,6 +803,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CheckBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIControl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-EditBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Frame.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Plo@am__quote@
@@ -1197,6 +1201,13 @@ libscigui_la-Jxclick.lo: src/jni/Jxclick.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Jxclick.cpp' object='libscigui_la-Jxclick.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-Jxclick.lo `test -f 'src/jni/Jxclick.cpp' || echo '$(srcdir)/'`src/jni/Jxclick.cpp
+
+libscigui_la-DestroyUIControl.lo: src/cpp/DestroyUIControl.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-DestroyUIControl.lo -MD -MP -MF $(DEPDIR)/libscigui_la-DestroyUIControl.Tpo -c -o libscigui_la-DestroyUIControl.lo `test -f 'src/cpp/DestroyUIControl.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUIControl.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-DestroyUIControl.Tpo $(DEPDIR)/libscigui_la-DestroyUIControl.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyUIControl.cpp' object='libscigui_la-DestroyUIControl.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-DestroyUIControl.lo `test -f 'src/cpp/DestroyUIControl.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUIControl.cpp
 
 libscigui_la-CallJxclick.lo: src/cpp/CallJxclick.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallJxclick.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallJxclick.Tpo -c -o libscigui_la-CallJxclick.lo `test -f 'src/cpp/CallJxclick.cpp' || echo '$(srcdir)/'`src/cpp/CallJxclick.cpp

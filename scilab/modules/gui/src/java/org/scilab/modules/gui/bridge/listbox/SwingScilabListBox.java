@@ -340,4 +340,10 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the ListBox
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

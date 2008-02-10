@@ -14,6 +14,7 @@ import org.scilab.modules.gui.widget.ScilabWidget;
 
 /**
  * Class for Scilab Menus in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public class ScilabMenu extends ScilabWidget implements Menu {
@@ -239,4 +240,10 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the Menu
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

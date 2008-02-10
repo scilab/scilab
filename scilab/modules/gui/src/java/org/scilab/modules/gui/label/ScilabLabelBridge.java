@@ -219,4 +219,11 @@ public class ScilabLabelBridge {
 		label.getAsSimpleLabel().setRelief(reliefType);
 	}
 
+	/**
+	 * Delete the Label
+	 * @param label the Label to be destroyed
+	 */
+	public static void destroy(Label label) {
+		label.getAsSimpleLabel().destroy();
+	}
 }

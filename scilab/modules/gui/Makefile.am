@@ -23,6 +23,7 @@ src/c/UicontrolStyleToString.c
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
+src/cpp/DestroyUIControl.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \

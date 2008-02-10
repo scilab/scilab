@@ -12,9 +12,10 @@ import org.scilab.modules.gui.widget.ScilabWidget;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 
 /**
-* Class for Scilab PushButtons in GUIs
-* @author Marouane BEN JELLOUL
-*/
+ * Class for Scilab PushButtons in GUIs
+ * @author Vincent COUVERT
+ * @author Marouane BEN JELLOUL
+ */
 public class ScilabPushButton extends ScilabWidget implements PushButton {
 
 	private SimplePushButton component;
@@ -215,4 +216,10 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the PushButton
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

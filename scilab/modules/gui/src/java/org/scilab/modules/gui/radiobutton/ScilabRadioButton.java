@@ -223,4 +223,10 @@ public class ScilabRadioButton extends ScilabWidget implements RadioButton {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the PadioButton
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

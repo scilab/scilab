@@ -191,4 +191,10 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the Frame
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

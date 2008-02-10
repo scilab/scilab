@@ -144,4 +144,10 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the EditBox
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

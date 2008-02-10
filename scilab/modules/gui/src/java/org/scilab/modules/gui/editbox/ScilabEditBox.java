@@ -208,4 +208,10 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the EditBox
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

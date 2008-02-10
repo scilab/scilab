@@ -269,4 +269,10 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 		ScilabBridge.setHorizontal(this);
 	}
 
+	/**
+	 * Delete the Slider
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

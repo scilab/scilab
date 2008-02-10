@@ -247,4 +247,10 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the PopupMenu
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

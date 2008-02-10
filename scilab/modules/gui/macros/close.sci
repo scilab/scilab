@@ -13,11 +13,7 @@ if rhs < 1 then
   delete(gcf());
 else 
   if type(h) == 9 then // Graphics handle
-    if h.type == "uimenu" | h.type == "uicontrol"
-      error(msprintf(gettext("Deleting an object of type %s is not yet implemented.\n"), h.type));
-    else // h is a figure
-      delete(h);
-    end
+    delete(h);
   else
     // Do not know what to do
     error(msprintf(gettext("Do not know how to delete an object of type: %d.\n"), type(h)));

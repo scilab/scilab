@@ -410,6 +410,22 @@ public class CallScilabBridge {
 		frame.setText(""); /* Because Name property is null at creation */
 		return id;
 	}
+	
+	/**
+	 * Destroy a Widget
+	 * @param id the id of the Widget to destroy
+	 */
+	public static void destroyWidget(int id) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).destroy();
+	}
+
+	/**
+	 * Destroy a Frame
+	 * @param id the id of the Frame to destroy
+	 */
+	public static void destroyFrame(int id) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).destroy();
+	}
 
 	/****************************/
 	/*                          */

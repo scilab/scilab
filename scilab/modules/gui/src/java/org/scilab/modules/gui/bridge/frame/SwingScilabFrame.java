@@ -509,4 +509,10 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the Frame
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

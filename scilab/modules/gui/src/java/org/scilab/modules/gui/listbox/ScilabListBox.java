@@ -266,4 +266,10 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the ListBox
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

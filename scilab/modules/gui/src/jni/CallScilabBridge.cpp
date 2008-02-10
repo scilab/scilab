@@ -108,6 +108,8 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
+voiddestroyWidgetjintID=NULL; 
+voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -237,6 +239,8 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
+voiddestroyWidgetjintID=NULL; 
+voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
 voidsetMenuAsParentjintjintID=NULL; 
 voidsetRootAsParentjintID=NULL; 
@@ -643,6 +647,50 @@ curEnv->ExceptionDescribe() ;
                         
 return res;
 
+}
+
+void CallScilabBridge::destroyWidget (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voiddestroyWidgetjintID = curEnv->GetStaticMethodID(cls, "destroyWidget", "(I)V" ) ;
+if (voiddestroyWidgetjintID == NULL) {
+std::cerr << "Could not access to the method " << "destroyWidget" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voiddestroyWidgetjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::destroyFrame (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voiddestroyFramejintID = curEnv->GetStaticMethodID(cls, "destroyFrame", "(I)V" ) ;
+if (voiddestroyFramejintID == NULL) {
+std::cerr << "Could not access to the method " << "destroyFrame" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voiddestroyFramejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, long figureID, long objID){

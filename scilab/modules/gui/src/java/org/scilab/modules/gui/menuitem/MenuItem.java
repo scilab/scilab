@@ -49,9 +49,4 @@ public interface MenuItem extends Widget {
 	 * @param childMenu the Menu we want to add
 	 */
 	void add(Menu childMenu);
-	
-	/**
-	 * Destroy the MenuItem
-	 */
-	void destroy();
 }

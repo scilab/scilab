@@ -145,4 +145,10 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the Label
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

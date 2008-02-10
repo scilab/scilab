@@ -64,6 +64,8 @@ jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
+jmethodID voiddestroyWidgetjintID; // cache method id
+jmethodID voiddestroyFramejintID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
 jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
@@ -225,6 +227,10 @@ static long newPopupMenu(JavaVM * jvm_);
 static long newListBox(JavaVM * jvm_);
 
 static long newFrame(JavaVM * jvm_);
+
+static void destroyWidget(JavaVM * jvm_, long objID);
+
+static void destroyFrame(JavaVM * jvm_, long objID);
 
 static void setFigureAsParent(JavaVM * jvm_, long figureID, long objID);
 

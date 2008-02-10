@@ -160,4 +160,10 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the CheckBox
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

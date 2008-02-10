@@ -236,5 +236,12 @@ public class ScilabCheckBoxBridge {
 	public static void setRelief(CheckBox checkBox, String reliefType) {
 		checkBox.getAsSimpleCheckBox().setRelief(reliefType);
 	}
-
+	
+	/**
+	 * Delete the CheckBox
+	 * @param checkBox the checkBox to be destroyed
+	 */
+	public static void destroy(CheckBox checkBox) {
+		checkBox.getAsSimpleCheckBox().destroy();
+	}
 }

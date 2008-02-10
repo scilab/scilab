@@ -24,7 +24,6 @@ public class ScilabListBoxBridge {
 		throw new UnsupportedOperationException(); /* Prevents calls from subclass */
 	}
 
-
 	/**
 	 * Creates a Scilab ListBox
 	 * @return the created ListBox
@@ -286,4 +285,11 @@ public class ScilabListBoxBridge {
 		listBox.getAsSimpleListBox().setRelief(reliefType);
 	}
 
+	/**
+	 * Delete the ListBox
+	 * @param listBox the ListBox to be destroyed
+	 */
+	public static void destroy(ListBox listBox) {
+		listBox.getAsSimpleListBox().destroy();
+	}
 }

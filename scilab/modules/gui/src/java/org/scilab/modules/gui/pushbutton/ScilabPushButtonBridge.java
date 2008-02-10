@@ -220,5 +220,12 @@ public class ScilabPushButtonBridge {
 		pushButton.getAsSimplePushButton().setRelief(reliefType);
 	}
 
+	/**
+	 * Delete the PushButton
+	 * @param pushButton the PushButton to be destroyed
+	 */
+	public static void destroy(PushButton pushButton) {
+		pushButton.getAsSimplePushButton().destroy();
+	}
 }
 

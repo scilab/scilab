@@ -209,4 +209,11 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the TextBox
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
+
 }

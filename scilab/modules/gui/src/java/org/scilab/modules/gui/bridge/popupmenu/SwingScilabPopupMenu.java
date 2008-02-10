@@ -238,4 +238,10 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the PopupMenu
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

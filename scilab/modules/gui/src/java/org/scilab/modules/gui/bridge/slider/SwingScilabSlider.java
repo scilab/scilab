@@ -235,4 +235,11 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 		setOrientation(JScrollBar.HORIZONTAL);
 	}
 
+	/**
+	 * Destroy the Slider
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
+
 }

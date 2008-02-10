@@ -160,4 +160,10 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the RadioButton
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

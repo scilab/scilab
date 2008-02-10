@@ -207,4 +207,10 @@ public class ScilabLabel extends ScilabWidget implements Label {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the Label
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

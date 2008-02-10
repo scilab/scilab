@@ -223,4 +223,10 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
 		ScilabBridge.setRelief(this, reliefType);
 	}
 
+	/**
+	 * Delete the CheckBox
+	 */
+	public void destroy() {
+		ScilabBridge.destroy(this);
+	}
 }

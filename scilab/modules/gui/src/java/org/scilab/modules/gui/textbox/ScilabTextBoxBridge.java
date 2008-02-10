@@ -12,6 +12,7 @@ import org.scilab.modules.gui.utils.Size;
 
 /**
  * Bridge for Scilab TextBox in GUIs
+ * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
 public class ScilabTextBoxBridge {
@@ -209,4 +210,11 @@ public class ScilabTextBoxBridge {
 		textBox.getAsSimpleTextBox().setRelief(reliefType);
 	}
 
+	/**
+	 * Delete the TextBox
+	 * @param textBox the TextBox to be destroyed
+	 */
+	public static void destroy(TextBox textBox) {
+		textBox.getAsSimpleTextBox().destroy();
+	}
 }

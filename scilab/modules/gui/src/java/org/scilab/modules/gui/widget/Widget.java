@@ -93,5 +93,9 @@ public interface Widget extends Dockable {
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */
 	void setRelief(String reliefType);
-
+	
+	/**
+	 * Delete the Widget
+	 */
+	void destroy();
 }

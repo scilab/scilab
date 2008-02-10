@@ -230,5 +230,12 @@ public class ScilabMenuBridge {
 	public static void setRelief(Menu menu, String reliefType) {
 		menu.getAsSimpleMenu().setRelief(reliefType);
 	}
-
+	
+	/**
+	 * Delete the Menu
+	 * @param menu the Menu to be destroyed
+	 */
+	public static void destroy(Menu menu) {
+		menu.getAsSimpleMenu().destroy();
+	}
 }

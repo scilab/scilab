@@ -166,4 +166,10 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
 	}
 
+	/**
+	 * Destroy the TextBox
+	 */
+	public void destroy() {
+		getParent().remove(this);
+	}
 }

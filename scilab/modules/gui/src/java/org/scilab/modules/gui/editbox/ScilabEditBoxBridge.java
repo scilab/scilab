@@ -219,4 +219,11 @@ public class ScilabEditBoxBridge {
 		editBox.getAsSimpleEditBox().setRelief(reliefType);
 	}
 
+	/**
+	 * Delete the EditBox
+	 * @param editBox the EditBox to be destroyed
+	 */
+	public static void destroy(EditBox editBox) {
+		editBox.getAsSimpleEditBox().destroy();
+	}
 }

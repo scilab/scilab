@@ -1,6 +1,6 @@
 <package name="org.scilab.modules.gui.bridge">
   <object name="CallScilabBridge">
-<!-- Object creation -->
+<!-- Object creation/destruction -->
 	<method name="newWindow" returnType="int" modifier="static"/>
 	<method name="newMenuBar" returnType="int" modifier="static"/>
 	<method name="newMenu" returnType="int" modifier="static"/>        
@@ -13,6 +13,12 @@
 	<method name="newPopupMenu" returnType="int" modifier="static"/>
         <method name="newListBox" returnType="int" modifier="static"/>        
         <method name="newFrame" returnType="int" modifier="static"/>        
+        <method name="destroyWidget" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>
+        <method name="destroyFrame" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>
 <!-- Parent setting -->
 	<method name="setFigureAsParent" returnType="void" modifier="static">
 	  <parameter type="int" name="figureID"/>
