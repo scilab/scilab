@@ -13,33 +13,33 @@
   in a character string.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>str=strsubst(str1,str2,str3)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>str=strsubst(string,searchStr,replaceStr)</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>str=strsubst(str1,str2,str3，["flag"])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>str=strsubst(string,searchStr,replaceStr，["flag"])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str1</PARAM_NAME>
+        <PARAM_NAME>string</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: a matrix of character string. The strings where to search
-          occurrences of <VERB>str2</VERB></SP>
+          occurrences of <VERB>searchStr</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>str2</PARAM_NAME>
+        <PARAM_NAME>searchStr</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: a character string. The string to search in
-          <VERB>str1</VERB>.</SP>
+          <VERB>string</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>str3</PARAM_NAME>
+        <PARAM_NAME>replaceStr</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: a character string. The replacement string.</SP>
@@ -51,7 +51,7 @@
 
         <PARAM_DESCRIPTION>
           <SP>: a matrix of character string. The result of the substitution
-          on <VERB>str2</VERB> by <VERB>str3</VERB> in <VERB>str1</VERB></SP>
+          on <VERB>searchStr</VERB> by <VERB>replaceStr</VERB> in <VERB>string</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -66,11 +66,11 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>strsubst</VERB> replaces all occurrences of <VERB>str2</VERB> in
-    <VERB>str1</VERB> by <VERB>str3</VERB>.</P>
+    <P><VERB>strsubst</VERB> replaces all occurrences of <VERB>searchStr</VERB> in
+    <VERB>string</VERB> by <VERB>replaceStr</VERB>.</P>
 
-    <P>When using the forth parameters "r", the str2 should be a string of
-    regular expression. And then strsubst is going to match it with str1 and
+    <P>When using the forth parameters "r", the searchStr should be a string of
+    regular expression. And then strsubst is going to match it with string and
     replace according to the regular express rules. </P>
   </DESCRIPTION>
 
