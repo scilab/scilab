@@ -18,19 +18,19 @@
       <PARAM_ITEM>
         <PARAM_NAME>res</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: md5 result (a string)</SP>
+          <SP>: md5 result (string)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>filename</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: filename (a string)</SP>
+          <SP>: filename (string or matrix of strings)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>ParamString</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
+          <SP>: string or matrix of strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -40,6 +40,16 @@
     <P><VERB>getmd5(...)</VERB> get md5 checksum of a file or a string.</P>
   </DESCRIPTION>
 
+  <EXAMPLE>
+<![CDATA[
+getmd5('hello world','string')
+getmd5(['hello' 'world'],'string')
+getmd5(['hello' ; 'world'],'string')
+
+getmd5( SCI+'/modules/core/etc/core.start' )
+getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
+]]>
+  </EXAMPLE>
 
   <AUTHORS>
     <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
