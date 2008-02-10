@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+
 #include "machine.h"
 
 #ifndef _MSC_VER
@@ -39,6 +40,20 @@ static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
 static void putEnvLC_ALL(char *locale);
 static char *GetLanguageFromAlias(char *langAlias);
+
+#ifdef _MSC_VER
+/**
+* returns user locale string
+* @return Locale user example fr_FR or en_US
+*/
+static char* getLocaleUserInfo(void);
+
+/**
+* returns sytem locale string
+* @return Locale system example fr_FR or en_US
+*/
+static char* getLocaleSystemInfo(void);
+#endif
 /*--------------------------------------------------------------------------*/
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
@@ -113,7 +128,12 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 /*--------------------------------------------------------------------------*/
 char *getlanguage(void)
 {
+	#if _MSC_VER
+	return getLocaleUserInfo();
+	#else
 	return CURRENTLANGUAGESTRING;
+	#endif
+	
 }
 /*--------------------------------------------------------------------------*/
 int getcurrentlanguagecode(void)
@@ -255,3 +275,75 @@ static void putEnvLC_ALL(char *locale){
 		fprintf(stderr,"Localization: Failed to declare the system variable LC_ALL\n");
 	}
 }
+/*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+static char* getLocaleUserInfo(void)
+{
+	#define LENGTH_BUFFER 1024
+	char buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
+	char buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
+	char *localeStr = NULL;
+	int ret = 0;
+	ret = GetLocaleInfo(LOCALE_USER_DEFAULT,
+						LOCALE_SISO639LANGNAME,
+						&buffer_LOCALE_SISO639LANGNAME[0],
+						LENGTH_BUFFER);
+	if (ret > 0)
+	{
+
+		ret = GetLocaleInfo(LOCALE_USER_DEFAULT,
+							LOCALE_SISO3166CTRYNAME,
+							&buffer_LOCALE_SISO3166CTRYNAME[0],
+							LENGTH_BUFFER);
+		if (ret >0)
+		{
+			int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
+										 strlen(buffer_LOCALE_SISO3166CTRYNAME)+
+										 strlen("_"));
+			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
+			if (localeStr)
+			{
+				#define FORMAT_LOCALE "%s_%s"
+				sprintf(localeStr,FORMAT_LOCALE,buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
+			}
+		}
+	}
+	return localeStr;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+static char* getLocaleSystemInfo(void)
+{
+	#define LENGTH_BUFFER 1024
+	char buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
+	char buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
+	char *localeStr = NULL;
+	int ret = 0;
+	ret = GetLocaleInfo(LOCALE_SYSTEM_DEFAULT,
+		LOCALE_SISO639LANGNAME,
+		&buffer_LOCALE_SISO639LANGNAME[0],
+		LENGTH_BUFFER);
+	if (ret > 0)
+	{
+		ret = GetLocaleInfo(LOCALE_SYSTEM_DEFAULT,
+			LOCALE_SISO3166CTRYNAME,
+			&buffer_LOCALE_SISO3166CTRYNAME[0],
+			LENGTH_BUFFER);
+		if (ret >0)
+		{
+			int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
+				strlen(buffer_LOCALE_SISO3166CTRYNAME)+
+				strlen("_"));
+			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
+			if (localeStr)
+			{
+				#define FORMAT_LOCALE "%s_%s"
+				sprintf(localeStr,FORMAT_LOCALE,buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
+			}
+		}
+	}
+	return localeStr;
+}
+#endif
+/*--------------------------------------------------------------------------*/
