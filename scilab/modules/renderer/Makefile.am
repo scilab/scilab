@@ -262,6 +262,17 @@ src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
 src/jni/DrawableAxesGL.cpp \
 src/jni/XAxesDrawerGL.cpp \
 src/jni/YAxesDrawerGL.cpp \
+src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
+src/cpp/axesDrawing/AxesTicksComputer.cpp \
+src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
+src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
+src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
+src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
+src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
+src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
+src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
+src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
+
 
 
 
@@ -322,17 +333,7 @@ src/jni/DrawableFecGL.giws.xml \
 src/jni/FecFacetDrawerGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
 src/jni/XAxesDrawerGL.giws.xml \
-src/jni/YAxesDrawerGL.giws.xml \
-src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
-src/cpp/axesDrawing/AxesTicksComputer.cpp \
-src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
-src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
-src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
-src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
-src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
-src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
-src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
-src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
+src/jni/YAxesDrawerGL.giws.xml
 
 else
 
