@@ -70,4 +70,5 @@ GetUicontrolRelief
 SetUicontrolRelief
 GetUicontrolSliderStep
 SetUicontrolSliderStep
+DestroyUIControl
 ;
