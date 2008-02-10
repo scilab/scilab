@@ -21,7 +21,7 @@ function set_nodes_id(nodes,Id,loc)
      
     node_x=GraphList.nodes.graphics.x(nodes)
     node_y=GraphList.nodes.graphics.y(nodes)
-    node_diam=GraphList.nodes.graphics.diam(nodes)
+    node_diam=ge_get_node_diam(nodes)
     for k=1:size(nodes,'*')
       h=hnodes(k).children(1)
       r=xstringl(0,0,Id(k),h.font_style, h.font_size)
@@ -40,7 +40,6 @@ function set_nodes_id(nodes,Id,loc)
       end
       h.text=Id(k)
       h.visible='on'
-      pause
     end
     fig.immediate_drawing=drawing;
     show_pixmap()

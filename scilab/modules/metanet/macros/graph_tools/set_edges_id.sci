@@ -18,21 +18,25 @@ function set_edges_id(edges,Id,loc)
     // next lines derived from ge_draw_edge.sci
     for k=1:size(edges,'*')
       font=ge_get_edge_font(k)
-      r=xstringl(0,0,Id(k),font(2),font(1));r=r(3)
-      h=hedges.children(3);
+      h=hedges(k).children(1);
       if GraphList.edges.tail(k)==GraphList.edges.head(k) then //loop arc
-	[arc,xya,xyl,ang]=ge_profile2real(n)
+	[arc,xya,xyl,ang]=ge_profile2real(edges(k))
       else
-	[xyc,xya,xyl,ang]=ge_profile2real(n)
+	[xyc,xya,xyl,ang]=ge_profile2real(edges(k))
       end
-      if loc<>'tangeant' then ang=0,end
-      if ang>90&ang<270 then //co negatif
-	a=ang*%pi/180
-	h.data=[xyl(1)+r*cos(a),xyl(2)-r*sin(a)]
-	h.font_angle=ang+180
+      if loc=='tangeant' then 
+	r=xstringl(0,0,Id(k),font(2),font(1));r=r(3)
+	if ang>90&ang<270 then //co negatif
+	  a=ang*%pi/180
+	  h.data=[xyl(1)+r*cos(a),xyl(2)-r*sin(a)]
+	  h.font_angle=ang+180
+	else
+	  h.data=[xyl(1),xyl(2)]
+	  h.font_angle=ang
+	end
       else
 	h.data=[xyl(1),xyl(2)]
-	h.font_angle=ang
+	h.font_angle=0
       end
       h.text=Id(k)
       h.visible='on'
