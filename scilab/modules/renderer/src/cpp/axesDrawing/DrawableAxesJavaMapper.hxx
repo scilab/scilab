@@ -1,0 +1,64 @@
+/*------------------------------------------------------------------------*/
+/* file: DrawableAxesJavaMapper.hxx                                       */
+/* Copyright INRIA 2008                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Contains mapping of Java method used by DrawableAxesJoGL         */
+/*------------------------------------------------------------------------*/
+
+#ifndef _DRAWABLE_AXES_JAVA_MAPPER_HXX_
+#define _DRAWABLE_AXES_JAVA_MAPPER_HXX_
+
+#include "DrawableClippedObjectJavaMapper.hxx"
+#include "DrawableAxesGL.hxx"
+
+namespace sciGraphics
+{
+
+/**
+ * Contains mapping of Java method used by DrawableAxesJoGL 
+ */
+class DrawableAxesJavaMapper : public virtual DrawableClippedObjectJavaMapper
+{
+public:
+
+  DrawableAxesJavaMapper(void);
+
+  virtual ~DrawableAxesJavaMapper(void);
+
+  /*----------------------------------------------------------------------*/
+  // Inherited From DrawableObjectJavaMapper
+  virtual void display(void);
+
+  virtual void initializeDrawing(int figureIndex);
+  virtual void endDrawing(void);
+
+  virtual void show(int figureIndex);
+
+  virtual void destroy(int figureIndex);
+
+  virtual void setFigureIndex(int figureIndex);
+  /*----------------------------------------------------------------------*/
+  // Inherited From DrawableClippedObjectJavaMapper
+  virtual void clipX(double xMin, double xMax);
+  virtual void clipY(double yMin, double yMax);
+  virtual void clipZ(double zMin, double zMax);
+
+  virtual void unClip(void);
+  /*----------------------------------------------------------------------*/
+  // Specific to Axes
+
+  /*----------------------------------------------------------------------*/
+
+
+protected:
+
+  /**
+   * Giws generated wrapper
+   */
+  org_scilab_modules_renderer_axesDrawing::DrawableAxesGL * m_pJavaObject;
+
+};
+
+}
+
+#endif /* _DRAWABLE_AXES_JAVA_MAPPER_HXX_ */

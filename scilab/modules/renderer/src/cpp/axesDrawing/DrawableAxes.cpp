@@ -13,12 +13,28 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 void DrawableAxes::draw( void )
 {
-
+  if (!checkVisibility())
+  {
+    return;
+  }
+  initializeDrawing();
+  clip();
+  drawAxes();
+  unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableAxes::show( void )
 {
-  draw() ;
+  if (!checkVisibility())
+  {
+    return;
+  }
+  initializeDrawing();
+  clip();
+  showAxes();
+  unClip();
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 

@@ -1,0 +1,81 @@
+/*------------------------------------------------------------------------*/
+/* file: DrawableAxesJavaMapper.cpp                                        */
+/* Copyright INRIA 2008                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : Contains mapping of java method used by DrawablePolyline        */
+/*------------------------------------------------------------------------*/
+
+#include "DrawableAxesJavaMapper.hxx"
+
+extern "C"
+{
+#include "getScilabJavaVM.h"
+}
+
+namespace sciGraphics
+{
+
+/*---------------------------------------------------------------------------------*/
+DrawableAxesJavaMapper::DrawableAxesJavaMapper(void)
+{
+  m_pJavaObject = new org_scilab_modules_renderer_axesDrawing::DrawableAxesGL(getScilabJavaVM());
+}
+/*---------------------------------------------------------------------------------*/
+DrawableAxesJavaMapper::~DrawableAxesJavaMapper(void)
+{
+  delete m_pJavaObject;
+  m_pJavaObject = NULL;
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::display(void)
+{
+  m_pJavaObject->display();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::initializeDrawing(int figureIndex)
+{
+  m_pJavaObject->initializeDrawing(figureIndex);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::endDrawing(void)
+{
+  m_pJavaObject->endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::show(int figureIndex)
+{
+  m_pJavaObject->show(figureIndex);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::destroy(int figureIndex)
+{
+  m_pJavaObject->destroy(figureIndex);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::setFigureIndex(int figureIndex)
+{
+  m_pJavaObject->setFigureIndex(figureIndex);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::clipX(double xMin, double xMax)
+{
+  m_pJavaObject->clipX(xMin, xMax);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::clipY(double yMin, double yMax)
+{
+  m_pJavaObject->clipY(yMin, yMax);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::clipZ(double zMin, double zMax)
+{
+  m_pJavaObject->clipZ(zMin, zMax);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::unClip(void)
+{
+  m_pJavaObject->unClip();
+}
+/*---------------------------------------------------------------------------------*/
+
+}

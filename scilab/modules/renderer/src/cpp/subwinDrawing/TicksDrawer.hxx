@@ -20,7 +20,7 @@ class TicksDrawer : public virtual DrawableObjectBridge
 {
 public:
   
-  TicksDrawer(DrawableSubwin * subwin);
+  TicksDrawer(DrawableObject * drawer);
 
   virtual ~TicksDrawer(void);
 

@@ -52,6 +52,10 @@ sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
 sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char text[],
 				     int n, int nblegends, int *pstyle, sciPointObj **pptabofpointobj);  /* BUILD */
 
+sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+                               int closed, int n1,int plot, int *foreground, int *background,
+                               int *mark_style, int *mark_foreground, int *mark_background,
+                               BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);
 sciPointObj *ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
 				       int closed, int n1, int plot, int *foreground, int *background,
 				       int *mark_style, int *mark_foreground, int *mark_background,

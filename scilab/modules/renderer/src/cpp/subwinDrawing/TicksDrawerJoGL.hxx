@@ -19,7 +19,7 @@ class TicksDrawerJoGL : public TicksDrawer, public DrawableObjectJoGL
 {
 public:
 
-  TicksDrawerJoGL(DrawableSubwin * subwin);
+  TicksDrawerJoGL(DrawableObject * drawer);
 
   virtual ~TicksDrawerJoGL(void);
 

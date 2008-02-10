@@ -70,6 +70,8 @@ ConstructStatusBar (sciPointObj * pparentfigure)
 	}
       if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -131,6 +133,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 
   if ( sciStandardBuildOperations( pobj, pparent ) == NULL )
   {
+    FREE( pobj->pfeatures ) ;
+    FREE( pobj ) ;
     return NULL ;
   }
 
@@ -245,6 +249,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 
       if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         endFigureDataWriting(pparentfigure);
         return NULL ;
       }
@@ -564,6 +570,8 @@ ConstructScrollV (sciPointObj * pparentfigure)
 	}
       if ( sciStandardBuildOperations( pobjsbv, pparentfigure ) == NULL )
       {
+        FREE( pobjsbv->pfeatures ) ;
+        FREE( pobjsbv ) ;
         return NULL ;
       }
       return pobjsbv;
@@ -599,6 +607,8 @@ ConstructScrollH (sciPointObj * pparentfigure)
 	}
       if ( sciStandardBuildOperations( pobjsbh, pparentfigure ) == NULL )
       {
+        FREE( pobjsbh->pfeatures ) ;
+        FREE( pobjsbh ) ;
         return NULL ;
       }
       return pobjsbh;
@@ -814,6 +824,8 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
 
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -905,6 +917,8 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -975,6 +989,9 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       ppLegend->isselected = TRUE;
       ppLegend->issurround = FALSE;
 
+      ppLegend->clip_region_set = -1; /* no clipping by default */
+      sciSetClipping(pobj, sciGetClipping(pparentsubwin));
+
       if (sciInitGraphicContext (pobj) == -1) /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -1004,9 +1021,194 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       return (sciPointObj *) NULL;
     }
 }
+/*---------------------------------------------------------------------------------*/
+/**
+ * Create a polyline but does not add it to Scilab hierarchy
+ */
+sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+                               int closed, int n1,int plot, int *foreground, int *background,
+                               int *mark_style, int *mark_foreground, int *mark_background,
+                               BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
+{
+  sciPointObj * pobj = NULL;
+  sciPolyline * ppPoly = NULL;
+
+  int ** userData = NULL ;
+  int *  udSize   = NULL ;
+  int i = 0;
+  if (sciGetEntityType (pparentsubwin) != SCI_SUBWIN)
+  {
+    sciprint(_("The parent has to be a SUBWIN\n"));
+    return (sciPointObj *) NULL;
+  }
+  
+  if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+  {
+    return NULL;
+  }
+  sciSetEntityType (pobj, SCI_POLYLINE);
+  if ((pobj->pfeatures = MALLOC ((sizeof (sciPolyline)))) == NULL)
+  {
+    FREE(pobj);
+    return (sciPointObj *) NULL;
+  }
+
+  sciSetParent( pobj, pparentsubwin ) ;
+
+  pPOLYLINE_FEATURE (pobj)->x_shift = (double *) NULL;
+  pPOLYLINE_FEATURE (pobj)->y_shift = (double *) NULL;
+  pPOLYLINE_FEATURE (pobj)->z_shift = (double *) NULL;
+  pPOLYLINE_FEATURE (pobj)->bar_width = 0.;
+
+  pPOLYLINE_FEATURE (pobj)->callback = (char *)NULL;
+  pPOLYLINE_FEATURE (pobj)->callbacklen = 0; 
+  pPOLYLINE_FEATURE (pobj)->callbackevent = 100; 
+  pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+
+  pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
+  sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+  sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
 
 
+  pPOLYLINE_FEATURE (pobj)->arsize_factor = 1;
 
+  pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
+  ppPoly = pPOLYLINE_FEATURE (pobj);
+
+  if ( n1 != 0 )
+  {
+    if ((ppPoly->pvx = MALLOC (n1 * sizeof (double))) == NULL)
+    {
+      FREE(pPOLYLINE_FEATURE(pobj));
+      FREE(pobj);
+      return (sciPointObj *) NULL;
+    }
+
+    if ((ppPoly->pvy = MALLOC (n1 * sizeof (double))) == NULL)
+    {
+      FREE(pPOLYLINE_FEATURE (pobj)->pvx);
+      FREE(pPOLYLINE_FEATURE(pobj));
+      FREE(pobj);
+      return (sciPointObj *) NULL;
+    }
+
+    if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL))
+    {
+      for (i = 0; i < n1; i++)
+      {
+        ppPoly->pvx[i] = pvecx[i] ;
+        ppPoly->pvy[i] = pvecy[i] ; 
+      }
+    }
+    else
+    {
+      for (i = 0; i < n1; i++)
+      {
+        ppPoly->pvx[i] = 0.0;
+        ppPoly->pvy[i] = 0.0;
+      }
+    }
+
+
+    /**DJ.Abdemouche 2003**/
+    if (pvecz == NULL)
+    {
+      pPOLYLINE_FEATURE (pobj)->pvz = NULL;
+    }
+    else
+    {
+      if ((ppPoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
+      {
+        FREE(pPOLYLINE_FEATURE (pobj)->pvx);
+        FREE(pPOLYLINE_FEATURE (pobj)->pvy);
+        FREE(pPOLYLINE_FEATURE(pobj));
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+      } 
+      for (i = 0; i < n1; i++)
+      {
+        ppPoly->pvz[i] = pvecz[i];
+      }
+    }
+  }
+  else
+  {
+    ppPoly->pvx = NULL ;
+    ppPoly->pvy = NULL ;
+    ppPoly->pvz = NULL ;
+  }
+
+  ppPoly->n1 = n1;	  /* memorisation du nombre de points */
+  ppPoly->closed = (closed > 0) ? 1 : 0;
+  ppPoly->plot = plot;
+
+  if (sciInitGraphicContext (pobj) == -1)
+  {
+    FREE(pPOLYLINE_FEATURE (pobj)->pvy);
+    FREE(pPOLYLINE_FEATURE (pobj)->pvx);
+    FREE(pPOLYLINE_FEATURE(pobj));
+    FREE(pobj);
+    return (sciPointObj *) NULL;
+  }
+
+  /* colors and marks setting */
+  sciInitIsMark(pobj,ismark);
+  sciInitIsLine(pobj,isline);
+  sciInitIsFilled(pobj,isfilled);
+  /*       sciSetIsInterpShaded(pobj,isinterpshaded); */
+
+  ppPoly->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
+
+  if(foreground != NULL)
+  {
+    sciInitForeground(pobj,(*foreground));
+  }
+
+  ppPoly->scvector = (int *) NULL;
+
+  if(background != NULL){
+    if(isinterpshaded == TRUE){ /* 3 or 4 values to store */
+
+      sciSetInterpVector(pobj,n1,background);
+    }
+    else
+      sciInitBackground(pobj,(*background));
+  }
+
+  if(mark_style != NULL)
+    sciInitMarkStyle(pobj,(*mark_style));
+
+  if(mark_foreground != NULL)
+  {
+    sciInitMarkForeground(pobj,(*mark_foreground));
+  }
+
+  if(mark_background != NULL)
+  {
+    sciInitMarkBackground(pobj,(*mark_background));
+  }
+
+  /* no sons for now */
+  sciInitSelectedSons( pobj ) ;
+
+  sciGetRelationship(pobj)->psons        = NULL ;
+  sciGetRelationship(pobj)->plastsons    = NULL ;
+  sciGetRelationship(pobj)->pSelectedSon = NULL ;
+
+  sciInitVisibility( pobj, TRUE ) ;
+
+  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
+  *userData = NULL ;
+  *udSize   = 0    ;
+
+  pobj->pObservers = NULL;
+
+  pobj->pDrawer = NULL ;
+
+  return pobj;
+
+}
+/*---------------------------------------------------------------------------------*/
 /**ConstructPolyline
  * This function creates  Polyline 2d structure
  */
@@ -1016,166 +1218,24 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 		   int *mark_style, int *mark_foreground, int *mark_background,
 		   BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciPolyline *ppoly = (sciPolyline *) NULL;
-  int i = 0;
+  sciPointObj * pobj = allocatePolyline(pparentsubwin, pvecx, pvecy, pvecz, closed, n1, plot,
+                                        foreground, background, mark_style, mark_foreground, mark_background,
+                                        isline, isfilled, ismark, isinterpshaded);
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_POLYLINE);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciPolyline)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        return NULL ;
-      }
-      pPOLYLINE_FEATURE (pobj)->x_shift = (double *) NULL;
-      pPOLYLINE_FEATURE (pobj)->y_shift = (double *) NULL;
-      pPOLYLINE_FEATURE (pobj)->z_shift = (double *) NULL;
-      pPOLYLINE_FEATURE (pobj)->bar_width = 0.;
+  if (pobj == NULL)
+  {
+    return NULL;
+  }
 
-      pPOLYLINE_FEATURE (pobj)->callback = (char *)NULL;
-      pPOLYLINE_FEATURE (pobj)->callbacklen = 0; 
-      pPOLYLINE_FEATURE (pobj)->callbackevent = 100; 
-      pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+  if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
+  {
+    FREE(pobj->pfeatures);
+    FREE(pobj);
+    return NULL;
+  }
 
-      pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
-      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-      
-      
-      pPOLYLINE_FEATURE (pobj)->arsize_factor = 1;
+  return pobj;
 
-      pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
-      ppoly = pPOLYLINE_FEATURE (pobj);
-      
-      if ( n1 != 0 )
-      {
-        if ((ppoly->pvx = MALLOC (n1 * sizeof (double))) == NULL)
-	{
-          sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPOLYLINE_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      
-        if ((ppoly->pvy = MALLOC (n1 * sizeof (double))) == NULL)
-	{
-	  FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-          sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPOLYLINE_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
- 	}
-      
-        if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL))
-        {
-          for (i = 0; i < n1; i++)
-	  {
-            ppoly->pvx[i] = pvecx[i] ;
-	    ppoly->pvy[i] = pvecy[i] ; 
-	  }
-        }
-        else
-        {
-          for (i = 0; i < n1; i++)
-	  {
-	    ppoly->pvx[i] = 0.0;
-	    ppoly->pvy[i] = 0.0;
-	  }
-        }
-
-
-        /**DJ.Abdemouche 2003**/
-        if (pvecz == (double *) NULL)
-	{
-	  pPOLYLINE_FEATURE (pobj)->pvz=NULL;
-	}
-        else
-	{
-	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
-	  {
-	    FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-	    FREE(pPOLYLINE_FEATURE (pobj)->pvy);
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(pPOLYLINE_FEATURE(pobj));
-	    FREE(pobj);
-	    return (sciPointObj *) NULL;
-	  } 
-	  for (i = 0; i < n1; i++)
-          {
-	    ppoly->pvz[i] = pvecz[i];
-          }
-	}
-      }
-      else
-      {
-        ppoly->pvx = NULL ;
-        ppoly->pvy = NULL ;
-        ppoly->pvz = NULL ;
-      }
-
-      ppoly->n1 = n1;	  /* memorisation du nombre de points */
-      ppoly->closed = (closed > 0) ? 1 : 0;
-      ppoly->plot = plot;
- 
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  FREE(pPOLYLINE_FEATURE (pobj)->pvy);
-	  FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-          sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPOLYLINE_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      /* colors and marks setting */
-      sciInitIsMark(pobj,ismark);
-      sciInitIsLine(pobj,isline);
-      sciInitIsFilled(pobj,isfilled);
-      /*       sciSetIsInterpShaded(pobj,isinterpshaded); */
-      
-      ppoly->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
-      
-      if(foreground != NULL)
-	sciInitForeground(pobj,(*foreground));
-      
-      ppoly->scvector = (int *) NULL;
-      
-      if(background != NULL){
-	if(isinterpshaded == TRUE){ /* 3 or 4 values to store */
-	  
-	  sciSetInterpVector(pobj,n1,background);
-	}
-	else
-	  sciInitBackground(pobj,(*background));
-      }
-      
-      if(mark_style != NULL)
-	sciInitMarkStyle(pobj,(*mark_style));
-      
-      if(mark_foreground != NULL)
-	sciInitMarkForeground(pobj,(*mark_foreground));
-      
-      if(mark_background != NULL)
-	sciInitMarkBackground(pobj,(*mark_background));
-      
-      return pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
 }
 
 
@@ -1207,6 +1267,8 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -1295,6 +1357,8 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	}
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -1412,6 +1476,8 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       psurf = pSURFACE_FEATURE (pobj);
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -1661,6 +1727,8 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	}
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -1759,146 +1827,153 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
   int i;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_AXES);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciAxes)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        return NULL ;
-      }
-
-      pAXES_FEATURE (pobj)->callback = (char *)NULL;
-      pAXES_FEATURE (pobj)->callbacklen = 0;
-      pAXES_FEATURE (pobj)->callbackevent = 100;
-      pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-
-      /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      pAXES_FEATURE (pobj)->clip_region_set = 0;
-      /*pAXES_FEATURE (pobj)->isclip = -1;*/  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
-      sciInitIsClipping( pobj, -1 ) ;
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-      /*       pAXES_FEATURE (pobj)->clip_region = (double *) NULL; */
-     
-      pAXES_FEATURE (pobj)->dir =dir;
-      pAXES_FEATURE (pobj)->tics =tics;
-  
-      paxes = pAXES_FEATURE (pobj);
-      if ((paxes->vector = MALLOC (Max(nx,ny) * sizeof (POINT2D))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPOLYLINE_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /* pour le moment je garde les vecteurs separes, et non en POINT2D */
-      if ((paxes->vx = MALLOC (nx * sizeof (double))) == NULL)
-	{
-	  FREE(pAXES_FEATURE (pobj)->vector);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pAXES_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((paxes->vy = MALLOC (ny * sizeof (double))) == NULL)
-	{
-	  FREE(pAXES_FEATURE (pobj)->vector);
-	  FREE(pAXES_FEATURE (pobj)->vx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pAXES_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      
-      for (i = 0; i < nx; i++)
-	{
-	  paxes->vx[i]       = vx[i];	 
-	}
-      for (i = 0; i < ny; i++)
-	{
-	  paxes->vy[i]       = vy[i];
-	}
-     
-     
-      
-      pAXES_FEATURE (pobj)->nx =nx; 
-      
-     
-      pAXES_FEATURE (pobj)->ny =ny;
-     
-      pAXES_FEATURE (pobj)->nb_tics_labels = nb_tics_labels; /* F.Leray 29.04.05 */
-
-      /* pAXES_FEATURE(pobj)->str = str;*/ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
-      if(str != (char **) NULL)
-	{
-	  if(pAXES_FEATURE (pobj)->nb_tics_labels == -1){
-	    sciprint(_("Impossible case when building axis\n"));
+  {
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+	    return (sciPointObj *) NULL;
+    sciSetEntityType (pobj, SCI_AXES);
+    if ((pobj->pfeatures = MALLOC ((sizeof (sciAxes)))) == NULL)
+	  {
+	    FREE(pobj);
 	    return (sciPointObj *) NULL;
 	  }
-	  
-	  if ((pAXES_FEATURE(pobj)->str= MALLOC (pAXES_FEATURE (pobj)->nb_tics_labels * sizeof (char*))) == NULL)
-	    return (sciPointObj *) NULL;
+    if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+    {
+      FREE( pobj->pfeatures ) ;
+      FREE( pobj ) ;
+      return NULL ;
+    }
 
-	  for(i=0;i<pAXES_FEATURE (pobj)->nb_tics_labels;i++) 
+    pAXES_FEATURE (pobj)->callback = (char *)NULL;
+    pAXES_FEATURE (pobj)->callbacklen = 0;
+    pAXES_FEATURE (pobj)->callbackevent = 100;
+    pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+
+    /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+    pAXES_FEATURE (pobj)->clip_region_set = 0;
+    /*pAXES_FEATURE (pobj)->isclip = -1;*/  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
+    sciInitIsClipping( pobj, -1 ) ;
+    sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+    /*       pAXES_FEATURE (pobj)->clip_region = (double *) NULL; */
+     
+    pAXES_FEATURE (pobj)->dir =dir;
+    pAXES_FEATURE (pobj)->tics =tics;
+  
+    paxes = pAXES_FEATURE (pobj);
+    if ((paxes->vector = MALLOC (Max(nx,ny) * sizeof (POINT2D))) == NULL)
+	  {
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pPOLYLINE_FEATURE(pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
+	  }
+    /* pour le moment je garde les vecteurs separes, et non en POINT2D */
+    if ((paxes->vx = MALLOC (nx * sizeof (double))) == NULL)
+	  {
+	    FREE(pAXES_FEATURE (pobj)->vector);
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pAXES_FEATURE(pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
+	  }
+    if ((paxes->vy = MALLOC (ny * sizeof (double))) == NULL)
+	  {
+	    FREE(pAXES_FEATURE (pobj)->vector);
+	    FREE(pAXES_FEATURE (pobj)->vx);
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pAXES_FEATURE(pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
+	  }
+      
+    for (i = 0; i < nx; i++)
+	  {
+	    paxes->vx[i] = vx[i];	 
+	  }
+    for (i = 0; i < ny; i++)
+	  {
+	    paxes->vy[i] = vy[i];
+	  }
+     
+    pAXES_FEATURE (pobj)->nx =nx;   
+    pAXES_FEATURE (pobj)->ny =ny;
+     
+    pAXES_FEATURE (pobj)->nb_tics_labels = nb_tics_labels; /* F.Leray 29.04.05 */
+
+    /* pAXES_FEATURE(pobj)->str = str;*/ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
+    if(str != (char **) NULL)
+	  {
+	    if(pAXES_FEATURE (pobj)->nb_tics_labels == -1){
+	      sciprint(_("Impossible case when building axis\n"));
+	      return (sciPointObj *) NULL;
+	    }
+	  
+	    if ((pAXES_FEATURE(pobj)->str= MALLOC (pAXES_FEATURE (pobj)->nb_tics_labels * sizeof (char*))) == NULL)
+	      return (sciPointObj *) NULL;
+
+	    for(i=0;i<pAXES_FEATURE (pobj)->nb_tics_labels;i++) 
 	    {
 	      if(str[i] != (char *) NULL)
-		{
-		  if((pAXES_FEATURE (pobj)->str[i] = MALLOC( (strlen(str[i])+1) * sizeof(char))) == NULL)
-		    return (sciPointObj *) NULL;
-		  else
-		    strcpy(pAXES_FEATURE (pobj)->str[i],str[i]);
-		}
+		    {
+		      if((pAXES_FEATURE (pobj)->str[i] = MALLOC( (strlen(str[i])+1) * sizeof(char))) == NULL)
+		        return (sciPointObj *) NULL;
+		      else
+		        strcpy(pAXES_FEATURE (pobj)->str[i],str[i]);
+		    }
 	      else
-		pAXES_FEATURE (pobj)->str[i] = (char *) NULL;
+		      pAXES_FEATURE (pobj)->str[i] = (char *) NULL;
 	    }
-	}
-      else
-	{
-	  pAXES_FEATURE (pobj)->str = (char **) NULL;
-	}
+	  }
+    else
+	  {
+	    pAXES_FEATURE (pobj)->str = (char **) NULL;
+	  }
 
-      pAXES_FEATURE (pobj)->subint = subint;
-      pAXES_FEATURE (pobj)->fontsize =fontsize; 
-      pAXES_FEATURE (pobj)->textcolor =textcolor;
-      pAXES_FEATURE (pobj)->ticscolor =ticscolor;
-      pAXES_FEATURE (pobj)->seg =seg;    
-      /*    pAXES_FEATURE (pobj)->format =format; */ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
-      pAXES_FEATURE (pobj)->logscale=logscale;
-      if(format != (char *) NULL)
-	{
-	  if((pAXES_FEATURE (pobj)->format = MALLOC( (strlen(format)+1) * sizeof(char))) == NULL)
-	    return (sciPointObj *) NULL;
-	  else
-	    strcpy(pAXES_FEATURE (pobj)->format,format);
-	}
-      else
-	pAXES_FEATURE (pobj)->format = (char *) NULL;
+    pAXES_FEATURE (pobj)->subint = subint;
+    pAXES_FEATURE (pobj)->seg =seg;    
+    /*    pAXES_FEATURE (pobj)->format =format; */ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
+    pAXES_FEATURE (pobj)->logscale=logscale;
+    if(format != (char *) NULL)
+	  {
+	    if((pAXES_FEATURE (pobj)->format = MALLOC( (strlen(format)+1) * sizeof(char))) == NULL)
+	      return (sciPointObj *) NULL;
+	    else
+	      strcpy(pAXES_FEATURE (pobj)->format,format);
+	  }
+    else
+	    pAXES_FEATURE (pobj)->format = (char *) NULL;
 	  
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-    	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-    	  sciDelHandle (pobj);
-    	  FREE(pAXES_FEATURE (pobj));
-    	  FREE(pobj);
-    	  return (sciPointObj *) NULL;
-	}
-
-
-      return pobj;
-    }
-  else
+    if (sciInitGraphicContext (pobj) == -1)
+	  {
+      sciDelThisToItsParent (pobj, sciGetParent (pobj));
+    	sciDelHandle (pobj);
+    	FREE(pAXES_FEATURE (pobj));
+    	FREE(pobj);
+    	return (sciPointObj *) NULL;
+	  }
+    
+    if ( sciInitFontContext( pobj ) == -1 )
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
+      sciDelThisToItsParent (pobj, sciGetParent (pobj));
+    	sciDelHandle (pobj);
+    	FREE(pAXES_FEATURE (pobj));
+    	FREE(pobj);
+    	return NULL;
     }
+
+    sciInitFontSize(pobj, fontsize);
+    sciInitFontForeground(pobj, textcolor);
+    sciInitForeground(pobj, ticscolor);
+
+    return pobj;
+  }
+  else
+  {
+    sciprint(_("The parent has to be a SUBWIN\n"));
+    return (sciPointObj *) NULL;
+  }
 }
 
 
@@ -1930,6 +2005,8 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	}
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -2049,6 +2126,8 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	}
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -2229,6 +2308,8 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 
   if ( sciStandardBuildOperations( pobj, sciGetParent(sciGetPointerFromHandle( (long) handelsvalue[0])) ) == NULL )
   {
+    FREE( pobj->pfeatures ) ;
+    FREE( pobj ) ;
     return NULL ;
   }
 
@@ -2301,6 +2382,8 @@ ConstructCompoundSeq (int number)
 
   if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
   {
+    FREE( pobj->pfeatures ) ;
+    FREE( pobj ) ;
     return NULL ;
   }
 
@@ -2482,6 +2565,8 @@ ConstructMenu (sciPointObj * pparentfigure, char plabel[], int n)
 
       if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -2538,6 +2623,8 @@ ConstructMenuContext (sciPointObj * pparentfigure)
 	}
       if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
       {
+        FREE( pobj->pfeatures ) ;
+        FREE( pobj ) ;
         return NULL ;
       }
 
@@ -2782,8 +2869,6 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
   /* add the handle in the handle list */
   if ( sciAddNewHandle(pObj) == -1 )
   {
-    FREE( pObj->pfeatures ) ;
-    FREE( pObj ) ;
     return NULL ;
   }
 
@@ -2791,8 +2876,6 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
   if ( !sciAddThisToItsParent( pObj, parent) )
   {
     sciDelHandle(pObj) ;
-    FREE( pObj->pfeatures ) ;
-    FREE( pObj ) ;
     return NULL ;
   }
 

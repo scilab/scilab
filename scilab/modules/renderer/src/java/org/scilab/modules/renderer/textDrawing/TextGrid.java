@@ -47,13 +47,12 @@ public class TextGrid {
 				cellsEdges[i][j] = new Vector3D(0.0, 0.0, 0.0);
 			}
 		}
-		
 		// extend a little width and height
 		for (int i = 0; i < nbRow; i++) {
 			rowHeights[i] *= (1.0 + EXTEND_FACTOR_Y);
 		}
 		
-		for (int j = 0; j < nbRow; j++) {
+		for (int j = 0; j < nbCol; j++) {
 			colWidths[j] *= (1.0 + EXTEND_FACTOR_X);
 		}
 		

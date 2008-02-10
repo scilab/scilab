@@ -11,6 +11,7 @@
 
 
 #include "../DrawableObjectFactory.h"
+#include "ConcreteDrawableAxes.hxx"
 
 namespace sciGraphics
 {
@@ -30,6 +31,14 @@ public:
    * To be used when an object was deeply modified and to avoid to create it again completely.
    */
   virtual void update( void ) ;
+
+protected:
+
+  /**
+   * Create the drawing strategies.
+   * @param axes Object on which to create the strategies
+   */
+  void setStrategies( ConcreteDrawableAxes * axes ) ;
 
 } ;
 

@@ -436,7 +436,23 @@ DestroyLegend (sciPointObj * pthis)
   /* on peut alors destroyer le parent */
 }
 
+int deallocatePolyline (sciPointObj * pthis)
+{
+  FREE (pPOLYLINE_FEATURE (pthis)->pvx);
+  FREE (pPOLYLINE_FEATURE (pthis)->pvy);
 
+  if (pPOLYLINE_FEATURE (pthis)->pvz != NULL) /**DJ.Abdemouche 2003**/
+  {
+    FREE (pPOLYLINE_FEATURE (pthis)->pvz);
+  }
+  FREE (pPOLYLINE_FEATURE (pthis)->user_data);
+  pPOLYLINE_FEATURE (pthis)->size_of_user_data = 0;
+  destroyHandleDrawer(pthis);
+
+  FREE (sciGetPointerToFeature (pthis));
+  FREE (pthis);
+  return 0;
+}
 
 /**DestroyPolyline
  * @memo This function destroies Polyline and the elementaries structures and only this to destroy all sons use DelGraphicsSon
@@ -887,5 +903,30 @@ int sciDestroyWindowFrame( sciPointObj * pThis )
 int sciDestroyScreen( sciPointObj * pThis )
 {
   return sciStandardDestroyOperations( pThis ) ;
+}
+/*--------------------------------------------------------------------------------*/
+/**
+ * destroy a pointer or array allocated by MALLOC
+ * This function was created since cpp does not
+ * seems to allow the use of MALLOC or FREE
+ */
+void destroyGraphicPointer(void * pointer)
+{
+  FREE(pointer);
+}
+/*--------------------------------------------------------------------------------*/
+/**
+ * destroy an array of C strings.
+ * This function was created since cpp does not
+ * seems to allow the use of MALLOC or FREE
+ */
+void destroyGraphicStringArray(char ** strArray, int nbStrings)
+{
+  int i;
+  for (i = 0; i < nbStrings; i++)
+  {
+    FREE(strArray[i]);
+  }
+  FREE(strArray);
 }
 /*--------------------------------------------------------------------------------*/

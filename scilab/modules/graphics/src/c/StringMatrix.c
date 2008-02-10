@@ -22,7 +22,7 @@ StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
   for ( i = 0 ; i < nbRow * nbCol ; i++ )
   {
     /* +1 for the /0 last character */
-    newMat->data[i] = CALLOC( strlen(textMat[i]) + 1, sizeof(char) ) ;
+    newMat->data[i] = MALLOC( (strlen(textMat[i]) + 1) * sizeof(char) ) ;
     strcpy( newMat->data[i], textMat[i] ) ;
   }
 
@@ -51,7 +51,7 @@ void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyS
   {
     FREE( changedString ) ;
   }
-  changedString = CALLOC( strlen( copyStr ) + 1, sizeof(char) ) ;
+  changedString = MALLOC( (strlen( copyStr ) + 1) * sizeof(char) ) ;
   strcpy( changedString, copyStr ) ;
   mat->data[row + col * mat->nbRow] = changedString ;
 }

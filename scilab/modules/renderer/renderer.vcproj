@@ -69,7 +69,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib"
+				AdditionalDependencies="graphics.lib LibScilab.lib"
 				OutputFile="../../bin/scirenderer.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="renderer.def"
@@ -157,7 +157,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib"
+				AdditionalDependencies="graphics.lib LibScilab.lib"
 				OutputFile="../../bin/scirenderer.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="renderer.def"
@@ -217,27 +217,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\axesDrawing\DrawableAxes.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\axesDrawing\DrawableAxesFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\DrawableClippedObject.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\src\cpp\DrawableClippedObjectJoGL.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\legendDrawing\DrawableLegend.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\legendDrawing\DrawableLegendFactory.cpp"
 				>
 			</File>
 			<File
@@ -1268,6 +1252,82 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="LegendDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\legendDrawing\ConcreteDrawableLegend.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\legendDrawing\DrawableLegend.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\legendDrawing\DrawableLegendFactory.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="AxesDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\AxesTicksComputer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\ConcreteDrawableAxes.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxes.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesBridgeFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableAxesGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\XAxesDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YAxesDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJoGL.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1280,14 +1340,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\BuildDrawingObserver.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\axesDrawing\DrawableAxes.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\axesDrawing\DrawableAxesFactory.h"
 				>
 			</File>
 			<File
@@ -1304,14 +1356,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\DrawableClippedObjectJoGL.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\legendDrawing\DrawableLegend.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\legendDrawing\DrawableLegendFactory.h"
 				>
 			</File>
 			<File
@@ -2467,6 +2511,86 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\fecDrawing\FecLineDrawerJoGL.hxx"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="LegendDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\legendDrawing\ConcreteDrawableLegend.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\legendDrawing\DrawableLegend.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\legendDrawing\DrawableLegendFactory.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="AxesDrawing"
+				>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\AxesTicksComputer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\ConcreteDrawableAxes.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxes.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesBridge.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesBridgeFactory.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesFactory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\DrawableAxesGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\DrawableAxesJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\XAxesDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YAxesDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

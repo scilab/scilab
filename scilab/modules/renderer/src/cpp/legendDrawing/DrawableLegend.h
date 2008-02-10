@@ -35,6 +35,16 @@ protected:
    */
   virtual void show( void ) ;
 
+  /**
+   * Actually draw the legend
+   */
+  virtual void drawLegend(void) = 0;
+
+  /**
+   * Actually show the legend
+   */
+  virtual void showLegend(void) = 0;
+
 
 } ;
 

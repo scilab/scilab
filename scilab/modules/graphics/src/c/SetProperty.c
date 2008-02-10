@@ -1697,9 +1697,9 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
       /*     case SCI_SURFACE: */
       /*       for(i=0;i<4;i++) pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i]; */
       /*       break; */
-      /*     case SCI_LEGEND:  */
-      /*       for(i=0;i<4;i++) pLEGEND_FEATURE (pobj)->clip_region[i] = pclip[i]; */
-      /*       break; */
+    case SCI_LEGEND:
+      for(i=0;i<4;i++) pLEGEND_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break; 
       /*     case SCI_TITLE:   */
       /*       for(i=0;i<4;i++) pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i]; */
       /*       break; */
@@ -1716,7 +1716,6 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
       return sciSetClipping( pLABEL_FEATURE (pobj)->text, pclip ) ;
       break;
     case SCI_SURFACE:
-    case SCI_LEGEND: 
     case SCI_TITLE:    
     case SCI_AGREG:
     case SCI_FEC: 

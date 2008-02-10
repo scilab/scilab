@@ -15,11 +15,9 @@
 /*------------------------------------------------------------------------*/
 int get_labels_font_color_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) == SCI_AXES)
-  {
-    return sciReturnDouble( pAXES_FEATURE (pobj)->textcolor ) ;
-  }
-  else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
+  if (   sciGetEntityType (pobj) == SCI_SUBWIN
+      || sciGetEntityType (pobj) == SCI_FIGURE
+      || sciGetEntityType(pobj) == SCI_AXES)
   {
     return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ; /* F.Leray 08.04.04 */
   }

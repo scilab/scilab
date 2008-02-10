@@ -574,9 +574,9 @@ typedef struct
   /** */
   POINT2D pos;
   /** specifies the frame's width */
-  int width;		     
+  int width;	     
   /** specifies the frame's height */
-  int height;		     
+  int height;	     
   /** */
   BOOL isselected;
   /** specifies if the legend is surrounded */
@@ -584,8 +584,6 @@ typedef struct
   /* void    *associetedentity;  get the associeted entity by asking parents.relation.sons */
   /* the subwindow dimension is get by asking relation     */
   sciLegendPlace place;
-  /** */
-  sciSons *associatedentity;
   /** pointer on the labelled objects */
   sciPointObj **pptabofpointobj;
   /** specifies if this object is visble             */
@@ -1212,14 +1210,15 @@ sciLightSource;	 /** */
 typedef struct
 {
   sciRelationShip relationship;
-  sciGraphicContext graphiccontext; 
+  sciGraphicContext graphiccontext;
+  sciFont fontcontext;
   char dir;   /** dir = 'r' | 'l' | 'u' | 'd' : gives the tics directions **/  
   char tics;  /** tics = 'v' (for vector) or 'r' (for range) or i **/
   POINT2D *vector;		/* vecteur de points redondant, for future developpement*/
   double *vx;  /** vx vector of size nx **/
   double *vy;  /** vy vector of size ny **/ 
   /**DJ.Abdemouche 2003**/
-  double *vz; 
+  double *vz; /* not used */
   int nx;
   int ny;
   int nb_tics_labels; /* F.Leray 29.04.05 : number of tics_labels can be different from Max(nx,ny) if xy_type diff. from 'v' */
@@ -1228,10 +1227,7 @@ typedef struct
   char **str ;  /** string vector **/
   int subint;  /** subints : number of sub intervals **/ 
   char *format; /** format for tick marks **/
-  int fontsize;
-  int textcolor;
-  int ticscolor;
-  char logscale;
+  char logscale; /* not used */
   int seg;      /**0 or 1, flag which control the drawing of the segment associated to the axes **/
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  

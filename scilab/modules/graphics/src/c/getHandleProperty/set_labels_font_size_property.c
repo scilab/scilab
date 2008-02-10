@@ -23,11 +23,8 @@ int set_labels_font_size_property( sciPointObj * pobj, int stackPointer, int val
     return SET_PROPERTY_ERROR ;
   }
 
-  if (sciGetEntityType (pobj) == SCI_AXES)
-  {
-    pAXES_FEATURE (pobj)->fontsize = (int) getDoubleFromStack( stackPointer ) ;
-  }
-  else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
+  if (   sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE
+      || sciGetEntityType (pobj) == SCI_AXES)
   {
     return sciSetFontSize( pobj, getDoubleFromStack(stackPointer) ) ; /* F.Leray 08.04.04 */
   }

@@ -713,8 +713,7 @@ sciGetFontContext (sciPointObj * pobj)
       return &(pSUBWIN_FEATURE (pobj)->axes.fontcontext);
       break;
     case SCI_AXES:
-      /*axes uses the parent subwindow font context S Steer 04.06.04*/
-       return &(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->axes.fontcontext);
+      return  &(pAXES_FEATURE (pobj)->fontcontext);
        break;  
     case SCI_FIGURE: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
       return &(pFIGURE_FEATURE (pobj)->fontcontext);
@@ -1068,6 +1067,7 @@ sciGetFontStyle (sciPointObj * pobj)
     case SCI_SUBWIN:
     case SCI_FIGURE:
     case SCI_LABEL: /* F.Leray 10.06.04 */
+    case SCI_AXES:
       return sciGetFontContext(pobj)->fonttype;
       break;
     case SCI_ARC:
@@ -1077,8 +1077,6 @@ sciGetFontStyle (sciPointObj * pobj)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
@@ -1609,9 +1607,11 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_LABEL:
       return sciGetClipping( pLABEL_FEATURE(pobj)->text ) ;
       break;
-	case SCI_UIMENU:
+    case SCI_LEGEND:
+      return pLEGEND_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_UIMENU:
     case SCI_SURFACE:
-    case SCI_LEGEND: 
     case SCI_TITLE:    
     case SCI_AGREG:
     case SCI_FEC: 

@@ -28,7 +28,7 @@ int set_tics_color_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) == SCI_AXES )
   {
-    pAXES_FEATURE (pobj)->ticscolor = (int) getDoubleFromStack( stackPointer ) ;
+    sciSetForeground(pobj, (int) getDoubleFromStack( stackPointer ));
   }
   else if ( sciGetEntityType(pobj) == SCI_SUBWIN )
   {

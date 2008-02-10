@@ -14,7 +14,6 @@ namespace sciGraphics
 ZTicksDrawerJoGL::ZTicksDrawerJoGL(DrawableSubwin * subwin)
   : TicksDrawerJoGL(subwin)
 {
-  sciPointObj * pSubwin = subwin->getDrawedObject();
 
   // no choice here, only one position for z ticks
   setJavaMapper(new ZTicksDrawerJavaMapper());

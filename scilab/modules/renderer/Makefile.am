@@ -258,7 +258,11 @@ src/cpp/fecDrawing/DrawableFecJoGL.cpp \
 src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
 src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
 src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
-src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
+src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
+src/jni/DrawableAxesGL.cpp \
+src/jni/XAxesDrawerGL.cpp \
+src/jni/YAxesDrawerGL.cpp \
+
 
 
 # List of the gateway c files
@@ -315,7 +319,20 @@ src/jni/SegsMarkDrawerGL.giws.xml \
 src/jni/DrawableGrayplotGL.giws.xml \
 src/jni/DrawableFecGL.giws.xml \
 src/jni/DrawableFecGL.giws.xml \
-src/jni/FecFacetDrawerGL.giws.xml
+src/jni/FecFacetDrawerGL.giws.xml \
+src/jni/DrawableAxesGL.giws.xml \
+src/jni/XAxesDrawerGL.giws.xml \
+src/jni/YAxesDrawerGL.giws.xml \
+src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
+src/cpp/axesDrawing/AxesTicksComputer.cpp \
+src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
+src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
+src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
+src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
+src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
+src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
+src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
+src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
 
 else
 

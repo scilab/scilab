@@ -7,7 +7,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "DrawableLegendFactory.h"
-#include "DrawableLegend.h"
+#include "ConcreteDrawableLegend.hxx"
 
 namespace sciGraphics
 {
@@ -15,7 +15,7 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 DrawableObject * DrawableLegendFactory::create( void )
 {
-  return new DrawableLegend( m_pDrawed ) ;
+  return new ConcreteDrawableLegend( m_pDrawed ) ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableLegendFactory::update( void )

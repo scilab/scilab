@@ -13,12 +13,20 @@ namespace sciGraphics
 /*---------------------------------------------------------------------------------*/
 void DrawableLegend::draw( void )
 {
-
+  if (!checkVisibility())
+  {
+    return;
+  }
+  drawLegend();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableLegend::show( void )
 {
-  draw() ;
+  if (!checkVisibility())
+  {
+    return;
+  }
+  showLegend();
 }
 /*---------------------------------------------------------------------------------*/
 

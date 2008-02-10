@@ -16,8 +16,8 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-TicksDrawerJoGL::TicksDrawerJoGL(DrawableSubwin * subwin)
-  : TicksDrawer(subwin), DrawableObjectJoGL(subwin)
+TicksDrawerJoGL::TicksDrawerJoGL(DrawableObject * drawer)
+  : TicksDrawer(drawer), DrawableObjectJoGL(drawer)
 {
 
 }
@@ -65,20 +65,20 @@ void TicksDrawerJoGL::initializeDrawing(void)
   DrawableObjectJoGL::initializeDrawing();
 
   // also set axis drawing parameters
-  sciPointObj * pSubwin = getDrawer()->getDrawedObject();
+  sciPointObj * pObj = getDrawer()->getDrawedObject();
 
   // set axes bounds
   double bounds[6];
-  sciGetRealDataBounds(pSubwin, bounds);
+  sciGetRealDataBounds(sciGetParentSubwin(pObj), bounds);
   getTicksDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1], bounds[2],
                                             bounds[3], bounds[4], bounds[5]);
   // set other parameters
-  getTicksDrawerJavaMapper()->setAxisParamerters(sciGetLineStyle(pSubwin),
-                                                 (float) sciGetLineWidth(pSubwin),
-                                                 sciGetGraphicContext(pSubwin)->foregroundcolor,
-                                                 sciGetFontStyle(pSubwin),
-                                                 sciGetFontSize(pSubwin),
-                                                 sciGetFontContext(pSubwin)->foregroundcolor);
+  getTicksDrawerJavaMapper()->setAxisParamerters(sciGetLineStyle(pObj),
+                                                 (float) sciGetLineWidth(pObj),
+                                                 sciGetGraphicContext(pObj)->foregroundcolor,
+                                                 sciGetFontStyle(pObj),
+                                                 sciGetFontSize(pObj),
+                                                 sciGetFontContext(pObj)->foregroundcolor);
 
   if (m_pGridDrawer != NULL)
   {

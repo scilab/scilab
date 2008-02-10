@@ -44,6 +44,9 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	private float thickness;
 	private int lineColor;
 	
+	/** Specify wether the axis line (the long one) should be drawn */
+	private boolean drawAxisLine;
+	
 	private CenteredTextDrawerGL labelsDrawer;
 	private StandardTextDrawerGL exponentDrawer;
 	
@@ -66,6 +69,8 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		lineStyle = 0;
 		thickness = 0.0f;
 		lineColor = 0;
+		/* draw the line by default */
+		drawAxisLine = true;
 	}
 	
 	/**
@@ -249,6 +254,17 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	}
 	
 	/**
+	 * Specify whether the axis line should be drawn or not.
+	 * By default it is drawn
+	 * @param drawAxisLine boolean
+	 */
+	public void setAxisLineDrawing(boolean drawAxisLine) {
+		this.drawAxisLine = drawAxisLine;
+	}
+	
+	
+	
+	/**
 	 * Check if the ticks labels does not concealed each other at the specified positions.
 	 * @param ticksPositions initial position of the ticks
 	 * @param ticksLabels labels to display in front of the ticks
@@ -310,7 +326,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	 * @return maximum distance between labels and axis.
 	 */
 	public double drawTicks(double[] ticksPositions, String[] ticksLabels,
-						  String[] labelsExponents, double[] subticksPositions) {
+						    String[] labelsExponents, double[] subticksPositions) {
 		this.ticksPositions = ticksPositions;
 		this.ticksLabels = ticksLabels;
 		this.labelsExponents = labelsExponents;
@@ -339,9 +355,13 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		
 		
 		gl.glBegin(GL.GL_LINES);
-		// draw axis segment
-		gl.glVertex3d(axisSegementStart.getX(), axisSegementStart.getY(), axisSegementStart.getZ());
-		gl.glVertex3d(axisSegmentEnd.getX(), axisSegmentEnd.getY(), axisSegmentEnd.getZ());
+		
+		
+		// draw axis segmentif
+		if (drawAxisLine) {
+			gl.glVertex3d(axisSegementStart.getX(), axisSegementStart.getY(), axisSegementStart.getZ());
+			gl.glVertex3d(axisSegmentEnd.getX(), axisSegmentEnd.getY(), axisSegmentEnd.getZ());
+		}
 		
 		// draw ticks
 		for (int i = 0; i < ticksPositions.length; i++) {

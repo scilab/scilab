@@ -36,6 +36,7 @@ extern int deallocateText( sciPointObj * pthis ) ;
 extern int DestroyText (sciPointObj * pthis); /* DESTROY */
 extern int DestroyTitle (sciPointObj * pthis); /* DESTROY */
 extern int DestroyLegend (sciPointObj * pthis); /* DESTROY */
+int deallocatePolyline (sciPointObj * pthis);
 extern int DestroyPolyline (sciPointObj * pthis); /* DESTROY */
 extern int DestroyArc (sciPointObj * pthis); /* DESTROY */
 extern int DestroyRectangle (sciPointObj * pthis); /* DESTROY */
@@ -80,5 +81,9 @@ void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, inte
 int sciStandardDestroyOperations( sciPointObj * pThis ) ;
 
 int DestroyUicontrol (sciPointObj * pthis);
+
+void destroyGraphicPointer(void * pointer);
+
+void destroyGraphicStringArray(char ** strArray, int nbStrings);
 
 #endif /* __SCI_DESTROY__ */

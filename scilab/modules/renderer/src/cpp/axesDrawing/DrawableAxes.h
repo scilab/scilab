@@ -35,6 +35,16 @@ protected:
    */
   virtual void show( void ) ;
 
+  /**
+   * Actually draw the axes object
+   */
+  virtual void drawAxes(void) = 0;
+
+  /**
+   * Actually show the axes object
+   */
+  virtual void showAxes(void) = 0;
+
 
 } ;
 

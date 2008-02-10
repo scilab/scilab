@@ -17,7 +17,7 @@ int get_tics_color_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) == SCI_AXES)
   {
-    return sciReturnDouble( pAXES_FEATURE(pobj)->ticscolor ) ;
+    return sciReturnDouble( sciGetForegroundToDisplay(pobj) ) ;
   }
   else if (sciGetEntityType (pobj) == SCI_SUBWIN)
   {

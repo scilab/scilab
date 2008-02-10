@@ -164,5 +164,14 @@ DrawableFec * getFecDrawer( sciPointObj * pFec )
   return dynamic_cast<DrawableFec *>(getHandleDrawer(pFec));
 }
 /*---------------------------------------------------------------------------------*/
+DrawableAxes * getAxesDrawer( sciPointObj * pAxes )
+{
+  if (sciGetEntityType(pAxes) != SCI_AXES)
+  {
+    return NULL;
+  }
 
+  return dynamic_cast<DrawableAxes *>(getHandleDrawer(pAxes));
+}
+/*---------------------------------------------------------------------------------*/
 }

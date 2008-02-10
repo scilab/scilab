@@ -17,7 +17,7 @@ namespace sciGraphics
 {
 
 /*------------------------------------------------------------------------------------------*/
-TicksDrawer::TicksDrawer(DrawableSubwin * subwin)
+TicksDrawer::TicksDrawer(DrawableObject * drawer)
 {
   m_pTicksComputer = NULL;
   m_pGridDrawer = NULL;
