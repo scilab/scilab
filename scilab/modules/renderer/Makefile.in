@@ -322,6 +322,18 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
 	src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
 	src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
+	src/jni/DrawableAxesGL.cpp src/jni/XAxesDrawerGL.cpp \
+	src/jni/YAxesDrawerGL.cpp \
+	src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
+	src/cpp/axesDrawing/AxesTicksComputer.cpp \
+	src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
+	src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
+	src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
+	src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
+	src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
+	src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
+	src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
+	src/cpp/axesDrawing/YAxesDrawerJoGL.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -574,7 +586,20 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-FecFacetDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-FecFacetDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-FecLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-FecLineDrawerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-FecLineDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableAxesGL.lo \
+@GUI_TRUE@	libscirenderer_la-XAxesDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-YAxesDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-ConcreteDrawableLegend.lo \
+@GUI_TRUE@	libscirenderer_la-AxesTicksComputer.lo \
+@GUI_TRUE@	libscirenderer_la-ConcreteDrawableAxes.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableAxesBridgeFactory.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableAxesJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-DrawableAxesJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-XAxesDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-XAxesDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-YAxesDrawerJavaMapper.lo \
+@GUI_TRUE@	libscirenderer_la-YAxesDrawerJoGL.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1044,7 +1069,20 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
+@GUI_TRUE@src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
+@GUI_TRUE@src/jni/DrawableAxesGL.cpp \
+@GUI_TRUE@src/jni/XAxesDrawerGL.cpp \
+@GUI_TRUE@src/jni/YAxesDrawerGL.cpp \
+@GUI_TRUE@src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/AxesTicksComputer.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
 
 
 # List of the gateway c files
@@ -1103,7 +1141,10 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/DrawableGrayplotGL.giws.xml \
 @GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
 @GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
-@GUI_TRUE@src/jni/FecFacetDrawerGL.giws.xml
+@GUI_TRUE@src/jni/FecFacetDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableAxesGL.giws.xml \
+@GUI_TRUE@src/jni/XAxesDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/YAxesDrawerGL.giws.xml
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -1268,6 +1309,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJoGL.Plo@am__quote@
@@ -1286,9 +1328,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Plo@am__quote@
@@ -1304,7 +1348,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxes.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompound.Plo@am__quote@
@@ -1488,6 +1536,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxesDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxesDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxesDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo@am__quote@
@@ -1495,6 +1546,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XLabelPositionerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XLabelPositionerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XTicksDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxesDrawerGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxesDrawerJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxesDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Plo@am__quote@
@@ -3334,6 +3388,97 @@ libscirenderer_la-FecLineDrawerJoGL.lo: src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/fecDrawing/FecLineDrawerJoGL.cpp' object='libscirenderer_la-FecLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FecLineDrawerJoGL.lo `test -f 'src/cpp/fecDrawing/FecLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/fecDrawing/FecLineDrawerJoGL.cpp
+
+libscirenderer_la-DrawableAxesGL.lo: src/jni/DrawableAxesGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesGL.Tpo -c -o libscirenderer_la-DrawableAxesGL.lo `test -f 'src/jni/DrawableAxesGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableAxesGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableAxesGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableAxesGL.cpp' object='libscirenderer_la-DrawableAxesGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesGL.lo `test -f 'src/jni/DrawableAxesGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableAxesGL.cpp
+
+libscirenderer_la-XAxesDrawerGL.lo: src/jni/XAxesDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XAxesDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XAxesDrawerGL.Tpo -c -o libscirenderer_la-XAxesDrawerGL.lo `test -f 'src/jni/XAxesDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/XAxesDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XAxesDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-XAxesDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XAxesDrawerGL.cpp' object='libscirenderer_la-XAxesDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XAxesDrawerGL.lo `test -f 'src/jni/XAxesDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/XAxesDrawerGL.cpp
+
+libscirenderer_la-YAxesDrawerGL.lo: src/jni/YAxesDrawerGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YAxesDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YAxesDrawerGL.Tpo -c -o libscirenderer_la-YAxesDrawerGL.lo `test -f 'src/jni/YAxesDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/YAxesDrawerGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YAxesDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-YAxesDrawerGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/YAxesDrawerGL.cpp' object='libscirenderer_la-YAxesDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YAxesDrawerGL.lo `test -f 'src/jni/YAxesDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/YAxesDrawerGL.cpp
+
+libscirenderer_la-ConcreteDrawableLegend.lo: src/cpp/legendDrawing/ConcreteDrawableLegend.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableLegend.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Tpo -c -o libscirenderer_la-ConcreteDrawableLegend.lo `test -f 'src/cpp/legendDrawing/ConcreteDrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/ConcreteDrawableLegend.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/legendDrawing/ConcreteDrawableLegend.cpp' object='libscirenderer_la-ConcreteDrawableLegend.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableLegend.lo `test -f 'src/cpp/legendDrawing/ConcreteDrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/ConcreteDrawableLegend.cpp
+
+libscirenderer_la-AxesTicksComputer.lo: src/cpp/axesDrawing/AxesTicksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesTicksComputer.Tpo -c -o libscirenderer_la-AxesTicksComputer.lo `test -f 'src/cpp/axesDrawing/AxesTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesTicksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-AxesTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-AxesTicksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/AxesTicksComputer.cpp' object='libscirenderer_la-AxesTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxesTicksComputer.lo `test -f 'src/cpp/axesDrawing/AxesTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesTicksComputer.cpp
+
+libscirenderer_la-ConcreteDrawableAxes.lo: src/cpp/axesDrawing/ConcreteDrawableAxes.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableAxes.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Tpo -c -o libscirenderer_la-ConcreteDrawableAxes.lo `test -f 'src/cpp/axesDrawing/ConcreteDrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/ConcreteDrawableAxes.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/ConcreteDrawableAxes.cpp' object='libscirenderer_la-ConcreteDrawableAxes.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableAxes.lo `test -f 'src/cpp/axesDrawing/ConcreteDrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/ConcreteDrawableAxes.cpp
+
+libscirenderer_la-DrawableAxesBridgeFactory.lo: src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Tpo -c -o libscirenderer_la-DrawableAxesBridgeFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp' object='libscirenderer_la-DrawableAxesBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesBridgeFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp
+
+libscirenderer_la-DrawableAxesJavaMapper.lo: src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Tpo -c -o libscirenderer_la-DrawableAxesJavaMapper.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp' object='libscirenderer_la-DrawableAxesJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesJavaMapper.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp
+
+libscirenderer_la-DrawableAxesJoGL.lo: src/cpp/axesDrawing/DrawableAxesJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Tpo -c -o libscirenderer_la-DrawableAxesJoGL.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesJoGL.cpp' object='libscirenderer_la-DrawableAxesJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesJoGL.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJoGL.cpp
+
+libscirenderer_la-XAxesDrawerJavaMapper.lo: src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XAxesDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XAxesDrawerJavaMapper.Tpo -c -o libscirenderer_la-XAxesDrawerJavaMapper.lo `test -f 'src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XAxesDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-XAxesDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp' object='libscirenderer_la-XAxesDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XAxesDrawerJavaMapper.lo `test -f 'src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp
+
+libscirenderer_la-XAxesDrawerJoGL.lo: src/cpp/axesDrawing/XAxesDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XAxesDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XAxesDrawerJoGL.Tpo -c -o libscirenderer_la-XAxesDrawerJoGL.lo `test -f 'src/cpp/axesDrawing/XAxesDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/XAxesDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XAxesDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-XAxesDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/XAxesDrawerJoGL.cpp' object='libscirenderer_la-XAxesDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XAxesDrawerJoGL.lo `test -f 'src/cpp/axesDrawing/XAxesDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/XAxesDrawerJoGL.cpp
+
+libscirenderer_la-YAxesDrawerJavaMapper.lo: src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YAxesDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YAxesDrawerJavaMapper.Tpo -c -o libscirenderer_la-YAxesDrawerJavaMapper.lo `test -f 'src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YAxesDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-YAxesDrawerJavaMapper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp' object='libscirenderer_la-YAxesDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YAxesDrawerJavaMapper.lo `test -f 'src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp
+
+libscirenderer_la-YAxesDrawerJoGL.lo: src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YAxesDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YAxesDrawerJoGL.Tpo -c -o libscirenderer_la-YAxesDrawerJoGL.lo `test -f 'src/cpp/axesDrawing/YAxesDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-YAxesDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-YAxesDrawerJoGL.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/YAxesDrawerJoGL.cpp' object='libscirenderer_la-YAxesDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YAxesDrawerJoGL.lo `test -f 'src/cpp/axesDrawing/YAxesDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
