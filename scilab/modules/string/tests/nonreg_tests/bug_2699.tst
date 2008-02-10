@@ -12,4 +12,5 @@
 // Date : 10 feb. 2008
 
 if strcat("")              <> "" then pause,end
-if strcat( "" "" ; "" "" ) <> "" then pause,end
+if strcat( ["","" ; "",""] ) <> "" then pause,end
+if strcat( ["" ""] , "" ) <> "" then pause,end

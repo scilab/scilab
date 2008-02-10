@@ -10,5 +10,5 @@
 // Copyright INRIA 2008
 // Date : 10 feb. 2008
 if strcat("")              <> "" then bugmes();quit;end
-if strcat( "" "" ; "" "" ) <> "" then bugmes();quit;end
- 
+if strcat( ["","" ; "",""] ) <> "" then bugmes();quit;end
+if strcat( ["" ""] , "" ) <> "" then bugmes();quit;end
