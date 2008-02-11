@@ -1382,11 +1382,9 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       pRECTANGLE_FEATURE (pobj)->clip_region_set = 0;
-      /*pRECTANGLE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
       sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
-      /*     pRECTANGLE_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
