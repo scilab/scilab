@@ -1,5 +1,5 @@
 // Vincent COUVERT - Copyright INRIA 2008
-function createpopup(listOfMenus)
+function Cmenu = createpopup(listOfMenus)
 
 menuLabels = [];
 
@@ -15,4 +15,5 @@ end
 // Create the popyp
 mpopup(menuLabels);
 
+Cmenu = [];
 endfunction
