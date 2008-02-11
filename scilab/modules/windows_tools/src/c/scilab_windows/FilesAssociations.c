@@ -204,6 +204,10 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 			break;
 			case 0:default: /* Open -O*/
 			{
+				/* open a new scilab for each files */
+				wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
+
+				/*
 				if (! HaveAnotherWindowScilab())
 				{
 					wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
@@ -225,6 +229,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 						wsprintf(Cmd,MSG_SCIMSG8,PathWScilex,FinalFileName);
 					}
 				}
+				*/
 			}
 			break;
 		}
