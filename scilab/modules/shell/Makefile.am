@@ -55,7 +55,8 @@ libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOU
 
 ## Libraries necessary
 libscishell_la_LIBADD = \
-$(top_builddir)/libs/MALLOC/libscimalloc.la
+$(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/completion/libscicompletion.la
 
 modulename=shell
 
