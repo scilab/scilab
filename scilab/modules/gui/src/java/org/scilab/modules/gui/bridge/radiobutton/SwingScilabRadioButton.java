@@ -27,6 +27,9 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 	 */
 	public SwingScilabRadioButton() {
 		super();
+		/* Avoid the L&F to erase user background settings */
+		setContentAreaFilled(false);
+		setOpaque(true);
 	}
 	
 	/**

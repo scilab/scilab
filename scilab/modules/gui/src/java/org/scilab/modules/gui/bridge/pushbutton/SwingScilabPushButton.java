@@ -35,6 +35,9 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public SwingScilabPushButton() {
 		super();
 		this.setFocusable(false);
+		/* Avoid the L&F to erase user background settings */
+		setContentAreaFilled(false);
+		setOpaque(true);
 	}
 
 	/**

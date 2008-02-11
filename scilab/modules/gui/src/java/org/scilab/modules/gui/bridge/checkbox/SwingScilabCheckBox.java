@@ -27,6 +27,9 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 	 */
 	public SwingScilabCheckBox() {
 		super();
+		/* Avoid the L&F to erase user background settings */
+		setContentAreaFilled(false);
+		setOpaque(true);
 	}
 
 	/**

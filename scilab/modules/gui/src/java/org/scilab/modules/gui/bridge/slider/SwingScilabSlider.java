@@ -35,7 +35,6 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 */
 	public SwingScilabSlider() {
 		super();
-		
 	}
 
 	/**
@@ -241,5 +240,4 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	public void destroy() {
 		getParent().remove(this);
 	}
-
 }
