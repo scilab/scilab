@@ -168,5 +168,6 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

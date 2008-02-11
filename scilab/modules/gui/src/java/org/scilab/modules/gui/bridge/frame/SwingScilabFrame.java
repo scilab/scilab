@@ -514,5 +514,6 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

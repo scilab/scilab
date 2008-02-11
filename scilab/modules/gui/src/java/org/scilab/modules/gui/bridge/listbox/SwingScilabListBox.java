@@ -345,5 +345,6 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

@@ -168,5 +168,6 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

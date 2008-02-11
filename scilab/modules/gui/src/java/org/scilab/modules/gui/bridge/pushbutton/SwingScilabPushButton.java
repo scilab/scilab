@@ -187,6 +187,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }
 

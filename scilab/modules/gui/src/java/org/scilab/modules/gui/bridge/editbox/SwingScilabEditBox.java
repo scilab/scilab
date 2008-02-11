@@ -149,5 +149,6 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

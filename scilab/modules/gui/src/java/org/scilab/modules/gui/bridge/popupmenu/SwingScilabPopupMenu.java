@@ -243,5 +243,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

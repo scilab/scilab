@@ -150,5 +150,6 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

@@ -171,5 +171,6 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }

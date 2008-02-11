@@ -239,5 +239,6 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 */
 	public void destroy() {
 		getParent().remove(this);
+		this.setVisible(false);
 	}
 }
