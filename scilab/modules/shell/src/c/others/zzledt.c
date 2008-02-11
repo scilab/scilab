@@ -111,6 +111,7 @@
 #define CR                    0x000d
 #define LF                    0x000a
 #define BEL                   0x0007
+#define TAB                   0x0009
 #define CTRL_B                0x0002  /* back a character */
 #define CTRL_C                0x0003  /* redo line */
 #define CTRL_D                0x0004  /* delete next char */
@@ -157,6 +158,7 @@ static void move_right(char *source, int max_chars);
 static void move_left(char *source);
 static void display_string(char *string);
 static void backspace(int n);
+void doCompletion(char *, int cursor, int cursor_max);
 static void erase_nchar(int n);
 static int  gchar_no_echo(int interrupt);
 static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max);
@@ -383,6 +385,11 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	      putchar(wk_buf[cursor++]);
 	    }
 	  break;
+
+			case TAB:
+				doCompletion(wk_buf, cursor, cursor_max);
+
+				break;
 
 	  case INS: /* toggle insert/overwrite flag */
 	    insert_flag = !insert_flag;
@@ -705,6 +712,45 @@ static void display_string(char *string)
 }
 
 /***********************************************************************
+ * doCompletion - manages Scilab Completion
+ **********************************************************************/
+void doCompletion(char *wk_buf, int cursor, int cursor_max)
+{
+	char **completionResults = NULL;
+	char msg[WK_BUF_SIZE]="";
+	int sizecompletionResults = 0;
+#define MAX_LINE_SIZE 80
+	completionResults = completion(wk_buf, &sizecompletionResults);
+
+	if (sizecompletionResults==1){
+		/* Only one result. */
+		CopyLineAtPrompt(wk_buf,completionResults[0],&cursor,&cursor_max);
+	}else{
+		int j=0;
+		int nbCharLine=0;
+		int newElementSize=0;
+
+		display_string("\n");
+		/* More than one result. Display them */
+		for (j=0; j<sizecompletionResults; j++){
+
+			newElementSize=strlen(completionResults[j])+strlen(" ");
+			if ((nbCharLine + newElementSize) > MAX_LINE_SIZE){ /* New line */
+				display_string(msg); /* Display the message itself */
+				display_string("\r\n"); /*  \r is to avoid align pb */
+				strcpy(msg,"");
+				nbCharLine=0;
+			}
+			nbCharLine+=newElementSize;
+
+			sprintf(msg,"%s %s ", msg, completionResults[j]);
+							
+		}
+		sprintf(msg,"%s\r\n%s %s",msg,Sci_Prompt,wk_buf);
+		display_string(msg);
+	}
+}
+/***********************************************************************
  * backspace - move cursor n char to the left
  **********************************************************************/
 static void backspace(int n)
@@ -775,7 +821,7 @@ static int gchar_no_echo(int interrupt)
   /* if more than one character */
   if(i == ESC) {
     /* translate control code sequences to codes over 100 hex */
-    i = translate(i);
+    return translate(i);
   }
   return(i);
 }
