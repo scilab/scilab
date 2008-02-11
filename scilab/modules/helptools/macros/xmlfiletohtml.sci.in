@@ -85,7 +85,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		
 		//run html generator
 		if execstr('unix_s('+sci2exp(instr)+')','errcatch')<>0 then 
-			write(%io(2),msprint(_("Warning %s does not follow the dtd"),path),"(a)");
+			write(%io(2),msprintf(_("Warning %s does not follow the dtd"),path),"(a)");
 			ok = %F;
 		else
 			ok = %T;
