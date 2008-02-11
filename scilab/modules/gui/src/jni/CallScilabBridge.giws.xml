@@ -13,6 +13,9 @@
 	<method name="newPopupMenu" returnType="int" modifier="static"/>
         <method name="newListBox" returnType="int" modifier="static"/>        
         <method name="newFrame" returnType="int" modifier="static"/>        
+	<method name="newContextMenu" returnType="void" modifier="static">
+          <parameter type="String[]" name="menuLabels"/>
+        </method>
         <method name="destroyWidget" returnType="void" modifier="static">
           <parameter type="int" name="objID"/>
         </method>

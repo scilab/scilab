@@ -45,7 +45,7 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
 	/**
 	 * Add a Menu to a MenuBar
 	 * @param newMenu the Menu to add to the MenuBar
-	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.Menu)
+	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.ContextMenu)
 	 */
 	public void add(Menu newMenu) {
 		ScilabBridge.add(this, newMenu);

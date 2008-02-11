@@ -9,6 +9,8 @@ import java.awt.Font;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.filechooser.FileChooser;
@@ -390,7 +392,7 @@ public class CallScilabBridge {
 
 	/**
 	 * Create a new Frame in Scilab GUIs
-	 * @return the ID of the PopupMenu in the UIElementMapper
+	 * @return the ID of the Frame in the UIElementMapper
 	 */
 	public static int newFrame() {
 		Frame frame = ScilabFrame.createFrame();
@@ -411,6 +413,25 @@ public class CallScilabBridge {
 		return id;
 	}
 	
+	/**
+	 * Create a new ContextMenu in Scilab GUIs
+	 * @param menuLabels the labels of the sub menus
+	 */
+	public static void newContextMenu(String[] menuLabels) {
+		ContextMenu contextMenu = ScilabContextMenu.createContextMenu();
+		// id = UIElementMapper.add(contextMenu);
+		MenuItem menuItem = null;
+		
+		for (int menuIndex = 0; menuIndex < menuLabels.length; menuIndex++) {
+			menuItem = ScilabMenuItem.createMenuItem();
+			menuItem.setText(menuLabels[menuIndex]);
+			menuItem.setCallback("Cmenu = \"" + menuLabels[menuIndex] + "\";", 0);
+			contextMenu.add(menuItem);
+		}
+		
+		contextMenu.getAsSimpleContextMenu().display();
+	}
+
 	/**
 	 * Destroy a Widget
 	 * @param id the id of the Widget to destroy

@@ -64,6 +64,8 @@ jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
+jmethodID voidnewContextMenujobjectArrayID; // cache method id
+jclass stringArrayClass;
 jmethodID voiddestroyWidgetjintID; // cache method id
 jmethodID voiddestroyFramejintID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
@@ -132,7 +134,6 @@ jmethodID voidsetListBoxMultipleSelectionEnabledjintjbooleanID; // cache method 
 jmethodID jobjectArraygetListBoxAllItemsTextjintID; // cache method id
 jmethodID jintgetListBoxNumberOfItemsjintID; // cache method id
 jmethodID voidsetListBoxTextjintjobjectArrayID; // cache method id
-jclass stringArrayClass;
 jmethodID jobjectArraygetPopupMenuAllItemsTextjintID; // cache method id
 jmethodID jintgetPopupMenuNumberOfItemsjintID; // cache method id
 jmethodID voidsetPopupMenuTextjintjobjectArrayID; // cache method id
@@ -227,6 +228,8 @@ static long newPopupMenu(JavaVM * jvm_);
 static long newListBox(JavaVM * jvm_);
 
 static long newFrame(JavaVM * jvm_);
+
+static void newContextMenu(JavaVM * jvm_, char ** menuLabels, int menuLabelsSize);
 
 static void destroyWidget(JavaVM * jvm_, long objID);
 

@@ -1,7 +1,7 @@
 
-/* Copyright INRIA 2007 */
+/* Copyright INRIA 2008 */
 
-package org.scilab.modules.gui.menu;
+package org.scilab.modules.gui.contextmenu;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,85 +17,57 @@ import org.scilab.modules.gui.widget.ScilabWidget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class ScilabMenu extends ScilabWidget implements Menu {
+public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
 
-	private SimpleMenu component;
+	private SimpleContextMenu component;
 	
 	/**
 	 * Constructor
 	 */
-	protected ScilabMenu() {
-		component = ScilabBridge.createMenu();
+	protected ScilabContextMenu() {
+		component = ScilabBridge.createContextMenu();
 	}
 	
 	/**
-	 * Creates a Scilab Menu object
-	 * @return the created Menu
+	 * Creates a Scilab ContextMenu object
+	 * @return the created ContextMenu
 	 */
-	public static Menu createMenu() {
-		return new ScilabMenu();
+	public static ContextMenu createContextMenu() {
+		return new ScilabContextMenu();
 	}
 	
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object
 	 */
-	public SimpleMenu getAsSimpleMenu() {
+	public SimpleContextMenu getAsSimpleContextMenu() {
 		return component;
 	}
 	
 	/**
-	 * Append a MenuItem to a Scilab Menu
-	 * @param newMenuItem the MenuItem to add to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
+	 * Append a MenuItem to a Scilab ContextMenu
+	 * @param newMenuItem the MenuItem to add to the ContextMenu
 	 */
 	public void add(MenuItem newMenuItem) {
 		ScilabBridge.add(this, newMenuItem);
 	}
 	
 	/**
-	 * Append a subMenu to a Scilab Menu
-	 * @param newSubMenu the subMenu to append to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.ContextMenu)
-	 */
-	public void add(Menu newSubMenu) {
-		ScilabBridge.add(this, newSubMenu);
-	}
-	
-	/**
-	 * Sets the text of a Scilab Menu
-	 * @param newText the Text to set to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#setText(java.lang.String)
+	 * Sets the text of a Scilab ContextMenu
+	 * @param newText the Text to set to the ContextMenu
 	 */
 	public void setText(String newText) {
 		ScilabBridge.setText(this, newText);
 	}
 	
 	/**
-	 * Gets the text of a Scilab Menu
-	 * @return the Text to set to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#getText(java.lang.String)
+	 * Gets the text of a Scilab ContextMenu
+	 * @return the Text to set to the ContextMenu
 	 */
 	public String getText() {
 		return ScilabBridge.getText(this);
 	}
 	
-	/**
-	 * set a mnemonic to a Menu
-	 * @param mnemonic the mnemonic to add to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#setMnemonic(org.scilab.modules.gui.widget.int)
-	 */
-	public void setMnemonic(int mnemonic) {
-		ScilabBridge.setMnemonic(this, mnemonic);
-	}
-	
-	/**
-	 * Add a Separator to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#addSeparator(org.scilab.modules.gui..)
-	 */
-	public void addSeparator() {
-		ScilabBridge.addSeparator(this);
-	}
 	/**
 	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 */
@@ -120,8 +92,8 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 
 	/**
-	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
+	 * Get the visibility status of the ContextMenu
+	 * @return true if the ContextMenu is visible
 	 */
 	public boolean isVisible() {
 		return ScilabBridge.isVisible(this);
@@ -144,23 +116,23 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 
 	/**
-	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
-	 * @param newVisibleState is not used
+	 * Set the visibility status of the ContextMenu
+	 * @param newVisibleState is true to set the ContextMenu visible
 	 */
 	public void setVisible(boolean newVisibleState) {
 		ScilabBridge.setVisible(this, newVisibleState);
 	}
 
 	/**
-	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
-	 * @param status is not used
+	 * Enable/Disable the ContextMenu
+	 * @param status true to set the ContextMenu enabled
 	 */
 	public void setEnabled(boolean status) {
 		ScilabBridge.setEnabled(this, status);
 	}
 	
 	/**
-	 * Set the Background color of the menu
+	 * Set the Background color of the ContextMenu
 	 * @param color the Color
 	 */
 	public void setBackground(Color color) {
@@ -168,7 +140,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 	
 	/**
-	 * Get the Background color of the menu
+	 * Get the Background color of the ContextMenu
 	 * @return the Color
 	 */
 	public Color getBackground() {
@@ -176,7 +148,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 	
 	/**
-	 * Set the Foreground color of the menu
+	 * Set the Foreground color of the ContextMenu
 	 * @param color the Color
 	 */
 	public void setForeground(Color color) {
@@ -184,7 +156,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 	
 	/**
-	 * Get the Foreground color of the menu
+	 * Get the Foreground color of the ContextMenu
 	 * @return the Color
 	 */
 	public Color getForeground() {
@@ -192,7 +164,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 
 	/**
-	 * Set the font of the menu.
+	 * Set the font of the ContextMenu.
 	 * @param font the font
 	 */
 	public void setFont(Font font) {
@@ -200,7 +172,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 	
 	/**
-	 * Get the font of the menu.
+	 * Get the font of the ContextMenu.
 	 * @return the font
 	 */
 	public Font getFont() {
@@ -208,8 +180,8 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 	
 	/**
-	 * Add a callback to the menu, this callback is a Scilab command
-	 * @param command the Scilab command to execute when the menu is activated
+	 * Add a callback to the ContextMenu, this callback is a Scilab command
+	 * @param command the Scilab command to execute when the ContextMenu is activated
 	 * @param commandType the type of the command that will be executed.
 	 */
 	public void setCallback(String command, int commandType) {
@@ -217,7 +189,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 
 	/**
-	 * Set the horizontal alignment for the Menu text
+	 * Set the horizontal alignment for the ContextMenu text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
@@ -225,7 +197,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 
 	/**
-	 * Set the vertical alignment for the Menu text
+	 * Set the vertical alignment for the ContextMenu text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
@@ -233,7 +205,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 
 	/**
-	 * Set the Relief of the Menu
+	 * Set the Relief of the ContextMenu
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */
 	public void setRelief(String reliefType) {
@@ -241,7 +213,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 
 	/**
-	 * Delete the Menu
+	 * Delete the ContextMenu
 	 */
 	public void destroy() {
 		ScilabBridge.destroy(this);

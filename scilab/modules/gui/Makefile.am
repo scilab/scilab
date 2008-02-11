@@ -36,6 +36,7 @@ src/cpp/CheckBox.cpp \
 src/cpp/RadioButton.cpp \
 src/cpp/Slider.cpp \
 src/cpp/PopupMenu.cpp \
+src/cpp/ContextMenu.cpp \
 src/cpp/ListBox.cpp \
 src/cpp/Frame.cpp \
 src/cpp/SetUimenuLabel.cpp \
@@ -109,7 +110,8 @@ sci_gateway/c/sci_hidetoolbar.c \
 sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_uigetdir.c \
 sci_gateway/c/sci_uicontrol.c \
-sci_gateway/c/sci_uimenu.c
+sci_gateway/c/sci_uimenu.c \
+sci_gateway/c/sci_mpopup.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

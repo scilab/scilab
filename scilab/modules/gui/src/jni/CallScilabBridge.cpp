@@ -108,6 +108,7 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
+voidnewContextMenujobjectArrayID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
@@ -239,6 +240,7 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
+voidnewContextMenujobjectArrayID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
@@ -647,6 +649,52 @@ curEnv->ExceptionDescribe() ;
                         
 return res;
 
+}
+
+void CallScilabBridge::newContextMenu (JavaVM * jvm_, char ** menuLabels, int menuLabelsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidnewContextMenujobjectArrayID = curEnv->GetStaticMethodID(cls, "newContextMenu", "([Ljava/lang/String;)V" ) ;
+if (voidnewContextMenujobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "newContextMenu" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+
+// create java array of strings.
+jobjectArray menuLabels_ = curEnv->NewObjectArray( menuLabelsSize, stringArrayClass, NULL);
+if (menuLabels_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < menuLabelsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( menuLabels[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( menuLabels_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidnewContextMenujobjectArrayID ,menuLabels_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 void CallScilabBridge::destroyWidget (JavaVM * jvm_, long objID){

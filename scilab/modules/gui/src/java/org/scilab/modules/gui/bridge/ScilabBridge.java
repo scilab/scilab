@@ -17,6 +17,9 @@ import org.scilab.modules.gui.checkbox.SimpleCheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsoleBridge;
 import org.scilab.modules.gui.console.SimpleConsole;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenuBridge;
+import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBoxBridge;
 import org.scilab.modules.gui.editbox.SimpleEditBox;
@@ -1401,6 +1404,173 @@ public class ScilabBridge {
 	 */
 	public static void destroy(Menu menu) {
 		ScilabMenuBridge.destroy(menu);
+	}
+
+	/**********************/
+	/* ContextMenu Bridge */
+	/**********************/
+
+	/**
+	 * Creates a new ContextMenu
+	 * @return the created ContextMenu
+	 */
+	public static SimpleContextMenu createContextMenu() {
+		return ScilabContextMenuBridge.createContextMenu();
+	}
+	
+	/**
+	 * Append a MenuItem to a ContextMenu
+	 * @param contextMenu the ContextMenu which we want to add the MenuItem to
+	 * @param newMenuItem the MenuItem to add to the ContextMenu
+	 */
+	public static void add(ContextMenu contextMenu, MenuItem newMenuItem) {
+		ScilabContextMenuBridge.add(contextMenu, newMenuItem);
+	}
+	
+	/**
+	 * set a text to a ContextMenu
+	 * @param contextMenu the Menu which we want to set the text to
+	 * @param newText the new text to set to the contextMenu
+	 */
+	public static void setText(ContextMenu contextMenu, String newText) {
+		ScilabContextMenuBridge.setText(contextMenu, newText);
+	}
+	
+	/**
+	 * Get the text to a contextMenu
+	 * @param contextMenu the ContextMenu which we want to get the text of
+	 * @return the text of the contextMenu
+	 */
+	public static String getText(ContextMenu contextMenu) {
+		return ScilabContextMenuBridge.getText(contextMenu);
+	}
+
+	/**
+	 * Set if the contextMenu is enabled or not
+	 * @param contextMenu the contextMenu which we want to add the mnemonic to
+	 * @param status true if the contextMenu item is enabled
+	 */
+	public static void setEnabled(ContextMenu contextMenu, boolean status) {
+		ScilabContextMenuBridge.setEnabled(contextMenu, status);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab contextMenu
+	 * @param contextMenu the contextMenu we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the contextMenu (true to set the contextMenu visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(ContextMenu contextMenu, boolean newVisibleState) {
+		ScilabContextMenuBridge.setVisible(contextMenu, newVisibleState);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab ContextMenu
+	 * @param contextMenu the contextMenu we want to get the visiblity status of
+	 * @return the visibility status of the contextMenu (true if the contextMenu is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(ContextMenu contextMenu) {
+		return ScilabContextMenuBridge.isVisible(contextMenu);
+	}
+
+	/**
+	 * Set the Background color of the contextMenu
+	 * @param contextMenu the contextMenu we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(ContextMenu contextMenu, Color color) {
+		ScilabContextMenuBridge.setBackground(contextMenu, color);
+	}
+	
+	/**
+	 * Get the Background color of the contextMenu
+	 * @param contextMenu the contextMenu we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(ContextMenu contextMenu) {
+		return ScilabContextMenuBridge.getBackground(contextMenu);
+	}
+
+	/**
+	 * Set the Foreground color of the contextMenu
+	 * @param contextMenu the contextMenu we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(ContextMenu contextMenu, Color color) {
+		ScilabContextMenuBridge.setForeground(contextMenu, color);
+	}
+	
+	/**
+	 * Get the Foreground color of the contextMenu
+	 * @param contextMenu the contextMenu we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(ContextMenu contextMenu) {
+		return ScilabContextMenuBridge.getForeground(contextMenu);
+	}
+
+	/**
+	 * Set the font of the contextMenu.
+	 * @param contextMenu the contextMenu we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(ContextMenu contextMenu, Font font) {
+		ScilabContextMenuBridge.setFont(contextMenu, font);
+	}
+	
+	/**
+	 * Get the font of the contextMenu.
+	 * @param contextMenu the contextMenu we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(ContextMenu contextMenu) {
+		return ScilabContextMenuBridge.getFont(contextMenu);
+	}
+
+	/**
+	 * Add a callback to the contextMenu, this callback is a Scilab command
+	 * @param contextMenu the contextMenu we want to set the callback of
+	 * @param command the Scilab command to execute when the contextMenu is activated
+	 * @param commandType the type of the command that will be executed.
+	 */
+	public static void setCallback(ContextMenu contextMenu, String command, int commandType) {
+		ScilabContextMenuBridge.setCallback(contextMenu, command, commandType);
+	}
+
+	/**
+	 * Set the horizontal alignment for the ContextMenu text
+	 * @param contextMenu the ContextMenu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(ContextMenu contextMenu, String alignment) {
+		ScilabContextMenuBridge.setHorizontalAlignment(contextMenu, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the ContextMenu text
+	 * @param contextMenu the ContextMenu we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(ContextMenu contextMenu, String alignment) {
+		ScilabContextMenuBridge.setVerticalAlignment(contextMenu, alignment);
+	}
+
+	/**
+	 * Set the Relief of the ContextMenu
+	 * @param contextMenu the ContextMenu which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(ContextMenu contextMenu, String reliefType) {
+		ScilabContextMenuBridge.setRelief(contextMenu, reliefType);
+	}
+
+	/**
+	 * Delete the ContextMenu
+	 * @param contextMenu the ContextMenu to be destroyed
+	 */
+	public static void destroy(ContextMenu contextMenu) {
+		ScilabContextMenuBridge.destroy(contextMenu);
 	}
 
 	/********************/
