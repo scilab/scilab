@@ -23,10 +23,11 @@ lines(0);
 CurrentDirScicos=pwd();
  SubDirsScicos = ["scicos_auto",
 		    "scicos_utils",
-		    "scicos_scicos"];
- 
+		    "scicos_scicos",
+		 "scicos_menus"];
+
 Dim=size(SubDirsScicos);
-for i=1:Dim(1) do 
+for i=1:Dim(1) do
   chdir(SubDirsScicos(i));
   exec('buildmacros.sce');
   chdir(CurrentDirScicos);
