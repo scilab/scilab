@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2008-01-06 16:57:13 +0200 (Mon, 06 Febrary
-  2008)$</DATE>
+  <DATE>$LastChangedDate: 2008-01-06 16:57:13 +0200 (Mon, 06 Febrary 2008)$</DATE>
 
   <SHORT_DESCRIPTION name="strindex">search position of a character string in
   an other string.</SHORT_DESCRIPTION>
