@@ -50,7 +50,7 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(libsciumfpack_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/Makefile.incl.am INSTALL
+	$(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@am__append_1 = java
 @SWIG_TRUE@am__append_2 = swig
 @GIWS_TRUE@am__append_3 = giws
@@ -820,9 +820,20 @@ check-local: $(top_builddir)/scilab-bin
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
-macros: $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(srcdir)/$(MACRODIRS)/$(MACROMASK)
-	-@( 	$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
-	)
+macros:
+	-@( if test ! -x $(top_builddir)/scilab-bin; then \
+		echo "Error : Cannot build $< : Scilab has not been built"; \
+	else \
+		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
+	fi)
+
+# Removes the macros
+clean-macros:
+# Removes macros (*.bin generated from .sci)
+	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
+		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
+		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+	done
 
 all-local: $(TARGETS_ALL)
 
@@ -918,13 +929,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@clean-local: clean-java
-@GUI_FALSE@clean-local:
-# Removes macros (*.bin generated from .sci)
-	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
-	done
+@GUI_TRUE@clean-local: clean-java clean-macros
+@GUI_FALSE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 	@for dir in $(DOCDIRS) ; do \
 		 if test -d $$dir; then \
@@ -932,6 +938,8 @@ install-data-local:
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
 	done
+
+.PHONY: macros java swig giws
 
 #else
 

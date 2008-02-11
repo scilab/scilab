@@ -818,7 +818,7 @@ check-local: $(top_builddir)/scilab-bin
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
-		echo "Error : Cannot build $< : Scilab has not been build"; \
+		echo "Error : Cannot build $< : Scilab has not been built"; \
 	else \
 		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 	fi)
@@ -881,7 +881,7 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@	done
-install-data-local: macros
+install-data-local:
 # Install the help chapter
 	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 	if test -f $$HELPFILE; then \

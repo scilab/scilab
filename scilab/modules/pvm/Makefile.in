@@ -1377,7 +1377,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 @PVM_TRUE@macros:
 @PVM_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
-@PVM_TRUE@		echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_TRUE@		echo "Error : Cannot build $< : Scilab has not been built"; \
 @PVM_TRUE@	else \
 @PVM_TRUE@		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 @PVM_TRUE@	fi)
@@ -1440,7 +1440,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
-@PVM_TRUE@install-data-local: macros
+@PVM_TRUE@install-data-local:
 # Install the help chapter
 @PVM_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_TRUE@	if test -f $$HELPFILE; then \
@@ -1544,7 +1544,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 @PVM_FALSE@macros:
 @PVM_FALSE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
-@PVM_FALSE@		echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_FALSE@		echo "Error : Cannot build $< : Scilab has not been built"; \
 @PVM_FALSE@	else \
 @PVM_FALSE@		$(top_builddir)/bin/scilab -ns -nwni -e "exec('macros/buildmacros.sce');quit;";\
 @PVM_FALSE@	fi)
@@ -1607,7 +1607,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@		fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
-@PVM_FALSE@install-data-local: macros
+@PVM_FALSE@install-data-local:
 # Install the help chapter
 @PVM_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
 @PVM_FALSE@	if test -f $$HELPFILE; then \
