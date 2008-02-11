@@ -1,49 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>strcspn</TITLE>
+
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="strcspn"> Get span until character in string</SHORT_DESCRIPTION>
+
+  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+  $</DATE>
+
+  <SHORT_DESCRIPTION name="strcspn">Get span until character in
+  string</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM> res = strcspn(str1,str2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>res =
+    strcspn(string_one,string_two)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str1</PARAM_NAME>
+        <PARAM_NAME>string_one</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: string or matrix of strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-      
+
       <PARAM_ITEM>
-        <PARAM_NAME>str2</PARAM_NAME>
+        <PARAM_NAME>string_two</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: string or matrix of strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-      
+
       <PARAM_ITEM>
         <PARAM_NAME>res</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: matrix.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-    <P><VERB>res = strcspn(str1,str2)</VERB> Scans str1 for the first occurrence of any of the characters that are part of str2, returning the number of characters of str1 read before this first occurrence. </P>
-    <P> str2 must have same dimensions than str2 or str2 must be a string. </P>
+    <P><VERB>res = strcspn(string_one,string_two)</VERB> Scans string_one for
+    the first occurrence of any of the characters that are part of string_two,
+    returning the number of characters of string_one read before this first
+    occurrence.</P>
+
+    <P>string_two must have same dimensions than string_two or string_two must
+    be a string.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+
 strcspn("fcba73","1234567890")
 strcspn(["fcba73","f7cba73"],"1234567890")
 strcspn(["fcba73","f7cba73"],["312","34567890"])
- ]]>
-  </EXAMPLE>
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>strspn</LINK>
