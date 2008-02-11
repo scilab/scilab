@@ -32,7 +32,7 @@ static gw_generic_table Tab[]=
 	{sci_uigetdir,"uigetdir"},
 	{sci_uicontrol,"uicontrol"},
 	{sci_uimenu,"uimenu"},
-	{sci_mpopup,"mpopup"}
+	{sci_mpopup,"uipopup"}
 };
 /*--------------------------------------------------------------------------*/
 int C2F(gw_gui)(void)

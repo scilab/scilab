@@ -45,5 +45,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="19" primitiveName="uigetdir"/>
 <PRIMITIVE gatewayId="25" primitiveId="20" primitiveName="uicontrol"/>
 <PRIMITIVE gatewayId="25" primitiveId="21" primitiveName="uimenu"/>
-<PRIMITIVE gatewayId="25" primitiveId="22" primitiveName="mpopup"/>
+<PRIMITIVE gatewayId="25" primitiveId="22" primitiveName="uipopup"/>
 </GATEWAY>

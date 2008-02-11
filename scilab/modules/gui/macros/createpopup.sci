@@ -13,5 +13,5 @@ for menu=listOfMenus
 end
 
 // Create the popyp
-Cmenu = mpopup(menuLabels);
+Cmenu = uipopup(menuLabels);
 endfunction
