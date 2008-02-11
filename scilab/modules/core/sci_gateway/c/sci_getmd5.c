@@ -11,6 +11,7 @@
 #include "Scierror.h"
 #include "stricmp.h"
 #include "freeArrayOfString.h"
+#include "cluni0.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -46,10 +47,21 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 			
 			for (i = 0; i < mn; i++)
 			{
-				FILE *fp  = NULL;
-				char *MD5 = NULL;
+				FILE *fp        = NULL;
+				char *MD5       = NULL;
+				char *real_path = NULL;
 				
-				fp        = fopen(Input_Matrix[i],"rb");
+				long int lout;
+				int out_n;
+				real_path = (char*)MALLOC(sizeof(char*)*FILENAME_MAX);
+				
+				/* Replaces SCI, ~, HOME, TMPDIR by the real path */
+				lout = FILENAME_MAX;
+				C2F(cluni0)(Input_Matrix[i], real_path, &out_n, strlen(Input_Matrix[i]), lout);
+				
+				fp = fopen(real_path,"rb");
+				
+				if (real_path) {FREE(real_path);real_path=NULL;}
 				
 				if (fp)
 				{
