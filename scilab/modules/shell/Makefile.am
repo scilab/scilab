@@ -41,6 +41,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/history_manager/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/core/includes \
+			-I$(top_srcdir)/modules/completion/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/
 
 libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
