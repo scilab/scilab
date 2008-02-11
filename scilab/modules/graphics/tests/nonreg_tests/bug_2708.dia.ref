@@ -1,0 +1,17 @@
+// <-- TEST WITH GRAPHIC -->
+//
+// <-- Non-regression test for bug 2708 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2708
+//
+// <-- Short Description -->
+// It is no more possible to fill the user_data field of a graphic object with lists
+// Pierre MARECHAL - Scilab Project
+// Copyright INRIA
+// 10/02/2008
+a=gca();
+set(a,'user_data',tlist(['gindex','node','edge'],[],[]));
+if or( a.user_data <> tlist(['gindex','node','edge'],[],[]) ) then bugmes();quit;end
+set(a,'user_data',list());
+if or( a.user_data <> list() ) then bugmes();quit;end
