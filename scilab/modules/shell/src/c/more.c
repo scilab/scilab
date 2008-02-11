@@ -28,7 +28,12 @@ int linesmore(void)
 
 		ch = GetCharWithEventsLoop(1);
 	
+		#if _MSC_VER
+		if ( (ch != ' ') && (ch != 13) && (ch != 'y') ) retval = 1;
+		#else
 		if ( (ch != ' ') && (ch != '\n') && (ch != 'y') ) retval = 1;
+		#endif
+		
 		sciprint("\n");
 	}
 	else
