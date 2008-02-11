@@ -11,10 +11,12 @@ License:
 Graphical User Interface:
 =========================
  - Advanced docking system
+ - @TODO details
 
 Rendering:
 ==========
  - Based on JoGL (Java openGL)
+ - @TODO details
 
 Console:
 ========
@@ -25,21 +27,34 @@ Console:
  
 Scilab modes:
 =============
+ - Scilab is now available in four modes:
+	+ Normal mode
+		The standard Java
+	+ NW (No window) mode
+		Run in command line but can launch help or rendering/graphics 
+		(loads the Java Virtual Machine)
+	+ NWNI (No window No interactive) mode
+		Run in command line but no help, TCL or rendering
+		(Do not load the Java Virtual Machine)
+	+ API mode
+		Scilab as API/computing engine
 
 GNU/Linux - Unix:
 =================
  - New configure (based on autoconf)
  - New compilation process (based on automake and libtool)
  - Dynamic libraries
+ - Advanced numerical libraries can be used (Atlas, MKL...)
+ - Use librairies when available on the system
  - Better startup script
 	+ Debug
-	+ Profiling
+	+ Profiling (valgrind)
 	
 Windows:	
 ========
  - Compilation process :
 	+ Visual Studio 2005 solution (requires Intel Fortran 10.x) support
-	+ Visual Studio 2005 express solution (fortran conversion with f2c) support (FREE)
+	+ Visual Studio 2005 express solution (fortran conversion with f2c) support (Free... as beer)
  - Dynamic libraries	
  - Atlas 3.8 support (Core 2 Duo and more support)
  - Intel Math Kernel Library support
@@ -97,11 +112,13 @@ Source reorganisation:
 	the code
  - Use XML declaration for the list of functions
  - Use XML declaration for the list of modules (and activation or not)
-
+ - Massive cleanup of the code. 
+ - Thousand of warnings removed
+ - First step to a future Scilab API
 
 New Scilab Functions:
 =====================
- - Function rewrited from fortran to C for better maintenance
+ - Function rewrited from Fortran to C for better maintenance
 
 
 Scipad editor:
@@ -159,6 +176,7 @@ Input/Output functions (files):
 
 Regular expression features:
 ============================
+ - Based on the library PCRE
  - Involved functions
 	+ grep(...,'r')
 	+ regexp
@@ -195,8 +213,12 @@ jvm module:
 	+ javaclasspath            - set and get dynamic Java class path
 	+ javalibrarypath          - set and get dynamic java.library.path
 
-Dynamic link:
-=============
+Dynamic/incremental link:
+=========================
+ - Module renamed to dynamic link
+ - Under Linux/Unix, now based on basic autotools for the detection of compiler
+	and compilation.
+ - New functions:
   + getdynlibext - get the extension of dynamic libraries on your operating system.
 
 TCL/TK:
