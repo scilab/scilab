@@ -51,9 +51,9 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                'Others'     ;'Branching'       ;'Electrical'      ;'ThermoHydraulics';
                'OldBlocks'  ;'DemoBlocks'];
 
-  scicos_pal= [pal_names  'SCI/macros/scicos/'+pal_names+'.cosf']
+  scicos_pal= [pal_names  'SCI/modules/scicos/macros/scicos_scicos/'+pal_names+'.cosf']
 
-  %scicos_gif= SCI+"/macros/scicos/scicos_doc/man/gif_icons/";
+  %scicos_gif= SCI+"modules/scicos/help/scicos_doc/man/gif_icons/";
 
   %scicos_contrib= [];
 
@@ -72,10 +72,14 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Save',..
 	      'Save As',..
 	      'Save as Interf Func',..
-	      'Export',..
-	      'Export All',..
               'Exit Scicos',..
 	      'Quit' ];
+// @TODO : Move this before "Exit Scicos"
+// Export disable for Scilab 5.0 Alpha Version
+// Will be fixed before Release
+  //	      'Export',..
+  //	      'Export All',..
+
 
   Diagram  = ['Diagram',..
               'Replot',..
@@ -85,7 +89,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Region to Super Block',..
               'Up To Main Diagram',..
 	      'Context' ];
-  
+
   Palette  = ['Palette',..
               'Palettes',..
 	      'Pal editor',..
@@ -226,7 +230,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   //** state_var = 3 : right click over a valid object inside a PALETTE or
   //**                 not a current Scicos window
-  //** 
+  //**
   %scicos_lhb_list(3) = list('Copy',..
 			     'Help');
  //**------------------------------
@@ -255,11 +259,11 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 		 'h','Help']
 
   //Scicos Modelica librabry path definitions==============================
-  modelica_libs='SCI/macros/scicos_blocks/'+['Electrical','Hydraulics'];
+  modelica_libs='SCI/modules/scicos_blocks/macros/'+['Electrical','Hydraulics'];
 
   //add TMPDIR/Modelica for generic modelica blocks
   status=mkdir(TMPDIR,'Modelica');
-  if isdir(TMPDIR+'/Modelica') then 
+  if isdir(TMPDIR+'/Modelica') then
     modelica_libs=[modelica_libs,TMPDIR+'/Modelica'];
   end
 
@@ -279,7 +283,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
       'Rotate Left',           "Click on block to be turned left"  ;
       'Rotate Right',          "Click on block to be turned right" ;
       'Open/Set',              "Click to open block or make a link";
-      'MoveLink',              ''                                  ; //** hidden commands 
+      'MoveLink',              ''                                  ; //** hidden commands
       'SelectLink',            ''                                  ;
       'CtrlSelect',            ''                                  ;
       'SelectRegion',          ''                                  ;
@@ -780,7 +784,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                 " parameters are identifed automatically by searching all the symbolic";
                 " parameters used in the definition of the block parameters inside the"
                 " Super block that are not defined in the appropriate contexts within";
-                " the Super Block;"]) 
+                " the Super Block;"])
 
   %scs_help_menu=scicos_help(%scs_help_menu,...
               'Remove Mask',..
@@ -863,7 +867,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                 " the pause mode (see the help on pause).";
                 " In the Scilab main window and you may enter Scilab instructions";
                 " as usual. In most cases, user should use the ''Activate Scilab Window''";
-                " menu instead. The ''Calc'' menu should only be used for advanced debugging."]) 
+                " menu instead. The ''Calc'' menu should only be used for advanced debugging."])
 
   //****** Help Menu ******/
   //***********************/
@@ -1527,7 +1531,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                   " indifferently for standard blocks. ''x'' is used"
                   " if we want to force the computational function to"
                   " be called during the simulation phase even if"
-                  " the block does not contribute to computation of" 
+                  " the block does not contribute to computation of"
                   " the state derivative.";
                   " ''l'', ''m'' and ''s'' are reserved. Not to be used."
                   " ";
@@ -2018,7 +2022,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scs_help_sim=scicos_help(%scs_help_sim,...
                  'rpar',...
                  [" Vector of real parameters that is "
-                  " obtained by concatenating the real" 
+                  " obtained by concatenating the real"
                   " parameters registers of all the blocks.";
                   " ";
                   " Size : total number of real parameters.";
