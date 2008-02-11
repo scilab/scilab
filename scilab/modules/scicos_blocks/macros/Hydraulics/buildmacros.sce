@@ -25,14 +25,14 @@ end
 //------------------------------------
 genlib('Hydraulicslib','SCI/modules/scicos_blocks/macros/Hydraulics',%f,%t);
 //------------------------------------
-//if MSDOS then
-//  unix("dir /B *.mo >models");
-//else
-//  unix("ls *.mo >models");
-//end
-if with_ocaml() then 
+if MSDOS then
+  unix("dir /B *.mo >models");
+else
+  unix("ls *.mo >models");
+end
+if with_modelica_compiler() then 
   models=['Bache.mo';'PerteDP.mo';'PortPHQ1.mo';'PortPHQ2.mo ';
           'Puits.mo';'Source.mo';'ThermoCarre.mo';'VanneReglante.mo'];
-//  exec("../../../util/genmoc.sce");
+  exec("../../src/scripts/genmoc.sce");
 end;
 //------------------------------------

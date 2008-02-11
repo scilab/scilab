@@ -22,9 +22,15 @@
 function r=with_modelica_compiler()
   // check if modelica_compiler exists
   if MSDOS then
-    path=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
+    path = pathconvert(SCI+'/bin/modelicac.exe',%f,%t);
+    r = ( fileinfo(path) <> []);
   else
-    path=pathconvert(SCI+'/bin/modelicac',%f,%t)
+    path = pathconvert(SCI+'/bin/modelicac',%f,%t);
+    r = ( fileinfo(path) <> []);
+    if (r == []) then
+      path = pathconvert('/usr/bin/modelicac',%f,%t);
+      r = ( fileinfo(path) <> []);
+    end
   end
-  r=fileinfo(path)<>[]
+  
 endfunction

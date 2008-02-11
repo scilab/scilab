@@ -25,18 +25,21 @@ function genmoc(path,force,verbose)
   [lhs,rhs]=argn(0); 
   if rhs <= 2 then force = %f ; end 
   if rhs <= 3 then verbose = %f ; end 
-  if ~with_ocaml() then
+  if ~with_modelica_compiler() then
     error('Scilab has not been built with Ocaml, Modelica compiler unavailable')
   end
   if MSDOS then
-    compilerpath=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
+    compilerpath=pathconvert(SCI+'/bin/modelicac.exe',%f,%t);
   else
-    compilerpath=pathconvert(SCI+'/bin/modelicac',%f,%t)
+    compilerpath=pathconvert(SCI+'/bin/modelicac',%f,%t);
+    r = ( fileinfo(path) <> []);
+    if (r == []) then
+      compilerpath = pathconvert('/usr/bin/modelicac',%f,%t);
+    end
   end
 
   // with env subsitution 
   path = pathconvert(path,%t,%t); 
-
 
   // list the mo files 
   files=listfiles(path+'*.mo',%f)
