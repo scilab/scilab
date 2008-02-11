@@ -128,12 +128,14 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 /*--------------------------------------------------------------------------*/
 char *getlanguage(void)
 {
+	/*
 	#if _MSC_VER
 	return getLocaleUserInfo();
 	#else
 	return CURRENTLANGUAGESTRING;
 	#endif
-	
+	*/
+	return CURRENTLANGUAGESTRING;
 }
 /*--------------------------------------------------------------------------*/
 int getcurrentlanguagecode(void)
