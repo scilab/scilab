@@ -48,17 +48,17 @@ function drawgrid(gh_window)
    loc_x = (int(bounds(1,1)/b1):1:int(bounds(2,1)/b1))*b1
    loc_y = (int(bounds(1,2)/b2):1:int(bounds(2,2)/b2))*b2
 
-   xpolys([loc_x;
-           loc_x],...
-          [bounds(1,2)*ones(1,size(loc_x,2));
-           bounds(2,2)*ones(1,size(loc_x,2))],...
-          colorr*ones(1,size(loc_x,2)))
+  // xpolys([loc_x;
+//           loc_x],...
+//         [bounds(1,2)*ones(1,size(loc_x,2));
+//           bounds(2,2)*ones(1,size(loc_x,2))],...
+//          colorr*ones(1,size(loc_x,2)))
 
-   xpolys([bounds(1,1)*ones(1,size(loc_y,2));
-           bounds(2,1)*ones(1,size(loc_y,2))],...
-          [loc_y;
-           loc_y],...
-          colorr*ones(1,size(loc_y,2)))
+//   xpolys([bounds(1,1)*ones(1,size(loc_y,2));
+ //          bounds(2,1)*ones(1,size(loc_y,2))],...
+  //        [loc_y;
+   //        loc_y],...
+    //      colorr*ones(1,size(loc_y,2)))
 
    p_size = size ( gh_curwin.children.children ) ; //** size after the draw
    //** aggregate the graphics entities
@@ -68,4 +68,4 @@ function drawgrid(gh_window)
      gh_grid.visible="off"
    end
 endfunction
- 
+
