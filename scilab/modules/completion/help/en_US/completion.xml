@@ -14,8 +14,8 @@
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>r = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>r = completion(beginning_of_a_word,dictionary)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphics_properties,files] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphics_properties] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphic_properties,files] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphic_properties] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[functions,commands,variables] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[functions,commands] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
@@ -48,14 +48,14 @@
 
         <PARAM_DESCRIPTION>
           <SP>: a string
-          ("functions","commands","variables","macros","graphics_properties","files")</SP>
+          ("functions","commands","variables","macros","graphic_properties","files")</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
 
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>functions,commands,variables,macros,graphics_properties,files</PARAM_NAME>
+        <PARAM_NAME>functions,commands,variables,macros,graphic_properties,files</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: a string matrix</SP>
@@ -73,11 +73,11 @@ r = completion('w','functions')
 r = completion('w','commands')
 r = completion('w','variables')
 r = completion('w','macros')
-r = completion('w','graphics_properties')
+r = completion('w','graphic_properties')
 r = completion('w','files')
 
-[functions,commands,variables,macros,graphics_properties,files] = completion('w')
-[functions,commands,variables,macros,graphics_properties] = completion('w')
+[functions,commands,variables,macros,graphic_properties,files] = completion('w')
+[functions,commands,variables,macros,graphic_properties] = completion('w')
 [functions,commands,variables,macros] = completion('w')
 [functions,commands,variables] = completion('w')
 [functions,commands] = completion('w')

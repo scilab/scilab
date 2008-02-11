@@ -29,7 +29,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("Invalid parameter(s).\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"));
 		return 0;
 	}
 
@@ -72,7 +72,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 				{
 					Results = completionOnMacros(partOfWord, &sizeResults);
 				}
-				else if( strcmp(param2,"graphics_properties") == 0 )
+				else if( strcmp(param2,"graphic_properties") == 0 )
 				{
 					Results = completionOnHandleGraphicsProperties(partOfWord, &sizeResults);
 				}
@@ -82,7 +82,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					Scierror(999,_("Invalid parameter(s).\n"));
+					Scierror(999,_("%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),fname,"functions","commands","variables","macros","graphic_properties","files");
 					return 0;
 				}
 
@@ -93,7 +93,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("Invalid parameter(s).\n"));
+				Scierror(999,_("%s: Wrong type for second input argument: String expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -105,7 +105,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 
 		if (Rhs == 2)
 		{
-			Scierror(999,_("Invalid parameter(s).\n"));
+			Scierror(999,_("%s: Wrong number of output argument.\n"),fname);
 			return 0;
 		}
 

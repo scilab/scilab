@@ -23,28 +23,28 @@ macros1 = completion('%','macros');
 s = size(macros1,'*');
 if s < 705 then pause,end
 //===============================
-graphics_properties1 = completion('%','graphics_properties');
-s = size(graphics_properties1,'*');
+graphic_properties1 = completion('%','graphic_properties');
+s = size(graphic_properties1,'*');
 if s <> 0 then pause,end
 //===============================
 files1 = completion('%','files');
 s = size(files1,'*');
 if s <> 0 then pause,end
 //===============================
-[functions2,commands2,variables2,macros2,graphics_properties2,files2] = completion('%');
+[functions2,commands2,variables2,macros2,graphic_properties2,files2] = completion('%');
 if functions2 <> functions1 then pause,end
 if commands2 <> commands1 then pause,end
 if variables2 <> variables1 then pause,end
 if macros2 <> macros1 then pause,end
-if graphics_properties2 <> graphics_properties1 then pause,end
+if graphic_properties2 <> graphic_properties1 then pause,end
 if files2 <> files1 then pause,end
 //===============================
-[functions3,commands3,variables3,macros3,graphics_properties3] = completion('%');
+[functions3,commands3,variables3,macros3,graphic_properties3] = completion('%');
 if functions3 <> functions1 then pause,end
 if commands3 <> commands1 then pause,end
 if variables3 <> variables1 then pause,end
 if macros3 <> macros1 then pause,end
-if graphics_properties3 <> graphics_properties1 then pause,end
+if graphic_properties3 <> graphic_properties1 then pause,end
 //===============================
 [functions4,commands4,variables4,macros4] = completion('%');
 if functions4 <> functions1 then pause,end
@@ -67,6 +67,6 @@ if commands6 <> commands1 then pause,end
 //for i=1:1000000,a=completion('w',"commands");end;
 //for i=1:1000000,a=completion('w',"variables");end;
 //for i=1:1000000,a=completion('w',"macros");end;
-//for i=1:1000000,a=completion('w',"graphics_properties");end;
+//for i=1:1000000,a=completion('w',"graphic_properties");end;
 //for i=1:1000000,a=completion('w',"files");end;
 //===============================
