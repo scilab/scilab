@@ -3,6 +3,7 @@
 
 package org.scilab.modules.gui.bridge.messagebox;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
@@ -40,6 +41,7 @@ public class SwingScilabMessageBox extends JOptionPane implements SimpleMessageB
 	 */
 	public SwingScilabMessageBox() {
 		super();
+		getFrameForComponent(this).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 	}
 
 	/**
