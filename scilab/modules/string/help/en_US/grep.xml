@@ -13,20 +13,22 @@
   strings</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>row=grep(str1,str2)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>row=grep(haystack,needle )</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>[row,which]=grep(str1,str2)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[row,which]=grep(haystack,needle
+    )</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>row=grep(str1,str2,["flag"])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>row=grep(haystack,needle
+    ,["flag"])</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>[row,which]=grep(str1,str2,["flag"])
-    </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[row,which]=grep(haystack,needle
+    ,["flag"])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str1</PARAM_NAME>
+        <PARAM_NAME>haystack</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: a vector of strings.</SP>
@@ -34,11 +36,11 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>str2</PARAM_NAME>
+        <PARAM_NAME>needle </PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: a character string or character string vector . The string(s)
-          to search in <VERB>str1</VERB></SP>
+          to search in <VERB>haystack</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -55,7 +57,7 @@
         <PARAM_NAME>which</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vector of indices: index of str2 string found or an empty
+          <SP>: vector of indices: index of needle string found or an empty
           matrix if no match found.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -71,13 +73,13 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>Foreach entry of str1 , grep searches if at least a string in str2
-    matches a substring. str1 entries index where at least a match has been
-    found are returned in the row argument. while optionnal which argument
-    gives the index of first string of str2 found. When using the third
-    parameters "r", the str2 should be a string of regular expression. And
-    then grep is going to match it with str1 according to the regular express
-    rules. </P>
+    <P>Foreach entry of haystack , grep searches if at least a string in
+    needle matches a substring. haystack entries index where at least a match
+    has been found are returned in the row argument. while optionnal which
+    argument gives the index of first string of needle found. When using the
+    third parameters "r", the needle should be a string of regular expression.
+    And then grep is going to match it with haystack according to the regular
+    express rules.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
