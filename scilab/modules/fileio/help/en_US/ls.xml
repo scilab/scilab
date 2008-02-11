@@ -48,17 +48,17 @@
     </P>
 	<P>
 	  Please note that starting from the version 5.0 of Scilab, the second 
-	  input argument has been removed (<i>a sequence of strings which can 
-	  be added under Unix systems: the Unix ls command options</i>). 
+	  input argument has been removed (a sequence of strings which can 
+	  be added under Unix systems: the Unix ls command options).
 	  This option has been removed mainly for security and portability reasons.
 	</P>
   </DESCRIPTION>
   <EXAMPLE>
-    <![CDATA[
-    ls
-    ls SCI/modules/core/macros/*.sci
-    x=ls('SCI/modules/core/macros/*.sci')
-    ]]>
+<![CDATA[
+ls
+ls SCI/modules/core/macros/*.sci
+x=ls('SCI/modules/core/macros/*.sci')
+]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

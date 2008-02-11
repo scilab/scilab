@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2008-02-08 14:35:20 +0200 (ven., 08 février 2008) $</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="xs2jpg">send graphics to a file in JPG syntax </SHORT_DESCRIPTION>
 

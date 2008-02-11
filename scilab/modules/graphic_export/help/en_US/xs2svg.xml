@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>xs2svg</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2008-02-08 14:53:35 +0200 (ven., 08 février 2008) $</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="xs2svg">save graphics to a Postscript file.</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xs2svg(win_num,filen [,colored] [,orientation])</CALLING_SEQUENCE_ITEM>

@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>xs2eps</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006) $</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="xs2eps">save graphics to a Postscript file.</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xs2eps(win_num,filen [,colored] [,orientation])</CALLING_SEQUENCE_ITEM>
