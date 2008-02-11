@@ -25,6 +25,7 @@
 #include "core_math.h"
 #include "Scierror.h"
 #include "prompt.h"
+#include "completion.h"
 #include "x_VTPrsTbl.h"
 /*--------------------------------------------------------------------------*/
 #ifdef aix
@@ -159,7 +160,7 @@ static void move_right(char *source, int max_chars);
 static void move_left(char *source);
 static void display_string(char *string);
 static void backspace(int n);
-void doCompletion(char *, int cursor, int cursor_max);
+void doCompletion(char *, int *cursor, int *cursor_max);
 static void erase_nchar(int n);
 static int  gchar_no_echo(int interrupt);
 static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max);
@@ -272,8 +273,10 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     /* restore the state */
     interrupted=0;
     strcpy(wk_buf,wk_buf_save);
-    cursor=cursor_save;cursor_save=0;
-    cursor_max=cursor_max_save;cursor_max_save=0;
+    cursor=cursor_save;
+	cursor_save=0;
+    cursor_max=cursor_max_save;
+	cursor_max_save=0;
   }
   else wk_buf[0] = NUL; /* initialize empty  buffer */
 
@@ -386,12 +389,11 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	      putchar(wk_buf[cursor++]);
 	    }
 	  break;
-
 			case TAB:
-				doCompletion(wk_buf, cursor, cursor_max);
+				
+				doCompletion(&wk_buf, &cursor, &cursor_max);
 
 				break;
-
 	  case INS: /* toggle insert/overwrite flag */
 	    insert_flag = !insert_flag;
 	  break;
@@ -715,39 +717,42 @@ static void display_string(char *string)
 /***********************************************************************
  * doCompletion - manages Scilab Completion
  **********************************************************************/
-void doCompletion(char *wk_buf, int cursor, int cursor_max)
+void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 {
 	char **completionResults = NULL;
 	char msg[WK_BUF_SIZE]="";
 	int sizecompletionResults = 0;
-#define MAX_LINE_SIZE 80
+#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
+
 	completionResults = completion(wk_buf, &sizecompletionResults);
 
-	if (sizecompletionResults==1){
-		/* Only one result. */
-		CopyLineAtPrompt(wk_buf,completionResults[0],&cursor,&cursor_max);
+	if (sizecompletionResults==1){ /* Only one result. Display it */
+		if (strcmp(wk_buf,completionResults[0])!=0){ /* No the same as previously displayed */
+			CopyLineAtPrompt(wk_buf,completionResults[0],cursor,cursor_max);
+		}
+		FREE(completionResults[0]);
+
 	}else{
 		int j=0;
 		int nbCharLine=0;
 		int newElementSize=0;
 
-		display_string("\n");
+		display_string("\r\n");
 		/* More than one result. Display them */
 		for (j=0; j<sizecompletionResults; j++){
 
 			newElementSize=strlen(completionResults[j])+strlen(" ");
-			if ((nbCharLine + newElementSize) > MAX_LINE_SIZE){ /* New line */
+			if ((nbCharLine + newElementSize) > MAX_LINE_SIZE){ /* New line or not ?*/
 				display_string(msg); /* Display the message itself */
 				display_string("\r\n"); /*  \r is to avoid align pb */
 				strcpy(msg,"");
 				nbCharLine=0;
 			}
 			nbCharLine+=newElementSize;
-
-			sprintf(msg,"%s %s ", msg, completionResults[j]);
+			sprintf(msg,"%s %s", msg, completionResults[j]);
 							
 		}
-		sprintf(msg,"%s\r\n%s %s",msg,Sci_Prompt,wk_buf);
+		sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
 		display_string(msg);
 	}
 }
@@ -872,19 +877,20 @@ static int translate(int ichar)
 
 static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
 {
-  int ok = 0;
+	//				printf("Cursor %d / cursor_max %d\r\n",*cursor, *cursor_max);
   if(line)
     {
+
       strcpy (wk_buf,line);
       backspace(*cursor);/* backspace to beginning of line */
       display_string(wk_buf);/* copy to screen */
       *cursor = strlen(wk_buf);/* cursor set at end of line */
       /* erase extra characters left over if any */
-      erase_nchar(Max(0, *cursor_max - *cursor));
+      erase_nchar(Max(0, (*cursor_max - *cursor)));
       *cursor_max = *cursor;
-      ok = 1;
+      return 1;
     }
-  return ok;
+  return 0;
 }
 
 /************************************************************************
