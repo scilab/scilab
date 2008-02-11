@@ -330,11 +330,11 @@ public abstract class SciConsole extends JPanel {
 	 * Send commands to be executed by Scilab (after a copy/paste or drag&drop...)
 	 * @param textToExec all text lines to executed
 	 * @param displayCmdInOutput flag indicating if the input command has to be displayed in the output view
+	 * @param storeInHistory flag indicating if the input command has to be stored in the history
 	 */
-	public void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput) {
+	public void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput, boolean storeInHistory) {
 		String[] linesToExec = textToExec.split(StringConstants.NEW_LINE);
 		int nbStatements = 0;
-		boolean firstPrompt = true;
 
 		// Display Cursor to show Scilab is busy
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -342,7 +342,6 @@ public abstract class SciConsole extends JPanel {
 		while (nbStatements < linesToExec.length) {
 			// This loop contains code very similar to the code of ValidationAction.java
 			InputParsingManager inputParsingManager = config.getInputParsingManager();
-			OutputView outputView = config.getOutputView();
 			PromptView promptView = config.getPromptView();
 
 			// Reset command line
@@ -373,7 +372,9 @@ public abstract class SciConsole extends JPanel {
 
 			((SciInputCommandView) config.getInputCommandView())
 					.setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""), displayCmdInOutput);
-			((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
+			if (storeInHistory) {
+				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
+			}
 			nbStatements++;
 		}
 

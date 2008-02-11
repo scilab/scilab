@@ -70,7 +70,7 @@ public abstract class ScilabCallBack extends CallBack {
 	public void storeCommand(String command, int type) {
 		//System.out.println("Store Command  Command="+command+" Type="+type);
 		//InterpreterManagement.putCommandInScilabQueue(command);
-		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(command, false);
+		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(command, false, false);
 	}
 
 	/**

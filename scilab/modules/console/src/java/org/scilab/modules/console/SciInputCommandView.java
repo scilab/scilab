@@ -136,7 +136,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-							console.sendCommandsToScilab(wholeTxt, true);
+							console.sendCommandsToScilab(wholeTxt, true, true);
 						};
 					});
 				}

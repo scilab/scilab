@@ -65,6 +65,6 @@ public class PasteClipboard extends AbstractConsoleAction {
 		}
 		
 		// Send data to Scilab Console
-		((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(clipboardContents, true);
+		((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(clipboardContents, true, true);
 	}
 }

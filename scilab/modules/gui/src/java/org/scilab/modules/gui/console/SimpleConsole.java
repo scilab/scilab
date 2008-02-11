@@ -113,6 +113,7 @@ public interface SimpleConsole {
 	 * Send commands to be executed by Scilab (after a copy/paste or drag&drop...)
 	 * @param textToExec all text lines to executed
 	 * @param displayCmdInOutput flag indicating if the input command has to be displayed in the output view
+	 * @param storeInHistory flag indicating if the input command has to be stored in the history
 	 */
-	void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput);
+	void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput, boolean storeInHistory);
 }
