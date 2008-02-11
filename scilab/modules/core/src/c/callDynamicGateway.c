@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "machine.h"
 #include "callDynamicGateway.h"
 #include "MALLOC.h"

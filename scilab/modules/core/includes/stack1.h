@@ -1,8 +1,6 @@
 #ifndef STACK1_H 
 #define STACK1_H 
 
-#include "Scierror.h"
-
 typedef  void (*S_fp) __PARAMS((char *,int *));
 
 extern integer C2F(ogettype)  __PARAMS((integer *lw));
