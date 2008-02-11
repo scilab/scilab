@@ -22,12 +22,15 @@
 function [routines,IntFunc]=create_palette(Path)
 // This function generates a palette if Path is a string indicating
 // the directoy in which the interfacing functions of the blocks are
-// to be found. 
+// to be found.
 // If Path is not present or if it is %t, then standard scicos
 // palettes are regenerated. If %f, then only IntFunc (list of
 // interfacing functions) is returned. List of routines is empty in
-// this case. 
-  load SCI/macros/scicos/lib;
+// this case.
+  load SCI/modules/scicos/macros/scicos_scicos/lib;
+  load SCI/modules/scicos/macros/scicos_auto/lib;
+  load SCI/modules/scicos/macros/scicos_utils/lib;
+
   scicos_ver=get_scicos_version();
   rhs=argn(2)
   if rhs==1 & type(Path)==4 then // generate scicos palettes
@@ -55,14 +58,14 @@ function [routines,IntFunc]=create_palette(Path)
      %scicos_display_mode, modelica_libs,scicos_pal_libs,..
      %scicos_gif,%scicos_contrib] = initial_scicos_tables()
     clear %scicos_menu  %scicos_short %scicos_help %scicos_display_mode modelica_libs
-    exec(loadpallibs,-1) 
-    path='SCI/macros/scicos/'
+    exec(loadpallibs,-1)
+    path='SCI/modules/scicos_blocks/macros/'
 
     routines=[];IntFunc=[];
     for txt=scicos_pal(:,1)'
       disp('Constructing '+txt)
       if txt=='Sources' then
-	lisf=['CONST_m.sci';'GENSQR_f.sci';'RAMP.sci';  
+	lisf=['CONST_m.sci';'GENSQR_f.sci';'RAMP.sci';
 	      'RAND_m.sci';'RFILE_f.sci';
 	      'CLKINV_f.sci'; 'CURV_f.sci';  'INIMPL_f.sci'; 'READAU_f.sci';
 	      'SAWTOOTH_f.sci'; 'STEP_FUNCTION.sci';
@@ -74,14 +77,14 @@ function [routines,IntFunc]=create_palette(Path)
 	lisf=['AFFICH_m.sci';   'CMSCOPE.sci';
 	      'CSCOPXY.sci';   'WRITEC_f.sci';
 	      'CANIMXY.sci';   'CSCOPE.sci';
-	      'OUTIMPL_f.sci'; 
+	      'OUTIMPL_f.sci';
 	      'CLKOUTV_f.sci';  'CEVENTSCOPE.sci';
 	      'OUT_f.sci';      'WFILE_f.sci';
 	      'CFSCOPE.sci';   'WRITEAU_f.sci';
 	      'CSCOPXY3D.sci';   'CANIMXY3D.sci';
-	      'CMATVIEW.sci';	'CMAT3D.sci'; 
+	      'CMATVIEW.sci';	'CMAT3D.sci';
               'TOWS_c.sci']
-	
+
       elseif txt=='Branching' then
 	lisf=['DEMUX.sci';
 	      'MUX.sci'; 'NRMSOM_f.sci';  'EXTRACTOR.sci';
@@ -93,7 +96,7 @@ function [routines,IntFunc]=create_palette(Path)
 	      'GotoTagVisibility.sci';'CLKGOTO.sci';'CLKFROM.sci';
 	      'CLKGotoTagVisibility.sci';'GOTOMO.sci';'FROMMO.sci';
 	      'GotoTagVisibilityMO.sci']
-	
+
       elseif txt=='Non_linear' then
 	lisf=['ABS_VALUE.sci'; 'TrigFun.sci';
 	      'EXPBLK_m.sci';  'INTRP2BLK_f.sci';
@@ -102,7 +105,7 @@ function [routines,IntFunc]=create_palette(Path)
 	      'POWBLK_f.sci'; 'PROD_f.sci';
 	      'PRODUCT.sci';  'QUANT_f.sci';'EXPRESSION.sci';
 	      'SATURATION.sci'; 'SIGNUM.sci' ]
-	
+
       elseif txt=='Events' then
 	lisf=['ANDBLK.sci';'HALT_f.sci';'freq_div.sci';
 	      'ANDLOG_f.sci';'EVTDLY_f.sci';'IFTHEL_f.sci';'ESELECT_f.sci';
@@ -111,7 +114,7 @@ function [routines,IntFunc]=create_palette(Path)
 
       elseif txt=='Threshold' then
 	lisf=[  'NEGTOPOS_f.sci';  'POSTONEG_f.sci';  'ZCROSS_f.sci']
-	
+
       elseif txt=='Others' then
 	lisf=['c_block.sci';'fortran_block.sci';
 	      'SUPER_f.sci';'scifunc_block_m.sci';
@@ -120,16 +123,16 @@ function [routines,IntFunc]=create_palette(Path)
 	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';'DEBUG_SCICOS.sci';
 	      'LOGICAL_OP.sci';'RELATIONALOP.sci';'generic_block3.sci';
 	      'MBLOCK.sci';'PDE.sci';'ENDBLK.sci';'AUTOMAT.sci']
-	
+
       elseif txt=='Linear' then
 	lisf=['DLR.sci';'TCLSS.sci';'DOLLAR_m.sci';
 	      'CLINDUMMY_f.sci';'DLSS.sci';'REGISTER.sci';'TIME_DELAY.sci';
 	      'CLR.sci';'GAINBLK.sci';'SAMPHOLD_m.sci';'VARIABLE_DELAY.sci';
 	      'CLSS.sci';'SUMMATION.sci';'INTEGRAL_m.sci';'SUM_f.sci';
               'DERIV.sci';'PID.sci']
-	
+
       elseif txt=='OldBlocks' then
-	lisf=['CLOCK_f.sci';'ABSBLK_f.sci';    
+	lisf=['CLOCK_f.sci';'ABSBLK_f.sci';
 	      'MAX_f.sci'; 'MIN_f.sci';'SAT_f.sci'; 'MEMORY_f.sci';
 	      'CLKSOM_f.sci';'TRASH_f.sci';'GENERAL_f.sci';'DIFF_f.sci';
 	      'BIGSOM_f.sci';'INTEGRAL_f.sci';'GAINBLK_f.sci';
@@ -140,7 +143,7 @@ function [routines,IntFunc]=create_palette(Path)
 
       elseif txt=='DemoBlocks' then
 	lisf=['BOUNCE.sci';'BOUNCEXY.sci';'BPLATFORM.sci']
-	
+
       elseif txt=='Electrical' then
         lisf=['Capacitor.sci';'Ground.sci';'VVsourceAC.sci';'ConstantVoltage.sci';
               'Inductor.sci';'PotentialSensor.sci';'VariableResistor.sci';'CurrentSensor.sci';
@@ -148,7 +151,7 @@ function [routines,IntFunc]=create_palette(Path)
               'NPN.sci';'PNP.sci';'SineVoltage.sci';'Switch.sci'; ...
 	      'OpAmp.sci';'PMOS.sci';
 	      'NMOS.sci';'CCS.sci';'CVS.sci';'IdealTransformer.sci';'Gyrator.sci']
-	
+
       elseif txt=='ThermoHydraulics' then
 	lisf=['Bache.sci';'VanneReglante.sci';'PerteDP.sci';'PuitsP.sci';'SourceP.sci';]
 
