@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2007 */
+/* INRIA 2007/2008 */
 /* Allan CORNET */
+/* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __DYNAMICLIBRARY_OTHERS_H__
 #define __DYNAMICLIBRARY_OTHERS_H__
@@ -16,7 +17,7 @@ typedef void * DynLibFuncPtr;
 * @param name of dynamic library
 * @return Handle to the loaded library
 */
-DynLibHandle LoadDynLibrary(char *libname);
+#define LoadDynLibrary(libname) (DynLibHandle) dlopen(libname,  RTLD_NOW | RTLD_GLOBAL);
 
 /**
 * Decrements the reference count of the loaded dynamic-link library
@@ -37,7 +38,7 @@ DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance,char *funcName);
 * return last dynamic linking error 
 * @return a string
 */
-char * GetLastDynLibError(void);
+#define GetLastDynLibError() dlerror()
 
 #endif /* __DYNAMICLIBRARY_OTHERS_H__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2007 */
+/* INRIA 2007/2008 */
 /* Allan CORNET */
+/* Sylvestre LEDRU */
 /*-----------------------------------------------------------------------------------*/ 
 #include "dynamiclibrary_others.h"
 #include <stdlib.h>
@@ -9,11 +10,6 @@
 #ifndef NULL
 #define NULL 0
 #endif
-/*-----------------------------------------------------------------------------------*/ 
-DynLibHandle LoadDynLibrary(char *libname)
-{
-	return (DynLibHandle) dlopen(libname,  RTLD_NOW | RTLD_GLOBAL);
-}
 /*-----------------------------------------------------------------------------------*/ 
 BOOL FreeDynLibrary(DynLibHandle hInstance)
 {
@@ -42,10 +38,5 @@ DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance,char *funcName)
 		retFuncPtr = dlsym(hInstance, funcName);
 	}
 	return retFuncPtr;
-}
-/*-----------------------------------------------------------------------------------*/ 
-char * GetLastDynLibError(void)
-{
-	return dlerror();
 }
 /*-----------------------------------------------------------------------------------*/ 
