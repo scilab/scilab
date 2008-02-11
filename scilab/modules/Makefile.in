@@ -174,7 +174,7 @@ DIST_SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
 	differential_equations signal_processing fileio core metanet \
 	optimization interpolation localization sound statistics time \
 	integer special_functions double randlib data_structures \
-	mexlib symbolic tclsci sparse io shell completion \
+	mexlib symbolic tclsci sparse io completion shell \
 	history_manager action_binding console renderer graphic_export \
 	gui graphics windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
@@ -366,7 +366,7 @@ SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
 	differential_equations signal_processing fileio core metanet \
 	optimization interpolation localization sound statistics time \
 	integer special_functions double randlib data_structures \
-	mexlib symbolic tclsci sparse io shell completion \
+	mexlib symbolic tclsci sparse io completion shell \
 	history_manager action_binding console renderer graphic_export \
 	gui graphics windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \

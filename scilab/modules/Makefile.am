@@ -37,8 +37,8 @@ symbolic \
 tclsci \
 sparse \
 io \
-shell \
 completion \
+shell \
 history_manager \
 action_binding \
 console \
