@@ -274,6 +274,9 @@ int sci_xset( char *fname, unsigned long fname_len )
       pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
       sciSetVisibility (subwin, TRUE); 
     }
+    else if (strcmp(cstk(l1),"viewport") == 0) {
+      // TODO
+    }
     if(strcmp(cstk(l1),"window") != 0) sciRedrawFigure();   
   }
    

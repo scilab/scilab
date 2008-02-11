@@ -55,7 +55,9 @@ int sci_xrect( char *fname, unsigned long fname_len )
       break;
     }
 
+    startFigureDataReading(pFigure);
     sciDrawObjIfRequired(sciGetCurrentObj ());
+    endFigureDataReading(pFigure);
 
     break;
   case 4 :
@@ -85,8 +87,9 @@ int sci_xrect( char *fname, unsigned long fname_len )
       {
         break;
       }
-
+      startFigureDataReading(pFigure);
       sciDrawObjIfRequired(sciGetCurrentObj ());
+      endFigureDataReading(pFigure);
     }
     break;
   default :

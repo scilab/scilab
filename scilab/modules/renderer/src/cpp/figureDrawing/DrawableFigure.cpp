@@ -80,7 +80,9 @@ void DrawableFigure::drawInContext( void )
 {
   initializeDrawing() ;
   setFigureParameters() ;
-  if ( checkVisibility() )
+  // retest on auto_redraw
+  // because display may come directly from JoGL
+  if ( checkVisibility() && checkAutoRedraw() )
   {
     displayChildren() ;
   }
