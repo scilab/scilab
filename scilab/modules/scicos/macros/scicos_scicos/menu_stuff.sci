@@ -22,27 +22,22 @@
 function menu_stuff()
 
 if ~MSDOS then
-  delmenu(curwin,'3D Rot.')
-  delmenu(curwin,'UnZoom')
-  delmenu(curwin,'Zoom')
-  delmenu(curwin,'Edit')
-  delmenu(curwin,'File')
-  delmenu(curwin,'Insert')
+  delmenu(curwin,_('3D Rot.'))
+  delmenu(curwin,_('UnZoom'))
+  delmenu(curwin,_('Zoom'))
+  delmenu(curwin,_('Edit'))
+  delmenu(curwin,_('File'))
+  delmenu(curwin,_('Insert'))
 else
   hidetoolbar(curwin)
- // French
-  delmenu(curwin,'&Fichier')
-  delmenu(curwin,'&Editer')
-  delmenu(curwin,'&Outils')
-  delmenu(curwin,'&Inserer')
-  // English
-  delmenu(curwin,'&File')
-  delmenu(curwin,'&Edit')
-  delmenu(curwin,'&Tools')
-  delmenu(curwin,'&Insert')
+ // Use Scilab Localisation
+  delmenu(curwin,_('File'))
+  delmenu(curwin,_('Edit'))
+  delmenu(curwin,_('Tools'))
+  delmenu(curwin,_('Insert'))
   end
 menuss=menus;
 menuss(1)=menus(1)(2:$);
 menubar(curwin,menuss)
-	  
+
 endfunction
