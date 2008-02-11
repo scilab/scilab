@@ -877,7 +877,6 @@ static int translate(int ichar)
 
 static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
 {
-	//				printf("Cursor %d / cursor_max %d\r\n",*cursor, *cursor_max);
   if(line)
     {
 
