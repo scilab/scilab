@@ -42,8 +42,8 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 			if (ptrFormat[i+1]=='%') {NumberPercent--;i++;}
 		}
 	}
-
-	if (NumberPercent<Rhs-1)
+	
+	if (Rhs != NumberPercent + 1 )
 	{
 		Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent+1);
 		return 0;
