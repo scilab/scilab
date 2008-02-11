@@ -5,7 +5,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-void createContextMenu(char **menuLabels, int nbLabels)
+char* createContextMenu(char **menuLabels, int nbLabels)
 {
-  CallScilabBridge::newContextMenu(getScilabJavaVM(), menuLabels, nbLabels);
+  return CallScilabBridge::newContextMenu(getScilabJavaVM(), menuLabels, nbLabels);
 }

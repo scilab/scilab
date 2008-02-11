@@ -12,7 +12,8 @@
  *
  * @param menuLabels labels of the menu
  * @param nbLabels the number of labels
+ * @return the label of the menu selected
  */
-void createContextMenu(char **menuLabels, int nbLabels);
+char * createContextMenu(char **menuLabels, int nbLabels);
 
 #endif /* __CONTEXTMENU_H__ */

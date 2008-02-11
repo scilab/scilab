@@ -5,20 +5,14 @@ package org.scilab.modules.gui.bridge.contextmenu;
 
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeListener;
 
-import javax.swing.Action;
 import javax.swing.JPopupMenu;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -36,9 +30,9 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 
 	private CallBack callback;
 	
-	private MouseListener[] nativeMouseListeners;
-	
 	private MouseListener customedMouseListener;
+	
+	private String result = new String();
 	
 	/**
 	 * Constructor
@@ -54,17 +48,29 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
 	 */
 	public void add(MenuItem newMenuItem) {
+		((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem()).
+				addActionListener(new ContextMenuItemActionListener(newMenuItem.getText()));
 		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
 	}
 	
 	/**
 	 * Display the ContextMenu
+	 * @return the label of the menu selected
 	 */
-	public void display() {
+	public String display() {
 		// Default location is at mouse pointer position
 		setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 		setVisible(true);
+		try {
+			synchronized (this) {
+				this.wait();
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
+
 	/**
 	 * Add a Scilab MenuBar to a Scilab menu
 	 * @param menuBarToAdd the Scilab MenuBar to add to the Scilab menu
@@ -151,52 +157,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * @param commandType the type of the command that will be executed.
 	 */
 	public void setCallback(String command, int commandType) {
-		callback = ScilabCallBack.create(command, commandType);
-		
-		/* Remove Java MouseListeners if not already done */
-		/* Save them so that they can be put back */
-		if (nativeMouseListeners == null) {
-			nativeMouseListeners = getMouseListeners();
-			for (int i = 0; i < nativeMouseListeners.length; i++) {
-				removeMouseListener(nativeMouseListeners[i]);
-			}
-		}
-		
-		/* Remove previous listener */
-		if (customedMouseListener != null) {
-			removeMouseListener(customedMouseListener);
-		}
-
-		/* Create a customed MouseListener */
-		customedMouseListener = new MouseListener() {
-
-			public void mouseClicked(MouseEvent arg0) {
-				/* Mouse button released over the menu */
-				/* Deselect the menu and execute the callback */
-				callback.actionPerformed(null);
-			}
-
-			public void mouseEntered(MouseEvent arg0) {
-				/* Nothing to do */
-			}
-
-			public void mouseExited(MouseEvent arg0) {
-				/* Nothing to do */
-			}
-
-			public void mousePressed(MouseEvent arg0) {
-				/* Select the menu */
-			}
-
-			public void mouseReleased(MouseEvent arg0) {
-				/* Mouse button released out of the menu */
-				/* Deselect the menu */
-			}
-			
-		};
-		
-		/* Add the mouse listener */
-		addMouseListener(customedMouseListener);
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -204,7 +165,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
-		//setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -212,7 +173,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
-		//setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+		throw new UnsupportedOperationException();
 	}
 	
 	/**
@@ -277,5 +238,42 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 */
 	public void setText(String text) {
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Set the return value
+	 * @param value the value to set
+	 */
+	public void setResult(String value) {
+		result = value;
+		synchronized (this) {
+			this.notify();
+		}
+	}
+	
+	/**
+	 * Class used to managed callback on menu items
+	 * @author Vincent COUVERT
+	 */
+	private class ContextMenuItemActionListener implements ActionListener {
+
+		private String label;
+		
+		/**
+		 * Constructor
+		 * @param itemLabel the label of the menu item
+		 */
+		public ContextMenuItemActionListener(String itemLabel) {
+			label = itemLabel;	
+		}
+
+		/**
+		 * Action performed ? What do I have to do ?
+		 * @param arg0 the action
+		 */
+		public void actionPerformed(ActionEvent arg0) {
+			setResult(label);
+		}
+		
 	}
 }

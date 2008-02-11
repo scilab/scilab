@@ -108,7 +108,7 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
-voidnewContextMenujobjectArrayID=NULL; 
+jstringnewContextMenujobjectArrayID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
@@ -240,7 +240,7 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
-voidnewContextMenujobjectArrayID=NULL; 
+jstringnewContextMenujobjectArrayID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
@@ -651,15 +651,15 @@ return res;
 
 }
 
-void CallScilabBridge::newContextMenu (JavaVM * jvm_, char ** menuLabels, int menuLabelsSize){
+char * CallScilabBridge::newContextMenu (JavaVM * jvm_, char ** menuLabels, int menuLabelsSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
                 jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
-jmethodID voidnewContextMenujobjectArrayID = curEnv->GetStaticMethodID(cls, "newContextMenu", "([Ljava/lang/String;)V" ) ;
-if (voidnewContextMenujobjectArrayID == NULL) {
+jmethodID jstringnewContextMenujobjectArrayID = curEnv->GetStaticMethodID(cls, "newContextMenu", "([Ljava/lang/String;)Ljava/lang/String;" ) ;
+if (jstringnewContextMenujobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "newContextMenu" << std::endl;
 exit(EXIT_FAILURE);
 }
@@ -688,13 +688,20 @@ curEnv->SetObjectArrayElement( menuLabels_, i, TempString);
 // avoid keeping reference on to many strings
 curEnv->DeleteLocalRef(TempString);
 }
-                         curEnv->CallStaticVoidMethod(cls, voidnewContextMenujobjectArrayID ,menuLabels_);
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringnewContextMenujobjectArrayID ,menuLabels_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
                         
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
 }
 
 void CallScilabBridge::destroyWidget (JavaVM * jvm_, long objID){

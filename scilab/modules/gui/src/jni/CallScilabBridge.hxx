@@ -64,7 +64,7 @@ jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
-jmethodID voidnewContextMenujobjectArrayID; // cache method id
+jmethodID jstringnewContextMenujobjectArrayID; // cache method id
 jclass stringArrayClass;
 jmethodID voiddestroyWidgetjintID; // cache method id
 jmethodID voiddestroyFramejintID; // cache method id
@@ -229,7 +229,7 @@ static long newListBox(JavaVM * jvm_);
 
 static long newFrame(JavaVM * jvm_);
 
-static void newContextMenu(JavaVM * jvm_, char ** menuLabels, int menuLabelsSize);
+static char * newContextMenu(JavaVM * jvm_, char ** menuLabels, int menuLabelsSize);
 
 static void destroyWidget(JavaVM * jvm_, long objID);
 

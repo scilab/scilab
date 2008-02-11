@@ -23,6 +23,12 @@ int sci_mpopup(char *fname,unsigned long fname_len)
 {
   int nbRow = 0,  nbCol = 0, menuAdr = 0;
 
+  char * res = NULL;
+  int resAdr = 0;
+
+  CheckRhs(1,1);
+  CheckLhs(0,1);
+  
   if (VarType(1) == sci_strings)
     {
       GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &menuAdr);
@@ -33,9 +39,15 @@ int sci_mpopup(char *fname,unsigned long fname_len)
       return FALSE;
     }
 
-  createContextMenu(getStringMatrixFromStack(menuAdr), nbRow*nbCol);
+  res = createContextMenu(getStringMatrixFromStack(menuAdr), nbRow*nbCol);
 
-  LhsVar(1)=0;
+  nbRow = 1;
+  nbCol = (int)strlen(res);
+
+  CreateVar(Rhs+1,STRING_DATATYPE,&nbRow,&nbCol,&resAdr);
+  strncpy(cstk(resAdr), res, nbCol);
+
+  LhsVar(1)=Rhs+1;
 
   C2F(putlhsvar)();
 

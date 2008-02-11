@@ -20,6 +20,7 @@ public interface SimpleContextMenu extends SimpleMenuItem {
 	
 	/**
 	 * Display the ContextMenu
+	 * @return the label of the menu pressed
 	 */
-	void display();
+	String display();
 }

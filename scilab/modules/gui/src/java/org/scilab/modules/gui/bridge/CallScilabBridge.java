@@ -416,20 +416,19 @@ public class CallScilabBridge {
 	/**
 	 * Create a new ContextMenu in Scilab GUIs
 	 * @param menuLabels the labels of the sub menus
+	 * @return the item of the menu selected
 	 */
-	public static void newContextMenu(String[] menuLabels) {
+	public static String newContextMenu(String[] menuLabels) {
 		ContextMenu contextMenu = ScilabContextMenu.createContextMenu();
-		// id = UIElementMapper.add(contextMenu);
 		MenuItem menuItem = null;
 		
 		for (int menuIndex = 0; menuIndex < menuLabels.length; menuIndex++) {
 			menuItem = ScilabMenuItem.createMenuItem();
 			menuItem.setText(menuLabels[menuIndex]);
-			menuItem.setCallback("Cmenu = \"" + menuLabels[menuIndex] + "\";", 0);
 			contextMenu.add(menuItem);
 		}
 		
-		contextMenu.getAsSimpleContextMenu().display();
+		return contextMenu.getAsSimpleContextMenu().display();
 	}
 
 	/**

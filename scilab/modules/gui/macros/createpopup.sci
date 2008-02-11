@@ -13,7 +13,5 @@ for menu=listOfMenus
 end
 
 // Create the popyp
-mpopup(menuLabels);
-
-Cmenu = [];
+Cmenu = mpopup(menuLabels);
 endfunction
