@@ -1,58 +1,72 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>strchr</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-	<SHORT_DESCRIPTION name="strchr">Find the first occurrence of a character in a string</SHORT_DESCRIPTION>
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM> res = strchr(str1,char)  </CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
-	<PARAM>
-		<PARAM_INDENT>
-		<PARAM_ITEM>
-			<PARAM_NAME>str1</PARAM_NAME>
-			<PARAM_DESCRIPTION>
-				<SP>: string or matrix of strings</SP>
-			</PARAM_DESCRIPTION>
-		</PARAM_ITEM>
-		
-		<PARAM_ITEM>
-			<PARAM_NAME>char</PARAM_NAME>
-			<PARAM_DESCRIPTION>
-				<SP>: a character.</SP>
-			</PARAM_DESCRIPTION>
-		</PARAM_ITEM>
-		
-		<PARAM_ITEM>
-			<PARAM_NAME>res</PARAM_NAME>
-			<PARAM_DESCRIPTION>
-				<SP>: string or matrix of strings</SP>
-			</PARAM_DESCRIPTION>
-		</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
-	
-	<DESCRIPTION>
-		<P><VERB>res = strchr(str1,char)</VERB> Returns the first occurrence of character in the string str.</P>
-		<P> num must have same dimensions than str1 or only one char. </P>
-	</DESCRIPTION>
-	
-	<EXAMPLE>
-<![CDATA[
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>strchr</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+  $</DATE>
+
+  <SHORT_DESCRIPTION name="strchr">Find the first occurrence of a character in
+  a string</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>res = strchr(haystack,char)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>haystack</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string or matrix of strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>char</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a character.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>res</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string or matrix of strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>res = strchr(haystack,char)</VERB> Returns the first occurrence
+    of character in the string str.</P>
+
+    <P>num must have same dimensions than haystack or only one char.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
 strchr('This is a sample string','s')
 strchr(['This is a sample string','in scilab'],'s')
 strchr(['This is a sample string','in scilab'],['s','a'])
-]]>
-	</EXAMPLE>
-	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>strrchr</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>strstr</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+
+	]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>strrchr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>strstr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
 </MAN>
