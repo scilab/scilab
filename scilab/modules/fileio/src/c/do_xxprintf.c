@@ -119,7 +119,8 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 	int retval=0; /* return value */
 	int arg_count = 0;
 	int	ccount = 0;
-
+	int prev =0;
+	
 	XXPRINTF xxprintf=NULL; /* sprintf sciprint2 fprintf */
 	FLUSH   flush=NULL;
 	char *target=NULL;
@@ -136,8 +137,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 	{
 		char *p=NULL;
 		char *sval=NULL;
-
-		int prev=0; 
+		
 		int ival=0;
 		int low_flag = 0;
 		int	high_flag = 0;

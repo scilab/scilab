@@ -17,13 +17,15 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	char ** strs;
 	char *str,*str1;
 	int n,nmax,cat_to_last,ll;
-	char *ptrFormat=NULL;
-	int i=0;
-	int NumberPercent=0;
+	char *ptrFormat   = NULL;
+	int i             = 0;
+	int NumberPercent = 0;
+	int NumberCols    = 0;
 
 	Nbvars = 0;
 	CheckRhs(1,1000);
 	CheckLhs(0,1);
+	
 	if ( Rhs < 1 ) 
 	{ 
 		Scierror(999,_("%s: Wrong number of input arguments: Must be > 0.\n"),fname);
@@ -43,12 +45,29 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 		}
 	}
 	
-	if (Rhs != NumberPercent + 1 )
+	if ( (Rhs - 1) > NumberPercent )
 	{
-		Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent+1);
+		Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent);
 		return 0;
 	}
-
+	
+	if( Rhs > 1 )
+	{
+		for( i = 2 ; i <= Rhs ; i++ )
+		{
+			int mk = 0;
+			int nk = 0;
+			GetMatrixdims(i,&mk,&nk);
+			NumberCols += nk;
+		}
+	}
+	
+	if ( NumberCols != NumberPercent )
+	{
+		Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent);
+		return 0;
+	}
+	
 	n=0; /* output line counter */
 	nmax=0;
 	strs=NULL;
