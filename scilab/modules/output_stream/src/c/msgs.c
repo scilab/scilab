@@ -716,15 +716,15 @@ static int msg_29(integer *n, integer *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_30(integer *n, integer *ierr)
 {
-	sciprint(_("Warning: recursion problem..., cleared.\n will be cleared with next error...\n"));
+	sciprint(_("Warning: recursion problem..., cleared.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_31(integer *n, integer *ierr)
 {
-	int cerr=-1;
-	sciprint(_("Warning: stack problem..., cleared\n will be cleared with next error...\n"));
-	Error(cerr);
+         /*int cerr=-1;*/
+	sciprint(_("Warning: stack problem..., cleared.\n"));
+	/*Error(cerr);*/
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
