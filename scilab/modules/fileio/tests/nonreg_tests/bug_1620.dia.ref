@@ -22,14 +22,11 @@
 //    (n), mais cela n'a pas eu d'effet. Qu'en pensez vous?
 //    La commande clear nettoie-t-elle efficacement la m�moire?
 //    Merci de votre aide.
-
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2006
 // Date : 9 janvier 2006
-
 a=rand(500,148);
 fprintfMat(TMPDIR+"/bug1620.txt",a);
 b=fscanfMat(TMPDIR+"/bug1620.txt");
-
-if or(size(b)<>[500 148]) then pause,end
+if or(size(b)<>[500 148]) then bugmes();quit;end
