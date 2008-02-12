@@ -20,7 +20,7 @@ import com.sun.opengl.util.j2d.TextRenderer;
 public class SciTextRenderer extends TextRenderer {
 
 	/** Maximum supported fobnt size by awt */
-	private static final float MAX_SIZE = 500.0f;
+	private static final float MAX_SIZE = 100.0f;
 	
 	private float antiAliasingFactor;
 	

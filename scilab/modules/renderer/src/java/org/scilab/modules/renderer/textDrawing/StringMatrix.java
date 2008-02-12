@@ -60,9 +60,11 @@ public class StringMatrix {
 			this.nbCol = nbCol;
 			this.nbRow = nbRow;
 		}
+		
+		// scilab matrices are stored column wise
 		for (int i = 0; i < nbRow; i++) {
 			for (int j = 0; j < nbCol; j++) {
-				data[i][j] = text[i * nbCol + j];
+				data[i][j] = text[j * nbRow + i];
 			}
 		}
 	}

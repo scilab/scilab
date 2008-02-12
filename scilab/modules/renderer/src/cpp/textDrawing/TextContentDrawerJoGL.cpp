@@ -126,7 +126,7 @@ void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const dou
 
   // compute lengths accordingly
   *pixelWidth = extremeXPix[0] - textPosPix[0];
-  *pixelHeight = extremeYPix[1] - textPosPix[1];
+  *pixelHeight = textPosPix[1] - extremeYPix[1]; // Y axis is inverted
 }
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getTextDisplayPos(double pos[3])
