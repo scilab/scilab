@@ -4,7 +4,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_gui.h"
 #include "machine.h"
-#include "machine.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -13,11 +12,13 @@
 /*--------------------------------------------------------------------------*/
 int sci_setmenu(char *fname,unsigned long fname_len)
 {
-  int nbRow=0, nbCol=0, stkAdr=0;
-  int nbRow1=0, nbCol1=0, stkAdr1=0;
+  int nbRow=0, nbCol=0;
+  int menuNameAdr=0;
+  int figureNumberAdr=0;
+  int subMenuIndexAdr=0;
 
   // Check parameter number
-  CheckRhs(1,2);
+  CheckRhs(1,3);
   CheckLhs(1,1);
 
   if (Rhs == 1)
@@ -35,39 +36,74 @@ int sci_setmenu(char *fname,unsigned long fname_len)
           return FALSE;
         }
 
-      GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+      GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
 
       if (nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
           return FALSE;
         }
-     EnableRootMenu(cstk(stkAdr), TRUE);
+
+     EnableRootMenu(cstk(menuNameAdr), TRUE);
     }
-  else
+  else if (Rhs == 2)
     {
       // Unset a Menu a Scilab Graphic Window
-      if (VarType(1) != sci_matrix)
+      if (VarType(1) == sci_matrix && VarType(2) == sci_strings)
         {
-			Scierror(999, _("%s: Wrong type for first input argument: Double value expected.\n"),fname);
-          return FALSE;
-        }
-      GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+          GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
       
-      if (nbRow*nbCol != 1)
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+              return FALSE;
+            }
+          
+          GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+          
+          EnableFigureMenu((int)*stk(figureNumberAdr), cstk(menuNameAdr), TRUE);
+        }
+      else if (VarType(1) == sci_strings && VarType(2) == sci_matrix) // Unset a submenu in main window
         {
-          Scierror(999,  _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+          
+          GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
+      
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+              return FALSE;
+            }
+          
+          EnableRootSubMenu(cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), TRUE);
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong input arguments: (button,nsub) or (gwin,button) expected.\n"),fname);
           return FALSE;
         }
-
-      if (VarType(2) != sci_strings)
-        {
-          Scierror(999, _("%s: Wrong type for second input argument: String expected.\n"),fname);
-          return FALSE;
-        }
-      GetRhsVar(2, STRING_DATATYPE, &nbRow1, &nbCol1, &stkAdr1);
-
-      EnableFigureMenu((int)*stk(stkAdr), cstk(stkAdr1), TRUE);
+    }
+  else // Unset a submenu in graphics window
+    {
+          GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
+      
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+              return FALSE;
+            }
+          
+          GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+          
+          GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
+      
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong type for third input argument: Scalar expected.\n"),fname);
+              return FALSE;
+            }
+          
+          EnableFigureSubMenu((int)*stk(figureNumberAdr), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), TRUE);
     }
   
   LhsVar(1)=0;

@@ -37,6 +37,14 @@ public interface SimpleMenuBar {
 	void setMenuEnabled(String menuName, boolean status);
 	
 	/**
+	 * Disable a MenuItem of a Scilab root window giving its parent name and position
+	 * @param parentMenuName the name of the parent menu
+	 * @param menuItemPosition the name of the parent menu
+	 * @param status true to set the menu enabled
+	 */
+	void setSubMenuEnabled(String parentMenuName, int menuItemPosition, boolean status);
+	
+	/**
 	 * Remove a menu giving its name
 	 * @param menuName the name of the menu
 	 */

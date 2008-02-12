@@ -320,9 +320,20 @@
 	  <parameter type="String" name="menuName"/>
 	  <parameter type="boolean" name="status"/>
 	</method>
+	<method name="setRootSubMenuEnabled" returnType="void" modifier="static">
+	  <parameter type="String" name="menuName"/>
+	  <parameter type="int" name="position"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
 	<method name="setFigureMenuEnabled" returnType="void" modifier="static">
 	  <parameter type="int" name="figureID"/>
 	  <parameter type="String" name="menuName"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="setFigureSubMenuEnabled" returnType="void" modifier="static">
+	  <parameter type="int" name="figureID"/>
+	  <parameter type="String" name="menuName"/>
+	  <parameter type="int" name="position"/>
 	  <parameter type="boolean" name="status"/>
 	</method>
 <!-- Delete Menus -->

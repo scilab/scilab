@@ -183,7 +183,9 @@ voidsetPopupMenuTextjintjobjectArrayID=NULL;
 voidsetWidgetReliefjintjstringID=NULL; 
 voidsetFrameReliefjintjstringID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
+voidsetRootSubMenuEnabledjstringjintjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
+voidsetFigureSubMenuEnabledjintjstringjintjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
 voidremoveFigureMenujintjstringID=NULL; 
 jintnewFileChooserID=NULL; 
@@ -315,7 +317,9 @@ voidsetPopupMenuTextjintjobjectArrayID=NULL;
 voidsetWidgetReliefjintjstringID=NULL; 
 voidsetFrameReliefjintjstringID=NULL; 
 voidsetRootMenuEnabledjstringjbooleanID=NULL; 
+voidsetRootSubMenuEnabledjstringjintjbooleanID=NULL; 
 voidsetFigureMenuEnabledjintjstringjbooleanID=NULL; 
+voidsetFigureSubMenuEnabledjintjstringjintjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
 voidremoveFigureMenujintjstringID=NULL; 
 jintnewFileChooserID=NULL; 
@@ -2591,6 +2595,32 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::setRootSubMenuEnabled (JavaVM * jvm_, char * menuName, long position, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetRootSubMenuEnabledjstringjintjbooleanID = curEnv->GetStaticMethodID(cls, "setRootSubMenuEnabled", "(Ljava/lang/String;IZ)V" ) ;
+if (voidsetRootSubMenuEnabledjstringjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setRootSubMenuEnabled" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring menuName_ = curEnv->NewStringUTF( menuName );
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetRootSubMenuEnabledjstringjintjbooleanID ,menuName_, position, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setFigureMenuEnabled (JavaVM * jvm_, long figureID, char * menuName, bool status){
 
 JNIEnv * curEnv = NULL;
@@ -2609,6 +2639,32 @@ jstring menuName_ = curEnv->NewStringUTF( menuName );
 jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallStaticVoidMethod(cls, voidsetFigureMenuEnabledjintjstringjbooleanID ,figureID, menuName_, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFigureSubMenuEnabled (JavaVM * jvm_, long figureID, char * menuName, long position, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetFigureSubMenuEnabledjintjstringjintjbooleanID = curEnv->GetStaticMethodID(cls, "setFigureSubMenuEnabled", "(ILjava/lang/String;IZ)V" ) ;
+if (voidsetFigureSubMenuEnabledjintjstringjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setFigureSubMenuEnabled" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring menuName_ = curEnv->NewStringUTF( menuName );
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFigureSubMenuEnabledjintjstringjintjbooleanID ,figureID, menuName_, position, status_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

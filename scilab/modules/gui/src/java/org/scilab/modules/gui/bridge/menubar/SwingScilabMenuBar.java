@@ -3,6 +3,7 @@
 
 package org.scilab.modules.gui.bridge.menubar;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -77,6 +78,26 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 		
 	}
 
+	/**
+	 * Disable a MenuItem of a Scilab root window giving its parent name and position
+	 * @param parentMenuName the name of the parent menu
+	 * @param menuItemPosition the name of the parent menu
+	 * @param status true to set the menu enabled
+	 */
+	public void setSubMenuEnabled(String parentMenuName, int menuItemPosition, boolean status) {
+		JMenu parentMenu = null; 
+		
+		for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
+			// Check the name of each menu until one matches the name
+			if (this.getMenu(menuIndex).getText().equals(parentMenuName)) {
+				parentMenu = this.getMenu(menuIndex);
+				break;
+			}
+		}
+		
+		parentMenu.getItem(menuItemPosition).setEnabled(status);
+	}
+	
 	/**
 	 * Remove a menu giving its name
 	 * @param menuName the name of the menu

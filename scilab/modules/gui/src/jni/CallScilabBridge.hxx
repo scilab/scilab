@@ -140,7 +140,9 @@ jmethodID voidsetPopupMenuTextjintjobjectArrayID; // cache method id
 jmethodID voidsetWidgetReliefjintjstringID; // cache method id
 jmethodID voidsetFrameReliefjintjstringID; // cache method id
 jmethodID voidsetRootMenuEnabledjstringjbooleanID; // cache method id
+jmethodID voidsetRootSubMenuEnabledjstringjintjbooleanID; // cache method id
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
+jmethodID voidsetFigureSubMenuEnabledjintjstringjintjbooleanID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
 jmethodID voidremoveFigureMenujintjstringID; // cache method id
 jmethodID jintnewFileChooserID; // cache method id
@@ -379,7 +381,11 @@ static void setFrameRelief(JavaVM * jvm_, long objID, char * reliefType);
 
 static void setRootMenuEnabled(JavaVM * jvm_, char * menuName, bool status);
 
+static void setRootSubMenuEnabled(JavaVM * jvm_, char * menuName, long position, bool status);
+
 static void setFigureMenuEnabled(JavaVM * jvm_, long figureID, char * menuName, bool status);
+
+static void setFigureSubMenuEnabled(JavaVM * jvm_, long figureID, char * menuName, long position, bool status);
 
 static void removeRootMenu(JavaVM * jvm_, char * menuName);
 

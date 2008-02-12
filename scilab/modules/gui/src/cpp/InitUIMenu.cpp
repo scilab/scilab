@@ -80,9 +80,19 @@ void EnableRootMenu(char *name, BOOL status)
   CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(), name, status);
 }
 
+void EnableRootSubMenu(char *name, int position, BOOL status)
+{
+  CallScilabBridge::setRootSubMenuEnabled(getScilabJavaVM(), name, position, status);
+}
+
 void EnableFigureMenu(int figurenum, char *name, BOOL status)
 {
   CallScilabBridge::setFigureMenuEnabled(getScilabJavaVM(), figurenum, name, status);
+}
+
+void EnableFigureSubMenu(int figurenum, char *name, int position, BOOL status)
+{
+  CallScilabBridge::setFigureSubMenuEnabled(getScilabJavaVM(), figurenum, name, position, status);
 }
 
 void DeleteRootMenu(char *name)

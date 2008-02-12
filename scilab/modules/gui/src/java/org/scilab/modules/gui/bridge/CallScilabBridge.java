@@ -732,12 +732,37 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Disable a MenuItem of a Scilab figure giving its parent name and position
+	 * @param figureID the id of the figure
+	 * @param parentMenuName the name of the parent menu
+	 * @param menuItemPosition the name of the parent menu
+	 * @param status true to set the menu enabled
+	 */
+	public static void setFigureSubMenuEnabled(int figureID, String parentMenuName, int menuItemPosition, boolean status) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		
+		MenuBar figureMenuBar = parentTab.getMenuBar();
+		
+		figureMenuBar.getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
+	}
+
+	/**
 	 * Disable a menu of a Scilab root window giving its name
 	 * @param menuName the name of the menu
 	 * @param status true to set the menu enabled
 	 */
 	public static void setRootMenuEnabled(String menuName, boolean status) {
 		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+	}
+	
+	/**
+	 * Disable a MenuItem of a Scilab root window giving its parent name and position
+	 * @param parentMenuName the name of the parent menu
+	 * @param menuItemPosition the name of the parent menu
+	 * @param status true to set the menu enabled
+	 */
+	public static void setRootSubMenuEnabled(String parentMenuName, int menuItemPosition, boolean status) {
+		ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
 	}
 	
 	/****************/
