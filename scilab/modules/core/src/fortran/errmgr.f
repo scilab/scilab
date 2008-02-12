@@ -42,7 +42,7 @@ c        . looking if error has occurred in execstr deff getf or comp
 c     .     error has occurred in an external
             errtyp=0
             pt0=p
-         elseif(rstk(p).eq.808) then
+         elseif(rstk(p).eq.808.or.rstk(p).eq.618) then
 c     .     error has occurred in a try instructions
             errtyp=0
             pt0=p
@@ -66,6 +66,10 @@ c     .     error has occurred in comp
             else
                goto 20
             endif
+         elseif(rstk(p).eq.612) then
+c        .  take into account the for loop variable
+            toperr=ids(4,p)
+            goto 20
          else
             goto 20
          endif
