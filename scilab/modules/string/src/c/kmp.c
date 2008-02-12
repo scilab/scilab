@@ -40,7 +40,7 @@ int kmp(char Main_String[],char Sub_String[],int pos,int *next)
 		 /*Should give an error message*/
          return(0);
      }
-  return(0);
+ 
 }
 /*------------------------------------------------------------------------*/
 /**
