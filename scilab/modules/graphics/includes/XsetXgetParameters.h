@@ -8,7 +8,7 @@
 #ifndef _XSET_XGET_PARAMETERS_H_
 #define _XSET_XGET_PARAMETERS_H_
 
-#define NUMSETFONC 37
+#define NUMSETFONC 35
 
 static char * KeyTab_[NUMSETFONC + 1] = {
   "alufunction",
@@ -26,8 +26,6 @@ static char * KeyTab_[NUMSETFONC + 1] = {
   "font size",
   "foreground",
   "fpf",
-  "gc",
-  "gccolormap",
   "hidden3d",
   "lastpattern",
   "line mode",

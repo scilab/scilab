@@ -115,7 +115,6 @@ int sci_xset( char *fname, unsigned long fname_len )
     sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
     subwin = sciGetCurrentSubWin();
     sciSetMarkSize(subwin,(int)xx[0]);
-    
   }
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
@@ -123,6 +122,9 @@ int sci_xset( char *fname, unsigned long fname_len )
     sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
     sciSetMarkStyle(subwin,(int) xx[0]);
     sciSetMarkSize(subwin,(int) xx[1]);
+
+    // force mark drawing
+    sciSetIsMark(subwin, TRUE);
     
   }
   else if ( strcmp(cstk(l1),"font size") == 0) {
@@ -166,7 +168,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     sciPointObj * psubwin = sciGetCurrentSubWin();
     pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
   }
-  else if ( strcmp(cstk(l1),"window") == 0 )
+  else if ( strcmp(cstk(l1),"window") == 0 || strcmp(cstk(l1),"figure") == 0 )
   {
     if (sciSwitchWindow(x[0]) != 0){
       Scierror(999,_("%s: It was not possible to create the requested figure"),fname);
@@ -262,10 +264,10 @@ int sci_xset( char *fname, unsigned long fname_len )
 
     }
     else if ( strcmp(cstk(l1),"wpdim") == 0) {
-      sciSetDimension(sciGetParent(subwin), x[0], x[1] ) ;
+      sciSetWindowDim(sciGetParent(subwin), x[0], x[1] ) ;
     } 
     else if ( strcmp(cstk(l1),"wdim") == 0) {
-      sciSetWindowDim(sciGetParent(subwin), x[0], x[1] ) ;
+      sciSetDimension(sciGetParent(subwin), x[0], x[1] ) ;
 
     } /*Ajout A.Djalel le 10/11/03 */
     else if ( strcmp(cstk(l1),"pixmap") == 0) {
@@ -278,6 +280,25 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if (strcmp(cstk(l1),"viewport") == 0) {
       // TODO
     }
+    else if (strcmp(cstk(l1),"wwpc") == 0) {
+      // TODO
+    }
+    else if(strcmp(cstk(l1),"line mode") == 0)
+    {
+      if (x[0] == 0)
+      {
+        sciSetIsLine(subwin, FALSE);
+      }
+      else
+      {
+        sciSetIsLine(subwin, TRUE);
+      }
+    }
+    else
+    {
+      sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
+    }
+
     if(strcmp(cstk(l1),"window") != 0) sciRedrawFigure();   
   }
    

@@ -19,6 +19,7 @@
 #include "ObjectSelection.h"
 #include "msgs.h"
 #include "localization.h"
+#include "returnProperty.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1);
 /*--------------------------------------------------------------------------*/
@@ -126,14 +127,19 @@ int sci_xget(char *fname,unsigned long fname_len)
     *stk(l3 ) = (double) x1[0];      
     LhsVar(1)=Rhs+1;
   } 
-  /* NG beg */
   else if ( strcmp(cstk(l1),"old_style") == 0) 
   {
     x2=1;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
     *stk(l3 ) = 0 ;    
     LhsVar(1)=Rhs+1;          
-  }   /* NG end*/
+  }
+  else if(strcmp(cstk(l1),"clipping") == 0)
+  {
+    double * clipArea = sciGetClipping(sciGetCurrentSubWin());
+    sciReturnRowVector(clipArea, 4);
+    LhsVar(1)=Rhs+1;
+  }
   else 
   {
     int i2;
@@ -156,7 +162,7 @@ int sci_xget(char *fname,unsigned long fname_len)
       x1[0] = pSUBWIN_FEATURE(psubwin)->hiddencolor;
       x2 = 1;
     }
-    else if(strcmp(cstk(l1),"window")==0)
+    else if(strcmp(cstk(l1),"window")==0 || strcmp(cstk(l1),"figure") == 0)
     {
       x1[0] = sciGetNum(sciGetCurrentFigure());
       x2 = 1;
@@ -168,6 +174,17 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"wdim") == 0)
     {
+      sciGetScreenPosition(sciGetCurrentFigure(), &(x1[0]), &(x1[1]));
+      x2 = 2;
+    }
+    else if(strcmp(cstk(l1),"wpos") == 0)
+    {
+      x1[0] = sciGetWindowWidth(sciGetCurrentFigure());
+      x1[1] = sciGetWindowHeight(sciGetCurrentFigure());
+      x2 = 2;
+    }
+    else if(strcmp(cstk(l1),"wpdim") == 0)
+    {
       x1[0] = sciGetWindowWidth(sciGetCurrentFigure());
       x1[1] = sciGetWindowHeight(sciGetCurrentFigure());
       x2 = 2;
@@ -178,6 +195,88 @@ int sci_xget(char *fname,unsigned long fname_len)
       x1[0] = 0;
       x1[1] = 0;
       x2 = 2;
+    }
+    else if(strcmp(cstk(l1),"alufunction") == 0)
+    {
+      x1[0] = sciGetXorMode(sciGetCurrentFigure());
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"background") == 0)
+    {
+      x1[0] = sciGetBackground(sciGetCurrentSubWin());
+      x2 = 1;
+    }
+    else if(   strcmp(cstk(l1),"color") == 0
+            || strcmp(cstk(l1),"foreground") == 0
+            || strcmp(cstk(l1),"pattern") == 0)
+    {
+      x1[0] = sciGetForeground(sciGetCurrentSubWin());
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"lastpattern") == 0)
+    {
+      x1[0] = sciGetNumColors(sciGetCurrentFigure());
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"line mode") == 0)
+    {
+      if (sciGetIsLine(sciGetCurrentSubWin()))
+      {
+        x1[0] = 1;
+      }
+      else
+      {
+        x1[0] = 0;
+      }
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"pixmap") == 0)
+    {
+      if (sciGetPixmapMode(sciGetCurrentFigure()))
+      {
+        x1[0] = 1;
+      }
+      else
+      {
+        x1[0] = 0;
+      }
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"white") == 0)
+    {
+      x1[0] = sciGetNumColors(sciGetCurrentFigure()) + 2;
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"wresize") == 0)
+    {
+      x1[0] = sciGetResize(sciGetCurrentFigure());
+      x2 = 1;
+    }
+    else if( strcmp(cstk(l1),"clipgrf") == 0 )
+    {
+      /* special treatement for xset("cligrf") */
+      if (sciGetIsClipping(sciGetCurrentSubWin()) == 0)
+      {
+        x1[0] = 1;
+      }
+      else
+      {
+        x1[0] = 0;
+      }
+      x2 = 1;
+    }
+    else if( strcmp(cstk(l1),"clipoff") == 0 )
+    {
+      /* special treatement for xset("cligrf") */
+      if (sciGetIsClipping(sciGetCurrentSubWin()) == -1)
+      {
+        x1[0] = 1;
+      }
+      else
+      {
+        x1[0] = 0;
+      }
+      x2 = 1;
     }
     else
     {
