@@ -287,4 +287,15 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Default destruction action
+	 * @see javax.swing.JPopupMenu#firePopupMenuCanceled()
+	 */
+	public void firePopupMenuCanceled() {
+		synchronized (this) {
+			this.notify();
+		}
+		super.firePopupMenuCanceled();
+	}
 }
