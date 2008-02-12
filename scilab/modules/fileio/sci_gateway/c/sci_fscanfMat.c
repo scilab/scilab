@@ -93,8 +93,14 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		FREE(Info);Info=NULL;
 		fclose(f);
 		Scierror(999,_("%s: Cannot read data in file '%s'.\n"),fname,shortcut_path);
+		if (shortcut_path) {FREE(shortcut_path);shortcut_path=NULL;}
+		if (real_path)     {FREE(real_path);    real_path=NULL;    }
 		return 0;
 	}
+	
+	if (shortcut_path) {FREE(shortcut_path);shortcut_path=NULL;}
+	if (real_path)     {FREE(real_path);    real_path=NULL;    }
+	
 	cols = NumTokens(Info);
 	rows = 1;
 
