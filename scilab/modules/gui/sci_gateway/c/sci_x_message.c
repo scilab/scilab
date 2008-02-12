@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "CallMessageBox.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len))
 {

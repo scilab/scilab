@@ -8,6 +8,7 @@
 #include "CallFileChooser.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_uigetdir(char *fname,unsigned long l)
 {

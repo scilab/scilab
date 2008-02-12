@@ -4,7 +4,6 @@
 /* Authors : Allan Cornet, Fabrice Leray, Jean-Baptiste Silvy             */
 /* desc : interface for sci_uimenu routine                                */
 /*------------------------------------------------------------------------*/
-
 #include <stdio.h> 
 #include <string.h> 
 /*--------------------------------------------------------------------------*/
@@ -21,6 +20,7 @@
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_uimenu( char *fname,unsigned long fname_len )
 {

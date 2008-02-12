@@ -9,6 +9,7 @@
 #include "CallFileChooser.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
 {

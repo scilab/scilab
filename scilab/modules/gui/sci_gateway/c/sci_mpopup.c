@@ -18,6 +18,7 @@
 #include "ContextMenu.h"
 #include "returnProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_mpopup(char *fname,unsigned long fname_len)
 {

@@ -23,6 +23,7 @@
 #include "PopupMenu.h" /* setCurentFigureAsPopupMenuParent */
 #include "ListBox.h" /* setCurentFigureAsListBoxParent */
 #include "Frame.h" /* setCurentFigureAsFrameParent */
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 23 
 /*--------------------------------------------------------------------------*/
