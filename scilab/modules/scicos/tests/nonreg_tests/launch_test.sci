@@ -25,7 +25,7 @@ txt = [ "// Set display settings";
         "end";
         "";
         "// Start logging output";
-        "diary(diaryName);";
+        "diary(diaryName)";
         "";
         "// Load and launch simulation, displaying some debug data in the mean time";
         "load(fullfile(''" + baseDir + "'', ''" + testName + "'' + ''.cos''))";
@@ -37,11 +37,11 @@ txt = [ "// Set display settings";
         "// Stop logging output";
         "diary(0)";
         "";
-        "exit"]
+        "exit"];
 
 mputl(txt, testFilename);
 
-cmd = SCI + '/bin/scilab -nw -nb -f ' + testFilename;
+cmd = SCI + '/bin/scilab -nw -nb -args -nouserstartup -f ' + testFilename + ' > /dev/null';
 
 host(cmd)
 
