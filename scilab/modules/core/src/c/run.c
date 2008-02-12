@@ -158,6 +158,10 @@ int C2F(run)()
   if (C2F(errgst).err1 != 0 ) {
     if ((C2F(errgst).errpt >0) && (Pt >= C2F(errgst).errpt) && (Rstk[C2F(errgst).errpt]==618)) {
       /* error under try catch */
+      for (p=Pt;p>=C2F(errgst).errpt;p--) {
+	if (Rstk[p]<=503 && Rstk[p]>=501) C2F(recu).macr--;
+	/* may it will be necessary to take care of for loop variables */
+      }
       Pt = C2F(errgst).errpt;
       goto L271;
     }
