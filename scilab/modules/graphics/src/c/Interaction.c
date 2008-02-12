@@ -708,15 +708,14 @@ int Objmove (long *hdl, double *d, int m,BOOL opt)
     }    
   if (opt)
   {
-    /*sciDrawObjIfRequired(pobj);*/
+    /* should be sciDrawSingleObj(pobj) */
     sciRefreshObj( pobj ) ;
   }
   else
   {
-    /*sciDrawObj(sciGetParentFigure(pobj));*/
-    sciRefreshObj( sciGetParentFigure( pobj ) ) ;
+    sciRefreshObj( pobj ) ;
   }
-  /* sciDrawObj(sciGetParentFigure(sciGetCurrentObj ()));*/
+
     
   return 0;
 }
