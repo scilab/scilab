@@ -46,8 +46,8 @@ int C2F(sci_javaclasspath) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				if (!addToClasspath(classPaths[i]))
 				{
-					freeArrayOfString(classPaths,m1*n1);
 					Scierror(999,_("%s: Could not add URL to system classloader : %s.\n"),fname,classPaths[i]);
+					freeArrayOfString(classPaths,m1*n1);
 					return 0;
 				}
 			}
