@@ -13,11 +13,7 @@
 drawlater() ;
 xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
 e             = gce();
-box11         = stringbox(e)
- box11  =
- 
-  - 0.1666667  - 0.1666667  - 0.1666667  - 0.1666667  
-    1.1666667    0.           0.           1.1666667  
+box11         = stringbox(e);
 a             = gca() ;
 a.data_bounds = [-2,-2;7,7] ;
 box21         = stringbox(e);
@@ -29,25 +25,17 @@ drawnow();
 clf();
 // same as first part but wthout drawlater
 xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
-e             = gce() ;
+e             = gce();
 box12         = stringbox(e)
  box12  =
  
   - 0.1666667  - 0.1666667  - 0.1666667  - 0.1666667  
-    1.1666667    0.           0.           1.1666667  
-a             = gca() ;
+    1.1666667    0.0004177    0.0004177    1.1666667  
+a             = gca();
 a.data_bounds = [-2,-2;7,7] ;
-box22         = stringbox(e)
- box22  =
- 
-  - 0.1666667  - 0.1666667  - 0.1666667  - 0.1666667  
-    1.1666667    0.           0.           1.1666667  
+box22         = stringbox(e);
 a.view        = '3d';
-box32         = stringbox(e)
- box32  =
- 
-  - 0.1666667  - 0.1666667  - 0.1666667  - 0.1666667  
-    1.1666667    0.           0.           1.1666667  
+box32         = stringbox(e);
 a.data_bounds = [0,-1,3;6,7,8] ;
 box42         = stringbox(e);
 // bounding box should be the same either we are in drawlater or not.

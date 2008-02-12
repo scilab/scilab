@@ -11,26 +11,20 @@
 //
 //    See also
 //    http://groups.google.it/group/comp.soft-sys.math.scilab/browse_thread/thread/2f81e9afd1d7d6f1/e33536bff4dc1ecf#e33536bff4dc1ecf
-
 // Author : Scilab Project - Allan CORNET
 // Copyright INRIA
 // Date : 3 july 2006
-
-
 my_test_dir_1 = TMPDIR+"/bug_2038_dir";
 my_test_dir_2 = TMPDIR+"/bug_2038_dir/bug_2038_sub_dir";
-
 my_test_dir_1_res = mkdir(my_test_dir_1);
-
-if my_test_dir_1_res == 0 then pause,end
-
+if my_test_dir_1_res == 0 then bugmes();quit;end
 if my_test_dir_1_res == 1 then
 	
 	cd(my_test_dir_1);
 	
 	my_test_dir_2_res = mkdir(my_test_dir_2);
 	
-	if my_test_dir_2_res == 0 then pause,end
+	if my_test_dir_2_res == 0 then bugmes();quit;end
 	
 	if my_test_dir_2_res == 1 then
 		
@@ -45,8 +39,8 @@ if my_test_dir_1_res == 1 then
 		y  = getdate();
 		cy = y(1:4);
 		
-		if ~(a.isdir) then pause,end
-		if ~(b.isdir) then pause,end
-		if cx <> cy   then pause,end
+		if ~(a.isdir) then bugmes();quit;end
+		if ~(b.isdir) then bugmes();quit;end
+		if cx <> cy   then bugmes();quit;end
 	end
 end
