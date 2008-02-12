@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="scicos"
 	ProjectGUID="{B7A0273E-8E71-4663-8497-0895945ED54D}"
 	RootNamespace="scicos"
@@ -200,6 +200,10 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
+			<File
+				RelativePath=".\DllmainScicos.c"
+				>
+			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_scicos.c"
 				>

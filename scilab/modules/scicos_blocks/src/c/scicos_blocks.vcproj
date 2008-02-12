@@ -401,6 +401,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DllmainScicos_blocks.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dmmul.c"
 				>
 			</File>
