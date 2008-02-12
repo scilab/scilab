@@ -208,36 +208,36 @@ mputl(A1,tmpf);
 F='%d';F=strcat(F(ones(1,n)),' ');
 // all lines read as int we scan a 5x5 matrix 
 fd=mopen(tmpf,'r');A2=mfscanf(-1,fd,F);mclose(fd);
-if norm(A2-A) > %eps then pause;end 
+if norm(A2-A) > %eps then pause, end
 // read just 2 lines 
 fd=mopen(tmpf,'r');A2=mfscanf(2,fd,F);mclose(fd);
-if norm(A2-A(1:2,:)) > %eps then pause;end 
+if norm(A2-A(1:2,:)) > %eps then pause, end
 // explicit columns we scan five columns 
 fd=mopen(tmpf,'r');[n,a,b,c,d,e]=mfscanf(-1,fd,F);mclose(fd);
-if n<>5 then pause;end 
-if norm([a,b,c,d,e]-A) > %eps then pause;end 
+if n<>5 then pause, end 
+if norm([a,b,c,d,e]-A) > %eps then pause, end
 // all lines read as int but we scan only 2 columns using %*[^\n] to ignore the rest
 fd=mopen(tmpf,'r');A2=mfscanf(-1,fd,'%d%d%*[^\n]\n');mclose(fd);
-if norm(A2-A(:,1:2)) > %eps then pause;end 
+if norm(A2-A(:,1:2)) > %eps then pause, end
 
 // all lines read as string 
 F='%s';F=strcat(F(ones(1,n)),' ');
 fd=mopen(tmpf,'r');A2=mfscanf(-1,fd,F);mclose(fd);
-if A2<>string(A) then pause;end 
+if A2<>string(A) then pause, end
 // read just 2 lines 
 fd=mopen(tmpf,'r');A2=mfscanf(2,fd,F);mclose(fd);
-if A2<>string(A(1:2,:))  then pause;end 
+if A2<>string(A(1:2,:))  then pause, end
 
 // mixed types read column 1 and 2 as string and others as int
 Fs='%s';Fs=strcat(Fs(ones(1,2)),' ');
 Fd='%d';Fd=strcat(Fd(ones(1,n-2)),' ');
 fd=mopen(tmpf,'r');[n,a,b,c,d,e]=mfscanf(-1,fd,Fs+' '+Fd);mclose(fd);
-if n<>5 then pause;end 
-if norm([eval(a),eval(b),c,d,e]-A) > %eps then pause;end 
+if n<>5 then pause, end
+if norm([eval(a),eval(b),c,d,e]-A) > %eps then pause, end
 
 // same example but returned values are compacted in L
 fd=mopen(tmpf,'r');L=mfscanf(-1,fd,Fs+' '+Fd);mclose(fd);
-if length(L)<>3 then pause;end 
-if norm(getfield(3,L)-A(:,3:n)) > %eps then pause;end 
-if getfield(2,L)<>string(A(:,1:2)) then pause;end 
+if length(L)<>3 then pause, end
+if norm(getfield(3,L)-A(:,3:n)) > %eps then pause, end
+if getfield(2,L)<>string(A(:,1:2)) then pause, end
 
