@@ -9,7 +9,7 @@
 
   <DATE>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</DATE>
 
-  <SHORT_DESCRIPTION name="strcat">catenate character
+  <SHORT_DESCRIPTION name="strcat">concatenate character
   strings</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -57,7 +57,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>txt=strcat(vstr)</VERB> catenates character strings :
+    <P><VERB>txt=strcat(vstr)</VERB> concatenates character strings :
     <VERB>txt=vstr(1)+...+vstr(n)</VERB></P>
 
     <P><VERB>txt=strcat(vstr,strp)</VERB> returns

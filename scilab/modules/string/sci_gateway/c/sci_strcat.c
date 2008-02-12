@@ -2,7 +2,7 @@
 /* File: sci_strcat.c                                                     */
 /* Copyright INRIA 2007                                                   */ 
 /* @Authors : Cong Wu, A.C                                                */
-/* desc : catenate character strings                                      */
+/* desc : concatenate character strings                                      */
 /* Examples: strcat(string(1:10),',')                                     */ 
 /*                                                                        */
 /*------------------------------------------------------------------------*/
