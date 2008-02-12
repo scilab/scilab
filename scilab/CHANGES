@@ -67,15 +67,15 @@ Functions:
 ==========
  - New functions:
 	+ getdebuginfo
-	+ getscilabmode			    - returns scilab mode
-  + getvariablesonstack		- get variable names on stack of scilab
-  + getmd5                - get md5 checksum
-  + getmodules            - returns list of modules installed in Scilab
-  + with_module           - Checks if a Scilab module is installed
-  + islittleendian        - Checks if machine architecture is "little-endian"
-  + librarieslist         - get scilab libraries
-  + libraryinfo           - get macros and path of a scilab library
-  + completion            - returns words that start with the text you pass as parameter.
+	+ getscilabmode		    - returns scilab mode
+	+ getvariablesonstack	- get variable names on stack of scilab
+	+ getmd5                - get the MD5 checksum of strings or files.
+	+ getmodules            - returns list of modules installed in Scilab
+	+ with_module           - Checks if a Scilab module is installed
+	+ islittleendian        - Checks if machine architecture is "little-endian"
+	+ librarieslist         - get scilab libraries
+	+ libraryinfo           - get macros and path of a scilab library
+	+ completion            - returns words that start with the text you pass as parameter.
 
  - Rewrite in native code:
   + warning 
@@ -272,29 +272,29 @@ Metanet : graph and network toolbox
 Windows_tools:
 ===============
  - New functions:
-  + consolebox          - show or hide console box
-  + findfileassociation - Searches for and retrieves a file association-related string from the registry.
-  + dos                 - shell (cmd) command execution 
+	+ consolebox          - show or hide console box
+	+ findfileassociation - Searches for and retrieves a file association-related string from the registry.
+	+ dos                 - shell (cmd) command execution 
 
 
 History manager:
 ================
  - New functions:
-  + displayhistory          - displays current scilab history
-  + addhistory              - add lines to current history
-  + saveconsecutivecommands - Save consecutive duplicate commands
-  + saveafterncommands      - Save the history file after n statements are added to the file.
-  + gethistoryfile          - get filename used for scilab's history
-  + sethistoryfile          - set filename for scilab history
-  + removelinehistory       - remove the Nth line in history.
-  + historysize             - get number of lines in history
-  + historymanager          - enable or disable history manager
+	+ displayhistory          - displays current scilab history
+	+ addhistory              - add lines to current history
+	+ saveconsecutivecommands - Save consecutive duplicate commands
+	+ saveafterncommands      - Save the history file after n statements are added to the file.
+	+ gethistoryfile          - get filename used for scilab's history
+	+ sethistoryfile          - set filename for scilab history
+	+ removelinehistory       - remove the Nth line in history.
+	+ historysize             - get number of lines in history
+	+ historymanager          - enable or disable history manager
 
  - Rewrite:
-  + loadhistory
-  + savehistory
-  + gethistory
-  + resethistory
+	+ loadhistory
+	+ savehistory
+	+ gethistory
+	+ resethistory
 
 Internal API:
 =============
