@@ -93,20 +93,16 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		FREE(Info);Info=NULL;
 		fclose(f);
 		Scierror(999,_("%s: Cannot read data in file '%s'.\n"),fname,shortcut_path);
-		if (shortcut_path) {FREE(shortcut_path);shortcut_path=NULL;}
-		if (real_path)     {FREE(real_path);    real_path=NULL;    }
 		return 0;
 	}
-	
-	if (shortcut_path) {FREE(shortcut_path);shortcut_path=NULL;}
-	if (real_path)     {FREE(real_path);    real_path=NULL;    }
 	
 	cols = NumTokens(Info);
 	rows = 1;
 
 	while (1)
 	{
-		n=ReadLine(f,&mem);
+		n = ReadLine(f,&mem);
+		
 		if ( mem == 1)
 		{
 			FREE(Info);Info=NULL;
@@ -114,12 +110,12 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
-
-		if ( n == EOF ||  n == 0 ) break;
+		
 		if ( sscanf(Info,"%lf",&x) <= 0) break;
 		rows++;
+		if ( n == EOF ||  n == 0 ) break;
 	}
-
+	
 	if ( cols == 0 || rows == 0) rows=cols=0;
 
 	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &rows, &cols, &lres);
