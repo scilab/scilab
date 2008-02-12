@@ -416,14 +416,14 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       //** --------- Popup OS dependent definition -----------------
       getfile = xgetfile;
       savefile = getfile;
+      mpopup = createpopup;
+
       if MSDOS then
 	//** ... for Windows machines
 	getvalue  = tk_getvalue ;
-	mpopup    = tk_mpopup   ;     //** the pop up Windowz
 	choose    = tk_scicos_choose   ;
        else
 	getvalue = tk_getvalue ;
-	mpopup   = tk_mpopupX    ; //** for the Penguin
  	deff('x=choose(varargin)', 'x=x_choose(varargin(1:$))');
       end
 
