@@ -98,3 +98,5 @@ else
   disp(msprintf('%s: Warning: Unknown Scilab version, did nothing more than launching the simulation...'),testName);
 end
 
+endfunction
+

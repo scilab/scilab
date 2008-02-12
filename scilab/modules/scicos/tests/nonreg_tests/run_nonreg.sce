@@ -10,10 +10,13 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
   baseDir = SCI + '/modules/scicos/tests/nonreg_tests'
 end
 
-// Launch any available test
-launch_test(baseDir, 'constant');
-launch_test(baseDir, 'gensin');
-launch_test(baseDir, 'gain');
-launch_test(baseDir, 'sigbuild');
-launch_test(baseDir, 'transferfcn');
+// Launch any available test (except skeleton.cos)
+cosFiles = dir(fullfile(baseDir, '*.cos'));
+cosFiles = basename(cosFiles.name);
+for k = 1:size(cosFiles,'*')
+  currentTestName = cosFiles(k);
+  if currentTestName ~= "skeleton"
+    launch_test(baseDir, currentTestName);
+  end
+end
 
