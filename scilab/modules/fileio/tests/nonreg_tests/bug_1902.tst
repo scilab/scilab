@@ -18,7 +18,7 @@ drawlater() ;
 xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
 
 e             = gce();
-box11         = stringbox(e)
+box11         = stringbox(e);
 a             = gca() ;
 a.data_bounds = [-2,-2;7,7] ;
 box21         = stringbox(e);
@@ -32,13 +32,13 @@ clf();
 // same as first part but wthout drawlater
 xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
 
-e             = gce() ;
+e             = gce();
 box12         = stringbox(e)
-a             = gca() ;
+a             = gca();
 a.data_bounds = [-2,-2;7,7] ;
-box22         = stringbox(e)
+box22         = stringbox(e);
 a.view        = '3d';
-box32         = stringbox(e)
+box32         = stringbox(e);
 a.data_bounds = [0,-1,3;6,7,8] ;
 box42         = stringbox(e);
 
