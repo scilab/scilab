@@ -3,9 +3,11 @@
 
 package org.scilab.modules.gui.bridge.menuitem;
 
-import javax.swing.JMenu;
+import java.awt.Container;
+
 import javax.swing.JMenuItem;
 
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menu.Menu;
@@ -29,6 +31,8 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	private static final long serialVersionUID = 1L;
 	
 	private CallBack callback;
+	
+	private Menu meAsAMenu;
 
 	/**
 	 * Constructor
@@ -165,11 +169,17 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * @param childMenuItem the MenuItem we want to add
 	 */
 	public void add(MenuItem childMenuItem) {
-		int index = getParent().getComponentZOrder(this);
-		Menu newMenu = ScilabMenu.createMenu();
-		newMenu.setText(getText());
-		destroy();
-		((JMenu) getParent()).add((JMenu) newMenu.getAsSimpleMenu());
+		if (meAsAMenu == null) {
+			meAsAMenu = ScilabMenu.createMenu();
+			meAsAMenu.setText(getText());
+			meAsAMenu.add(childMenuItem);
+			Container parent = getParent();
+			int index = parent.getComponentZOrder(this);
+			parent.remove(this.getComponent());
+			parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+		} else {
+			meAsAMenu.add(childMenuItem);
+		}
 	}
 
 	/**
@@ -192,6 +202,24 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			} else {
 				removeActionListener(callback);
 			}
+		}
+	}
+
+	/**
+	 * Add a Menu to this MenuItem
+	 * @param childMenu the Menu we want to add
+	 */
+	public void add(Menu childMenu) {
+		if (meAsAMenu == null) {
+			meAsAMenu = ScilabMenu.createMenu();
+			meAsAMenu.setText(getText());
+			meAsAMenu.add(childMenu);
+			Container parent = getParent();
+			int index = parent.getComponentZOrder(this);
+			parent.remove(this.getComponent());
+			parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+		} else {
+			meAsAMenu.add(childMenu);
 		}
 	}
 }

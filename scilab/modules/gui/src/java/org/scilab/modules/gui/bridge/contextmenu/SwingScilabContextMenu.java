@@ -13,6 +13,7 @@ import javax.swing.JPopupMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -274,6 +275,16 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 		public void actionPerformed(ActionEvent arg0) {
 			setResult(label);
 		}
+		
+	}
+
+	
+	/**
+	 * Add a Menu to this MenuItem
+	 * @param childMenu the Menu we want to add
+	 */
+	public void add(Menu childMenu) {
+		// TODO Auto-generated method stub
 		
 	}
 }

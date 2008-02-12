@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.menu.Menu;
 
 /**
  * Bridge for Scilab MenuItem in GUIs
@@ -221,6 +222,15 @@ public class ScilabMenuItemBridge {
 	 */
 	public static void add(MenuItem parentMenuItem, MenuItem childMenuItem) {
 		parentMenuItem.getAsSimpleMenuItem().add(childMenuItem);
+	}
+	
+	/**
+	 * Add a Menu to the MenuItem
+	 * @param parentMenuItem the MenuItem where we want to add a MenuItem
+	 * @param childMenu the Menu we want to add
+	 */
+	public static void add(MenuItem parentMenuItem, Menu childMenu) {
+		parentMenuItem.getAsSimpleMenuItem().add(childMenu);
 	}
 	
 	/**

@@ -1202,7 +1202,16 @@ public class ScilabBridge {
 	 * @param childMenuItem the MenuItem we want to add
 	 */
 	public static void add(MenuItem parentMenuItem, MenuItem childMenuItem) {
-		//ScilabMenuItemBridge.add(parentMenuItem, childMenuItem);
+		ScilabMenuItemBridge.add(parentMenuItem, childMenuItem);
+	}
+
+	/**
+	 * Add a Menu to the MenuItem
+	 * @param parentMenuItem the MenuItem where we want to add a MenuItem
+	 * @param childMenu the Menu we want to add
+	 */
+	public static void add(MenuItem parentMenuItem, Menu childMenu) {
+		ScilabMenuItemBridge.add(parentMenuItem, childMenu);
 	}
 
 	/**

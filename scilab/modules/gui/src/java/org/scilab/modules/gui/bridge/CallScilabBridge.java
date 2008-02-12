@@ -667,28 +667,22 @@ public class CallScilabBridge {
 	 */
 	public static void setMenuAsParent(int menuID, int objID) {
 
-		Menu parentMenu = null;
 		if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof Menu) {
-			// Add the menu to the tab
-			parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
-		} else {
-			// obj is a MenuItem that has to be converted to a Menu
-			MenuItem menuItem = (MenuItem) UIElementMapper.getCorrespondingUIElement(objID);
+			Menu parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
 			
-			parentMenu = ScilabMenu.createMenu();
-			UIElementMapper.removeMapping(objID);
-			UIElementMapper.addMapping(objID, parentMenu);
+			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));				
+			}
+		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof MenuItem) {
+			MenuItem parentMenu = (MenuItem) UIElementMapper.getCorrespondingUIElement(menuID);
 			
-			// Copy all properties from MenuItem to Menu
-			parentMenu.setText(menuItem.getText());
-			// TODO Add other properties
-			//((MenuItem) UIElementMapper.getCorrespondingUIElement(menuID)).add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
-		}
-		
-		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
-			parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
-		} else {
-			parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
+			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));				
+			}
 		}
 	}
 	

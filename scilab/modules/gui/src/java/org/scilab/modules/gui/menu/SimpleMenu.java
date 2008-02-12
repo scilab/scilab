@@ -4,14 +4,14 @@
 package org.scilab.modules.gui.menu;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.SimpleMenuItem;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Interface for SimpleMenu the associated object to Scilab GUIs Menu
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public interface SimpleMenu extends SimpleMenuItem {
+public interface SimpleMenu extends Widget {
 	
 	/**
 	 * Append a MenuItem to the Menu
