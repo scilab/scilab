@@ -2354,7 +2354,6 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 sciPointObj *
 ConstructCompoundSeq (int number) 
 {
-  sciSons *sons, *lastsons, *firstSon ;
   sciPointObj *pobj;
   int i;
 
@@ -2379,13 +2378,6 @@ ConstructCompoundSeq (int number)
 
   ppagr = pAGREG_FEATURE(pobj) ;
 
-  if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
-  {
-    FREE( pobj->pfeatures ) ;
-    FREE( pobj ) ;
-    return NULL ;
-  }
-
   if (sciAddNewHandle (pobj) == -1)
   {
     sciprint(_("No handle to allocate\n"));
@@ -2393,34 +2385,25 @@ ConstructCompoundSeq (int number)
     return (sciPointObj *) NULL;
   }
 
-
-  sons = ppsubwin->relationship.psons;
-  /* check if s1 predecessor is null*/
-  if (sons->pprev != NULL)
+  if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
   {
-    sciprint(_("Unexpected case, please report\n"));
-    FREE(pobj->pfeatures);FREE(pobj);
-    return (sciPointObj *) NULL;
+    FREE( pobj->pfeatures ) ;
+    FREE( pobj ) ;
+    return NULL ;
   }
 
-  /* change parent of all sons s2,...,sn+1*/
-  /* s1 is the compound */
-  firstSon = sons->pnext ;
-  lastsons = firstSon ;
-  
   for ( i = 0 ; i < number ; i++ )
   {
-    (sciGetRelationship(lastsons->pointobj))->pparent = pobj ;
-    lastsons=lastsons->pnext ;
+    // get the second and consequently lastly added son
+    // after the compound
+    sciPointObj * curObj = sciGetSons(psubwin)->pnext->pointobj;
+    // remove it from the subwin
+    sciDelThisToItsParent(curObj, psubwin);
+    // add it to the agreg
+    sciAddThisToItsParent(curObj, pobj);
   }
 
-  lastsons = lastsons->pprev; /* lastsons is sn+1 */
-
-  /* disconnect chain s2->s3->...->sn+1 out of subwin children list */
-  ppsubwin->relationship.psons->pnext = lastsons->pnext;
-  ppsubwin->relationship.psons->pprev = NULL;
   sciInitSelectedSons(pobj);
-  /* the subwin children list is now null->A->sn+1->...->null */
 
   /* set Compound properties*/
   ppagr->user_data = (int *) NULL; /* add missing init. 29.06.05 */
@@ -2431,15 +2414,6 @@ ConstructCompoundSeq (int number)
 
   ppagr->isselected = TRUE;
  
-  /* re chain A sons lists */
-  ppagr->relationship.psons = firstSon;
-  
-  ppagr->relationship.plastsons = lastsons;
-  ppagr->relationship.plastsons->pnext = NULL;
-  ppagr->relationship.psons->pprev = NULL; /* this should do nothing*/
-  /* the Compound children list is now  null->s2->s3->...->sn+1->null*/
-
-
   return (sciPointObj *)pobj;
 }
 
