@@ -21,7 +21,7 @@ int C2F(sci_isdir) _PARAMS((char *fname,unsigned long fname_len))
 	
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 		return 0;
 	}
 	else
