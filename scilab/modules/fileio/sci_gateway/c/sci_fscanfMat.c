@@ -6,6 +6,7 @@
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "cluni0.h"
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 /*--------------------------------------------------------------------------*/
@@ -24,6 +25,13 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	int vl=-1;
 	FILE  *f;
 	char *Format;
+	
+	char *shortcut_path = NULL; // filename process
+	char *real_path     = NULL; //       "
+	long int lout;              //       "
+	int out_n;                  //       "
+	
+	
 	if ( Info == NULL )
 	{
 		if (( Info =MALLOC(INFOSIZE*sizeof(char)))==NULL)
@@ -37,8 +45,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	Nbvars = 0;
 	CheckRhs(1,1); /** just 1 **/
 	CheckLhs(1,2);
-	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
-
+	
 	if ( Rhs == 2)
 	{
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);/* format */
@@ -49,12 +56,22 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	{
 		Format = 0;
 	}
+	
+	// filename process (Replaces SCI, ~, HOME, TMPDIR by the real path)
+	// =================================================================
+	
+	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
+	shortcut_path = cstk(l1);
+	real_path     = (char*)MALLOC(sizeof(char*)*FILENAME_MAX);
+	lout          = FILENAME_MAX;
+	C2F(cluni0)( shortcut_path, real_path, &out_n, strlen(shortcut_path), lout);
 
-	if (( f = fopen(cstk(l1),"r")) == (FILE *)0)
+	if (( f = fopen(real_path,"r")) == (FILE *)0)
 	{
-		Scierror(999,_("%s: Cannot open file '%s'.\n"),fname,cstk(l1));
+		Scierror(999,_("%s: Cannot open file '%s'.\n"),fname,shortcut_path);
 		return 0;
 	}
+	
 	/*** first pass to get colums and rows ***/
 	strcpy(Info,"--------");
 	n =0;
@@ -75,7 +92,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	{
 		FREE(Info);Info=NULL;
 		fclose(f);
-		Scierror(999,_("%s: Cannot read data in file '%s'.\n"),fname,cstk(l1));
+		Scierror(999,_("%s: Cannot read data in file '%s'.\n"),fname,shortcut_path);
 		return 0;
 	}
 	cols = NumTokens(Info);
