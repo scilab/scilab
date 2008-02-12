@@ -89,6 +89,15 @@ typedef struct {
 #endif
 */
 
+#ifdef abs
+	#undef abs
+#endif
+#define abs(x) ((x) >= 0 ? (x) : -(x))
+#ifndef WIN32
+#define max(a,b) ((a) >= (b) ? (a) : (b))
+#define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
+
 #define freeall \
               if (*neq>0) CVodeFree(&cvode_mem);\
               if (*neq>0) N_VDestroy_Serial(y);\
