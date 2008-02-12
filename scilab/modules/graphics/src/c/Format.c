@@ -23,6 +23,7 @@
 #include "CurrentObjectsManagement.h"
 #include "core_math.h"
 #include "localization.h"
+#include "Scierror.h"
 
 static double spans[18] = {10,12,14,15,16,18,20,25,30,35,40,45,50,60,70,80,90,100};
 static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};

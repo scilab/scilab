@@ -25,6 +25,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "scicos_block4.h"
+#include "Scierror.h"
 
 /* Define external function */
 extern integer C2F(scierr)();
