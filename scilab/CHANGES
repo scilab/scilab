@@ -18,8 +18,9 @@ Rendering:
  - Based on JoGL (Java openGL)
  - @TODO details
 
-Console:
-========
+Consoles:
+=========
+ - Based on a joint project Artenum - INRIA/Scilab called Jrosetta
  - Completion
 	+ functions
 	+ variables
@@ -35,7 +36,7 @@ Scilab modes:
 		(loads the Java Virtual Machine)
 	+ NWNI (No window No interactive) mode
 		Run in command line but no help, TCL or rendering
-		(Do not load the Java Virtual Machine)
+		(do not load the Java Virtual Machine)
 	+ API mode
 		Scilab as API/computing engine
 
@@ -112,7 +113,7 @@ Source reorganisation:
 	the code
  - Use XML declaration for the list of functions
  - Use XML declaration for the list of modules (and activation or not)
- - Massive cleanup of the code. 
+ - Massive cleanup of the code 
  - Thousand of warnings removed
  - First step to a future Scilab API
 
