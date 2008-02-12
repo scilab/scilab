@@ -41,7 +41,7 @@ static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *as
 	/* for switch on number of '*' and type */
 	#define  choosetype(num,type)  (5*(num)+(type))
 
-	int retval=-1;	
+	int retval=-1;
 
 	switch (choosetype (asterisk_count, conversion_type))
 	{
@@ -116,20 +116,20 @@ static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *as
 /*--------------------------------------------------------------------------*/
 int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, int lcount, char **strv)
 {
-	int retval=0; /* return value */
+	int retval    = 0; /* return value */
 	int arg_count = 0;
-	int	ccount = 0;
-	int prev =0;
+	int ccount    = 0;
+	int prev      = 0;
 	
-	XXPRINTF xxprintf=NULL; /* sprintf sciprint2 fprintf */
-	FLUSH   flush=NULL;
-	char *target=NULL;
-	register char *currentchar=NULL;
+	XXPRINTF xxprintf          = NULL; /* sprintf sciprint2 fprintf */
+	FLUSH flush                = NULL;
+	char *target               = NULL;
+	register char *currentchar = NULL;
 
 	currentchar = format;
-	arg_count = argcount;
-	ccount = 1;
-
+	arg_count   = argcount;
+	ccount      = 1;
+	
 	set_xxprintf(fp,&xxprintf,&flush,&target);
 	
 	/* "scan" string format. */
@@ -138,22 +138,22 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 		char *p=NULL;
 		char *sval=NULL;
 		
-		int ival=0;
-		int low_flag = 0;
+		int ival      = 0;
+		int low_flag  = 0;
 		int	high_flag = 0;
 		
 		int asterisk_count = 0;
 		int asterisk[2];
 		int rval=0;
 
-		int conversion_type = 0;
-		double dval = 0.0;
-		register char *tmpcurrentchar=NULL;
+		int conversion_type           = 0;
+		double dval                   = 0.0;
+		register char *tmpcurrentchar = NULL;
 		
-		asterisk[0]=0;
-		asterisk[1]=0;
+		asterisk[0] = 0;
+		asterisk[1] = 0;
 
-		if (fp)		
+		if (fp)
 		{
 			while (*currentchar != '%')
 			{
@@ -217,7 +217,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				{
 					if (target > sprintf_limit)	/* over sprintf_limit */
 					{
-						Scierror(998,_("%s: Buffer too small.\n"),"sprintf");
+						Scierror(998,_("%s: Buffer too small.\n"),fname);
 						return RET_BUG;
 					}
 					else
@@ -247,9 +247,9 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					 * but it is removed by the function sciprint
 					 * see bug 2602
 					 */
-					(*xxprintf) ((VPTR) target, "%%%c",*currentchar); 
+					(*xxprintf) ((VPTR) target, "%%%c",*currentchar);
 				}else{
-					(*xxprintf) ((VPTR) target, "%c",*currentchar); 
+					(*xxprintf) ((VPTR) target, "%c",*currentchar);
 				}
 				retval++;
 			}
@@ -331,11 +331,11 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				{
 					if (*tmpcurrentchar == 's')
 					{
-						Scierror(998,_("%s: Bad conversion l or h flag mixed with s directive.\n"),"printf");
+						Scierror(998,_("%s: Bad conversion l or h flag mixed with s directive.\n"),fname);
 					}
 					else /* 'c' */
 					{
-						Scierror(998,_("%s: Bad conversion l or h flag mixed with c directive.\n"),"printf");
+						Scierror(998,_("%s: Bad conversion l or h flag mixed with c directive.\n"),fname);
 					}
 				}
 
@@ -362,8 +362,8 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				break;
 			}
 
-			case 'd': 
-			case 'x': 
+			case 'd':
+			case 'x':
 			case 'X':
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
 			if (rval <= 0) 
@@ -378,7 +378,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			conversion_type = PF_D;
 			break;
 
-			case 'i': 
+			case 'i':
 			case 'u':
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
 			if (rval <= 0) 
@@ -393,14 +393,14 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			conversion_type = low_flag ? PF_LD : PF_D;
 			break;
 
-			case 'e': 
-			case 'g': 
-			case 'f': 
-			case 'E': 
+			case 'e':
+			case 'g':
+			case 'f':
+			case 'E':
 			case 'G':
 			if (high_flag + low_flag)
 			{
-				Scierror(998,_("%s: Bad conversion.\n"),"printf");
+				Scierror(998,_("%s: Bad conversion.\n"),fname);
 				return RET_BUG;
 			}
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
@@ -417,12 +417,12 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			break;
 
 		case 'o':
-			Scierror(998,_("%s: 'o' format not allowed.\n"),"printf");
+			Scierror(998,_("%s: 'o' format not allowed.\n"),fname);
 			return RET_BUG;
 			break;
 
 		default:
-			Scierror(998,_("%s: Bad conversion.\n"),"printf");
+			Scierror(998,_("%s: Bad conversion.\n"),fname);
 			return RET_BUG;
 		}
 

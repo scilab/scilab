@@ -8,7 +8,8 @@
 #include "do_xxprintf.h"
 #include "gw_fileio.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
+
 int int_objsprintf(char *fname,unsigned long fname_len)
 {
 	char **lstr=NULL;
@@ -17,6 +18,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	char ** strs;
 	char *str,*str1;
 	int n,nmax,cat_to_last,ll;
+	
 	char *ptrFormat   = NULL;
 	int i             = 0;
 	int NumberPercent = 0;
@@ -26,28 +28,39 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	CheckRhs(1,1000);
 	CheckLhs(0,1);
 	
-	if ( Rhs < 1 ) 
-	{ 
+	if ( Rhs < 1 )
+	{
 		Scierror(999,_("%s: Wrong number of input arguments: Must be > 0.\n"),fname);
 		return 0;
 	}
-	for (k=2;k<=Rhs;k++) {
-		if (VarType(k) !=sci_matrix && VarType(k) !=sci_strings) {OverLoad(k);return 0;}
+	
+	for (k=2;k<=Rhs;k++)
+	{
+		if ( (VarType(k) != sci_matrix) && (VarType(k) != sci_strings) )
+		{
+			OverLoad(k);
+			return 0;
+		}
 	}
+	
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	ptrFormat=cstk(l1);
-
-	for(i=0;i<(int)strlen(ptrFormat);i++)
+	
+	for( i=0; i<(int)strlen(ptrFormat); i++)
 	{
-		if (ptrFormat[i]=='%') {
+		if (ptrFormat[i]=='%')
+		{
 			NumberPercent++;
-			if (ptrFormat[i+1]=='%') {NumberPercent--;i++;}
+			if (ptrFormat[i+1]=='%')
+			{
+				NumberPercent--;i++;
+			}
 		}
 	}
 	
 	if ( (Rhs - 1) > NumberPercent )
 	{
-		Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent);
+		Scierror(999,_("%s: Wrong number of input arguments: at most %d expected.\n"),fname,NumberPercent);
 		return 0;
 	}
 	
@@ -64,19 +77,19 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	
 	if ( NumberCols != NumberPercent )
 	{
-		Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"),fname,NumberPercent);
+		Scierror(999,_("%s: Wrong number of input arguments: data doesn't fit with format.\n"),fname);
 		return 0;
 	}
 	
-	n=0; /* output line counter */
-	nmax=0;
-	strs=NULL;
-	lcount=1;
-	cat_to_last=0;
+	n           = 0; /* output line counter */
+	nmax        = 0;
+	strs        = NULL;
+	lcount      = 1;
+	cat_to_last = 0;
 
-	while (1) 
+	while (1)
 	{
-		if ((rval=do_xxprintf("sprintf",(FILE *) 0,cstk(l1),Rhs,1,lcount,(char **) &lstr)) < 0) break; 
+		if ((rval=do_xxprintf("msprintf",(FILE *) 0,cstk(l1),Rhs,1,lcount,(char **) &lstr)) < 0) break;
 		lcount++;
 		str =(char *) lstr;
 		str1 = str;
@@ -177,7 +190,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	for (k=0;k<n;k++) FREE(strs[k]);
 	FREE(strs);
 	LhsVar(1)=Rhs+1;
-	PutLhsVar();    
+	PutLhsVar();
 	return 0;
-}  
+}
 /*--------------------------------------------------------------------------*/ 
