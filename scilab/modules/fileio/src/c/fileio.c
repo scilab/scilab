@@ -13,26 +13,28 @@
 /*--------------------------------------------------------------------------*/
 int NumTokens __PARAMS((char *string))
 {
-  char buf[128];
-  int n=1;
-  int lnchar=0,ntok=-1;
-  int length = (int)strlen(string)+1;
-
-  if (string != 0)
+	char buf[128];
+	int n      = 1;
+	int lnchar = 0;
+	int ntok   = -1;
+	int length = (int)strlen(string)+1;
+	
+	if (string != 0)
 	{
 		/** Counting leading white spaces **/
-    sscanf(string,"%*[ \t\n]%n",&lnchar);
-    while ( n != 0 && n != EOF && lnchar <= length  )
+		sscanf(string,"%*[ \r\t\n]%n",&lnchar);
+		
+		while ( n != 0 && n != EOF && lnchar <= length  )
 		{
 			int nchar1=0,nchar2=0;
 			ntok++;
-			n= sscanf(&(string[lnchar]),"%[^ \n\t]%n%*[ \t\n]%n",buf,&nchar1,&nchar2);
+			n       = sscanf(&(string[lnchar]),"%[^ \r\t\n]%n%*[ \r\t\n]%n",buf,&nchar1,&nchar2);
 			lnchar += (nchar2 <= nchar1) ? nchar1 : nchar2 ;
 		}
-
-    return(ntok);
-  }
-  return(FAIL);
+		
+		return(ntok);
+	}
+	return(FAIL);
 }
 
 /*--------------------------------------------------------------------------*/
