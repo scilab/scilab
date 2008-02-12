@@ -100,23 +100,28 @@ public class MarkDrawer extends DrawableObjectGL {
 	
 	/**
 	 * Get the size of marks in pixel wether it is tabulated or not.
-	 * @return size in pixel
+	 * @return size in pixels
 	 */
 	protected int getMarkPixelSize() {
-		
+		int res = 0;
 		// point
 		if (unit == SizeUnit.POINT) {
-			return markSize;
+			res = markSize;
+		} else {
+			
+			// tabulated
+			if (markSize >= 0 && markSize < TABULATED_SIZE.length) {
+				res = TABULATED_SIZE[markSize];
+			} else if (markSize < 0) {
+				res = 0;
+			} else {
+				res = TABULATED_SIZE[TABULATED_SIZE.length - 1];
+			}
 		}
 		
-		// tabulated
-		if (markSize >= 0 && markSize < TABULATED_SIZE.length) {
-			return TABULATED_SIZE[markSize];
-		} else if (markSize < 0) {
-			return 0;
-		} else {
-			return TABULATED_SIZE[TABULATED_SIZE.length - 1];
-		}
+		// devide by 2, becaus marks are drawn in interval [-1,1]x[1,1]
+		// so a 2x2 square
+		return (res / 2 + 1);
 		
 	}
 	
@@ -136,13 +141,14 @@ public class MarkDrawer extends DrawableObjectGL {
 		if (drawer != null) {
 			GL gl = getGL();
 			gl.glPushMatrix();
-			gl.glTranslated(posX, posY, posZ);
+			// put position into integer in order to center the mark on pixels
+			gl.glTranslated(Math.round(posX), Math.round(posY), posZ);
 			if (isDLInit()) {
 				displayDL();
 			} else {
 				startRecordDL();
-				int realMarkSize = getMarkPixelSize();
-				gl.glScaled(realMarkSize, realMarkSize, realMarkSize);
+				double realMarkSize = getMarkPixelSize();
+				gl.glScaled(realMarkSize, realMarkSize, 1.0);
 				drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
 				endRecordDL();
 			}
