@@ -13,6 +13,7 @@
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
 #include "getCommentDateSession.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_historymanager) _PARAMS((char *fname,unsigned long fname_len))
 {

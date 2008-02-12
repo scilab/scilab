@@ -42,7 +42,7 @@
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
-
+#include "Scierror.h"
 /*---------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
 /* Modify the viewing angles of a subwindow                                           */

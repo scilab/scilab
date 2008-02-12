@@ -6,6 +6,7 @@
 #include "stack-c.h"
 #include "winopen.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l))
 {

@@ -10,6 +10,7 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_xclea( char *fname,unsigned long fname_len )
 {

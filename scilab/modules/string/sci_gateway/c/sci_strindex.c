@@ -22,6 +22,7 @@
 #include "pcre_private.h"
 #include "BOOL.h"
 #include "pcre_error.h"
+#include "Scierror.h"
 /*------------------------------------------------------------------------*/
 #define CHAR_S "s"
 #define CHAR_R "r"

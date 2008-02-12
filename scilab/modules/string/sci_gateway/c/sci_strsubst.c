@@ -13,6 +13,8 @@
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 #include "localization.h"
+#include "Scierror.h"
+/*-------------------------------------------------------------------------------------*/
 #define CHAR_R "r"
 #define CHAR_S "s"
 /*-------------------------------------------------------------------------------------*/

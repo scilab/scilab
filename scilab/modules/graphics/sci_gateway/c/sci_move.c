@@ -10,7 +10,7 @@
 #include "gw_graphics.h"
 #include "Interaction.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_move( char * fname, unsigned long fname_len )
 {

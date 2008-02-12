@@ -14,6 +14,7 @@
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_xarcs(char *fname,unsigned long fname_len)
 {

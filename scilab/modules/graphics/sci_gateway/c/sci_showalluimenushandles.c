@@ -10,6 +10,7 @@
 #include "GetProperty.h"
 #include "HandleManagement.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 {

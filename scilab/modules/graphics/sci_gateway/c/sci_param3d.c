@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "stack-c.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*------------------------------------------------------------------------*/
 int sci_param3d( char * fname, unsigned long fname_len )
 {

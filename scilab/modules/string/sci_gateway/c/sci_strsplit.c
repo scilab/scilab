@@ -10,7 +10,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-//#include "strsplit.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "BOOL.h"

@@ -23,7 +23,7 @@
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "MALLOC.h" /* MALLOC */
-
+#include "Scierror.h"
 #include "sciCall.h"
 #include "DrawingBridge.h"
 

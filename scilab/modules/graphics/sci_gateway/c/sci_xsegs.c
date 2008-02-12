@@ -14,6 +14,7 @@
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)
 {

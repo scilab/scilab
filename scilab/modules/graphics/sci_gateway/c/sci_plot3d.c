@@ -20,7 +20,7 @@
 #include "sciCall.h"
 #include "sciprint.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_plot3d( char * fname, unsigned long fname_len )
 {

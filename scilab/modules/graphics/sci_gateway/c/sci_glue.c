@@ -14,7 +14,7 @@
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )
 {

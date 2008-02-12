@@ -14,6 +14,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "code2str.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
 {

@@ -9,6 +9,7 @@
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_swap_handles( char * fname, unsigned long fname_len )
 {

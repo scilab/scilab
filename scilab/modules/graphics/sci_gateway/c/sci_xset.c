@@ -24,6 +24,7 @@
 #include "ObjectSelection.h"
 #include "msgs.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1) ;
 /*--------------------------------------------------------------------------*/

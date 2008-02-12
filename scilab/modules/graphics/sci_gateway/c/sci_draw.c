@@ -15,7 +15,7 @@
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_draw( char * fname, unsigned long fname_len )
 { 

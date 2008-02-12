@@ -21,7 +21,7 @@
 #include "../src/c/getHandleProperty/getHandleProperty.h"
 
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
 /*--------------------------------------------------------------------------*/

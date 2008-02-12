@@ -15,7 +15,7 @@
 #include "CloneObjects.h"
 #include "DrawingBridge.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_copy(char *fname,unsigned long fname_len)
 {  

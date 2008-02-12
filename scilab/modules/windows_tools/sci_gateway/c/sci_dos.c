@@ -12,7 +12,7 @@
 #include "tmpdir.h"
 #include "../../../fileio/includes/FileExist.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/

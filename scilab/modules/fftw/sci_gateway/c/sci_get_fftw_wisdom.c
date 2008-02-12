@@ -9,6 +9,7 @@
 #include "gw_fftw.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 
 /* Return text of fftw wisdom

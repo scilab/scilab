@@ -12,7 +12,7 @@
 #include "DefaultCommandArg.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
-
+#include "Scierror.h"
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 
 /*--------------------------------------------------------------------------*/

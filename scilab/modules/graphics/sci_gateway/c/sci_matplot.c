@@ -17,7 +17,7 @@
 #include "sciprint.h"
 #include "stack-c.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_matplot(char *fname,unsigned long fname_len)
 {

@@ -14,7 +14,7 @@
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {

@@ -9,6 +9,7 @@
 /*------------------------------------------------------------------------*/
 #include "sci_set.h"
 #include "stack-c.h"
+#include "Scierror.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "ObjectStructure.h"

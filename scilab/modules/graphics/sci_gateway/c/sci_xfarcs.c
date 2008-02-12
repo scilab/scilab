@@ -15,6 +15,7 @@
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_xfarcs( char * fname, unsigned long fname_len )
 {

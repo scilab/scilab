@@ -19,6 +19,7 @@
 #include "sciprint.h"
 #include "cvstr.h"
 #include "localization.h"
+#include "Scierror.h"
 
 /* Table of constant values */
 

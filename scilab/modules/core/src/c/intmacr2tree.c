@@ -11,6 +11,7 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "machine.h"
+#include "Scierror.h"
 
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];

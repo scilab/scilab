@@ -12,6 +12,7 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_xarrows(char *fname,unsigned long fname_len)
 {

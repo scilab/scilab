@@ -42,6 +42,7 @@
 #include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h" /* MALLOC */
+#include "Scierror.h"
 
 extern int LinearScaling2Colormap(sciPointObj* pobj);
 extern double * AllocUserGrads(double * u_xgrads, int nb);

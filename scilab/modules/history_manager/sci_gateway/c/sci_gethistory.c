@@ -8,6 +8,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "HistoryManager.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 {

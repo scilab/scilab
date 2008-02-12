@@ -20,10 +20,12 @@
 #include "freeArrayOfString.h"
 #include "pcre_private.h"
 #include "pcre_error.h"
+#include "Scierror.h"
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
 #define CHAR_R 'r'
 #define STR_ONCE 'o'
+/*------------------------------------------------------------------------*/
 /* TODO : Add tests !!! man , bench , search memory leak , and optimize ... */
 /* Not finish !!! :( */
 /*------------------------------------------------------------------------*/

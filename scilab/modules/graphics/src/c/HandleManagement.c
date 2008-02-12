@@ -33,6 +33,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
+#include "Scierror.h"
 
 sciHandleTab * PENDOFHANDLETAB;
 

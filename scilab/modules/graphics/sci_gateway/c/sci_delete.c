@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DestroyUIControl.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {

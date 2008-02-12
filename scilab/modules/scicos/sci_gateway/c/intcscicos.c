@@ -37,6 +37,7 @@
 #include "sciprint.h"
 #include "libinter.h"
 #include "scicos-def.h"
+#include "Scierror.h"
 
 /* TO BE REMOVED */
 #include "BOOL.h"

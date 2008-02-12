@@ -10,7 +10,7 @@
 #include "MALLOC.h"
 #include "HandleManagement.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 
 int sci_relocate_handle( char * fname, unsigned long fname_len )

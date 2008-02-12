@@ -13,6 +13,7 @@
 #include "GetProperty.h"
 #include "DestroyObjects.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_unglue(char *fname,unsigned long fname_len)
 { 

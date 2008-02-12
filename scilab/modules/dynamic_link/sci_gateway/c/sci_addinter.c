@@ -7,6 +7,7 @@
 #include "stack-c.h"
 #include "addinter.h"
 #include "localization.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 {

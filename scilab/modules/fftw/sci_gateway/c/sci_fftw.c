@@ -10,6 +10,7 @@
 #include "MALLOC.h"
 #include "gw_fftw.h"
 #include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 extern unsigned cur_fftw_flags;
 /*--------------------------------------------------------------------------*/
