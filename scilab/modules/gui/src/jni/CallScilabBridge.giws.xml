@@ -414,5 +414,17 @@
 	<method name="getMessageBoxSelectedItem" returnType="int" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
+	<method name="setMessageBoxLineLabels" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="labels" type="String[]"/>
+        </method>      
+	<method name="setMessageBoxColumnLabels" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="labels" type="String[]"/>
+        </method>      
+	<method name="setMessageBoxDefaultInput" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="values" type="String[]"/>
+        </method>      
   </object>
 </package>

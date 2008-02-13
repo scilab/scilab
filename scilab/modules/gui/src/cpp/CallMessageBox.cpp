@@ -65,5 +65,19 @@ int getMessageBoxSelectedItem(int ID)
   return CallScilabBridge::getMessageBoxSelectedItem(getScilabJavaVM(), ID);
 }
 
+void setMessageBoxLineLabels(int ID, char** labels, int nbLabels)
+{
+  CallScilabBridge::setMessageBoxLineLabels(getScilabJavaVM(), ID, labels, nbLabels);
+}
+	
+void setMessageBoxColumnLabels(int ID, char** labels, int nbLabels)
+{
+  CallScilabBridge::setMessageBoxColumnLabels(getScilabJavaVM(), ID, labels, nbLabels);
+}
+	
+void setMessageBoxDefaultInput(int ID, char** values, int nbValues)
+{
+  CallScilabBridge::setMessageBoxDefaultInput(getScilabJavaVM(), ID, values, nbValues);
+}
 
 

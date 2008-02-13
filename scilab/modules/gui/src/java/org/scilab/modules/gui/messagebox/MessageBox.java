@@ -81,4 +81,22 @@ public interface MessageBox extends UIElement {
 	 * @return the index
 	 */
 	int getSelectedItem();
+	
+	/**
+	 * Set the name of the lines labels in the editable zone in the MessageBox
+	 * @param labels the labels
+	 */
+	void setLineLabels(String[] labels);
+	
+	/**
+	 * Set the name of the columns labels in the editable zone in the MessageBox
+	 * @param labels the labels
+	 */
+	void setColumnLabels(String[] labels);
+	
+	/**
+	 * Set the default values of a multi-value editable zone in the MessageBox
+	 * @param values the values
+	 */
+	void setDefaultInput(String[] values);
 }

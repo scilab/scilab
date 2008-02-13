@@ -124,4 +124,31 @@ public class ScilabMessageBoxBridge {
 	public static int getSelectedItem(MessageBox messageBox) {
 		return messageBox.getAsSimpleMessageBox().getSelectedItem();
 	}
+
+	/**
+	 * Set the name of the lines labels in the editable zone in the MessageBox
+	 * @param messageBox the MessageBox we want to set the labels
+	 * @param labels the labels
+	 */
+	public static void setLineLabels(MessageBox messageBox, String[] labels) {
+		messageBox.getAsSimpleMessageBox().setLineLabels(labels);
+	}
+	
+	/**
+	 * Set the name of the columns labels in the editable zone in the MessageBox
+	 * @param messageBox the MessageBox we want to set the labels
+	 * @param labels the labels
+	 */
+	public static void setColumnLabels(MessageBox messageBox, String[] labels) {
+		messageBox.getAsSimpleMessageBox().setColumnLabels(labels);
+	}
+	
+	/**
+	 * Set the default values of a multi-value editable zone in the MessageBox
+	 * @param messageBox the MessageBox we want to set the default values
+	 * @param values the values
+	 */
+	public static void setDefaultInput(MessageBox messageBox, String[] values) {
+		messageBox.getAsSimpleMessageBox().setDefaultInput(values);
+	}
 }

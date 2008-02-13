@@ -166,6 +166,9 @@ jmethodID jobjectArraygetMessageBoxValuejintID; // cache method id
 jmethodID jintgetMessageBoxValueSizejintID; // cache method id
 jmethodID voidsetMessageBoxListBoxItemsjintjobjectArrayID; // cache method id
 jmethodID jintgetMessageBoxSelectedItemjintID; // cache method id
+jmethodID voidsetMessageBoxLineLabelsjintjobjectArrayID; // cache method id
+jmethodID voidsetMessageBoxColumnLabelsjintjobjectArrayID; // cache method id
+jmethodID voidsetMessageBoxDefaultInputjintjobjectArrayID; // cache method id
 
 
 /**
@@ -432,6 +435,12 @@ static long getMessageBoxValueSize(JavaVM * jvm_, long id);
 static void setMessageBoxListBoxItems(JavaVM * jvm_, long id, char ** items, int itemsSize);
 
 static long getMessageBoxSelectedItem(JavaVM * jvm_, long id);
+
+static void setMessageBoxLineLabels(JavaVM * jvm_, long id, char ** labels, int labelsSize);
+
+static void setMessageBoxColumnLabels(JavaVM * jvm_, long id, char ** labels, int labelsSize);
+
+static void setMessageBoxDefaultInput(JavaVM * jvm_, long id, char ** values, int valuesSize);
 
 
                         /**

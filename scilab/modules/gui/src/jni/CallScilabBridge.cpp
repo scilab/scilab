@@ -209,6 +209,9 @@ jobjectArraygetMessageBoxValuejintID=NULL;
 jintgetMessageBoxValueSizejintID=NULL; 
 voidsetMessageBoxListBoxItemsjintjobjectArrayID=NULL; 
 jintgetMessageBoxSelectedItemjintID=NULL; 
+voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL; 
+voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
+voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
 
 
 }
@@ -343,6 +346,9 @@ jobjectArraygetMessageBoxValuejintID=NULL;
 jintgetMessageBoxValueSizejintID=NULL; 
 voidsetMessageBoxListBoxItemsjintjobjectArrayID=NULL; 
 jintgetMessageBoxSelectedItemjintID=NULL; 
+voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL; 
+voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
+voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
 
 
 }
@@ -3325,6 +3331,144 @@ curEnv->ExceptionDescribe() ;
                         
 return res;
 
+}
+
+void CallScilabBridge::setMessageBoxLineLabels (JavaVM * jvm_, long id, char ** labels, int labelsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxLineLabelsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxLineLabels", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetMessageBoxLineLabelsjintjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxLineLabels" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+
+// create java array of strings.
+jobjectArray labels_ = curEnv->NewObjectArray( labelsSize, stringArrayClass, NULL);
+if (labels_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < labelsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( labels[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( labels_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxLineLabelsjintjobjectArrayID ,id, labels_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setMessageBoxColumnLabels (JavaVM * jvm_, long id, char ** labels, int labelsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxColumnLabelsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxColumnLabels", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetMessageBoxColumnLabelsjintjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxColumnLabels" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+
+// create java array of strings.
+jobjectArray labels_ = curEnv->NewObjectArray( labelsSize, stringArrayClass, NULL);
+if (labels_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < labelsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( labels[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( labels_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxColumnLabelsjintjobjectArrayID ,id, labels_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setMessageBoxDefaultInput (JavaVM * jvm_, long id, char ** values, int valuesSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxDefaultInputjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxDefaultInput", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetMessageBoxDefaultInputjintjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxDefaultInput" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+
+// create java array of strings.
+jobjectArray values_ = curEnv->NewObjectArray( valuesSize, stringArrayClass, NULL);
+if (values_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < valuesSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( values[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( values_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxDefaultInputjintjobjectArrayID ,id, values_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

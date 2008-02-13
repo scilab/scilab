@@ -971,6 +971,33 @@ public class CallScilabBridge {
 		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getSelectedItem();
 	}
 	
+	/**
+	 * Set the name of the lines labels in the editable zone in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @param labels the labels
+	 */
+	public static void setMessageBoxLineLabels(int id, String[] labels) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setLineLabels(labels);
+	}
+	
+	/**
+	 * Set the name of the columns labels in the editable zone in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @param labels the labels
+	 */
+	public static void setMessageBoxColumnLabels(int id, String[] labels) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setColumnLabels(labels);
+	}
+	
+	/**
+	 * Set the default values of a multi-value editable zone in the MessageBox
+	 * @param id the id of the MessageBox
+	 * @param values the values
+	 */
+	public static void setMessageBoxDefaultInput(int id, String[] values) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setDefaultInput(values);
+	}
+
 	/************************/
 	/*                      */
 	/* OBJECT COLORS BRIDGE */

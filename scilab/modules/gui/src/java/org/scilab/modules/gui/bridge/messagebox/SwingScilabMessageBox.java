@@ -3,8 +3,8 @@
 
 package org.scilab.modules.gui.bridge.messagebox;
 
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,8 +18,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
@@ -35,6 +37,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private static final int WINDOW_WIDTH = 400;
 	private static final int MESSAGE_HEIGHT = 100;
 	private static final int LISTBOX_HEIGHT = 200;
+	
+	private static final int X_MESSAGE_TYPE = 0;
+	private static final int X_DIALOG_TYPE = 1;
+	private static final int X_CHOOSE_TYPE = 2;
+	private static final int X_MDIALOG_TYPE = 3;
 	
 	/**
 	 * Offset around object and its ScrollPane
@@ -53,6 +60,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	
 	private int elementId;
 	
+	private int scilabDialogType = X_MESSAGE_TYPE;
+
 	private JButton btnOK = new JButton("OK");
 	private JButton btnCancel = new JButton("Cancel");
 
@@ -71,6 +80,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private String[] listboxItems;
 	private int selectedItem;
 	
+	/**
+	 * Used for x_mdialog
+	 */
+	private String[] lineLabels;
+	private String[] columnLabels;
+	private String[] defaultInput;
+	private JTextField[] textFields;
+	private String[] userValues;
 	
 	/**
 	 * Used for x_choose & x_message
@@ -140,7 +157,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		message += mess[line] + "</HTML>";
 	}
 
-	/**
+	/**DefaultValues
 	 * Display this MessageBox and wait for user selection 
 	 */
 	public void displayAndWait() {
@@ -155,34 +172,79 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		int scrollWidth = (int) Math.min(WINDOW_WIDTH, messageLabel.getPreferredSize().getWidth() + OFFSET);
 		int scrollHeight = (int) Math.min(MESSAGE_HEIGHT, messageLabel.getPreferredSize().getHeight() + OFFSET);
 		messageScrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
-		messageScrollPane.getViewport().setBackground(new Color(GREY_VALUE, GREY_VALUE, GREY_VALUE));
+		// Make the scroll Pane transparent
+		messageScrollPane.setOpaque(false);
+		messageScrollPane.getViewport().setOpaque(false);
 
-		if (initialValue == null && listboxItems == null) {
-			// Create a MessageBox for Scilab x_message
+		if (scilabDialogType == X_MDIALOG_TYPE) {
+			// Create a MessageBox for Scilab x_mdialog
 
 			// All objects in the MessageBox:
 			//  - Message
-			objs = new Object[1]; 
+			//  - Editable zone
+			objs = new Object[2]; 
 
-			// Add the message
 			objs[0] = messageScrollPane;
 
-			// And now the buttons
-			if (buttonsLabels == null) {
-				buttons = new Object[1];
-				btnOK.addActionListener(this);
-				buttons[0] = btnOK;
-				messageType = JOptionPane.INFORMATION_MESSAGE;
+			int numberOfColumns = 0;
+			int numberOfLines = 0;
+			if (columnLabels == null) {
+				numberOfColumns = 2;
+				numberOfLines = lineLabels.length;
 			} else {
-				buttons = new Object[buttonsLabels.length];
-				for (int buttonNb = 0; buttonNb < buttonsLabels.length; buttonNb++) {
-					JButton currentButton = new JButton(buttonsLabels[buttonNb]);
-					currentButton.addActionListener(this);
-					buttons[buttonNb] = currentButton;
+				numberOfColumns = columnLabels.length + 1;
+				numberOfLines = lineLabels.length + 1;
+			}
+			JPanel panel = new JPanel(new GridLayout(numberOfLines, numberOfColumns));
+
+			int line = 0;
+			int col = 0;
+			// Optional first line
+			if (columnLabels != null) {
+				panel.add(new JLabel(""));
+				for (col = 0; col < columnLabels.length; col++) {
+					panel.add(new JLabel(columnLabels[col]));
+				}
+			}
+			
+			
+			// Prepare return value
+			if (columnLabels == null) {
+				userValues = new String[lineLabels.length];
+				textFields = new JTextField[lineLabels.length];
+			} else {
+				userValues = new String[lineLabels.length * columnLabels.length];
+				textFields = new JTextField[lineLabels.length * columnLabels.length];
+			}
+			
+			for (line = 0; line < lineLabels.length; line++) {
+				panel.add(new JLabel(lineLabels[line]));
+				for (col = 0; col < numberOfColumns - 1; col++) {
+					textFields[line * (numberOfColumns - 1) + col] = 
+						new JTextField(defaultInput[line * (numberOfColumns - 1) + col]);
+					panel.add(textFields[line * (numberOfColumns - 1) + col]);
 				}
 			}
 
-		} else if (listboxItems != null) {
+			panel.doLayout();
+
+			// Editable text zone
+			JScrollPane scrollPane = new JScrollPane(panel);
+		
+			scrollWidth = (int) Math.min(WINDOW_WIDTH, panel.getPreferredSize().getWidth() + OFFSET);
+			scrollHeight = (int) Math.min(LISTBOX_HEIGHT, panel.getPreferredSize().getHeight() + OFFSET);
+			scrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
+
+			objs[1] = scrollPane;
+
+			// And now the buttons
+			buttons = new Object[2];
+			btnOK.addActionListener(this);
+			btnCancel.addActionListener(this);
+			buttons[0] = btnCancel;
+			buttons[1] = btnOK;
+
+		} else if (scilabDialogType == X_CHOOSE_TYPE) {
 			// Create a MessageBox for Scilab x_choose
 			
 			// All objects in the MessageBox:
@@ -203,8 +265,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			}
 			btnCancel.addActionListener(this);
 			buttons[0] = btnCancel;
-
-		} else {
+		} else if (scilabDialogType == X_DIALOG_TYPE) {
 			// Create a MessageBox for Scilab x_dialog
 
 			// All objects in the MessageBox:
@@ -230,6 +291,30 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			btnCancel.addActionListener(this);
 			buttons[0] = btnCancel;
 			buttons[1] = btnOK;
+		} else {
+			// Create a MessageBox for Scilab x_message
+
+			// All objects in the MessageBox:
+			//  - Message
+			objs = new Object[1]; 
+
+			// Add the message
+			objs[0] = messageScrollPane;
+
+			// And now the buttons
+			if (buttonsLabels == null) {
+				buttons = new Object[1];
+				btnOK.addActionListener(this);
+				buttons[0] = btnOK;
+				messageType = JOptionPane.INFORMATION_MESSAGE;
+			} else {
+				buttons = new Object[buttonsLabels.length];
+				for (int buttonNb = 0; buttonNb < buttonsLabels.length; buttonNb++) {
+					JButton currentButton = new JButton(buttonsLabels[buttonNb]);
+					currentButton.addActionListener(this);
+					buttons[buttonNb] = currentButton;
+				}
+			}
 		}
 		// Display
 		setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
@@ -247,8 +332,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == btnOK) {
 			// For a x_dialog, get the user answer
-			if (textArea != null) {
+			if (scilabDialogType == X_DIALOG_TYPE) {
 				userValue = textArea.getText();
+			} else if (scilabDialogType == X_MDIALOG_TYPE) {
+				for (int textFieldIndex = 0; textFieldIndex < textFields.length; textFieldIndex++) {
+					userValues[textFieldIndex] = textFields[textFieldIndex].getText();
+				}
+				userValue = ""; /* To make getValueSize return a non zero value */
 			}
 			selectedButton = 1;
 		} else if (ae.getSource() == btnCancel) {
@@ -292,14 +382,20 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		}
 		initialValue += value[line];
 		initialValueSize = value.length;
+		
+		scilabDialogType = X_DIALOG_TYPE;
 	}
 
 	/**
-	 * Set the value of the editable zone in the MessageBox
+	 * Get the value of the editable zone in the MessageBox
 	 * @return the value
 	 */
 	public String[] getValue() {
-		return userValue.split(NEW_LINE);
+		if (scilabDialogType == X_MDIALOG_TYPE) {
+			return userValues;
+		} else { 
+			return userValue.split(NEW_LINE);
+		}
 	}
 	
 	/**
@@ -320,6 +416,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 */
 	public void setListBoxItems(String[] items) {
 		listboxItems = items;
+		
+		scilabDialogType = X_CHOOSE_TYPE;
 	}
 	
 	/**
@@ -371,7 +469,30 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		int scrollHeight = LISTBOX_HEIGHT;
 		scrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
 		return  scrollPane;
-		
-		
+	}
+	
+	/**
+	 * Set the name of the lines labels in the editable zone in the MessageBox
+	 * @param labels the labels
+	 */
+	public void setLineLabels(String[] labels) {
+		scilabDialogType = X_MDIALOG_TYPE;
+		lineLabels = labels;
+	}
+	
+	/**
+	 * Set the name of the columns labels in the editable zone in the MessageBox
+	 * @param labels the labels
+	 */
+	public void setColumnLabels(String[] labels) {
+		columnLabels = labels;
+	}
+	
+	/**
+	 * Set the default values of a multi-value editable zone in the MessageBox
+	 * @param values the values
+	 */
+	public void setDefaultInput(String[] values) {
+		defaultInput = values;
 	}
 }

@@ -103,5 +103,32 @@ void setMessageBoxListBoxItems(int ID, char** items, int nbItems);
  */
 int getMessageBoxSelectedItem(int ID);
 
+/**
+ * Set the name of the lines labels in the editable zone in the MessageBox
+ * 
+ * @param ID the ID of the MessageBox 
+ * @param labels the labels
+ * @param nbItems the number of labels
+ */
+void setMessageBoxLineLabels(int ID, char** labels, int nbLabels);
+	
+/**
+ * Set the name of the columns labels in the editable zone in the MessageBox
+ *
+ * @param ID the ID of the MessageBox 
+ * @param labels the labels
+ * @param nbItems the number of labels
+ */
+void setMessageBoxColumnLabels(int ID, char** labels, int nbLabels);
+	
+/**
+ * Set the default values of a multi-value editable zone in the MessageBox
+ *
+ * @param ID the ID of the MessageBox 
+ * @param values the values
+ * @param nbItems the number of values
+ */
+void setMessageBoxDefaultInput(int ID, char** values, int nbValues);
+
 #endif /* !__CALLMESSAGEBOX_H__ */
 

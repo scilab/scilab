@@ -185,5 +185,28 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 	public void setVisible(boolean newVisibleState) {
 		throw new UnsupportedOperationException();
 	}
-
+	
+	/**
+	 * Set the name of the lines labels in the editable zone in the MessageBox
+	 * @param labels the labels
+	 */
+	public void setLineLabels(String[] labels) {
+		ScilabBridge.setLineLabels(this, labels);
+	}
+	
+	/**
+	 * Set the name of the columns labels in the editable zone in the MessageBox
+	 * @param labels the labels
+	 */
+	public void setColumnLabels(String[] labels) {
+		ScilabBridge.setColumnLabels(this, labels);
+	}
+	
+	/**
+	 * Set the default values of a multi-value editable zone in the MessageBox
+	 * @param values the values
+	 */
+	public void setDefaultInput(String[] values) {
+		ScilabBridge.setDefaultInput(this, values);
+	}
 }
