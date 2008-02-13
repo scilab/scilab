@@ -708,11 +708,7 @@ AC_SUBST(TERMCAP_LIB)
 #################
 
 AC_ARG_WITH(scicos,
-    AC_HELP_STRING([--with-scicos],[Compile with Scicos ]))
-
-# We will be used in the future
-#AC_ARG_WITH(scicos,
-#    [  --without-scicos        Compile without Scicos ])
+    [  --without-scicos        Compile without Scicos ])
 
 AC_ARG_WITH(ocaml,
     AC_HELP_STRING([--without-ocaml],[Do not compile ocaml modules]))
