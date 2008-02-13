@@ -64,13 +64,13 @@ int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
           GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonLabelAdr);
           if (nbRow*nbCol != 1)
           {
-            Scierror(999, _("%s: Wrong type for third input argument: Single String expected.\n"), "sci_x_dialog");
+            Scierror(999, _("%s: Wrong type for third input argument: Single String expected.\n"), "sci_x_choose");
             return FALSE;
           }
         }
       else 
         {
-          Scierror(999, _("%s: Wrong type for third input argument: Single String expected.\n"), "sci_x_dialog");
+          Scierror(999, _("%s: Wrong type for third input argument: Single String expected.\n"), "sci_x_choose");
           return FALSE;
         }
 
