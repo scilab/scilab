@@ -79,8 +79,9 @@ static int sci_strcat_three_rhs(char *fname)
 		mn = Row_One*Col_One;  
 		if (Rhs >= 2) 
 		{ 
-			GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&Row_Two,&Col_Two,&Input_String_Two);
-			//Input_String_Two = cstk(l2);
+			int l2;
+			GetRhsVar(2,STRING_DATATYPE,&Row_Two,&Col_Two,&l2);
+			Input_String_Two = cstk(l2);
 		}
 		if (Rhs >= 3) 
 		{
@@ -137,13 +138,18 @@ static int sci_strcat_three_rhs(char *fname)
 				for ( j = 1 ; j < Col_One ; j++ ) 
 				{
 					strcat(Output_String[i],Input_String_Two); 
+					strcat(Output_String[i],"\0");
+					
 					strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
+					
 				}
+				
 			}
+			
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &un, Output_String);
 			freeArrayOfString(Input_String_One,mn);
 
-			/* !!! Problem with this part */ 
+			
 			if (Input_String_Two) 
 			{
 				for ( i = 0 ; i <Row_Two*Col_Two ; i++ )
@@ -157,8 +163,7 @@ static int sci_strcat_three_rhs(char *fname)
 				FREE(Input_String_Two);
 				Input_String_Two=NULL;
 			}
-			/* !!! Problem with this part */ 
-			//freeArrayOfString(Input_String_Two,Row_Two*Col_Two);
+		
 
 
 			LhsVar(1) = Rhs+1  ;
@@ -194,15 +199,13 @@ static int sci_strcat_three_rhs(char *fname)
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &un, &Col_One, Output_String);
 			freeArrayOfString(Input_String_One,mn);
 
-			/* !!! Problem with this part */ 
 			if (Input_String_Two) 
 			{
 			
 				FREE(Input_String_Two);
 				Input_String_Two=NULL;
 			}
-			/* !!! Problem with this part */ 
-			//freeArrayOfString(Input_String_Two,Row_Two*Col_Two);
+
 
 			freeArrayOfString(Output_String,Col_One+1);
 			LhsVar(1) = Rhs+1  ;
