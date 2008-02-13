@@ -151,4 +151,14 @@ public class ScilabMessageBoxBridge {
 	public static void setDefaultInput(MessageBox messageBox, String[] values) {
 		messageBox.getAsSimpleMessageBox().setDefaultInput(values);
 	}
+	
+	/**
+	 * Set a MessageBox modal or not
+	 * @param messageBox the MessageBox we want to set the modality of
+	 * @param status true to set the MessageBox modal and false else
+	 */
+	public static void setModal(MessageBox messageBox, boolean status) {
+		messageBox.getAsSimpleMessageBox().setModal(status);
+	}
+
 }

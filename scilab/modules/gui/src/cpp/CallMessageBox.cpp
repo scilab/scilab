@@ -80,4 +80,9 @@ void setMessageBoxDefaultInput(int ID, char** values, int nbValues)
   CallScilabBridge::setMessageBoxDefaultInput(getScilabJavaVM(), ID, values, nbValues);
 }
 
+void setMessageBoxModal(int ID, BOOL status)
+{
+  CallScilabBridge::setMessageBoxModal(getScilabJavaVM(), ID, status);
+}
+
 

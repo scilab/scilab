@@ -4,6 +4,8 @@
 /* Copyright INRIA */
 /* Vincent COUVERT 2008 */
 
+#include "machine.h"
+
 /**
  * Create a new MessageBox
  *
@@ -129,6 +131,14 @@ void setMessageBoxColumnLabels(int ID, char** labels, int nbLabels);
  * @param nbItems the number of values
  */
 void setMessageBoxDefaultInput(int ID, char** values, int nbValues);
+
+/**
+ * Set a MessageBox modal or not
+ *
+ * @param ID the ID of the MessageBox 
+ * @param status TRUE to set the MessageBox modal and FALSE else
+ */
+void setMessageBoxModal(int ID, BOOL status);
 
 #endif /* !__CALLMESSAGEBOX_H__ */
 

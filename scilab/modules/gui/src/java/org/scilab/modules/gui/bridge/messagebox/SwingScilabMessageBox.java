@@ -104,6 +104,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private int messageType = JOptionPane.QUESTION_MESSAGE;
 	private Object[] objs;
 	private Object[] buttons;
+	private boolean modal = true;
 	
 	/**
 	 * Default constructor
@@ -319,7 +320,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		// Display
 		setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
 		pack();
-		setModal(true);
+		setModal(modal);
 		setVisible(true);
 		doLayout();
 	}
@@ -495,4 +496,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	public void setDefaultInput(String[] values) {
 		defaultInput = values;
 	}
+	
+	/**
+	 * Set a MessageBox modal or not
+	 * @param status true to set the MessageBox modal and false else
+	 */
+	public void setModal(boolean status) {
+		modal = status;
+	}
+
 }

@@ -426,5 +426,9 @@
             <parameter name="id" type="int"/>
             <parameter name="values" type="String[]"/>
         </method>      
+	<method name="setMessageBoxModal" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="status" type="boolean"/>
+        </method>      
   </object>
 </package>

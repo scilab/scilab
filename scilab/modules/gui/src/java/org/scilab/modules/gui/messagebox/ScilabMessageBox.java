@@ -209,4 +209,13 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 	public void setDefaultInput(String[] values) {
 		ScilabBridge.setDefaultInput(this, values);
 	}
+	
+	/**
+	 * Set a MessageBox modal or not
+	 * @param status true to set the MessageBox modal and false else
+	 */
+	public void setModal(boolean status) {
+		ScilabBridge.setModal(this, status);
+	}
+
 }

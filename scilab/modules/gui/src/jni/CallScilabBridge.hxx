@@ -169,6 +169,7 @@ jmethodID jintgetMessageBoxSelectedItemjintID; // cache method id
 jmethodID voidsetMessageBoxLineLabelsjintjobjectArrayID; // cache method id
 jmethodID voidsetMessageBoxColumnLabelsjintjobjectArrayID; // cache method id
 jmethodID voidsetMessageBoxDefaultInputjintjobjectArrayID; // cache method id
+jmethodID voidsetMessageBoxModaljintjbooleanID; // cache method id
 
 
 /**
@@ -441,6 +442,8 @@ static void setMessageBoxLineLabels(JavaVM * jvm_, long id, char ** labels, int 
 static void setMessageBoxColumnLabels(JavaVM * jvm_, long id, char ** labels, int labelsSize);
 
 static void setMessageBoxDefaultInput(JavaVM * jvm_, long id, char ** values, int valuesSize);
+
+static void setMessageBoxModal(JavaVM * jvm_, long id, bool status);
 
 
                         /**

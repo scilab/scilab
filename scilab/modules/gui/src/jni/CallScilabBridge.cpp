@@ -212,6 +212,7 @@ jintgetMessageBoxSelectedItemjintID=NULL;
 voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
+voidsetMessageBoxModaljintjbooleanID=NULL; 
 
 
 }
@@ -349,6 +350,7 @@ jintgetMessageBoxSelectedItemjintID=NULL;
 voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
+voidsetMessageBoxModaljintjbooleanID=NULL; 
 
 
 }
@@ -3463,6 +3465,30 @@ curEnv->SetObjectArrayElement( values_, i, TempString);
 curEnv->DeleteLocalRef(TempString);
 }
                          curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxDefaultInputjintjobjectArrayID ,id, values_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setMessageBoxModal (JavaVM * jvm_, long id, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxModaljintjbooleanID = curEnv->GetStaticMethodID(cls, "setMessageBoxModal", "(IZ)V" ) ;
+if (voidsetMessageBoxModaljintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxModal" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxModaljintjbooleanID ,id, status_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

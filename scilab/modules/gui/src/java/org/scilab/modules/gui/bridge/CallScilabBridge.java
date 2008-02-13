@@ -998,6 +998,15 @@ public class CallScilabBridge {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setDefaultInput(values);
 	}
 
+	/**
+	 * Set a MessageBox modal or not
+	 * @param id the id of the MessageBox
+	 * @param status true to set the MessageBox modal and false else
+	 */
+	public static void setMessageBoxModal(int id, boolean status) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setModal(status);
+	}
+	
 	/************************/
 	/*                      */
 	/* OBJECT COLORS BRIDGE */

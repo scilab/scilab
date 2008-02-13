@@ -104,4 +104,10 @@ public interface SimpleMessageBox {
 	 * @param values the values
 	 */
 	void setDefaultInput(String[] values);
+	
+	/**
+	 * Set a MessageBox modal or not
+	 * @param status true to set the MessageBox modal and false else
+	 */
+	void setModal(boolean status);
 }
