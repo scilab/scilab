@@ -26,7 +26,7 @@ typedef int (*MYPROC) (int , char **);
 int main (int argc, char **argv)
 {
 	#define MAXCMDTOKENS 128
-
+	UINT LastErrorMode = 0;
 	HINSTANCE hinstLib = NULL; 
 	MYPROC Console_Main = NULL; 
 
@@ -44,7 +44,6 @@ int main (int argc, char **argv)
 		return -1;
 	}
 	*/
-
 	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
 	{
 		MessageBox(NULL,TEXT(MSG_DETECT_2K_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
@@ -78,12 +77,19 @@ int main (int argc, char **argv)
 		}
 		argcbis=argc;
 	}
-    	
+
+	/* Disable system errors msgbox */
+	LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS );
+
 	hinstLib = LoadLibrary(TEXT(LIBRARY_TO_LOAD)); 	
-    
+
+	/* re enable system errors msgbox */
+	SetErrorMode(LastErrorMode);
+
 	if (hinstLib != NULL) 
 	{ 
 		Console_Main = (MYPROC) GetProcAddress(hinstLib,MAIN_FUNCTION); 
+
 
 		if (NULL != Console_Main) 
 		{
@@ -95,28 +101,26 @@ int main (int argc, char **argv)
 
 	if (! fRunTimeLinkSuccess) 
 	{
-		LPVOID lpMsgBuf;
-		LPVOID lpDisplayBuf;
-
+		#define BUFFER_SIZE 512
+		char buffer[BUFFER_SIZE];
+		char *OutputMsg = NULL;
 		DWORD dw = GetLastError(); 
 
-		FormatMessage(
-			FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-			FORMAT_MESSAGE_FROM_SYSTEM |
-			FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL,
-			dw,
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			(LPTSTR) &lpMsgBuf,
-			0, NULL );
-
-		lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,(lstrlen((LPCTSTR)lpMsgBuf)+LENGTH_BUFFER_SECURITY)*sizeof(TCHAR)); 
-		StringCchPrintf((LPTSTR)lpDisplayBuf,LocalSize(lpDisplayBuf) / sizeof(TCHAR),TEXT(MSG_LOAD_LIBRARIES), dw, lpMsgBuf); 
-
-		MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT(MSG_WARNING), MB_ICONERROR); 
-
-		LocalFree(lpMsgBuf);
-		LocalFree(lpDisplayBuf);
+		if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, 
+			              dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			              buffer, BUFFER_SIZE, NULL) == 0) 
+		{
+			StringCchPrintf(buffer,strlen("Unknown Error")+1,"Unknown Error"); 
+		}
+				
+		fprintf(stderr,"scilex can't launch scilab.\nError code : %lu\n",dw);
+		OutputMsg = (char*)MALLOC((strlen(buffer)+1)*sizeof(char));
+		if (OutputMsg)
+		{
+			CharToOem(buffer,OutputMsg);
+			fprintf(stderr,"%s\n",OutputMsg);
+			FREE(OutputMsg);
+		}
 		exit(1);
 	}
 	else exit(0);
