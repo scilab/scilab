@@ -230,7 +230,6 @@ src/c/ramp.c \
 src/c/ratelimiter.c \
 src/c/readau.c \
 src/c/readc.c \
-src/c/readf4.c \
 src/c/relational_op.c \
 src/c/relationalop.c \
 src/c/relational_op_i16.c \
@@ -305,7 +304,6 @@ src/c/tows_c.c \
 src/c/variable_delay.c \
 src/c/writeau.c \
 src/c/writec.c \
-src/c/writef4.c \
 src/c/zcross2.c
 
 NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \

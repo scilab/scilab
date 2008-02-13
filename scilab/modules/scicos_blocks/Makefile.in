@@ -171,7 +171,7 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/c/modulo_count.c src/c/mswitch.c src/c/multiplex.c \
 	src/c/plusblk.c src/c/prod.c src/c/product.c src/c/ramp.c \
 	src/c/ratelimiter.c src/c/readau.c src/c/readc.c \
-	src/c/readf4.c src/c/relational_op.c src/c/relationalop.c \
+	src/c/relational_op.c src/c/relationalop.c \
 	src/c/relational_op_i16.c src/c/relational_op_i32.c \
 	src/c/relational_op_i8.c src/c/relational_op_ui16.c \
 	src/c/relational_op_ui32.c src/c/relational_op_ui8.c \
@@ -199,7 +199,7 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/c/switch2_m.c src/c/switchn.c src/c/tan_blk.c \
 	src/c/tanh_blk.c src/c/tcslti4.c src/c/tcsltj4.c \
 	src/c/time_delay.c src/c/tows_c.c src/c/variable_delay.c \
-	src/c/writeau.c src/c/writec.c src/c/writef4.c src/c/zcross2.c \
+	src/c/writeau.c src/c/writec.c src/c/zcross2.c \
 	src/fortran/affich2.f src/fortran/affich.f \
 	src/fortran/constraint.f src/fortran/csslti.f \
 	src/fortran/cstblk.f src/fortran/delay.f src/fortran/delayv.f \
@@ -439,7 +439,6 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-ratelimiter.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-readau.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-readc.lo \
-@SCICOS_TRUE@	libsciscicos_blocks_la-readf4.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-relational_op.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-relationalop.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-relational_op_i16.lo \
@@ -514,7 +513,6 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-variable_delay.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-writeau.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-writec.lo \
-@SCICOS_TRUE@	libsciscicos_blocks_la-writef4.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-zcross2.lo
 @SCICOS_TRUE@am__objects_2 = affich2.lo affich.lo constraint.lo \
 @SCICOS_TRUE@	csslti.lo cstblk.lo delay.lo delayv.lo demux.lo \
@@ -1028,7 +1026,6 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/c/ratelimiter.c \
 @SCICOS_TRUE@src/c/readau.c \
 @SCICOS_TRUE@src/c/readc.c \
-@SCICOS_TRUE@src/c/readf4.c \
 @SCICOS_TRUE@src/c/relational_op.c \
 @SCICOS_TRUE@src/c/relationalop.c \
 @SCICOS_TRUE@src/c/relational_op_i16.c \
@@ -1103,7 +1100,6 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/c/variable_delay.c \
 @SCICOS_TRUE@src/c/writeau.c \
 @SCICOS_TRUE@src/c/writec.c \
-@SCICOS_TRUE@src/c/writef4.c \
 @SCICOS_TRUE@src/c/zcross2.c
 
 @SCICOS_TRUE@NON_BLOCK_C_SOURCES = src/c/scoGetProperty.c \
@@ -1502,7 +1498,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-ratelimiter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-readau.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-readc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-readf4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-relational_op.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-relational_op_i16.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-relational_op_i32.Plo@am__quote@
@@ -1582,7 +1577,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-variable_delay.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-writeau.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-writec.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-writef4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-zcross2.Plo@am__quote@
 
 .c.o:
@@ -3111,13 +3105,6 @@ libsciscicos_blocks_la-readc.lo: src/c/readc.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-readc.lo `test -f 'src/c/readc.c' || echo '$(srcdir)/'`src/c/readc.c
 
-libsciscicos_blocks_la-readf4.lo: src/c/readf4.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-readf4.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-readf4.Tpo -c -o libsciscicos_blocks_la-readf4.lo `test -f 'src/c/readf4.c' || echo '$(srcdir)/'`src/c/readf4.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_blocks_la-readf4.Tpo $(DEPDIR)/libsciscicos_blocks_la-readf4.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/readf4.c' object='libsciscicos_blocks_la-readf4.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-readf4.lo `test -f 'src/c/readf4.c' || echo '$(srcdir)/'`src/c/readf4.c
-
 libsciscicos_blocks_la-relational_op.lo: src/c/relational_op.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-relational_op.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-relational_op.Tpo -c -o libsciscicos_blocks_la-relational_op.lo `test -f 'src/c/relational_op.c' || echo '$(srcdir)/'`src/c/relational_op.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_blocks_la-relational_op.Tpo $(DEPDIR)/libsciscicos_blocks_la-relational_op.Plo
@@ -3635,13 +3622,6 @@ libsciscicos_blocks_la-writec.lo: src/c/writec.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/writec.c' object='libsciscicos_blocks_la-writec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-writec.lo `test -f 'src/c/writec.c' || echo '$(srcdir)/'`src/c/writec.c
-
-libsciscicos_blocks_la-writef4.lo: src/c/writef4.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-writef4.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-writef4.Tpo -c -o libsciscicos_blocks_la-writef4.lo `test -f 'src/c/writef4.c' || echo '$(srcdir)/'`src/c/writef4.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_blocks_la-writef4.Tpo $(DEPDIR)/libsciscicos_blocks_la-writef4.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/writef4.c' object='libsciscicos_blocks_la-writef4.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-writef4.lo `test -f 'src/c/writef4.c' || echo '$(srcdir)/'`src/c/writef4.c
 
 libsciscicos_blocks_la-zcross2.lo: src/c/zcross2.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-zcross2.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-zcross2.Tpo -c -o libsciscicos_blocks_la-zcross2.lo `test -f 'src/c/zcross2.c' || echo '$(srcdir)/'`src/c/zcross2.c
