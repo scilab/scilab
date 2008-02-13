@@ -31,7 +31,7 @@ txt = [ "// Set display settings";
         "load(fullfile(''" + baseDir + "'', ''" + testName + "'' + ''.cos''))";
         "disp(scs_m)";
         "Info = list()";
-        "Info = scicos_simulate(scs_m,Info)";
+        "Info = scicos_simulate(scs_m,Info,[],''nw'')";
         "disp(Info)";
         "";
         "// Stop logging output";
