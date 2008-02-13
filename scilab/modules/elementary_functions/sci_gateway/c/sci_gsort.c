@@ -37,6 +37,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 	CheckRhs(1,3);
 	CheckLhs(1,2);
 
+
 	if (Rhs >= 1)
 	{
 		Type=VarType(1);
@@ -49,14 +50,16 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			break;
 		case sci_ints:
-			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&Im);
+			printf(" == 2 ==\n");
+			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
+			printf(" == 3 ==\n");
 			break;
 		default :
 			Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
 			return 0;
 		}
 	}
-
+	
 	if (Rhs >= 2)
 	{
 		char c;
@@ -86,7 +89,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		}
 		iord[0] = *cstk(l3);
 	}
-
+	
 	if ( typex[0] == LIST_SORT)
 	{
 		if (typex[1] == ROW_SORT)
@@ -95,27 +98,27 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			ind_n1 = 1;
 			ind_l1 = 0;
 			if (ind_m1) 
-				{
-					indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
-				}
-			else 
-				{
-					indices = NULL;
-				}
+			{
+				indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
+			}
+			else
+			{
+				indices = NULL;
+			}
 		}
 		else
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
 			ind_l1 = 0;
-			if (ind_n1) 
-				{
-					indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
-				}
-			else 
-				{
-					indices = NULL;
-				}
+			if (ind_n1)
+			{
+				indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
+			}
+			else
+			{
+				indices = NULL;
+			}
 		}
 	}
 	else
@@ -124,19 +127,23 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 		ind_n1 = n1;
 		ind_l1 = 0;
 		if (ind_m1*ind_n1+1) 
-			{
-				indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
-			}
-		else 
-			{
-				indices = NULL;
-			}
+		{
+			indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1+1));  /* return a matrix*/
+		}
+		else
+		{
+			indices = NULL;
+		}
 		
 	}
-
+	
 	if (Lhs == 2) iflag = 1;
 	else iflag = 0;
+	
+	
 
+	
+	
 	switch (Type)
 	{
 	case sci_matrix:
