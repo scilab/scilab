@@ -66,11 +66,11 @@ public class GlobalEventFilter {
 	 * @param source : the canvas where the event occurs.
 	 * @param buttonCode : the Scilab button code.
 	 */
-	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonCode) {
+	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonCode, boolean isControlDown) {
 		synchronized (ClickInfos.getInstance()) {
 			ClickInfos.getInstance().setXCoordinate(mouseEvent.getPoint().getX());
 			ClickInfos.getInstance().setYCoordinate(mouseEvent.getPoint().getY());
-			if (mouseEvent.isControlDown()) {
+			if (isControlDown) {
 				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton() + SCILAB_CTRL_OFFSET);
 			} else {
 				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton());

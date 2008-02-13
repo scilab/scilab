@@ -44,8 +44,8 @@ public final class Jxclick {
 		 */		
 		GlobalEventWatcher.enable(new GlobalMouseEventWatcher(AWTEvent.MOUSE_EVENT_MASK) {
 			public void mouseEventFilter(MouseEvent mouseEvent,
-					SwingScilabCanvas canvas, int scilabMouseAction) {
-				mouseActionFilter(mouseEvent, canvas, scilabMouseAction);	
+					SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {
+				mouseActionFilter(mouseEvent, canvas, scilabMouseAction, isControlDown);	
 			}
 		});
 		synchronized (ClickInfos.getInstance()) {
@@ -127,11 +127,11 @@ public final class Jxclick {
 	 * @param scilabMouseAction : the integer scilab code for mouse action.
 	 * @param canvas : the canvas where action occurs.
 	 */
-	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction) {	
+	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {	
 		if (scilabMouseAction == GlobalMouseEventWatcher.PRESSED
 				|| scilabMouseAction == GlobalMouseEventWatcher.CLICKED
 				|| scilabMouseAction == GlobalMouseEventWatcher.DCLICKED) {
-			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction);
+			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction, isControlDown);
 		}
 	}	
 }

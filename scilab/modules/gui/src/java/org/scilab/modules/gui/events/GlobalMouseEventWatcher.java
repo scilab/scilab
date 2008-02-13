@@ -44,6 +44,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	private static final int UNMANAGED = -10000;
 	private static final int TIMETOSLEEP = 300;
 
+	private boolean isControlDown;
 	private boolean inCanvas;
 	private boolean freedom = true;
 	private int action = UNMANAGED;
@@ -83,6 +84,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		this.lastMouse = (MouseEvent) mouseEvent;
 		if (mouseEvent.getSource() instanceof SwingScilabCanvas) {
 			this.canvas = (SwingScilabCanvas) mouseEvent.getSource();
+			this.isControlDown = lastMouse.isControlDown();
 			switch (mouseEvent.getID()) {
 			/* CLICKED */
 			case MouseEvent.MOUSE_CLICKED :
@@ -111,14 +113,14 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 				/* ENTERED */
 			case MouseEvent.MOUSE_ENTERED :
 				this.inCanvas = true;
-				mouseEventFilter(lastMouse, canvas, MOVED);
+				mouseEventFilter(lastMouse, canvas, MOVED, this.isControlDown);
 				break;
 				/* MOVED */
 			case MouseEvent.MOUSE_MOVED :
-				mouseEventFilter(lastMouse, canvas, MOVED);
+				mouseEventFilter(lastMouse, canvas, MOVED, this.isControlDown);
 				break;
 			case MouseEvent.MOUSE_DRAGGED :
-				mouseEventFilter(lastMouse, canvas, MOVED);
+				mouseEventFilter(lastMouse, canvas, MOVED, this.isControlDown);
 				break;
 				/* EXITED */
 			case MouseEvent.MOUSE_EXITED :
@@ -136,7 +138,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		 */
 			if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas) {
 				this.action = RELEASED;
-				mouseEventFilter(lastMouse, canvas, this.action);	
+				mouseEventFilter(lastMouse, canvas, this.action, this.isControlDown);	
 			}
 		}
 	}
@@ -165,7 +167,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mouseEventFilter(lastMouse, canvas, this.action);
+		mouseEventFilter(lastMouse, canvas, this.action, this.isControlDown);
 		this.freedom = true;
 		this.action = UNMANAGED;		
 	}
@@ -178,7 +180,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	 * @param canvas : the canvas where action occurs.
 	 * @param scilabMouseAction : the integer scilab code for mouse action.
 	 */
-	public abstract void mouseEventFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction);
+	public abstract void mouseEventFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown);
 
 	/**
 	 * Event Mask getter.

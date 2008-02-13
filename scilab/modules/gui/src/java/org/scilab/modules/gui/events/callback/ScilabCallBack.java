@@ -1,6 +1,9 @@
 package org.scilab.modules.gui.events.callback;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JPanel;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.GlobalEventFilter;
@@ -9,28 +12,28 @@ import org.scilab.modules.gui.events.GlobalEventWatcher;
 /**
  * ScilabCallback abstract class to easily manage callbacks
  * that throws commands to Scilab.
- * 
+ *
  * @author bruno
  *
  */
 public abstract class ScilabCallBack extends CallBack {
 
 	private String command;
-	
+
 	private int type;
 
 	/**
 	 * @param command : the command to execute.
-	 * @param type : the type of this command. 
+	 * @param type : the type of this command.
 	 */
 	public ScilabCallBack(String command, int type) {
 		this.command = command;
 		this.type = type;
 	}
-	
+
 	/**
 	 * Callback Factory to easily create a callback
-	 * just like in scilab. 
+	 * just like in scilab.
 	 * @param command : the command to execute.
 	 * @param type : the type of this command.
 	 * @return a usable Java callback
@@ -45,14 +48,14 @@ public abstract class ScilabCallBack extends CallBack {
 			}
 		});
 	}
-	
+
 	/**
 	 * To match the standard Java Action management.
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 * @param e The event that launch the callback.
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if (!GlobalEventWatcher.isActivated()) { 
+		if (!GlobalEventWatcher.isActivated()) {
 				callBack();
 		} else {
 			if (this.command != null) {
@@ -60,17 +63,24 @@ public abstract class ScilabCallBack extends CallBack {
 			}
 		}
 	}
-	
+
 	/**
 	 * Put the command recieved through the callback.
-	 * 
+	 *
 	 * @param command : The command to throw to Scilab
 	 * @param type : The type of the command, C or Fortran compiled code, Scilab instruction...
 	 */
 	public void storeCommand(String command, int type) {
-		//System.out.println("Store Command  Command="+command+" Type="+type);
-		//InterpreterManagement.putCommandInScilabQueue(command);
-		ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(command, false, false);
+		this.command = command;
+		Thread launchMe = new Thread() {
+			public void run() {
+				System.out.println("[CALL] Storecommand : "+getCommand());
+//				((JPanel) ScilabConsole.getConsole().getAsSimpleConsole()).setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getCommand(), false, false);
+//				((JPanel) ScilabConsole.getConsole().getAsSimpleConsole()).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		};
+		launchMe.start();
 	}
 
 	/**
@@ -79,7 +89,7 @@ public abstract class ScilabCallBack extends CallBack {
 	public String getCommand() {
 		return command;
 	}
-	
+
 	/**
 	 * @return The type of the Scilab callback
 	 */

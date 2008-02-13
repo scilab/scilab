@@ -62,8 +62,8 @@ public final class Jxgetmouse {
 		GlobalEventWatcher.enable(new GlobalMouseEventWatcher(eventMask)
 		{
 				public void mouseEventFilter(MouseEvent mouseEvent,
-					SwingScilabCanvas canvas, int scilabMouseAction) {
-					mouseActionFilter(mouseEvent, canvas, scilabMouseAction);	
+					SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {
+					mouseActionFilter(mouseEvent, canvas, scilabMouseAction, isControlDown);	
 			}
 		});
 		synchronized (ClickInfos.getInstance()) {
@@ -148,14 +148,18 @@ public final class Jxgetmouse {
 	 * @param scilabMouseAction : the integer scilab code for mouse action.
 	 * @param canvas : the canvas where action occurs.
 	 */
-	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction) {	
+	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {	
 		if (scilabMouseAction != GlobalMouseEventWatcher.MOVED
 				&& scilabMouseAction != GlobalMouseEventWatcher.RELEASED) {
-			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction);
+			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction, isControlDown);
 		} else if (watchMotion && scilabMouseAction == GlobalMouseEventWatcher.MOVED) {
-			GlobalEventFilter.filterMouse(mouseEvent, canvas, MOVED);
+			// Force false value to isControlDown
+			// MOVED do not care about CTRL Key...
+			GlobalEventFilter.filterMouse(mouseEvent, canvas, MOVED, false);
 		} else if (watchRelease && scilabMouseAction == GlobalMouseEventWatcher.RELEASED) {
-			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction);
+			// Force false value to isControlDown
+			// RELEASED do not care about CTRL Key...
+			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction, false);
 		}
 	}
 
