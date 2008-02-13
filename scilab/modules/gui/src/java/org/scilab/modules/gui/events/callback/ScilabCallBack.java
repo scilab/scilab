@@ -1,9 +1,6 @@
 package org.scilab.modules.gui.events.callback;
 
-import java.awt.Cursor;
 import java.awt.event.ActionEvent;
-
-import javax.swing.JPanel;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.GlobalEventFilter;
@@ -74,10 +71,9 @@ public abstract class ScilabCallBack extends CallBack {
 		this.command = command;
 		Thread launchMe = new Thread() {
 			public void run() {
-				System.out.println("[CALL] Storecommand : "+getCommand());
-//				((JPanel) ScilabConsole.getConsole().getAsSimpleConsole()).setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				// DEBUG
+				// System.out.println("[CALL] Storecommand : "+getCommand());
 				ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getCommand(), false, false);
-//				((JPanel) ScilabConsole.getConsole().getAsSimpleConsole()).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		};
 		launchMe.start();
