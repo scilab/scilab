@@ -5,14 +5,18 @@
 #include <string.h>
 #include <stdio.h>
 #include "machine.h"
-#include "getstaticdebuginfo.h"
 #include "gw_core.h"
 #include "stack-c.h"
 #include "version.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "getdynamicDebugInfo_Windows.h"
+#include "getstaticDebugInfo_Windows.h"
+#else
+#include "getstaticdebuginfo.h"
+#endif
 /*--------------------------------------------------------------------------*/
-
 int C2F(sci_getdebuginfo) _PARAMS((char *fname,unsigned long fname_len))
 {
 	char **outputDynamicList = NULL;
@@ -23,10 +27,13 @@ int C2F(sci_getdebuginfo) _PARAMS((char *fname,unsigned long fname_len))
 	CheckRhs(0,0);
 	CheckLhs(0,2);
 
-#ifndef _MSC_VER
-
+#ifdef _MSC_VER
+	outputDynamicList = getDynamicDebugInfo_Windows(&m1);
+	outputStaticList = getStaticDebugInfo_Windows(&m2);
+#else
 	outputDynamicList = getDynamicDebugInfo(&m1);
 	outputStaticList = getStaticDebugInfo(&m2);
+#endif
 
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, outputDynamicList);
 	LhsVar(1) = Rhs+1;
@@ -36,12 +43,8 @@ int C2F(sci_getdebuginfo) _PARAMS((char *fname,unsigned long fname_len))
 		CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &m2, &n2, outputStaticList);
 		LhsVar(2) = Rhs+2;
 	}
-#else
-	/* TO DO : Windows part */
-	/* In my todo list ;) A.C */
-	LhsVar(1) = 0;
-#endif
 	C2F(putlhsvar)();
+
 	freeArrayOfString(outputDynamicList,m1);
 	freeArrayOfString(outputStaticList,m2);
 	return 0;

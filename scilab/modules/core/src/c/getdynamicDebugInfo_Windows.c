@@ -1,0 +1,349 @@
+/*--------------------------------------------------------------------------*/
+/* INRIA 2008 */
+/* Allan CORNET
+/*--------------------------------------------------------------------------*/
+#include <windows.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "machine.h"
+#include "MALLOC.h"
+#include "getDynamicDebugInfo_Windows.h"
+#include "localization.h"
+#include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
+/*--------------------------------------------------------------------------*/
+static char * GetRegKeyCPUIdentifier(void);
+static char * GetRegKeyVideoCard(void);
+static char * GetScreenResolution(void);
+static char * GetNumberMonitors(void);
+static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str);
+/*--------------------------------------------------------------------------*/
+char **getDynamicDebugInfo_Windows(int *sizeArray)
+{
+#define DIV 1024
+#define WIDTH 7
+
+#define BUFFER_LEN 255
+	int nb_info = 0;
+	char *str_info = NULL;
+	char **outputDynamicList=NULL;
+	char *fromGetenv = NULL;
+
+	MEMORYSTATUSEX statex;
+	statex.dwLength = sizeof (statex);
+	GlobalMemoryStatusEx (&statex);
+
+	
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Memory in use : %*ld %%"),
+			WIDTH,
+			statex.dwMemoryLoad);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Total Physical Memory (Kbytes) : %*I64d"),
+			WIDTH,
+			statex.ullTotalPhys/DIV);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Free Physical Memory (Kbytes) : %*I64d"),
+			WIDTH,
+			statex.ullAvailPhys/DIV);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Total Paging File (Kbytes) : %*I64d"),
+			WIDTH,
+			statex.ullTotalPageFile/DIV);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Free Paging File (Kbytes) : %*I64d"),
+			WIDTH,
+			statex.ullAvailPageFile/DIV);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Total Virtual Memory (Kbytes) : %*I64d"),
+			WIDTH,
+			statex.ullTotalVirtual/DIV);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Free Virtual Memory (Kbytes) : %*I64d"),
+			WIDTH,
+			statex.ullAvailVirtual/DIV);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		sprintf(str_info,
+			_("Free Extended Memory (Kbytes) : %*I64d"),
+			WIDTH,
+			statex.ullAvailExtendedVirtual/DIV);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
+		strcpy(str_info ,_("Operating System : "));
+		switch (GetWindowsVersion())
+		{
+		case OS_ERROR : default :
+			strcat(str_info ,"Windows Unknown");
+		break;
+		case OS_WIN32_WINDOWS_NT_3_51 :
+			strcat(str_info ,"Windows NT 3.51");
+		break;
+		case OS_WIN32_WINDOWS_NT_4_0 :
+			strcat(str_info ,"Windows NT 4.0");
+		break;
+		case OS_WIN32_WINDOWS_95 :
+			strcat(str_info ,"Windows 95");
+		break;
+		case OS_WIN32_WINDOWS_98 :
+			strcat(str_info ,"Windows 98");
+		break;
+		case OS_WIN32_WINDOWS_Me :
+			strcat(str_info ,"Windows ME");
+		break;
+		case OS_WIN32_WINDOWS_2000 :
+			strcat(str_info ,"Windows 2000");
+		break;
+		case OS_WIN32_WINDOWS_XP :
+			strcat(str_info ,"Windows XP");
+		break;
+		case OS_WIN32_WINDOWS_XP_64 :
+			strcat(str_info ,"Windows XP x64");
+		break;
+		case OS_WIN32_WINDOWS_SERVER_2003 :
+			strcat(str_info ,"Windows Server 2003");
+		break;
+		case OS_WIN32_WINDOWS_SERVER_2003_R2 :
+			strcat(str_info ,"Windows Server 2003 R2");
+		break;
+		case OS_WIN32_WINDOWS_SERVER_2003_64 :
+			strcat(str_info ,"Windows Server 2003 x64");
+		break;
+		case OS_WIN32_WINDOWS_VISTA :
+			strcat(str_info ,"Windows Vista");
+		break;
+		case OS_WIN32_WINDOWS_VISTA_64 :
+			strcat(str_info ,"Windows Vista x64");
+		break;
+		case OS_WIN32_WINDOWS_LONGHORN :
+			strcat(str_info ,"Windows Server 2008");
+		break;
+		case OS_WIN32_WINDOWS_LONGHORN_64 :
+			strcat(str_info ,"Windows Server 2008 x64");
+		break;
+		}
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetRegKeyCPUIdentifier());
+
+	str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+	if (str_info)
+	{
+		sprintf(str_info,_("Video card : %s"),  GetRegKeyVideoCard());
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetScreenResolution());
+	outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetNumberMonitors());
+	
+	#define PATH_var "Path"
+	fromGetenv = getenv(PATH_var);
+	if (fromGetenv)
+	{
+		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(PATH_var) +1) );
+		sprintf(str_info,"%s : %s", PATH_var, fromGetenv);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+		
+	#define COMSPEC_var "ComSpec"
+	fromGetenv = getenv(COMSPEC_var);
+	if (fromGetenv)
+	{
+		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(COMSPEC_var) + 1) );
+		sprintf(str_info,"%s : %s", COMSPEC_var,fromGetenv);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+	
+	#define TMP_var "TMP"
+	fromGetenv = getenv(TMP_var);
+	if (fromGetenv)
+	{
+		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TMP_var) + 1) );
+		sprintf(str_info,"%s : %s", TMP_var,fromGetenv);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	#define TEMP_var "TEMP"
+	fromGetenv = getenv(TEMP_var);
+	if (fromGetenv)
+	{
+		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
+		sprintf(str_info,"%s : %s", TEMP_var,fromGetenv);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	#define SCIHOME_var "SCIHOME"
+	fromGetenv = getenv(SCIHOME_var);
+	if (fromGetenv)
+	{
+		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(SCIHOME_var) + 1) );
+		sprintf(str_info,"%s : %s", SCIHOME_var,fromGetenv);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	*sizeArray = nb_info;
+	return outputDynamicList;
+}
+/*--------------------------------------------------------------------------*/
+static char * GetRegKeyCPUIdentifier(void)
+{
+#define KeyCpuIdentifer "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"
+#define LenLine 255
+
+	HKEY key;
+	DWORD result;
+	char *LineIdentifier;
+	ULONG length = LenLine,Type;
+
+	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyCpuIdentifer, 0, KEY_QUERY_VALUE , &key);
+
+	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
+
+	if ( RegQueryValueEx(key, "ProcessorNameString", 0, &Type, (LPBYTE)LineIdentifier, &length) !=  ERROR_SUCCESS )
+	{
+		wsprintf(LineIdentifier,"ERROR");
+	}
+
+	if( Type != REG_SZ )
+	{
+		wsprintf(LineIdentifier,"ERROR");
+	}
+
+	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
+
+	return (char *)LineIdentifier;
+}
+/*--------------------------------------------------------------------------*/
+static char * GetScreenResolution(void)
+{
+	#define RESOLUTION_SCREEN "Resolution"
+	
+	HDC hdc=GetDC(NULL);
+	int BitsByPixel = GetDeviceCaps(hdc, BITSPIXEL);
+	int ResX = GetSystemMetrics(SM_CXSCREEN);
+	int ResY = GetSystemMetrics(SM_CYSCREEN) ;
+	char *Resolution = NULL;
+	
+	ReleaseDC (NULL, hdc);
+
+
+	Resolution = (char*)MALLOC( sizeof(char)*( strlen(_(RESOLUTION_SCREEN)) + 
+		                                       strlen(_("%s : %d x %d %d bits")) + 32));
+	if (Resolution)
+	{
+		sprintf(Resolution,_("%s : %d x %d %d bits"),_(RESOLUTION_SCREEN),ResX ,ResY,BitsByPixel);
+	}
+	
+	return Resolution;
+}
+/*--------------------------------------------------------------------------*/
+static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str)
+{
+	char ** returnListInfo = NULL;
+	if (listInfo)
+	{
+		(*sizeListInfo)++;
+		returnListInfo = (char**)REALLOC(listInfo,sizeof(char*)*(*sizeListInfo));
+	}
+	else
+	{
+		(*sizeListInfo) = 1;
+		returnListInfo = (char**)MALLOC(sizeof(char*)*(*sizeListInfo));
+	}
+	returnListInfo[(*sizeListInfo) - 1] = str;
+
+	return returnListInfo;
+}
+/*--------------------------------------------------------------------------*/
+static char * GetNumberMonitors(void)
+{
+	#define NBMONITORS "Number of Monitors : %d"
+	char *returnedStr = NULL;
+	int nbMonitors = GetSystemMetrics(SM_CMONITORS) ;
+
+	returnedStr = (char*)MALLOC( sizeof(char)*( strlen(_(NBMONITORS)) +  32));
+	if (returnedStr)
+	{
+		sprintf(returnedStr,_(NBMONITORS),nbMonitors);
+	}
+
+	return returnedStr;
+}
+/*--------------------------------------------------------------------------*/
+static char * GetRegKeyVideoCard(void)
+{
+	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define LenLine 255
+
+	HKEY key;
+	DWORD result;
+	char *LineIdentifier;
+	ULONG length = LenLine,Type;
+
+	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+
+	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
+
+	if ( RegQueryValueEx(key, "DriverDesc", 0, &Type, (LPBYTE)LineIdentifier, &length) !=  ERROR_SUCCESS )
+	{
+		wsprintf(LineIdentifier,"ERROR");
+	}
+
+	if( Type != REG_SZ )
+	{
+		wsprintf(LineIdentifier,"ERROR");
+	}
+
+	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
+
+	return (char *)LineIdentifier;
+}
+/*--------------------------------------------------------------------------*/

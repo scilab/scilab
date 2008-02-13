@@ -8,16 +8,11 @@
 #include <stdio.h>
 #include <libxml/xmlversion.h>
 
-
-/* TO DO : modify this WITH_TK is not defined on Windows */
-/* it will be better to not have ref. about TCL/TK on core */
-/* create a function in tclsci & notclsi to return value */
-#ifndef _MSC_VER
-	#ifdef WITH_TK
-		#include <tcl.h>
-		#include <tk.h>
-	#endif
+#ifdef WITH_TK
+	#include <tcl.h>
+	#include <tk.h>
 #endif
+
 /*
 Commented for now
 #ifdef WITH_PVM
