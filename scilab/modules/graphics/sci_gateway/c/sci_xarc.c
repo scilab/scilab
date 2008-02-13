@@ -46,7 +46,6 @@ int sci_xarc(char *fname,unsigned long fname_len)
   curcolor = sciGetForeground(psubwin); /* current color equivalent for new graphics mode */
   endFigureDataReading(pFigure);
 
-  startFigureDataWriting(pFigure);
   if ( strcmp(fname,"xarc") == 0 )
   {
     Objarc (&angle1,&angle2,stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,FALSE,TRUE,&hdl);
@@ -55,7 +54,6 @@ int sci_xarc(char *fname,unsigned long fname_len)
   {
     Objarc (&angle1,&angle2,stk(l1),stk(l2),stk(l3),stk(l4),NULL,&curcolor,TRUE,FALSE,&hdl);
   }
-  endFigureDataWriting(pFigure);
   LhsVar(1)=0;
   return 0;
 }
