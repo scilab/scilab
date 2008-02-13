@@ -90,12 +90,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 			e.printStackTrace();
 		}
 		
-		// Gives the focus to the console to avoid having a blinking caret in the not-editable input command view
-		this.requestFocus();
-		
 		// Add a keylistener which will set the returned char
 		OneCharKeyEventListener keyListener = new OneCharKeyEventListener(this);
-		this.addKeyListener(keyListener);
+		((JTextPane) this.getConfiguration().getInputCommandView()).addKeyListener(keyListener);
+		((JTextPane) this.getConfiguration().getOutputView()).addKeyListener(keyListener);
 		
 		// Reads the buffer
 		retChar = this.getUserInputValue();
@@ -105,7 +103,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.clear(-1);
 		this.display(StringConstants.NEW_LINE);
 
-		this.removeKeyListener(keyListener);
+		// Remove the key listener
+		((JTextPane) this.getConfiguration().getInputCommandView()).removeKeyListener(keyListener);
+		((JTextPane) this.getConfiguration().getOutputView()).removeKeyListener(keyListener);
 		
 		// Send back the focus the the input view
 		this.getConfiguration().getInputCommandView().requestFocus();
