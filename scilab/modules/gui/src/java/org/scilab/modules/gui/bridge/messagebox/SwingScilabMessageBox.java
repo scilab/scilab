@@ -343,7 +343,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
 			public void mouseClicked(MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
-					selectedItem = listBox.getSelectedIndex();
+					selectedItem = listBox.getSelectedIndex() + 1;
 					dispose();
 				}
 			}
