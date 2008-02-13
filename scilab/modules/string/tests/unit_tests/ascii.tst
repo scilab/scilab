@@ -222,9 +222,22 @@ if (length(TXT_FROM_ASCII_CODE) <> 27455) then pause,end
  if ascii(124) <> "|" then pause,end
  if ascii(125) <> "}" then pause,end
  if ascii(126) <> "~" then pause,end
+
 // == TEST 6 ===================================================================
+
 NB_CHARACTERS = 400000;
 letters_ascii_code = ones(1,NB_CHARACTERS)*78;
 letters=ascii(letters_ascii_code);
 if (length(letters) <> NB_CHARACTERS) then pause,end
+
 // == TEST 7 ===================================================================
+
+A = floor( 126 * rand(100,100) );
+
+if or( ascii(A) <> ascii(int8(A)) )  then pause, end
+if or( ascii(A) <> ascii(int16(A)) ) then pause, end
+if or( ascii(A) <> ascii(int32(A)) ) then pause, end
+
+if or( ascii(A) <> ascii(uint8(A)) )  then pause, end
+if or( ascii(A) <> ascii(uint16(A)) ) then pause, end
+if or( ascii(A) <> ascii(uint32(A)) ) then pause, end

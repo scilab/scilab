@@ -216,3 +216,10 @@ letters_ascii_code = ones(1,NB_CHARACTERS)*78;
 letters=ascii(letters_ascii_code);
 if (length(letters) <> NB_CHARACTERS) then bugmes();quit;end
 // == TEST 7 ===================================================================
+A = floor( 126 * rand(100,100) );
+if or( ascii(A) <> ascii(int8(A)) )  then bugmes();quit;end
+if or( ascii(A) <> ascii(int16(A)) ) then bugmes();quit;end
+if or( ascii(A) <> ascii(int32(A)) ) then bugmes();quit;end
+if or( ascii(A) <> ascii(uint8(A)) )  then bugmes();quit;end
+if or( ascii(A) <> ascii(uint16(A)) ) then bugmes();quit;end
+if or( ascii(A) <> ascii(uint32(A)) ) then bugmes();quit;end

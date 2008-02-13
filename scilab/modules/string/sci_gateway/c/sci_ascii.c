@@ -21,6 +21,7 @@
 /*----------------------------------------------------------------------------*/
 static int asciiStrings(char *fname);
 static int asciiMatrix(char *fname);
+static int asciiIntMatrix(char *fname);
 static int asciiOthers(char *fname);
 /*----------------------------------------------------------------------------*/
 int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len))
@@ -30,14 +31,18 @@ int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len))
 
 	switch ( GetType(1)) 
 	{
-		case sci_strings : 
+		case sci_strings:
 			asciiStrings(fname);
 		break;
 
-		case sci_matrix : 
+		case sci_matrix :
 			asciiMatrix(fname);
 		break;
-
+		
+		case sci_ints :
+			asciiIntMatrix(fname);
+		break;
+		
 		default:
 			asciiOthers(fname);
 		break;
@@ -236,7 +241,7 @@ static int asciiMatrix(char *fname)
 		int one    = 1 ;
 		int lenStr   = (int)strlen(EMPTY_STR);
 		outIndex = 0 ;
-
+		
 		CreateVar(Rhs+1,STRING_DATATYPE,&lenStr,&one,&outIndex);
 		strcpy(cstk(outIndex),EMPTY_STR);
 	}
@@ -245,6 +250,49 @@ static int asciiMatrix(char *fname)
 	C2F(putlhsvar)();
 	return 0;
 }
+
+/*--------------------------------------------------------------------------*/
+static int asciiIntMatrix(char *fname)
+{
+	int Row_Num = 0,Col_Num = 0;
+	int outIndex = 0 ;
+	int len = 0;
+	
+	SciIntMat M;
+	
+	GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&Row_Num,&Col_Num,&M);
+	len = Row_Num * Col_Num ;
+	
+	if (len != 0)
+	{
+		int one        = 1;
+		int ichar      = I_UCHAR;
+		static int inc = 1;
+		
+		char *Output_StringMatrix = NULL;
+		
+		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
+		Output_StringMatrix = cstk(outIndex);
+		
+		/* from intxx to char */
+		C2F(tpconv)(&M.it,&ichar,&len, M.D, &inc, Output_StringMatrix, &inc);
+		Output_StringMatrix[len] = '\0';
+	}
+	else
+	{
+		#define EMPTY_STR ""
+		int one    = 1 ;
+		int lenStr = (int)strlen(EMPTY_STR);
+		
+		CreateVar(Rhs+1,STRING_DATATYPE,&lenStr,&one,&outIndex);
+		strcpy(cstk(outIndex),EMPTY_STR);
+	}
+	
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
+	return 0;
+}
+
 /*--------------------------------------------------------------------------*/
 static int asciiOthers(char *fname)
 {
