@@ -33,7 +33,7 @@ int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len))
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: String vector expected.\n"), "sci_x_dialog");
+      Scierror(999, _("%s: Wrong type for first input argument: String vector expected.\n"), "x_dialog");
       return FALSE;
     }
 
@@ -53,7 +53,7 @@ int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len))
         }
       else 
         {
-          Scierror(999, _("%s: Wrong type for first input argument: String vector expected.\n"), "sci_x_dialog");
+          Scierror(999, _("%s: Wrong type for second input argument: String vector expected.\n"), "x_dialog");
           return FALSE;
         }
 

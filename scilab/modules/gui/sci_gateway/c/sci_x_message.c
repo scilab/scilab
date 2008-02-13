@@ -31,7 +31,7 @@ int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len))
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), "sci_x_message");
+      Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), "x_message");
       return FALSE;
     }
 
@@ -39,7 +39,7 @@ int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len))
   messageBoxID = createMessageBox();
 
   /* Title is a default title */
-  setMessageBoxTitle(messageBoxID, "Scilab Message");
+  setMessageBoxTitle(messageBoxID, _("Scilab Message"));
   /* Message */
   setMessageBoxMultiLineMessage(messageBoxID, (char**)messageAdr, nbCol*nbRow);
     
@@ -50,13 +50,13 @@ int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len))
           GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonsTextAdr);
           if ((nbCol*nbRow!=1) && (nbCol*nbRow!=2))
             {
-              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), "sci_x_message");
+              Scierror(999, _("%s: Wrong type for second input argument: one or two button names expected.\n"), "x_message");
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), "sci_x_message");
+          Scierror(999, _("%s: Wrong type for second input argument: one or two button names expected.\n"), "x_message");
           return FALSE;
         }
 
