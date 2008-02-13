@@ -708,14 +708,14 @@ AC_SUBST(TERMCAP_LIB)
 #################
 
 AC_ARG_WITH(scicos,
-    [  --without-scicos        Compile without Scicos ])
+    AC_HELP_STRING([--without-scicos],[Compile without Scicos ]))
 
 AC_ARG_WITH(ocaml,
     AC_HELP_STRING([--without-ocaml],[Do not compile ocaml modules]))
 
 
 SCICOS_ENABLE=no
-if test "$with_scicos" = yes; then
+if test "$with_scicos" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
 #################
@@ -730,7 +730,7 @@ fi
 AC_SUBST(SCICOS_ENABLE)
 
 
-AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
+AM_CONDITIONAL(SCICOS, test "$with_scicos" != no)
 
 
 

@@ -15713,7 +15713,7 @@ fi
 
 
 SCICOS_ENABLE=no
-if test "$with_scicos" = yes; then
+if test "$with_scicos" != no; then
 
 cat >>confdefs.h <<\_ACEOF
 #define WITH_SCICOS
@@ -15880,7 +15880,7 @@ fi
 
 
 
- if test "$with_scicos" = yes; then
+ if test "$with_scicos" != no; then
   SCICOS_TRUE=
   SCICOS_FALSE='#'
 else
