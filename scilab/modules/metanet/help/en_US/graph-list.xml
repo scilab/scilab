@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph-list</TITLE>
-  <TYPE>Scilab type</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph-list"> description of graph list (obsolete) </SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    A graph in Scilab-4.x xas represented by a Scilab typed list called
-    "graph list". This data structure as been replaced by a more
-    structured and flexible one (see
-    <LINK>graph_data_structure</LINK>). The function
-    <LINK>ge_old2new</LINK> can be used to translate old graph data
-    structure to the new one. The <LINK>load_graph</LINK>  function now returns a new graph data structure.
-  </P>
- 
-  </DESCRIPTION>
- 
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>graph-list</TITLE>
+	<TYPE>Scilab type</TYPE>
+	<DATE>$LastChangedDate$</DATE>
+	<SHORT_DESCRIPTION name="graph-list">description of graph list (obsolete)</SHORT_DESCRIPTION>
+	
+	<DESCRIPTION>
+		<P>
+			A graph in Scilab-4.x xas represented by a Scilab typed list called
+			"graph list". This data structure as been replaced by a more
+			structured and flexible one (see <LINK>graph_data_structure</LINK>).
+			The function ge_old2new can be used to translate old graph data
+			structure to the new one. The <LINK>load_graph</LINK>  function
+			now returns a new graph data structure.
+		</P>
+	</DESCRIPTION>
+	
 </MAN>
