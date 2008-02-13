@@ -244,6 +244,9 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			case I_UCHAR :
 				C2F(gsortuchar)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
+			case I_INT16 :
+				C2F(gsortshort)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
+				break;
 			case I_UINT16 :
 				C2F(gsortushort)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
 				break;
