@@ -60,10 +60,10 @@
   <EXAMPLE>
 <![CDATA[
 dir
-dir SCI/Makefile*
-x=dir('SCI/Makefile*')
+dir SCI/modules/core/macros/*.bin
+x=dir('SCI/modules/core/macros/*.bin')
 dt=getdate(x.date);
-mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 3 7:9]))
+mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
 ]]>
   </EXAMPLE>
   <SEE_ALSO>
