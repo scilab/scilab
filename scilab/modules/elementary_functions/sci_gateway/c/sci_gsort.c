@@ -50,9 +50,7 @@ int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			break;
 		case sci_ints:
-			printf(" == 2 ==\n");
 			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
-			printf(" == 3 ==\n");
 			break;
 		default :
 			Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
