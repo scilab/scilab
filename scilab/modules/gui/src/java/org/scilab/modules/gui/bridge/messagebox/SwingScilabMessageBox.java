@@ -341,7 +341,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		listBox.setModel(new DefaultListModel());
 		listBox.addMouseListener(new MouseListener() {
 
-			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
 					selectedItem = listBox.getSelectedIndex();
@@ -349,19 +348,15 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 				}
 			}
 
-			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
 
-			@Override
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			@Override
 			public void mousePressed(MouseEvent arg0) {
 			}
 
-			@Override
 			public void mouseReleased(MouseEvent arg0) {
 			}
 			
