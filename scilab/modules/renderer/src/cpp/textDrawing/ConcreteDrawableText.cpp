@@ -137,5 +137,11 @@ bool ConcreteDrawableText::isTextEmpty(void)
   return false;
 }
 /*---------------------------------------------------------------------------------*/
-
+void ConcreteDrawableText::updateTextBox(void)
+{
+  sciText * ppText = pTEXT_FEATURE(m_pDrawed);
+  getBoundingRectangle(ppText->corners[0], ppText->corners[1],
+                       ppText->corners[2], ppText->corners[3]);
+}
+/*---------------------------------------------------------------------------------*/
 }

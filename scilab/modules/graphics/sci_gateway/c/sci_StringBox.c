@@ -14,6 +14,7 @@
 #include "DrawObjects.h"
 #include "StringBox.h"
 #include "localization.h"
+#include "DrawingBridge.h"
 /*--------------------------------------------------------------------------*/
 int sci_StringBox( char * fname, unsigned long fname_len )
 {
@@ -63,19 +64,22 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   /* create a window if needed to initialize the X11 graphic context  */
 
+  /* force drawing of text to update stringbox */
+  sciDrawObj(pText);
+
   /* get the string box */
-  getTextBoundingBox( pText, NULL, corners ) ;
+  sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;
 
   /* copy everything into the lhs */
   CreateVar( Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE, &two, &four, &stackPointer );
-  *stk( stackPointer     )  = corners[0][0] ; 
-  *stk( stackPointer + 1 )  = corners[0][1] ;
-  *stk( stackPointer + 2 )  = corners[1][0] ;
-  *stk( stackPointer + 3 )  = corners[1][1] ;
-  *stk( stackPointer + 4 )  = corners[2][0] ;
-  *stk( stackPointer + 5 )  = corners[2][1] ;
-  *stk( stackPointer + 6 )  = corners[3][0] ;
-  *stk( stackPointer + 7 )  = corners[3][1] ;
+  *stk( stackPointer     )  = corners[1][0] ; 
+  *stk( stackPointer + 1 )  = corners[1][1] ;
+  *stk( stackPointer + 2 )  = corners[0][0] ;
+  *stk( stackPointer + 3 )  = corners[0][1] ;
+  *stk( stackPointer + 4 )  = corners[3][0] ;
+  *stk( stackPointer + 5 )  = corners[3][1] ;
+  *stk( stackPointer + 6 )  = corners[2][0] ;
+  *stk( stackPointer + 7 )  = corners[2][1] ;
 
   LhsVar( 1 ) = Rhs + 1 ;
   return 0;

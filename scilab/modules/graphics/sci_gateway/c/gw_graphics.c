@@ -61,7 +61,6 @@ static gw_generic_table Tab[]={
 	{sci_xset,"xset"},
 	{sci_xsetech,"xsetech"},
 	{sci_xstring,"xstring"},
-	{sci_xstringl,"xstringl"},
 	{sci_xtape,"xtape"},
 	{sci_xtitle,"xtitle"},
 	{sci_xgraduate,"xgraduate"},

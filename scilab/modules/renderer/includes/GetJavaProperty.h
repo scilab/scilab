@@ -66,6 +66,8 @@ void sciGetJava2dViewCoordFromPixel(sciPointObj * pSubwin, const int pixCoords[2
 
 /**
  * Get the bounding box in pixels of a text object.
+ * Warning: the pixel size is in OpenGL frame, not in Scilab
+ * (Y axis inverted)
  */
 void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2],
                                 int corner3[2], int corner4[2]);

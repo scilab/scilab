@@ -519,7 +519,10 @@ typedef struct
   char *callback; 
   /** the length of the callback code */
   int callbacklen; 
-  int callbackevent; 
+  int callbackevent;
+
+  double corners[4][3]; /**< position of the text bounding box corners */
+
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;

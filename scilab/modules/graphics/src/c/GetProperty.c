@@ -4312,23 +4312,53 @@ void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6])
 }
 /*----------------------------------------------------------------------------------*/
 /**
- * Get the 4 corners of the bounding box of a text object in pixels
+ * Get the 4 corners of the bounding box of a text object in 3D
  */
-void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
-                            int corner3[2], int corner4[2])
+void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2[3],
+                            double corner3[3], double corner4[3])
 {
   switch (sciGetEntityType(pObj))
   {
   case SCI_TEXT:
-    sciGetJavaPixelBoundingBox(pObj, corner1, corner2, corner3, corner4);
+    {
+      int i;
+      for (i = 0; i < 3; i++)
+      {
+        // should be up to date
+        corner1[i] = pTEXT_FEATURE(pObj)->corners[0][i];
+        corner2[i] = pTEXT_FEATURE(pObj)->corners[1][i];
+        corner3[i] = pTEXT_FEATURE(pObj)->corners[2][i];
+        corner4[i] = pTEXT_FEATURE(pObj)->corners[3][i];
+      }
+    }
     break;
   case SCI_LABEL:
-    sciGetPixelBoundingBox(pLABEL_FEATURE(pObj)->text, corner1, corner2, corner3, corner4);
+    sciGetTextBoundingBox(pLABEL_FEATURE(pObj)->text, corner1, corner2, corner3, corner4);
     break;
   default:
     printSetGetErrorMessage("bounding box");
     break;
   }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the 4 corners of the bounding box of a text object in pixels
+ */
+void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], int corner2[2],
+                            int corner3[2], int corner4[2])
+{
+
+  double corners3d[4][3];
+  sciPointObj * parentSubwin = sciGetParentSubwin(pObj);
+
+  // get pixel bounding box
+  sciGetTextBoundingBox(pObj, corners3d[0], corners3d[1], corners3d[2], corners3d[3]);
+
+  // convert them to user coordinates
+  sciGetPixelCoordinate(parentSubwin, corners3d[0], corner1);
+  sciGetPixelCoordinate(parentSubwin, corners3d[1], corner2);
+  sciGetPixelCoordinate(parentSubwin, corners3d[2], corner3);
+  sciGetPixelCoordinate(parentSubwin, corners3d[3], corner4);
 }
 /*----------------------------------------------------------------------------------*/
 /**

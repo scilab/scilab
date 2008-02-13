@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "LabelPositionerJoGL.hxx"
+#include "GetJavaProperty.h"
 
 extern "C"
 {
@@ -41,7 +42,7 @@ void LabelPositionerJoGL::getAutoPosition(double pos[3])
   int corner2[2];
   int corner3[2];
   int corner4[2];
-  sciGetPixelBoundingBox(pLabel, corner1, corner2, corner3, corner4);
+  sciGetJavaPixelBoundingBox(pLABEL_FEATURE(pLabel)->text, corner1, corner2, corner3, corner4);
 
   getLabelPositionerJavaMapper()->setLabelPixBoundingBox(corner1, corner2, corner3, corner4);
 

@@ -347,7 +347,6 @@ sci_gateway/c/sci_xsetech.c \
 sci_gateway/c/sci_show_window.c \
 sci_gateway/c/sci_param3d1.c \
 sci_gateway/c/sci_xname.c \
-sci_gateway/c/sci_xstringl.c \
 sci_gateway/c/sci_xpoly.c \
 sci_gateway/c/sci_xchange.c \
 sci_gateway/c/sci_matplot.c \

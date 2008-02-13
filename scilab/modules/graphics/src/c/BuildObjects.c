@@ -645,6 +645,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
 {
   sciPointObj * pObj = NULL ;
   sciText * ppText ;
+  int i;
   if ( ( pObj = MALLOC( sizeof(sciPointObj) ) ) == NULL )
   {
     return NULL;
@@ -692,6 +693,14 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   ppText->x = x;
   ppText->y = y;
   ppText->z = 0.0; /**DJ.Abdemouche 2003**/
+
+  // initialize to a not too weird value
+  for (i = 0; i < 4; i++)
+  {
+    ppText->corners[i][0] = ppText->x;
+    ppText->corners[i][1] = ppText->y;
+    ppText->corners[i][2] = ppText->z;
+  }
   
   ppText->centeredPos = centerPos ;
   ppText->autoSize = autoSize ;

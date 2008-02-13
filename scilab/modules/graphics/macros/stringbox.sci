@@ -64,6 +64,7 @@ else
   // create an object get is bb and then destroy it
   xstring( posX, posY, text, angle ) ;
   textHandle = gce() ;
+  textHandle.visible = "off"; // to prevent it from appearing
   textHandle.font_style = fontId ;
   textHandle.font_size = fontSize ;
 

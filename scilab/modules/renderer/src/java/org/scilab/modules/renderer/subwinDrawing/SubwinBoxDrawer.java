@@ -248,6 +248,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
 		
 		// push back polygons from the box lines
+		gl.glPolygonOffset(1.0f, 1.0f);
 		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
 		gl.glPolygonOffset(1.0f, 1.0f);
 		

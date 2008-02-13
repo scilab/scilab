@@ -40,6 +40,11 @@ public:
    */
   virtual bool isTextEmpty(void) = 0;
 
+  /**
+   * Update the text box of a text object
+   */
+  virtual void updateTextBox(void) = 0;
+
 protected:
 
   /**
