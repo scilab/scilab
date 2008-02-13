@@ -15,8 +15,6 @@ cosFiles = dir(fullfile(baseDir, '*.cos'));
 cosFiles = basename(cosFiles.name);
 for k = 1:size(cosFiles,'*')
   currentTestName = cosFiles(k);
-  if currentTestName ~= "skeleton"
-    launch_test(baseDir, currentTestName);
-  end
+  launch_test(baseDir, currentTestName);
 end
 
