@@ -6,7 +6,7 @@
 // <-- Short Description -->
 //    I am trying to convert a large number of Matlab files to Scilab. Either
 //    by using translatepath or a loop with mfile2sci I get the same error
-//    message when converting specific0.m files. It appears in recursive mode
+//    message when converting specific .m files. It appears in recursive mode
 //    only when calling another matlab function.
 // Vincent COUVERT - Scilab Project
 // Copyright INRIA

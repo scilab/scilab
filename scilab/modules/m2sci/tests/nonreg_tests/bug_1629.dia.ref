@@ -24,7 +24,7 @@
 //    end
 //    ---------------------
 //    Note: without the nargin test surrounding the structure field assignments, the
-//0...
+// ...
 // Copyright INRIA
 // Scilab Project - F. Belahcene
 MFILECONTENTS=["function out=bug1629(par)";

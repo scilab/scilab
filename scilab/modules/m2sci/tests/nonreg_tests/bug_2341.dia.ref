@@ -26,7 +26,7 @@ MFILECONTENTS=["function [a b c d]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/
@@ -58,7 +58,7 @@ MFILECONTENTS=["function [a,b,c,d]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/
@@ -90,7 +90,7 @@ MFILECONTENTS=["function [a  ,b ,c   ,d]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/
@@ -122,7 +122,7 @@ MFILECONTENTS=["function [a, b,  c,  d]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/
@@ -154,7 +154,7 @@ MFILECONTENTS=["function [a  , b,  c ,d]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/
@@ -186,7 +186,7 @@ MFILECONTENTS=["function [a   b,  c   d]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/
@@ -218,7 +218,7 @@ MFILECONTENTS=["function [a]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/
@@ -250,7 +250,7 @@ MFILECONTENTS=["function [ a ]=bug2341";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr=execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch")
+ierr=execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch")
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2341.m
   Result file path: TMPDIR/

@@ -24,7 +24,7 @@
 //      disp(i,"i  =");
 //    end
 //    endfunction
-//0...
+// ...
 // Non-regression test file for bug 1004
 // Copyright INRIA
 // Scilab Project - V. Couvert

@@ -36,7 +36,7 @@ MFILECONTENTS = ["function bug2428";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
-ierr = execstr("mfile2sci("""+MFILD+""","""+TMPDIR+""")","errcatch");
+ierr = execstr("mfile2sci("""+MFILE+""","""+TMPDIR+""")","errcatch");
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug2428.m
   Result file path: TMPDIR/
