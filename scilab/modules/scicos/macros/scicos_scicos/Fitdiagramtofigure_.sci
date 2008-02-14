@@ -48,7 +48,7 @@ function Fitdiagramtofigure_()
    gh_window = gcf();             //*get handle of current window
 
    window_set_size(gh_window);
-   if exists('%scicos_with_grid') then
+   if %scicos_with_grid then
      drawgrid();
      swap_handles(gh_window.children.children($),...
                   gh_window.children.children(1));
