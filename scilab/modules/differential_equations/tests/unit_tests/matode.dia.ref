@@ -1,7 +1,7 @@
 // Copyright INRIA
 Leps=1.e-6;
-//     dy1/dt = -0.04*y1 + 1.e4*y2*y3
-//     dy2/dt =0.04*y1 - 1.e4*y2*y3 - 3.e7*y2**2
+//     dy1/dt = -.04*y1 + 1.e4*y2*y3
+//     dy2/dt = .04*y1 - 1.e4*y2*y3 - 3.e7*y2**2
 //     dy3/dt = 3.e7*y2**2
 // on the interval from t = 0.0 to t = 4.e10, with initial conditions
 // y1 = 1.0, y2 = y3 = 0.  the problem is stiff.
@@ -61,8 +61,8 @@ t1=1;y=ode('adams',eye(a),t0,t1,f);
 if maxi(ea-y) > Leps then bugmes();quit;end
 //
 //   DAE's
-//     dy1/dt = -0.04*y1 + 1.e4*y2*y3
-//     dy2/dt =0.04*y1 - 1.e4*y2*y3 - 3.e7*y2**2
+//     dy1/dt = -.04*y1 + 1.e4*y2*y3
+//     dy2/dt = .04*y1 - 1.e4*y2*y3 - 3.e7*y2**2
 //       0.   = y1 + y2 + y3 - 1.
 //  y1(0) = 1.0, y2(0) = y3(0) = 0.
 // scilab macros
@@ -99,7 +99,7 @@ xf=ode(x0,t0,t,f);   //lsoda
 if norm(xf(:,nt)-eAt*x0)>Leps then bugmes();quit;end
 xfj=ode(x0,t0,t,f,j);   //lsoda with jacobian
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 if norm(xfj(:,nt)-eAt*x0)>Leps then bugmes();quit;end
 //itask=2;   --->  solution at mesh points  ---> t=tmax
@@ -150,14 +150,14 @@ if norm(x61-xf,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=0; // jacobian nor called nor estimated
 x60=ode('st',x0,t0,t,f,j);   //Jacobian not used (warning)
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 x60=ode('st',x0,t0,t,f);    //Jacobian not used
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=1;//Jacobian estimated
 x60=ode('st',x0,t0,t,f)  ;
 Warning: No Jacobian external given but
- one is required by ODEOPTIONS(6) value !
+ one is required by %ODEOPTIONS(6) value !
 
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 //test of %ODEOPTIONS(6)=jacflag   (adams)
@@ -167,7 +167,7 @@ if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=0;// jacobian nor called nor estimated
 x60=ode('ad',x0,t0,t,f,j);   //Jacobian not used (warning)
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 x60=ode('ad',x0,t0,t,f);    //Jacobian not used
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
@@ -178,7 +178,7 @@ if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=1;//Jacobian estimated
 x60=ode(x0,t0,t,f);
 Warning: No Jacobian external given but
- one is required by ODEOPTIONS(6) value !
+ one is required by %ODEOPTIONS(6) value !
 
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 //   Banded Jacobian
@@ -208,7 +208,7 @@ Warning : redefining function: j
 // J is a ml+mu+1 x ny matrix.
 // Column 1 of J is made of mu zeros followed by df1/dx1, df2/dx1, df3/dx1,
 // i.e. 1 + ml possibly nonzeros entries.
-// Column 2 of J is made of mu-1 zeros followed by df1/dx2, df2/dx2,0...
+// Column 2 of J is made of mu-1 zeros followed by df1/dx2, df2/dx2, ...
 // etc...
 %ODEOPTIONS(6)=1;%ODEOPTIONS(11:12)=[-1,-1];
 deff('jj=j1(t,x)','jj=A')
@@ -223,7 +223,7 @@ if norm(xnotband-xband,1)>Leps then bugmes();quit;end
 deff('jj=j(t,x)','jj=J')
 xband=ode('st',x0,t0,t,f,j);
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 if norm(xnotband-xband,1)>Leps then bugmes();quit;end
 //            Test of %ODEOPTIONS(7)
