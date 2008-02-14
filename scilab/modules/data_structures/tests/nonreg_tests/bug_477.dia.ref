@@ -24,7 +24,7 @@
 //
 //    -->[m,i,j,k]=max(a)
 //                     !--error    78
-//0...
+// ...
 a   = hypermat([3,3,1],1:9);
 [m] = max(a);
 result = execstr("[n,i]=max(a)","errcatch","n");

@@ -1,13 +1,7 @@
- 
 //extraction
- 
 Data=list(1:12,(1:12)+rand(1,12)*%i,int32(1:12),(1:12)+%s,rand(1,12)>0.5,string(1:12));
- 
- 
 test=1;
- 
 msg='Problem with extraction for hypermatrix of type %s in test %d.%d \n';
- 
 for k=1:size(Data)
   data=Data(k);td=typeof(data);
   h=hypermat([2 3 2],data);
@@ -27,11 +21,8 @@ end
     test1.4 completed
     test1.5 completed
     test1.6 completed
- 
 //insertion of []
- 
 test=2;
- 
 for k=1:size(Data)
   data=Data(k);td=typeof(data);
   h=hypermat([2 3 2],data);h1=h;
@@ -53,15 +44,9 @@ end
     test2.4 completed
     test2.5 completed
     test2.6 completed
- 
- 
- 
 msg='Problem with insertion for hypermatrix of type %s in test %d.%d \n';
- 
 //insertion of a single element
- 
 test=3;
- 
 for k=1:size(Data)
   data=Data(k);td=typeof(data);
   I=data(1);
@@ -102,12 +87,8 @@ end
     test3.4 completed
     test3.5 completed
     test3.6 completed
- 
- 
 //extension of a 2D matrix to a 3D one
- 
 test=4;
- 
 for k=1:size(Data)
   data=matrix(Data(k),3,-1);td=typeof(data);
   I=data(1,1);
@@ -125,7 +106,3 @@ end
     test4.4 completed
     test4.5 completed
     test4.6 completed
- 
- 
- 
- 
