@@ -3,12 +3,10 @@
 ### INRIA - Scilab 2006/2008
 ##########
 
-# SUBDIRS = src/ocaml/
+# SUBDIRS = src/ocaml/
 
 #### Target ######
 modulename=scicos
-
-include $(top_srcdir)/Makefile.incl.am
 
 if SCICOS
 
@@ -84,8 +82,6 @@ sci_gateway/fortran/sci_tree4.f \
 sci_gateway/fortran/sci_var2vec.f \
 sci_gateway/fortran/sci_vec2var.f
 
-
-
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
 libsciscicos_la_CFLAGS= -Iincludes/ \
@@ -114,28 +110,27 @@ libsciscicos_la_LIBADD = \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
 libsciscicos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### scicos : init scripts ####
+#### scicos : init scripts ####
 libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
-#### scicos : gateway declaration ####
+#### scicos : gateway declaration ####
 libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
 
-#### scicos : include files ####
+#### scicos : include files ####
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/intcscicos.h \
 includes/scicos.h \
 includes/gw_scicos.h 
 
-#### scicos : demos files ####
+#### scicos : demos files ####
 libsciscicos_la_demosdir=$(mydatadir)
 nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
 	demos/Bouncing_ball.cosf \
@@ -211,25 +206,13 @@ demos/MBlock/BouncingBall_Modelica.cosf \
 demos/MBlock/RLC_Modelica.cosf \
 demos/MBlock/Ball_Platform.cosf
 
+#### scicos : MACROS ####
+MACROSDIRSEXT= macros/scicos_auto \
+macros/scicos_menus \
+macros/scicos_scicos \
+macros/scicos_utils
 
-########### MACROS #####################
-MACROSDIRSEXT= macros/scicos_blocks \
-macros/scicos_blocks/Sources \
-macros/scicos_blocks/Events \
-macros/scicos_blocks/NonLinear \
-macros/scicos_blocks/Electrical \
-macros/scicos_blocks/Hydraulics \
-macros/scicos_blocks/Sinks \
-macros/scicos_blocks/PDE \
-macros/scicos_blocks/Linear \
-macros/scicos_blocks/Branching \
-macros/scicos_blocks/Misc \
-macros/scicos_blocks/Threshold \
-macros/scicos
-
-
-
-#################### SUNDIALS STUFF ###################"
+#### scicos : SUNDIALS STUFF ####
 
 SUNDIALS_SOURCES = src/scicos_sundials/cvode.c \
 src/scicos_sundials/sundials_dense.c \
@@ -260,14 +243,15 @@ libsciscicos_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes \
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
 
-#### scicos : init scripts ####
+#### scicos : init scripts ####
 libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 endif
 
+include $(top_srcdir)/Makefile.incl.am
 
-#### WORKAROUND ####
+#### WORKAROUND ####
 # Do not use the global clean-local rule because Scicos help is not managed
 # like the rest of Scilab
 #clean-local:

@@ -1171,9 +1171,9 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/fortran/zcross.f
 
 
-#GATEWAY_C_SOURCES = 
+#### scicos_blocks : GATEWAY_C_SOURCES ####
 
-#GATEWAY_FORTRAN_SOURCES = 
+#### scicos_blocks : GATEWAY_FORTRAN_SOURCES ####
 @SCICOS_TRUE@libsciscicos_blocks_la_CFLAGS = -Iincludes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
@@ -1184,10 +1184,14 @@ JARMASK = *.jar
 @SCICOS_TRUE@                        -I$(top_srcdir)/modules/elementary_functions/includes
 
 @SCICOS_FALSE@libsciscicos_blocks_la_SOURCES = 
-@SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) $(SCICOS_BLOCKS_FORTRAN_SOURCES)  $(NON_BLOCK_C_SOURCES)
+@SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
+@SCICOS_TRUE@$(SCICOS_BLOCKS_FORTRAN_SOURCES) \
+@SCICOS_TRUE@$(NON_BLOCK_C_SOURCES)
+
+
 #$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-##### Generation of the  includes/blocks.h Files ###
+#### scicos_blocks : Generation of the  includes/blocks.h Files ####
 @SCICOS_TRUE@BUILT_SOURCES = includes/blocks.h
 @SCICOS_TRUE@CLEANFILES = $(top_srcdir)/modules/scicos_blocks/includes/blocks.h $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/Fblocknames
 @SCICOS_TRUE@libsciscicos_blocks_la_LIBADD = \
@@ -1201,17 +1205,33 @@ JARMASK = *.jar
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 
-#### scicos : Conf files ####
+#### scicos_blocks : Conf files ####
 @SCICOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)
 @SCICOS_TRUE@libsciscicos_blocks_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### scicos : init scripts ####
+#### scicos_blocks : init scripts ####
 @SCICOS_TRUE@libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
 @SCICOS_TRUE@libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
-#### scicos : include files ####
+#### scicos_blocks : include files ####
 @SCICOS_TRUE@libsciscicos_blocks_la_includedir = $(pkgincludedir)/scicos_blocks
 @SCICOS_TRUE@libsciscicos_blocks_la_include_HEADERS = 
+
+#### scicos_blocks : MACROS ####
+@SCICOS_TRUE@MACROSDIRSEXT = macros/Branching \
+@SCICOS_TRUE@macros/Electrical \
+@SCICOS_TRUE@macros/Events \
+@SCICOS_TRUE@macros/Hydraulics \
+@SCICOS_TRUE@macros/IntegerOp \
+@SCICOS_TRUE@macros/Linear \
+@SCICOS_TRUE@macros/MatrixOp \
+@SCICOS_TRUE@macros/Misc \
+@SCICOS_TRUE@macros/NonLinear \
+@SCICOS_TRUE@macros/PDE \
+@SCICOS_TRUE@macros/Sinks \
+@SCICOS_TRUE@macros/Sources \
+@SCICOS_TRUE@macros/Threshold
+
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -4301,7 +4321,7 @@ install-data-local:
 
 @SCICOS_TRUE@	$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
 
-#### WORKAROUND ####
+##### WORKAROUND ####
 # Do not use the global clean-local rule because Scicos help is not managed
 # like the rest of Scilab
 #clean-local:
