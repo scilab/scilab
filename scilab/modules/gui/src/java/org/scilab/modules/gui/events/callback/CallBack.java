@@ -15,21 +15,46 @@ import javax.swing.AbstractAction;
 public abstract class CallBack extends AbstractAction implements ActionListener {
 	
 	/**
-	 * Unmanaged command type constant for Scilab storecommand
+	 * Unmanaged command type constant
 	 */
 	public static final int UNTYPED = -1;
 	/**
-	 * Scilab instruction command type constant for Scilab storecommand
+	 * Scilab instruction command type constant
 	 */
 	public static final int SCILAB_INSTRUCTION = 0;
 	/**
-	 * C or Fortran function type constant for Scilab storecommand
+	 * C or Fortran function type constant
 	 */
 	public static final int C_FORTRAN = 1;
 	/**
-	 * Scilab function type constant for Scilab storecommand
+	 * Scilab function type constant
 	 */
 	public static final int SCILAB_FUNCTION = 2;
+
+	/**
+	 * Java function type constant
+	 */
+	public static final int JAVA = 3;	
+	
+	/**
+	 * The Command to Store and remember.
+	 */
+	protected String command;
+	
+	/**
+	 * Constructor to be seen by specifics CallBack.
+	 * @param command
+	 */
+	public CallBack(String command) {
+		this.command=command;
+	}
+	
+	/**
+	 * @return the command if it's a Scilab instruction.
+	 */
+	public String getCommand() {
+		return command;
+	}
 	
 	/**
 	 * Callback function that will be call on some event.

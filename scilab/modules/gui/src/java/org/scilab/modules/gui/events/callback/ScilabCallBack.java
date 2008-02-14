@@ -15,16 +15,15 @@ import org.scilab.modules.gui.events.GlobalEventWatcher;
  */
 public abstract class ScilabCallBack extends CallBack {
 
-	private String command;
-
+	// @TODO : Delete me I'm useless...
 	private int type;
 
 	/**
 	 * @param command : the command to execute.
 	 * @param type : the type of this command.
 	 */
-	public ScilabCallBack(String command, int type) {
-		this.command = command;
+	private ScilabCallBack(String command, int type) {
+		super(command);
 		this.type = type;
 	}
 
@@ -71,19 +70,10 @@ public abstract class ScilabCallBack extends CallBack {
 		this.command = command;
 		Thread launchMe = new Thread() {
 			public void run() {
-				// DEBUG
-				// System.out.println("[CALL] Storecommand : "+getCommand());
 				ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getCommand(), false, false);
 			}
 		};
 		launchMe.start();
-	}
-
-	/**
-	 * @return the command if it's a Scilab instruction.
-	 */
-	public String getCommand() {
-		return command;
 	}
 
 	/**
