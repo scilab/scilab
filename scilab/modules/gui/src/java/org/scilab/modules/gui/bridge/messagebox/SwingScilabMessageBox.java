@@ -48,11 +48,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 * Offset around object and its ScrollPane
 	 */
 	private static final int OFFSET = 5;
-	
-	/**
-	 * Grey value for JLabel message background
-	 */
-	private static final int GREY_VALUE = 230;
 
 	/**
 	 * New line character for mutli-line text components
