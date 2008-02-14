@@ -15,6 +15,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -110,7 +111,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 * Default constructor
 	 */
 	public SwingScilabMessageBox() {
-		super();
+		super(new JFrame());
+		((JFrame) getOwner()).setIconImage(imageForIcon); // Java 1.5 compatible
 	}
 
 	/**
@@ -164,7 +166,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	public void displayAndWait() {
 		
 		// Set the title & icon
-		setIconImage(imageForIcon);
+		//setIconImage(imageForIcon); // Not Java 1.5 compatible
 		super.setTitle(title);
 
 		// Create the message to display
@@ -320,7 +322,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		// Display
 		setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
 		pack();
-		setModal(modal);
+		super.setModal(modal); /* Must call the JDialog class setModal */
 		setVisible(true);
 		doLayout();
 	}
