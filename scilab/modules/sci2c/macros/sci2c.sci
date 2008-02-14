@@ -1,14 +1,12 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Bruno JOFRET <bruno.jofret@inria.fr>
 //
-//  -*- Scilab -*-
-//
-// sci2c.sci
-// Made by  Bruno JOFRET <bruno.jofret@inria.fr>
-//
-// Started on  Thu Nov 16 16:32:54 2006 jofret
-// Last update Thu Nov 16 16:54:10 2006 jofret
-//
-// Copyright INRIA 2006
-//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function res=sci2c(sciFile)
 
