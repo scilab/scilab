@@ -24,6 +24,11 @@
 #include "sciprint.h"
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
+#include "DrawObjects.h"
+
+/*-------------------------------------------------------------------------------------*/
+static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize);
+/*-------------------------------------------------------------------------------------*/
 
 /**sciAddCallback
  * exec the callback associated with pthis
@@ -547,141 +552,136 @@ sciExecCallback (sciPointObj * pthis)
 /* move a handle in the graphic window                                                             */
 /*----------------------------------------------------------------------------------------*/
 
-int Objmove (long *hdl, double *d, int m,BOOL opt)
-{   
-  long tmphdl;
-  double x,y,z;
-  sciPointObj *pobj;  
-  sciSons *psonstmp;
+static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize)
+{
+  double x = displacement[0];
+  double y = displacement[1];
+  double z = (displacementSize == 3? displacement[2] : 0.0);
   int i,n;
-  x=d[0];y=d[1];
-  if (m==3) z=d[2]; else z=0.0;
-
-  pobj = (sciPointObj *)sciGetPointerFromHandle(*hdl);
-  /*sciSetCurrentObj (pobj);*/  /* Useless*/
 
   switch (sciGetEntityType (pobj))
-    {    
-    case SCI_SUBWIN:
-      pSUBWIN_FEATURE(pobj)->FRect[0] +=x;
-      pSUBWIN_FEATURE(pobj)->FRect[2] +=x;
-      pSUBWIN_FEATURE(pobj)->FRect[1] +=y;
-      pSUBWIN_FEATURE(pobj)->FRect[3] +=y;
-      break;
-    case SCI_ARC:
-      pARC_FEATURE(pobj)->x +=x;
-      pARC_FEATURE(pobj)->y += y; 
-      if (m == 3) pRECTANGLE_FEATURE(pobj)->z += z;
-      break;
-    case SCI_RECTANGLE: 
-      pRECTANGLE_FEATURE(pobj)->x += x;  
-      pRECTANGLE_FEATURE(pobj)->y += y; 
-      if (m == 3) pRECTANGLE_FEATURE(pobj)->z += z;
-      break; 
-    case SCI_AGREG: 
-      psonstmp = sciGetSons((sciPointObj *) pobj);
-      while ((psonstmp != (sciSons *)NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
-	{
-	  tmphdl =sciGetHandle((sciPointObj *)psonstmp->pointobj);
-	  Objmove (&tmphdl,d,m,opt);
-	  psonstmp = psonstmp->pnext;
-	}
-      break;
-    case SCI_TEXT:  
-      pTEXT_FEATURE(pobj)->x += x; 
-      pTEXT_FEATURE(pobj)->y += y;
-      if (m == 3) pTEXT_FEATURE(pobj)->z += z;
-      break;
-    case SCI_SEGS:
-      n=pSEGS_FEATURE(pobj)->Nbr1;   
+  {    
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pobj)->FRect[0] +=x;
+    pSUBWIN_FEATURE(pobj)->FRect[2] +=x;
+    pSUBWIN_FEATURE(pobj)->FRect[1] +=y;
+    pSUBWIN_FEATURE(pobj)->FRect[3] +=y;
+    break;
+  case SCI_ARC:
+    pARC_FEATURE(pobj)->x +=x;
+    pARC_FEATURE(pobj)->y += y; 
+    if (displacementSize == 3) pRECTANGLE_FEATURE(pobj)->z += z;
+    break;
+  case SCI_RECTANGLE: 
+    pRECTANGLE_FEATURE(pobj)->x += x;  
+    pRECTANGLE_FEATURE(pobj)->y += y; 
+    if (displacementSize == 3) pRECTANGLE_FEATURE(pobj)->z += z;
+    break; 
+  case SCI_AGREG: 
+    {
+      sciSons * psonstmp = sciGetSons(pobj);
+      while ((psonstmp != NULL) && (psonstmp->pointobj != NULL))
+      {
+        moveObj(psonstmp->pointobj, displacement, displacementSize);
+        psonstmp = psonstmp->pnext;
+      }
+    }
+    break;
+  case SCI_TEXT:  
+    pTEXT_FEATURE(pobj)->x += x; 
+    pTEXT_FEATURE(pobj)->y += y;
+    if (displacementSize == 3) pTEXT_FEATURE(pobj)->z += z;
+    break;
+  case SCI_SEGS:
+    n=pSEGS_FEATURE(pobj)->Nbr1;   
+    for (i=0;i<n;i++) {
+      pSEGS_FEATURE(pobj)->vx[i] += x; 
+      pSEGS_FEATURE(pobj)->vy[i] += y;
+    }
+    if (displacementSize == 3) {
+      if  (pSEGS_FEATURE(pobj)->vz == (double *)NULL) {
+        if ((pSEGS_FEATURE(pobj)->vz = MALLOC (n * sizeof (double)))==NULL) return -1;
+        for (i=0;i<n;i++) 
+          pSEGS_FEATURE(pobj)->vz[i] = z; 
+      }
+      else
+        for (i=0;i<n;i++) 
+          pSEGS_FEATURE(pobj)->vz[i] += z; 
+    }
+    break;
+  case SCI_POLYLINE: 
+    n=pPOLYLINE_FEATURE(pobj)->n1;
+    for (i=0;i<n;i++) {
+      pPOLYLINE_FEATURE(pobj)->pvx[i] += x; 
+      pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
+    }
+    if (displacementSize == 3) {
+      if  (pPOLYLINE_FEATURE(pobj)->pvz == (double *)NULL) {
+        if ((pPOLYLINE_FEATURE(pobj)->pvz = MALLOC (n * sizeof (double)))==NULL) return -1;
+        for (i=0;i<n;i++) 
+          pPOLYLINE_FEATURE(pobj)->pvz[i] = z; 
+      }
+      else
+        for (i=0;i<n;i++) 
+          pPOLYLINE_FEATURE(pobj)->pvz[i] += z; 
+    }
+    break;
+  case SCI_FEC: 
+    for (i=0;i<pFEC_FEATURE(pobj)->Nnode;i++) {
+      pFEC_FEATURE(pobj)->pvecx[i] += x; 
+      pFEC_FEATURE(pobj)->pvecy[i] += y;
+    }
+    break;
+  case SCI_GRAYPLOT:   
+    for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
+      pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x; 
+    for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
+      pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+    break;
+  case SCI_SURFACE: 
+    switch(pSURFACE_FEATURE (pobj)->typeof3d)
+    {
+    case SCI_FAC3D: 
+      n= pSURFACE_FEATURE (pobj)->dimzx* pSURFACE_FEATURE (pobj)->dimzy;
       for (i=0;i<n;i++) {
-	pSEGS_FEATURE(pobj)->vx[i] += x; 
-	pSEGS_FEATURE(pobj)->vy[i] += y;
+        pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
+        pSURFACE_FEATURE(pobj)->pvecy[i] += y;
       }
-      if (m == 3) {
-	if  (pSEGS_FEATURE(pobj)->vz == (double *)NULL) {
-	  if ((pSEGS_FEATURE(pobj)->vz = MALLOC (n * sizeof (double)))==NULL) return -1;
-	    for (i=0;i<n;i++) 
-	      pSEGS_FEATURE(pobj)->vz[i] = z; 
-	}
-	else
-	  for (i=0;i<n;i++) 
-	    pSEGS_FEATURE(pobj)->vz[i] += z; 
-      }
-      break;
-    case SCI_POLYLINE: 
-      n=pPOLYLINE_FEATURE(pobj)->n1;
-      for (i=0;i<n;i++) {
-	pPOLYLINE_FEATURE(pobj)->pvx[i] += x; 
-	pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
-      }
-      if (m == 3) {
-	if  (pPOLYLINE_FEATURE(pobj)->pvz == (double *)NULL) {
-	  if ((pPOLYLINE_FEATURE(pobj)->pvz = MALLOC (n * sizeof (double)))==NULL) return -1;
-	    for (i=0;i<n;i++) 
-	      pPOLYLINE_FEATURE(pobj)->pvz[i] = z; 
-	}
-	else
-	  for (i=0;i<n;i++) 
-	    pPOLYLINE_FEATURE(pobj)->pvz[i] += z; 
+      if (displacementSize == 3) {
+        if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
+          if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
+          for (i=0;i<n;i++) 
+            pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
+        }
+        else
+          for (i=0;i<n;i++) 
+            pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
       }
       break;
-    case SCI_FEC: 
-      for (i=0;i<pFEC_FEATURE(pobj)->Nnode;i++) {
-	pFEC_FEATURE(pobj)->pvecx[i] += x; 
-	pFEC_FEATURE(pobj)->pvecy[i] += y;
+    case SCI_PLOT3D:
+      for (i=0;i<pSURFACE_FEATURE (pobj)->dimzx;i++) 
+        pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
+      for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++) 
+        pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+      if (displacementSize == 3) {
+        n=pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;
+        if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
+          if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
+          for (i=0;i<n;i++) 
+            pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
+        }
+        else
+          for (i=0;i<n;i++) 
+            pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
       }
       break;
-    case SCI_GRAYPLOT:   
-      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
-	pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x; 
-      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
-	pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+    case SCI_CONTOUR:
+    case SCI_PARAM3D:
+    case SCI_PARAM3D1: /* Nothing to be done */
       break;
-    case SCI_SURFACE: 
-      switch(pSURFACE_FEATURE (pobj)->typeof3d)
-	{
-	case SCI_FAC3D: 
-	  n= pSURFACE_FEATURE (pobj)->dimzx* pSURFACE_FEATURE (pobj)->dimzy;
-	  for (i=0;i<n;i++) {
-	    pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
-	    pSURFACE_FEATURE(pobj)->pvecy[i] += y;
-	  }
-	  if (m == 3) {
-	    if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
-	      if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
-	      for (i=0;i<n;i++) 
-		pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
-	    }
-	    else
-	      for (i=0;i<n;i++) 
-		pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
-	  }
-	  break;
-	case SCI_PLOT3D:
-	  for (i=0;i<pSURFACE_FEATURE (pobj)->dimzx;i++) 
-	    pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
-	  for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++) 
-	    pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
-	  if (m == 3) {
-	    n=pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;
-	    if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
-	      if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
-	      for (i=0;i<n;i++) 
-		pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
-	    }
-	    else
-	      for (i=0;i<n;i++) 
-		pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
-	  }
-	  break;
-	case SCI_CONTOUR:
-	case SCI_PARAM3D:
-	case SCI_PARAM3D1: /* Nothing to be done */
-	  break;
-	}
-      break;
-    case SCI_LABEL:
+    }
+    break;
+  case SCI_LABEL:
     {
       double pos[3];
       sciGetTextPos(pobj, pos) ;
@@ -689,35 +689,44 @@ int Objmove (long *hdl, double *d, int m,BOOL opt)
       pLABEL_FEATURE(pobj)->auto_position = FALSE;
       break;
     }
-    case SCI_FIGURE:
-    case SCI_AXES:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:	
-    case SCI_SBH:		
-    case SCI_SBV:	      
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_UIMENU:
-    default:
-      sciprint(_("This object can not be moved.\n"));
-      return -1;
-      break;
-    }    
+  case SCI_FIGURE:
+  case SCI_AXES:
+  case SCI_LIGHT:
+  case SCI_MENU:
+  case SCI_MENUCONTEXT:
+  case SCI_STATUSB:
+  case SCI_PANNER:	
+  case SCI_SBH:		
+  case SCI_SBV:	      
+  case SCI_TITLE:
+  case SCI_LEGEND:
+  case SCI_UIMENU:
+  default:
+    sciprint(_("This object can not be moved.\n"));
+    return -1;
+    break;
+  }    
+  
+  /* update the object */
+  forceRedraw(pobj);
+
+  return 0;
+}
+
+int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
+{   
+  int status = moveObj(pobj, d, m);
   if (opt)
   {
-    /* should be sciDrawSingleObj(pobj) */
-    sciRefreshObj( pobj ) ;
+    /* should be sci draw single obj */
+    sciRefreshObj(pobj);
   }
   else
   {
-    sciRefreshObj( pobj ) ;
+    sciRefreshObj(pobj);
   }
-
     
-  return 0;
+  return status;
 }
 
 
