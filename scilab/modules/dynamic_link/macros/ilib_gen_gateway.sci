@@ -10,42 +10,6 @@
 //==========================================
 function ilib_gen_gateway(name,tables)
 
-//==========================================
-// new_names only used by ilib_gen_gateway
-//==========================================
-function [gate,names] = new_names(table) 
-  // change names according to types 
-  [mt,nt] = size(table);
-  gate = "mex_gateway"; 
-  gate = gate(ones(mt,1)); 
-  names = " "; 
-  names = names(ones(mt,1)); 
-  for i = 1:mt 
-    select table(i,3) 
-     case 'cmex' then 
-       names(i) = "mex_" + table(i,2) ;
-     case 'fmex' then 
-       gate(i) = "(Myinterfun)fortran_mex_gateway" ;
-       names(i) = "C2F(mex" + table(i,2) + ")" ;
-     case 'Fmex' then 
-       gate(i) = "(Myinterfun)fortran_mex_gateway" ;
-       names(i) = "C2F(mex" + table(i,2) + ")" ;
-     case 'csci'  then 
-       gate(i) = "(Myinterfun)sci_gateway" ;
-       names(i) = table(i,2) ;
-     case 'fsci'  then 
-       gate(i) = "(Myinterfun)sci_gateway" ;
-       names(i) = "C2F(" + table(i,2) + ")" ;
-     case 'direct'  then 
-       gate(i) = "(Myinterfun)direct_gateway" ;
-       names(i) = "C2F(" + table(i,2) + ")" ;
-    else 
-      error(999,"wrong interface type " + table(i,3)); 
-    end 
-  end 
-endfunction
-//==========================================
-
   k = strindex(name,['/','\']);
   if k~=[] then
     path = part(name,1:k($));
@@ -80,7 +44,7 @@ endfunction
     end 
     
     if ( nt <> 3 ) then 
-      error('second argument has wrong size ');
+      error(msprintf(gettext("%s: Wrong size for second input argument: %d expected.\n"),"ilib_gen_gateway",3));
     end 
     [gate,names] = new_names(table); 
     
@@ -112,5 +76,43 @@ endfunction
        mputl(t,path+tname+'.c')    
     end
   end
+endfunction
+//==========================================
+
+
+
+//==========================================
+// new_names only used by ilib_gen_gateway
+//==========================================
+function [gate,names] = new_names(table) 
+  // change names according to types 
+  [mt,nt] = size(table);
+  gate = "mex_gateway"; 
+  gate = gate(ones(mt,1)); 
+  names = " "; 
+  names = names(ones(mt,1)); 
+  for i = 1:mt 
+    select table(i,3) 
+     case 'cmex' then 
+       names(i) = "mex_" + table(i,2) ;
+     case 'fmex' then 
+       gate(i) = "(Myinterfun)fortran_mex_gateway" ;
+       names(i) = "C2F(mex" + table(i,2) + ")" ;
+     case 'Fmex' then 
+       gate(i) = "(Myinterfun)fortran_mex_gateway" ;
+       names(i) = "C2F(mex" + table(i,2) + ")" ;
+     case 'csci'  then 
+       gate(i) = "(Myinterfun)sci_gateway" ;
+       names(i) = table(i,2) ;
+     case 'fsci'  then 
+       gate(i) = "(Myinterfun)sci_gateway" ;
+       names(i) = "C2F(" + table(i,2) + ")" ;
+     case 'direct'  then 
+       gate(i) = "(Myinterfun)direct_gateway" ;
+       names(i) = "C2F(" + table(i,2) + ")" ;
+    else 
+      error(999,"wrong interface type " + table(i,3)); 
+    end 
+  end 
 endfunction
 //==========================================

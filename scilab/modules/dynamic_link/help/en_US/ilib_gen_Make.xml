@@ -80,7 +80,7 @@
     paths are set.</P>
     <P>
     Shared libraries can then be used with the <VERB>link</VERB> and
-    <VERB>addinter</VERB> scilab function for incremental linking.</P>
+    <VERB>addinter</VERB> scilab function for incremental/dynamic linking.</P>
     <P>
     The shared library is build from a set of C or Fortran routines
     stored in a directory and if required from a set of external

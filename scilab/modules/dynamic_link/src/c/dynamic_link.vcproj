@@ -213,6 +213,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dl_genErrorMessage.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_dynamic_link.c"
 				>
 			</File>

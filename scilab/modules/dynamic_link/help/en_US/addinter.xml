@@ -5,7 +5,7 @@
   <TITLE>addinter</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>$LastChangedDate: 2007-12-10 17:18:42 +0100 (Mon, 10 Dec 2007) $</DATE>
-  <SHORT_DESCRIPTION name="addinter"> new functions interface dynamic link at run time</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="addinter"> new functions interface incremental/dynamic link at run time</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>addinter(files,spname,fcts)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -32,7 +32,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>addinter</VERB> performs dynamic link of a compiled C or Fortran
+    <P><VERB>addinter</VERB> performs incremental/dynamic link of a compiled C or Fortran
     new Scilab interface routine (see <VERB>intersci</VERB> documentation)
     and define corresponding scilab functions.</P>
     <P>

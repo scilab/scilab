@@ -26,11 +26,12 @@ function libn = ilib_for_link(names, ..
   if rhs <= 10 then cc  = ""; end 
   
   // generate a loader file
-  write(%io(2),'   Generate a loader file');
+  write(%io(2),"   Generate a loader file");
   ilib_link_gen_loader(names,flag,loadername,libs,libname);
   
   // generate a Makefile
-  write(%io(2),'   Generate a Makefile');
+  write(%io(2),"   Generate a Makefile");
+
   ilib_link_gen_Make(names, ..
                      files, ..
                      libs, ..
@@ -43,7 +44,7 @@ function libn = ilib_for_link(names, ..
 		                 flag);
 		                 
   // we call make
-  write(%io(2),'   Running the Makefile');
+  write(%io(2),"   Running the Makefile");
   if (libname == "") then libname = names(1);end
   libn = ilib_compile('lib' + libname, makename, files);
   
@@ -59,6 +60,7 @@ function ilib_link_gen_Make(names, ..
                             fflags, ..
                             cc, ..
                             flag)
+
   // generate a Makefile for gateway
   [lhs,rhs] = argn(0);
   if rhs <= 2 then libs = [];end
@@ -104,10 +106,10 @@ function ilib_link_gen_Make(names, ..
   
   else // LINUX
    Makename = makename;
-   ilib_link_gen_Make_unix(names, ..
+
+   ilib_gen_Make_unix(names, ..
                            files, ..
                            libs, ..
-                           Makename, ..
                            libname, ..
                            ldflags, ..
                            cflags, ..
@@ -162,100 +164,6 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   mfprintf(fd,"clear get_file_path;\n");
   mfprintf(fd,"// ------------------------------------------------------\n");
   mclose(fd);
-endfunction
-//==========================================
-function ilib_link_gen_Make_unix(names, ..
-                                 files, ..
-                                 libs, ..
-                                 Makename, ..
-                                 libname, ..
-				                         ldflags, ..
-				                         cflags, ..
-				                         fflags, ..
-				                         cc)
-  
-  if libname == "" then libname = names(1);end 
-  oldPath = pwd();
-  linkpath = TMPDIR;
-  commandpath = SCI+"/modules/incremental_link/src/scripts/";
-  
-	// We launch ./configure in order to produce a "generic" Makefile 
-	// for this computer
-	printf(gettext("configure : Generate Makefile in %s\n"),commandpath );
-	[msg,ierr] = unix_g(commandpath+"compilerDetection.sh");
-	if ierr <> 0 then
-	  disp(msg);
-	  return;
-	end
-
-	// Copy files => linkpath
-	chdir(linkpath);
-	printf(gettext("Copy compilation files (Makefile*, libtool...) to %s\n"),linkpath);
-
- 	// List of the files mandatory to generate a lib with the detection of the env
-	mandatoryFiles = ["Makefile.orig", ..
-	                  "configure.ac", ..
-	                  "configure", ..
-	                  "Makefile.am", ..
-	                  "Makefile.in", ..
-	                  "config.sub", ..
-	                  "config.guess", ..
-	                  "config.status", ..
-	                  "depcomp", ..
-	                  "install-sh", ..
-	                  "ltmain.sh", ..
-	                  "libtool", ..
-	                  "missing", ..
-	                  "aclocal.m4"];
-
-	// Copy files to the working tmpdir
-	for x = mandatoryFiles(:)' ;
-		copyfile(commandpath+"/"+x,linkpath);
-	end
-
-	filelist = "";	
-	for x = files(:)' ;  
-		// Old way: to compile a fun.c file, the user had to provide fun.o
-		filename = strsubst(x,'.o','');
-		filesMatching = ls(oldPath+"/"+filename+".*");
-
-		// The user provided the real filename
-		if filesMatching == [] then
-			copyfile(x, linkpath);
-		else
-		// Or copy the file matching to what we were looking for (this stuff
-		// could lead to bug if you have fun.c fun.f or fun.cxx but it was 
-		// already the case before ...
-			for f=filesMatching(:)' ;
-				printf("Copy %s to %s\n",f, linkpath);
-				copyfile(f, linkpath)
-			end
-		end
-
-		filelist = filelist + " " + x ;
-	end
-
-	// Alter the Makefile in order to compile the right files
-	printf("Modification of the Makefile in " + linkpath+"\n");
-	[msg,ierr] = unix_g("" + commandpath + "scicompile.sh " + libname + " " + filelist);
-	if ierr <> 0 then
-	  disp(msg);
-	  return;
-	end
-
-	// on devrait catcher le code de retour du script et gere/afficher l'erreur
-	// TODO : voir quoi faire du CFLAGS
-
-	[msg,ierr] = unix_g("make CFLAGS=-I"+SCI+"/modules/core/includes/");
-		if ierr <> 0 then
-	  disp(msg);
-	  return;
-	end
-
-	lib_name = "lib" + libname + getdynlibext();
-	copyfile(".libs/" + lib_name, oldPath);
-	chdir(oldPath);
-
 endfunction
 //==========================================    
 function ilib_link_gen_Make_msvc(names, ..

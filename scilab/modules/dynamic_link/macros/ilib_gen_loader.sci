@@ -1,6 +1,7 @@
 function ilib_gen_loader(name,tables,libs)
 // Copyright ENPC 
 // Copyright INRIA
+
   if rhs < 3 then 
     libs = [];
   end 
@@ -14,7 +15,7 @@ function ilib_gen_loader(name,tables,libs)
   for it = 1:L 
     [mt,nt] = size(tables(it));
     if ( (nt <> 3) & ( nt <> 2) ) then 
-      error('second argument has wrong size ');
+      error(msprintf(gettext("%s: Wrong size for second input argument.\n"),"ilib_gen_loader"));
     end 
   end
   
@@ -41,7 +42,7 @@ function ilib_gen_loader(name,tables,libs)
     mfprintf(fd,"];\n");
     
     mfprintf(fd,"addinter(%s_path+''/%s%s'',''%s'',list_functions);\n",name, ..
-	              name,getdynlibext(),name);
+	              name,getdynlibext(),table(2));
   else
     // on link then a set of addinter 
     mfprintf(fd,"ilib = link(%s_path+filesep()+''%s%s'');\n",name, ..

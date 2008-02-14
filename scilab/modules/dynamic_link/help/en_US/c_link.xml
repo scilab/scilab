@@ -5,7 +5,7 @@
   <TITLE>c_link</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="c_link"> check dynamic link</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="c_link"> check incremental/dynamic link</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>c_link(routine-name)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[test,ilib]=c_link(routine-name)  </CALLING_SEQUENCE_ITEM>

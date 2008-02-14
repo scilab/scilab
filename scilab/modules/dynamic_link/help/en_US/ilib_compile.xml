@@ -48,7 +48,7 @@
     the C and fortran files and generates the shared library.</P>
     <P>
     Shared libraries can then be used with the <VERB>link</VERB> and
-    <VERB>addinter</VERB> scilab function for dynamic link.</P>
+    <VERB>addinter</VERB> scilab function for incrementaldynamic link.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

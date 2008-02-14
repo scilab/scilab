@@ -7,7 +7,7 @@ foo=['void foo(double *a,double *b,double *c)';
 // we use TMPDIR for compilation 
 	
 if ~c_link('foo') then
-  path = getcwd(); 
+  curPath = getcwd(); 
   chdir(TMPDIR); 
   mputl(foo,'foo.c');
   
@@ -20,7 +20,7 @@ if ~c_link('foo') then
   exec loader.sce ;
   // enable message
   warning(warning_mode);
-  chdir(path) 
+  chdir(curPath) 
 end	
 
 //5+7 by C function

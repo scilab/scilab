@@ -1,11 +1,14 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h> 
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "core_math.h"
 #include "dynamic_link.h"
 #include "../../../string/includes/men_Sutils.h"
 #include "addinter.h" 
 
+#include "error.h"
 #include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
@@ -16,11 +19,6 @@
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
 #endif
-
-
-extern int C2F(error)  __PARAMS((integer *n));  
-
-#include <stdlib.h>
 
 #define MAXINTERF 50
 #define INTERFSIZE 25 
@@ -64,7 +62,11 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 
 	/** Try to find a free position in the interface table : inum **/
 	inum=-1;
-	for ( i = 0 ; i < LastInterf ; i++) if ( DynInterf[i].ok == 0 ) inum= i;
+	for ( i = 0 ; i < LastInterf ; i++) {
+		if ( DynInterf[i].ok == 0 ) {
+			inum= i;
+		}
+	}
 
 	inum = ( inum == -1 ) ? LastInterf : inum ;
 
@@ -86,7 +88,7 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 		subname[0]= spname;
 
 		/* link then search  */ 
-		IdLib =scilabLink(idinput,filenamelib,subname,one,TRUE,&ierr1);
+		IdLib =  scilabLink(idinput,filenamelib,subname,one,TRUE,&ierr1);
 		subname[0]= NULL;
 		if (subname) { FREE(subname);subname = NULL;}
 

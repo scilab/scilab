@@ -2,7 +2,7 @@
 // test addinter
 //================================================
 if ~c_link('libintertest') then
-  path = getcwd(); 
+  curPath = getcwd(); 
   copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'addinter.c', TMPDIR+filesep()+'addinter.c');
   chdir(TMPDIR); 
   files=['addinter.o'];
@@ -28,6 +28,6 @@ if ~c_link('libintertest') then
   // remove dynamic library link
   ulink();
   
-  chdir(path);
+  chdir(curPath);
 end
 //================================================

@@ -51,7 +51,7 @@
   </PARAM>
   
   <DESCRIPTION>
-  <P><VERB>link</VERB> is a dynamic link facility: this command allows to add new compiled 
+  <P><VERB>link</VERB> is a incremental/dynamic link facility: this command allows to add new compiled 
       Fortran or C routines to Scilab executable code.
       Linked routines can be called interactively by the function <VERB>call</VERB>.
       Linked routines can also be used as &quot;external&quot; for e.g. 

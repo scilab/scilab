@@ -1,0 +1,36 @@
+/*---------------------------------------------------------------------------*/
+/* INRIA 2008 */
+/*---------------------------------------------------------------------------*/
+#include "dynamiclibrary.h"
+#include "dynamic_link.h"
+#include "dl_genErrorMessage.h"
+#include "Scierror.h"
+#include "localization.h"
+/*---------------------------------------------------------------------------*/
+void dl_genErrorMessage(char *fname, int errorCode, char* SharedLibraryName){
+	switch (errorCode)
+		{
+			case -1:
+				Scierror(236,_("%s: The shared archive was not loaded: %s\n"),fname,GetLastDynLibError());
+				break;
+
+			case -2:
+				Scierror(999,_("You can't open shared files. Max entry %d reached.\n"),ENTRYMAX);
+				break;
+
+			case -3:
+				Scierror(999,_("Shared lib %s does not exist.\n"),SharedLibraryName);
+				break;
+
+			case -4:
+				Scierror(999,_(" is already loaded from lib %s\n"),SharedLibraryName);
+				break;
+			case -5:
+				Scierror(235,_("%s: problem with one of the entry point.\n"),fname,GetLastDynLibError());
+				break;
+			default:
+				Scierror(999,_("%s: An error occurred: %s\n"),fname,GetLastDynLibError());
+				break;
+		}
+}
+/*---------------------------------------------------------------------------*/

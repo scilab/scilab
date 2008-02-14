@@ -1,12 +1,13 @@
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 /* INRIA 2008 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*---------------------------------------------------------------------------*/ 
 #include "gw_dynamic_link.h"
 #include "machine.h"
 #include "stack-c.h"
 #include "addinter.h"
 #include "localization.h"
+#include "dl_genErrorMessage.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
@@ -68,20 +69,13 @@ int C2F(sci_addinter) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			switch (ierr)
-			{
-			/* TODO !: extend error code */
-			default :
-				Scierror(999,_("%s : unknow error.\n"),fname);
-				break;
-			}
+			dl_genErrorMessage(fname, ierr, sharedlibname[0]);
 		}
 	}
 	else
 	{
 		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname); 
-		return 0;
 	}
 	return 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/

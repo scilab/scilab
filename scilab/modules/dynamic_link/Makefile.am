@@ -5,6 +5,7 @@
 
 DYNAMIC_LINK_C_SOURCES = src/c/addinter.c \
 src/c/dynamic_link.c \
+src/c/dl_genErrorMessage.c \
 src/c/AddFunctionInTable.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_dynamic_link.c \

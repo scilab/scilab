@@ -1,6 +1,7 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/* ENPC */
+/* INRIA 2007/2008 */
+/*---------------------------------------------------------------------------*/
 #include <string.h> 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,14 +15,14 @@
 #include "addinter.h"
 #include "localization.h"
 #include "Scierror.h"
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 static void Underscores(int isfor, char *ename, char *ename1);
 static int SearchFandS(char *op, int ilib);
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 #define MAXNAME  256 
 #define TMPL 256
 #define debug C2F(iop).ddt==1
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 typedef char Name[MAXNAME];   /* could be changed to dynamic structure */
 
 typedef void (*function) ();
@@ -44,7 +45,7 @@ static Hd  hd[ENTRYMAX]; /* shared libs handler */
 static int Nshared = 0;
 static int NEpoints = 0; /* Number of Linked names */
 static Epoints EP[ENTRYMAX];  /* entryPoints */
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 int scilabLink(int idsharedlibrary,
 			   char *filename,
 			   char **subnamesarray,int sizesubnamesarray,
@@ -54,18 +55,24 @@ int scilabLink(int idsharedlibrary,
 
 	initializeLink();
 
-	if (idsharedlibrary == -1) IdSharedLib= Sci_dlopen(filename);
-	else IdSharedLib = idsharedlibrary;
+	if (idsharedlibrary == -1) {
+		IdSharedLib= Sci_dlopen(filename);
+	} else {
+		IdSharedLib = idsharedlibrary;
+	}
 
 	if (IdSharedLib == -1 ) 
 	{
-		if ( getWarningMode() ) sciprint(_("link failed for dynamic library '%s'.\n"),filename);
+		if ( getWarningMode() ) {
+			sciprint(_("Link failed for dynamic library '%s'.\n"),filename);
+			sciprint(_("An error occurred: %s\n"),GetLastDynLibError());
+		}
 		*ierr = -1;
 		return IdSharedLib;
 	}
 	if ( (idsharedlibrary == -1) && getWarningMode() ) 
 	{
-		sciprint(_("shared archive loaded.\n"));
+		sciprint(_("Shared archive loaded.\n"));
 		sciprint(_("Link done.\n"));
 	}
 
@@ -75,15 +82,18 @@ int scilabLink(int idsharedlibrary,
 		int i = 0;
 		for(i = 0; i < sizesubnamesarray ; i++)
 		{
-			if (fflag) errorcode = Sci_dlsym(subnamesarray[i],IdSharedLib,"f");
-			else errorcode = Sci_dlsym(subnamesarray[i],IdSharedLib,"c");
-
+			if (fflag) {
+				errorcode = Sci_dlsym(subnamesarray[i],IdSharedLib,"f");
+			}else {
+				errorcode = Sci_dlsym(subnamesarray[i],IdSharedLib,"c");
+			}
+			
 			if (errorcode < 0) *ierr = errorcode;
 		}
 	}
 	return IdSharedLib;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 int *getAllIdSharedLib(int *sizeList)
 {
 	int *ListId = NULL;
@@ -109,7 +119,7 @@ int *getAllIdSharedLib(int *sizeList)
 	}
 	return ListId;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 char **getNamesOfFunctionsInSharedLibraries(int *sizearray)
 {
 	char **NamesOfFunctions = NULL;
@@ -128,14 +138,14 @@ char **getNamesOfFunctionsInSharedLibraries(int *sizearray)
 				if (NamesOfFunctions) NamesOfFunctions = (char **) REALLOC(NamesOfFunctions,(*sizearray)*sizeof(char *));
 				else NamesOfFunctions = (char **) MALLOC((*sizearray)*sizeof(char *));
 
-				sprintf(EntryName,"%s",EP[i].name);
+				strcpy(EntryName,EP[i].name);
 				NamesOfFunctions[(*sizearray)-1]=EntryName;
 			}
 		}
 	}
 	return NamesOfFunctions;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 /**
 * Underscores : deals with the trailing _ 
 * in entry names 
@@ -151,7 +161,7 @@ static void Underscores(int isfor, char *ename, char *ename1)
 #endif
 	return;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 void initializeLink(void)
 {
 	static int first_entry = 0;
@@ -167,7 +177,7 @@ void initializeLink(void)
 		first_entry++;
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 BOOL c_link(char *routinename,int *ilib)
 {
 	void (*loc)();
@@ -177,18 +187,18 @@ BOOL c_link(char *routinename,int *ilib)
 	if (*ilib == -1) return FALSE;
 	return TRUE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 void C2F(iislink)(char *routinename, integer *ilib)
 {
 	c_link(routinename,ilib);
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 void GetDynFunc(int ii, void (**realop) ())
 {
 	if ( EP[ii].Nshared != -1 ) *realop = EP[ii].epoint;
 	else *realop = (function) 0;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 int SearchInDynLinks(char *op, void (**realop) ())
 {
 	int i=0;
@@ -202,7 +212,7 @@ int SearchInDynLinks(char *op, void (**realop) ())
 	}
 	return(-1);
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 /**
 * Search a (function,libid) in the table 
 * Search from end to top 
@@ -219,7 +229,7 @@ static int SearchFandS(char *op, int ilib)
 	}
 	return(-1);
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 void ShowDynLinks(void)
 {
 	int i=0,count=0;
@@ -236,13 +246,13 @@ void ShowDynLinks(void)
 		if (getWarningMode()) sciprint(_("Entry point %s in shared library %d.\n"),EP[i].name,EP[i].Nshared);
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 void unlinkallsharedlib(void)
 {
 	int i=0;
 	for ( i = 0 ; i < Nshared ; i++) if ( hd[i].ok == TRUE) Sci_Delsym(i);
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 void unlinksharedlib(integer *i) 
 {
 	/* delete entry points in shared lib *i */
@@ -250,10 +260,9 @@ void unlinksharedlib(integer *i)
 	/* delete entry points used in addinter in shared lib *i */
 	RemoveInterf(*i);
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 int Sci_dlopen( char *loaded_file)
 {
-	int retval = 0; /* if >=0 id else error code*/
 	static DynLibHandle  hd1 = NULL;
 	int i = 0;
 
@@ -290,15 +299,13 @@ int Sci_dlopen( char *loaded_file)
 	#endif
 	hd[Nshared].ok = TRUE;
 	Nshared ++;
-	retval = Nshared-1;
 
-	return retval;
+	return Nshared-1;
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 int Sci_dlsym(char *ename,int ishared,char *strf)
 {
-	int ierr = 0;
-	DynLibHandle  hd1 = NULL;
+	DynLibHandle hd1 = NULL;
 	int ish = Min(Max(0,ishared),ENTRYMAX-1);
 	char enamebuf[MAXNAME];
 
@@ -308,19 +315,17 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 	/* lookup the address of the function to be called */
 	if ( NEpoints == ENTRYMAX ) 
 	{
-		ierr = -1;
-		return ierr;
+		return -1;
 	}
 	if ( hd[ish].ok == FALSE )
 	{
-		ierr = -3;
-		return ierr;
+		return -3;
 	}
 	/** entry was previously loaded **/
 	if ( SearchFandS(ename,ish) >= 0 ) 
 	{
 		sciprint(_("Entry name %s\n"),ename);
-		ierr = -4;
+		return -4;
 	}
 	else
 	{
@@ -334,7 +339,7 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 		if ( EP[NEpoints].epoint == NULL )
 		{
 			if (getWarningMode()) sciprint(_("%s is not an entry point\n"),enamebuf);
-			ierr = -5;
+			return -5;
 		}
 		else 
 		{
@@ -345,9 +350,9 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 			NEpoints++;
 		}
 	}
-	return ierr;  
+	return 0;  
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 void Sci_Delsym(int ishared) 
 {
 	int ish = Min(Max(0,ishared),ENTRYMAX-1);
@@ -377,4 +382,4 @@ void Sci_Delsym(int ishared)
 		hd[ish].ok = FALSE;
 	}
 }
-/*-----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/

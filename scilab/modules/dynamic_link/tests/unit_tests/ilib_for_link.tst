@@ -25,6 +25,7 @@ mputl(f1,TMP_DIR+filesep()+'fun1.c')
 //generated. 
 
 cur_dir = pwd();
+
 chdir(TMP_DIR);
 
 ilib_for_link('ext1c','fun1.o',[],"c") 
@@ -50,4 +51,4 @@ if norm(c-(a+b)) > %eps then pause,end
 ulink();
 
 //remove TMP_DIR
-rmdir(TMP_DIR,'s');
+//rmdir(TMP_DIR,'s');

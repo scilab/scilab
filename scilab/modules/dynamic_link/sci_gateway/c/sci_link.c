@@ -10,6 +10,7 @@
 #include "dynamic_link.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "dl_genErrorMessage.h"
 /*-----------------------------------------------------------------------------------*/
 static int linkNoRhs(void);
 static int linkOneRhsShow(void);
@@ -17,12 +18,12 @@ static int linkOneRhsShow(void);
 int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 {
 	BOOL fflag = FALSE;
-	int param1int = -1;
+	int idsharedlibrary = -1;
 
 	char *SharedLibraryName = NULL;
 
-	char **param2 = NULL;
-	int sizeparam2 = 0;
+	char **subname = NULL;
+	int sizesubname = 0;
 
 	char *param3flag = NULL;
 
@@ -46,18 +47,18 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 				if ( (m1 == n1) && (n1 == 1) )
 				{
-					param1int= (int)*stk(l1);
+					idsharedlibrary= (int)*stk(l1);
 				}
 				else
 				{
-					Scierror(999,_("%s : first argument must be a unique id of a shared library.\n"),fname);
+					Scierror(999,_("%s : Wrong value for first argument: Unique id of a shared library expected.\n"),fname);
 					return 0;
 				}
 			}
 			else if (VarType(1) == sci_strings)
 			{
 				char **strings = NULL;
-				int m1 = 0, n1 = 0, l1 = 0;
+				int m1 = 0, n1 = 0;
 				GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&strings);
 
 				if ( (m1 == 1) && (n1 == 1) )
@@ -67,7 +68,7 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else
 				{
-					Scierror(999,_("%s : first argument must be a unique dynamic library name.\n"),fname);
+					Scierror(999,_("%s : Wrong type for first input argument: Unique dynamic library name expected.\n"),fname);
 					return 0;
 				}
 
@@ -87,11 +88,11 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if (VarType(2) == sci_strings)
 			{
-				int m2 = 0, n2 = 0, l2 = 0;
-				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&param2);
+				int m2 = 0, n2 = 0;
+				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&subname);
 				if (m2 == 1)
 				{
-					sizeparam2 = n2;
+					sizesubname = n2;
 				}
 				else
 				{
@@ -109,7 +110,7 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 		if (Rhs == 3)
 		{
 			int m3 = 0,n3 = 0,l3 = 0;
-			GetRhsVar(3,"c",&m3,&n3,&l3);
+			GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 			if ( ( strcmp(cstk(l3),"f") == 0 ) || ( strcmp(cstk(l3),"c") == 0 ) )
 			{
 				param3flag = (char*)MALLOC(sizeof(char)*( strlen( cstk(l3) )+1 ) );
@@ -117,7 +118,7 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,_("%s Wrong input argument(s). It must be 'f' or 'c'.\n"),fname);
+				Scierror(999,_("%s Wrong value for input argument: '%s' or '%s' expected.\n"),fname,"f","c");
 				return 0;
 			}
 		}
@@ -130,29 +131,8 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 		if (strcmp("f",param3flag)==0) fflag = TRUE;
 		else fflag = FALSE;
 
-		returnedID = scilabLink(param1int,SharedLibraryName,param2,sizeparam2,fflag,&ierr);
-		switch (ierr)
-		{
-		case -1:
-			Scierror(236,_("%s : the shared archive was not loaded.\n"),fname);
-			break;
-
-		case -2:
-			Scierror(999,_("You can't open shared files max. entry %d reached.\n"),ENTRYMAX);
-			break;
-
-		case -3:
-			Scierror(999,_("Shared lib %d does not exists.\n"),param1int);
-			break;
-
-		case -4:
-			Scierror(999,_(" is already loaded from lib %d\n"),param1int);
-			break;
-		case -5:
-			Scierror(235,_("%s : problem with one of the entry point.\n"),fname);
-			break;
-
-		default :
+		returnedID = scilabLink(idsharedlibrary,SharedLibraryName,subname,sizesubname,fflag,&ierr);
+		if (ierr==0)
 			{
 				int n,l;
 				n=1;
@@ -160,9 +140,11 @@ int C2F(sci_link) _PARAMS((char *fname,unsigned long fname_len))
 				*istk(l) = (int)returnedID;
 				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();
+			}else{
+				dl_genErrorMessage(fname, ierr, SharedLibraryName);
 			}
-			break;
-		}
+
+
 		if (SharedLibraryName) { FREE(SharedLibraryName); SharedLibraryName=NULL;}
 	}
 	return 0;
@@ -182,7 +164,7 @@ static int linkNoRhs(void)
 		int i = 0;
 		m1 = sizeFunctionsList;
 		n1 = 1;
-		CreateVarFromPtr(Rhs+1, "S", &n1, &m1, FunctionsList);
+		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &n1, &m1, FunctionsList);
 
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();

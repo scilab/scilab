@@ -1,10 +1,12 @@
 //===========================================================
 // Copyright INRIA
 //===========================================================
+curPath = getcwd(); 
 pref='ext';
 suf='f';
 routines=[pref(ones(1,12))+string(1:12)+suf(ones(1,12))];
-chdir(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests');
+copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'externals.f', TMPDIR);
+chdir(TMPDIR)
 ilib_for_link(routines,'externals.o',[],"f");
 
 // disable message
@@ -114,3 +116,4 @@ c=call('ext12f',n,1,'i','out',[1,10],2,'r');  //loads c with b
 if norm(c-a) > %eps then pause,end
 
 //===========================================================
+chdir(curPath);
