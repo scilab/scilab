@@ -19,7 +19,7 @@ yLabelStr = "YYY" ;
 xtitle("Scilab P0W3R",'XXX','YYY',1) ;
 a = gca() ;
 title  = a.title   ;
-Warning : redefining function : title                   
+Warning : redefining function: title                   
 
 xLabel = a.x_label ;
 yLabel = a.y_label ;

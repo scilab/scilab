@@ -1,14 +1,7 @@
- 
+// <-- TEST WITH GRAPHIC -->
 // Copyright INRIA 2006
- 
 // Author Jean-Baptiste Silvy
- 
 // basic test for routine swap_handles
- 
- 
- 
-mode( -1 ) ;
-clear ;
 // first test : swap two brothers
 a1 = gca() ;
 xrect(0.1,0.1,0.1,0.1);
@@ -70,4 +63,3 @@ swap_handles( a1, a2 ) ;
 if ( a1.parent <> f2 ) then bugmes();quit;end
 if ( a2.parent <> f1 ) then bugmes();quit;end
 xdel( winsid() ) ;
-clear ;

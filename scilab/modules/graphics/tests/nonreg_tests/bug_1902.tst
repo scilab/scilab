@@ -1,3 +1,5 @@
+// <-- TEST WITH GRAPHIC -->
+
 // <-- Non-regression test for bug 1902 -->
 //
 // <-- Bugzilla URL -->
