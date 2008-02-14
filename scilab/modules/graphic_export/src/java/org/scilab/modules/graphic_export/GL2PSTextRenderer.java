@@ -74,14 +74,6 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 		gl.glRasterPos3d(x, y, z);
 		gl2ps.gl2psText(str, getFont().getFontName(), (short) getFont().getSize());
 		//gl2ps.gl2psTextOpt(str, getFont().getFontName(), (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL, 0);
-		/*int res = gl2ps.gl2psText("yop", "Courier", (short) 12);
-		if (res == GL2PS.GL2PS_SUCCESS) {
-			System.err.println("Oki ça marche.");
-		} else if (res == GL2PS.GL2PS_ERROR) {
-			System.err.println("marche pas.");
-		} else if (res == GL2PS.GL2PS_UNINITIALIZED) {
-			System.err.println("librairie non initialisée");
-		}*/
 	}	
 	
 	/**
