@@ -564,14 +564,16 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		dia = strsubst(dia,'-->','');
 		dia = strsubst(dia,'@#>','-->');
 		dia = strsubst(dia,'-1->','');
-
-
 		
 		//standardise  number display
-		dia = strsubst(strsubst(strsubst(strsubst(dia,' .','0.'),'E+','D+'),'E-','D-'),'-.','-0.');
+		
+		// strsubst(dia," .","0.");
+		// strsubst(dia,"-.","-0.")
+		// strsubst(dia,"E+","D+");
+		// strsubst(dia,"E-","D-");
 		
 		//not to change the ref files
-		dia=strsubst(dia,'bugmes();return','bugmes();quit');
+		dia = strsubst(dia,"bugmes();return","bugmes();quit");
 		
 		if create_ref then
 			
