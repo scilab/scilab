@@ -31,7 +31,7 @@ T=help_skeleton('foo1')
 !                                                                      !
 !  <TYPE>Fonction Scilab</TYPE>                                        !
 !                                                                      !
-!  <DATE>29-01-2008</DATE>                                             !
+!  <DATE>14-02-2008</DATE>                                             !
 !                                                                      !
 !  <SHORT_DESCRIPTION name="foo1">Ajouter ici une description rapide de!
 !      la fonction</SHORT_DESCRIPTION>                                 !
@@ -201,8 +201,8 @@ T=help_skeleton('foo1')
 !  </USED_FUNCTIONS>                                                   !
 !                                                                      !
 !</MAN>                                                                !
-mputl(strsubst(T,"<LINK> add a key here</LINK>",0..
-	"<LINK>abs</LINK>"),0..
+mputl(strsubst(T,"<LINK> add a key here</LINK>", ..
+	"<LINK>abs</LINK>"), ..
 	TMPDIR+"/foo1.xml");
 try
 	xmltohtml(TMPDIR)
