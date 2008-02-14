@@ -74,14 +74,16 @@
     </menu>
 
     <!-- Preferences menu -->
-    <menu label="Preferences" mnemonic="P" enabled="false">
+    <menu label="Preferences" mnemonic="P">
         <submenu label="Language" mnemonic="L" enabled="false"/> 
         <submenu label="Colors" mnemonic="C" enabled="false"/> 
         <submenu label="File association" mnemonic="F" enabled="false"/> 
         <submenu label="Toolbar" mnemonic="L" enabled="false"/> 
         <separator/>
         <submenu label="Clear History" mnemonic="H" enabled="false"/> 
-        <submenu label="Clear Console" mnemonic="O" enabled="false"/> 
+        <submenu label="Clear Console" mnemonic="O"> 
+          <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
+        </submenu>
     </menu>
 
     <!-- Control menu -->
