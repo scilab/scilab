@@ -156,11 +156,11 @@ static int sci_strcat_three_rhs(char *fname)
 				{
 					if (Input_String_Two[i])
 					{
-						FREE(Input_String_Two);
+						
 						Input_String_Two=NULL; 
 					}
 				}
-				FREE(Input_String_Two);
+				
 				Input_String_Two=NULL;
 			}
 		
@@ -202,7 +202,7 @@ static int sci_strcat_three_rhs(char *fname)
 			if (Input_String_Two) 
 			{
 			
-				FREE(Input_String_Two);
+				
 				Input_String_Two=NULL;
 			}
 
