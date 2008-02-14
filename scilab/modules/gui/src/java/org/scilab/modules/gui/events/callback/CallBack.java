@@ -71,7 +71,7 @@ public abstract class CallBack extends AbstractAction implements ActionListener 
 		if (callbackType == CallBack.JAVA) {
 			return JavaCallBack.create(command);
 		} else {
-			return ScilabCallBack.create(command, callbackType);
+			return ScilabCallBack.create(command);
 		}
 	}
 

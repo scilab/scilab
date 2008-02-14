@@ -2,7 +2,6 @@ package org.scilab.modules.gui.events.callback;
 
 import java.awt.event.ActionEvent;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.GlobalEventFilter;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
@@ -11,37 +10,32 @@ import org.scilab.modules.gui.events.GlobalEventWatcher;
  * ScilabCallback abstract class to easily manage callbacks
  * that throws commands to Scilab.
  *
- * @author bruno
+ * @author Bruno JOFRET
  *
  */
 public abstract class ScilabCallBack extends CallBack {
 
-	// @TODO : Delete me I'm useless...
-	private int type;
-
 	/**
+	 * Constructor
 	 * @param command : the command to execute.
-	 * @param type : the type of this command.
 	 */
-	private ScilabCallBack(String command, int type) {
+	private ScilabCallBack(String command) {
 		super(command);
-		this.type = type;
 	}
 
 	/**
 	 * Callback Factory to easily create a callback
 	 * just like in scilab.
 	 * @param command : the command to execute.
-	 * @param type : the type of this command.
-	 * @return a usable Java callback
+	 * @return a usable Scilab callback
 	 */
-	public static ScilabCallBack create(String command, int type) {
-		return (new ScilabCallBack(command, type) {
+	public static ScilabCallBack create(String command) {
+		return (new ScilabCallBack(command) {
 
 			private static final long serialVersionUID = -7286803341046313407L;
 
 			public void callBack() {
-				this.storeCommand(this.getCommand(), this.getType());
+				this.storeCommand(this.getCommand());
 			}
 		});
 	}
@@ -65,9 +59,8 @@ public abstract class ScilabCallBack extends CallBack {
 	 * Put the command recieved through the callback.
 	 *
 	 * @param command : The command to throw to Scilab
-	 * @param type : The type of the command, C or Fortran compiled code, Scilab instruction...
 	 */
-	public void storeCommand(String command, int type) {
+	public void storeCommand(String command) {
 		this.command = command;
 		Thread launchMe = new Thread() {
 			public void run() {
@@ -75,12 +68,5 @@ public abstract class ScilabCallBack extends CallBack {
 			}
 		};
 		launchMe.start();
-	}
-
-	/**
-	 * @return The type of the Scilab callback
-	 */
-	public int getType() {
-		return type;
 	}
 }
