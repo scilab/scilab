@@ -12,7 +12,7 @@
 //    // 1 build the data
 //    a=34;b=12;c=14;
 //    deff('y=FF(x)','y=a*(x-b)+c*x.*x');
-//    X=(0:.1:3)';Y=FF(X)+100*(rand()-0.5);
+//    X=(0:.1:3)';Y=FF(X)+100*(rand()-.5);
 //
 //    //solve
 //    function e=f1(abc,m)
@@ -30,7 +30,7 @@ b = 12;
 c = 14;
 deff('y=FF(x)','y=a*(x-b)+c*x.*x');
 X=(0:.1:3)';
-Y=FF(X)+100*(rand()-0.5);
+Y=FF(X)+100*(rand()-.5);
 //solve
 function e=f1(abc,m)
 	a = abc(1);
