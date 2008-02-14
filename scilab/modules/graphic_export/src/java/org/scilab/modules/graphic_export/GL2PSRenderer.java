@@ -2,6 +2,8 @@ package org.scilab.modules.graphic_export;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
+
+import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 
 /**
@@ -64,28 +66,34 @@ public class GL2PSRenderer extends ExportRenderer {
 	 */
 	public void display(GLAutoDrawable gLDrawable) {
 		GL2PS gl2ps = new GL2PS();
+
 		int buffsize = BUFFER_WIDTH * BUFFER_HEIGHT;			
 		sciRend = new SciRenderer(this.figureIndex);
 		
-		GL gl = gLDrawable.getGL();
-		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
-		
-		
 		//int[] viewPort = {0, 0, gLDrawable.getWidth(), gLDrawable.getHeight()};
+				
+		//GL gl = gLDrawable.getGL();
+		//gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
 		
-		gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, 
-							  format, GL2PS.GL2PS_BSP_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT 
-							  | GL2PS.GL2PS_BEST_ROOT, GL.GL_RGBA, 0, null, null, null, null, 
+		gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
+							  GL2PS.GL2PS_BSP_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
+							  | GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND,
+							  GL.GL_RGBA, 0, null, null, null, null, 
 							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
 		
 
+		GL gl = gLDrawable.getGL();
+		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 		gLDrawable.setGL(newGL);
-		//gl.glRasterPos2d(0, 0);		
+		
+		FigureMapper.getCorrespondingFigure(figureIndex).setTextRendererFactory(new PSTextRendererFactory());
 		
 		sciRend.display(gLDrawable);	
 		gl2ps.gl2psEndPage();
 		gLDrawable.setGL(gl);
-	}	
+	    FigureMapper.getCorrespondingFigure(figureIndex).setDefaultTextRenderer();
+	}
+
 
 	/**
 	 * GLEventListener method

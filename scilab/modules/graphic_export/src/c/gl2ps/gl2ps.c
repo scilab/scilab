@@ -1687,21 +1687,25 @@ static void gl2psRescaleAndOffset()
         (prim->verts[2].xyz[1] - prim->verts[1].xyz[1]) - 
         (prim->verts[2].xyz[0] - prim->verts[1].xyz[0]) * 
         (prim->verts[1].xyz[1] - prim->verts[0].xyz[1]);
-      dZdX = 
-        ((prim->verts[2].xyz[1] - prim->verts[1].xyz[1]) *
-         (prim->verts[1].xyz[2] - prim->verts[0].xyz[2]) -
-         (prim->verts[1].xyz[1] - prim->verts[0].xyz[1]) *
-         (prim->verts[2].xyz[2] - prim->verts[1].xyz[2])) / area;
-      dZdY = 
-        ((prim->verts[1].xyz[0] - prim->verts[0].xyz[0]) *
-         (prim->verts[2].xyz[2] - prim->verts[1].xyz[2]) -
-         (prim->verts[2].xyz[0] - prim->verts[1].xyz[0]) *
-         (prim->verts[1].xyz[2] - prim->verts[0].xyz[2])) / area;
-      maxdZ = (float)sqrt(dZdX * dZdX + dZdY * dZdY);
-      dZ = factor * maxdZ + units;
-      prim->verts[0].xyz[2] += dZ;
-      prim->verts[1].xyz[2] += dZ;
-      prim->verts[2].xyz[2] += dZ;
+	  /* test added here by scilab team to avoid division by 0 */
+	  if (area > GL2PS_EPSILON)
+	  {
+		  dZdX = 
+			((prim->verts[2].xyz[1] - prim->verts[1].xyz[1]) *
+			 (prim->verts[1].xyz[2] - prim->verts[0].xyz[2]) -
+			 (prim->verts[1].xyz[1] - prim->verts[0].xyz[1]) *
+			 (prim->verts[2].xyz[2] - prim->verts[1].xyz[2])) / area;
+		  dZdY = 
+			((prim->verts[1].xyz[0] - prim->verts[0].xyz[0]) *
+			 (prim->verts[2].xyz[2] - prim->verts[1].xyz[2]) -
+			 (prim->verts[2].xyz[0] - prim->verts[1].xyz[0]) *
+			 (prim->verts[1].xyz[2] - prim->verts[0].xyz[2])) / area;
+		  maxdZ = (float)sqrt(dZdX * dZdX + dZdY * dZdY);
+		  dZ = factor * maxdZ + units;
+		  prim->verts[0].xyz[2] += dZ;
+		  prim->verts[1].xyz[2] += dZ;
+		  prim->verts[2].xyz[2] += dZ;
+	  }
     }
   }
 }
@@ -5472,9 +5476,9 @@ static int gl2psPrintPrimitives(void)
     gl2psMsg(GL2PS_INFO, "OpenGL feedback buffer overflow");
     return GL2PS_OVERFLOW;
   }
-
   if(used > 0)
     gl2psParseFeedbackBuffer(used);
+
 
   gl2psRescaleAndOffset();
 
@@ -5494,9 +5498,10 @@ static int gl2psPrintPrimitives(void)
     return GL2PS_NO_FEEDBACK;
   }
 
+
   switch(gl2ps->sort){
   case GL2PS_NO_SORT :
-    gl2psListAction(gl2ps->primitives, gl2psbackends[gl2ps->format]->printPrimitive);
+    gl2psListAction(gl2ps->primitives, gl2psbackends[gl2ps->format]->printPrimitive);	
     gl2psListAction(gl2ps->primitives, gl2psFreePrimitive);
     /* reset the primitive list, waiting for the next viewport */
     gl2psListReset(gl2ps->primitives);
@@ -5523,6 +5528,7 @@ static int gl2psPrintPrimitives(void)
     }
     gl2psTraverseBspTree(root, eye, GL2PS_EPSILON, gl2psGreater, 
                          gl2psbackends[gl2ps->format]->printPrimitive, 0);
+
     gl2psFreeBspTree(&root);
     /* reallocate the primitive list (it's been deleted by
        gl2psBuildBspTree) in case there is another viewport */

@@ -1,8 +1,10 @@
 package org.scilab.modules.graphic_export;
 
 import java.nio.Buffer;
+import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import javax.media.opengl.DebugGL;
 import javax.media.opengl.GL;
 
 /**
@@ -10,7 +12,7 @@ import javax.media.opengl.GL;
  * @author Sylvestre Koumar
  *
  */
-public class GL2PSGL extends GLAdapter {
+public class GL2PSGL extends DebugGL {
 	
 	private GL gl;
 	private GL2PS gl2ps;
@@ -21,28 +23,13 @@ public class GL2PSGL extends GLAdapter {
 	 * @param gl2ps GL2PS
 	 */
 	public GL2PSGL(GL gl, GL2PS gl2ps) {
+		super(gl);
 		this.gl = gl;
 		this.gl2ps = gl2ps;		
 	}
-	
-	/**
-	 * getter
-	 * @return gl GL
-	 */
-	public GL getGl() {
-		return gl;
-	}
 
 	/**
-	 * setter
-	 * @param gl GL
-	 */
-	public void setGl(GL gl) {
-		this.gl = gl;
-	}
-
-	/**
-	 * getter
+	 * GL2PS getter
 	 * @return gl2ps GL2PS
 	 */
 	public GL2PS getGl2ps() {
@@ -50,7 +37,7 @@ public class GL2PSGL extends GLAdapter {
 	}
 
 	/**
-	 * setter
+	 * GL2PS setter
 	 * @param gl2ps GL2PS
 	 */
 	public void setGl2ps(GL2PS gl2ps) {
@@ -73,9 +60,10 @@ public class GL2PSGL extends GLAdapter {
 		if (enable == GL.GL_BLEND) {
 			gl2ps.gl2psEnable(GL2PS.GL2PS_BLEND);
 		}
-		if (enable == GL.GL_POLYGON_STIPPLE) {
-			gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_BOUNDARY);
-		}
+//		not yet implemented in GL2PS
+//		if (enable == GL.GL_POLYGON_BOUNDARY) {
+//			gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_BOUNDARY);
+//		}
 	}
 	
 	/**
@@ -93,9 +81,10 @@ public class GL2PSGL extends GLAdapter {
 		if (disable == GL.GL_BLEND) {
 			gl2ps.gl2psDisable(GL2PS.GL2PS_BLEND);
 		}
-		if (disable == GL.GL_POLYGON_STIPPLE) {
-			gl2ps.gl2psDisable(GL2PS.GL2PS_POLYGON_BOUNDARY);
-		}
+//		not yet implemented in GL2PS
+//		if (disable == GL.GL_POLYGON_BOUNDARY) {
+//			gl2ps.gl2psDisable(GL2PS.GL2PS_POLYGON_BOUNDARY);
+//		}
 
 	}
 	
@@ -142,8 +131,7 @@ public class GL2PSGL extends GLAdapter {
 	 * @return 0
 	 */
 	public int glGenLists(int arg0) {
-		gl.glGenLists(arg0);
-		return 0;
+		return gl.glGenLists(arg0);
 	}
 	
 	/**
@@ -730,4 +718,81 @@ public class GL2PSGL extends GLAdapter {
 	public int glRenderMode(int arg0) {
 		return gl.glRenderMode(arg0);
 	}
+	
+	/**
+	 * glGetFloatv
+	 * @param arg0 int
+	 * @param arg1 FloatBuffer
+	 */
+	public void glGetFloatv(int arg0, FloatBuffer arg1) {
+		gl.glGetFloatv(arg0, arg1);
+	}
+	
+	/**
+	 * glGetFloatv
+	 * @param arg0 int
+	 * @param arg1 float[]
+	 * @param arg2 int
+	 */
+	public void glGetFloatv(int arg0, float[] arg1, int arg2) {
+		gl.glGetFloatv(arg0, arg1, arg2);
+	}
+	
+	/**
+	 * glRasterPos3d
+	 * @param arg0 double
+	 * @param arg1 double
+	 * @param arg2 double
+	 */
+	public void glRasterPos3d(double arg0, double arg1, double arg2) {
+		gl.glRasterPos3d(arg0, arg1, arg2);
+	}
+	
+	/**
+	 * glGetBooleanv
+	 * @param arg0 int 
+	 * @param arg1 java.nio.ByteBuffer
+	 */
+	public void glGetBooleanv(int arg0, java.nio.ByteBuffer arg1) {
+		gl.glGetBooleanv(arg0, arg1);
+	}
+	
+	/**
+	 * glGetBooleanv
+	 * @param arg0 int 
+	 * @param arg1 byte[]
+	 * @param arg2 int 
+	 */
+	public void glGetBooleanv(int arg0, byte[] arg1, int arg2) {
+		gl.glGetBooleanv(arg0, arg1, arg2);
+	}
+	
+	/**
+	 * glRasterPos2d
+	 * @param arg0 double
+	 * @param arg1 double
+	 */
+	public void glRasterPos2d(double arg0, double arg1) {
+		gl.glRasterPos2d(arg0, arg1);
+	}
+	
+	/**
+	 * glRasterPos3dv
+	 * @param arg0 double[]
+	 * @param arg1 int
+	 */
+	public void glRasterPos3dv(double[] arg0, int arg1) {
+		gl.glRasterPos3dv(arg0, arg1);
+	}
+	
+	/**
+	 * glNormal3f
+	 * @param arg0 float
+	 * @param arg1 float
+	 * @param arg2 float
+	 */
+	public void glNormal3f(float arg0, float arg1, float arg2) {
+		gl.glNormal3f(arg0, arg1, arg2);
+	}
+	
 }
