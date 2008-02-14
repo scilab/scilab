@@ -24,18 +24,15 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
   end
 
   //Retrieve Calling function
-  [lineCall, stackCall]=where();
-
+  [lineCall, stackCall]=where()
+  
   // Now build the correct warning message
-  warnMessage = _("Function "+stackCall(2)+" is obsolete.")
+  warnMessage = msprintf(_("Function %s is obsolete."),stackCall(2))
   if argn(2) >= 1 then
-    warnMessage = [warnMessage, _("Please use "+newFunctionName+...
-				  " instead.")]
+    warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newFunctionName)]
   end
   if argn(2) >= 2 then
-    warnMessage = [warnMessage, _("This function will be definitelly "+...
-				  "removed in Scilab "+ ...
-				  scilabRemovedVersion)]
+    warnMessage = [warnMessage, msprintf(_("This function will be definitelly removed in Scilab %s"), scilabRemovedVersion)]
   end
 
   // Now show the warning
