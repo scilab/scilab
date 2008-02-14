@@ -1,7 +1,4 @@
- 
 // Copyright INRIA
- 
- 
 mode(5)
 lines(0)
 zer=sparse([],[],[6,6]);
