@@ -1,6 +1,6 @@
 
-// Load launch_test
-exec('launch_test.sci');
+// Load launchtest
+exec('launchtest.sci');
 
 // Set base directory for non-regression tests
 if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
@@ -15,6 +15,6 @@ cosFiles = dir(fullfile(baseDir, '*.cos'));
 cosFiles = sort(basename(cosFiles.name));
 for k = 1:size(cosFiles,'*')
   currentTestName = cosFiles(k);
-  launch_test(baseDir, currentTestName);
+  launchtest(baseDir, currentTestName);
 end
 

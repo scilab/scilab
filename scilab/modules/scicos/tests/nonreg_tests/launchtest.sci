@@ -1,4 +1,4 @@
-function launch_test(baseDir, testName)
+function launchtest(baseDir, testName)
 
 // =============================================================================
 
