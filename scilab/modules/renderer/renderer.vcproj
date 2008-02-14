@@ -843,14 +843,6 @@
 					RelativePath=".\src\cpp\arcDrawing\DrawableArcJoGL.cpp"
 					>
 				</File>
-				<File
-					RelativePath=".\TestSwig.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\jni\TestSwig_wrap.c"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="TextDrawing"
