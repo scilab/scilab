@@ -223,7 +223,7 @@ public final class ToolBarBuilder {
 								if (cbAttributes.item(j).getNodeName() == INSTRUCTION) {
 									command = cbAttributes.item(j).getNodeValue();
 								} else if (cbAttributes.item(j).getNodeName() == TYPE) {
-									commandType = cbAttributes.item(j).getNodeValue().charAt(0);
+									commandType = Integer.parseInt(cbAttributes.item(j).getNodeValue());
 								}
 							}
 						if (command != null && commandType != CallBack.UNTYPED) {
