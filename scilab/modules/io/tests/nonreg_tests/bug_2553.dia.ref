@@ -1,0 +1,17 @@
+// <-- Non-regression test for bug 2553 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bugAdmin_II/show_bug.cgi?id=2553
+//
+// <-- Short Description -->
+//   error recovery problem
+// Serge Steer - Scilab Project
+// Copyright INRIA
+// 6 feb 2008
+function toto();x=1;y=x(3)+1;endfunction
+function titi();execstr('toto();disp ok');endfunction
+ ierr  =
+ 
+    21.  
+		
+if ierr<>21 then bugmes();quit;end
