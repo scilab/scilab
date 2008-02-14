@@ -24,7 +24,7 @@
 //    line    22 of function run_help                 called by :
 //    line    46 of function browsehelp               called by :
 //    line    10 of function help                     called by :
-//0...
+// ...
 // bug488
 // 489, 491 492 496 duplicate
 // rechercher l'existance du répertoire tcl sous Scilab
