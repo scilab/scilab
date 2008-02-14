@@ -128,7 +128,7 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 		if (replacedString) strcpy(replacedString,input_string);
 		return replacedString;
 	}
-    w = pcre_private(input_string,string_to_search,&Output_Start,&Output_End);
+    w = pcre_private(input_string,(char*)string_to_search,&Output_Start,&Output_End);
 	if (w != 0)
 	{
 		replacedString = (char *)MALLOC(sizeof(input_string)*(strlen(input_string)+1));

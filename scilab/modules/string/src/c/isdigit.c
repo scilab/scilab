@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include "isletter.h"
 #include "MALLOC.h"
+#include "isdigit.h"
 /*--------------------------------------------------------------------------*/
 BOOL *IsDigit(char *input_string)
 {

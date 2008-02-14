@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
-#include "MALLOC.h"
 #include "stringsstrrchr.h"
+#include "MALLOC.h"
 /*----------------------------------------------------------------------------*/
 char ** strings_strrchr(char **InputStrings,int Dim_InputStrings,char** InputChar,int Dim_InputChar,BOOL do_strrchr)
 {

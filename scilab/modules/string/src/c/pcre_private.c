@@ -62,20 +62,6 @@ symbols to prevent clashes. */
 
 #include "pcre_tables.c"
 
-/* We also need the pcre_printint() function for printing out compiled
-patterns. This function is in a separate file so that it can be included in
-pcre_compile.c when that module is compiled with debugging enabled.
-
-The definition of the macro PRINTABLE, which determines whether to print an
-output character as-is or as a hex value when showing compiled patterns, is
-contained in this file. We uses it here also, in cases when the locale has not
-been explicitly changed, so as to get consistent output from systems that
-differ in their output from isprint() even in the "C" locale. */
-
-
-#define PRINTHEX(c) (locale_set? isprint(c) : PRINTABLE(c))
-
-
 /* It is possible to compile this test program without including support for
 testing the POSIX interface, though this is not available via the standard
 Makefile. */
@@ -101,16 +87,9 @@ UTF8 support if PCRE is built without it. */
 /* Static variables */
 
 static FILE *outfile=NULL;
-static int log_store = 0;
 static int callout_count=0;
-static int callout_extra=0;
 static int callout_fail_count=0;
 static int callout_fail_id=0;
-static int debug_lengths=0;
-static int first_callout=0;
-static int locale_set = 0;
-static int show_malloc=0;
-static int use_utf8=0;
 static size_t gotten_store=0;
 
 /* The buffers grow automatically if very long input lines are encountered. */
@@ -137,8 +116,6 @@ static int callout(pcre_callout_block *cb)
 {
 /* Always print appropriate indicators, with callout number if not already
 shown. For automatic callouts, show the pattern offset. */
-
-first_callout = 0;
 
 if (cb->callout_data != NULL)
   {
@@ -265,14 +242,12 @@ options, followed by a set of test data, terminated by an empty line. */
 pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End)
 {
 	int options = 0;
-	int study_options = 0;
 	int timeit = 0;
 	int showinfo = 0;
 	int showstore = 0;
 	int size_offsets = 45;
 	int size_offsets_max;
 	int *offsets = NULL;
-	int debug = 0;
 	int all_use_dfa = 0;
 	BOOL LOOP_PCRE_TST = FALSE;
 
@@ -305,20 +280,12 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		char *p=NULL; 
 		char	*pp=NULL;
 		char *ppp=NULL;
-		char *to_file = NULL;
 		const unsigned char *tables = NULL;
 		unsigned long int true_size, true_study_size = 0;
-		size_t regex_gotten_store;
-		int do_study = 0;
-		int do_debug = debug=0;
 		int do_G = 0;
 		int do_g = 0;
-		int do_showinfo = showinfo;
-		int do_showrest = 0;
-		int do_flip = 0;
 		int erroroffset, len, delimiter, poffset;
-		use_utf8 = 0;
-		debug_lengths = 1;
+		
 		LOOP_PCRE_TST = TRUE;
 		p = INPUT_PAT;
 		while (isspace(*p)) p++;
@@ -326,7 +293,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		/* See if the pattern is to be loaded pre-compiled from a file. */
 		if (*p == '<' && strchr((char *)(p+1), '<') == NULL)
 		{
-			unsigned long int magic, get_options;
+			unsigned long int get_options;
 			char sbuf[8];
 			FILE *f;
 			p++;
@@ -342,13 +309,12 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			true_size = (sbuf[0] << 24) | (sbuf[1] << 16) | (sbuf[2] << 8) | sbuf[3];
 			true_study_size = (sbuf[4] << 24) | (sbuf[5] << 16) | (sbuf[6] << 8) | sbuf[7];
 			re = (real_pcre *)new_malloc(true_size);
-			regex_gotten_store = gotten_store;
 			if (fread(re, 1, true_size, f) != true_size) goto FAIL_READ;
-			magic = ((real_pcre *)re)->magic_number;
+			
 		
 			/* Need to know if UTF-8 for printing data strings */
 			new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
-			use_utf8 = (get_options & PCRE_UTF8) != 0;
+			
 			/* Now see if there is any following study data */
 			if (true_study_size != 0)
 			{
@@ -368,7 +334,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					fclose(f);
 					continue;
 				}
-				do_study = 1;     /* To get the data output if requested */
+				
 			}
 			goto SHOW_INFO;
 		}
@@ -416,9 +382,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	/* Look for options after final delimiter */
 
 	options = 0;
-	study_options = 0;
-	log_store = showstore;  /* default from command line */
-
+		
 	while (*pp != 0)
     {
 		switch (*pp++)
@@ -429,23 +393,23 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			case 'm': options |= PCRE_MULTILINE; break;
 			case 's': options |= PCRE_DOTALL; break;
 			case 'x': options |= PCRE_EXTENDED; break;
-			case '+': do_showrest = 1; break;
+			case '+': break;
 			case 'A': options |= PCRE_ANCHORED; break;
-			case 'B': do_debug = 1; break;
+			case 'B': break;
 			case 'C': options |= PCRE_AUTO_CALLOUT; break;
-			case 'D': do_debug = do_showinfo = 1; break;
+			case 'D': break;
 			case 'E': options |= PCRE_DOLLAR_ENDONLY; break;
-			case 'F': do_flip = 1; break;
+			case 'F': break;
 			case 'G': do_G = 1; break;
-			case 'I': do_showinfo = 1; break;
+			case 'I': break;
 			case 'J': options |= PCRE_DUPNAMES; break;
-			case 'M': log_store = 1; break;
+			case 'M': break;
 			case 'N': options |= PCRE_NO_AUTO_CAPTURE; break;
-			case 'S': do_study = 1; break;
+			case 'S': break;
 			case 'U': options |= PCRE_UNGREEDY; break;
 			case 'X': options |= PCRE_EXTRA; break;
-			case 'Z': debug_lengths = 0; break;
-			case '8': options |= PCRE_UTF8; use_utf8 = 1; break;
+			case 'Z': break;
+			case '8': options |= PCRE_UTF8; break;
 			case '?': options |= PCRE_NO_UTF8_CHECK; break;
 			case 'L':
 				ppp = pp;
@@ -457,12 +421,11 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				{
 					goto SKIP_DATA;
 				}
-				locale_set = 1;
+				
 				tables = pcre_maketables();
 				pp = ppp;
 			break;
 			case '>':
-				to_file = pp;
 				while (*pp != 0) pp++;
 				while (isspace(pp[-1])) pp--;
 				*pp = 0;
@@ -491,14 +454,13 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if (timeit > 0)
 		{
 			register int i;
-			clock_t time_taken;
 			clock_t start_time = clock();
 			for (i = 0; i < timeit; i++)
 			{
 				re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
 				if (re != NULL) FREE(re);
 			}
-			time_taken = clock() - start_time;
+			
 		}
 		re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
 		/* Compilation failed; go back for another re, skipping to blank line
@@ -509,8 +471,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			return CAN_NOT_COMPILE_PATTERN;
 		}
 		true_size = ((real_pcre *)re)->size;
-		regex_gotten_store = gotten_store;
-	SHOW_INFO: ;
+		SHOW_INFO: ;
 
 		/* If the '>' option was present, we write out the regex to a file, and
 		that is all. The first 8 bytes of the file are the regex length and then
@@ -531,7 +492,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		int copystrings = 0;
 		int find_match_limit = 0;
 		int getstrings = 0;
-		int getlist = 0;
 		int gmatched = 0;
 		int start_offset = 0;
 		int g_notempty = 0;
@@ -544,12 +504,12 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		copynamesptr = copynames;
 		getnamesptr = getnames;
   
-		first_callout = 1;
-		callout_extra = 0;
+		
+		
 		callout_count = 0;
 		callout_fail_count = 999999;
 		callout_fail_id = -1;
-		show_malloc = 0;
+		
 		if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
 		len = 0;
 		p = INPUT_LINE;
@@ -614,7 +574,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					}
 					else if (*p == '+')
 					{
-						callout_extra = 1;
+						
 						p++;
 					}
 					else if (*p == '-')
@@ -662,7 +622,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					}
 				continue;
 				case 'L':
-					getlist = 1;
 				continue;
 				case 'M':
 					find_match_limit = 1;
@@ -710,7 +669,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				continue;
 			#endif
 				case 'S':
-					show_malloc = 1;
+					
 				continue;
 				case 'Z':
 					options |= PCRE_NOTEOL;
@@ -814,7 +773,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						{
 							FREE((void *)tables);
 							setlocale(LC_CTYPE, "C");
-							locale_set = 0;
 						}
 						return 0;
 					}

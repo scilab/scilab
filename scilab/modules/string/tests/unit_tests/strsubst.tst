@@ -28,8 +28,6 @@ r = strsubst(['Scilab','Mathlab';'Octlab','Rlab'],'lab','');
 ref  = ['Sci','Math';'Oct','R'];
 if (r <> ref) then  pause,end
 //===============================
-
-if strsubst('abc','/abc/',' ','r') <>  ' '   then pause,end
 if strsubst('xbc','/abc/',' ','r') <>  'xbc'   then pause,end
 if strsubst('axc','/abc/',' ','r') <>  'axc'   then pause,end
 if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then pause,end
@@ -49,10 +47,6 @@ if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then pause,end
 if strsubst('abbc','/ab{1,3}bc/','^','r') <>  '^'   then pause,end
 if strsubst('abbbbc','/ab{3,4}bc/','^','r') <>  '^'   then pause,end
 if strsubst('abbbbc','/ab{4,5}bc/','^','r') <>  'abbbbc'   then pause,end
-
-
-
-
 if strsubst('abbc','/ab?bc/',' ','r') <>  ' '   then pause,end
 if strsubst('abc','/ab?bc/',' ','r') <>  ' '   then pause,end
 if strsubst('abc','/ab{0,1}bc/',' ','r') <>  ' '   then pause,end
@@ -73,7 +67,6 @@ if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then pause,end
 if strsubst('xy','/\By\b/','^','r') <>  'x^'   then pause,end
 if strsubst('xy','/\By\b/','^','r') <>  'x^'   then pause,end
 if strsubst('yz','/\by\B/','^','r') <>  '^z'   then pause,end
-if strsubst('xyz','/abc/',' ','r') <>  ' '   then pause,end
 if strsubst('e','/a|b|c|d|e/',' ','r') <>  ' '   then pause,end
 if strsubst('abcdefg','/abcd*efg/',' ','r') <>  ' '   then pause,end
 if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then pause,end
@@ -113,7 +106,6 @@ if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then pause,end
 if strsubst('xy','/\By\b/','^','r') <>  'x^'   then pause,end
 if strsubst('xy','/\By\b/','^','r') <>  'x^'   then pause,end
 if strsubst('yz','/\by\B/','^','r') <>  '^z'   then pause,end
-if strsubst('xyz','/abc/',' ','r') <>  ' '   then pause,end
 if strsubst('e','/a|b|c|d|e/',' ','r') <>  ' '   then pause,end
 if strsubst('abcdefg','/abcd*efg/',' ','r') <>  ' '   then pause,end
 if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then pause,end
@@ -153,7 +145,6 @@ if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then pause,end
 if strsubst('xy','/\By\b/','^','r') <>  'x^'   then pause,end
 if strsubst('xy','/\By\b/','^','r') <>  'x^'   then pause,end
 if strsubst('yz','/\by\B/','^','r') <>  '^z'   then pause,end
-if strsubst('xyz','/abc/',' ','r') <>  ' '   then pause,end
 if strsubst('e','/a|b|c|d|e/',' ','r') <>  ' '   then pause,end
 if strsubst('abcdefg','/abcd*efg/',' ','r') <>  ' '   then pause,end
 if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then pause,end
@@ -173,23 +164,11 @@ if strsubst('a','/(a)|\1/','^','r') <>  '^'   then pause,end
 if strsubst('A-','/a[-b]/i','^','r') <>  '^'   then pause,end
 if strsubst('A-','/a[b-]/i','^','r') <>  '^'   then pause,end
 if strsubst('A]','/a]/i','^','r') <>  '^'   then pause,end
-
-
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  '^'   then pause,end
-
+if strsubst('abc','/abc/',' ','r') <>  ' '   then pause,end
+//===============================
+// Cong please check this ...
+if strsubst('xyz','/abc/',' ','r') <>  'xyz'   then pause,end
+if strsubst('accccc','ffffff','^','r') <>  'accccc'   then pause,end
+//===============================
 
 

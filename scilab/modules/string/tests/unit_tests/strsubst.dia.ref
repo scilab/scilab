@@ -28,7 +28,6 @@ r = strsubst(['Scilab','Mathlab';'Octlab','Rlab'],'lab','');
 ref  = ['Sci','Math';'Oct','R'];
 if (r <> ref) then  bugmes();quit;end
 //===============================
-if strsubst('abc','/abc/',' ','r') <>  ' '   then bugmes();quit;end
 if strsubst('xbc','/abc/',' ','r') <>  'xbc'   then bugmes();quit;end
 if strsubst('axc','/abc/',' ','r') <>  'axc'   then bugmes();quit;end
 if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then bugmes();quit;end
@@ -48,43 +47,126 @@ if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then bugmes();quit;end
 if strsubst('abbc','/ab{1,3}bc/','^','r') <>  '^'   then bugmes();quit;end
 if strsubst('abbbbc','/ab{3,4}bc/','^','r') <>  '^'   then bugmes();quit;end
 if strsubst('abbbbc','/ab{4,5}bc/','^','r') <>  'abbbbc'   then bugmes();quit;end
-if strsubst('abc','/abc/',' ','r') <>  ' '   then bugmes();quit;end
-if strsubst('xbc','/abc/',' ','r') <>  'xbc'   then bugmes();quit;end
-if strsubst('axc','/abc/',' ','r') <>  'axc'   then bugmes();quit;end
-if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then bugmes();quit;end
-if strsubst('abc','/ab*c/',' ','r') <>  ' '   then bugmes();quit;end
-if strsubst('abc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abbc','/ab?bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab?bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab{0,1}bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('xaccy','/ab?bc/',' ','r') <>  'xaccy'   then bugmes();quit;end
+if strsubst('abc','/ab?c/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab{0,1}c/',' ','r') <>  ' '   then bugmes();quit;end
 if strsubst('abbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
-if strsubst('abbbbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
-if strsubst('abbbbc','/.{1}/',' ','r') <>  ' bbbbc'   then bugmes();quit;end
-if strsubst('abbbbc','/.{3,4}/',' ','r') <>  ' bc'   then bugmes();quit;end
+if strsubst('abc','/^abc$/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcc','/^abc$/',' ','r') <>  'abcc'   then bugmes();quit;end
+if strsubst('aabc','/^abc&/',' ','r') <>  'aabc'   then bugmes();quit;end
 if strsubst('abbbbc','/ab{0,}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbc','/ab+bc/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('aabc','/abc$/','^','r') <>  'a^'   then bugmes();quit;end
 if strsubst('abc','/ab+bc/','^','r') <>  'abc'   then bugmes();quit;end
 if strsubst('abq','/ab+bc/','^','r') <>  'abq'   then bugmes();quit;end
 if strsubst('abbc','/ab{1,}bc/','^','r') <>  '^'   then bugmes();quit;end
 if strsubst('abbbbc','/ab+bc/','^','r') <>  '^'   then bugmes();quit;end
 if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbc','/ab{1,3}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbbbc','/ab{3,4}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbbbc','/ab{4,5}bc/','^','r') <>  'abbbbc'   then bugmes();quit;end
-if strsubst('abc','/abc/',' ','r') <>  ' '   then bugmes();quit;end
-if strsubst('xbc','/abc/',' ','r') <>  'xbc'   then bugmes();quit;end
-if strsubst('axc','/abc/',' ','r') <>  'axc'   then bugmes();quit;end
+if strsubst('xy','/\By\b/','^','r') <>  'x^'   then bugmes();quit;end
+if strsubst('xy','/\By\b/','^','r') <>  'x^'   then bugmes();quit;end
+if strsubst('yz','/\by\B/','^','r') <>  '^z'   then bugmes();quit;end
+if strsubst('e','/a|b|c|d|e/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcdefg','/abcd*efg/',' ','r') <>  ' '   then bugmes();quit;end
 if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then bugmes();quit;end
-if strsubst('abc','/ab*c/',' ','r') <>  ' '   then bugmes();quit;end
-if strsubst('abc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
-if strsubst('abbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('xabyabbbz','/ab*/',' ','r') <>  'x yabbbz'   then bugmes();quit;end
+if strsubst('hij','/[abhgefdc]ij/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcde','/^(ab|cd)e/',' ','r') <>  'abcde'   then bugmes();quit;end
 if strsubst('abbbbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
 if strsubst('abbbbc','/.{1}/',' ','r') <>  ' bbbbc'   then bugmes();quit;end
 if strsubst('abbbbc','/.{3,4}/',' ','r') <>  ' bc'   then bugmes();quit;end
+if strsubst('effg','/(bc+d$|ef*g.|h?i(j|k))/','^','r') <>  'effg'   then bugmes();quit;end
+if strsubst('aa','/((((((((((a))))))))))\10/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a!','/((((((((((a))))))))))\041/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a','/(((((((((a)))))))))/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('multiple words, yeah','/multiple words/','^','r') <>  '^, yeah'   then bugmes();quit;end
+if strsubst('ac','/a[-]?c/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a','/(a)|\1/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A-','/a[-b]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A-','/a[b-]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A]','/a]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('abbc','/ab?bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab?bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab{0,1}bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('xaccy','/ab?bc/',' ','r') <>  'xaccy'   then bugmes();quit;end
+if strsubst('abc','/ab?c/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab{0,1}c/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/^abc$/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcc','/^abc$/',' ','r') <>  'abcc'   then bugmes();quit;end
+if strsubst('aabc','/^abc&/',' ','r') <>  'aabc'   then bugmes();quit;end
 if strsubst('abbbbc','/ab{0,}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbc','/ab+bc/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('aabc','/abc$/','^','r') <>  'a^'   then bugmes();quit;end
 if strsubst('abc','/ab+bc/','^','r') <>  'abc'   then bugmes();quit;end
 if strsubst('abq','/ab+bc/','^','r') <>  'abq'   then bugmes();quit;end
 if strsubst('abbc','/ab{1,}bc/','^','r') <>  '^'   then bugmes();quit;end
 if strsubst('abbbbc','/ab+bc/','^','r') <>  '^'   then bugmes();quit;end
 if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbc','/ab{1,3}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbbbc','/ab{3,4}bc/','^','r') <>  '^'   then bugmes();quit;end
-if strsubst('abbbbc','/ab{4,5}bc/','^','r') <>  'abbbbc'   then bugmes();quit;end
+if strsubst('xy','/\By\b/','^','r') <>  'x^'   then bugmes();quit;end
+if strsubst('xy','/\By\b/','^','r') <>  'x^'   then bugmes();quit;end
+if strsubst('yz','/\by\B/','^','r') <>  '^z'   then bugmes();quit;end
+if strsubst('e','/a|b|c|d|e/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcdefg','/abcd*efg/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then bugmes();quit;end
+if strsubst('xabyabbbz','/ab*/',' ','r') <>  'x yabbbz'   then bugmes();quit;end
+if strsubst('hij','/[abhgefdc]ij/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcde','/^(ab|cd)e/',' ','r') <>  'abcde'   then bugmes();quit;end
+if strsubst('abbbbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abbbbc','/.{1}/',' ','r') <>  ' bbbbc'   then bugmes();quit;end
+if strsubst('abbbbc','/.{3,4}/',' ','r') <>  ' bc'   then bugmes();quit;end
+if strsubst('effg','/(bc+d$|ef*g.|h?i(j|k))/','^','r') <>  'effg'   then bugmes();quit;end
+if strsubst('aa','/((((((((((a))))))))))\10/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a!','/((((((((((a))))))))))\041/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a','/(((((((((a)))))))))/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('multiple words, yeah','/multiple words/','^','r') <>  '^, yeah'   then bugmes();quit;end
+if strsubst('ac','/a[-]?c/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a','/(a)|\1/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A-','/a[-b]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A-','/a[b-]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A]','/a]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('abbc','/ab?bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab?bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab{0,1}bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('xaccy','/ab?bc/',' ','r') <>  'xaccy'   then bugmes();quit;end
+if strsubst('abc','/ab?c/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/ab{0,1}c/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abc','/^abc$/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcc','/^abc$/',' ','r') <>  'abcc'   then bugmes();quit;end
+if strsubst('aabc','/^abc&/',' ','r') <>  'aabc'   then bugmes();quit;end
+if strsubst('abbbbc','/ab{0,}bc/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('aabc','/abc$/','^','r') <>  'a^'   then bugmes();quit;end
+if strsubst('abc','/ab+bc/','^','r') <>  'abc'   then bugmes();quit;end
+if strsubst('abq','/ab+bc/','^','r') <>  'abq'   then bugmes();quit;end
+if strsubst('abbc','/ab{1,}bc/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('abbbbc','/ab+bc/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('abbbbc','/ab{1,}bc/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('xy','/\By\b/','^','r') <>  'x^'   then bugmes();quit;end
+if strsubst('xy','/\By\b/','^','r') <>  'x^'   then bugmes();quit;end
+if strsubst('yz','/\by\B/','^','r') <>  '^z'   then bugmes();quit;end
+if strsubst('e','/a|b|c|d|e/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcdefg','/abcd*efg/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('xaccy','/abc/',' ','r') <>  'xaccy'   then bugmes();quit;end
+if strsubst('xabyabbbz','/ab*/',' ','r') <>  'x yabbbz'   then bugmes();quit;end
+if strsubst('hij','/[abhgefdc]ij/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abcde','/^(ab|cd)e/',' ','r') <>  'abcde'   then bugmes();quit;end
+if strsubst('abbbbc','/ab*bc/',' ','r') <>  ' '   then bugmes();quit;end
+if strsubst('abbbbc','/.{1}/',' ','r') <>  ' bbbbc'   then bugmes();quit;end
+if strsubst('abbbbc','/.{3,4}/',' ','r') <>  ' bc'   then bugmes();quit;end
+if strsubst('effg','/(bc+d$|ef*g.|h?i(j|k))/','^','r') <>  'effg'   then bugmes();quit;end
+if strsubst('aa','/((((((((((a))))))))))\10/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a!','/((((((((((a))))))))))\041/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a','/(((((((((a)))))))))/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('multiple words, yeah','/multiple words/','^','r') <>  '^, yeah'   then bugmes();quit;end
+if strsubst('ac','/a[-]?c/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('a','/(a)|\1/','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A-','/a[-b]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A-','/a[b-]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('A]','/a]/i','^','r') <>  '^'   then bugmes();quit;end
+if strsubst('abc','/abc/',' ','r') <>  ' '   then bugmes();quit;end
+//===============================
+// Cong please check this ...
+if strsubst('xyz','/abc/',' ','r') <>  'xyz'   then bugmes();quit;end
+if strsubst('accccc','ffffff','^','r') <>  'accccc'   then bugmes();quit;end
+//===============================
