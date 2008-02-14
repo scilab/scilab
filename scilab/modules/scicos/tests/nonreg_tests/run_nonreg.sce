@@ -12,7 +12,7 @@ end
 
 // Launch any available test (except skeleton.cos)
 cosFiles = dir(fullfile(baseDir, '*.cos'));
-cosFiles = basename(cosFiles.name);
+cosFiles = sort(basename(cosFiles.name));
 for k = 1:size(cosFiles,'*')
   currentTestName = cosFiles(k);
   launch_test(baseDir, currentTestName);
