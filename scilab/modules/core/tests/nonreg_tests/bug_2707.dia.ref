@@ -4,7 +4,7 @@
 // http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2707
 //
 // <-- Short Description -->
-// The getmd5 function does not handle the SCI/ ~/0...  shortcuts
+// The getmd5 function does not handle the SCI/ ~/ ...  shortcuts
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 10/02/2008

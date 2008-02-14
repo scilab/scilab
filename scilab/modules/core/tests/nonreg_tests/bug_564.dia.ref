@@ -24,7 +24,7 @@
 //          break
 //        else
 //          Cmenu='Open/Set'
-//0...
+// ...
 // Non-regression test file for bug 564
 // Copyright INRIA
  // Modified by Pierre MARECHAL

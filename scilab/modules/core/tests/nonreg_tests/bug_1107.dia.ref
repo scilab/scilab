@@ -10,7 +10,7 @@
 //    factor equivalent to (x==2)
 x=5;
 if (x = 4) then
-Warning: obsolete use of '=' instead of '=='0.
+Warning: obsolete use of '=' instead of '=='.
 if (x = 4) then
         !       
 at line      26 of exec file called by :    
@@ -23,7 +23,7 @@ ok=x==5
  
   T  
 if (execstr('x=5;z=2*(x=4)',"errcatch","n")<>0) | (z<>0) then bugmes();quit;end
-Warning: obsolete use of '=' instead of '=='0.
+Warning: obsolete use of '=' instead of '=='.
 x=5;z=2*(x=4)
             !       
 in  execstr instruction    called by :  
@@ -32,7 +32,7 @@ at line       7 of exec file called by :
  
 
 if (execstr('x=5;z=2*(x-1=4)',"errcatch","n")<>0) | (z<>2) then bugmes();quit;end
-Warning: obsolete use of '=' instead of '=='0.
+Warning: obsolete use of '=' instead of '=='.
 x=5;z=2*(x-1=4)
               !       
 in  execstr instruction    called by :  

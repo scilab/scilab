@@ -1,41 +1,28 @@
- 
 // Copyright INRIA
- 
- 
- 
 format('v',10)
- 
 //display of numbers
- 
 x=2.6533333
  x  =
  
     2.6533333  
- 
 x=[2.6533333 -0.0002]
  x  =
  
     2.6533333  - 0.0002  
- 
 x'
  ans  =
  
     2.6533333  
   - 0.0002     
- 
 x=[]
  x  =
  
      []
- 
- 
 //display of polynomials
- 
 z=poly(0,'z')
  z  =
  
     z   
- 
 num=[ (((((1)*z-2.6533333)*z+2.6887936)*z-1.2916784)*z+0.2911572)*...
      z-0.0243497
       (((((1)*z-2.6533333)*z+2.6887936)*z-1.2916784)*z+0.2911572)*...
@@ -58,7 +45,6 @@ num=[ (((((1)*z-2.6533333)*z+2.6887936)*z-1.2916784)*z+0.2911572)*...
     1 + z                                                               
                                                                         
     0                                                                   
- 
 den = [ ((((1)*z-1.536926)*z+0.8067352)*z-0.1682810)*z+0.0113508
 ((((1)*z-1.536926)*z+0.8067352)*z-0.1682810)*z+0.0113508
 ((1)*z )*z
@@ -75,7 +61,6 @@ den = [ ((((1)*z-1.536926)*z+0.8067352)*z-0.1682810)*z+0.0113508
     z                                                    
                                                          
     1                                                    
- 
 num',den'
  ans  =
  
@@ -110,7 +95,6 @@ num',den'
  
                                       2           3   4     2        
     0.0113508 - 0.168281z + 0.8067352z - 1.536926z + z     z     1   
- 
 [num;den]
  ans  =
  
@@ -139,7 +123,6 @@ num',den'
     z                                                                   
                                                                         
     1                                                                   
- 
 [num den]
  ans  =
  
@@ -173,33 +156,23 @@ num',den'
     z                                                    
                                                          
     1                                                    
- 
 //display of polynomials
- 
 z=poly(0,'z')
  z  =
  
     z   
- 
 n=1+z;d=n*n;n1=[n d];d1=[d d*d];n1=[n1 n1];d1=[d1 d1];
- 
 n2=[n n*n;n*n n**4];d2=[n*n n**4;n n*n];den=d2(1,:);num=n2(2,:);
- 
 p=poly(rand(5,1),'z');q=poly(rand(6,1),'z');
- 
 p1=[p,0.1+2.35*z-5.05*z**3];q1=[q,2.56+0.03*z-10.01*z*z+z**5];
- 
 d3=[1+z**10 z**15];
- 
 //display of rationals
- 
 r=num./den
  r  =
  
     1     1   
     -     -   
     1     1   
- 
 r'
  ans  =
  
@@ -210,7 +183,6 @@ r'
     1   
     -   
     1   
- 
 tlist('r',d,n)
  ans  =
  
@@ -218,7 +190,6 @@ tlist('r',d,n)
     1 + 2z + z   
     ----------   
       1 + z      
- 
 tlist('r',n,d)
  ans  =
  
@@ -226,7 +197,6 @@ tlist('r',n,d)
     ---------    
               2  
     1 + 2z + z   
- 
 tlist('r',d2,n2)
  ans  =
  
@@ -241,7 +211,6 @@ tlist('r',d2,n2)
     ---------      --------------------   
               2               2    3   4  
     1 + 2z + z     1 + 4z + 6z + 4z + z   
- 
 tlist('r',n2,d2)
  ans  =
  
@@ -256,7 +225,6 @@ tlist('r',n2,d2)
     ----------     --------------------   
                                   2       
       1 + z             1 + 2z + z        
- 
 tlist('r',den,num)
  ans  =
  
@@ -265,7 +233,6 @@ tlist('r',den,num)
     ----------     --------------------   
               2               2    3   4  
     1 + 2z + z     1 + 4z + 6z + 4z + z   
- 
 tlist('r',num,den)
  ans  =
  
@@ -274,7 +241,6 @@ tlist('r',num,den)
     ----------     --------------------   
               2               2    3   4  
     1 + 2z + z     1 + 4z + 6z + 4z + z   
- 
 tlist('r',p1,q1)
  ans  =
  
@@ -298,7 +264,6 @@ tlist('r',p1,q1)
     -------------------------   
                          2   5  
     2.56 + 0.03z - 10.01z + z   
- 
 tlist('r',q1,p1)
  ans  =
  
@@ -322,7 +287,6 @@ tlist('r',q1,p1)
     -------------------------   
                           3     
        0.1 + 2.35z - 5.05z      
- 
 tlist('r',p,q)
  ans  =
  
@@ -335,7 +299,6 @@ tlist('r',p,q)
     0.0123314 - 0.2684985z + 1.5393672z - 4.0114366z + 5.4004179z       
                    5   6                                                
        - 3.6713072z + z                                                 
- 
 tlist('r',q,p)
  ans  =
  
@@ -348,7 +311,6 @@ tlist('r',q,p)
   - 0.0000078 + 0.0351988z - 0.3720034z + 1.3432153z - 1.9632981z       
           5                                                             
        + z                                                              
- 
 tlist('r',p,z)
  ans  =
  
@@ -358,7 +320,6 @@ tlist('r',p,z)
        + z                                                              
     ------------------------------------------------------------------  
                                     z                                   
- 
 tlist('r',z,p)
  ans  =
  
@@ -368,7 +329,6 @@ tlist('r',z,p)
   - 0.0000078 + 0.0351988z - 0.3720034z + 1.3432153z - 1.9632981z       
           5                                                             
        + z                                                              
- 
 tlist('r',d1,n1)
  ans  =
  
@@ -388,7 +348,6 @@ tlist('r',d1,n1)
     --------------------   
                    2       
          1 + 2z + z        
- 
 tlist('r',n1,d1)
  ans  =
  
@@ -408,43 +367,35 @@ tlist('r',n1,d1)
     --------------------   
                2    3   4  
     1 + 4z + 6z + 4z + z   
- 
 //display of strings
- 
 digits='abcdefghijklmnopqrstuvwxyz'
  digits  =
  
  abcdefghijklmnopqrstuvwxyz   
- 
 numbers='1234567890'
  numbers  =
  
  1234567890   
- 
 majuscules='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  majuscules  =
  
  ABCDEFGHIJKLMNOPQRSTUVWXYZ   
- 
 symbols=',./;''[] \ =-!\$%^&*()_+~:""[]| @'
  symbols  =
  
  ,./;'[] \ =-!\$%^&*()_+~:"[]| @   
- 
 [numbers;digits]
  ans  =
  
 !1234567890                  !
 !                            !
 !abcdefghijklmnopqrstuvwxyz  !
- 
 [numbers digits;digits numbers]
  ans  =
  
 !1234567890                  abcdefghijklmnopqrstuvwxyz  !
 !                                                        !
 !abcdefghijklmnopqrstuvwxyz  1234567890                  !
- 
 [numbers digits+digits+digits]
  ans  =
  
@@ -457,9 +408,7 @@ symbols=',./;''[] \ =-!\$%^&*()_+~:""[]| @'
  
 !abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr!
 !     stuvwxyz                                                         !
- 
 ans';
- 
 [ans ans]
  ans  =
  
@@ -477,20 +426,15 @@ ans';
 !                                                                      !
 !abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr!
 !     stuvwxyz                                                         !
- 
 ''
  ans  =
  
     
- 
- 
 // display of list
- 
 list()
  ans  =
  
      ()
- 
 list(1,2,3)
  ans  =
  
@@ -506,7 +450,6 @@ list(1,2,3)
        ans(3)
  
     3.  
- 
 list(list(1,list()),2)
  ans  =
  
@@ -525,7 +468,6 @@ list(list(1,list()),2)
        ans(2)
  
     2.  
- 
 list(tlist('r',q,p),1.23)
  ans  =
  
@@ -545,15 +487,12 @@ list(tlist('r',q,p),1.23)
        ans(2)
  
     1.23  
- 
 // overloading of display
- 
 1:$
  ans  =
  
  
  1:1:$   
- 
 list(1,1:$)
  ans  =
  
@@ -566,7 +505,6 @@ list(1,1:$)
  
  
  1:1:$   
- 
 list(list(1:$))
  ans  =
  
@@ -578,7 +516,6 @@ list(list(1:$))
  
  
  1:1:$   
- 
 list(list(1,$),list())
  ans  =
  
@@ -597,9 +534,7 @@ list(list(1,$),list())
        ans(2)
  
      ()
- 
 // Tlist overloaded display
- 
 TL=tlist('x',1,2)
  TL  =
  
@@ -615,9 +550,7 @@ TL=tlist('x',1,2)
        TL(3)
  
     2.  
- 
 deff('%x_p(x)','disp(x(3),x(2),''Mydisplay'')')
- 
 TL
  TL  =
  
@@ -627,7 +560,6 @@ TL
     1.  
  
     2.  
- 
 list(TL)
  ans  =
  
@@ -640,7 +572,6 @@ list(TL)
     1.  
  
     2.  
- 
 list(list(TL))
  ans  =
  
@@ -656,7 +587,6 @@ list(list(TL))
     1.  
  
     2.  
- 
 TL=tlist('x',1:$,2)
  TL  =
  
@@ -667,7 +597,6 @@ TL=tlist('x',1:$,2)
  1:1:$   
  
     2.  
- 
 list(TL)
  ans  =
  
@@ -681,7 +610,6 @@ list(TL)
  1:1:$   
  
     2.  
- 
 list(list(TL))
  ans  =
  
@@ -698,7 +626,6 @@ list(list(TL))
  1:1:$   
  
     2.  
- 
 TL(2)=TL
  TL  =
  
@@ -714,4 +641,3 @@ TL(2)=TL
     2.  
  
     2.  
- 

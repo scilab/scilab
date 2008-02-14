@@ -24,7 +24,7 @@
 //    waiting for right parenthesis
 //    as well as
 //    -->(2m))))))))))))
-//0...
+// ...
 g=9.81;
 m=2;
 l=1;

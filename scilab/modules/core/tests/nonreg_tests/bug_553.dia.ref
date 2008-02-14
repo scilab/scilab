@@ -24,7 +24,7 @@
 //
 //    Is this correct? I was expecting n == 3.
 //    On Scilab 2.7.2 with " loopbug.sci, shown below " function
-//0...
+// ...
 n = 12;
 if execstr("for n=1:3; disp(n); end","errcatch") <> 0 then bugmes();quit;end
  

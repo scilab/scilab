@@ -8,7 +8,7 @@
 //    En prenant par exemple j=0.001, on obtient un affichage
 //    incoherent avec format :
 //    format("v",6) => 0.001
-//    format("v",7) => 1.D-3
+//    format("v",7) => 1.E-3
 //    format("v",8) => 0.001
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA

@@ -13,4 +13,4 @@
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2008
 // Date : 8 janvier 2008
-if 0.18257419^2 +0.36514837^2 +0.54772256^2 +0.73029674^2 - 1 > %eps then pause, end
+if  .18257419^2 + .36514837^2 + .54772256^2 + .73029674^2 - 1 > %eps then bugmes();quit;end

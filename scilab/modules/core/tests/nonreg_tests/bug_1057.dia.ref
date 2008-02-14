@@ -6,9 +6,9 @@
 // <-- Short Description -->
 //    Crash when entering the following in the command window:
 //
-//    1.7977D+308
+//    1.7977E+308
 //
-//    Actually, every number greater than 1.797D+308 crashes
+//    Actually, every number greater than 1.797E+308 crashes
 //    scilab (scilab3.0 under linux gives the correct answer Inf).
 //
 //    A popup window appears with the following message:
@@ -26,4 +26,4 @@
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 1er juin 2005
-if 1.7977D+308 <> %inf then bugmes();quit;end
+if 1.7977E+308 <> %inf then bugmes();quit;end
