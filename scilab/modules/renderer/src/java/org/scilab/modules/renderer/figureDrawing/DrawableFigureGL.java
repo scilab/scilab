@@ -8,11 +8,9 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
-
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.Threading;
-
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
@@ -60,6 +58,9 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Keep a pointer on the OpenGL rendering target (Canvas, pBuffer, ...). */
 	private GLAutoDrawable renderingTarget;
 	
+	/** Default TextRenderer */
+	private TextRendererFactory textRendererFactory;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -72,7 +73,17 @@ public class DrawableFigureGL extends ObjectGL {
       	isReadyForRendering = false;
       	pixmapModeOn = true;
       	renderingTarget = null;
+      	setDefaultTextRenderer();
     }
+	
+	/**
+	 * Set the default TextRenderer
+	 */
+	public void setDefaultTextRenderer() {
+		textRendererFactory = new JOGLTextRendererFactory();
+		//textRendererFactory = new PSTextRendererFactory();
+
+	}
 	
 	/**
 	 * Set .OR. get if the rendering is enable for this figure.
@@ -112,7 +123,7 @@ public class DrawableFigureGL extends ObjectGL {
 		}
 		this.figureId = figureId;
 		FigureMapper.addMapping(figureId, this);
-		super.setFigureIndex(figureId);
+		//super.setFigureIndex(figureId);
 	}
 	
 	/**
@@ -388,4 +399,20 @@ public class DrawableFigureGL extends ObjectGL {
 		return renderingTarget;
 	}
 	
+	/**
+	 * setTextRendererFactory
+	 * @param textRendererFactory TextRendererFactory
+	 */
+	public void setTextRendererFactory(TextRendererFactory textRendererFactory) {
+		this.textRendererFactory = textRendererFactory;
+	}
+	
+	/**
+	 * getTextRendererFactory
+	 * @return TextRendererFactory
+	 */
+	public TextRendererFactory getTextRendererFactory() {
+		return textRendererFactory;
+		
+	}
 }

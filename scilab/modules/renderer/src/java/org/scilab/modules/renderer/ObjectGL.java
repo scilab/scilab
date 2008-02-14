@@ -10,6 +10,7 @@ package org.scilab.modules.renderer;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 
 /**
@@ -24,6 +25,8 @@ public abstract class ObjectGL {
 	private GL glPipeline;
 	/** current colorMap to use */
 	private TexturedColorMap curColorMap;
+	
+	private DrawableFigureGL parentFigureGL;
 
 	/**
 	 * Default constructor
@@ -37,7 +40,9 @@ public abstract class ObjectGL {
 	 * @param parentFigureIndex index of parentFigure
 	 */
 	public void setFigureIndex(int parentFigureIndex) {
-		updateColorMap(parentFigureIndex);
+		// get the context from the drawing canvas
+		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
+		updateColorMap();
 	}
 	
 	/**
@@ -60,9 +65,11 @@ public abstract class ObjectGL {
 	 *                          Needed to get the GL context to draw in.
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
-		// get the context from the drawing canvas
-		updateGLContext(parentFigureIndex);
-		updateColorMap(parentFigureIndex);
+		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
+		updateGLContext();
+		updateColorMap();
+		/*updateGLContext(parentFigureIndex);
+		updateColorMap(parentFigureIndex);*/
 	}
 	
 	/**
@@ -84,11 +91,11 @@ public abstract class ObjectGL {
 	
 	/**
 	 * Get the OpenGL context relative to the canvas figureIndex
-	 * @param figureIndex index of the figure correspondingto the canvas
 	 * @return updated OpenGL pipeline
 	 */
-	protected GL updateGLContext(int figureIndex) {
-		glPipeline = FigureMapper.getCorrespondingFigure(figureIndex).getGL();
+	protected GL updateGLContext() {
+		//glPipeline = FigureMapper.getCorrespondingFigure(figureIndex).getGL();
+		glPipeline = parentFigureGL.getGL();
 		return glPipeline;
 	}
 	
@@ -102,11 +109,11 @@ public abstract class ObjectGL {
 	
 	/**
 	 * Get the colormap relative to figure with figureIndex
-	 * @param figureIndex index of the figure correspondingto the canvas
 	 * @return updated colormap
 	 */
-	protected TexturedColorMap updateColorMap(int figureIndex) {
-		curColorMap = FigureMapper.getCorrespondingFigure(figureIndex).getColorMap();
+	protected TexturedColorMap updateColorMap() {
+		//curColorMap = FigureMapper.getCorrespondingFigure(figureIndex).getColorMap();
+		curColorMap = parentFigureGL.getColorMap();
 		return curColorMap;
 	}
 	
@@ -124,6 +131,22 @@ public abstract class ObjectGL {
 	 */
 	protected void setColorMap(TexturedColorMap cmap) {
 		curColorMap = cmap;
+	}
+
+	/**
+	 * FigureGL getter
+	 * @return figureGL
+	 */
+	public DrawableFigureGL getParentFigureGL() {
+		return parentFigureGL;
+	}
+
+	/**
+	 * figureGL setter
+	 * @param figureGL DrawableFigureGL
+	 */
+	protected void setParentFigureGL(DrawableFigureGL figureGL) {
+		this.parentFigureGL = figureGL;
 	}
 	
 }

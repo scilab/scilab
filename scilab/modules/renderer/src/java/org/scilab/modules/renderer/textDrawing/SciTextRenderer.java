@@ -31,7 +31,7 @@ public class SciTextRenderer extends TextRenderer {
 	 */
 	protected SciTextRenderer(Font font, float aliasingFactor) {
 		super(font, false, true, null, false);
-		this.antiAliasingFactor = aliasingFactor;
+		this.setAntiAliasingFactor(aliasingFactor);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class SciTextRenderer extends TextRenderer {
 	 * @param color initialize renderer with a certain font
 	 * @return new instance of SciTextRenderer
 	 */
-	static SciTextRenderer create(Font font, double[] color) {
+	public static SciTextRenderer create(Font font, double[] color) {
 		SciTextRenderer res = create(font);
 		res.setColor(color[0], color[1], color[2]);
 		return res;
@@ -73,7 +73,7 @@ public class SciTextRenderer extends TextRenderer {
 	 * @param z Z coordinate of the text
 	 */
 	public void draw3D(String str, double x, double y, double z) {
-		super.draw3D(str, (float) x, (float) y, (float) z, antiAliasingFactor);
+		super.draw3D(str, (float) x, (float) y, (float) z, getAntiAliasingFactor());
 	}
 	
 	/**
@@ -94,11 +94,24 @@ public class SciTextRenderer extends TextRenderer {
 	public Rectangle2D getBounds(String str) {
 		Rectangle2D res = super.getBounds(str);
 		res.setFrame(res.getX(), res.getY(),
-					 res.getWidth() * antiAliasingFactor,
-					 res.getHeight() * antiAliasingFactor);
+					 res.getWidth() * getAntiAliasingFactor(),
+					 res.getHeight() * getAntiAliasingFactor());
 		return res;
 	}
-	
-	
-	
+
+	/**
+	 * AntiAliasingFactor setter
+	 * @param antiAliasingFactor float
+	 */
+	public void setAntiAliasingFactor(float antiAliasingFactor) {
+		this.antiAliasingFactor = antiAliasingFactor;
+	}
+
+	/**
+	 * AntiAliasingFactor getter
+	 * @return antiAliasingFactor
+	 */
+	public float getAntiAliasingFactor() {
+		return antiAliasingFactor;
+	}	
 }

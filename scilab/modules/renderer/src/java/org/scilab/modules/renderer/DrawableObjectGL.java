@@ -36,10 +36,9 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	
 	/**
 	 * To be called when the cpp object is destroyed
-	 * @param parentFigureIndex index of parent figure
 	 */
-	public void clean(int parentFigureIndex) {
-		updateGLContext(parentFigureIndex);
+	public void clean() {
+		updateGLContext();
 		clearDisplayList();
 	}
 	

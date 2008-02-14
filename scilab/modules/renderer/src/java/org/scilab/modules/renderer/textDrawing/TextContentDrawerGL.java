@@ -171,7 +171,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	public SciTextRenderer getTextRenderer() {
 		if (textRenderer == null) {
-			textRenderer = SciTextRenderer.create(getFont(), getFontColor());
+			textRenderer = (SciTextRenderer) getParentFigureGL().getTextRendererFactory().createTextRenderer(getFont(), getFontColor()); 
+			// SciTextRenderer.create(getFont(), getFontColor());
 		}
 		return textRenderer;
 	}
@@ -228,6 +229,12 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 
+		//Put the text on the figure
+		/*gl.glRasterPos3d(getTextCenter().getX(), getTextCenter().getY(), getTextCenter().getZ());
+		GL2PS gl2ps = new GL2PS();
+		gl2ps.gl2psText("totototot", "Courier", (short) 12);*/
+	
+		
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
