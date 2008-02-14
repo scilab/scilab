@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
@@ -146,11 +147,10 @@ public class ScilabContextMenuBridge {
 	/**
 	 * Add a callback to the contextMenu, this callback is a Scilab command
 	 * @param contextMenu the contextMenu we want to set the callback of
-	 * @param command the Scilab command to execute when the contextMenu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(ContextMenu contextMenu, String command, int commandType) {
-		contextMenu.getAsSimpleContextMenu().setCallback(command, commandType);
+	public static void setCallback(ContextMenu contextMenu, CallBack callback) {
+		contextMenu.getAsSimpleContextMenu().setCallback(callback);
 	}
 
 	/**

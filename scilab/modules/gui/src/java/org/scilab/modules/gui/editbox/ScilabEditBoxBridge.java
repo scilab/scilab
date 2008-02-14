@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -122,11 +123,10 @@ public class ScilabEditBoxBridge {
 	/**
 	 * Add a callback to the EditBox
 	 * @param editBox the EditBox we want to set the callback of
-	 * @param command the Scilab command to execute when the contents of the editBox is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(EditBox editBox, String command, int commandType) {
-		editBox.getAsSimpleEditBox().setCallback(command, commandType);
+	public static void setCallback(EditBox editBox, CallBack callback) {
+		editBox.getAsSimpleEditBox().setCallback(callback);
 	}
 	
 	/**

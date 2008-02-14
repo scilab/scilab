@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -98,12 +97,11 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	
 	/**
 	 * Add a callback to the pushbutton
-	 * @param command the Scilab command to execute when the pushbutton is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		callback = ScilabCallBack.create(command, commandType);
-		addActionListener(callback);
+	public void setCallback(CallBack callback) {
+		this.callback = callback;
+		addActionListener(this.callback);
 	}
 
 	/**

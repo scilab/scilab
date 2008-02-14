@@ -57,8 +57,6 @@ public class Scilab {
 
 			try {
 				mainView = ScilabWindow.createWindow();
-				mainView.draw();
-				mainView.setTitle("Scilab-5.0");
 			} catch (NoClassDefFoundError exception) {
 				System.err.println("Cannot create Scilab Window.\n"
 						+ "Check if the thirdparties are available (Flexdock, JOGL...).\n"
@@ -84,10 +82,9 @@ public class Scilab {
 				/* Create a tab to put console into */
 				consoleTab = ScilabTab.createTab("Console");
 				/* Exit Scilab when the console is closed */
-				consoleTab.setCallback("exit();", CallBack.SCILAB_INSTRUCTION);
+				consoleTab.setCallback(CallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
 
 				ScilabConsole.createConsole();
-				//consoleTab.addMember(sciConsole);
 			} catch (NoClassDefFoundError exception) {
 				System.err.println("Cannot create Scilab Console.\n"
 						+ "Check if the thirdparties are available (JoGL/JRosetta...).\n"
@@ -96,19 +93,12 @@ public class Scilab {
 				System.exit(-1);
 			}
 
-			try {
-				mainView.draw();
-			} catch (UnsatisfiedLinkError exception) {
-				System.err.println("Problem while loading the native library (link not resolved)");
-				System.err.println(exception.getLocalizedMessage());
-				System.exit(-1);
-			}
-
 			/** Adding content into container */
 			ScilabConsole.getConsole().addToolBar(toolBar);
 			ScilabConsole.getConsole().addMenuBar(menuBar);
 			consoleTab.addMember(ScilabConsole.getConsole());
 			mainView.addTab(consoleTab);
+			mainView.draw();
 		} else {
 			System.out.println("mode -NW");
 		}

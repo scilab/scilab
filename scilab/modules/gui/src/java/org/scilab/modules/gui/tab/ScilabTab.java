@@ -10,6 +10,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -355,11 +356,10 @@ public class ScilabTab extends ScilabContainer implements Tab {
 
 	/**
 	 * Set the callback of the tab
-	 * @param command the command to be executed when the tab is closed
-	 * @param commandType the type of the command
+	 * @param callback the CallBack to set
 	 */
-	public void setCallback(String command, int commandType) {
-		ScilabBridge.setCallback(this, command, commandType);
+	public void setCallback(CallBack callback) {
+		ScilabBridge.setCallback(this, callback);
 	}
 	
 	/**

@@ -5,6 +5,7 @@ package org.scilab.modules.gui.bridge.radiobutton;
 
 import javax.swing.JRadioButton;
 
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -79,12 +80,10 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 
 	/**
 	 * Add a callback to the RadioButton
-	 * @param command the Scilab command to execute when the RadioButton is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabRadioButton");
-		//addActionListener(ScilabCallBack.create(command, commandType));
+	public void setCallback(CallBack callback) {
+		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabRadioButton");
 	}
 
 	/**

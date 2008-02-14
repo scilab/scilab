@@ -21,6 +21,7 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
@@ -428,12 +429,10 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	
 	/**
 	 * Add a callback to the Frame
-	 * @param command the Scilab command to execute when the Frame is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabFrame");
-		//addActionListener(ScilabCallBack.create(command, commandType));
+	public void setCallback(CallBack callback) {
+		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabFrame");
 	}
 
 	/**

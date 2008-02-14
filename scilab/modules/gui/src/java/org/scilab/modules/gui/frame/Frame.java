@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.container.Container;
+import org.scilab.modules.gui.events.callback.CallBack;
 
 /**
  * Interface for Scilab frames in GUIs
@@ -76,10 +77,9 @@ public interface Frame extends Container {
 
 	/**
 	 * Set the callback of the Frame
-	 * @param command the command to be executed when the Frame is activated
-	 * @param commandType the type of the command
+	 * @param callback the callback to set
 	 */
-	void setCallback(String command, int commandType);
+	void setCallback(CallBack callback);
 	
 	/**
 	 * Set the Relief of the Frame

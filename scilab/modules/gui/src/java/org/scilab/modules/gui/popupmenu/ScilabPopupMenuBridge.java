@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -122,11 +123,10 @@ public class ScilabPopupMenuBridge {
 	/**
 	 * Add a callback to the PopupMenu
 	 * @param popupMenu the PopupMenu we want to set the callback of
-	 * @param command the Scilab command to execute when the contents of the popupMenu is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(PopupMenu popupMenu, String command, int commandType) {
-		popupMenu.getAsSimplePopupMenu().setCallback(command, commandType);
+	public static void setCallback(PopupMenu popupMenu, CallBack callback) {
+		popupMenu.getAsSimplePopupMenu().setCallback(callback);
 	}
 	
 	/**

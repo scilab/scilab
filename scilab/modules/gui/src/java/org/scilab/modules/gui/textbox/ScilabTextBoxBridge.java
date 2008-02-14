@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -176,11 +177,10 @@ public class ScilabTextBoxBridge {
 	/**
 	 * Add a callback to the TextBox
 	 * @param textBox the TextBox we want to set the callback of
-	 * @param command the Scilab command to execute when the contents of the textBox is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(TextBox textBox, String command, int commandType) {
-		textBox.getAsSimpleTextBox().setCallback(command, commandType);
+	public static void setCallback(TextBox textBox, CallBack callback) {
+		textBox.getAsSimpleTextBox().setCallback(callback);
 	}
 	
 	/**

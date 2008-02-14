@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -169,11 +170,10 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	
 	/**
 	 * Add a callback to the EditBox
-	 * @param command the Scilab command to execute when the EditBox is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		ScilabBridge.setCallback(this, command, commandType);
+	public void setCallback(CallBack callback) {
+		ScilabBridge.setCallback(this, callback);
 	}
 	
 	/**

@@ -43,10 +43,10 @@ public abstract class CallBack extends AbstractAction implements ActionListener 
 	
 	/**
 	 * Constructor to be seen by specifics CallBack.
-	 * @param command
+	 * @param command the command associated to the ccallback
 	 */
 	public CallBack(String command) {
-		this.command=command;
+		this.command = command;
 	}
 	
 	/**
@@ -61,4 +61,18 @@ public abstract class CallBack extends AbstractAction implements ActionListener 
 	 */
 	public abstract void callBack();
 		
+	/**
+	 * Create a Callback from Scilab data
+	 * @param command the instruction
+	 * @param callbackType the type of the instruction
+	 * @return the Callback
+	 */
+	public static CallBack createCallback(String command, int callbackType) {
+		if (callbackType == CallBack.JAVA) {
+			return JavaCallBack.create(command);
+		} else {
+			return ScilabCallBack.create(command, callbackType);
+		}
+	}
+
 }

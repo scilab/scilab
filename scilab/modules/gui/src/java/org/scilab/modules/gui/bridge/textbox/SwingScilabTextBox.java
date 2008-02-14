@@ -5,6 +5,7 @@ package org.scilab.modules.gui.bridge.textbox;
 
 import javax.swing.JTextArea;
 
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -33,7 +34,6 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 * Sets the text of a Text Widget
 	 * @param newText the text to set to the Text Widget
 	 */
-	@Override
 	public void setText(String newText) {
 		super.setText(newText);
 	}
@@ -42,7 +42,6 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	 * Gets the text of a Text Widget
 	 * @return the text of the Text Widget
 	 */
-	@Override
 	public String getText() {
 		return super.getText();
 	}
@@ -135,10 +134,9 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	
 	/**
 	 * Add a callback to the TextBox
-	 * @param command the Scilab command to execute when the contents of the TextBox is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
+	public void setCallback(CallBack callback) {
 		throw new UnsupportedOperationException();
 	}
 

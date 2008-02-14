@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -122,11 +123,10 @@ public class ScilabLabelBridge {
 	/**
 	 * Add a callback to the Label
 	 * @param label the Label we want to set the callback of
-	 * @param command the Scilab command to execute when the contents of the label is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(Label label, String command, int commandType) {
-		label.getAsSimpleLabel().setCallback(command, commandType);
+	public static void setCallback(Label label, CallBack callback) {
+		label.getAsSimpleLabel().setCallback(callback);
 	}
 	
 	/**

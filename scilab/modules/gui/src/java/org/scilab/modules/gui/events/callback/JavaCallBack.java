@@ -16,7 +16,6 @@ public abstract class JavaCallBack extends CallBack {
 
 	/**
 	 * @param command : the command to execute.
-	 * @param type : the type of this command.
 	 */
 	private JavaCallBack(String command) {
 		super(command);
@@ -26,7 +25,6 @@ public abstract class JavaCallBack extends CallBack {
 	 * Callback Factory to easily create a callback
 	 * just like in scilab.
 	 * @param command : the command to execute.
-	 * @param type : the type of this command.
 	 * @return a usable Java callback
 	 */
 	public static JavaCallBack create(String command) {

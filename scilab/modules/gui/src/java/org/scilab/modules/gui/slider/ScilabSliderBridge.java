@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -122,11 +123,10 @@ public class ScilabSliderBridge {
 	/**
 	 * Add a callback to the Slider
 	 * @param slider the Slider we want to set the callback of
-	 * @param command the Scilab command to execute when the contents of the Slider is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public static void setCallback(Slider slider, String command, int commandType) {
-		slider.getAsSimpleSlider().setCallback(command, commandType);
+	public static void setCallback(Slider slider, CallBack callback) {
+		slider.getAsSimpleSlider().setCallback(callback);
 	}
 	
 	/**

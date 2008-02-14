@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -123,11 +124,10 @@ public class ScilabPushButtonBridge {
 	/**
 	 * Add a callback to the pushbutton
 	 * @param pushButton the PushButton we want to set the callback of
-	 * @param command the Scilab command to execute when the pushbutton is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public static void setCallback(PushButton pushButton, String command, int commandType) {
-		pushButton.getAsSimplePushButton().setCallback(command, commandType);
+	public static void setCallback(PushButton pushButton, CallBack callback) {
+		pushButton.getAsSimplePushButton().setCallback(callback);
 	}
 
 	/**

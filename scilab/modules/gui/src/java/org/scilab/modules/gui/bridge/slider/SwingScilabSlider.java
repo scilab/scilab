@@ -9,7 +9,6 @@ import java.awt.event.AdjustmentListener;
 import javax.swing.JScrollBar;
 
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -85,12 +84,11 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 
 	/**
 	 * Add a callback to the Slider
-	 * @param command the Scilab command to execute when the Slider is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param cb the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
+	public void setCallback(CallBack cb) {
 		/* Create a callback */
-		callback = ScilabCallBack.create(command, commandType);
+		this.callback = cb;
 		
 		/* Remove previous listener if exists */
 		if (adjustmentListener != null) {

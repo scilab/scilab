@@ -2,6 +2,7 @@ package org.scilab.modules.gui.events.callback;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.GlobalEventFilter;
 import org.scilab.modules.gui.events.GlobalEventWatcher;

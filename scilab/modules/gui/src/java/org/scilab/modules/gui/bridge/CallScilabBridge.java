@@ -13,6 +13,7 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.frame.Frame;
@@ -699,15 +700,16 @@ public class CallScilabBridge {
 	 * @param callbackType the type of the callback
 	 */
 	public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
-		((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(callbackString, callbackType);
+		((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CallBack.createCallback(callbackString, callbackType));
 	}
 	
 	/**
 	 * Set a callback for a Frame
 	 * @param objID the ID of the object in the UIElementMapper
-	 * @param callback the text of the callback
+	 * @param callbackString the text of the callback
+	 * @param callbackType the type of the callback
 	 */
-	public static void setFrameCallback(int objID, String callback) {
+	public static void setFrameCallback(int objID, String callbackString, int callbackType) {
 		System.out.println("setFrameCallback is not implemented");
 	}
 	
@@ -1667,5 +1669,4 @@ public class CallScilabBridge {
 	public static void setFrameRelief(int id, String reliefType) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setRelief(reliefType);
 	}
-
 }

@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -168,11 +169,10 @@ public class ScilabRadioButton extends ScilabWidget implements RadioButton {
 	
 	/**
 	 * Add a callback to the RadioButton
-	 * @param command the Scilab command to execute when the RadioButton is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		ScilabBridge.setCallback(this, command, commandType);
+	public void setCallback(CallBack callback) {
+		ScilabBridge.setCallback(this, callback);
 	}
 	
 	/**

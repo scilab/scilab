@@ -147,6 +147,7 @@ public final class Jxgetmouse {
 	 * @param mouseEvent : the Mouse Event caught
 	 * @param scilabMouseAction : the integer scilab code for mouse action.
 	 * @param canvas : the canvas where action occurs.
+	 * @param isControlDown true if the CTRL key has been pressed
 	 */
 	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {	
 		if (scilabMouseAction != GlobalMouseEventWatcher.MOVED

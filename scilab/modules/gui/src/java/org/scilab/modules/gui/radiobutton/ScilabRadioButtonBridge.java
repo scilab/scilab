@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -122,11 +123,10 @@ public class ScilabRadioButtonBridge {
 	/**
 	 * Add a callback to the RadioButton
 	 * @param radioButton the RadioButton we want to set the callback of
-	 * @param command the Scilab command to execute when the contents of the RadioButton is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(RadioButton radioButton, String command, int commandType) {
-		radioButton.getAsSimpleRadioButton().setCallback(command, commandType);
+	public static void setCallback(RadioButton radioButton, CallBack callback) {
+		radioButton.getAsSimpleRadioButton().setCallback(callback);
 	}
 	
 	/**

@@ -8,6 +8,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -279,11 +280,10 @@ public class ScilabTabBridge {
 	/**
 	 * Set the callback of the tab
 	 * @param tab the tab which we want to set the callback of
-	 * @param command the command to be executed when the tab is closed
-	 * @param commandType the type of the command
+	 * @param callback the CallBack to set
 	 */
-	public static void setCallback(Tab tab, String command, int commandType) {
-		tab.getAsSimpleTab().setCallback(command, commandType);
+	public static void setCallback(Tab tab, CallBack callback) {
+		tab.getAsSimpleTab().setCallback(callback);
 	}
 
 }

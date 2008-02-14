@@ -154,10 +154,9 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command
-	 * @param command the Scilab command to execute when the menu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
+	public void setCallback(CallBack callback) {
 		throw new UnsupportedOperationException();
 	}
 

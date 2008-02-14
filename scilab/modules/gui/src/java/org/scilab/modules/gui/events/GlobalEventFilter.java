@@ -62,9 +62,10 @@ public class GlobalEventFilter {
 	/**
 	 * Update ClickInfos structure when a mouse event occurs on a Canvas.
 	 * 
-	 * @param mouseEvent : the event caught.
-	 * @param source : the canvas where the event occurs.
-	 * @param buttonCode : the Scilab button code.
+	 * @param mouseEvent the event caught.
+	 * @param source the canvas where the event occurs.
+	 * @param buttonCode the Scilab button code.
+	 * @param isControlDown true if the CTRL key has been pressed
 	 */
 	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonCode, boolean isControlDown) {
 		synchronized (ClickInfos.getInstance()) {

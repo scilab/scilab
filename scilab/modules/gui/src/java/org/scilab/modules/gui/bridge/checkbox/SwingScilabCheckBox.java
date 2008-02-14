@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.checkbox;
 import javax.swing.JCheckBox;
 
 import org.scilab.modules.gui.checkbox.SimpleCheckBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -79,12 +80,10 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 	
 	/**
 	 * Add a callback to the CheckBox
-	 * @param command the Scilab command to execute when the CheckBox is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set
 	 */
-	public void setCallback(String command, int commandType) {
-		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabCheckBox");
-		//addActionListener(ScilabCallBack.create(command, commandType));
+	public void setCallback(CallBack callback) {
+		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabCheckBox");
 	}
 
 	/**

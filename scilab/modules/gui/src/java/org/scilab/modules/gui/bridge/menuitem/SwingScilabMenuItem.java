@@ -9,7 +9,6 @@ import javax.swing.JMenuItem;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -43,12 +42,11 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	
 	/**
 	 * Add a callback to the MenuItem, this callback is a Scilab command
-	 * @param command the Scilab command to execute when the MenuItem is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		callback = ScilabCallBack.create(command, commandType); 
-		addActionListener(callback);
+	public void setCallback(CallBack callback) {
+		this.callback = callback; 
+		addActionListener(this.callback);
 	}
 
 	/**

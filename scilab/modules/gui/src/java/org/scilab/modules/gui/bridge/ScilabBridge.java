@@ -23,6 +23,7 @@ import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBoxBridge;
 import org.scilab.modules.gui.editbox.SimpleEditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooserBridge;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
@@ -428,11 +429,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the Frame
 	 * @param frame the Frame we want to set the callback of
-	 * @param command the Scilab command to execute when the Frame is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set
 	 */
-	public static void setCallback(Frame frame, String command, int commandType) {
-		ScilabFrameBridge.setCallback(frame, command, commandType);
+	public static void setCallback(Frame frame, CallBack callback) {
+		ScilabFrameBridge.setCallback(frame, callback);
 	}
 
 	/**
@@ -704,11 +704,10 @@ public class ScilabBridge {
 	/**
 	 * Set the callback of the tab
 	 * @param tab the tab which we want to set the callback of
-	 * @param command the command to be executed when the tab is closed
-	 * @param commandType the type of the command
+	 * @param callback the CallBack to set
 	 */
-	public static void setCallback(Tab tab, String command, int commandType) {
-		ScilabTabBridge.setCallback(tab, command, commandType);
+	public static void setCallback(Tab tab, CallBack callback) {
+		ScilabTabBridge.setCallback(tab, callback);
 	}
 	
 	/******************/
@@ -1061,11 +1060,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
-	 * @param command the Scilab command to execute when the menu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(MenuItem menuItem, String command, int commandType) {
-		ScilabMenuItemBridge.setCallback(menuItem, command, commandType);
+	public static void setCallback(MenuItem menuItem, CallBack callback) {
+		ScilabMenuItemBridge.setCallback(menuItem, callback);
 	}
 
 	/**
@@ -1373,11 +1371,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command
 	 * @param menu the menu we want to set the callback of
-	 * @param command the Scilab command to execute when the menu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(Menu menu, String command, int commandType) {
-		ScilabMenuBridge.setCallback(menu, command, commandType);
+	public static void setCallback(Menu menu, CallBack callback) {
+		ScilabMenuBridge.setCallback(menu, callback);
 	}
 
 	/**
@@ -1540,11 +1537,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the contextMenu, this callback is a Scilab command
 	 * @param contextMenu the contextMenu we want to set the callback of
-	 * @param command the Scilab command to execute when the contextMenu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(ContextMenu contextMenu, String command, int commandType) {
-		ScilabContextMenuBridge.setCallback(contextMenu, command, commandType);
+	public static void setCallback(ContextMenu contextMenu, CallBack callback) {
+		ScilabContextMenuBridge.setCallback(contextMenu, callback);
 	}
 
 	/**
@@ -1699,11 +1695,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the pushbutton
 	 * @param pushButton the PushButton we want to set the callback of
-	 * @param command the Scilab command to execute when the pushbutton is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(PushButton pushButton, String command, int commandType) {
-		ScilabPushButtonBridge.setCallback(pushButton, command, commandType);
+	public static void setCallback(PushButton pushButton, CallBack callback) {
+		ScilabPushButtonBridge.setCallback(pushButton, callback);
 	}
 
 	/**
@@ -1960,11 +1955,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the TextBox
 	 * @param textBox the TextBox we want to set the callback of
-	 * @param command the Scilab command to execute when the TextBox is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(TextBox textBox, String command, int commandType) {
-		ScilabTextBoxBridge.setCallback(textBox, command, commandType);
+	public static void setCallback(TextBox textBox, CallBack callback) {
+		ScilabTextBoxBridge.setCallback(textBox, callback);
 	}
 
 	/**
@@ -2167,11 +2161,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the EditBox
 	 * @param editBox the EditBox we want to set the callback of
-	 * @param command the Scilab command to execute when the EditBox is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(EditBox editBox, String command, int commandType) {
-		ScilabEditBoxBridge.setCallback(editBox, command, commandType);
+	public static void setCallback(EditBox editBox, CallBack callback) {
+		ScilabEditBoxBridge.setCallback(editBox, callback);
 	}
 
 	/**
@@ -2373,11 +2366,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the Label
 	 * @param label the Label we want to set the callback of
-	 * @param command the Scilab command to execute when the Label is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(Label label, String command, int commandType) {
-		ScilabLabelBridge.setCallback(label, command, commandType);
+	public static void setCallback(Label label, CallBack callback) {
+		ScilabLabelBridge.setCallback(label, callback);
 	}
 
 	/**
@@ -2580,11 +2572,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the CheckBox
 	 * @param checkBox the CheckBox we want to set the callback of
-	 * @param command the Scilab command to execute when the CheckBox is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(CheckBox checkBox, String command, int commandType) {
-		ScilabCheckBoxBridge.setCallback(checkBox, command, commandType);
+	public static void setCallback(CheckBox checkBox, CallBack callback) {
+		ScilabCheckBoxBridge.setCallback(checkBox, callback);
 	}
 
 	/**
@@ -2805,11 +2796,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the RadioButton
 	 * @param radioButton the RadioButton we want to set the callback of
-	 * @param command the Scilab command to execute when the RadioButton is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public static void setCallback(RadioButton radioButton, String command, int commandType) {
-		ScilabRadioButtonBridge.setCallback(radioButton, command, commandType);
+	public static void setCallback(RadioButton radioButton, CallBack callback) {
+		ScilabRadioButtonBridge.setCallback(radioButton, callback);
 	}
 
 	/**
@@ -3030,11 +3020,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the Slider
 	 * @param slider the Slider we want to set the callback of
-	 * @param command the Scilab command to execute when the Slider is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(Slider slider, String command, int commandType) {
-		ScilabSliderBridge.setCallback(slider, command, commandType);
+	public static void setCallback(Slider slider, CallBack callback) {
+		ScilabSliderBridge.setCallback(slider, callback);
 	}
 
 	/**
@@ -3307,11 +3296,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the ListBox
 	 * @param listBox the ListBox we want to set the callback of
-	 * @param command the Scilab command to execute when the ListBox is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(ListBox listBox, String command, int commandType) {
-		ScilabListBoxBridge.setCallback(listBox, command, commandType);
+	public static void setCallback(ListBox listBox, CallBack callback) {
+		ScilabListBoxBridge.setCallback(listBox, callback);
 	}
 
 
@@ -3581,11 +3569,10 @@ public class ScilabBridge {
 	/**
 	 * Add a callback to the PopupMenu
 	 * @param popupMenu the PopupMenu we want to set the callback of
-	 * @param command the Scilab command to execute when the PopupMenu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(PopupMenu popupMenu, String command, int commandType) {
-		ScilabPopupMenuBridge.setCallback(popupMenu, command, commandType);
+	public static void setCallback(PopupMenu popupMenu, CallBack callback) {
+		ScilabPopupMenuBridge.setCallback(popupMenu, callback);
 	}
 
 	/**

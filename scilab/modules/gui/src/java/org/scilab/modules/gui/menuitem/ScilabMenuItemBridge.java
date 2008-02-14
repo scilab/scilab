@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 
 /**
@@ -181,11 +182,10 @@ public class ScilabMenuItemBridge {
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command
 	 * @param menuItem the menu we want to set the callback of
-	 * @param command the Scilab command to execute when the menu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(MenuItem menuItem, String command, int commandType) {
-		menuItem.getAsSimpleMenuItem().setCallback(command, commandType);
+	public static void setCallback(MenuItem menuItem, CallBack callback) {
+		menuItem.getAsSimpleMenuItem().setCallback(callback);
 	}
 
 	/**

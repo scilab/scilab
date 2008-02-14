@@ -227,7 +227,7 @@ public final class ToolBarBuilder {
 								}
 							}
 						if (command != null && commandType != CallBack.UNTYPED) {
-							pushButton.setCallback(replaceFigureID(command), commandType);
+							pushButton.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
 							}
 						}
 						// Read next child

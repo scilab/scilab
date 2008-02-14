@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -185,11 +186,10 @@ public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 	
 	/**
 	 * Add a callback to the menu, this callback is a Scilab command
-	 * @param command the Scilab command to execute when the menu is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		ScilabBridge.setCallback(this, command, commandType);
+	public void setCallback(CallBack callback) {
+		ScilabBridge.setCallback(this, callback);
 	}
 
 	/**

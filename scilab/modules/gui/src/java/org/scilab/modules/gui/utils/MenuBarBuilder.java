@@ -243,7 +243,7 @@ public final class MenuBarBuilder {
 								}
 							}
 						if (command != null && commandType != CallBack.UNTYPED) {
-							menuItem.setCallback(replaceFigureID(command), commandType);
+							menuItem.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
 							}
 						}
 						// Read next child

@@ -10,6 +10,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.events.callback.CallBack;
 
 /**
  * Class for Scilab PushButtons in GUIs
@@ -129,11 +130,10 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 
 	/**
 	 * Add a callback to the pushbutton, this callback is a Scilab command
-	 * @param command the Scilab command to execute when the pushbutton is activated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the CallBack to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		ScilabBridge.setCallback(this, command, commandType);
+	public void setCallback(CallBack callback) {
+		ScilabBridge.setCallback(this, callback);
 	}
 
 	/**

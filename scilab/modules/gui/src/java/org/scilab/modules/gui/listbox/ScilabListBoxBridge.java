@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -122,11 +123,10 @@ public class ScilabListBoxBridge {
 	/**
 	 * Add a callback to the ListBox
 	 * @param listBox the ListBox we want to set the callback of
-	 * @param command the Scilab command to execute when the contents of the listBox is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public static void setCallback(ListBox listBox, String command, int commandType) {
-		listBox.getAsSimpleListBox().setCallback(command, commandType);
+	public static void setCallback(ListBox listBox, CallBack callback) {
+		listBox.getAsSimpleListBox().setCallback(callback);
 	}
 	
 	/**

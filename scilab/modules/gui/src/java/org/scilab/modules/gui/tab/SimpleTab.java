@@ -8,6 +8,7 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -209,9 +210,8 @@ public interface SimpleTab {
 	
 	/**
 	 * Set the callback of the tab
-	 * @param command the command to be executed when the tab is closed
-	 * @param commandType the type of the command
+	 * @param callback the CallBack to set
 	 */
-	void setCallback(String command, int commandType);
+	void setCallback(CallBack callback);
 
 }

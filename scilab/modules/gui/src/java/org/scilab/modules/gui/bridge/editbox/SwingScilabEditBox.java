@@ -6,6 +6,7 @@ package org.scilab.modules.gui.bridge.editbox;
 import javax.swing.JTextField;
 
 import org.scilab.modules.gui.editbox.SimpleEditBox;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -76,12 +77,10 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	
 	/**
 	 * Add a callback to the EditBox
-	 * @param command the Scilab command to execute when the EditBox is validated
-	 * @param commandType the type of the command that will be executed.
+	 * @param callback the callback to set.
 	 */
-	public void setCallback(String command, int commandType) {
-		System.out.println("setCallback(String command, int commandType) is not yet implemented for SwingScilabEditBox");
-		//addActionListener(ScilabCallBack.create(command, commandType));
+	public void setCallback(CallBack callback) {
+		System.out.println("setCallback(Callback callback) is not yet implemented for SwingScilabEditBox");
 	}
 
 	/**

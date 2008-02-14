@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.dockable.Dockable;
+import org.scilab.modules.gui.events.callback.CallBack;
 
 /**
  * Interface for widget associated to objects in Scilab GUIs
@@ -71,10 +72,9 @@ public interface Widget extends Dockable {
 
 	/**
 	 * Set the callback of the widget
-	 * @param command the command to be executed when the widget is activated
-	 * @param commandType the type of the command
+	 * @param callback the callback to set
 	 */
-	void setCallback(String command, int commandType);
+	void setCallback(CallBack callback);
 
 	/**
 	 * Set the horizontal alignment for the widget text
