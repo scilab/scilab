@@ -24,6 +24,6 @@
 //    at line      25 of function geomean                  called by :
 //    g=geomean(x);
 //    Commands:  x=[3 1 5];
-//0...
+// ...
 x=[3 1 5];
 if execstr("geomean(x)","errcatch")<>0 then bugmes();quit;end
