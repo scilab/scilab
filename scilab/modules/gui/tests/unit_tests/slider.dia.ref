@@ -1,0 +1,23 @@
+// Unitary tests for Scilab Java slider
+// Vincent COUVERT - INRIA 2008
+// Exec tests common to all uicontrols
+clear uicontrol_generic_test
+getf("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
+uicontrol_generic_test("slider");
+// Default relief value
+h = uicontrol("parent", scf(), "style", "slider");
+if get(h, "relief") <> "flat" then
+  pause
+end
+// --- Value tests ---
+// Default value
+if get(h, "value") <> get(h,"min") then
+  pause
+end
+set(h, "value", [1]);
+if get(h, "value") <> 1 then
+  pause
+ 
+Type 'resume' or 'abort' to return to standard level prompt.
+
+ 

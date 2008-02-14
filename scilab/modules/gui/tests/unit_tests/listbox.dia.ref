@@ -1,0 +1,46 @@
+// Unitary tests for Scilab Java listbox
+// Vincent COUVERT - INRIA 2008
+// Exec tests common to all uicontrols
+clear uicontrol_generic_test
+getf("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
+uicontrol_generic_test("listbox");
+// Default relief value
+h = uicontrol("parent", scf(), "style", "listbox");
+if get(h, "relief") <> "flat" then
+  pause
+end
+// TODO --- Value tests ---
+// Default value
+//if ~isempty(get(h, "value")) then
+//  pause
+//end
+//set(h, "string", "Item1|Item2|Item3"); // Item has to be set before selecting it
+//set(h, "value", 1);
+//if get(h, "value") <> 1 then
+//  pause
+//end
+//set(h, "value", [1 2 3]);
+//if ~and(get(h, "value") == [1 2 3]) then
+//  pause
+//end
+//set(h, "value", []);
+//if ~isempty(get(h, "value")) then
+//  pause
+//end
+// TODO test with wrong values
+// Tests for multiline String property
+set(h, "string", "test|for|multiline|string");
+if or(get(h, "string") <> ["test","for","multiline","string"]) then
+  pause
+end
+// Row vector
+set(h, "string", ["a" "row" "vector" "string" "property"]);
+if or(get(h, "string") <> ["a" "row" "vector" "string" "property"]) then
+  pause
+end
+// Column vector
+set(h, "string", ["a";"column";"vector";"string";"property"]);
+if or(get(h, "string") <> ["a" "column" "vector" "string" "property"]) then
+  pause
+end
+// TODO test with a matrix should fail
