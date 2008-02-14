@@ -176,3 +176,35 @@ n=5
     5.  
 A=int(10*rand(n,n));
 A1=strcat(string(A),' ','c');
+F='%d';F=strcat(F(ones(1,n)),' ');
+// all lines read as int we scan a 5x5 matrix
+A2=msscanf(-1,A1,F);
+if norm(A2-A) > %eps then pause;end
+// read just 2 lines
+A2=msscanf(2,A1,F);
+if norm(A2-A(1:2,:)) > %eps then pause;end
+// explicit columns we scan five columns
+[n,a,b,c,d,e]=msscanf(-1,A1,F);
+if n<>5 then pause;end
+if norm([a,b,c,d,e]-A) > %eps then pause;end
+// all lines read as int but we scan only 2 columns
+A2=msscanf(-1,A1,'%d%d');
+if norm(A2-A(:,1:2)) > %eps then pause;end
+// all lines read as string
+F='%s';F=strcat(F(ones(1,n)),' ');
+A2=msscanf(-1,A1,F);
+if A2<>string(A) then pause;end
+// read just 2 lines
+A2=msscanf(2,A1,F);
+if A2<>string(A(1:2,:))  then pause;end
+// mixed types read column 1 and 2 as string and others as int
+Fs='%s';Fs=strcat(Fs(ones(1,2)),' ');
+Fd='%d';Fd=strcat(Fd(ones(1,n-2)),' ');
+[n,a,b,c,d,e]=msscanf(-1,A1,Fs+' '+Fd);
+if n<>5 then pause;end
+if norm([eval(a),eval(b),c,d,e]-A) > %eps then pause;end
+// same example but returned values are compacted in L
+L=msscanf(-1,A1,Fs+' '+Fd);
+if length(L)<>3 then pause;end
+if norm(getfield(3,L)-A(:,3:n)) > %eps then pause;end
+if getfield(2,L)<>string(A(:,1:2)) then pause;end
