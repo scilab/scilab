@@ -1,7 +1,15 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2008 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * Copyright (C) 2008 - INRIA - Sylvest LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 #include <stdio.h>
 #include <string.h>
 #include "machine.h"
@@ -60,7 +68,9 @@ char *buildModuleDynLibraryName(char *modulename)
 char *buildGatewayName(char *modulename)
 {
 	/* example gw_scicos_ --> C2F(gw_scicos) */
-	#define FORMATGATEWAYNAME "gw_%s_"
+	#define FORMATGATEWAYNAME "gw_%s_" 
+	/* @TODO THIS MUST BE REWRITED !!! It is not portable at all */
+
 	char *gatewayname = NULL;
 	int lenName = (int)(strlen(modulename)+strlen(FORMATGATEWAYLIBNAME));
 	gatewayname = (char*)MALLOC(sizeof(char)*(lenName+1));
@@ -81,13 +91,13 @@ void displayErrorGateway(dynamic_gateway_error_code err,char *libraryname,char *
 		/* NO ERROR */
 		break;
 	case DYN_GW_LOAD_LIBRARY_ERROR :
-		Scierror(999,_("Impossible to load %s library.\n"),libraryname);
+		Scierror(999,_("Impossible to load %s library: %s.\n"),libraryname,GetLastDynLibError());
 		break;
 	case DYN_GW_PTR_FUNCTION_ERROR :
-		Scierror(999,_("Impossible to load %s function in %s library.\n"),functionname,libraryname);
+		Scierror(999,_("Impossible to load %s function in %s library: %s.\n"),functionname,libraryname, GetLastDynLibError());
 		break;
 	case DYN_GW_CALL_FUNCTION_ERROR :
-		Scierror(999,_("Impossible to call %s in %s library.\n"),functionname,libraryname);
+		Scierror(999,_("Impossible to call %s in %s library: %s.\n"),functionname,libraryname,GetLastDynLibError());
 		break;
 	}
 }
