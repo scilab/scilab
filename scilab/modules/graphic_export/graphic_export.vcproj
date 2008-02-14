@@ -69,7 +69,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib"
+				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib OpenGL32.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="graphic_export.def"
