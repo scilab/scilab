@@ -11,7 +11,7 @@
 function varargout = mysum(a, b)
 	varargout = list(a + b, a - b, a * b);
 endfunction
-if execstr('function [y, varargout] = MyNew(a,b)0..
-   [y, varargout] = mysum(a,b)0..
-   endfunction'0..
+if execstr('function [y, varargout] = MyNew(a,b) ..
+   [y, varargout] = mysum(a,b) ..
+   endfunction' ..
 ,'errcatch' ) <> 37 then bugmes();quit;end

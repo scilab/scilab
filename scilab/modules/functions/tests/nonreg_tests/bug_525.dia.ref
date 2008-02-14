@@ -24,7 +24,7 @@
 //    -->stacksize(2e6)
 //
 //    -->execstr("function foo")
-//0...
+// ...
 stacksize(2e6);
 execstr("function foo","errcatch");
 str = lasterror();

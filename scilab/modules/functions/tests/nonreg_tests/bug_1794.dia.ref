@@ -10,7 +10,7 @@
 // Copyright INRIA 2005
 // Date : 30 janvier 2006
 beta=5;
-Warning : redefining function : beta                    
+Warning : redefining function: beta                    
 
 try
 	beta
@@ -26,7 +26,7 @@ function y=foo()
 endfunction
 try
 	foo()
-Warning : redefining function : beta                    
+Warning : redefining function: beta                    
 
  ans  =
  
