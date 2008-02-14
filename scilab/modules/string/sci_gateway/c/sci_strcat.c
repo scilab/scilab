@@ -56,12 +56,11 @@ int C2F(sci_strcat) _PARAMS((char *fname,unsigned long fname_len))
 	return 0;
 }
 /*-------------------------------------------------------------------------------------*/
-/* this case is not documented in help :( */
-/* TO DO : update help or remove this case */
 static int sci_strcat_three_rhs(char *fname) 
 { 
 	char typ = 0;
-	char **Input_String_One = NULL,**Output_String = NULL;
+	char **Input_String_One = NULL;
+	char **Output_String = NULL;
 	static char def_sep[] ="";
 	char *Input_String_Two = def_sep;
 	static int un=1;
@@ -79,15 +78,15 @@ static int sci_strcat_three_rhs(char *fname)
 		mn = Row_One*Col_One;  
 		if (Rhs >= 2) 
 		{ 
-			int l2;
+			/* second argument always a string and not a matrix of string */
+			int l2 = 0;
 			GetRhsVar(2,STRING_DATATYPE,&Row_Two,&Col_Two,&l2);
 			Input_String_Two = cstk(l2);
 		}
 		if (Rhs >= 3) 
 		{
 			GetRhsVar(3,STRING_DATATYPE,&Row_Three,&Col_Three,&l3); 
-			if ( Row_Three*Col_Three != 0) 
-				typ = cstk(l3)[0];
+			if ( Row_Three*Col_Three != 0) typ = cstk(l3)[0];
 			if (typ != COL && typ != ROW ) 
 			{
 				Scierror(999,_("%s: Wrong type for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"c","r"); 
@@ -109,10 +108,6 @@ static int sci_strcat_three_rhs(char *fname)
 			}
 			freeArrayOfString(Input_String_One,mn);
 			LhsVar(1) = Rhs+1  ;
-
-			// A modifier
-			//freeArrayOfString(Input_String_Two,Row_Two*Col_Two);
-
 			break;
 		case COL: 
 			/* return a column matrix */ 
@@ -148,24 +143,6 @@ static int sci_strcat_three_rhs(char *fname)
 			
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &un, Output_String);
 			freeArrayOfString(Input_String_One,mn);
-
-			
-			if (Input_String_Two) 
-			{
-				for ( i = 0 ; i <Row_Two*Col_Two ; i++ )
-				{
-					if (Input_String_Two[i])
-					{
-						
-						Input_String_Two=NULL; 
-					}
-				}
-				
-				Input_String_Two=NULL;
-			}
-		
-
-
 			LhsVar(1) = Rhs+1  ;
 			freeArrayOfString(Output_String,Row_One+1);
 			break;
@@ -198,15 +175,6 @@ static int sci_strcat_three_rhs(char *fname)
 			}
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &un, &Col_One, Output_String);
 			freeArrayOfString(Input_String_One,mn);
-
-			if (Input_String_Two) 
-			{
-			
-				
-				Input_String_Two=NULL;
-			}
-
-
 			freeArrayOfString(Output_String,Col_One+1);
 			LhsVar(1) = Rhs+1  ;
 			break;
