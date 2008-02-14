@@ -38,7 +38,7 @@ if msprintf("%15g",11124234534545)   <> "    1.11242e+13" then bugmes();quit;end
 if msprintf("%.1g",-35.1)            <> "-4e+01"          then bugmes();quit;end
 if msprintf("%.0g",-35.1)            <> "-4e+01"          then bugmes();quit;end
 if msprintf("%#.0g",-35.1)           <> "-4.e+01"         then bugmes();quit;end
-if msprintf("%#.0G",-35.1)           <> "-4.D+01"         then bugmes();quit;end
+if msprintf("%#.0G",-35.1)           <> "-4.E+01"         then bugmes();quit;end
 if msprintf("%.1g",0.00433)          <> "0.004"           then bugmes();quit;end
 if msprintf("%.15g",0.0000000345456) <> "3.45456e-08"     then bugmes();quit;end
 if msprintf("%.1g",11124234534545)   <> "1e+13","1e+013"  then bugmes();quit;end
@@ -51,7 +51,7 @@ if msprintf("%e",35.551234567890)    <> "3.555123e+01"    then bugmes();quit;end
 if msprintf("%e",0.00433)            <> "4.330000e-03"    then bugmes();quit;end
 if msprintf("%e",0.0000000345456)    <> "3.454560e-08"    then bugmes();quit;end
 if msprintf("%e",11124234534545)     <> "1.112423e+13"    then bugmes();quit;end
-if msprintf("%E",11124234534545)     <> "1.112423D+13"    then bugmes();quit;end
+if msprintf("%E",11124234534545)     <> "1.112423E+13"    then bugmes();quit;end
 if msprintf("%15e",-35)              <> "  -3.500000e+01" then bugmes();quit;end
 if msprintf("%15e",0.00433)          <> "   4.330000e-03" then bugmes();quit;end
 if msprintf("%15e",0.0000000345456)  <> "   3.454560e-08" then bugmes();quit;end

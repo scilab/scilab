@@ -11,11 +11,11 @@
 cd TMPDIR;
 // Deleting an existing file... Just in case...
 mdelete("dummyFile.dummy")
-TXT = [ 'I am a dummy String';0..
-        'Multi lines ';0..
-        'to check that';0..
-        ' mputl is okay';0..
-        ' on linux and windows0... '];
+TXT = [ 'I am a dummy String'; ..
+        'Multi lines '; ..
+        'to check that'; ..
+        ' mputl is okay'; ..
+        ' on linux and windows ... '];
 mputl(TXT, 'dummyFile.dummy')
 TXT2 = mgetl('dummyFile.dummy');
 if TXT2 <> TXT then bugmes();quit;end

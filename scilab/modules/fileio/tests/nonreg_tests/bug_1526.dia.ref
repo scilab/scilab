@@ -11,7 +11,7 @@
 // Pierre MARECHAL - Scilab Project
 // Copyright INRIA
 // 12/02/2008
-mat_ref = [0..
+mat_ref = [ ..
     0.15    0.19    0.96 ;
     0.55    0.81    0.57 ;
     0.28    0.33    0.43 ];
