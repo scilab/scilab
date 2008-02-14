@@ -96,6 +96,7 @@ sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
 sci_gateway/c/sci_raise_window.c \
 sci_gateway/c/sci_x_choose.c \
+sci_gateway/c/sci_x_choose_modeless.c \
 sci_gateway/c/sci_xgetfile.c \
 sci_gateway/c/sci_x_message.c \
 sci_gateway/c/sci_unsetmenu.c \

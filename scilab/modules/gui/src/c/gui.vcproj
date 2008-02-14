@@ -473,6 +473,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_x_choose_modeless.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_x_dialog.c"
 				>
 			</File>

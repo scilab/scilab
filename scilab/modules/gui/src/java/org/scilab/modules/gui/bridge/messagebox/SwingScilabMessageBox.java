@@ -325,6 +325,17 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		super.setModal(modal); /* Must call the JDialog class setModal */
 		setVisible(true);
 		doLayout();
+		
+		// If the dialog is not modal and Scilab waits for an answer, have to wait...
+		if (!modal && scilabDialogType != X_MESSAGE_TYPE) {
+			synchronized (btnOK) {
+				try {
+					btnOK.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	/**
@@ -353,6 +364,10 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 					break;
 				}
 			}
+		}
+		// Notify btnOK for not modal Dialogs
+		synchronized (btnOK) {
+			btnOK.notify();
 		}
 		// Destroy the Dialog
 		dispose();
@@ -445,6 +460,10 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			public void mouseClicked(MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
 					selectedItem = listBox.getSelectedIndex() + 1;
+					// Notify btnOK for not modal Dialogs
+					synchronized (btnOK) {
+						btnOK.notify();
+					}
 					dispose();
 				}
 			}

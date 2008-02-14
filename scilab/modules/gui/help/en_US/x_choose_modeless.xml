@@ -2,12 +2,12 @@
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>x_choose</TITLE>
+  <TITLE>x_choose_modeless</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="x_choose"> interactive window choice (modal dialog)</SHORT_DESCRIPTION>
+  <DATE>$LastChangedDate: 2006-08-24 08:05:42 +0200 (jeu, 24 aoû 2006) $</DATE>
+  <SHORT_DESCRIPTION name="x_choose_modeless"> interactive window choice (not modal dialog)</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[num]=x_choose(items,title [,button])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[num]=x_choose_modeless(items,title [,button])   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -40,19 +40,16 @@
   <DESCRIPTION>
     <P>
     Returns in <VERB>num</VERB> the number of the chosen item.</P>
-    <P>
-    WARNING: this dialog was not modal before Scilab 5.0, please use x_choose_modeless for ascendant compatibility.
-    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-n=x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
-n=x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
+n=x_choose_modeless(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
+n=x_choose_modeless(['item1';'item2';'item3'],['that is a comment'],'Return')
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>x_choose_modeless</LINK>
+      <LINK>x_choose</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>x_choices</LINK>

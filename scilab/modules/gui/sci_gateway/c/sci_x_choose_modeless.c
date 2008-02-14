@@ -1,6 +1,5 @@
 /*--------------------------------------------------------------------------*/
-/* Allan CORNET - INRIA 2006 */
-/* Vincent COUVERT - INRIA 2008 (Java version) */
+/* Vincent COUVERT - INRIA 2008 */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_gui.h"
 #include "machine.h"
@@ -9,7 +8,7 @@
 #include "CallMessageBox.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_x_choose_modeless) _PARAMS((char *fname,unsigned long fname_len))
 {
   int nbRow = 0, nbCol = 0;
   int nbRowItems = 0, nbColItems = 0;
@@ -33,7 +32,7 @@ int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: String vector expected.\n"), "x_choose");
+      Scierror(999, _("%s: Wrong type for first input argument: String vector expected.\n"), "x_choose_modeless");
       return FALSE;
     }
 
@@ -43,7 +42,7 @@ int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for second input argument: String vector expected.\n"), "x_choose");
+      Scierror(999, _("%s: Wrong type for second input argument: String vector expected.\n"), "x_choose_modeless");
       return FALSE;
     }
 
@@ -57,7 +56,7 @@ int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
   /* ListBox Items */
   setMessageBoxListBoxItems(messageBoxID, (char **)itemsAdr, nbColItems*nbRowItems);
   /* Modality */
-  setMessageBoxModal(messageBoxID, TRUE);
+  setMessageBoxModal(messageBoxID, FALSE);
     
   if (Rhs == 3)
     {
@@ -66,13 +65,13 @@ int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
           GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonLabelAdr);
           if (nbRow*nbCol != 1)
           {
-            Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "x_choose");
+            Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "x_choose_modeless");
             return FALSE;
           }
         }
       else 
         {
-          Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "x_choose");
+          Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "x_choose_modeless");
           return FALSE;
         }
 

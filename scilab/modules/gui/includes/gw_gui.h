@@ -31,6 +31,7 @@ int C2F(sci_about) _PARAMS((char *fname,unsigned long l));
 int sci_uicontrol(char *fname,unsigned long l);
 int sci_uimenu(char *fname,unsigned long l);
 int sci_mpopup(char *fname,unsigned long l);
+int C2F(sci_x_choose_modeless) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/
