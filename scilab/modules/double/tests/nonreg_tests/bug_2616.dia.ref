@@ -20,11 +20,11 @@ if s<>4 then bugmes();quit;end
 function s=foo(),s=0;for k=1:3,s=s+1;end,endfunction
 if foo()<>3 then bugmes();quit;end
 function s=foo(),s=0;for k=(1:3)+1,s=s+1;end,endfunction
-Warning : redefining function : foo                     
+Warning : redefining function: foo                     
 
 if foo()<>3 then bugmes();quit;end
 function s=foo(),s=0;for k=[(1:3) 1],s=s+1;end,endfunction
-Warning : redefining function : foo                     
+Warning : redefining function: foo                     
 
 if foo()<>4 then bugmes();quit;end
 //check if implicit  vector is created or not
@@ -49,13 +49,13 @@ ierr=execstr('s=0;for k=[(1:200000) 1],s=s+1;end','errcatch')
     17.  
 if ierr<>17 then bugmes();quit;end
 function s=foo(),s=0;for k=1:200000,s=s+1;end,endfunction
-Warning : redefining function : foo                     
+Warning : redefining function: foo                     
 
 ierr=execstr('s=foo();','errcatch');
 if ierr<>0   then bugmes();quit;end
 if s<>200000 then bugmes();quit;end
 function s=foo(),s=0;for k=1+(1:200000),s=s+1;end,endfunction
-Warning : redefining function : foo                     
+Warning : redefining function: foo                     
 
 ierr=execstr('s=foo();','errcatch');
 if ierr<>17 then bugmes();quit;end
