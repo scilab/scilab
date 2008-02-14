@@ -9,7 +9,7 @@
 //    On Scilab 2.7 with " csim " function
 //    The Error Messages are:
 //      warning
-//     matrix is close to singular or badly scaled. rcond =    1.0000D-08
+//     matrix is close to singular or badly scaled. rcond =    1.0000E-08
 //    computing least squares solution. (see lsq)
 //    Commands:  G = syslin('c', (1-p)/((p+1)*(p+3)));
 //     t = [0:1/100:8];

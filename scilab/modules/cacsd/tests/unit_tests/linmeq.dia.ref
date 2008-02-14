@@ -36,7 +36,7 @@ if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 trans=0;
-Warning : redefining function : trans                   
+Warning : redefining function: trans                   
 
 X = linmeq(1,A,B,C,flag,trans);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
