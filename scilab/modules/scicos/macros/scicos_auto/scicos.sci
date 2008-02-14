@@ -417,13 +417,13 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       getfile = xgetfile;
       savefile = getfile;
       mpopup = createpopup;
+      mdialog = x_mdialog;
+      getvalue = x_getvalue;
 
       if MSDOS then
 	//** ... for Windows machines
-	getvalue  = tk_getvalue ;
 	choose    = tk_scicos_choose   ;
        else
-	getvalue = tk_getvalue ;
  	deff('x=choose(varargin)', 'x=x_choose(varargin(1:$))');
       end
 

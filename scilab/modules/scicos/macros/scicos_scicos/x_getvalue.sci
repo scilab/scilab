@@ -20,14 +20,10 @@
 // See the file ../license.txt
 //
 
-//**
-//** @OBSOLETE
-//**
 function [%ok,%1,%2,%3,%4,%5,...
           %6,%7,%8,%9,%10,...
           %11,%12,%13,%14,%15,...
-          %16,%17,%18,%19,%20]=tk_getvalue(%desc,%labels,%typ,%ini)
-  warnobsolete();
+          %16,%17,%18,%19,%20]=x_getvalue(%desc,%labels,%typ,%ini)
 //  getvalues - %window dialog for data acquisition
 //%Synta%
 //  [%ok,%1,..,%11]=getvalue(desc,labels,typ,ini)
@@ -75,7 +71,11 @@ function [%ok,%1,%2,%3,%4,%5,...
 //
 // 05/02/07 -Alan- : update to %20 rhs parameters
 //
-
+// 14/02/07 -Bruno- :	Remove old Tcl/Tk interface
+//       Scilab Team	Use Scilab standard interface through
+//			mdialog (aliased to x_mdialog)
+//			see scicos.sci
+//
 [%lhs,%rhs]=argn(0)
 
 %nn=prod(size(%labels))
@@ -231,115 +231,3 @@ if %lhs==%nn+2 then
   execstr('%'+string(%lhs-1)+'=%str')
 end
 endfunction
-
-//**
-//** @OBSOLETE
-//**
-
-function result=mdialog(titlex,items,init)
-  warnobsolete()
-if argn(2)<1 then
-  titlex=['this is a demo';'this is a demo']
-  items=['item 1';'item 2']
-end
-if argn(2)<3 then
-  init=['init 1';'init 2']
-end
-titlex=sci2tcl(titlex);
-for i=1:size(items,'*')
-  items(i)=sci2tcl(items(i))
-  init(i)=sci2tcl(init(i))
-end
-txt=create_txt(titlex,items,init);
-result=[];
-TCL_EvalStr(txt)
-done=TCL_GetVar('done')
-if done==string(1) then
- for i=1:size(items,'*')
-   execstr('result(i)=TCL_GetVar(''x'+string(i)+''')')
- end
-end
-TCL_EvalStr('set numx [winfo x $w];set numy [winfo y $w];destroy $w')
-endfunction
-
-//**
-//** @OBSOLETE
-//**
-
-function txt=create_txt(titlex,items,init)
-warnobsolete()
-//** Alan, 13/10/07 : patch to retrieve last of position
- //**                  of the window
-
- //** retrieve current postion of the last dialog box
- //** potential TCL global variables numx/numy
- if TCL_ExistVar('numx') then
-   numx=TCL_GetVar('numx')
-   numx_tt='set numx '+numx
- else
-   numx_tt='set numx [winfo pointerx .]'
- end
-
- if TCL_ExistVar('numy') then
-   numy=TCL_GetVar('numy')
-   numy_tt='set numy '+numy
- else
-   numy_tt='set numy [winfo pointery .]'
- end
-
-txt=['set w .form'
-     'catch {destroy $w}'
-     'toplevel $w'
-       numx_tt
-       numy_tt
-//      'set numx [winfo pointerx .]'
-//      'set numy [winfo pointery .]'
-     'wm geometry $w +$numx+$numy'
-     'wm title $w '"Set Block properties'"'
-     'wm iconname $w '"form'"'
-     '#positionWindow $w'
-     'label $w.msg  -wraplength 4i -justify left -text '"'+titlex+''"'
-     'frame $w.buttons'
-     'pack $w.buttons -side bottom -fill x -pady 2m'
-     'button $w.buttons.dismiss -text Dismiss -command {set done 2}'
-     'button $w.buttons.code -text OK -command {set done 1}'
-     'pack $w.buttons.dismiss $w.buttons.code -side left -expand 1'];
-
-for i=1:size(items,'*')
-  txt=[txt
-       'frame $w.f'+string(i)+' -bd 2'
-       'entry $w.f'+string(i)+'.entry -relief sunken -width 40'
-       'label $w.f'+string(i)+'.label'
-       'pack $w.f'+string(i)+'.entry -side right'
-       'pack $w.f'+string(i)+'.label -side left'];
-end
-for i=1:size(items,'*')
- txt=[txt
-      '$w.f'+string(i)+'.label config -text '"'+items(i)+''"'];
-end
-for i=1:size(items,'*')
- txt=[txt
-      '$w.f'+string(i)+'.entry insert 0 '"'+init(i)+''"'];
-end
-
-tt=''
-for i=1:size(items,'*')
-  tt=tt+'global x'+string(i)+';set x'+string(i)+' [$w.f'+string(i)+'.entry get];'
-  //tt=tt+'ScilabEval '"result('+string(i)+')=x'+string(i)+''";'
-end
-txt=[txt;
-     'proc done1 {w} {'+tt+'}']
-tt=''
-for i=1:size(items,'*')
-  tt=tt+'$w.f'+string(i)+' '
-end
-txt=[txt;
-     'pack $w.msg '+tt+'-side top -fill x'
-     'focus $w.f1.entry'
-     'set done 0'
-     'bind $w <Return> {set done 1}'
-     'bind $w <Destroy> {set done 2}'
-     'tkwait variable done'
-     'if {$done==1} {done1 $w}']
-endfunction
-
