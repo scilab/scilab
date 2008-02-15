@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
+# 
+# This file is distributed under the same license as the Scilab package.
 
 SOUND_C_SOURCES = src/c/raw.c \
 src/c/sox.c \
@@ -39,20 +39,20 @@ libscisound_la_rootdir = $(mydatadir)
 libscisound_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### sound : init scripts ####
+####ï¿½sound : init scripts ####
 libscisound_la_etcdir = $(mydatadir)/etc
 libscisound_la_etc_DATA = etc/sound.quit etc/sound.start
 
-#### sound : gateway declaration ####
+####ï¿½sound : gateway declaration ####
 libscisound_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisound_la_sci_gateway_DATA = sci_gateway/sound_gateway.xml
 
-#### sound : include files ####
+####ï¿½sound : include files ####
 libscisound_la_includedir=$(pkgincludedir)/sound
 libscisound_la_include_HEADERS = includes/gw_sound.h
 
 
-#### sound : demos files ####
+####ï¿½sound : demos files ####
 libscisound_la_demosdir=$(mydatadir)/demos/
 libscisound_la_demos_DATA = demos/chimes.wav \
 demos/sound.dem
