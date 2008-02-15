@@ -1,11 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+// ...
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function paths=pathconvert(paths,flagtrail,flagexpand,str)
 // convert a path from dos style to unix style 
 // using cygwin conventions i.e x: -> /cygdrive/x 
 // if flagtrail is true then a trailing / or \ is added 
 // if flagexpand is true then SCI, HOME, ~ are expanded 
 // str gives the target style 'u' or 'w' 
-// 
-// Copyright Enpc
+ 
   [lhs,rhs]=argn(0)
   
   unix_sep='/';dos_sep='\'
