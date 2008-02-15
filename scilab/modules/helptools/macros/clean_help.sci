@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function clean_help(dirs)
 	
 	// =========================================================================================
@@ -17,7 +27,7 @@ function clean_help(dirs)
 	
 	ok = %F;
 	
-	// Vérification des paramètres
+	// Vï¿½rification des paramï¿½tres
 	// --------------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
 	if rhs > 1 then error(39); end
@@ -30,7 +40,7 @@ function clean_help(dirs)
 	// --------------------------------------------------------------------------------
 	current_directory = pwd();
 	
-	// Cas par défaut : Nettoyage des répertoires cités dans %helps
+	// Cas par dï¿½faut : Nettoyage des rï¿½pertoires citï¿½s dans %helps
 	// --------------------------------------------------------------------------------
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
@@ -47,7 +57,7 @@ function clean_help(dirs)
 		dirs = dirs_to_clean(:,1);
 	end
 	
-	// On transforme le ou les chemins donnés en chemin absolu
+	// On transforme le ou les chemins donnï¿½s en chemin absolu
 	// --------------------------------------------------------------------------------
 	
 	for k=1:size(dirs,'*')
@@ -68,7 +78,7 @@ function clean_help(dirs)
 		end
 	end
 
-	// Nettoyage des répertoires un par un
+	// Nettoyage des rï¿½pertoires un par un
 	// --------------------------------------------------------------------------------
 
 	mprintf(gettext("-- Deleting "+getlanguage()+" help files --"));

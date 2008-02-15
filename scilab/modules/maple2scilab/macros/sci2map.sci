@@ -1,68 +1,84 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function t__=sci2map(a,nom)
-//converts a scilab object to a maple instruction
-//!
-// Copyright INRIA
-[lhs,rhs]=argn(0)
-if rhs<>2 then error('sci2map: 2 input parameters!');end;
-
-t__=[],
-[ft]=format();format(20) // on fixe un format etendu
-  if type(a) <= 10 then
-    [ma,na]=size(a),
-    if ma*na  > 1 then
-      t__(1)=nom+' := array(1.'+'.'+string(ma)+',1.'+'.'+string(na)+');',
-    end,
-  else
-  if type(a)==15|type(a)==16 then ma=size(a), end,
-end,
-//
-//type
-//
-select type(a)
-case 1 then //matrice de scalaires
-  t__=[t__ ; str2map(nom,a,ma,na)]
-  //
-case 2  then //matrice a coefficients polynomiaux
-  t__=[t__ ; poly2map(nom,a,ma,na)]
-  //
-case 10 then // matrice de chaines de caracteres
-  for i=1:ma ; 
-    for j=1:na ;
-      a(i,j)= '`' + a(i,j) + '`'
-    end
-  end
-  t__=[t__ ; str2map(nom,a,ma,na)]
-  //
-case 11 then // fct non compilee
-  error('Not yet implemented')
-  //comp(a)
-  //tramac(nom,a,b_2_m)
-  //
-case 13 then // fct compilee
-  //tramac(nom,a,b_2_m)
-  
-  error('Not yet implemented')
-case 15 then //listes
-  a1=a(1);
-  t__=list2map(nom,a,[1:size(a)]),
-case 16 then //listes
-  a1=a(1)
-  select a1(1)
-  case 'r' then //matrice de fractions rationnelles
-    num_=a('num'),den_=a('den'),
-    t__=[t__ ; frac2map(nom,num_,den_)],
-  case 'lss' then // systeme d'etat : passage des matrices
-    t_ind__=[2:size(a)-1],
-    t__=list2map(nom,a,t_ind__),
-  else //autre cas
-    t__=list2map(nom,a,[1:size(a)]),
-  end
-  //
-end //select
-format(ft(2),ft(1)),
-
-
+	
+	//converts a scilab object to a maple instruction
+	
+	[lhs,rhs]=argn(0)
+	
+	if rhs<>2 then error("sci2map: 2 input parameters!");end;
+	
+	t__=[];
+	[ft]=format();
+	format(20) // on fixe un format etendu
+	
+	if type(a) <= 10 then
+		[ma,na]=size(a);
+		if ma*na  > 1 then
+			t__(1)=nom+' := array(1.'+'.'+string(ma)+',1.'+'.'+string(na)+');';
+		end
+	else
+		if type(a)==15|type(a)==16 then
+			ma=size(a);
+		end
+	end
+	
+	//
+	//type
+	//
+	
+	select type(a)
+	case 1 then //matrice de scalaires
+	t__=[t__ ; str2map(nom,a,ma,na)]
+	//
+	case 2  then //matrice a coefficients polynomiaux
+	t__=[t__ ; poly2map(nom,a,ma,na)]
+	//
+	case 10 then // matrice de chaines de caracteres
+	for i=1:ma ; 
+		for j=1:na ;
+		a(i,j)= '`' + a(i,j) + '`'
+		end
+	end
+	t__=[t__ ; str2map(nom,a,ma,na)]
+	//
+	case 11 then // fct non compilee
+	error('Not yet implemented')
+	//comp(a)
+	//tramac(nom,a,b_2_m)
+	//
+	case 13 then // fct compilee
+	//tramac(nom,a,b_2_m)
+	
+	error('Not yet implemented')
+	case 15 then //listes
+	a1=a(1);
+	t__=list2map(nom,a,[1:size(a)]),
+	case 16 then //listes
+	a1=a(1)
+	select a1(1)
+	case 'r' then //matrice de fractions rationnelles
+		num_=a('num'),den_=a('den'),
+		t__=[t__ ; frac2map(nom,num_,den_)],
+	case 'lss' then // systeme d'etat : passage des matrices
+		t_ind__=[2:size(a)-1],
+		t__=list2map(nom,a,t_ind__),
+	else //autre cas
+		t__=list2map(nom,a,[1:size(a)]),
+	end
+	//
+	end //select
+	format(ft(2),ft(1)),
 endfunction
+
 function [t__]=str2map(nom,a,ma,na)
 //string to maple
 //!

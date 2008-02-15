@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function formatman(path,to,dtd)
 [lhs,rhs]=argn(0)
 if rhs<1 then path='./',end
@@ -269,7 +279,6 @@ while k<n
   k=k+1;mk=man(k)
   select mk(1)
   case 'TH' then
-	txt=["<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?> ";"<!DOCTYPE MAN SYSTEM """+dtd+""">" ;"<MAN>"];    
 	txt=[txt;
 	"  <LANGUAGE>eng</LANGUAGE>"  ;
 	"  <TITLE>" + mk(2) + "  </TITLE>" ; 

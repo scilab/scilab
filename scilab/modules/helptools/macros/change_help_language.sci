@@ -1,37 +1,42 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function change_help_language(language)
 	
-	// =========================================================================================
-	// Author : Pierre MARECHAL
-	// Scilab team
-	// Copyright INRIA
-	// Date : August 1st 2006
-	// 
+	// =========================================================================
 	// change_help_language(language)
-	// =========================================================================================
+	// =========================================================================
 	
 	global %helps;
 	global %helps_modules;
 	%HELPS=[%helps_modules;%helps];
-	// Vérification des paramètres
-	// --------------------------------------------------------------------------------
+	// Vï¿½rification des paramï¿½tres
+	// -------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
 	if rhs <> 1 then error(39); end
 	if type(language) <> 10 then error(55,1); end
 	
 	// Sauvegarde du chemin dans lequel l'on se trouve
-	// --------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 	current_directory = pwd();
 	
 	dirs = %HELPS(:,1);
 	titles = %HELPS(:,2);
 	
-	// Parcours des répertoires listés dans %helps
+	// Parcours des rï¿½pertoires listï¿½s dans %helps
 	for k=1:size(dirs,'*')
 		
-		// Vérification que le whatis.htm existe
+		// Vï¿½rification que le whatis.htm existe
 		if fileinfo(pathconvert(dirs(k)+"/../"+language+"/whatis.htm",%f,%f)) <> [] then
 			
-			// Construction du nouveau répertoire
+			// Construction du nouveau rï¿½pertoire
 			chdir(pathconvert(dirs(k)+"/../"+language,%f,%f));
 			if MSDOS then
 				new_dir = getlongpathname(pwd());

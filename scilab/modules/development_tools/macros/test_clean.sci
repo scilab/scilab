@@ -1,11 +1,16 @@
-//-----------------------------------------------------------------------------
-// Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date : 15/01/2008
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 //
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+// =============================================================================
 // Clean tests
-//-----------------------------------------------------------------------------
+// =============================================================================
 
 function test_clean(varargin)
 	
@@ -152,7 +157,6 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Copyright INRIA
 // Date : 28 oct. 2007
 //
 // => List all test files in the module <module_mat>
@@ -190,7 +194,6 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Copyright INRIA
 // Date : 28 oct. 2007
 //
 // => Add the test <test> to the test_mat matrix
@@ -211,7 +214,6 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Copyright INRIA
 // Date : 15 jan. 2008
 //
 // => remove dia file

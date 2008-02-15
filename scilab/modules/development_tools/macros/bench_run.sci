@@ -1,9 +1,14 @@
-//-----------------------------------------------------------------------------
-// Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date : 17 Dec 2007
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 //
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+//-----------------------------------------------------------------------------
 // Launch benchmarks
 //-----------------------------------------------------------------------------
 
@@ -161,7 +166,6 @@ function bench_run(varargin)
 		
 		printf("\n");
 		
-		xml_str = [ "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>" ];
 		xml_str = [ xml_str ; "<benchmarks>" ];
 		
 		// Calcul de la durée de la boucle for en µs
@@ -225,7 +229,6 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Copyright INRIA
 // Date : 28 oct. 2007
 //
 // => List all test files in the module <module_mat>
@@ -247,7 +250,6 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Copyright INRIA
 // Date : 28 oct. 2007
 //
 // => Add the test <test> to the test_mat matrix
@@ -268,7 +270,6 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Copyright INRIA
 // Date : 28 oct. 2007
 //
 // => Run one test
@@ -332,7 +333,6 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Copyright INRIA
 // Date : 28 oct. 2007
 //
 // => Check ref or generate ref

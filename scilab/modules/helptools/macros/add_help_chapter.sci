@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function ok = add_help_chapter(helptitle,path,modulemode)
 	
 	// =========================================================================================
@@ -27,7 +37,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	global %helps_modules;
 	ok = %F;
 	
-	// Vérification des paramètres
+	// Vï¿½rification des paramï¿½tres
 	// --------------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
 	if rhs <> 3 then modulemode=%F; end
@@ -40,16 +50,16 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	// --------------------------------------------------------------------------------
 	current_directory = pwd();
 	
-	// Conversion du chemin dans le format du système d'exploitation utilisé
+	// Conversion du chemin dans le format du systï¿½me d'exploitation utilisï¿½
 	// --------------------------------------------------------------------------------
 	path=pathconvert(path,%f,%t);
 	
-	// Vérification que la chaîne de caractère passé en deuxième paramètre est bien un chemin
+	// Vï¿½rification que la chaï¿½ne de caractï¿½re passï¿½ en deuxiï¿½me paramï¿½tre est bien un chemin
 	// --------------------------------------------------------------------------------
 	if ~isdir(path) then 
 		error('second argument should give the path to a directory');
 	
-	// Transformation du chemin passé en deuxième paramètre
+	// Transformation du chemin passï¿½ en deuxiï¿½me paramï¿½tre
 	// --------------------------------------------------------------------------------
 	else
 		chdir(path);
@@ -61,7 +71,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 		chdir(current_directory);
 	end
 	
-	// Vérification que le titre n'est pas déja présent dans %helps
+	// Vï¿½rification que le titre n'est pas dï¿½ja prï¿½sent dans %helps
 	// --------------------------------------------------------------------------------
 	if (modulemode) then
 	  k1 = find( %helps_modules(:,2) == helptitle);
@@ -73,7 +83,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	
 	if k1 == [] then
 		
-		// Cas où le titre du chapitre n'est pas présent
+		// Cas oï¿½ le titre du chapitre n'est pas prï¿½sent
 		if (modulemode) then
 		 %helps_modules=[%helps_modules;path,helptitle];
 		else
@@ -91,7 +101,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 	  end
 		
 		if k2 <> [] then 
-			// Cas où le path est également le même
+			// Cas oï¿½ le path est ï¿½galement le mï¿½me
 			return;
 		else
 			
@@ -103,7 +113,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 			  end
 				
 				if k3 == [] then
-					// On a pas trouvé de "title (i)"
+					// On a pas trouvï¿½ de "title (i)"
 					if modulemode then
 					  k4 = find( %helps_modules(k3,1) == path );
 					else
@@ -124,7 +134,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 					end
 					
 				else
-					// On a trouvé "title (i)"
+					// On a trouvï¿½ "title (i)"
 					if modulemode then
 					  if find( %helps_modules(k3,1) == path ) <> [] then
 						  return;

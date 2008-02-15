@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function txt=help_skeleton(funname,path,language)
 	
 	
@@ -54,7 +64,6 @@ function txt=help_skeleton(funname,path,language)
 	case 'fr_FR' then
 		
 		txt=[
-			"<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>" 
 			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/helptools/help.dtd"">"
 			"<MAN>"
 			"  <LANGUAGE>fr</LANGUAGE>"
@@ -150,7 +159,6 @@ function txt=help_skeleton(funname,path,language)
 	else
 		
 		txt=[
-			"<?xml version=""1.0"" encoding=""UTF-8""?>" 
 			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/helptools/help.dtd"">"
 			"<MAN>"
 			"  <LANGUAGE>eng</LANGUAGE>"

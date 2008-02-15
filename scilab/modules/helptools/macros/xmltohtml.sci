@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
 	// =========================================================================
@@ -69,14 +79,14 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		
 		[lhs,rhs] = argn(0);
 		
-		// Trop de paramètres
+		// Trop de paramï¿½tres
 		// ---------------------------------------------------------------------
 		
 		if rhs > 6 then
 			error(39);
 		end
 		
-		// Cas par défaut : construction de l'aide en ligne de Scilab
+		// Cas par dï¿½faut : construction de l'aide en ligne de Scilab
 		// ---------------------------------------------------------------------
 		
 		if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
@@ -113,7 +123,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			
 			step = "all";
 			
-		// Cas ou seulement le ou les répertoires sont précisés
+		// Cas ou seulement le ou les rï¿½pertoires sont prï¿½cisï¿½s
 		// ---------------------------------------------------------------------
 		
 		elseif (rhs == 1) & (dirs <> []) then
@@ -136,8 +146,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				end
 			end
 			
-		// Cas ou seulement le ou les répertoires ainsi que le ou les titres
-		// sont précisés
+		// Cas ou seulement le ou les rï¿½pertoires ainsi que le ou les titres
+		// sont prï¿½cisï¿½s
 		// ---------------------------------------------------------------------
 		
 		elseif rhs == 2 then
@@ -151,7 +161,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			
 			xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 	
-		// Cas le ou les répertoires ainsi que le ou les titres sont précisés
+		// Cas le ou les rï¿½pertoires ainsi que le ou les titres sont prï¿½cisï¿½s
 		// ainsi que le fichier xsl
 		// ---------------------------------------------------------------------
 		
@@ -168,7 +178,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				xsl = pathconvert(SCI+"/modules/helptools/help_"+getlanguage()+".xsl",%f,%f);
 			end
 			
-		// Cas les répertoires,les titres,le fichier xsl et le step sont précisé
+		// Cas les rï¿½pertoires,les titres,le fichier xsl et le step sont prï¿½cisï¿½
 		// ---------------------------------------------------------------------
 		
 		elseif rhs == 4 then
@@ -189,8 +199,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				end
 			end
 		
-		// Cas les répertoires,les titres,le fichier xsl, le step ainsi que la
-		// langue du répertoire sont précisées
+		// Cas les rï¿½pertoires,les titres,le fichier xsl, le step ainsi que la
+		// langue du rï¿½pertoire sont prï¿½cisï¿½es
 		// ---------------------------------------------------------------------
 		
 		elseif rhs == 5 then
@@ -211,7 +221,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 				end
 			end
 		
-		// Cas où tous est précisée
+		// Cas oï¿½ tous est prï¿½cisï¿½e
 		// ---------------------------------------------------------------------
 		
 		elseif rhs == 6 then
@@ -236,8 +246,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			
 		end
 		
-		// Gestion du paramètre xsl :
-		// ==> vérification de l'existence du fichier
+		// Gestion du paramï¿½tre xsl :
+		// ==> vï¿½rification de l'existence du fichier
 		// ---------------------------------------------------------------------
 		
 		if fileinfo(xsl) == [] then
@@ -260,7 +270,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		end
 		chdir(current_directory);
 		
-		// On transforme le ou les chemins donnés en chemin absolu
+		// On transforme le ou les chemins donnï¿½s en chemin absolu
 		// ---------------------------------------------------------------------
 		
 		for k=1:size(dirs,'*');
@@ -284,7 +294,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		end
 		
 		//----------------------------------------------------------------------
-		// On etablit la liste des répertoires nécéssitants d'être reconstruit
+		// On etablit la liste des rï¿½pertoires nï¿½cï¿½ssitants d'ï¿½tre reconstruit
 		//----------------------------------------------------------------------
 		
 		need_to_be_build_tab = [];
@@ -302,7 +312,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			return;
 		end
 		
-		// Nombre de répertoire ayant besoin d'une modification
+		// Nombre de rï¿½pertoire ayant besoin d'une modification
 		// ---------------------------------------------------------------------
 		
 		nb_dir = size( find(need_to_be_build_tab == %T) , '*' );
@@ -466,7 +476,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		end
 		
 		//----------------------------------------------------------------------
-		// Création du fichier "directory/.last_successful_build"
+		// Crï¿½ation du fichier "directory/.last_successful_build"
 		//----------------------------------------------------------------------
 		
 		if step == 'all' then
@@ -623,7 +633,7 @@ function gener_index(dirs,titles)
 	// use %helps to generate an index file
 	//--------------------------------------------------------------------------
 	
-	// On ajoute le ou les répertoire
+	// On ajoute le ou les rï¿½pertoire
 	
 	saved_help = %HELPS;
 	
@@ -754,7 +764,7 @@ function gener_contents(dirs1)
 	for k=1:size(dirs,'*')
 		dirs(k) = pathconvert(dirs(k),%t,%t);
 		
-		// Construction du nom du répertoire
+		// Construction du nom du rï¿½pertoire
 		w = strsubst(dirs(k),pathconvert(SCI,%t,%t)+"modules/","");
 		
 		// Ouverture du fichier whatis.htm
@@ -784,7 +794,7 @@ function gener_contents(dirs1)
 		end
 	end
 	
-	// Tri alphanumérique
+	// Tri alphanumï¿½rique
 	[sv,sk]     = sort(full_whatis_name);
 	full_whatis = full_whatis(sk);
 	
@@ -1012,20 +1022,20 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro complète un répertoire dont certaines aides en ligne sont manquantes
-	// Elle le complète avec les aides en ligne de la langue par défaut
+	// Cette macro complï¿½te un rï¿½pertoire dont certaines aides en ligne sont manquantes
+	// Elle le complï¿½te avec les aides en ligne de la langue par dï¿½faut
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory traitée
+	// Directory traitï¿½e
 	directory = pathconvert(directory,%f,%f);
 	
 	//--------------------------------------------------------------------------
-	// Nettoyage du répertoire
+	// Nettoyage du rï¿½pertoire
 	// Si il existe un fichier .list_<directory_language> (fichier contenant tous les
-	// fichiers traduits dans la langue du répertoire), on supprime dans l'ordre :
-	//   1. Tous les fichiers n'appartenant pas à la liste contenue dans .list_<directory_language>
+	// fichiers traduits dans la langue du rï¿½pertoire), on supprime dans l'ordre :
+	//   1. Tous les fichiers n'appartenant pas ï¿½ la liste contenue dans .list_<directory_language>
 	//   2. Tous les fichiers de la forme .list_<language>
 	//--------------------------------------------------------------------------
 	
@@ -1036,7 +1046,7 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	
 	//--------------------------------------------------------------------------
 	// Construction du fichier list_<directory_language> contenant la liste des
-	// fichiers traduits dans la langue associée au répertoire
+	// fichiers traduits dans la langue associï¿½e au rï¿½pertoire
 	//--------------------------------------------------------------------------
 	
 	dir_language_xml_files = basename(listfiles(directory+"/*.xml"));
@@ -1048,23 +1058,23 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	
 	//--------------------------------------------------------------------------
 	// Construction du fichier list_<default_language> contenant la liste des fichiers
-	// non traduits dans la langue associée au répertoire qui seront récupérés depuis le
-	// répertoire de la langue par défaut
+	// non traduits dans la langue associï¿½e au rï¿½pertoire qui seront rï¿½cupï¿½rï¿½s depuis le
+	// rï¿½pertoire de la langue par dï¿½faut
 	//--------------------------------------------------------------------------
 	
 	// Tous les fichiers contenus dans <directory>/../<default_language> pour commencer
 	// On afinnera par la suite
 	df_lang_xml_files = basename(listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f)));
 	
-	// On supprime de "df_lang_xml_files" tous les élément contenus dans
-	// "dir_language_xml_files", c'est à dire tous les fichiers déja traduit dans la langue
-	// associée au répertoire.
+	// On supprime de "df_lang_xml_files" tous les ï¿½lï¿½ment contenus dans
+	// "dir_language_xml_files", c'est ï¿½ dire tous les fichiers dï¿½ja traduit dans la langue
+	// associï¿½e au rï¿½pertoire.
 	
 	for i=1:size(dir_language_xml_files,'*');
 		df_lang_xml_files(find(df_lang_xml_files==dir_language_xml_files(i)))=[];
 	end
 	
-	// Création du fichier
+	// Crï¿½ation du fichier
 	if df_lang_xml_files <> [] then
 		mputl(df_lang_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
 	else
@@ -1091,25 +1101,25 @@ function del_df_lang_xml_files(directory,directory_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro détruit tous les fichiers xml qui ne sont pas traduit dans
-	// la langue associée au répertoire
+	// Cette macro dï¿½truit tous les fichiers xml qui ne sont pas traduit dans
+	// la langue associï¿½e au rï¿½pertoire
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory traitée
+	// Directory traitï¿½e
 	directory = pathconvert(directory,%f,%t);
 	
 	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
 		
-		// Récupération de la liste des fichiers xml copiés depuis le répertoire de la langue par défaut
+		// Rï¿½cupï¿½ration de la liste des fichiers xml copiï¿½s depuis le rï¿½pertoire de la langue par dï¿½faut
 		dir_language_xml_files = mgetl(pathconvert(directory+"/.list_"+directory_language,%f,%f));
 		
-		// Liste de tous les fichiers xml contenu dans le répertoire
+		// Liste de tous les fichiers xml contenu dans le rï¿½pertoire
 		all_files = basename(listfiles(directory+"/*.xml"));
 		
-		// On retire de "all_files" tous les éléments appartenant à "xml_directory_language_files"
-		// Ce sont les aides en ligne traduite dans la langue associée répertoire
+		// On retire de "all_files" tous les ï¿½lï¿½ments appartenant ï¿½ "xml_directory_language_files"
+		// Ce sont les aides en ligne traduite dans la langue associï¿½e rï¿½pertoire
 		for i=1:size(dir_language_xml_files,'*');
 			all_files(find(all_files==dir_language_xml_files(i)))=[];
 		end
@@ -1131,33 +1141,33 @@ function result = need_to_be_build(directory,directory_language,default_language
 	// Copyright INRIA
 	// Date : 27, july 2006
 	//
-	// Cette fonction a pour but de déterminer si le répertoire a besoin d'être
+	// Cette fonction a pour but de dï¿½terminer si le rï¿½pertoire a besoin d'ï¿½tre
 	// reconstruit ou pas.
 	//
-	// On détermine la date de dernière modification la plus récente parmi les
-	// dates de dernière modification suivantes :
-	//     -  date de dernière modification du répertoire "directory".
-	//     -  dates de dernière modification des fichiers XML du répertoire "directory".
-	//     -  date de dernière modification du répertoire "directory/../<default_language>"
-	//        si le système de multilinguisme est utilisé
-	//      - dates de dernière modification des fichiers XML du répertoire
-	//        "directory/../<default_language>" si le système de multilinguisme est utilisé
+	// On dï¿½termine la date de derniï¿½re modification la plus rï¿½cente parmi les
+	// dates de derniï¿½re modification suivantes :
+	//     -  date de derniï¿½re modification du rï¿½pertoire "directory".
+	//     -  dates de derniï¿½re modification des fichiers XML du rï¿½pertoire "directory".
+	//     -  date de derniï¿½re modification du rï¿½pertoire "directory/../<default_language>"
+	//        si le systï¿½me de multilinguisme est utilisï¿½
+	//      - dates de derniï¿½re modification des fichiers XML du rï¿½pertoire
+	//        "directory/../<default_language>" si le systï¿½me de multilinguisme est utilisï¿½
 	//
-	// Ensuite cette valeur est comparée à la valeur contenue dans le fichier
+	// Ensuite cette valeur est comparï¿½e ï¿½ la valeur contenue dans le fichier
 	// "directory/.last_successful_build". Si elle est plus grande,
 	// need_to_be_build renvoie %T
 	//
-	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais été
+	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais ï¿½tï¿½
 	// construite donc need_to_be_build renvoie %T
 	//
 	//--------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0);
 	
-	// S'il n'y a pas de fichiers XML dans le répertoire ni dans son homologue,
-	// Le répertoire n'a pas besoin d'être construit.
-	// Cela est une sécurité pour éviter de detruire les whatis des versions binaires
-	// où il n'y a pas de fichiers XML
+	// S'il n'y a pas de fichiers XML dans le rï¿½pertoire ni dans son homologue,
+	// Le rï¿½pertoire n'a pas besoin d'ï¿½tre construit.
+	// Cela est une sï¿½curitï¿½ pour ï¿½viter de detruire les whatis des versions binaires
+	// oï¿½ il n'y a pas de fichiers XML
 	
 	xml_file_list    = listfiles(directory+"/*.xml");
 	
