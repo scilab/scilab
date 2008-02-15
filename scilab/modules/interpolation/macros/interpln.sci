@@ -1,3 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1991 - INRIA - Serge STEER
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
 function [y]=interpln(xyd,x)
 //Given a set of points in the plane with coordinates xyd and a set of 
 //x points 
@@ -8,10 +18,7 @@ function [y]=interpln(xyd,x)
 //        second row : y
 //  x   : vector of x's for which y is wanted
 //  y   : vector of y computed.
-//!
-// S Steer INRIA 1991
 
-// Copyright INRIA
 [md,nd]=size(xyd);
 if md<>2 then
   error('interpln:xyd must have two rows!')
