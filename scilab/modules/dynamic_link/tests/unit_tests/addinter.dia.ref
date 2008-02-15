@@ -2,15 +2,15 @@
 // test addinter
 //================================================
 if ~c_link('libintertest') then
-  path = getcwd();
+  curPath = getcwd();
   copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'addinter.c', TMPDIR+filesep()+'addinter.c');
   chdir(TMPDIR);
   files=['addinter.o'];
   ilib_build('libintertest',['scifun1','intfun1'],files,[]);
-   generate a gateway file
-   generate a loader file
-   generate a Makefile: Makelib
-   running the makefile
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile: Makelib
+   Running the makefile
    compilation of addinter
    building shared library (be patient)
   // disable message
@@ -27,6 +27,6 @@ if ~c_link('libintertest') then
   if clearfun('scifun1') <> %T  then pause;end
   // remove dynamic library link
   ulink();
-  chdir(path);
+  chdir(curPath);
 end
 //================================================

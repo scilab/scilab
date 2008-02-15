@@ -42,10 +42,10 @@ cur_dir = pwd();
 chdir(TMP_DIR);
 files=['fun1.o','fun2.o','intfun1.o'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
-   generate a gateway file
-   generate a loader file
-   generate a Makefile: Makelib
-   running the makefile
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile: Makelib
+   Running the makefile
    compilation of fun1
    compilation of fun2
    compilation of intfun1
@@ -84,7 +84,7 @@ clear get_file_path;
 warning(warning_mode);
 chdir(cur_dir);
 //using the new primitive
-if ( norm(scifun1(33) -0.0160328) > 1 ) then bugmes();quit;end
+if ( norm(scifun1(33) - .0160328) > 1 ) then bugmes();quit;end
 // ulink() all libraries
 ulink();
 //remove TMP_DIR

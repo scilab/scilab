@@ -40,9 +40,13 @@ function ilib_gen_loader(name,tables,libs)
       mfprintf(fd,"            ''%s'';\n",x);
     end
     mfprintf(fd,"];\n");
-    
+    if MSDOS then
     mfprintf(fd,"addinter(%s_path+''/%s%s'',''%s'',list_functions);\n",name, ..
+	              name,getdynlibext(),name);
+	  else
+	  mfprintf(fd,"addinter(%s_path+''/%s%s'',''%s'',list_functions);\n",name, ..
 	              name,getdynlibext(),table(2));
+	  end
   else
     // on link then a set of addinter 
     mfprintf(fd,"ilib = link(%s_path+filesep()+''%s%s'');\n",name, ..
