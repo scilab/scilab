@@ -13,8 +13,9 @@ import org.scilab.modules.renderer.figureDrawing.SciRenderer;
  */
 public class GL2PSRenderer extends ExportRenderer {
 	
-	/** BufferSize */
+	/** BufferSize WIDTH*/
 	public static final int BUFFER_WIDTH = 2048;
+	/** BufferSize HEIGHT*/
 	public static final int BUFFER_HEIGHT = 2048;
 	
 	private SciRenderer sciRend;
@@ -74,6 +75,8 @@ public class GL2PSRenderer extends ExportRenderer {
 				
 		//GL gl = gLDrawable.getGL();
 		//gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
+		
+
 		
 		gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
 							  GL2PS.GL2PS_BSP_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
