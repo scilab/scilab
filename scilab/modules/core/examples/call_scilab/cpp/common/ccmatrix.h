@@ -1,3 +1,6 @@
+/*
+ *  This file is distributed under the same license as the Scilab package.
+ */
 #ifndef _cc_matrix_H_
 #define _cc_matrix_H_
 
