@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c ...
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine lsdisc (f, neq, y, t, tout, rwork,lrw,istate )
       external f
       integer neq,  lrw
@@ -23,8 +32,6 @@ c istate = 2  if lsdisc was successful, negative otherwise.
 C
 C # cases according to the difference between t and tout 
 C 
-c!
-C     Copyright INRIA
 c-----------------------------------------------------------------------
       integer  it,itout
       double precision tt

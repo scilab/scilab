@@ -1,8 +1,18 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c ...
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine dgsub(ii,z,dg)
 c ======================================================================
-C     Soft and Fortrans coded externals for colnew 
+c     Soft and Fortrans coded externals for colnew 
 c ======================================================================
-c     Copyright INRIA
+c
       INCLUDE 'stack.h'
       integer iadr,sadr
       common/iercol/iero

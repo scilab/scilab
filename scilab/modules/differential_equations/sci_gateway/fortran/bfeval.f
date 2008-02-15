@@ -1,9 +1,19 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c ...
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine bfeval(nn,x1,x2,xres,itype,ename)
 c     ==========================================================
-C     soft external for feval 
-C     the result is real or complex according to itype value 
+c     soft external for feval 
+c     the result is real or complex according to itype value 
 c     ==========================================================
-c     Copyright INRIA
+c
       include 'stack.h'
       integer sadr,iadr
       character*6 ename

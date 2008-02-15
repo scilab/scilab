@@ -1,3 +1,13 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c ...
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
 c-----------------------------------------------------------------
 c     Examples of argument functions for scilab function ode 
 c     The function provided here must be listed 
@@ -11,8 +21,7 @@ c       fex2     : uses readmat (or matz) to get parameters
 c       fex3     : uses matptr to get parameters 
 c       fexab    : a more complex example with matpr
 c-----------------------------------------------------------------
-
-c     Copyright INRIA
+c
       subroutine fex (neq, t, y, ydot)
 c     -------------------------------------------
 c     input variables neq, t, y

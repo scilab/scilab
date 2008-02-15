@@ -1,3 +1,13 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c ...
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine fexcd(jflag,nc,nd,t,y,ydp)
 c     input variables jflag, nc, nd, t, y
 c     jflag=0 or 1
@@ -32,7 +42,6 @@ c     param(1)=y(nc+nd+1) , param(2)=y(nc+nd+2) etc
 c     with this calling sequence y is a nc+nd+np vector
 c     where np=dimension of scilab variable param
 c     
-c     Copyright INRIA
       double precision t, y, ydp
       dimension y(*), ydp(*)
       if(jflag.eq.0) then
