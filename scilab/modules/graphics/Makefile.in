@@ -825,7 +825,7 @@ DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_ged_DATA) \
 	$(nobase_libscigraphics_la_demos_DATA)
 am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_winsid.h includes/sci_addcb.h \
-	includes/sci_grayplot.h includes/w_rottext.h includes/Events.h \
+	includes/sci_grayplot.h includes/Events.h \
 	includes/sci_xlfont.h includes/GetCommandArg.h \
 	includes/sci_xgrid.h includes/sci_geom3d.h \
 	includes/DefaultCommandArg.h includes/graphicSession.h \
@@ -834,14 +834,13 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_xpolys.h includes/sci_xstring.h includes/Axes.h \
 	includes/sci_xsetech.h includes/sciMatrix.h \
 	includes/sci_show_window.h includes/sci_param3d1.h \
-	includes/sci_xstringl.h includes/graphicModuleLoad.h \
-	includes/sci_matplot.h includes/color.h \
-	includes/sci_drawaxis.h includes/Plo3d.h includes/sci_xrect.h \
-	includes/sci_plot2d1.h includes/GetProperty.h \
-	includes/sci_xclea.h includes/SetProperty.h \
-	includes/sci_xarrows.h includes/sci_move.h \
-	includes/sci_relocate_handle.h includes/BasicAlgos.h \
-	includes/paintop.h includes/sciCall.h \
+	includes/graphicModuleLoad.h includes/sci_matplot.h \
+	includes/color.h includes/sci_drawaxis.h includes/Plo3d.h \
+	includes/sci_xrect.h includes/sci_plot2d1.h \
+	includes/GetProperty.h includes/sci_xclea.h \
+	includes/SetProperty.h includes/sci_xarrows.h \
+	includes/sci_move.h includes/sci_relocate_handle.h \
+	includes/BasicAlgos.h includes/paintop.h includes/sciCall.h \
 	includes/sci_showalluimenushandles.h includes/sci_get.h \
 	includes/InitObjects.h includes/sci_xfpoly.h \
 	includes/sci_drawlater.h includes/Format.h \
@@ -1475,7 +1474,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_winsid.h \
 @GUI_TRUE@includes/sci_addcb.h \
 @GUI_TRUE@includes/sci_grayplot.h \
-@GUI_TRUE@includes/w_rottext.h \
 @GUI_TRUE@includes/Events.h \
 @GUI_TRUE@includes/sci_xlfont.h \
 @GUI_TRUE@includes/GetCommandArg.h \
@@ -1495,7 +1493,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sciMatrix.h \
 @GUI_TRUE@includes/sci_show_window.h \
 @GUI_TRUE@includes/sci_param3d1.h \
-@GUI_TRUE@includes/sci_xstringl.h \
 @GUI_TRUE@includes/graphicModuleLoad.h \
 @GUI_TRUE@includes/sci_matplot.h \
 @GUI_TRUE@includes/color.h \

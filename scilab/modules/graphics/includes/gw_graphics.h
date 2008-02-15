@@ -32,7 +32,6 @@
 #include "sci_xpoly.h"
 #include "sci_xset.h"
 #include "sci_xstring.h"
-#include "sci_xstringl.h"
 #include "sci_StringBox.h"
 #include "sci_xsetech.h"
 #include "sci_xgetech.h"

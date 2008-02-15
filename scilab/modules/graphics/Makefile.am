@@ -437,7 +437,6 @@ libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
 includes/sci_addcb.h \
 includes/sci_grayplot.h \
-includes/w_rottext.h \
 includes/Events.h \
 includes/sci_xlfont.h \
 includes/GetCommandArg.h \
@@ -457,7 +456,6 @@ includes/sci_xsetech.h \
 includes/sciMatrix.h \
 includes/sci_show_window.h \
 includes/sci_param3d1.h \
-includes/sci_xstringl.h \
 includes/graphicModuleLoad.h \
 includes/sci_matplot.h \
 includes/color.h \
