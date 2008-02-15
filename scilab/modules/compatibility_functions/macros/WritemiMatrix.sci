@@ -1,9 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// Copyright (C) ???? - INRIA - Serge STEER
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function WritemiMatrix(fd,value,ArrayName)
 // Save variables in a Matlab binary file
 // This function has been developped following the 'MAT-File Format' description:
 // www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
-// Copyright INRIA
-// Authors: VC
 
 TagSize=8; // 8 bytes
 ArrayFlagSize=8; // 8 bytes
