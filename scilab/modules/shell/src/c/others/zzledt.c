@@ -259,7 +259,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     { /* if not an interactive terminal */
       /* read a line into the buffer, but not too
        * big */
-      fputs("-->",stdout);
+      fputs(SCIPROMPT,stdout);
       *eof = (fgets(buffer, *buf_size, stdin) == NULL);
       *len_line = strlen(buffer);
       /* remove newline character if there */
