@@ -1,5 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Vincent Couvert
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function t=etime(t1,t0)
-// Copyright INRIA
+
 // returns the time in seconds that has elapsed between vectors t1 and t0
 // t1 and t0 must be six elements long, in the format:
 //       t = [Year Month Day Hour Minute Second.Milliseconds]
@@ -7,7 +16,7 @@ function t=etime(t1,t0)
 //       t = [Year Month ISO_8601_week_number Julian_day Week_Day Day Hour Minute Second Millisecond]
 // in this case ISO_8601_week_number Julian_day Week_Day are ignored
 // t1 and t0 can also be matrices having each line equal to a vector described above
-// V.C. 2004
+
 
 if type(t1)<>1 then
   error(msprintf(gettext("%s: Wrong type for first input argument: Real vector expected.\n"),"etime"));

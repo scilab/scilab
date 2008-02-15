@@ -1,9 +1,13 @@
 // =============================================================================
-// Author : Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date : 28 Dec 2005
-//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Pierre MARECHAL
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 // Return True if year is a leap year, otherwise False
 
 // Si l'année est divisible par 4 et non par 100 => Année bissextile
