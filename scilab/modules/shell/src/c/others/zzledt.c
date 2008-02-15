@@ -1,5 +1,14 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2007 */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Scilab 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include <errno.h>
 #include <string.h>
@@ -744,7 +753,7 @@ void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 			newElementSize=strlen(completionResults[j])+strlen(" ");
 			if ((nbCharLine + newElementSize) > MAX_LINE_SIZE){ /* New line or not ?*/
 				display_string(msg); /* Display the message itself */
-				display_string("\r\n"); /*  \r is to avoid align pb */
+				display_string("\r\n"); /* ï¿½\r is to avoid align pb */
 				strcpy(msg,"");
 				nbCharLine=0;
 			}

@@ -1,8 +1,11 @@
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007-2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
+# 
+# This file is distributed under the same license as the Scilab package.
+
+#
 # Localization of the module shell
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
@@ -35,16 +38,16 @@ msgstr "[Plus (y ou n) ?] "
 # File: sci_gateway/c/sci_lines.c, line: 50
 # File: sci_gateway/c/sci_lines.c, line: 66
 msgid "Invalid parameter(s).\n"
-msgstr "Paramètre(s) incorrect(s).\n"
+msgstr "Paramï¿½tre(s) incorrect(s).\n"
 
 #
 # File: sci_gateway/c/sci_clc.c, line: 32
 # File: sci_gateway/c/sci_clc.c, line: 38
 msgid "Invalid parameter.\n"
-msgstr "Paramètre incorrect.\n"
+msgstr "Paramï¿½tre incorrect.\n"
 
 #
 # File: sci_gateway/c/sci_clc.c, line: 51
 # File: sci_gateway/c/sci_tohome.c, line: 24
 msgid "Not implemented in this mode.\n"
-msgstr "Pas implémenté dans ce mode.\n"
+msgstr "Pas implï¿½mentï¿½ dans ce mode.\n"
