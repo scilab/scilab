@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine matz(ar,ai,lda,m,n,name,job)
 c!purpose
 c     matz reads or writes in scilab's internal stack
@@ -24,7 +33,6 @@ c    call matz(x,y,lda,10,10,name,0) in the case where a
 c     is a 10 by 10 matrix. (Here y is not referenced: real case).
 c
 c!
-c     Copyright INRIA
       integer lda,m,n,job
       character*(*) name
       double precision ar(lda,*),ai(lda,*)

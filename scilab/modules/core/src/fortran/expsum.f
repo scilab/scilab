@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1999 - INRIA - Serge Steer
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine expsum(isg,chaine,n,iptr,np,maxnp,ierr)
 c!but
 c     Etant donnee une expression cette subroutine la decompose
@@ -22,9 +31,7 @@ c     maxnp : taille maxi de iptr (limite du nombre de sous
 c             expressions
 c     ierr : retour d'erreur si np>maxnp (ierr=1)
 c!origine
-c     S Steer INRIA 1990
 c!
-c     Copyright INRIA
       integer chaine(*),iptr(*)
 c     
       integer plus,minus,sign,lparen,rparen

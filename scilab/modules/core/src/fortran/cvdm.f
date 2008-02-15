@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine cvdm(x,nx,m,n,maxc,mode,str,istr)
 c
 c ====================================================================
@@ -26,9 +35,6 @@ c     str : tableau contenant apres execution la suite des codes scilab
 c           des caracteres.taille >= m*n*maxc
 c     istr : tableau donnant la structure de str
 c
-c ================================== ( Inria    ) =============
-c
-c     Copyright INRIA
       double precision x(*),a,eps,dlamch
       integer maxc,mode,fl,typ
       integer str(*),istr(*),ipt

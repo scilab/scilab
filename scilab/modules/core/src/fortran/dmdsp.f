@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine dmdsp(x,nx,mm,nn,maxc,mode,ll,lunit,cw,iw)
 c!but
 c     dmdsp ecrit une matrice  (ou un scalaire) sous
@@ -25,7 +34,6 @@ c     cw : chaine de caracteres de travail de longueur au moins ll
 c     iw : tableau de travail entier de taille au moins egale a
 c          m*n + 2*n
 c!
-c     Copyright INRIA
       double precision x(*),a,a1,a2,fact,eps,dlamch
       integer iw(*),maxc,mode,fl,s,typ
       character cw*(*),sgn*1,dl*1

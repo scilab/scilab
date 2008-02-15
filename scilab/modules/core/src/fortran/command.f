@@ -1,9 +1,17 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine command(id)
 C     ====================================================================
 C     Scilab Command and Keyword 
 C     ====================================================================
-C     id(nsiz) coded name of the comand 
-c     Copyright INRIA
+C     id(nsiz) coded name of the command 
       include 'stack.h'
       logical compil
 C     
@@ -79,7 +87,7 @@ C
 C     
       if (ddt .eq. 4) then
          call cvname(id,buf,1)
-         call basout(io,wte,' comand   : '//buf(1:nlgh))
+         call basout(io,wte,' command   : '//buf(1:nlgh))
       endif
 C     
       kcont=27
@@ -169,7 +177,7 @@ C     pause
 C     -----
 C     
  20   continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -266,7 +274,7 @@ C     quit
 C     -------------
 C     
  50   continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -307,7 +315,7 @@ C     exit
 C     -------------
 C     
  55   continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -330,7 +338,7 @@ C     ---
          fun=0
          return
       endif
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -350,7 +358,7 @@ C     abort
 C     -----
 C     
  120  continue
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0
@@ -419,7 +427,7 @@ C     break, continue
 C------
  130  continue
       kcmd=k
-c     if special compilation mode skip  comands
+c     if special compilation mode skip  commands
       if (comp(3).eq.1) then
          fin=0
          fun=0

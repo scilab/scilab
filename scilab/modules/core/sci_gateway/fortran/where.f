@@ -1,11 +1,19 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c Revised and corrected by Francois VOGEL, July/August 2004
+c     (bugs 908, 922 and 911 are fixed by this version)
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine where
 c     extrait l'arbre d'appel de l'instruction courante
 c     cette routine est issue de la fin du sous programme error
-c     Copyright INRIA
-c     Revised and corrected by Francois VOGEL, July/August 2004
-c     (bugs 908, 922 and 911 are fixed by this version)
       include 'stack.h'
       integer iadr,sadr
+
       integer p,lpts(6),lcts,r,vol,rios
       logical first
 

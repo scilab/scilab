@@ -1,3 +1,4 @@
+
   /*     PURPOSE */
   /*        get a number : on output s must be a double float */
   /*                       which must be very close from the decimal */

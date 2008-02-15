@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine skpins(job)
 c!but 
 c     ce sous programme permet de sauter les instructions suivantes
@@ -9,7 +18,6 @@ c
 c     attention skpins modifie la valeur de lpt en particulier lpt(4)
 c     et lpt(6)
 c     
-c     Copyright INRIA
       include 'stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2)
 c     

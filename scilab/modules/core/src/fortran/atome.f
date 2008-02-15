@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine atome(chaine,n,type,sign)
 c!
 c analyse une chaine de caracteres pour reconnaitre s'il
@@ -15,7 +24,6 @@ c attention n est modifie aussi
 c!
 c reference externe : icopy
 c!
-c     Copyright INRIA
       integer n
       integer chaine(*),type,sign
 c

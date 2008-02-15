@@ -1,6 +1,14 @@
-/*--------------------------------------------------------------------------*/ 
-/* INRIA 2007 */
-/* Scilab */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /* Code automatically translated from Fortran to C */
 /*--------------------------------------------------------------------------*/ 
 #include "scirun.h"
@@ -23,7 +31,7 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
 	static int ir = 0;
 
 	/* set instruction to execute at start-up */
-	/* cha1 is comming from stack-def.h */
+ 	/* cha1 is comming from stack-def.h */
 	str_copy_buf(C2F(cha1).buf, startupCode, bsiz, startupCode_len);
 
     C2F(iop).rio = -1;

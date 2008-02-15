@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine getfunction 
 c     getfunction is used by the parser to acquire an inline function.
 c
@@ -34,7 +43,6 @@ c
 c     The result of getfunction is transformed into a function data type
 C     by the getfun routine.
 
-c     Copyright INRIA
       include 'stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
       integer cblock,rblock,fcount

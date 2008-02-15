@@ -1,9 +1,16 @@
-      subroutine intsetbpt
-c     Copyright INRIA
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
 c Francois VOGEL, May      2004 - Bug 718 fixed
 c Serge Steer,    May      2004 - Bug 719 fixed
 c Francois VOGEL, January  2005 - Bug 1187 fixed
 c Francois VOGEL, February 2005 - Vector argument now allowed
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+      subroutine intsetbpt
       include 'stack.h'
       integer id(nsiz)
       logical checkrhs,checklhs,getsmat,getrvect,checkval,eqid

@@ -1,7 +1,16 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c Copyright (C) Bug 1091 corrected - Francois VOGEL November 2004
+c Copyright (C) Bug 1417 corrected - Francois VOGEL May 2005
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine depfun(lunit,trace,first)
 c     depile une macro ou un execstr
-c Bug 1091 corrected - Francois VOGEL November 2004
-c Bug 1417 corrected - Francois VOGEL May 2005
       include 'stack.h'
       integer lunit
       logical trace,first,callback

@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       function cmplxt(istk,ni)
 c!but
 c     etant donne le code (ou une portion de code correspondant 
@@ -5,7 +14,6 @@ c     a un ensemble d'"operations") d'une macro compilee de scilab
 c     cette  fonction en retourne le nombre d'"operations" au 
 c     niveau 1.
 c!
-c     Copyright INRIA
       integer istk(ni),cmplxt
       character buf*(4096)
 c     

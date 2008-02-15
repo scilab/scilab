@@ -14,10 +14,14 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
@@ -107,20 +111,19 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-InitScilab.lo libscicore_la-getval.lo \
 	libscicore_la-md5.lo libscicore_la-inisci-c.lo \
 	libscicore_la-IsAScalar.lo libscicore_la-texmacs.lo \
-	libscicore_la-userf2.lo libscicore_la-sciquit.lo \
-	libscicore_la-stack1.lo libscicore_la-scicurdir.lo \
-	libscicore_la-realmain.lo libscicore_la-stack3.lo \
-	libscicore_la-str2sci.lo libscicore_la-cluni0.lo \
-	libscicore_la-flags.lo libscicore_la-getmodules.lo \
-	libscicore_la-fromc.lo libscicore_la-setgetSCIpath.lo \
-	libscicore_la-getmemory.lo libscicore_la-Funtab.lo \
-	libscicore_la-csignal.lo libscicore_la-prompt.lo \
-	libscicore_la-CallScilab.lo libscicore_la-callinterf.lo \
-	libscicore_la-SendScilabJobs.lo libscicore_la-scimem.lo \
-	libscicore_la-banier.lo libscicore_la-isanan.lo \
-	libscicore_la-parse.lo libscicore_la-timer.lo \
-	libscicore_la-stack2.lo libscicore_la-xscion.lo \
-	libscicore_la-SetScilabEnvironment.lo \
+	libscicore_la-sciquit.lo libscicore_la-stack1.lo \
+	libscicore_la-scicurdir.lo libscicore_la-realmain.lo \
+	libscicore_la-stack3.lo libscicore_la-str2sci.lo \
+	libscicore_la-cluni0.lo libscicore_la-flags.lo \
+	libscicore_la-getmodules.lo libscicore_la-fromc.lo \
+	libscicore_la-setgetSCIpath.lo libscicore_la-getmemory.lo \
+	libscicore_la-Funtab.lo libscicore_la-csignal.lo \
+	libscicore_la-prompt.lo libscicore_la-CallScilab.lo \
+	libscicore_la-callinterf.lo libscicore_la-SendScilabJobs.lo \
+	libscicore_la-scimem.lo libscicore_la-banier.lo \
+	libscicore_la-isanan.lo libscicore_la-parse.lo \
+	libscicore_la-timer.lo libscicore_la-stack2.lo \
+	libscicore_la-xscion.lo libscicore_la-SetScilabEnvironment.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-returnanan.lo \
 	libscicore_la-LoadFunctionsTab.lo libscicore_la-with_module.lo \
 	libscicore_la-loadversion.lo libscicore_la-version.lo \
@@ -437,7 +440,6 @@ src/c/md5.c \
 src/c/inisci-c.c \
 src/c/IsAScalar.c \
 src/c/texmacs.c \
-src/c/userf2.c \
 src/c/sciquit.c \
 src/c/stack1.c \
 src/c/scicurdir.c \
@@ -1070,7 +1072,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-texmacs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-timer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-tmpdir.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-userf2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-version.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-warningmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-with_module.Plo@am__quote@
@@ -1180,13 +1181,6 @@ libscicore_la-texmacs.lo: src/c/texmacs.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/texmacs.c' object='libscicore_la-texmacs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-texmacs.lo `test -f 'src/c/texmacs.c' || echo '$(srcdir)/'`src/c/texmacs.c
-
-libscicore_la-userf2.lo: src/c/userf2.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-userf2.lo -MD -MP -MF $(DEPDIR)/libscicore_la-userf2.Tpo -c -o libscicore_la-userf2.lo `test -f 'src/c/userf2.c' || echo '$(srcdir)/'`src/c/userf2.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-userf2.Tpo $(DEPDIR)/libscicore_la-userf2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/userf2.c' object='libscicore_la-userf2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-userf2.lo `test -f 'src/c/userf2.c' || echo '$(srcdir)/'`src/c/userf2.c
 
 libscicore_la-sciquit.lo: src/c/sciquit.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sciquit.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sciquit.Tpo -c -o libscicore_la-sciquit.lo `test -f 'src/c/sciquit.c' || echo '$(srcdir)/'`src/c/sciquit.c
