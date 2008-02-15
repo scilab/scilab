@@ -1,3 +1,8 @@
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) ???? - INRIA - Scilab
+# 
+# This file is distributed under the same license as the Scilab package.
+
 # This Makefile is used to build sci_funname.sci files from PROTOx.g
 
 PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_erfc.sci\

@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [infertlist,pos]=get_contents_infer(from,index)
-// Copyright INRIA
 // Search inference data in the contents of a cell or a struct corresponding to a particular index
 // Input: 
 //  - from: the cell or struct where we have to search
@@ -7,7 +15,6 @@ function [infertlist,pos]=get_contents_infer(from,index)
 // Output:
 //  - infertlist: inference data found
 //  - pos: position where index has been found
-// V.C.
 
 pos=0;
 infertlist=Infer();

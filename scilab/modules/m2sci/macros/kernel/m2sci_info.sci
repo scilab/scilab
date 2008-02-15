@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function m2sci_info(txt,verb_mode)
-// Copyright INRIA
 // verb_mode=0: no information displayed
 // verb_mode=1: information written as comment is resulting SCI-file
 // verb_mode=2: information written as comment is resulting SCI-file and in logfile

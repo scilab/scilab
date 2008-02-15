@@ -1,11 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sci_instr]=equal2sci(mtlb_instr)
-// Copyright INRIA
 // Convertion of a Matlab instruction or expression to Scilab
 // Input:
 // - mtlb_instr: Matlab instr or expression to convert
 // Output:
 // - sci_instr: Scilab equivalent for mtlb_instr
-// V.C.
 
 // Trees to insert in converted function tree
 global("m2sci_to_insert_b")

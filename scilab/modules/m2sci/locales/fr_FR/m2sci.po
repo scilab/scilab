@@ -1,8 +1,10 @@
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007-2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
+# 
+# This file is distributed under the same license as the Scilab package.
+
 # Localization of the module m2sci
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
@@ -37,7 +39,7 @@ msgstr ""
 # File: macros/percent/%i_ce2sci.sci, line: 161
 # File: macros/percent/%i_st2sci.sci, line: 82
 msgid "Not yet implemented."
-msgstr "Pas encore implémenté."
+msgstr "Pas encore implï¿½mentï¿½."
 
 #
 # File: macros/kernel/funcall2sci.sci, line: 75
@@ -165,7 +167,7 @@ msgstr ""
 # File: macros/kernel/operation2sci.sci, line: 55
 #, c-format
 msgid "operator %s not found."
-msgstr "Opérateur %s introuvable."
+msgstr "Opï¿½rateur %s introuvable."
 
 #
 # File: macros/kernel/Funcall.sci, line: 11
@@ -218,7 +220,7 @@ msgstr ""
 # File: macros/kernel/equal2sci.sci, line: 81
 #, c-format
 msgid "%s is not yet implemented."
-msgstr "%s n'est pas encore implémenté."
+msgstr "%s n'est pas encore implï¿½mentï¿½."
 
 #
 # File: macros/kernel/Contents.sci, line: 14

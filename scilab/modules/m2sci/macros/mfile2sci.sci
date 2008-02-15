@@ -1,10 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// Copyright (C) ???? - INRIA - Serge STEER 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint)
-// Copyright INRIA
 // This function performs translation of a single M-file
 // - fil: file name
 // - res_path: path to write translated file in (default value is fil path)
 // - Recmode: recursive mode (default value is false)
-// Authors: S.S. and V.C.
 
 // Get default arguments
 [lhs,rhs]=argn(0)

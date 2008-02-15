@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Serge STEER 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function matfile2sci(mat_file_path,result_file_path)
 // Translate a Matlab 5 MAT file into a Scilab file
 // 
@@ -6,10 +15,6 @@ function matfile2sci(mat_file_path,result_file_path)
 //
 //This function has been developped following the "MAT-File Format" description:
 //www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
-
-//Copyright INRIA
-//Author Serge Steer  
-  
 
   ReadmiMatrix=ReadmiMatrix; //load the matfile functions 
 

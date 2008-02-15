@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function instr=old2newinstr(instr,oldname,newname)
 // This function replaces by a new name (given in a input argument:newname) in a Scilab instruction all the variables names and functions names matching to a given name in a input argument:oldname
 // INPUTS:
@@ -6,9 +15,6 @@ function instr=old2newinstr(instr,oldname,newname)
 // -newname: a string, matching to the new variable name 
 // OUTPUT:
 // -instr: Scilab instruction after modification
-//
-// Author: F.Belahcene
-// Copyright INRIA
 
 // VARIABLE tlist //
 // If the variable name matches to the oldname argument then replace the variable name by the newname argument

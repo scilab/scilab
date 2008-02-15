@@ -1,12 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_min(tree)
 // File generated from sci_PROTO1.g: PLEASE DO NOT EDIT !
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab min()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_min()
-// V.C.
 
 // C = min(A) or [C,I] = min(A)
 if rhs==1 then
@@ -16,7 +23,7 @@ if rhs==1 then
     vtype=Unknown // If A is a scalar then Matlab return Double type value else a Boolean type value
   end
   A = convert2double(A)
-  tree.rhs = Rhs_tlist(A)
+  tree.rhs = Rhs(A)
   dim = first_non_singleton(A)
 
   if dim==-1 then
@@ -25,20 +32,20 @@ if rhs==1 then
     tmp=gettempvar()
     insert(Equal(list(tmp),A))
     // First non singleton dimension will be computed at execution
-    tree.rhs=Rhs_tlist(tmp,Funcall("firstnonsingleton",1,list(tmp),list()))
+    tree.rhs=Rhs(tmp,Funcall("firstnonsingleton",1,list(tmp),list()))
   else
     tree.lhs(1).dims=A.dims
     if dim==0 then
-      tree.rhs=Rhs_tlist(A)
+      tree.rhs=Rhs(A)
       tree.lhs(1).dims=list(1,1)
     elseif dim==1 then
-      tree.rhs=Rhs_tlist(A,"r")
+      tree.rhs=Rhs(A,"r")
       tree.lhs(1).dims(dim)=1
     elseif dim==2 then
-      tree.rhs=Rhs_tlist(A,"c")
+      tree.rhs=Rhs(A,"c")
       tree.lhs(1).dims(dim)=1
     else
-      tree.rhs=Rhs_tlist(A,dim)
+      tree.rhs=Rhs(A,dim)
       tree.lhs(1).dims(dim)=1
     end
   end
@@ -71,7 +78,7 @@ elseif rhs==2 then
   end
   A=convert2double(A)
   B=convert2double(B)
-  tree.rhs=Rhs_tlist(A,B)
+  tree.rhs=Rhs(A,B)
 
   if is_real(A) & is_real(B) then 
     if not_empty(A) & not_empty(B) then
@@ -97,7 +104,7 @@ else
     vtype=Unknown
   end
   A=convert2double(A)
-  tree.rhs=Rhs_tlist(A)
+  tree.rhs=Rhs(A)
 
   // C = min(A,[],dim) or [C,I] = min(A,[],dim)
   if or(lhs==[1,2]) then
@@ -105,11 +112,11 @@ else
       tree.lhs(1).type=Type(Double,Real)
       if typeof(dim)=="cste" then
 	if dim.value==1 then
-	  tree.rhs=Rhs_tlist(A,"r")
+	  tree.rhs=Rhs(A,"r")
 	  tree.lhs(1).dims=A.dims
 	  tree.lhs(1).dims(1)=Unknown // 0 or 1
 	elseif dim.value==2 then
-	  tree.rhs=Rhs_tlist(A,"c")
+	  tree.rhs=Rhs(A,"c")
 	  tree.lhs(1).dims=A.dims
 	  tree.lhs(1).dims(2)=Unknown // 0 or 1
 	elseif dim.value<=size(A.dims) then
@@ -118,20 +125,20 @@ else
 	else
 	  // Scilab min() does not work when dim  is greater than number of dims of A
 	  tree.name="mtlb_min"
-	  tree.rhs=Rhs_tlist(A,tmp,dim)
+	  tree.rhs=Rhs(A,tmp,dim)
 	  tree.lhs(1).dims=A.dims
 	end
       else
 	// If dim is 1 it can be replaced by 'r'
 	// If dim is 2 it can be replaced by 'c'
 	tree.name="mtlb_min"
-	tree.rhs=Rhs_tlist(A,tmp,dim)
+	tree.rhs=Rhs(A,tmp,dim)
 	tree.lhs(1).dims=allunknown(A.dims)
       end
     else
       // A can be complex....
       tree.name="mtlb_min"
-      tree.rhs=Rhs_tlist(A,tmp,dim)
+      tree.rhs=Rhs(A,tmp,dim)
       tree.lhs(1).dims=allunknown(A.dims)
       tree.lhs(1).type=Type(Double,Unknown)
     end

@@ -1,6 +1,9 @@
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+# 
+# This file is distributed under the same license as the Scilab package.
+
 # GUI for M2SCI tools
-# Copyright INRIA
-# Scilab Project - V. Couvert
 
 #!/bin/sh
 #exec wish "$0" "$1" & exit 0 

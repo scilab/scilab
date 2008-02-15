@@ -1,14 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function changevarname(fun,oldname,newname)
 // This function replaces the variable (named oldname) of a file by a new name (which is newname). It uses the old2newinstr function
 // INPUTS:
 // -fun: a string, the name (with the whole path) of the modifed file
 // -oldname: a string, the old name of the variable
 // -newname: a string, the new name of the variable after modification 
-//
-// Author: F.Belahcene
-// Copyright INRIA
-
-
 
 sep=filesep();
 
