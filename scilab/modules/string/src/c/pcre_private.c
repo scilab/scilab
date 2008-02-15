@@ -243,8 +243,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 {
 	int options = 0;
 	int timeit = 0;
-	int showinfo = 0;
-	int showstore = 0;
 	int size_offsets = 45;
 	int size_offsets_max;
 	int *offsets = NULL;
@@ -454,7 +452,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if (timeit > 0)
 		{
 			register int i;
-			clock_t start_time = clock();
 			for (i = 0; i < timeit; i++)
 			{
 				re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
