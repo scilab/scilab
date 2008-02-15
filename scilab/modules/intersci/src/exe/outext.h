@@ -11,7 +11,7 @@
  *
  */
 
-#ifdef __OUTEXT_H__
+#ifndef __OUTEXT_H__
 #define __OUTEXT_H__
 
 void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel);
