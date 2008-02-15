@@ -169,7 +169,6 @@ int C2F(run)()
     if ((C2F(errgst).errpt >0) && (Pt >= C2F(errgst).errpt) && (Rstk[C2F(errgst).errpt]==618)) {
       /* error under try catch */
       for (p=Pt;p>=C2F(errgst).errpt;p--) {
-        /*sciprint("--> pt=%d,Rstk(Pt)=%d\n",p,Rstk[p]);*/
 	if (Rstk[p]<=502 && Rstk[p]>=501){
 	  k = Lpt[1] - (13+nsiz);
 	  Lpt[1] = Lin[k+1];
@@ -197,6 +196,7 @@ int C2F(run)()
   if (lc - l0 == nc) { /* is current opcodes block (if, for, .. structure) finished ?*/
     /* yes */
     r = Rstk[Pt] - 610;
+
     switch (r) {
     case 1:  goto L46;
     case 2:  goto L47;
@@ -477,6 +477,12 @@ int C2F(run)()
  L46:
   nc = Istk[lc];
   l0 = lc + 7;
+  if  (C2F(errgst).errcatch==1 &&C2F(errgst).err1 > 0) {
+    /*an error occured in the loop variable expression evaluation, in 'continue' mode
+      skip all the for codes*/
+    lc = l0;
+    goto L48;
+  }
   Rstk[Pt] = 612;
   Pstk[Pt] = 0;
   Ids[1 + Pt * nsiz] = l0;
@@ -538,6 +544,12 @@ int C2F(run)()
 
   /*     expri */
  L56:
+  if  (C2F(errgst).errcatch==1 && C2F(errgst).err1 > 0 ) {
+    /*an error occured in the first expression evaluation, in 'continue' mode
+      skip all the control structure codes*/
+    goto L62;
+  }
+
   if (Istk[Pstk[Pt]] == 10) {
     /*     copy first expression */
     i2 = Top + 1;
@@ -557,6 +569,11 @@ int C2F(run)()
 
   /*     instructions i */
  L57:
+  if  (C2F(errgst).errcatch==1 && C2F(errgst).err1 > 0 ) {
+    /*an error occured in the first expression evaluation, in 'continue' mode
+      skip all the control structure codes*/
+    goto L62;
+  }
   if (nc == 0) {
     /* if nc=0 the instruction correspond to the else */
     ok = TRUE;
@@ -583,6 +600,12 @@ int C2F(run)()
   return 0;
 
  L58:
+  if  (C2F(errgst).errcatch==1 && C2F(errgst).err1 > 0 ) {
+    /*an error occured in the first expression evaluation, in 'continue' mode
+      skip all the control structure codes*/
+    goto L62;
+  }
+
   lc = Pstk[Pt];
   tref = Ids[1 + Pt * nsiz];
   --Pt;
@@ -889,7 +912,7 @@ int C2F(run)()
     }
     if (C2F(errgst).errcatch > 0) {
       /* running under errcatch(num,....) */
-      C2F(errgst).err1 = 0;
+      if (Rstk[Pt] != 614 && Rstk[Pt] != 615 && Rstk[Pt] != 605) C2F(errgst).err1 = 0;
       if (Pt<C2F(errgst).errpt) {
 	C2F(errgst).errcatch = 0;
       }
