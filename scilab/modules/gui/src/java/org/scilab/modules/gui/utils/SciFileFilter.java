@@ -43,6 +43,9 @@ public class SciFileFilter extends FileFilter {
 	 * @see java.io.FileFilter#accept(java.io.File)
 	 */
 	public boolean accept(File pathname) {
+		if (pathname.isDirectory()) {
+			return true;
+		}
 		return pathname.getAbsolutePath().endsWith(mask);
 	}
 
