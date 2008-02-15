@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2006 - INRIA - Serge STEER 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>interpln  </TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="interpln"> interpolation linéaire  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="interpln"> interpolation linï¿½aire  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[y]=interpln(xyd,x)    </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -15,7 +26,7 @@
   <PARAM_NAME>xyd  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : matrice à deux lignes (coordonnées x et y des points)
+    : matrice ï¿½ deux lignes (coordonnï¿½es x et y des points)
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -31,7 +42,7 @@
   <PARAM_NAME>y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : vecteur des ordonnées
+    : vecteur des ordonnï¿½es
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -39,7 +50,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    Étant donné <VERB>xyd</VERB> un ensemble de points dans le plan avec des abscisses croissantes et <VERB>x</VERB> un ensemble d&apos;abscisses, cette fonction renvoie dans <VERB>y</VERB> les ordonnées correspondantes, calculées par interpolation linéaire.
+    ï¿½tant donnï¿½ <VERB>xyd</VERB> un ensemble de points dans le plan avec des abscisses croissantes et <VERB>x</VERB> un ensemble d&apos;abscisses, cette fonction renvoie dans <VERB>y</VERB> les ordonnï¿½es correspondantes, calculï¿½es par interpolation linï¿½aire.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

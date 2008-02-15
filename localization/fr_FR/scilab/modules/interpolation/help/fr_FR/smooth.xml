@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2006 - INRIA - Serge STEER 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -15,7 +26,7 @@
   <PARAM_NAME>ptd  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : vecteur réel à deux colonnes
+    : vecteur rï¿½el ï¿½ deux colonnes
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -23,7 +34,7 @@
   <PARAM_NAME>pas  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : réel (pas de discrétisation des abscisses)
+    : rï¿½el (pas de discrï¿½tisation des abscisses)
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -31,7 +42,7 @@
   <PARAM_NAME>pt  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : vecteur réel à deux colonnes
+    : vecteur rï¿½el ï¿½ deux colonnes
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -40,8 +51,8 @@
   <DESCRIPTION>
   <P>
     Cette fonction calcule les valeurs d&apos;une spline d&apos;interpolation
-    dont les points de référence sont donnés par <VERB>(ptd(1,i),ptd(2,i))</VERB>. Les abscisses <VERB>ptd(1,:)</VERB> doivent être classés par ordre croissant.
-    La valeur par défaut du pas est égale à 
+    dont les points de rï¿½fï¿½rence sont donnï¿½s par <VERB>(ptd(1,i),ptd(2,i))</VERB>. Les abscisses <VERB>ptd(1,:)</VERB> doivent ï¿½tre classï¿½s par ordre croissant.
+    La valeur par dï¿½faut du pas est ï¿½gale ï¿½ 
     <VERB>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</VERB>
   </P>
   </DESCRIPTION>
