@@ -1,7 +1,15 @@
 /*-----------------------------------------------------------------------*/
-/* File: sci_ascii.c                                                     */
-/* Copyright INRIA 2007                                                  */
-/* @Authors : Cong Wu                                                    */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Cong WU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /* desc : This function convert Scilab string to a vector of ascii code  */
 /*        or vector of ascii code to Scilab strings.                     */
 /*        If  txt  is a matrix of string,  ascii(txt)  is equivalent to  */  

@@ -1,7 +1,15 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_strsubst.c                                                   */
-/* Copyright INRIA 2007                                                   */
-/* @Authors : Cong Wu , Allan CORNET                                      */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Cong WU , Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /* desc : substitute a character string by another in a character string  */
 /*------------------------------------------------------------------------*/
 #include <string.h>

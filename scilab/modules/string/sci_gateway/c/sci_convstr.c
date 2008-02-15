@@ -1,7 +1,15 @@
 /*------------------------------------------------------------------------*/
-/* File: sci_convstr.c                                                   */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Cong Wu                                                      */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Cong WU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /* desc : converts the matrix of strings  str-matrix  into lower case (for*/  
 /*          "l"  ;default value) or upper case (for  "u" ).               */
 /*        [y]=convstr(str-matrix, ["flag"])                               */

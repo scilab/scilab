@@ -1,8 +1,14 @@
 // =============================================================================
-// Author : Pierre MARECHAL
-// Scilab Project
-// Copyright INRIA 2007
-// Date : 18 Dec 2007
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Pierre MARECHAL
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 //
 // isnum(str) return %T if str represent a number
 //
