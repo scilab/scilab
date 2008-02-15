@@ -165,10 +165,155 @@ if strsubst('A-','/a[-b]/i','^','r') <>  '^'   then pause,end
 if strsubst('A-','/a[b-]/i','^','r') <>  '^'   then pause,end
 if strsubst('A]','/a]/i','^','r') <>  '^'   then pause,end
 if strsubst('abc','/abc/',' ','r') <>  ' '   then pause,end
+
+if strsubst('......abef','/.*a(?!(b|cd)*e).*f/'                 ,' ' ,'r') <>  '......abef'  then pause,end
+if strsubst('fools','/(foo|fool|x.|money|parted)$/'        ,' ' ,'r') <>  'fools'  then pause,end
+if strsubst('fools','/(x.|foo|fool|x.|money|parted|y.)$/'  ,' ' ,'r') <>  'fools'  then pause,end
+if strsubst('fools','/(foo|fool|money|parted)$/'           ,' ' ,'r') <>  'fools'  then pause,end
+if strsubst('Oo','/^(o)(?!.*\1)/i'                      ,' ' ,'r') <>  'Oo'  then pause,end
+if strsubst('AbCd','/ab(?i)cd/'                           ,' ' ,'r') <>  'AbCd'  then pause,end
+if strsubst('a\nb\n','/a\Z/'                                ,' ' ,'r') <> 'a\nb\n'  then pause,end
+if strsubst('a\nb\n','/a\z/'                                ,' ' ,'r') <> 'a\nb\n'  then pause,end
+if strsubst('a\nb\n','/a$/'                                 ,' ' ,'r') <>  'a\nb\n' then pause,end
+if strsubst('b\na\n','/a\z/'                                ,' ' ,'r') <>  'b\na\n'  then pause,end
+if strsubst('a\nb\n','/a\Z/m'                               ,' ' ,'r') <>  'a\nb\n'  then pause,end
+if strsubst('a\nb\n','/a\z/m'                               ,' ' ,'r') <> 'a\nb\n'  then pause,end
+if strsubst('b\na\n','/a\z/m'                               ,' ' ,'r') <>  'b\na\n'  then pause,end
+if strsubst('aa\nb\n','/aa\Z/'                               ,' ' ,'r') <>  'aa\nb\n' then pause,end
+if strsubst('aa\nb\n','/aa\z/'                               ,' ' ,'r') <>  'aa\nb\n'  then pause,end
+if strsubst('aa\nb\n','/aa$/'                                ,' ' ,'r') <>  'aa\nb\n'  then pause,end
+if strsubst('b\naa\n','/aa\z/'                               ,' ' ,'r') <>  'b\naa\n'  then pause,end
+if strsubst('aa\nb\n','/aa\Z/m'                              ,' ' ,'r') <>  'aa\nb\n'  then pause,end
+if strsubst('aa\nb\n','/aa\z/m'                              ,' ' ,'r') <>  'aa\nb\n'  then pause,end
+if strsubst('b\naa\n','/aa\z/m'                              ,' ' ,'r') <>  'b\naa\n'  then pause,end
+if strsubst('ac\nb\n','/aa\Z/'                               ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n','/aa\z/'                               ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n','/aa$/'                                ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('b\nac\n','/aa\Z/'                               ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac\n','/aa\z/'                               ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac\n','/aa$/'                                ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac'  ,'/aa\Z/'                               ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('b\nac'  ,'/aa\z/'                               ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('b\nac'  ,'/aa$/'                                ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('ac\nb\n','/aa\Z/m'                              ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n','/aa\z/m'                              ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n','/aa$/m'                               ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('b\nac\n','/aa\Z/m'                              ,' ' ,'r') <>  'b\nac\n' then pause,end
+if strsubst('b\nac\n','/aa\z/m'                              ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac\n','/aa$/m'                               ,' ' ,'r') <>  'b\nac\n' then pause,end
+if strsubst('b\nac'  ,'/aa\Z/m'                              ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('b\nac'  ,'/aa\z/m'                              ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('b\nac'  ,'/aa$/m'                               ,' ' ,'r') <>  'b\nac' then pause,end
+if strsubst('ca\nb\n','/aa\Z/'                               ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n','/aa\z/'                               ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n','/aa$/'                                ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('b\nca\n','/aa\Z/'                               ,' ' ,'r') <>  'b\nca\n'  then pause,end
+if strsubst('b\nca\n','/aa\z/'                               ,' ' ,'r') <>  'b\nca\n' then pause,end
+if strsubst('b\nca\n','/aa$/'                                ,' ' ,'r') <>  'b\nca\n'  then pause,end
+if strsubst('b\nca'  ,'/aa\Z/'                               ,' ' ,'r') <>  'b\nca'   then pause,end
+if strsubst('b\nca'  ,'/aa\z/'                               ,' ' ,'r') <> 'b\nca'   then pause,end
+if strsubst('b\nca'  ,'/aa$/'                                ,' ' ,'r') <>  'b\nca'  then pause,end
+if strsubst('ca\nb\n','/aa\Z/m'                              ,' ' ,'r') <> 'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n','/aa\z/m'                              ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n','/aa$/m'                               ,' ' ,'r') <>  'ca\nb\n' then pause,end
+if strsubst('b\nca\n','/aa\Z/m'                              ,' ' ,'r') <> 'b\nca\n'  then pause,end
+if strsubst('b\nca\n','/aa\z/m'                              ,' ' ,'r') <> 'b\nca\n'  then pause,end
+if strsubst('b\nca\n','/aa$/m'                               ,' ' ,'r') <> 'b\nca\n'  then pause,end
+if strsubst('b\nca'  ,'/aa\Z/m'                              ,' ' ,'r') <>  'b\nca'  then pause,end
+if strsubst('b\nca'  ,'/aa\z/m'                              ,' ' ,'r') <>  'b\nca'   then pause,end
+if strsubst('b\nca'  ,'/aa$/m'                               ,' ' ,'r') <>  'b\nca'   then pause,end
+if strsubst('ab\nb\n','/ab\Z/'                               ,' ' ,'r') <>  'ab\nb\n'  then pause,end
+if strsubst('ab\nb\n','/ab\z/'                               ,' ' ,'r') <>  'ab\nb\n' then pause,end
+if strsubst('ab\nb\n','/ab$/'                                ,' ' ,'r') <> 'ab\nb\n'  then pause,end
+if strsubst('b\nab\n','/ab\z/'                               ,' ' ,'r') <>  'b\nab\n' then pause,end
+if strsubst('ab\nb\n','/ab\Z/m'                              ,' ' ,'r') <>  'ab\nb\n'  then pause,end
+if strsubst('ab\nb\n','/ab\z/m'                              ,' ' ,'r') <>  'ab\nb\n'  then pause,end
+if strsubst('b\nab\n','/ab\z/m'                              ,' ' ,'r') <> 'b\nab\n'  then pause,end
+if strsubst('ac\nb\n','/ab\Z/'                               ,' ' ,'r') <> 'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n','/ab\z/'                               ,' ' ,'r') <> 'ac\nb\n' then pause,end
+if strsubst('ac\nb\n','/ab$/'                                ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('b\nac\n','/ab\Z/'                               ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac\n','/ab\z/'                               ,' ' ,'r') <>  'b\nac\n' then pause,end
+if strsubst('b\nac\n','/ab$/'                                ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac'  ,'/ab\Z/'                               ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('b\nac'  ,'/ab\z/'                               ,' ' ,'r') <>  'b\nac' then pause,end
+if strsubst('b\nac'  ,'/ab$/'                                ,' ' ,'r') <> 'b\nac' then pause,end
+if strsubst('ac\nb\n','/ab\Z/m'                              ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n','/ab\z/m'                              ,' ' ,'r') <> 'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n','/ab$/m'                               ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('b\nac\n','/ab\Z/m'                              ,' ' ,'r') <> 'b\nac\n'  then pause,end
+if strsubst('b\nac\n','/ab\z/m'                              ,' ' ,'r') <> 'b\nac\n' then pause,end
+if strsubst('b\nac\n','/ab$/m'                               ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac'  ,'/ab\Z/m'                              ,' ' ,'r') <>  'b\nac'   then pause,end
+if strsubst('b\nac'  ,'/ab\z/m'                              ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('b\nac'  ,'/ab$/m'                               ,' ' ,'r') <>  'b\nac'   then pause,end
+if strsubst('ca\nb\n','/ab\Z/'                               ,' ' ,'r') <>  'ca\nb\n' then pause,end
+if strsubst('ca\nb\n','/ab\z/'                               ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n','/ab$/'                                ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('b\nca\n','/ab\Z/'                               ,' ' ,'r') <>  'b\nca\n'  then pause,end
+if strsubst('b\nca\n','/ab\z/'                               ,' ' ,'r') <> 'b\nca\n'  then pause,end
+if strsubst('b\nca\n','/ab$/'                                ,' ' ,'r') <>  'b\nca\n'  then pause,end
+if strsubst('b\nca'  ,'/ab\Z/'                               ,' ' ,'r') <>  'b\nca'  then pause,end
+if strsubst('b\nca'  ,'/ab\z/'                               ,' ' ,'r') <>  'b\nca'  then pause,end
+if strsubst('b\nca'  ,'/ab$/'                                ,' ' ,'r') <> 'b\nca'  then pause,end
+if strsubst('ca\nb\n','/ab\Z/m'                              ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n','/ab\z/m'                              ,' ' ,'r') <>  'ca\nb\n' then pause,end
+if strsubst('ca\nb\n','/ab$/m'                               ,' ' ,'r') <> 'ca\nb\n'  then pause,end
+if strsubst('b\nca\n','/ab\Z/m'                              ,' ' ,'r') <> 'b\nca\n' then pause,end
+if strsubst('b\nca\n' ,'/ab\z/m'                              ,' ' ,'r') <> 'b\nca\n'  then pause,end
+if strsubst('b\nca\n','/ab$/m'                               ,' ' ,'r') <>  'b\nca\n'  then pause,end
+if strsubst('b\nca'     ,'/ab\Z/m'                              ,' ' ,'r') <> 'b\nca'   then pause,end
+if strsubst('b\nca'     ,'/ab\z/m'                              ,' ' ,'r') <>  'b\nca'   then pause,end
+if strsubst('b\nca'     ,'/ab$/m'                               ,' ' ,'r') <>  'b\nca'   then pause,end
+if strsubst('abb\nb\n'  ,'/abb\Z/'                              ,' ' ,'r') <>  'abb\nb\n'  then pause,end
+if strsubst('abb\nb\n'  ,'/abb\z/'                              ,' ' ,'r') <>  'abb\nb\n'  then pause,end
+if strsubst('abb\nb\n'  ,'/abb$/'                               ,' ' ,'r') <>  'abb\nb\n'  then pause,end
+if strsubst('b\nabb\n'  ,'/abb\z/'                              ,' ' ,'r') <>  'b\nabb\n'   then pause,end
+if strsubst('abb\nb\n'  ,'/abb\Z/m'                             ,' ' ,'r') <> 'abb\nb\n'  then pause,end
+if strsubst('abb\nb\n'  ,'/abb\z/m'                             ,' ' ,'r') <>  'abb\nb\n'  then pause,end
+if strsubst('b\nabb\n','/abb\z/m'                             ,' ' ,'r') <>  'b\nabb\n'  then pause,end
+if strsubst('ac\nb\n'  ,'/abb\Z/'                              ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('ac\nb\n'  ,'/abb\z/'                              ,' ' ,'r') <>  'ac\nb\n' then pause,end
+if strsubst('ac\nb\n'  ,'/abb$/'                               ,' ' ,'r') <> 'ac\nb\n'  then pause,end
+if strsubst('b\nac\n' ,'/abb\Z/'                              ,' ' ,'r') <> 'b\nac\n'  then pause,end
+if strsubst('b\nac\n'  ,'/abb\z/'                              ,' ' ,'r') <>  'b\nac\n' then pause,end
+if strsubst('b\nac\n'   ,'/abb$/'                               ,' ' ,'r') <>  'b\nac\n'  then pause,end
+if strsubst('b\nac'     ,'/abb\Z/'                              ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('b\nac'   ,'/abb\z/'                              ,' ' ,'r') <> 'b\nac'  then pause,end
+if strsubst('b\nac'   ,'/abb$/'                               ,' ' ,'r') <>  'b\nac'  then pause,end
+if strsubst('ac\nb\n'   ,'/abb\Z/m'                             ,' ' ,'r') <>  'ac\nb\n'   then pause,end
+if strsubst('ac\nb\n'     ,'/abb\z/m'                             ,' ' ,'r') <> 'ac\nb\n'   then pause,end
+if strsubst('ac\nb\n'  ,'/abb$/m'                              ,' ' ,'r') <>  'ac\nb\n'  then pause,end
+if strsubst('b\nac\n' ,'/abb\Z/m'                             ,' ' ,'r') <>  'b\nac\n'   then pause,end
+if strsubst('b\nac\n'    ,'/abb\z/m'                             ,' ' ,'r') <> 'b\nac\n'   then pause,end
+if strsubst('b\nac\n'    ,'/abb$/m'                              ,' ' ,'r') <>  'b\nac\n'   then pause,end
+if strsubst('b\nac'     ,'/abb\Z/m'                             ,' ' ,'r') <>  'b\nac'   then pause,end
+if strsubst('b\nac'   ,'/abb\z/m'                             ,' ' ,'r') <>  'b\nac'   then pause,end
+if strsubst('b\nac'    ,'/abb$/m'                              ,' ' ,'r') <>  'b\nac'   then pause,end
+if strsubst('ca\nb\n'   ,'/abb\Z/'                              ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n' ,'/abb\z/'                              ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('ca\nb\n'  ,'/abb$/'                               ,' ' ,'r') <>  'ca\nb\n'  then pause,end
+if strsubst('b\nca\n' ,'/abb\Z/'                              ,' ' ,'r') <>  'b\nca\n'   then pause,end
+if strsubst('b\nca\n'   ,'/abb\z/'                              ,' ' ,'r') <>  'b\nca\n'   then pause,end
+if strsubst('b\nca\n'   ,'/abb$/'                               ,' ' ,'r') <>  'b\nca\n'   then pause,end
+if strsubst('b\nca'       ,'/abb\Z/'                              ,' ' ,'r') <>  'b\nca'   then pause,end
+if strsubst('b\nca'         ,'/abb\z/'                              ,' ' ,'r') <> 'b\nca'   then pause,end
+if strsubst('b\nca'        ,'/abb$/'                               ,' ' ,'r') <>  'b\nca'   then pause,end
+if strsubst('ca\nb\n'     ,'/abb\Z/m'                             ,' ' ,'r') <>  'ca\nb\n'   then pause,end
+if strsubst('ca\nb\n'   ,'/abb\z/m'                             ,' ' ,'r') <> 'ca\nb\n'   then pause,end
+if strsubst('ca\nb\n'    ,'/abb$/m'                              ,' ' ,'r') <> 'ca\nb\n'   then pause,end
+if strsubst('b\nca\n'     ,'/abb\Z/m'                             ,' ' ,'r') <>  'b\nca\n'   then pause,end
+if strsubst('b\nca\n'      ,'/abb\z/m'                             ,' ' ,'r') <>  'b\nca\n'   then pause,end
+if strsubst('b\nca\n'  ,'/abb$/m'                              ,' ' ,'r') <>  'b\nca\n'  then pause,end
+if strsubst('b\nca'       ,'/abb\Z/m'                             ,' ' ,'r') <>  'b\nca' then pause,end
+if strsubst('b\nca'       ,'/abb\z/m'                             ,' ' ,'r') <>  'b\nca'  then pause,end
+if strsubst('b\nca'            ,'/abb$/m'                              ,' ' ,'r') <>  'b\nca'  then pause,end
+if strsubst('aaab'        ,'/^(?=(a+?))\1ab/'                     ,' ' ,'r') <>  'aaab'   then pause,end
+if strsubst('aaab'             ,'/^(?=(a+?))\1ab/'                     ,' ' ,'r') <>  'aaab'   then pause,end
+if strsubst('abcd:'               ,'/([\w:]+::)?(\w+)$/'                  ,' ' ,'r') <>  'abcd:'   then pause,end
+if strsubst('abcd:'            ,'/([\w:]+::)?(\w+)$/'                  ,' ' ,'r') <>   'abcd:'  then pause,end
+if strsubst('aaab'                  ,'/(>a+)ab/'                            ,' ' ,'r') <>  'aaab'   then pause,end
 //===============================
-// Cong please check this ...
-if strsubst('xyz','/abc/',' ','r') <>  'xyz'   then pause,end
-if strsubst('accccc','ffffff','^','r') <>  'accccc'   then pause,end
-//===============================
+
 
 

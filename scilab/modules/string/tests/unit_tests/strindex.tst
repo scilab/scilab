@@ -76,9 +76,9 @@ ref1  = [2.    3.    9.    19.    22.    32.    39];
 if (ref2 <> r2) then pause,end;
 if (ref1 <> r1) then pause,end;
 //===============================
-if strindex('abc'                                     ,'/abc/'                                 ,'r') <>  1   then pause,end
-if strindex('xbc'                                     ,'/abc/'                                 ,'r') <>  []  then pause,end
-if strindex('axc'                                     ,'/abc/'                                 ,'r') <>  []  then pause,end
+if strindex('abc','/abc/','r') <>  1   then pause,end
+if strindex('xbc','/abc/','r') <>  []  then pause,end
+if strindex('axc','/abc/','r') <>  []  then pause,end
 if strindex('abx'                                     ,'/abc/'                                 ,'r') <>  []  then pause,end
 if strindex('xabcy'                                   ,'/abc/'                                 ,'r') <>  2   then pause,end
 if strindex('ababc'                                   ,'/abc/'                                 ,'r') <>  3   then pause,end
