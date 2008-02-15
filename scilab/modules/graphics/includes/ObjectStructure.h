@@ -78,7 +78,8 @@
 #define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
 #define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
 #define pUIMENU_FEATURE(pointobj)      ((sciUimenu        *)pointobj->pfeatures)/** */
-#define pUICONTROL_FEATURE(pointobj)   ((sciUicontrol        *)pointobj->pfeatures)/** */
+#define pUICONTEXTMENU_FEATURE(pointobj)      ((sciUicontextmenu *)pointobj->pfeatures)/** */
+#define pUICONTROL_FEATURE(pointobj)   ((sciUicontrol     *)pointobj->pfeatures)/** */
 #define pCONSOLE_FEATURE(pointobj)     ((sciConsole       *)pointobj->pfeatures)/** */
 #define pFRAME_FEATURE(pointobj)       ((sciFrame         *)pointobj->pfeatures)/** */
 #define pWINDOW_FEATURE(pointobj)      ((sciWindow        *)pointobj->pfeatures)/** */
@@ -126,8 +127,8 @@ POINT3D;
  * @memo SCI_PANNER,
  * @memo SCI_SBH,
  * @memo SCI_SBV,
- * @memo SCI_MENU,
- * @memo SCI_MENUCONTEXT,
+ * @memo SCI_UIMENU,
+ * @memo SCI_UICONTEXTMENU,
  * @memo SCI_STATUSB,
  */
 typedef enum
@@ -170,7 +171,8 @@ typedef enum
     /**Entity type MENU*/
     SCI_MENU,			
     /**Entity type CONTEXT MENU*/
-    SCI_MENUCONTEXT,	
+    SCI_MENUCONTEXT, // TODO remove
+    SCI_UICONTEXTMENU,	
     /**Entity type STATUS BAR*/
     SCI_STATUSB,	    
     /**Entity type Compound */
@@ -695,6 +697,13 @@ sciUimenu;
 typedef struct
 {
   sciRelationShip relationship;
+  int hashMapIndex;
+}/** */
+sciUicontextmenu;
+
+typedef struct
+{
+  sciRelationShip relationship;
 
   /** specifies if this object is visible             */
   BOOL visible;
@@ -758,6 +767,7 @@ typedef struct
   char * tag;
 }/** */
 sciUicontrol;
+
 /* uicontrol font properties */
 typedef enum {LIGHT_FONT, NORMAL_FONT, DEMI_FONT, BOLD_FONT, ITALIC_FONT, OBLIQUE_FONT} UicontrolFontProperties ;
 /* uicontrol style */

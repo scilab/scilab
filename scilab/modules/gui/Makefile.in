@@ -97,8 +97,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/c/buildMainWindowTitle.c src/c/getMainWindowTitle.c \
 	src/c/getScreenProperties.c src/c/InitializeGUI.c \
 	src/c/setMainWindowTitle.c src/c/addmenu.c \
-	src/c/CreateUIControl.c src/c/UicontrolStyleToString.c \
-	sci_gateway/c/sci_x_choice.c \
+	src/c/CreateUIControl.c src/c/CreateUIContextMenu.c \
+	src/c/UicontrolStyleToString.c sci_gateway/c/sci_x_choice.c \
 	sci_gateway/c/sci_x_message_modeless.c sci_gateway/c/gw_gui.c \
 	sci_gateway/c/sci_x_mdialog.c sci_gateway/c/sci_x_dialog.c \
 	sci_gateway/c/sci_raise_window.c sci_gateway/c/sci_x_choose.c \
@@ -110,16 +110,18 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_setlookandfeel.c sci_gateway/c/sci_about.c \
 	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_hidetoolbar.c \
 	sci_gateway/c/sci_toolbar.c sci_gateway/c/sci_uigetdir.c \
-	sci_gateway/c/sci_uicontrol.c sci_gateway/c/sci_uimenu.c \
-	sci_gateway/c/sci_mpopup.c src/cpp/InitUIMenu.cpp \
-	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
-	src/cpp/DestroyUIControl.cpp src/cpp/CallJxclick.cpp \
-	src/jni/Jxgetmouse.cpp src/cpp/CallJxgetmouse.cpp \
-	src/cpp/CallFileChooser.cpp src/cpp/CallMessageBox.cpp \
-	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
-	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
-	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp \
-	src/cpp/ContextMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	sci_gateway/c/sci_uicontrol.c \
+	sci_gateway/c/sci_uicontextmenu.c sci_gateway/c/sci_uimenu.c \
+	sci_gateway/c/sci_uiwait.c sci_gateway/c/sci_mpopup.c \
+	src/cpp/InitUIMenu.cpp src/jni/CallScilabBridge.cpp \
+	src/jni/Jxclick.cpp src/cpp/DestroyUIControl.cpp \
+	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
+	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
+	src/cpp/CallMessageBox.cpp src/cpp/PushButton.cpp \
+	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
+	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
+	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
+	src/cpp/ListBox.cpp src/cpp/Frame.cpp \
 	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
 	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
 	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
@@ -167,6 +169,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-setMainWindowTitle.lo \
 @GUI_TRUE@	libscigui_la-addmenu.lo \
 @GUI_TRUE@	libscigui_la-CreateUIControl.lo \
+@GUI_TRUE@	libscigui_la-CreateUIContextMenu.lo \
 @GUI_TRUE@	libscigui_la-UicontrolStyleToString.lo
 @GUI_TRUE@am__objects_2 = libscigui_la-sci_x_choice.lo \
 @GUI_TRUE@	libscigui_la-sci_x_message_modeless.lo \
@@ -189,7 +192,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_toolbar.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetdir.lo \
 @GUI_TRUE@	libscigui_la-sci_uicontrol.lo \
+@GUI_TRUE@	libscigui_la-sci_uicontextmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_uimenu.lo \
+@GUI_TRUE@	libscigui_la-sci_uiwait.lo \
 @GUI_TRUE@	libscigui_la-sci_mpopup.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
@@ -541,6 +546,7 @@ JARMASK = *.jar
 @GUI_TRUE@src/c/setMainWindowTitle.c \
 @GUI_TRUE@src/c/addmenu.c \
 @GUI_TRUE@src/c/CreateUIControl.c \
+@GUI_TRUE@src/c/CreateUIContextMenu.c \
 @GUI_TRUE@src/c/UicontrolStyleToString.c
 
 @GUI_TRUE@GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
@@ -634,7 +640,9 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_toolbar.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetdir.c \
 @GUI_TRUE@sci_gateway/c/sci_uicontrol.c \
+@GUI_TRUE@sci_gateway/c/sci_uicontextmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_uimenu.c \
+@GUI_TRUE@sci_gateway/c/sci_uiwait.c \
 @GUI_TRUE@sci_gateway/c/sci_mpopup.c
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
@@ -656,7 +664,8 @@ JARMASK = *.jar
 @GUI_TRUE@	-Isrc/cpp/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 @GUI_TRUE@	$(JAVA_JNI_INCLUDE) \
-@GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/
+@GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/string/includes/
 @GUI_TRUE@libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ \
 @GUI_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/jni/ \
@@ -668,7 +677,8 @@ JARMASK = *.jar
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 @GUI_TRUE@			-Isrc/jni/ \
-@GUI_TRUE@			-I$(top_srcdir)/modules/graphic_export/includes/
+@GUI_TRUE@			-I$(top_srcdir)/modules/graphic_export/includes/ \
+@GUI_TRUE@			-I$(top_srcdir)/modules/string/includes/
 
 libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
@@ -811,6 +821,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CheckBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ContextMenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-EditBox.Plo@am__quote@
@@ -890,9 +901,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_toolbar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uicontextmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uicontrol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose.Plo@am__quote@
@@ -1009,6 +1022,13 @@ libscigui_la-CreateUIControl.lo: src/c/CreateUIControl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateUIControl.c' object='libscigui_la-CreateUIControl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-CreateUIControl.lo `test -f 'src/c/CreateUIControl.c' || echo '$(srcdir)/'`src/c/CreateUIControl.c
+
+libscigui_la-CreateUIContextMenu.lo: src/c/CreateUIContextMenu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-CreateUIContextMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CreateUIContextMenu.Tpo -c -o libscigui_la-CreateUIContextMenu.lo `test -f 'src/c/CreateUIContextMenu.c' || echo '$(srcdir)/'`src/c/CreateUIContextMenu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-CreateUIContextMenu.Tpo $(DEPDIR)/libscigui_la-CreateUIContextMenu.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateUIContextMenu.c' object='libscigui_la-CreateUIContextMenu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-CreateUIContextMenu.lo `test -f 'src/c/CreateUIContextMenu.c' || echo '$(srcdir)/'`src/c/CreateUIContextMenu.c
 
 libscigui_la-UicontrolStyleToString.lo: src/c/UicontrolStyleToString.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-UicontrolStyleToString.lo -MD -MP -MF $(DEPDIR)/libscigui_la-UicontrolStyleToString.Tpo -c -o libscigui_la-UicontrolStyleToString.lo `test -f 'src/c/UicontrolStyleToString.c' || echo '$(srcdir)/'`src/c/UicontrolStyleToString.c
@@ -1171,12 +1191,26 @@ libscigui_la-sci_uicontrol.lo: sci_gateway/c/sci_uicontrol.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uicontrol.lo `test -f 'sci_gateway/c/sci_uicontrol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontrol.c
 
+libscigui_la-sci_uicontextmenu.lo: sci_gateway/c/sci_uicontextmenu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uicontextmenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uicontextmenu.Tpo -c -o libscigui_la-sci_uicontextmenu.lo `test -f 'sci_gateway/c/sci_uicontextmenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontextmenu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uicontextmenu.Tpo $(DEPDIR)/libscigui_la-sci_uicontextmenu.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uicontextmenu.c' object='libscigui_la-sci_uicontextmenu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uicontextmenu.lo `test -f 'sci_gateway/c/sci_uicontextmenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontextmenu.c
+
 libscigui_la-sci_uimenu.lo: sci_gateway/c/sci_uimenu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uimenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uimenu.Tpo -c -o libscigui_la-sci_uimenu.lo `test -f 'sci_gateway/c/sci_uimenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uimenu.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uimenu.Tpo $(DEPDIR)/libscigui_la-sci_uimenu.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uimenu.c' object='libscigui_la-sci_uimenu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uimenu.lo `test -f 'sci_gateway/c/sci_uimenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uimenu.c
+
+libscigui_la-sci_uiwait.lo: sci_gateway/c/sci_uiwait.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uiwait.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uiwait.Tpo -c -o libscigui_la-sci_uiwait.lo `test -f 'sci_gateway/c/sci_uiwait.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uiwait.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uiwait.Tpo $(DEPDIR)/libscigui_la-sci_uiwait.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uiwait.c' object='libscigui_la-sci_uiwait.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uiwait.lo `test -f 'sci_gateway/c/sci_uiwait.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uiwait.c
 
 libscigui_la-sci_mpopup.lo: sci_gateway/c/sci_mpopup.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_mpopup.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_mpopup.Tpo -c -o libscigui_la-sci_mpopup.lo `test -f 'sci_gateway/c/sci_mpopup.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpopup.c

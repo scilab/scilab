@@ -54,6 +54,15 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
           return SET_PROPERTY_SUCCEED;
 
         } 
+      else if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_UICONTEXTMENU)
+        {
+
+          // If the parent is a context menu
+          CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUICONTEXTMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
+          
+          return SET_PROPERTY_SUCCEED;
+
+        } 
       else
         {
           sciprint(_("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");

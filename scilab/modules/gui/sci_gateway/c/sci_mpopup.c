@@ -40,7 +40,7 @@ int sci_mpopup(char *fname,unsigned long fname_len)
       return FALSE;
     }
 
-  res = createContextMenu(getStringMatrixFromStack(menuAdr), nbRow*nbCol);
+  //res = createContextMenu(getStringMatrixFromStack(menuAdr), nbRow*nbCol);
 
   nbRow = 1;
   nbCol = (int)strlen(res);

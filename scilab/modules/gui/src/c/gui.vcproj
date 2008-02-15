@@ -237,6 +237,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CreateUIContextMenu.c"
+				>
+			</File>
+			<File
 				RelativePath=".\CreateUIControl.c"
 				>
 			</File>
@@ -449,6 +453,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_uicontextmenu.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_uicontrol.c"
 				>
 			</File>
@@ -458,6 +466,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_uimenu.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_uiwait.c"
 				>
 			</File>
 			<File
@@ -671,6 +683,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\ContextMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\CreateUIContextMenu.h"
 				>
 			</File>
 			<File
@@ -978,11 +994,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\sci_uicontextmenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\sci_uicontrol.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_uimenu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_uiwait.h"
 				>
 			</File>
 			<File

@@ -8,6 +8,7 @@ import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -53,6 +54,13 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
 		ScilabBridge.add(this, newMenuItem);
 	}
 	
+	/**
+	 * Append a Menu to the ContextMenu
+	 * @param newMenu the Menu to add to the ContextMenu
+	 */
+	public void add(Menu newMenu) {
+		ScilabBridge.add(this, newMenu);
+	}
 	/**
 	 * Sets the text of a Scilab ContextMenu
 	 * @param newText the Text to set to the ContextMenu

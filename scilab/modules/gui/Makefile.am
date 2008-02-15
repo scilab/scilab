@@ -18,6 +18,7 @@ src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
+src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
@@ -111,7 +112,9 @@ sci_gateway/c/sci_hidetoolbar.c \
 sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_uigetdir.c \
 sci_gateway/c/sci_uicontrol.c \
+sci_gateway/c/sci_uicontextmenu.c \
 sci_gateway/c/sci_uimenu.c \
+sci_gateway/c/sci_uiwait.c \
 sci_gateway/c/sci_mpopup.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
@@ -133,7 +136,7 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/cpp/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
-libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes/
+libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/string/includes/
 
 libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
@@ -146,7 +149,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isr
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 			-Isrc/jni/ \
-			-I$(top_srcdir)/modules/graphic_export/includes/
+			-I$(top_srcdir)/modules/graphic_export/includes/ \
+			-I$(top_srcdir)/modules/string/includes/
 
 else
 libscigui_la_CFLAGS=			-Iincludes/ \

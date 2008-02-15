@@ -4,10 +4,13 @@
 package org.scilab.modules.gui.bridge.menuitem;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -38,6 +41,15 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 */
 	public SwingScilabMenuItem() {
 		super();
+		addActionListener(new ActionListener() {
+			/**
+			 * Action performed ? What do I have to do ?
+			 * @param arg0 the action
+			 */
+			public void actionPerformed(ActionEvent arg0) {
+				BlockingResult.getInstance().setResult(((SwingScilabMenuItem) arg0.getSource()).getText());
+			}
+		});
 	}
 	
 	/**

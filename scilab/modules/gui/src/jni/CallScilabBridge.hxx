@@ -66,6 +66,7 @@ jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
 jmethodID jstringnewContextMenujobjectArrayID; // cache method id
 jclass stringArrayClass;
+jmethodID jintnewContextMenuID; // cache method id
 jmethodID voiddestroyWidgetjintID; // cache method id
 jmethodID voiddestroyFramejintID; // cache method id
 jmethodID voidsetFigureAsParentjintjintID; // cache method id
@@ -145,6 +146,7 @@ jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
 jmethodID voidsetFigureSubMenuEnabledjintjstringjintjbooleanID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
 jmethodID voidremoveFigureMenujintjstringID; // cache method id
+jmethodID jstringdisplayAndWaitContextMenujintID; // cache method id
 jmethodID jintnewFileChooserID; // cache method id
 jmethodID voidsetFileChooserTitlejintjstringID; // cache method id
 jmethodID voidsetFileChooserInitialDirectoryjintjstringID; // cache method id
@@ -236,6 +238,8 @@ static long newListBox(JavaVM * jvm_);
 static long newFrame(JavaVM * jvm_);
 
 static char * newContextMenu(JavaVM * jvm_, char ** menuLabels, int menuLabelsSize);
+
+static long newContextMenu(JavaVM * jvm_);
 
 static void destroyWidget(JavaVM * jvm_, long objID);
 
@@ -394,6 +398,8 @@ static void setFigureSubMenuEnabled(JavaVM * jvm_, long figureID, char * menuNam
 static void removeRootMenu(JavaVM * jvm_, char * menuName);
 
 static void removeFigureMenu(JavaVM * jvm_, long figureID, char * menuName);
+
+static char * displayAndWaitContextMenu(JavaVM * jvm_, long ID);
 
 static long newFileChooser(JavaVM * jvm_);
 

@@ -3,6 +3,7 @@
 
 package org.scilab.modules.gui.contextmenu;
 
+import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -23,4 +24,10 @@ public interface ContextMenu extends Widget {
 	 * @param newMenuItem the MenuItem to add to the ContextMenu
 	 */
 	void add(MenuItem newMenuItem);
+	
+	/**
+	 * Append a Menu to the ContextMenu
+	 * @param newMenu the Menu to add to the ContextMenu
+	 */
+	void add(Menu newMenu);
 }

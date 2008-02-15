@@ -16,6 +16,7 @@
 	<method name="newContextMenu" returnType="String" modifier="static">
           <parameter type="String[]" name="menuLabels"/>
         </method>
+	<method name="newContextMenu" returnType="int" modifier="static"/>
         <method name="destroyWidget" returnType="void" modifier="static">
           <parameter type="int" name="objID"/>
         </method>
@@ -343,6 +344,10 @@
 	<method name="removeFigureMenu" returnType="void" modifier="static">
 	  <parameter type="int" name="figureID"/>
 	  <parameter type="String" name="menuName"/>
+	</method>
+<!-- ContextMenu -->
+	<method name="displayAndWaitContextMenu" returnType="String" modifier="static">
+	  <parameter type="int" name="ID"/>
 	</method>
 <!-- File chooser -->
 	<method name="newFileChooser" returnType="int" modifier="static"/>      

@@ -1434,6 +1434,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Append a Menu to a ContextMenu
+	 * @param contextMenu the ContextMenu which we want to add the MenuItem to
+	 * @param newMenu the Menu to add to the ContextMenu
+	 */
+	public static void add(ContextMenu contextMenu, Menu newMenu) {
+		ScilabContextMenuBridge.add(contextMenu, newMenu);
+	}
+	
+	/**
 	 * set a text to a ContextMenu
 	 * @param contextMenu the Menu which we want to set the text to
 	 * @param newText the new text to set to the contextMenu

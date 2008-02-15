@@ -289,7 +289,8 @@ int sci_set(char *fname, unsigned long fname_len)
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_y_label
 				 && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label
                                  && sciGetEntityType(pobj) != SCI_UIMENU
-                                 && sciGetEntityType(pobj) != SCI_UICONTROL)
+                                 && sciGetEntityType(pobj) != SCI_UICONTROL
+                                 && sciGetEntityType(pobj) != SCI_UICONTEXTMENU)
 			 { 
 				 sciDrawObj(pobj) ;
 			 }

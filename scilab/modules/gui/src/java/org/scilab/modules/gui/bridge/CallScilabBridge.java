@@ -198,6 +198,15 @@ public class CallScilabBridge {
 	}
 	
 	/**
+	 * Create a new ContextMenu in Scilab GUIs
+	 * @return the ID of the ContextMenu in the UIElementMapper
+	 */
+	public static int newContextMenu() {
+		ContextMenu contextMenu = ScilabContextMenu.createContextMenu();
+		return UIElementMapper.add(contextMenu);
+	}
+	
+	/**
 	 * Create a new File Chooser in Scilab GUIs
 	 * @return the ID of the File Chooser in the UIElementMapper
 	 */
@@ -416,20 +425,12 @@ public class CallScilabBridge {
 	
 	/**
 	 * Create a new ContextMenu in Scilab GUIs
-	 * @param menuLabels the labels of the sub menus
+	 * and wait for a user answer
+	 * @param id the id of the Context Menu
 	 * @return the item of the menu selected
 	 */
-	public static String newContextMenu(String[] menuLabels) {
-		ContextMenu contextMenu = ScilabContextMenu.createContextMenu();
-		MenuItem menuItem = null;
-		
-		for (int menuIndex = 0; menuIndex < menuLabels.length; menuIndex++) {
-			menuItem = ScilabMenuItem.createMenuItem();
-			menuItem.setText(menuLabels[menuIndex]);
-			contextMenu.add(menuItem);
-		}
-		
-		return contextMenu.getAsSimpleContextMenu().display();
+	public static String displayAndWaitContextMenu(int id) {
+		return ((ContextMenu) UIElementMapper.getCorrespondingUIElement(id)).getAsSimpleContextMenu().displayAndWait();
 	}
 
 	/**
@@ -678,6 +679,14 @@ public class CallScilabBridge {
 			}
 		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof MenuItem) {
 			MenuItem parentMenu = (MenuItem) UIElementMapper.getCorrespondingUIElement(menuID);
+			
+			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));				
+			}
+		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof ContextMenu) {
+			ContextMenu parentMenu = (ContextMenu) UIElementMapper.getCorrespondingUIElement(menuID);
 			
 			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
 				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));

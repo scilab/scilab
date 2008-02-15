@@ -109,6 +109,7 @@ jintnewPopupMenuID=NULL;
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
 jstringnewContextMenujobjectArrayID=NULL; 
+jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
@@ -188,6 +189,7 @@ voidsetFigureMenuEnabledjintjstringjbooleanID=NULL;
 voidsetFigureSubMenuEnabledjintjstringjintjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
 voidremoveFigureMenujintjstringID=NULL; 
+jstringdisplayAndWaitContextMenujintID=NULL; 
 jintnewFileChooserID=NULL; 
 voidsetFileChooserTitlejintjstringID=NULL; 
 voidsetFileChooserInitialDirectoryjintjstringID=NULL; 
@@ -247,6 +249,7 @@ jintnewPopupMenuID=NULL;
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
 jstringnewContextMenujobjectArrayID=NULL; 
+jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
 voiddestroyFramejintID=NULL; 
 voidsetFigureAsParentjintjintID=NULL; 
@@ -326,6 +329,7 @@ voidsetFigureMenuEnabledjintjstringjbooleanID=NULL;
 voidsetFigureSubMenuEnabledjintjstringjintjbooleanID=NULL; 
 voidremoveRootMenujstringID=NULL; 
 voidremoveFigureMenujintjstringID=NULL; 
+jstringdisplayAndWaitContextMenujintID=NULL; 
 jintnewFileChooserID=NULL; 
 voidsetFileChooserTitlejintjstringID=NULL; 
 voidsetFileChooserInitialDirectoryjintjstringID=NULL; 
@@ -713,6 +717,30 @@ strcpy(myStringBuffer, tempString);
 curEnv->ReleaseStringUTFChars(res, tempString);
 
 return myStringBuffer;
+
+}
+
+long CallScilabBridge::newContextMenu (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jintnewContextMenuID = curEnv->GetStaticMethodID(cls, "newContextMenu", "()I" ) ;
+if (jintnewContextMenuID == NULL) {
+std::cerr << "Could not access to the method " << "newContextMenu" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewContextMenuID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
 
 }
 
@@ -2727,6 +2755,35 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+char * CallScilabBridge::displayAndWaitContextMenu (JavaVM * jvm_, long ID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jstringdisplayAndWaitContextMenujintID = curEnv->GetStaticMethodID(cls, "displayAndWaitContextMenu", "(I)Ljava/lang/String;" ) ;
+if (jstringdisplayAndWaitContextMenujintID == NULL) {
+std::cerr << "Could not access to the method " << "displayAndWaitContextMenu" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringdisplayAndWaitContextMenujintID ,ID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
 }
 
 long CallScilabBridge::newFileChooser (JavaVM * jvm_){

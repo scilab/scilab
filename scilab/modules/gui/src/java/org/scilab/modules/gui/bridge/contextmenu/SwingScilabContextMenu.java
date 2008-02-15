@@ -4,14 +4,14 @@
 package org.scilab.modules.gui.bridge.contextmenu;
 
 import java.awt.MouseInfo;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.JPopupMenu;
 
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
+import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -33,8 +33,6 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	
 	private MouseListener customedMouseListener;
 	
-	private String result = new String();
-	
 	/**
 	 * Constructor
 	 */
@@ -49,8 +47,6 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
 	 */
 	public void add(MenuItem newMenuItem) {
-		((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem()).
-				addActionListener(new ContextMenuItemActionListener(newMenuItem.getText()));
 		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
 	}
 	
@@ -58,20 +54,12 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * Display the ContextMenu
 	 * @return the label of the menu selected
 	 */
-	public String display() {
-		// Default location is at mouse pointer position
-		setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+	public String displayAndWait() {
 		setVisible(true);
-		try {
-			synchronized (this) {
-				this.wait();
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return result;
+		setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+		return BlockingResult.getInstance().getResult();
 	}
-
+	
 	/**
 	 * Add a Scilab MenuBar to a Scilab menu
 	 * @param menuBarToAdd the Scilab MenuBar to add to the Scilab menu
@@ -241,50 +229,11 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	}
 	
 	/**
-	 * Set the return value
-	 * @param value the value to set
-	 */
-	public void setResult(String value) {
-		result = value;
-		synchronized (this) {
-			this.notify();
-		}
-	}
-	
-	/**
-	 * Class used to managed callback on menu items
-	 * @author Vincent COUVERT
-	 */
-	private class ContextMenuItemActionListener implements ActionListener {
-
-		private String label;
-		
-		/**
-		 * Constructor
-		 * @param itemLabel the label of the menu item
-		 */
-		public ContextMenuItemActionListener(String itemLabel) {
-			label = itemLabel;	
-		}
-
-		/**
-		 * Action performed ? What do I have to do ?
-		 * @param arg0 the action
-		 */
-		public void actionPerformed(ActionEvent arg0) {
-			setResult(label);
-		}
-		
-	}
-
-	
-	/**
 	 * Add a Menu to this MenuItem
 	 * @param childMenu the Menu we want to add
 	 */
 	public void add(Menu childMenu) {
-		// TODO Auto-generated method stub
-		
+		super.add((SwingScilabMenu) childMenu.getAsSimpleMenu());
 	}
 	
 	/**
@@ -292,9 +241,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * @see javax.swing.JPopupMenu#firePopupMenuCanceled()
 	 */
 	public void firePopupMenuCanceled() {
-		synchronized (this) {
-			this.notify();
-		}
+		BlockingResult.getInstance().setResult("");
 		super.firePopupMenuCanceled();
 	}
 }
