@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,20 +17,20 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_dir">Fonction d'émulation de la fonction Matlab dir</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_dir">Fonction d'ï¿½mulation de la fonction Matlab dir</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>La fonction <VERB>dir</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>La fonction <VERB>dir</VERB> se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Quand le résultat est stocké dans une variable: La fonction Matlab <VERB>dir</VERB> renvoie une structure
-	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les données ne peuvent être
-	extraites de la même manière.
+        Quand le rï¿½sultat est stockï¿½ dans une variable: La fonction Matlab <VERB>dir</VERB> renvoie une structure
+	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les donnï¿½es ne peuvent ï¿½tre
+	extraites de la mï¿½me maniï¿½re.
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -27,14 +38,14 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_dir([path])</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>dir([path])</VERB> quand la sortie est stockée dans une variable.
+    La fonction <VERB>mtlb_dir([path])</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>dir([path])</VERB> quand la sortie est stockï¿½e dans une variable.
     Il n'est pas possible de remplacer cette fonction, sinon (si on la remplace par <VERB>dir</VERB>) 
-    les données ne pourront pas être extraites comme dans Matlab. Par exemple, l'équivalent Scilab pour l'instruction Matlab 
+    les donnï¿½es ne pourront pas ï¿½tre extraites comme dans Matlab. Par exemple, l'ï¿½quivalent Scilab pour l'instruction Matlab 
     <VERB>L=dir;file_name=L(1).name;</VERB> est <VERB>L=dir();file_name=L.name(1);</VERB>.
     </P>
 
-    <P>Attention : <VERB>mtlb_dir</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_dir</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

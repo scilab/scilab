@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!-- When this file is modified please also modify mtlb_sum.xml -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
@@ -7,27 +18,27 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_prod">Fonction d'émulation de la fonction Matlab prod</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_prod">Fonction d'ï¿½mulation de la fonction Matlab prod</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>prod</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>prod</VERB> se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        En cas d'appel avec un paramètre d'entrée : La fonction Matlab <VERB>prod</VERB> traite
-	les valeurs en suivant la première dimension qui n'est pas 1 alors que la fonction Scilab
-	<VERB>prod</VERB> traite toutes les valeurs de l'entrée.
+        En cas d'appel avec un paramï¿½tre d'entrï¿½e : La fonction Matlab <VERB>prod</VERB> traite
+	les valeurs en suivant la premiï¿½re dimension qui n'est pas 1 alors que la fonction Scilab
+	<VERB>prod</VERB> traite toutes les valeurs de l'entrï¿½e.
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        En cas d'appel avec deux paramètres d'entrée : La fonction Matlab <VERB>prod</VERB> peut être
-	utilisée avec le second paramètre donnant une dimension du premier paramètre qui n'existe pas
+        En cas d'appel avec deux paramï¿½tres d'entrï¿½e : La fonction Matlab <VERB>prod</VERB> peut ï¿½tre
+	utilisï¿½e avec le second paramï¿½tre donnant une dimension du premier paramï¿½tre qui n'existe pas
 	alors que la fonction Scilab <VERB>prod</VERB> retourne un message d'erreur.
         </SP>
       </ITEM>
@@ -36,11 +47,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_prod(A[,dim])</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>prod(A[,dim])</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_prod</VERB> :
+    La fonction <VERB>mtlb_prod(A[,dim])</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>prod(A[,dim])</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_prod</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -48,37 +59,37 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        En cas d'appel avec un paramètre d'entrée, si <VERB>A</VERB> est une matrice vide, un scalaire ou un vecteur,
-        <VERB>mtlb_prod(A)</VERB> peut être remplacé par <VERB>prod(A)</VERB>
+        En cas d'appel avec un paramï¿½tre d'entrï¿½e, si <VERB>A</VERB> est une matrice vide, un scalaire ou un vecteur,
+        <VERB>mtlb_prod(A)</VERB> peut ï¿½tre remplacï¿½ par <VERB>prod(A)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        En cas d'appel avec un paramètre d'entrée, si <VERB>A</VERB> est une matrice non-vide,
-        <VERB>mtlb_prod(A)</VERB> peut être remplacé par <VERB>prod(A,1)</VERB>
+        En cas d'appel avec un paramï¿½tre d'entrï¿½e, si <VERB>A</VERB> est une matrice non-vide,
+        <VERB>mtlb_prod(A)</VERB> peut ï¿½tre remplacï¿½ par <VERB>prod(A,1)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        En cas d'appel avec un paramètre d'entrée, si <VERB>A</VERB> est hypermatrice,
-        <VERB>mtlb_prod(A)</VERB> peut être remplacé par <VERB>prod(A,firstnonsingleton(A))</VERB>
+        En cas d'appel avec un paramï¿½tre d'entrï¿½e, si <VERB>A</VERB> est hypermatrice,
+        <VERB>mtlb_prod(A)</VERB> peut ï¿½tre remplacï¿½ par <VERB>prod(A,firstnonsingleton(A))</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        En cas d'appel avec deux paramètres d'entrée, si <VERB>dim</VERB> est inférieure au nombre
+        En cas d'appel avec deux paramï¿½tres d'entrï¿½e, si <VERB>dim</VERB> est infï¿½rieure au nombre
 	de dimensions de <VERB>A</VERB> 
-        <VERB>mtlb_prod(A,dim)</VERB> peut être remplacé par <VERB>prod(A,dim)</VERB>
+        <VERB>mtlb_prod(A,dim)</VERB> peut ï¿½tre remplacï¿½ par <VERB>prod(A,dim)</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_prod</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_prod</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

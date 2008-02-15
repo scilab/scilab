@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,19 +17,19 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_repmat">Fonction d'émulation de la fonction Matlab repmat</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_repmat">Fonction d'ï¿½mulation de la fonction Matlab repmat</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <VERB>repmat</VERB> mais il existe des instructions équivalents.</P>
+    <P>Il n'y a pas de fonction Scilab ï¿½quivalente ï¿½ la fonction Matlab <VERB>repmat</VERB> mais il existe des instructions ï¿½quivalents.</P>
 
     <P>
-    La fonction <VERB>mtlb_repmat(M,m[,n])</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>repmat(M,m[,n])</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    La fonction <VERB>mtlb_repmat(M,m[,n])</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>repmat(M,m[,n])</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_repmat</VERB> :
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_repmat</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -27,52 +38,52 @@
       <ITEM>
         <SP>
 	Si <VERB>A</VERB> est de type Double et que <VERB>m</VERB> est un scalaire,
-	<VERB>mtlb_repmat(M,m)</VERB> peut être remplacé par <VERB>ones(m,m).*.M</VERB> et 
-	<VERB>mtlb_repmat(M,m,n)</VERB> peut être remplacé par <VERB>ones(m,n).*.M</VERB>
+	<VERB>mtlb_repmat(M,m)</VERB> peut ï¿½tre remplacï¿½ par <VERB>ones(m,m).*.M</VERB> et 
+	<VERB>mtlb_repmat(M,m,n)</VERB> peut ï¿½tre remplacï¿½ par <VERB>ones(m,n).*.M</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-	Si <VERB>A</VERB> est de type Booléen et que <VERB>m</VERB> est un scalaire,
-	<VERB>mtlb_repmat(M,m)</VERB> peut être remplacé par <VERB>ones(m,m).*..bool2s(M)</VERB> et 
-	<VERB>mtlb_repmat(M,m,n)</VERB> peut être remplacé par <VERB>ones(m,n).*..bool2s(M)</VERB>
+	Si <VERB>A</VERB> est de type Boolï¿½en et que <VERB>m</VERB> est un scalaire,
+	<VERB>mtlb_repmat(M,m)</VERB> peut ï¿½tre remplacï¿½ par <VERB>ones(m,m).*..bool2s(M)</VERB> et 
+	<VERB>mtlb_repmat(M,m,n)</VERB> peut ï¿½tre remplacï¿½ par <VERB>ones(m,n).*..bool2s(M)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
 	Si <VERB>A</VERB> est de type String et que <VERB>m</VERB> est un scalaire,
-	<VERB>mtlb_repmat(M,m)</VERB> peut être remplacé par <VERB>asciimat(ones(m,m).*.asciimat(M))</VERB> et 
-	<VERB>mtlb_repmat(M,m,n)</VERB> peut être remplacé par <VERB>asciimat(ones(m,n).*.asciimat(M))</VERB>
+	<VERB>mtlb_repmat(M,m)</VERB> peut ï¿½tre remplacï¿½ par <VERB>asciimat(ones(m,m).*.asciimat(M))</VERB> et 
+	<VERB>mtlb_repmat(M,m,n)</VERB> peut ï¿½tre remplacï¿½ par <VERB>asciimat(ones(m,n).*.asciimat(M))</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
 	Si <VERB>A</VERB> est de type Double et que <VERB>m</VERB> est un vecteur,
-	<VERB>mtlb_repmat(M,m)</VERB> peut être remplacé par <VERB>ones(m(1),m(2),...).*.M</VERB>
+	<VERB>mtlb_repmat(M,m)</VERB> peut ï¿½tre remplacï¿½ par <VERB>ones(m(1),m(2),...).*.M</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-	Si <VERB>A</VERB> est de type Booléen et que <VERB>m</VERB> est un vecteur,
-	<VERB>mtlb_repmat(M,m)</VERB> peut être remplacé par <VERB>ones(m(1),m(2),...).*..bool2s(M)</VERB>
+	Si <VERB>A</VERB> est de type Boolï¿½en et que <VERB>m</VERB> est un vecteur,
+	<VERB>mtlb_repmat(M,m)</VERB> peut ï¿½tre remplacï¿½ par <VERB>ones(m(1),m(2),...).*..bool2s(M)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
 	Si <VERB>A</VERB> est de type String et que <VERB>m</VERB> est un vecteur,
-	<VERB>mtlb_repmat(M,m)</VERB> peut être remplacé par <VERB>asciimat(ones(m(1),m(2),...).*.asciimat(M))</VERB>
+	<VERB>mtlb_repmat(M,m)</VERB> peut ï¿½tre remplacï¿½ par <VERB>asciimat(ones(m(1),m(2),...).*.asciimat(M))</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_repmat</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_repmat</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

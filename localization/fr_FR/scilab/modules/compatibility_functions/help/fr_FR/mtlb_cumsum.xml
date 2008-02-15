@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!-- When this file is modified please also modify mtlb_cumprod.xml -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
@@ -7,27 +18,27 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_cumsum">Fonction d'émulation de la fonction Matlab cumsum</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_cumsum">Fonction d'ï¿½mulation de la fonction Matlab cumsum</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>cumsum</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>cumsum</VERB> se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec un argument d'entrée (<VERB>cumsum(A)</VERB>) : La fonction <VERB>cumsum</VERB> de Matlab
-	traite les valeurs suivant la première dimension qui n'est pas 1 comme des vecteurs alors
+        Avec un argument d'entrï¿½e (<VERB>cumsum(A)</VERB>) : La fonction <VERB>cumsum</VERB> de Matlab
+	traite les valeurs suivant la premiï¿½re dimension qui n'est pas 1 comme des vecteurs alors
 	que Scilab traite toutes les valeurs de A.
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Avec deux arguments d'entrée (<VERB>cumsum(A,dim)</VERB>) : Matlab tolère une valeur de
-	<VERB>dim</VERB> supérieure au nombre de dimensions de A alors que Scilab renvoie un
+        Avec deux arguments d'entrï¿½e (<VERB>cumsum(A,dim)</VERB>) : Matlab tolï¿½re une valeur de
+	<VERB>dim</VERB> supï¿½rieure au nombre de dimensions de A alors que Scilab renvoie un
 	message d'erreur dans ce cas.
         </SP>
       </ITEM>
@@ -36,11 +47,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>R = mtlb_cumsum(A,[,dim])</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>cumsum(A,[,dim])</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_cumsum</VERB> :
+    La fonction <VERB>R = mtlb_cumsum(A,[,dim])</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>cumsum(A,[,dim])</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_cumsum</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -48,22 +59,22 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        Si <VERB>dim</VERB> est inférieure ou égale au nombre de dimensiopns de A 
-        <VERB>R = mtlb_cumsum(A,dim)</VERB> peut être remplacé par <VERB>R = cumsum(A,dim)</VERB>
+        Si <VERB>dim</VERB> est infï¿½rieure ou ï¿½gale au nombre de dimensiopns de A 
+        <VERB>R = mtlb_cumsum(A,dim)</VERB> peut ï¿½tre remplacï¿½ par <VERB>R = cumsum(A,dim)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Si <VERB>dim</VERB> est supérieure au nombre de dimensiopns de A 
-        <VERB>R = mtlb_cumsum(A,dim)</VERB> peut être remplacé par <VERB>R = A</VERB>
+        Si <VERB>dim</VERB> est supï¿½rieure au nombre de dimensiopns de A 
+        <VERB>R = mtlb_cumsum(A,dim)</VERB> peut ï¿½tre remplacï¿½ par <VERB>R = A</VERB>
 	</SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_cumsum</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_cumsum</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

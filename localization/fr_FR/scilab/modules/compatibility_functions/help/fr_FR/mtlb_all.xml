@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <!-- When this file is modified please also modify mtlb_any.xml -->
 <MAN>
@@ -7,28 +18,28 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_all">Fonction d'émulation de la fonction Matlab all</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_all">Fonction d'ï¿½mulation de la fonction Matlab all</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
     <P>Dans plusieurs cas particuliers, les fonctions <VERB>all</VERB> de Matlab et
-    <VERB>and</VERB> de Scilab se comportent différemment :</P>
+    <VERB>and</VERB> de Scilab se comportent diffï¿½remment :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-	Avec un argument d'entrée (<VERB>all(A)</VERB>), la fonction <VERB>all</VERB> de Matlab traite
-	les valeurs selon la première dimension de A qui n'est pas 1 comme un vecteur
+	Avec un argument d'entrï¿½e (<VERB>all(A)</VERB>), la fonction <VERB>all</VERB> de Matlab traite
+	les valeurs selon la premiï¿½re dimension de A qui n'est pas 1 comme un vecteur
 	alors que Scilab traite toutes les valeurs de A.
 	</SP>
       </ITEM>
 	
       <ITEM>
         <SP>
-	Avec deux arguments d'entrée (<VERB>all(A,dim)</VERB>), Matlab
-	tolère une valeur de <VERB>dim</VERB> supérieure au
+	Avec deux arguments d'entrï¿½e (<VERB>all(A,dim)</VERB>), Matlab
+	tolï¿½re une valeur de <VERB>dim</VERB> supï¿½rieure au
 	nombre de dimensions de A alors que Scilab renvoie un message d'erreur dans ce cas.
         </SP>
       </ITEM>
@@ -37,11 +48,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_all(A[,dim])</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>all(A[,dim])</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_all</VERB> :
+    La fonction <VERB>mtlb_all(A[,dim])</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>all(A[,dim])</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_all</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -50,36 +61,36 @@
       <ITEM>
         <SP>    
 	Si <VERB>A</VERB> est un scalaire ou un vecteur
-	<VERB>R = mtlb_all(A)</VERB> peut être remplacé par <VERB>R = and(A)</VERB>
+	<VERB>R = mtlb_all(A)</VERB> peut ï¿½tre remplacï¿½ par <VERB>R = and(A)</VERB>
 	</SP>      
       </ITEM>
 
       <ITEM>
         <SP>
 	Si <VERB>A</VERB> est une matrice
-	<VERB>R = mtlb_all(A)</VERB> peut être remplacé par <VERB>R = and(A,1)</VERB>
+	<VERB>R = mtlb_all(A)</VERB> peut ï¿½tre remplacï¿½ par <VERB>R = and(A,1)</VERB>
 	</SP>      
       </ITEM>
 
       <ITEM>
         <SP>
 	Si <VERB>A</VERB> est une hypermatrice
-	<VERB>R = mtlb_all(A)</VERB> peut être remplacé par <VERB>R = and(A,firstnonsingleton(A))</VERB>
-	ou par <VERB>R = and(A,user_defined_value)</VERB> si la première dimension non-égale à 1 de A est connue.
+	<VERB>R = mtlb_all(A)</VERB> peut ï¿½tre remplacï¿½ par <VERB>R = and(A,firstnonsingleton(A))</VERB>
+	ou par <VERB>R = and(A,user_defined_value)</VERB> si la premiï¿½re dimension non-ï¿½gale ï¿½ 1 de A est connue.
 	</SP>
       </ITEM>
 
       <ITEM>
         <SP>
-	Si <VERB>dim</VERB> est inférieur ou égal au nombre de dimensions de A
-	<VERB>R = mtlb_all(A,dim)</VERB> peut être remplacé par <VERB>R = and(A,dim)</VERB>
+	Si <VERB>dim</VERB> est infï¿½rieur ou ï¿½gal au nombre de dimensions de A
+	<VERB>R = mtlb_all(A,dim)</VERB> peut ï¿½tre remplacï¿½ par <VERB>R = and(A,dim)</VERB>
 	</SP>
       </ITEM>
 
       <ITEM>
         <SP>
-	Si <VERB>dim</VERB> est supérieur au nombre de dimensions de A
-	<VERB>R = mtlb_all(A,dim)</VERB> peut être remplacé par <VERB>R = A&lt;&gt;0</VERB> si A n'est pas
+	Si <VERB>dim</VERB> est supï¿½rieur au nombre de dimensions de A
+	<VERB>R = mtlb_all(A,dim)</VERB> peut ï¿½tre remplacï¿½ par <VERB>R = A&lt;&gt;0</VERB> si A n'est pas
 	une matrice vide ou par <VERB>R = A</VERB> si A est une matrice vide.
 	</SP>
       </ITEM>
@@ -87,7 +98,7 @@
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention: <VERB>mtlb_all</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention: <VERB>mtlb_all</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

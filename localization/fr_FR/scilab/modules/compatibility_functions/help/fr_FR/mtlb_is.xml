@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,23 +17,23 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_is">Fonction d'émulation de l'insertion dans une chaîne de caractères de Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_is">Fonction d'ï¿½mulation de l'insertion dans une chaï¿½ne de caractï¿½res de Matlab</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
     <P>
-    L'insertion se comporte différemment dans Matlab et dans Scilab pour les chaînes de caractères
-    étant donné que celles-ci ne sont pas considérées de la même façon.
+    L'insertion se comporte diffï¿½remment dans Matlab et dans Scilab pour les chaï¿½nes de caractï¿½res
+    ï¿½tant donnï¿½ que celles-ci ne sont pas considï¿½rï¿½es de la mï¿½me faï¿½on.
     </P>
 
     <P>
-    La fonction <VERB>str = mtlb_is(sto,sfrom,i,j)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer les opérations d'insertion dans des 
-    chaînes de caractères. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
+    La fonction <VERB>str = mtlb_is(sto,sfrom,i,j)</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer les opï¿½rations d'insertion dans des 
+    chaï¿½nes de caractï¿½res. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Elle ne peut ï¿½tre remplacï¿½e.
     </P>
 
-    <P>Attention : <VERB>mtlb_is</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_is</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

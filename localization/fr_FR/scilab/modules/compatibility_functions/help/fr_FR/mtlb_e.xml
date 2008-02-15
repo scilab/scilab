@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,29 +17,29 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_e">Fonction d'émulation de l'extraction Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_e">Fonction d'ï¿½mulation de l'extraction Matlab</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, l'extraction se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, l'extraction se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-	Lors de l'extraction de données d'une matrice avec comme indice un vecteur : 
+	Lors de l'extraction de donnï¿½es d'une matrice avec comme indice un vecteur : 
 	Matlab retourne un vecteur ligne alors que Scilab retourne un vecteur colonne.
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-	Lors de l'extraction de données d'une matrice d'une chaîne de caractères : étant donné que
-	les matrices de chaînes de caractères peuvent être adressées comme tout autre type de
-	matrice dans Matlab (chaque caractère peut être adressé),
-	l'extraction à partir d'une telle matrice ne change pas des autres types. Mais dans Scilab
-	ceci ne peut être fait de la même manière et la fonction <VERB>part</VERB> doit être utilisée. 
+	Lors de l'extraction de donnï¿½es d'une matrice d'une chaï¿½ne de caractï¿½res : ï¿½tant donnï¿½ que
+	les matrices de chaï¿½nes de caractï¿½res peuvent ï¿½tre adressï¿½es comme tout autre type de
+	matrice dans Matlab (chaque caractï¿½re peut ï¿½tre adressï¿½),
+	l'extraction ï¿½ partir d'une telle matrice ne change pas des autres types. Mais dans Scilab
+	ceci ne peut ï¿½tre fait de la mï¿½me maniï¿½re et la fonction <VERB>part</VERB> doit ï¿½tre utilisï¿½e. 
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -36,11 +47,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_e(B,k)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>A=B(k)</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_e</VERB> :
+    La fonction <VERB>mtlb_e(B,k)</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>A=B(k)</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_e</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -49,29 +60,29 @@
       <ITEM>
         <SP>    
 	Si <VERB>B</VERB> est un vecteur
-	<VERB>A=mtlb_e(B,k)</VERB> peut être remplacé par <VERB>A=B(k)</VERB>
+	<VERB>A=mtlb_e(B,k)</VERB> peut ï¿½tre remplacï¿½ par <VERB>A=B(k)</VERB>
 	</SP>
       </ITEM>
       
       <ITEM>
         <SP>    
 	Si <VERB>B</VERB> est une matrice
-	<VERB>A=mtlb_e(B,k)</VERB> peut être remplacé par <VERB>A=B(k).'</VERB>
+	<VERB>A=mtlb_e(B,k)</VERB> peut ï¿½tre remplacï¿½ par <VERB>A=B(k).'</VERB>
  	</SP>
       </ITEM>
 
       <ITEM>
         <SP>    
-	Si <VERB>B</VERB> est une chaîne de caractères et
+	Si <VERB>B</VERB> est une chaï¿½ne de caractï¿½res et
 	k est une scalaire ou un vecteur
-	<VERB>A=mtlb_e(B,k)</VERB> peut être remplacé par <VERB>A=part(B,k)</VERB>
+	<VERB>A=mtlb_e(B,k)</VERB> peut ï¿½tre remplacï¿½ par <VERB>A=part(B,k)</VERB>
  	</SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_e</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_e</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

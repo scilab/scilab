@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,32 +17,32 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_i">Fonction d'émulation de l'insertion de Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_i">Fonction d'ï¿½mulation de l'insertion de Matlab</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, l'insertion se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, l'insertion se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        En insérant une matrice dans une variable : Matlab ajuste automatiquement la taille
-	de la variable de retour pour qu'elle corresponde avec la matrice à insérer mais pas Scilab.
+        En insï¿½rant une matrice dans une variable : Matlab ajuste automatiquement la taille
+	de la variable de retour pour qu'elle corresponde avec la matrice ï¿½ insï¿½rer mais pas Scilab.
 	Par exemple, avec A=1, A([1,2,3,4])=[1,2;3,4]) retourne un message d'erreur dans Scilab
 	alors que dans Matlab on obtient A=[1,2,3,4]. Si des valeurs manquent par rapport aux
-	indices donnés pour insérer, Matlab remplit la valeur de retour avec des zéros.
+	indices donnï¿½s pour insï¿½rer, Matlab remplit la valeur de retour avec des zï¿½ros.
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Lors de l'insertion de données d'une matrice d'une chaîne de caractères : étant donné que
-	les matrices de chaînes de caractères peuvent être adressées comme tout autre type de
-	matrice dans Matlab (chaque caractère peut être adressé),
-	l'insertion à partir dans une telle matrice ne change pas des autres types. Mais dans Scilab
-	ceci ne peut être fait de la même manière... <VERB>mtlb_is</VERB> est une alternative.
+        Lors de l'insertion de donnï¿½es d'une matrice d'une chaï¿½ne de caractï¿½res : ï¿½tant donnï¿½ que
+	les matrices de chaï¿½nes de caractï¿½res peuvent ï¿½tre adressï¿½es comme tout autre type de
+	matrice dans Matlab (chaque caractï¿½re peut ï¿½tre adressï¿½),
+	l'insertion ï¿½ partir dans une telle matrice ne change pas des autres types. Mais dans Scilab
+	ceci ne peut ï¿½tre fait de la mï¿½me maniï¿½re... <VERB>mtlb_is</VERB> est une alternative.
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -39,11 +50,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>A=mtlb_i(A,k,B)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>A(k)=B</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_i</VERB> :
+    La fonction <VERB>A=mtlb_i(A,k,B)</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>A(k)=B</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_i</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -52,21 +63,21 @@
       <ITEM>
         <SP>
         Si <VERB>A</VERB> n'est pas un vecteur
-        <VERB>A=mtlb_i(A,k,B)</VERB> peut être remplacé par <VERB>A(k)=B</VERB>
+        <VERB>A=mtlb_i(A,k,B)</VERB> peut ï¿½tre remplacï¿½ par <VERB>A(k)=B</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
 	Si <VERB>A</VERB> et <VERB>B</VERB> sont des vecteurs lignes ou colonnes
-	<VERB>A=mtlb_i(A,k,B)</VERB> peut être remplacé par <VERB>A(k)=B</VERB>
+	<VERB>A=mtlb_i(A,k,B)</VERB> peut ï¿½tre remplacï¿½ par <VERB>A(k)=B</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_i</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_i</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

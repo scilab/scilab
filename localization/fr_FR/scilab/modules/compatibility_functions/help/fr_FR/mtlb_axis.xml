@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -7,9 +18,9 @@
 
   <TYPE>Fonction M2SCI</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</DATE>
+  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_axis">Fonction d'émulation de la fonction
+  <SHORT_DESCRIPTION name="mtlb_axis">Fonction d'ï¿½mulation de la fonction
   Matlab axis</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -28,7 +39,7 @@
         <PARAM_NAME>X</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: un vecteur de réels ([xmin xmax ymin ymax] ou [xmin xmax ymin
+          <SP>: un vecteur de rï¿½els ([xmin xmax ymin ymax] ou [xmin xmax ymin
           ymax zmin zmax])</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -37,7 +48,7 @@
         <PARAM_NAME>st</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: une chaine de caractères ('auto', 'manual', 'tight', 'ij',
+          <SP>: une chaine de caractï¿½res ('auto', 'manual', 'tight', 'ij',
           'xy', 'equal', 'square', 'vis3d', 'off', 'on')</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -54,20 +65,20 @@
 
   <DESCRIPTION>
     <P>La fonction Matlab<VERB> axis</VERB> n'a pas de fonction Scilab
-    équivalente :</P>
+    ï¿½quivalente :</P>
 
-    <P>La fonction <VERB>mtlb_axis(n,X[,normflag])</VERB> est utilisée par
+    <P>La fonction <VERB>mtlb_axis(n,X[,normflag])</VERB> est utilisï¿½e par
     <VERB>mfile2sci</VERB> pour remplacer <VERB>axis(...)</VERB> quand il
-    n'était pas possible de savoir ce qu'étaient les paramètres d'entrée
+    n'ï¿½tait pas possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e
     pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution.
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution.
     (<VERB>'fill'</VERB> , <VERB>'image' </VERB> et <VERB>'normal'</VERB> ne
-    sont pas implémentés).Pour obtenir un code plus performant on peut
-    remplacer les appels à  <VERB>mtlb_axis</VERB> par les appels à 
-    get(axeshandle,prop), ou prop est une propriété des axes (see
+    sont pas implï¿½mentï¿½s).Pour obtenir un code plus performant on peut
+    remplacer les appels ï¿½ï¿½ <VERB>mtlb_axis</VERB> par les appels ï¿½ï¿½
+    get(axeshandle,prop), ou prop est une propriï¿½tï¿½ des axes (see
     <LINK>axis_properties</LINK>)</P>
 
-    <P>Attention : <VERB>mtlb_axis</VERB> ne doit pas être utilisée pour une
+    <P>Attention : <VERB>mtlb_axis</VERB> ne doit pas ï¿½tre utilisï¿½e pour une
     programmation manuelle.</P>
   </DESCRIPTION>
 

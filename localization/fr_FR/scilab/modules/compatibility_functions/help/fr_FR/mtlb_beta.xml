@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,21 +17,21 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_beta">Fonction d'émulation de la fonction Matlab beta</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_beta">Fonction d'ï¿½mulation de la fonction Matlab beta</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>beta</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>beta</VERB> se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec des paramètres d'entrée de tailles différentes : les paramètres d'entrée de la fonction 
-	<VERB>beta</VERB> de Matlab doivent être de même taille sauf si l'un d'entre eux est un scalaire.
-	Les paramètres d'entrée de la fonction <VERB>beta</VERB> de Scilab doivent être de même taille
-	même si l'un d'entre eux est un scalaire.
+        Avec des paramï¿½tres d'entrï¿½e de tailles diffï¿½rentes : les paramï¿½tres d'entrï¿½e de la fonction 
+	<VERB>beta</VERB> de Matlab doivent ï¿½tre de mï¿½me taille sauf si l'un d'entre eux est un scalaire.
+	Les paramï¿½tres d'entrï¿½e de la fonction <VERB>beta</VERB> de Scilab doivent ï¿½tre de mï¿½me taille
+	mï¿½me si l'un d'entre eux est un scalaire.
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -28,12 +39,12 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_beta(A,B)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>beta(A,B)</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    La fonction <VERB>mtlb_beta(A,B)</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>beta(A,B)</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_beta</VERB> :
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_beta</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -42,21 +53,21 @@
       <ITEM>
         <SP>
         Si <VERB>A</VERB> est un scalaire mais pas <VERB>B</VERB>
-        <VERB>Y = mtlb_beta(A,B)</VERB> peut être remplacé par <VERB>C=B;C(:)=A;Y = mtlb_beta(C,B);</VERB>
+        <VERB>Y = mtlb_beta(A,B)</VERB> peut ï¿½tre remplacï¿½ par <VERB>C=B;C(:)=A;Y = mtlb_beta(C,B);</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
         Si <VERB>B</VERB> est un scalaire mais pas <VERB>A</VERB>
-        <VERB>Y = mtlb_beta(A,B)</VERB> peut être remplacé par <VERB>C=A;C(:)=B;Y = mtlb_beta(A,C);</VERB>
+        <VERB>Y = mtlb_beta(A,B)</VERB> peut ï¿½tre remplacï¿½ par <VERB>C=A;C(:)=B;Y = mtlb_beta(A,C);</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_beta</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_beta</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

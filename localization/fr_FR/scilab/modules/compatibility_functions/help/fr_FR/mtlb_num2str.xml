@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,26 +17,26 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_num2str">Fonction d'émulation de la fonction Matlab num2str</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_num2str">Fonction d'ï¿½mulation de la fonction Matlab num2str</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>num2str</VERB> et ses équivalents Scilab
-    (<VERB>string</VERB>, <VERB>msprintf</VERB>) se comportent différemment :</P>
+    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>num2str</VERB> et ses ï¿½quivalents Scilab
+    (<VERB>string</VERB>, <VERB>msprintf</VERB>) se comportent diffï¿½remment :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec deux paramètres d'entrée, le second donnant une précision : Il n'y a pas de fonction Scilab équivalente 
-	mais <VERB>msprintf</VERB> peut être utilisée pour émuler ce cas.
+        Avec deux paramï¿½tres d'entrï¿½e, le second donnant une prï¿½cision : Il n'y a pas de fonction Scilab ï¿½quivalente 
+	mais <VERB>msprintf</VERB> peut ï¿½tre utilisï¿½e pour ï¿½muler ce cas.
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Avec deux paramètres d'entrée, le second donnant un format : l'équivalent Scilab pour l'expression Matlab 
+        Avec deux paramï¿½tres d'entrï¿½e, le second donnant un format : l'ï¿½quivalent Scilab pour l'expression Matlab 
 	<VERB>num2string(a,format)</VERB> est <VERB>msprintf(format,a)</VERB>.
         </SP>
       </ITEM>
@@ -34,12 +45,12 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_num2str(x,f)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>num2str(x,f)</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    La fonction <VERB>mtlb_num2str(x,f)</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>num2str(x,f)</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_num2str</VERB> :
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_num2str</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -47,15 +58,15 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        Si <VERB>f</VERB> est une chaîne de caractères,
-        <VERB>mtlb_num2str(x,f)</VERB> peut être remplacé par <VERB>msprintf(f,x)</VERB>
+        Si <VERB>f</VERB> est une chaï¿½ne de caractï¿½res,
+        <VERB>mtlb_num2str(x,f)</VERB> peut ï¿½tre remplacï¿½ par <VERB>msprintf(f,x)</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_num2str</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_num2str</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,22 +17,22 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_colordef">Fonction d'émulation de la fonction Matlab colordef</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_colordef">Fonction d'ï¿½mulation de la fonction Matlab colordef</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <VERB>colordef</VERB> mais il existe 
-    des instructions équivalentes.</P>
+    <P>Il n'y a pas de fonction Scilab ï¿½quivalente ï¿½ la fonction Matlab <VERB>colordef</VERB> mais il existe 
+    des instructions ï¿½quivalentes.</P>
 
     <P>
     La fonction <VERB>h = mtlb_colordef(color_option)</VERB> ou
-    <VERB>h = mtlb_colordef(fig,color_option)</VERB> est utilisée par
+    <VERB>h = mtlb_colordef(fig,color_option)</VERB> est utilisï¿½e par
     <VERB>mfile2sci</VERB> pour remplacer <VERB>colordef(color_option)</VERB> ou
-    <VERB>colordef(fig,color_option)</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    <VERB>colordef(fig,color_option)</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_colordef</VERB> :
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_colordef</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -29,60 +40,60 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        Pour les appels avec un paramètre d'entrée, si <VERB>color_option</VERB> est égal à "black" ou "none"
-        <VERB>mtlb_colordef(color_option)</VERB> peut être remplacé par <VERB>fig = gcf();fig.background = -1;</VERB>
+        Pour les appels avec un paramï¿½tre d'entrï¿½e, si <VERB>color_option</VERB> est ï¿½gal ï¿½ "black" ou "none"
+        <VERB>mtlb_colordef(color_option)</VERB> peut ï¿½tre remplacï¿½ par <VERB>fig = gcf();fig.background = -1;</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour les appels avec un paramètre d'entrée, si <VERB>color_option</VERB> est égal à "white"
-        <VERB>mtlb_colordef(color_option)</VERB> peut être remplacé par <VERB>fig = gcf();fig.background = -2;</VERB>
+        Pour les appels avec un paramï¿½tre d'entrï¿½e, si <VERB>color_option</VERB> est ï¿½gal ï¿½ "white"
+        <VERB>mtlb_colordef(color_option)</VERB> peut ï¿½tre remplacï¿½ par <VERB>fig = gcf();fig.background = -2;</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour les appels avec deux paramètres d'entrée, si <VERB>fig</VERB> est un handle graphique et
-	<VERB>color_option</VERB> est égal à "black" ou "none"
-        <VERB>mtlb_colordef(color_option)</VERB> peut être remplacé par <VERB>fig.background = -1;</VERB>
+        Pour les appels avec deux paramï¿½tres d'entrï¿½e, si <VERB>fig</VERB> est un handle graphique et
+	<VERB>color_option</VERB> est ï¿½gal ï¿½ "black" ou "none"
+        <VERB>mtlb_colordef(color_option)</VERB> peut ï¿½tre remplacï¿½ par <VERB>fig.background = -1;</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour les appels avec deux paramètres d'entrée, si <VERB>fig</VERB> est un handle graphique et
-	<VERB>color_option</VERB> est égal à "white"
-        <VERB>mtlb_colordef(color_option)</VERB> peut être remplacé par <VERB>fig.background = -2;</VERB>
+        Pour les appels avec deux paramï¿½tres d'entrï¿½e, si <VERB>fig</VERB> est un handle graphique et
+	<VERB>color_option</VERB> est ï¿½gal ï¿½ "white"
+        <VERB>mtlb_colordef(color_option)</VERB> peut ï¿½tre remplacï¿½ par <VERB>fig.background = -2;</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour les appels avec deux paramètres d'entrée, si <VERB>fig</VERB> est égal à "new" et
-	<VERB>color_option</VERB> est égal à "black" ou "none"
-        <VERB>mtlb_colordef(color_option)</VERB> peut être remplacé par <VERB>fig = scf(max(winsid())+1);fig.background = -1;</VERB>
+        Pour les appels avec deux paramï¿½tres d'entrï¿½e, si <VERB>fig</VERB> est ï¿½gal ï¿½ "new" et
+	<VERB>color_option</VERB> est ï¿½gal ï¿½ "black" ou "none"
+        <VERB>mtlb_colordef(color_option)</VERB> peut ï¿½tre remplacï¿½ par <VERB>fig = scf(max(winsid())+1);fig.background = -1;</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour les appels avec deux paramètres d'entrée, si <VERB>fig</VERB> est égal à "new" et
-	<VERB>color_option</VERB> est égal à "white"
-        <VERB>mtlb_colordef(color_option)</VERB> peut être remplacé par <VERB>fig = scf(max(winsid())+1);fig.background = -2;</VERB>
+        Pour les appels avec deux paramï¿½tres d'entrï¿½e, si <VERB>fig</VERB> est ï¿½gal ï¿½ "new" et
+	<VERB>color_option</VERB> est ï¿½gal ï¿½ "white"
+        <VERB>mtlb_colordef(color_option)</VERB> peut ï¿½tre remplacï¿½ par <VERB>fig = scf(max(winsid())+1);fig.background = -2;</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour les appels avec un paramètre de sortie <VERB>h</VERB>, ajouter <VERB>h = fig;</VERB> à la suite des instructions équivalentes.
+        Pour les appels avec un paramï¿½tre de sortie <VERB>h</VERB>, ajouter <VERB>h = fig;</VERB> ï¿½ la suite des instructions ï¿½quivalentes.
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_colordef</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_colordef</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

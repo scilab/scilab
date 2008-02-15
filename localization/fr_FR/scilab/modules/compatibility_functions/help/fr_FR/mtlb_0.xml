@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,19 +17,19 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_0">Fonction d'émulation de la transposition non-conjuguée de Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_0">Fonction d'ï¿½mulation de la transposition non-conjuguï¿½e de Matlab</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la transposition non-conjuguée se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, la transposition non-conjuguï¿½e se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec des opérandes de type chaîne de caractère : L'opérateur <VERB>.'</VERB> est utilisé dans Scilab
-	pour transposer des chaînes de caractères entières alors que Matlab fait la transposition caractère par caractère.
+        Avec des opï¿½randes de type chaï¿½ne de caractï¿½re : L'opï¿½rateur <VERB>.'</VERB> est utilisï¿½ dans Scilab
+	pour transposer des chaï¿½nes de caractï¿½res entiï¿½res alors que Matlab fait la transposition caractï¿½re par caractï¿½re.
         </SP>
        </ITEM>
     </ITEMIZE>
@@ -26,11 +37,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_0(A)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>A.'</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_0</VERB> :
+    La fonction <VERB>mtlb_0(A)</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>A.'</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_0</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -38,15 +49,15 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        Si <VERB>A</VERB> n'est pas une matrice de chaînes de caractères
-        <VERB>mtlb_0(A)</VERB> peut être remplacé par <VERB>A.'</VERB>
+        Si <VERB>A</VERB> n'est pas une matrice de chaï¿½nes de caractï¿½res
+        <VERB>mtlb_0(A)</VERB> peut ï¿½tre remplacï¿½ par <VERB>A.'</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_0</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_0</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

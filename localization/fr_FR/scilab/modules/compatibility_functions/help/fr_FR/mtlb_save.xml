@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,14 +17,14 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_save">Fonction d'émulation de la fonction Matlab save</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_save">Fonction d'ï¿½mulation de la fonction Matlab save</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
     <P>
-    La fonction <VERB>mtlb_save</VERB> était utilisée par les anciennes version de 
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>save</VERB> mais est maintenant obsolète
-    utilisez plutôt <VERB>savematfile</VERB>
+    La fonction <VERB>mtlb_save</VERB> ï¿½tait utilisï¿½e par les anciennes version de 
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>save</VERB> mais est maintenant obsolï¿½te
+    utilisez plutï¿½t <VERB>savematfile</VERB>
     </P>
 
   </DESCRIPTION>

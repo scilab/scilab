@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,27 +17,27 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_diff">Fonction d'émulation de la fonction Matlab diff</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_diff">Fonction d'ï¿½mulation de la fonction Matlab diff</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>diff</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>diff</VERB> se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec deux paramètres d'entrée : la fonction <VERB>diff</VERB> de Scilab considère
-	toutes les valeurs du premier paramètre comm un vecteur ce que Matlab ne fait pas.
+        Avec deux paramï¿½tres d'entrï¿½e : la fonction <VERB>diff</VERB> de Scilab considï¿½re
+	toutes les valeurs du premier paramï¿½tre comm un vecteur ce que Matlab ne fait pas.
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Avec trois paramètres d'entrée : si la dimension du premier paramètre suivant la dimension
-	donnée par le troisième paramètre atteint 1 avant que la fin des n itérations, Matlab passe
-	à la dimension suivante n'étant pas un 1 ce que Scilab ne fait pas.
+        Avec trois paramï¿½tres d'entrï¿½e : si la dimension du premier paramï¿½tre suivant la dimension
+	donnï¿½e par le troisiï¿½me paramï¿½tre atteint 1 avant que la fin des n itï¿½rations, Matlab passe
+	ï¿½ la dimension suivante n'ï¿½tant pas un 1 ce que Scilab ne fait pas.
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -34,11 +45,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_diff(A[,n[,dim]])</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>diff(A[,n[,dim]])</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les entrées pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_diff</VERB> :
+    La fonction <VERB>mtlb_diff(A[,n[,dim]])</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>diff(A[,n[,dim]])</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les entrï¿½es pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_diff</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -46,22 +57,22 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec deux entrées, si <VERB>A</VERB> est un scalaire ou un vecteur
-        <VERB>mtlb_diff(A,n)</VERB> peut être remplacé par <VERB>diff(A,n)</VERB>
+        Avec deux entrï¿½es, si <VERB>A</VERB> est un scalaire ou un vecteur
+        <VERB>mtlb_diff(A,n)</VERB> peut ï¿½tre remplacï¿½ par <VERB>diff(A,n)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Avec deux entrées, si la taille de A suivant la dimension donnée par <VERB>dim</VERB> ne peut pas atteindre 1
-        <VERB>mtlb_diff(A,n,dim)</VERB> peut être remplacé par <VERB>diff(A,n,dim)</VERB>
+        Avec deux entrï¿½es, si la taille de A suivant la dimension donnï¿½e par <VERB>dim</VERB> ne peut pas atteindre 1
+        <VERB>mtlb_diff(A,n,dim)</VERB> peut ï¿½tre remplacï¿½ par <VERB>diff(A,n,dim)</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_diff</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_diff</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

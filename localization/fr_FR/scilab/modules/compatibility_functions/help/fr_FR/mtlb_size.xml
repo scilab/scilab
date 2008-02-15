@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,30 +17,30 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_size">Fonction d'émulation de la fonction Matlab size</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_size">Fonction d'ï¿½mulation de la fonction Matlab size</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>size</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>size</VERB> se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec deux paramètres d'entrée : La fonction Matlab <VERB>size</VERB> peut être
-	utilisée avec le second paramètre donnant donnant une dimension du premier paramètre
+        Avec deux paramï¿½tres d'entrï¿½e : La fonction Matlab <VERB>size</VERB> peut ï¿½tre
+	utilisï¿½e avec le second paramï¿½tre donnant donnant une dimension du premier paramï¿½tre
 	qui n'existe pas (retourne 1 dans ce cas) mais pas la fonction Scilab.
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Avec plus d'une paramètre de sortie : si le nombre de paramètres de sortie est plus
-	petit que le nombre de dimension, la dernière sortie est égale au produit de toutes
+        Avec plus d'une paramï¿½tre de sortie : si le nombre de paramï¿½tres de sortie est plus
+	petit que le nombre de dimension, la derniï¿½re sortie est ï¿½gale au produit de toutes
 	les dimensions restantes dans Matlab mais pas dans Scilab. Si le nombre de sorties
-	est plus grand que le nombre de dimensions, toutes les sorties correspondant à une
-	dimension qui n'existe pas sont égales à 1 en Matlab mais Scilab retourne une erreur dans ce cas.
+	est plus grand que le nombre de dimensions, toutes les sorties correspondant ï¿½ une
+	dimension qui n'existe pas sont ï¿½gales ï¿½ 1 en Matlab mais Scilab retourne une erreur dans ce cas.
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -37,11 +48,11 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>[d1,[d2,...]] = mtlb_size(X[,dim])</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>[d1,[d2,...]] = mtlb_size(X[,dim])</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_size</VERB> :
+    La fonction <VERB>[d1,[d2,...]] = mtlb_size(X[,dim])</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>[d1,[d2,...]] = mtlb_size(X[,dim])</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_size</VERB> :
     </P>
 
     <DESCRIPTION_INDENT>
@@ -49,22 +60,22 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec deux paramètres d'entrée : si <VERB>dim</VERB> correspond à une dimension de <VERB>X</VERB> qui existe
-        <VERB>mtlb_size(X,dim)</VERB> peut être remplacé par <VERB>size(X,dim)</VERB>
+        Avec deux paramï¿½tres d'entrï¿½e : si <VERB>dim</VERB> correspond ï¿½ une dimension de <VERB>X</VERB> qui existe
+        <VERB>mtlb_size(X,dim)</VERB> peut ï¿½tre remplacï¿½ par <VERB>size(X,dim)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-	Avec plus d'un paramètre de sortie : si le nombre des sorties est égal au nombre de dimensions de <VERB>X</VERB>
-	<VERB>[d1,[d2,...]] = mtlb_size(X)</VERB> peut être remplacé par <VERB>[d1,[d2,...]] = size(X)</VERB>
+	Avec plus d'un paramï¿½tre de sortie : si le nombre des sorties est ï¿½gal au nombre de dimensions de <VERB>X</VERB>
+	<VERB>[d1,[d2,...]] = mtlb_size(X)</VERB> peut ï¿½tre remplacï¿½ par <VERB>[d1,[d2,...]] = size(X)</VERB>
         </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_size</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_size</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 

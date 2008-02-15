@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,29 +17,29 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
   
-  <SHORT_DESCRIPTION name="mtlb_s">Fonction d'émulation de la soustraction Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_s">Fonction d'ï¿½mulation de la soustraction Matlab</SHORT_DESCRIPTION>
   
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la soustraction se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>Dans plusieurs cas particuliers, la soustraction se comporte diffï¿½remment dans Matlab et dans Scilab :</P>
     
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
 	<SP>
-        Avec des opérandes de type chaîne de caractères : L'opérateur <VERB>-</VERB> 
-        ne peut pas être utilisé dans Scilab avec des chaînes de caractère, alors que
-        Matlab réalise dans ce cas la soustraction des codes ASCII des opérandes.
+        Avec des opï¿½randes de type chaï¿½ne de caractï¿½res : L'opï¿½rateur <VERB>-</VERB> 
+        ne peut pas ï¿½tre utilisï¿½ dans Scilab avec des chaï¿½nes de caractï¿½re, alors que
+        Matlab rï¿½alise dans ce cas la soustraction des codes ASCII des opï¿½randes.
 	</SP>
       </ITEM>
 
       <ITEM>
 	<SP>
 	Avec une matrice vide : Dans Scilab, si une des
-	opérandes est une matrice vide alors le résultat de la soustraction est
-	l'autre opérande. Dans Matlab si une des opérandes est une matrice
-	vide alors le résultat de la soustraction est soit une erreur (la seconde opérande n'est pas un scalaire)
+	opï¿½randes est une matrice vide alors le rï¿½sultat de la soustraction est
+	l'autre opï¿½rande. Dans Matlab si une des opï¿½randes est une matrice
+	vide alors le rï¿½sultat de la soustraction est soit une erreur (la seconde opï¿½rande n'est pas un scalaire)
 	soit une matrice vide.
 	</SP>
       </ITEM>
@@ -37,11 +48,11 @@
     </DESCRIPTION_INDENT>
 
     <P>    
-    La fonction <VERB>mtlb_s(A,B)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>A-B</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_s</VERB> :
+    La fonction <VERB>mtlb_s(A,B)</VERB> est utilisï¿½e par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>A-B</VERB> quand il n'ï¿½tait pas
+    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
+    on peut remplacer les appels ï¿½ <VERB>mtlb_s</VERB> :
     </P>
       
     <DESCRIPTION_INDENT>
@@ -49,16 +60,16 @@
     <ITEMIZE>
       <ITEM>
 	<SP>
-	Si <VERB>A</VERB> et <VERB>B</VERB> sont des chaînes de caractères,
-	<VERB>mtlb_s(A,B)</VERB> peut être remplacé par <VERB>asciimat(A)-asciimat(B)</VERB>
+	Si <VERB>A</VERB> et <VERB>B</VERB> sont des chaï¿½nes de caractï¿½res,
+	<VERB>mtlb_s(A,B)</VERB> peut ï¿½tre remplacï¿½ par <VERB>asciimat(A)-asciimat(B)</VERB>
 	</SP>
       </ITEM>
 
       <ITEM>
 	<SP>
 	Si <VERB>A</VERB> et <VERB>B</VERB> ne sont pas des matrices vides
-	<VERB>mtlb_s(A,B)</VERB> peut être remplacé par <VERB>A-B</VERB>,
-	sinon <VERB>mtlb_s(A,B)</VERB> peut être remplacé par
+	<VERB>mtlb_s(A,B)</VERB> peut ï¿½tre remplacï¿½ par <VERB>A-B</VERB>,
+	sinon <VERB>mtlb_s(A,B)</VERB> peut ï¿½tre remplacï¿½ par
 	<VERB>[]</VERB>.
 	</SP>
       </ITEM>
@@ -66,15 +77,15 @@
       <ITEM>
 	<SP>
 	Si mtlb_mode()==%T, alors <VERB>mtlb_s(A,B)</VERB>
-	peut être remplacé par <VERB>A-B</VERB> dans tous les cas où
-	<VERB>A</VERB> et <VERB>B</VERB> ne sont pas des chaînes de caractères.
+	peut ï¿½tre remplacï¿½ par <VERB>A-B</VERB> dans tous les cas oï¿½
+	<VERB>A</VERB> et <VERB>B</VERB> ne sont pas des chaï¿½nes de caractï¿½res.
 	</SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_s</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_s</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
  
   </DESCRIPTION>
   

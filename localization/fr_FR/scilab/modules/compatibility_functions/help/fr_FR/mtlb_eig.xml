@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,20 +17,20 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_eig">Fonction d'émulation de la fonction Matlab eig</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_eig">Fonction d'ï¿½mulation de la fonction Matlab eig</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
     <P>Dans plusieurs cas particuliers, les fonctions <VERB>eig</VERB> de Matlab et <VERB>spec</VERB>
-    de Scilab se comportent différemment :</P>
+    de Scilab se comportent diffï¿½remment :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec un argument d'entrée (<VERB>A</VERB>) et deux arguments de sortie (<VERB>V</VERB>,<VERB>D</VERB>),
-	les valeurs obtenues dans Scilab et dans Matlab sont de signe opposé.
+        Avec un argument d'entrï¿½e (<VERB>A</VERB>) et deux arguments de sortie (<VERB>V</VERB>,<VERB>D</VERB>),
+	les valeurs obtenues dans Scilab et dans Matlab sont de signe opposï¿½.
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -27,12 +38,12 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>[V,D] = mtlb_eig(A,B)</VERB> est utilisée par
+    La fonction <VERB>[V,D] = mtlb_eig(A,B)</VERB> est utilisï¿½e par
     <VERB>mfile2sci</VERB> pour remplacer <VERB>[V,D] = eig(A)</VERB>. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
+    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Elle ne peut ï¿½tre remplacï¿½e.
     </P>
 
-    <P>Attention : <VERB>mtlb_eig</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+    <P>Attention : <VERB>mtlb_eig</VERB> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</P>
 
   </DESCRIPTION>
 
