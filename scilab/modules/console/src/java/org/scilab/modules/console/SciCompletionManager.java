@@ -1,5 +1,14 @@
-
-/* Copyright INRIA */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -21,7 +30,7 @@ import com.artenum.rosetta.interfaces.core.InputParsingManager;
 public class SciCompletionManager implements CompletionManager {
 	private List<CompletionItem> dictionnary;
 	private InputParsingManager inputParsingManager;
-	
+
 	/**
 	 * Create a fake database of completion informations
 	 */
@@ -35,7 +44,7 @@ public class SciCompletionManager implements CompletionManager {
 	 */
 	public List<CompletionItem> getCompletionItems() {
 		int compLevel = inputParsingManager.getCompletionLevel();
-		
+
 		// Build dictionnary
 		dictionnary	= new ArrayList<CompletionItem>();
 
@@ -48,19 +57,19 @@ public class SciCompletionManager implements CompletionManager {
 		if (scilabFilesDictionnary == null) {
 			// Get the completion part used to filter the dictionary
 			String searchedPattern = inputParsingManager.getPartLevel(compLevel);
-	
+
 			String[] scilabCommandsDictionnary = Completion.searchCommandsDictionary(searchedPattern);
 			addItemsToDictionnary("Scilab Command", scilabCommandsDictionnary);
-			
+
 			String[] scilabFunctionsDictionnary = Completion.searchFunctionsDictionary(searchedPattern);
 			addItemsToDictionnary("Scilab Function", scilabFunctionsDictionnary);
-			
+
 			String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
 			addItemsToDictionnary("Graphics handle field", scilabHandlesDictionnary);
-			
+
 			String[] scilabMacrosDictionnary = Completion.searchMacrosDictionary(searchedPattern);
 			addItemsToDictionnary("Scilab Macro", scilabMacrosDictionnary);
-			
+
 			String[] scilabVariablesDictionnary = Completion.searchVariablesDictionary(searchedPattern);
 			addItemsToDictionnary("Scilab Variable", scilabVariablesDictionnary);
 		}
@@ -84,7 +93,7 @@ public class SciCompletionManager implements CompletionManager {
 	public void setInterpretor(GenericInterpreter interpretor) {
 		// No need for Scilab implementation
 	}
-	
+
 	/**
 	 * Add items to current completion dictionnary
 	 * @param type type of the items to add

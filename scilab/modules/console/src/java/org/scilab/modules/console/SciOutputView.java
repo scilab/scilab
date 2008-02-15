@@ -1,4 +1,14 @@
-/* Copyright INRIA 2007 */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -33,7 +43,7 @@ import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Scilab Console UI which contains the previous commands and their outputs
- * 
+ *
  * @author Vincent COUVERT
  */
 public class SciOutputView extends JTextPane implements OutputView {
@@ -60,7 +70,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 	private StringBuffer currentWorkingBuffer;
 
 	private SciConsole console;
-	
+
 	private Thread thread;
 
 	/**
@@ -73,18 +83,18 @@ public class SciOutputView extends JTextPane implements OutputView {
 		// Enabled Drag&Drop with this component
 		this.setDragEnabled(true);
 
-		
+
 		activeStyle = StyleContext.DEFAULT_STYLE;
 		bufferQueue = new ArrayBlockingQueue<StringBuffer>(BUFFER_SIZE);
 		styleQueue = new LinkedList<String>();
 		setFocusable(false);
-		
+
 		/**
 		 * Default caret for output view (to handle paste actions using middle button)
 		 * @author Vincent COUVERT
 		 */
 		final class FixedCaret extends DefaultCaret {
-			
+
 			private static final long serialVersionUID = 8230195712653828841L;
 
 			/**
@@ -237,11 +247,11 @@ public class SciOutputView extends JTextPane implements OutputView {
 			console.updateScrollPosition();
 		}
 	}
-	
+
 	/**
 	 * Adds text to the output view and change the size of others components if
 	 * necessary
-	 * 
+	 *
 	 * @param content
 	 *            text to add
 	 */
@@ -253,7 +263,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 	/**
 	 * Adds text to the output view and change the size of others components if
 	 * necessary
-	 * 
+	 *
 	 * @param content
 	 *            text to add
 	 * @param styleName
@@ -279,7 +289,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Gets the error writer
-	 * 
+	 *
 	 * @return the error writer
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#getErrorWriter()
 	 */
@@ -290,7 +300,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Gets the writer
-	 * 
+	 *
 	 * @return the writer
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#getWriter()
 	 */
@@ -301,7 +311,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Resets the output view (remove text)
-	 * 
+	 *
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#reset()
 	 */
 	public void reset() {
@@ -311,7 +321,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Move the caret to the beginning of the styled document
-	 * 
+	 *
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#setCaretPositionToBeginning()
 	 */
 	public void setCaretPositionToBeginning() {
@@ -320,7 +330,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Move the caret to the end of the styled document
-	 * 
+	 *
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#setCaretPositionToEnd()
 	 */
 	public void setCaretPositionToEnd() {
@@ -329,7 +339,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Set the style for current text
-	 * 
+	 *
 	 * @param styleName
 	 *            the style to set
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#setStyleName(java.lang.String)
@@ -340,7 +350,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Sets the console object containing this output view
-	 * 
+	 *
 	 * @param c
 	 *            the console associated
 	 */
@@ -359,19 +369,19 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	/**
 	 * Gets the console object containing this output view
-	 * 
+	 *
 	 * @return the console associated
 	 */
 	public SciConsole getConsole() {
 		return console;
 	}
-	
+
 	/**
-	 * Get the current thread used to display 
+	 * Get the current thread used to display
 	 * @return the thread
 	 */
 	public Thread getThread() {
 		return thread;
 	}
-	
+
 }

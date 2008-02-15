@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.console;
 
 import java.awt.Point;
@@ -85,14 +97,14 @@ public class SciInputParsingManager implements InputParsingManager {
 	public String getPartLevel(int level) {
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
-		
+
 		String lineToParse = wholeLine.substring(0, caretPos);
-		
+
 		/* Code to emulate Scilab Parser */
 		char[] symbs = {'+', '-', '*', '/', '\\', '(', '[', ' ', '^', ',', ';', '=', '{',
 				'.', '&', '|', '\'', ']', ')', '}', ':'};
 		int index = -1;
-		
+
 		for (int i = 0; i < symbs.length; i++) {
 			index = Math.max(index, lineToParse.lastIndexOf(symbs[i]));
 		}
@@ -109,13 +121,13 @@ public class SciInputParsingManager implements InputParsingManager {
 	public String getFilePartLevel(int level) {
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
-		
+
 		String lineToParse = wholeLine.substring(0, caretPos);
-		
+
 		/* Code to emulate Scilab Parser */
 		char[] symbs = {';', ','};
 		int index = -1;
-		
+
 		for (int i = 0; i < symbs.length; i++) {
 			index = Math.max(index, lineToParse.lastIndexOf(symbs[i]));
 		}
@@ -134,7 +146,7 @@ public class SciInputParsingManager implements InputParsingManager {
 		/* cd("toto */
 		lineToParse = lineToParse.substring(index);
 		index = lineToParse.length();
-		
+
 		/* Searching for the beginning of a white space */
 		int indexspace = lineToParse.indexOf(' ');
 		if (indexspace != -1) {

@@ -1,5 +1,14 @@
-
-/* Copyright INRIA */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -23,7 +32,7 @@ public class CompletionAction extends AbstractConsoleAction {
 	public CompletionAction() {
 		super();
 	}
-	
+
 	/**
 	 * Threats the event
 	 * @param e the action event that occured
@@ -32,7 +41,7 @@ public class CompletionAction extends AbstractConsoleAction {
 	public void actionPerformed(ActionEvent e) {
 		Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
 		List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
-		
+
 		if (completionItems != null && completionItems.size() == 1) {
 			/* Only one item returned, autoselected and appended to command line */
 			configuration.getCompletionWindow().show(completionItems, location);

@@ -1,5 +1,14 @@
-
-/* Copyright INRIA 2007 */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -24,7 +33,7 @@ import java.util.StringTokenizer;
 public class SciDropTargetListener implements DropTargetListener {
 
 		private SciConsole associatedConsole;
-		
+
 		/**
 		 * Constructor
 		 * @param sciConsole console object associated to this listener
@@ -33,19 +42,19 @@ public class SciDropTargetListener implements DropTargetListener {
 			super();
 			associatedConsole = sciConsole;
 		}
-		
+
 		/**
 		 * Drop handling
 		 * @param dtde the drop event
 		 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 		 */
-		public void drop(DropTargetDropEvent dtde) { 
+		public void drop(DropTargetDropEvent dtde) {
 
 			dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
-			
+
 			Transferable transferable = dtde.getTransferable();
-	        
-		    // New dataflavor created for tests about the type of the object dropped 
+
+		    // New dataflavor created for tests about the type of the object dropped
 	        DataFlavor uriListFlavor = null;
 			try {
 				uriListFlavor = new DataFlavor("text/uri-list;class=java.lang.String");
@@ -60,19 +69,19 @@ public class SciDropTargetListener implements DropTargetListener {
 				if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
 				java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
 				// Send file names to Scilab
-					
+
 					String[] fileNames = new String[data.size()];
 					for (int i = 0; i < data.size(); i++) {
 						File tmpfile = (File) data.get(i);
 						fileNames[i] = tmpfile.toString();
 					}
 					DropFiles.dropFiles(fileNames);
-					
+
 					// Crappy method to make Scilab parser execute the commands stored by dropFiles
 					((SciOutputView) associatedConsole.getConfiguration().getOutputView())
 												.getConsole().sendCommandsToScilab("", false, false);
 				} else if (transferable.isDataFlavorSupported(uriListFlavor)) {
-					
+
 					// --- FILE(S) DROP ---
 
 					String data = (String) transferable.getTransferData(uriListFlavor);
@@ -86,28 +95,28 @@ public class SciDropTargetListener implements DropTargetListener {
 					    	  listOfFiles.add(s);
 					      }
 				    }
-					
+
 					// Send file names to Scilab
 					String[] fileNames = new String[listOfFiles.size()];
 					for (int i = 0; i < listOfFiles.size(); i++) {
 						fileNames[i] = listOfFiles.get(i);
 					}
 					DropFiles.dropFiles(fileNames);
-					
+
 					// Crappy method to make Scilab parser execute the commands stored by dropFiles
 					((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).setCmdBuffer("", false);
-					
+
 				} else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-					
+
 					// --- TEXT DROP ---
 
 					String dropContents = (String) transferable.getTransferData(DataFlavor.stringFlavor);
-					
+
 					// Send text to the console and remove prompts in text if there are
 					//associatedConsole.sendCommandsToScilab(dropContents, true);
 					((SciInputCommandView) associatedConsole.getConfiguration().getInputCommandView()).append(dropContents);
 				}
-				
+
 				// If we made it this far, everything worked.
 		        dtde.dropComplete(true);
 

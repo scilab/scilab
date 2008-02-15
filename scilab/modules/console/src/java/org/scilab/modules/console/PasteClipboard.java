@@ -1,5 +1,14 @@
-
-/* Copyright INRIA 2007 */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -21,7 +30,7 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
 public class PasteClipboard extends AbstractConsoleAction {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -38,7 +47,7 @@ public class PasteClipboard extends AbstractConsoleAction {
 		// Gets the contents of the clipboard
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Clipboard systemClipboard = toolkit.getSystemClipboard();
-		
+
 		// Verify that clibpboard data is of text type
 		boolean dataAvailable;
 		try {
@@ -46,12 +55,12 @@ public class PasteClipboard extends AbstractConsoleAction {
 		} catch (IllegalStateException exception) {
 			return;
 		}
-		
+
 		// Exit if text data not available
 		if (!dataAvailable) {
 			return;
 		}
-		
+
 		// Read data
 		String clipboardContents = null;
 		try {
@@ -63,7 +72,7 @@ public class PasteClipboard extends AbstractConsoleAction {
 			// Should never be here
 			e1.printStackTrace();
 		}
-		
+
 		// Send data to Scilab Console
 		((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab(clipboardContents, true, true);
 	}

@@ -1,6 +1,15 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2005 */
-/* Allan CORNET */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -40,7 +49,7 @@ BOOL dropFiles(char **files)
 {
 	int len = 0;
 
-	while (files[len]) 
+	while (files[len])
 	{
 		char *convertfile = URIFileToFilename(files[len]);
 
@@ -89,7 +98,7 @@ static char *getCommandByFileExtension(char *File,char *FileExtension)
 		{
 			command = buildCommand(FORMAT_BIN_SCE_EXTENSION_FILES,File);
 		}
-		else 
+		else
 		if ( (stricmp(FileExtension,GRAPH_EXTENSION_FILE)==0) || (stricmp(FileExtension,GRAPHB_EXTENSION_FILE)==0) )
 		{
 			command = buildCommand(FORMAT_GRAPH_GRAPHB_EXTENSION_FILES,File);

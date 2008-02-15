@@ -9,7 +9,7 @@
 package org.scilab.modules.console;
 
 
- /** 
+ /**
    * @author Allan CORNET
    * @copyright INRIA 2007
    */

@@ -1,5 +1,14 @@
-
-/* Copyright INRIA */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -39,7 +48,7 @@ import com.artenum.rosetta.interfaces.ui.CompletionWindow;
 public class SciCompletionWindow implements CompletionWindow, KeyListener, FocusListener, MouseMotionListener, MouseListener {
 	private static final int WINDOW_WIDTH = 300;
 	private static final int WINDOW_HEIGHT = 100;
-	
+
 	private CompletionItemListModel model;
 	private JList listUI;
 	private JScrollPane scrollPane;
@@ -47,7 +56,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	private InputParsingManager inputParsingManager;
 	private JComponent focusOutComponent;
 	private SciConsole sciConsole;
-	
+
 	/**
 	 * Default constructor
 	 */
@@ -92,24 +101,24 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 		if (this.sciConsole == null) {
 			return;
 		}
-		
+
 		/* List to display all completion items */
 		model = new CompletionItemListModel();
 		listUI = new JList(model);
 		listUI.setCellRenderer(new CompletionItemListCellRenderer());
 		scrollPane = new JScrollPane(listUI, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
+
 		/* Utility to able the user to resize the window */
 		JLabel windowResizeCorner = new JLabel("~", JLabel.CENTER);
 		windowResizeCorner.addMouseMotionListener(this);
 		scrollPane.setCorner(JScrollPane.LOWER_RIGHT_CORNER, windowResizeCorner);
-		
+
 		/* Completion window */
 		window = new JPanel(new BorderLayout());
 		window.add(scrollPane, BorderLayout.CENTER);
 		window.setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		window.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		
+
 		/* Overide Listener */
 		listUI.getInputMap().clear();
 		scrollPane.getInputMap().clear();
@@ -120,7 +129,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 		listUI.addMouseListener(this);
 
 		((JTextPane) sciConsole.getConfiguration().getInputCommandView()).add(window);
-		
+
 		window.setVisible(false);
 	}
 
@@ -138,20 +147,20 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 			/* Change the size of the input command view */
 			JScrollPane jSP = sciConsole.getJScrollPane();
 			if (window.getHeight() > ((JTextPane) sciConsole.getConfiguration().getInputCommandView()).getHeight()) {
-				
+
 				int newWidth = jSP.getWidth() - jSP.getVerticalScrollBar().getPreferredSize().width;
 
 				int yCarPos = ((SciInputCommandView) sciConsole.getConfiguration().getInputCommandView()).getCaretLocation().y;
 				int newHeight =  yCarPos +  window.getHeight();
-				
+
 				Dimension newDim = new Dimension(newWidth, newHeight);
-		    	
+
 				((JTextPane) sciConsole.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
 		    	((JTextPane) sciConsole.getConfiguration().getInputCommandView()).invalidate();
 		    	((JTextPane) sciConsole.getConfiguration().getInputCommandView()).doLayout();
-		    	
+
 		    	sciConsole.setInputCommandViewSizeForced(true);
-				
+
 		    	/* Scrollbar update before displaying completion window */
 		    	Point oldPosition = jSP.getViewport().getViewPosition();
 		    	Point newPosition = new Point(oldPosition.x, oldPosition.y + window.getHeight());
@@ -160,21 +169,21 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 			}
 
 			model.updateData(list);
-			
+
 			/* Display completion window */
 			window.setLocation(location);
 			window.setVisible(true);
 
 			scrollPane.getViewport().setViewPosition(new Point(0, 0));
-			
+
 			if (model.getSize() > 0) {
 				listUI.setSelectedIndex(0);
 			}
 			listUI.grabFocus();
-			
+
 	    	/* Scrollbar update after displaying completion window */
 			if (window.getHeight() > ((JTextPane) sciConsole.getConfiguration().getInputCommandView()).getHeight()) {
-				Point oldPosition = jSP.getViewport().getViewPosition();	
+				Point oldPosition = jSP.getViewport().getViewPosition();
 				Point newPosition = new Point(oldPosition.x, oldPosition.y + window.getHeight());
 				jSP.getViewport().setViewPosition(newPosition);
 				jSP.repaint();
@@ -199,7 +208,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	public boolean isVisible() {
 		return window.isVisible();
 	}
-	
+
 	/**
 	 * Set the visibility status of the completion window
 	 * @param status true if the window is visible (false else)
@@ -252,7 +261,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 		 * @param filterToSet the filter to set
 		 */
 		public void setFilter(String filterToSet) {
-			
+
 			if ((filterToSet == null) || ((filterToSet != null) && (filterToSet.length() == 0))) {
 				filter = null;
 			} else {
@@ -281,28 +290,28 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			/* The user validates an entry in the list */
-			
+
 			/* Add text to the input command view */
 			inputParsingManager.writeCompletionPart(((CompletionItem) listUI.getSelectedValue()).getReturnValue());
-			
-			/* Hide the completion window and give the focus to the console */ 
+
+			/* Hide the completion window and give the focus to the console */
 			window.setVisible(false);
 			focusOutComponent.grabFocus();
 		} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			/* The user want to exit from completion mode */
 
-			/* Hide the completion window and give the focus to the console */ 
+			/* Hide the completion window and give the focus to the console */
 			window.setVisible(false);
 			focusOutComponent.grabFocus();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			/* The user want to select next item */
-			
+
 			if (model.getSize() > 0) {
 				listUI.setSelectedIndex((listUI.getSelectedIndex()) % model.getSize());
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			/* The user want to select previous item */
-			
+
 			if (model.getSize() > 0) {
 				listUI.setSelectedIndex((model.getSize() + listUI.getSelectedIndex()) % model.getSize());
 			}
@@ -312,12 +321,12 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 				// Remove a key in input command line
 				inputParsingManager.backspace();
 
-				// Display new completion list 
+				// Display new completion list
 				Point location = inputParsingManager.getWindowCompletionLocation();
 				this.show(sciConsole.getConfiguration().getCompletionManager().getCompletionItems(), location);
 				listUI.setSelectedIndex(0);
 			} else {
-				/* Hide the completion window and give the focus to the console */ 
+				/* Hide the completion window and give the focus to the console */
 				window.setVisible(false);
 				focusOutComponent.grabFocus();
 			}
@@ -326,8 +335,8 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 			if (e.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
 				// Add a key in input command line
 				inputParsingManager.append(String.valueOf(e.getKeyChar()));
-				
-				// Display new completion list 
+
+				// Display new completion list
 				Point location = inputParsingManager.getWindowCompletionLocation();
 				this.show(sciConsole.getConfiguration().getCompletionManager().getCompletionItems(), location);
 				listUI.setSelectedIndex(0);
@@ -396,8 +405,8 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 			if (e.getClickCount() >= 2) { /* Double click = the user validates the item */
 				/* Add text to the input command view */
 				inputParsingManager.writeCompletionPart(((CompletionItem) listUI.getSelectedValue()).getReturnValue());
-			
-				/* Hide the completion window and give the focus to the console */ 
+
+				/* Hide the completion window and give the focus to the console */
 				window.setVisible(false);
 				focusOutComponent.grabFocus();
 			}

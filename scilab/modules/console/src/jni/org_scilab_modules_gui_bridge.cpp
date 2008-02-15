@@ -11,16 +11,16 @@ This software is a computer program whose purpose is to hide the complexity
 of accessing Java objects/methods from C++ code.
 
 This software is governed by the CeCILL-B license under French law and
-abiding by the rules of distribution of free software.  You can  use, 
+abiding by the rules of distribution of free software.  You can  use,
 modify and/ or redistribute the software under the terms of the CeCILL-B
 license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info". 
+"http://www.cecill.info".
 
 As a counterpart to the access to the source code and  rights to copy,
 modify and redistribute granted by the license, users are provided only
 with a limited warranty  and the software's author,  the holder of the
 economic rights,  and the successive licensors  have only  limited
-liability. 
+liability.
 
 In this respect, the user's attention is drawn to the risks associated
 with loading,  using,  modifying and/or developing or reproducing the
@@ -29,9 +29,9 @@ that may mean  that it is complicated to manipulate,  and  that  also
 therefore means  that it is reserved for developers  and  experienced
 professionals having in-depth computer knowledge. Users are therefore
 encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or 
-data to be ensured and,  more generally, to use and operate it in the 
-same conditions as regards security. 
+requirements in conditions enabling the security of their systems and/or
+data to be ensured and,  more generally, to use and operate it in the
+same conditions as regards security.
 
 The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
@@ -91,22 +91,22 @@ if(localInstance == NULL){
 std::cerr << "Could not instantiate the object " << this->className() << " with the constructor : " << construct << param << std::endl;
 exit(EXIT_FAILURE);
 }
- 
+
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
 std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
 exit(EXIT_FAILURE);
 }
                 /* Methods ID set to NULL */
-voiddisplayjstringID=NULL; 
-jstringreadLineID=NULL; 
-voidclearID=NULL; 
-voidclearjintID=NULL; 
-jintgetCharWithoutOutputID=NULL; 
-voidtoHomeID=NULL; 
-voidscilabLinesUpdateID=NULL; 
-voidsetPromptjstringID=NULL; 
-jbooleanisWaitingForInputID=NULL; 
+voiddisplayjstringID=NULL;
+jstringreadLineID=NULL;
+voidclearID=NULL;
+voidclearjintID=NULL;
+jintgetCharWithoutOutputID=NULL;
+voidtoHomeID=NULL;
+voidscilabLinesUpdateID=NULL;
+voidsetPromptjstringID=NULL;
+jbooleanisWaitingForInputID=NULL;
 
 
 }
@@ -128,15 +128,15 @@ CallScilabBridge::CallScilabBridge(JavaVM * jvm_, jobject JObj) {
                exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
-        voiddisplayjstringID=NULL; 
-jstringreadLineID=NULL; 
-voidclearID=NULL; 
-voidclearjintID=NULL; 
-jintgetCharWithoutOutputID=NULL; 
-voidtoHomeID=NULL; 
-voidscilabLinesUpdateID=NULL; 
-voidsetPromptjstringID=NULL; 
-jbooleanisWaitingForInputID=NULL; 
+        voiddisplayjstringID=NULL;
+jstringreadLineID=NULL;
+voidclearID=NULL;
+voidclearjintID=NULL;
+jintgetCharWithoutOutputID=NULL;
+voidtoHomeID=NULL;
+voidscilabLinesUpdateID=NULL;
+voidsetPromptjstringID=NULL;
+jbooleanisWaitingForInputID=NULL;
 
 
 }
@@ -176,12 +176,12 @@ exit(EXIT_FAILURE);
 jstring dataToDisplay_ = curEnv->NewStringUTF( dataToDisplay );
 
                          curEnv->CallStaticVoidMethod(cls, voiddisplayjstringID ,dataToDisplay_);
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 }
 
 char * CallScilabBridge::readLine (JavaVM * jvm_){
@@ -197,12 +197,12 @@ exit(EXIT_FAILURE);
 }
 
                         jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringreadLineID );
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 const char *tempString = curEnv->GetStringUTFChars(res, 0);
 char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
 strcpy(myStringBuffer, tempString);
@@ -225,12 +225,12 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidclearID );
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 }
 
 void CallScilabBridge::clear (JavaVM * jvm_, long nbLines){
@@ -246,12 +246,12 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidclearjintID ,nbLines);
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 }
 
 long CallScilabBridge::getCharWithoutOutput (JavaVM * jvm_){
@@ -267,12 +267,12 @@ exit(EXIT_FAILURE);
 }
 
                         jint res =  (jint) curEnv->CallIntMethod(cls, jintgetCharWithoutOutputID );
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 return res;
 
 }
@@ -290,12 +290,12 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidtoHomeID );
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 }
 
 void CallScilabBridge::scilabLinesUpdate (JavaVM * jvm_){
@@ -311,12 +311,12 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidscilabLinesUpdateID );
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 }
 
 void CallScilabBridge::setPrompt (JavaVM * jvm_, char * promptToSet){
@@ -334,12 +334,12 @@ exit(EXIT_FAILURE);
 jstring promptToSet_ = curEnv->NewStringUTF( promptToSet );
 
                          curEnv->CallStaticVoidMethod(cls, voidsetPromptjstringID ,promptToSet_);
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 }
 
 bool CallScilabBridge::isWaitingForInput (JavaVM * jvm_){
@@ -355,12 +355,12 @@ exit(EXIT_FAILURE);
 }
 
                         jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanisWaitingForInputID );
-                        
+
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+
 return (res == JNI_TRUE);
 
 }

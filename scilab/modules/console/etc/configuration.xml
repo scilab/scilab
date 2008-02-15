@@ -1,10 +1,21 @@
 <?xml version="1.0"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <Setting>
 	<!-- Scilab configuration -->
 	<Profile name="scilab">
 		<!-- Welcome line -->
 		<WelcomeLine useCache="true" value=""/>
-	
+
 		<!-- GUI Part -->
 		<PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
 		<OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
@@ -27,7 +38,7 @@
 		<CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
 		<CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
 		<HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
-		
+
 		<!-- Key mapping -->
 		<KeyMapping>
 			<Key name="VK_ENTER" mask="" action="VALIDATE"/>
@@ -68,6 +79,6 @@
 			<Action name="DEL_WHOLE_LINE" className="org.scilab.modules.console.DelWholeLineAction"/>
 			<Action name="INTERRUPT_SCILAB_WORK" className="org.scilab.modules.console.InterruptScilabWork"/>
 		</ActionMapping>
-		
+
 	</Profile>
 </Setting>

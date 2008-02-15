@@ -1,5 +1,14 @@
-
-/* Copyright INRIA 2007 */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -18,7 +27,7 @@ import javax.swing.JTextPane;
 public class FocusMouseListener implements MouseListener {
 
 	private SciConsole c;
-	
+
     /**
      * @param console the console object associated
      */
@@ -48,7 +57,7 @@ public class FocusMouseListener implements MouseListener {
      * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
      */
     public void mouseEntered(MouseEvent e) {
-    	
+
     }
 
     /**
@@ -57,7 +66,7 @@ public class FocusMouseListener implements MouseListener {
      * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
      */
     public void mouseExited(MouseEvent e) {
-    	
+
     }
 
     /**
@@ -66,7 +75,7 @@ public class FocusMouseListener implements MouseListener {
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
      */
     public void mousePressed(MouseEvent e) {
-    	
+
     }
 
     /**
@@ -75,9 +84,9 @@ public class FocusMouseListener implements MouseListener {
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
      */
     public void mouseReleased(MouseEvent e) {
-    	
+
     }
-    
+
     /**
      * Mouse stay over the object
      * @param e the event to threat

@@ -1,5 +1,14 @@
-
-/* Copyright INRIA 2007 */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.console;
 
@@ -20,9 +29,9 @@ import com.artenum.rosetta.interfaces.ui.PromptView;
  * @author Vincent COUVERT
  */
 public class SciPromptView extends JPanel implements PromptView {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private static final String DEFAULT_PROMPT = "-->";
 	private static final String DEFAULT_IN_BLOCK_PROMPT = DEFAULT_PROMPT;
 	private static final String HTML_START = "<html>";
@@ -33,11 +42,11 @@ public class SciPromptView extends JPanel implements PromptView {
 	private static final String ZERO_STRING = "0";
 	private static final int LEFT_BORDER = 0;
 	private static final int BOTTOM_BORDER = 2;
-	
+
 	private String defaultPrompt;
 	private String inBlockPrompt;
 	private InputParsingManager inputParsingManager;
-	
+
 	// Working vars
 	private StringBuffer promptTextContent;
 	private JLabel promptUI;
@@ -50,7 +59,7 @@ public class SciPromptView extends JPanel implements PromptView {
 		promptTextContent = new StringBuffer();
 		defaultPrompt = DEFAULT_PROMPT;
 		inBlockPrompt = DEFAULT_IN_BLOCK_PROMPT;
-		
+
 		// Gui part
 		promptUI = new JLabel();
 		promptUI.setBorder(BorderFactory.createEmptyBorder(0, LEFT_BORDER, BOTTOM_BORDER, 0));
@@ -98,10 +107,10 @@ public class SciPromptView extends JPanel implements PromptView {
 	public void updatePrompt() {
 		promptTextContent.setLength(0);
 		promptTextContent.append(HTML_START);
-		
+
 		// Text Color
 		String textStyle = "<P style=\"padding:1px;color:" + colorToString(promptUI.getForeground()) + SEMI_COLON;
-		
+
 		// Text Font
 		if (promptUI.isFontSet()) {
 			textStyle += "font-size:" + promptUI.getFont().getSize() + "pt;";
@@ -109,7 +118,7 @@ public class SciPromptView extends JPanel implements PromptView {
 			if (promptUI.getFont().isBold()) {
 				textStyle += "font-weight:bold;";
 			}
-			
+
 			if (promptUI.getFont().isItalic()) {
 				textStyle += "font-style:italic;";
 			}
@@ -117,7 +126,7 @@ public class SciPromptView extends JPanel implements PromptView {
 		textStyle += "\">";
 
 		promptTextContent.append(textStyle + defaultPrompt.replaceAll(">", "&gt;") + PARAGRAPH_END);
-		
+
 		int nbLineToShow = inputParsingManager.getNumberOfLines();
 		while (nbLineToShow-- > 1) {
 			promptTextContent.append(HTML_NEW_LINE);
@@ -189,7 +198,7 @@ public class SciPromptView extends JPanel implements PromptView {
 	public void setVisible(boolean status) {
 		super.setVisible(status);
 	}
-	
+
 	/**
 	 * Convert a color into an hexadecimal string
 	 * @param c the color to convert
@@ -224,5 +233,5 @@ public class SciPromptView extends JPanel implements PromptView {
 	public JLabel getPromptUI() {
 		return promptUI;
 	}
-	
+
 }
