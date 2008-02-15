@@ -1,6 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/* Allan CORNET */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /*------------------------------------------------------------------------*/
 #include <time.h>
 #include <stdio.h>
@@ -23,12 +32,12 @@ char *getCommentDateSession(BOOL BeginSession)
 
 	time_str = ASCIItime(localtime(&timer));
 
-	if (BeginSession) 
+	if (BeginSession)
 	{
 		line = (char*)MALLOC(sizeof(char)*(strlen(string_begin_session)+strlen(time_str)+1));
 		if (line) sprintf(line,"%s%s",string_begin_session,time_str);
 	}
-	else 
+	else
 	{
 		line = (char*)MALLOC(sizeof(char)*(strlen(string_end_session)+strlen(time_str)+1));
 		if (line) sprintf(line,"%s%s",string_end_session,time_str);
@@ -39,12 +48,12 @@ char *getCommentDateSession(BOOL BeginSession)
 char *ASCIItime(const struct tm *timeptr)
 {
 	char *wday_name[7] = {
-		_("Sun"), 
-		_("Mon"), 
-		_("Tue"), 
-		_("Wed"), 
-		_("Thu"), 
-		_("Fri"), 
+		_("Sun"),
+		_("Mon"),
+		_("Tue"),
+		_("Wed"),
+		_("Thu"),
+		_("Fri"),
 		_("Sat")
 	};
 	char *mon_name[12] = {

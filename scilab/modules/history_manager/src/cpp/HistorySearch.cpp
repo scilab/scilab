@@ -1,6 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/* Allan CORNET */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /*------------------------------------------------------------------------*/
 extern "C"
 {
@@ -32,7 +41,7 @@ BOOL HistorySearch::setHistory(list<CommandLine> commands)
 
 	if (!this->Commands.empty()) this->Commands.clear();
 
-	for(it_commands=commands.begin(); it_commands != commands.end(); ++it_commands) 
+	for(it_commands=commands.begin(); it_commands != commands.end(); ++it_commands)
 	{
 		std::string line = (*it_commands).get();
 		if (!line.empty())
@@ -92,7 +101,7 @@ BOOL HistorySearch::search(void)
 
 		this->my_sizearray = 0;
 
-		for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands) 
+		for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands)
 		{
 			std::string line = (*it_commands).get();
 
@@ -130,7 +139,7 @@ BOOL HistorySearch::search(void)
 
 		this->my_sizearray = 0;
 
-		for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands) 
+		for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands)
 		{
 			std::string line = (*it_commands).get();
 			{
@@ -170,7 +179,7 @@ BOOL HistorySearch::reset(void)
 	BOOL bOK = FALSE;
 	BOOL check1 = FALSE,check2 = FALSE,check3 = FALSE,check4 = FALSE;
 
-	if (!this->Commands.empty()) 
+	if (!this->Commands.empty())
 	{
 		this->Commands.clear();
 		check1 = TRUE;
@@ -221,7 +230,7 @@ std::string HistorySearch::getNextLine(void)
 			line.assign(my_lines[this->current_position]);
 		}
 
-		if (this->current_position == this->my_sizearray) 
+		if (this->current_position == this->my_sizearray)
 		{
 			line = this->getToken();
 			this->current_position--;
@@ -235,7 +244,7 @@ std::string HistorySearch::getNextLine(void)
 BOOL HistorySearch::freeMyToken(void)
 {
 	BOOL bOK = FALSE;
-	if (!this->my_token.empty()) 
+	if (!this->my_token.empty())
 	{
 		this->my_token.erase();
 		bOK = TRUE;
@@ -251,7 +260,7 @@ BOOL HistorySearch::freeMylines(void)
 		int i = 0;
 		for (i = 0;i < this->my_sizearray; i++)
 		{
-			if (this->my_lines[i]) 
+			if (this->my_lines[i])
 			{
 				FREE(this->my_lines[i]);
 				this->my_lines[i] = NULL;

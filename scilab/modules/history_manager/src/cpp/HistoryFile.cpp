@@ -1,6 +1,14 @@
-/*------------------------------------------------------------------------*/
-/* INRIA 2007 */
-/* Allan CORNET */
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*------------------------------------------------------------------------*/
 #include "HistoryFile.hxx"
 #include "MALLOC.h"
@@ -101,7 +109,7 @@ BOOL HistoryFile::writeToFile(std::string filename)
 		{
 			char *commentendsession = NULL;
 			list<CommandLine>::iterator it_commands;
-			for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands) 
+			for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands)
 			{
 				std::string line = (*it_commands).get();
 				if (!line.empty())
@@ -173,7 +181,7 @@ BOOL HistoryFile::setHistory(list<CommandLine> commands)
 
 	if (!this->Commands.empty()) this->Commands.clear();
 
-	for(it_commands=commands.begin(); it_commands != commands.end(); ++it_commands) 
+	for(it_commands=commands.begin(); it_commands != commands.end(); ++it_commands)
 	{
 		std::string line = (*it_commands).get();
 		if (!line.empty())
@@ -190,13 +198,13 @@ BOOL HistoryFile::reset(void)
 	BOOL bOK = FALSE;
 	BOOL check1 = FALSE,check2 = FALSE;
 
-	if (!this->Commands.empty()) 
+	if (!this->Commands.empty())
 	{
 		this->Commands.clear();
 		check1 = TRUE;
 	}
 
-	if (!my_history_filename.empty()) 
+	if (!my_history_filename.empty())
 	{
 		my_history_filename.erase();
 		check2 = TRUE;

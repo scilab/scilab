@@ -1,7 +1,16 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /*--------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/ 
 #include "gw_history_manager.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -12,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 {
-	static int l1 = 0, m1 = 0, n1 = 0;	
+	static int l1 = 0, m1 = 0, n1 = 0;
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
@@ -25,7 +34,7 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 		return 0;
 	}
 
-	if (Rhs == 1) 
+	if (Rhs == 1)
 	{
 		if (GetType(1) == sci_matrix)
 		{
@@ -73,16 +82,16 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				int i = 0;
 
-				for (i=0;i < nblines;i++) 
-				{ 
+				for (i=0;i < nblines;i++)
+				{
 					if (lines[i])
 					{
 						FREE(lines[i]);
-						lines[i]=NULL; 
+						lines[i]=NULL;
 					}
 				}
 				FREE(lines);
-				lines=NULL; 
+				lines=NULL;
 			}
 		}
 		else
@@ -91,7 +100,7 @@ int C2F(sci_gethistory) _PARAMS((char *fname,unsigned long fname_len))
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		}
 	}
-	
+
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
 	return 0;
