@@ -1,9 +1,21 @@
+
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+ 
 /*------------------------------------------------------------------------
  *    Interface for grand 
- *    Copyright Enpc/Cermics 
- *    jpc@cermics.enpc.fr 
- *    stuff to deal with several generators added 
- *         by Bruno Pincon (12/11/2001) 
+ *    jpc@cermics.enpc.fr
+ *    stuff to deal with several generators added
+ *         by Bruno Pincon (12/11/2001)
  *
  --------------------------------------------------------------------------*/
 #include <string.h>
