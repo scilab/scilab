@@ -1,10 +1,22 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 
 #include "intersci-n.h"
 #include "outext.h"
 
 /***********************************************
- * Output of external variables 
+ * Output of external variables
  **********************************************/
 
 /* global variables */
@@ -21,7 +33,7 @@ static char str3[MAXNAM];
 void OutExtCOLUMN(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str2,"1");
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));  
+  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   OutExtCommon(f,var,insidelist,nel);
 }
 
@@ -60,15 +72,15 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
       int iout = GetExistOutVar();
       VARPTR vout = variables[iout -1];
       AddDeclare(DEC_INT,"lrs");
-      if ( strncmp(var->fexternal,"cintf",4)==0 ||  
+      if ( strncmp(var->fexternal,"cintf",4)==0 ||
 	   strncmp(var->fexternal,"cboolf",5)==0 ||
 	   strncmp(var->fexternal,"cdoublef",7)==0 ||
 	   strncmp(var->fexternal,"cfloatf",6)==0 ||
-	   strncmp(var->fexternal,"ccharf",5)==0) 
+	   strncmp(var->fexternal,"ccharf",5)==0)
 	{
-	  if (isdigit(str1[0]) != 0) 
+	  if (isdigit(str1[0]) != 0)
 	    {
-	      if (isdigit(str2[0]) != 0) 
+	      if (isdigit(str2[0]) != 0)
 		  {
 		    AddDeclare(DEC_INT,"loc1");
 		    AddDeclare(DEC_INT,"loc2");
@@ -88,7 +100,7 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 	    }
 	  else
 	    {
-	      if (isdigit(str2[0]) != 0) 
+	      if (isdigit(str2[0]) != 0)
 		{
 		  AddDeclare(DEC_INT,"loc2");
 		  Fprintf(f,indent,"CreateListVarFromPtr(%d,%d,\"%s\",%s,(loc2=%s,&loc2),&le%d);\n",
@@ -104,7 +116,7 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 			  str1,str2,var->stack_position);
 		}
 	    }
-	  if ( strcmp(var->fexternal,"cintf")==0 ||  
+	  if ( strcmp(var->fexternal,"cintf")==0 ||
 	       strcmp(var->fexternal,"cboolf")==0 ||
 	       strcmp(var->fexternal,"cdoublef")==0 ||
 	       strcmp(var->fexternal,"cfloatf")==0 ||
@@ -121,18 +133,18 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 		  str1,str2);
 	}
     }
-  else 
+  else
     {
       /** CreateVarFromPtr peut etre utilise ds plusieurs cas **/
-      if ( strncmp(var->fexternal,"cintf",4)==0 ||  
-	   strncmp(var->fexternal,"cboolf",5)==0 ||  
+      if ( strncmp(var->fexternal,"cintf",4)==0 ||
+	   strncmp(var->fexternal,"cboolf",5)==0 ||
 	   strncmp(var->fexternal,"cdoublef",7)==0 ||
 	   strncmp(var->fexternal,"cfloatf",6)==0 ||
-	   strncmp(var->fexternal,"ccharf",5)==0) 
+	   strncmp(var->fexternal,"ccharf",5)==0)
 	{
-	  if (isdigit(str1[0]) != 0) 
+	  if (isdigit(str1[0]) != 0)
 	    {
-	      if (isdigit(str2[0]) != 0) 
+	      if (isdigit(str2[0]) != 0)
 		{
 		  AddDeclare(DEC_INT,"loc1");
 		  AddDeclare(DEC_INT,"loc2");
@@ -150,7 +162,7 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 	    }
 	  else
 	    {
-	      if (isdigit(str2[0]) != 0) 
+	      if (isdigit(str2[0]) != 0)
 		{
 		  AddDeclare(DEC_INT,"loc2");
 		  Fprintf(f,indent,"CreateVarFromPtr(%d,\"%s\",%s,(loc2=%s,&loc2),&le%d);\n",icre,
@@ -164,8 +176,8 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
 			  str1,str2,var->stack_position);
 		}
 	    }
-	  if ( strcmp(var->fexternal,"cintf")==0 ||  
-	       strcmp(var->fexternal,"cboolf")==0 ||  
+	  if ( strcmp(var->fexternal,"cintf")==0 ||
+	       strcmp(var->fexternal,"cboolf")==0 ||
 	       strcmp(var->fexternal,"cdoublef")==0 ||
 	       strcmp(var->fexternal,"cfloatf")==0 ||
 	       strcmp(var->fexternal,"ccharf")==0 )
@@ -183,14 +195,14 @@ void OutExtCommon(FILE *f,VARPTR var,int insidelist,int nel)
       Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
       icre++;
     }
-  if ( strcmp(var->fexternal,"cintf")==0 ||  
-       strcmp(var->fexternal,"cboolf")==0 ||  
+  if ( strcmp(var->fexternal,"cintf")==0 ||
+       strcmp(var->fexternal,"cboolf")==0 ||
        strcmp(var->fexternal,"cdoublef")==0 ||
        strcmp(var->fexternal,"cfloatf")==0 ||
        strcmp(var->fexternal,"ccharf")==0 )
     {
     }
-  else 
+  else
     {
       AddDeclare(DEC_INT,"lrs");
       AddDeclare(DEC_INT,"mn");
@@ -205,7 +217,7 @@ void OutExtSTRING(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,"1");
-  if ( strcmp(var->fexternal,"ccharf")== 0 || strcmp(var->fexternal,"cchar")== 0 ) 
+  if ( strcmp(var->fexternal,"ccharf")== 0 || strcmp(var->fexternal,"cchar")== 0 )
     {
       if ( insidelist != 0)
 	{
@@ -216,7 +228,7 @@ void OutExtSTRING(FILE *f,VARPTR var,int insidelist,int nel)
 	  Fprintf(f,indent,"CreateListVarFromPtr(%d,%d,\"c\",%s,%s,&le%d);\n",
 	      vout->stack_position,nel,str1,str2,var->stack_position);
 	}
-      else 
+      else
 	{
 	  AddDeclare(DEC_INT,"un=1");
 	  strcpy(str2,"&un");
@@ -224,7 +236,7 @@ void OutExtSTRING(FILE *f,VARPTR var,int insidelist,int nel)
 		  str1,str2,var->stack_position);
 	  Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
 	  icre++;
-	} 
+	}
       if ( strcmp(var->fexternal,"ccharf")== 0 )
 	Fprintf(f,indent,"FreePtr(&le%d);\n",var->stack_position);
     }
@@ -242,7 +254,7 @@ void OutExtSTRING(FILE *f,VARPTR var,int insidelist,int nel)
 	  Fprintf(f,indent,"CreateListVar(%d,%d,\"c\",%s,%s,&lrs,m_u);\n",
 		  vout->stack_position,nel,str1,str2);
 	}
-      else 
+      else
 	{
 	  /** XXXX : a revoir CreateVarFromPtr peut etre utilise ds plusieurs cas **/
 	  AddDeclare(DEC_INT,"un=1");
@@ -251,7 +263,7 @@ void OutExtSTRING(FILE *f,VARPTR var,int insidelist,int nel)
 		  str1,str2);
 	  Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
 	  icre++;
-	} 
+	}
       AddDeclare(DEC_INT,"lrs");
       AddDeclare(DEC_INT,"mn");
       Fprintf(f,indent,"mn=%s*%s;\n",str1+1,str2+1);
@@ -261,7 +273,7 @@ void OutExtSTRING(FILE *f,VARPTR var,int insidelist,int nel)
 }
 
 
-void OutExtSPARSE(FILE *f,VARPTR var,int insidelist,int nel) 
+void OutExtSPARSE(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
@@ -273,7 +285,7 @@ void OutExtSPARSE(FILE *f,VARPTR var,int insidelist,int nel)
       Fprintf(f,indent,"CreateListVarFromPtr(%d,\"s\",&(S%s->m),&(S%s->n),S%s);\n",
 	      vout->stack_position,nel,str3,str3,str3);
     }
-  else 
+  else
     {
       Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
       Fprintf(f,indent,"CreateVarFromPtr(%d,\"s\",&(S%s->m),&(S%s->n),S%s);\n",
@@ -307,7 +319,7 @@ void OutExtIMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
 	      SGetExtForTypeAbrev(var),
 	      str3,str1,str2);
     }
-  else 
+  else
     {
       /** XXXX : a revoir CreateVarFromPtr peut etre utilise ds plusieurs cas **/
       Fprintf(f,indent,"CreateCVar(%d,\"%s\",%s,%s,%s,&lrs,&lcs);\n",icre,
@@ -347,7 +359,7 @@ void OutExtBMATRIX1(FILE *f,VARPTR var,int insidelist,int nel)
       Fprintf(f,indent,"if(.not.listcrebmat(fname,top,%d,lw,%s,%s,lrs)) return\n",
 	      nel,str1,str2);
     }
-  else 
+  else
     {
       AddDeclare(DEC_LOGICAL,"crebmat");
       Fprintf(f,indent,"if(.not.crebmat(fname,top,%s,%s,lrs)) return\n",str1,str2);
@@ -366,7 +378,7 @@ void OutExtPOLYNOM(FILE *f,VARPTR var,int insidelist,int nel)
   Fprintf(f,indent,"return\n");
   Fprintf(f,indent,"endif\n");
   Fprintf(f,indent,"istk(ilw)=1\n");
-  Fprintf(f,indent,"istk(ilw+1)=1\n");		    
+  Fprintf(f,indent,"istk(ilw+1)=1\n");
   Fprintf(f,indent,"istk(ilw+2)=1\n");
   Fprintf(f,indent,"istk(ilw+3)=0\n");
   Fprintf(f,indent,"call cvstr(4,'%s    ',istk(ilw+4),0)\n",str2);
@@ -387,7 +399,7 @@ void OutExtPOINTER(FILE *f,VARPTR var,int insidelist,int nel)
     {
       printf(" %s in output list : not implemented ;",SGetSciType(var->type));
     }
-  else 
+  else
     {
     }
 }
@@ -452,10 +464,10 @@ OutExtRhsTab OutExtRHSTAB[] = {
 
 
 /***********************************************
- * Output of external variable var 
- *   if variable is outputed inside a list 
- *   insidelist is set to true and nel is the number 
- *   of the variable in the list 
+ * Output of external variable var
+ *   if variable is outputed inside a list
+ *   insidelist is set to true and nel is the number
+ *   of the variable in the list
  * Convert ==> 1 if the variable has an output convertion to be done
  ***********************************************/
 

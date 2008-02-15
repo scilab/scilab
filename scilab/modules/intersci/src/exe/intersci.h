@@ -1,8 +1,20 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include "PARAMS.h"
 
 /* VERSION et DATE */
 #define VERSION "2.2"
-#define DATE "September 2006" 
+#define DATE "September 2006"
 
 /* max dimension for the array: can be modified */
 #define MAXARG 50
@@ -11,7 +23,7 @@
 #define MAXLINE 1000
 #define MAXNAM 128
 #define MAXVAR 200
-/* flag for generation of type and element dimension checking for lists: 
+/* flag for generation of type and element dimension checking for lists:
    can be modified */
 #define TESTLISTELEMENTS 1
 
@@ -25,7 +37,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-/* FORTRAN variable types */ 
+/* FORTRAN variable types */
 #define CHAR 1
 #define INT 2
 #define DOUBLE 3

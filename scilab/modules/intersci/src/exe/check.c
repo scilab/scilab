@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 
 #include "intersci-n.h"
@@ -39,27 +51,27 @@ static  char str2[MAXNAM];
 
 /***********************************************
  * Matrix OK
- *   flag is used for optional variables 
- *   f(..... x=val) 
+ *   flag is used for optional variables
+ *   f(..... x=val)
  ***********************************************/
 
-void CheckMATRIX(f,var,flag) 
+void CheckMATRIX(f,var,flag)
      FILE *f;   VARPTR var ;int flag;
 {
   CheckCom(f,var,flag);
   /** str1 was set by CheckCom */
-  CheckOptSquare(f,var,str1); 
+  CheckOptSquare(f,var,str1);
   CheckOptDim(f,var,0);
   CheckOptDim(f,var,1);
 }
 
 /** common function for different data types */
 
-void CheckCom(f,var,flag) 
+void CheckCom(f,var,flag)
      FILE *f;   VARPTR var ;int flag;
 {
   int i1 = var->stack_position - basfun->NewMaxOpt +1 ;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -80,10 +92,10 @@ void CheckCom(f,var,flag)
 /***********************************************
  * STRING : OK
  ***********************************************/
-  
+
 void CheckSTRING(f,var,flag) FILE *f;   VARPTR var ;int flag;
 {
-  if (var->for_type != CHAR) 
+  if (var->for_type != CHAR)
     {
       printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
 	     SGetSciType(STRING),SGetForType(var->for_type),var->name);
@@ -99,7 +111,7 @@ void CheckSTRING(f,var,flag) FILE *f;   VARPTR var ;int flag;
  ***********************************************/
 
 
-void CheckBMATRIX(f,var,flag) 
+void CheckBMATRIX(f,var,flag)
      FILE *f;   VARPTR var ;int flag;
 {
   if (var->for_type != INT && var->for_type != BOOLEAN)
@@ -111,20 +123,20 @@ void CheckBMATRIX(f,var,flag)
   var->for_type = BOOLEAN;
   CheckCom(f,var,flag);
   /** str1 was set by CheckCom */
-  CheckOptSquare(f,var,str1); 
+  CheckOptSquare(f,var,str1);
   CheckOptDim(f,var,0);
   CheckOptDim(f,var,1);
 }
 
 /***********************************************
- * Complex Matrix 
+ * Complex Matrix
  ***********************************************/
 
-void CheckIMATRIX(f,var,flag) 
+void CheckIMATRIX(f,var,flag)
      FILE *f;   VARPTR var ;int flag;
 {
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -133,21 +145,21 @@ void CheckIMATRIX(f,var,flag)
   else
     sprintf(str1,"%de%d",i1,var->list_el);
   /** str1 was set by CheckCom */
-  CheckOptSquare(f,var,str1); 
+  CheckOptSquare(f,var,str1);
   CheckOptDim(f,var,0);
   CheckOptDim(f,var,1);
 }
 
 
 /***********************************************
- * Sparse Matrix 
+ * Sparse Matrix
  ***********************************************/
 
-void CheckSPARSE(f,var,flag) 
+void CheckSPARSE(f,var,flag)
      FILE *f;   VARPTR var ;int flag;
 {
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -160,14 +172,14 @@ void CheckSPARSE(f,var,flag)
       sprintf(str1,"%de%d",i1,var->list_el);
     }
   /** str1 was set by CheckCom */
-  CheckOptSquare(f,var,str1); 
+  CheckOptSquare(f,var,str1);
   CheckOptDim(f,var,0);
   CheckOptDim(f,var,1);
 }
 
 
 /***********************************************
- * Stringmat 
+ * Stringmat
  ***********************************************/
 
 void CheckSTRINGMAT(f,var,flag) FILE *f;   VARPTR var ;int flag;
@@ -182,13 +194,13 @@ void CheckSTRINGMAT(f,var,flag) FILE *f;   VARPTR var ;int flag;
       sprintf(str1,"%de%d",i1,var->list_el);
     }
   /* square matrix */
-  CheckOptSquare(f,var,str1); 
+  CheckOptSquare(f,var,str1);
   CheckOptDim(f,var,0);
   CheckOptDim(f,var,1);
 }
 
 /***********************************************
- * Row 
+ * Row
  ***********************************************/
 
 void CheckROW(f,var,flag) FILE *f;   VARPTR var ;int flag;
@@ -203,7 +215,7 @@ void CheckROW(f,var,flag) FILE *f;   VARPTR var ;int flag;
 
 
 /***********************************************
- * Column 
+ * Column
  ***********************************************/
 
 void CheckCOLUMN(f,var,flag) FILE *f;   VARPTR var ;int flag;
@@ -217,7 +229,7 @@ void CheckCOLUMN(f,var,flag) FILE *f;   VARPTR var ;int flag;
 }
 
 /***********************************************
- * Vector 
+ * Vector
  ***********************************************/
 
 void CheckVECTOR(f,var,flag) FILE *f;   VARPTR var ;int flag;
@@ -231,13 +243,13 @@ void CheckVECTOR(f,var,flag) FILE *f;   VARPTR var ;int flag;
 }
 
 /***********************************************
- * Polynom 
+ * Polynom
  ***********************************************/
 
 void CheckPOLYNOM(f,var,flag) FILE *f;   VARPTR var ;int flag;
 {
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -253,7 +265,7 @@ void CheckPOLYNOM(f,var,flag) FILE *f;   VARPTR var ;int flag;
 }
 
 /***********************************************
- * Scalar 
+ * Scalar
  ***********************************************/
 
 void CheckSCALAR(f,var,flag) FILE *f;   VARPTR var ;int flag;
@@ -265,14 +277,14 @@ void CheckSCALAR(f,var,flag) FILE *f;   VARPTR var ;int flag;
 }
 
 /***********************************************
- * Pointers 
+ * Pointers
  ***********************************************/
 
-void CheckPOINTER(f,var,flag) 
+void CheckPOINTER(f,var,flag)
      FILE *f;   VARPTR var ;int flag;
 {
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -306,26 +318,26 @@ void CheckTLIST(f,var,flag) FILE *f;   VARPTR var ;int flag;{
 }
 
 void CheckSEQUENCE(f,var,flag) FILE *f;   VARPTR var ;int flag;
-{  
+{
   fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 void CheckEMPTY(f,var,flag)  FILE *f;   VARPTR var ;int flag;
-{  
+{
   fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 void CheckWORK(f,var,flag)  FILE *f;   VARPTR var ;int flag;
-{  
+{
   fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
 
 
 void CheckDIMFOREXT(f,var,flag)  FILE *f;   VARPTR var ;int flag;
-{  
+{
   fprintf(stderr,"Wrong type in Check function\n");
   exit(1);
 }
@@ -338,16 +350,16 @@ void CheckOptDim(f,var,nel)
 {
   if (var->el[nel]-1>=0) {
   VARPTR var1 = variables[var->el[nel]-1];
-  if ( var1->nfor_name == 0) 
+  if ( var1->nfor_name == 0)
     {
       fprintf(stderr,"Pb with element number %d [%s] of variable %s\n",
 	      nel+1, var1->name, var->name);
       return;
     }
-  if (isdigit(var1->name[0]) != 0) 
+  if (isdigit(var1->name[0]) != 0)
     {
       /* the dimension of the variable is a constant integer */
-      if ( strcmp(var1->for_name[0],var1->name) != 0) 
+      if ( strcmp(var1->for_name[0],var1->name) != 0)
 	{
 	  Fprintf(f,indent,"CheckOneDim(opts[%d].position,%d,%s,%s);\n",
 		  var->stack_position - basfun->NewMaxOpt +1 ,
@@ -363,7 +375,7 @@ void CheckOptDim(f,var,nel)
 void CheckOptSquare(FILE *f, VARPTR var, char *str1_)
 {
   /* XXXXX cas liste ? */
-  if (var->el[0] == var->el[1]) 
+  if (var->el[0] == var->el[1])
     {
       Fprintf(f,indent,"CheckSquare(opts[%d].position,opts[%s].m,opts[%s].n);\n",
 	      var->stack_position - basfun->NewMaxOpt +1 ,

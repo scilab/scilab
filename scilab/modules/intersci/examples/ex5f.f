@@ -1,11 +1,19 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine foubare2(ch,a,ia,b,ib,c,mc,nc,d,w)
 c     -----------------------------------------
 c     -----------   EXAMPLE   -----------------
 c     inputs:  ch, a,b and c; ia,ib and mc,nc
-c     ch=character, a=integer, b=real and c=double 
+c     ch=character, a=integer, b=real and c=double
 c     ia,ib and [mc,nc] are the dimensions of a,b and c resp.
 c     outputs: a,b,c,d
-c     if ch='mul'   a,b and c = 2 * (a,b and c) 
+c     if ch='mul'   a,b and c = 2 * (a,b and c)
 c     and d of same dimensions as c with
 c     d(i,j)=(i+j)*c(i,j)
 c     if ch='add' a,b and c = 2 + (a,b and c)

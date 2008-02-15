@@ -1,24 +1,36 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 #include "intersci-n.h"
 #include "getrhs.h"
 
 /*****************************************************************
- * For each possible data type we have here a function 
- * [1] which generate the code for <<Getting>> a variable 
- * and checking some properties 
- *     if needed check if the variable is square 
+ * For each possible data type we have here a function
+ * [1] which generate the code for <<Getting>> a variable
+ * and checking some properties
+ *     if needed check if the variable is square
  *     if needed check if some dimensions must be of fixed sizes
  * [2] generate the code for type convertion if needed
- * [3] computes the string for the C or Fortran calling sequence 
- *     which is stored in the variable structure 
- * All the possible Getfunction are stored in a function table 
+ * [3] computes the string for the C or Fortran calling sequence
+ *     which is stored in the variable structure
+ * All the possible Getfunction are stored in a function table
  ******************************************************************/
 
 /******************************************************
- * the functions in the following table must follow  the 
- * order given by the type list defined in  intersci-n.h 
+ * the functions in the following table must follow  the
+ * order given by the type list defined in  intersci-n.h
  * The correct ordering is checked when using this table.
- * (see intersci.c) 
+ * (see intersci.c)
  ********************************************************/
 
 GetRhsTab RHSTAB[] = {
@@ -56,27 +68,27 @@ static  char str2[MAXNAM];
 
 /***********************************************
  * Matrix OK
- *   flag is used for optional variables 
- *   f(..... x=val) 
+ *   flag is used for optional variables
+ *   f(..... x=val)
  ***********************************************/
 
-void GetMATRIX(FILE *f,VARPTR var,int flag) 
+void GetMATRIX(FILE *f,VARPTR var,int flag)
 {
   GetCom(f,var,flag);
   /** str1 was set by GetCom */
-  CheckSquare(f,var,str1,str2); 
+  CheckSquare(f,var,str1,str2);
   Check(f,var,0);
   Check(f,var,1);
 }
 
 /** common function for different data types */
 
-void GetCom(FILE *f,VARPTR var,int flag) 
+void GetCom(FILE *f,VARPTR var,int flag)
 {
   static char C[]="GetRhsVar(%s,\"%s\",&m%d,&n%d,&l%d);\n";
   static char LC[]="GetListRhsVar(%s,%d,\"%s\",&m%s,&n%s,&l%s);\n";
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -85,7 +97,7 @@ void GetCom(FILE *f,VARPTR var,int flag)
       /** A scilab matrix argument **/
       sprintf(str1,"%d",i1);
       Fprintf(f,indent,C,str2,SGetForTypeAbrev(var),i1,i1,i1);
-      /* Adding the calling sequence in the for_names  */ 
+      /* Adding the calling sequence in the for_names  */
       ChangeForName2(var,"%s(l%s)",SGetForTypeStack(var),str1);
     }
   else
@@ -93,7 +105,7 @@ void GetCom(FILE *f,VARPTR var,int flag)
       /** A scilab matrix argument inside a list **/
       sprintf(str1,"%de%d",i1,var->list_el);
       Fprintf(f,indent,LC,str2,var->list_el,SGetForTypeAbrev(var),str1,str1,str1,str1);
-      /* Adding the calling sequence in the for_names  */ 
+      /* Adding the calling sequence in the for_names  */
       ChangeForName2(var,"%s(l%s)",SGetForTypeStack(var),str1);
     }
   AddDeclare1(DEC_INT,"m%s",str1);
@@ -107,10 +119,10 @@ void GetCom(FILE *f,VARPTR var,int flag)
 /***********************************************
  * STRING : OK
  ***********************************************/
-  
+
 void GetSTRING(FILE *f,VARPTR var,int flag)
 {
-  if (var->for_type != CHAR) 
+  if (var->for_type != CHAR)
     {
       printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
 	     SGetSciType(STRING),SGetForType(var->for_type),var->name);
@@ -126,7 +138,7 @@ void GetSTRING(FILE *f,VARPTR var,int flag)
 
 
 void GetBMATRIX(FILE *f, VARPTR var, int flag)
-     
+
 {
   if (var->for_type != INT && var->for_type != BOOLEAN)
     {
@@ -137,13 +149,13 @@ void GetBMATRIX(FILE *f, VARPTR var, int flag)
   var->for_type = BOOLEAN;
   GetCom(f,var,flag);
   /** str1 was set by GetCom */
-  CheckSquare(f,var,str1,str2); 
+  CheckSquare(f,var,str1,str2);
   Check(f,var,0);
   Check(f,var,1);
 }
 
 /***********************************************
- * Complex Matrix 
+ * Complex Matrix
  ***********************************************/
 
 void GetIMATRIX(FILE *f,VARPTR var,int flag)
@@ -151,7 +163,7 @@ void GetIMATRIX(FILE *f,VARPTR var,int flag)
   static char C[]="GetRhsCVar(%s,\"%s\",&it%d,&m%d,&n%d,&lr%d,&lc%d);\n";
   static char LC[]="GetListRhsCVar(%s,%d,\"%s\",&it%s,&m%s,&n%s,&lr%s,&lc%s,&lar%s,&lac%s);\n";
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -161,7 +173,7 @@ void GetIMATRIX(FILE *f,VARPTR var,int flag)
       sprintf(str1,"%d",i1);
       Fprintf(f,indent,C,str2,SGetForTypeAbrev(var),
 	      i1,i1,i1,i1,i1);
-      /* Adding the calling sequence in the for_names  */ 
+      /* Adding the calling sequence in the for_names  */
       ChangeForName2(var,"%s(lr%s),%s(lc%s),&it%s",
 		     SGetForTypeStack(var),str1,
 		     SGetForTypeStack(var),str1,str1);
@@ -174,12 +186,12 @@ void GetIMATRIX(FILE *f,VARPTR var,int flag)
       AddDeclare1(DEC_INT,"lac%s",str1);
       Fprintf(f,indent,LC,str2,var->list_el,SGetForTypeAbrev(var),
 	      str1,str1,str1,str1,str1,str1,str1);
-      /* Adding the calling sequence in the for_names  */ 
+      /* Adding the calling sequence in the for_names  */
       ChangeForName2(var,"%s(lr%s),%s(lc%s),&it%s",
 		     SGetForTypeStack(var),str1,
 		     SGetForTypeStack(var),str1,str1);
     }
-  
+
   AddDeclare1(DEC_INT,"m%s",str1);
   AddDeclare1(DEC_INT,"n%s",str1);
   AddDeclare1(DEC_INT,"lr%s",str1);
@@ -187,14 +199,14 @@ void GetIMATRIX(FILE *f,VARPTR var,int flag)
   AddDeclare1(DEC_INT,"it%s",str1);
 
   /** str1 was set by GetCom */
-  CheckSquare(f,var,str1,str2); 
+  CheckSquare(f,var,str1,str2);
   Check(f,var,0);
   Check(f,var,1);
 }
 
 
 /***********************************************
- * Sparse Matrix 
+ * Sparse Matrix
  ***********************************************/
 
 void GetSPARSE(FILE *f,VARPTR var,int flag)
@@ -202,7 +214,7 @@ void GetSPARSE(FILE *f,VARPTR var,int flag)
   static char C[]="GetRhsVar(%s,\"s\",&m%d,&n%d,&S%d);\n";
   static char LC[]="GetListRhsVar(%s,%d,\"s\",&m%s,&n%s,&S%s);\n";
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -211,7 +223,7 @@ void GetSPARSE(FILE *f,VARPTR var,int flag)
       /** A scilab matrix argument **/
       sprintf(str1,"%d",i1);
       Fprintf(f,indent,C,str2, i1,i1,i1);
-      /* Adding the calling sequence in the for_names  */ 
+      /* Adding the calling sequence in the for_names  */
       ChangeForName2(var,"&S%d",i1);
     }
   else
@@ -219,7 +231,7 @@ void GetSPARSE(FILE *f,VARPTR var,int flag)
       /** A scilab matrix argument inside a list **/
       sprintf(str1,"%de%d",i1,var->list_el);
       Fprintf(f,indent,LC,str2,var->list_el, str1,str1,str1);
-      /* Adding the calling sequence in the for_names  */ 
+      /* Adding the calling sequence in the for_names  */
       ChangeForName2(var,"&S%s",str1);
     }
 
@@ -228,7 +240,7 @@ void GetSPARSE(FILE *f,VARPTR var,int flag)
   AddDeclare1(DEC_SPARSE,"S%s",str1);
 
   /** str1 was set by GetCom */
-  CheckSquare(f,var,str1,str2); 
+  CheckSquare(f,var,str1,str2);
   Check(f,var,0);
   Check(f,var,1);
 }
@@ -237,13 +249,13 @@ void GetSPARSE(FILE *f,VARPTR var,int flag)
 
 
 /***********************************************
- * Stringmat 
+ * Stringmat
  ***********************************************/
 
 void GetSTRINGMAT(FILE *f,VARPTR var,int flag)
 {
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -268,10 +280,10 @@ void GetSTRINGMAT(FILE *f,VARPTR var,int flag)
       ChangeForName1(var,str);
     }
   /* square matrix */
-  CheckSquare(f,var,str1,str2); 
+  CheckSquare(f,var,str1,str2);
   Check(f,var,0);
   Check(f,var,1);
-  if (var->for_type != CSTRINGV) 
+  if (var->for_type != CSTRINGV)
     {
       printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
 	     SGetSciType(STRINGMAT),SGetForType(var->for_type),var->name);
@@ -280,10 +292,10 @@ void GetSTRINGMAT(FILE *f,VARPTR var,int flag)
 }
 
 /***********************************************
- * Row 
+ * Row
  ***********************************************/
 
-void GetROW(FILE *f,VARPTR var,int flag)	 
+void GetROW(FILE *f,VARPTR var,int flag)
 {
   int i1= var->stack_position;
   GetCom(f,var,flag);
@@ -294,7 +306,7 @@ void GetROW(FILE *f,VARPTR var,int flag)
       Fprintf(f,indent,"mn%d=m%d*n%d;\n",i1,i1,i1);
       AddDeclare1(DEC_INT,"mn%d",i1);
     }
-  else 
+  else
     {
       sprintf(str1,"%de%d",i1,var->list_el);
       Fprintf(f,indent,"CheckListRow(%d,%d,m%s,n%s);\n",i1,var->list_el,str1,str1);
@@ -305,7 +317,7 @@ void GetROW(FILE *f,VARPTR var,int flag)
 
 
 /***********************************************
- * Column 
+ * Column
  ***********************************************/
 
 void GetCOLUMN(FILE *f,VARPTR var,int flag)
@@ -319,7 +331,7 @@ void GetCOLUMN(FILE *f,VARPTR var,int flag)
       Fprintf(f,indent,"mn%d=m%d*n%d;\n",i1,i1,i1);
       AddDeclare1(DEC_INT,"mn%d",i1);
     }
-  else 
+  else
     {
       sprintf(str1,"%de%d",i1,var->list_el);
       Fprintf(f,indent,"CheckListColumn(%d,%d,m%s,n%s);\n",i1,var->list_el,str1,str1);
@@ -329,7 +341,7 @@ void GetCOLUMN(FILE *f,VARPTR var,int flag)
 }
 
 /***********************************************
- * Vector 
+ * Vector
  ***********************************************/
 
 void GetVECTOR(FILE *f,VARPTR var,int flag)
@@ -343,7 +355,7 @@ void GetVECTOR(FILE *f,VARPTR var,int flag)
       Fprintf(f,indent,"mn%d=m%d*n%d;\n",i1,i1,i1);
       AddDeclare1(DEC_INT,"mn%d",i1);
     }
-  else 
+  else
     {
       sprintf(str1,"%de%d",i1,var->list_el);
       Fprintf(f,indent,"CheckListVector(%d,%d,m%s,n%s);\n",i1,var->list_el,str1,str1);
@@ -353,7 +365,7 @@ void GetVECTOR(FILE *f,VARPTR var,int flag)
 }
 
 /***********************************************
- * Polynom 
+ * Polynom
  ***********************************************/
 
 void GetPOLYNOM(FILE *f,VARPTR var,int flag)
@@ -375,8 +387,8 @@ void GetPOLYNOM(FILE *f,VARPTR var,int flag)
       Fprintf(f,indent,"$     namel%s,ilp%s,lr%s,lc%s)\n",str1,str1,str1,str1);
     }
   Check(f,var,0);
-  /* Convertion */ 
-  switch (var->for_type) 
+  /* Convertion */
+  switch (var->for_type)
     {
     case INT:
       Fprintf(f,indent,"call entier(n%s,stk(lr%s),istk(iadr(lr%s)))\n",
@@ -394,7 +406,7 @@ void GetPOLYNOM(FILE *f,VARPTR var,int flag)
       sprintf(str,"stk(lr%s)",str1);
       ChangeForName1(var,str);
       break;
-    default: 
+    default:
       printf("incompatibility between Scilab and Fortran type for variable \"%s\"\n",
 	     var->name);
       exit(1);
@@ -402,7 +414,7 @@ void GetPOLYNOM(FILE *f,VARPTR var,int flag)
 }
 
 /***********************************************
- * Scalar 
+ * Scalar
  ***********************************************/
 
 void GetSCALAR(FILE *f,VARPTR var,int flag)
@@ -414,7 +426,7 @@ void GetSCALAR(FILE *f,VARPTR var,int flag)
     {
       Fprintf(f,indent,"CheckScalar(%d,m%d,n%d);\n",i1,i1,i1);
     }
-  else 
+  else
     {
       sprintf(str1,"%de%d",i1,var->list_el);
       Fprintf(f,indent,"CheckListScalar(%d,%d,m%s,n%s);\n",i1,var->list_el,str1,str1);
@@ -422,14 +434,14 @@ void GetSCALAR(FILE *f,VARPTR var,int flag)
 }
 
 /***********************************************
- * Pointers 
+ * Pointers
  ***********************************************/
 
 void GetPOINTER(FILE *f,VARPTR var,int flag)
 {
   static char C[]="GetRhsOPointer(%s,&lr%d);\n";
   int i1= var->stack_position;
-  if ( flag == 1 ) 
+  if ( flag == 1 )
     sprintf(str2,"k");
   else
     sprintf(str2,"%d",i1);
@@ -439,7 +451,7 @@ void GetPOINTER(FILE *f,VARPTR var,int flag)
       /** A scilab matrix argument **/
       sprintf(str1,"%d",i1);
       Fprintf(f,indent,C,str2,i1);
-      /* Adding the calling sequence in the for_names  */ 
+      /* Adding the calling sequence in the for_names  */
       ChangeForName2(var,"stk(lr%s)",str1);
     }
   else
@@ -448,7 +460,7 @@ void GetPOINTER(FILE *f,VARPTR var,int flag)
       exit(1);
     }
   AddDeclare1(DEC_INT,"lr%s",str1);
-  
+
 }
 
 
@@ -471,48 +483,48 @@ void GetTLIST(FILE *f,VARPTR var,int flag)
 }
 
 void GetSEQUENCE(FILE *f,VARPTR var,int flag)
-{  
+{
   fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 void GetEMPTY(FILE *f,VARPTR var,int flag)
-{  
+{
   fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 void GetWORK(FILE *f,VARPTR var,int flag)
-{  
+{
   fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 
 void GetDIMFOREXT(FILE *f,VARPTR var,int flag)
-{  
+{
   fprintf(stderr,"Wrong type in Get function\n");
   exit(1);
 }
 
 /***************************************
  * Utility function for the Getfunctions
- * Check for fixed sized dimensions 
+ * Check for fixed sized dimensions
  ***************************************/
 
 void Check(FILE *f,VARPTR var,int nel)
 {
   VARPTR var1 = variables[var->el[nel]-1];
-  if ( var1->nfor_name == 0) 
+  if ( var1->nfor_name == 0)
     {
       fprintf(stderr,"Pb with element number %d [%s] of variable %s\n",
 	      nel+1, var1->name, var->name);
       return;
     }
-  if (isdigit(var1->name[0]) != 0) 
+  if (isdigit(var1->name[0]) != 0)
     {
       /* the dimension of the variable is a constant integer */
-      if ( strcmp(var1->for_name[0],var1->name) != 0) 
+      if ( strcmp(var1->for_name[0],var1->name) != 0)
 	{
 	  if (var->list_el ==0 )
 	    {
@@ -543,10 +555,10 @@ void CheckSquare(FILE *f,VARPTR var,char *str1_,char *str2_)
     {
       Fprintf(f,indent,"CheckSquare(%d,m%s,n%s);\n", var->stack_position,str1_,str1_);
     }
-  else 
+  else
     {
       Fprintf(f,indent,"CheckListSquare(%s,%d,m%s,n%s);\n",str2_, var->list_el,str1_,str1_);
-    }  
+    }
 }
 
 

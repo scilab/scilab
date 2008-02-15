@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 
 #include "intersci-n.h"
@@ -9,7 +21,7 @@ static  char size[MAXNAM];
 static  char data[MAXNAM];
 
 /***********************************************
- * Optional variables old style 
+ * Optional variables old style
  ***********************************************/
 
 void WriteOptArg(FILE *f,VARPTR var)
@@ -17,11 +29,11 @@ void WriteOptArg(FILE *f,VARPTR var)
   char lsize[MAXNAM];
   char ldata[MAXNAM];
 
-  Fprintf(f,indent++,"if( Rhs <= %d)\n", 
+  Fprintf(f,indent++,"if( Rhs <= %d)\n",
 	  var->stack_position-1 );
   Fprintf(f,indent,"{\n");
 
-  switch (var->opt_type) 
+  switch (var->opt_type)
     {
     case NAME:
       AddDeclare(DEC_LOGICAL,"optvarget");
@@ -29,7 +41,7 @@ void WriteOptArg(FILE *f,VARPTR var)
 	      var->stack_position,var->opt_name);
       break;
     case VALUE:
-      switch (var->type) 
+      switch (var->type)
 	{
 	case SCALAR:
 	  (*(CRERHSTAB[var->type].fonc))(f,var);
@@ -79,8 +91,8 @@ void WriteOptArg(FILE *f,VARPTR var)
 }
 
 /***********************************************
- * Optional variables new style 
- * first phase : checking arguments 
+ * Optional variables new style
+ * first phase : checking arguments
  ***********************************************/
 
 void WriteOptArgPhase2(FILE *f,IVAR i)
@@ -88,7 +100,7 @@ void WriteOptArgPhase2(FILE *f,IVAR i)
   VARPTR var = variables[basfun->in[i]-1];
   int opt_posi = basfun->NewMaxOpt - (basfun->nin - var->stack_position)-1;
   Fprintf(f,indent,"/* default value to optional argument %s */\n",var->name);
-  switch (var->opt_type) 
+  switch (var->opt_type)
     {
     case NAME:
       Fprintf(f,indent++,"if ( opts[%d].position == -1 ){\n",opt_posi);
@@ -102,7 +114,7 @@ void WriteOptArgPhase2(FILE *f,IVAR i)
       Fprintf(f,--indent,"}\n");
       break;
     case VALUE:
-      switch (var->type) 
+      switch (var->type)
 	{
 
 	case SCALAR:
@@ -147,13 +159,13 @@ void OptMATRIX(FILE *f,VARPTR var)
   AddDeclare1(DEC_INT,"n%d",var->stack_position);
   AddDeclare1(DEC_INT,"l%d",var->stack_position);
 
-  switch ( var->type ) 
+  switch ( var->type )
     {
-    case MATRIX : 
+    case MATRIX :
       Fprintf(f,indent,"opts[%d].m = 1;opts[%d].n = %s;  opts[%d].type = \"%s\";\n",
 	      opt_posi,opt_posi,size,opt_posi,SGetForTypeAbrev(var));
       break;
-    case STRING : 
+    case STRING :
       Fprintf(f,indent,"opts[%d].m = %s;opts[%d].n = 1;  opts[%d].type = \"%s\";\n",
 	      opt_posi,size,opt_posi,opt_posi,SGetForTypeAbrev(var));
       break;
@@ -166,9 +178,9 @@ void OptMATRIX(FILE *f,VARPTR var)
 	  opt_posi,opt_posi,opt_posi,opt_posi,
 	  opt_posi);
   Fprintf(f,indent,"opts[%d].l = VarPtr(opts[%d].position);\n",opt_posi, opt_posi);
-  switch ( var->type ) 
+  switch ( var->type )
     {
-    case MATRIX : 
+    case MATRIX :
       ChangeForName2(variables[var->el[0]-1],"opts[%d].m",opt_posi);
       ChangeForName2(variables[var->el[1]-1],"opts[%d].n",opt_posi);
       break;
@@ -178,7 +190,7 @@ void OptMATRIX(FILE *f,VARPTR var)
     }
   ChangeForName2(var,"%s(opts[%d].l)",SGetForTypeStack(var), opt_posi);
   Fprintf(f,--indent,"}\n");
-  Fprintf(f,indent," else {\n"); 
+  Fprintf(f,indent," else {\n");
   /* should be optimized to exploit dimension infos stored in opts */
   Fprintf(f,indent++,"GetRhsVar(%d,\"%s\",&m%d,&n%d,&l%d);\n",var->stack_position,
   	  SGetForTypeAbrev(var),var->stack_position,var->stack_position,var->stack_position);
@@ -200,19 +212,19 @@ void OptOpointer(FILE *f,VARPTR var)
 
 
 /*****************************************
- * get the size of an optional argument 
- * which is coded as "(size)/..../" in the 
- * optvar string 
- * and the next characters are stored in data 
+ * get the size of an optional argument
+ * which is coded as "(size)/..../" in the
+ * optvar string
+ * and the next characters are stored in data
  *****************************************/
 
 void OptvarGetSize(char *optvar,char *lsize,char *ldata)
 {
   int i,j=0,ok=0;
-  for ( i = 0 ; i < (int) strlen(optvar) ; i++ ) 
+  for ( i = 0 ; i < (int) strlen(optvar) ; i++ )
     {
-      if ( optvar[i] == ')' ) 
-	{ 
+      if ( optvar[i] == ')' )
+	{
 	  lsize[j++] = '\0'; break;
 	}
       if ( ok ==1 ) lsize[j++]= optvar[i];
@@ -220,8 +232,8 @@ void OptvarGetSize(char *optvar,char *lsize,char *ldata)
     }
   if ( i < (int) strlen(optvar)) strcpy(ldata,optvar+i+1);
   ok=0;
-  for ( i = 0 ; i < (int) strlen(ldata) ; i++ ) 
-    if ( ldata[i] == '/' ) 
+  for ( i = 0 ; i < (int) strlen(ldata) ; i++ )
+    if ( ldata[i] == '/' )
       {
 	if (ok ==0 ) {
 	  ldata[i]='{';ok=1;}

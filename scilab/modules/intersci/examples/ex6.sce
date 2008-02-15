@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 //1-Creating interface source file
 // from ex6fi.desc file by call to intersci (see Makefile)
 //2-Making object files
@@ -9,7 +19,7 @@ files=G_make(['/tmp/ex6fi.o','/tmp/ex6c.o'],'ex6.dll');
 exec('ex6fi.sce');
 //Test Scilab functions:
 
-//calc4: input: matrix of character string 
+//calc4: input: matrix of character string
 //       output: matrix of character string (C function ccalc4)
 w=['this' 'is'; 'naw' 'gaad']
 rep=calc6a(w);

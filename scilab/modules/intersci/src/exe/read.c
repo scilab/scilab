@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 
 #include "intersci-n.h"
@@ -6,9 +18,9 @@
 	#define nlgh 24
 #endif
 /**********************************************************
- *Reading the intersci description file 
+ *Reading the intersci description file
  **********************************************************/
-  
+
 int ReadFunction(FILE *f)
 {
   int i, j, l, type, ftype;
@@ -26,27 +38,27 @@ int ReadFunction(FILE *f)
   fline1 = 0;
   infor = 0;
   out1 = 0;
-  while (fgets(s,MAXLINE,f)) 
+  while (fgets(s,MAXLINE,f))
     {
       /* ignoring comments */
       if (s[0] == '/' && s[1] == '/' ) continue;
-      
+
       /* analysis of one line */
-      if (line1 != 1) 
+      if (line1 != 1)
 	nwords = ParseLine(s,words);
-      else 
+      else
 	nwords = ParseScilabLine(s,words);
       /* empty definition at end of file */
-      if (line1 == 1 && nwords == 0) 
+      if (line1 == 1 && nwords == 0)
 	{
 	  return 0;
 	}
       /* end of description */
       if (words[0][0] == '*') return(1);
-      if (line1 == 1) 
+      if (line1 == 1)
 	{
 	  /* SCILAB function description */
-	  if ((int)strlen(words[0]) > nlgh) 
+	  if ((int)strlen(words[0]) > nlgh)
 	    {
 	      printf("SCILAB function name too long: \"%s\"\n",words[0]);
 	      exit(1);
@@ -57,7 +69,7 @@ int ReadFunction(FILE *f)
 	  printf("processing SCILAB function \"%s\"\n",words[0]);
 	  funNames[nFun] = basfun->name;
 	  i = nwords - 1;
-	  if (i > MAXARG) 
+	  if (i > MAXARG)
 	    {
 	      printf("too may input arguments for SCILAB function\"%s\"\n",
 		     words[0]);
@@ -65,9 +77,9 @@ int ReadFunction(FILE *f)
 	      exit(1);
 	    }
 	  basfun->nin = i;
-	  for (i = 0; i < basfun->nin ; i++) 
+	  for (i = 0; i < basfun->nin ; i++)
 	    {
-	      if (words[i+1][0] == '{') 
+	      if (words[i+1][0] == '{')
 		{
 		  basfun->maxOpt++;
 		  nopt = ParseLine(words[i+1]+1,optwords);
@@ -84,11 +96,11 @@ int ReadFunction(FILE *f)
 		  strcpy(variables[ivar-1]->opt_name,optwords[1]);
 		  variables[ivar-1]->is_sciarg = 1;
 		}
-	      else if (words[i+1][0] == '[') 
+	      else if (words[i+1][0] == '[')
 		{
 		  basfun->maxOpt++;
 		  nopt = ParseLine(words[i+1]+1,optwords);
-		  if (nopt != 2) 
+		  if (nopt != 2)
 		    {
 		      printf("Bad syntax for optional argument. Two variables needed\n");
 		      exit(1);
@@ -102,7 +114,7 @@ int ReadFunction(FILE *f)
 		  variables[ivar-1]->stack_position = icre++;
 		  variables[ivar-1]->is_sciarg = 1;
 		}
-	      else 
+	      else
 		{
 		  basfun->in[i] = GetVar(words[i+1],1);
 		  variables[basfun->in[i]-1]->stack_position = icre++;
@@ -111,33 +123,33 @@ int ReadFunction(FILE *f)
 	    }
 	  line1 = 0;
 	  inbas = 1;
-	} 
-      else if (inbas == 1) 
+	}
+      else if (inbas == 1)
 	{
-	  if (nwords == 0) 
+	  if (nwords == 0)
 	    {
 	      /* end of SCILAB variable description */
 	      inbas = 0;
 	      fline1 = 1;
-	    } 
-	  else 
+	    }
+	  else
 	    {
 	      /* SCILAB variable description */
 	      ivar = GetVar(words[0],1);
 	      i = ivar - 1;
-	      if ( variables[i]->is_sciarg == 0) 
+	      if ( variables[i]->is_sciarg == 0)
 		{
 		  /** we only fix stack_position for remaining arguments**/
 		  variables[i]->stack_position = icre++;
 		}
-	      if (nwords == 1) 
+	      if (nwords == 1)
 		{
 		  printf("type missing for variable \"%s\"\n",words[0]);
 		  exit(1);
 		}
 	      type = GetBasType(words[1]);
 	      variables[i]->type = type;
-	      switch (type) 
+	      switch (type)
 		{
 		case SCALAR:
 		case ANY:
@@ -152,7 +164,7 @@ int ReadFunction(FILE *f)
 		case STRING:
 		case WORK:
 		case VECTOR:
-		  if (nwords != 3) 
+		  if (nwords != 3)
 		    {
 		      printf("bad type specification for variable \"%s\"\n", words[0]);
 		      printf("only %d argument given and %d are expected\n", nwords,3);
@@ -163,7 +175,7 @@ int ReadFunction(FILE *f)
 		  break;
 		case LIST:
 		case TLIST:
-		  if (nwords != 3) 
+		  if (nwords != 3)
 		    {
 		      printf("bad type specification for variable \"%s\"\n", words[0]);
 		      printf("only %d argument given and %d are expected\n", nwords,3);
@@ -176,23 +188,23 @@ int ReadFunction(FILE *f)
 		case MATRIX:
 		case BMATRIX:
 		case STRINGMAT:
-		  if (nwords != 4) 
+		  if (nwords != 4)
 		    {
 		      printf("bad type specification for variable \"%s\"\n",words[0]);
 		      printf("%d argument given and %d are expected\n", nwords,4);
 		      exit(1);
-		    }	  
+		    }
 		  variables[i]->el[0] = GetVar(words[2],1);
 		  variables[i]->el[1] = GetVar(words[3],1);
 		  variables[i]->length = 2;
 		  break;
 		case IMATRIX:
-		  if (nwords != 5) 
+		  if (nwords != 5)
 		    {
 		      printf("bad type specification for variable \"%s\"\n",words[0]);
 		      printf("%d argument given and %d are expected\n", nwords,4);
 		      exit(1);
-		    }	  
+		    }
 		  variables[i]->el[0] = GetVar(words[2],1);
 		  variables[i]->el[1] = GetVar(words[3],1);
 		  variables[i]->el[2] = GetVar(words[4],1);
@@ -205,7 +217,7 @@ int ReadFunction(FILE *f)
 		      printf("%d argument given and %d are expected\n", nwords,6);
 		      printf("name sparse m n nel it\n");
 		      exit(1);
-		    }	  
+		    }
 		  variables[i]->el[0] = GetVar(words[2],1);
 		  variables[i]->el[1] = GetVar(words[3],1);
 		  variables[i]->el[2] = GetVar(words[4],1);
@@ -224,14 +236,14 @@ int ReadFunction(FILE *f)
 		  break;
 		}
 	    }
-	} 
-      else if (fline1 == 1) 
+	}
+      else if (fline1 == 1)
 	{
 	  /* FORTRAN subroutine description */
 	  forsub->name = (char *)malloc((unsigned)(strlen(words[0])+1));
 	  strcpy(forsub->name,words[0]);
 	  i = nwords - 1;
-	  if (i > MAXARG) 
+	  if (i > MAXARG)
 	    {
 	      printf("too many argument for FORTRAN subroutine \"%s\"\n",
 		     words[0]);
@@ -239,25 +251,25 @@ int ReadFunction(FILE *f)
 	      exit(1);
 	    }
 	  forsub->narg = i;
-	  for (i = 0; i < nwords - 1; i++) 
+	  for (i = 0; i < nwords - 1; i++)
 	    {
 	      forsub->arg[i] = GetExistVar(words[i+1]);
 	    }
 	  fline1 = 0;
 	  infor = 1;
-	} 
-      else if (infor == 1) 
+	}
+      else if (infor == 1)
 	{
-	  if (nwords == 0) 
+	  if (nwords == 0)
 	    {
 	      /* end of FORTRAN subroutine description */
 	      infor = 0;
 	      out1 = 1;
 	    }
-	  else 
+	  else
 	    {
 	      /* FORTRAN variable description */
-	      if (nwords == 1) 
+	      if (nwords == 1)
 		{
 		  printf("type missing for FORTRAN argument \"%s\"\n",
 			 words[0]);
@@ -266,10 +278,10 @@ int ReadFunction(FILE *f)
 	      ivar = GetExistVar(words[0]);
 	      ftype = GetForType(words[1]);
 	      variables[ivar-1]->for_type = ftype;
-	      if (ftype == EXTERNAL) 
+	      if (ftype == EXTERNAL)
 		{
 		  strcpy((char *)(variables[ivar-1]->fexternal),words[1]);
-		  switch (variables[ivar-1]->type) 
+		  switch (variables[ivar-1]->type)
 		    {
 		    case LIST :
 		    case TLIST :
@@ -291,12 +303,12 @@ int ReadFunction(FILE *f)
 		    }
 		}
 	    }
-	} 
-      else if (out1 == 1) 
+	}
+      else if (out1 == 1)
 	{
 	  /* output variable description */
 	  i = ivar - 1;
-	  if (nwords == 1) 
+	  if (nwords == 1)
 	    {
 	      printf("type missing for output variable \"out\"\n");
 	      exit(1);
@@ -306,19 +318,19 @@ int ReadFunction(FILE *f)
 	  i = ivar - 1;
 	  type = GetBasType(words[1]);
 	  variables[i]->type = type;
-	  switch (type) 
+	  switch (type)
 	    {
 	    case LIST:
 	    case TLIST:
 	    case SEQUENCE:
 	      l = nwords - 2;
-	      if (l > MAXEL) 
+	      if (l > MAXEL)
 		{
 		  printf("list or sequence too long for output variable \"out\"\n");
 		  printf("  augment constant \"MAXEL\" and recompile intersci\n");
 		  exit(1);
 		}
-	      for (j = 0; j < l; j++) 
+	      for (j = 0; j < l; j++)
 		{
 		  int k = GetExistVar(words[j+2]);
 		  variables[i]->el[j] = k;
@@ -337,7 +349,7 @@ int ReadFunction(FILE *f)
 	    }
 	  out1 = 0;
 	}
-      else 
+      else
 	{
 	  /* possibly equal variables */
 	  ivar = GetExistVar(words[0]);
@@ -350,10 +362,10 @@ int ReadFunction(FILE *f)
 }
 
 /***********************************************************************
- *  put the words of SCILAB function description line "s" in "words" and 
+ *  put the words of SCILAB function description line "s" in "words" and
  * return the number of words with checking syntax of optional variables:
  * "{g  the_g }" => 1 word "{g  the_g\n"
- * "[f v]" => 1 word "[f v\n" 
+ * "[f v]" => 1 word "[f v\n"
  **************************************************************************/
 
 int ParseScilabLine(char *s,char *words[])
@@ -456,7 +468,7 @@ int ParseLine(char *s,char *words[])
 }
 
 /***********************************************************************
- * Read a List description file 
+ * Read a List description file
  **************************************************************************/
 
 
@@ -465,23 +477,23 @@ void ReadListFile(char *listname,char *varlistname,IVAR ivar,int stack_position)
   FILE *fin;
   char filin[MAXNAM];
   int nel;
-  
+
   sprintf(filin,"%s.list",listname);
   fin = fopen(filin,"r");
-  if (fin == 0) 
+  if (fin == 0)
     {
       printf("description file for list or tlist \"%s\" does not exist\n",
 	     filin);
       exit(1);
     }
   printf("reading description file for list or tlist \"%s\"\n", listname);
-  
+
   nel = 0;
-  while(ReadListElement(fin,varlistname,ivar,nel,stack_position)) 
+  while(ReadListElement(fin,varlistname,ivar,nel,stack_position))
     {
       nel++;
     }
-  
+
   fclose(fin);
 }
 
@@ -493,11 +505,11 @@ int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_posit
   IVAR ivar;
   char str[MAXNAM];
   nline = 0;
-  while (fgets(s,MAXLINE,f) != NULL) 
+  while (fgets(s,MAXLINE,f) != NULL)
     {
       /* analyse of one line */
       nline++;
-      switch (nline) 
+      switch (nline)
 	{
 	case 1:
 	  break;
@@ -508,7 +520,7 @@ int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_posit
 	  ivar = GetVar(str,0);
 	  i = ivar - 1;
 	  variables[ivar-1]->stack_position =stack_position;
-	  if (nwords == 1) 
+	  if (nwords == 1)
 	    {
 	      printf("type missing for variable \"%s\"\n",words[0]);
 	      exit(1);
@@ -518,7 +530,7 @@ int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_posit
 	  variables[i]->list_name = (char *)malloc((unsigned)(strlen(varlistname)+1));
 	  strcpy(variables[i]->list_name,varlistname);
 	  variables[i]->list_el = nel+1;
-	  switch (type) 
+	  switch (type)
 	    {
 	    case SCALAR:
 	    case ANY:
@@ -527,7 +539,7 @@ int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_posit
 	    case ROW:
 	    case STRING:
 	    case VECTOR:
-	      if (nwords != 3) 
+	      if (nwords != 3)
 		{
 		  printf("bad type for variable \"%s\"\n",
 			 words[0]);
@@ -538,7 +550,7 @@ int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_posit
 		  variables[i]->el[0] = GetVar(words[2],0);
 		  variables[i]->length = 1;
 		}
-	      else 
+	      else
 		{
 		  sprintf(str,"%s(%s)",words[2],varlistname);
 		  variables[i]->el[0] = GetVar(str,0);
@@ -549,109 +561,109 @@ int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_posit
 	    case MATRIX:
 	    case BMATRIX:
 	    case STRINGMAT:
-	      if (nwords != 4) 
+	      if (nwords != 4)
 		{
 		  printf("bad type for variable \"%s\"\n",
 			 words[0]);
 		  exit(1);
-		}	  
+		}
 	      if (isdigit(words[2][0]))
 		{
 		  variables[i]->el[0] = GetVar(words[2],0);
 		  variables[i]->length = 1;
-		} 
+		}
 	      else
 		{
-		  sprintf(str,"%s(%s)",words[2],varlistname);	
+		  sprintf(str,"%s(%s)",words[2],varlistname);
 		  variables[i]->el[0] = GetVar(str,0);
 		  variables[i]->length = 1;
 		}
 	      if (isdigit(words[3][0]))
 		{
-		  variables[i]->el[1] = GetVar(words[3],0); 
+		  variables[i]->el[1] = GetVar(words[3],0);
 		  variables[i]->length = 2;
 		}
-	      else 
+	      else
 		{
-		  sprintf(str,"%s(%s)",words[3],varlistname);	
+		  sprintf(str,"%s(%s)",words[3],varlistname);
 		  variables[i]->el[1] = GetVar(str,0);
 		  variables[i]->length = 2;
 		}
 	      break;
 	    case IMATRIX:
-	      if (nwords != 5) 
+	      if (nwords != 5)
 		{
 		  printf("bad type for variable \"%s\"\n",
 			 words[0]);
 		  exit(1);
-		}	  
+		}
 	      if (isdigit(words[2][0]))
 		{
 		  variables[i]->el[0] = GetVar(words[2],0);
 		  variables[i]->length = 1;
-		} 
+		}
 	      else
 		{
-		  sprintf(str,"%s(%s)",words[2],varlistname);	
+		  sprintf(str,"%s(%s)",words[2],varlistname);
 		  variables[i]->el[0] = GetVar(str,0);
 		  variables[i]->length = 1;
 		}
 	      if (isdigit(words[3][0]))
 		{
-		  variables[i]->el[1] = GetVar(words[3],0); 
+		  variables[i]->el[1] = GetVar(words[3],0);
 		  variables[i]->length = 2;
 		}
-	      else 
+	      else
 		{
-		  sprintf(str,"%s(%s)",words[3],varlistname);	
+		  sprintf(str,"%s(%s)",words[3],varlistname);
 		  variables[i]->el[1] = GetVar(str,0);
 		  variables[i]->length = 2;
 		}
-	      sprintf(str,"%s(%s)",words[4],varlistname);	
+	      sprintf(str,"%s(%s)",words[4],varlistname);
 	      variables[i]->el[2] = GetVar(str,0);
 	      variables[i]->length = 3;
 	      break;
 	    case SPARSE:
-	      if (nwords != 6) 
+	      if (nwords != 6)
 		{
 		  printf("bad type for variable \"%s\"\n",
 			 words[0]);
 		  exit(1);
-		}	  
+		}
 	      if (isdigit(words[2][0]))
 		{
 		  variables[i]->el[0] = GetVar(words[2],0);
 		  variables[i]->length = 1;
-		} 
+		}
 	      else
 		{
-		  sprintf(str,"%s(%s)",words[2],varlistname);	
+		  sprintf(str,"%s(%s)",words[2],varlistname);
 		  variables[i]->el[0] = GetVar(str,0);
 		  variables[i]->length = 1;
 		}
 	      if (isdigit(words[3][0]))
 		{
-		  variables[i]->el[1] = GetVar(words[3],0); 
+		  variables[i]->el[1] = GetVar(words[3],0);
 		  variables[i]->length = 2;
 		}
-	      else 
+	      else
 		{
-		  sprintf(str,"%s(%s)",words[3],varlistname);	
+		  sprintf(str,"%s(%s)",words[3],varlistname);
 		  variables[i]->el[1] = GetVar(str,0);
 		  variables[i]->length = 2;
 		}
 	      if (isdigit(words[4][0]))
 		{
-		  variables[i]->el[2] = GetVar(words[4],0); 
+		  variables[i]->el[2] = GetVar(words[4],0);
 		  variables[i]->length = 3;
 		}
-	      else 
+	      else
 		{
-		  sprintf(str,"%s(%s)",words[4],varlistname);	
+		  sprintf(str,"%s(%s)",words[4],varlistname);
 		  variables[i]->el[2] = GetVar(str,0);
 		  variables[i]->length = 3;
 		}
-	      sprintf(str,"%s(%s)",words[5],varlistname);	
+	      sprintf(str,"%s(%s)",words[5],varlistname);
 	      variables[i]->el[3] = GetVar(str,0);
 	      variables[i]->length = 4;
 	      break;
@@ -670,7 +682,7 @@ int ReadListElement(FILE *f,char *varlistname,IVAR iivar,int nel,int stack_posit
 	  break;
 	default:
 	  /* end of description */
-	  if (s[0] == '*') 
+	  if (s[0] == '*')
 	    {
 	      return(1);
 	    }

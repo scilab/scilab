@@ -1,21 +1,33 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 
 #include "../../routines/machine.h"
 
 /*******************************************
- * simple example with sparse matrix 
- * Display of a 
+ * simple example with sparse matrix
+ * Display of a
  *******************************************/
 
 int F2C(ext15ca)(ar,m,n)
      double *ar;
      int *n,*m;
-{ 
+{
 
 }
 
 /*******************************************
- * simple example with sparse matrix 
- * 2*a copied into b 
+ * simple example with sparse matrix
+ * 2*a copied into b
  *******************************************/
 
 int F2C(ext15cb)(ar1,ar2,m,n)
@@ -23,24 +35,24 @@ int F2C(ext15cb)(ar1,ar2,m,n)
      int *m,*n;
 {
   int i;
-  for ( i = 0; i < *m*(*n) ; i++) 
+  for ( i = 0; i < *m*(*n) ; i++)
     ar2[i] = 2*ar1[i];
 }
 
 /*******************************************
- * same as ext15ca but ar and ai are integers 
+ * same as ext15ca but ar and ai are integers
  *******************************************/
 
 int F2C(ext15cc)(ar,m,n)
      int *ar,*m,*n;
-{ 
+{
 
 }
 
 
 /*******************************************
- * same as ext15cb but ar2 and ai2 are integers 
- * 
+ * same as ext15cb but ar2 and ai2 are integers
+ *
  *******************************************/
 
 
@@ -50,7 +62,7 @@ int F2C(ext15cd)(ar1,ar2,m,n)
 
 {
   int i;
-  for ( i = 0; i < *m*(*n) ; i++) 
+  for ( i = 0; i < *m*(*n) ; i++)
     ar2[i] = 2*ar1[i];
 }
 
@@ -58,7 +70,7 @@ int F2C(ext15cd)(ar1,ar2,m,n)
 
 
 /*******************************************
- * a is an external 
+ * a is an external
  *******************************************/
 
 
@@ -70,13 +82,13 @@ int F2C(ext15ce)(ar1,m,n,err)
   *n=1;
   *m=10;
   *ar1 = (int *) malloc((unsigned) (*m)*sizeof(int));
-  if ( *ar1 == (int*) 0) 
+  if ( *ar1 == (int*) 0)
     {
       *err=1;
       sciprint("No more space\n");
       return;
     }
   *err=0;
-  for ( i = 0; i < *m*(*n) ; i++) 
+  for ( i = 0; i < *m*(*n) ; i++)
     (*ar1)[i] = i;
 }

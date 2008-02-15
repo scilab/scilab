@@ -1,13 +1,25 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 
 #include "../../routines/machine.h"
 
 /*******************************************
- * External type for intersci 
- * creating a new external type 
- * ccalc12 : the wrapped function which returns a handler 
- * to a dynamically allocated object 
- * ccalc12f : function for the wrapper which <<converts>> 
- *         Array to Scilab data 
+ * External type for intersci
+ * creating a new external type
+ * ccalc12 : the wrapped function which returns a handler
+ * to a dynamically allocated object
+ * ccalc12f : function for the wrapper which <<converts>>
+ *         Array to Scilab data
  *******************************************/
 
 typedef struct array {
@@ -15,12 +27,12 @@ typedef struct array {
   double *val;
 } Array ;
 
-C2F(ccalc12) ( a,m,n,err) 
+C2F(ccalc12) ( a,m,n,err)
      Array **a; int *m,*n,*err ;
 {
   int i;
   *a = ( Array *) malloc( sizeof(Array));
-  if ( *a == (Array *) 0) 
+  if ( *a == (Array *) 0)
     {
       *err=1;
       sciprint("No more space\n");
@@ -28,7 +40,7 @@ C2F(ccalc12) ( a,m,n,err)
   *m = (*a)->m = 1;
   *n = (*a)->n = 10;
   (*a)->val = (double *)  malloc( (unsigned) (*m)*(*n) *sizeof(double));
-  if ( (*a)->val  == (double *) 0 ) 
+  if ( (*a)->val  == (double *) 0 )
     {
       *err=1;
       sciprint("No more space\n");
@@ -38,7 +50,7 @@ C2F(ccalc12) ( a,m,n,err)
 }
 
 
-C2F(ccalc12f)(n,ip,op) 
+C2F(ccalc12f)(n,ip,op)
      int *n;
      Array **ip;
      double *op;

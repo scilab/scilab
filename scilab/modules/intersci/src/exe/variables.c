@@ -1,16 +1,28 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 #include "stackTypeVariable.h"
 #include "intersci-n.h"
 
 /*********************************************************************
- * Dealing with the set of variables 
+ * Dealing with the set of variables
  *********************************************************************/
 
-int ShowVariables() 
+int ShowVariables()
 {
   int i;
   VARPTR var;
-  for (i = 0; i < nVariable; i++) 
+  for (i = 0; i < nVariable; i++)
     {
       int j;
       var = variables[i];
@@ -18,20 +30,20 @@ int ShowVariables()
       fprintf(stderr,"type %s<->%s\n",SGetSciType(var->type),
 	      SGetForType(var->for_type));
       fprintf(stderr,"elts : [");
-      for (j=0 ; j < var->length ; j++) 
+      for (j=0 ; j < var->length ; j++)
 	{
 	  fprintf(stderr,"{var %d:%s}",var->el[j],
 		  variables[var->el[j]-1]->name);
 	}
       fprintf(stderr,"]\n");
-      /* fprintf(stderr," name of external function when type is  char *fexternal[MAXNAM]; 
-	 external 
+      /* fprintf(stderr," name of external function when type is  char *fexternal[MAXNAM];
+	 external
       */
       fprintf(stderr," ?  equal %d\n",var->equal);
       fprintf(stderr,"for_names [");
-      if ( var->nfor_name != 0) 
+      if ( var->nfor_name != 0)
 	{
-	  for (j=0 ; j < var->nfor_name ; j++) 
+	  for (j=0 ; j < var->nfor_name ; j++)
 	    {
 	      fprintf(stderr,"{%s:%d}",var->for_name[j],
 		      var->for_name_orig[j]);
@@ -56,33 +68,33 @@ int ShowVariables()
 }
 
 /*******************************************************
- * this function recomputes the stack_positions 
- * taking into account the fact that external 
- * variables are not allocated on the stack. 
- * We use the fact that after the readfunction 
+ * this function recomputes the stack_positions
+ * taking into account the fact that external
+ * variables are not allocated on the stack.
+ * We use the fact that after the readfunction
  * the stack_position increases when i increases  in variables[i]
- * CSTRINGV variables which are not given as arguments 
- * must be treated the same way 
+ * CSTRINGV variables which are not given as arguments
+ * must be treated the same way
  *******************************************************/
 
 #define ISNONSTACK(var) ( (var)->for_type == EXTERNAL \
    || ( (var)->for_type == CSTRINGV && (var)->is_sciarg == 0  && (var)->list_el == 0 ))
 
-int FixStackPositions() 
+int FixStackPositions()
 {
   int i;
   VARPTR var,var1;
-  for (i = nVariable-1 ; i >= 0; i--) 
+  for (i = nVariable-1 ; i >= 0; i--)
     {
       int j;
       var = variables[i];
       if ( ISNONSTACK(var) )
 	{
 	  icre--;
-	  for ( j = 0 ; j < nVariable ; j++ ) 
+	  for ( j = 0 ; j < nVariable ; j++ )
 	    {
 	      var1 = variables[j];
-	      if ( var1->stack_position > var->stack_position 
+	      if ( var1->stack_position > var->stack_position
 		   && ! (ISNONSTACK(var1)))
 		var1->stack_position--;
 	    }
@@ -96,7 +108,7 @@ int FixStackPositions()
  *  it is created and "nVariable" is incremented
  * p corresponds to the present slot of var structure:
  *  - if the variable does not exist it is created with p value
- *  - if the variable exists it is created with (p or 0) value 
+ *  - if the variable exists it is created with (p or 0) value
  *********************************************************/
 
 
@@ -148,7 +160,7 @@ IVAR GetVar(name,p)
 }
 
 /************************************************************************
- * return the variable number of variable name which must already  exist 
+ * return the variable number of variable name which must already  exist
  ***********************************************************************/
 
 IVAR GetExistVar(name)
@@ -176,18 +188,18 @@ IVAR GetExistVar(name)
 }
 
 /******************************************************************
- * fname,rhs,lhs,err are predefined variables 
- * if someone want to add them in the Fortran or C Calling sequence 
- * it's done without aby checks 
+ * fname,rhs,lhs,err are predefined variables
+ * if someone want to add them in the Fortran or C Calling sequence
+ * it's done without aby checks
  ******************************************************************/
 
 int CreatePredefVar(name)
      char *name;
 {
   VARPTR var;
-  if (strcmp(name,"err")  == 0 
-      || strcmp(name,"rhs") == 0 
-      || strcmp(name,"lhs") == 0 
+  if (strcmp(name,"err")  == 0
+      || strcmp(name,"rhs") == 0
+      || strcmp(name,"lhs") == 0
       || strcmp(name,"fname") == 0)
     {
       int num ;
@@ -201,7 +213,7 @@ int CreatePredefVar(name)
 
 /********************************************************
  * return the variable number of variable "out"
- * which is created and "nVariable" is incremented 
+ * which is created and "nVariable" is incremented
  ********************************************************/
 
 IVAR GetOutVar(name)
@@ -274,14 +286,14 @@ IVAR CheckOutVar()
 
 
 /************************************************
- * add name in the for_name array 
- * field of variable ivar 
- * and add the number ivar1 in the for_name_orig array 
- * field (ivar1 is a stack position) 
- * this is used for variables which code dimensions 
- * if for_name contains [m1,n2,m3] 
- * and for_name_orig contains [1,2,5] 
- * this means that stack variables 1,2,5 must have 
+ * add name in the for_name array
+ * field of variable ivar
+ * and add the number ivar1 in the for_name_orig array
+ * field (ivar1 is a stack position)
+ * this is used for variables which code dimensions
+ * if for_name contains [m1,n2,m3]
+ * and for_name_orig contains [1,2,5]
+ * this means that stack variables 1,2,5 must have
  * the same value for m1,n2,m3
  *************************************************/
 
@@ -301,12 +313,12 @@ void AddForName(ivar,name,cname,ivar1)
     exit(1);
   }
   var->for_name[l] = (char *)malloc((unsigned)(strlen(name) + 1));
-  if ( cname != NULL) 
+  if ( cname != NULL)
     {
       var->C_name[l] = (char *)malloc((unsigned)(strlen(cname) + 1));
       strcpy(var->C_name[l],cname);
     }
-  else 
+  else
     var->C_name[l] = NULL;
   var->for_name_orig[l] = ivar1;
   strcpy(var->for_name[l],name);
@@ -314,10 +326,10 @@ void AddForName(ivar,name,cname,ivar1)
 }
 
 /***************************
- * add name in the for_name array 
- * field of variable ivar 
- * this names are not cleared between 
- * the two passes 
+ * add name in the for_name array
+ * field of variable ivar
+ * this names are not cleared between
+ * the two passes
  ***************************/
 
 void AddForName1(ivar,name,cname,ivar1)
@@ -330,7 +342,7 @@ void AddForName1(ivar,name,cname,ivar1)
   int l;
   var = variables[ivar-1];
   l = var->nfor_name;
-  if ( pass == 0 && var->kp_state == -1 ) 
+  if ( pass == 0 && var->kp_state == -1 )
     {
       var->kp_state = var->nfor_name ;
     }
@@ -340,13 +352,13 @@ void AddForName1(ivar,name,cname,ivar1)
     exit(1);
   }
   var->for_name[l] = (char *)malloc((unsigned)(strlen(name) + 1));
-  if ( cname != NULL) 
+  if ( cname != NULL)
     {
       var->C_name[l] = (char *)malloc((unsigned)(strlen(cname) + 1));
       strcpy(var->C_name[l],cname);
     }
 
-  else 
+  else
     var->C_name[l] = NULL;
   var->for_name_orig[l] = ivar1;
   strcpy(var->for_name[l],name);
@@ -356,16 +368,16 @@ void AddForName1(ivar,name,cname,ivar1)
 
 /********************************************************
  ** if kp_state is not -1 then kp_state is 0 and the for_names are cleaned
- *(in fact just forgotten the free call should be added 
+ *(in fact just forgotten the free call should be added
  ********************************************************/
 
-void ForNameClean() 
+void ForNameClean()
 {
   VARPTR var;
   int i;
   for (i = 0; i < nVariable; i++) {
     var = variables[i];
-    if ( var->kp_state != -1 ) 
+    if ( var->kp_state != -1 )
       {
 	var->nfor_name = var->kp_state ;
       }
@@ -373,10 +385,10 @@ void ForNameClean()
 }
 
 /***********************************************************
- * Changes the first for_name of variable number ivar to name 
- * or add the forname if necessary. 
+ * Changes the first for_name of variable number ivar to name
+ * or add the forname if necessary.
  * if the forname is added, since we do not change the kp_state,
- * this value is kept between the two pass. 
+ * this value is kept between the two pass.
  ************************************************************/
 
 #define FORNAME 128
@@ -402,19 +414,19 @@ void ChangeForName1(var,name)
   int l,pos=0;
   l = var->nfor_name;
   if ( l  != 0)
-    { 
+    {
       int i;
-      for ( i=0 ; i < l ; i++) 
+      for ( i=0 ; i < l ; i++)
 	{
-	  if ( var->for_name_orig[i] == var->stack_position ) 
-	    { 
+	  if ( var->for_name_orig[i] == var->stack_position )
+	    {
 	      pos = i ; break;
 	    }
 	}
     }
   var->for_name[pos] = (char *)malloc((unsigned)(strlen(name) + 1));
   strcpy(var->for_name[pos],name);
-  if ( pos != 0) 
+  if ( pos != 0)
     {
       int xx;
       char *loc = var->for_name[pos];
@@ -430,8 +442,8 @@ void ChangeForName1(var,name)
 }
 
 /***********************************************************
- * Function used to deal with types 
- * conversion from code <-> to string 
+ * Function used to deal with types
+ * conversion from code <-> to string
  ************************************************************/
 
 /* Attention tableau en ordre alphabetique */
@@ -469,19 +481,19 @@ SType[] = {
 
 int GetBasType(sname)
      char *sname;
-{ 
+{
   int i=0;
   while ( SType[i].sname != (char *) NULL)
     {
       int j ;
       j = strcmp(sname,SType[i].sname);
-      if ( j == 0 ) 
-	{ 
+      if ( j == 0 )
+	{
 	  return(SType[i].code);
 	}
-      else 
-	{ 
-	  if ( j <= 0) 
+      else
+	{
+	  if ( j <= 0)
 	    break;
 	  else i++;
 	}
@@ -491,19 +503,19 @@ int GetBasType(sname)
 }
 
 /**********************************************
- * This function returns the string description of 
- * a Scilab type given its code number 
+ * This function returns the string description of
+ * a Scilab type given its code number
  **********************************************/
 
 char *SGetSciType(type)
      int type;
 {
   int i=0;
-  while ( SType[i].code  != -1 ) 
+  while ( SType[i].code  != -1 )
     {
-      if ( SType[i].code == type ) 
+      if ( SType[i].code == type )
 	return(SType[i].sname);
-      else 
+      else
 	i++;
     }
   return("unknown");
@@ -514,7 +526,7 @@ char *SGetSciType(type)
 static struct ftype { char *fname ; /* full fortran type name */
   int  code ; /* associated code */
   char *abrev; /* abbrev code : just for c d i r */
-  char *st_name; /* stack to use :just for c d i r*/ 
+  char *st_name; /* stack to use :just for c d i r*/
   char *b_convert; /* converter for building lhs (for lists)*/
   int dec; /* declaration for the Fortran name */
   char *ctype; /* type in C */
@@ -537,8 +549,8 @@ FType[] = {
 };
 
 /**********************************************
- * This function returns the code of a Fortran (or C) type 
- * given its full name 
+ * This function returns the code of a Fortran (or C) type
+ * given its full name
  **********************************************/
 
 int GetForType(type)
@@ -549,13 +561,13 @@ int GetForType(type)
     {
       int j;
       j = strcmp(type,FType[i].fname);
-      if ( j == 0 ) 
-	{ 
+      if ( j == 0 )
+	{
 	  return(FType[i].code);
 	}
-      else 
-	{ 
-	  if ( j <= 0) 
+      else
+	{
+	  if ( j <= 0)
 	    break;
 	  else i++;
 	}
@@ -564,19 +576,19 @@ int GetForType(type)
 }
 
 /**********************************************
- * This function returns the string description of 
- * a C or Fortran type given its code number 
+ * This function returns the string description of
+ * a C or Fortran type given its code number
  **********************************************/
 
 char *SGetForType(type)
      int type;
 {
   int i=0;
-  while ( FType[i].code  != -1 ) 
+  while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == type ) 
+      if ( FType[i].code == type )
 	return(FType[i].fname);
-      else 
+      else
 	i++;
     }
   return("External");
@@ -585,56 +597,56 @@ char *SGetForType(type)
 
 /**********************************************
  * This function returns an abbrev string 'c' 'd' 'i' 'r' 'b'
- * of a C or Fortran type given its code number 
+ * of a C or Fortran type given its code number
  **********************************************/
 
 char *SGetForTypeAbrev(var)
      VARPTR var;
 {
   int i=0;
-  while ( FType[i].code  != -1 ) 
+  while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == var->for_type ) 
+      if ( FType[i].code == var->for_type )
 	return(FType[i].abrev);
-      else 
+      else
 	i++;
     }
   return("XX");
 }
 
 /**********************************************
- * This function returns the code for declaration 
- * of a C or Fortran type given its code number 
+ * This function returns the code for declaration
+ * of a C or Fortran type given its code number
  **********************************************/
 
 int SGetForDec(type)
      int type;
 {
   int i=0;
-  while ( FType[i].code  != -1 ) 
+  while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == type ) 
+      if ( FType[i].code == type )
 	return(FType[i].dec);
-      else 
+      else
 	i++;
     }
   return(-1);
 }
 
 /**********************************************
- * This function returns the C string for declaration 
- * of a C or Fortran type given its code number 
+ * This function returns the C string for declaration
+ * of a C or Fortran type given its code number
  **********************************************/
 
 char* SGetCDec(type)
      int type;
 {
   int i=0;
-  while ( FType[i].code  != -1 ) 
+  while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == type ) 
+      if ( FType[i].code == type )
 	return(FType[i].ctype);
-      else 
+      else
 	i++;
     }
   return("XXX");
@@ -643,29 +655,29 @@ char* SGetCDec(type)
 
 /**********************************************
  * given a variable and according to its C or Fortran type,
- * this function returns the stack name to use 
+ * this function returns the stack name to use
  **********************************************/
 
 char *SGetForTypeStack(var)
      VARPTR var;
 {
   int i=0;
-  while ( FType[i].code  != -1 ) 
+  while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == var->for_type ) 
+      if ( FType[i].code == var->for_type )
 	{
-	  if ( FType[i].st_name[0] == 'X' ) 
+	  if ( FType[i].st_name[0] == 'X' )
 	    {
 	      printf("incompatibility between Scilab and Fortran type for variable \"%s\"\n",
-		     var->name);   
+		     var->name);
 	      exit(1);
 	    }
 	  return(FType[i].st_name);
 	}
-      else 
+      else
 	i++;
     }
-  printf("Unknown Fortran type for variable \"%s\"\n", var->name);   
+  printf("Unknown Fortran type for variable \"%s\"\n", var->name);
   exit(1);
 }
 
@@ -674,30 +686,30 @@ char *SGetForTypeStack(var)
 
 /**********************************************
  * given a variable and according to its C or Fortran type,
- * this function returns the name of the converter to use 
- * for back conversion 
+ * this function returns the name of the converter to use
+ * for back conversion
  **********************************************/
 
 char *SGetForTypeBConvert(var)
      VARPTR var;
 {
   int i=0;
-  while ( FType[i].code  != -1 ) 
+  while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == var->for_type ) 
+      if ( FType[i].code == var->for_type )
 	{
-	  if ( FType[i].b_convert[0] == 'X' ) 
+	  if ( FType[i].b_convert[0] == 'X' )
 	    {
 	      printf("incompatibility between Scilab and Fortran type for variable \"%s\"\n",
-		     var->name);   
+		     var->name);
 	      exit(1);
 	    }
 	  return(FType[i].b_convert);
 	}
-      else 
+      else
 	i++;
     }
-  printf("Unknown Fortran type for variable \"%s\"\n", var->name);   
+  printf("Unknown Fortran type for variable \"%s\"\n", var->name);
   exit(1);
 }
 
@@ -705,21 +717,21 @@ char *SGetForTypeBConvert(var)
 
 /**********************************************
  * This function returns an abbrev string 'c' 'd' 'i' 'r' 'b'
- * of a C or Fortran type to use for back converting 
- * an external variable 
+ * of a C or Fortran type to use for back converting
+ * an external variable
  * XXXXX : only for MATRIX et BMATRIX
  **********************************************/
 
 char *SGetExtForTypeAbrev(var)
      VARPTR var;
 {
-  if ( var->type == BMATRIX ) 
+  if ( var->type == BMATRIX )
     return MATRIX_OF_DOUBLE_DATATYPE;
-  else 
+  else
     {
-      if ( strcmp(var->fexternal,"cintf")==0) 
+      if ( strcmp(var->fexternal,"cintf")==0)
 	return MATRIX_OF_INTEGER_DATATYPE;
-      else 
+      else
 	return MATRIX_OF_DOUBLE_DATATYPE;
     }
 }
@@ -727,17 +739,17 @@ char *SGetExtForTypeAbrev(var)
 
 /**********************************************
  * given a variable and according to its C or Fortran type,
- * this function returns the stack name to use 
+ * this function returns the stack name to use
  * for back conversion of external
- * XXXXX : idem 
+ * XXXXX : idem
  **********************************************/
 
 char *SGetExtForTypeStack(var)
      VARPTR var;
 {
-  if ( var->type == BMATRIX ) 
+  if ( var->type == BMATRIX )
     return(FType[1].st_name);
-  else 
+  else
     return(FType[4].st_name);
 }
 

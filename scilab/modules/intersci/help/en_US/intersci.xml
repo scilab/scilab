@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -14,13 +25,13 @@
     Scilab data base and checks their types. After that it calls procedure
     associated with Scilab functions, checks returned errors flags and set
     the results in the data base.</P>
-    <P><VERB>intersci</VERB>\ is a program which permits to interface automatically FORTRAN 
+    <P><VERB>intersci</VERB>\ is a program which permits to interface automatically FORTRAN
     subroutines or C functions to Scilab</P>
     <P>
     With <VERB>intersci</VERB>, a user can group all his FORTRAN or C code into a same set,
     called an interface, and use them in Scilab as Scilab functions. The interfacing
     is made by creating a FORTRAN subroutine which has to be linked to
-    Scilab  together 
+    Scilab  together
     with the user code. This complex FORTRAN subroutine is automatically generated
     by <VERB>intersci</VERB>\ from a description file of the interface.</P>
     <P>

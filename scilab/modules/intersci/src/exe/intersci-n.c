@@ -1,10 +1,22 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 #ifdef _MSC_VER
 #include <windows.h>
 #endif
 #include "intersci-n.h"
-#include "getrhs.h" 
-#include "crerhs.h" 
+#include "getrhs.h"
+#include "crerhs.h"
 
 /* global variables */
 
@@ -27,30 +39,30 @@ void CheckCreateOrder(void);
 /* local variables */
 
 int main( int argc,char ** argv)
-{ 
+{
   char *files,*libs;
   char *file;
   int SciLabinterface = 0 ;
-  switch (argc) 
+  switch (argc)
     {
     case 2:
       file = argv[1];
       target =  'C';
-      SciLabinterface =  0; 
+      SciLabinterface =  0;
       files = NULL;
       libs = NULL;
       break;
     case 3:
       file = argv[1];
       target = 'C';
-      SciLabinterface = 0; 
+      SciLabinterface = 0;
       files = argv[2];
       libs = NULL;
       break;
     case 4:
       file = argv[1];
       target = 'C';
-      SciLabinterface = 0; 
+      SciLabinterface = 0;
       files = argv[2];
       libs = argv[3];
       break;
@@ -79,7 +91,7 @@ int main( int argc,char ** argv)
 }
 
 /**
- * Produce the interface 
+ * Produce the interface
  * @param file
  */
 
@@ -129,16 +141,16 @@ void Generate(char *file)
     WriteFunctionCode(fout);
     /** WriteInfoCode(fout); **/
   }
-  /* WriteMain(fout,file); */ 
+  /* WriteMain(fout,file); */
   printf("C file \"%s.c\" has been created\n",file);
-  /* WriteAddInter(file) ; 
+  /* WriteAddInter(file) ;
 	 printf("Scilab file \"%s.sce\" has been created\n",file);*/
   fclose(fout);
   fclose(fin);
 }
 
 /***************************************************************
- * Interface function 
+ * Interface function
  ***************************************************************/
 
 void WriteMain(FILE *f,char *file)
@@ -162,10 +174,10 @@ void WriteMain(FILE *f,char *file)
 }
 
 /***************************************************************
- * Code for addinter 
+ * Code for addinter
  ***************************************************************/
 
-void WriteAddInter(char *file) 
+void WriteAddInter(char *file)
 {
   FILE *fout;
   int i;
@@ -173,14 +185,14 @@ void WriteAddInter(char *file)
   strcpy(filout,file);
   strcat(filout,".sce");
   fout = fopen(filout,"w");
-  if ( fout != (FILE*) 0) 
+  if ( fout != (FILE*) 0)
     {
       fprintf(fout,"// Addinter for file %s\n",file);
       fprintf(fout,"// for hppa/sun-solaris/linux/dec\n");
       fprintf(fout,"//--------------------------------\n");
       fprintf(fout,"//Scilab functions\n");
       fprintf(fout,"%s_funs=[...\n",file);
-      for (i = 0; i < nFun -1; i++) 
+      for (i = 0; i < nFun -1; i++)
 	fprintf(fout,"  '%s';\n",funNames[i]);
       fprintf(fout,"  '%s']\n",funNames[nFun-1]);
       fprintf(fout,"// interface file to link: ifile='%s.o'\n",file);
@@ -191,7 +203,7 @@ void WriteAddInter(char *file)
   else
     fprintf(stderr,"Can't open file %s\n",file);
 }
- 
+
 
 void Copyright()
 {
@@ -200,7 +212,7 @@ void Copyright()
 }
 
 /***************************************************************
-  Code generation 
+  Code generation
 ***************************************************************/
 
 void WriteHeader(FILE *f, char *fname0,char *fname)
@@ -214,7 +226,7 @@ void WriteFunctionCode(FILE *f)
 {
   int i;
   IVAR ivar;
-  if ( pass == 1) 
+  if ( pass == 1)
     {
       printf("  generating C interface for function (%s) Scilab function\"%s\"\n",
 	     forsub->name,
@@ -229,9 +241,9 @@ void WriteFunctionCode(FILE *f)
   /* optional arguments : new style */
   /** XXXXXX basfun->NewMaxOpt= basfun->maxOpt; */
   basfun->NewMaxOpt= basfun->maxOpt;
-  if ( basfun->NewMaxOpt > 0 ) 
+  if ( basfun->NewMaxOpt > 0 )
     {
-      /** optional arguments **/ 
+      /** optional arguments **/
       AddDeclare(DEC_INT,"nopt");
       AddDeclare(DEC_INT,"iopos");
       Fprintf(f,indent,"nopt=NumOpt();\n");
@@ -239,28 +251,28 @@ void WriteFunctionCode(FILE *f)
 
   /* rhs argument number checking */
 
-  if ( basfun->NewMaxOpt > 0 ) 
+  if ( basfun->NewMaxOpt > 0 )
     Fprintf(f,indent,"CheckRhs(%d,%d+nopt);\n",basfun->nin - basfun->maxOpt,
 	    basfun->nin-basfun->maxOpt);
-  else 
+  else
     Fprintf(f,indent,"CheckRhs(%d,%d);\n",basfun->nin - basfun->maxOpt,basfun->nin);
 
-  
+
   /* lhs argument number checking */
   ivar = basfun->out;
-  if ( ivar == 0) 
+  if ( ivar == 0)
     {
       Fprintf(f,indent,"CheckLhs(0,1);\n");
     }
-  else 
+  else
     {
-      if ((variables[ivar-1]->length == 0) 
+      if ((variables[ivar-1]->length == 0)
 	  || (variables[ivar-1]->type == LIST)
 	  || (variables[ivar-1]->type == TLIST))
 	{
 	  Fprintf(f,indent,"CheckLhs(1,1);\n");
 	}
-      else 
+      else
 	{
 	  Fprintf(f,indent,"CheckLhs(1,%d);\n",variables[ivar-1]->length);
 	}
@@ -268,9 +280,9 @@ void WriteFunctionCode(FILE *f)
   /* SCILAB argument checking */
   for (i = 0; i < basfun->nin - basfun->NewMaxOpt ; i++)
     {
-      switch ( variables[i]->type ) 
+      switch ( variables[i]->type )
 	{
-	case LIST : 
+	case LIST :
 	  WriteListAnalysis(f,i,"l");
 	  break;
 	case TLIST:
@@ -285,7 +297,7 @@ void WriteFunctionCode(FILE *f)
 	}
     }
 
-  if ( basfun->NewMaxOpt != 0) 
+  if ( basfun->NewMaxOpt != 0)
     {
       sprintf(str1,"rhs_opts opts[]={\n");
       for (i = basfun->nin -basfun->NewMaxOpt ; i < basfun->nin ; i++)
@@ -295,7 +307,7 @@ void WriteFunctionCode(FILE *f)
 	  strcat(str1,str2);
 	}
       strcat(str1,"\t{-1,NULL,NULL,NULL,0,0}}");
-      AddDeclare(DEC_DATA,str1); 
+      AddDeclare(DEC_DATA,str1);
       Fprintf(f,indent,"iopos=Rhs;\n");
       Fprintf(f,indent,"if ( get_optionals(fname,opts) == 0) return 0;\n");
       for (i = basfun->nin -basfun->NewMaxOpt ; i < basfun->nin ; i++)
@@ -303,16 +315,16 @@ void WriteFunctionCode(FILE *f)
 	  WriteOptArgPhase2(f,i);
 	}
     }
-  
+
   /* SCILAB cross checking */
   WriteCrossCheck(f);
 
   /* SCILAB equal output variable checking */
   WriteEqualCheck(f);
-  
+
   /* FORTRAN call */
   WriteFortranCall(f);
-  
+
   /* FORTRAN output to SCILAB */
   WriteOutput(f);
 }
@@ -332,12 +344,12 @@ void WriteInfoCode(FILE *f)
   case TLIST:
     /* loop on output variables */
     printf("list(");
-    for (i = 0; i < vout->length; i++) 
+    for (i = 0; i < vout->length; i++)
       {
 	ivar = vout->el[i];
 	var = variables[ivar-1];
 	printf("%s",var->name);
-	if ( i != vout->length -1 ) 
+	if ( i != vout->length -1 )
 	  printf(",");
 	else
 	  printf(")");
@@ -346,12 +358,12 @@ void WriteInfoCode(FILE *f)
   case SEQUENCE:
     /* loop on output variables */
     printf("[");
-    for (i = 0; i < vout->length; i++) 
+    for (i = 0; i < vout->length; i++)
       {
 	ivar = vout->el[i];
 	var = variables[ivar-1];
 	printf("%s",var->name);
-	if ( i != vout->length -1 ) 
+	if ( i != vout->length -1 )
 	  printf(",");
 	else
 	  printf("]");
@@ -366,7 +378,7 @@ void WriteInfoCode(FILE *f)
   for (i = 0; i < basfun->nin; i++)
     {
       printf("%s(%s)",variables[i]->name,SGetSciType(variables[i]->type));
-      if ( i != basfun->nin -1 ) 
+      if ( i != basfun->nin -1 )
 	printf(",");
     }
   printf(")\n");
@@ -374,8 +386,8 @@ void WriteInfoCode(FILE *f)
 }
 
 /*************************************************************
- *  Ckecking and getting infos for datas coming from scilab calling 
- * sequence ( datas on the stack ) 
+ *  Ckecking and getting infos for datas coming from scilab calling
+ * sequence ( datas on the stack )
  ***********************************************************/
 
 void WriteArgCheck(FILE *f,int i)
@@ -384,21 +396,21 @@ void WriteArgCheck(FILE *f,int i)
   VARPTR var = variables[basfun->in[i]-1];
 
   i1 = i + 1;
-  
+
   Fprintf(f,indent,"/*  checking variable %s */\n",var->name);
-  
-  if (var->opt_type != 0) 
+
+  if (var->opt_type != 0)
     {
-      /* Optional Arguments */ 
+      /* Optional Arguments */
       WriteOptArg(f,var);
     }
-  else 
+  else
     {
-      /** 
-       * generate the code for getting a Scilab argument 
-       * and check some dimensions property if necessary 
+      /**
+       * generate the code for getting a Scilab argument
+       * and check some dimensions property if necessary
        **/
-      if (RHSTAB[var->type].type != var->type ) 
+      if (RHSTAB[var->type].type != var->type )
 	{
 	  fprintf(stderr,"Bug in intersci : Something wrong in RHSTAB\n");
 	}
@@ -409,7 +421,7 @@ void WriteArgCheck(FILE *f,int i)
 
 
 /*************************************************************
- * cross checking dimensions 
+ * cross checking dimensions
  ***********************************************************/
 
 void WriteCrossCheck(FILE *f)
@@ -417,18 +429,18 @@ void WriteCrossCheck(FILE *f)
   int i, j;
   VARPTR var;
   Fprintf(f,indent,"/* cross variable size checking */\n");
-  for (i = 0; i < nVariable; i++) 
+  for (i = 0; i < nVariable; i++)
     {
       var = variables[i];
-      if ( var->type == DIMFOREXT ) 
+      if ( var->type == DIMFOREXT )
 	{
-	  if ( var->nfor_name > 1) 
+	  if ( var->nfor_name > 1)
 	    {
-	      for ( j = 1 ; j < var->nfor_name ; j++) 
+	      for ( j = 1 ; j < var->nfor_name ; j++)
 		{
 		  /** we do not check square variables : this is done elsewhere */
 		  /* we do not check external values since they are not known here */
-		  if ( (var->for_name_orig[j] != var->for_name_orig[j-1]) 
+		  if ( (var->for_name_orig[j] != var->for_name_orig[j-1])
 		       && ( var->for_name[j-1][1] != 'e' &&  var->for_name[j][1] != 'e' ))
 		    {
 		      Fprintf(f,indent,"CheckDimProp(%d,%d,%s != %s);\n",
@@ -438,18 +450,18 @@ void WriteCrossCheck(FILE *f)
 		}
 	    }
 	}
-      else if (var->type == SCALAR) 
+      else if (var->type == SCALAR)
 	{
 	  /** some dimensions are given by a scalar input argument **/
-	  if ( var->nfor_name > 1) 
+	  if ( var->nfor_name > 1)
 	    {
-	      for ( j = 1 ; j < var->nfor_name ; j++) 
+	      for ( j = 1 ; j < var->nfor_name ; j++)
 		{
 		  int dim=2;
 		  if ( var->for_name[j][0]=='m') dim=1;
 		  if ( var->for_name[j][1] != 'e' )  /* do not check external variables */
 		    {
-		      if ( strncmp(var->for_name[0],"istk",4)==0) 
+		      if ( strncmp(var->for_name[0],"istk",4)==0)
 			Fprintf(f,indent,"CheckOneDim(%d,%d,%s,*%s);\n",
 				var->for_name_orig[j], dim ,  var->for_name[j],var->for_name[0]);
 		      else
@@ -460,7 +472,7 @@ void WriteCrossCheck(FILE *f)
 	    }
 	}
     }
-  /* 
+  /*
      FCprintf(f,"/ *       cross formal parameter checking\n");
      FCprintf(f," *      not implemented yet * /\n");  */
 }
@@ -475,7 +487,7 @@ void WriteEqualCheck(FILE *f)
 }
 
 /***************************************************************
- * Scilab argument of type list 
+ * Scilab argument of type list
  ***************************************************************/
 
 void WriteListAnalysis(FILE *f,int i,char *list_type)
@@ -489,7 +501,7 @@ void WriteListAnalysis(FILE *f,int i,char *list_type)
   AddDeclare1(DEC_INT,"l%d",i1);
   Fprintf(f,indent,"GetRhsVar(%d,\"%s\",&m%d,&n%d,&l%d);\n",
 	  i1,list_type,i1,i1,i1);
-  for (k = 0; k < nVariable ; k++) 
+  for (k = 0; k < nVariable ; k++)
     {
       var = variables[k];
       if ((var->list_el != 0) &&
@@ -497,7 +509,7 @@ void WriteListAnalysis(FILE *f,int i,char *list_type)
 	  var->present)
 	{
 	  Fprintf(f,indent,"/* list element %d %s */\n",var->list_el,var->name);
-	  if (RHSTAB[var->type].type != var->type ) 
+	  if (RHSTAB[var->type].type != var->type )
 	    {
 	      fprintf(stderr,"Bug in intersci : Something wrong in RHSTAB\n");
 	    }
@@ -507,8 +519,8 @@ void WriteListAnalysis(FILE *f,int i,char *list_type)
 }
 
 /***************************************************************
- * Create the code for stack creation of 
- * variables which are not Scilab argument 
+ * Create the code for stack creation of
+ * variables which are not Scilab argument
  * and gather the code for C or Fortran call
  ***************************************************************/
 
@@ -517,17 +529,17 @@ void CheckCreateOrder()
   int ivar,min= 10000;
   int i,count=0;
   if ( forsub->narg == 0) return ;
-  for (i = 0; i < forsub->narg; i++) 
+  for (i = 0; i < forsub->narg; i++)
     {
       ivar = forsub->arg[i];
-      if (variables[ivar-1]->list_el == 0 
-	  &&  variables[ivar-1]->is_sciarg == 0 
-	  &&  variables[ivar-1]->for_type != EXTERNAL 
-	  &&  variables[ivar-1]->for_type != CSTRINGV ) 
+      if (variables[ivar-1]->list_el == 0
+	  &&  variables[ivar-1]->is_sciarg == 0
+	  &&  variables[ivar-1]->for_type != EXTERNAL
+	  &&  variables[ivar-1]->for_type != CSTRINGV )
 	{
 	  count++;
-	  if ( min != 10000 && variables[ivar-1]->stack_position !=0 
-	       && variables[ivar-1]->stack_position < min) 
+	  if ( min != 10000 && variables[ivar-1]->stack_position !=0
+	       && variables[ivar-1]->stack_position < min)
 	    {
 	      fprintf(stderr,"Error: declaration for local variables\n");
 	      fprintf(stderr,"\t must respect the order given in the calling sequence\n");
@@ -554,24 +566,24 @@ void WriteFortranCall(FILE *f)
 
   /* loop on FORTRAN arguments */
 
-  for (i = 0; i < forsub->narg; i++) 
+  for (i = 0; i < forsub->narg; i++)
     {
       ivar = forsub->arg[i];
       ind = 0;
-      if (variables[ivar-1]->list_el != 0) 
+      if (variables[ivar-1]->list_el != 0)
 	{
 	  /* FORTRAN argument is a list element */
 	  iivar = GetExistVar(variables[ivar-1]->list_name);
-	  if ( variables[iivar-1]->is_sciarg == 0) 
+	  if ( variables[iivar-1]->is_sciarg == 0)
 	    {
 	      printf("list or tlist \"%s\" must be an argument of SCILAB function\n",
 		     variables[ivar-1]->list_name);
-	      exit(1);	    
+	      exit(1);
 	    }
 	  strcat(call,variables[ivar-1]->for_name[0]);
 	  strcat(call,",");
 	}
-      else 
+      else
 	{
 
 	  if ( variables[ivar-1]->is_sciarg == 1)
@@ -579,7 +591,7 @@ void WriteFortranCall(FILE *f)
 		#ifdef WIN32
 			_try
 			{
-				if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
+				if (target == 'C' && variables[ivar-1]->C_name[0] != NULL)
 				{
 					strcat(call,"&");
 					strcat(call,variables[ivar-1]->C_name[0]);
@@ -594,7 +606,7 @@ void WriteFortranCall(FILE *f)
 			  exit(1);
 			}
 		#else
-			if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
+			if (target == 'C' && variables[ivar-1]->C_name[0] != NULL)
 			{
 				strcat(call,"&");
 				strcat(call,variables[ivar-1]->C_name[0]);
@@ -602,21 +614,21 @@ void WriteFortranCall(FILE *f)
 			else strcat(call,variables[ivar-1]->for_name[0]);
 			strcat(call,",");
 		#endif
-		  
+
 		}
 
 
-	      
-	  else 
+
+	  else
 	    {
 	      /* FORTRAN argument is not a SCILAB argument */
-	      /* a new variable is created on the stack for each 
+	      /* a new variable is created on the stack for each
 		 Fortran argument */
 	      (*(CRERHSTAB[variables[ivar-1]->type].fonc))(f,variables[ivar-1]);
 		#ifdef _MSC_VER
 		  _try
 		  {
-	      if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
+	      if (target == 'C' && variables[ivar-1]->C_name[0] != NULL)
 			{
 				strcat(call,"&");
 				strcat(call,variables[ivar-1]->C_name[0]);
@@ -630,7 +642,7 @@ void WriteFortranCall(FILE *f)
 			  exit(1);
 		  }
 		#else
-		  if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
+		  if (target == 'C' && variables[ivar-1]->C_name[0] != NULL)
 		  {
 			  strcat(call,"&");
 			  strcat(call,variables[ivar-1]->C_name[0]);
@@ -641,20 +653,20 @@ void WriteFortranCall(FILE *f)
 	    }
 	}
     }
-  if  (forsub->narg == 0) 
+  if  (forsub->narg == 0)
     strcat(call,")");
-  else 
+  else
     call[strlen(call)-1] = ')';
 
   if (target == 'C' ) strcat(call,";\n");
   Fprintf(f,indent,call);
 
-  for ( i=0 ; i < nVariable ; i++) 
+  for ( i=0 ; i < nVariable ; i++)
     {
       if ( strcmp(variables[i]->name,"err")==0)
 	{
 	  AddDeclare(DEC_INT,"err=0");
-	  Fprintf(f,indent++,"if (err >  0) {\n");  
+	  Fprintf(f,indent++,"if (err >  0) {\n");
 	  Fprintf(f,indent,"Scierror(999,\"%%s: Internal Error \\n\",fname);\n");
 	  Fprintf(f,indent,"return 0;\n");
 	  Fprintf(f,--indent,"};\n");
@@ -664,8 +676,8 @@ void WriteFortranCall(FILE *f)
 }
 
 /***************************************************
- * Write the interface code 
- * for lhs variables creation 
+ * Write the interface code
+ * for lhs variables creation
  *****************************************************/
 
 void WriteOutput(FILE *f)
@@ -673,17 +685,17 @@ void WriteOutput(FILE *f)
   IVAR iout,ivar;
   VARPTR var,vout;
   int i;
-  
+
   iout = CheckOutVar();
-  
-  if ( iout == 0) 
+
+  if ( iout == 0)
     {
       Fprintf(f,indent,"LhsVar(1)=0;\n;return 0;\n");
     }
-  else 
+  else
     {
       vout = variables[iout-1];
-      switch (vout->type) 
+      switch (vout->type)
 	{
 	case LIST:
 	case TLIST:
@@ -697,7 +709,7 @@ void WriteOutput(FILE *f)
 		  vout->stack_position,
 		  vout->length);
 	  /* loop on output variables */
-	  for (i = 0; i < vout->length; i++) 
+	  for (i = 0; i < vout->length; i++)
 	    {
 	      ivar = vout->el[i];
 	      var = variables[ivar-1];
@@ -708,7 +720,7 @@ void WriteOutput(FILE *f)
 	  break;
 	case SEQUENCE:
 	  /* loop on output variables */
-	  for (i = 0; i < vout->length; i++) 
+	  for (i = 0; i < vout->length; i++)
 	    {
 	      ivar = vout->el[i];
 	      var = variables[ivar-1];
@@ -725,10 +737,10 @@ void WriteOutput(FILE *f)
 }
 
 /***********************************************
- * Output of variable var 
- *   if variable is outputed inside a list 
- *   insidelist is set to true (1) and nel is the number 
- *   of the variable in the list 
+ * Output of variable var
+ *   if variable is outputed inside a list
+ *   insidelist is set to true (1) and nel is the number
+ *   of the variable in the list
  ***********************************************/
 
 void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
@@ -744,23 +756,23 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
   /* get number of variable in FORTRAN calling list */
 
   farg = GetNumberInFortranCall(ivar);
-  
-  if (var->for_type == EXTERNAL) 
+
+  if (var->for_type == EXTERNAL)
     {
       /* external type */
-      if (barg != 0) 
+      if (barg != 0)
 	{
 	  printf("output variable with external type \"%s\"\n",var->name);
 	  printf("  cannot be an input argument of SCILAB function\n");
 	  exit(1);
 	}
-      if (var->equal != 0) 
+      if (var->equal != 0)
 	{
 	  printf("output variable with external type \"%s\"\n", var->name);
 	  printf("  cannot have a convertion\n");
 	  exit(1);
 	}
-      if (farg == 0) 
+      if (farg == 0)
 	{
 	  printf("output variable with external type \"%s\" must be\n", var->name);
 	  printf("  an argument of FORTRAN subroutine");
@@ -768,11 +780,11 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 	}
       WriteExternalVariableOutput(f,var,insidelist,nel);
     }
-  else 
+  else
     {
       if ( insidelist == 0 && var->list_el == 0 )
 	{
-	  if ( var->opt_type != 0) 
+	  if ( var->opt_type != 0)
 	    {
 	      Fprintf(f,indent,"LhsVar(%d)= opts[%d].position /* %s */;\n",
 		      var->out_position,
@@ -782,19 +794,19 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 	  else
 	    {
 
-	      if ( var->for_type == CSTRINGV) 
+	      if ( var->for_type == CSTRINGV)
 		/* variable is recreated fro output */
 		Fprintf(f,indent,"LhsVar(%d)= %d;\n",
 			var->out_position,icre);
-	      else 
+	      else
 		Fprintf(f,indent,"LhsVar(%d)= %d;\n",
 			var->out_position,var->stack_position);
 	    }
 	}
-      if (var->equal != 0) 
+      if (var->equal != 0)
 	{
 	  /* SCILAB type convertion */
-	  if (barg !=0 || farg!= 0) 
+	  if (barg !=0 || farg!= 0)
 	    {
 	      printf("output variable with convertion \"%s\" must not be\n",var->name);
 	      printf("  an input variable of SCILAB function or an argument\n");
@@ -805,15 +817,15 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 	  var2 = variables[ivar2-1];
 	  /* get number of equal variable in SCILAB calling list */
 	  barg = 0;
-	  for (j = 0; j < basfun->nin; j++) 
+	  for (j = 0; j < basfun->nin; j++)
 	    {
-	      if (ivar2 == basfun->in[j]) 
+	      if (ivar2 == basfun->in[j])
 		{
 		  barg = j + 1;
 		  break;
 		}
 	    }
-	  if (barg == 0) 
+	  if (barg == 0)
 	    {
 	      printf("output variable with convertion \"%s\" must be\n",
 		     var->name);
@@ -828,7 +840,7 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 	      break;
 	    }
 	  }
-	  if (farg == 0) 
+	  if (farg == 0)
 	    {
 	      printf("output variable with convertion \"%s\" must be\n",
 		     var->name);
@@ -838,12 +850,12 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 	  var->for_type = var2->for_type;
 	  WriteVariableOutput(f,var,1,insidelist,nel);
 	}
-      else 
+      else
 	{
 	  /* no SCILAB type convertion */
 	  if ( var->type == LIST || var->type == TLIST )
 	    {
-	      /** il faut alors verifier la condition pour 
+	      /** il faut alors verifier la condition pour
 		  tous les arguments de la liste **/
 	      WriteVariableOutput(f,var,0,insidelist,nel);
 	      return;
@@ -854,7 +866,7 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 	    printf("  of FORTRAN subroutine\n");
 	    exit(1);
 	  }
-	  
+
 	  WriteVariableOutput(f,var,0,insidelist,nel);
 	}
     }
@@ -864,7 +876,7 @@ void WriteVariable(FILE *f, VARPTR var,IVAR ivar,int insidelist,int nel)
 int GetNumberInScilabCall(int ivar)
 {
   int j;
-  for (j = 0; j < basfun->nin; j++) 
+  for (j = 0; j < basfun->nin; j++)
     {
       if (ivar == basfun->in[j]) {
 	return(j+1);
@@ -877,9 +889,9 @@ int GetNumberInScilabCall(int ivar)
 int GetNumberInFortranCall(int ivar)
 {
   int j;
-  for (j = 0; j < forsub->narg; j++) 
+  for (j = 0; j < forsub->narg; j++)
     {
-      if (ivar == forsub->arg[j]) 
+      if (ivar == forsub->arg[j])
 	{
 	  return( j + 1);
 	  break;
@@ -889,17 +901,17 @@ int GetNumberInFortranCall(int ivar)
 }
 
 /********************************************
- * changes string "str" to "int(str)" 
- * if str begins with stk or return str unchanged 
+ * changes string "str" to "int(str)"
+ * if str begins with stk or return str unchanged
  ********************************************/
- 
+
 char unknown[]="ukn";
 
 char *Forname2Int(VARPTR var,int i)
 {
   int l;
   char *p;
-  if ( var->for_name[i] == (char *) 0) 
+  if ( var->for_name[i] == (char *) 0)
     {
       printf("Error in Forname2Int for variable %s\n",var->name);
       printf("Maybe an internal variable has a dimension\n");
@@ -907,7 +919,7 @@ char *Forname2Int(VARPTR var,int i)
       abort();
       return(unknown);
     }
-  if ( var->C_name[i] != (char *) 0) 
+  if ( var->C_name[i] != (char *) 0)
     return var->C_name[i];
   if (strncmp(var->for_name[i],"stk",3) == 0) {
     l = (int)strlen(var->for_name[i]);
@@ -923,7 +935,7 @@ void GenFundef(char *file,int interf)
   FILE *fout;
   char filout[MAXNAM];
   int i,j;
-  if (interf != 0 ) 
+  if (interf != 0 )
     {
       strcpy(filout,file);
       strcat(filout,".fundef");
@@ -953,8 +965,8 @@ static void GenBuilder(char *file,char *files,char *libs)
   /* files = 'file1.o file2.o ....' delimiter = ' ' */
   while ( files != NULL)
     {
-      static int first =1; 
-      if ( first ==1 ) { fprintf(fout,"files =['%s.o';\n\t'",file);first ++;} 
+      static int first =1;
+      if ( first ==1 ) { fprintf(fout,"files =['%s.o';\n\t'",file);first ++;}
       else { fprintf(fout,"\t'");}
       while ( *files != 0 && *files != ' ' ) { fprintf(fout,"%c",*files); files++;}
       while ( *files == ' ') files++;
@@ -964,8 +976,8 @@ static void GenBuilder(char *file,char *files,char *libs)
 
   while ( libs != NULL)
     {
-      static int first =1; 
-      if ( first ==1 ) { fprintf(fout,"libs =['");first ++;} 
+      static int first =1;
+      if ( first ==1 ) { fprintf(fout,"libs =['");first ++;}
       else { fprintf(fout,"\t'");}
       while ( *libs != 0 && *libs != ' ' ) { fprintf(fout,"%c",*libs); libs++;}
       while ( *libs == ' ') libs++;
@@ -975,9 +987,9 @@ static void GenBuilder(char *file,char *files,char *libs)
 
   fprintf(fout,"\ntable =[");
   i=0;
-  if ( nFun == 1) 
+  if ( nFun == 1)
     fprintf(fout,"\"%s\",\"ints%s\"];\n",funNames[i],funNames[i]);
-  else 
+  else
     {
       fprintf(fout,"\"%s\",\"ints%s\";\n",funNames[i],funNames[i]);
       for (i = 1; i < nFun-1; i++) {
@@ -995,17 +1007,17 @@ static void GenBuilder(char *file,char *files,char *libs)
 
 
 /**********************************************************
-  Dealing With Fortran OutPut 
+  Dealing With Fortran OutPut
   taking into account indentation and line breaks after column 72
 ***********************************************************/
 
 
-#define MAXBUF 4096 
+#define MAXBUF 4096
 char sbuf[MAXBUF];
 
 #include <stdarg.h>
 
-void  Fprintf(FILE *f,int indent2,char *format,...) 
+void  Fprintf(FILE *f,int indent2,char *format,...)
 {
   int i;
   static int count=0;
@@ -1014,15 +1026,15 @@ void  Fprintf(FILE *f,int indent2,char *format,...)
 
   vsprintf(sbuf,format,ap);
 
-  for ( i = 0 ; i < (int) strlen(sbuf); i++) 
+  for ( i = 0 ; i < (int) strlen(sbuf); i++)
     {
-      if ( count == 0)  
+      if ( count == 0)
 	{
 	  white(f,indent2);
 	  count = indent2;
 	}
-      if ( count >= 100 && sbuf[i] != '\n' && (sbuf[i] == ' ' || sbuf[i]== ',' || sbuf[i] == ';' || sbuf[i] == '(' ) ) 
-	{ 
+      if ( count >= 100 && sbuf[i] != '\n' && (sbuf[i] == ' ' || sbuf[i]== ',' || sbuf[i] == ';' || sbuf[i] == '(' ) )
+	{
 	  fprintf(f,"\n");
 	  white(f,indent2);count=indent2;
 	}
@@ -1040,7 +1052,7 @@ void white(FILE *f,int ind)
 }
 
 
-void  FCprintf(FILE *f,char *format,...) 
+void  FCprintf(FILE *f,char *format,...)
 {
   va_list ap;
   va_start(ap,format);
@@ -1050,7 +1062,7 @@ void  FCprintf(FILE *f,char *format,...)
 }
 
 /******************************************
- *  memory allocators 
+ *  memory allocators
  ******************************************/
 
 VARPTR VarAlloc()

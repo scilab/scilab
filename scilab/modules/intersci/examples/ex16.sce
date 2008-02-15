@@ -1,5 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 //ex16 example ( boolean matrices )
-//1-Creating interface source file 
+//1-Creating interface source file
 // Making object files
 //   Interface file '/tmp/ex16fi.o';
 //   User's files '/tmp/ex16c.o';
@@ -10,42 +20,42 @@ exec('ex16fi.sce');
 //Run Scilab functions:
 a=[%t,%t;%f,%f];
 
-// simple matrix argument 
+// simple matrix argument
 
 b=ext16ca(a);
 if b<>~a then pause,end
 
-// matrix and return a matrix in a list 
+// matrix and return a matrix in a list
 
 b=ext16cb(a);
 if b(1)<>~a then pause,end
 
-// new matrix in intersci 
+// new matrix in intersci
 
 b=ext16cc(a);
 if b<>~a then pause,end
 
-// new matrix returned in a list 
+// new matrix returned in a list
 
 b=ext16cd(a);
 if b(1)<>~a then pause,end
 
-// list argument with a matrix  
+// list argument with a matrix
 
 b=ext16ce(list(a))
 if b<>~a then pause,end
 
-// list argument + list output 
+// list argument + list output
 
 b=ext16cf(list(a))
 if b(1)<>~a then pause,end
 
-// cboolf 
+// cboolf
 
 b=ext16cg();
 if b<>[%f,%t;%t,%f;%f,%t] then pause,end
 
-// cboolf + list 
+// cboolf + list
 
 b=ext16ch();
 if b(1)<>[%f,%t;%t,%f;%f,%t] then pause,end

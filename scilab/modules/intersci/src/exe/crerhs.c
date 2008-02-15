@@ -1,38 +1,50 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 #include "intersci-n.h"
 #include "crerhs.h"
 
 /*****************************************************************
- * For each possible data type we have here a function 
- * which generate the code for <<Creating>> a variable 
- * and checking some properties 
- *     if needed check if the variable is square 
+ * For each possible data type we have here a function
+ * which generate the code for <<Creating>> a variable
+ * and checking some properties
+ *     if needed check if the variable is square
  *     if needed check if some dimensions must be of fixed sizes
- * All the possible Getfunction are stored in a function table 
+ * All the possible Getfunction are stored in a function table
  ******************************************************************/
 
 /**************************************************
- * A FINIR : 
- * le code qui est ici est utilise a deux fins 
- * Creer des objets ds le stack Scilab 
- * et construire en meme temps 
- * la sequence d'appel pour 
- * le Fortran 
- * Il faudrait sans doute couper cela en deux 
- * et surtout voir si l'on ne peux pas simplifier 
- * le tout : 
- *   i.e associer a une variable 
- *   des formats qui indiquent comment 
- *   on accede aux champs importants pour elle 
- *   + un numero unique de variable 
+ * A FINIR :
+ * le code qui est ici est utilise a deux fins
+ * Creer des objets ds le stack Scilab
+ * et construire en meme temps
+ * la sequence d'appel pour
+ * le Fortran
+ * Il faudrait sans doute couper cela en deux
+ * et surtout voir si l'on ne peux pas simplifier
+ * le tout :
+ *   i.e associer a une variable
+ *   des formats qui indiquent comment
+ *   on accede aux champs importants pour elle
+ *   + un numero unique de variable
  *   un numero ds le stacl etc......
  **************************************************/
 
 /******************************************************
- * the functions in the following table must follow  the 
- * order given by the type list defined in  intersci-n.h 
+ * the functions in the following table must follow  the
+ * order given by the type list defined in  intersci-n.h
  * The correct ordering is checked when using this table.
- * (see intersci.c) 
+ * (see intersci.c)
  ********************************************************/
 
 CreRhsTab CRERHSTAB[] = {
@@ -73,7 +85,7 @@ static char str3[MAXNAM];
 static char str4[MAXNAM];
 
 /***********************************************
- * Matrix  XXXXX OK 
+ * Matrix  XXXXX OK
  ***********************************************/
 
 void CreMATRIX(f,var)
@@ -84,13 +96,13 @@ void CreMATRIX(f,var)
   GetDim(str3,var->el[1]);
   WriteCallRestCheck(f,var,"nn",0,0) ;
   GetDim(str4,var->el[0]);
-  if ( str3[0] == '&' || str3[0] == '(') 
+  if ( str3[0] == '&' || str3[0] == '(')
     strcpy(str2,str3);
-  else 
+  else
     sprintf(str2,"&%s",str3);
-  if ( str4[0] == '&' || str4[0] == '(') 
+  if ( str4[0] == '&' || str4[0] == '(')
     strcpy(str1,str4);
-  else 
+  else
     sprintf(str1,"&%s",str4);
   CreCommon(f,var);
 }
@@ -99,34 +111,34 @@ void CreCommon(f,var)
      FILE *f;
      VARPTR var;
 {
-  if (var->for_type == EXTERNAL ) 
+  if (var->for_type == EXTERNAL )
     {
       Fprintf(f,indent,"/* external variable named %s (xxe%d) */\n",var->name,var->stack_position);
       AddDeclare1(DEC_INT,"me%d",var->stack_position);
       AddDeclare1(DEC_INT,"ne%d",var->stack_position);
-       if ( strncmp(var->fexternal,"cintf",4)==0 ) 
+       if ( strncmp(var->fexternal,"cintf",4)==0 )
 	 AddDeclare1(DEC_IPTR,"le%d",var->stack_position);
-       else if ( strncmp(var->fexternal,"cboolf",5)==0 ) 
+       else if ( strncmp(var->fexternal,"cboolf",5)==0 )
 	 AddDeclare1(DEC_IPTR,"le%d",var->stack_position);
-       else if ( strncmp(var->fexternal,"cdoublef",7)==0 ) 
+       else if ( strncmp(var->fexternal,"cdoublef",7)==0 )
 	 AddDeclare1(DEC_DPTR,"le%d",var->stack_position);
-       else if (strncmp(var->fexternal,"ccharf",5)==0) 
+       else if (strncmp(var->fexternal,"ccharf",5)==0)
 	 AddDeclare1(DEC_CPTR,"le%d",var->stack_position);
-       else if (strncmp(var->fexternal,"cfloatf",6)==0 ) 
+       else if (strncmp(var->fexternal,"cfloatf",6)==0 )
 	 AddDeclare1(DEC_RPTR,"le%d",var->stack_position);
-       else 
+       else
 	 AddDeclare1(DEC_UL,"le%d",var->stack_position);
        ChangeForName2(var,"&le%d",var->stack_position);
        /** List case not considered here **/
-    } 
-   else 
+    }
+   else
      {
        char *lstr1,*lstr2;
-       if ( strncmp(str1,"&istk(",6)==0 || strncmp(str1,"&cstk(",6)==0 || strncmp(str1,"&rstk(",6)==0 
+       if ( strncmp(str1,"&istk(",6)==0 || strncmp(str1,"&cstk(",6)==0 || strncmp(str1,"&rstk(",6)==0
 	    || strncmp(str1,"&stk(",5)==0 ) lstr1 = str1+1;
        else
 	 lstr1=str1;
-       if ( strncmp(str2,"&istk(",6)==0 || strncmp(str2,"&cstk(",6)==0 || strncmp(str2,"&rstk(",6)==0 
+       if ( strncmp(str2,"&istk(",6)==0 || strncmp(str2,"&cstk(",6)==0 || strncmp(str2,"&rstk(",6)==0
 	    || strncmp(str2,"&stk(",5)==0 ) lstr2 = str2+1;
        else
 	 lstr2=str2;
@@ -143,14 +155,14 @@ void CreCommon(f,var)
 }
 
 /***********************************************
- * String   XXXXX OK 
+ * String   XXXXX OK
  ***********************************************/
 
 void CreSTRING(f,var)
      FILE *f;
      VARPTR var;
 {
-  if (var->for_type != CHAR && var->for_type != EXTERNAL ) 
+  if (var->for_type != CHAR && var->for_type != EXTERNAL )
     {
       printf("incompatibility between the type %s and FORTRAN type %s for variable \"%s\"\n",
 	     SGetSciType(STRING),SGetForType(var->for_type),var->name);
@@ -167,7 +179,7 @@ void CreSTRING(f,var)
 
 
 /***********************************************
- * Boolean matrix  XXXXX OK 
+ * Boolean matrix  XXXXX OK
  ***********************************************/
 
 void CreBMATRIX(f,var)
@@ -185,7 +197,7 @@ void CreBMATRIX(f,var)
 }
 
 /***********************************************
- * variable which are dimensions 
+ * variable which are dimensions
  * (of Scilab variables or external)
  ***********************************************/
 
@@ -193,22 +205,22 @@ void CreDIMFOREXT(f,var)
      FILE *f;
      VARPTR var;
 {
-  if (var->nfor_name == 0 && var->for_type != PREDEF) 
+  if (var->nfor_name == 0 && var->for_type != PREDEF)
     {
       printf("dimension variable \"%s\" is not defined\n",var->name);
       exit(1);
     }
-  switch (var->for_type) 
+  switch (var->for_type)
     {
     case PREDEF:
     case 'C':
-      if ( strcmp(var->name,"rhs") == 0) 
+      if ( strcmp(var->name,"rhs") == 0)
 	{
 	  AddDeclare(DEC_INT,"rhs");
 	  Fprintf(f,indent,"rhs=Rhs;\n");
 	  sprintf(str,"&rhs");
 	}
-      else 
+      else
 	{
 	  sprintf(str,"&%s",var->name);
 	}
@@ -217,11 +229,11 @@ void CreDIMFOREXT(f,var)
     case 0:
     case INT:
       sprintf(str,"&%s",var->for_name[0]);
-      if ( ~isdigit(str[1])) 
+      if ( ~isdigit(str[1]))
 	{
 	  ChangeForName1(var,str);
 	}
-      else 
+      else
 	{
 	  Fprintf(f,indent,"loc%s= (int) %s;\n",
 		  var->for_name[0],var->for_name[0]);
@@ -270,7 +282,7 @@ void CreVECTOR(f,var)
   AddDeclare1(DEC_INT,"mn%d",var->stack_position);
   lstr1 = ( str1[0]== '&' )? str1+1: str1;
   /** peut-etre un pb si str1 contient des stk istk .. XXXXXX **/
-  if ( strncmp(lstr1,"stk",3) ==0 || strncmp(lstr1,"istk",4)==0 
+  if ( strncmp(lstr1,"stk",3) ==0 || strncmp(lstr1,"istk",4)==0
        || strncmp(lstr1,"rstk",4)==0 || strncmp(lstr1,"cstk",4)==0 )
     sprintf(str2,"(mn%d=*%s,&mn%d)",var->stack_position,
 	    lstr1,var->stack_position);
@@ -292,7 +304,7 @@ void CreCOLUMN(f,var)
   AddDeclare1(DEC_INT,"mn%d",var->stack_position);
   lstr1 = ( str1[0]== '&' )? str1+1: str1;
   /** peut-etre un pb si str1 contient des stk istk .. XXXXXX **/
-  if ( strncmp(lstr1,"stk",3) ==0 || strncmp(lstr1,"istk",4)==0 
+  if ( strncmp(lstr1,"stk",3) ==0 || strncmp(lstr1,"istk",4)==0
        || strncmp(lstr1,"rstk",4)==0 || strncmp(lstr1,"cstk",4)==0 )
     sprintf(str2,"(mn%d=*%s,&mn%d)",var->stack_position,
 	    lstr1,var->stack_position);
@@ -317,25 +329,25 @@ void CreSPARSE(f,var)
   GetDim(str2,var->el[1]);
   WriteCallRestCheck(f,var,"nn",0,0) ;
   GetDim(str1,var->el[0]);
-  if (var->for_type == EXTERNAL) 
+  if (var->for_type == EXTERNAL)
     {
       AddDeclare1(DEC_SPARSEPTR,"S%d",var->stack_position);
       ChangeForName2(var,"&S%d",var->stack_position);
       /** List case not considered here **/
-    } 
-  else 
+    }
+  else
     {
       VARPTR m,n;
       int origm,orign;
       m= variables[var->el[0]-1];
       n= variables[var->el[1]-1];
-      /* here we must create a sparse variable 
-       * but str1 and str2 is not enough to create the matrix 
-       * we copy the argument which gives the size 
+      /* here we must create a sparse variable
+       * but str1 and str2 is not enough to create the matrix
+       * we copy the argument which gives the size
        */
       origm = ( m->nfor_name == 0)? -1 : m->for_name_orig[0];
       orign = ( n->nfor_name == 0)? -1 : n->for_name_orig[0];
-      if ( origm != orign ) 
+      if ( origm != orign )
 	{
 	  fprintf(stderr,"A local sparse matrix can only be built as a copy of a sparse entry\n");
 	  exit(1);
@@ -353,7 +365,7 @@ void CreSPARSE(f,var)
 
 
 /***********************************************
- * Complex Matrix OK 
+ * Complex Matrix OK
  ***********************************************/
 
 void CreIMATRIX(f,var)
@@ -366,15 +378,15 @@ void CreIMATRIX(f,var)
   GetDim(str2,var->el[1]);
   WriteCallRestCheck(f,var,"nn",0,0) ;
   GetDim(str1,var->el[0]);
-  if (var->for_type == EXTERNAL) 
+  if (var->for_type == EXTERNAL)
     {
       AddDeclare1(DEC_UL,"ler%d",var->stack_position);
       AddDeclare1(DEC_UL,"lec%d",var->stack_position);
       AddDeclare1(DEC_INT,"ite%d",var->stack_position);
       ChangeForName2(var,"&ler%d,&lec%d,&ite%d",var->stack_position,var->stack_position,var->stack_position);
       /** List case not considered here **/
-    } 
-  else 
+    }
+  else
     {
       Fprintf(f,indent,"CreateCVar(%d,\"%s\",&%s,&%s,&%s,&lr%d,&lc%d);\n",
 	      var->stack_position,SGetForTypeAbrev(var),
@@ -384,7 +396,7 @@ void CreIMATRIX(f,var)
       AddDeclare1(DEC_INT,"it%d",var->stack_position);
       ChangeForName2(var,"%s(lr%d),%s(lc%d),&it%d",
 		     SGetForTypeStack(var),
-		     var->stack_position, 
+		     var->stack_position,
 		     SGetForTypeStack(var),
 		     var->stack_position,var->stack_position);
     }
@@ -392,20 +404,20 @@ void CreIMATRIX(f,var)
 
 
 /***********************************************
- * Pointers 
+ * Pointers
  ***********************************************/
 
 void CrePOINTER(f,var)
      FILE *f;
      VARPTR var;
 {
-  if (var->for_type == EXTERNAL) 
+  if (var->for_type == EXTERNAL)
     {
       AddDeclare1(DEC_UL,"le%d",var->stack_position);
       ChangeForName2(var,"&le%d",var->stack_position);
       /** List case not considered here **/
-    } 
-  else 
+    }
+  else
     {
       Fprintf(f,indent,"CreateOpointer(%d,&lr%d);\n",
 	      var->stack_position,var->stack_position);
@@ -426,7 +438,7 @@ void CreSTRINGMAT(f,var)
 {
   if (var->for_type == EXTERNAL || var->for_type == CSTRINGV )
     {
-      /* for external or cstringv parameters, unknown formal dimensions 
+      /* for external or cstringv parameters, unknown formal dimensions
 	 can be used */
       WriteCallRestCheck(f,var,"nsmm",0,1) ;
       WriteCallRestCheck(f,var,"nsnn",1,1) ;
@@ -440,7 +452,7 @@ void CreSTRINGMAT(f,var)
       sprintf(str,"&Str%d",var->stack_position);
       ChangeForName1(var,str);
     }
-  else 
+  else
     {
       /** XXXX dimensions should be specified **/
       fprintf(stderr,"WARNING : your code contains a specification\n");
@@ -456,7 +468,7 @@ void CreSTRINGMAT(f,var)
 
 
 /***********************************************
- * Scalar 
+ * Scalar
  ***********************************************/
 
 void CreSCALAR(f,var)
@@ -483,24 +495,24 @@ void CreANY(f,var)
 }
 
 /***********************************************
- * Utility function for WriteCallRest 
- * when flag==1 we acccept undefined dimensions 
- * this is used with stringmat/Cstringv 
- * where dimensions and space are allocated inside 
- * the interfaced function and returned 
- * to the interface 
+ * Utility function for WriteCallRest
+ * when flag==1 we acccept undefined dimensions
+ * this is used with stringmat/Cstringv
+ * where dimensions and space are allocated inside
+ * the interfaced function and returned
+ * to the interface
  *******************************************/
 
-void WriteCallRestCheck(FILE *f,VARPTR var,char *name,int iel,int flag) 
+void WriteCallRestCheck(FILE *f,VARPTR var,char *name,int iel,int flag)
 {
-  char sdim[MAXNAM]; 
+  char sdim[MAXNAM];
   char lstr[MAXNAM];
-  if (variables[var->el[iel]-1]->nfor_name == 0) 
+  if (variables[var->el[iel]-1]->nfor_name == 0)
     {
       strcpy(lstr,variables[var->el[iel]-1]->name);
-      if (isdigit(lstr[0]) == 0) 
+      if (isdigit(lstr[0]) == 0)
 	{
-	  if ( variables[var->el[iel]-1]->is_sciarg == 1) 
+	  if ( variables[var->el[iel]-1]->is_sciarg == 1)
 	    {
 	      /* dimension of FORTRAN argument is a SCILAB argument */
 	      sprintf(sdim,"%s%d",name,var->stack_position);
@@ -508,14 +520,14 @@ void WriteCallRestCheck(FILE *f,VARPTR var,char *name,int iel,int flag)
 		      variables[var->el[iel]-1]->stack_position);
 	      AddForName1(var->el[iel],sdim,NULL,var->stack_position);
 	    }
-	  else if ( flag != 1) 
+	  else if ( flag != 1)
 	    {
 	      printf("dimension variable \"%s\" is not defined\n",
 		     variables[var->el[iel]-1]->name);
 	      exit(1);
 	    }
-	} 
-      else 
+	}
+      else
 	{
 	  sprintf(sdim,"%s%d",name,var->stack_position);
 	  Fprintf(f,indent,"%s=%s;\n",sdim,lstr);
@@ -526,18 +538,18 @@ void WriteCallRestCheck(FILE *f,VARPTR var,char *name,int iel,int flag)
 
 /** to be finished : Forname2Int is not finished fo C  **/
 
-void GetDim(char *lstr,IVAR ivar) 
+void GetDim(char *lstr,IVAR ivar)
 {
   char *s;
   s=Forname2Int(variables[ivar-1],0);
   if ( strncmp(s,"stk",3)==0 || strncmp(s,"istk",4)==0
-       || strncmp(s,"sstk",4)==0 || strncmp(s,"stk",3)==0 || 
+       || strncmp(s,"sstk",4)==0 || strncmp(s,"stk",3)==0 ||
        strncmp(s,"cstk",4)==0 )
     {
       strcpy(lstr,s);
       return ;
     }
-  else 
+  else
     {
       AddDeclare1(DEC_INT,s);
       strcpy(lstr,s);

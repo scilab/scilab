@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 
 #include "intersci-n.h"
@@ -22,7 +34,7 @@ void OutCOLUMN(FILE *f,VARPTR var,int insidelist,int nel)
 {
   strcpy(str2,"un");
   AddDeclare1(DEC_INT,"un=1");
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));  
+  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
   OutCommon(f,var,insidelist,nel);
 }
 
@@ -78,9 +90,9 @@ void OutCommon(FILE *f,VARPTR var,int insidelist,int nel)
     }
   else
     {
-      /* var is not outputed inside a list but var can be a list 
+      /* var is not outputed inside a list but var can be a list
 	 element */
-      if ( var->list_el != 0) 
+      if ( var->list_el != 0)
 	{
 	  AddDeclare(DEC_INT,"lrs");
 	  Fprintf(f,indent,"CreateVarFrom(%d,\"%s\",&%s,&%s,&lrs,&%s);\n",
@@ -121,12 +133,12 @@ void OutLIST(FILE *f,VARPTR var,int insidelist,int nel)
       printf("output is a list\n");
       exit(1);
     }
-  else 
+  else
     {
       int k;
       VARPTR var1;
       /** var is a list output ==> backconversion of its arguments **/
-      for (k = 0; k < nVariable ; k++) 
+      for (k = 0; k < nVariable ; k++)
 	{
 	  var1 = variables[k];
 	  if ((var1->list_el != 0) &&
@@ -143,7 +155,7 @@ void OutLIST(FILE *f,VARPTR var,int insidelist,int nel)
 
 void OutLISTarg(FILE *f,VARPTR var,VARPTR var1,int insidelist,int nel)
 {
-  switch ( var1->type) 
+  switch ( var1->type)
     {
     case BMATRIX :
       /* nothing to do */
@@ -179,7 +191,7 @@ void OutLISTarg(FILE *f,VARPTR var,VARPTR var1,int insidelist,int nel)
 		  var1->stack_position,  var1->list_el);
 	}
       break;
-    case SCALAR : 
+    case SCALAR :
       if ( var1->for_type != DOUBLE )
 	{
 	  strcpy(str2,"un");
@@ -206,7 +218,7 @@ void OutLISTarg(FILE *f,VARPTR var,VARPTR var1,int insidelist,int nel)
 
 
 /***********************************************
- * Sparse Matrix 
+ * Sparse Matrix
  ***********************************************/
 
 
@@ -233,9 +245,9 @@ void OutSPARSE(FILE *f,VARPTR var,int insidelist,int nel)
     }
   else
     {
-      /* var is not outputed inside a list but var can be a list 
+      /* var is not outputed inside a list but var can be a list
 	 element */
-      if ( var->list_el != 0) 
+      if ( var->list_el != 0)
 	{
 	  Fprintf(f,indent,"CreateVarFromPtr(%d,\"s\",&%s,&%s,&S%s);\n",
 		  icre,str1,str2,str5);
@@ -277,9 +289,9 @@ void OutIMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
     }
   else
     {
-      /* var is not outputed inside a list but var can be a list 
+      /* var is not outputed inside a list but var can be a list
 	 element */
-      if ( var->list_el != 0) 
+      if ( var->list_el != 0)
 	{
 	  AddDeclare(DEC_INT,"lrs");
 	  Fprintf(f,indent,"CreateCVarFrom(%d,\"%s\",%s,%s,%s,&lrs,&lcs,%s,%s);\n",
@@ -301,7 +313,7 @@ void OutPOLYNOM(FILE *f,VARPTR var,int insidelist,int nel)
       AddDeclare(DEC_LOGICAL,"listcreopoly");
       Fprintf(f,indent,"if(.not.listcreopoly(fname,top,%d,lw,0,%s,name%s,namel%s,lrs,lcs)) return\n",nel,str1,str,str);
     }
-  else 
+  else
     {
       AddDeclare(DEC_LOGICAL,"creonepoly");
       Fprintf(f,indent,"if(.not.creonepoly(fname,top,0,%s,name%s,namel%s,lrs,lcs)) return\n",str1,str,str);
@@ -329,7 +341,7 @@ void OutPOINTER(FILE *f,VARPTR var,int insidelist,int nel)
     {
       printf(" %s in output list : not implemented ;",SGetSciType(var->type));
     }
-  else 
+  else
     {
 
     }
@@ -408,16 +420,16 @@ OutRhsTab OUTRHSTAB[] = {
 
 
 /***********************************************
- * Output of variable var 
- *   if variable is outputed inside a list 
- *   insidelist is set to true and nel is the number 
- *   of the variable in the list 
+ * Output of variable var
+ *   if variable is outputed inside a list
+ *   insidelist is set to true and nel is the number
+ *   of the variable in the list
  * Convert ==> 1 if the variable has an output convertion to be done
  ***********************************************/
 
 void WriteVariableOutput(FILE *f,VARPTR var,int convert,int insidelist,int nel)
 {
-  if ( var->list_name != (char *) 0 ) 
+  if ( var->list_name != (char *) 0 )
     {
       /* variable is a list member */
       int nel1= var->list_el;
@@ -426,7 +438,7 @@ void WriteVariableOutput(FILE *f,VARPTR var,int convert,int insidelist,int nel)
       sprintf(strc,"lc%de%d",var->stack_position,nel1);
       sprintf(strit,"it%de%d",var->stack_position,nel1);
     }
-  else 
+  else
     {
       sprintf(strR,"%d",var->stack_position);
       sprintf(str,"lr%d",var->stack_position);

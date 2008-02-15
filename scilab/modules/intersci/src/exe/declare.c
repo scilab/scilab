@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 #include "intersci-n.h"
 #include "declare.h"
@@ -7,7 +19,7 @@ extern int indent ; /* incremental counter for code indentation */
 extern char target ; /* langage for generation */
 
 /**********************************************************
-  Function to add decaration during the first pass 
+  Function to add decaration during the first pass
   and to print them during code generation pass 2
 **********************************************************/
 
@@ -37,10 +49,10 @@ static struct Declare {
   { -1 ,"void","void",(char **) 0,0}
 };
 
-void InitDeclare() 
-{ 
+void InitDeclare()
+{
   int i = 0;
-  while ( Init[i].type != -1) 
+  while ( Init[i].type != -1)
     {
       Init[i].decls = (char **) 0;
       Init[i].ndecls =0 ;
@@ -51,12 +63,12 @@ void InitDeclare()
 void ResetDeclare()
 {
   int j = 0;
-  while ( Init[j].type != -1) 
+  while ( Init[j].type != -1)
     {
-      if ( Init[j].decls != (char **) 0) 
+      if ( Init[j].decls != (char **) 0)
 	{
 	  int i;
-	  for ( i = 0 ; i < Init[j].ndecls ; i++ ) 
+	  for ( i = 0 ; i < Init[j].ndecls ; i++ )
 	    free((char *) Init[j].decls[i]);
 	  free (( char *) Init[j].decls );
 	}
@@ -69,14 +81,14 @@ void ResetDeclare()
 int CheckDeclare(int type,char *declaration)
 {
   int j = 0;
-  while ( Init[j].type != -1) 
+  while ( Init[j].type != -1)
     {
-      if ( Init[j].type == type ) 
+      if ( Init[j].type == type )
 	{
 	  int i;
-	  for ( i = 0 ; i < Init[j].ndecls ; i++ ) 
+	  for ( i = 0 ; i < Init[j].ndecls ; i++ )
 	    {
-	      if ( strcmp(declaration,Init[j].decls[i])==0) 
+	      if ( strcmp(declaration,Init[j].decls[i])==0)
 		return(1);
 	    }
 	  return(0);
@@ -87,14 +99,14 @@ int CheckDeclare(int type,char *declaration)
 }
 
 /***************************
- * AddDeclare1(type,format,arg1,...,argn) 
+ * AddDeclare1(type,format,arg1,...,argn)
  ***************************/
 
 #define DECLAREBUF 128
 
 #include <stdarg.h>
 
-void AddDeclare1(int type,char *format,...) 
+void AddDeclare1(int type,char *format,...)
 {
   char decbuf[DECLAREBUF];
   va_list ap;
@@ -105,32 +117,32 @@ void AddDeclare1(int type,char *format,...)
   va_end(ap);
 }
 
-void AddDeclare(int type,char *declaration) 
+void AddDeclare(int type,char *declaration)
 {
   int j = 0;
   if ( declaration[0] == '&' ) return ;
   if ( CheckDeclare(type,declaration)== 1) return ;
-  while ( Init[j].type != -1) 
+  while ( Init[j].type != -1)
     {
-      if ( Init[j].type == type ) 
+      if ( Init[j].type == type )
 	{
-	  if ( Init[j].decls != (char **) 0) 
+	  if ( Init[j].decls != (char **) 0)
 	    {
 	      (Init[j].ndecls)++;
 	      Init[j].decls =  (char **) realloc((char *) Init[j].decls, (unsigned) (Init[j].ndecls ) *sizeof(char *));
 	    }
-	  else 
+	  else
 	    {
 	      (Init[j].ndecls)++;
 	      Init[j].decls = (char **) malloc ( (unsigned) (Init[j].ndecls ) *sizeof(char *));
 	    }
-	  if ( Init[j].decls == ( char **) 0) 
+	  if ( Init[j].decls == ( char **) 0)
 	    {
 	      fprintf(stderr,"No more space\n");
 	      exit(1);
 	    }
 	  Init[j].decls[Init[j].ndecls-1]=(char*) malloc((unsigned) (strlen(declaration)+1)*sizeof(char));
-	  if ( 	  Init[j].decls[Init[j].ndecls-1] == ( char *) 0) 
+	  if ( 	  Init[j].decls[Init[j].ndecls-1] == ( char *) 0)
 	    {
 	      fprintf(stderr,"No more space\n");
 	      exit(1);
@@ -142,15 +154,15 @@ void AddDeclare(int type,char *declaration)
 }
 
 
-void WriteInitDeclarations(FILE *f) 
+void WriteInitDeclarations(FILE *f)
 {
   int j = 0;
   int i;
-  while ( Init[j].type != -1) 
+  while ( Init[j].type != -1)
     {
-      if ( Init[j].type == DEC_INIT) 
+      if ( Init[j].type == DEC_INIT)
 	{
-	  for (i= 0 ; i < Init[j].ndecls ; i++) 
+	  for (i= 0 ; i < Init[j].ndecls ; i++)
 	    {
 	      Fprintf(f,indent,"%s",Init[j].decls[i]);
 	      Fprintf(f,indent,";\n");
@@ -165,24 +177,24 @@ void WriteDeclaration(FILE *f)
 {
   int j = 0;
   int i;
-  while ( Init[j].type != -1) 
-    {      
-      if ( Init[j].type == DEC_INIT) 
+  while ( Init[j].type != -1)
+    {
+      if ( Init[j].type == DEC_INIT)
 	{}
-      else if( Init[j].type == DEC_DATA ) 
+      else if( Init[j].type == DEC_DATA )
 	{
-	  for (i= 0 ; i < Init[j].ndecls ; i++) 
+	  for (i= 0 ; i < Init[j].ndecls ; i++)
 	    {
 	      Fprintf(f,indent,"%s ",Init[j].nameC);
 	      Fprintf(f,indent,"%s",Init[j].decls[i]);
 	      Fprintf(f,indent,";\n");
 	    }
 	}
-      else 
+      else
 	{
-	  if ( Init[j].ndecls != 0) 
+	  if ( Init[j].ndecls != 0)
 	    Fprintf(f,indent,"%s ",Init[j].nameC);
-	  for (i= 0 ; i < Init[j].ndecls ; i++) 
+	  for (i= 0 ; i < Init[j].ndecls ; i++)
 	    {
 	      if ( Init[j].type >= DEC_IPTR && target == 'C')
 		{
@@ -195,7 +207,7 @@ void WriteDeclaration(FILE *f)
 		}
 	      Fprintf(f,indent,"%s",Init[j].decls[i]);
 	      if ( i != Init[j].ndecls -1 ) Fprintf(f,indent,",");
-	      else 
+	      else
 		{
 		  Fprintf(f,indent,";\n");
 		}
