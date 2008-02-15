@@ -1,20 +1,28 @@
+
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 1997-2008 - INRIA - Claude Gomez <claude.gomez@inria.fr>
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 #****************************************************************************
 #                     Macrofort: Fortran code generator
 #                     Version 1.2.6 (3 March 2004) for Maple 6 and above
 #
-#                       Copyright (C) 1990-2004 INRIA
-#
 #                                Claude Gomez
-#			email: Claude.Gomez@inria.fr	
+#                        email: Claude.Gomez@inria.fr
+#                Web site: http://www-rocq.inria.fr/scilab/gomez
 #
-#				 SCILAB project
+#                              SCILAB project
 #
-#                                    INRIA				    
-# 			      Domaine de Voluceau			    
-# 			     Rocquencourt - BP 105			    
-# 			     78153 Le Chesnay Cedex			    
-# 				     FRANCE	
-#
+#                            INRIA-Rocquencourt
+#                           Domaine de Voluceau
+#                                 BP 105
+#                         78153 Le Chesnay Cedex
+#                                 FRANCE
 #****************************************************************************
 
 #****************************************************************************
