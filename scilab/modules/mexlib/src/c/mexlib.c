@@ -1,7 +1,19 @@
+
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - François DELEBECQUE
+ * Copyright (C) ENPC  - Jean-Philippe CHANCELIER
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+ 
 /*------------------------------------------------------------------------
  *    mexlib  library
- *    Copyright (C)  Enpc/Inria
- *    Authors FD-JPC  (mail scilab@inria.fr)
  *
  *    This library emulates Matlab' API functions. It is not fully tested...
  *    -Assumes that Scilab string matrices have one column, e.g.

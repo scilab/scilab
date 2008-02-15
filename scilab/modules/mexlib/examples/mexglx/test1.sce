@@ -1,6 +1,16 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 // Linking a .mexglx, say foo.mexglx, file with Scilab.
 // (Assuming foo.mexglx has been created by the Matlab's mex script).
-// 0/ Here I create the file foo.mexglx using Scilab, just to have a 
+// 0/ Here I create the file foo.mexglx using Scilab, just to have a
 // proper foo.mexglx for testing 
 
 ilib_for_link("foo",['foo.o'],[],"c");
@@ -33,4 +43,3 @@ addinter('./libtst.so','libtst','foo');
 // 6/call the mexfunction:
 
 foo(5,'test string')
-
