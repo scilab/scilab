@@ -470,7 +470,6 @@ includes/sci_xarrows.h \
 includes/sci_move.h \
 includes/sci_relocate_handle.h \
 includes/BasicAlgos.h \
-includes/paintop.h \
 includes/sciCall.h \
 includes/sci_showalluimenushandles.h \
 includes/sci_get.h \
@@ -500,7 +499,6 @@ includes/sci_xget.h \
 includes/sci_swap_handles.h \
 includes/sci_newaxes.h \
 includes/PloEch.h \
-includes/resources.h \
 includes/sci_xclick.h \
 includes/sci_xclear.h \
 includes/sci_xtape.h \
@@ -508,7 +506,6 @@ includes/sci_xset.h \
 includes/sci_xgetech.h \
 includes/sci_glue.h \
 includes/sci_xstringb.h \
-includes/fig.h \
 includes/sci_xname.h \
 includes/DrawObjects.h \
 includes/Vect2Matrix.h \

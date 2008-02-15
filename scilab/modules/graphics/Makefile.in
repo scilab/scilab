@@ -840,7 +840,7 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/GetProperty.h includes/sci_xclea.h \
 	includes/SetProperty.h includes/sci_xarrows.h \
 	includes/sci_move.h includes/sci_relocate_handle.h \
-	includes/BasicAlgos.h includes/paintop.h includes/sciCall.h \
+	includes/BasicAlgos.h includes/sciCall.h \
 	includes/sci_showalluimenushandles.h includes/sci_get.h \
 	includes/InitObjects.h includes/sci_xfpoly.h \
 	includes/sci_drawlater.h includes/Format.h \
@@ -854,11 +854,10 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_matplot1.h includes/XsetXgetParameters.h \
 	includes/sci_xfpolys.h includes/WindowList.h \
 	includes/sci_xget.h includes/sci_swap_handles.h \
-	includes/sci_newaxes.h includes/PloEch.h includes/resources.h \
-	includes/sci_xclick.h includes/sci_xclear.h \
-	includes/sci_xtape.h includes/sci_xset.h \
+	includes/sci_newaxes.h includes/PloEch.h includes/sci_xclick.h \
+	includes/sci_xclear.h includes/sci_xtape.h includes/sci_xset.h \
 	includes/sci_xgetech.h includes/sci_glue.h \
-	includes/sci_xstringb.h includes/fig.h includes/sci_xname.h \
+	includes/sci_xstringb.h includes/sci_xname.h \
 	includes/DrawObjects.h includes/Vect2Matrix.h \
 	includes/sci_xpoly.h includes/sci_xchange.h \
 	includes/sci_demo.h includes/ObjectStructure.h \
@@ -1507,7 +1506,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_move.h \
 @GUI_TRUE@includes/sci_relocate_handle.h \
 @GUI_TRUE@includes/BasicAlgos.h \
-@GUI_TRUE@includes/paintop.h \
 @GUI_TRUE@includes/sciCall.h \
 @GUI_TRUE@includes/sci_showalluimenushandles.h \
 @GUI_TRUE@includes/sci_get.h \
@@ -1537,7 +1535,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_swap_handles.h \
 @GUI_TRUE@includes/sci_newaxes.h \
 @GUI_TRUE@includes/PloEch.h \
-@GUI_TRUE@includes/resources.h \
 @GUI_TRUE@includes/sci_xclick.h \
 @GUI_TRUE@includes/sci_xclear.h \
 @GUI_TRUE@includes/sci_xtape.h \
@@ -1545,7 +1542,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_xgetech.h \
 @GUI_TRUE@includes/sci_glue.h \
 @GUI_TRUE@includes/sci_xstringb.h \
-@GUI_TRUE@includes/fig.h \
 @GUI_TRUE@includes/sci_xname.h \
 @GUI_TRUE@includes/DrawObjects.h \
 @GUI_TRUE@includes/Vect2Matrix.h \
