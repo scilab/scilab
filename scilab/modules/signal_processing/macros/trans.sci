@@ -8,9 +8,15 @@ function [hzt]=trans(pd,zd,gd,tr_type,frq)
 // frq     :frequency values
 // hzt     :output polynomial
 //!
-//author: C. Bunks  date: 9 Sept 1988
-//corrections: C. Bunks date 14 Feb. 1998
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// Copyright (C) INRIA - 1998 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
   if typeof(pd)=="rational" then
     hz=pd;
     tr_type=zd

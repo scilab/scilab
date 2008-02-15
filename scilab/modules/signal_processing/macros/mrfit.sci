@@ -13,7 +13,14 @@ function [num,den]=mrfit(w,mod,r)
 //
 //  abs(freq(num,den,%i*w)) should be close to mod
 //
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 w=w(:);mod=mod(:);
 [LHS,RHS]=argn(0);
 if w(1)==0 then w(1)=%eps;end

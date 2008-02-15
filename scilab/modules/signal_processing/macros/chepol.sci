@@ -5,8 +5,14 @@ function Tn=chepol(n,var)
 //  Tn  :Polynomial in var
 //
 //!
-//Author F.D.
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F.D
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 if n==0 then
   Tn=poly(1,var,'coeff'),
 elseif n==1 then

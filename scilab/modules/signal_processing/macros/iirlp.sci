@@ -14,7 +14,14 @@ function [cout,grad,ind]=iirlp(x,ind,p,flag,lambda,omega,ad,wa,td,wt)
 //wa,wt=fonctions de ponderation pour l'amplitude et le
 //retard de groupe ad,td=amplitudes et retard de groupe desires
 //!
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 r=x(:,1);theta=x(:,2);
 [m,n]=size(ad);if m>n,ad=ad';end
 [m,n]=size(td);if m>n,td=td';end

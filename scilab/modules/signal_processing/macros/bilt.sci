@@ -11,10 +11,15 @@ function [npl,nzr,ngn]=bilt(pl,zr,gn,num,den)
 //  num :numerator of transform
 //  den :denominator of transform
 //!
-//author: C. Bunks  date: 5 May 1989
-//Updated: 15 Sep 1997
-
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1989 - C. Bunks
+// Copyright (C) INRIA - 1997 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 n=coeff(num);
    d=coeff(den);
    order=maxi(size(n))-1;

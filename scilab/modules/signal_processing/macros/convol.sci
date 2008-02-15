@@ -18,7 +18,14 @@ function [y,e1]=convol(h,x,e0)
 //  Final call : [yN]=convol(h,xN,eNm1)
 //  Finally y=[y1,y2,...,yNm1,yN]
 //!
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 [lhs,rhs]=argn(0)
 n=prod(size(x))
 m=prod(size(h))

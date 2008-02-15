@@ -11,8 +11,14 @@ function [czx]=czt(x,m,w,phi,a,theta)
 //  theta :Initial phase
 //  czx   :Chirp z-transform output
 //!
-//author: C. Bunks  date: 10 July 1988
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //get the size of x and find the maximum of (n,m)
  

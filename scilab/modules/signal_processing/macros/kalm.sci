@@ -14,8 +14,14 @@ function [x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)
 // x,p    :updated estimate and error covariance at t=0
 //        :based on data up to t=0
 //!
-// author: C. Bunks  date: 9 August 1988
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
    k=p0*h'*(h*p0*h'+r)**(-1);
    p=(eye(p0)-k*h)*p0;

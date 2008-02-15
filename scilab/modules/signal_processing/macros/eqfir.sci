@@ -7,8 +7,14 @@ function [hn]=eqfir(nf,bedge,des,wate)
 //  wate  :M-vector giving relative weight of error in each band
 //  hn    :Output of linear-phase FIR filter coefficients
 //!
-//author: C. Bunks  date: 18 June 1988
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //get number of cosines
  

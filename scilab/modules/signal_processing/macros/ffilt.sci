@@ -18,9 +18,15 @@ function x=ffilt(ft,n,fl,fh)
 //     :fl and the higher value is in fh.
 //  x  :Filter coefficients
 //!
-//author: C. Bunks  date: 12 March 1988
-//        sinc replaced by filt_sync S Steer Jan 2002
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// Copyright (C) INRIA - 2002 - S Steer
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //Pre-calculation
  

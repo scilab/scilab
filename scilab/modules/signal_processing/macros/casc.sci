@@ -24,8 +24,14 @@ function cels=casc(x,z)
 //  !              2               2               2 !
 //  !   7 + 10z + z     8 + 11z + z     9 + 12z + z  !
 //!
-//author: F. D.  date: August 1988
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - F.D
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 cels=[];
 for col=x,
