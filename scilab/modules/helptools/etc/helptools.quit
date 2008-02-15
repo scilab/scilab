@@ -8,8 +8,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// ====================================================================
 // This file contains command to be executed at the end
 // of a scilab session for helptools module
+// ====================================================================
 
 // delete help chapter
 del_help_chapter('helptools',%T);

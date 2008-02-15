@@ -8,14 +8,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
+// ====================================================================
 // sci2c module initialisation file
-
+// ====================================================================
 
 //Load  functions librarie
 //load('SCI/modules/sci2c/macros/lib');
 
-
 //add help chapter
 add_module_help_chapter('sci2c');
-
