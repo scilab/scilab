@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
 <!DOCTYPE MAN SYSTEM "../../../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -18,7 +31,7 @@
         <PARAM_NAME>b</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>
-            Description du paramètre "b"
+            Description du paramï¿½tre "b"
          </SP>
        </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -27,7 +40,7 @@
         <PARAM_NAME>c</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>
-            Description du paramètre "c"
+            Description du paramï¿½tre "c"
          </SP>
        </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -36,7 +49,7 @@
         <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>
-            Description du paramètre "a"
+            Description du paramï¿½tre "a"
          </SP>
        </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -47,7 +60,7 @@
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM>
         <P>
-          Description détaillée de la fonction "example_1_function_1"
+          Description dï¿½taillï¿½e de la fonction "example_1_function_1"
         </P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
