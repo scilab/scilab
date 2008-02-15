@@ -1,10 +1,16 @@
-/*--------------------------------------------------------------------------*/
 /*
- *	Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
- *    jpc@cermics.enpc.fr 
- *    Changed: steer, jpc 2004 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2001-2008 - ENPC  - Jean-Philippe Chancelier <jpc@cermics.enpc.fr>
+ * Copyright (C) 2004-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  */
-/*--------------------------------------------------------------------------*/
+
 #include <string.h>
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -12,6 +18,7 @@
 #include "sciprint.h"
 #include "sciprint_full.h"
 #include "localization.h"
+
 /*--------------------------------------------------------------------------*/
 /*
  *  Command queue functions
