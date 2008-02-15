@@ -1,6 +1,19 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1998 - ENPC - Jean-Philippe CHANCELIER
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /*--------------------------------------------------------------------------*/
-/* Written by  Jean-Philippe Chancelier Copyright (C) ENPC 1998-2001                 *
- * Modified (restructuration and bug fix) by Allan Cornet  INRIA 2006                */
+/* Written by Jean-Philippe Chancelier
+ * Modified (restructuration and bug fix) by Allan Cornet                   */
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>

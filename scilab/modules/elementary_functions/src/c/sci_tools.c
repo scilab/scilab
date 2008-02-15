@@ -1,3 +1,18 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1997 - INRIA - FLEURY
+ * Copyright (C) 2001 - INRIA - François DELEBECQUE
+ * Copyright (C) 2001 - ENPC - Jean-Philippe CHANCELIER
+ * Copyright (C) 2005 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /* Copyright (c) 1997 by Inria Lorraine.  All Rights Reserved */
 
 /***
