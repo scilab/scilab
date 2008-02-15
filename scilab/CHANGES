@@ -7,10 +7,10 @@ License:
 	More information about the CeCILL http://www.cecill.info/index.en.html
 	Therefore, Scilab is now a 100% free software.
 
-
 Graphical User Interface:
 =========================
  - Advanced docking system
+ - Follow the Tango Desktop Project http://tango.freedesktop.org/
  - @TODO details
 
 Rendering:
@@ -22,9 +22,9 @@ Consoles:
 =========
  - Based on a joint project Artenum - INRIA/Scilab called Jrosetta
  - Completion
-	+ functions
-	+ variables
-	+ paths
+	+ Functions
+	+ Variables
+	+ Paths
  
 Scilab modes:
 =============
