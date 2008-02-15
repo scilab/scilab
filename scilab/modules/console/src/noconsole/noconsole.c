@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +20,6 @@
 #include "ClearConsole.h"
 #include "SetConsolePrompt.h"
 #include "InitializeConsole.h"
-#include "TerminateConsole.h"
 #include "PromptToHome.h"
 #include "MALLOC.h"
 #include "GetCharWithoutOutput.h"
@@ -61,11 +61,6 @@ BOOL SetConsolePrompt(char *Sci_prompt)
 }
 /*--------------------------------------------------------------------------*/
 BOOL InitializeConsole(void)
-{
-	return FALSE;
-}
-/*--------------------------------------------------------------------------*/
-BOOL TerminateConsole(void)
 {
 	return FALSE;
 }

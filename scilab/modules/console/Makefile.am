@@ -25,8 +25,7 @@ src/jni/DropFiles_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
 src/c/GuiManagement.c \
-src/c/dropFiles.c \
-src/c/TerminateConsole.c
+src/c/dropFiles.c
 
 GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 
@@ -82,9 +81,7 @@ includes/GetCharWithoutOutput.h \
 includes/InitializeConsole.h \
 includes/PromptToHome.h \
 includes/ScilabLinesUpdate.h \
-includes/SetConsolePrompt.h \
-includes/TerminateConsole.h
-
+includes/SetConsolePrompt.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1
