@@ -1,7 +1,16 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function kerA=kernel(A,tol,flag)
 //Syntax : [x]=kernel(A [,tol [,flag]])
 // flag = 'svd' or 'sqr' no flag if A sparse 
-// Copyright INRIA
   if type(A)==1 then
     [lhs,rhs]=argn(0);
     [n,m]=size(A);

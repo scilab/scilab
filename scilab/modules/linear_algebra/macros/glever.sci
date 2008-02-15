@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1988-2008 - INRIA - François DELEBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Bfs,Bis,chis]=glever(E,A,s)
 // [Bfs,Bis,chis]=glever(E,A,'s')
 // Computation of (s*E-A)^-1 ('s'=character string with default value 's')
@@ -8,9 +18,7 @@ function [Bfs,Bis,chis]=glever(E,A,s)
 // Bis  = polynomial matrix ( - expansion of (s*E-A)^-1 at infinity).
 // Caveat: uses clean to simplify Bfs,Bis and chis !
 // See also shuffle, determ, invr, coffg
-// F.D. (1988)
-//!
-// Copyright INRIA
+
   [LHS,RHS]=argn(0);
   if RHS==1 then [E,A]=pen2ea(E),s=poly(0,'s');end 
   if RHS==2 then s=poly(0,'s'),end;

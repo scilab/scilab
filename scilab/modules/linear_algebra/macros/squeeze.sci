@@ -1,6 +1,5 @@
 function matin = squeeze(matin)
 
-// Copyright INRIA
 // PURPOSE: Remove singleton dimensions, that is any dimension 
 // for which the size of the input hypermatrix is 1; if the 
 // input is a matrix, it is unaffected

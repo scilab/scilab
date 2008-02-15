@@ -1,7 +1,3 @@
-c     Examples of default external functions for schur 
-c     [..]=schur(A,"external")
-c     Can be used as template functions
-
 
       LOGICAL FUNCTION SB02MV( REIG, IEIG )
 C

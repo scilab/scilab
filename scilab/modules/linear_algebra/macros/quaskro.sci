@@ -16,7 +16,6 @@ function [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A,tol)
 // interface  from Slicot-fstair (F.D.) 
 // T. Beelen's routines
 //!
-// Copyright INRIA
   [LHS,RHS]=argn(0);
   if RHS==1 then [E,A]=pen2ea(E);tol=1.d-10;end
   if RHS==2 then

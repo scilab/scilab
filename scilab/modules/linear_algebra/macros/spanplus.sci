@@ -1,12 +1,20 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - François DELEBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x,dim,dima]=spanplus(a,b,tol)
 //[X,dim,dima]=spanplus(A,B,tol) computes an orthogonal basis of
 // a+b such that : the first dima columns of x span Range(A)
 // and the following (dim-dima) columns make a basis of a+b
 // relative to a. tol is an optional argument.
 // The dim first columns of x make a basis for A+B.
-//F.D.
 //!
-// Copyright INRIA
   [na,ma]=size(a);[nb,mb]=size(b);
   if na*ma==0 then 
     dima=0;[x,dim]=rowcomp(b);x=x';return;

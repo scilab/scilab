@@ -1,5 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [S]=sqroot(Q)
-// Copyright INRIA
   Q1=(Q+Q')/2;
   if norm(Q1-Q,1) > 100*%eps then warning('sqroot: input not symmetric!');end
   tt=mini(spec(Q1));

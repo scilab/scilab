@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - François DELEBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x,dim]=spaninter(a,b,tol)
 //[X,dim]=spaninter(a,b [,tol])  computes intersection of Range(A)
 // and Range(B)
@@ -7,9 +17,7 @@ function [x,dim]=spaninter(a,b,tol)
 //            X'*A and X'*B.
 // dim        dimension of subspace A inter B.
 // tol        threshold (sqrt(%eps) is the default value).
-//F.D.
-//!
-// Copyright INRIA
+
   [lhs,rhs]=argn(0);
   [na,ma]=size(a);[nb,mb]=size(b);
   if ma*na==0 then dim=0;x=eye(nb,nb);return;end

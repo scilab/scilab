@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1987-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 1987-2008 - INRIA - François DELEBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function[m,den]=nlev(a,z,rmax)
 //[num,den]=nlev(a,z [,rmax])  calcule (z*eye-a)**(-1) par une version
 //modifiee de l'algorithme de leverrier numeriquement plus stable.
@@ -5,10 +16,7 @@ function[m,den]=nlev(a,z,rmax)
 //z     chaine de caracteres donnant le nom de la variable formelle
 //rmax  parametre optionnel utilise pour bloc diagonaliser a (voir la
 //      fonction bdiag)
-//!
-// origine f delebecque s. steer inria 1987
 //
-// Copyright INRIA
   [rhs,lhs]=argn(0);z=poly(0,z)
   if rhs==3 then [a,x,bs]=bdiag(a,rmax),
   else [a,x,bs]=bdiag(a),

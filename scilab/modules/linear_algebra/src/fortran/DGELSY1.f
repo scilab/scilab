@@ -1,4 +1,3 @@
-
       SUBROUTINE DGELSY1( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND, RANK,
      $     WORK, LWORK, INFO )
 *     

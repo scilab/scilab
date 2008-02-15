@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - François DELEBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Q,M]=psmall(A,thres,flag)
 // [Q,M]=psmall(A,thres,flag) 
 //Projection on eigensubspace associated with eigenvalues
@@ -7,9 +17,7 @@ function [Q,M]=psmall(A,thres,flag)
 //If [Q1,M1]== full rank factorization (fullrf) of eye-Q*M then evals of 
 // M1*A*Q1 =evals of A with real part >= thres (case flag='d',...).
 // See also pbig
-//F.D.
 //!
-// Copyright INRIA
   [n,n]=size(A);
   thres=real(thres);
   if flag=='c' then 

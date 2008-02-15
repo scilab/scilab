@@ -1,5 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function c=cond(A)
-// Copyright INRIA
 // c=cond(A) condition number for 2-norm
   if type(A)==1 then
     if A==[] then c=1,return,end
