@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,77 +17,77 @@
   <TYPE>Documentation</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="A_propos_des_outils_M2SCI">Présentation générale des outils de conversion de fichiers Matlab vers Scilab...</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="A_propos_des_outils_M2SCI">Prï¿½sentation gï¿½nï¿½rale des outils de conversion de fichiers Matlab vers Scilab...</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
   
   <P>Scilab 3.0 contient une nouvelle version d'outils pour convertir des fichiers Matlab vers Scilab.</P>
 
   <P>
-  A partir d'un fichier Matlab, <VERB>mfile2sci</VERB> modifie ce fichier pour qu'il puisse être
-  compilé par Scilab. Puis, ce code compilé est converti en "arbre" d'instructions
+  A partir d'un fichier Matlab, <VERB>mfile2sci</VERB> modifie ce fichier pour qu'il puisse ï¿½tre
+  compilï¿½ par Scilab. Puis, ce code compilï¿½ est converti en "arbre" d'instructions
   par <VERB>macr2tree</VERB>. Cet "arbre" est une imbrication de listes et de tlists Scilab et
   est la base de la conversion. Chaque instruction de cet "arbre" est convertie en langage Scilab et
-  l'inférence est réalisée pour savoir ce que sont les variables. Une fois cet "arbre" converti en Scilab,
-  le code est généré en utilisant <VERB>tree2code</VERB>.
+  l'infï¿½rence est rï¿½alisï¿½e pour savoir ce que sont les variables. Une fois cet "arbre" converti en Scilab,
+  le code est gï¿½nï¿½rï¿½ en utilisant <VERB>tree2code</VERB>.
   </P>
 
   <P>
-   Toutes les tlists utilisées pour coder cet arbre (et que nous appelons "tlists M2SCI") sont énumérées ci-dessous :
+   Toutes les tlists utilisï¿½es pour coder cet arbre (et que nous appelons "tlists M2SCI") sont ï¿½numï¿½rï¿½es ci-dessous :
   </P>
   <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM>
   <ITEMIZE>
     <ITEM label="funcall">
-      <SP> : tlist représentant l'appel à une fonction créée par <VERB>Funcall</VERB></SP>
+      <SP> : tlist reprï¿½sentant l'appel ï¿½ une fonction crï¿½ï¿½e par <VERB>Funcall</VERB></SP>
     </ITEM>  
     <ITEM label="operation">
-      <SP> : tlist représentant une opération créée par <VERB>Operation</VERB></SP>
+      <SP> : tlist reprï¿½sentant une opï¿½ration crï¿½ï¿½e par <VERB>Operation</VERB></SP>
     </ITEM>  
     <ITEM label="variable">
-      <SP> : tlist représentant une variable créée par <VERB>Variable</VERB></SP>
+      <SP> : tlist reprï¿½sentant une variable crï¿½ï¿½e par <VERB>Variable</VERB></SP>
     </ITEM>  
     <ITEM label="cste">
-      <SP> : tlist représentant une constante créée par <VERB>Cste</VERB></SP>
+      <SP> : tlist reprï¿½sentant une constante crï¿½ï¿½e par <VERB>Cste</VERB></SP>
     </ITEM>  
     <ITEM label="equal">
-      <SP> : tlist représentant une instruction créée <VERB>Equal</VERB></SP>
+      <SP> : tlist reprï¿½sentant une instruction crï¿½ï¿½e <VERB>Equal</VERB></SP>
     </ITEM>  
     <ITEM label="ifthenelse">
-      <SP> : tlist représentant une instruction de contrôle IF/THEN/ELSE créée dans les fonctions du "noyau" de M2SCI</SP>
+      <SP> : tlist reprï¿½sentant une instruction de contrï¿½le IF/THEN/ELSE crï¿½ï¿½e dans les fonctions du "noyau" de M2SCI</SP>
     </ITEM>  
     <ITEM label="while">
-      <SP> : tlist représentant une instruction de contrôle WHILE créée dans les fonctions du "noyau" de M2SCI</SP>
+      <SP> : tlist reprï¿½sentant une instruction de contrï¿½le WHILE crï¿½ï¿½e dans les fonctions du "noyau" de M2SCI</SP>
     </ITEM>  
     <ITEM label="selectcase">
-      <SP> : tlist représentant une instruction de contrôle SELECT/CASE créée dans les fonctions du "noyau" de M2SCI</SP>
+      <SP> : tlist reprï¿½sentant une instruction de contrï¿½le SELECT/CASE crï¿½ï¿½e dans les fonctions du "noyau" de M2SCI</SP>
     </ITEM>  
     <ITEM label="for">
-      <SP> : tlist représentant une instruction de contrôle FOR créée dans les fonctions du "noyau" de M2SCI</SP>
+      <SP> : tlist reprï¿½sentant une instruction de contrï¿½le FOR crï¿½ï¿½e dans les fonctions du "noyau" de M2SCI</SP>
     </ITEM>  
   </ITEMIZE>
   </DESCRIPTION_ITEM>
   </DESCRIPTION_INDENT>
 
   <P>
-  Le contenu des ces tlists est décrit dans les pages d'aide correspondantes.
+  Le contenu des ces tlists est dï¿½crit dans les pages d'aide correspondantes.
   </P>
 
   <P>
-  Les opérations sont converties en utilisant une fonction appelée <VERB>%&lt;codeop&gt;2sci</VERB> avec codeop
-  le code Scilab pour cette opérateur. Voir l'aide de overloading pour voir ces codes. Toutes
-  ces fonctions sont déjà écrites et sont dans le répertoire SCI/macros/m2sci/percent/.
+  Les opï¿½rations sont converties en utilisant une fonction appelï¿½e <VERB>%&lt;codeop&gt;2sci</VERB> avec codeop
+  le code Scilab pour cette opï¿½rateur. Voir l'aide de overloading pour voir ces codes. Toutes
+  ces fonctions sont dï¿½jï¿½ ï¿½crites et sont dans le rï¿½pertoire SCI/macros/m2sci/percent/.
   </P>
 
   <P>
-  Les appels aux fonctions sont convertis en utilisant une fonction appelée <VERB>sci_&lt;nom_de_la_fonction_Matlab&gt;</VERB>.
-  Bon nombre de ces fonctions ont été écrites et sont dans le répertoire SCI/macros/m2sci/sci_files/.
-  Nous travillons actuellemnt à l'augmentation du nombre de fonctions Matlab converties. Néanmoins, tout le monde peut
-  écrire ces fonctions en utilisant la pages d'aide sci_files.
+  Les appels aux fonctions sont convertis en utilisant une fonction appelï¿½e <VERB>sci_&lt;nom_de_la_fonction_Matlab&gt;</VERB>.
+  Bon nombre de ces fonctions ont ï¿½tï¿½ ï¿½crites et sont dans le rï¿½pertoire SCI/macros/m2sci/sci_files/.
+  Nous travillons actuellemnt ï¿½ l'augmentation du nombre de fonctions Matlab converties. Nï¿½anmoins, tout le monde peut
+  ï¿½crire ces fonctions en utilisant la pages d'aide sci_files.
   </P>
 
   <P>
-  L'inférence est réalisée à l'aide de tlists de type "infer" contenant les champs :
+  L'infï¿½rence est rï¿½alisï¿½e ï¿½ l'aide de tlists de type "infer" contenant les champs :
   </P>
   <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM>
@@ -102,16 +113,16 @@
   <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM label="vtype">
-      <SP> : type de donnée</SP>
+      <SP> : type de donnï¿½e</SP>
       </ITEM>
       <ITEM label="property">
-      <SP> : propriété de cette donnée</SP>
+      <SP> : propriï¿½tï¿½ de cette donnï¿½e</SP>
       </ITEM>
     </ITEMIZE>
   </DESCRIPTION_ITEM>
   </DESCRIPTION_INDENT>
 
-  <P>Pour plus d'informations sur l'inférence, voir la page d'aide de m2scideclare.</P>
+  <P>Pour plus d'informations sur l'infï¿½rence, voir la page d'aide de m2scideclare.</P>
 
   </DESCRIPTION> 
 

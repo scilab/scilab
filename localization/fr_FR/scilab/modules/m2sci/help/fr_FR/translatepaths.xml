@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * Copyright (C) ???? - INRIA - Serge STEER 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>translatepaths</TITLE>
   <TYPE>Fonction Scilab</TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="translatepaths"> convertit un ensemble de répertoires contenant des M-files vers Scilab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="translatepaths"> convertit un ensemble de rï¿½pertoires contenant des M-files vers Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>translatepaths(dirs_path [,res_path])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,25 +26,25 @@
       <PARAM_ITEM>
         <PARAM_NAME>dirs_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: un vecteur de chaînes de caractères qui donne les chemins des répertoires à convertir</SP>
+          <SP>: un vecteur de chaï¿½nes de caractï¿½res qui donne les chemins des rï¿½pertoires ï¿½ convertir</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>res_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: une chaîne de caractère qui donne le chemin du répertoire où les fonctions Scilab seront écrites. Valeur par défaut : répertoire courant.</SP>
+          <SP>: une chaï¿½ne de caractï¿½re qui donne le chemin du rï¿½pertoire oï¿½ les fonctions Scilab seront ï¿½crites. Valeur par dï¿½faut : rï¿½pertoire courant.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>translatepaths</VERB>, convertit tous les M-files contenus dans un ensemble de répertoires
+    <P><VERB>translatepaths</VERB>, convertit tous les M-files contenus dans un ensemble de rï¿½pertoires
     en fonctions Scilab. Chaque fonction est convertie par <VERB>mfile2sci</VERB>.</P>
     <P>
-    Toutes les informations de traduction sont stockées dans un fichier nommé <VERB>&quot;log&quot;</VERB> dans
-    le répertoire <VERB>res_path</VERB>.</P>
+    Toutes les informations de traduction sont stockï¿½es dans un fichier nommï¿½ <VERB>&quot;log&quot;</VERB> dans
+    le rï¿½pertoire <VERB>res_path</VERB>.</P>
     <P>
-    Un appel à <VERB>translatepaths()</VERB> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
+    Un appel ï¿½ <VERB>translatepaths()</VERB> sans rhs lance une interface graphique pour aider ï¿½ la sï¿½lection d'un fichier/rï¿½pertoire et des options.
     </P>
   </DESCRIPTION>
   <SEE_ALSO>

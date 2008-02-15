@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,24 +17,24 @@
   <TYPE>Documentation</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="Chaines_de_caracteres_Matlab-Scilab">Généralités...</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Chaines_de_caracteres_Matlab-Scilab">Gï¿½nï¿½ralitï¿½s...</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
   <P>    
-  Les chaînes de caractère ne sont pas considérées de la même façon 
+  Les chaï¿½nes de caractï¿½re ne sont pas considï¿½rï¿½es de la mï¿½me faï¿½on 
   en Matlab ou en Scilab.
-  Voici une brève présentation des principales différences.
+  Voici une brï¿½ve prï¿½sentation des principales diffï¿½rences.
   </P>
   <P>
-  Matlab considère une chaine de caractères comme Scilab considère une matrice de caractères.
-  Par exemple, un équivalent Scilab pour la chaîne de caractères Matlab 'machaine' pourrait être ["m","a","c","h","a","i","n","e"]. 
-  Donc, dans Scilab, une chaîne de caractères est un objet de type 'string' (10) et est toujours de taille 1 x 1 mais dans Matlab, une chaîne de caractères est de taille 1 x nombre_de_caractères.
+  Matlab considï¿½re une chaine de caractï¿½res comme Scilab considï¿½re une matrice de caractï¿½res.
+  Par exemple, un ï¿½quivalent Scilab pour la chaï¿½ne de caractï¿½res Matlab 'machaine' pourrait ï¿½tre ["m","a","c","h","a","i","n","e"]. 
+  Donc, dans Scilab, une chaï¿½ne de caractï¿½res est un objet de type 'string' (10) et est toujours de taille 1 x 1 mais dans Matlab, une chaï¿½ne de caractï¿½res est de taille 1 x nombre_de_caractï¿½res.
   </P>
   <P>
-  Ainsi, on voit bien qu'une colonne donnée d'une matrice de chaînes de caractères Matlab ne peut contenir que des chaînes de même taille ce qui n'est pas vrai dans Scilab. On peut dire qu'une chaîne de caractères Scilab est équivalente à une cell de chaînes de caractère Matlab.
+  Ainsi, on voit bien qu'une colonne donnï¿½e d'une matrice de chaï¿½nes de caractï¿½res Matlab ne peut contenir que des chaï¿½nes de mï¿½me taille ce qui n'est pas vrai dans Scilab. On peut dire qu'une chaï¿½ne de caractï¿½res Scilab est ï¿½quivalente ï¿½ une cell de chaï¿½nes de caractï¿½re Matlab.
   </P>
   <P>
-  Toutes ces différences peuvent conduire à des résultats différents pour l'exécution des mêmes commandes dans Scilab ou dans Matlab, particulièrement pour les fonctions travaillant sur les dimensions comme length() ou size().
+  Toutes ces diffï¿½rences peuvent conduire ï¿½ des rï¿½sultats diffï¿½rents pour l'exï¿½cution des mï¿½mes commandes dans Scilab ou dans Matlab, particuliï¿½rement pour les fonctions travaillant sur les dimensions comme length() ou size().
   </P>
   </DESCRIPTION> 
 

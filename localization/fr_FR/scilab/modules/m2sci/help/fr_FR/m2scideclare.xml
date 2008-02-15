@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -10,20 +21,20 @@
 
   <DESCRIPTION>
   <P>
-  La principale difficulté de M2SCI (<VERB>mfile2sci</VERB>) est de trouver
+  La principale difficultï¿½ de M2SCI (<VERB>mfile2sci</VERB>) est de trouver
   ce que sont les variables : dimensions, type...  
   </P>
   <P>
   Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
-  <VERB>%m2scideclare</VERB> dans le fichier Matlab à convertir,
-  (<VERB>%m2sciassume</VERB> était utilisée dans les versions précédentes
-  de Scilab mais est maintenant obsolète).
+  <VERB>%m2scideclare</VERB> dans le fichier Matlab ï¿½ convertir,
+  (<VERB>%m2sciassume</VERB> ï¿½tait utilisï¿½e dans les versions prï¿½cï¿½dentes
+  de Scilab mais est maintenant obsolï¿½te).
   </P>
   <P>
   La syntaxe de cette commande est :
   </P>
   <P>
-  <VERB>%m2scideclare nom_de_variable|dimensions|type_de_données|propriété</VERB>
+  <VERB>%m2scideclare nom_de_variable|dimensions|type_de_donnï¿½es|propriï¿½tï¿½</VERB>
   </P>
   <P>
   avec :
@@ -34,29 +45,29 @@
   <ITEMIZE>
     <ITEM>
       <SP>
-      nom_de_variable : nom de la variable déclarée. Ce nom peut être
+      nom_de_variable : nom de la variable dï¿½clarï¿½e. Ce nom peut ï¿½tre
       un champ de Struct (e.g. <VERB>x(1,2).nom</VERB>)
-      ou décrire le contenu d'une Cell en utilisant la syntaxe
+      ou dï¿½crire le contenu d'une Cell en utilisant la syntaxe
       <VERB>x(1,2).entries</VERB>. NOTEZ que pour les Cells et les
-      Structs <VERB>*</VERB> peut être utilisé comme index.
+      Structs <VERB>*</VERB> peut ï¿½tre utilisï¿½ comme index.
       </SP>
     </ITEM>
     <ITEM>
       <SP>
-      dimensions : dimensions de la variable déclarée séparées par des espaces,
+      dimensions : dimensions de la variable dï¿½clarï¿½e sï¿½parï¿½es par des espaces,
       si une dimension est inconnue, remplacez la par <VERB>?</VERB>. NOTEZ que
-      les dimensions des chaînes de caractère doivent être identiques aux dimensions
-      Matlab e.g. <VERB>1 6</VERB> pour la chaîne de caractères 'chaine'.
+      les dimensions des chaï¿½nes de caractï¿½re doivent ï¿½tre identiques aux dimensions
+      Matlab e.g. <VERB>1 6</VERB> pour la chaï¿½ne de caractï¿½res 'chaine'.
       </SP>
     </ITEM>
     <ITEM>
       <SP>
-      type_de_données: le type de donnée de la variable qui peut être :
+      type_de_donnï¿½es: le type de donnï¿½e de la variable qui peut ï¿½tre :
       </SP>
       <TABLE>
 	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Type de donnée m2scideclare</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Type Scilab "équivalent"</TABLE_NEW_COLUMN>
+	  <TABLE_NEW_COLUMN>Type de donnï¿½e m2scideclare</TABLE_NEW_COLUMN>
+	  <TABLE_NEW_COLUMN>Type Scilab "ï¿½quivalent"</TABLE_NEW_COLUMN>
 	</TABLE_NEW_ROW>
 	<TABLE_NEW_ROW>
 	  <TABLE_NEW_COLUMN>Double</TABLE_NEW_COLUMN>
@@ -102,36 +113,36 @@
     </ITEM>
    <ITEM>
       <SP>
-      propriété : propriété de la variable qui peut être : 
+      propriï¿½tï¿½ : propriï¿½tï¿½ de la variable qui peut ï¿½tre : 
       </SP>
       <TABLE>
 	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Propriété m2scideclare</TABLE_NEW_COLUMN>
+	  <TABLE_NEW_COLUMN>Propriï¿½tï¿½ m2scideclare</TABLE_NEW_COLUMN>
 	  <TABLE_NEW_COLUMN>"Equivalent" Scilab</TABLE_NEW_COLUMN>
 	</TABLE_NEW_ROW>
 	<TABLE_NEW_ROW>
 	  <TABLE_NEW_COLUMN>Real</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Donnée réelle</TABLE_NEW_COLUMN>
+	  <TABLE_NEW_COLUMN>Donnï¿½e rï¿½elle</TABLE_NEW_COLUMN>
 	</TABLE_NEW_ROW>
 	<TABLE_NEW_ROW>
 	  <TABLE_NEW_COLUMN>Complex</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Donnée complexe</TABLE_NEW_COLUMN>
+	  <TABLE_NEW_COLUMN>Donnï¿½e complexe</TABLE_NEW_COLUMN>
 	</TABLE_NEW_ROW>
 	<TABLE_NEW_ROW>
 	  <TABLE_NEW_COLUMN>?</TABLE_NEW_COLUMN>
 	  <TABLE_NEW_COLUMN>Property inconnue</TABLE_NEW_COLUMN>
 	</TABLE_NEW_ROW>
       </TABLE>
-      <SP>Ce champ est ignoré pour les types de données suivants : <VERB>Cell</VERB>,
+      <SP>Ce champ est ignorï¿½ pour les types de donnï¿½es suivants : <VERB>Cell</VERB>,
       <VERB>Struct</VERB>, <VERB>String</VERB> et <VERB>Boolean</VERB>.</SP>
     </ITEM>
   </ITEMIZE>
   </DESCRIPTION_ITEM>
   </DESCRIPTION_INDENT>
   <P>
-  Toutes les informations données par <VERB>m2scideclare</VERB> sont comparées avec
-  les données inférées, en cas de conflit, les données inférées sont conservées et
-  un warning est affiché. Si vous êtes sûrs de vos informations, rapportez ce bug.
+  Toutes les informations donnï¿½es par <VERB>m2scideclare</VERB> sont comparï¿½es avec
+  les donnï¿½es infï¿½rï¿½es, en cas de conflit, les donnï¿½es infï¿½rï¿½es sont conservï¿½es et
+  un warning est affichï¿½. Si vous ï¿½tes sï¿½rs de vos informations, rapportez ce bug.
   </P>
   
   <P>Voici quelques exemples :</P>
@@ -141,39 +152,39 @@
   <ITEMIZE>
     <ITEM>
       <SP><VERB>%m2scideclare var1|2 3|Double|Real</VERB>
-      : var1 est déclarée comme une matrice de Doubles de taille 2x3
-      et contenant des données réelles</SP>
+      : var1 est dï¿½clarï¿½e comme une matrice de Doubles de taille 2x3
+      et contenant des donnï¿½es rï¿½elles</SP>
     </ITEM>
     <ITEM>
       <SP><VERB>%m2scideclare var2|2 3 10|Double|Complex</VERB>
-      : var2 est déclarée comme une hypermatrice de Doubles de taille 2x3x10
-      et contenant des données complexes</SP>
+      : var2 est dï¿½clarï¿½e comme une hypermatrice de Doubles de taille 2x3x10
+      et contenant des donnï¿½es complexes</SP>
     </ITEM>
     <ITEM>
       <SP><VERB>%m2scideclare var3(1,2).name|1 10|String|?</VERB>
-      : var3 est déclarée comme un tableau de Structs contenant une chaîne de
-      caractères de taille 1x10 dans le champ 'name' de la Struct à l'indice (1,2) </SP>
+      : var3 est dï¿½clarï¿½e comme un tableau de Structs contenant une chaï¿½ne de
+      caractï¿½res de taille 1x10 dans le champ 'name' de la Struct ï¿½ l'indice (1,2) </SP>
     </ITEM>
     <ITEM>
       <SP><VERB>%m2scideclare var4(1,5).entries|1 ?|Boolean|?</VERB>
-      : var4 est déclarée comme un tableau de Cells contenant
-      un vecteur ligne de booléens à l'indice (1,5)</SP>
+      : var4 est dï¿½clarï¿½e comme un tableau de Cells contenant
+      un vecteur ligne de boolï¿½ens ï¿½ l'indice (1,5)</SP>
     </ITEM>
     <ITEM>
       <SP><VERB>%m2scideclare var4(1,6).entries|? ?|Int|?</VERB>
-      : var4 est déclarée comme un tableau de Cells contenant
-      un vecteur ligne de booléens à l'indice (1,5)
-      et des données entières à l'indice (1,6)</SP>
+      : var4 est dï¿½clarï¿½e comme un tableau de Cells contenant
+      un vecteur ligne de boolï¿½ens ï¿½ l'indice (1,5)
+      et des donnï¿½es entiï¿½res ï¿½ l'indice (1,6)</SP>
     </ITEM>
     <ITEM>
       <SP><VERB>%m2scideclare var5(*,*).name|1 ?|String|?</VERB>
-      : var5 est déclarée comme un tableau de Structs contenant une
-      chaîne de caractères de taille 1xn dans chaque champ 'name'</SP>
+      : var5 est dï¿½clarï¿½e comme un tableau de Structs contenant une
+      chaï¿½ne de caractï¿½res de taille 1xn dans chaque champ 'name'</SP>
     </ITEM>
     <ITEM>
       <SP><VERB>%m2scideclare var6(2,*).entries|1 3|Double|Real</VERB>
-      : var6 est déclarée comme un tableau de Cells contenant un
-      veteur de Doubles de taille 1x3 dans chaque élement de sa
+      : var6 est dï¿½clarï¿½e comme un tableau de Cells contenant un
+      veteur de Doubles de taille 1x3 dans chaque ï¿½lement de sa
       seconde ligne.</SP>
     </ITEM>
   </ITEMIZE>

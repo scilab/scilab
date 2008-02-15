@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -24,7 +35,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>index</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP> : un index tel que ceux retournés par <VERB>macr2tree</VERB>.</SP>
+          <SP> : un index tel que ceux retournï¿½s par <VERB>macr2tree</VERB>.</SP>
        </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -44,10 +55,10 @@
 
   <DESCRIPTION>
     <P>
-    Cette fonction recherche les informations d'inférence pour un
-    index donné dans le contenu d'une Cell ou d'une Struct en tenant
-    compte des <VERB>*</VERB>. Si aucune information correspond à cet
-    index, les valeurs retournées sont infer=Infer() et pos=0.
+    Cette fonction recherche les informations d'infï¿½rence pour un
+    index donnï¿½ dans le contenu d'une Cell ou d'une Struct en tenant
+    compte des <VERB>*</VERB>. Si aucune information correspond ï¿½ cet
+    index, les valeurs retournï¿½es sont infer=Infer() et pos=0.
     </P>  
   </DESCRIPTION>
 
