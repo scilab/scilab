@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002-2007 - INRIA - Vincent COUVERT
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,16 +17,16 @@
   <TYPE>Fonction Scilab</TYPE>
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="tohome">Déplace le curseur en haut à gauche de la fenêtre de commande</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="tohome">Dï¿½place le curseur en haut ï¿½ gauche de la fenï¿½tre de commande</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>tohome()</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
-    <P><VERB>tohome()</VERB> déplace le curseur en haut à gauche de la fenêtre de commande et efface l'écran.</P>
-    <P>Vous pouvez utiliser la barre de défilement pour voir l'historique des fonctions.</P>
-    <P>Notez que <VERB>tohome()</VERB> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.</P>
+    <P><VERB>tohome()</VERB> dï¿½place le curseur en haut ï¿½ gauche de la fenï¿½tre de commande et efface l'ï¿½cran.</P>
+    <P>Vous pouvez utiliser la barre de dï¿½filement pour voir l'historique des fonctions.</P>
+    <P>Notez que <VERB>tohome()</VERB> ne peut ï¿½tre utilisï¿½ sous Windows quand Scilab est utilisï¿½ en mode sans fenï¿½tre.</P>
   </DESCRIPTION>
 
   <SEE_ALSO>
