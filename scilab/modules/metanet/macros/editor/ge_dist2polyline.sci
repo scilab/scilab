@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [d,pt,ind]=ge_dist2polyline(xp,yp,pt)
 // computes minimum distance from a point to a polyline
 //d    minimum distance to polyline
@@ -6,7 +16,6 @@ function [d,pt,ind]=ge_dist2polyline(xp,yp,pt)
 //     if negative polyline closest point is a polyline corner:pt=[xp(-ind) yp(-ind)]
 //     if positive pt lies on segment [ind ind+1]
 
-// Copyright INRIA
   x=pt(1)
   y=pt(2)
   xp=xp(:);yp=yp(:)

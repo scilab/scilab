@@ -1,13 +1,23 @@
+
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Bruno JOFRET <bruno.jofret@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+ 
 /*
 **  -*- C -*-
 **
 ** files.h
-** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
 **
 ** Started on  Wed Oct 24 18:43:11 2007 bruno
 ** Last update Fri Oct 26 14:55:34 2007 bruno
-**
-** Copyright INRIA 2007
 */
 
 #ifndef __FILES_UTILS_H__

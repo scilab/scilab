@@ -1,6 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Gnew,modified]=update_graph(G)
-//Copyright INRIA
-//Author : Serge Steer 2008
   modified=%f
   if typeof(G)<>'graph' then error('Input argument must be a graph'),end
   if and(getfield(1,G)<>'version') //G is a Scilab4.X graph data structure
@@ -16,7 +24,6 @@ function [Gnew,modified]=update_graph(G)
 endfunction
 
 function GraphList=update_graphv5(G)
-//Copyright INRIA
 //Author : Serge Steer 2008
 
   GraphList=ge_new_graph()

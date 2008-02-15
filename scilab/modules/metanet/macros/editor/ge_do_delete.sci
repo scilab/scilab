@@ -1,12 +1,19 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function GraphList=ge_do_delete(GraphList,xc,yc)
-//Copyright INRIA
-//Author : Serge Steer 2002
 
 // ge_do_delete - delete a scicos object
 // get first object to delete
 //EGdata is passed by context
 //!
-// Copyright INRIA
   ge_disablemenus()
   //mprintf("number of edges %d before deletion\n",size(GraphList.edges))
   edited =%f

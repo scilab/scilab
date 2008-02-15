@@ -1,8 +1,16 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [g,modified,msg]=load_graph(path)
 //Loads a graph data structrure from a file.
-  
-//Author : Serge Steer 2002
-// Copyright INRIA
+
   with_error=argn(1)<>3
   g=[];modified=%f,msg=[];
   // path
@@ -53,7 +61,6 @@ function [g,modified,msg]=load_graph(path)
 endfunction
 
 function g=load_old_graph(path)
-// Copyright INRIA
   g=m6loadg(pathconvert(path,%f,%t))
   g=glist(g(:))
   g($+1)=[]; g($+1)=[]

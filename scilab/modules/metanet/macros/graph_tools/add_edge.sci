@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function g=add_edge(i,j,g)
 // Add edges in the given graph. 
 // The edges to add are specified by their tail and head node index:
@@ -5,7 +15,6 @@ function g=add_edge(i,j,g)
 // i  : vector of tail node index.
 // j  : vector of head node index. 
 // g  : graph data structure
-// Copyright INRIA
 
   //Check inputs
   //------------

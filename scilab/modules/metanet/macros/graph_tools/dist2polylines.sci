@@ -1,6 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [k]=dist2polylines(xp,yp,pt)
-//Copyright INRIA
-//Author : Serge Steer 2002
 
 // computes minimum distance from a point to a set of polylines
 //xp xp : polylines coordinates (one polyline by column)
@@ -10,7 +18,6 @@ function [k]=dist2polylines(xp,yp,pt)
 //     if negative polyline closest point is a polyline corner:pt=[xp(-ind) yp(-ind)]
 //     if positive pt lies on segment [ind ind+1]
 
-// Copyright INRIA
 //mxx=max(xp)/10;mxy=max(yp)/10;
 //mxx=0;mxy=0;
 //ki=find((xp(1:$-1,:)<=(pt(1)+mxx)&(pt(1)-mxx)<xp(2:$,:))&..

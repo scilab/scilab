@@ -1,6 +1,16 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 2002-2008 - INRIA - Claude GOMEZ <claude.gomez@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function check_graph(g,checkgraphics)
 // checks if g is really a graph data structure
-// Copyright INRIA, Authors: Claude Gomez,  Serge Steer 
   if argn(2)==1 then checkgraphics=%t, end
   
   // The fields, types and size reference
