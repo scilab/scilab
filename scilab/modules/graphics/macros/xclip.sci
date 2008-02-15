@@ -1,16 +1,17 @@
 function []=xclip(x,y,w,h)
+warnobsolete("clip_state and clip_box")
 // fixe une zone de clipping en cordonnees reelles
 // (x,y,w,h) (Upper-Left,wide,Height)
 //!
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 if rhs<=0, xset('clipoff');return;end
-if rhs==1,if typeof(x)<>"string" then 
+if rhs==1,if typeof(x)<>"string" then
 		xset('clipping',x(1),x(2),x(3),x(4));
-	else 
+	else
 		xset(x);
 	end
-else 
+else
 	xset('clipping',x,y,w,h);
 end
 endfunction
