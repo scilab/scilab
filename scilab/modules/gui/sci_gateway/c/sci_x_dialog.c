@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
+/* Allan CORNET - INRIA 2006 */
+/* Vincent COUVERT - INRIA 2008 (Java version) */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_gui.h"
 #include "machine.h"
@@ -8,6 +8,7 @@
 #include "localization.h"
 #include "CallMessageBox.h"
 #include "Scierror.h"
+#include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -43,7 +44,7 @@ int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len))
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, _("Scilab Input Value Request"));
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, (char **)labelsAdr, nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(labelsAdr), nbCol*nbRow);
     
   if (Rhs == 2)
     {
@@ -57,7 +58,7 @@ int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len))
           return FALSE;
         }
 
-      setMessageBoxInitialValue(messageBoxID, (char **)initialValueAdr, nbCol*nbRow);
+      setMessageBoxInitialValue(messageBoxID, getStringMatrixFromStack(initialValueAdr), nbCol*nbRow);
     }
 
   /* Display it and wait for a user input */

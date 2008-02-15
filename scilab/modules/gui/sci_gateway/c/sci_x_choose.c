@@ -8,6 +8,7 @@
 #include "localization.h"
 #include "CallMessageBox.h"
 #include "Scierror.h"
+#include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -53,9 +54,9 @@ int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, _("Scilab choose message"));
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, (char **)messageAdr, nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(messageAdr), nbCol*nbRow);
   /* ListBox Items */
-  setMessageBoxListBoxItems(messageBoxID, (char **)itemsAdr, nbColItems*nbRowItems);
+  setMessageBoxListBoxItems(messageBoxID, getStringMatrixFromStack(itemsAdr), nbColItems*nbRowItems);
   /* Modality */
   setMessageBoxModal(messageBoxID, TRUE);
     
@@ -76,7 +77,7 @@ int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
           return FALSE;
         }
 
-      setMessageBoxButtonsLabels(messageBoxID, (char **)buttonLabelAdr, nbCol*nbRow);
+      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack(buttonLabelAdr), nbCol*nbRow);
     }
 
   /* Display it and wait for a user input */

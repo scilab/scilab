@@ -1,12 +1,13 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA 2006 - Allan CORNET */
-/* INRIA 2008 - Vincent COUVERT */
+/* INRIA 2008 - Vincent COUVERT (Java version) */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_gui.h"
 #include "machine.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "CallMessageBox.h"
+#include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
@@ -48,7 +49,7 @@ int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, _("Scilab Multiple Values Request"));
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, (char **)labelsAdr, nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(labelsAdr), nbCol*nbRow);
     
   /* READ THE LINE LABELS */
   if (VarType(2) ==  sci_strings)
@@ -59,7 +60,7 @@ int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
         Scierror(999, _("%s: Wrong type for second input argument: String vector expected.\n"), "x_mdialog");
         return FALSE;
       }
-      setMessageBoxLineLabels(messageBoxID, (char **)lineLabelsAdr, nbColLineLabels*nbRowLineLabels);
+      setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack(lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
     }
   else 
     {
@@ -78,7 +79,7 @@ int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
               Scierror(999, _("%s: Wrong type for third input argument: String vector expected.\n"), "x_mdialog");
               return FALSE;
             }
-          setMessageBoxDefaultInput(messageBoxID, (char **)defaultValuesAdr, nbColDefaultValues*nbRowDefaultValues);
+          setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack(defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
         }
       else
         {
@@ -88,7 +89,7 @@ int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
               Scierror(999, _("%s: Wrong type for third input argument: String vector expected.\n"), "x_mdialog");
               return FALSE;
             }
-          setMessageBoxColumnLabels(messageBoxID, (char **)columnLabelsAdr, nbColColumnLabels*nbRowColumnLabels);
+          setMessageBoxColumnLabels(messageBoxID, getStringMatrixFromStack(columnLabelsAdr), nbColColumnLabels*nbRowColumnLabels);
        }
     }
   else 
@@ -108,7 +109,7 @@ int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
               Scierror(999, _("%s: Wrong size for fourth input argument: should be %d x %d.\n"), "x_mdialog", nbRowLineLabels*nbColLineLabels, nbRowColumnLabels*nbColColumnLabels);
               return FALSE;
             }
-          setMessageBoxDefaultInput(messageBoxID, (char **)defaultValuesAdr, nbColDefaultValues*nbRowDefaultValues);
+          setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack(defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
         }
       else 
         {
