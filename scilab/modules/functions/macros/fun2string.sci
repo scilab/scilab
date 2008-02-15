@@ -1,6 +1,15 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function txt=fun2string(fun,nam)
-// Copyright INRIA
-// Author Serge Steer  
+
 // form  syntax to scilab of a compiled function
 //%Parameters
 // lst   : list, represents the interpreted code of the Scilab function given by macr2lst
@@ -53,7 +62,6 @@ function txt=ins2sci(lst,ilst)
 // traduit un ensemble d'instructions debutant a l'adresse ilst de la
 // liste courante lst
 //!
-// Copyright INRIA
 // Author Serge Steer  
   nlst=size(lst)
   level;level(2)=0;
@@ -72,7 +80,6 @@ endfunction
 function txt=cla2sci(clause)
 // traduit une clause (if while for select)
 //!
-// Copyright INRIA
 // Author Serge Steer  
   typ=clause(1)
   txt=''
@@ -161,7 +168,6 @@ endfunction
 function [txt,ilst]=cod2sci(lst,ilst)
 //
 //!
-// Copyright INRIA
 // Author Serge Steer 
   nlst=size(lst)
   txt=''
@@ -307,7 +313,6 @@ function [txt,ilst]=cod2sci(lst,ilst)
 endfunction
 
 function [stk,txt,ilst]=exp2sci(lst,ilst)
-// Copyright INRIA
 // Author Serge Steer  
   nlst=size(lst)
   top=0
@@ -483,7 +488,6 @@ endfunction
 
 function [stk,top]=func2sci(op,stk)
 // translate all functions calls
-// Copyright INRIA
 // Author Serge Steer 
   lhs=evstr(op(4)) 
   rhs=max(evstr(op(3)) ,0)
@@ -518,7 +522,6 @@ function [stk,txt,top]=_m2sci()
 endfunction
 
 function [stk,txt,top]=_a2sci()
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top);s1=stk(top-1);
@@ -530,7 +533,6 @@ endfunction
 
 function [stk,top,txt]=get2sci(nam,stk,top)
 // Translate the named variable acquisition
-// Copyright INRIA  
 // Author Serge Steer  
   txt=[]
   top=top+1
@@ -538,7 +540,6 @@ function [stk,top,txt]=get2sci(nam,stk,top)
 endfunction
 
 function [stk,top]=sci_gener(nam)
-// Copyright INRIA  
 // Author Serge Steer  
   RHS=[]
   for k=1:rhs
@@ -560,7 +561,6 @@ function [stk,top]=sci_gener(nam)
 endfunction
 
 function [stk,txt,top]=_c2sci()
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   m=evstr(op(3));n=evstr(op(4))
@@ -622,7 +622,6 @@ function [stk,txt,top]=_c2sci()
 endfunction
 
 function opstable()
-// Copyright INRIA
 // Author Serge Steer  
   quote=''''
   logics=['==','<','>','<=','>=','<>']
@@ -665,7 +664,6 @@ endfunction
 
 function [stk,top]=num2sci(val,stk)
 // traduit la definition d'un nombre
-// Copyright INRIA
 // Author Serge Steer  
   top=top+1
   stk(top)=list(val,'0')
@@ -681,20 +679,17 @@ function [stk,txt,top]=_log2sci()
 endfunction
 
 function txt=rhsargs(args)
-// Copyright INRIA
 // Author Serge Steer  
   txt='('+strcat(args,', ')+')'
 endfunction
 
 function txt=lhsargs(args)
-// Copyright INRIA
 // Author Serge Steer  
   txt='['+strcat(args,', ')+']'
 endfunction
 
 function [stk,txt,top]=_p2sci()
 // ^
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top);s1=stk(top-1);
@@ -709,7 +704,6 @@ function [stk,txt,top]=_p2sci()
 endfunction
 
 function [txt]=indentsci(txt)
-// Copyright INRIA
 // Author Serge Steer  
   k=find(txt<>'')
   if k<>[] then
@@ -724,7 +718,6 @@ function lst=mmodlst(lst)
 // [[a,b],c]
 // [[a;b];c]
 // to a single one  whenever possible 
-// Copyright INRIA
 // Author Serge Steer  
   void=['0','0','0','0']
   nlst=size(lst);top=0
@@ -820,7 +813,6 @@ endfunction
 
 function [stk,txt,top]=_02sci()
 // translate .'
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top)
@@ -830,7 +822,6 @@ endfunction
 
 function [stk,txt,top]=_52sci()
 // generate code for ~
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top)
@@ -840,7 +831,6 @@ endfunction
 
 function [stk,txt,top]=_d2sci()
 // ./
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top);s1=stk(top-1);top=top-1;
@@ -853,7 +843,6 @@ endfunction
 
 function [stk,txt,top]=_e2sci()
 // generate code for extraction
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   rhs=maxi(0,abs(evstr(op(3)))-1)
@@ -897,7 +886,6 @@ endfunction
 
 function [stk,txt,top]=_g2sci()
 // Generate code for |
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top);s1=stk(top-1);
@@ -909,7 +897,6 @@ endfunction
 
 function [stk,txt,top]=_h2sci()
 // Generate code for  &
-// Copyright INRIA
 // Author Serge Steer  
   s2=stk(top);s1=stk(top-1);
   txt=[]
@@ -924,7 +911,6 @@ endfunction
 
 function [stk,txt,top]=_i2sci()
 // Generate code for insertion
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   rhs=abs(evstr(op(3)))-2
@@ -970,7 +956,6 @@ endfunction
 
 function [stk,txt,top]=_imp2sci()
 //code for 1:n
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   if op(3)=='2' then
@@ -984,7 +969,6 @@ endfunction
 
 function [stk,txt,top]=_j2sci()
 // Generates code for .^
-// Copyright INRIA
 // Author Serge Steer  
 
   s2=stk(top);s1=stk(top-1);
@@ -1002,7 +986,6 @@ endfunction
 
 function [stk,txt,top]=_l2sci()
 //  \
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top);s1=stk(top-1);top=top-1;
@@ -1016,7 +999,6 @@ endfunction
 
 function [stk,txt,top]=_q2sci()
 //  .\
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top);s1=stk(top-1);top=top-1;
@@ -1028,7 +1010,6 @@ endfunction
 
 function [stk,txt,top]=_r2sci()
 //  /
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top);s1=stk(top-1);top=top-1;
@@ -1042,7 +1023,6 @@ endfunction
 
 function [stk,txt,top]=_s2sci()
 // Generates code for substraction and sign change -
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top)
@@ -1059,7 +1039,6 @@ endfunction
 
 function [stk,txt,top]=_t2sci()
 // Generates code for transposition
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s2=stk(top)
@@ -1069,7 +1048,6 @@ endfunction
 
 function [stk,txt,top]=_x2sci()
 // Generates code for .*  
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s1=stk(top-1)
@@ -1085,7 +1063,6 @@ function [stk,txt,top]=_x2sci()
 endfunction
 
 function t=catcode(a,b)
-// Copyright INRIA
 // Author Serge Steer  
 
   if a==[] then 
@@ -1098,7 +1075,6 @@ function t=catcode(a,b)
 endfunction
 
 function T=splitexp(t)
-// Copyright INRIA
 // Author Serge Steer  
   T=[]
   for i=1:size(t,'*')
@@ -1118,7 +1094,6 @@ function T=splitexp(t)
 endfunction
 
 function [stk,txt,top]=_u2sci()
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s1=stk(top-1)
@@ -1135,7 +1110,6 @@ endfunction
 
 function [stk,txt,top]=_k2sci()
 //generates code for .*.
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s1=stk(top-1)
@@ -1152,7 +1126,6 @@ endfunction
 
 function [stk,txt,top]=_v2sci()
 //generates code for /.
-// Copyright INRIA
 // Author Serge Steer  
   
   txt=[]
@@ -1170,7 +1143,6 @@ endfunction
 
 function [stk,txt,top]=_y2sci()
 //generates code for ./.
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s1=stk(top-1)
@@ -1187,7 +1159,6 @@ endfunction
 
 function [stk,txt,top]=_z2sci()
 //generates code for .\.
-// Copyright INRIA
 // Author Serge Steer  
 
   txt=[]
@@ -1205,7 +1176,6 @@ endfunction
 
 function [stk,txt,top]=_w2sci()
 //generates code for .\
-// Copyright INRIA
 // Author Serge Steer  
   txt=[]
   s1=stk(top-1)
