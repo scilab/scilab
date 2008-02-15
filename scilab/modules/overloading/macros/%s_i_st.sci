@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function out=%s_i_st(varargin)
-// Copyright INRIA
 // Modified by Vincent COUVERT (16/08/2004) so that insertion of an empty matrix is understood as an element deletion
 // Only one non-colon index can be used 
 

@@ -1,6 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) BRUNO PINCON
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function B=%sp_p_s(A,p)
    // handle A^p for scalar integer p only
-   // added by bruno (jan 19 2006)
+
    if length(p) ~= 1 then
       error("A^p with A sparse is not handled for non scalar p")
    end

@@ -1,8 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [SS]=%lss_m_lss(S1,S2)
 //S=%lss_m_lss(S1,S2)  computes S1*S2 in state-space form.
 //  --> S2 --> S1 -->
 //!
-// Copyright INRIA
+
 [S1,S2]=sysconv(S1,S2)
 [A1,B1,C1,D1,x1,dom1]=S1(2:7),
 [A2,B2,C2,D2,x2]=S2(2:6),

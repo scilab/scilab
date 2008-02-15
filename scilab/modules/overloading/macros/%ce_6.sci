@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque, S. Steer
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function s=%ce_6(varargin)
-// Authors: F. Delebecque, S. Steer, Copyright INRIA
 // called in the context of complex struct insertion 
 // to realize partial extraction
 

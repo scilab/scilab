@@ -1,3 +1,4 @@
+
 function f=%r_x_r(s1,s2)
 // %r_x_r(r1,r2)=r1.*r2    r1,r2 rationals
 //!

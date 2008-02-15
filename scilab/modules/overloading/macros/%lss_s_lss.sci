@@ -1,8 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [s]=%lss_s_lss(s1,s2)
 //s=%lss_s_lss(s1,s2) <=> s=s1-s2
 // s1, s2: syslin lists
 //!
-// Copyright INRIA
+
 [s1 s2]=sysconv(s1,s2)
 [a1,b1,c1,d1,x1,dom1]=s1(2:7)
 [a2,b2,c2,d2,x2]=s2(2:6)

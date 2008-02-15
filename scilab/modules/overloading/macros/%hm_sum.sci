@@ -1,3 +1,4 @@
+
 function x=%hm_sum(m,d)
   if argn(2)==1 then
     x=sum(m.entries)

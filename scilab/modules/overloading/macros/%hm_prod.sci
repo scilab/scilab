@@ -1,3 +1,4 @@
+
 function x=%hm_prod(m,d)
   if argn(2)==1 then
     x=prod(m.entries)
