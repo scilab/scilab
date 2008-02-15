@@ -1,6 +1,5 @@
 //==========================================
-// Copyright ENPC
-// Copyright INRIA 
+// Copyright (C) INRIA/ENPC
 //==========================================
 function libn = ilib_compile(lib_name,makename,files)
 

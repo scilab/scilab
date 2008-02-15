@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine ext8f(n, t, y, ydot)
 c     argument function for ode
 c     input variables n, t, y
@@ -20,7 +30,7 @@ c     With dynamic link:
 c     -->link('ext8f.o','ext8f')
 c     -->ode([1;0;0],0,[0.4,4],'ext8f')
 c
-c     Copyright Inria
+
       double precision t, y, ydot
       dimension y(3), ydot(3)
       ydot(1) = -.0400d+0*y(1) + 1.0d+4*y(2)*y(3)

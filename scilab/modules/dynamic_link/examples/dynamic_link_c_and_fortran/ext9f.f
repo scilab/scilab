@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine ext9f(n, t, y, ydot)
 c     external fonction for ode
 c     input variables n, t, y
@@ -23,7 +33,7 @@ c     param(1)=y(n+1) , param(2)=y(n+2) etc
 c     with this calling sequence y is a n+np vector
 c     where np=dimension of scilab variable param
 c
-c     Copyright Inria
+
       double precision t, y, ydot, param
       dimension y(3), ydot(3),param(3)
       param(1)=y(n+1)

@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA/ENPC
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine ext4f(n,a,b,c)
 c     example 4 (reading a chain)
 c     -->link('ext4f.o','ext4f');
@@ -7,7 +17,7 @@ c     -->c=sin(a)+cos(b)
 c     -->yes='no'
 c     -->c=a+b
 c     -->clear yes  --> undefined variable : yes
-c     Copyright Inria/Enpc
+
       double precision a(*),b(*),c(*)
       integer chmax
       logical creadchain
