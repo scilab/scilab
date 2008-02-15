@@ -1,9 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* file: JoGLInterface.h                                                  */
-/* Copyright INRIA 2008                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : C++ interface of JoGL function used by GL2PS                    */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * desc : C++ interface of JoGL function used by GL2PS 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #ifndef _JOGL_INTERFACE_H_
 #define _JOGL_INTERFACE_H_

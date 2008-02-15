@@ -1,6 +1,4 @@
 package org.scilab.modules.graphic_export.convertToPPM;
-
-
  
  // PpmEncoder - write out an image as a PPM
  //

@@ -1,9 +1,5 @@
 package org.scilab.modules.graphic_export.convertToPPM;
 
-
-
-
-
 // ImageEncoder - abstract class for writing out an image
 //
 // Copyright (C) 1996 by Jef Poskanzer <jef@acme.com>.  All rights reserved.
