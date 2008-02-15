@@ -169,7 +169,17 @@ int C2F(run)()
     if ((C2F(errgst).errpt >0) && (Pt >= C2F(errgst).errpt) && (Rstk[C2F(errgst).errpt]==618)) {
       /* error under try catch */
       for (p=Pt;p>=C2F(errgst).errpt;p--) {
-	if (Rstk[p]<=503 && Rstk[p]>=501) C2F(recu).macr--;
+        /*sciprint("--> pt=%d,Rstk(Pt)=%d\n",p,Rstk[p]);*/
+	if (Rstk[p]<=502 && Rstk[p]>=501){
+	  k = Lpt[1] - (13+nsiz);
+	  Lpt[1] = Lin[k+1];
+	  Lpt[2] = Lin[k+2];
+	  Lpt[3] = Lin[k+3];
+	  Lpt[4] = Lin[k+4];
+	  Lpt[6] = k;
+	  C2F(recu).macr--;
+	  if (Rstk[p-1]==909) Top--; /* execed function*/
+	}
 	/* may it will be necessary to take care of for loop variables */
       }
       Pt = C2F(errgst).errpt;

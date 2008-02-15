@@ -978,6 +978,7 @@ int C2F(parse)(void)
     imode = (i__2 = C2F(errgst).errct / 100000, abs(i__2));
     if (imode - (imode / 8 << 3) == 2) {
       C2F(basbrk).iflag = TRUE;
+      goto L16;
     }
   }
   C2F(errgst).toperr = Top;
