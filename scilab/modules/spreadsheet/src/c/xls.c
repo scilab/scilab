@@ -1,6 +1,17 @@
-/*--------------------------------------------------------------
-  Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
-  -------------------------------------------------------------*/
+
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ * Copyright (C) 2005-2008 - INRIA - Pierrick MODE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -37,7 +48,7 @@ static void getString(int *fd,short *count, short *Len, int flag,char **str,int 
 /*------------------------------------------------------------------*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err)
 {
-  /*---------------Déclaration Des Variables*--------------------*/
+  /*---------------Dï¿½claration Des Variables*--------------------*/
   unsigned short Opcode, Len;   /*Code Operationnel et Longueur du tag a lire*/
   double *valeur;    /*Tableau Recapitulatif (Final) des valeurs de la feuille Excel*/
   double pos;
@@ -47,7 +58,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
 
   int i;  /*Variables de boucle*/
   int hauteur=0, longueur=0, capacite;   /*Hauteur, longueur de la feuille,  */
-  int taille; /*Nombre de types de caractèers a enregistrer*/
+  int taille; /*Nombre de types de caractï¿½ers a enregistrer*/
   char *sheetname;   /*Nom de la feuille*/
   int rkvalue; /*RK value*/
   /*for RK */
@@ -179,7 +190,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        longueur=l_col;/*-f_col;*/
        capacite=hauteur*longueur;
 
-       /*Déclaration des tableaux de synthèse*/
+       /*Dï¿½claration des tableaux de synthï¿½se*/
        if ((valeur=(void*) MALLOC((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
        if ((*chainesind=(int *) MALLOC((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
        for (i=0;i<=capacite;i++) {
@@ -250,7 +261,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     4 = incorrect file
     5 = not a BIFF8 xls file
    */
-  /*---------------Déclaration Des Variables*--------------------*/
+  /*---------------Dï¿½claration Des Variables*--------------------*/
   int k,one=1;
   int cur_pos, init_pos;
   double pos;
@@ -259,7 +270,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   *nsheets=0;
   *err=0;
-  /*---------------Déclaration Des Variables*--------------------*/
+  /*---------------Dï¿½claration Des Variables*--------------------*/
   cur_pos=0;
 
   /*  if (get_oleheader(fd)) {
@@ -384,21 +395,21 @@ static void getBOF(int *fd ,int* Data, int *err)
     else
       BIFF=7;
     break;
-  case 1033 : /*Interprétation du BIFF4  0409 H*/
+  case 1033 : /*Interprï¿½tation du BIFF4  0409 H*/
     C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
     if (*err > 0) return;
     C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
     if (*err > 0) return;
     BIFF=4;
     break;
-  case 521 : /*Interprétation du BIFF3  0209 H*/
+  case 521 : /*Interprï¿½tation du BIFF3  0209 H*/
     C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
     if (*err > 0) return;
     C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
     if (*err > 0) return;
     BIFF=3;
     break;
-  case 9 : /*Interprétation du BIFF2  0009 H*/
+  case 9 : /*Interprï¿½tation du BIFF2  0009 H*/
     C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
     if (*err > 0) return;
     C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
