@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [k,x,err]=leqr(p12,vx)
 //h-infinity lqr gain for full-state lq problem
 //(discrete or continuous)
@@ -7,7 +16,7 @@ function [k,x,err]=leqr(p12,vx)
 //  z|0   a'  0| - |-c'c  i    -s|      s|0   i   0| - |-c'c  -a'  -s  |
 //   |0   b'  0|   | s'   0   d'd|       |0   0   0|   | s'   -b'   d'd|
 //
-// Copyright INRIA
+
 [lhs,rhs]=argn(0);
 p121=p12(1);
 if p121(1)<>'lss' then error('leqr: state-space only!');end

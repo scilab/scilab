@@ -1,3 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+
 function [h,num,den]=ss2tf(sl,rmax)
 // State-space to transfer function.
 // Syntax:
@@ -16,7 +27,7 @@ function [h,num,den]=ss2tf(sl,rmax)
 //   this gives a less accurate result).
 //
 //!
-// Copyright INRIA
+
   if type(sl)==1|type(sl)==2 then
     h=sl
     return

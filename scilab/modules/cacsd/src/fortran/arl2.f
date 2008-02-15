@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA - M Cardelli, L Baratchart  INRIA sophia-Antipolis 1989, S Steer 
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine arl2(f,nf,num,tq,dgmin,dgmax,errl2,w,iw,inf,ierr,ilog)
 C!but
 C     Cette procedure a pour but de gerer l'execution dans
@@ -35,8 +45,6 @@ C     iw : dimension  29+dgmax**2+4*dgmax
 C!sous programme appeles
 C  optml2,feq,jacl2,outl2,lq,phi (arl2)
 C  dcopy,dnrm2,dscal,dpmul1
-C!origine
-C M Cardelli, L Baratchart  INRIA sophia-Antipolis 1989, S Steer 
 C!organigramme
 C arl2
 C    optml2

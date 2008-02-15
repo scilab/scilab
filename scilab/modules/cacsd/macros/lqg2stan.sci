@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [P,m]=lqg2stan(P22,Q,R)
 //P = standard plant for LQG control problem
 //described by the triple (A,B,C)
@@ -10,7 +19,7 @@ function [P,m]=lqg2stan(P22,Q,R)
 //
 //  mininize (x,u)'Q(x,u)
 //
-// Copyright INRIA
+
 flag=0;
 P221=P22(1);
 if P221(1)=='r' then

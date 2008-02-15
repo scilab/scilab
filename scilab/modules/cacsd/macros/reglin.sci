@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [a,b,sig]=reglin(x,y,dflag)
 // Solves a linear regression 
 // y=a(p,q)*x+b(p,1) + epsilon 
@@ -5,7 +14,7 @@ function [a,b,sig]=reglin(x,y,dflag)
 // sig : noise standard deviation 
 // dflag is optional if 1 a display of the result is done 
 //!
-// Copyright INRIA
+
 [lhs,rhs]=argn(0);
 if rhs <=2;dflag=0;end
 [n1,n2]=size(x)

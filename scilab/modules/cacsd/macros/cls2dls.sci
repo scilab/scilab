@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [s1]=cls2dls(s,t,fp)
 //Syntax : s1=cls2dls(sl,t [,fp])
 //
@@ -8,7 +18,7 @@ function [s1]=cls2dls(s,t,fp)
 // t sampling period
 // fp prevarping frequency in hertz
 //!
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 
 if type(s)<>16 then error(91,1),end

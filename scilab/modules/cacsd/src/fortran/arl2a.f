@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA - M Cardelli L Baratchart INRIA Sophia-Antipolis 1989
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine arl2a(f,nf,ta,mxsol,imina,nall,inf,ierr,ilog,w,iw)
 C!but
 C     Cette procedure a pour but de rechercher le plus
@@ -33,10 +42,6 @@ C
 C      tableaux de travail
 C      w: 34+34*nall+7*ng+nall*ng+nall**2*(ng+2)+4*(nall+1)*mxsol
 C      iw :29+nall**2+4*nall+2*mxsol
-C!Origine
-C M Cardelli L Baratchart INRIA Sophia-Antipolis 1989
-C!
-c     Copyright INRIA
       implicit double precision (a-h,o-y)
       dimension ta(mxsol,*), f(nf), w(*), iw(*), x(1)
       integer dgmax

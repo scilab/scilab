@@ -1,6 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 // function z=arsimul(a,b,d,sig,u,up,yp,ep)
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 // switch to ar representation 
 if type(x1)<>15&type(x1)<>16 then 

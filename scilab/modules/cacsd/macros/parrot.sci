@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Kopt,gamaopt]=parrot(D,r)
 //Given a matrix D partionned as [D11 D12
 //                                D21 D22]
@@ -6,9 +15,8 @@ function [Kopt,gamaopt]=parrot(D,r)
 //largest singular value of [D11 D12
 //                           D21 D22+K]
 //is minimal (Parrot's theorem)
-//F.D. (1990)
 //!
-// Copyright INRIA
+
 [l,k]=size(D);
 l1=1:(l-r(1));
 l2=(l-r(1)+1):l;

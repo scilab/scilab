@@ -1,3 +1,14 @@
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine optml2(feq,jacl2,neq,q,nch,w,iw)
 C!but
 C      Routine de recherche de minimum du probleme d'approximation L2
@@ -41,7 +52,7 @@ C     Tableau de travail
 C     - w de taille 25+26*nq+ng+nq**2
 C     - iw de taille 20+nq
 C!
-c     Copyright INRIA
+
       implicit double precision (a-h,o-y)
       dimension q(*), w(*), iw(*), xx(1)
       integer neq(*)

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [u]=prbs_a(n,nc,ids)
 //generation of pseudo random binary sequences
 //u=[u0,u1,...,u_(n-1)];
@@ -5,7 +14,6 @@ function [u]=prbs_a(n,nc,ids)
 //ids can be used to fix the date at which u must change its sign 
 //ids is then an integer vector with values in [1:n].
 //!
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 if rhs <=2,
   rand('uniform');

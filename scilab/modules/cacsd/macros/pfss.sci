@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function elts=pfss(S,rmax,cord)
 //Syntax : elts=pfss(S)
 //Partial fraction decomposition of the linear system S (in state-space form):
@@ -8,7 +17,6 @@ function elts=pfss(S,rmax,cord)
 // If S is given in transfer form, it is first converted into state-space
 // and each subsystem is then converted in transfer form.
 //!
-// Copyright INRIA
 flag=0;
 [LHS,RHS]=argn(0);
 FLAG=S(1)

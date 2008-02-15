@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine degl2(tg,ng,neq,imina,iminb,iminc,ta,tb,tc,iback,
      &     ntback,tback,mxsol,w,iw,ierr)
 C!but
@@ -43,7 +53,7 @@ C     tableaux de travail
 C      w : 33+33*neq+7*ng+neq*ng+neq**2*(ng+2)
 C      iw :29+neq**2+4*neq
 c
-c     Copyright INRIA
+
 
 C!
       implicit double precision (a-h,o-y)

@@ -1,9 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [K]=ccontrg(PP,r,Gamma);
 //***********************************
 //   returns a realization of the central controller for the
 //   general problem using the formulas in Gahinet, 92
 //   Note that Gamma must be > gopt (ouput of gamitg)
-// Copyright INRIA
+
 
 //  PP contains the parameters of plant realization (sylin list)
 //  b = ( b1 , b2 ) , 	c = ( c1 ) ,    d = ( d11  d12)

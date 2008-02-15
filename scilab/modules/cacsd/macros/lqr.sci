@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [K,X]=lqr(P12)
 //lqr gain for full-state LQ problem
 //(discrete or continuous)
@@ -5,7 +14,7 @@ function [K,X]=lqr(P12)
 //      |I   0   0|   | A    0   B  |      |I   0   0|   | A    0    B  |
 //     z|0   A'  0| - |-C'C  I   -S'|    s |0   I   0| - |-C'C -A'  -S' |
 //      |0   B'  0|   | S    0   D'D|      |0   0   0|   | S   -B'   D'D|
-// Copyright INRIA
+
 flag=P12(1)
 if flag(1)<>'lss' then error('lqr: state-space only!');end
 [A,B2,C1,D12]=P12(2:5);

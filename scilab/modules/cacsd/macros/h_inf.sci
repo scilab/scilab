@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
 // H-infinity optimal control for the continuous-time plant P
 // P is the plant (linear system)given in state-space form or in transfer form,
@@ -16,14 +25,13 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
 //  PHI is a linear system with dimensions r' and satisfy h_norm(PHI) < gama. 
 //  rk (=r) is the size of the Sk22 block and mu = 1/gama^2 after nmax 
 //  iterations.
-// Author: F.D. Inria (1990) adapted from Safonov-Limebeer.
 //!
 //
 // Initialization : Uci and Yci normalize P
 // mu_inf upper bound on mu = gama^-2
 //P2 = normalized P.
 //
-// Copyright INRIA
+
 P1=P(1);
 [P2,mu_inf,Uci,Yci,D22]=h_init(P,r)
 if mu_inf < mumax then 

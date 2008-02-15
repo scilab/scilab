@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,Alfa,Beta)
 //--------------Exact disturbance decoupling----------
 // Given a linear system, and a subset of outputs, z, which are to
@@ -36,7 +46,6 @@ function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,Alfa,Beta)
 //
 // Stability (resp. pole placement) requires stabilizability 
 // (resp. controllability) of (A,B2).
-// Author: F.D.
 //
 [LHS,RHS]=argn(0);
 if RHS==5 then Beta=-1;end

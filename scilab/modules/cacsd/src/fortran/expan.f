@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA - F Delebecque
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
        subroutine expan(a,la,b,lb,c,nmax)
 c! but
 c calcul des nmax premiers coefficients de la longue division de
@@ -8,10 +18,6 @@ c  a vecteur de longueur la des coeffs par puissances croissantes
 c  b   "           "     lb        "                "          "
 c  c                     nmax   des coeffs de  a/b
 c
-c!origine
-c     F Delebecque INRIA 1986
-c!
-c     Copyright INRIA
       dimension a(la),b(lb),c(nmax)
        double precision a,b,c,s,a0
 c

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [N,M]=lcf(Sl)
 //Compute Normalized coprime factorization of a linear dynamic system
 //%Syntax and parameters description
@@ -7,8 +16,7 @@ function [N,M]=lcf(Sl)
 //       see syslin
 //  N,M : is realization of Sl: Sl = M^-1 N
 //!
-//FD.
-// Copyright INRIA
+
 flag=0;Sl1=Sl(1);
 if Sl1(1)=='r' then Sl=tf2ss(Sl),flag=1;end
 [A,B,C,D]=Sl(2:5);[nw,nb]=size(B);[nc,nw]=size(C);

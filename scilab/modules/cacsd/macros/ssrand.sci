@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sl,U]=ssrand(nout,nin,nstate,flag)
 //flag=list('co',dim_cont_subs)
 //flag=list('uo',dim_unobs_subs)
@@ -98,7 +107,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
 //         dimension A44=nwuis-nwui
 //         row dimension C2.= row dimension of D2. =rk
 //***************************************************************
-// Copyright INRIA
+
 deff('[w]=st_able(w,margin)','if w~=[] then w=w-(maxi(real(spec(w)))+margin)*eye();end')
 margin=0.5;  //M "stable"  will mean real-part(M) < -margin
 [lhs,rhs]=argn(0)

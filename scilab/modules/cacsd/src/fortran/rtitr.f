@@ -1,5 +1,15 @@
 C/MEMBR ADD NAME=RTITR,SSI=0
-c     Copyright INRIA
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA - Serge Steer
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine rtitr(nin,nout,nu,num,inum,dgnum,den,iden,dgden,
      &                 up,u,iu,yp,y,iy,job,iw,w,ierr)
 c!but
@@ -105,10 +115,7 @@ c recursion permettant de calculer Y    connaissant les dd echantillons
 c                                   i+dd
 c precedents de Y et U
 c
-c!origine
-c     Serge Steer INRIA 1988
-c!
-c
+
       integer nin,nout,nu,inum,dgnum,iden,dgden,iu,iy,ierr,iw(nout)
       double precision num(inum,*),den(iden,*)
       double precision up(iu,*),u(iu,nu),yp(iy,*),y(iy,*),w(nout)

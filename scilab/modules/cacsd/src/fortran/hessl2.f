@@ -1,3 +1,14 @@
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine hessl2(neq,tq,pd,nrowpd)
 c!but
 c     Elle etablit la valeur de la Hessienne, derivee
@@ -21,7 +32,7 @@ c                         5+5*nq+5*ng+nq*ng+nq**2*(ng+1)
 c     Sortie :
 c     - pd matrice hessienne
 c!
-c     Copyright INRIA
+
       implicit double precision (a-h,o-y)
       dimension tq(*),pd(nrowpd,*)
       dimension neq(*)

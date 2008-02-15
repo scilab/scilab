@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [P,r]=macglov(Sl)
 //[P,r]=macglov(Sl)
 //Standard plant for the Glover-McFarlane problem:
@@ -5,8 +14,6 @@ function [P,r]=macglov(Sl)
 // with [N,M]=LCF(Sl) (Normalized coprime factorization)
 // gama_optimal = 1/sqrt(mu_optimal)
 //!
-//FD.
-// Copyright INRIA
 flag=0;Sl1=Sl(1);
 if Sl1(1)=='r' then Sl=tf2ss(Sl),flag=1;end
 [A,B,C,D]=Sl(2:5);[n,nb]=size(B);[nc,n]=size(C);

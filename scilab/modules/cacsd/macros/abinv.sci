@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 //Output nulling subspace (maximal unobservable subspace) for
 // Sl = linear system defined by [A,B,C,D];
@@ -36,7 +45,6 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 //     Im(Q2) is in Im(B2) means row-compression of B2=>row-compression of Q2
 //     Then C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
 //F.D.
-// Copyright INRIA
 //function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 [LHS,RHS]=argn(0);
 if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end

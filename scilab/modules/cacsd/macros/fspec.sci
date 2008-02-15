@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [gm]=fspec(g) 
 // computes a spectral factorization:
 //        g = gtild(gm)*gm
@@ -11,7 +21,7 @@ function [gm]=fspec(g)
 //  (poles and zeros of g are symmetric wrt imaginary axis))
 //- g(+oo) = D is positive definite.
 //!
-// Copyright INRIA
+
 g1=g(1);
 flag='ss';if g1(1)=='r' then flag='tf';g=tf2ss(g);end
       [r1,r,d]=dtsi(g),[a,b,c]=r(2:4),

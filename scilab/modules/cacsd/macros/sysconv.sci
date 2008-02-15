@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [s1,s2]=sysconv(s1,s2)
 //Syntax : [s1,s2]=sysconv(s1,s2)
 //
@@ -32,7 +41,7 @@ function [s1,s2]=sysconv(s1,s2)
 //d(s)     -> conversion to discrete (time domain is 'd')
 //e(s,n)   -> conversion to samples system with period n
 //!
-// Copyright INRIA
+
 s11=s1(1);s21=s2(1);
 if s11(1)<>s21(1) then // conversion ss<-->tf
   if s11(1)=='r' then s1=tf2ss(s1),else s2=tf2ss(s2),end

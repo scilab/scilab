@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [X,dims,J,Y,k,Z]=cainv(Sl,Alfa,Beta,flag)
 //CA invariant subspace: dual of abinv
 //Finds orthogonal bases X and Y and output injection J
@@ -40,7 +50,7 @@ function [X,dims,J,Y,k,Z]=cainv(Sl,Alfa,Beta,flag)
 // with Xp=X' and [X,dims,J,Y,k,Z]=cainv(syslin('c',A,G,C));
 // [Xp(1:dimSg,:);C]*W = [0 | *] one has
 // H*W = [0 | *]  (with at least as many columns as above).
-// Copyright INRIA
+
 [LHS,RHS]=argn(0);
 if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
 if RHS==2 then Beta=Alfa;flag='ge';end

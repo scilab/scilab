@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine deg1l2(tg,ng,imin,ta,mxsol,w,iw,ierr)
 C!but
 C     Determiner la totalite des polynome de degre 1.
@@ -15,7 +24,6 @@ C     devant contenir le coeff du plus au degre qui est
 C     toujours 1. contient en fait la valeur du critere
 C     pour ce polynome.
 C!
-c     Copyright INRIA
       implicit double precision (a-h,o-y)
       dimension ta(mxsol,*),tg(ng+1)
       external feq, feqn, jacl2, jacl2n

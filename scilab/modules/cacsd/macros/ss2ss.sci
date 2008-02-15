@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
 // State-space to state-space conversion
 // Returns the linear system Sl1=[A1,B1,C1,D1]
@@ -14,7 +23,7 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
 // Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2)); 
 // trzeros(Sl1), trzeros(rand(2,2)*Sl1*rand(2,2))
 // See also : projsl
-// Copyright INRIA
+
 [A,B,C,D]=abcd(Sl);
 [LHS,RHS]=argn(0);
 select RHS

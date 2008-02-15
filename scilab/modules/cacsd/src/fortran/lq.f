@@ -1,3 +1,14 @@
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine lq(nq,tq,tr,tg,ng)
 c!but
 c     cette routine calcule a  partir de g(z) et q(z) le
@@ -16,7 +27,7 @@ c             tvq =tr(nq+1:nq+ng+1) coefficients du quotient vq de la
 c                    division par q du polynome gqti .
 c!
 
-c     Copyright INRIA
+
       implicit double precision (a-h,o-z)
       dimension tq(nq+1),tr(nq+ng+1),tg(ng+1)
 c

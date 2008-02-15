@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Obs,U,m]=observer(Sys,flag,alfa)
 //Obs=observer for (observable part of) linear system Sys
 //Obs is a linear system with matrices [Ao,Bo,Identity].
@@ -32,8 +41,7 @@ function [Obs,U,m]=observer(Sys,flag,alfa)
 // Idu=eye(nu,nu);ss2tf(Obs*sysdiag(Idu,Sys)*[Idu;Idu])  
 // Transfer u-->[u;u]-->w=[u;y=Sys*u]-->Obs*w  i.e. u-->output of Obs
 // this transfer must equal Sys2, the u-->z transfer  (H2=eye).
-//FD.
-// Copyright INRIA
+
 [nx,nx]=size(Sys(2));
 td=Sys(7);x0=Sys(6);
 [LHS,RHS]=argn(0);

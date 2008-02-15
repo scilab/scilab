@@ -1,3 +1,14 @@
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine onface(nq,tq,tg,ng,nprox,ierr,w)
 C!but
 C     il est question ici de calculer (ou d estimer)
@@ -26,7 +37,6 @@ C
 C     Tableau de travail
 C     - w : 12*nq+ng+1
 C!
-c     Copyright INRIA
       implicit double precision (a-h,o-y)
       dimension tq(0:nq), w(*),tg(ng+1)
 C

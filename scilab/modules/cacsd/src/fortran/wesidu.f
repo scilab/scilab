@@ -1,3 +1,14 @@
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA - F. Delebecque
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine wesidu(pr,pi,np,ar,ai,na,br,bi,nb,vr,vi,tol,ierr)
 c     calcul de la somme des residus de p/(a.b)
 c     aux zeros de a
@@ -16,9 +27,9 @@ c     sinon on remplace p et a par le reste de la division
 c     euclidienne de p et a par b,puis on inverse les roles
 c     de a et b en changeant le signe de v.
 c     on itere jusqu a trouver degre de a ou degre de b=0.
-c     F.D.
+
 c        
-c     Copyright INRIA
+
       dimension ar(*),br(*),pr(*),ai(*),bi(*),pi(*)
       double precision ar,br,pr,vr,rr,ai,bi,pi,vi,ri,tol,b1
       vr=0.0d+0

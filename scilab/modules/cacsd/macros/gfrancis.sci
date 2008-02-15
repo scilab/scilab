@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [L,M,T]= gfrancis(Plant,Model);
 // This function computes an optimal model matching
 // controller for the linear plant
@@ -26,7 +35,7 @@ function [L,M,T]= gfrancis(Plant,Model);
 // For more information on this approach, see 
 // Krener, A. J., Optimal model matching controllers for linear
 // and nonlinear systems, Proceedings of NOLCOS, Bordeaux, 1992.
-// Copyright INRIA
+
 [F,G,H,J]=Plant(2:5);
 [A,B,C,D]=Model(2:5);
 [nf,nf]=size(F);[ny,nu]=size(J);

@@ -1,3 +1,14 @@
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine dzdivq(ichoix,nv,tv,nq,tq)
 c!but
 c     calcule ici les quotient et reste de la division
@@ -22,7 +33,7 @@ c     - tv. contient les coeff. du nouveau quotient.
 c     - tr. ceux du nouveau reste de degre toujours nq-1.
 c
 c     --------------------------
-c     Copyright INRIA
+
       implicit double precision (a-h,o-y)
       dimension tv(0:*),tq(0:*)
 c

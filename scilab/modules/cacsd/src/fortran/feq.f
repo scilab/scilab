@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine feq(neq,t,tq,tqdot)
 c!but
 c      Etablir la valeur de l'oppose du gradient au point q
@@ -24,7 +34,7 @@ c!Remarque
 c     la structure particuliere  pour neq et tq est liee au fait que feq peut
 c     etre appele comme un external de lsode
 c!
-c     Copyright INRIA
+
       implicit double precision (a-h,o-y)
       dimension tq(*),tqdot(*)
       dimension neq(*)

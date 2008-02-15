@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [ar]=armac(a,b,d,ny,nu,sig)
 // just build a tlist for storing armacx coefficients 
 //   A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
@@ -9,7 +19,7 @@ function [ar]=armac(a,b,d,ny,nu,sig)
 //   sig : standard deviation  (ny,ny);
 //
 //!
-// Copyright INRIA
+
 [na,la]=size(a);
 if na<>ny then 
 	write(%io(2),"armac: a(:,1) must be of dimension "+string(ny));

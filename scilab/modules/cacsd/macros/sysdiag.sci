@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function r=sysdiag(varargin)
 //Returns the block-diagonal system made with subsystems put in the main
 //diagonal
@@ -12,7 +21,7 @@ function r=sysdiag(varargin)
 // s=poly(0,'s')
 // sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
 // sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
-// Copyright INRIA
+
 
 //!
 r=varargin(1);

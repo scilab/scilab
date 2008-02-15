@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [n,m,xt,yt]=copfac(g,polf,polc,tol)
 //[n,m,xt,yt]=copfac(G,[polf,polc,[tol]]) returns a right coprime 
 //factorization of g :
@@ -12,7 +22,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
 //   These are optional arguments with defautl values -1.
 //-- tol is a threshold for detecting stable poles.
 //!
-// Copyright INRIA
+
   [lhs,rhs]=argn(0),
   select typeof(g)
   case "rational" then

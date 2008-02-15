@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [p1,r1]=lft(p,r,p#,r#)
 //[p1,r1]=lft(p,r,p#,r#)
 //linear fractional transform between two standard plants
@@ -8,8 +17,6 @@ function [p1,r1]=lft(p,r,p#,r#)
 // state space form or in transfer form);
 // lft(p,k) is lft(p,r,k) with r=size of k transpose;
 //!
-//f.d.
-// Copyright INRIA
 if type(p)==1 then p=syslin([],[],[],[],p);end
 pof1=p(1);
 if pof1(1)=='lss' then dom=p(7);else dom=p(4);end

@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [Q]=bstap(sl)
 // Best approximant Q of Sl
 //      ||Sl-Q||    =  ||Tsl||
@@ -8,7 +18,7 @@ function [Q]=bstap(sl)
 //!
 //balancing
 //-----------------------------------
-// Copyright INRIA
+
 slt=gtild(sl);slt=balreal(slt);sl=gtild(slt),
 // D such that DB1'+sC1 = 0 , DD' = s**2I
 //-------------------------------------------------

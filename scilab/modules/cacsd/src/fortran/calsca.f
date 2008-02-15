@@ -1,3 +1,13 @@
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine calsca(ns,ts,tr,y0,tg,ng)
 c!but
 c     Calcule le produit scalaire entre une fonction de Hardi donnee
@@ -15,7 +25,6 @@ c         le degre est inferieur a ns
 c
 c     sortie  : y0. contient la valeur du produit scalaire recherche.
 c!
-c     Copyright INRIA
       implicit double precision (a-h,o-z)
       dimension ts(0:ns),tr(0:ns),x(0:40)
       dimension tg(0:ng)

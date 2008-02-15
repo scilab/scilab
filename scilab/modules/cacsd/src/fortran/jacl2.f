@@ -1,3 +1,14 @@
+
+
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine jacl2(neq,t,tq,ml,mu,pd,nrowpd)
 c!but
 c     jacl2 cree la matrice  jacobienne necessaire a Lsoda,
@@ -27,7 +38,7 @@ c     - pd. est le tableau ou l on range la matrice pleine
 c       dont les elements sont etablis par la sub. Hessien
 c     - nrowpd. est le nombre de ligne du tableau pd
 c!
-c     Copyright INRIA
+
       implicit double precision (a-h,o-y)
       dimension tq(*),pd(nrowpd,*)
       dimension neq(*)

@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [ac,bc,u,ind]=canon(a,b)
 //[ac,bc,u,ind]=canon(a,b)  gives the canonical controllable form
 //of the pair (a,b).
@@ -7,10 +17,9 @@ function [ac,bc,u,ind]=canon(a,b)
 //u      current basis i.e. ac=inv(u)*a*u,bc=inv(u)*b
 //
 //See also : obsv_mat, cont_mat, ctr_gram, contrss
-//Author:F. D. (Inria)
 //!
 //1: block-hessenberg form
-// Copyright INRIA
+
 // Was : [ac,bc,u,ro]=contr(a,b,[1.d-10*norm([a,b],1),1.d-10]);
 [n,u,ro,V,ac,bc]=contr(a,b,1.d-10*norm([a,b],1));
 //2:zeroing what is to the right of under-diagonal blocks

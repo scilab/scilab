@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [kf,kc]=lqg_ltr(sl,mu,ro)
 // [kf,kc]=lqg_ltr(sl,mu,ro) returns the Kalman gains for
 //           .
@@ -27,7 +36,7 @@ function [kf,kc]=lqg_ltr(sl,mu,ro)
 //outputs:
 //-- kf , kc = controller and observer Kalman gains.
 //!
-// Copyright INRIA
+
 [m,p]=size(sl);
      [a,b,c,d]=abcd(sl);
      r1=c'*c,r2=ro**2*eye(p,p),
