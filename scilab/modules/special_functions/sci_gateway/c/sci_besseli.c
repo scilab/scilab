@@ -1,6 +1,16 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA */
-/*--------------------------------------------------------------------------*/
+
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <string.h>
 #include "gw_special_functions2.h"
 #include "stack-c.h"
@@ -11,7 +21,6 @@ extern void  C2F(dbesiv) (double *x,int* nx, double *alpha, int *na, int *kode,d
 extern void  C2F(zbesiv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
 /*--------------------------------------------------------------------------*/
 int sci_besseli(char *fname,unsigned long fname_len)
-/* Author Serge Steer, Copyright INRIA 2005 */
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
   int r1,r2,na,nx,kode,lpos;

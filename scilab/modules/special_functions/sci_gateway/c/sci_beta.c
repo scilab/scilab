@@ -1,6 +1,16 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA */
-/*--------------------------------------------------------------------------*/
+
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - Université de Nancy - Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <string.h>
 #include "stack-c.h"
 #include "gw_special_functions2.h"
@@ -22,9 +32,6 @@ int sci_beta(char *fname,unsigned long fname_len)
    *   function (provided in the dcd lib)
    *
    *   The switch limit have been set by using the gp-pari software.
-   *
-   *    AUTHOR
-   *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
    *
    */
   int mx, nx, itx, lx, lxc, my, ny, ity, ly, lyc,/* it,*/ lz, i;
