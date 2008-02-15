@@ -1,11 +1,18 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1986 - INRIA - F. BONNANS
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine qnbd(indqn,simul,n,x,f,g,imp,io,zero,
      & napmax,itmax,epsf,epsg,epsx,df0,binf,bsup,nfac,
      & trav,ntrav,itrav,nitrav,izs,rzs,dzs)
 c!but
 c     code de minimisation d une fonction reguliere sous contraintes
 c     de bornes , aux normes modulopt
-c!origine
-c     f. bonnans , inria , 1986
 c!methode
 c     principe de l algorithme : quasi-newton + projection
 c     details dans le rapport inria n. 242,1983

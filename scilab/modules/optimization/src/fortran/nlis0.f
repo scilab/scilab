@@ -1,8 +1,14 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine nlis0 (n,simul,prosca,xn,fn,fpn,t,tmin,tmax,d,g,
      /                  amd,amf,imp,io,logic,nap,napmax,x,izs,rzs,dzs)
-c     Copyright INRIA
-
-c----
 c
 c     nlis0 + minuscules + commentaires
 c     ---------------------------------
@@ -16,7 +22,7 @@ c        5          retour a l'utilisateur
 c        6          fonction et gradient pas d'accord
 c        < 0        contrainte implicite active
 c
-c----
+c ----
 c
 c --- arguments
 c

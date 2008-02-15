@@ -1,14 +1,14 @@
 /*
-**  -*- C -*-
-**
-** intqld.h
-** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
-**
-** Started on  Mon Oct 29 17:38:05 2007 bruno
-** Last update Mon Oct 29 17:48:25 2007 bruno
-**
-** Copyright INRIA 2007
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Bruno JOFRET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #ifndef __INTQLD_H__
 #define __INTQLD_H__

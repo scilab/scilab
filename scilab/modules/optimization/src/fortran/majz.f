@@ -1,11 +1,18 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine majz(n,np,nt,y,s,z,ys,zs,diag,index)
 c
 c     mise a jour de ({z}(i),zs(i), i=1,np).
 c     {z}(i)=[b](i-1)*{s}(i), [b](i) est definie par ({y}(j),{s}(j),{z}(j)
 c     , j=1,i) et {diag}.
 c     zs(i)=<z>(i)*{s}(i)
-c
-c     Copyright INRIA
 c
       implicit double precision (a-h,o-z)
       dimension     y(nt,n),s(nt,n),z(nt,n),ys(nt),zs(nt),diag(n)

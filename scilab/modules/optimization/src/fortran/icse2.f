@@ -1,5 +1,14 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
 C/MEMBR ADD NAME=ICSE2,SSI=0
-c     Copyright INRIA
+c
       subroutine icse2(ind,nu,u,co,g,icsef,icsec2,icsei,y0,tob,obs,
      &ob,ytot,f,b,fy,fu,ipv2,itob,cof,ytob,c2y,y0u,dmy,smy,oldmu,
      &y,oldp,p,p0,gt,yob,d,itu,dtu,

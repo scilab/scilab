@@ -1,8 +1,16 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine n1qn2a (simul,prosca,n,x,f,g,dxmin,df1,epsg,
      /                   impres,io,mode,niter,nsim,m,
      /                   d,gg,aux,alpha,ybar,sbar,izs,rzs,dzs)
-c     Copyright INRIA
-
+c
 c----
 c
 c     code d'optimisation proprement dit

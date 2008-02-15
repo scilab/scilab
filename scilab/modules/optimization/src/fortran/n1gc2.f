@@ -1,12 +1,18 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1987 - INRIA - Claude LEMARECHAL
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine n1gc2 (simul,prosca,n,x,f,g,dxmin,df1,epsrel,imp,io,
      /                  mode,niter,nsim,rz,nrz,izs,rzs,dzs)
       implicit double precision (a-h,o-z)
 c!but
 c     minimisation sans contraintes par un algorithme de quasi-Newton
 c     a memoire limitee
-c!origine
-c     c. lemarechal, inria, 1987
-c     Copyright INRIA
 c!commentaires
 c le sous-programme n1gc2 (gradient conjugue a encombrement variable)
 c est une interface entre le programme appelant et le sous-programme

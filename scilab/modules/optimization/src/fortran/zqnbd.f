@@ -1,8 +1,15 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine zqnbd(indqn,simul,dh,n,binf,bsup,x,f,g,zero,napmax,
      &itmax,indic,izig,nfac,imp,io,epsx,epsf,epsg,x1,x2,g1,dir,df0,
      &ig,in,irel,izag,iact,epsrel,ieps1,izs,rzs,dzs)
-c     Copyright INRIA
-
 c
       implicit double precision (a-h,o-z)
       real rzs(*)

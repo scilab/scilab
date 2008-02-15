@@ -1,9 +1,18 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine nlis2 (simul,prosca,n,xn,fn,fpn,t,tmin,tmax,d,d2,g,gd,
      1     amd,amf,imp,io,logic,nap,napmax,x,tol,a,tps,tnc,gg,izs,rzs
      $     ,dzs)
+c
 c cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-c     Copyright INRIA
-c cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c
 c subroutine effectuant une recherche lineaire sur 0 tmax
 c partant du point xn dans la direction d.
 c sous l'hypothese d'hemiderivabilite, donne
@@ -29,6 +38,7 @@ c            ----------------------------------------
 c fait appel aux subroutines:
 c -------simul(indic,n,x,f,g,izs,rzs,dzs)
 c -------prosca(n,u,v,ps,izs,rzs,dzs)
+c
 c cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       implicit double precision (a-h,o-z)

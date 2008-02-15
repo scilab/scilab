@@ -1,6 +1,15 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1987 - INRIA - Claude LEMARECHAL
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine n1qn1 (simul,n,x,f,g,var,eps,
      1     mode,niter,nsim,imp,lp,zm,izs,rzs,dzs)
-
+c
 c!but
 c     minimisation d une fonction reguliere sans contraintes
 c!origine

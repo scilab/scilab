@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1985 - INRIA - F. BONNANS
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine gcbd(indgc,simul,nomf,n,x,f,g,imp,io,zero,
      &napmax,itmax,epsf,epsg,epsx,df0,binf,bsup,nfac,
      &vect,nvect,ivect,nivect,izs,rzs,dzs)
@@ -6,10 +15,6 @@ c     algorithme de minimisation d une fonction reguliere sous
 c     contraintes de borne
 c!methode
 c     methode de bfgs a memoire limitee + projection
-c!origine
-c     f. bonnans inria juin 1985
-c     Copyright INRIA
-c
 c!sous programmes (modulopt)
 c     proj rlbd majysa majz calbx gcp relvar bfgsd shanph
 c!liste d' appel

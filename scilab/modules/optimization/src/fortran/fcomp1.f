@@ -1,6 +1,15 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine fcomp1(indic2,ibloc,indi,h,g,d,w,w1,n,nr,ncs,
      &dga,delta,prop,acc,scale)
-c     Copyright INRIA
+c
       implicit double precision (a-h,o-z)
       dimension ibloc(n),indi(n),h(*),g(n),d(n),
      &w(n),w1(n),scale(n)

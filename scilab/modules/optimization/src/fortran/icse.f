@@ -1,3 +1,13 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1987 - INRIA - F. BONNANS
+c Copyright (C) 1987 - INRIA - G. LAUNAY
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine icse(ind,nu,u,co,g,itv,rtv,dtv,icsef,icsec2,icsei)
 c!but
 c     Le logiciel ICSE est un outil de resolution de problemes de
@@ -33,9 +43,6 @@ c      L'equation d'etat est discretisee par la methode
 c      de Crank-Nicolson.
 c      Le gradient du cout est calcule en utilisant l'etat adjoint du
 c      systeme discretise.
-c
-c!origine
-c      F.Bonnans,G.Launay, INRIA, 1987
 c
 c! DESCRIPTION FORMELLE DES PROBLEMES DE CONTROLE CONSIDERES
 c       L'equation du systeme est de la forme

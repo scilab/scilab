@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1988 - INRIA - F. BONNANS
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine rlbd(indrl,n,simul,x,binf,bsup,f,hp,t,tmax,d,gn,
      &  tproj,amd,amf,imp,io,zero,nap,napmax,xn,izs,rzs,dzs)
 c
@@ -5,9 +14,6 @@ c!but
 c       subroutine de recherche lineaire pour des problemes avec
 c       contraintes de borne (traitees par projection)
 c       le critere de retour est une extension de celui de wolfe
-c!origine
-c       f.bonnans  inria juin 1988
-c     Copyright INRIA
 c!methode
 c     pour chaque valeur du parametre t , sont calcules le critere
 c     et son gradient.

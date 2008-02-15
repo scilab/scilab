@@ -1,10 +1,17 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine bfgsd(diag,n,nt,np,y,s,ys,condm,param,zero,index)
 c     mise a jour de diag par la methode de bfgs diagonal
 c     utiliser a la suite de la correction de powell
 c     condm borne sup du conditionnement de diag
 c     param borne inf rapport reduction diag(i)
-c
-c     Copyright INRIA
 c
       implicit double precision (a-h,o-z)
       dimension diag(n),y(nt,n),s(nt,n),ys(nt)

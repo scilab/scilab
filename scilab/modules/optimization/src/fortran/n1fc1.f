@@ -1,10 +1,18 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine n1fc1(simul,prosca,n,xn,fn,g,dxmin,df1,epsf,zero,imp,
      &                 io,mode,iter,nsim,memax,iz,rz,dz,izs,rzs,dzs)
 C          dimension iz=2*(memax+1)
 C          dimension rz=5*n+(n+4)*memax
 C          dimension dz=(memax+9)*memax+8
-c     Copyright INRIA
-
+c
       implicit double precision (a-h,o-z)
       external simul, prosca
       dimension iz(*), rz(*), dz(*), xn(n), g(n), izs(*), dzs(*)

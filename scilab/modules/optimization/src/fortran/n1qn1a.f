@@ -1,13 +1,22 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine n1qn1a (simul,n,x,f,g,scale,acc,mode,
      1     niter,nsim,iprint,lp,h,d,w,xa,ga,xb,gb,izs,rzs,dzs)
-c     Copyright INRIA
+c
 
 *     A (very) few modifs by Bruno (14 March 2005): I have translated some output
 *     informations in english (but they don't use format instruction 
 *     which is put in the secong arg of write). Also for the linear
 *     search output informations I divide by the direction vector norm
 *     to get the "normalized" directionnal derivative. Note that this is
-*     just for output (the computing code is normaly not modified).
+*     just for output (the computing code is normally not modified).
 
       implicit double precision (a-h,o-z)
       dimension x(n),g(n),scale(n),h(*),d(n),w(n),

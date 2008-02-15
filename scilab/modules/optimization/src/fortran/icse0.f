@@ -1,9 +1,17 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine icse0(nu,t0,tf,dti,dtf,ermx,iu,nuc,nuv,ilin,nti,ntf,
      & ny,nea,itmx,nex,nob,ntob,ntobi,nitu,ndtu,nitv,nrtv,ndtv)
 c
 c     programme d'initialisation appele par icse.bas
 c     initialisation des commons icsez icsez0 et nird
-c     Copyright INRIA
 c
       implicit double precision (a-h,o-z)
       dimension iu(5),iu0(5)

@@ -1,10 +1,17 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine calbx(n,index,indic,nt,np,y,s,ys,z,zs,x,diag,bx)
 c
 c     fonction : {bx}=[b]*{x}.
 c                [b] est definie par les vecteurs
 c                ({y}(i),{s}(i),{z}(i), i=1,np) et {diag}
-c
-c     Copyright INRIA
 c
       implicit double precision (a-h,o-z)
       dimension y(nt,n),s(nt,n),z(nt,n),ys(nt),zs(nt)

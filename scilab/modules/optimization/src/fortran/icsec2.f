@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine icsec2(indc,nu,tob,obs,cof,ytob,ob,u,
      & c,cy,g,yob,d,itu,dtu,
      & t0,tf,dti,dtf,ermx,iu,nuc,nuv,ilin,nti,ntf,ny,nea,
@@ -23,9 +32,7 @@ c        indc     : comme pour icsec1
 c        c2       : cout
 c        c2y(ny,ntob) : derivee de c2 par rapport a y
 c        g(nu)  : derivee de c2 par rapport a u
-c     Copyright INRIA
-
-c!
+c
       implicit double precision (a-h,o-z)
       dimension tob(ntob),obs(nob,ny),cof(nob,ntob),ytob(ny,ntob),
      &ob(nex,ntob,nob),u(nu),cy(ny,ntob),g(nu),yob(nob,ntob),

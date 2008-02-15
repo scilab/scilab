@@ -1,10 +1,17 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine n1fc1a(simul,prosca,n,mode,xn,fn,g,df0,eps0,dx,imp,
      &                  zero,io,ntot,iter,nsim,memax,s,gd,x,sa,gg,al,
      &                  aps,anc,poids,q,jc,ic,r,a,e,rr,xga,y,w1,w2,izs,
      &                  rzs,dzs)
-C ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-c     Copyright INRIA
-C ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+C
 C minimisation d'une fonction hemiderivable par une methode de faisceau.
 C la direction est obtenue par projection de l'origine
 C sur un polyedre genere par un ensemble de gradients deja calcules
