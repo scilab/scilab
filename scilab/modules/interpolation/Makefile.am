@@ -65,8 +65,7 @@ libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 
 ####�interpolation : include files ####
 libsciinterpolation_la_includedir=$(pkgincludedir)/interpolation
-libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
-includes/constinterp.h
+libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h 
 
 
 ####�interpolation : demos files ####

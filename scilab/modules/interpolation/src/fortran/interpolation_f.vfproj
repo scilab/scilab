@@ -39,8 +39,6 @@ cd .."/>
 		<File RelativePath="dtensbs.f"/>
 		<File RelativePath="pchim.f"/>
 		<File RelativePath="somespline.f"/></Filter>
-		<Filter Name="Header Files" Filter="fi;fd">
-		<File RelativePath="..\..\includes\constinterp.h"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\interpolation_gateway.xml"/></Files>
