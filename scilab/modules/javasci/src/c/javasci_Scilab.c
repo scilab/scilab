@@ -1,9 +1,18 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include "javasci_Scilab.h"
 #include "../../../modules/graphics/includes/WindowList.h"
-/********************************************************************************************************/
-/* Allan CORNET */
-/* INRIA */
-/********************************************************************************************************/
+
 JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl)
 {
 	if ( GetInterfState() == 0) 
@@ -13,17 +22,17 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl)
 	} 
 
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 /* public static native void Events(); */
 JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this)
-/********************************************************************************************************/
+/*****************************************************************************/
 {
 	ScilabDoOneEvent();
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 /* public static native boolean HaveAGraph(); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject obj_this)
-/********************************************************************************************************/
+/*****************************************************************************/
 {
 	
 	jboolean bOK=JNI_FALSE;
@@ -33,10 +42,10 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject
 
 	return bOK;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 /* public static native boolean Exec(String job); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jstring job)
-/********************************************************************************************************/
+/*****************************************************************************/
 {
   jboolean bOK=0;
   const char *cjob;
@@ -62,7 +71,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
 
   return bOK;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 /* public static native boolean Finish(); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj_this)
 {
@@ -79,7 +88,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj
 	}
 	return bOK;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 /* public static native boolean ExistVar(String varName); */
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring varName)
 {
@@ -111,7 +120,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
 
   return bOK;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 /* public static native int TypeVar(String varName); */
 JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstring varName)
 {
@@ -146,7 +155,7 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstr
 
   return type;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 /* public static native int GetLastErrorCode(); */
 JNIEXPORT jint JNICALL Java_javasci_Scilab_GetLastErrorCode (JNIEnv *env , jobject obj_this)
 {
@@ -156,4 +165,4 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_GetLastErrorCode (JNIEnv *env , jobje
 
 	return ErrorCode;
 }
-/********************************************************************************************************/
+/*****************************************************************************/

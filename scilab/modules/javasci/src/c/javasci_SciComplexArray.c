@@ -1,9 +1,19 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include "javasci_SciComplexArray.h"
-/********************************************************************************************************/
-/* Allan CORNET */
-/* Sylvestre LEDRU */
-/* INRIA 2006/2007 */
-/********************************************************************************************************/
+
 
 JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetRealPartElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
@@ -81,7 +91,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetRealPartElement(JNIEnv
   
   return Value;
 }
-/********************************************************************************************************/
+/******************************************************************************/
 /*! public native double GetImaginaryPartElement(int indr,int indc); */
 JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
@@ -161,4 +171,4 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(J
   return Value;
 
 }
-/********************************************************************************************************/
+/*****************************************************************************/

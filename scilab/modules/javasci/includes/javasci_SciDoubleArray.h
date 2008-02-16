@@ -1,9 +1,18 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #ifndef _Included_javasci_SciDoubleArray
 #define _Included_javasci_SciDoubleArray
-/********************************************************************************************************/
-/* Allan CORNET */
-/* INRIA 2005 */
-/********************************************************************************************************/
+
 #include "javasci_globals.h"
 #ifdef __cplusplus
 extern "C" {
@@ -34,4 +43,4 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 }
 #endif
 #endif
-/********************************************************************************************************/
+/*****************************************************************************/

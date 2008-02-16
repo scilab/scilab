@@ -1,20 +1,29 @@
-/********************************************************************************************************/
-/* Arnaud Mangin - INRIA 2006 */
-/* Fabien Viale - INRIA 2007 */
-/********************************************************************************************************/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Arnaud MANGIN
+ * Copyright (C) 2007 - INRIA - Fabien VIALE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include "javasci_Scilab2.h"
-/********************************************************************************************************/
+/*****************************************************************************/
 /**
 * Add on  : Javasci for Pro-Active 
 */
-/********************************************************************************************************/
+/*****************************************************************************/
 #define MAX_String 1024
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_initialize(JNIEnv *env, jclass cl)
 {
 	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
 	const char *cname;
@@ -48,7 +57,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
 	(*env)->ReleaseDoubleArrayElements(env, jmatrix, matrix, 0);
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
 	const char *cname=NULL;
@@ -94,7 +103,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
 	(*env)->ReleaseDoubleArrayElements(env, jmatrix, matrix, 0);
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
 	const char *cname;
@@ -156,7 +165,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclas
 	(*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 	(*env)->ReleaseDoubleArrayElements(env,jy,cy,0);
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
 	const char *cname=NULL;
@@ -229,7 +238,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveComplexMatrix (JNIEnv *env, jc
 	(*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 	(*env)->ReleaseDoubleArrayElements(env,jy,cy,0);
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
 #define MAX_String 1024
@@ -280,7 +289,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
 
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
 	const char *cname;
@@ -331,7 +340,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
 	FREE(element);
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
 {
 	jclass clMatrix = (*env)->FindClass(env, "javasci/SciDoubleMatrix");
@@ -341,7 +350,7 @@ jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint 
 	Java_javasci_Scilab_receiveDoubleMatrix(env, cl, objMatrix);
 	return objMatrix;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 jobject getComplexMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
 {
 	jclass clMatrix = (*env)->FindClass(env, "javasci/SciComplexMatrix");
@@ -351,7 +360,7 @@ jobject getComplexMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint
 	Java_javasci_Scilab_receiveComplexMatrix(env, cl, objMatrix);
 	return objMatrix;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
 {
 	jclass clMatrix = (*env)->FindClass(env, "javasci/SciStringMatrix");
@@ -361,7 +370,7 @@ jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint 
 	Java_javasci_Scilab_receiveStringMatrix(env, cl, objMatrix);
 	return objMatrix;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jclass cl, jstring name)
 {
 #define COMPLEX 1
@@ -410,5 +419,5 @@ JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jc
 	}
 	return obj;
 }
-/********************************************************************************************************/
+/*****************************************************************************/
 
