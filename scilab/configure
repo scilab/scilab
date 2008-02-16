@@ -16978,8 +16978,8 @@ fi
 if test $ac_cv_header_fftw3_h = yes; then
   :
 else
-  { { echo "$as_me:$LINENO: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)" >&5
-echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)" >&2;}
+  { { echo "$as_me:$LINENO: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : fftw3-dev)" >&5
+echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : fftw3-dev)" >&2;}
    { (exit 1); exit 1; }; }
 fi
 
@@ -37358,6 +37358,7 @@ ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/M
 # This script is used by Scicos in order to regenerate the function/block list
 
 
+
 #MAN_FR MAN_ENG
 #modules/mpi/Makefile
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
@@ -40357,7 +40358,7 @@ _ACEOF
 chmod +x $CONFIG_STATUS
 ac_clean_files=$ac_clean_files_save
 
-chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh
+chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure
 
 # configure is writing to config.log, and then calls config.status.
 # config.status does its own redirection, appending to config.log.

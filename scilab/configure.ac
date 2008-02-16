@@ -1153,7 +1153,8 @@ scilab-lib.properties
 #modules/scicos/src/ocaml/Makefile
 
 # This script is used by Scicos in order to regenerate the function/block list
-AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh])
+AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
+
 
 #MAN_FR MAN_ENG
 #modules/mpi/Makefile
