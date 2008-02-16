@@ -99,8 +99,8 @@ clean-macros:
 
 clean-doc:
 	@if test -x $(top_builddir)/scilab-bin; then \
-		$(top_builddir)/bin/scilab -nw -nb -l fr -e 'clean_help();exit;'; \
-		$(top_builddir)/bin/scilab -nw -nb -l en -e 'clean_help();exit;'; \
+		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
+		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi

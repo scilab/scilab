@@ -49,7 +49,7 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	ABOUT-NLS config.guess config.sub config/compile \
+	ABOUT-NLS COPYING config.guess config.sub config/compile \
 	config/config.guess config/config.rpath config/config.sub \
 	config/depcomp config/install-sh config/ltmain.sh \
 	config/missing depcomp install-sh ltmain.sh missing
@@ -985,8 +985,8 @@ clean-macros:
 
 clean-doc:
 	@if test -x $(top_builddir)/scilab-bin; then \
-		$(top_builddir)/bin/scilab -nw -nb -l fr -e 'clean_help();exit;'; \
-		$(top_builddir)/bin/scilab -nw -nb -l en -e 'clean_help();exit;'; \
+		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
+		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
