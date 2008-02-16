@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <math.h>
 #include <string.h>
 #include "stack-c.h"
@@ -12,7 +24,7 @@
 extern int C2F(dseupd) __PARAMS((int *rvec, char *howmny, int *select, double *d, double *z, int *ldz, double *sigma, char *bmat, int *n, char *which, int *nev ,double *tol, double *resid, int *ncv, double *v ,int *ldv, int *iparam,int *ipntr, double *workd,double *workl,int *lworkl,int *info, unsigned long rvec_length, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_len));
 /*--------------------------------------------------------------------------*/
 int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len))
-{ 
+{
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
   int SELECT,   mSELECT,   nSELECT,    pSELECT;
@@ -48,10 +60,10 @@ int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len))
   GetRhsVar( 5,MATRIX_OF_DOUBLE_DATATYPE, &mZ,      &nZ,      &pZ);               Z  =  5;
   GetRhsVar( 6,MATRIX_OF_DOUBLE_DATATYPE, &mSIGMA,  &nSIGMA,  &pSIGMA);        SIGMA =  6;
   GetRhsVar( 7,STRING_DATATYPE, &mBMAT,   &nBMAT,   &pBMAT);          BMAT =  7;
-  GetRhsVar( 8,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);             N    =  8;  
-  GetRhsVar( 9,STRING_DATATYPE, &mWHICH,  &nWHICH,  &pWHICH);       WHICH  =  9; 
+  GetRhsVar( 8,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);             N    =  8;
+  GetRhsVar( 9,STRING_DATATYPE, &mWHICH,  &nWHICH,  &pWHICH);       WHICH  =  9;
   GetRhsVar(10,MATRIX_OF_INTEGER_DATATYPE, &mNEV,    &nNEV,    &pNEV);            NEV = 10;
-  GetRhsVar(11,MATRIX_OF_DOUBLE_DATATYPE, &mTOL,    &nTOL,    &pTOL);            TOL = 11; 
+  GetRhsVar(11,MATRIX_OF_DOUBLE_DATATYPE, &mTOL,    &nTOL,    &pTOL);            TOL = 11;
   GetRhsVar(12,MATRIX_OF_DOUBLE_DATATYPE, &mRESID,  &nRESID,  &pRESID);        RESID = 12;
   GetRhsVar(13,MATRIX_OF_INTEGER_DATATYPE, &mNCV,    &nNCV,    &pNCV);            NCV = 13;
   GetRhsVar(14,MATRIX_OF_DOUBLE_DATATYPE, &mV,      &nV,      &pV);               V  = 14;
@@ -66,18 +78,18 @@ int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len))
   C2F(dseupd)(istk(pRVEC), cstk(pHOWMANY),  istk(pSELECT),
 	      stk(pD), stk(pZ),   &LDZ,
 	      stk(pSIGMA), cstk(pBMAT), istk(pN), cstk(pWHICH),
-              istk(pNEV), stk(pTOL), stk(pRESID), 
-              istk(pNCV), stk(pV), &LDV, 
+              istk(pNEV), stk(pTOL), stk(pRESID),
+              istk(pNCV), stk(pV), &LDV,
 	      istk(pIPARAM), istk(pIPNTR),
-               stk(pWORKD), stk(pWORKL), &LWORKL, 
+               stk(pWORKD), stk(pWORKL), &LWORKL,
               istk(pINFO), 1L, 1L, 1L, 2L);
 
   if (*istk(pINFO) < 0) {
     C2F(errorinfo)("dseupd", istk(pINFO), 6L);
     return 0;
   }
-  LhsVar(1)=D;    LhsVar(2)=Z;      LhsVar(3)=RESID; 
-  LhsVar(4)=V;    LhsVar(5)=IPARAM; LhsVar(6)=IPNTR; 
+  LhsVar(1)=D;    LhsVar(2)=Z;      LhsVar(3)=RESID;
+  LhsVar(4)=V;    LhsVar(5)=IPARAM; LhsVar(6)=IPNTR;
   LhsVar(7)=WORKD;  LhsVar(8)=WORKL; LhsVar(9)=INFO;
   return 0;
 }

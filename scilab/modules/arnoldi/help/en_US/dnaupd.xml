@@ -8,13 +8,13 @@
 	<SHORT_DESCRIPTION name="dnaupd">Interface for the Implicitly Restarted Arnoldi Iteration,
 		to compute approximations to a few eigenpairs of a real linear operator
 	</SHORT_DESCRIPTION>
-	
+
 	<CALLING_SEQUENCE>
 		<CALLING_SEQUENCE_ITEM>
 			[IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,INFO] = dnaupd(ID0,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,INFO)
 		</CALLING_SEQUENCE_ITEM>
 	</CALLING_SEQUENCE>
-	
+
 	<PARAM>
 		<PARAM_INDENT>
 			<PARAM_ITEM>
@@ -56,7 +56,7 @@
 					</P>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>BMAT</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -70,7 +70,7 @@
 					</P>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>N</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -79,7 +79,7 @@
 					</SP>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>WHICH</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -100,7 +100,7 @@
 					</P>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>NEV</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -109,7 +109,7 @@
 					</SP>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>TOL</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -120,7 +120,7 @@
 					</SP>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>RESID</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -136,7 +136,7 @@
 					</P>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>NCV</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -155,7 +155,7 @@
 					</P>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>V</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -164,7 +164,7 @@
 					</SP>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>IPARAM</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -175,7 +175,7 @@
 						The shifts selected at each iteration are used to restart
 						the Arnoldi iteration in an implicit fashion.
 					</P><P>
-						
+
 						ISHIFT = 0: the shifts are provided by the user via
 						reverse communication.  The real and imaginary
 						parts of the NCV eigenvalues of the Hessenberg
@@ -224,7 +224,7 @@
 					</P>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>IPNTR</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -275,7 +275,7 @@
 					</P>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>WORKD</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -291,7 +291,7 @@
 					</SP>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>WORKL</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -302,7 +302,7 @@
 					</SP>
 				</PARAM_DESCRIPTION>
 			</PARAM_ITEM>
-			
+
 			<PARAM_ITEM>
 				<PARAM_NAME>INFO</PARAM_NAME>
 				<PARAM_DESCRIPTION>
@@ -362,7 +362,7 @@
 			</PARAM_ITEM>
 		</PARAM_INDENT>
 	</PARAM>
-	
+
 	<DESCRIPTION>
 		<P>
 			Reverse communication interface for the Implicitly Restarted Arnoldi
@@ -379,7 +379,7 @@
 			dnaupd is usually called iteratively to solve one of the
 			following problems:
 		</P>
-		
+
 		<DESCRIPTION_INDENT>
 			<DESCRIPTION_ITEM>
 				<P>
@@ -419,7 +419,7 @@
 				</P>
 			</DESCRIPTION_ITEM>
 		</DESCRIPTION_INDENT>
-		
+
 		<SP>
 			Both mode 3 and 4 give the same enhancement to eigenvalues close to
 			the (complex) shift sigma.  However, as lambda goes to infinity,
@@ -430,9 +430,9 @@
 			NOTE: The action of w &lt;- inv[A - sigma*M]*v or w &lt;- inv[M]*v
 			should be accomplished either by a direct method
 			using a sparse matrix factorization and solving
-			
+
 			<VERB>[A - sigma*M]*w = v</VERB>  or <VERB>M*w = v</VERB>,
-			
+
 			or through an iterative method for solving these
 			systems.  If an iterative method is used, the
 			convergence test must be more stringent than
@@ -440,7 +440,7 @@
 			approximations.
 		</P>
 	</DESCRIPTION>
-	
+
 	<SECTION label="Remarks">
 		<P>
 			1. The computed Ritz values are approximate eigenvalues of OP. The
@@ -497,18 +497,18 @@
 			WORKL(IPNTR(8)), WORKL(IPNTR(8)+1), ... , WORKL(IPNTR(8)+NCV-1).
 		</P>
 	</SECTION>
-	
+
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM> <LINK>dsaupd</LINK> </SEE_ALSO_ITEM>
 	</SEE_ALSO>
-	
+
 	<AUTHORS>
 		<AUTHORS_ITEM label=' Danny Sorensen, Richard Lehoucq, Phuong Vu '>
 			CRPC / Rice University  Applied Mathematics  Rice University
 			Houston, Texas
 		</AUTHORS_ITEM>
 	</AUTHORS>
-	
+
 	<BIBLIO>
 		<SP>
 			1. D.C. Sorensen, "Implicit Application of Polynomial Filters in
@@ -541,7 +541,7 @@
 			Transformations in a k-Step Arnoldi Method". In Preparation.
 		</P>
 	</BIBLIO>
-	
+
 	<USED_FUNCTIONS>
 		<SP>
 			Based on ARPACK routine dnaupd
