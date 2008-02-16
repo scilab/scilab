@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intl_e()
 c =============================================================
 c     extraction pour les list tlist, mlist
@@ -30,7 +38,7 @@ c
       rhs1=rhs
       top0=top
 
-      fun=0   
+      fun=0
       if(rhs.gt.2) then
          fin=-fin
          return
@@ -97,7 +105,7 @@ c     .  matrix index (i,..) syntax
          lstk(top+2)=lw
          if (istk(il1i).eq.15) then
 c     .     more than one index
-c     .     transform index list(i,j,...) in the list in sequence of variables 
+c     .     transform index list(i,j,...) in the list in sequence of variables
 c     .     at the top of the stack
             m1i=istk(il1i+1)
             ll1=sadr(il1i+m1i+3)
@@ -112,7 +120,7 @@ c     .     at the top of the stack
             rhs=1+m1i
             m2i=istk(il2i+1)
          else
-c     .     a matrix  index 
+c     .     a matrix  index
             if(m1.gt.icount.and.info.eq.4) then
 c     .        arg2(...)(i,j,..)(...)
                if(istk(il2i).ne.9) then
@@ -121,10 +129,10 @@ c     .            too many indices in index list
                    return
                 endif
             endif
-c     .     arg2(...)(i,j,..) a matrix single index, 
+c     .     arg2(...)(i,j,..) a matrix single index,
 c     .     use standard extraction to finish the job
 
-c     .     copy index at the top of the stack 
+c     .     copy index at the top of the stack
             top=top2
             call copyvar(il1ir,vol1)
             rhs=2
@@ -157,7 +165,7 @@ c     .        look for corresponding index if any
                ipos=strpos(istk(ilptr),nn-1,istk(lfn),istk(ilname),
      $              nname)
                if(ipos.le.0) then
-c     .           no such name in the field names 
+c     .           no such name in the field names
                   if(icount.eq.1.and.m1.eq.1) then
 c     .              syntax is arg2('xxx')
                      fin=-fin
@@ -184,7 +192,7 @@ c     .              set the index
          endif
          return
       elseif(info.eq.5) then
-c     .  end of arg1 list (index list) reached 
+c     .  end of arg1 list (index list) reached
 c     .  copy the designed sublist at the top of the stack
          top=top-1
          call copyvar(il2ir,vol2)
@@ -257,7 +265,7 @@ c     .  nothing more to do here but to move results at its correct location
 c     m1 > icount handle, ... case
 c     finish extraction using overloading
 
-c     build new index list using the remaining entries of the 
+c     build new index list using the remaining entries of the
 c     original index list
       ilind=iadr(lstk(top-2))
       if(istk(ilind).lt.0) ilind=iadr(istk(ilind+1))
@@ -270,7 +278,7 @@ c     original index list
             call copyvar(il1i,vol)
             rhs=2
          else
-c     .     transform index list(i,j,...) in the list in sequence of variables 
+c     .     transform index list(i,j,...) in the list in sequence of variables
 c     .     at the top of the stack
             m1i=istk(il1i+1)
             ll1=sadr(il1i+m1i+3)
@@ -345,7 +353,7 @@ c     .  put the result at the top of the stack and return
          vol=lstk(top+1)-lstk(top-lhs+1)
          im=lstk(top-lhs+1)-lstk(top-lhs-1)
         call unsfdcopy(vol,stk(lstk(top-lhs+1)),1,
-     $        stk(lstk(top-lhs-1)),1) 
+     $        stk(lstk(top-lhs-1)),1)
          top=top-2
          do 46 k=1,lhs
             lstk(top-lhs+k+1)=lstk(top-lhs+k+3)-im
@@ -354,7 +362,7 @@ c     .  put the result at the top of the stack and return
       else
 c     .  move result ajust after the index
          ll2=lstk(top+1)-lstk(top)
-         call unsfdcopy(ll2,stk(lstk(top)),1,stk(lstk(top-1)),1) 
+         call unsfdcopy(ll2,stk(lstk(top)),1,stk(lstk(top-1)),1)
          lstk(top)=lstk(top-1)+ll2
          top=top-1
 c     .  goto back to the standard list algorithm

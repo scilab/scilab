@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine insertfield(ilfrom,volfrom,iltos,ind,nind,lrn,lw,info)
 c     insert a field (from) in a sublist "to"  of a list "tos"
 c
@@ -9,11 +17,11 @@ c     iltos points on the first entry of the "tos" data structure in istk
 c     ind(1:nind) is the path of to in tos
 c
 c     is the position of the result,if info<>0
-c     info 
+c     info
 c        if 0 list has been updated "in place"
 c        if 1 list needs to be stored
       include 'stack.h'
-c     
+c
       integer volfrom,voltos,volto,dvol,ind(*)
       integer typfrom,typto
 
@@ -78,7 +86,7 @@ c     .  copy when "to" list is at the top of the stack).
          endif
 
          if(iltos.ne.ilto) then
-c     .     copy the beginning of "tos" up to the beginning of the modified sub-list. 
+c     .     copy the beginning of "tos" up to the beginning of the modified sub-list.
             ltod=sadr(iltos)
             ltto=sadr(ilto)
             call unsfdcopy(ltto-ltod,stk(ltod),1,stk(lrn),1)
@@ -105,7 +113,7 @@ c     .  copy old sublist fields
          lr=lr+volto
          dvol=(lr-lrn)-(lto+volto-sadr(ilto))
 
-c     .  update new data structure pointers recursively 
+c     .  update new data structure pointers recursively
          call updptr(iln,ind,nind-1,dvol)
 c     .  copy the rest of data structure
          if(nind.gt.1) then
@@ -140,7 +148,7 @@ c     .  copy when "to" list is at the top of the stack).
          endif
 
          if(ilto.ne.iltos) then
-c     .     copy the beginning of "tos" up to the beginning of the modified sub-list. 
+c     .     copy the beginning of "tos" up to the beginning of the modified sub-list.
             ltod=sadr(iltos)
             ltto=sadr(ilto)
             err=lrn+ltto-ltod-lstk(bot)
@@ -176,7 +184,7 @@ c     .  copy added field value
          lr=lr+volfrom
 c
          dvol=(lr-lrn)-(lto+volto-sadr(ilto))
-c     .  update new data structure pointers recursively 
+c     .  update new data structure pointers recursively
          call updptr(iln,ind,nind-1,dvol)
 c     .  copy the rest of data structure
 c???         ind(nind-1)=ind(nind-1)+n-mto
@@ -207,7 +215,7 @@ c     .        field is  replaced in place
                info=0
                return
             else
-c     .        get memory to install the resulting list 
+c     .        get memory to install the resulting list
 c     .        (May be improved to avoid copy when "to" list is at the
 c     .        top of the stack).
                iln=iadr(lw)
@@ -243,7 +251,7 @@ c     .        iltol points to the end of "to" data structure
                lto=lto+istk(ilto+2+n)-1
                call unsfdcopy(ltol-lto,stk(lto),1,stk(lrn),1)
                lrn=lrn+ltol-lto
-c     .        update new data structure pointers recursively 
+c     .        update new data structure pointers recursively
                call  updptr(iln,ind,nind,dvol)
 c     .        store result
                lrn=lw
@@ -251,7 +259,7 @@ c     .        store result
             endif
          else
 c     .     suppress the specified entry
-c     .     get memory to install the resulting list 
+c     .     get memory to install the resulting list
 c     .     (May be improved to avoid copy when "to" list is at the
 c     .     top of the stack).
             lrn=lw
@@ -263,7 +271,7 @@ c     .     top of the stack).
                call error(17)
                return
             endif
-c     .     if necessary,copy the "to" list data structure up to the  
+c     .     if necessary,copy the "to" list data structure up to the
 c     .     beginning of the modified sub-list
             if(ilto.ne.iltos) then
 c     .     copy the beginning of "to" up to  the modified sub-list
@@ -273,7 +281,7 @@ c     .     copy the beginning of "to" up to  the modified sub-list
 c     .        lrn points to the beginning of the new entry
                lrn=lrn+ltto-ltod
             endif
-c     .     update sub_list  
+c     .     update sub_list
 c     .     ---------------
             il=iadr(lrn)
             lfrom=lto-1+istk(ilto+2+n)
@@ -296,7 +304,7 @@ c     .     copy last elements
             call unsfdcopy(istk(il+1+mto)-istk(il+1+n),stk(lfrom),1,
      $           stk(l),1)
             l=l+istk(il+1+mto)-istk(il+1+n)
-c     .     update new data structure pointers recursively 
+c     .     update new data structure pointers recursively
             call updptr(iln,ind,nind-1,dvol)
 c     .     copy the rest of data structure
             if(nind.gt.1) then
@@ -313,4 +321,4 @@ c     .     store result
       endif
       return
       end
-      
+

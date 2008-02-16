@@ -1,8 +1,15 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine extractfields(illist,ind,n,lw)
-c     Copyright INRIA
 c
-c     given a list beginning at istk(illist), a vector of n indexes ind 
+c     given a list beginning at istk(illist), a vector of n indexes ind
 c     extractfields creates n variables corresponding to the n fields
 c
 c     if n==-1 all fieds are extracted
@@ -10,13 +17,13 @@ c
 
       include 'stack.h'
       integer ind(*)
-c     
+c
       integer vol2
       integer iadr,sadr
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
+c
       if(n.eq.-1) then
 c     .  L(:)
          n=istk(illist+1)
@@ -89,7 +96,7 @@ c     .  create table of pointers on new variables
  52      continue
          top=top-1
 
-c     .  preserve fields adress (newly created variables may 
+c     .  preserve fields adress (newly created variables may
 c     .  overwrite beginining of the given list)
          ill=iadr(max(lw,lstk(top+1)))
          lw=sadr(ill+n)

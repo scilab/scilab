@@ -1,12 +1,19 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine followpath(indtop,listtop,ilindi,voli,ilp,voll,ind,
      $     count,info,lwork)
-c     Copyright INRIA
 c =============================================================
-c     given 
-c     - a path stored in a "linear" index list ind stored in the 
+c     given
+c     - a path stored in a "linear" index list ind stored in the
 c     variable number indtop
-c     and 
-c     - a list L begining at position stored in the 
+c     and
+c     - a list L begining at position stored in the
 c     variable number listtop
 
 c     - a current pointer on index list entries count
@@ -14,7 +21,7 @@ c     - a current pointer on index list entries count
 c     returns:
 c     - the pointer ilp on the deapest sublist of L on the path indtop
 c       available just by following the list structure of L.
-c       i.e. ilp is the pointer on the sublist of L pointed to by 
+c       i.e. ilp is the pointer on the sublist of L pointed to by
 c       the path indtop(1:count)
 c     - the vector of numerical indexes corresponding to indtop(1:count)
 
@@ -26,14 +33,13 @@ c     info
 c         1 : unknown named field
 c         2 : current index is a matrix index of an mlist
 c         3 : current index is not a single number
-c         4 : current index points to a leaf of the  L list 
+c         4 : current index points to a leaf of the  L list
 c         5 : end of index list reached
 c         6 : current index is 0 or greater than current sublist # of fields
 c =============================================================
 c
-c     Copyright INRIA
       include 'stack.h'
-c     
+c
       integer indtop,listtop,ind(*)
       integer typi,count,oldcount,voll,voli
 
@@ -45,7 +51,7 @@ c
       sadr(l)=(l/2)+1
 c
       oldcount=count
-c     
+c
       ilind=iadr(lstk(indtop))
       if(istk(ilind).lt.0) then
          itop=istk(ilind+2)
@@ -178,7 +184,7 @@ c      if(voll.eq.0) then
 c     .  undefined field found
 c         info=7
 c         goto 50
-c     
+c
 c     endif
       if(istk(illisti).lt.0) then
          kk=istk(illisti+2)

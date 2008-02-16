@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine lstops
 c ==================================
 c     elementary operations on lists
@@ -10,7 +18,7 @@ c
       logical	ishm
       integer insert,extrac, toto, gettype
       data insert/2/,extrac/3/
-      
+
 
 c     handle recursion
       if(rstk(pt).ge.403.and.rstk(pt).le.405) goto 10
@@ -37,7 +45,7 @@ c     extraction
 c$$$      print *, ' type de top =', gettype(top), ' type de top-1 =', toto
       if ( ishm() .and. toto.ne.10 .and. toto.ne.15) then
          call intehm()
-      else               
+      else
          call intl_e()
       endif
       return
@@ -45,12 +53,12 @@ c
 c     insertion
  50   continue
       toto = gettype(top-2)  ! a priori
-c$$$      print *, ' type de top =',   gettype(top), 
+c$$$      print *, ' type de top =',   gettype(top),
 c$$$     $         ' type de top-1 =', gettype(top-1),
 c$$$     $         ' type de top-2 =', toto
       if ( ishm() .and. toto.ne.10 .and. toto.ne.15) then
          call intihm()
-      else               
+      else
          call intl_i()
       endif
       if(err.gt.0) return

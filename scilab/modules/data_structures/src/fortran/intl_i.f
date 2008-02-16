@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intl_i
 c =============================================================
 c     list insertions arg3(arg1)=arg2
@@ -44,7 +52,7 @@ c     handle recursion
  05   lw=lstk(top+1)
 c
       if(rhs.ge.4) then
-c     .  l(i,j,..) 
+c     .  l(i,j,..)
          fin=-fin
          return
       endif
@@ -115,7 +123,7 @@ c     protect recursion data
       istk(ilrec+6)=vol3
 
       if(info.eq.5.or.info.eq.6) then
-c     .  end of arg1 list reached 
+c     .  end of arg1 list reached
 c     .  replace designed sublist of arg3 by arg2
          call insertfield(il2,vol2,il3,istk(ilind),icount,lrn,lw,info)
          if(err.gt.0) return
@@ -129,7 +137,7 @@ c     .  syntax is arg3(...)(i,j,..)(...)=arg2
 c     .  matrix index (i,..) syntax
          if(istk(il3i).eq.17.or.istk(il3i).eq.16) then
             if(icount.eq.1.and.abs(m1).eq.1) then
-c     .     syntax is arg3('xxx')=arg2 or  arg3(i)=arg2 
+c     .     syntax is arg3('xxx')=arg2 or  arg3(i)=arg2
                fin=-2
                top=top3
                rhs=3
@@ -165,7 +173,7 @@ c            if(err.gt.0) return
 
  30   continue
 c     last index points on a matrix, use standard matrix insertion
-c     to finish 
+c     to finish
       top=top3
       if (istk(il1i).eq.15) then
 c     .  more than one index
@@ -174,14 +182,14 @@ c     .  variables at the top of the stack
          call lst2vars(il1i,m1i)
          if(err.gt.0) return
          rhs=2+m1i
-      else 
-c     .  a matrix single index 
+      else
+c     .  a matrix single index
          if(m1.gt.icount) then
 c     .     arg3(...)(i,j,..)(...)=arg2 :too many indices in index list
             call error(21)
             return
          endif
-c     .  arg3(...)(i,j,..)=arg2: a matrix single  index 
+c     .  arg3(...)(i,j,..)=arg2: a matrix single  index
 c     .  copy it at the top of the stack (may be possible to put a pointer)
          call copyvar(il1ir,vol1)
          if(err.gt.0) return
@@ -193,7 +201,7 @@ c     create a pointer on arg2
       if(err.gt.0) return
 
 c     create a pointer on the designed matrix (part of arg3)
-      if(vol3.gt.0) then 
+      if(vol3.gt.0) then
          call createref(il3i,0,vol3)
          if(err.gt.0) return
       else
@@ -204,7 +212,7 @@ c     .  the list entry is undefined
 c     call allops for  standard insertion
       fin=2
       if (ptover(1,psiz)) return
-      
+
       icall=4
       istk(ilrec)=1
 
@@ -311,7 +319,7 @@ c     .  variables at the top of the stack
          if(err.gt.0) return
          rhs=1+m1i
       endif
-c     - form the sublist Temp1=A3(i1)..(ik) 
+c     - form the sublist Temp1=A3(i1)..(ik)
       call copyvar(il3i,vol3)
       if(err.gt.0) return
 c     top of stack contains [A1, A2, A3,ik+1, (ik+2)..(in),&a2,ik+1,Temp1]
@@ -336,10 +344,10 @@ c     - restore context
       il1=iadr(lstk(top1))
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       m1=istk(il1+1)
-c     
+c
 c     re-enter intl_i to realize Temp2(ik+2)..(in)=A2 insertion
 c     top of stack contains : [A1, A2, A3,ik+1,(ik+2)..(in), &A2, Temp2]
-c     
+c
 c      pt=pt-1
 c      if (ptover(1,psiz)) return
 c     save context for recursion
@@ -349,7 +357,7 @@ c     save context for recursion
       fin=2
       if (istk(iadr(lstk(top))).eq.1) then
 c     .  insertion in an empty matrix
-c     .  get the type of the inserted variable            
+c     .  get the type of the inserted variable
          ityp=abs(istk(iadr(lstk(top-1))))
          if(ityp.ne.15.and.ityp.ne.16.and.ityp.ne.17) then
 c     .     not a list, *call* allops
@@ -396,7 +404,7 @@ c     .  temp1 contains the result
          goto 90
       endif
 
-c     
+c
 c     realize insertion A3(i1)..(ik)=Temp1
       ilv=iadr(lstk(top))
       volv=lstk(top+1)-lstk(top)
@@ -460,7 +468,7 @@ c
 
  82   continue
 c     change handle property
-c     build new index list using the remaining entries of the 
+c     build new index list using the remaining entries of the
 c     original index list
       ll=sadr(il1+3+m1)
 
@@ -497,7 +505,7 @@ c     notify that result has already been stored
  90   continue
 
       if(info.eq.0) then
-c     .  insertion has been done in place, 
+c     .  insertion has been done in place,
          top3=top1+2
          if(rstk(pt).eq.407) then
             il3=iadr(lstk(top3))
@@ -524,7 +532,7 @@ c     .  insertfield has created the result at adress lrn. stored it
             goto 01
          else
 c     .  set lstk pointers to the newly created variable
-            
+
             lt=lstk(top)
             lstk(top)=lrn
             il1=iadr(lrn)

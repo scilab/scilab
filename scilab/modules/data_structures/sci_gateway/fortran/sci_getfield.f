@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intgetfield()
       include 'stack.h'
@@ -51,14 +59,14 @@ c     get arg1
       endif
 c
  15   continue
-c     
+c
       if(istk(il1).ne.10)  goto 20
 c     .  arg2(arg1) with arg1 vector of strings
       ilt=iadr(sadr(il2+istk(il2+1)+3))
       nt=istk(ilt+1)*istk(ilt+2)
       if(nt.ne.1) goto 17
 c     .     Soft coded extraction
-      buf='Soft coded field names not yet implemented'	
+      buf='Soft coded field names not yet implemented'
       call error(999)
       return
 
@@ -130,12 +138,12 @@ c     .  arg2(arg1) standard case
          call indxg(il1,m2,ili,n,mx,lw,1)
          if(err.gt.0) return
       endif
-c     
+c
  22   if(mx.gt.m2) then
          call error(21)
          return
       endif
-c     
+c
       if(ilist.ge.nlist) goto 31
       if(n.gt.1) then
          call error(21)

@@ -1,6 +1,14 @@
-      
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
       subroutine gratyp(ivt,job)
-c     set the type  
+c     set the type
 c      ['graph','name','directed','node_number','tail','head','node_name',..
 c       'node_type','node_x','node_y','node_color','node_diam','node_border',..
 c       'node_font_size','node_demand','edge_name','edge_color','edge_width',..

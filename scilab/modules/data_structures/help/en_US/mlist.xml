@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -48,11 +59,11 @@
     <P>The overloading function for extraction syntax <VERB>b=a(i1,...,in)</VERB>
     has the following calling sequence: <VERB>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB> </P>
     <P>and the syntax
-    <VERB>[x1,..,xm]=a(i1,...,in)</VERB> has the following calling sequence: 
+    <VERB>[x1,..,xm]=a(i1,...,in)</VERB> has the following calling sequence:
     <VERB>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB></P>
     <P></P>
     <P> The overloading function associated to the insertion syntax
-    <VERB>a(i1,...,in)=b</VERB>  has the following calling sequence: 
+    <VERB>a(i1,...,in)=b</VERB>  has the following calling sequence:
     <VERB>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</VERB>. </P>
     <P></P>
     <P>mlist fields must then be designed by their names. They can also be
@@ -74,7 +85,7 @@ function r=%V_e(varargin)
    r=mlist(['V','name','value'],M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))
 endfunction
 M(2,:) // the second row of  M
-M.value 
+M.value
 
 //define insertion operations
 function M=%V_i_V(varargin)
@@ -105,7 +116,7 @@ M('name')
 
 
 
- 
+
   ]]></EXAMPLE>
 
   <SEE_ALSO>
