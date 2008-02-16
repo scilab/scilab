@@ -28,6 +28,6 @@ sciReturnRowVectorFromInt
 sciReturnEmptyMatrix
 sciReturnInt
 sciReturnStringMatrix
-getStringMatrixFromStack
+
 ;
 

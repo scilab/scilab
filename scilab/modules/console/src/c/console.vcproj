@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="console"
 	ProjectGUID="{445D3B85-C9B1-498B-9C88-0A3C2390B1CC}"
 	RootNamespace="console"
@@ -268,10 +268,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetConsolePrompt.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\TerminateConsole.c"
 				>
 			</File>
 		</Filter>

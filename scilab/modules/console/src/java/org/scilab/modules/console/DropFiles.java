@@ -9,7 +9,7 @@
 package org.scilab.modules.console;
 
 
- /**
+ /** 
    * @author Allan CORNET
    * @copyright INRIA 2007
    */
@@ -21,7 +21,7 @@ public class DropFiles {
  protected DropFiles() {
 	throw new UnsupportedOperationException();
  }
-
+  
 /**
 * drop function on all types for scilab
 * @param files list of files
