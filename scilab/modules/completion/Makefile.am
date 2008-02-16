@@ -1,10 +1,7 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
-
-if GUI
 
 #List of the c files
 COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
@@ -21,10 +18,6 @@ src/c/completion_wrap_java.c
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_completion.c
-
-else
-COMPLETION_C_SOURCES =src/nocompletion/nocompletion.c
-endif
 
 # Includes need for the compilation
 libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \

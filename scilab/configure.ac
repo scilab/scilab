@@ -715,7 +715,7 @@ AC_ARG_WITH(ocaml,
 
 
 SCICOS_ENABLE=no
-if test "$with_scicos" != no; then
+if test "$with_scicos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
 #################
@@ -730,8 +730,25 @@ fi
 AC_SUBST(SCICOS_ENABLE)
 
 
-AM_CONDITIONAL(SCICOS, test "$with_scicos" != no)
+AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
+
+
+#################
+## UMFPACK
+#################
+
+AC_ARG_WITH(umfpack,
+    [  --with-umfpack	           compile with the UMFPACK 3 library])
+
+UMFPACK_ENABLE=0
+if test "$with_umfpack" = yes; then
+   AC_UMFPACK()
+   UMFPACK_ENABLE=1
+fi
+
+AC_SUBST(UMFPACK_ENABLE)
+AM_CONDITIONAL(UMFPACK, test "$with_enable" = yes)
 
 
 #################
@@ -1191,6 +1208,9 @@ echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
 
 echo ""
+if test "$with_gui" = no; then
+   echo "Not using Scicos because of the option --without-gui"
+else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
@@ -1200,6 +1220,7 @@ if test $SCICOS_ENABLE = yes; then
    echo "OCAMLDEP ........... = $OCAMLDEP"
 else 
    echo "Not using Scicos"
+fi
 fi
 
 echo ""

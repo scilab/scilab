@@ -16,7 +16,6 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
 
@@ -88,23 +87,16 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscicompletion_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libscicompletion_la_SOURCES_DIST = src/jni/Completion_wrap.c \
-	src/nocompletion/nocompletion.c src/c/completion.c \
-	src/c/completion_generic.c src/c/getfilesdictionary.c \
-	src/c/getfulldictionary.c src/c/getmacrosdictionary.c \
-	src/c/toolsdictionary.c src/c/completion_wrap_java.c \
-	sci_gateway/c/sci_completion.c sci_gateway/c/gw_completion.c
-@GUI_TRUE@am__objects_1 = libscicompletion_la-Completion_wrap.lo
-@GUI_FALSE@am__objects_2 = libscicompletion_la-nocompletion.lo
-@GUI_TRUE@am__objects_2 = libscicompletion_la-completion.lo \
-@GUI_TRUE@	libscicompletion_la-completion_generic.lo \
-@GUI_TRUE@	libscicompletion_la-getfilesdictionary.lo \
-@GUI_TRUE@	libscicompletion_la-getfulldictionary.lo \
-@GUI_TRUE@	libscicompletion_la-getmacrosdictionary.lo \
-@GUI_TRUE@	libscicompletion_la-toolsdictionary.lo \
-@GUI_TRUE@	libscicompletion_la-completion_wrap_java.lo
-@GUI_TRUE@am__objects_3 = libscicompletion_la-sci_completion.lo \
-@GUI_TRUE@	libscicompletion_la-gw_completion.lo
+am__objects_1 = libscicompletion_la-Completion_wrap.lo
+am__objects_2 = libscicompletion_la-completion.lo \
+	libscicompletion_la-completion_generic.lo \
+	libscicompletion_la-getfilesdictionary.lo \
+	libscicompletion_la-getfulldictionary.lo \
+	libscicompletion_la-getmacrosdictionary.lo \
+	libscicompletion_la-toolsdictionary.lo \
+	libscicompletion_la-completion_wrap_java.lo
+am__objects_3 = libscicompletion_la-sci_completion.lo \
+	libscicompletion_la-gw_completion.lo
 am_libscicompletion_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscicompletion_la_OBJECTS = $(am_libscicompletion_la_OBJECTS)
@@ -125,7 +117,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscicompletion_la_SOURCES)
-DIST_SOURCES = $(am__libscicompletion_la_SOURCES_DIST)
+DIST_SOURCES = $(libscicompletion_la_SOURCES)
 libscicompletion_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicompletion_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicompletion_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -317,22 +309,21 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #List of the c files
-@GUI_TRUE@COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
-@GUI_FALSE@COMPLETION_C_SOURCES = src/nocompletion/nocompletion.c
+COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
 
 # List of the c files
-@GUI_TRUE@COMPLETION_C_SOURCES = src/c/completion.c \
-@GUI_TRUE@src/c/completion_generic.c \
-@GUI_TRUE@src/c/getfilesdictionary.c \
-@GUI_TRUE@src/c/getfulldictionary.c \
-@GUI_TRUE@src/c/getmacrosdictionary.c \
-@GUI_TRUE@src/c/toolsdictionary.c \
-@GUI_TRUE@src/c/completion_wrap_java.c
+COMPLETION_C_SOURCES = src/c/completion.c \
+src/c/completion_generic.c \
+src/c/getfilesdictionary.c \
+src/c/getfulldictionary.c \
+src/c/getmacrosdictionary.c \
+src/c/toolsdictionary.c \
+src/c/completion_wrap_java.c
 
 
 # List of the gateway c files
-@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
-@GUI_TRUE@sci_gateway/c/gw_completion.c
+GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
+sci_gateway/c/gw_completion.c
 
 
 # Includes need for the compilation
@@ -518,7 +509,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getfulldictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getmacrosdictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-gw_completion.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-nocompletion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-sci_completion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-toolsdictionary.Plo@am__quote@
 
@@ -549,13 +539,6 @@ libscicompletion_la-Completion_wrap.lo: src/jni/Completion_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/Completion_wrap.c' object='libscicompletion_la-Completion_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-Completion_wrap.lo `test -f 'src/jni/Completion_wrap.c' || echo '$(srcdir)/'`src/jni/Completion_wrap.c
-
-libscicompletion_la-nocompletion.lo: src/nocompletion/nocompletion.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-nocompletion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-nocompletion.Tpo -c -o libscicompletion_la-nocompletion.lo `test -f 'src/nocompletion/nocompletion.c' || echo '$(srcdir)/'`src/nocompletion/nocompletion.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompletion_la-nocompletion.Tpo $(DEPDIR)/libscicompletion_la-nocompletion.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nocompletion/nocompletion.c' object='libscicompletion_la-nocompletion.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-nocompletion.lo `test -f 'src/nocompletion/nocompletion.c' || echo '$(srcdir)/'`src/nocompletion/nocompletion.c
 
 libscicompletion_la-completion.lo: src/c/completion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-completion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-completion.Tpo -c -o libscicompletion_la-completion.lo `test -f 'src/c/completion.c' || echo '$(srcdir)/'`src/c/completion.c

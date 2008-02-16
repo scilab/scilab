@@ -179,3 +179,14 @@ BOOL sciHasFigures( void )
   return FALSE;
 }
 /*--------------------------------------------------------------------------*/
+char **getDictionaryGetProperties(int *sizearray)
+{
+	return NULL;
+}
+/*--------------------------------------------------------------------------*/
+char **getDictionarySetProperties(int *sizearray)
+{
+	return NULL;
+}
+/*--------------------------------------------------------------------------*/
+
