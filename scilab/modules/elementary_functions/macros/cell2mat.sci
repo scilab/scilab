@@ -1,5 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function y= cell2mat(c)
-// Copyright INRIA
+
 // This function returns a matrix which is the result of concatenation of all components of the cell c
 // Input : c, a cell. All components of c must have the same data type (strings or doubles or integers or booleans)
 // Moreover all components of c must be scalar, vector or matrix 

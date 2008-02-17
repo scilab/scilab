@@ -1,8 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Newdims,I]=convertindex(dims,varargin)
 //convert N-D indexes given in varargin to 1-D index.
 //if indexes exceed matrix dimensions given in dims, dimensions are
 //extented and new dimensions are returned in Newdims
-// Copyright INRIA
 
 // VC 27/05/2004
 // if dims is a list (INSERTION) it contains:

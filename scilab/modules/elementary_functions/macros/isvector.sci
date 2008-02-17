@@ -1,9 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function r=isvector(x)
-// Copyright INRIA
+
 // Checks if all dimensions of x but one are 1
 // Input: x 
 // Output: r = boolean value (true if x is a vector)
-// F.B.
 
 nbones=0
 n=size(size(x),"*")

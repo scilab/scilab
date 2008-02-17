@@ -1,5 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function yi=interp1(varargin)
-// Copyright INRIA
+
 // yi=interp1(x,y,xi[,method[,interpolation)
 // This function performs the yi values corresponding to xi by interpolation defined by x and y.
 // Inputs :

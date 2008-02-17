@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function  y=cat(dims,varargin) 
-// Copyright INRIA
 //
 // CAT function concatenates the inputs arguments (included in varargin) according to dims
 // if dims=1 then concatenation is done according to the rows of the input arguments, if dims=2 then concatenation is done according to the columns of the input arguments,... 
