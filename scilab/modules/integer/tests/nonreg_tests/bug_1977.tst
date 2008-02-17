@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1977 -->
 //
 // <-- Bugzilla URL -->
@@ -13,11 +20,6 @@
 //
 //
 //    Francois
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2006
-// Date : 23 mai 2006
 
 execstr('inttype(''hell'')','errcatch');
 if lasterror() <> "first argument is incorrect" then pause,end

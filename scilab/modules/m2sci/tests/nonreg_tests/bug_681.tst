@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 681 -->
 //
 // <-- Bugzilla URL -->
@@ -5,10 +12,6 @@
 //
 // <-- Short Description -->
 //    m2sci doesn't translate "error" function.
-
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
 
 MFILECONTENTS="error(''This is an error message'')"
 

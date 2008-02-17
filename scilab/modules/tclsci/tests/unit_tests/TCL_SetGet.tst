@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //-----------------------------------------------------------------------------------------
 // Tests Interface TCL
-// Allan CORNET
 //-----------------------------------------------------------------------------------------
 test=TCL_SetVar("ScalarA",1.1112)
 if (test==%F) then pause,end

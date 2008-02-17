@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2251 -->
 //
 // <-- Bugzilla URL -->
@@ -11,12 +18,6 @@
 // "isempty(x) returns true if x is an empty matrix or an empty list."
 // Seems it is not reasonable to force any operator definitions on mlist
 // contained in list for simple ability to only check the list emptyness...
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 14 janvier 2008
-
-
 
 // define some mlist
 someml = mlist(['VVVV','smf'],[1 2 3]);

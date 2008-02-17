@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1736 -->
 //
 // <-- Bugzilla URL -->
@@ -10,11 +17,6 @@
 //    surprised it hasn't be applied a lot of years after it 
 //    has been indentified and posted a bug correction... There 
 //    is a problem with uint8 comparisons...
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 11 janvier 2006
 
 a = uint8(rand(10,10)*100);
 if (a<=50)<>(50>=a) then pause,end

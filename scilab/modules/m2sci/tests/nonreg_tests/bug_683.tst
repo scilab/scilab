@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 683 -->
 //
 // <-- Bugzilla URL -->
@@ -7,9 +14,6 @@
 //    problem with makecell : when a makecell input is an input of
 //    the main function, makecell doesn't give this input value to
 //    the created cell. Strange behavior...
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
 
 // Create 2 M-files
 MFUN1TXT=["function [a,c] = test_cell1(b)";

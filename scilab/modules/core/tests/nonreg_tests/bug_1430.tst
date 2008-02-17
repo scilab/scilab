@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1430 -->
 //
 // <-- Bugzilla URL -->
@@ -7,11 +14,6 @@
 //in errcatch(n,'continue') if an error arises in a for loop variable
 //evaluation, or during the evaluation of a decision expression in an  if
 //a while or select called in a compiled function, Scilab loops indefinetely.
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Date : 15 feb 2008
-
 
 errcatch(-1,'continue','nomessage')
 

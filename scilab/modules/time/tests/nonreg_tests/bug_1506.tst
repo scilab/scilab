@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1506 -->
 //
 // <-- Bugzilla URL -->
@@ -16,11 +23,6 @@
 //    So the date is correct but not the time
 //
 //    Fabian
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 28 décembre 2005
 
 now = getdate();
 

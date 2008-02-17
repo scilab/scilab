@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 deff('foo()','a=1,b=2,c=3;[x,y]=resume(a,b)')
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z

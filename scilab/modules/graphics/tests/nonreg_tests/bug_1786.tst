@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 1786 -->
@@ -14,11 +21,6 @@
 //    Label.font_angle.
 //
 //    jacques-Deric
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 6 fevrier 2005
 
 hf  = scf (1);
 ha  = gca ();

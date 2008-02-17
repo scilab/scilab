@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2430 -->
 //
 // <-- Bugzilla URL -->
@@ -11,11 +18,6 @@
 //
 //    Strangely, when the size of b is less than 10, then all
 //    cases give the correct answer !
-
-
-// Scilab Project - Serge Steer
-// Copyright INRIA 2007
-// Date : June 2007
 
 b = sparse(1:16);
 if or(abs(full(2\b)-2\full(b)) >= 100*%eps) then pause,end

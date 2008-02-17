@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1619 -->
 //
 // <-- Bugzilla URL -->
@@ -7,11 +14,6 @@
 //    macr2tree doesn't like functions compiled for profiling. It hates them 
 //    so much,
 //    that causes spectacular crashes of scilab.
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 2 octobre 2006
 
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 560 -->
 //
 // <-- Bugzilla URL -->
@@ -6,10 +13,6 @@
 // <-- Short Description -->
 
 // Non-regression test file for bug 560
-// Author : Pierre MARECHAL
-// Copyright INRIA
-// Scilab Project
-// Date : 29 novembre 2007
 
 format(15);
 m=100;

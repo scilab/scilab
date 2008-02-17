@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1084 -->
 //
 // <-- Bugzilla URL -->
@@ -11,10 +18,6 @@
 //    other time.  This should produce the same results every 
 //    time.  Note that the 'uniform' distribution does generate 
 //    the same results every time.
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 1er juin 2005
 
 rand('seed',0);
 A = rand(1,3,'normal');

@@ -1,4 +1,10 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // simple tests for arsimul and odedi 
 // x_{n+1}=n*x_{n}, x_{1}=1;
 deff('[xnp1]=ttt(n,xn)','xnp1=(xn**2);');

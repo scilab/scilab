@@ -1,9 +1,9 @@
-//==============================================================================
-// Author : Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date : 30 Oct 2007
-//==============================================================================
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
 // unit tests for datenum function
 // =============================================================================

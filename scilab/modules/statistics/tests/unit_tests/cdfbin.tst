@@ -1,8 +1,12 @@
 // =============================================================================
-// Tests for cdfbin() function
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
 //
-// Scilab Team
-// Copyright INRIA
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// =============================================================================
+// Tests for cdfbin() function
 //
 // CN^k pr^k(1-pr)^(Xb-k)
 //

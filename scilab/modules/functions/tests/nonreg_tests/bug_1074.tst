@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1074 -->
 //
 // <-- Bugzilla URL -->
@@ -6,12 +13,6 @@
 // <-- Short Description -->
 //    fun2string()  converts anomalously function calls with more
 //    than 1 return argument, and does not retain the function name
-
-
-// Non-regression test file for bug 1057
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 1er juin 2005
 
 mode(-1);
 clear;

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1867 -->
 //
 // <-- Bugzilla URL -->
@@ -7,9 +14,6 @@
 //    msscanf fails to parse formats with a large number of entries (larger 
 //    than 30 it
 //    seems).
-
-// A.C
-// Copyright INRIA 2006
 
 str1 = '1 2 3 4 5 6 7 8 9 10';
 L1 = msscanf(str1,"%d %d %d %d %d %d %d %d %d %d");

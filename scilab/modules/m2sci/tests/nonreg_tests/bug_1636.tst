@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1636 -->
 //
 // <-- Bugzilla URL -->
@@ -12,9 +19,6 @@
 //    m2sci_syntax.sci file with the line if k<> 1 then k=k-1; end instead of 
 //    k=k-1 for lines 141 and 181 which seems to work OK. No errors and 
 //    produces an sci file
-
-// Copyright INRIA
-// Scilab Project - F. Belahcene
 
 MFILECONTENTS=["function A = bug1636(x,y,...";
 		"z,t,...";

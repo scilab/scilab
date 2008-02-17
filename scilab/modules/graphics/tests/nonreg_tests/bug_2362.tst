@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 2362 -->
@@ -13,11 +20,6 @@
 //    badaboom!
 //
 //    Francois
-
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2007
-// Date : 5 avril 2007
 
 // crashed before the bug fix
 

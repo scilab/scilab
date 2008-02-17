@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1957 -->
 //
 // <-- Bugzilla URL -->
@@ -6,11 +13,6 @@
 // <-- Short Description -->
 //    Non fonctionnement de intersci pour les variables optionnelles (au 
 //    moins scalaires)
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 15 mai 2006
 
 tab  = ascii(9);
 path = TMPDIR;

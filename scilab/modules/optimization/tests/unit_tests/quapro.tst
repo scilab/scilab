@@ -1,10 +1,9 @@
-// ============================================================================
-// unit tests for quapro function
-// Author : Sylvestre LEDRU
-// Scilab Project
-// Copyright INRIA 2007
-// Tests from the documentation
-// ============================================================================
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)

@@ -1,8 +1,13 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 // =============================================================================
 // Tests for pca function
-// Scilab Team
-// Copyright INRIA
 // =============================================================================
 if execstr('pca()','errcatch')==0 then pause,end
 // =============================================================================

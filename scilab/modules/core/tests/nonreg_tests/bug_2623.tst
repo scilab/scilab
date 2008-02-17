@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 2623 -->
@@ -13,15 +20,9 @@
 
 // <-- INTERACTIVE TEST -->
 
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 07/02/2008
-
-
 errcatch(-1,'pause');
 error(1);
 resume();
 
 // enter
 // enter
-

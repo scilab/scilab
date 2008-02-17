@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //===============================
 // unit tests strindex
-// INRIA 2007
 //===============================
 if or(strindex('abc,abd,aa,bxe',',')<>[4 8 11]) then pause,end
 if or(strindex('abc',',')<>[]) then pause,end

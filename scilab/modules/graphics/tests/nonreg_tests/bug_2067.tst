@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 2067 -->
@@ -12,11 +19,6 @@
 //
 //    Greetings from Poland,
 //    Lukasz Hladowski.
-
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2006
-// Date : July 11 2006
 
 // the bug was hanging the computer
 

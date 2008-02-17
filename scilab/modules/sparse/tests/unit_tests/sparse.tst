@@ -1,5 +1,10 @@
-// Copyright INRIA
- 
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 mode(5)
 lines(0)
 ij=[1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6];

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // y_{n+1} = y_n + 2*y_{n-1} + [1,2,3]*U_{n+1} + sig*1*e_{n+1} 
 
 Ar=armac([1,-1,-2],[1,2,3],[1],1,3,0);

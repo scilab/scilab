@@ -1,9 +1,9 @@
-//==============================================================================
-// Author : Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// Date : 29 jan 2008
-//==============================================================================
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
 // unit tests for oct2dec function
 // =============================================================================

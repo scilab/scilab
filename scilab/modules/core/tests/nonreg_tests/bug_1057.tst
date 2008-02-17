@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1057 -->
 //
 // <-- Bugzilla URL -->
@@ -23,9 +30,5 @@
 //
 //    Basically overflow is translated in crashes where it should 
 //    be Inf.
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 1er juin 2005
 
 if 1.7977E+308 <> %inf then pause,end

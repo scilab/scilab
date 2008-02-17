@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
-// Copyright INRIA
 // test conversion transfer <---> state-space
 // 1- coff inversion 
  s=poly(0,'s'); a=[1 2 3;4 5 6;7 8 9];

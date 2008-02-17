@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // Copyright INRIA
 Leps=1.e-6;
 //     dy1/dt = -.04*y1 + 1.e4*y2*y3

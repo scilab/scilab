@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2611 (part 1) -->
 //
 // <-- Bugzilla URL -->
@@ -5,12 +12,6 @@
 //
 // <-- Short Description -->
 // for loop variable not removed when an error arises within a for called in try context
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Date : 12 feb 2008
-
-  	
 
 function r=test()
   r=%f

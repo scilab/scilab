@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2636 -->
 //
 // <-- Bugzilla URL -->
@@ -6,12 +13,6 @@
 // <-- Short Description -->
 //    Scilab is not able to copy a file in an empty Directory.
 //
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2007
-// Date : 28 Jan 2007
-
 
 mkdir(TMPDIR+"/bug_2636");
 mputl("test",TMPDIR+"/bug_2636.txt");

@@ -1,11 +1,13 @@
 // =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// =============================================================================
 // Tests for cdft() function
-//
-// Scilab Team
-// Copyright INRIA
-//
 // using a table
-//
 // =============================================================================
 
 prec    = 1.e-5;

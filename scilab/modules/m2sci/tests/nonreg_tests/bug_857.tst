@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 857 -->
 //
 // <-- Bugzilla URL -->
@@ -18,13 +26,6 @@
 //    end
 //
 //    TOO BAD !
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
-
-// Modified by Pierre MARECHAL
-// Copyright INRIA
-// Date : 18 Mar 2005
 
 MFILECONTENTS=["% i and j do not exist as variables -> Imaginary unit";
 		"a=1+2*i";

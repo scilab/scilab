@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- INTERACTIVE TEST -->
 
-// Copyright INRIA
 a=1;
 deff('[x]=tata(y)','x=-y,write(%io(2),''enter quit''),pause,x=+20')
 xx=tata(10);

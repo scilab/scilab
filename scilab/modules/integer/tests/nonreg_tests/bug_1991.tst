@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1991 -->
 //
 // <-- Bugzilla URL -->
@@ -5,13 +12,8 @@
 //
 // <-- Short Description -->
 //    [a,b]=(3,int32(5))
-//                      !--error 78 
+//                      !--error 78
 //    convert: wrong number of lhs arguments
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 15 mai 2006
 
 [a,b]  = (3,int32(5));
 if a<>3        then pause,end

@@ -1,6 +1,12 @@
 // =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// =============================================================================
 // unit tests length
-// Allan CORNET INRIA 2007
 // =============================================================================
 
 

@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006      - INRIA - Allan CORNET <allan.cornet@inria.fr>
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2149 -->
 //
 // <-- Bugzilla URL -->
@@ -22,13 +30,6 @@
 //    with complex matrices (or matrices of integers, booleans, etc).
 //
 //    Francois
-
-// Copyright INRIA
-// Scilab Project - Allan CORNET
-// Copyright INRIA 2006
-
-// Re-Written By Pierre MARECHAL
-// Copyright INRIA 2007
 
 M=[1+%i;2+3*%i];
 if execstr('fprintfMat(TMPDIR+''/pipo.txt'',M,''%f'',[''comment un'';''comment 2''])','errcatch') == 0 then pause,end

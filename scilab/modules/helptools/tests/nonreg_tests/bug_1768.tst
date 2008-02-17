@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1768 -->
 //
 // <-- Bugzilla URL -->
@@ -8,11 +15,6 @@
 //    Whenever I write a new function and try to write the relative help 
 //    file, xmltohtml crashes. Apparently, it does not found the whatis file 
 //    even if it was just created successfully
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2005
-// Date : 20 janvier 2006
 
 function y=foo1(a,b)
 	y=a+b

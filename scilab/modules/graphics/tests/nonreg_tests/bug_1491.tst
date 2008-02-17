@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 1491 -->
@@ -12,11 +19,6 @@
 //    The default value Axes.clip_box is not inherited in Rectangle.clip_box
 //
 //    Jacques-Deric
-
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2006
-// Date : 10/02/2006
 
 clipBox = [0.1,0.9,0.8,0.8] ;
 

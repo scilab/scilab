@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre .marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2663 -->
 //
 // <-- Bugzilla URL -->
@@ -6,12 +13,6 @@
 // <-- Short Description -->
 // length() change the value of the input argument. the input argument is replaced
 // by the nearest rounded down integer.
-//
-// =============================================================================
-// Author : Pierre MARECHAL
-// Scilab Project
-// Copyright INRIA 2007
-// =============================================================================
 //
 
 y         = [0.3616361 2.2922267  1.5015342];

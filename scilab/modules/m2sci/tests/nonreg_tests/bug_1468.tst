@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1468 -->
 //
 // <-- Bugzilla URL -->
@@ -5,11 +12,6 @@
 //
 // <-- Short Description -->
 //    1) 'macr2tree' function doesn't work correctly with the following script
-
-
- // Non-regression test file for bug 1468
-// Copyright INRIA
-// Scilab Project - F. Belahcene
 
 MFILECONTENTS=["beep";
 		"beep on";

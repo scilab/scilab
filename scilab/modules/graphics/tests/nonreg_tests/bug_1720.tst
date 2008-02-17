@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 1720 -->
@@ -15,11 +22,6 @@
 //    inconsistency between the two behaviors
 //
 //    Jacques-Deric
-
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2006
-// Date : 11 janvier 2006
 
 hf               = scf(1) ;
 hf.figure_name   = "4.13.22A1";

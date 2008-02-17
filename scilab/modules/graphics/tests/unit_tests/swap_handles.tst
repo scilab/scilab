@@ -1,8 +1,11 @@
-// <-- TEST WITH GRAPHIC -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
-// Copyright INRIA 2006
-// Author Jean-Baptiste Silvy
-// basic test for routine swap_handles
+// <-- TEST WITH GRAPHIC -->
 
 // first test : swap two brothers
 a1 = gca() ;

@@ -1,9 +1,12 @@
 // =============================================================================
-// Authors : Bruno JOFRET
-//           CORNET Allan
-//          Scilab Team
-// Copyright INRIA 2007
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Bruno JOFRET <bruno.jofret@inria.fr>
+// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
 //
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// =============================================================================
 // Date   : 13/12/2007
 //
 // Unitary tests for copyfile function

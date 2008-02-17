@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2453 -->
 //
 // <-- Bugzilla URL -->
@@ -6,12 +13,6 @@
 // <-- Short Description -->
 //    mfscanf and probably the other variants msscanf mscanf may crash Scilab when
 //    first argument is -1 (any number of lines)
-
-
-// Scilab Project - Serge Steer
-// Copyright INRIA 2007
-// Date : Aug 2007
-
 
 fd = mopen(SCI+'/modules/fileio/tests/nonreg_tests/bug_2453.dat','r');
 Lx = mfscanf(-1,fd,'%g %g\n');

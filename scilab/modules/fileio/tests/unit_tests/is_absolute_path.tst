@@ -1,10 +1,11 @@
 // =============================================================================
-// Auhtor : Pierre MARECHAL
-//          Scilab Team
-// Copyright INRIA 2007
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 //
-// Date   : 28/11/2007
-//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// =============================================================================
 // Determines if the path is an absolute name.
 // =============================================================================
 

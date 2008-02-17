@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2330 -->
 //
 // <-- Bugzilla URL -->
@@ -7,11 +14,6 @@
 //    datafit does not work equivalently on WinXP and Linux. With a given dataset and
 //    same routines centered on datafit function, it works perfectly on Linux and
 //    partially (some data are fitted some others not) on WinXP.
-
-
-// Serge Steer - Scilab Project
-// Copyright INRIA
-// 30 apr 2007
 
 //build the data to fit
 //---------------------

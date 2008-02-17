@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1955 -->
 //
 // <-- Bugzilla URL -->
@@ -6,11 +13,6 @@
 // <-- Short Description -->
 //    Reshaping global hypermatrices is problematic, as demonstrated by the 
 //    attached file 'bug.sci', which contains further comments.
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 3 mai 2006
 
 global ghm
 

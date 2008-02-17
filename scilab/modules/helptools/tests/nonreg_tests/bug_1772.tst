@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1772 -->
 //
 // <-- Bugzilla URL -->
@@ -6,11 +13,6 @@
 // <-- Short Description -->
 //    There is a problem while inserting an object of type list in an undefined struct
 //    field
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2005
-// Date : 20 janvier 2006
 
 S.x=1;
 ok=%t

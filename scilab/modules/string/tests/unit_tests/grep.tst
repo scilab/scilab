@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //===============================
 // unit tests grep
-// INRIA 2007
 //===============================
 txt=['find matches of a string in a vector of strings'
      'search position of a character string in an other string'

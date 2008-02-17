@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 2467 -->
@@ -8,12 +15,6 @@
 // <-- Short Description -->
 //    when trying to open plot files (scg) containing graphs with
 //    logarithmic axes, I get this mysterious error message..
-
-
-// Scilab Project - Serge Steer
-// Copyright INRIA 2007
-// Date : Sept 2007
-
 
 plot(1:10)
 a             = gca();

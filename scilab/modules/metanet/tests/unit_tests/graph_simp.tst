@@ -1,9 +1,10 @@
-//==============================================================================
-// Authors : Claude GOMEZ, Serge STEER
-// Scilab team
-// Copyright INRIA
-// Date : 01 Feb, 2008
-//==============================================================================
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) ????-2008 - INRIA - Claude GOMEZ <claude.gomez@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
 // unit tests for graph_simp function
 // =============================================================================

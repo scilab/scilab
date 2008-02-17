@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 945 -->
 //
 // <-- Bugzilla URL -->
@@ -9,13 +17,6 @@
 //
 //    Test.m leads to Test.sci (obviously wrong)
 //    Test2.m leads to Test2.sci
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
-
-// Modified by Pierre MARECHAL
-// Copyright INRIA
-// Date : 18 Mar 2005
 
 MFILECONTENTS=["x(1) = 0.;";"x(2) = 0.;";"y = zeros (2,1);";"y(1) = 0.;";"y(2) = 0.;"]
 

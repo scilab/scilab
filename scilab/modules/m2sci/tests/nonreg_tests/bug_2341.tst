@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2341 -->
 //
 // <-- Bugzilla URL -->
@@ -5,9 +12,6 @@
 //
 // <-- Short Description -->
 //    unhandled matlab syntax for lhs (Matlab accepts lhs calling sequence without commas
-
-// Copyright INRIA
-// Scilab Project - Vincent COUVERT
 
 MFILE=TMPDIR+"/bug2341.m"
 SCIFILE=TMPDIR+"/bug2341.sci"

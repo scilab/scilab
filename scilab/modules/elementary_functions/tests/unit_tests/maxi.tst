@@ -1,7 +1,13 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 Ntest=1
-// test maxi(A) : A matrix 
-// maxi is compared with sort 
+// test maxi(A) : A matrix
+// maxi is compared with sort
 
 for i=1:Ntest,
 	m=100;n=200;a=rand(m,n);

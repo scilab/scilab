@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 488 -->
 //
 // <-- Bugzilla URL -->
@@ -30,7 +37,7 @@
 // bug488
 // 489, 491 492 496 duplicate
 
-// rechercher l'existance du répertoire tcl sous Scilab
+// rechercher l'existance du rï¿½pertoire tcl sous Scilab
 
 tcl_dir = getenv('SCI')+"/modules/tclsci/tcl";
 if ~(isdir(tcl_dir)) then pause,end

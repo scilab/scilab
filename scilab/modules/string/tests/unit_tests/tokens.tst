@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //===============================
 // unit tests tokens
-// INRIA 2007
 //===============================
 if tokens('This is a character string') <> ['This'; 'is'; 'a'; 'character'; 'string'] then pause,end
 if tokens('SCI/demos/scicos','/') <> ['SCI';'demos';'scicos'] then pause,end

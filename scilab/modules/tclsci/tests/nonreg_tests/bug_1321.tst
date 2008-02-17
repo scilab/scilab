@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1321 -->
 //
 // <-- Bugzilla URL -->
@@ -6,9 +13,6 @@
 // <-- Short Description -->
 //    Function findobj does not work when property value contains
 //    capital letters and is case sensitive for property name.
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
 
 h=figure(1);
 

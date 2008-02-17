@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 
 // <-- Non-regression test for bug 2618  -->
 //
@@ -7,11 +14,6 @@
 // <-- Short Description -->
 // try/catch statement makes Scilab unstable, 
 
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Date : 12 feb 2008
-
- 
 //catched error in a compiled function in a try
 function r=ev(str), execstr('r='+str),endfunction
 r=%f;a = 1;

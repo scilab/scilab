@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2181 -->
 //
 // <-- Bugzilla URL -->
@@ -8,10 +15,6 @@
 //    different drives.
 //
 //    Francois
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 30 octobre 2006
 
 if MSDOS then
 	

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre .marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2414 -->
 //
 // <-- Bugzilla URL -->
@@ -6,10 +13,6 @@
 // <-- Short Description -->
 //    assignment of empty string an empty variable has disastrous results. Probably a
 //    parser bug, for statements of the form a=string(a), with a=[]
-
-// Author : Scilab Project - Pierre MARECHAL
-// Copyright INRIA
-// Date : 05 mai 2007
 
 a = [];
 a = string(a);

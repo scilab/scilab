@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1971 -->
 //
 // <-- Bugzilla URL -->
@@ -6,9 +13,6 @@
 // <-- Short Description -->
 //    the mtlb_fprintf does not work. It should be re-written to follow the Matlab doc
 //    of fprintf
-
-// Copyright INRIA
-// Scilab Project - F. Belahcene
 
 MFILECONTENTS=[
 "fprintf(''qsdfsdcvwqghcv'')";

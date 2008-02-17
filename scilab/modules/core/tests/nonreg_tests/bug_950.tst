@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 950 -->
 //
 // <-- Bugzilla URL -->
@@ -6,11 +13,6 @@
 // <-- Short Description -->
 //    extra character in "select" line crashes Scilab instead of 
 //    issuing a "syntax error" message.
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 10 janvier 2006
 
 try
 	function [] = Select (Type)

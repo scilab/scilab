@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 859 -->
 //
 // <-- Bugzilla URL -->
@@ -6,13 +14,6 @@
 // <-- Short Description -->
 //    M2SCI convert Matlab expression such as a(n,:)=b(m,:) (with
 //    a==[])by a(n,:)=b(m,:) but execution crashes.
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
-
-// Modified by Pierre MARECHAL
-// Copyright INRIA
-// Date : 18 Mar 2005
 
 MFILECONTENTS=["result=ones(10,10);";
 		"m=1;";

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2428 -->
 //
 // <-- Bugzilla URL -->
@@ -10,9 +17,6 @@
 //    of the package and via the SciPad menu File -> Import Matlab File. In 
 //    the first case the conversion fails without errors, in the second case 
 //    an error appears and a message suggests to report here the error.
-
-// Copyright INRIA
-// Scilab Project - Vincent COUVERT
 
 MFILE         = TMPDIR+"/bug2428.m"
 SCIFILE       = TMPDIR+"/bug2428.sci"

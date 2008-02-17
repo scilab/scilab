@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2692 -->
 //
 // <-- Bugzilla URL -->
@@ -5,11 +12,6 @@
 //
 // <-- Short Description -->
 //   bitand( int8(x) , int8(y) ) doesn't return an int8 object.
-
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2008
-// Date : Feb 2008
-
 
 // uint8
 // =============================================================================

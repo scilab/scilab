@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 799 -->
 //
 // <-- Bugzilla URL -->
@@ -6,11 +13,6 @@
 // <-- Short Description -->
 //    Reload large matrix file from disk with "fscanfMat" command 
 //    crashes Scilab.
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 6 fevrier 2005
 
 stacksize(19e6);
 

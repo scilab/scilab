@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2014 -->
 //
 // <-- Bugzilla URL -->
@@ -25,11 +32,6 @@
 //    2 -  narg=size(varargin)
 //    3 -  if narg==0 then error('isequal requires at least two input arguments'),end
 // ...
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : june  2006
 
 l1 = list(1,2,3);
 l2 = list(1,2);

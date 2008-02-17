@@ -1,4 +1,11 @@
-// Copyright Inria/Enpc
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) ????-2008 - ENPC
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //================================ Matrix of double case ===========================================
 N=4;P=20;Nrand=100; 
 

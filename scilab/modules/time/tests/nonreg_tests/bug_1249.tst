@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1249 -->
 //
 // <-- Bugzilla URL -->
@@ -25,10 +32,6 @@
 //    !   21.    22.    23.    24.    25.    26.    27. !
 //    !   28.    29.    30.    31.    0.     0.     0.  !
 // ...
-
-// Author : Scilab Project - Pierre MARECHAL
-// Copyright INRIA
-// Date : 21 Mar 2005
 
 M = calendar(2005,3);
 

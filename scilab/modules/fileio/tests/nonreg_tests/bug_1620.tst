@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1620 -->
 //
 // <-- Bugzilla URL -->
@@ -22,11 +29,6 @@
 //    (n), mais cela n'a pas eu d'effet. Qu'en pensez vous?
 //    La commande clear nettoie-t-elle efficacement la m�moire?
 //    Merci de votre aide.
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2006
-// Date : 9 janvier 2006
 
 a=rand(500,148);
 fprintfMat(TMPDIR+"/bug1620.txt",a);

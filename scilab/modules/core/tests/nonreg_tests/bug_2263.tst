@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2263 -->
 //
 // <-- Bugzilla URL -->
@@ -20,10 +27,6 @@
 //      d=in+3;
 //      e=in+4;
 //    endfunction
-
-// Serge Steer - Scilab Project
-// Copyright INRIA
-// 2 janv 2007
 
 function [a,b,c,d,e]=test()
   a=1;b=2;c=3;d=4;e=5;

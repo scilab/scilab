@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005      - INRIA - Farid BELAHCENE
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1262 -->
 //
 // <-- Bugzilla URL -->
@@ -14,13 +22,6 @@
 //    4) -(A-B) -> -A-B
 //
 //    Apply mfile2sci to the Matlab script given below.
-
-// Copyright INRIA
-// Scilab Project - F.Belahcene
-
-// Modified by Pierre MARECHAL
-// Scilab Project
-// 20 mai 2005
 
 MFILECONTENTS=["A = rand(3,3);"
 	""

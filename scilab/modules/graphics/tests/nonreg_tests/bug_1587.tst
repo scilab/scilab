@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 1587 -->
@@ -11,11 +18,6 @@
 //    modified is not the entered one. The selected figure colormap is also changed
 //    with the entered colormap. Moreover, Scilab often crash some time after this bug
 //    occures.
-
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2006
-// Date : 18 Juillet 2006
 
 // test the modification on a figure which is not current
 f1 = gcf() ;

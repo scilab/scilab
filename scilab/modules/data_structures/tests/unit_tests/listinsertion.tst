@@ -1,4 +1,10 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // test des insertions dans les listes
 a=1,b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
 h=5;i=4;a0=10;c0=20;b0=30;g0=[44 55 66; 10 20 30];

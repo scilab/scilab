@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2006 - INRIA - Farid Belahcene
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1725 -->
 //
 // <-- Bugzilla URL -->
@@ -26,12 +33,5 @@
 //      varargout(1)=a.data_bounds;
 // ...
 
-
-// Copyright INRIA
-// Scilab Project - Farid Belahcene
-// Copyright INRIA 2005
-// Date : 09 janvier 2006
-
 a = mtlb_axis([ 1 500 -22.3 1.4]);
 if or(a <> [1 500 -22.3 1.4]) then pause,end
-

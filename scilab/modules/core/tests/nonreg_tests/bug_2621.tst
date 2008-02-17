@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 2621 -->
@@ -9,10 +16,6 @@
 //
 // errcatch(n,'continue') with an error greater than 9999 doesn't catch the error
 //
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 29 novembre 2007
 
 function bug_errcatch_one
 	errcatch(9999,"continue")

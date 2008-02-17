@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2661 -->
 //
 // <-- Bugzilla URL -->
@@ -5,10 +12,6 @@
 //
 // <-- Short Description -->
 //   gsort() doesn't process int32 value anymore.
-
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2008
-// Date : 13 Feb 2008
 
 A = [ 1 3 5 ; 8 7 8 ]
 

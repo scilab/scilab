@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA -Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2022 -->
 //
 // <-- Bugzilla URL -->
@@ -10,10 +17,6 @@
 //    Example that causes error:
 //
 //    perctl([23.4,364.34,1929.3,4234.3,293.3,928.3],[10])
-
-// Author : Scilab Project - Pierre MARECHAL
-// Copyright INRIA
-// Date : 12 june 2006
 
 if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],90) <> [472 3]  ) then pause,end
 if or( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 414 410 410 405 397 380 360 332],75) <> [452 6]  ) then pause,end

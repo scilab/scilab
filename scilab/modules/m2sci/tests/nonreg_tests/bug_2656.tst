@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2656 -->
 //
 // <-- Bugzilla URL -->
@@ -5,11 +12,6 @@
 //
 // <-- Short Description -->
 //    M2sci doesn't convert "carriage return" inside a loop.
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA
-// Date : 15 janvier 2008
 
 MFILECONTENTS=["a = 1;"
                 "while ( a == 1)";

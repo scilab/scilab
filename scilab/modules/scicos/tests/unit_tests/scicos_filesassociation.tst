@@ -1,9 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // ============================================================
-// Allan cornet 2005
-// Modified by Pierre MARECHAL
-// Scilab team
-// Copyright INRIA
-// 
 // Test file association for scicos ( cos, cosf )
 // ============================================================
 global LANGUAGE;

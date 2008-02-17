@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 604 -->
 //
 // <-- Bugzilla URL -->
@@ -34,7 +41,7 @@ I=12;
 
 //M=[g*m*l,I+2*m*l^2,K/l;0,1,0;0,0,1];
 
-//Le bug n'existe plus, la possibilité de faire 2m au lieu de 2*m a été supprimée
+//Le bug n'existe plus, la possibilitï¿½ de faire 2m au lieu de 2*m a ï¿½tï¿½ supprimï¿½e
 
 if [2*m] <> 4 then pause,end
 if  2*m  <> 4 then pause,end

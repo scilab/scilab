@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre .marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2674 -->
 //
 // <-- Bugzilla URL -->
@@ -6,11 +13,6 @@
 // <-- Short Description -->
 // regexp function return weird strings.
 //
-// =============================================================================
-// Author : Pierre MARECHAL
-// Scilab Project
-// 29 janvier 2008
-// =============================================================================
 
 [ start_ind end_ind str_match ] = regexp('XABYABBBZ','/ab*/i');
 if str_match <> ["AB";"ABBB"] then pause,end

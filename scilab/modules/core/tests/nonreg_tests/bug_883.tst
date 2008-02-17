@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 883 -->
 //
 // <-- Bugzilla URL -->
@@ -5,11 +12,6 @@
 //
 // <-- Short Description -->
 //    format() output oddities
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Date : 3 mai 2005
-
 
 SCIFILE=TMPDIR+"/bug883.dia";
 

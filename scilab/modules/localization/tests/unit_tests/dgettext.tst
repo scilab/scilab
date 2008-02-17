@@ -1,7 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //===============================
 // unit tests dgettext
-// INRIA 2008
-// @author Sylvestre LEDRU
 //===============================
 
 // Void call

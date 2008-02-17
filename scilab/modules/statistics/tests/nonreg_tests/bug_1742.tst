@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA -Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1742 -->
 //
 // <-- Bugzilla URL -->
@@ -13,11 +20,6 @@
 //
 //    This formula is wrong. Must be canged in:
 //    m=sqrt(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/nrow);
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 4 mai 2006
 
 x=matrix([5 2:8],2,4);
 

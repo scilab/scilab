@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 631 -->
 //
 // <-- Bugzilla URL -->
@@ -19,12 +26,6 @@
 //
 //    !   0. !
 //    !   0. !
-
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 10 janvier 2006
 
 p  = -[1;1];
 C  = [1 -1];

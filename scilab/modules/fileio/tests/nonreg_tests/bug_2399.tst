@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2399 -->
 //
 // <-- Bugzilla URL -->
@@ -6,10 +13,6 @@
 // <-- Short Description -->
 //    msscanf crashes scilab when scanning a vector of strings for float 
 //    values on Linux.
-
-// Author : Scilab Project - Pierre MARECHAL
-// Copyright INRIA
-// Date : 05 mai 2007
 
 toks = ['noddy';'holden'];
 vals = msscanf(-1,toks,'%f');

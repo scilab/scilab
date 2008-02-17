@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1712 -->
 //
 // <-- Bugzilla URL -->
@@ -25,11 +32,6 @@
 //    ! F T !
 //    ! T T !
 // ...
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 6 fevrier 2005
 
 //hm = hypermat([2 2 2],1:8);
 //if execstr('hm>min(hm) & hm<max(hm)','errcatch')   <>0 then pause,end

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 731 -->
 //
 // <-- Bugzilla URL -->
@@ -7,12 +14,7 @@
 //    fun2string and macr2tree cannot cope with nested function
 //    definitions
 
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Date : 3 mai 2005
-// last modified : 10 Jan 2006
-
-// =============== Test 1 =============== 
+// =============== Test 1 ===============
 
 function y=foo(x)
 	a=sin(x)

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1149 -->
 //
 // <-- Bugzilla URL -->
@@ -8,9 +15,6 @@
 //    a=[,1,2,3,] (superfluous leading/trailing comma), which
 //    matlab lives well with. Awful matlab quirk, I agree, but
 //    some automatic m-file generator does it carelessly.
-
-// Copyright INRIA
-// Scilab Project - F.Belahcene
 
 MFILECONTENTS="a=[,1,2,3,];"
 

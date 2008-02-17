@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 862 -->
 //
 // <-- Bugzilla URL -->
@@ -15,9 +22,6 @@
 //    a = mtlb_i(a,1,0)
 //               !--error     4
 //    undefined variable : a
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
 
 MFILECONTENTS="a(1)=0;"
 

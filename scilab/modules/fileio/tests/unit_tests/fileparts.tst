@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //===============================
 // Tests fileparts
-// INRIA 2008
 //===============================
 [path,fname,extension] = fileparts(SCI+'/etc/scilab.start');
 if (path <> pathconvert(SCI+'/etc/',%f,%f)) then pause,end

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 657 -->
 //
 // <-- Bugzilla URL -->
@@ -8,11 +15,6 @@
 //    just after a wrong isdir instruction
 //
 //    Note that max(int8(10),-2.6) gives wrong result
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 6 fevrier 2005
 
 test1 = max(int8(10),2);
 err   = execstr('isdir(test1)','errcatch');

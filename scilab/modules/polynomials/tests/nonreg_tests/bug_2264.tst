@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2264 -->
 //
 // <-- Bugzilla URL -->
@@ -5,10 +12,6 @@
 //
 // <-- Short Description -->
 //    lcm gives wrong value for 3-element vectors(cf bug 666)
-
-// Serge Steer - Scilab Project
-// Copyright INRIA
-// 2 janv 2007
 
 [q,fact]=lcm(int32([-6 5 7 12 4]));
 if q<>int32(420) then pause,end

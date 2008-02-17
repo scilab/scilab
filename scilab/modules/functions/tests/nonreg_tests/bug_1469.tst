@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1469 -->
 //
 // <-- Bugzilla URL -->
@@ -25,11 +32,6 @@
 //    -->foo1()
 //    Stop after row     3 in function foo1 :
 // ...
-
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2006
-// Date : 23 novembre 2006
 
 //test of line numbering in  functions, handling initial comments
 

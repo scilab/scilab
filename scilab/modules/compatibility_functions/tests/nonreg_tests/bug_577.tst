@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 577 -->
 //
 // <-- Bugzilla URL -->
@@ -13,4 +20,3 @@ my_mat_file = TMPDIR+"/bug_577.mat";
 
 x=rand(5,5,100)+%i;
 if (execstr('mtlb_save(my_mat_file,''x'')','errcatch')) <> 0 then pause,end
-

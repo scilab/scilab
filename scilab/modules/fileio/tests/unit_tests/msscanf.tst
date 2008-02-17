@@ -1,4 +1,11 @@
-// Copyright ENPC/INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) ????-2008 - ENPC
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //--------------test format %i
 [n,a]=msscanf('123','%i');
 if n<>1|a<>123 then pause,end

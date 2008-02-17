@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //==================================
 // unit tests printf
-// INRIA 2007 (A.C)
 //==================================
 printf("printf test 1:%s\n", "simple string");
 //==================================
@@ -22,11 +28,11 @@ printf("printf test 9:<%-20s>\n", "bar");
 //==================================
 printf("printf test 10: 123456789012345\n");
 //==================================
-printf("printf test 11:<%15s>\n", "høyesterettsjustitiarius");
+printf("printf test 11:<%15s>\n", "hï¿½yesterettsjustitiarius");
 //==================================
 printf("printf test 12: 123456789012345678901234567890\n");
 //==================================
-printf("printf test 13:<%30s>\n", "høyesterettsjustitiarius");
+printf("printf test 13:<%30s>\n", "hï¿½yesterettsjustitiarius");
 //==================================
 printf("printf test 14:%5.2f\n", -12.34);
 //==================================

@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 545 -->
 //
 // <-- Bugzilla URL -->
@@ -24,12 +31,6 @@
 //    Enrico SEGRE on Linux version RH9 distribution  with   as window manager
 //    Israel
 //    November 9, 2003 at 13:47:20
-
-
-// Non-regression test file for bug 545
-// Copyright INRIA
-// Scilab Project
-// Date : 9 Dec 2005
 
 // <-- INTERACTIVE TEST -->
 

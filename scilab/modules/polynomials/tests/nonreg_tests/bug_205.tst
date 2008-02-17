@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 205 -->
 //
 // <-- Bugzilla URL -->
@@ -21,10 +28,6 @@
 //
 //    Gaubert on Linux PPC version 2.2.13 distribution  with  X/kde as window manager
 //    France  February 10, 2001 at 11:55:40
-
-// Author : Scilab Project - Pierre MARECHAL
-// Copyright INRIA
-// Date : 09 june 2006
 
 N = 30;
 A = rand(N,N);

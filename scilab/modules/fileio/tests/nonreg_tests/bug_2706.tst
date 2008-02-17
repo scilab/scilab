@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2706 -->
 //
 // <-- Bugzilla URL -->
@@ -5,11 +12,6 @@
 //
 // <-- Short Description -->
 //    listfiles is giving wrong result under Linux on a file without extension
-
-// Copyright INRIA
-// Scilab Project - Sylvestre LEDRU
-// Copyright INRIA 2008
-// Date : 8 feb. 2008
 
 cd(TMPDIR);
 mputl("","toto");

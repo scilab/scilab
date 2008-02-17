@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1526 -->
 //
 // <-- Bugzilla URL -->
@@ -8,10 +15,6 @@
 //   using windows encoding is read badly on Scilab/Linux with the fscanfMat primitive.
 //   This problem seems to come from the bad read of end-line characters.
 //   A work-around of this bug, is to use 'dos2unix' on Linux to convert the file.
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 12/02/2008
 
 mat_ref = [ ..
     0.15    0.19    0.96 ;

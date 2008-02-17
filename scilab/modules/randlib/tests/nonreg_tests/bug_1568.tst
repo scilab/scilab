@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1568 -->
 //
 // <-- Bugzilla URL -->
@@ -25,11 +32,6 @@
 //    -->grand(1,'prm',[1:5]')
 //     ans  =
 // ...
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 21 octobre 2005
 
 grand('setsd',12);
 A = grand(1,'prm',[1:5]');

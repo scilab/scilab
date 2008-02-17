@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2268 -->
 //
 // <-- Bugzilla URL -->
@@ -6,10 +13,6 @@
 // <-- Short Description -->
 //    Memory leak in msscanf().  When calling msscanf() many times, as in reading in
 //    large CSV files, process size grows beyond memory capacity.
-
-// Serge Steer - Scilab Project
-// Copyright INRIA
-// 2 janv 2007
 
 free=getmemory();
 

@@ -1,4 +1,10 @@
-// Copyright INRIA/ENPC
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) ????-2008 - ENPC
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
 function [rep]=Fprintf(varargin)
 	fd = mopen(TMPDIR+"/fprintf.rep","w");

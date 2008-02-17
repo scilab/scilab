@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //extraction
 Data=list(1:12,(1:12)+rand(1,12)*%i,int32(1:12),(1:12)+%s,rand(1,12)>0.5,string(1:12));
 

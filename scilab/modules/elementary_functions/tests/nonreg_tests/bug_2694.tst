@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2694 -->
 //
 // <-- Bugzilla URL -->
@@ -6,9 +13,5 @@
 // <-- Short Description -->
 //   bitget() only support unsigned integers. This function has to be extended
 //   to all positive integers.
-
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2008
-// Date : Feb 2008
 
 if execstr("bitget(12,2);","errcatch") <> 0 then pause,end

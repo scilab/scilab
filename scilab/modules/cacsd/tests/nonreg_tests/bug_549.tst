@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 549 -->
 //
 // <-- Bugzilla URL -->
@@ -5,7 +12,7 @@
 //
 // <-- Short Description -->
 //    Bug Report Id: 0321220031018153842
-//     Le problème n'intervient qu'avec la version Linux de Scilab !!!
+//     Le problï¿½me n'intervient qu'avec la version Linux de Scilab !!!
 //    On Scilab 2.7 with " csim " function
 //    The Error Messages are:
 //      warning

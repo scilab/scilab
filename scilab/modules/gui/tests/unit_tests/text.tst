@@ -1,5 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // Unitary tests for Scilab Java texts
-// Vincent COUVERT - INRIA 2008
 
 // Exec tests common to all uicontrols
 clear uicontrol_generic_test

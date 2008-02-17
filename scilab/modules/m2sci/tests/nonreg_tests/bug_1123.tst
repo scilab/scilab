@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1123 -->
 //
 // <-- Bugzilla URL -->
@@ -10,9 +17,6 @@
 //    if(mod(N,2))N=N-1;t=t(1:N);xs=xs(1:N);xp=xp(1:N); x=x(1:N);end
 //
 //    leads to a error 43 the m2sci script
-
-// Copyright INRIA
-// Scilab Project - F. Belahcene
 
 MFILECONTENTS = "if(true)t=1;end"
 MFILE         = TMPDIR+"/bug1123.m"

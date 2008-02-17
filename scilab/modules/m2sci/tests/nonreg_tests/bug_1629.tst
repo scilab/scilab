@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1629 -->
 //
 // <-- Bugzilla URL -->
@@ -25,9 +32,6 @@
 //    ---------------------
 //    Note: without the nargin test surrounding the structure field assignments, the
 // ...
-
-// Copyright INRIA
-// Scilab Project - F. Belahcene
 
 MFILECONTENTS=["function out=bug1629(par)";
 		"if (nargin<2)";

@@ -1,4 +1,10 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 Leps=8.e-5;
 bs=10.*ones(1,5);bi=-bs;x0=0.12*bs;epsx=1.e-15*x0;xopt=.1*bs;
 [f,x,g]=optim('genros',x0,'in');

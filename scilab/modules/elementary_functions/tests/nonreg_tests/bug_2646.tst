@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 2646 -->
 //
 // <-- Bugzilla URL -->
@@ -7,10 +14,6 @@
 // min() produces wrong result when a vector input contains %nan.
 // The function seems to produce as result the first element that follows
 // the last %nan in the vector input.
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 10 Janvier 2008
 
 if min([ 1 2 %nan 3 4 ])      <> 1 then pause, end
 if min([1 2 %nan 3 %nan 4 5]) <> 1 then pause, end

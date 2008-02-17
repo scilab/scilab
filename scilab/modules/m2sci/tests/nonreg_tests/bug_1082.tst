@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1082 -->
 //
 // <-- Bugzilla URL -->
@@ -7,9 +14,6 @@
 //    Error during conversion of a very simple file. Though the
 //    syntax is the same in both languages, the converter fails to
 //    convert the rounding of the field of a structure: "round(a.b)"
-
-// Copyright INRIA
-// Scilab Project - F.Belahcene
 
 MFILECONTENTS=["structure.field = 2;" 
 ""

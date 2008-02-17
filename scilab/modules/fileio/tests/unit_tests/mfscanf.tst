@@ -1,5 +1,10 @@
-// Copyright ENPC/INRIA
-
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) ????-2008 - ENPC
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
 deff('[n,a,b,c,d,e]=Fscanf(str,f)',['fd=mopen(TMPDIR+''/fscanf.rep'',''w'');';
 	'mputstr(str,fd);mclose(fd);';

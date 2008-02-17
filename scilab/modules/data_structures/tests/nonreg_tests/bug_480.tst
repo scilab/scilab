@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 480 -->
 //
 // <-- Bugzilla URL -->
@@ -17,7 +24,7 @@
 //            !--error    53 
 //    invalid input (waiting for real or complex matrix) 
 //
-//    Commands:  
+//    Commands:
 //
 //    Enrico Segre on Linux version  distribution RH9 with   as window manager
 //    Israel  July 27, 2003 at 10:7:54

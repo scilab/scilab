@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1662 -->
 //
 // <-- Bugzilla URL -->
@@ -9,10 +16,6 @@
 //    switch and case statement in the m file, the sytnax is rejected with an 
 //    incorrect syntax error. Take the comment out and it works fine. Not a 
 //    major problem but a slight nuisance
-
-// Copyright INRIA
-// Scilab Project - F. Belahcene
-
 
 MFILECONTENTS=["function  y=bug1662(x)";
 		"switch x % comment1";

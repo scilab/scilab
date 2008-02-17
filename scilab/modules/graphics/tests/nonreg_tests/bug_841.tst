@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- INTERACTIVE TEST -->
 // <-- TEST WITH GRAPHIC -->
 //
@@ -19,10 +26,6 @@
 //              //      So the first delta is 0.3 and then 0.2.
 // plot2d([0,5],[0,0]); // By plotting the zero line, we clearly
 //                      // see it doesn't go through zero.		
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 29 novembre 2007
 
  // Non reg test on string format in 2D Axes
 

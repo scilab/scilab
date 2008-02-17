@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1802 -->
 //
 // <-- Bugzilla URL -->
@@ -5,13 +12,6 @@
 //
 // <-- Short Description -->
 //    The sci2exp function is very very slow for large matrices
-
-
-// Non-regression test file for bug 1802
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2005
-// Date : 30 janvier 2006
 
 a=rand(100,500);
 timer();sci2exp(a);t=timer();

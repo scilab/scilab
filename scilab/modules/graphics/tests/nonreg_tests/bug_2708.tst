@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 2708 -->
@@ -7,10 +14,6 @@
 //
 // <-- Short Description -->
 // It is no more possible to fill the user_data field of a graphic object with lists
-
-// Pierre MARECHAL - Scilab Project
-// Copyright INRIA
-// 10/02/2008
 
 a=gca();
 set(a,'user_data',tlist(['gindex','node','edge'],[],[]));

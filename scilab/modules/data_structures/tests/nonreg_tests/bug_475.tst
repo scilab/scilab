@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 475 -->
 //
 // <-- Bugzilla URL -->
@@ -13,7 +20,7 @@
 //                                                 !--error    59 
 //    incorrect # of outputs in the function
 //    arguments are :
-//     x         
+//     x
 //
 //    Commands:  a=hypermat([3,3,1],uint16(1:9)); [m,k]=max(a)
 //

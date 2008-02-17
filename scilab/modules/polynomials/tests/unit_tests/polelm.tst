@@ -1,4 +1,10 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //poly (coeff)
 
 v=[1 2 3];nam='s';job='c';p=1+2*%s+3*%s^2;

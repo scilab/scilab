@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 871 -->
 //
 // <-- Bugzilla URL -->
@@ -24,10 +31,6 @@
 //     ans  =
 //
 //        0.7560439
-
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Date : 3 mai 2005
 
 SCIFILE=TMPDIR+"/bug871.dia";
 

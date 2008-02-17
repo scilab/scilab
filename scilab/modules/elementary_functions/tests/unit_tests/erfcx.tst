@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 //maple code
 //writeto("erfcx.ref"):interface(prettyprint=0):
 //for i from 0 to 40 do x:=-10^(-(200-i*5)):print(evalf[30](erfc(x)*exp(x*x),30)): od:

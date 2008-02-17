@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 946 -->
 //
 // <-- Bugzilla URL -->
@@ -6,13 +14,6 @@
 // <-- Short Description -->
 //    Code badly converted by mfile2sci when using particular 
 //    column vector initialization / assignment (see attachments).
-
-// Copyright INRIA
-// Scilab Project - V. Couvert
-
-// Modified by Pierre MARECHAL
-// Copyright INRIA
-// Date : 18 Mar 2005
 
 MFILECONTENTS=["x=zeros(3,2);";"y=zeros(3,1);";"x=[1 0;0 0;0 0];";"y(1:3)=x(:,1);"]
 

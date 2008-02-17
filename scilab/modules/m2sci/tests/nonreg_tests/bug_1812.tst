@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
 // <-- Non-regression test for bug 1812 -->
 //
 // <-- Bugzilla URL -->
@@ -5,9 +12,6 @@
 //
 // <-- Short Description -->
 //    error in converting matlab || as && and other translator doubts
-
-// Copyright INRIA
-// Scilab Project - F. Belahcene
 
 MFILECONTENTS=[
 "m=3; a=5; b=2; c=3; d=6";
