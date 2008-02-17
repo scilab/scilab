@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=%r2for(nwrk)
 // genere le code Fortran relatif a la division a droite
 //!
-// Copyright INRIA
 txt=[]
 s2=stk(top);s1=stk(top-1);top=top-1;
 if s1(4)=='1'&s1(5)=='1'&s2(4)=='1'&s2(5)=='1' then
@@ -9,7 +18,7 @@ if s1(4)=='1'&s1(5)=='1'&s2(4)=='1'&s2(5)=='1' then
    if s1(2)=='2' then s1(1)='('+s1(1)+')',end
    stk=list(s1(1)+'/'+s2(1),'1','1',s1(4),s1(5))
 elseif s1(4)=='1'&s1(5)=='1' then
- 
+
   [out,nwrk,txt]=outname(nwrk,s2(3),s2(5),s2(4))
   if out<>s2(1) then
     txt=gencall(['dcopy',mulf(s2(4),s2(5)),s2(1),'1',out,'1'])
@@ -33,7 +42,7 @@ elseif s2(4)=='1'&s2(5)=='1' then
   end
   if s2(2)=='2'|s2(2)=='1' then s2(1)='('+s2(1)+')',end
   txt=[txt;gencall(['dscal',mulf(s1(4),s1(5)),'1.0d0/'+s2(1),out,'1'])]
- 
+
   if op(2)==s2(1) then
     txt=[txt;gencall(['dcopy',mulf(s1(4),s1(5)),out,'1',s2(1),'1'])]
     out=s2(1)

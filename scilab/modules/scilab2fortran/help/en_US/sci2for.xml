@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -47,7 +58,7 @@
     <P>
   </P>
     <P>
-    The elements of the list <VERB>vtps</VERB> give the type and dimensions 
+    The elements of the list <VERB>vtps</VERB> give the type and dimensions
     of the input variables of the calling sequence and <VERB>lvtps</VERB>
     optionally gives the type and dimensions of the output variables. This
     last parameter is usefull if type and/or dimension inference cannot be
@@ -99,8 +110,8 @@ vtps(i)=list(typ,row_dim,col_dim)
     <VERBATIM>
 <![CDATA[
  work,iwork,ierr
- iw*  iiw*      
- ilbN   (N integer)          
+ iw*  iiw*
+ ilbN   (N integer)
    ]]>
     </VERBATIM>
     <P>

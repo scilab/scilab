@@ -1,12 +1,21 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=%m2for(nwrk)
-// multiplications 
+// multiplications
 //!
-// Copyright INRIA
 
 s2=stk(top);s1=stk(top-1);
 txt1=[]
 if s1(3)<>s2(3) then
-  if s1(3)=='0' then 
+  if s1(3)=='0' then
     [s1,nwrk,txt1]=typconv(s1,nwrk,'1'),
   else
     [s2,nwrk,txt1]=typconv(s2,nwrk,'1'),
@@ -42,7 +51,7 @@ if m1=='1'&n1=='1'&m2=='1'&n2=='1' then // cas scalaire
   txt=[txt1;txt]
   top=top-1
   return
-end 
+end
 if m1=='1'&n1=='1' then
   mn2=mulf(m2,n2)
   select it1+2*it2
@@ -102,7 +111,7 @@ if m1=='1'&n1=='1' then
   txt=[txt1;txt]
   top=top-1
   return
-end 
+end
 if m2=='1'&n2=='1' then
   mn1=mulf(m1,n1)
   select it1*2*it2
@@ -160,7 +169,7 @@ if m2=='1'&n2=='1' then
   txt=[txt1;txt]
   top=top-1
   return
-end 
+end
   select it1+2*it2
   case 0 then
     [out,nwrk,txt]=outname(nwrk,t2,m1,n2,[s1,s2])

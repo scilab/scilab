@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,txt,ilst,vnms,vtps,nwrk]=exp2for(lst,ilst,vnms,vtps,nwrk)
 //
 //!
-// Copyright INRIA
   nlst=size(lst)
   top=0
   stk=list()
@@ -24,7 +33,7 @@ function [stk,txt,ilst,vnms,vtps,nwrk]=exp2for(lst,ilst,vnms,vtps,nwrk)
     if type(op)==10 then
       select op(1)
       case '0' then
-	
+
       case '2' then //stackg
 	if whereis(op(2))==[] then
 	  [stk,top,vnms,vtps]=get2f(op(2),stk,top,vnms,vtps)
@@ -70,7 +79,7 @@ function [stk,txt,ilst,vnms,vtps,nwrk]=exp2for(lst,ilst,vnms,vtps,nwrk)
       if tmp2<>[] then nwrk(2)(2,tmp2)='0',tmp2=[],end
       if tmp5<>[] then nwrk(5)(2,tmp5)='0',tmp5=[],end
       if lhs==1 then
-	if or(nw2(2,:)<>nwrk(2)(2,:))|or(nw5(2,:)<>nwrk(5)(2,:)) then 
+	if or(nw2(2,:)<>nwrk(2)(2,:))|or(nw5(2,:)<>nwrk(5)(2,:)) then
 	  //function has used new  working areas for lhs args
 	  tmp2=[find(nw2(2,:)<>nwrk(2)(2,:)) size(nw2,2)+1:size(nwrk(2),2)]
 	  tmp5=[find(nw5(2,:)<>nwrk(5)(2,:)) size(nw5,2)+1:size(nwrk(5),2)]
@@ -86,8 +95,8 @@ function [stk,txt,ilst,vnms,vtps,nwrk]=exp2for(lst,ilst,vnms,vtps,nwrk)
 
   used='0';for k=nwrk(2), used=addf(used,k(1)),end
   iused='0';for k=nwrk(5), iused=addf(iused,k(1)),end
-  
-  
+
+
   if used<>'0' then
     n3=prod(size(nwrk3))
     k=n3+1;ok=n3>0;delta=' '

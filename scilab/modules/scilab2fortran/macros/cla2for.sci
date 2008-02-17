@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [txt,vnms,vtps,nwrk]=cla2for(clause,vnms,vtps,nwrk)
 // traduit une clause (if while for select)
 //!
-// Copyright INRIA
 typ=clause(1)
 //write(6,'cla2for '+typ(1))
 
@@ -48,7 +57,7 @@ case %for then
   tl1=part(string(10*lbl)+'   ',1:6);
   [t1,t2,ilst,vnms,vtps,nwrk]=exp2for(clause(2),1,vnms,vtps,nwrk)
   if size(t1(1)(1),2)>1 then
-    
+
     t1=strcat(t1(1)(1),',')
     txt=[t2;' do '+tl1+' '+name+' = '+t1];
   else

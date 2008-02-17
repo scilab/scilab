@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=f_cond(nwrk)
 //!purpose
 //  Scilab cond function translation
@@ -5,7 +15,7 @@ function [stk,nwrk,txt,top]=f_cond(nwrk)
 // - stk :
 //      On entry stk is a global variable of type list
 //      entries indexed from top-1+rhs:top give the definition of the rhs
-//      function input variables 
+//      function input variables
 //
 //      After execution stk(1:lhs) must contain the definition of the
 //      lhs returned variables
@@ -37,10 +47,9 @@ function [stk,nwrk,txt,top]=f_cond(nwrk)
 //          '10': character
 //
 //      *nb_lig (, nb_col) : character strings:number of rows
-//              (columns) of the matrix		
+//              (columns) of the matrix
 //          des chaines de caracteres
 
-// Copyright INRIA
 //
 //  nwrk : this variable contain information on working arrays, error
 //         indicators. It only may be modified by call to scilab functions
@@ -49,12 +58,12 @@ function [stk,nwrk,txt,top]=f_cond(nwrk)
 //  txt  : is a column vector of character string which contain the
 //         fortran code associated to the function translation if
 //         necessary.
-//  top  : an integer 
+//  top  : an integer
 //         global variable on entry
 //         after execution top must be equal to top-rhs+lhs
 //!
 
-txt=[]  
+txt=[]
 nam='cond'
 s2=stk(top)
 v=s2(1)

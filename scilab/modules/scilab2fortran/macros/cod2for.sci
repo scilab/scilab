@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [txt,ilst,vnms,vtps,nwrk]=cod2for(lst,ilst,vnms,vtps,nwrk)
 //
 //!
-// Copyright INRIA
 nlst=size(lst)
 txt=[]
 ilst=ilst-1
@@ -9,7 +18,7 @@ while ilst<nlst then
   ilst=ilst+1
   op=lst(ilst)
   if type(op)==15 then return,end
- 
+
   //write(6,'cod2for '+op(1)+' '+string(ilst))
   select op(1)
   case '1' then //stackp
@@ -31,7 +40,7 @@ while ilst<nlst then
       if expk(3)<>'-1' then
         k3=find(opk(2)==vnms(:,2))
         if or(opk(2)==nwrk(10))|or(opk(2)==nwrk(12)) then
-          nv=size(vtps)+1  
+          nv=size(vtps)+1
           vnms=[vnms;[expk(1),opk(2)]]
           vtps(nv)=list(expk(3),expk(4),expk(5),it)
         elseif k3==[] then
@@ -60,7 +69,7 @@ while ilst<nlst then
 	     else
                warning('input variable :'+vnms(k3,2)+..
                              ' changed type or dimensions')
-               out=opk(2)	 
+               out=opk(2)
              end
           else
              if v(1)=='?'|v(1)==expk(3) then
@@ -69,7 +78,7 @@ while ilst<nlst then
 	     else
 	       if v(1)=='1'&expk(3)=='0' then // int dans double
 		 if isnum(expk(1)) then
-		   if strindex(expk(1),'.')==[] then 
+		   if strindex(expk(1),'.')==[] then
 		     expk(1)=expk(1)+'D0'
 		   end
 		 else
@@ -78,7 +87,7 @@ while ilst<nlst then
 	       else
 		 txt=[txt;'C WARNING local variable  :'+vnms(k3,2)+..
 			 ' changed its type!']
-		 vtps(k3)=list(expk(3),expk(4),expk(5),it) // added  
+		 vtps(k3)=list(expk(3),expk(4),expk(5),it) // added
 	       end
 	     end
 	   end
@@ -103,7 +112,7 @@ while ilst<nlst then
   case '12' then //pause
     txt=[txt;' pause']
   case '13' then //break
- 
+
     txt=[txt;' break']
   case '14' then //abort
     txt=[txt;' abort']

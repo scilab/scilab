@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=f_gener(nam,nwrk,targ)
 //!purpose
 //  Generic Scilab function translation
@@ -5,7 +15,7 @@ function [stk,nwrk,txt,top]=f_gener(nam,nwrk,targ)
 // - stk :
 //      On entry stk is a global variable of type list
 //      entries indexed from top-1+rhs:top give the definition of the rhs
-//      function input variables 
+//      function input variables
 //
 //      After execution stk(1:lhs) must contain the definition of the
 //      lhs returned variables
@@ -37,10 +47,9 @@ function [stk,nwrk,txt,top]=f_gener(nam,nwrk,targ)
 //          '10': character
 //
 //      *nb_lig (, nb_col) : character strings:number of rows
-//              (columns) of the matrix		
+//              (columns) of the matrix
 //          des chaines de caracteres
 
-// Copyright INRIA
 //
 //  nwrk : this variable contain information on working arrays, error
 //         indicators. It only may be modified by call to scilab functions
@@ -49,13 +58,13 @@ function [stk,nwrk,txt,top]=f_gener(nam,nwrk,targ)
 //  txt  : is a column vector of character string which contain the
 //         fortran code associated to the function translation if
 //         necessary.
-//  top  : an integer 
+//  top  : an integer
 //         global variable on entry
 //         after execution top must be equal to top-rhs+lhs
 //!
 
 
-txt=[] 
+txt=[]
 [lhs,rhs]=argn(0);if rhs==2 then targ=['1','1'],end
 tin=targ(1);tout=targ(2)
 cnvf='dble'
@@ -83,10 +92,10 @@ else
   [outn,nwrk,txt]=outname(nwrk,tout,s2(4),s2(5))
   in=s2(1)
 end
-if part(outn,1:5)=='work(' then 
+if part(outn,1:5)=='work(' then
   pto1=part(outn,6:length(outn)-1),
   out='work'
-elseif part(outn,1:6)=='iwork(' then 
+elseif part(outn,1:6)=='iwork(' then
   pto1=part(outn,7:length(outn)-1),
   out='iwork'
 else

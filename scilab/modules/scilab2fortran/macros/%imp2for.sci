@@ -1,10 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=%imp2for(nwrk)
 //fortran code for 1:n
 //
 // Voir s'il est possible d'ameliorer dans le cas ou ces vecteurs implicite
 // servent dans la designation d'une sous matrice
 //!
-// Copyright INRIA
 if forexp==1 then
   s1=stk(top-1);s2=stk(top)
   if op(3)=='2' then
@@ -29,7 +38,7 @@ else
   pas=stk(top-1);
   top=top-2
 end
- 
+
 if pas(1)=='1' then
   ln=addf(subf(fin(1),deb(1)),'1')
 else
@@ -48,7 +57,7 @@ end
   else
     txt=[txt;gencall(['ivimp',deb(1),fin(1),pas(1),out])]
   end
- 
+
   stk=list(out,'-1',typ,'1',ln)
 //end
 endfunction

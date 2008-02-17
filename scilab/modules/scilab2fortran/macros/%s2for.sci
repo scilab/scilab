@@ -1,16 +1,25 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=%s2for(nwrk)
 // genere le code frotran relatif a la soustraction et au changement de signe
 //!
-// Copyright INRIA
 s2=stk(top)
 if s2(2)=='2' then s2(1)='('+s2(1)+')',end
 
 if op(3)=='2' then
   s1=stk(top-1)
   if s1(3)<>s2(3) then
-    if s1(3)=='0' then 
+    if s1(3)=='0' then
       s1(3)='1',
-    elseif s2(3)=='0' then 
+    elseif s2(3)=='0' then
       s2(3)='1'
     end
   end

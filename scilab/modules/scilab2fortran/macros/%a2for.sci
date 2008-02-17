@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=%a2for(nwrk)
 //
 //!
-// Copyright INRIA
 txt=[]
 s2=stk(top);s1=stk(top-1);
 [s1,te1,t1,m1,n1]=s1(1:5);
@@ -9,9 +18,9 @@ s2=stk(top);s1=stk(top-1);
 mn1=mulf(m1,n1)
 it1=prod(size(s1))-1;it2=prod(size(s2))-1
 if t1<>t2 then
-  if t1=='0' then 
+  if t1=='0' then
     t1='1',
-  elseif t2=='0' then 
+  elseif t2=='0' then
     t2='1'
   end
 end
@@ -21,7 +30,7 @@ if m1=='1'&n1=='1'&m2=='1'&m2=='1' then
   if t1=='1' then
     if isnum(s1(1)) then s1(1)=s1(1)+'D0', end
     if it1==1 then if isnum(s1(2)) then s1(2)=s1(2)+'D0',end,end
-    
+
     if isnum(s2(1)) then s2(1)=s2(1)+'D0', end
     if it2==1 then if isnum(s2(2)) then s2(2)=s2(2)+'D0',end,end
   end

@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=%i2for(nwrk)
 //
 //!
-// Copyright INRIA
 
 rhs=abs(evstr(op(3)))-2
 sto=stk(top);top=top-1
@@ -13,7 +22,7 @@ else
 end
 top=top-rhs+1
 arg=[]
- 
+
 s2=stk(top)
 if rhs==1 then
   if s2(4)=='1'&s2(5)=='1' then
@@ -58,7 +67,7 @@ else
     else
       sto(5)=callfun(['max',sto(5),s1(1)])
     end
-    
+
   else
     out=op(2);
     txt=[gencall(['dmins',sto(1),sto(4),sto(5),..
@@ -72,7 +81,7 @@ if sto(4)=='0'|sto(5)=='0' then
   sto(4)=read(%io(1),1,1,'(a)')
   write(%io(2),'entrez le nombre de colonnes:')
   sto(5)=read(%io(1),1,1,'(a)')
- 
+
 end
 stk=list(out,'-1',typ,sto(4),sto(5))
 endfunction

@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=f_maxi(nwrk)
 //!purpose
 //  Scilab maxi function translation
@@ -42,7 +52,7 @@ endfunction
 function var=getentry1(var,i)
 if part(var,1:5)=='work(' then
   pti=part(var,6:length(var)-1)
-  
+
   var='work('+addf(pti,addf(i,'-1'))+')'
 elseif  part(var,1:6)=='iwork(' then
   pti=part(var,7:length(var)-1)

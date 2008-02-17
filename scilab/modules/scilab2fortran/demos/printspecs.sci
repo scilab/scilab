@@ -1,8 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function []=printspecs(mac,type_desc)
 //displays description of a macro to translate into fortran
 //!
 
-// Copyright INRIA
 blk='                                 ';
 typs=['entier','double precision','?','?']
 n=size(type_desc)
@@ -44,7 +53,7 @@ for k=1:n
   tk=type_desc(k)
   first=first+' '+in(k)
   desck=in(k)
-  if tk(2:3)== ['1','1'] then 
+  if tk(2:3)== ['1','1'] then
     desck=desck+'  scalar'
   elseif tk(2)=='1' then
     desck=desck+'  column '+tk(3)
@@ -60,7 +69,7 @@ for k=1:n
   tk=type_desc(k)
   first=first+' '+in(k)
   desck=in(k)
-  if tk(1)== '0' then 
+  if tk(1)== '0' then
     desck=desck+'  int'
   elseif tk(2)=='1' then
     desck=desck+'  double'

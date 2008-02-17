@@ -1,8 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [lst]=modlst(lst)
 //
 //!
 //count=count+1
-// Copyright INRIA
 nlst=size(lst);top=0
 ilst=0
 pos=[]
@@ -15,7 +24,7 @@ while ilst<nlst
     opn=op(1)
     if opn=='5' then
        if op(2)=='23' then
- 
+
          i2=pos(top);i1=pos(top-1)
          a1=lst(i1)
          a2=lst(i2)
@@ -30,7 +39,7 @@ while ilst<nlst
              pos(top)=ilst
          end
        elseif op(2)=='27' then
- 
+
          i2=pos(top);i1=pos(top-1)
          a1=lst(i1)
          a2=lst(i2)
@@ -58,7 +67,7 @@ while ilst<nlst
          rhs=abs(evstr(op(3)));lhs=evstr(op(4))
          pos((top-rhs+1):(top-rhs+lhs))=ones(lhs,1)*ilst
          top=top-rhs+lhs
- 
+
        end
     elseif opn=='20' then
        rhs=abs(evstr(op(3)));lhs=evstr(op(4))
@@ -71,7 +80,7 @@ while ilst<nlst
     end
   end
 end
- 
+
 lst1=list();k1=0;
 for ll=lst;
   if type(ll)==15 then

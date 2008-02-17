@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [out,nwrk,txt]=outname(nwrk,typ,m,n,excluded)
 //cette macro regarde si l'operation suivante est une affectation,
 // si oui et si cette affectation ne se fait pas sur une des variables listees
@@ -11,7 +21,6 @@ function [out,nwrk,txt]=outname(nwrk,typ,m,n,excluded)
 //      -dans txt les lignes fortran permettant de definir iwn ou iiwn
 //
 //!
-// Copyright INRIA
 txt=[]
 [lhs,rhs]=argn(0)
 nvar=prod(size(typ))
@@ -33,7 +42,7 @@ for k=1:nvar
 	out(k)=o;
       end
     else
-      //  la variable existe deja 
+      //  la variable existe deja
       out(k)=op(2)
     end
   end
@@ -53,5 +62,5 @@ end
 
 
 
-  
+
 endfunction

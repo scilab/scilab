@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [stk,nwrk,txt,top]=%e2for(nwrk)
 // genere le code fortran relatif a l'extraction d'une sous matrice
 //!
-// Copyright INRIA
 rhs=maxi(0,abs(evstr(op(3)))-1)
 sn=stk(top);top=top-1
 arg=[]
@@ -37,7 +46,7 @@ else
       ncol=mn2
       nc=ncol
     end
- 
+
     [out,nwrk,txt]=outname(nwrk,sn(3),mulf(s1(4),s1(5)),mn2)
     txt=[txt;gencall(['dmext',sn(1),sn(4),sn(5),s1(1),nrow,s2(1),ncol,out])]
     stk=list(out,'-1',sn(3),nr,nc)

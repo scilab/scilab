@@ -1,10 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function t=callfun(arg,typ)
 //permet de generer le code fortran relatif a l'appel d'une fonction et
-//gere la table des fonctions dont il faut specifier le type dans les 
+//gere la table des fonctions dont il faut specifier le type dans les
 //declarations
 //!
 
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 n=prod(size(arg))
 t=' '+arg(1)+'('

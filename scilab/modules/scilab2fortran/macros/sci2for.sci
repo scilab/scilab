@@ -1,9 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function txt=sci2for(fun,nam,vtps,lvtps)
 //!
-// Copyright INRIA
 [lhs,rhs]=argn()
 if type(fun)==11 then comp(fun),end
-if type(fun)<>13 then 
+if type(fun)<>13 then
   error('sci2for: first argument must be a scilab function'),
 end
 lst=modlst(macr2lst(fun))
@@ -17,7 +26,7 @@ macrhs=size(vtps)
 vnms=[],for k=1:macrhs,vnms=[vnms;[inputs(k),inputs(k)]],end,
 
 na=prod(size(vnms))/2
- 
+
 maclhs=prod(size(lst(2)))
 kl=1
 for k=lst(2),
@@ -31,7 +40,7 @@ for k=lst(2),
     end
   end
 end
- 
+
 //stack of variables
 k=1
 while k<=na
@@ -50,7 +59,7 @@ while k<=na
   end
   k=k+1
 end
- 
+
 bot=na
 
 //
@@ -69,16 +78,16 @@ if find(vnms(:,1)=='%eps')<>[] then
   vtps(na+1)=list('1','1','1',0)
   na=na+1
 end
- 
+
 //
 //header
-if nwrk(10)<>[]|nwrk(12)<>[] then 
+if nwrk(10)<>[]|nwrk(12)<>[] then
   pntrs='c      adress of local variables',
 else
   pntrs=[];
 end
 v1=vnms(1:bot,1)
-// 
+//
 if nwrk(3)<>[]|nwrk(10)<>[] then
   if prod(size(nwrk(3)))==1 then
     used=nwrk(3)
@@ -140,7 +149,7 @@ for k=1:bot
     nvc=nvc+2
   end
 end
- 
+
 hdr=[' subroutine '+lst(1)+'('+makeargs(v1)+')';
      'c!';
      'c automatic translation';
@@ -161,17 +170,17 @@ for iv=1:na
   if part(var,1:4)<>'work'&part(var,1:5)<>'iwork' then
     nl=vartyp(2);nc=vartyp(3);it=vartyp(4)
 
-    if type(nl)==1 then 
+    if type(nl)==1 then
       nl=string(maxi(1,nl)),
     else
-      if isnum(nl) then 
+      if isnum(nl) then
 	nl=string(maxi(evstr(nl),1))
       end
     end
-    if type(nc)==1 then 
+    if type(nc)==1 then
       nc=string(maxi(1,nc)),
     else
-      if isnum(nc) then 
+      if isnum(nc) then
 	nc=string(maxi(evstr(nc),1))
       end
     end
@@ -205,8 +214,8 @@ for iv=1:na
       else
         nm=var+'_r('+makeargs([nl,nc])+')'+','+var+'_i('+makeargs([nl,nc])+')'
         var=var+'(_r,_i)'
-      end  
-     
+      end
+
       com='vector of size '+nl+','+nc
     end
     if vartyp(1)=='1' then
@@ -217,7 +226,7 @@ for iv=1:na
       com='c      '+ part(var,1:10)+' : integer '+com
     elseif vartyp(1)=='10' then
       argls=[argls;nm]
-      com='c      '+ part(var,1:10)+' : string '+com      
+      com='c      '+ part(var,1:10)+' : string '+com
     end
     if iv<=bot then
       hdr=[hdr;com],
@@ -276,11 +285,11 @@ if nwrk(14)<>[] then  dcl=[dcl;' integer '+makeargs(nwrk(14))],end
 if nwrk(15)<>[] then  dcl=[dcl;' double precision '+makeargs(nwrk(15))],end
 
 dcl=[dcl;'c']
- 
+
 txt=[hdr;dcl;pntrs;crp;' end']
 k=find(part(txt,1)==' ')
 txt(k)='     '+txt(k)
- 
+
 kk=1
 while kk<>[] then
   kk=find(length(txt)>72)
