@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 mode(1)
 //
 //                    -----------------------------
@@ -7,7 +14,6 @@ mode(1)
 //                    -----------------------------
 //
 
-// Copyright INRIA
 // constants
 // -------------------------
    tr=186.d-6; gb=6000; g1=0.55; tau=6.d-4; g2=0.02; g4=26;

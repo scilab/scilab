@@ -1,5 +1,11 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function[]=bike()
-// Copyright INRIA
 xbasc();xselect()
 rect=[0,0,10,10];
 xbasc();

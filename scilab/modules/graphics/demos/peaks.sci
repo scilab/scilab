@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function z=peaks(x,y)
 x1=x(:).*.ones(1,size(y,'*'));
 y1=y(:)'.*.ones(size(x,'*'),1);

@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [yobt,yob]=icsvisu(vue)
 //Visualisation de l'observation de l'etat
 //Syntaxe
@@ -9,7 +16,6 @@ function [yobt,yob]=icsvisu(vue)
 //yob  : idem, aux instants d'observation
 //!
 //
-// Copyright INRIA
 tob1=[t0,tob];
 tobt=t0*ones(1,nti+ntf)+[dti*[1:nti],dtf*[(nti*dti/dtf)+1:..
 (nti*dti/dtf)+ntf]];

@@ -1,6 +1,12 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function hole3d()
     // Holes in surfaces using %inf 
-    // Copyright INRIA
     t=linspace(-%pi,%pi,40);z=sin(t)'*cos(t);
     z1=find(abs(z) > 0.5);
     z(z1)=%inf*z1;

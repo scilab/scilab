@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=velo5()
 //  full wheels using xgeom et xfpoly
 // computations made by geom)
-// Copyright INRIA
   t= t*180/%pi;
   p= p*180/%pi;
   xe=[xmin,xmax,xmax,xmin,xmin]

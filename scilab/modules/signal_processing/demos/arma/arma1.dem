@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) - ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 mode(1)
 // An example of arma simulation and identification 
 // form ( K.J. Astrom)
@@ -10,9 +17,8 @@ mode(1)
 // We use the simulated trajectory zd
 // as an input to the armax identification macro 
 // The noise in the armax is coloured and armax 
-// will give a biaised estimator 
+// will give a biaised estimator
 
-// Copyright Enpc
 a=[1,-2.851,2.717,-0.865]
 b=[0,1,1,1]
 d=[1,0.7,0.2]

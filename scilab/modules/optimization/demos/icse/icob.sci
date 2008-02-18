@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function ytob=icob(dtv)
 //<ytob>=icob(dtv)
 //extraction de l'etat aux instants de mesure
@@ -7,7 +14,6 @@ function ytob=icob(dtv)
 //variables de sortie :
 //ytob(ny,ntob) : valeur de l'etat aux instants de mesure
 //!
-// Copyright INRIA
 ytob(ny,ntob)=0.d0;
 lob=ndtu+ny+ntob+nob*ny+nex*ntob*nob+2*nu+ntob*nob+ny*(nti+ntf+..
 1+ny+nuc+nuv+1);

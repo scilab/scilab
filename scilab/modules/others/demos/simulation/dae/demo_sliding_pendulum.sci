@@ -1,11 +1,16 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Claude GOMEZ <claude.gomez@inria.fr>
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function demo_sliding_pendulum()
 //
 // Sliding pendulum
-// Claude Gomez
-// Copyright INRIA
 
 //  demo_help  demo_sliding_pendulum
-  
+
   //pendulum parameters
   g=10; l=1; m=1; M=1; k=0.5;
 
@@ -46,7 +51,6 @@ endfunction
 
 function [res,ires]=pendg(t,y,ydot)
 //DAE external for sliding pendulum
-//Author: Claude Gomez, Copyright INRIA
   x=y(1:3); u=y(4:6); lambda=y(7);
   xp=ydot(1:3); up=ydot(4:6);
 

@@ -1,5 +1,11 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 //test of musolve
-// Copyright INRIA
 mode(-1)
 M1 = [ ..
    5.2829       5.7683      -2.4004       1.2205      -6.4148    

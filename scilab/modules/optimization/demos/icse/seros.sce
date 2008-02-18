@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 //                sero.bas : demo de icse
 //  calcul coefficients optimaux du modele simplifie 5ht-plaquette
 //  **************************************************************
@@ -5,7 +12,6 @@
 // les doubles slash introduisent des commentaires
 //
 // contexte : tue les variables de nom reserve
-// Copyright INRIA
 exec('icse.contexte');
 t0=0.d0;    // instant initial
 tf=18.d1;   // instant final

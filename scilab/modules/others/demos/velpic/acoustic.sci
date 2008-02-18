@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1990 - INRIA - Carey BUNKS
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [pt,dx,dz,dt]=acoustic(vel,tf,fc,spos,dx,dz,dt)
 //[pt[,dx,dz,dt]]=acoustic(vel,tf,fc,spos[,dx,dz][,dt])
 //////////////////////////////////////////////////////
@@ -32,9 +39,6 @@ function [pt,dx,dz,dt]=acoustic(vel,tf,fc,spos,dx,dz,dt)
 //stability conditions and to impose an acceptable level
 //of numerical dispersion.
 //
-//!
-//author: C. Bunks     date: 29-Oct-90
-// Copyright INRIA
 
 [lhs,rhs]=argn(0);
    lines(0);
@@ -155,10 +159,6 @@ function [utp1]=integrate(t,ut,utm1,src,spos)
 // spos  :source position
 // utp1  :wavefield at time t+dt
 //
-//!
-//author: C. Bunks     date: 29-OCT-90
-// Copyright INRIA
-
    write(%io(2),'t='+string(t));
 
 //calculate laplacian in the interior of the medium
@@ -219,9 +219,6 @@ function [dg]=shot(t,fc)
 // fc :center frequency of the wavelet
 // dg :derivative of a gaussian at time t
 //
-//!
-//author: C. Bunks     date: 29-OCT-90
-// Copyright INRIA
 
    m=1/(2*fc);
    sig=m/4;
@@ -236,7 +233,6 @@ function [pt]=get_data(ntbl,entry)
 //       :data dimensions)
 // entry :integer giving the entry in the table-2
 // pt    :returned data file
-// Copyright INRIA
    ts=maxi(size(ntbl));
    nr=evstr(ntbl(1));
    nc=evstr(ntbl(2));

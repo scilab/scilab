@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=show(xx,t,p)
 //[]=show(xx,t,p)
 // Just show the wheel evolution 
@@ -8,7 +15,6 @@ function []=show(xx,t,p)
 //                     .    .   .
 // xx= [theta,phi,psi,teta,phi,psi,x,y]
 // !
-// Copyright ENPC 
   [lhs,rhs]=argn(0)
   if rhs <= 2 , p=%pi/3;end
   if rhs <= 2 , t=%pi/3;end
@@ -83,28 +89,22 @@ endfunction
 
 
 function []=wheeld(i)
-// Copyright ENPC
   xfpoly(xu(:,i),yu(:,i),1);
   xpoly(matrix(xr(:,i),2,4),matrix(yr(:,i),2,4),"lines");
 endfunction 
 
 
 function [xxu,yyu,zzu]=wheelgf(n,t,xu,yu,zu,xx)
-// Copyright ENPC
-//
   [xxu,yyu,zzu]=fort('wheelg',n,1,'i',t,2,'i',xu,3,'d',yu,4,'d',zu,5,'d',...
 		     xx,6,'d','sort',3,4,5);
 endfunction 
 
 function [y]=test_wheel(n,t,x)
-// Copyright ENPC
-//
   y=x
   [y]=fort('wheel',n,1,'i',t,2,'d',x,3,'d',y,4,'d','sort',4);
 endfunction 
 
 function [xxu,yyu,zzu]=wheelgs(n,t,xu,yu,zu,xx)
-// Copyright ENPC
 // slower version without dynamic link 
   r=1.0
   [n,p]=size(xu);
@@ -125,7 +125,7 @@ endfunction
 function []=wheel_build_and_load() 
 // since this demo can be run by someone 
 // who has no write access in this directory 
-// we use TMPDIR 
+// we use TMPDIR
   if ~c_link('wheel') then
     cd = getcwd(); 
     chdir(TMPDIR); 
@@ -163,7 +163,3 @@ function get_wheel_rti(d_mode)
   end
   [wheel_rti]=resume(wheel_rti);
 endfunction 
-
-
-
-

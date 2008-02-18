@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1990 - INRIA - Carey BUNKS
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [vel,regionlist,linelist,seedlist,velolist]=velpic(nz,nx,sext)
 //[vel,regionlist,linelist,seedlist]=velpic(nz,nx)
 //Macro which interactively defines regions of a matrix.
@@ -13,9 +20,6 @@ function [vel,regionlist,linelist,seedlist,velolist]=velpic(nz,nx,sext)
 // seedlist   :(2xK) vector containing positions of seeds
 // velolist   :(1xK) vector containing velocities associated to seeds
 //
-//!
-// author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 //turn off the scilab function 'more'
 
@@ -104,7 +108,6 @@ function []=helpme(msn)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 hm1=[' ';
 'Begin drawing a line by clicking the left';
 'mouse button across a previously drawn line';
@@ -197,7 +200,6 @@ function [seedlist]=sow(nz,nx,slide,bnames,buttons,regionlist,linelist);
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
    sl1=slide(1);sl2=slide(2);sl3=slide(3);
    sl4=slide(4);sl5=slide(5);sl6=slide(6);
    seedlist=[];
@@ -367,7 +369,6 @@ function [linelist]=makehorizons(nz,nx,bnames,buttons)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
 //define outer perimeter as a line
 
@@ -411,7 +412,6 @@ function [buttons,slides]=makeframe(nz,nx,btextlist);
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
 //setup of frame
 
@@ -511,7 +511,6 @@ function []=makebutton(xbmin,xbmax,ybmin,ybmax,dx,dy,text)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
 //make button box
    xstringb(xbmin,ybmin,text,xbmax-xbmin,ybmax-ybmin);
@@ -533,7 +532,6 @@ function []=makeslide(xbmin,xbmax,ybmin,ybmax,dx,dy,text,smin,smax)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
 //NOTE: The constant wcf is a 'wierd correction factor necessary
 //for the correct positioning of the text in the button.  I don't
@@ -620,7 +618,6 @@ function [line,linelist,yec]=drawline(nz,nx,linelist,yec,bnames,buttons)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
 //to begin new line the first two clicks of the mouse must
 //intersect an old line or the frame
@@ -941,7 +938,6 @@ function [flag,bav]=testpt(p1,p2,line)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
 //set up arguments of fortran subprogram m45.f
 
@@ -976,7 +972,6 @@ function []=redraw(linelist,seedlist,velolist)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
    [lhs,rhs]=argn(0);
 
@@ -1028,7 +1023,6 @@ function [ind,indexlist]=id_rgn(indexlist,linelist,seed);
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
    nlist=0*indexlist;
    ic=maxi(size(indexlist));
@@ -1075,7 +1069,6 @@ function []=makegrill(nx,nz,gopt)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 // Change JPC 2 mars 1992
 
    if gopt <>'on' then,xset("alufunction",6);end
@@ -1095,7 +1088,6 @@ function [vi]=velcalc(indexlist,seedlist,velolist)
 //
 //!
 // author: C. Bunks     date: 12-NOV-90
-// Copyright INRIA
 
    [vr,vc]=size(velolist);
    [ir,ic]=size(indexlist);

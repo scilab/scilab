@@ -1,9 +1,15 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 // icse.init.bas : initialisation et tests pour icse
 //**************************************************
 //
 //
 // creation y0 (etat initial)
-// Copyright INRIA
 if exists('y0')==0, y0=ones(1,ny); end;
 // creation de b,fy et fu et passage en vecteur ligne
 if exists('b')==0, b=ones(1,ny); end;

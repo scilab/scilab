@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 // some functions for the interpolation demo
 
 function [xf,yf,zf,qf] = nf3dq(x,y,z,q,orient)

@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1990 - INRIA - Carey BUNKS
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [pk]=snapshot(pt,view,frames,pmode)
 //[pk]=snapshot(pt[,view][,frames][,pmode])
 //Plot sequence of matrices from a cube (representing snapshots) 
@@ -37,10 +44,7 @@ function [pk]=snapshot(pt,view,frames,pmode)
 //        :default is '3d'
 // pk     :last frame plotted by snapshot
 //
-//!
-//author: C. Bunks     date: 1-NOV-90
 
-// Copyright INRIA
 [pr,pc]=size(pt);
    kmax=pr/pc;
    if ent(kmax)<>kmax then,

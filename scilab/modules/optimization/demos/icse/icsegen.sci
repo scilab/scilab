@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [co,u,g,itv,dtv]=icsegen(u,simu,nap,imp,ech,cof)
 //Calcul du controle optimal avec mise a l'echelle du controle et 
 //ponderation des observations
@@ -22,7 +29,6 @@ function [co,u,g,itv,dtv]=icsegen(u,simu,nap,imp,ech,cof)
 //Utiliser les macros icot et icob pour extraire l'etat
 //!
 
-// Copyright INRIA
 if nu<large then alg='qn' ; else alg='gc' ; end;
 itv=itu;
 itv(nitv)=0;

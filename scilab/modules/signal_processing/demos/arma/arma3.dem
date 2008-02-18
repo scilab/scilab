@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 mode(1)
 // Spectral power estimation 
 // ( form Sawaragi et all) 
-// Copyright Enpc
 m=18
 a=[1,-1.3136,1.4401,-1.0919,+0.83527]
 b=[0.0,0.13137,0.023543,0.10775,0.03516]

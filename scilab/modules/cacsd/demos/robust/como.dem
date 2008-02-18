@@ -1,9 +1,15 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 // Examples of Standard plants (mostly from Kwakernak)
 // Define the polynomial s by typing "s=poly(0,'s')"
 // Most examples are in transfer representation but computations
 // are done in state space form
 
-// Copyright INRIA
 //2.4.1 (Kwakernaak)
 
 H=[1 (s-1)/((s-2)*(s-3));

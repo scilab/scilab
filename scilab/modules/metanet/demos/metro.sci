@@ -1,9 +1,15 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=metro(demopath)
 //Scilab program for the travel by the tube in Paris
 //needs the file 'node2station' giving the fit between nodes and the names
 //of the stations
 //needs the execution of the program 'metrostart' for the data of the graph
-// Copyright INRIA
   //les noms des stations
   mamat=mgetl(demopath+'node2station')
   //Les lignes

@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 ////////////////////////
 //DISCRETE IIR FILTERS//
 ////////////////////////
-// Copyright INRIA
  
 //Low pass filter (length 5, type cheb1, cut-off .2)
    hz=iir(5,'lp','cheb1',[.2 0],[.05 .05]);

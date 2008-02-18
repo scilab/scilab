@@ -1,5 +1,11 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 mode(0);
-// Copyright Enpc
 
 xbasc();
 fs = get('figure_style');

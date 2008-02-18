@@ -1,5 +1,11 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 mode(-1)
-// Copyright INRIA
 getf('SCI/modules/scilab2fortran/demos/printspecs.sci','c')
 deff('[]=message(txt)','write(%io(2),txt,''(a)'')')
 path='SCI/modules/scilab2fortran/demos/'

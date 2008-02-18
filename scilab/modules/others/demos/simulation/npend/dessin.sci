@@ -1,8 +1,14 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=chaind(p,r,rect)
 //draw chain given sequence of points
 //!
 //
-// Copyright ENPC
 n=maxi(size(p));
 arcs=[ -r ,r,2*r,2*r,0,64*360].*.ones(n,1);
 arcs=[ p , 0*ones(n,4)] + arcs;

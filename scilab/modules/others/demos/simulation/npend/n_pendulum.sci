@@ -1,4 +1,11 @@
-// Copyright ENPC INRIA
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function demo_pendulum()
   if ~(haveacompiler()) then
     x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
@@ -40,7 +47,6 @@ endfunction
 
 function [n]=np()
 // Return the size  of the Fortran pendulum 
-// Copyright ENPC
   n=1;
   n=fort('np',n,1,'i','sort',1);
 endfunction 

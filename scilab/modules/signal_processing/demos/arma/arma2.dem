@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 
 mode(1)
 // A bidimensional version of demo one.
-// Copyright Enpc
 a=[1,-2.851,2.717,-0.865].*.eye(2,2);
 b=[0,1,1,1].*.[1;1];
 d=[1,0.7,0.2].*.eye(2,2);

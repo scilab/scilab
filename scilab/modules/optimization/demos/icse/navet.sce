@@ -1,8 +1,14 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 //                navet.bas : demo de icse
 //  calcul trajectoire optimale de rentree d'une navette spatiale
 //  *************************************************************
 //
-// Copyright INRIA
 exec('icse.contexte');
 // les doubles slash introduisent des commentaires
 //

@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
  function P=initialize_display(xg,teta)
    clf();a=gca();a.isoview='on';
    f=gcf();f.pixmap='on'
@@ -36,7 +43,7 @@ function [P]=dpnd()
   xstring(xg+lb*sin(teta)/2,y2+lb*cos(teta),'a',0,0);
   e=gce();e.font_size=3;
   
-  //the différential equations
+  //the diffï¿½rential equations
   xstring(5,-6,['a'''' = (-sin(a)*cos(a)*(m/(m+M))*a''^2 + 2/(mb*l)*(sin(a)*m*g - qm*cos(a)*u))/d'
 		'x'''' =  (u+m*(l/2)*(sin(a)a''^2-cos(a)*a''''))/(m+M);'
 		'm: weight of the pendulum'

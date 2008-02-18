@@ -1,15 +1,23 @@
-//  PROGRAMME DA4-11 : Structure dynamique A : division sur place de quasi-carrés sans effet d'échelle
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Jacques-Deric ROUAULT
+// Copyright (C) 2005 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
+//  PROGRAMME DA4-11 : Structure dynamique A : division sur place de quasi-carrï¿½s sans effet d'ï¿½chelle
 //  PROGRAM   DA4-11 : Dynamical stucture A :  division on place of quasi-squares without scale effects
 //  Version 4.3 du 3 novembre 2005
-//  Copyright Jacques-Deric Rouault
+
 //  Designed for Scilab 3.1.1 & 4.0 under Windows XP & Linux
-// Modified by Jean-Baptiste Silvy for the 17/11/2005 demo.
+//  Modified by Jean-Baptiste Silvy for the 17/11/2005 demo.
 
 function demo_cellule()
 demo_help demo_cellule
 
 clear;
-mprintf ("\nPROGRAMME DA4-11 : Structure dynamique A sur quasi-carrés sans adresse\n");
+mprintf ("\nPROGRAMME DA4-11 : Structure dynamique A sur quasi-carrï¿½s sans adresse\n");
 mprintf ("PROGRAM DA4-11 : Dynamical stucture A on quasi-squares without adresses\n");
 racine_prog = "DA4-11";
 ndivi=13; // Nombre de divisions
@@ -37,12 +45,12 @@ haut2 = haut ;
 
 nrects = 1 ;
 rectd = [] ; // Niveau de divisions
-rectc = [] ; // Coordonnées
+rectc = [] ; // Coordonnï¿½es
 rectp = [] ; // Pattern = couleur
 
 rectd (1)   = 0 ;     //  Niveau de division
-rectc (1,1) = 0 ;     // x coin supérieur gauche
-rectc (2,1) = haut ;  // y coin supérieur gauche
+rectc (1,1) = 0 ;     // x coin supï¿½rieur gauche
+rectc (2,1) = haut ;  // y coin supï¿½rieur gauche
 rectc (3,1) = long ;  //  longueur
 rectc (4,1) = haut ;  //  hauteur
 rectp (1)   = 2 ;     //  Couleur
@@ -50,7 +58,7 @@ rectp (1)   = 2 ;     //  Couleur
 //  representation
 nd = 0;
 hf = scf (0);
-nomfenetre = sprintf ("DA4-11 : Division numéro %d/%d",nd,ndivi);
+nomfenetre = sprintf ("DA4-11 : Division numï¿½ro %d/%d",nd,ndivi);
 hf.figure_name = nomfenetre;
 
 ha = hf.children;
@@ -91,9 +99,9 @@ for nd=1:ndivi do
       couleur=couleur+1;
       if couleur==ncoulmax then couleur=1; end;
       rectp (nr)=couleur;
-      // nord = inchangé
-      // est = inchangé
-      // sud = inchangé
+      // nord = inchangï¿½
+      // est = inchangï¿½
+      // sud = inchangï¿½
 
     else  // division en hauteur nord-sud
       // nord = nouveau rectangle
@@ -120,7 +128,7 @@ for nd=1:ndivi do
   clf();
   SetPosition();
   hf = scf (0);
-  nomfenetre = sprintf ("DA4-11 : Division numéro %d/%d",nd,ndivi);
+  nomfenetre = sprintf ("DA4-11 : Division numï¿½ro %d/%d",nd,ndivi);
   hf.figure_name = nomfenetre;
 
   ha = hf.children;

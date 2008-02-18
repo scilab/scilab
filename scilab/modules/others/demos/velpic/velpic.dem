@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 
 function []=velpic_build_and_load() 
 // since this demo can be run by someone 
@@ -20,7 +27,6 @@ function []=velpic_build_and_load()
 endfunction 
 velpic_build_and_load() 
 
-// Copyright INRIA
 
 getf('SCI/modules/others/demos/velpic/velpic.sci')
 

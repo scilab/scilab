@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [co,u,g,itv,dtv]=icse(u,simu,nap,imp)
 //Calcul du controle optimal sans mise a l'echelle du
 //controle et ponderation egale des observations
@@ -15,7 +22,6 @@ function [co,u,g,itv,dtv]=icse(u,simu,nap,imp)
 //dtv(ndtv) : tableau de travail (double precision fortran)
 //Utiliser les macros icot et icob pour extraire l'etat
 //!
-// Copyright INRIA
 df0=1;
 nu=prod(size(u))
 ech=ones(1,nu);

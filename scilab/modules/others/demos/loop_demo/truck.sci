@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1989 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function demo_truck()
   demo_help demo_truck
   initial = [-2;3;0.5235988;0;0;1]
@@ -13,8 +20,6 @@ function titlepage(str,win)
 //trice de chaines de caracteres str ecrite centree dans  la page avec
 //une taille de caractere maximale.
 //!
-//origine S Steer INRIA 1989
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 old=xget('window')
 if rhs==2 then xset('window',win);end

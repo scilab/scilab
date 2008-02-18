@@ -1,9 +1,15 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=emc2(filename)
 	
 	// Visualise un resultat de type GNU.*
 	// generes par NSCK2E 
 	// en general un ensemble de segments 
-	// Copyright ENPC
 	
 	xx=read(filename,-1,2);
 	x=xx(:,1);

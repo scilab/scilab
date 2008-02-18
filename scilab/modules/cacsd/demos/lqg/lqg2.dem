@@ -1,5 +1,11 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 s=poly(0,'s');
-// Copyright INRIA
 Plant=[1/(s+1),s/(s-1)^2;(s-1)*s/(s^2-3*s+2),2/s];
 Plant=syslin('c',[1/(s+1)*s/(s-1)^2]);     //Nominal Plant
 P22=tf2ss(Plant);    //...in state-space form

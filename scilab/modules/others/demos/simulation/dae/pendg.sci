@@ -1,4 +1,10 @@
-// Copyright INRIA
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 
 function [res,ires]=pendg(t,y,ydot)
 x=y(1:3); u=y(4:6); lambda=y(7);

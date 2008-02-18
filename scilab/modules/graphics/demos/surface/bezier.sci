@@ -1,6 +1,12 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function gammatest (N)
     // Bezier curve approximating a circle
-    // Copyright INRIA
     [lhs,rhs] =argn(0);
     if rhs < 1 ;N=[10,20,50,100];end
     x=linspace(0,1,100);
@@ -21,7 +27,6 @@ endfunction
 
 function beziertest
     // a random polygon and a bezier curve 
-    // Copyright INRIA
     plot2d(-0.2,-0.2,0,"011"," ",[-0.2,-0.2,1.2,1.2]);
     xtitle('Bezier Test : random polygon and bezier curve');
     current_axe = gca();current_axe.title.font_size = 3;
@@ -36,7 +41,6 @@ endfunction
 
 function bezier3dtest ()
     // Show a Beziercurve of dimension 3
-    // Copyright INRIA
     p=[-1,-1,-1;0,-1,-1;1,0,0;1,1,0;0,1,1;-1,1,0]';
     bezier3d(p);
 endfunction
@@ -44,7 +48,6 @@ endfunction
 
 function beziersurftest
     // Show a Bezier surface
-    // Copyright INRIA
     x=linspace(-%pi,%pi,5)
     [x,y]=field(x,x);
     z= 3*sin(x).*cos(y)
@@ -63,7 +66,6 @@ endfunction
 
 function c1test
     // Show how two bezier surfaces can be joined.
-    // Copyright INRIA
  
     // first surface
     x1=dup(-0.5:0.25:0.5,5);

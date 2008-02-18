@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function showinstr(mac)
 	if type(mac)==11 then
 		[in,out,txt]=string(mac)
@@ -10,7 +17,6 @@ function [X,Y]=field(x,y)
 	// x and y are two vectors defining a grid
 	// X and Y are two matrices which gives the grid point coordinates
 	//-------------------------------------------------------------
-	// Copyright INRIA
 	[rx,cx]=size(x);
 	[ry,cy]=size(y);
 	if rx<>1, write(%io(2),"x must be a row vector");return;end;
@@ -22,8 +28,7 @@ endfunction
 function [z]=dup(x,n)
 	// utility 
 	// x is a vector this function returns [x,x,x,x...] or [x;x;x;x;..]
-	// depending on x 
-	// Copyright INRIA
+	// depending on x
 	[nr,nc]=size(x)
 	if nr==1 then
 		y=ones(n,1);
@@ -49,7 +54,6 @@ function [z] = bezier(p,t)
 	//reset();
 	// Evaluate sum p_i B_{i,n}(t) the easy and direct way.
 	// p must be a k x n+1 matrix (n+1) points, dimension k.
-	// Copyright INRIA
 	n=size(p,'c')-1;// i=nonzeros(t~=1);
 	t1=(1-t); t1z= find(t1==0.0); t1(t1z)= ones(t1z);
 	T=dup(t./t1,n)';
@@ -62,7 +66,6 @@ endfunction
 
 function bezier3d (p)
 	// Shows a 3D Bezier curve and its polygon
-	// Copyright INRIA
 	t=linspace(0,1,300);
 	s=bezier(p,t);
 	dh=xget("dashes");
@@ -78,8 +81,6 @@ endfunction
 
 function [X,Y,Z]=beziersurface (x,y,z,n)
 	// Compute a Bezier surface. Return {bx,by,bz}.
-	// Copyright INRIA
-	
 	[lhs,rhs]=argn(0);
 	if rhs <= 3 ; n=20;end
 	t=linspace(0,1,n);
@@ -106,7 +107,6 @@ function cplxmap(z,w,varargin)
 	//cplxmap(z,w,T,A,leg,flags,ebox)
 	//cplxmap Plot a function of a complex variable.
 	//       cplxmap(z,f(z))
-	// Copyright INRIA
 	x = real(z);
 	y = imag(z);
 	u = real(w);
@@ -132,7 +132,6 @@ function cplxroot(n,m,varargin)
 	//       CPLXROOT(n,m) uses an m-by-m grid.  Default m = 20.
 	// Use polar coordinates, (r,theta).
 	// Cover the unit disc n times.
-	// Copyright INRIA
 	[lhs,rhs]=argn(0)
 	if rhs  < 1, n = 3; end
 	if rhs  < 2, m = 20; end

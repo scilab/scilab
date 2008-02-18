@@ -1,6 +1,12 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 mode(-1)
 demopath=get_absolute_file_path('meta.dem')
-// Copyright INRIA
 mode(0);
 num=x_message([' ';
 'METANET is a Scilab toolbox for graph and network analysis';

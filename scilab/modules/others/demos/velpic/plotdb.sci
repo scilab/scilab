@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1990 - INRIA - Carey BUNKS
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=plotdb(f,gain,thetaphi,modxy)
 //plotdb(f), plotdb(f,gain), plotdb(f,modxy), plotdb(f,gain,tetaphi)
 //plotdb(f,gain,modxy), plotdb (f,gain,tetaphi,modxy)
@@ -26,9 +33,7 @@ function []=plotdb(f,gain,thetaphi,modxy)
 //            'y' : only vertical  lines are drawn
 //            'xy' : both h and v lines are drawn
 //!
-//author: C. Bunks  date: Jan 22, 1990
 //defaults for gain, theta, and phi
-// Copyright INRIA
 [lhs,rhs]=argn(0),
 select rhs
    case 1 then,

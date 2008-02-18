@@ -1,9 +1,12 @@
-//------------------------------------------------------------
-// Authors Serge Steer, Jean-Baptiste Silvy Copyright INRIA
-// Update 16/11/2005
-// Update 02/04/2007 : Bruno
-// Udpate 02/04/2007 : Allan 
-//------------------------------------------------------------
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+// Copyright (C) 2005 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 2007 - INRIA - Bruno JOFRET <bruno.jofret@inria.fr>
+// Copyright (C) 2007 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+//
+// This file is distributed under the same license as the Scilab package.
+//
 
 // default window size;
 wSize = [850,920];

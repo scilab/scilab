@@ -1,6 +1,12 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [n]=np()
 // Return the size  of the Fortran pendulum 
-// Copyright ENPC
   n=1;
   n=fort('np',n,1,'i','sort',1);
 endfunction 

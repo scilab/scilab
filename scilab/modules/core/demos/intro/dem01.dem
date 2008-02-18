@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 mode(7)
 //               SCILAB OBJECTS
 //               1. SCALARS
-// Copyright INRIA
 a=1               //real constant
 1==1              //boolean
 'string'          //character string

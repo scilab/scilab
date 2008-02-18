@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 xset("default");
 set figure_style new ;
 kp=xget("pixmap");
-// Copyright INRIA
 dr=driver()
 driver('X11')
 if kp==0, xset("pixmap",1);end;

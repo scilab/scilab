@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2001 - Université de Nancy - Bruno PINCON
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
 
 	//  A function to compute the facets for drawing a complex function

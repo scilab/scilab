@@ -1,10 +1,16 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [x,Z,z,ul,iters] = phase1(F,blck_szs,M,nu,abstol,maxiters);
 // [x,Z,z,ul,iters] = phase1(F,blck_szs,M,nu,abstol,maxiters);
 //
 // Find an x s.t. F(x) > 0 and Tr F(x) < M 
 //    or prove that no such x exists.
 
-// Copyright INRIA
 // minimize    t 
 // subject to  F(x) + t*I = F_0 + x_1*F_1 + ... + x_m*F_m + t*I >= 0 
 //             Tr F(x) <= M

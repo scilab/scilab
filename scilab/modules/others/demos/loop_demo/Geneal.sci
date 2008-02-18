@@ -1,6 +1,12 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Jacques-Deric ROUAULT
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 //  PROGRAMME GENEAL
 //  Version 5.4 20051103
-//  Copyright Jacques-Deric Rouault
 //  Designed for Scilab 3.1.1 & 4.0 under Windows XP & Linux
 
 function demo_geneal()
@@ -225,7 +231,7 @@ for ns = 1:nsecteurs do
     xsegs ([xdeb,xfin],[ydeb,yfin]);
     hs = gce ();
     hs.thickness=2;
-    angled = 360-pasangle*ns/64; // degrés
+    angled = 360-pasangle*ns/64; // degrï¿½s
     xstring (xdeb,ydeb,tnom(pers),angled,0);
     ht = gce ();
     select tpers(pers,1)
@@ -534,7 +540,7 @@ for i=1:10
 end;
 
 mclose (fg);
-mprintf ("\nFin normale d''exécution du programme / Correct end of running\n");
+mprintf ("\nFin normale d''exï¿½cution du programme / Correct end of running\n");
 
 xdel() ;
 

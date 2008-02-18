@@ -1,5 +1,11 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
 
-// Copyright INRIA
+
 x=[5,10,20,40,50,70,80,90];xmin=-10;xmax=100;
 y=[22,28,30,32];ymin=12;ymax=40;
 

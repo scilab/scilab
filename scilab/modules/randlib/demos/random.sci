@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [y]=RndInt(m,n,imin,imax) 
 	// discrete uniform random number 
 	//-------------------------------
-	// Copyright ENPC 
 	y=rand(m,n,'uniform')
 	y=int(floor(y*(imax+1-imin)+ imin ));
 endfunction 

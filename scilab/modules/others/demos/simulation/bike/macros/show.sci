@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=show(xx,t,p,f_name)
 //[]=show(xx,t,p,[f_name])
 // Just show the bike evolution
@@ -6,7 +13,6 @@ function []=show(xx,t,p,f_name)
 // f_name is the function name to use for display 
 // f_name can be velo1 or velo2 or velo3
 // !
-// Copyright INRIA
   [lhs,rhs]=argn(0)
   if rhs <= 3 , f_name=velo1;end
   nstep=1;r1=0.3;  //change nstep for postscript

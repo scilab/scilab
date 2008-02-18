@@ -1,4 +1,10 @@
-// Copyright INRIA
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 
 // x=l(u)=u-2*k3*u*sin(k1*sqrt(1+4*k3^2*u^2))/sqrt(1+4*k3^2*u^2)/k2
 // y=m(u)=k3*u^2+sin(k1*sqrt(1+4*k3^2*u^2))/sqrt(1+4*k3^2*u^2)/k2

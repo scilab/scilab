@@ -1,6 +1,12 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=velo1()
 // "full wheel" version
-// Copyright INRIA
   ct=-cos(t);cp=cos(p);st=-sin(t);sp=sin(p);
   xe=[xmin;xmax;xmax;xmin;xmin]
   ye=[ymin;ymin;ymax;ymax;ymin]

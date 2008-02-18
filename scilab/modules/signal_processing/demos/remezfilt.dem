@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 ////////////////////////
 //MINIMAX FIR FILTERS///
 ////////////////////////
-// Copyright INRIA
 xbasc();xselect();
 mode(1)
 //Low pass filter (length 33, cut-off in [.23,.27], weight 1/.1)

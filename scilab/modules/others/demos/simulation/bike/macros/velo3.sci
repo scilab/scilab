@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=velo3()
 // Version roues a rayons ( qui tournent avec la roue !)
 // la formule donnant l'angle de rotation est sans doute fausse
@@ -5,7 +12,6 @@ function []=velo3()
 // vitesse angulaire xx(6,i) pour la roue rear
 // et que le temps d'integration etait de 1
 // => theta (i) = xx(6,i)*i/imax
-// Copyright INRIA
   ct=-cos(t);cp=cos(p);st=-sin(t);sp=sin(p);
   xe=[xmin,xmax,xmax,xmin,xmin]
   ye=[ymin,ymin,ymax,ymax,ymin]

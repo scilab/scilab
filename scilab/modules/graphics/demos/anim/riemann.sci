@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function demo_riemann()
   //demo_help demo_riemann
   xbasc();
@@ -36,7 +43,6 @@ function cplxmap(z,w,varargin)
 //cplxmap(z,w,T,A,leg,flags,ebox)
 //cplxmap Plot a function of a complex variable.
 //       cplxmap(z,f(z))
-// Copyright INRIA
 x = real(z);
 y = imag(z);
 u = real(w);v = imag(w);
@@ -57,7 +63,6 @@ function [z,s]=cplxroot(n,m)
 //       CPLXROOT(n,m) uses an m-by-m grid.  Default m = 20.
 // Use polar coordinates, (r,theta).
 // Cover the unit disc n times.
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 if rhs  < 1, n = 3; end
 if rhs  < 2, m = 20; end

@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [co,u,g,itv,dtv,cof]=icsua(u,simu,nap,imp)
 //Calcul du controle optimal avec ponderation du controle initial
 //et ponderation arithmetique des poids des observations.
@@ -9,7 +16,6 @@ function [co,u,g,itv,dtv,cof]=icsua(u,simu,nap,imp)
 //%Syntaxe
 //[co,u,g,itv,dtv,cof]=icsua(u,simu,nap,imp)
 
-// Copyright INRIA
 //variables d'entree :
 //u(nu) : parametres initiaux
 //nap   : nombre maximum d' appels du simulateur

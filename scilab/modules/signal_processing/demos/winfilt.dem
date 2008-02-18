@@ -1,7 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 ////////////////////////
 //WINDOWED FIR FILTERS//
 ////////////////////////
-// Copyright INRIA
  
 //Low pass filter (length 33, Kaiser window, cut-off .2)
    [wft,wfm,fr]=wfir('lp',33,[.2 0],'kr',[5.6 0]);

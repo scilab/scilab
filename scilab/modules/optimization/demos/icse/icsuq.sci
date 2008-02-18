@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [co,u,g,itv,dtv,cof]=icsuq(u,simu,nap,imp,obs,ytob)
 //  Calcul du controle optimal avec ponderation du controle initial
 //  et ponderation geometrique des poids des observations.
@@ -29,7 +36,6 @@ function [co,u,g,itv,dtv,cof]=icsuq(u,simu,nap,imp,obs,ytob)
 //cof(nob,ntob) : coefficients de ponderation du cout
 //Utiliser les macros icot et icob pour extraire l'etat
 //!
-// Copyright INRIA
 df0=1;
 if mini(binf) <=0, ..
   error('appel de icsuq avec binf non strictement positif'); end;

@@ -1,6 +1,12 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [x,y,typ]=BOUNCEXY_f(job,arg1,arg2)
 //Scicos 2D animated visualization block
-// Copyright INRIA
 x=[];y=[];typ=[]
 select job
 case 'plot' then
