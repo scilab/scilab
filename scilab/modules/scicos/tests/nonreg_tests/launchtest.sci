@@ -51,10 +51,14 @@ if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
 
   // Rename file.out -> file.out.ref
   mdelete(outRefFilename)
-  copyfile(outFilename, outRefFilename)
+  [status, msg] = copyfile(outFilename, outRefFilename)
   mdelete(outFilename)
-  
-  disp(msprintf('%-15s: Reference file successfully generated',testName))
+
+  if status
+	  disp(msprintf('%-15s: Reference file successfully generated',testName))
+  else
+	  disp(msprintf('%-15s: WARNING: Reference file not generated',testName))
+  end
 
 elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
 
@@ -68,7 +72,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
   end
   out = mgetl(fidOut);
   mclose(fidOut);
-  
+
   // Read reference
   try
     fidRef = mopen(outRefFilename, 'r');
@@ -93,7 +97,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
   if status.id == 1
     disp(msprintf('%s', status.details))
   end  
-  
+
 else
   disp(msprintf('%s: Warning: Unknown Scilab version, did nothing more than launching the simulation...'),testName);
 end

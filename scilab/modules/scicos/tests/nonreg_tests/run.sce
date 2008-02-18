@@ -8,6 +8,7 @@ exec('launchtest.sci');
 // Set base directory for non-regression tests
 if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
  // TODO: do not depend on username and Scilab 5 path
+ // WARNING: do not use '~' as a shortcut for home directory (otherwise copyfile fails)
  baseDir = '/home/vaylet/dev/scilab-5.0/modules/scicos/tests/nonreg_tests'
 elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
   baseDir = SCI + '/modules/scicos/tests/nonreg_tests'
