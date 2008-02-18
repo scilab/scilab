@@ -14,11 +14,9 @@
 ; graphic_export module
 ;--------------------------------------------------------------------------------------------------------------
 ;
-; TO DO : a component "graphics_export"
 ;
 #define GRAPHIC_EXPORT "graphic_export"
 ;
-Source: bin\gl2ps.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\scigraphic_export.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\nographic_export.dll; DestDir: {app}\bin; DestName: scigraphic_export.dll; Components: not ({#COMPN_GRAPHICS})
 ;
