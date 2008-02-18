@@ -1,0 +1,15 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
+demopath = get_absolute_file_path("bezier.dem.gateway.sce");
+exec(demopath+"/Macros.sci");
+demolist=[
+	"Gammatest"              , "gammatest.sce";
+	"2D curve Bezier test"   , "beziertest.sce";
+	"3D curve Bezier test"   , "bezier3dtest.sce";
+	"Bezier surface test"    , "beziersurftest.sce"
+	"Bezier surface test 2"  , "c1test.sce"];

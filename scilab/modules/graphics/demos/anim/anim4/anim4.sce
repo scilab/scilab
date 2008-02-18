@@ -46,7 +46,7 @@ A=35:80;
 //use realtime to slow down the loop
 realtimeinit(0.05);//set time step (0.05 seconds)  and date reference
 for i=1:size(A,'*')
-  realtime(i)//wait till date 0.05*i seconds
+  realtime(i); //wait till date 0.05*i seconds
   curAxe.rotation_angles = [45,A(i)];
   show_pixmap(); //send  buffer to screen
 end

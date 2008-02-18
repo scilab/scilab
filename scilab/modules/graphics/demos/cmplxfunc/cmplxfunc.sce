@@ -1,5 +1,12 @@
-// demo pour visualisation des fonctions elementaires
-// complexes - Bruno Pincon
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2001 - Bruno PINCON
+// Copyright (C) 2005-2007 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
+// demo pour visualisation des fonctions elementaires complexes
 
 // Adapted for new graphic by Pierre MARECHAL ( 16/12/2005 )
 

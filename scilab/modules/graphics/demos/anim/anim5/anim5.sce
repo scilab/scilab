@@ -44,7 +44,7 @@ title("evolution of a 3d surface","fontsize",3)
 I=20:-1:1;
 realtimeinit(0.1);;//set time step (0.1 seconds)  and date reference
 for i=1:max(size(I))
-  realtime(i) //wait till date 0.1*i seconds
+  realtime(i); //wait till date 0.1*i seconds
   s.data.z = (sin((I(i)/10)*x)'*cos((I(i)/10)*y))';
   show_pixmap();//send  buffer to screen
 end

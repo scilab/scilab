@@ -635,6 +635,14 @@ demos/basic_functions/basic_functions_5.dem.sce \
 demos/basic_functions/basic_functions_6.dem.sce \
 demos/basic_functions/basic_functions_7.dem.sce \
 demos/basic_functions/basic_functions_8.dem.sce \
+demos/bezier/bezier.dem.gateway.sce \
+demos/bezier/bezier3dtest.sce \
+demos/bezier/beziersurftest.sce \
+demos/bezier/beziertest.sce \
+demos/bezier/c1test.sce \
+demos/bezier/cltest.sce \
+demos/bezier/gammatest.sce \
+demos/bezier/Macros.sci \
 demos/bike.dem \
 demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
 demos/cmplxfunc/cmplxfunc.sce \
@@ -660,14 +668,31 @@ demos/misc/numerique.dem \
 demos/misc/oscil.dem \
 demos/misc/oscil.sci \
 demos/misc/point.dem \
+demos/misc_new/misc.dem.gateway.sce \
+demos/misc_new/misc.sce \
+demos/misc_new/numerique.dem \
+demos/misc_new/oscil.dem \
+demos/misc_new/oscil.sci \
+demos/misc_new/point.dem \
 demos/peaks.sci \
 demos/portrait.dem \
 demos/sd.sav \
-demos/surface/bezier.dem \
-demos/surface/bezier.sci \
+demos/surface/bh.sce \
+demos/surface/cplxroot.sce \
+demos/surface/hole3d.sce \
+demos/surface/hole3d1.sce \
 demos/surface/Macros.sci \
+demos/surface/moebius.sce \
+demos/surface/rings.sce \
+demos/surface/shell.sce \
+demos/surface/sphere.sce \
+demos/surface/spiral.sce \
 demos/surface/surfaces.dem \
+demos/surface/surfaces.dem.gateway.sce \
 demos/surface/surfaces.sci \
+demos/surface/torus.sce \
+demos/surface/torus1.sce \
+demos/surface/tube.sce \
 demos/xsetechfig.sce
 
 USEANT=1

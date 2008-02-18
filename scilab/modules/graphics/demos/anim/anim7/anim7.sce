@@ -47,8 +47,7 @@ title("shell","fontsize",3)
 
 curAxe=gca();
 // set 3D boundaries
-curAxe.data_bounds=[-15 -5 -10;
-		     10  5  12];
+curAxe.data_bounds=[-15 -5 -10; 10  5  12];
 //set view angles
 curAxe.rotation_angles=[152 62];
 
@@ -69,7 +68,7 @@ for k=2:size(K,'*')
   data.x=[data.x xx];
   data.y=[data.y yy];
   data.z=[data.z zz];
-  
+
   e.data=data;// update the Fac3d entity
   show_pixmap();//send  buffer to screen
 end

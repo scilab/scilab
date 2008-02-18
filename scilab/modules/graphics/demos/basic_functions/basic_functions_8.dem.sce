@@ -9,7 +9,7 @@
 	
 	my_handle             = scf(100001);
 	my_handle.figure_name = my_plot_desc;
-
+	expr=[
 	"plot2d(0,0,[0],''032'',''leg'',[-1.5,-1.5 ,1.5,1.5]);"
 	"a=gca(); t=a.title;"
 	"t.text=""pie chart""; t.font_size=3;"

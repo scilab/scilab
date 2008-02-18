@@ -49,7 +49,7 @@ curAxe.tight_limits = "on";
 //---------------------------------------------
 realtimeinit(0.03); //set time step (0.03 seconds)  and date reference
 for i=2:(max(size(I)))
-  realtime(i) //wait till date 0.1*i seconds
+  realtime(i); //wait till date 0.1*i seconds
   drawlater(); //disable automatic redrawing
   p.data(:,3)=(I(i)*t/(np*%pi))'; //change the Z coordinates
   curAxe.data_bounds(2,3)=I(i);  //change the max Z axes value

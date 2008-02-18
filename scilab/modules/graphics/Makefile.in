@@ -1671,6 +1671,14 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/basic_functions/basic_functions_6.dem.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions_7.dem.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions_8.dem.sce \
+@GUI_TRUE@demos/bezier/bezier.dem.gateway.sce \
+@GUI_TRUE@demos/bezier/bezier3dtest.sce \
+@GUI_TRUE@demos/bezier/beziersurftest.sce \
+@GUI_TRUE@demos/bezier/beziertest.sce \
+@GUI_TRUE@demos/bezier/c1test.sce \
+@GUI_TRUE@demos/bezier/cltest.sce \
+@GUI_TRUE@demos/bezier/gammatest.sce \
+@GUI_TRUE@demos/bezier/Macros.sci \
 @GUI_TRUE@demos/bike.dem \
 @GUI_TRUE@demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
 @GUI_TRUE@demos/cmplxfunc/cmplxfunc.sce \
@@ -1696,14 +1704,31 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/misc/oscil.dem \
 @GUI_TRUE@demos/misc/oscil.sci \
 @GUI_TRUE@demos/misc/point.dem \
+@GUI_TRUE@demos/misc_new/misc.dem.gateway.sce \
+@GUI_TRUE@demos/misc_new/misc.sce \
+@GUI_TRUE@demos/misc_new/numerique.dem \
+@GUI_TRUE@demos/misc_new/oscil.dem \
+@GUI_TRUE@demos/misc_new/oscil.sci \
+@GUI_TRUE@demos/misc_new/point.dem \
 @GUI_TRUE@demos/peaks.sci \
 @GUI_TRUE@demos/portrait.dem \
 @GUI_TRUE@demos/sd.sav \
-@GUI_TRUE@demos/surface/bezier.dem \
-@GUI_TRUE@demos/surface/bezier.sci \
+@GUI_TRUE@demos/surface/bh.sce \
+@GUI_TRUE@demos/surface/cplxroot.sce \
+@GUI_TRUE@demos/surface/hole3d.sce \
+@GUI_TRUE@demos/surface/hole3d1.sce \
 @GUI_TRUE@demos/surface/Macros.sci \
+@GUI_TRUE@demos/surface/moebius.sce \
+@GUI_TRUE@demos/surface/rings.sce \
+@GUI_TRUE@demos/surface/shell.sce \
+@GUI_TRUE@demos/surface/sphere.sce \
+@GUI_TRUE@demos/surface/spiral.sce \
 @GUI_TRUE@demos/surface/surfaces.dem \
+@GUI_TRUE@demos/surface/surfaces.dem.gateway.sce \
 @GUI_TRUE@demos/surface/surfaces.sci \
+@GUI_TRUE@demos/surface/torus.sce \
+@GUI_TRUE@demos/surface/torus1.sce \
+@GUI_TRUE@demos/surface/tube.sce \
 @GUI_TRUE@demos/xsetechfig.sce
 
 @GUI_TRUE@USEANT = 1

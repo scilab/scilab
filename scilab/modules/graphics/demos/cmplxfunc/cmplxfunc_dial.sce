@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 titl=[
 	"---BE CAREFUL NOTHING IS PROTECTED---";
 	"                                     ";
@@ -17,10 +24,10 @@ titl=[
 	"                                     ";
 	"3/ define the ""radius"" R of the domain";
 	"                                     ";
-  "4/ may be your function has a kind of";
-  "   discontinuity on Ox  or  Oy => put";
-  "   the string Ox or Oy or No if not  "];
-  
+	"4/ may be your function has a kind of";
+	"   discontinuity on Ox  or  Oy => put";
+	"   the string Ox or Oy or No if not  "];
+
 namevar= [
 	"1/ string     ";
 	"2/ Type Domain";
