@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1996 - INRIA - Serge STEER
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine wdpow1(n,vr,vi,iv,p,ip,rr,ri,ir,ierr)
 c!purpose
 c     computes V^P with V complex vector and P real vector
@@ -25,8 +34,7 @@ c            ierr=1 if 0**0
 c            ierr=2 if  0**k with k<0
 c!origin
 c Serge Steer INRIA 1996
-c!
-c     Copyright INRIA
+c
       integer n,iv,ierr,ierr1
       double precision vr(*),vi(*),p(*),rr(*),ri(*)
 c

@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine wbdiag(lda,n,ar,ai,rmax,er,ei,bs,xr,xi,
      *     yr,yi,scale,job,fail)
 c
@@ -81,9 +90,6 @@ c     corth cortr comqr3 cbal balbak (eispack)
 c     wexchn  (eispack.extensions)
 c     dset ddot (blas)
 c     wshrsl dad
-c
-c!
-c     Copyright INRIA
 c
       integer lda, n,  bs, job
       double precision ar,ai,er,ei,xr,xi,yr,yi,rmax,scale(n)

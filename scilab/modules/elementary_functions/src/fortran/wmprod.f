@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine wmprod(flag,ar,ai,na,m,n,vr,vi,nv)
 c!purpose
 c     computes the product of the entries of a complex matrix according to flag
@@ -22,8 +31,7 @@ c            if flag==0 size(v)>=1
 c            if flag==1 size(v)>=n*nv
 c            if flag==1 size(v)>=m*nv
 c     nv   : increment between to consecutive entries ov v
-c!
-c     Copyright INRIA
+c
       double precision ar(na,n),ai(na,n),vr(*),vi(*)
       integer na,n,m,nv
       integer flag

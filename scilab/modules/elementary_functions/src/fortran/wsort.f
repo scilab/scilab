@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine wsort(countr,counti,n,index,test)
 c
 c!purpose
@@ -30,8 +39,7 @@ c!method
 c     quick sort metjod is used
 c!restriction
 c     n must be less than 2**(50/2) ! due to lengh of work space mark
-c!
-c     Copyright INRIA
+c
       dimension mark(50),index(n)
       double precision countr(n),counti(n),avr,avi,xr,xi
       integer test

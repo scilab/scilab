@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA - Serge STEER
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine rat(x,eps,n,d,fail)
 c!but
 c     ce sous programme approximme un reel x par un rationnel n/d
@@ -17,9 +26,7 @@ c           fail.ne.0 precision requise trop grande ou nombre trop
 c           grand ou trop petit pour etre code sous cette forme
 c!origine
 c     s steer inria
-c!
 c
-c     Copyright INRIA
       double precision x,eps,z,err,dz,xn,xd,ax
       integer n,d,nmax,n0,d0,n1,d1,bm,fail
 c possibly the largest integer (hum ???)

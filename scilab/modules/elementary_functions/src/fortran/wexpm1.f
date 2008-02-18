@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine wexpm1(n,ar,ai,ia,ear,eai,iea,w,iw,ierr)
 c
 c!purpose
@@ -32,8 +41,7 @@ c     wpade
 c! originator
 c     S Steer INRIA  from dexpm1:
 c     j roche laboratoire d'automatique de grenoble
-c!
-c     Copyright INRIA
+c
       integer ia,n,iw,ierr
       double precision ar,ai,ear,eai,w
       dimension ar(ia,n),ai(ia,n),ear(iea,n),eai(iea,n),w(*),iw(*)

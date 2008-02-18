@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine dad(a, na, i1, i2, j1, j2, r, isw)
 c
 c!purpose
@@ -30,9 +39,7 @@ c          isw=1 : a*d
 c
 c!auxiliary routines
 c     ifix real mod (fortran)
-c!
 c
-c     Copyright INRIA
       integer i1, i2, j1, j2, na, isw
       double precision a, r
       dimension a(na,*)

@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA - Serge STEER
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine wexchn(ar, ai, vr, vi, n, l, fail, na, nv)
 c!purpose
 c
@@ -34,10 +43,7 @@ c!auxiliary routines
 c     max sqrt abs (fortran)
 c!originator
 c     steer i.n.r.i.a  from routine exchng
-c!
 c
-c
-c     Copyright INRIA
       integer l,na,nv
       double precision ar,ai,vr,vi
       dimension ar(na, n),  ai(na, n), vr(nv, n), vi(nv, n)

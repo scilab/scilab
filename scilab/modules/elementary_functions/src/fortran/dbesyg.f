@@ -1,5 +1,14 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 2005 - INRIA - Serge STEER
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine dbesyg (x1, alpha, n, y, nz,w,ierr)
-c     Author Serge Steer, Copyright INRIA, 2005
+c     Author Serge Steer, 2005
 c     extends dbesy for the case where alpha is negative
 c     x is assumed to be >0 (if negative bessely(alpha,x) is complex)
       double precision x1,alpha,y(n),w(n)

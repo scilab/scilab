@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine dmmul1(a,na,b,nb,c,nc,l,m,n)
 c!but
 c     ce sous programme effectue le produit matriciel:
@@ -16,8 +25,7 @@ c     m            nombre de colonnes de a et de lignes de b
 c     n            nombre de colonnes de b et c
 c!sous programmes utilises
 c     neant
-c!
-c     Copyright INRIA
+c
       double precision a(*),b(*),c(*)
       double precision ddot
       integer na,nb,nc,l,m,n

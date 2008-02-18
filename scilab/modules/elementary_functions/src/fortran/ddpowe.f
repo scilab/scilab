@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1996 - INRIA - Serge STEER
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine ddpowe(v,p,rr,ri,ierr,iscmpl)
 c!purpose
 c     computes v^p with p and v double precision
@@ -17,8 +26,7 @@ c            iscmpl=0 if result is real
 c            iscmpl=1 if result is complex
 c!origin
 c Serge Steer INRIA 1996
-c!
-c     Copyright INRIA
+c
       integer ierr
       double precision v,p,sr,si,rr,ri,infinity
 c     

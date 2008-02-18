@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1989 - INRIA - Serge STEER
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c
       subroutine wdpow(n,vr,vi,iv,dpow,ierr)
 c!but
 c     eleve les elements d'un vecteur complexe a une puissance reelle
@@ -19,8 +28,7 @@ c            ierr=1 si 0**0
 c            ierr=2 si 0**k avec k<0
 c!origine
 c Serge Steer INRIA 1989
-c!
-c     Copyright INRIA
+c
       integer n,iv,ierr
       double precision vr(*),vi(*),dpow,sr,si
 c
