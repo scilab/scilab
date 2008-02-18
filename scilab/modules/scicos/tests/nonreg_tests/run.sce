@@ -1,4 +1,7 @@
 
+// Disable vertical scrolling
+lines(0)
+
 // Load launchtest
 exec('launchtest.sci');
 
