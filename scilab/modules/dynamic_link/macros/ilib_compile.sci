@@ -1,7 +1,12 @@
 //==========================================
 // Copyright (C) INRIA/ENPC
 //==========================================
-function libn = ilib_compile(lib_name,makename,files)
+function libn = ilib_compile(lib_name,makename,files, ..
+				                         ldflags, ..
+				                         cflags, ..
+				                         fflags, ..
+				                         cc)
+
 
   if ~haveacompiler() then
   	error(_("A Fortran or C compiler is required."))
@@ -43,9 +48,11 @@ function libn = ilib_compile(lib_name,makename,files)
 	  oldPath = pwd();
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);
-
-	  	// TODO : voir quoi faire du CFLAGS
-	[msg,ierr] = unix_g("make CFLAGS=-I"+SCI+"/modules/core/includes/");
+	  cmd="make "
+	  // CFLAGS 
+	  cmd = cmd +" CFLAGS=""-I"+SCI+"/modules/core/includes/"""
+	  
+	  [msg,ierr] = unix_g(cmd)
 	if ierr <> 0 then
 	  disp(msg);
 	  return;

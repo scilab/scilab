@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //==========================================
-function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,ismex)
+function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,ismex,cc)
 
   if ~haveacompiler() then
   	error(_("A Fortran or C compiler is required."))  
@@ -28,6 +28,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   if rhs <= 6 then cflags  = ''; end 
   if rhs <= 7 then fflags  = ''; end 
   if rhs <= 8 then ismex  = %f; end 
+  if rhs <= 9 then cc  = ''; end 
   
   warningmode = warning('query');
   
@@ -55,7 +56,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   	  write(%io(2),sprintf(_("   Generate a Makefile")));
 	end
   end
-  ilib_gen_Make(ilib_name,table,files,libs,makename,%t,ldflags,cflags,fflags);
+  ilib_gen_Make(ilib_name,table,files,libs,makename,%t,ldflags,cflags,fflags,cc);
   
   // we call make
   if (warningmode == 'on') then

@@ -7,12 +7,12 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldflags,cflags,fflags,flag)
+function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldflags,cflags,fflags,flag,cc)
 // flag 'c' or 'f' used with lcc 
 //------------------------------------
 // generate a Makefile for gateway
 
-  if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='';end
+  if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='', cc='';end
   files=strsubst(strsubst(files,'.obj','') ,'.o',''); //compat
   // change table if necessary 
   if typeof(tables)<>'list' then 
@@ -54,7 +54,7 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
     end
   else
      Makename = makename;
-     ilib_gen_Make_unix(name,files,libs,name,ldflags,cflags,fflags)
+     ilib_gen_Make_unix(name,files,libs,name,ldflags,cflags,fflags,cc)
   end
   end
 endfunction
