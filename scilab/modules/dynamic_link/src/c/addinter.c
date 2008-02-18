@@ -101,7 +101,13 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 		subname[0]= spname;
 
 		/* link then search  */ 
+		/* Trying with the fortran symbol */
 		IdLib =  scilabLink(idinput,filenamelib,subname,one,TRUE,&ierr1);
+		if (ierr1!=0){
+			/* Haven't been able to find the symbol. Try C symbol */
+			IdLib =  scilabLink(idinput,filenamelib,subname,one,FALSE,&ierr1);
+		}
+
 		subname[0]= NULL;
 		if (subname) { FREE(subname);subname = NULL;}
 
