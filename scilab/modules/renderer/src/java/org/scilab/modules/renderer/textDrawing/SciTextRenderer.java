@@ -19,19 +19,18 @@ import com.sun.opengl.util.j2d.TextRenderer;
  */
 public class SciTextRenderer extends TextRenderer {
 
-	/** Maximum supported fobnt size by awt */
-	private static final float MAX_SIZE = 100.0f;
-	
-	private float antiAliasingFactor;
-	
 	/**
 	 * Constructor from a Font to use.
 	 * @param font font to use.
-	 * @param aliasingFactor scale factor to apply to the font.
 	 */
-	protected SciTextRenderer(Font font, float aliasingFactor) {
+	protected SciTextRenderer(Font font) {
 		super(font, false, true, null, false);
-		this.setAntiAliasingFactor(aliasingFactor);
+		
+		// no antialiasing
+		this.setSmoothing(false);
+		
+		// apparently creates slow down on some computers if activated
+		this.setUseVertexArrays(false);
 	}
 	
 	/**
@@ -40,16 +39,7 @@ public class SciTextRenderer extends TextRenderer {
 	 * @return new instance of SciTextRenderer
 	 */
 	static SciTextRenderer create(Font font) {
-		float aliasingFactor;
-		Font newFont;
-		if (font.getSize2D() > MAX_SIZE) {
-			aliasingFactor = font.getSize2D() / MAX_SIZE;
-			newFont = font.deriveFont(MAX_SIZE);
-		} else {
-			aliasingFactor = 1.0f;
-			newFont = font;
-		}
-		return new SciTextRenderer(newFont, aliasingFactor);
+		return new SciTextRenderer(font);
 	}
 	
 	/**
@@ -73,7 +63,7 @@ public class SciTextRenderer extends TextRenderer {
 	 * @param z Z coordinate of the text
 	 */
 	public void draw3D(String str, double x, double y, double z) {
-		super.draw3D(str, (float) x, (float) y, (float) z, getAntiAliasingFactor());
+		super.draw3D(str, (float) x, (float) y, (float) z, 1.0f);
 	}
 	
 	/**
@@ -94,24 +84,9 @@ public class SciTextRenderer extends TextRenderer {
 	public Rectangle2D getBounds(String str) {
 		Rectangle2D res = super.getBounds(str);
 		res.setFrame(res.getX(), res.getY(),
-					 res.getWidth() * getAntiAliasingFactor(),
-					 res.getHeight() * getAntiAliasingFactor());
+					 res.getWidth(),
+					 res.getHeight());
 		return res;
 	}
 
-	/**
-	 * AntiAliasingFactor setter
-	 * @param antiAliasingFactor float
-	 */
-	public void setAntiAliasingFactor(float antiAliasingFactor) {
-		this.antiAliasingFactor = antiAliasingFactor;
-	}
-
-	/**
-	 * AntiAliasingFactor getter
-	 * @return antiAliasingFactor
-	 */
-	public float getAntiAliasingFactor() {
-		return antiAliasingFactor;
-	}	
 }
