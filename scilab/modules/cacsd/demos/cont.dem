@@ -7,7 +7,7 @@
 
 deff('[]=demoexc(fil)','exec(''SCI/modules/cacsd/demos/''+fil)')
 while %t do
-  n=tk_choose(['LQG','Mixed-sensitivity','PID'],'Select a demo');
+  n=x_choose(['LQG','Mixed-sensitivity','PID'],'Select a demo');
   select n
   case 0
     break

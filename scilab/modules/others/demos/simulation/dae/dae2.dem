@@ -13,7 +13,7 @@ x_message(["Modeling of a sliding dumped pendulum";
 	   "  using Lagrange formulation";
 	   "You can choose the curve on which the pendulum slides"]);
 while %t do
-  n=tk_choose(["Parabola";"Upside down camel"],..
+  n=x_choose(["Parabola";"Upside down camel"],..
       "Choose a curve");
   select n
   case 0

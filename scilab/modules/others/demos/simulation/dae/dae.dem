@@ -10,7 +10,7 @@ mode(-1)
 deff("[]=demoexc(fil)","exec(""SCI/demos/simulation/dae/""+fil)")
 
 while %t do
-  n=tk_choose(["Spherical pendulum";"Sliding pendulum"],..
+  n=x_choose(["Spherical pendulum";"Sliding pendulum"],..
       "Examples of DAE");
   select n
   case 0

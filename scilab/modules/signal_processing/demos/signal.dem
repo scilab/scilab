@@ -21,7 +21,7 @@ deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
 
 xbasc();
 while %t then
-  num=tk_choose(demolist(:,1),'Choose a demo');
+  num=x_choose(demolist(:,1),'Choose a demo');
   if num==0 then 
      lines(oldln(1))
      return

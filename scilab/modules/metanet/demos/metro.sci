@@ -243,7 +243,7 @@ function []=metro(demopath)
 		 'You will go thru the following stations:';
 		 string(routef);]);
       road=[];route=[];routef=[];changename=[];
-      iter=tk_choose(['yes','no'],'Another travel?');
+      iter=x_choose(['yes','no'],'Another travel?');
       set_nodes_id(TTT,emptystr(TTT),'right')
  
       TTT=[];routef=[];road=[];

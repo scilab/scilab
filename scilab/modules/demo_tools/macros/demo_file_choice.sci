@@ -20,7 +20,7 @@ function [] = demo_file_choice()
 			demolistlabel = "choose a demo";
 		end
 		
-		num = tk_choose(demolist(:,1),demolistlabel);
+		num = x_choose(demolist(:,1),demolistlabel);
 		
 		if num == 0 then
 			

@@ -10,7 +10,7 @@
 
 function []=demo_function_choice()
 	while %t then
-		num=tk_choose(demolist(:,1),'Choose a demo');
+		num=x_choose(demolist(:,1),'Choose a demo');
 		if num==0 then
 			xdel(0);
 			lines(oldln(1));

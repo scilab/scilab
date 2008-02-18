@@ -12,7 +12,7 @@ path='SCI/modules/scilab2fortran/demos/'
 deff('[]=demoexc(fil)','exec(path+fil,-1)')
 
 while %t do
-  n=tk_choose(['Clauses, loops and operations';
+  n=x_choose(['Clauses, loops and operations';
               'Matrix concatenation';
 	      'Concatenations and inversions';
 	      'Call of simple primitives';

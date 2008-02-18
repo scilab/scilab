@@ -23,7 +23,7 @@ go_on=%t;
 
 while go_on then
 	
-	num=tk_choose(demolist(:,1),'Choose a bike');
+	num=x_choose(demolist(:,1),'Choose a bike');
 	
 	if num==0 then
 		go_on=%f;
