@@ -615,6 +615,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 				dia(find(dia=='')) = [];
 				ref(find(ref=='')) = [];
 				
+				dia( find(part(dia,(1:2))=="//") ) = [];
+				ref( find(part(ref,(1:2))=="//") ) = [];
+				
 				if or(ref<>dia) then
 					if MSDOS then
 						status_msg     = "failed  : dia and ref are not equal";
