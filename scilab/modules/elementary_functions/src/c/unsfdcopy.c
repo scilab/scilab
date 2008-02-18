@@ -1,14 +1,7 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1978-1993 - Jack Dongarra, linpack
+ * Modified 12/3/93, array(1) declarations changed to array(*)
  * Copyright (C) 2007 - INRIA - Allan CORNET (translation to C)
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
  */
 
 /*--------------------------------------------------------------------------*/
@@ -31,8 +24,6 @@
 
 	/* copies a vector, x, to a vector, y. */
 	/* uses unrolled loops for increments equal to one. */
-	/* jack dongarra, linpack, 3/11/78. */
-	/* modified 12/3/93, array(1) declarations changed to array(*) */
 
     /* Parameter adjustments */
     --dy;
