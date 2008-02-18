@@ -27,16 +27,13 @@ import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
  */
 public class GL2PSTextRenderer extends SciTextRenderer {
 	
-	private static final float MAX_SIZE = 500.0f;
-	
 
 	/**
 	 * Constructor
 	 * @param font Font
-	 * @param aliasingFactor float
 	 */
-	protected GL2PSTextRenderer(Font font, float aliasingFactor) {
-		super(font, aliasingFactor);
+	protected GL2PSTextRenderer(Font font) {
+		super(font);
 	}	
 	
 	/**
@@ -45,16 +42,7 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 	 * @return new instance of GL2PSTextRenderer
 	 */
 	static GL2PSTextRenderer create(Font font) {
-		float aliasingFactor;
-		Font newFont;
-		if (font.getSize2D() > MAX_SIZE) {
-			aliasingFactor = font.getSize2D() / MAX_SIZE;
-			newFont = font.deriveFont(MAX_SIZE);
-		} else {
-			aliasingFactor = 1.0f;
-			newFont = font;
-		}
-		return new GL2PSTextRenderer(newFont, aliasingFactor);
+		return new GL2PSTextRenderer(font);
 	}
 	
 	/**
@@ -95,8 +83,8 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 	public Rectangle2D getBounds(String str) {
 		Rectangle2D res = super.getBounds(str);
 		res.setFrame(res.getX(), res.getY(),
-					 res.getWidth() * getAntiAliasingFactor(),
-					 res.getHeight() * getAntiAliasingFactor());
+					 res.getWidth(),
+					 res.getHeight());
 		return res;
 	}
 	
