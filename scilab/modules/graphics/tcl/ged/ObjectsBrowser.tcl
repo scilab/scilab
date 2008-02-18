@@ -1,4 +1,3 @@
-
 #Copyright INRIA
 #2004
 #Author: F.Leray

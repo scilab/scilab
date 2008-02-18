@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function []=square(xmin,ymin,xmax,ymax)
 //definit un  environnement  graphique
 //permettant un trace isometrique.
@@ -9,7 +17,6 @@ function []=square(xmin,ymin,xmax,ymax)
 //meme taille de dessin, utiliser plutot la macro isoview. Les extrema
 //sont imposes.
 //!
-// Copyright INRIA
 [zer,right]=argn(0);
 if right<=0 then right=4;xmin=-2;ymin=-2;xmax=2;ymax=2;end
 if right<>4 then error('0 ou 4 arguments'),end

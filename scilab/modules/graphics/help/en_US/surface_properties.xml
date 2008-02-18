@@ -1,3 +1,15 @@
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
@@ -196,7 +208,17 @@
                 <VERB>color(i)</VERB> is negative, color id
                 <VERB>-color(i)</VERB> is used and the boundary of the facet
                 is not drawn.</P>
-
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
                 <P><VERB>data.color</VERB> contains a color matrix of size
                 (nf,n) where <VERB>n</VERB> stands for the number of facets
                 and <VERB>nf</VERB> for the number of points defining the

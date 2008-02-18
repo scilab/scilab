@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1993 - INRIA - Serge Steer
+// Copyright (C) 1993 - INRIA - Habib Jreij
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 //   mod_curv  - Edition  de courbe interactive
 //%Syntaxe
@@ -33,8 +42,6 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 //  Save  : sauvegarde binaire (sur un fichier d'extension .xy) de 
 //          la courbe
 //!
-//origine: serge Steer, Habib Jreij INRIA 1993
-// Copyright INRIA
   [lhs,rhs]=argn(0)
   //in line definition of get_click
   deff('[btn,xc,yc,win,Cmenu]=get_click(flag)',[

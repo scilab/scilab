@@ -1586,6 +1586,7 @@ function setLabelsFontStyle(label,ftn)
    global ged_handle; h=ged_handle
 select label
 case "t"
+    TCL_EvalStr("Notebook:raise $uf.n Z");
   h.title.font_style=find(ftn==["Courier" "Symbol" "Times",..
 		    "Times Italic" "Times Bold" "Times Bold Italic",..
 		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..

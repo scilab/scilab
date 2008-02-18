@@ -1,6 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function hist3d(f,T,A,leg,flags,ebox)
 //!
-// Copyright INRIA
 nep=8
 def=list(35,45,'X@Y@Z',[2 1 4])
 [lhs,rhs]=argn(0)

@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1990 - INRIA - Serge Steer
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x,y,z]=eval3dp(fun,p1,p2)
 // eval3d - retourne une representation par facettes d'une fonction z=f(u,v)
 //%Syntaxe
@@ -28,9 +36,7 @@ function [x,y,z]=eval3dp(fun,p1,p2)
 //%Voir aussi
 // plot3d eval3d fac3d
 //!
-//origine S Steer INRIA 1990
-//
-// Copyright INRIA
+
 n1=prod(size(p1))
 n2=prod(size(p2))
 //on calcule la valeur de la fonction en tous le couples (p1(i),p2(j))

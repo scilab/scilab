@@ -1,13 +1,20 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid Belahcene
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function  barh(varargin)
 
-	// Copyright INRIA
 	// barh(x,y,width,style,color) 
 	// Intput :
 	// x : a scalar or a vector of reals
 	// y : a sclar, a vector or a matrix of reals
 	// width : a double, the bar width, it's the percentage (0<width<1) of the max width of one bar which is wanted (default: width=0.8)
 	// style : a string, 'grouped' or 'stacked' (default: style='grouped')
-	// F.B
 	
 	styletab=["grouped","stacked"]
 	COLORBOOL=%f

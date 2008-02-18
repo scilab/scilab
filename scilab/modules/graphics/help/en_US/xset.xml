@@ -1,3 +1,14 @@
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
@@ -130,7 +141,17 @@
 
       <DESCRIPTION_ITEM label="xset(&quot;hidden3d&quot;,colorid) : Set the color number for backward facing faces in">
         <SP><VERB>plot3d</VERB>. <VERB>colorid=0</VERB> zero suppress the
-        drawing of backward facing faces of 3d objects. This is technically
+        drawing of backward facing faces of 3d objects. This is technicall<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->y
         called 'culling' and speeds up the rendering of closed surfaces.</SP>
       </DESCRIPTION_ITEM>
 

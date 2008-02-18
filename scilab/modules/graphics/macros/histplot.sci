@@ -20,7 +20,6 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 //
 // Example : enter histplot()
 // 
-// Copyright INRIA
 // modifs to use dsearch (Bruno Pincon 10/12/2001)
 // others modifs from Bruno (feb 2005):
 //    - may be a cleaner and shorter way to deal with optionnal arg ?

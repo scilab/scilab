@@ -1,7 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function id=color(c1,c2,c3)
 // get a color from the current colormap
 // or add it to current colormap if it does not exist
-// Copyright INRIA
 
 [lhs,rhs]=argn(0)
 if rhs==1 then 

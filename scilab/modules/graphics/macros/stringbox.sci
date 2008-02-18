@@ -1,7 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 //=======================================================================
-// Copyrigth INRIA 2005
 // File   : stringbox.sci
-// Author : Jean-Baptiste Silvy
 // Desc   : Compute the 4 corners of a displayed string bounding rect
 //======================================================================
 

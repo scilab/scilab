@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1991 - INRIA - Serge Steer
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function d=projaff(x,y,pt)
 // projaff - projection d'un point sur une droite
 //%Syntaxe
@@ -12,10 +20,8 @@ function d=projaff(x,y,pt)
 //celle de la normale passant par le point:
 //(x2-x1)*(x-xp)+(y2-y1)*(y-yp)=0
 //
-//%origine
-// S Steer INRIA 91
 //!
-// Copyright INRIA
+
 dx=x(2)-x(1);dy=y(2)-y(1)
 m=[dy -dx;dx dy]
 d=m\ [-x(2)*y(1)+x(1)*y(2);m(2,:)*[pt(1);pt(2)]]

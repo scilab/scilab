@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid Belahcene
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function pie(varargin)
 // Copyright INRIA
 // This function draws a pie, if size of x is N then pie function draws a pie with N parts, the area of the ith part is equal to (x(i)/sum(x))*( surface of the unit cercle). 
@@ -8,7 +16,6 @@ function pie(varargin)
 // x : a scalar or a vector of positive reals. 
 // sp : a scalar or a vector of reals. The sp vector allows to cut one or several parts of the pie
 // txt : a cell or a vector of strings. The txt vector allows to write a text for each part of the pie
-// F.B
 
 varlist = varargin;
 // Input arguments must have the same length

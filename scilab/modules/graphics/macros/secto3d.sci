@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1991 - INRIA - Serge Steer
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [m,x]=secto3d(seclist,npas)
 //Etant donnee une surface 3D decrite par une liste (seclist) de sections
 // dans le plan  (x,z),  [m [,x]]=secto3d(seclist [,npas]) retourne une
@@ -19,8 +27,7 @@ function [m,x]=secto3d(seclist,npas)
 //%voir aussi
 // la macro plot3d
 //!
-//origine S Steer INRIA 1991
-// Copyright INRIA
+
 
 [lhs,rhs]=argn(0)
 n=size(seclist)

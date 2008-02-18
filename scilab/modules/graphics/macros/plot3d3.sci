@@ -1,9 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function plot3d3(x,y,z,vect,theta,alpha,leg,flags,ebox)
 // mesh draw of a solid surface described 
 // by a set of points 
 // the mesh is drawn using the colums and rows of [x,y,z]
 //---------------------------------------------------------
-// Copyright INRIA
 [lhs,rhs]=argn(0);
 if rhs<3, error(' I need at least 3 arguments'),end;
 if exists('vect','local')==0 then vect=-1,end

@@ -1,9 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid Belahcene
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [PName] = getTitleLabelPropertyNam(PropertyName,current_figure,cur_draw_mode)
 // Copyright INRIA
 // GETTITLELABELPROPERTYNAME function
 // is used by the functions title, xlabel, ylabel, zlabel
 // this function gets the matlab properties names and repalce them by the equivalent scilab properties names, using Table and TableEQ  
-// F.Belahcene
 
 //conversion to lower format
 str = convstr(PropertyName);

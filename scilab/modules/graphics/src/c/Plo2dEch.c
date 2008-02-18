@@ -1,9 +1,21 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1998-2000 - ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
+ * Copyright (C) 2002 - INRIA - Serge Steer
+ * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 1998-2000 Enpc
- *    Copyright INRIA 2006
- *    Authors Jean-Philippe Chancelier 1998-2000 jpc@cermics.enpc.fr 
- *            Jean-Baptiste Silvy      2005-xxxx
  --------------------------------------------------------------------------*/
 
 #include <string.h> /* in case of dbmalloc use */

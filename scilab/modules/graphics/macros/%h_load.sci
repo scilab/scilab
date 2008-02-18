@@ -1,5 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004 - INRIA - Serge Steer
+// Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+// Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function h=%h_load(fd)
-//Author S. Steer Sept 2004, Copyright INRIA
   global init_immediate_drawing
   init_immediate_drawing = 0;
   
@@ -27,7 +37,6 @@ function h=%h_load(fd)
 endfunction
 
 function [h,immediate_drawing] = load_graphichandle(fd)
-//Author S. Steer Sept 2004, Copyright INRIA
   global init_immediate_drawing
   typ=ascii(mget(mget(1,'c',fd),'c',fd))
   if typ<>'Figure'
@@ -1082,7 +1091,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 endfunction
 
 function r=toggle(k)
-//Author S. Steer Sept 2004, Copyright INRIA
   r=emptystr(k)+'on'
   r(k==0)='off'
 endfunction

@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [xy]=scaling(xy,factor,orig)
 //  xy=xy*factor+orig
 //
@@ -5,7 +13,6 @@ function [xy]=scaling(xy,factor,orig)
 // factor : factor
 // orig   : origin, [0;0] if omitted
 //!
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 select rhs
  case 2 then orig=[0;0];

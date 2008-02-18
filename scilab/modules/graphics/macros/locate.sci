@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x,but]=locate(n,flag)
 //[x]=locate(n,flag)
 //fonction permettant d'obtenir les coordonnees  d'un ou plusieurs
@@ -15,7 +23,7 @@ function [x,but]=locate(n,flag)
 //en cliquant sur un des boutons, la fin de saisie pour  n<=0  est
 //indiquee en cliquant sur le bouton de gauche.
 //!
-// Copyright INRIA
+
   [lhs,rhs]=argn(0)
   but=[]
   xselect();

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function []=black(sl,fmin,fmax,pas,comments)
 //Black's diagram (Nichols chart) for a linear system sl.
 //sl can be a continuous-time, discrete-time or sampled SIMO system
@@ -22,7 +31,6 @@ function []=black(sl,fmin,fmax,pas,comments)
 //  phi      : matrix of phases (in degrees). One row for each response.
 //  repf     : matrix of complex numbers. One row for each response.
 
-// Copyright INRIA
 //To plot the grid of iso-gain and iso-phase of y/(1+y) use abaque()
 //%Example
 //  s=poly(0,'s')
