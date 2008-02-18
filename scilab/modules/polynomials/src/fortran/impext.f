@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1986-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine impext(mp,d,m,n,row,nr,col,nc,mp1,d1,job,ierr)
 c!but
 c     impext extrait une sous matrice definie par un choix de lignes
@@ -33,12 +41,9 @@ c     ierr:indicateur d'erreur:
 c          ierr=0 ok
 c          ierr>0 une des lignes (colonnes) choisies n'appartient
 c                 pas a la matrice donnee.
-c!origine
-c     Serge Steer INRIA  5/02/86
 c!sous programmes appeles
 c     icopy (blas)
 c!
-c     Copyright INRIA
       integer mp(*),mp1(*)
       integer d(*),m,n,row(*),nr,col(*),nc,d1(*),job,ierr
 c

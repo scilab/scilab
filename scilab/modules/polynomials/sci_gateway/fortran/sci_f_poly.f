@@ -1,6 +1,11 @@
-c			=======================================
-c			INRIA
-c			=======================================
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intpoly(id)
 
       INCLUDE 'stack.h'
@@ -9,7 +14,7 @@ c			=======================================
       integer blank,racine,coeff
       logical roots,ref
       data blank/40/,racine/27/,coeff/12/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
@@ -23,7 +28,7 @@ c
          call error(42)
          return
       endif
-c      
+c
       il1=iadr(lstk(top+1-rhs))
       ilr=il1
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
@@ -56,7 +61,7 @@ c
             endif
          endif
       else
-        roots=.true. 
+        roots=.true.
       endif
 
 c     formal variable

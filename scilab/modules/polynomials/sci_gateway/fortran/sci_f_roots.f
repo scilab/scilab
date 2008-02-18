@@ -1,6 +1,11 @@
-c			=======================================
-c			INRIA
-c			=======================================
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine introots(id)
       INCLUDE 'stack.h'
@@ -12,7 +17,7 @@ c			=======================================
       logical ref,eigen
       integer eig
       data eig/14/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
@@ -71,7 +76,7 @@ c
 c     for Matlab compatibility root of the vector of coefficients
          vol=mn1
          l1=sadr(il1+4)
-         
+
          n=mn1
          if(.not.ref) then
             call dtild(n*(it1+1),stk(l1),1)
@@ -86,14 +91,14 @@ c     for Matlab compatibility root of the vector of coefficients
             endif
             call dcopy(n,stk(l1),1,stk(lc),-1)
             if(it1.eq.1)  call dcopy(n,stk(l1+n),1,stk(lc+n),-1)
-         endif 
+         endif
       else
          if(mn1.ne.1) then
             err=1
             call error(43)
             return
          endif
-     
+
          if(istk(il1).lt.2) goto 24
 
          id1=il1+8
@@ -111,13 +116,13 @@ c     for Matlab compatibility root of the vector of coefficients
 
       if (eigen) goto 22
 c
-c     real polynomial: rpoly algorithm 
+c     real polynomial: rpoly algorithm
 c     this alg is much more speedy, but it may happens that it gives
-C     erroneous results without messages : example  
+C     erroneous results without messages : example
 C     roots(%s^31-8*%s^30+9*%s^29+0.995) should have two real roots near
 C     1.355 and 6.65 and the other ones inside a circle centered in 0
 C     with radius 1
-C     
+C
 
       if(it1.eq.0.and.n.le.100) then
          lp=max(lw,l1+2*n)

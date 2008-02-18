@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -61,21 +72,21 @@
     one has <VERB>|pol(i omega)|</VERB> = <VERB>|g*prod(lnum_j(i omega)|</VERB>.
     If <VERB>flag='d'</VERB> is given, then
     one has <VERB>|pol(exp(i omega))|</VERB> = <VERB>|g*prod(lnum_i(exp(i omega))|</VERB>.
-    If argument of <VERB>factors</VERB> is a 1x1 rational <VERB>rat=pol1/pol2</VERB>, 
-    the factors of the numerator <VERB>pol1</VERB> and the denominator <VERB>pol2</VERB> 
+    If argument of <VERB>factors</VERB> is a 1x1 rational <VERB>rat=pol1/pol2</VERB>,
+    the factors of the numerator <VERB>pol1</VERB> and the denominator <VERB>pol2</VERB>
     are returned in the lists <VERB>lnum</VERB> and <VERB>lden</VERB> respectively.</P>
     <P>
     The &quot;gain&quot; is returned as <VERB>g</VERB>,i.e. one has:
     rat= g times (product entries in lnum) / (product entries in lden).</P>
     <P>
-    If <VERB>flag</VERB> is <VERB>'c'</VERB> (resp. <VERB>'d'</VERB>), the roots of <VERB>pol</VERB> 
-    are refected wrt the imaginary axis (resp. the unit circle), i.e. 
+    If <VERB>flag</VERB> is <VERB>'c'</VERB> (resp. <VERB>'d'</VERB>), the roots of <VERB>pol</VERB>
+    are refected wrt the imaginary axis (resp. the unit circle), i.e.
     the factors in <VERB>lnum</VERB> are stable polynomials.</P>
     <P>
     Same thing if <VERB>factors</VERB> is invoked with a rational arguments:
     the entries in <VERB>lnum</VERB> and <VERB>lden</VERB> are stable polynomials if
     <VERB>flag</VERB> is given. <VERB>R2=factors(R1,'c')</VERB> or <VERB>R2=factors(R1,'d')</VERB>
-    with <VERB>R1</VERB> a rational function or SISO <VERB>syslin</VERB> list then the 
+    with <VERB>R1</VERB> a rational function or SISO <VERB>syslin</VERB> list then the
     output <VERB>R2</VERB> is a transfer with stable numerator and denominator and
     with same magnitude as <VERB>R1</VERB> along the imaginary axis (<VERB>'c'</VERB>)
     or unit circle (<VERB>'d'</VERB>).</P>

@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1988-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=DMP2PM,SSI=0
 c     Copyright INRIA
       subroutine dmp2pm(mp,d,nl,pm,deg,m,n)
@@ -27,8 +35,6 @@ c     deg: degre maxi des coefficients du polynome matriciel a extraire
 c     m : nombre de ligne de la matrice polynomiale
 c     n : nombre de colonnes de la matrice polynomiale
 c
-c!origine
-c Serge Steer Inria 1988
 c!
       double precision mp(*),pm(*)
       integer d(*),nl,m,n,deg

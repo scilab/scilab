@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -24,7 +35,7 @@
     system described by transfer matrix SISO <VERB>h</VERB> with the
     feedback by the gain <VERB>k</VERB>.</P>
     <P>
-    If  <VERB>k=poly(0,'k')</VERB> we will have a polynomial matrix with dummy variable 
+    If  <VERB>k=poly(0,'k')</VERB> we will have a polynomial matrix with dummy variable
     <VERB>k</VERB>, formal expression of the Routh table.</P>
   </DESCRIPTION>
 </MAN>

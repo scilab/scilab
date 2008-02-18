@@ -1,13 +1,18 @@
-c			=======================================
-c			INRIA
-c			=======================================
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intpdiv(id)
       INCLUDE 'stack.h'
       integer iadr, sadr
       integer id(nsiz)
       integer voln,vold,v2
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
@@ -111,7 +116,7 @@ c     denominateur
             err=2
             call error(54)
             return
-         endif 
+         endif
          v2=1
       else
          if(id(1).eq.0) call icopy(4,istk(ild+4),1,id,1)
@@ -139,7 +144,7 @@ c     test degre du denominateur
          return
       endif
       goto 64
-c     
+c
  65   if(nn.lt.nd) then
 c        . No division to perform
          if(lhs.eq.2) then
@@ -188,7 +193,7 @@ c
             call wpodiv(stk(l1),stk(l1i),stk(ld),stk(ldi),nn,nd,ierr)
          endif
       endif
-c     
+c
       itr=max(it1,itd)
       nq=nn-nd
 
@@ -233,7 +238,7 @@ c????               stk(lr+1)=stk(l1i)
             endif
             ilq=iadr(lstk(top))
             lq=sadr(ilq+10)
-            inc=1 
+            inc=1
             if (l1+nd.lt.lq) inc=-1
             call unsfdcopy(nq+1,stk(l1+nd),inc,stk(lq),inc)
             if(nr.lt.0) stk(lr)=0.0d+0

@@ -1,3 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1986-2008 - INRIA - Francois DELBECQUE
+c Copyright (C) 1990-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine sfact1(b,n,w,maxit,ierr)
 c!but
 c     on cherche une factorisation spectrale d'un polynome a donne
@@ -16,16 +25,12 @@ c     maxit : nombre maxi d'iterations admis
 c     ierr : indicateur d'erreur
 c             si ierr=0 : ok
 c             si ierr<0 : convergence a 10**ierr pres
-c             si ierr=1 : non convergence 
+c             si ierr=1 : non convergence
 c             si ierr=2 : b(0) est negatif ou nul.
-c          
-c!auteur
-c     f Delebecque inria (86) d'apres Kucera V
-c     modif s. Steer (90)
+c
 c!origine
 c     V Kucera : Discrete Linear control (john Wiley& Sons) 1979
 c!
-c     Copyright INRIA
       dimension b(n+1),w(*)
       double precision b,b0,w,a0,temp,b00,s,dlamch,eps,best
 c
@@ -41,7 +46,7 @@ c
       lbold=leta+lb
       lambda=lbold+lb
       lsave=lambda+lb
-c     
+c
       call dcopy(lb,b,-1,w(lbold),1)
       call dcopy(lb,w(lbold),1,b,1)
       b00=w(lbold)
@@ -50,9 +55,9 @@ c
       do 1 j=1,lb
          w(lalpha-1+j)=b(j)/b0
  1    continue
-c     
+c
       do 40 i=1,maxit
-c     
+c
          call dcopy(lb,w(lbold),1,b,1)
          call dcopy(lb,w(lalpha),1,w(lomeg),1)
 c     premier tableau
@@ -84,7 +89,7 @@ c     deuxieme tableau
             w(lalpha-1+j)=0.50d+0*(w(leta+j-1)+w(lomeg+j-1))
             s=s+w(lalpha-1+j)*w(lalpha-1+j)
  22      continue
-c     
+c
 c     test de convergence
 
 c     calcul de l'erreur element par elements
@@ -103,14 +108,14 @@ c$$$  900  continue
          endif
  40   continue
       goto 90
-c     
+c
  50   do 51 i=1,lb
          b(i)=w(lalpha-1+i)
  51   continue
       return
-c     
+c
 c     retours en erreur
-c     
+c
  90   continue
       if(best.le.1.d-3) then
          call dcopy(lb,w(lsave),1,b,1)

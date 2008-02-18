@@ -1,16 +1,25 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [lnum,lden,g]=factors(P,flag)
-//Given a polynomial or rational P, returns in list lnum polynomials of 
+//Given a polynomial or rational P, returns in list lnum polynomials of
 //degree 1 or two which are the factors of numerators of P.
 // and in lden the factors of denominator of P. g is the gain.
-// if flag=='c' unstable roots are reflected vs the imaginary axis 
-// if flag=='d' unstable roots are reflected vs unit circle 
-// Copyright INRIA
+// if flag=='c' unstable roots are reflected vs the imaginary axis
+// if flag=='d' unstable roots are reflected vs unit circle
 [LHS,RHS]=argn(0);
 if RHS==1 then flag=[];end
 if type(P)==2 then [lnum,lden]=pfactors(P,flag);
   if LHS >=3 then error('invalid LHS');end
   return;end
-  if type(P)==16 then 
+  if type(P)==16 then
     if typeof(P)=='state-space' then P=ss2tf(P);end
     [lnum,gn]=pfactors(P('num'),flag);
     [lden,gd]=pfactors(P('den'),flag);g=gn/gd;

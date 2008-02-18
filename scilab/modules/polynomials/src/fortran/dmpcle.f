@@ -1,16 +1,24 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dmpcle(pm1,d1,m,n,d2,epsr,epsa)
-c!but 
-c     Dans une matrice polynomiale mp1 cette routine met (pour 
-c     chaque polynome) a zero les coefficients de polynomes 
+c!but
+c     Dans une matrice polynomiale mp1 cette routine met (pour
+c     chaque polynome) a zero les coefficients de polynomes
 c     de module inferieur a epsa ou epsr*(norme un du vecteur
 c     des coefficients du polynome)
-c     
+c
 c!listed'appel
-c     
+c
 c     subroutine dmpclea(pm1,d1,m,n,d2,epsr,epsa)
 c     double precision pm1(*),epsr,epsa
 c     integer d1(*),d2(*),m,n
-c     
+c
 c     pm1 : tableau reel contenant les coefficients des polynomes,
 c     le coefficient de degre k du polynome pm1(i,j) est range
 c     dans pm1( d1(i + (j-1)*ld1 + k) )
@@ -22,16 +30,12 @@ c     d1(k+1)-d1(k) -1
 c     m : nombre de ligne de la matrice pm1
 c     n : nombre de colonne de matrice pm1
 c     d2 : tableau de travail meme taille que d1
-c!origine
-c     s Steer INRIA
-c!    
-c     Copyright INRIA
       double precision pm1(*),norm,epsr,epsa,eps
       integer d1(*),d2(*),m,n,count
       logical ok
-c     
-c     
-c     
+c
+c
+c
       mn=m*n
       ld1=mn+1
       if (mn.eq.1) then

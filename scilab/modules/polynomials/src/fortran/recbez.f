@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1989-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine recbez(p1,n1,p2,n2,best,ipb,w,err)
 c!but
 c calcule la factorisation de bezout de deux polynomes p1,p2 c'est a dire
@@ -27,10 +35,6 @@ c     w: tableau de travail  w(7*n0+3*n0*n0) ou n0=max(n1,n2)+1
 c     err : estimee de l'erreur d'equation
 c! sous programmes appeles
 c     dest dcopy bezstp dlamch
-c!origine
-c S Steer INRIA 1989
-c!
-c     Copyright INRIA
       double precision  p1(n1+1),p2(n2+1),w(*),best(*),err
       double precision  dlamch
       integer ipb(6)
@@ -85,7 +89,7 @@ c     lu : pointeur sur le coin en haut a gauche de la matrice u courante
       ipb(1)=1
       if(min(nn1,nn2).eq.0) goto 70
       CRES=nn1-nn2
-      if (CRES .lt. 0) then 
+      if (CRES .lt. 0) then
          goto 40
       elseif (CRES .eq. 0) then
          goto 50
@@ -138,9 +142,9 @@ c
  70   best(1)=1.0d+0
       ipb(2)=2
       CRES=nn1-nn2
-      if (CRES .lt. 0) then 
+      if (CRES .lt. 0) then
          goto 90
-      elseif (CRES .eq. 0) then 
+      elseif (CRES .eq. 0) then
          goto 95
       else
          goto 100

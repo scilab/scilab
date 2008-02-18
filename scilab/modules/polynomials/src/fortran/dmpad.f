@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=DMPAD,SSI=0
 c     Copyright INRIA
       subroutine dmpad(pm1,d1,l1,pm2,d2,l2,pm3,d3,m,n)
@@ -25,8 +33,6 @@ c     pm3,d3 : definitions similaires a celles de pm1 et d1, l3 est
 c              suppose egal a m
 c     m : nombre de ligne des matrices pm
 c     n : nombre de colonnes des matrices pm
-c!origine
-c     s Steer INRIA
 c!
       double precision pm1(*),pm2(*),pm3(*),eps,w
       double precision dlamch

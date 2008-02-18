@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine fmt(a,maxc,typ,n1,n2)
 c!but
 c     ce sous programme determine le format d'ecriture le plus court
@@ -16,21 +24,18 @@ c           typ=0 le nombre n'est pas representable
 c           typ=1 le format est dn1.n2
 c           typ=2 le format est fn1.n2
 c     n1,n2 : entiers definissant les champs des formats
-c!origine
-c     Serge Steer INRIA
-c!
-c     Copyright INRIA
+c
       double precision a,a1,ent,dec,sciround,dlamch
       integer typ,n1,n2,maxc
       logical v
 c
-C     testing Nans 
+C     testing Nans
       v=.false.
       if (isanan(a).eq.1) v=.true.
       if(v) then
          typ=-2
          return
-c     testing Inf 
+c     testing Inf
       elseif(a.gt.dlamch('o')) then
          typ=-1
          return

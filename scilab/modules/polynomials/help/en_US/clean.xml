@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -27,8 +38,8 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    This function eliminates (i.e. set to zero) all the coefficients 
-    with absolute value &lt; <VERB>epsa</VERB> and relative value &lt; <VERB>epsr</VERB> 
+    This function eliminates (i.e. set to zero) all the coefficients
+    with absolute value &lt; <VERB>epsa</VERB> and relative value &lt; <VERB>epsr</VERB>
     (relative means relative w.r.t. 1-norm of coefficients)
     in a polynomial (possibly matrix polynomial or rational
     matrix).</P>

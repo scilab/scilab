@@ -1,22 +1,31 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [f,d]=invr(h,flag)
 //if h is a scalar, polynomial or rational fonction matrix, invr
 //computes h^(-1).
 //!
 
-// Copyright INRIA
 if type(h)==1 then f=inv(h);return;end
 [lhs,rhs]=argn(0);
 if rhs==1 then flag='C';end
 if type(h) == 2 then
-  //     POLYNOMIAL MATRIX               
-  [m,n]=size(h);   
+  //     POLYNOMIAL MATRIX
+  [m,n]=size(h);
   if m<>n then error(20),end
   ndeg=maxi(degree(h));
   if ndeg==1 then
     //           MATRIX PENCIL
     E=coeff(h,1);A=-coeff(h,0);
     if norm(E-eye(E),1) < 100*%eps then
-      // sI -A 
+      // sI -A
       [num,den]=coff(A,varn(h));f=num/den;
       return
     end
@@ -28,7 +37,7 @@ if type(h) == 2 then
     end
     return;
   end;
-  //   GENERAL POLYNOMIAL MATRIX 
+  //   GENERAL POLYNOMIAL MATRIX
   select flag
   case 'L'
     f=eye(n,n);
@@ -57,7 +66,7 @@ if type(h)==15|type(h)==16 then
   if m<>n then error(20),end
   select flag
   case 'L'
-    //    Leverrier 
+    //    Leverrier
     f=eye(n,n);
     for k=1:n-1,
       b=h*f,
@@ -72,7 +81,7 @@ if type(h)==15|type(h)==16 then
     denh=lcm(h('den'));
     Num=h*denh;Num=Num('num');
     [N,d]=coffg(Num);
-    f=N*denh; 
+    f=N*denh;
     if lhs==1 then f=f/d;end
     return;
   case 'C'

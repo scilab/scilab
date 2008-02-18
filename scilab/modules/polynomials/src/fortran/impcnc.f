@@ -1,18 +1,26 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=IMPCNC,SSI=0
 c     Copyright INRIA
       subroutine impcnc(pm1,d1,ld1,pm2,d2,ld2,pm3,d3,l,m,n,job)
-c!but 
+c!but
 c     cette subroutine concatene deux matrices dont les coefficients
 c     sont des polynomes (a coeff entiers) s:
 c     pm3=<pm1 pm2>
 c     ou
 c     pm3=<pm1' pm2'>'
 c!liste d'appel
-c     
+c
 c     subroutine impcnc(pm1,d1,ld1,pm2,d2,ld2,pm3,d3,l,m,n,job)
 c     integer pm1(*),pm2(*),pm3(*)
 c     integer d1(ld1*n+1),d2(ld2*n+1),d3(m*n+1),l,m,n,ld1,ld2,job
-c     
+c
 c     pm1 : tableau  contenant les coefficients des polynomes,
 c     le coefficient de degre k du polynome pm1(i,j) est range
 c     dans pm1( d1(i + (j-1)*ld1 + k) )
@@ -22,7 +30,7 @@ c     d1(k)) contient  l'adresse dans pm1 du coeff de degre 0
 c     du polynome pm1(i,j). Le degre du polynome pm1(i,j) vaut:
 c     d1(k+1)-d1(k) -1
 c     ld1 : entier definissant le rangement dans d1
-c     
+c
 c     pm2,d2,ld2 : definitions similaires a celles de pm1,d1,ld1
 c     pm3,d3 : definitions similaires a celles de pm1 et d1, l3 est
 c     suppose egal a m
@@ -34,21 +42,19 @@ c     et nombre de colonnes de pm1 et pm3 si job <0
 c     job : indique l'operation a effectuer:
 c     job >0 pm3=<pm1 pm2>
 c     job <0 pm3=<pm1' pm2'>'
-c!origine
-c     s Steer INRIA
-c!    
+c!
       integer pm1(*),pm2(*),pm3(*)
       integer d1(*),d2(*),d3(*),l,m,n,ld1,ld2
-c     
+c
       integer i1,i2,i3,np,i,j
-c     
+c
       i3=1
       d3(1)=1
       i1=1-ld1
       i2=1-ld2
-c     
+c
       if(job.lt.0) goto 30
-c     
+c
       do 11 j=1,m
          i1=i1+ld1
          np=d1(i1+l)-d1(i1)
@@ -68,7 +74,7 @@ c
  20      continue
  21   continue
       return
-c     
+c
  30   do 50 j=1,n
          i1=i1+ld1
          i2=i2+ld2

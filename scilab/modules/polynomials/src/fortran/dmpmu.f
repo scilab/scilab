@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1985-2008 - INRIA - Carlos KLIMANN
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=DMPMU,SSI=0
 c     Copyright INRIA
       subroutine dmpmu(mp1,d1,nl1,mp2,d2,nl2,mp3,d3,l,m,n)
@@ -39,9 +47,6 @@ c     -si m =  0 la multiplication s'entend element par element,
 c il est alors suppose que mp1 et mp2, donc mp3 sont de dimension
 c l x n.
 c
-c!
-c auteur: c. klimann, inria
-c date: 25 fevrier 1985.
 c!
 c
 c&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&

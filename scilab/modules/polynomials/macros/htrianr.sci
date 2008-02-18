@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [A,U,rk]=htrianr(A)
 //[A,U,rk]=htrianr(a)
 //triangularization of polynomial matrix A.  A is [m,n], m<=n.
@@ -6,8 +16,7 @@ function [A,U,rk]=htrianr(A)
 //rk=normal rank of A
 //Warning: there is an elimination of neglectable terms
 //!
-// Copyright INRIA
-A=clean(A); 
+A=clean(A);
 [m,n]=size(A);U=eye(n,n);
 l1=n+1;
 for l=m:-1:maxi((m-n),1)

@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine rpoly(op, degree, zeror, zeroi, fail)
 c!purpose
 c finds the zeros of a real polynomial
@@ -8,8 +16,8 @@ c degree   - integer degree of polynomial.
 c zeror, zeroi - output double precision vectors of
 c                real and imaginary parts of the
 c                zeros.
-c fail  - output parameter, 
-c        2 if  leading coefficient is zero 
+c fail  - output parameter,
+c        2 if  leading coefficient is zero
 c        1 for non convergence or if rpoly
 c         has found fewer than degree zeros.
 c         in the latter case degree is reset to

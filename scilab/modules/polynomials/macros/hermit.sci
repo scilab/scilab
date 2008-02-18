@@ -1,10 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [a,u]=hermit(a)
 //[A,U]=hermit(A)
 //Hermite form: U is an unimodular matrix such that A*U is
 //triangular. The output value of A is A*U.
 //Warning: Experimental version
 //!
-// Copyright INRIA
 [m,n]=size(a);if m<>n then error('square matrix only!'),end
 [a,u]=htrianr(a)
 for l=n-1:-1:1

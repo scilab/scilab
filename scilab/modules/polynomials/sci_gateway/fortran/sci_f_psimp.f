@@ -1,21 +1,25 @@
-c			=======================================
-c			INRIA
-c			=======================================
-
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intpsimp(id)
       INCLUDE 'stack.h'
       integer iadr, sadr
       integer id(nsiz)
       integer vola,volb
       logical chkvar,vcopyobj
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
+c
 
 c     simp(num,den)
 c
-      if(lhs.ne.2) then 
+      if(lhs.ne.2) then
          call error(41)
          return
       endif
@@ -77,7 +81,7 @@ c
          call funnam(ids(1,pt+1),'simp',ilb)
          return
       endif
-c     
+c
       mna=istk(ila+1)*istk(ila+2)
       id(1)=0
       if(istk(ila).eq.2) then
@@ -97,7 +101,7 @@ c
             istk(ida+i-1)=i
  74      continue
       endif
-c     
+c
       mnb=istk(ilb+1)*istk(ilb+2)
       if(istk(ilb).eq.2) then
          idb=ilb+8
@@ -128,7 +132,7 @@ c
          call error(60)
          return
       endif
-c     
+c
 c     determine max of the degrees
       na=0
       nb=0
@@ -140,7 +144,7 @@ c     preserve adress of the beginning of a and b coefficients
 
       lar=la
       lbr=lb
-c     allocate memory for intermediate results 
+c     allocate memory for intermediate results
       law=lw
       lbw=law+na+1
       lw=lbw+nb+1
@@ -171,7 +175,7 @@ c     .  copy overwrite initial polynomials with simplified ones
          istk(ida-1+i)=nnum
          istk(idb-1+i)=nden
  79   continue
-c     
+c
 c     form vector of pointers from vector of degrees+1
       ma=1
       mb=1
@@ -183,11 +187,11 @@ c     form vector of pointers from vector of degrees+1
          ma=ma+na
          mb=mb+nb
  80   continue
-c     
+c
 c     compute position of the a and b simplified in the result
       lstk(top)=lar+istk(ida+mna)-1
       il=iadr(lstk(top))
-c     
+c
 c     put new b variable in place
       if(istk(ilb).eq.2) then
 c     b matrice de polynome

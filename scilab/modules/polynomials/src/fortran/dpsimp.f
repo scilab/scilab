@@ -1,53 +1,58 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1990-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dpsimp(a,na,b,nb,a1,na1,b1,nb1,w,ierr)
 c!    but
-c     Etant donnes une fraction rationnelle donnee par ses polynomes 
+c     Etant donnes une fraction rationnelle donnee par ses polynomes
 c     numerateur et denominateurs, ce sous programme retourne le numerateur
 c     et le denominateur de sa representation simplifiee.
 c!    liste d'appel
 c     subroutine dpsimp(a,na,b,nb,as,nas,bs,nbs,w,ierr)
-c     
+c
 c     double precision a(na+1),b(nb+1),as(*),bs(*),w,er
 c     integer na,nb,nas,nbs,ierr
-c     
+c
 c     a    :  tableau contenant les coefficients du numerateur range
-c             par puissance croissante.(entree) 
-c     na   :  degre du numerateur (entree) 
+c             par puissance croissante.(entree)
+c     na   :  degre du numerateur (entree)
 c     b    :  tableau contenant les coefficients du denominateur range
-c             par puissance croissante. (entree) 
-c     nb   :  degre du denominateur (entree) 
+c             par puissance croissante. (entree)
+c     nb   :  degre du denominateur (entree)
 c
 c     a1   :  tableau contenant les coefficients du numerateur range
-c             par puissance croissante.(sortie) 
-c     na1  :  degre+1 du numerateur (sortie) 
+c             par puissance croissante.(sortie)
+c     na1  :  degre+1 du numerateur (sortie)
 c     b1   :  tableau contenant les coefficients du denominateur range
-c             par puissance croissante. (sortie) 
-c     nb1  :  degre+1 du denominateur (sortie) 
+c             par puissance croissante. (sortie)
+c     nb1  :  degre+1 du denominateur (sortie)
 c
 c     les implantations de a et a1, b et b1 peuvent etre confondues.
 c     Dans les cas ou les zones memoires de a (resp b) et a1 (resp b1) se
-c     chevauchent, l'adresse de a1 (resp b1) doit etre au moins egale a 
+c     chevauchent, l'adresse de a1 (resp b1) doit etre au moins egale a
 c     l'adresse de a  (resp b)
 c
 c     w    :  tableau de travail de taille:
 c             2*(na+nb)+min(na,nb)+10*max(na,nb)+3*max(na,nb)**2+4
-c     ierr :  
+c     ierr :
 c             en entree ierr specifie l'espace memoire disponible dans w
 c             en sortie:
 c     ierr=0 : ok
 c     ierr=1 : denominateur nul
 c     ierr=2 : espace memoire insuffisant on retourne les polynomes
-c!    
-c     origine S Steer INRIA 1990
-c     
-c     Copyright INRIA
+c!
       double precision a(na+1),b(nb+1),w(*),a1(*),b1(*),t,er,t1,t2
       integer na,nb,ierr,ipb(6)
-c     
+c
       lw=1+2*(na+nb)+min(na,nb)+3
 c     n0=max(na,nb)+1
 c     lfree=lw+10*n0+3*n0*n0
-      
-c     
+
+c
       maxw=ierr
       ierr=0
 c
@@ -67,21 +72,21 @@ c
  09   nna=nna-1
       if(nna.lt.0) goto 20
       if(a(nna+1).eq.0.0d+0) goto 09
-c     
+c
 c     elimination des racines en zero
       la0=0
  10   la0=la0+1
       if(a(la0).eq.0.0d+0) goto 10
       na1=nna-(la0-1)
       nz=la0-1
-c     
+c
       lb0=0
  11   lb0=lb0+1
       if(b(lb0).eq.0.0d+0) goto 11
       nb1=nnb-(lb0-1)
       nz=nz-(lb0-1)
 c
-      
+
       n0=max(na1,nb1)+1
       lfree=lw+10*n0+3*n0*n0
       if(lfree.ge.maxw.and.na1.gt.0.and.nb1.gt.0) ierr=2
@@ -109,9 +114,9 @@ c     normalize highest degree coefficients of num and den
       t2=b(nnb+1)
       call dscal(na1+1,1.0d0/t1,a(la0),1)
       call dscal(nb1+1,1.0d0/t2,b(lb0),1)
-c     
+c
       call recbez(a(la0),na1,b(lb0),nb1,w,ipb,w(lw),er)
-      if(er.gt.1d-3) goto 30 
+      if(er.gt.1d-3) goto 30
       nden=ipb(5)-ipb(4)
       nnum=ipb(6)-ipb(5)
       if(na1.ne.nnum-1) then
@@ -145,7 +150,7 @@ c
             call dset(nz,0.0d+0,a1,1)
             nnum=nnum+nz
             call dcopy(nden,b(lb0),1,b1,1)
-         else 
+         else
             nz=-nz
             call dcopy(nnum,a(la0),1,a1,1)
             call dcopy(nden,b(lb0),1,b1(1+nz),1)

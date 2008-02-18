@@ -1,5 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine bezstp(p1,n1,p2,n2,a,na,u,nu,l,x,v,w,best,ipb,errr)
-c     Copyright INRIA
       double precision a(na,*),u(nu,*),x(na,*),v(nu,*),p1(*),p2(*)
       integer ipb(6)
       double precision w(*),best(*),errr
@@ -17,7 +24,7 @@ c
       iw1=ixy+ll
       iw=iw1+n0
       ifree=iw+2*n0
-c     
+c
       do 10 k=1,l
          call giv(a(k,n0+1-k),a(k+1,n0+1-k),c,s)
          call drot(n0,a(k,1),na,a(k+1,1),na,c,s)
@@ -28,11 +35,11 @@ c
             call dcopy(ll,u(2,1),nu,v,nu)
          endif
  10   continue
-c     
+c
       call dcopy(ll,u(l,1),nu,w(iuv),1)
       call dcopy(ll,u(l+1,1),nu,w(ixy),1)
 
-c     
+c
       if(l.le.abs(n1-n2)) goto 99
       fact=a(l,n0-l+1)
       if(l.gt.1) then
@@ -57,7 +64,7 @@ c
       if(dt0.eq.0.0d+0) goto 99
       call dscal(ll,1.0d+0/dt0,w(ixy),1)
       dt0=1
-c     
+c
 c     estimation de l'erreur directe
 c
 c     p1*x
@@ -92,7 +99,7 @@ c     p
 c     p1*u+p2*v-p
       call ddif(np+1,w(iw1),1,w(iw),1)
       errd=errd+ddot(nw+1,w(iw),1,w(iw),1)
-c     
+c
 c     estimation de l'erreur inverse
 c     ------------------------------
 c     y
@@ -110,7 +117,7 @@ c     p*x-p2
       erri=erri+ddot(n2+1,w(iw),1,w(iw),1)
 
 c       write(6,*) np,errd,erri
-c     
+c
       if(max(erri,errd).lt.errr) then
          errr=max(erri,errd)
          nb=max(0,n0-l)

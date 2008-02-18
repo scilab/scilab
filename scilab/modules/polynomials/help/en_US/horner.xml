@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -27,16 +38,16 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    evaluates the polynomial or rational 
-    matrix <VERB>P = P(s)</VERB> when the variable <VERB>s</VERB> of the 
+    evaluates the polynomial or rational
+    matrix <VERB>P = P(s)</VERB> when the variable <VERB>s</VERB> of the
     polynomial is replaced by <VERB>x</VERB>:</P>
     <P><VERB>horner(P,x)</VERB>=<VERB>P(x)</VERB></P>
     <P>
-    Example (Bilinear transform): Assume <VERB>P = P(s)</VERB> is 
-    a rational matrix  then the rational matrix 
+    Example (Bilinear transform): Assume <VERB>P = P(s)</VERB> is
+    a rational matrix  then the rational matrix
     <VERB>P((1+s)/(1-s))</VERB> is obtained by <VERB>horner(P,(1+s)/(1-s))</VERB>.</P>
     <P>
-    To evaluate a rational matrix at given frequencies use 
+    To evaluate a rational matrix at given frequencies use
     preferably the <VERB>freq</VERB> primitive.</P>
   </DESCRIPTION>
   <EXAMPLE>
@@ -46,7 +57,7 @@ P=poly(1:3,'x')
 horner(P,[1 2 5])
 horner(P,[1 2 5]+%i)
 
-//evaluation of a rational 
+//evaluation of a rational
 s=poly(0,'s');M=[s,1/s];
 horner(M,1)
 horner(M,%i)

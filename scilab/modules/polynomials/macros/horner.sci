@@ -1,16 +1,25 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function r=horner(p,x)
-// horner(P,x) evaluates the polynomial or rational matrix P = P(s) 
+// horner(P,x) evaluates the polynomial or rational matrix P = P(s)
 // when the variable s of the polynomial is replaced by x
 // x can be a scalar or polynomial or rational matrix.
 // Example: bilinear transform; Assume P = P(s) is a rational matrix
 // then the rational matrix P((1+s)/(1-s)) is obtained by
 // horner(P,(1+s)/(1-s));
-// To evaluate a rational matrix at given frequencies use 
+// To evaluate a rational matrix at given frequencies use
 // preferably the freq primitive ;
 // See also: freq, repfreq.
 //!
 //
-// Copyright INRIA
   if argn(2)<>2 then error('horner requires two arguments'),end
   if x==[]|p==[] then r=[],return,end
   tp=type(p)
@@ -38,7 +47,7 @@ function r=horner(p,x)
       end
     end
     if indef then r=r*eye(),end
-  elseif tp==16 then 
+  elseif tp==16 then
     r=horner(p(2),x)./horner(p(3),x),
   elseif tp==129 then
     r=horner(p(:),x);r=r(1):r(2):r(3)

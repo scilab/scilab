@@ -1,7 +1,15 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine wmpcle(pm1r,pm1i,d1,m,n,d2,epsr,epsa)
 c!but
-c     Dans une matrice polynomiale pm1 cette routine met (pour 
-c     chaque polynome) a zero les coefficients de polynomes 
+c     Dans une matrice polynomiale pm1 cette routine met (pour
+c     chaque polynome) a zero les coefficients de polynomes
 c     de module inferieur a epsa ou epsr*(norme un du vecteur
 c     des coefficients du polynome)
 c
@@ -28,10 +36,7 @@ c          d1(k+1)-d1(k) -1
 c     m : nombre de ligne de la matrice pm1
 c     n : nombre de colonne de matrice pm1
 c     d2 : cf d1
-c!origine
-c    s Steer INRIA
-c!
-c     Copyright INRIA
+c
       double precision pm1r(*),pm1i(*),norm,normr,normi,epsr,epsa,eps
       integer d1(*),d2(*),m,n
 c

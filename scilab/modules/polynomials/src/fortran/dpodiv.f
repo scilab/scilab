@@ -1,5 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dpodiv(a,b,na,nb  )
-c     Copyright INRIA
       implicit double precision (a-h,o-z)
       dimension a(*),b(*)
 c
@@ -17,7 +24,7 @@ c     3. na: degre du polynome a.
 c     4. nb: degre du polynome b.
 c
       l=na-nb+1
-    2 if (l .le. 0) then 
+    2 if (l .le. 0) then
          goto 5
       else
          goto 3

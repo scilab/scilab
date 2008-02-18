@@ -1,18 +1,26 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1986-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dmrdsp(mpn,dn,mpd,dd,nl,mm,nn,var,lvar,maxc,mode,ll,
      1    lunit,cw,iw)
-c!but 
+c!but
 c     dmpdsp ecrit une matrice polynomiale (ou un polynome) sous
 c     la forme d'un tableau de polynomes, avec gestion automatique de
 c     l'espace disponible.
 c!liste d'appel
-c     
+c
 c     subroutine dmrdsp(mpn,dn,mpd,dd,nl,m,n,var,lvar,maxc,mode,ll,
 c     1 lunit,cw,iw)
-c     
+c
 c     double precision mp(*)
 c     integer d(nl*n+1),nl,m,n,lvar,maxc,mode,iw(*),ll,lunit
 c     character var*(*),cw*(*)
-c     
+c
 c     pm : tableau reel contenant les coefficients des polynomes,
 c     le coefficient de degre k du polynome pm(i,j) est range
 c     dans pm( d(i + (j-1)*nl + k) )
@@ -35,12 +43,9 @@ c     lunit : etiquette logique du support d'edition
 c     cw : chaine de caracteres de travail de longueur au moins ll*2
 c     iw : tableau de travail entier de taille au moins egale a
 c     n*(4+m)+1+dn(n*m+1)+dd(n*m+1)
-c!origine
-c     s. steer inria 1986
-c     Copyright INRIA
 
-c!    
-c     
+c!
+c
       double precision mpn(*),mpd(*),a
       integer dd(*),dn(*),iw(*),maxc,mode
       integer fl,sk,sl,c1,c2,typ
@@ -48,9 +53,9 @@ c
       character var*(*),cw*(*),sgn*1,dl*1
       character*10 form(2),fexp,expo
       integer nind
-c     
+c
       data nind/5/
-c     
+c
       m=abs(mm)
       n=abs(nn)
 c
@@ -58,7 +63,7 @@ c
       write(form(1),130) maxc,maxc-7
       dl=' '
       if(m*n.gt.1) dl=' '
-c     
+c
 c     phase d'analyse: pour chaque coefficient a representer on determine
 c     format avec lequel on va l'editer, on en deduit la longueur
 c     de la representation de chacun des polynomes.
@@ -66,7 +71,7 @@ c     les differents formats sont stockes sous forme codee dans iw
 c     a partir de lf
 c     la taille respective des representation des chacun des polynomes
 c     est contenue dans iw a partir de 1 .
-c     
+c
       lcol=1
       lbloc=lcol+n-1
       lfn=lbloc+n+2
@@ -74,7 +79,7 @@ c
       ldelta=lfd+dd(n*m+1)
       ldeb=ldelta+m*n
       lfin=ldeb+n
-c     
+c
       lines=0
       nbloc=1
       iw(lbloc+nbloc)=n
@@ -83,14 +88,14 @@ c
       ldg=-nl
       ldefd=lfd
       idelta=ldelta
-c     
+c
       k0=1
       do 11 k=1,n
          sl=0
          iw(lcol-1+k)=0
          ldg=ldg+nl
          do 10 l=1,m
-c     
+c
 c     traitement du polynome (l,k)
             lpn=dn(ldg+l)-1
             npn=dn(ldg+l+1)-dn(ldg+l)
@@ -116,7 +121,7 @@ c     determination du format devant representer a
                      fl=maxc
                      n2=maxc-7
                   endif
-c     
+c
 c     determination de la longueur de la representation du monome,
 c     cette longueur est a priori fl+2 (' '//sgn//rep(a)//var).
 c     mais peut etre reduite dans des cas particulier
@@ -129,14 +134,14 @@ c     mais peut etre reduite dans des cas particulier
                endif
                ldefn=ldefn+1
  05         continue
-            
-c     
+
+c
 c     cas particulier du dernier exposant du polynome
             nd=ifix(log10(0.5+npn))+1
             lghn=lghn+nd
 c     cas particulier d'un polynome reduit a 0
             if(first) lghn=4
-c     
+c
             lpd=dd(ldg+l)-1
             npd=dd(ldg+l+1)-dd(ldg+l)
             lghd=0
@@ -173,18 +178,18 @@ c     mais peut etre reduite dans des cas particulier
                endif
                ldefd=ldefd+1
  08         continue
-c     
+c
 c     cas particulier du dernier exposant du polynome
             nd=ifix(log10(0.5+npd))+1
             lghd=lghd+nd
 c     cas particulier d'un polynome reduit a 0
             if(first) lghd=4
-c     
+c
             iw(k)=max(iw(k),lghn,lghd)
             sl=sl+(lghn/(ll-10))+(lghd/(ll-10))+2
             iw(idelta)=min(lghn,ll-2)-min(lghd,ll-2)
             idelta=idelta+1
-c     
+c
  10      continue
          sk=sk+iw(k)
          if(sk.gt.ll-2) then
@@ -203,21 +208,21 @@ c     lines=lines+2*sl+m+2
          endif
  11   continue
       nbloc=min(nbloc,n)
-c     
+c
       l1=1
       if(mm.lt.0) then
-         write(cw(l1:l1+4),'(''eye *'')') 
+         write(cw(l1:l1+4),'(''eye *'')')
          l1=l1+5
          call basout(io,lunit,cw(1:l1-1))
          call basout(io,lunit,' ')
          if(io.eq.-1) goto 99
       endif
 
-c     
+c
 c     phase d'edition : les deux chaines de caracteres representant
 c     la ligne des exposants et la ligne des coefficients,sont
 c     constituees puis imprimees.
-c     
+c
       k1=1
       do 70 ib=1,nbloc
          k2=iw(lbloc+ib)
@@ -226,12 +231,12 @@ c
             call blktit(lunit,k1,k2,io)
             if (io.eq.-1) goto 99
          endif
-c     
+c
          cw(1:1)=dl
          c1=2
          cw(1+ll:1+ll)=dl
          c2=max(3+ll,nind+maxc+15)
-c     
+c
          do 60 l=1,m
 c     numerateur
             l1=c1
@@ -248,13 +253,13 @@ c     numerateur
                   l1=l1+ndelta
                   l2=l2+ndelta
                endif
-c     
+c
                ldg=(k-1)*nl+l
                lpn=dn(ldg)-1
                npn=dn(ldg+1)-dn(ldg)
                ldefn=lfn-1+dn(ldg)-dn(1)
                first=.true.
-c     
+c
                iw(ldeb-1+k)=l2
                iw(lfin-1+k)=0
                do 40 j=1,npn
@@ -265,7 +270,7 @@ c
                   first=.false.
                   if(mpn(lpn+j).lt.0.0d+0) sgn='-'
                   a=abs(mpn(lpn+j))
-c     
+c
                   if(ifmt.eq.1) then
                      nf=1
                      fl=maxc
@@ -281,7 +286,7 @@ c     Inf/Nan
                      n2=1
                   endif
 
-c     
+c
                   nd=0
                   if(j.gt.2) nd=ifix(log10(0.5+j))+1
                   if(l2+fl+2+lvar+nd.gt.c2+ll-2) then
@@ -355,7 +360,7 @@ c     cas particulier du polynome nul
             cw(c2-1:c2-1)=dl
             call basout(io,lunit,cw(c2-1:l2))
             if(io.eq.-1) goto 99
-c     
+c
 c     trait de fraction
             cw(c2:l2-1)=' '
             jjb1=c2
@@ -373,7 +378,7 @@ c     trait de fraction
             cw(l2:l2)=dl
             call basout(io,lunit,cw(c2-1:l2))
             if(io.eq.-1) goto 99
-c     
+c
 c     denominateur
             l1=c1
             l2=c2
@@ -388,13 +393,13 @@ c     denominateur
                   l1=l1+ndelta
                   l2=l2+ndelta
                endif
-c     
+c
                ldg=(k-1)*nl+l
                lpd=dd(ldg)-1
                npd=dd(ldg+1)-dd(ldg)
                ldefd=lfd-1+dd(ldg)-dd(1)
                first=.true.
-c     
+c
                do 50 j=1,npd
                   ifmt=iw(ldefd+j)
                   if(ifmt.eq.0) goto 50
@@ -403,7 +408,7 @@ c
                   first=.false.
                   if(mpd(lpd+j).lt.0.0d+0) sgn='-'
                   a=abs(mpd(lpd+j))
-c     
+c
                   if(ifmt.eq.1) then
                      nf=1
                      fl=maxc
@@ -418,7 +423,7 @@ c     Inf/Nan
                      fl=3
                      n2=1
                   endif
-c     
+c
                   nd=0
                   if(j.gt.2) nd=ifix(log10(0.5+j))+1
                   if(l2+fl+2+lvar+nd.gt.c2+ll-2) then
@@ -496,14 +501,14 @@ c     cas particulier du polynome nul
                if(io.eq.-1) goto 99
             endif
  60      continue
-c     
+c
          k1=k2+1
  70   continue
-c     
+c
  99   return
-c     
+c
  110  format('(i',i2,')')
  120  format('(f',i2,'.',i2,')')
  130  format('(1pd',i2,'.',i2,')')
-c     
+c
       end

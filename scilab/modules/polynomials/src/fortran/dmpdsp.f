@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dmpdsp(mp,d,nl,mm,nn,var,lvar,maxc,mode,ll,lunit,
      1    cw,iw)
 c!but
@@ -5,14 +13,14 @@ c     dmpdsp ecrit une matrice polynomiale (ou un polynome) sous
 c     la forme d'un tableau de polynomes, avec gestion automatique de
 c     l'espace disponible.
 c!liste d'appel
-c     
+c
 c     subroutine dmpdsp(mp,d,nl,m,n,var,lvar,maxc,mode,ll,lunit,
 c     1                  cw,iw)
-c     
+c
 c     double precision mp(*)
 c     integer d(nl*n+1),nl,m,n,lvar,maxc,mode,iw(*),ll,lunit
 c     character var*(*),cw*(*)
-c     
+c
 c     pm : tableau reel contenant les coefficients des polynomes,
 c     le coefficient de degre k du polynome pm(i,j) est range
 c     dans pm( d(i + (j-1)*nl + k) )
@@ -36,7 +44,6 @@ c     cw : chaine de caracteres de travail de longueur au moins 2*ll
 c     iw : tableau de travail entier de taille au moins egale a
 c     d(nl*n+1)-d(1) + m*n+1
 c!
-c     Copyright INRIA
 
       double precision mp(*),a
       integer d(*),iw(*),maxc,mode,fl,c1,c2,typ
@@ -44,7 +51,7 @@ c     Copyright INRIA
       logical first
       character var*(*),cw*(*),sgn*1,dl*1
       character*10 form(2),fexp,expo
-c     
+c
       m=abs(mm)
       n=abs(nn)
 
@@ -52,7 +59,7 @@ c
       write(form(1),130) maxc,maxc-7
       dl=' '
       if(m*n.gt.1) dl=' '
-c     
+c
 c     phase d'analyse: pour chaque coefficient a representer on determine
 c     format avec lequel on va l'editer, on en deduit la longueur
 c     de la representation de chacun des polynomes.
@@ -60,14 +67,14 @@ c     les differents formats sont stockes sous forme codee dans iw
 c     a partir de lf
 c     la taille respective des representation des chacun des polynomes
 c     est contenue dans iw a partir de 1 .
-c     
+c
       lines=0
       lbloc=n
       lf=lbloc+2+n
       nbloc=1
       iw(lbloc+nbloc)=n
       sk=0
-c     
+c
       ldg=-nl
       ldef=lf
       k0=1
@@ -76,7 +83,7 @@ c
          iw(k)=0
          ldg=ldg+nl
          do 20 l=1,m
-c     
+c
 c     traitement du polynome (l,k)
             lp=d(ldg+l)-1
             np=d(ldg+l+1)-d(ldg+l)
@@ -102,7 +109,7 @@ c     determination du format devant representer a
                   n2=maxc-7
                endif
 
-c     
+c
 c     determination de la longueur de la representation du monome,
 c     cette longueur est a priori fl+2 (' '//sgn//rep(a)//var).
 c     mais peut etre reduite dans des cas particulier
@@ -114,16 +121,16 @@ c     mais peut etre reduite dans des cas particulier
                if(i.ne.1) lgh=lgh+lvar
  09            ldef=ldef+1
  10         continue
-c     
+c
 c     cas particulier du dernier exposant du polynome
             nd=ifix(log10(0.5+np))+1
             lgh=lgh+nd
 c     cas particulier d'un polynome reduit a 0
             if(first) lgh=4
-c     
+c
             iw(k)=max(iw(k),lgh)
             sl=sl+(lgh/(ll-2))+1
-c     
+c
  20      continue
          sk=sk+iw(k)
          if(sk.gt.ll-2) then
@@ -142,21 +149,21 @@ c
          endif
  21   continue
       nbloc=min(nbloc,n)
-c     
+c
       l1=1
       if(mm.lt.0) then
-         write(cw(l1:l1+4),'(''eye *'')') 
+         write(cw(l1:l1+4),'(''eye *'')')
          l1=l1+5
          call basout(io,lunit,cw(1:l1-1))
          call basout(io,lunit,' ')
          if(io.eq.-1) goto 99
       endif
 
-c     
+c
 c     phase d'edition : les deux chaines de caracteres representant
 c     la ligne des exposants et la ligne des coefficients,sont
 c     constituees puis imprimees.
-c     
+c
       k1=1
       do 70 ib=1,nbloc
          k2=iw(lbloc+ib)
@@ -165,12 +172,12 @@ c
             call blktit(lunit,k1,k2,io)
             if (io.eq.-1) goto 99
          endif
-c     
+c
          cw(1:1)=dl
          c1=2
          cw(1+ll:1+ll)=dl
          c2=2+ll
-c     
+c
          do 60 l=1,m
             l1=c1
             l2=c2
@@ -181,7 +188,7 @@ c
                np=d(ldg+1)-d(ldg)
                ldef=lf-1+d(ldg)-d(1)
                first=.true.
-c     
+c
                l0=l1
                do 45 j=1,np
                   ifmt=iw(ldef+j)
@@ -191,7 +198,7 @@ c
                   first=.false.
                   if(mp(lp+j).lt.0.0d+0) sgn='-'
                   a=abs(mp(lp+j))
-c     
+c
                   if(ifmt.eq.1) then
                      fl=maxc
                      n2=1
@@ -204,7 +211,7 @@ c     Inf/Nan
                      fl=3
                      n2=1
                   endif
-c     
+c
                   nd=0
                   if(j.gt.2) nd=ifix(log10(0.5+j))+1
                   if(l2+fl+2+lvar+nd.gt.c2+ll-2) then
@@ -275,11 +282,11 @@ c     write(6,'(''c1,c2,l1,l2 '',4i4)') c1,c2,l1,l2
  60      continue
          k1=k2+1
  70   continue
-c     
+c
  99   return
-c     
+c
  110  format('(i',i2,')')
  120  format('(f',i2,'.',i2,')')
  130  format('(1pd',i2,'.',i2,')')
-c     
+c
       end

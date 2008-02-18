@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1985-2008 - INRIA - Carlos KLIMANN
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dimin(lig1,col1,v1,d1,v2,d2,lig2,col2,ligr,colr,ierr)
 c!but
 c
@@ -35,12 +43,8 @@ c     ierr: si 0 terminaison correcte,
 c           si 1 un des vecteurs v1 ou v2 a une longueur nulle,
 c           si 2 mauvaises dimensions de mat2
 c
-c!auteur:
-c     carlos klimann, inria, 26-XI-85.
-c
 c
 c!
-c     Copyright INRIA
       integer v1(*),v2(*)
       integer lig1,col1,d1,d2,lig2,col2,ligr,colr,ierr
       integer noo1,noo2

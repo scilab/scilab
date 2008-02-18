@@ -1,15 +1,23 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Francois DELBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [Ns,d]=coffg(Fs)
 // [Ns,d]=coffg(Fs) computes Fs^-1 where Fs is a polynomial
 // or rational matrix by co-factors method.
 // d = common denominator; Ns =  numerator (matrix polynomial)
 // Fs inverse = Ns/d.
 // (Be patient...results are generally reliable)
-//F.D. 
-// See also det, detr, invr, penlaur, glever, leverrier 
+// See also det, detr, invr, penlaur, glever, leverrier
 //!
 //
-// Copyright INRIA
-if type(Fs)==2 then 
+if type(Fs)==2 then
    [n,np]=size(Fs);
    if n<>np then error('First argument to coffg must be square!');end
    d=det(Fs) // common denominator

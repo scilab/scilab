@@ -1,5 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1986-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=HORNER,SSI=0
-c     Copyright INRIA
       subroutine horner(p,dp,xr,xi,vr,vi)
 c!but
 c     cette subroutine calcule la valeur du polynome p au point x
@@ -15,8 +22,6 @@ c         consecutivement et par puissance croissante
 c     dp : degre du polynome
 c     xr,xi : parties reelle et imaginaire de l'argument
 c     vr,vi : parties reelle et imaginaire du resultat
-c!origine
-c     Serge Steer     INRIA 1986
 c!
       integer dp,ip,i
       double precision p(dp+1),xr,xi,vr,vi,t

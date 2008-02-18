@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=DMPCNC,SSI=0
 c     Copyright INRIA
       subroutine dmpcnc(pm1,d1,ld1,pm2,d2,ld2,pm3,d3,l,m,n,job)
@@ -34,8 +42,6 @@ c         et nombre de colonnes de pm1 et pm3 si job <0
 c     job : indique l'operation a effectuer:
 c           job >0 pm3=<pm1 pm2>
 c           job <0 pm3=<pm1' pm2'>'
-c!origine
-c    s Steer INRIA
 c!
       double precision pm1(*),pm2(*),pm3(*)
       integer d1(*),d2(*),d3(*),l,m,n,ld1,ld2

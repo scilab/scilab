@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -32,7 +43,7 @@
     <P>
     If <VERB>N</VERB> and <VERB>D</VERB> are polynomial matrices the calculation
     is performed element-wise.</P>
-    <P><VERB>H1=simp(H)</VERB> is also valid (each entry of <VERB>H</VERB> is 
+    <P><VERB>H1=simp(H)</VERB> is also valid (each entry of <VERB>H</VERB> is
     simplified in <VERB>H1</VERB>).</P>
     <P>
     Caution:</P>
@@ -46,7 +57,7 @@
     <P>
     -for complex data, <VERB>simp</VERB> returns its input(s).</P>
     <P>
-    -rational simplification is called after nearly each operations on 
+    -rational simplification is called after nearly each operations on
     rationals. It is possible to toggle simplification on or off using
     <VERB>simp_mode</VERB> function.</P>
   </DESCRIPTION>

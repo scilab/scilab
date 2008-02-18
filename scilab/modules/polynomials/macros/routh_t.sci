@@ -3,7 +3,7 @@ function r=routh_t(h,k)
 //r=routh_t(h,k) computes routh table of denominator of the
 //system described by transfer matrix SISO continue h with the
 //feedback by the gain k
-//If  k=poly(0,'k') we will have a polynomial matrix with dummy variable 
+//If  k=poly(0,'k') we will have a polynomial matrix with dummy variable
 //k, formal expression of the Routh table.
 //r=routh_t(d) computes Routh table of h :attention ! d=denom of system
 //!
@@ -41,7 +41,7 @@ if rhs==2 then
   end;
 else
   for i=3:nd,
-    if r(i-1,1)==0 then 
+    if r(i-1,1)==0 then
       r(i,1:ncol-1)=[1.,-r(i-2,1)*%inf]*[r(i-2,2:ncol);r(i-1,2:ncol)]
     else
       r(i,1:ncol-1)=[1.,-r(i-2,1)/r(i-1,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]

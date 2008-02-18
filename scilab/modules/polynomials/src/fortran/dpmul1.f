@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=DPMUL1,SSI=0
 c     Copyright INRIA
       subroutine dpmul1(p1,d1,p2,d2,p3)
@@ -22,7 +30,6 @@ c!sous programmes appeles
 c     ddot (blas)
 c     min (fortran)
 c!
-c auteur: s. steer inria.
 c &&var
       double precision p1(*),p2(*),p3(*),ddot
       integer d1,d2,d3

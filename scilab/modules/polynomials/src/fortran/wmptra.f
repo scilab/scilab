@@ -1,5 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=WMPTRA,SSI=0
-c     Copyright INRIA
       subroutine wmptra(pm1r,pm1i,d1,ld1,pm2r,pm2i,d2,m,n)
 c!but
 c     cette subroutine transpose une matrice dont les coefficients
@@ -25,8 +32,6 @@ c     pm2,d2 : definitions similaires a celles de pm1,d1, ld2
 c                 est suppose  egal a n
 c     m : nombre de ligne de la matrice pm1
 c     n : nombre de colonne de matrice pm1
-c!origine
-c    s Steer INRIA
 c!
       double precision pm1r(*),pm1i(*),pm2r(*),pm2i(*)
       integer d1(*),d2(*),m,n

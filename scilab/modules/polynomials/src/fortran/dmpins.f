@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1985-2008 - INRIA - Carlos KLIMANN
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=DMPINS,SSI=0
 c     Copyright INRIA
       subroutine dmpins(mat1,dep1,lig1,col1,mat2,
@@ -34,8 +42,6 @@ c     attention!: aucune de matrices mat1, mat2,matr,dep1, dep2 ou depr
 c     doit coincider. Cas contraire, les resultats seraient
 c     imprevisibles.
 c
-c!auteur:
-c     carlos klimann, inria, 12-XI-85.
 c
 c
 c!
@@ -50,9 +56,9 @@ c
       do 20 i=1,ligr
       kr=kr+1
       lr=depr(kr)
-      if (lr .lt. 0) then 
+      if (lr .lt. 0) then
          goto 11
-      elseif (lr .eq. 0) then  
+      elseif (lr .eq. 0) then
          goto 12
       else
          goto 13

@@ -1,7 +1,11 @@
-c			=======================================
-c			INRIA
-c			=======================================
-
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intrsimp(id)
       INCLUDE 'stack.h'
       integer iadr, sadr
@@ -10,14 +14,14 @@ c			=======================================
       double precision er
       logical refr,chkvar,israt,ok
       data blank/40/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
       lw=lstk(top+1)
 
 c     simplification of a transfer function
-      if(lhs.ne.1) then 
+      if(lhs.ne.1) then
          call error(41)
          return
       endif
@@ -102,7 +106,7 @@ c
          call error(60)
          return
       endif
-c     
+c
 c     determine max of the degrees
       na=0
       nb=0
@@ -119,7 +123,7 @@ c     set adress where to put the results
       ida1=ida
       idb1=idb
 c
-c     allocate memory for intermediate results 
+c     allocate memory for intermediate results
       law=lw
       lbw=law+na+1
       lw=lbw+nb+1
@@ -127,7 +131,7 @@ c     allocate memory for intermediate results
 c     beginning of numerator in resulting structure
       l0=ll+istk(ilr+4)-1
 
-c     
+c
       lar=la1
       lbr=lb1
       nta=istk(ida+mna)
@@ -157,7 +161,7 @@ c     .  copy overwrite initial polynomials with simplified ones
          istk(ida1-1+i)=nnum
          istk(idb1-1+i)=nden
  79   continue
-c     
+c
 c     form vector of pointers from vector of degrees+1
       ma=1
       mb=1
@@ -169,15 +173,15 @@ c     form vector of pointers from vector of degrees+1
          ma=ma+na
          mb=mb+nb
  80   continue
-c     
-c     update size of numerator 
+c
+c     update size of numerator
       vola=istk(ilr+4)-istk(ilr+3)+istk(ida1+mna)-nta
       istk(ilr+4)=istk(ilr+3)+vola
 
 c     compute position of new denominator in the result
       ll0=ll+istk(ilr+4)-1
       il=iadr(ll0)
-c     
+c
 c     put new b variable in place
       if(istk(ilb).eq.2) then
 c     b matrice de polynome
@@ -195,7 +199,7 @@ c     b matrice de scalaires
       endif
       volb=l-ll0
 
-c     copy 4th entry of the list 
+c     copy 4th entry of the list
       mb=istk(ilr+6)-istk(ilr+5)
       call unsfdcopy(mb,stk(ll+istk(ilr+5)-1),1,stk(l),1)
       l=l+mb
@@ -204,6 +208,6 @@ c     adjust components sizes
       istk(ilr+5)=istk(ilr+4)+volb
       istk(ilr+6)=istk(ilr+5)+mb
 
-      
+
       end
 c			=======================================

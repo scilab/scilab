@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1985-2008 - Carlos KLIMANN
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine mpinsp(dep1,lig1,col1,v1,d1,v2,d2,dep2,
      & lig2,col2,depr,ligr,colr,ierr)
 c!but
@@ -44,9 +52,6 @@ c     attention!: aucune de matrices dep1, dep2 ou depr ne
 c     doit coincider. Dans le cas contraire, les resultats seraient
 c     imprevisibles.
 c
-c!auteur:
-c     carlos klimann, inria, 12-XI-85.
-c     Copyright INRIA
 
 c
 c
@@ -96,9 +101,9 @@ c     cas (:,.)
                return
             endif
          endif
-c     
+c
 c     toutes les lignes pour un choix de colonnes
-c     
+c
          kr=1
          volr=0
          do 19 jr=1,colr
@@ -156,9 +161,9 @@ c     cas (.,:)
                return
             endif
          endif
-c     
+c
 c     toutes les colonnes pour un choix de lignes
-c     
+c
          do 29 ir=1,ligr
             kr=ir+1-ligr
 c     la ligne ir est elle a modifier ?
@@ -217,18 +222,18 @@ c     la colonne jr est elle a modifier ?
          do 30 i=1,d2
             if(v2(i).eq.jr) id2=i
  30      continue
-c     
+c
          if(id2.eq.0) goto 35
-c     
+c
          do 34 ir=1,ligr
 c     la ligne ir est-elle a modifier
             id1=0
             do 31 i=1,d1
                if(v1(i).eq.ir) id1=i
  31         continue
-c     
+c
             if(id1.eq.0) goto 32
-c     
+c
             if(inc2.eq.1) then
                k2=id1+lig2*(id2-1)
                depr(kr)=-k2
@@ -239,14 +244,14 @@ c
             endif
             kr=kr+1
             go to 34
-c     
+c
  32         if(ir.gt.lig1.or.jr.gt.col1) goto 33
             k1=ir+lig1*(jr-1)
             depr(kr)=k1
             kr=kr+1
             volr=volr+dep1(k1+1)-dep1(k1)
             goto 34
-c     
+c
  33         depr(kr)=0
             kr=kr+1
             volr=volr+1

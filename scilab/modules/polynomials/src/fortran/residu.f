@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Francois DELBECQUE
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine residu(p,np,a,na,b,nb,v,tol,ierr)
 c     but! calcul de residus
 c     calcul de la somme des residus de p/(a.b)
@@ -5,10 +13,10 @@ c     aux zeros de a
 c     p=polynome de degre np
 c     a=                  na
 c     b=                  nb
-c     
+c
 c     les zeros de b sont supposes tous differents des
 c     zeros de a....
-c     
+c
 c     a,b et p dimensionnes au moins a leur degre+1 dans le pgm
 c     appelant.
 c     rangement par degres croissants.
@@ -24,9 +32,7 @@ c     euclidienne de p et a par b,puis on inverse les roles
 c     de a et b en changeant le signe de v.
 c     on itere jusqu a trouver degre de a ou degre de b=0.
 c     routines appelees:dpodiv,idegre (bibli blaise Inria)
-c     Auteur!    F.D. (blaise)
-c     
-c     Copyright INRIA
+c
       dimension a(*),b(*),p(*)
       double precision a,b,p,v,r,b1,tol
       v=0.0d+0
@@ -35,7 +41,7 @@ c     Copyright INRIA
       call idegre(a,na,na)
       call idegre(b,nb,nb)
       if(na.eq.0) return
-c     
+c
 c     b=constante v=... et return
       if(nb.eq.0) then
          b1=b(1)
@@ -51,9 +57,9 @@ c     b=constante v=... et return
             return
          endif
       endif
-c     
+c
 c     degre de b >= 1
-c     
+c
       if(na.le.np) then
 c     p=p/a  (reste de la division euclidienne...)
          call dpodiv(p,a,np,na)
@@ -76,7 +82,7 @@ c     si degre de a=1 (b et p =cstes) v=... et return
          v=p(na)/a(na+1)/b1
          return
       endif
-c     
+c
 c     si degre de b=0 v=... et return
       call idegre(b,min(na-1,nb),nb)
       if(nb.eq.0) then
@@ -101,7 +107,7 @@ c     si degre de b>0 on itere
       nbb=nb
 c     a=a/b   (reste de la division euclidienne...)
 c     p=p/b   (reste de la division euclidienne...)
-c     
+c
       call dpodiv(a,b,na,nb)
       call idegre(a,nb-1,na)
       call dpodiv(p,b,np,nb)
@@ -112,9 +118,9 @@ c     b=-a
          b(k)=-a(k)
          a(k)=r
  30   continue
-c     
+c
 c     si degre de b=0 v=...
-c     
+c
       call idegre(b,na,nb)
       if(nb.eq.0) then
          b1=b(1)

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Serge STEER
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -35,10 +46,10 @@
     <P><VERB>C=coeff(Mp)</VERB>
     returns in a big matrix <VERB>C</VERB> the coefficients of the
     polynomial matrix <VERB>Mp</VERB> . <VERB>C</VERB> is partitioned
-    as <VERB>C=[C0,C1,...,Ck]</VERB> 
-    where the <VERB>Ci</VERB> are arranged in increasing order 
+    as <VERB>C=[C0,C1,...,Ck]</VERB>
+    where the <VERB>Ci</VERB> are arranged in increasing order
     <VERB>k = maxi(degree(Mp))</VERB></P>
-    <P><VERB>C=coeff(Mp,v)</VERB> returns the matrix of coefficients with 
+    <P><VERB>C=coeff(Mp,v)</VERB> returns the matrix of coefficients with
     degree in <VERB>v</VERB> . (<VERB>v</VERB> is a row or column vector).</P>
   </DESCRIPTION>
   <SEE_ALSO>

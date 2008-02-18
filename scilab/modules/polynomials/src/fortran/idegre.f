@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine idegre(a,majo,nvrai)
 c!but
 c    calcul du degre d un polynome
@@ -6,7 +14,6 @@ c    a=coeff par ordre croissant
 c    majo=majorant
 c    nvrai=degre calcule
 c!
-c     Copyright INRIA
       dimension a(*)
       double precision a,test,dasum,an
 c

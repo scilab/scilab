@@ -1,10 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [resn,g]=pfactors(pol,flag)
-// Given polynomial pol returns in list resn polynomials of 
+// Given polynomial pol returns in list resn polynomials of
 // degree 1 or two which are the factors of pol.
 // One has pol= g times product of entries of resn
-// if flag=='c' unstable roots are reflected vs the imaginary axis 
-// if flag=='d' unstable roots are reflected vs unit circle 
-// Copyright INRIA
+// if flag=='c' unstable roots are reflected vs the imaginary axis
+// if flag=='d' unstable roots are reflected vs unit circle
 w=roots(pol);
 n=size(w,'*');
 if n==0 then resn=list();g=coeff(pol);return;end
@@ -21,7 +30,7 @@ while %T
      kk=kk+1;k=k+1;
      if kk>n then return;end
  end
- if abs(imag(w(kk)))>%eps then 
+ if abs(imag(w(kk)))>%eps then
      resn(k)=real(poly([w(kk),w(kk+1)],varn(pol)));
      kk=kk+2;k=k+1;
      if kk>n then return;end
@@ -37,7 +46,7 @@ while %T
      kk=kk+1;k=k+1;
      if kk>n then return;end
  end
- if abs(imag(w(kk)))>%eps then 
+ if abs(imag(w(kk)))>%eps then
    if real(w(kk))<0 then
      resn(k)=real(poly([w(kk),w(kk+1)],varn(pol)));
    else ;
@@ -58,7 +67,7 @@ wkk=w(kk);
      kk=kk+1;k=k+1;
      if kk>n then return;end
  end
- if abs(imag(wkk))>%eps then 
+ if abs(imag(wkk))>%eps then
      if abs(wkk)<1 then
      resn(k)=real(poly([wkk,w(kk+1)],varn(pol)));
    else ;

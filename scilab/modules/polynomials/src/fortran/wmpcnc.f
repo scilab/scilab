@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 C/MEMBR ADD NAME=WMPCNC,SSI=0
 c     Copyright INRIA
       subroutine wmpcnc(mp1r,mp1i,d1,ld1,mp2r,mp2i,d2,ld2,mp3r,mp3i,d3,
@@ -39,8 +47,6 @@ c           job <0 mp3=<mp1' mp2'>'
 c           si abs(job)=1 mp1 et mp2 sont complexes
 c           si abs(job)=2 mp1 est reelle (mp1i vide) et mp2 complexe
 c           si abs(job)=3 mp1 est complexe,mp2 reelle (mp2i vide)
-c!origine
-c    s Steer INRIA
 c!
       double precision mp1r(*),mp1i(*),mp2r(*),mp2i(*),mp3r(*),mp3i(*)
       integer d1(*),d2(*),d3(*),l,m,n,ld1,ld2

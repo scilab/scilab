@@ -1,6 +1,11 @@
-c			=======================================
-c			INRIA
-c			=======================================
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intsfact(id)
       INCLUDE 'stack.h'
@@ -9,7 +14,7 @@ c			=======================================
       integer vol
       logical ref
 
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
@@ -49,7 +54,7 @@ c
       vol=istk(id1+mn1)-1
 
       if(mn1.eq.1) then
-c     
+c
 c     sfact of a polynomial
          if(ref) then
 c     . sfact1 modifies its input argument
@@ -78,7 +83,7 @@ c     .  check symmetry
                return
             endif
  81      continue
-c     
+c
          lw=lstk(top+1)
          err=lw+6*n-lstk(bot)
          if(err.gt.0) then
@@ -113,7 +118,7 @@ c     .  convert matrix of polynomials to a polynomial matrix
          do 87 i=1,mn1
             n1=max(n1,istk(id1+i)-istk(id1+i-1))
  87      continue
-c     
+c
          n1=1+(n1-1)/2
          l2=lstk(top+1)
          if(ref) l2=l2+mn1+9+mn1*n1
@@ -123,7 +128,7 @@ c
             call error(17)
             return
          endif
-c     
+c
          call dset(mn1*n1,0.0d+0,stk(l2),1)
          do 88 i1=0,mn1-1
             lij=l1-1+istk(id1+i1)
@@ -131,7 +136,7 @@ c
             if(mij.gt.0) call unsfdcopy(mij,stk(lij+n1-1),1,
      $           stk(l2+i1),mn1)
  88      continue
-c     
+c
          maxit=maxit+n1
          call sfact2(stk(l2),m1,n1-1,stk(lw),maxit,ierr)
          if(ierr.lt.0) then
@@ -142,7 +147,7 @@ c
             call error(88)
             return
          endif
-c     .  convert polynomial matrix to matrix of polynomials 
+c     .  convert polynomial matrix to matrix of polynomials
          id1=ilr+8
          lr=sadr(id1+mn1+1)
          l1=lr

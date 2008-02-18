@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [Sm]=systmat(Sl);
 // System matrix of the linear system Sl (syslin list)
 // in state-space form.
@@ -5,7 +15,6 @@ function [Sm]=systmat(Sl);
 //      [    C     D]
 // To get the zeros use det or detr (for square systems)
 //!
-// Copyright INRIA
 ty=Sl(1);
 ty=ty(1);
 if ty=='lss' then

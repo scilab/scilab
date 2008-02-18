@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine polops
 c ====================================================================
 c
@@ -5,7 +13,6 @@ c     operations  sur les matrices de polynomes
 c
 c ====================================================================
 c
-c     Copyright INRIA
       include 'stack.h'
 c
 
@@ -144,7 +151,7 @@ c
       if(op.eq.minus.and.vol.gt.0) call dscal(vol*(it2+1),-1.0d+0
      $     ,stk(l2r),1)
       if(m1.eq.1.and.n1.eq.1.and.mn2.gt.1) then
-c     .  p+P , p-P  
+c     .  p+P , p-P
 c     .  p*ones(P) is generated
          n=istk(id1+1)-istk(id1)
          istk(il1+1)=m2
@@ -173,7 +180,7 @@ c
             l1=l1+n
  21      continue
       elseif(m2.eq.1.and.n2.eq.1.and.mn1.gt.1) then
-c     .  P+p, P-p 
+c     .  P+p, P-p
 c     .  p*ones(P) is generated
          n=istk(id2+1)-istk(id2)
          m2=abs(m1)
@@ -211,7 +218,7 @@ c     .  []+P, []-P
 c     .  P+[] , P-[]
          goto 999
       elseif(m1.lt.0) then
-c     eye*p+A   
+c     eye*p+A
 c     .  p*eye(A) is generated
          n=istk(id1+1)-istk(id1)
          istk(il1+1)=m2
@@ -248,7 +255,7 @@ c     .  p*eye(A) is generated
  24         continue
  25      continue
       elseif(m2.lt.0) then
-c     A+eye*p 
+c     A+eye*p
 c     .  p*eye(A) is generated
          m2=abs(m1)
          n2=abs(n1)
@@ -282,7 +289,7 @@ c     .  p*eye(A) is generated
  27         continue
  28      continue
       elseif(m1.eq.m2.and.n1.eq.n2) then
-c     .  P1+P2 P1-P2 
+c     .  P1+P2 P1-P2
       else
          if (op.eq.plus) then
             call error(8)
@@ -292,7 +299,7 @@ c     .  P1+P2 P1-P2
          return
       endif
 
-c     
+c
       id3=iadr(l3r)
       l3r=sadr(id3+mn1+1)
       vol=0
@@ -367,7 +374,7 @@ c
       m2=abs(m2)
       n2=abs(n2)
       if(mn1.gt.1.and.mn2.gt.1 .and. op.gt.dot) then
-c     .  a.*b 
+c     .  a.*b
          if(m1.ne.m2.or.n1.ne.n2) then
             call error(10)
             return
@@ -459,7 +466,7 @@ c
       istk(il1+2)=n3
       istk(il1+3)=it3
       call icopy(4,var1,1,istk(il1+4),1)
-      
+
       if(indef.eq.0) goto 999
       istk(il1+1)=-1
       istk(il1+2)=-1
@@ -767,7 +774,7 @@ c
       endif
       if(rhs.eq.4) goto 124
 c     arg3(arg1)=arg2
-c     
+c
 c     get arg3
       var3(1)=0
       il3=iadr(lstk(top))
@@ -848,7 +855,7 @@ c     get arg1
       n1=istk(il1+2)
 c
       if (m2.eq.0) then
-c     .  arg3(arg1)=[] 
+c     .  arg3(arg1)=[]
          if(m1.eq.-1) then
 c     .    arg3(:)=[] -->[]
             istk(ilrs)=1
@@ -910,7 +917,7 @@ c     .  change dimensions
  121  call indxg(il1,mn3,ili,mi,mxi,lw,1)
       if(err.gt.0) return
       if(mi.eq.0) then
-c     .  arg3([])=arg2 
+c     .  arg3([])=arg2
          if(mn2.eq.1) then
 c     .  arg3([])=c  --> arg3
             volr=istk(id3+mn3)-1
@@ -927,7 +934,7 @@ c     .  arg3([])=c  --> arg3
          else
             call error(15)
             return
-         endif  
+         endif
       endif
       inc2=1
       if(mi.ne.mn2) then
@@ -992,7 +999,7 @@ c     set result coefficients
          call error(17)
          return
       endif
-c     
+c
       if(it2.eq.0) then
          if(it3.eq.0) then
             call dmpins(stk(l3r),istk(id3),m3*n3,1,stk(l2r),istk(id2),
@@ -1180,18 +1187,18 @@ c     .     arg4(:,arg2)=[] --> arg4(:,compl(arg2))
 c     .     call extraction
             goto 133
          else
-c     .     arg4(arg1,arg2)=[] 
+c     .     arg4(arg1,arg2)=[]
             lw1=lw
             call indxgc(il2,n4,ilj,nj,mxj,lw)
             if(err.gt.0) return
             if(nj.eq.0) then
-c     .        arg4(arg1,1:n4)=[] 
+c     .        arg4(arg1,1:n4)=[]
                call indxgc(il1,m4,ili,mi,mxi,lw)
                lw2=lw
                if(err.gt.0) return
 c     .        arg2=1:n4
                if(mi.eq.0) then
-c     .           arg4(1:m4,1:n4)=[] 
+c     .           arg4(1:m4,1:n4)=[]
                   istk(ilrs)=1
                   istk(ilrs+1)=0
                   istk(ilrs+2)=0
@@ -1199,7 +1206,7 @@ c     .           arg4(1:m4,1:n4)=[]
                   lstk(top+1)=sadr(ilrs+4)+1
                   goto 999
                else
-c     .           arg4(arg1,1:n4)=[] 
+c     .           arg4(arg1,1:n4)=[]
 c     .           replace arg2 by ":"
                   il2=iadr(lw2)
                   istk(il2)=1
@@ -1273,7 +1280,7 @@ c     .  reshape arg3 according to arg4
 c     .  sizes of arg1 or arg2 dont agree with arg3 sizes
          inc3=1
          if(mn3.eq.1) then
-            if(mi.eq.0.or.mj.eq.0) then 
+            if(mi.eq.0.or.mj.eq.0) then
                volr=istk(id4+mn4)-1
                istk(ilrs)=2
                istk(ilrs+1)=m4
@@ -1326,7 +1333,7 @@ c     set result coefficients
          call error(17)
          return
       endif
-c     
+c
       if(it3.eq.0) then
          if(it4.eq.0) then
             call dmpins(stk(l4r),istk(id4),m4,n4,stk(l3r),istk(id3),
@@ -1376,8 +1383,8 @@ c     set output variable
       lstk(top+1)=l1+volr*(itr+1)
       goto 999
 
-      
-c     
+
+c
 c extraction
   130 continue
       if(rhs.lt.2) then
@@ -1409,7 +1416,7 @@ c     get arg1
       m1=istk(il1+1)
       n1=istk(il1+2)
 
-      if(mn2.eq.0) then 
+      if(mn2.eq.0) then
 c     .  arg2=[]
          il1=iadr(lstk(top))
          istk(il1)=1
@@ -1477,7 +1484,7 @@ c     set result pointers
          call error(21)
          return
       endif
-c     set result coefficients 
+c     set result coefficients
       volr=istk(idr+mi)-1
       lw=lr+volr*(it2+1)
       err=lw-lstk(bot)
@@ -1557,7 +1564,7 @@ c     get arg1
       endif
       m1=istk(il1+1)
 c
-      if(mn3.eq.0) then 
+      if(mn3.eq.0) then
 c     .  arg3=[]
          il1=iadr(lstk(top))
          istk(il1)=1
@@ -1588,8 +1595,8 @@ c     check and convert indices variables
 c
 c     perform extraction
  133  mnr=mi*nj
-      if(mnr.eq.0) then 
-c     .  arg1=[] or arg2=[] 
+      if(mnr.eq.0) then
+c     .  arg1=[] or arg2=[]
          il1=iadr(lstk(top))
          istk(il1)=1
          istk(il1+1)=0
@@ -1614,7 +1621,7 @@ c     set result pointers
          call error(21)
          return
       endif
-c     set result coefficients 
+c     set result coefficients
       volr=istk(idr+mnr)-1
       lw=lr+volr*(it3+1)
       err=lw-lstk(bot)
@@ -1639,7 +1646,7 @@ c
       lstk(top+1)=l1+volr*(it3+1)
       goto 999
 c
-c     divisions 
+c     divisions
 c
 c     division a droite
   150 continue
@@ -1675,7 +1682,7 @@ c     .     scalar divisor
             goto 157
          endif
        elseif(op.eq.dot+slash) then
-          if(mn2.ne.1.and.mn1.ne.1.and.(m1.ne.m2.or.n1.ne.n2)) then 
+          if(mn2.ne.1.and.mn1.ne.1.and.(m1.ne.m2.or.n1.ne.n2)) then
              call error(11)
              return
           endif

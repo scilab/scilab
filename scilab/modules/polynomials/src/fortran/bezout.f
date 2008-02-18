@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1986-2008 - INRIA - Serge STEER
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine bezout(a,da,b,db,f,df,v,dv,ip)
 c!but
 c     etant donnes deux polynomes a et b cette subroutine calcule:
@@ -36,8 +44,6 @@ c!reference
 c     V. kucera  discrete linear control (the polynomial equation
 c     approach)
 c     John Wiley & son
-c!auteur
-c     serge steer inria 1986
 c!sous programmes appeles
 c     dasum dcopy dset (blas)
 c!
@@ -100,9 +106,9 @@ c
 c algorithme d'euclide
 c
    20 CRES=df(k1)-df(k2)
-      if (CRES .lt. 0) then 
+      if (CRES .lt. 0) then
          goto 22
-      elseif (CRES .eq. 0) then 
+      elseif (CRES .eq. 0) then
          goto 21
       else
          goto 23

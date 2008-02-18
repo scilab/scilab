@@ -1,6 +1,11 @@
-c			=======================================
-c			INRIA
-c			=======================================
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) ????-2008 - INRIA
+c
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intbez(id)
       INCLUDE 'stack.h'
@@ -11,7 +16,7 @@ c			=======================================
 
       logical refa,refb
       data blank/40/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
@@ -55,7 +60,7 @@ c
          lb=sadr(ilb+9)
          call icopy(4,istk(ilb+4),1,id,1)
       endif
-c     
+c
       il1=iadr(lstk(top+1-rhs))
       ilr=il1
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
@@ -88,7 +93,7 @@ c
          na=0
       endif
       if(id(1).eq.0) call iset(4,blank,id,1)
-c     
+c
       lf=lstk(top+1)+na+9
       if(refa) lf=lw+na+9
 c
@@ -113,7 +118,7 @@ c     pgcd
       call unsfdcopy(np+1,stk(lf+ipb(1)-1),1,stk(l1),1)
       lstk(top)=l1+np+1
 
-c     matrice q 
+c     matrice q
       il=iadr(lstk(top))
       istk(il)=2
       istk(il+1)=2
