@@ -68,9 +68,14 @@ void DrawableFigureJavaMapper::closeRenderingCanvas(void)
   m_pJavaObject->closeRenderingCanvas();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::setFigureParameters(int backgroundColor, int logicOpIndex)
+void DrawableFigureJavaMapper::drawBackground(int colorIndex)
 {
-  m_pJavaObject->setFigureParameters(backgroundColor, logicOpIndex);
+  m_pJavaObject->drawBackground(colorIndex); 
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setLogicalOp(int logicOpIndex)
+{
+  m_pJavaObject->setLogicalOp(logicOpIndex);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setColorMapData(const double rgbmat[], int nbColor)

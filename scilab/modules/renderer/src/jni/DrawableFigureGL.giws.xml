@@ -20,8 +20,10 @@
     </method>
     <method name="closeRenderingCanvas" returnType="void">
     </method>
-    <method name="setFigureParameters" returnType="void">
+    <method name="drawBackground" returnType="void">
       <param type="int" name="backgroundColor" />
+    </method>
+    <method name="setLogicalOp" returnType="void">
       <param type="int" name="logicOpIndex" />
     </method>
     <method name="setColorMapData" returnType="void">

@@ -815,7 +815,7 @@ sciInitGraphicMode (sciPointObj * pobj)
 	  (sciGetGraphicMode (pobj))->addplot = TRUE;
 	  (sciGetGraphicMode (pobj))->autoscaling = TRUE;
 	  (sciGetGraphicMode (pobj))->zooming = FALSE;
-	  (sciGetGraphicMode (pobj))->xormode = 3;
+	  (sciGetGraphicMode (pobj))->xormode = 3; /* copy */
 	}
       else
 	{

@@ -31,6 +31,11 @@ public:
    */
   virtual void drawInContext( void ) ;
 
+  /**
+   * Like display but to display only a single object
+   */
+  virtual void drawSingleObj(sciPointObj * pObj) = 0;
+
   /*-----------------------------------------------------------------------------*/
   /* Set/Get properties */
 
@@ -102,6 +107,11 @@ public:
     */
    void openRenderingCanvas( void ) ;
 
+   /**
+    * Draw the background of the figure
+    */
+   void drawBackground(void);
+
   /*-----------------------------------------------------------------------------*/
    /**
     * Get the synchronization object that protect this figure.
@@ -139,6 +149,17 @@ protected:
    * check if the auto_redraw option is enable
    */
   virtual bool checkAutoRedraw( void ) = 0 ;
+
+  /**
+   * Check wether the whole figure and hierechy should be redrawn
+   * or just a single object.
+   */
+  virtual bool isDisplayingSingleObject(void) = 0;
+
+  /**
+   * Display the single object
+   */
+  virtual void displaySingleObject(void) = 0;
   /*-----------------------------------------------------------------------------*/
   // Driver dependant algorithms
 

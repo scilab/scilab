@@ -130,3 +130,6 @@ copyFormatedArray
 ComputeC_format
 destroyGraphicPointer
 destroyGraphicStringArray
+sciGetIsAutoDrawable
+sciSetXorMode
+getPixelModeIndex

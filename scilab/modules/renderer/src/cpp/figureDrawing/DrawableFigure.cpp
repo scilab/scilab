@@ -76,23 +76,41 @@ void DrawableFigure::closeRenderingCanvas( void )
   getFigureImp()->closeRenderingCanvas() ;
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::drawBackground(void)
+{
+  getFigureImp()->drawBackground();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFigure::drawInContext( void )
 {
   initializeDrawing() ;
-  setFigureParameters() ;
   // retest on auto_redraw
   // because display may come directly from JoGL
-  if ( checkVisibility() && checkAutoRedraw() )
+  if ( checkVisibility() )
   {
-    displayChildren() ;
+    if (isDisplayingSingleObject())
+    {
+      setFigureParameters() ;
+      displaySingleObject();
+    }
+    else
+    {
+      if (checkAutoRedraw())
+      {
+        drawBackground();
+        setFigureParameters() ;
+        displayChildren() ;
+      }
+    }
   }
   endDrawing() ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::draw( void )
 { 
-  if ( !checkAutoRedraw() )
+  if ( !checkAutoRedraw() && !isDisplayingSingleObject() )
   {
+    // if a single object is available this override drawlater()/ drawnow()
     return ;
   }
 

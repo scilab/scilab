@@ -5,8 +5,9 @@
 /* desc : Class containing the drawing routine for a rectangle object     */
 /*------------------------------------------------------------------------*/
 
-#include "DrawableRectangle.h"
 
+
+#include "DrawableRectangle.h"
 
 namespace sciGraphics
 {
@@ -21,6 +22,7 @@ DrawableRectangle::~DrawableRectangle( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableRectangle::draw( void )
 {
+
   initializeDrawing() ;
   if ( !checkVisibility() )
   {
@@ -31,6 +33,7 @@ void DrawableRectangle::draw( void )
   drawRectangle() ;
   unClip();
   endDrawing();
+
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableRectangle::show( void )

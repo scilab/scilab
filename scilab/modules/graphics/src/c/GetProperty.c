@@ -42,6 +42,7 @@
 #include "GetJavaProperty.h"
 #include "BasicAlgos.h"
 #include "localization.h"
+#include "Axes.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -4325,7 +4326,7 @@ void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6])
  * Get the 4 corners of the bounding box of a text object in 3D
  */
 void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2[3],
-                            double corner3[3], double corner4[3])
+                           double corner3[3], double corner4[3])
 {
   switch (sciGetEntityType(pObj))
   {

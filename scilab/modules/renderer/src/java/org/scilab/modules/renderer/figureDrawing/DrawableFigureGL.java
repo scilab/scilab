@@ -144,8 +144,11 @@ public class DrawableFigureGL extends ObjectGL {
 		destroyedObjects.destroyAll(parentFigureIndex);
 		
 		super.initializeDrawing(parentFigureIndex);
+		
 		GL gl = getGL();
-		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+		// don't clear the color buffer as usual, we may need to keep it
+		// depending on the pixel mode
+		gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
 		gl.glClearDepth(1.0f);
 	}
 	
@@ -239,9 +242,38 @@ public class DrawableFigureGL extends ObjectGL {
   	 * Set the background color of the figure
   	 * @param colorIndex index of the color to use
   	 */
-  	public void setBackgroundColor(int colorIndex) {
+  	public void drawBackground(int colorIndex) {
+  		GL gl = getGL();
   		double[] color = getColorMap().getColor(colorIndex);
-		getGL().glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
+  		// not really needed actually
+  		gl.glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
+		
+		// for compatibility with Scilab 4
+		// logic_op only applies to axes (not to background)
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP);
+	    gl.glColorMask(true, true, true, false);
+		
+		// draw a quad in the background with color mode
+		
+	    // set up very basic view
+	    gl.glMatrixMode(GL.GL_PROJECTION);
+	    gl.glLoadIdentity();
+	    gl.glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+	    gl.glMatrixMode(GL.GL_MODELVIEW);
+	    gl.glLoadIdentity();
+	    
+	    // not needed here it should be drawn first
+	    gl.glDisable(GL.GL_DEPTH_TEST);
+	    gl.glColor3d(color[0], color[1], color[2]);
+	    
+	    // draw it in the back just to be sure
+	    gl.glBegin(GL.GL_QUADS);
+	    gl.glVertex3d(0.0, 0.0, 1.0);
+	    gl.glVertex3d(1.0, 0.0, 1.0);
+	    gl.glVertex3d(1.0, 1.0, 1.0);
+	    gl.glVertex3d(0.0, 1.0, 1.0);
+	    gl.glEnd();
+	    gl.glEnable(GL.GL_DEPTH_TEST);
   	}
   	
   	
@@ -251,17 +283,9 @@ public class DrawableFigureGL extends ObjectGL {
   	 */
   	public void setLogicalOp(int logicOpIndex) {
   		// convert to OpenGL value
-  		getGL().glLogicOp(LOGICAL_OPS[logicOpIndex]);
-  	}
-  	
-  	/**
-  	 * Set all figure parameters in one time
-  	 * @param backgroundColor index of the background color
-  	 * @param logicOpIndex Scilab value of pixel drawing mode
-  	 */
-  	public void setFigureParameters(int backgroundColor, int logicOpIndex) {
-  		setLogicalOp(logicOpIndex);
-  		setBackgroundColor(backgroundColor);
+  		GL gl = getGL();
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
+		gl.glLogicOp(LOGICAL_OPS[logicOpIndex]);
   	}
   	
   	/**

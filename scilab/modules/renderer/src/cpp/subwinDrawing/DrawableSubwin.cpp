@@ -7,6 +7,7 @@
 
 #include "DrawableSubwin.h"
 #include "DrawableSubwinBridge.h"
+#include "getHandleDrawer.h"
 
 extern "C"
 {
@@ -41,20 +42,50 @@ void DrawableSubwin::setCamera( Camera * cam )
   m_pCamera = cam;
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwin::displaySingleObj(sciPointObj * pObj)
+{
+
+  if (sciGetEntityType(pObj) == SCI_SUBWIN)
+  {
+    if (m_bNeedRedraw)
+    {
+      draw();
+    }
+    else
+    {
+      show();
+    }
+  }
+  // it is a child
+  else if (m_bNeedRedraw)
+  {
+    drawSingleObj(pObj);
+  }
+  else
+  {
+    showSingleObj(pObj);
+  }
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableSubwin::draw( void )
 {
   initializeDrawing() ;
-  if ( !checkVisibility() )
-  {
-    endDrawing();
-    return;
-  }
 
   // fill Frect with real data bounds
   computeRealDataBounds();
 
   // set up camera
+  // so update coordinates transformations
   m_pCamera->draw();
+
+  if ( !checkVisibility() )
+  {
+    // needed
+    m_pCamera->replaceCamera();
+
+    endDrawing();
+    return;
+  }
 
   drawAxesBox();
 
@@ -68,15 +99,21 @@ void DrawableSubwin::draw( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwin::show( void )
 {
+  
   initializeDrawing() ;
+
+  // set up camera
+  // so update coordinates transformations
+  m_pCamera->show();
+
   if ( !checkVisibility() )
   {
+    // needed
+    m_pCamera->replaceCamera();
+
     endDrawing();
     return;
   }
-
-  // set up camera
-  m_pCamera->show();
 
   showAxesBox();
 
@@ -98,6 +135,62 @@ void DrawableSubwin::showAxesBox(void)
 {
   showBox();
   showTicks();
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableSubwin::drawSingleObj(sciPointObj * pObj)
+{
+
+  initializeDrawing() ;
+
+  // fill Frect with real data bounds
+  computeRealDataBounds();
+
+  // set up camera
+  m_pCamera->draw();
+
+  if ( !checkVisibility() )
+  {
+    // needed
+    m_pCamera->replaceCamera();
+
+    endDrawing();
+    return;
+  }
+
+  // camera has been set
+  // display only the children
+  getHandleDrawer(pObj)->display();
+
+  // needed
+  m_pCamera->replaceCamera();
+
+  endDrawing();
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableSubwin::showSingleObj(sciPointObj * pObj)
+{
+  initializeDrawing() ;
+
+  // set up camera
+  m_pCamera->show();
+
+  if ( !checkVisibility() )
+  {
+    // needed
+    m_pCamera->replaceCamera();
+
+    endDrawing();
+    return;
+  }
+
+  // camera has been set
+  // display only the children
+  getHandleDrawer(pObj)->display();
+
+  // needed
+  m_pCamera->replaceCamera();
+
+  endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )

@@ -20,12 +20,38 @@ class ConcreteDrawableFigure : public DrawableFigure
 
 public:
 
-  ConcreteDrawableFigure( sciPointObj * pObj ) : DrawableFigure( pObj ) {}
+  ConcreteDrawableFigure( sciPointObj * pObj );
 
+  ~ConcreteDrawableFigure(void);
+
+  /**
+   * Like display but to display only a single object
+   */
+  virtual void drawSingleObj(sciPointObj * pObj);
+
+protected:
+
+  /*------------------------------------------------------------------------*/
   /**
    * check if the auto_redraw option is enable
    */
   virtual bool checkAutoRedraw( void ) ;
+
+  /**
+   * Check wether the whole figure and hierechy should be redrawn
+   * or just a single object.
+   */
+  virtual bool isDisplayingSingleObject(void);
+
+  /**
+   * Display the single object
+   */
+  virtual void displaySingleObject(void);
+  /*------------------------------------------------------------------------*/
+  sciPointObj * m_pSingleObject;
+  /*------------------------------------------------------------------------*/
+
+
 
 } ;
 

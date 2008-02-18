@@ -92,12 +92,12 @@ public class SciRenderer
       GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);    // white Background
+      gl.glClear(GL.GL_COLOR_BUFFER_BIT); // clear here othrwise we don't know what we will have
       gl.glClearDepth(1.0f);                      // Depth Buffer Setup
       gl.glEnable(GL.GL_DEPTH_TEST);							// Enables Depth Testing
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
-      gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin lines
-	  gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
+      gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
 
     }
     

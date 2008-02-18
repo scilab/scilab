@@ -729,7 +729,7 @@ int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
   if (opt)
   {
     /* should be sci draw single obj */
-    sciRefreshObj(pobj);
+    sciDrawSingleObj(pobj);
   }
   else
   {

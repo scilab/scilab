@@ -31,7 +31,7 @@
 int sci_draw( char * fname, unsigned long fname_len )
 { 
   unsigned long hdl;
-  sciPointObj *pobj, *psubwin, *tmpsubwin;
+  sciPointObj *pobj;
   integer m,n,l,lw;
 
   CheckRhs(0,1) ;
@@ -54,25 +54,8 @@ int sci_draw( char * fname, unsigned long fname_len )
     pobj = sciGetPointerFromHandle(hdl);   
   }
   if (pobj != NULL )
-  {  
-    tmpsubwin = sciGetCurrentSubWin(); 
-    psubwin = sciGetParentSubwin(pobj);
-    if ( psubwin != NULL )
-    {
-      sciSetSelectedSubWin(psubwin); 
-      set_scale ("tttftt", pSUBWIN_FEATURE (psubwin)->WRect, 
-        pSUBWIN_FEATURE (psubwin)->FRect,
-        NULL, pSUBWIN_FEATURE (psubwin)->logflags, 
-        pSUBWIN_FEATURE (psubwin)->ARect); 
-
-      sciDrawObj(pobj); 
-      sciSetSelectedSubWin(tmpsubwin);
-    }
-    else
-    {
-      Scierror(999,_("%s: Object has no parent.\n"),fname);
-      return 0;
-    }
+  {
+    sciDrawSingleObj(pobj);
   }
 
   LhsVar(1) = 0;

@@ -31,6 +31,12 @@ extern "C" {
   void sciDrawObj( sciPointObj * pObj ) ;
 
   /**
+  * Draw a single graphic handle.
+  * Should normally not be called directly. Observers should call it automatically.
+  */
+  void sciDrawSingleObj( sciPointObj * pObj ) ;
+
+  /**
    * Redraw an object and all its children.
    * To be called on a figure to redraw a whole window
    */

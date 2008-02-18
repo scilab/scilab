@@ -47,6 +47,11 @@ public:
   virtual void setFigureParameters(void) = 0 ;
 
   /**
+   * Draw the background of the figure
+   */
+  virtual void drawBackground(void) = 0;
+
+  /**
    * Set a new colormap to this figure
    * @param nbColor x 3 matrix contains the three channels RGB of each color
    * @param nbColor number of color in the colormap

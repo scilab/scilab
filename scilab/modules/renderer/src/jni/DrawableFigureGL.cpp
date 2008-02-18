@@ -104,7 +104,8 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
 voidcloseRenderingCanvasID=NULL; 
-voidsetFigureParametersjintjintID=NULL; 
+voiddrawBackgroundjintID=NULL; 
+voidsetLogicalOpjintID=NULL; 
 voidsetColorMapDatajdoubleArrayID=NULL; 
 jdoubleArraygetColorMapDataID=NULL; 
 jintgetColorMapSizeID=NULL; 
@@ -150,7 +151,8 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
 voidcloseRenderingCanvasID=NULL; 
-voidsetFigureParametersjintjintID=NULL; 
+voiddrawBackgroundjintID=NULL; 
+voidsetLogicalOpjintID=NULL; 
 voidsetColorMapDatajdoubleArrayID=NULL; 
 jdoubleArraygetColorMapDataID=NULL; 
 jintgetColorMapSizeID=NULL; 
@@ -351,18 +353,38 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void DrawableFigureGL::setFigureParameters (long backgroundColor, long logicOpIndex){
+void DrawableFigureGL::drawBackground (long backgroundColor){
 
 JNIEnv * curEnv = getCurrentEnv();
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetFigureParametersjintjintID = curEnv->GetMethodID(this->instanceClass, "setFigureParameters", "(II)V" ) ;
-if (voidsetFigureParametersjintjintID == NULL) {
-std::cerr << "Could not access to the method " << "setFigureParameters" << std::endl;
+jmethodID voiddrawBackgroundjintID = curEnv->GetMethodID(this->instanceClass, "drawBackground", "(I)V" ) ;
+if (voiddrawBackgroundjintID == NULL) {
+std::cerr << "Could not access to the method " << "drawBackground" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                         curEnv->CallVoidMethod( this->instance, voidsetFigureParametersjintjintID ,backgroundColor, logicOpIndex);
+                         curEnv->CallVoidMethod( this->instance, voiddrawBackgroundjintID ,backgroundColor);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableFigureGL::setLogicalOp (long logicOpIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetLogicalOpjintID = curEnv->GetMethodID(this->instanceClass, "setLogicalOp", "(I)V" ) ;
+if (voidsetLogicalOpjintID == NULL) {
+std::cerr << "Could not access to the method " << "setLogicalOp" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallVoidMethod( this->instance, voidsetLogicalOpjintID ,logicOpIndex);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

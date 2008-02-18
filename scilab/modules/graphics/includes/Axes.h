@@ -42,5 +42,10 @@ void initSubWinBounds( sciPointObj * pSubWin ) ;
 /* return TRUE if the window has been redrawn */
 BOOL checkRedrawing( void ) ;
 
+/**
+ * Update subwin size and scale
+ */
+void updateSubwinScale(sciPointObj * pSubwin);
+
 /*-----------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/

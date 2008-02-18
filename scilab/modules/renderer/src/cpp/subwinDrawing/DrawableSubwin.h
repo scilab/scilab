@@ -35,6 +35,12 @@ public:
    */
   void setCamera( Camera * cam ) ;
 
+  /**
+   * Display the subwin by just setting the camera
+   * and its children pObj
+   */
+  void displaySingleObj(sciPointObj * pObj);
+
 protected:
 
   /**
@@ -78,6 +84,18 @@ protected:
    * Draw the ticks of the subwin from alraedy computed data.
    */
   virtual void showTicks(void) = 0;
+
+  /**
+   * draw the subwin by just setting the camera
+   * and its children pObj
+   */
+  virtual void drawSingleObj(sciPointObj * pObj);
+
+  /**
+   * show the subwin by just setting the camera
+   * and its children pObj
+   */
+  virtual void showSingleObj(sciPointObj * pObj);
 
   /**
    * Return the real type of implementation object

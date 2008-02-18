@@ -30,6 +30,8 @@
 #include "SetProperty.h"
 #include "axesScale.h"
 #include "CurrentObjectsManagement.h"
+#include "DrawingBridge.h"
+#include "pixel_mode.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -136,5 +138,22 @@ BOOL checkRedrawing( void )
   }
   return FALSE ;
 }
+/*--------------------------------------------------------------------------------*/
+void updateSubwinScale(sciPointObj * pSubwin)
+{
+  
 
+  sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
+  BOOL visible = sciGetVisibility(pSubwin);
+  int pixelMode = sciGetXorMode(parentFigure);
+
+
+  // update the data by just calling
+  // display on the invisible window
+  sciSetXorMode(parentFigure, getPixelModeIndex("noop"));
+  sciSetVisibility(pSubwin, FALSE);
+  sciDrawSingleObj(pSubwin);
+  sciSetVisibility(pSubwin, visible);
+  sciSetXorMode(parentFigure, pixelMode);
+}
 /*--------------------------------------------------------------------------------*/

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2007 - INRIA - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,6 +28,7 @@
 #include "GetProperty.h"
 #include "ObjectSelection.h"
 #include "WindowList.h"
+#include "Axes.h"
 /*--------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)
 {
@@ -53,16 +55,18 @@ int sci_xclick(char *fname,unsigned long fname_len)
 
   // Get return values
   mouseButtonNumber = getJxclickMouseButtonNumber();
-  pixelCoords[0] = getJxclickXCoordinate();
-  pixelCoords[1] = getJxclickYCoordinate();
+  pixelCoords[0] = (int) getJxclickXCoordinate();
+  pixelCoords[1] = (int) getJxclickYCoordinate();
   windowID = getJxclickWindowID();
   menuCallback = getJxclickMenuCallback();
 
   // Convert pixel coordinates to user coordinates
   // Conversion is not done if the user clicked on a menu (pixelCoords[*] == -1)
-  if (pixelCoords[0]!=-1 && pixelCoords[1]!=-1)
+  if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
     {
-      sciGet2dViewCoordFromPixel(sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN), pixelCoords, userCoords2D);
+      sciPointObj * clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN);
+      updateSubwinScale(clickedSubwin);
+      sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
     }
   else
     {

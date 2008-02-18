@@ -42,6 +42,13 @@ void sciDrawObj( sciPointObj * pObj )
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
 }
 /*---------------------------------------------------------------------------------*/
+void sciDrawSingleObj( sciPointObj * pObj )
+{
+  /* force a redraw of the object */
+  getHandleDrawer(pObj)->hasChanged();
+  getFigureDrawer(sciGetParentFigure(pObj))->drawSingleObj(pObj);
+}
+/*---------------------------------------------------------------------------------*/
 void displayChildren( sciPointObj * pObj )
 {
   getHandleDrawer( pObj )->displayChildren() ;
