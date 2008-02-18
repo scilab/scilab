@@ -423,15 +423,15 @@ libscigraphics_la_rootdir = $(mydatadir)
 libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### graphics : init scripts ####
+####ï¿½graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
 libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
-#### graphics : gateway declaration ####
+####ï¿½graphics : gateway declaration ####
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
-#### graphics : include files ####
+####ï¿½graphics : include files ####
 libscigraphics_la_includedir=$(pkgincludedir)/graphics
 libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
@@ -576,90 +576,99 @@ tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
 
-#### graphics : demos files ####
+####ï¿½graphics : demos files ####
 libscigraphics_la_demosdir=$(mydatadir)
-nobase_libscigraphics_la_demos_DATA = demos/peaks.sci \
-demos/2d_3d_plots/fplot2d.dem.sce \
-demos/2d_3d_plots/grayplot.dem.sce \
+nobase_libscigraphics_la_demos_DATA = demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
+demos/2d_3d_plots/abaque.dem.sce \
 demos/2d_3d_plots/champ.dem.sce \
-demos/2d_3d_plots/contourf.dem.sce \
-demos/2d_3d_plots/fplot3d1.dem.sce \
-demos/2d_3d_plots/subplot.dem.sce \
-demos/2d_3d_plots/plot2d.dem.sce \
-demos/2d_3d_plots/fcontour.dem.sce \
-demos/2d_3d_plots/fplot3d.dem.sce \
-demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
-demos/2d_3d_plots/histplot.dem.sce \
-demos/2d_3d_plots/xgeom.dem.sce \
-demos/2d_3d_plots/plot3d1.dem.sce \
-demos/2d_3d_plots/plot3d.dem.sce \
+demos/2d_3d_plots/contour.dem.sce \
 demos/2d_3d_plots/contour_3d_2.dem.sce \
 demos/2d_3d_plots/contour_3d_3.dem.sce \
-demos/2d_3d_plots/abaque.dem.sce \
-demos/2d_3d_plots/plot2d1_2.dem.sce \
-demos/2d_3d_plots/plot2d1_1.dem.sce \
-demos/2d_3d_plots/param3d_1.dem.sce \
-demos/2d_3d_plots/fac3d1.dem.sce \
-demos/2d_3d_plots/contour.dem.sce \
 demos/2d_3d_plots/contour_3d_4.dem.sce \
-demos/2d_3d_plots/fac3d.dem.sce \
-demos/2d_3d_plots/zgrid.dem.sce \
+demos/2d_3d_plots/contourf.dem.sce \
 demos/2d_3d_plots/errbar.dem.sce \
-demos/2d_3d_plots/param3d_2.dem.sce \
-demos/2d_3d_plots/fgrayplot.dem.sce \
-demos/2d_3d_plots/plot2d3.dem.sce \
+demos/2d_3d_plots/fac3d.dem.sce \
+demos/2d_3d_plots/fac3d1.dem.sce \
 demos/2d_3d_plots/fchamp.dem.sce \
-demos/portrait.dem \
-demos/xsetechfig.sce \
-demos/fec/MESH \
+demos/2d_3d_plots/fcontour.dem.sce \
+demos/2d_3d_plots/fgrayplot.dem.sce \
+demos/2d_3d_plots/fplot2d.dem.sce \
+demos/2d_3d_plots/fplot3d.dem.sce \
+demos/2d_3d_plots/fplot3d1.dem.sce \
+demos/2d_3d_plots/grayplot.dem.sce \
+demos/2d_3d_plots/histplot.dem.sce \
+demos/2d_3d_plots/param3d_1.dem.sce \
+demos/2d_3d_plots/param3d_2.dem.sce \
+demos/2d_3d_plots/plot2d.dem.sce \
+demos/2d_3d_plots/plot2d1_1.dem.sce \
+demos/2d_3d_plots/plot2d1_2.dem.sce \
+demos/2d_3d_plots/plot2d3.dem.sce \
+demos/2d_3d_plots/plot3d.dem.sce \
+demos/2d_3d_plots/plot3d1.dem.sce \
+demos/2d_3d_plots/subplot.dem.sce \
+demos/2d_3d_plots/xgeom.dem.sce \
+demos/2d_3d_plots/zgrid.dem.sce \
+demos/anim/anim.dem.gateway.sce \
+demos/anim/anim1/anim1.sce \
+demos/anim/anim1/anim1_gateway.sce \
+demos/anim/anim2/anim2.sce \
+demos/anim/anim2/anim2_gateway.sce \
+demos/anim/anim3/anim3.sce \
+demos/anim/anim3/anim3_gateway.sce \
+demos/anim/anim4/anim4.sce \
+demos/anim/anim4/anim4_gateway.sce \
+demos/anim/anim5/anim5.sce \
+demos/anim/anim5/anim5_gateway.sce \
+demos/anim/anim6/anim6.sce \
+demos/anim/anim6/anim6.sci \
+demos/anim/anim6/anim6_gateway.sce \
+demos/anim/anim6/yt.wrt \
+demos/anim/anim7/anim7.sce \
+demos/anim/anim7/anim7_gateway.sce \
+demos/bar/bar.dem \
+demos/basic_functions/basic_functions.dem.gateway.sce \
+demos/basic_functions/basic_functions_1.dem.sce \
+demos/basic_functions/basic_functions_2.dem.sce \
+demos/basic_functions/basic_functions_3.dem.sce \
+demos/basic_functions/basic_functions_4.dem.sce \
+demos/basic_functions/basic_functions_5.dem.sce \
+demos/basic_functions/basic_functions_6.dem.sce \
+demos/basic_functions/basic_functions_7.dem.sce \
+demos/basic_functions/basic_functions_8.dem.sce \
+demos/bike.dem \
+demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
+demos/cmplxfunc/cmplxfunc.sce \
+demos/cmplxfunc/cmplxfunc.sci \
+demos/cmplxfunc/cmplxfunc_dial.bin \
+demos/cmplxfunc/cmplxfunc_dial.sce \
+demos/cmplxfunc/MacCmplx.sci \
+demos/contourf.dem \
+demos/fec/fec.dem.gateway.sce \
+demos/fec/fec.ex2 \
+demos/fec/fec.ex2.dem.gateway.sce \
+demos/fec/fec.ex3 \
+demos/fec/fec.ex3.dem.gateway.sce \
 demos/fec/fec.ex4 \
+demos/fec/fec.ex4.dem.gateway.sce \
 demos/fec/fec.info \
 demos/fec/fec_demo.sci \
-demos/fec/fec.dem \
+demos/fec/MESH \
 demos/fec/MESH.VAL \
-demos/fec/fec.ex1 \
-demos/fec/fec.ex3 \
-demos/fec/fec.ex2 \
-demos/bike.dem \
+demos/graphics.dem.gateway.sce \
 demos/misc/misc.dem \
-demos/misc/oscil.dem \
 demos/misc/numerique.dem \
+demos/misc/oscil.dem \
 demos/misc/oscil.sci \
 demos/misc/point.dem \
-demos/surface/Macros.sci \
-demos/surface/surfaces.sci \
+demos/peaks.sci \
+demos/portrait.dem \
+demos/sd.sav \
 demos/surface/bezier.dem \
 demos/surface/bezier.sci \
+demos/surface/Macros.sci \
 demos/surface/surfaces.dem \
-demos/cmplxfunc/MacCmplx.sci \
-demos/cmplxfunc/cmplxfunc.dem \
-demos/bar/bar.dem \
-demos/graphics.dem.gateway.sce \
-demos/sd.sav \
-demos/basic_functions/basic_functions_4.dem.sce \
-demos/basic_functions/basic_functions_6.dem.sce \
-demos/basic_functions/basic_functions_1.dem.sce \
-demos/basic_functions/basic_functions_3.dem.sce \
-demos/basic_functions/basic_functions_2.dem.sce \
-demos/basic_functions/basic_functions_7.dem.sce \
-demos/basic_functions/basic_functions.dem.gateway.sce \
-demos/basic_functions/basic_functions_8.dem.sce \
-demos/basic_functions/basic_functions_5.dem.sce \
-demos/contourf.dem \
-demos/anim/riemann.sci \
-demos/anim/anim8.dem \
-demos/anim/yt.wrt \
-demos/anim/anim6.dem \
-demos/anim/animxx.dem \
-demos/anim/anim7.dem \
-demos/anim/anim5.dem \
-demos/anim/anim1.dem \
-demos/anim/anim2.dem \
-demos/anim/anim.dem \
-demos/anim/anim4.dem \
-demos/anim/anim6.sci \
-demos/anim/anim3.dem \
-demos/anim/anim_p1.dem
+demos/surface/surfaces.sci \
+demos/xsetechfig.sce
 
 USEANT=1
 

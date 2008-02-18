@@ -9,8 +9,8 @@ demopath = get_absolute_file_path("graphics.dem.gateway.sce");
 
 demolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
 			"Basic functions"             ,"basic_functions/basic_functions.dem.gateway.sce"     ; ..
-			"Animation"                   ,"anim/anim.dem"          ; ..
-			"Finite Elements"             ,"fec/fec.dem"            ; ..
+			"Animation"                   ,"anim/anim.dem.gateway.sce"                           ; ..
+			"Finite Elements"             ,"fec/fec.dem.gateway.sce"            ; ..
 			"Bezier curves and surfaces"  ,"surface/bezier.dem"     ; ..
 			"More surfaces"               ,"surface/surfaces.dem"   ; ..
 			"Misc"                        ,"misc/misc.dem"          ; ..

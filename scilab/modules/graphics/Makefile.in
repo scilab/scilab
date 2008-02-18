@@ -1459,15 +1459,15 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@libscigraphics_la_rootdir = $(mydatadir)
 @GUI_TRUE@libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### graphics : init scripts ####
+####ï¿½graphics : init scripts ####
 @GUI_TRUE@libscigraphics_la_etcdir = $(mydatadir)/etc
 @GUI_TRUE@libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
-#### graphics : gateway declaration ####
+####ï¿½graphics : gateway declaration ####
 @GUI_TRUE@libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @GUI_TRUE@libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
-#### graphics : include files ####
+####ï¿½graphics : include files ####
 @GUI_TRUE@libscigraphics_la_includedir = $(pkgincludedir)/graphics
 @GUI_TRUE@libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 @GUI_TRUE@includes/sci_winsid.h \
@@ -1612,90 +1612,99 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@tcl/ged/images/text.gif
 
 
-#### graphics : demos files ####
+####ï¿½graphics : demos files ####
 @GUI_TRUE@libscigraphics_la_demosdir = $(mydatadir)
-@GUI_TRUE@nobase_libscigraphics_la_demos_DATA = demos/peaks.sci \
-@GUI_TRUE@demos/2d_3d_plots/fplot2d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/grayplot.dem.sce \
+@GUI_TRUE@nobase_libscigraphics_la_demos_DATA = demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
+@GUI_TRUE@demos/2d_3d_plots/abaque.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/champ.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contourf.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/subplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fcontour.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
-@GUI_TRUE@demos/2d_3d_plots/histplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/xgeom.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot3d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/contour.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/contour_3d_2.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/contour_3d_3.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/abaque.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d1_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d1_1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/param3d_1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fac3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/contour_3d_4.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fac3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/zgrid.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/contourf.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/errbar.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/param3d_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fgrayplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d3.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fac3d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fac3d1.dem.sce \
 @GUI_TRUE@demos/2d_3d_plots/fchamp.dem.sce \
-@GUI_TRUE@demos/portrait.dem \
-@GUI_TRUE@demos/xsetechfig.sce \
-@GUI_TRUE@demos/fec/MESH \
+@GUI_TRUE@demos/2d_3d_plots/fcontour.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fgrayplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fplot2d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fplot3d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/fplot3d1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/grayplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/histplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/param3d_1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/param3d_2.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d1_1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d1_2.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot2d3.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot3d.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/plot3d1.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/subplot.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/xgeom.dem.sce \
+@GUI_TRUE@demos/2d_3d_plots/zgrid.dem.sce \
+@GUI_TRUE@demos/anim/anim.dem.gateway.sce \
+@GUI_TRUE@demos/anim/anim1/anim1.sce \
+@GUI_TRUE@demos/anim/anim1/anim1_gateway.sce \
+@GUI_TRUE@demos/anim/anim2/anim2.sce \
+@GUI_TRUE@demos/anim/anim2/anim2_gateway.sce \
+@GUI_TRUE@demos/anim/anim3/anim3.sce \
+@GUI_TRUE@demos/anim/anim3/anim3_gateway.sce \
+@GUI_TRUE@demos/anim/anim4/anim4.sce \
+@GUI_TRUE@demos/anim/anim4/anim4_gateway.sce \
+@GUI_TRUE@demos/anim/anim5/anim5.sce \
+@GUI_TRUE@demos/anim/anim5/anim5_gateway.sce \
+@GUI_TRUE@demos/anim/anim6/anim6.sce \
+@GUI_TRUE@demos/anim/anim6/anim6.sci \
+@GUI_TRUE@demos/anim/anim6/anim6_gateway.sce \
+@GUI_TRUE@demos/anim/anim6/yt.wrt \
+@GUI_TRUE@demos/anim/anim7/anim7.sce \
+@GUI_TRUE@demos/anim/anim7/anim7_gateway.sce \
+@GUI_TRUE@demos/bar/bar.dem \
+@GUI_TRUE@demos/basic_functions/basic_functions.dem.gateway.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_1.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_2.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_3.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_4.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_5.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_6.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_7.dem.sce \
+@GUI_TRUE@demos/basic_functions/basic_functions_8.dem.sce \
+@GUI_TRUE@demos/bike.dem \
+@GUI_TRUE@demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
+@GUI_TRUE@demos/cmplxfunc/cmplxfunc.sce \
+@GUI_TRUE@demos/cmplxfunc/cmplxfunc.sci \
+@GUI_TRUE@demos/cmplxfunc/cmplxfunc_dial.bin \
+@GUI_TRUE@demos/cmplxfunc/cmplxfunc_dial.sce \
+@GUI_TRUE@demos/cmplxfunc/MacCmplx.sci \
+@GUI_TRUE@demos/contourf.dem \
+@GUI_TRUE@demos/fec/fec.dem.gateway.sce \
+@GUI_TRUE@demos/fec/fec.ex2 \
+@GUI_TRUE@demos/fec/fec.ex2.dem.gateway.sce \
+@GUI_TRUE@demos/fec/fec.ex3 \
+@GUI_TRUE@demos/fec/fec.ex3.dem.gateway.sce \
 @GUI_TRUE@demos/fec/fec.ex4 \
+@GUI_TRUE@demos/fec/fec.ex4.dem.gateway.sce \
 @GUI_TRUE@demos/fec/fec.info \
 @GUI_TRUE@demos/fec/fec_demo.sci \
-@GUI_TRUE@demos/fec/fec.dem \
+@GUI_TRUE@demos/fec/MESH \
 @GUI_TRUE@demos/fec/MESH.VAL \
-@GUI_TRUE@demos/fec/fec.ex1 \
-@GUI_TRUE@demos/fec/fec.ex3 \
-@GUI_TRUE@demos/fec/fec.ex2 \
-@GUI_TRUE@demos/bike.dem \
+@GUI_TRUE@demos/graphics.dem.gateway.sce \
 @GUI_TRUE@demos/misc/misc.dem \
-@GUI_TRUE@demos/misc/oscil.dem \
 @GUI_TRUE@demos/misc/numerique.dem \
+@GUI_TRUE@demos/misc/oscil.dem \
 @GUI_TRUE@demos/misc/oscil.sci \
 @GUI_TRUE@demos/misc/point.dem \
-@GUI_TRUE@demos/surface/Macros.sci \
-@GUI_TRUE@demos/surface/surfaces.sci \
+@GUI_TRUE@demos/peaks.sci \
+@GUI_TRUE@demos/portrait.dem \
+@GUI_TRUE@demos/sd.sav \
 @GUI_TRUE@demos/surface/bezier.dem \
 @GUI_TRUE@demos/surface/bezier.sci \
+@GUI_TRUE@demos/surface/Macros.sci \
 @GUI_TRUE@demos/surface/surfaces.dem \
-@GUI_TRUE@demos/cmplxfunc/MacCmplx.sci \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc.dem \
-@GUI_TRUE@demos/bar/bar.dem \
-@GUI_TRUE@demos/graphics.dem.gateway.sce \
-@GUI_TRUE@demos/sd.sav \
-@GUI_TRUE@demos/basic_functions/basic_functions_4.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_6.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_1.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_3.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_2.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_7.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions.dem.gateway.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_8.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_5.dem.sce \
-@GUI_TRUE@demos/contourf.dem \
-@GUI_TRUE@demos/anim/riemann.sci \
-@GUI_TRUE@demos/anim/anim8.dem \
-@GUI_TRUE@demos/anim/yt.wrt \
-@GUI_TRUE@demos/anim/anim6.dem \
-@GUI_TRUE@demos/anim/animxx.dem \
-@GUI_TRUE@demos/anim/anim7.dem \
-@GUI_TRUE@demos/anim/anim5.dem \
-@GUI_TRUE@demos/anim/anim1.dem \
-@GUI_TRUE@demos/anim/anim2.dem \
-@GUI_TRUE@demos/anim/anim.dem \
-@GUI_TRUE@demos/anim/anim4.dem \
-@GUI_TRUE@demos/anim/anim6.sci \
-@GUI_TRUE@demos/anim/anim3.dem \
-@GUI_TRUE@demos/anim/anim_p1.dem
+@GUI_TRUE@demos/surface/surfaces.sci \
+@GUI_TRUE@demos/xsetechfig.sce
 
 @GUI_TRUE@USEANT = 1
 pkglib_LTLIBRARIES = libscigraphics.la

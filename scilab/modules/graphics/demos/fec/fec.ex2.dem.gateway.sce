@@ -1,6 +1,3 @@
-getf('SCI/demos/demos_lib/demo_message.sci');
-getf('SCI/demos/demos_lib/demo_run.sci');
-
-demo_message('SCI/demos/graphics/fec/fec_1.ex2');
-
-demo_run('SCI/demos/graphics/fec/fec_1.ex2');
+demopath = get_absolute_file_path("fec.ex2.dem.gateway.sce");
+demo_message(demopath+"/fec.ex2");
+demo_run(demopath+"/fec.ex2");
