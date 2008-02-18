@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2000 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function q=quart(x,orien)
 //
 //This function computes the quartiles of a vector or a matrix x.
@@ -13,9 +23,6 @@ function q=quart(x,orien)
 //interquartile range. It returns  in  each row of  length(x)x3-matrix q
 //the quartiles of each row of x.
 //
-//author: carlos klimann
-//
-//date: 1999-05-12
 //
   function y = vperctl(x,p)
   //inline function wich computes percentiles of a vector

@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2000 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [s]=stdevf(x,fre,o)
 //
 //This function  computes the  standard  deviation  of  the values of  a
@@ -20,9 +30,6 @@ function [s]=stdevf(x,fre,o)
 //deviation of  each row of x, each  value counted with the multiplicity
 //indicated by the corresponding value of fre.
 //
-//author: carlos klimann
-//
-//date: 2000-01-20
 //
   rhs=argn(2)
   if rhs<2 then

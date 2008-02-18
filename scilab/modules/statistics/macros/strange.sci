@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2000 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [r]=strange(x,orien)
 //
 //The range  is  the distance between   the largest  and smaller  value,
@@ -9,9 +19,6 @@ function [r]=strange(x,orien)
 //[r]=range(x,'c') (or equivalently [r]=range(x,2)) give a column vector
 //with the range of each row.
 //
-//author: carlos klimann
-//
-//date: 1999-05-11
 //
   [lhs,rhs]=argn(0)
   if rhs==0 then error('strange requires at least one input.'), end

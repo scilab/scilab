@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2001 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [s]=center(x,orient)
 //
 //This function  computes s,  the centered version  of the
@@ -18,10 +29,7 @@ function [s]=center(x,orient)
 //returns in the  entry s(i,j) the value (x(i,j)-xbarh(i))
 //with xbarh(i) the mean of the values of the i row.
 //
-//author: carlos klimann
-//
-//date: 2001-10-05
-//
+
   if x==[] then s=%nan, return, end
   [lhs,rhs]=argn(0)
   if (rhs<1)|(rhs>2) then error('center requires one or two inputs.'), end

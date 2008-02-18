@@ -1,3 +1,15 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1999 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
+
 function [m]=nanmeanf(val,fre,orient)
 //
 //This function returns in scalar m the mean of the values (ignoring the
@@ -20,9 +32,6 @@ function [m]=nanmeanf(val,fre,orient)
 //the mean of  each row of val  (ignoring the NANs),  each value counted
 //with the multiplicity indicated by the corresponding value of fre.
 //
-//author: carlos klimann
-//
-//date: 2000-01-17
 //
   [lhs,rhs]=argn(0)
   if rhs<2|rhs>3 then error('nanmeanf requires two or three inputs.'), end

@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2000 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function sd=stdev(x,o)
 //
 //This function computes  the  standard deviation  of  the values  of  a
@@ -14,9 +24,6 @@ function sd=stdev(x,o)
 //standard  deviation. It returns in each  entry of the  column vector y
 //the standard deviation of each row of x.
 //
-//author: carlos klimann
-//
-//date: 1999-05-12
 //
   if argn(2)<2 then o='*',end
   if x == [] then sd=%nan;return ;end 

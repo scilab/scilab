@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2000 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [coefs]=regress(x,y)
 //
 //This function computes the regresion coefficients of two
@@ -9,9 +19,6 @@ function [coefs]=regress(x,y)
 //References:   Wonacott,    T.H.    &   Wonacott,   R.J.;
 //Introductory Statistics, J.Wiley & Sons, 1990.
 //
-//author: carlos klimann
-//
-//date: 2001-02-12
 //
   coefs=[]
   if (type(x) <> 1)|(type(y)<>1) then error('Both parameters must be numerical.'),end

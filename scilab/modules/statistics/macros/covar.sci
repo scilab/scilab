@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1999 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [s]=covar(x,y,fre)
 //
 //This function computes the  covariance  of two variables x
@@ -9,9 +20,6 @@ function [s]=covar(x,y,fre)
 //References: Wonacott,  T.H. & Wonacott, R.J.; Introductory Statistics,
 //J.Wiley & Sons, 1990.
 //
-//author: carlos klimann
-//
-//date: 2000-04-14
 //
 //small correction (bug number 1072) date : 8 nov 2004
 //

@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function t=trimmean(x,discard,orien)
 //
 //A  trimmed mean  is calculated  by discarding  a certain
@@ -57,9 +68,6 @@ function t=trimmean(x,discard,orien)
 //Gordaliza,  Robustness Properties  of Means  and Trimmed
 //Means, JASA, Volume 94, Number 447, Sept 1999, pp956-969
 //
-//author: carlos klimann
-//
-//date: 2002-10-10
 //
   [lhs,rhs]=argn(0)
   if rhs==0 then error('trimmean requires at least two input parameters.'), end
