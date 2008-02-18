@@ -1,0 +1,6 @@
+getf('SCI/demos/demos_lib/demo_message.sci');
+getf('SCI/demos/demos_lib/demo_run.sci');
+
+demo_message('SCI/demos/graphics/fec/fec_1.ex2');
+
+demo_run('SCI/demos/graphics/fec/fec_1.ex2');
