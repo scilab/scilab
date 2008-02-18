@@ -1,5 +1,12 @@
 function [rep] = x_choices(Title,choices_l)
-// Copyright INRIA
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 [lhs,rhs] = argn(0)
 if rhs<=0 then
   s_mat = ["l1=list(''choice 1'',1,[''toggle c1'',''toggle c2'',''toggle c3'']);";
