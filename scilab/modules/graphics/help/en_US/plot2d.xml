@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -9,7 +10,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <?xml-stylesheet type="text/xsl" href="file:///usr/local/lib/scilab/man/eng/html-rev.xsl"?>
 <MAN>
