@@ -420,6 +420,12 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       mdialog = x_mdialog;
       getvalue = x_getvalue;
 
+      //
+      // WATCH OUT !!!
+      // SOME HACK UNTIL SHOW_PIXMAP IS AVAILABLE
+      //
+      // show_pixmap = drawnow;
+
       if MSDOS then
 	//** ... for Windows machines
 	choose    = tk_scicos_choose   ;
@@ -547,6 +553,8 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
 //** --- End of initialization -----------------------------------------------------------
 
+// DEBUG
+    gh_current_window.immediate_drawing="on";
 
   global Clipboard  // to make it possible to copy and paste from one
   // super block to another
@@ -707,6 +715,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	%win = win_n
 
       else
+
 	//** I'm ready to exec a command
 	%koko = find( Cmenu==%cor_item_exec(:,1) );
 	if size(%koko,'*') == 1 then
@@ -715,8 +724,13 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
 
 	  ierr=0
-	  execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
-	  //execstr('exec('+%cor_item_exec(%koko,2)+',-1)')
+	  disp("//** EXECUTION")
+	  disp("//** "+%cor_item_exec(%koko,2))
+
+          // RELEASE -->
+	  //execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
+	  // DEBUG -->
+	  execstr('exec('+%cor_item_exec(%koko,2)+',1)')
 
 	  // in case window has disappeared
 	  if ierr > 0 then
@@ -874,6 +888,7 @@ endfunction
 //** ----------------------------------------------------------------------------------------------------------------
 
 function restore_menu()
+  disp("//** [Call] restore_menu...")
   for %Y=1:length(%scicos_menu)
     execstr( %scicos_menu(%Y)(1)+'_'+string(curwin)+'='+%scicos_menu(%Y)(1) )
   end
