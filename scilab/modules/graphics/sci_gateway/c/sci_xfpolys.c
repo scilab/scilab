@@ -1,7 +1,18 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 /*------------------------------------------------------------------------*/
 /* file: sci_xfpolys.c                                                    */
-/* Copyright INRIA 2006                                                   */
-/* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xfpolys routine                                   */
 /*------------------------------------------------------------------------*/
 
@@ -41,7 +52,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
     GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); 
 
     if (m3*n3==m1*n1) 
-    { /* Code modified by polpoth 7/7/2000 */
+    { 
       CheckSameDims(1,3,m1,n1,m3,n3);
       v1=2; /* interpolated shading */
 
