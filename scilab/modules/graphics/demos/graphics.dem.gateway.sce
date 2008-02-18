@@ -14,5 +14,5 @@ demolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gateway.
 			"Bezier curves and surfaces"  ,"surface/bezier.dem"     ; ..
 			"More surfaces"               ,"surface/surfaces.dem"   ; ..
 			"Misc"                        ,"misc/misc.dem"          ; ..
-			"Complex elementary functions","cmplxfunc/cmplxfunc.dem"; ..
+			"Complex elementary functions","cmplxfunc/cmplxfunc.dem.gateway.sce"; ..
 			"bar histogram"               ,"bar/bar.dem"            ]

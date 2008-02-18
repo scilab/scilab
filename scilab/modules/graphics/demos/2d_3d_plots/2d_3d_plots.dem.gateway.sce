@@ -49,7 +49,7 @@ endfunction
 // nn=prod(size(str_l));
 // 
 // while %t then
-// 	num=tk_choose(info_l,'Choose a demo    ');
+// 	num=x_choose(info_l,'Choose a demo    ');
 // 	if num==0 then
 // 		lines(oldln(1));
 // 		set figure_style new;
