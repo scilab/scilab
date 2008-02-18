@@ -1,15 +1,24 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function res=edit(macroname,ueditor)
 // macroname : character string giving a macroname
 // ueditor : external command for a text editor, unless ueditor="scipad"
 //
-// Copyright INRIA
   default_editor="emacs -i -geometry 80x50+427+143  -font 9x15 "
   [lhs,rhs]=argn(0)
   //
   finded=%f;tmp=%f
   // tmpdir will have trailing / or \
   tmpdir= pathconvert(TMPDIR);
-  if MSDOS then 
+  if MSDOS then
     default_editor="emacs ";
   end
 
@@ -25,9 +34,9 @@ function res=edit(macroname,ueditor)
       // convert path according to MSDOS value and expand SCI
       path=pathconvert(path);
       fname= path+macroname+'.sci';
-      // check if writable 
+      // check if writable
       // if MSDOS is true we assume here that file is writable
-      if ~MSDOS then 
+      if ~MSDOS then
         rep=unix_g("if [ -w "+ fname +" ]; then echo ok ;else echo nok; fi")
         if part(rep,1:3)=='nok' then
           //if file is not writable create a copy in TMPDIR
@@ -37,8 +46,8 @@ function res=edit(macroname,ueditor)
         end
       end
       finded=%t
-    elseif isdef(macroname) 
-       if typeof(evstr(macroname))=='function' then 
+    elseif isdef(macroname)
+       if typeof(evstr(macroname))=='function' then
       // tour de force to keep the original function name
         execstr("txt=tree2code(macr2tree("+macroname+"),%t)")
         fname=tmpfile
@@ -48,7 +57,7 @@ function res=edit(macroname,ueditor)
        end
     end
   else //no macroname specified
-    macroname='untitled', 
+    macroname='untitled',
     tmpfile= tmpdir+macroname+'.sci';
     finded=%f
   end
@@ -73,7 +82,7 @@ function res=edit(macroname,ueditor)
     end
   end
   //load the macro in scilab
-  if tmp then write(%io(2),'modified file may be found in '+fname),end 
+  if tmp then write(%io(2),'modified file may be found in '+fname),end
   getf(fname,'c')
   //return the loaded variable
   res=evstr(macroname);

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -27,7 +38,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    If functionname is the name of a defined scilab function 
+    If functionname is the name of a defined scilab function
     <VERB>edit(functionname ,[editor])</VERB> try to open the associated file
      <VERB>functionname.sci</VERB>. If this file can't be modified <VERB>edit</VERB>
     first create a copy of this file in the TMPDIR directory.</P>
@@ -39,7 +50,7 @@
     into Scilab under the name <VERB>newname</VERB>.</P>
     <P>
     The editor character string can be used to specify your favourite text
-    editor. It is generally a system command, or the string "scipad", in 
+    editor. It is generally a system command, or the string "scipad", in
     which case the internal editor is used.</P>
     <P>
     Default editor is Emacs. This function should be customized according
