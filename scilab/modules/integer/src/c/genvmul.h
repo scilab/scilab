@@ -1,4 +1,4 @@
-/*--------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
@@ -9,7 +9,9 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- *//*--------------------------------------------------------------------------*/
+ */
+
+/*--------------------------------------------------------------------------*/
 #ifndef __GENVMUL_H__
 #define __GENVMUL_H__
 #include "machine.h"

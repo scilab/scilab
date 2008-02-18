@@ -1,4 +1,4 @@
-/*--------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDTU
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /*--------------------------------------------------------------------------*/
 #ifndef __GENCONCATCOL_H__
 #define __GENCONCATCOL_H__

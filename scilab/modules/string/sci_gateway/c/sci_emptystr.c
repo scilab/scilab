@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* desc : zero length string                                              */
 /*        With no input argument returns a zero length character string   */
 /*        With a matrix for input argument returns a zero length character*/

@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* res = strspn(str1,str2) */
 /* Returns the length of the initial portion of str1 */
 /* which consists only of characters that are part of str2. */

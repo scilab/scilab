@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Cong WU
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* desc : Let  s[k]  stands for the  k  character of Input_StringMatrixings
   ( or the  white space character if  k >length(s) ).
   part  returns  c , a matrix of character Input_StringMatrixings, such that  

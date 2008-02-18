@@ -1,4 +1,4 @@
-/*--------------------------------------------------------------------------*/ 
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Francois VOGEL
@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+
 #ifndef __SCIPRINT_FULL_H__
 #define __SCIPRINT_FULL_H__
 

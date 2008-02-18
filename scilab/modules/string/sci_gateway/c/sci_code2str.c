@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* desc : str=code2str(c)
           Returns character string associated with Scilab integer codes.
           str is such that c(i) is the Scilab integer code of part(str,i))*/

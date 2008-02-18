@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 #include <math.h>
 #include <string.h>
 #include <stdio.h>

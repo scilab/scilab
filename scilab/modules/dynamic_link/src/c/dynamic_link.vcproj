@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="dynamic_link"
 	ProjectGUID="{EAB6C580-22B3-4359-BA1D-DD7499A96163}"
 	RootNamespace="dynamic_link"
@@ -205,15 +205,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dl_genErrorMessage.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainDynamic_link.c"
 				>
 			</File>
 			<File
 				RelativePath=".\dynamic_link.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dl_genErrorMessage.c"
 				>
 			</File>
 			<File
@@ -255,6 +255,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\addinter.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dl_genErrorMessage.h"
 				>
 			</File>
 			<File

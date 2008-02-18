@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* desc : returns the tokens of a character string.  
           T=tokens(str [,delimiter])   
           str : a character string. The string where to search the tokens.

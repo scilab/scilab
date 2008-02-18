@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 #ifndef __ADDINTER_H__
 #define  __ADDINTER_H__
 

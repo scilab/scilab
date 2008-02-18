@@ -1,4 +1,4 @@
-/*--------------------------------------------------------------------------*/ 
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
@@ -11,7 +11,7 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+
 #ifndef __MATBOOLEAN_H__
 #define __MATBOOLEAN_H__
 /**

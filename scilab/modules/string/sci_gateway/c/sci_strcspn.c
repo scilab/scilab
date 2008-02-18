@@ -1,4 +1,4 @@
-/*---------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* res = strcspn(str1,str2) */
 /* Scans str1 for the first occurrence of any of the characters */
 /* that are part of str2, returning the number of characters */

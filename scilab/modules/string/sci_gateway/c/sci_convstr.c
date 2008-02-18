@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* desc : converts the matrix of strings  str-matrix  into lower case (for*/  
 /*          "l"  ;default value) or upper case (for  "u" ).               */
 /*        [y]=convstr(str-matrix, ["flag"])                               */

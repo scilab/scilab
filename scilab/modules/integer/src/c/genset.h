@@ -9,7 +9,9 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- *//*--------------------------------------------------------------------------*/
+ */
+
+/*--------------------------------------------------------------------------*/
 #ifndef __GENSET_H__
 #define __GENSET_H__
 #include "machine.h"

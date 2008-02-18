@@ -1,4 +1,4 @@
-/*-----------------------------------------------------------------------*/
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /* desc : This function convert Scilab string to a vector of ascii code  */
 /*        or vector of ascii code to Scilab strings.                     */
 /*        If  txt  is a matrix of string,  ascii(txt)  is equivalent to  */  
