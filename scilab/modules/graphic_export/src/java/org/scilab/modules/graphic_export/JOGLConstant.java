@@ -22,6 +22,13 @@ import javax.media.opengl.GL;
 public class JOGLConstant {
 	
 	/**
+	 * Default constructor
+	 */
+	public JOGLConstant() {
+		
+	}
+	
+	/**
 	 * get_GL_RGBA
 	 * @return GL.GL_RGBA
 	 */

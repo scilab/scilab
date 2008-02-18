@@ -26,9 +26,21 @@ import com.sun.opengl.util.BufferUtil;
  */
 public class GL2PSToJOGL {
 	
+	/**
+	 * Size of viewport for the glGetViewport function
+	 */
 	public static final int VIEWPORT_SIZE = 4;
+	/**
+	 * Size of color clear value for the glGetColorClearValue function
+	 */
 	public static final int COLOR_CLEAR_VALUE_SIZE = 4;
+	/**
+	 * Size of current raster position for the glGetCurrentRasterPosition function
+	 */
 	public static final int CURRENT_RASTER_POSITION_SIZE = 4;
+	/**
+	 * Size of current raster color for the glGetCurrentRasterColor function
+	 */
 	public static final int CURRENT_RASTER_COLOR_SIZE = 4;
 	
 	private static FloatBuffer gl2psFeedback;
