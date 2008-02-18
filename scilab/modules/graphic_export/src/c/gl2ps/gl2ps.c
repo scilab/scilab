@@ -2356,8 +2356,8 @@ static void gl2psParseFeedbackBuffer(int used)
         node->image->width = (int)current[2];
         current += 2; used -= 2;
         node->image->height = (int)current[2];
-        prim->verts[0].xyz[0] = prim->verts[0].xyz[0] - (int)(node->image->width / 2) + 0.5;
-        prim->verts[0].xyz[1] = prim->verts[0].xyz[1] - (int)(node->image->height / 2) + 0.5;
+        prim->verts[0].xyz[0] = prim->verts[0].xyz[0] - (int)(node->image->width / 2) + (float)(0.5);
+        prim->verts[0].xyz[1] = prim->verts[0].xyz[1] - (int)(node->image->height / 2) + (float)(0.5);
         for(i = 1; i < 4; i++){
           for(v = 0; v < 3; v++){
             prim->verts[i].xyz[v] = prim->verts[0].xyz[v];
@@ -2458,7 +2458,7 @@ static void gl2psPrintPostScriptPixmap(float x, float y, GL2PSimage *im)
     for(row = 0; row < height; row++){
       for(col = 0; col < width; col++){ 
         gl2psGetRGB(im, col, row, &dr, &dg, &db);
-        fgrey = (0.30 * dr + 0.59 * dg + 0.11 * db);
+        fgrey = ((float)(0.30) * dr + (float)(0.59) * dg + (float)(0.11) * db);
         grey = (unsigned char)(255. * fgrey);
         gl2psWriteByte(grey);
       }
@@ -3219,7 +3219,7 @@ static void gl2psPrintTeXHeader(void)
   int i;
 
   if(gl2ps->filename && strlen(gl2ps->filename) < 256){
-    for(i = strlen(gl2ps->filename)-1; i >= 0; i--){
+    for(i = (int)strlen(gl2ps->filename)-1; i >= 0; i--){
       if(gl2ps->filename[i] == '.'){
         strncpy(name, gl2ps->filename, i);
         name[i] = '\0';
@@ -4185,14 +4185,14 @@ static int gl2psPrintPDFShaderStreamDataCoord(GL2PSvertex *vertex,
   /* FIXME: temp bux fix for 64 bit archs: */
   if(sizeof(unsigned long) == 8) dmax = dmax - 2048.;
 
-  offs += (*action)(edgeflag, 1);
+  offs += (int)(*action)(edgeflag, 1);
 
   /* The Shader stream in PDF requires to be in a 'big-endian'
      order */
     
   if(GL2PS_ZERO(dx*dy)){
-    offs += (*action)(0, 4);
-    offs += (*action)(0, 4);
+    offs += (int)(*action)(0, 4);
+    offs += (int)(*action)(0, 4);
   }
   else{
     diff = (vertex->xyz[0] - xmin) / dx;
@@ -4201,7 +4201,7 @@ static int gl2psPrintPDFShaderStreamDataCoord(GL2PSvertex *vertex,
     else if(diff < 0)
       diff = 0.0F;
     imap = (unsigned long)(diff * dmax);
-    offs += (*action)(imap, 4);
+    offs += (int)(*action)(imap, 4);
       
     diff = (vertex->xyz[1] - ymin) / dy;
     if(diff > 1)
@@ -4209,7 +4209,7 @@ static int gl2psPrintPDFShaderStreamDataCoord(GL2PSvertex *vertex,
     else if(diff < 0)
       diff = 0.0F;
     imap = (unsigned long)(diff * dmax);
-    offs += (*action)(imap, 4);
+    offs += (int)(*action)(imap, 4);
   }
   
   return offs;
@@ -4229,13 +4229,13 @@ static int gl2psPrintPDFShaderStreamDataRGB(GL2PSvertex *vertex,
   if(sizeof(unsigned long) == 8) dmax = dmax - 2048.;
 
   imap = (unsigned long)((vertex->rgba[0]) * dmax);
-  offs += (*action)(imap, 1);
+  offs += (int)(*action)(imap, 1);
     
   imap = (unsigned long)((vertex->rgba[1]) * dmax);
-  offs += (*action)(imap, 1);
+  offs += (int)(*action)(imap, 1);
     
   imap = (unsigned long)((vertex->rgba[2]) * dmax);
-  offs += (*action)(imap, 1);
+  offs += (int)(*action)(imap, 1);
   
   return offs;
 }
@@ -4261,7 +4261,7 @@ static int gl2psPrintPDFShaderStreamDataAlpha(GL2PSvertex *vertex,
   
   imap = (unsigned long)((vertex->rgba[3]) * dmax);
   
-  offs += (*action)(imap, sigbyte);
+  offs += (int)(*action)(imap, sigbyte);
   
   return offs;
 }
@@ -4430,8 +4430,8 @@ static int gl2psPrintPDFShaderMask(int obj, int childobj)
                   (int)gl2ps->viewport[2], (int)gl2ps->viewport[3]);
   
   len = (childobj>0) 
-    ? strlen("/TrSh sh\n") + (int)log10((double)childobj)+1
-    : strlen("/TrSh0 sh\n"); 
+    ? (int)strlen("/TrSh sh\n") + (int)log10((double)childobj)+1
+    : (int)strlen("/TrSh0 sh\n"); 
   
   offs += fprintf(gl2ps->stream,
                   "/Length %d\n"
@@ -4930,46 +4930,46 @@ static void gl2psPrintSVGSmoothTriangle(GL2PSxyz xyz[3], GL2PSrgba rgba[3])
     /* subdivide into 4 subtriangles */
     for(i = 0; i < 3; i++){
       xyz2[0][i] = xyz[0][i]; 
-      xyz2[1][i] = 0.5 * (xyz[0][i] + xyz[1][i]);
-      xyz2[2][i] = 0.5 * (xyz[0][i] + xyz[2][i]);
+      xyz2[1][i] = (float)(0.5) * (xyz[0][i] + xyz[1][i]);
+      xyz2[2][i] = (float)(0.5) * (xyz[0][i] + xyz[2][i]);
     }
     for(i = 0; i < 4; i++){
       rgba2[0][i] = rgba[0][i]; 
-      rgba2[1][i] = 0.5 * (rgba[0][i] + rgba[1][i]);
-      rgba2[2][i] = 0.5 * (rgba[0][i] + rgba[2][i]);
+      rgba2[1][i] = (float)(0.5) * (rgba[0][i] + rgba[1][i]);
+      rgba2[2][i] = (float)(0.5) * (rgba[0][i] + rgba[2][i]);
     }
     gl2psPrintSVGSmoothTriangle(xyz2, rgba2);
     for(i = 0; i < 3; i++){
-      xyz2[0][i] = 0.5 * (xyz[0][i] + xyz[1][i]);
+      xyz2[0][i] = (float)(0.5) * (xyz[0][i] + xyz[1][i]);
       xyz2[1][i] = xyz[1][i]; 
-      xyz2[2][i] = 0.5 * (xyz[1][i] + xyz[2][i]);
+      xyz2[2][i] = (float)(0.5) * (xyz[1][i] + xyz[2][i]);
     }
     for(i = 0; i < 4; i++){
-      rgba2[0][i] = 0.5 * (rgba[0][i] + rgba[1][i]);
+      rgba2[0][i] = (float)(0.5) * (rgba[0][i] + rgba[1][i]);
       rgba2[1][i] = rgba[1][i]; 
-      rgba2[2][i] = 0.5 * (rgba[1][i] + rgba[2][i]);
+      rgba2[2][i] = (float)(0.5) * (rgba[1][i] + rgba[2][i]);
     }
     gl2psPrintSVGSmoothTriangle(xyz2, rgba2);
     for(i = 0; i < 3; i++){
-      xyz2[0][i] = 0.5 * (xyz[0][i] + xyz[2][i]);
+      xyz2[0][i] = (float)(0.5) * (xyz[0][i] + xyz[2][i]);
       xyz2[1][i] = xyz[2][i]; 
-      xyz2[2][i] = 0.5 * (xyz[1][i] + xyz[2][i]);
+      xyz2[2][i] = (float)(0.5) * (xyz[1][i] + xyz[2][i]);
     }
     for(i = 0; i < 4; i++){
-      rgba2[0][i] = 0.5 * (rgba[0][i] + rgba[2][i]);
+      rgba2[0][i] = (float)(0.5) * (rgba[0][i] + rgba[2][i]);
       rgba2[1][i] = rgba[2][i]; 
-      rgba2[2][i] = 0.5 * (rgba[1][i] + rgba[2][i]);
+      rgba2[2][i] = (float)(0.5) * (rgba[1][i] + rgba[2][i]);
     }
     gl2psPrintSVGSmoothTriangle(xyz2, rgba2);
     for(i = 0; i < 3; i++){
-      xyz2[0][i] = 0.5 * (xyz[0][i] + xyz[1][i]);
-      xyz2[1][i] = 0.5 * (xyz[1][i] + xyz[2][i]); 
-      xyz2[2][i] = 0.5 * (xyz[0][i] + xyz[2][i]);
+      xyz2[0][i] = (float)(0.5) * (xyz[0][i] + xyz[1][i]);
+      xyz2[1][i] = (float)(0.5) * (xyz[1][i] + xyz[2][i]); 
+      xyz2[2][i] = (float)(0.5) * (xyz[0][i] + xyz[2][i]);
     }
     for(i = 0; i < 4; i++){
-      rgba2[0][i] = 0.5 * (rgba[0][i] + rgba[1][i]);
-      rgba2[1][i] = 0.5 * (rgba[1][i] + rgba[2][i]); 
-      rgba2[2][i] = 0.5 * (rgba[0][i] + rgba[2][i]);
+      rgba2[0][i] = (float)(0.5) * (rgba[0][i] + rgba[1][i]);
+      rgba2[1][i] = (float)(0.5) * (rgba[1][i] + rgba[2][i]); 
+      rgba2[2][i] = (float)(0.5) * (rgba[0][i] + rgba[2][i]);
     }
     gl2psPrintSVGSmoothTriangle(xyz2, rgba2);
   }
