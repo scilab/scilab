@@ -35,6 +35,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "DrawObjects.h"
+#include "DrawingBridge.h"
 
 /*-------------------------------------------------------------------------------------*/
 static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize);

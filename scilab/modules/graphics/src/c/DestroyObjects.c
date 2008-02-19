@@ -282,10 +282,16 @@ int C2F(scigerase)( void )
  */
 int DestroyFigure (sciPointObj * pthis)
 {
-  if ( sciIsCurrentFigure(pthis) )
+  // remove the figure if it is in the list
+  removeFigureFromList(pthis);
+  
+  if (sciIsCurrentFigure(pthis) )
   {
+
+    /* destroyed figure is current one */
     sciSetCurrentFigure(getFirstFigure()) ;
   }
+
   sciSetIsEventHandlerEnable(pthis, FALSE ) ;
   
   if (pFIGURE_FEATURE(pthis)->eventHandler != NULL)
@@ -299,7 +305,6 @@ int DestroyFigure (sciPointObj * pthis)
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   pFIGURE_FEATURE(pthis)->pModelData = NULL;
   sciStandardDestroyOperations(pthis) ;
-  removeFigureFromList(pthis);
   return 0;
 }
 

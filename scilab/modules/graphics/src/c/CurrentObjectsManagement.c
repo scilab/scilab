@@ -85,7 +85,9 @@ sciPointObj * sciGetCurrentFigure( void )
 /*----------------------------------------------------------------------------------*/
 BOOL sciIsCurrentFigure(sciPointObj * pFigure)
 {
-  return (pFigure != getFigureModel()) && (pFigure == sciGetCurrentFigure());
+  return (   pFigure != getFigureModel()
+          && sciHasFigures()
+          && (pFigure == sciGetCurrentFigure()));
 }
 /*----------------------------------------------------------------------------------*/
 int sciInitCurrentFigure( sciPointObj * mafigure )
