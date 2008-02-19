@@ -75,6 +75,7 @@ function [palettes,windows] = do_palettes(palettes,windows)
   //
   //** xset('window',curwin),
   gh_current_window = [];
+  
   gh_current_window = scf(curwin) ; //** open a graphic window and get the handler
   gh_curwin = gh_current_window   ;
   gh_palette = gh_curwin          ;
@@ -152,6 +153,8 @@ function [palettes,windows] = do_palettes(palettes,windows)
   arect = [1 1 1 1] / 32 ; //** 1/32 of margin  
 
   gh_pal_axes = gh_palette.children ;
+
+
   
   gh_pal_axes.axes_bounds = wrect ; //** default : axes_bounds = [0,0,1,1] = [xmin ymin xmax ymax] 
  
@@ -159,6 +162,8 @@ function [palettes,windows] = do_palettes(palettes,windows)
   
   gh_pal_axes.margins     = arect ; //** arect
  
+  gh_pal_axes.mark_mode = "off"   ;
+
   options = palettes(kpal).props.options
     
   //** I switch to the direct acces 
@@ -168,8 +173,8 @@ function [palettes,windows] = do_palettes(palettes,windows)
        palettes(kpal).props.options('3D')(1)=%f //disable 3D block shape 
   end
         
-  drawobjs( palettes(kpal) ); //** draw all the object of the palettes 
-
+  drawobjs(palettes(kpal), gh_palette); //** draw all the object of the palettes 
+  
   xinfo("The Palette can be used to copy blocks or regions");   
   
   //** force the proprieties of the palette windows:

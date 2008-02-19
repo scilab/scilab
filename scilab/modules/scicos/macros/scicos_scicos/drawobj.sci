@@ -55,8 +55,7 @@ function gh_blk = drawobj(o, gh_window)
   gh_blk = [] ; //** create the empty object value
 
 
-
-  if typeof(o)=='Block' then //** Block draw 
+  if typeof(o)=="Block" then //** Block draw 
     //** ---------------------- Block -----------------------------
 
     o_size = size ( gh_curwin.children.children ) ; //** initial size (number of graphic object
@@ -78,27 +77,42 @@ function gh_blk = drawobj(o, gh_window)
       axes_line_style  = gh_axes.line_style  ;
       axes_thickness   = gh_axes.thickness   ;
 
-      //** axes_mark_mode       = gh_axes.mark_mode       ; //** optional
-      axes_mark_style      = gh_axes.mark_style      ;
-      axes_mark_size       = gh_axes.mark_size       ;
-      //** axes_mark_foreground = gh_axes.mark_foreground ; //** optional
-      //** axes_mark_background = gh_axes.mark_background ; //** optional
+      //** axes_mark_mode       = gh_axes.mark_mode       ;
+      //** axes_mark_style      = gh_axes.mark_style      ;
+      //** axes_mark_size       = gh_axes.mark_size       ;
+      //** axes_mark_foreground = gh_axes.mark_foreground ; 
+      //** axes_mark_background = gh_axes.mark_background ; 
 
       axes_foreground = gh_axes.foreground ;
       axes_background = gh_axes.background ; //** if not used cause some problem
 
    //**... end of figure and axes saving
 
-      //** Block drawing works throught call (execstr) the block function
-      //** ... see "standard_draw" function
-      //** WARINING: this indirect "gr_i" execution can ruin the axis graphics proprieties because a not
-      //**           formaly correct use of OLD graphics global primitives with "xset(..,..)"
-      ierr = execstr(o.gui+'(''plot'',o);','errcatch')
+        //** Block drawing works throught call (execstr) the block function
+        //** ... see "standard_draw" function
+        //** WARINING: this indirect "gr_i" execution can ruin the axis graphics proprieties because a not
+        //**           formaly correct use of OLD graphics global primitives with "xset(..,..)"
+        ierr = execstr(o.gui+'(''plot'',o);','errcatch')
 
-      [orig, sz, orient] = (o.graphics.orig, o.graphics.sz, o.graphics.flip) ;
+        [orig, sz, orient] = (o.graphics.orig, o.graphics.sz, o.graphics.flip) ;
+
+        //** Add the 'select' box and put "mark_mode" off, ready for 'Select' operation
+        sel_x = orig(1) ; sel_y = orig(2)+sz(2) ;
+        sel_w = sz(1)   ; sel_h = sz(2)   ;
+
+        xrect(sel_x, sel_y, sel_w, sel_h); //** draw the selection box 
+
+        gh_e = gce()              ; //** get the "select box" handle
+        gh_e.mark_background = -1 ; //**
+        gh_e.mark_style = 11      ;
+        gh_e.mark_mode = "off"    ; //** used
+        gh_e.line_mode = "off"    ;
+        // gh_e.visible = "off"      ; //** put invisible
 
    //** Restore graphics axes state 
       //** Restore the state of the graphics window 
+
+      gh_axes = gh_curwin.children ;
 
       gh_axes.font_style = axes_font_style ;
       gh_axes.font_size  = axes_font_size  ;
@@ -109,8 +123,9 @@ function gh_blk = drawobj(o, gh_window)
       gh_axes.thickness   = axes_thickness   ;
 
       //** gh_axes.mark_mode       = axes_mark_mode       ; //** optional
-      gh_axes.mark_style      = axes_mark_style      ;
-      gh_axes.mark_size       = axes_mark_size       ;
+      //** gh_axes.mark_style      = axes_mark_style      ;
+      //** mark_size_unit = "tabulated"
+      //** gh_axes.mark_size       = axes_mark_size       ;
       //** gh_axes.mark_foreground = axes_mark_foreground ; //** optional
       //** gh_axes.mark_background = axes_mark_background ; //** optional
 
@@ -121,27 +136,15 @@ function gh_blk = drawobj(o, gh_window)
 
    //**... end of figure and axes state restoring
 
-      //** Add the 'select' box and put "mark_mode" off, ready for 'Select' operation
-      sel_x = orig(1) ; sel_y = orig(2)+sz(2) ;
-      sel_w = sz(1)   ; sel_h = sz(2)   ;
-
-      xrect(sel_x, sel_y, sel_w, sel_h);
-
-      gh_e = gce()              ; //** get the "select box" handle
-      gh_e.mark_background = -1 ; //**
-      gh_e.mark_style = 11      ;
-      gh_e.mark_mode = "off"    ; //** used
-      gh_e.line_mode = "off"    ;
-      // gh_e.visible = "off"      ; //** put invisible
-
     p_size = size(gh_curwin.children.children); //** size after the draw
     //** aggregate the graphics entities
     d_size =  p_size(1) - o_size(1);
+
     gh_blk = glue(gh_curwin.children.children(d_size:-1:1));
 
     //** 24/07/07: Al@n's patch for rotation of blocks
     if o.graphics.theta<>0 then
-      rotate_compound(sel_x, sel_y, sel_w, sel_h,1,o.graphics.theta)
+      rotate_compound(sel_x, sel_y, sel_w, sel_h,1, o.graphics.theta);
       gh_blk = gh_curwin.children.children(1);
     end
 
@@ -150,9 +153,12 @@ function gh_blk = drawobj(o, gh_window)
 	       'Use Activate_Scilab_Window and redefine it in Scilab.'] ) ;
       gh_blk = [];
     end
+    //** Block rotation end 
+
+
 
   //** ---------- Link -------------------------------
-  elseif typeof(o)=='Link' then //** Link draw 
+  elseif typeof(o)=="Link" then //** Link draw 
 
     o_size = size ( gh_curwin.children.children ) ; //** initial size
 
@@ -169,7 +175,7 @@ function gh_blk = drawobj(o, gh_window)
     gh_blk = glue( gh_curwin.children.children(d_size:-1:1) ) ;
 
   //** ---------- Deleted ----- CAUTION: also "Deleted" object MUST be draw ! ----
-  elseif typeof(o)=='Deleted' then //** Dummy "deleted" draw
+  elseif typeof(o)=="Deleted" then //** Dummy "deleted" draw
 
     //** draw a dummy object
 
@@ -177,19 +183,17 @@ function gh_blk = drawobj(o, gh_window)
     gh_blk = glue( gh_curwin.children.children(1) ) ; //** create the Compound macro object
 
     //** gh_blk.visible = "off"  ; //** set to invisible :)
-    set (gh_blk,"visible","off"); //** set to invisible -> faster version
+    set (gh_blk,"visible","off");  //** set to invisible -> faster version
 
 
   //** ---------- Text -------------------------------
-  elseif typeof(o)=='Text' then //** Text draw
+  elseif typeof(o)=="Text" then //** Text draw
     //**  ------ Put the new graphics here -----------
     //**
     o_size = size ( gh_curwin.children.children ) ; //** initial size
     exe_string = o.gui+'(''plot'',o)' ;
-    // disp("Before plot"); pause
     execstr(o.gui+'(''plot'',o)') ;
-    // disp("After plot"); pause
-
+   
     //** "stringbox" in ver 4.1 it is not compatible with multiple string
     //** plot because is not able to handle "Compound" graphics object
     //** This code patch the limited functionality of stringbox() with 
@@ -252,6 +256,7 @@ function gh_blk = drawobj(o, gh_window)
     d_size =  p_size(1) - o_size(1) ;
 
     gh_blk = glue( gh_curwin.children.children(d_size:-1:1) ) ;
-  end //** of the main if
+  
+ end //** of the main if
 
 endfunction
