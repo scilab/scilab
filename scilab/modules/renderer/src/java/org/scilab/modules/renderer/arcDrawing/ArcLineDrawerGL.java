@@ -1,10 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* file: ArcLineDrawerGL.java                                             */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the driver dependant routines to draw the      */
-/*        outline of an arc object                                        */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * desc : Class containing the driver dependant routines to draw the outline of an arc object 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.renderer.arcDrawing;
 
@@ -26,19 +31,14 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  */
 public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	
-	/** vector of knot. Size 6 = NB_CONTROL_POINTS + NURBS_ORDER */
-	public static final float[] KNOTS = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
-	
-	/** Order of the nurbs, i.e. the nurbs will be polynoms of degree 3. */
-	public static final int NURBS_ORDER = 3;
-	
-	private NurbsArcGL nurbsTools;
+	private ArcLineTools drawer;
 	
 	/**
 	 * Default constructor
 	 */
 	public ArcLineDrawerGL() {
 		super();
+		drawer = null;
 	}
 
 	
@@ -67,7 +67,7 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
 		
-		nurbsTools = new NurbsArcGL(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
+		drawer = new NurbsArcLineTools(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
 
@@ -106,62 +106,10 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	public void drawArc() {
 		
 		GL gl = getGL();
-		GLU glu = new GLU();
-		gl.glEnable(GL.GL_MAP1_VERTEX_4);
 		
-		// set dash mode
-		gl.glLineWidth(getThickness());
-		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
-		
-		// set color
-		double[] color = getLineColor();
-		gl.glColor3d(color[0], color[1], color[2]);
-		
-		// transform the ellipse so we can draw a circle
-		gl.glPushMatrix();
-		nurbsTools.setCoordinatesToCircleGL(gl);
-		
-		// display circle has a nurbs
-		GLUnurbs nurbsObj = glu.gluNewNurbsRenderer();
-		nurbsTools.setGluProperties(glu, nurbsObj);
-        drawArc(glu, nurbsObj, nurbsTools.getSweepAngle());
-        
-		//glu.gluDeleteNurbsRenderer(nurbsObj);
-		nurbsObj = null;
-        
-		gl.glPopMatrix();
-        
-        GLTools.endDashMode(gl);
-	}
-	
-	
-	/**
-	 * Draw an arc starting from the point (1,0) (ie angle = 0) to the angular region.
-	 * The arc is centered on the origin. Unlike draw arc segment, this function can handle
-	 * angles higher than Pi.
-	 * @param glu current glu object.
-	 * @param nurbsObj nurbsObj used to draw
-	 * @param angle size of the arc segment in radian. Should be positive.
-	 */
-	private void drawArc(GLU glu, GLUnurbs nurbsObj, double angle) {
-		nurbsTools.drawArc(this, glu, nurbsObj, angle);
-	}
-	
-	/**
-	 * Draw part af circle starting from the point of angle start angle to angular region.
-	 * The arc is centered on the origin.
-	 * @param glu current GLU object/
-	 * @param nurbsObj nurbsObj used to draw
-	 * @param startAngle angle of the begining of the arc.
-	 * @param sweepAngle size of the arc segment in radian. Should be lower than Pi and gt 0.
-	 */
-	public void drawArcPart(GLU glu, GLUnurbs nurbsObj, double startAngle, double sweepAngle) {
-		float[] controlPoints = nurbsTools.computeArcControlPoints4D(startAngle, sweepAngle);
-		glu.gluBeginCurve(nurbsObj);
-		glu.gluNurbsCurve(nurbsObj, KNOTS.length, KNOTS, NurbsArcGL.SIZE_4D,
-				          controlPoints, NURBS_ORDER, GL.GL_MAP1_VERTEX_4);
-	    glu.gluEndCurve(nurbsObj);
-		
+		drawer.beginRendering(gl, getLineStyle(), getThickness(), getLineColor());
+		drawer.drawCircle(gl);
+		drawer.endRendering(gl);
 	}
 	
 }

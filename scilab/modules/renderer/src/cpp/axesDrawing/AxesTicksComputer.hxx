@@ -1,9 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* file: AxesTicksComputer.hxx                                            */
-/* Copyright INRIA 2008                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Compute axes ticks                                              */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy 
+ * desc : Compute axes ticks 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #ifndef _AXES_TICKS_COMPUTER_HXX_
 #define _AXES_TICKS_COMPUTER_HXX_
@@ -78,3 +84,4 @@ protected:
 }
 
 #endif /* _AXES_TICKS_COMPUTER_HXX_ */
+

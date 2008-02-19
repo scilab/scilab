@@ -1,9 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* file: ChampDecomposer.hxx                                              */
-/* Copyright INRIA 2008                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Strategy decomposing only champ objects                         */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy 
+ * desc : Strategy decomposing only champ objects         
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #ifndef _CHAMP_DECOMPOSER_HXX_ 
 #define _CHAMP_DECOMPOSER_HXX_
@@ -84,3 +90,4 @@ private:
 }
 
 #endif /* _CHAMP_DECOMPOSER_HXX_ */
+

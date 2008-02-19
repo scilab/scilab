@@ -1,18 +1,22 @@
-/*------------------------------------------------------------------------*/
-/* file: ArcLineDrawerGL.java                                             */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class containing the driver dependant routines to draw inside   */
-/*        of an arc object                                                */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * desc : Class containing the driver dependant routines to draw inside
+ * of an arc object  
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 
 package org.scilab.modules.renderer.arcDrawing;
 
 
 import javax.media.opengl.GL;
-import javax.media.opengl.glu.GLU;
-import javax.media.opengl.glu.GLUnurbs;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
@@ -23,45 +27,15 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  */
 public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 
-	/** Knots along s paramereter */
-	private static final float[] KNOTS_S = {-1.0f, -1.0f, 1.0f, 1.0f};
 	
-	/** Knots along t parameter */
-	private static final float[] KNOTS_T = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
-	
-	/** Nurbs order along s parameter */
-	private static final int ORDER_S = 2;
-	
-	/** Nurbs order along t parameter */
-	private static final int ORDER_T = 3;
-	
-	/** Number of control points along s coordinate */
-	private static final int CPOINT_SIZE_T = 3;
-	
-	
-	/** Index of the modified part of the control points, ie first coordinate of the 4th point */
-	private static final int CPOINT_MODIF_INDEX = 12;
-	
-	/**
-	 * Control points to draw an arc.
-	 * The fist three points are the origin whereas the 3 last are computed
-	 * depending on the arc angle.
-	 */
-	private float[] controlPoints = {0.0f, 0.0f, 0.0f, 1.0f,
-									 0.0f, 0.0f, 0.0f, 1.0f,
-									 0.0f, 0.0f, 0.0f, 1.0f,
-									 0.0f, 0.0f, 0.0f, 1.0f,
-									 0.0f, 0.0f, 0.0f, 1.0f,
-									 0.0f, 0.0f, 0.0f, 1.0f};
-	
-	/** Algorithm to draw nurbs curves */
-	private NurbsArcGL nurbsTools;
+	private ArcFillTools drawer;
 	
 	/**
 	 * Default constructor
 	 */
 	public ArcFillDrawerGL() {
 		super();
+		drawer = null;
 	}
 	
 	/**
@@ -118,7 +92,7 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
 		
-		nurbsTools = new NurbsArcGL(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
+		drawer = new NurbsArcFillTools(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
 	}
@@ -128,65 +102,10 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	 */
 	public void drawArc() {
 		GL gl = getGL();
-		GLU glu = new GLU();
-		gl.glEnable(GL.GL_MAP2_VERTEX_4);
 		
-		// set color
-		double[] color = getBackColor();
-		gl.glColor3d(color[0], color[1], color[2]);
-		
-		// transform the ellipse so we can draw a circle
-		gl.glPushMatrix();
-		nurbsTools.setCoordinatesToCircleGL(gl);
-		
-		// display circle has a nurbs
-		GLUnurbs nurbsObj = glu.gluNewNurbsRenderer();
-		nurbsTools.setGluProperties(glu, nurbsObj);
-		
-        drawArc(glu, nurbsObj, nurbsTools.getSweepAngle());
-        
-        //glu.gluDeleteNurbsRenderer(nurbsObj);
-		nurbsObj = null;
-        
-		gl.glPopMatrix();
+		drawer.beginRendering(gl, getBackColor());
+		drawer.drawCircle(gl);
+		drawer.endRendering(gl);
 	}
-	
-	/**
-	 * Draw an arc starting from the point (1,0) (ie angle = 0) to the angular region.
-	 * The arc is centered on the origin. Unlike draw arc segment, this function can handle
-	 * angles higher than Pi.
-	 * @param glu current glu object
-	 * @param nurbsObj nurbsObj used to draw
-	 * @param angle size of the arc segment in radian. Should be positive.
-	 */
-	private void drawArc(GLU glu, GLUnurbs nurbsObj, double angle) {
-		nurbsTools.drawArc(this, glu, nurbsObj, angle);
-	}
-	
-	/**
-	 * Draw part af circle starting from the point of angle start angle to angular region.
-	 * The arc is centered on the origin.
-	 * @param glu current GLU object/
-	 * @param nurbsObj nurbsObj used to draw
-	 * @param startAngle angle of the begining of the arc.
-	 * @param sweepAngle size of the arc segment in radian. Should be lower than Pi and gt 0.
-	 */
-	public void drawArcPart(GLU glu, GLUnurbs nurbsObj, double startAngle, double sweepAngle) {
-		// the control points to draw the arc part (not partial disc).
-		float[] arcControlPoints = nurbsTools.computeArcControlPoints4D(startAngle, sweepAngle);
-		
-		// set the last 3 control points with the computed ones.
-		for (int i = 0; i < arcControlPoints.length; i++) {
-			controlPoints[i + CPOINT_MODIF_INDEX] = arcControlPoints[i];
-		}
-		
-		glu.gluBeginSurface(nurbsObj);
-		glu.gluNurbsSurface(nurbsObj, KNOTS_S.length, KNOTS_S, KNOTS_T.length, KNOTS_T,
-						    CPOINT_SIZE_T * NurbsArcGL.SIZE_4D, NurbsArcGL.SIZE_4D,
-						    controlPoints, ORDER_S, ORDER_T, GL.GL_MAP2_VERTEX_4);
-		glu.gluEndSurface(nurbsObj);
-		
-	}
-		
 	
 }

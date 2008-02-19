@@ -1,9 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* file: VerticalBarDecomposition.hxx                                     */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Decompose polyline to get data for vertical bar drawing         */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * desc : Decompose polyline to get data for vertical bar drawing
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #ifndef _VERTICAL_BAR_DECOMPOSITION_HXX_
 #define _VERTICAL_BAR_DECOMPOSITION_HXX_
@@ -39,3 +45,4 @@ protected:
 }
 
 #endif /* _VERTICAL_BAR_DECOMPOSITION_HXX_ */
+

@@ -1,26 +1,30 @@
-/*------------------------------------------------------------------------*/
-/* file: NurbsArcGL.java                                                  */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Class with utility functions to draw arcs                       */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * desc : Class with utility functions to draw arcs  
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 package org.scilab.modules.renderer.arcDrawing;
 
-import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUnurbs;
 
-import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
  * Class with utility functions to draw arcs
  * @author Jean-Baptiste Silvy
  */
-public class NurbsArcGL {
+public final class NurbsArcGL {
 
-	/** Number of controm points to draw an circle arc*/
+	/** Number of control points to draw an circle arc*/
 	public static final int NB_CONTROL_POINTS = 3;
 	/** Number of coordinates of a control point */
 	public static final int SIZE_4D = 4;
@@ -32,70 +36,23 @@ public class NurbsArcGL {
 
 	
 	/** Angle for a quarter of a circle */
-	private static final double QUARTER_ANGLE = Math.PI / 2.0;
+	protected static final double QUARTER_ANGLE = Math.PI / 2.0;
 	
 	/** number of quarter in a circle */
-	private static final int NB_QUARTER_MAX = 4;
+	protected static final int NB_QUARTER_MAX = 4;
 	
 	
 	/* Maximal sampling tolerance */
 	// can not currently be used.
 	//private static final float SAMPLING_TOLERANCE = 5.0f;
 	
-	/** scale to transform th ellipse into a circle */
-	private Vector3D scale;
-	/** To put the ellipse in the right position */
-	private Matrix4D rotationMatrix;
-	/** center of the ellipse */
-	private Vector3D center;
-	/** starting angle */
-	private double startAngle;
-	
-	/**size of the angular region of the arc */
-	private double angularRegion;
-	
 	
 	/**
-	 * Set the parameters to draw the arc
-	 * @param center coordinates of the arc center
-	 * @param semiMinorAxis coordinates of the ellipse minor axis
-	 * @param semiMajorAxis coordinates of the ellipse major axis
-	 * @param startAngle owest angle in radian, relative to the semi-major axis of the ellipse.
-     *                   Start of the angular part to draw.
-	 * @param endAngle highest angle in radian, relative to the semi-major axis of the ellipse.
-     *                 End of the angular part to draw
+	 * Default contstructor.
+	 * Should not be called
 	 */
-	public NurbsArcGL(Vector3D center, Vector3D semiMinorAxis, Vector3D semiMajorAxis, double startAngle, double endAngle) {
-		this.center = center;
-		Vector3D thirdVector = semiMinorAxis.crossProduct(semiMajorAxis).getNormalized();
+	protected NurbsArcGL() {
 		
-		rotationMatrix = new Matrix4D();
-		rotationMatrix.setFromRotatedBasis(semiMinorAxis, semiMajorAxis, thirdVector);
-		
-		// the arc is flat, Z coordinate does not matter.
-		scale = new Vector3D(semiMinorAxis.getNorm(), semiMajorAxis.getNorm() , 1.0);
-		
-		this.startAngle = startAngle;
-		this.angularRegion = endAngle - startAngle;
-	}
-	
-	/**
-	 * @return angular region of the arc.
-	 */
-	public double getSweepAngle() {
-		return angularRegion;
-	}
-	
-	/**
-	 * Modify OpenGL frame so the ellipse which is the support of the arc become a circle
-	 * @param gl current OpenGL pipeline
-	 */
-	public void setCoordinatesToCircleGL(GL gl) {
-		gl.glTranslated(center.getX(), center.getY(), center.getZ());
-		gl.glMultMatrixd(rotationMatrix.getOpenGLRepresentation(), 0);
-		gl.glScaled(scale.getX(), scale.getY(), scale.getZ());
-		// Put the minimum angle has greatest axis, so the draw sart at Y = 0.
-		gl.glRotated(Math.toDegrees(startAngle), 0.0, 0.0, 1.0);
 	}
 	
 	/**
@@ -103,7 +60,7 @@ public class NurbsArcGL {
 	 * @param glu current glu instance.
 	 * @param nurbsObj current nurbs object
 	 */
-	public void setGluProperties(GLU glu, GLUnurbs nurbsObj) {
+	public static void setGluProperties(GLU glu, GLUnurbs nurbsObj) {
 		// Nurbs property can not be modified in current JOGL version.
 		// TODO check when newer version of JOGL become available.
 		//glu.gluNurbsProperty(GLU.GLU_CULLING, GL.GL_TRUE);
@@ -116,7 +73,7 @@ public class NurbsArcGL {
 	 * @param sweepAngle angular size of the arc
 	 * @return control points to use with gluNurbsCurve
 	 */
-	public float[] computeArcControlPoints4D(double startAngle, double sweepAngle) {
+	public static float[] computeArcControlPoints4D(double startAngle, double sweepAngle) {
 		// The control polygon is made of three points.
 		// The first and last are the starting and end point of the arc (ie [cos(startAngle),sin(startAngle)]
 		// and [cos(endAngle),sin(endAngle)]).
@@ -154,7 +111,7 @@ public class NurbsArcGL {
 	 * @param sweepAngle angular size of the arc
 	 * @return control points to use with gluNurbsCurve
 	 */
-	public float[] computeArcControlPoints3D(double startAngle, double sweepAngle) {
+	public static float[] computeArcControlPoints3D(double startAngle, double sweepAngle) {
 		float[] controlPoints4D = computeArcControlPoints4D(startAngle, sweepAngle);
 		float[] controlPoints3D = new float[NB_CONTROL_POINTS * SIZE_3D];
 		
@@ -177,40 +134,27 @@ public class NurbsArcGL {
 		
 	}
 	
+	
 	/**
-	 * Draw an arc starting from the point (1,0) (ie angle = 0) to the angular region.
-	 * The arc is centered on the origin. Unlike draw arc segment, this function can handle
-	 * angles higher than Pi.
-	 * @param drawer object drawing the arc.
-	 * @param glu current glu object.
-	 * @param nurbsObj nurbsObj used to draw
-	 * @param angle size of the arc segment in radian. Should be positive.
+	 * feef 
+	 * @param glu "r 
+	 * @return "t"t
 	 */
-	public void drawArc(ArcDrawerStrategy drawer, GLU glu, GLUnurbs nurbsObj, double angle) {
-		// We draw has many quarter of circle has needed, but at most 4 (more is useless)
-		// Then we draw the remaining part
-		double displayedAngle = 0.0;
-		int nbQuarter = 0;
-		
-		// draw as many quarter circle as needed
-		while (nbQuarter < NB_QUARTER_MAX && displayedAngle < angle - QUARTER_ANGLE) {
-			drawer.drawArcPart(glu, nurbsObj, displayedAngle, QUARTER_ANGLE);
-			displayedAngle += QUARTER_ANGLE;
-			nbQuarter++;
-		}
-		
-		// finish the ramining arc if the circle is not already complete
-		if (nbQuarter < NB_QUARTER_MAX) {
-			drawer.drawArcPart(glu, nurbsObj, displayedAngle, angle - displayedAngle);
-		}
+	public static GLUnurbs createNurbsDrawer(GLU glu) {
+		GLUnurbs nurbsObj = glu.gluNewNurbsRenderer();
+		setGluProperties(glu, nurbsObj);
+		return nurbsObj;
 	}
 	
 	/**
-	 * @return String representation of this class
+	 * "g""g
+	 * @param glu "g"g
+	 * @param nurbsObj "gg"
 	 */
-	public String toString() {
-		return "Center = " + center + "\nScale = " + scale + "\nRotation Matrix = " + rotationMatrix
-			+ "\nStart Angle = " + startAngle + "\nAngular Region = " + angularRegion;
+	public static void destroyNurbsObj(GLU glu, GLUnurbs nurbsObj) {
+		// not yet implemented in JOGL
+		//glu.gluDeleteNurbsRenderer(nurbsObj);
 	}
+	
 	
 }

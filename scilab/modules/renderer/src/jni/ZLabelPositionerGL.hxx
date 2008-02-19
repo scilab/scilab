@@ -136,3 +136,4 @@ double * getLabelPosition(double distanceToAxis);
 
 }
 #endif
+

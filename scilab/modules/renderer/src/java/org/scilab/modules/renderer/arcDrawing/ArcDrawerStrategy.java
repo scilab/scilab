@@ -1,9 +1,15 @@
-/*------------------------------------------------------------------------*/
-/* file: ArcDrawerStrategy.java                                           */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Interface for arc drawing                                       */
-/*------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * desc : Interface for arc drawing
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 
 package org.scilab.modules.renderer.arcDrawing;
@@ -37,15 +43,5 @@ public interface ArcDrawerStrategy {
 		     	 double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
 				 double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,
 				 double startAngle, double endAngle);
-	
-	/**
-	 * Draw part af circle starting from the point of angle start angle to angular region.
-	 * The arc is centered on the origin.
-	 * @param glu current GLU object/
-	 * @param nurbsObj nurbsObj used to draw
-	 * @param startAngle angle of the begining of the arc.
-	 * @param sweepAngle size of the arc segment in radian. Should be lower than Pi and gt 0.
-	 */
-	void drawArcPart(GLU glu, GLUnurbs nurbsObj, double startAngle, double sweepAngle);
 	
 }
