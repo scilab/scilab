@@ -38,7 +38,7 @@ public class SciTextRenderer extends TextRenderer {
 	 * @param font font to use for the display
 	 * @return new instance of SciTextRenderer
 	 */
-	static SciTextRenderer create(Font font) {
+	public static SciTextRenderer create(Font font) {
 		return new SciTextRenderer(font);
 	}
 	

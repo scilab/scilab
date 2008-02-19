@@ -41,7 +41,7 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 	 * @param font font to use for the display
 	 * @return new instance of GL2PSTextRenderer
 	 */
-	static GL2PSTextRenderer create(Font font) {
+	public static GL2PSTextRenderer create(Font font) {
 		return new GL2PSTextRenderer(font);
 	}
 	
