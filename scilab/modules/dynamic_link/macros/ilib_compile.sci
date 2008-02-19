@@ -50,8 +50,8 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	  chdir(TMPDIR);
 	  cmd="make "
 	  // CFLAGS 
-	  cmd = cmd +" CFLAGS=""-I"+SCI+"/modules/core/includes/"""
-	  
+	  cmd = cmd +" CFLAGS=""-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/"""
+
 	  [msg,ierr] = unix_g(cmd)
 	if ierr <> 0 then
 	  disp(msg);
@@ -60,7 +60,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	// Copy the produce lib to the working path
 	copyfile(".libs/" + lib_name, oldPath);
 	end
-
+	
   libn = path + lib_name_make ; 
   chdir(oldpath);
   
