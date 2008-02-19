@@ -95,7 +95,7 @@
   <EXAMPLE><![CDATA[
     //Example of the use of ilib_for_link with  a simple C code
     f1=['#include <math.h>'
-    'void fooc(c,a,b,m,n)'
+    'void fooc(double c[],double a[],double *b,int *m,int *n)'
     'double a[],*b,c[];'
     'int *m,*n;'
     '{'

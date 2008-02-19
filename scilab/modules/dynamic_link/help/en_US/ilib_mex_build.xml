@@ -18,7 +18,7 @@
   <DATE>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</DATE>
   <SHORT_DESCRIPTION name="ilib_mex_build"> utility for mex library management</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,cc])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -53,9 +53,9 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ldflags,cflags,fflags</PARAM_NAME>
+        <PARAM_NAME>ldflags,cflags,fflags, cc</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: character strings to provide options for the loader, the C compiler and the Fortran compiler.</SP>
+          <SP>: character strings to provide options/flags for the loader, the C compiler, the Fortran compiler. cc provides the name of the compiler.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -73,9 +73,7 @@ mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[],[],'
 
 mputl([
 '#include ""mex.h""'
-'void mexFunction(nlhs, plhs, nrhs, prhs)'
-'     int nlhs, nrhs;'
-'     mxArray *plhs[]; mxArray *prhs[];'
+'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])'
 '{'
 '  int *dims = mxGetDimensions(prhs[0]);'
 '  sciprint(""%d %d %d\n"",dims[0],dims[1],dims[2]);'
