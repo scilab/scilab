@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,7 +33,7 @@
 #include "Frame.h" /* setCurentFigureAsFrameParent */
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 23 
+#define NBPROPERTIES 23
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
@@ -52,7 +52,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   unsigned long GraphicHandle = 0;
 
-  int found = 0; /* Does the property exists ? */ 
+  int found = 0; /* Does the property exists ? */
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
@@ -87,7 +87,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       else /* Get parent ID */
         {
           GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-          
+
           if (nbRow*nbCol != 1)
             {
               Scierror(999,_("%s: Wrong size for first input argument: Single handle expected.\n"),fname);
@@ -199,7 +199,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 }
             }
         }
-      
+
       if (propertiesValuesIndices[0] != NOT_FOUND) /* Style found */
         {
           if (VarType(propertiesValuesIndices[0]) == sci_strings)
@@ -209,18 +209,18 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             }
           else
             {
-              Scierror(999, _("%s: Wrong type for property name: String expected.\n"));
+              Scierror(999, _("%s: Wrong type for property name: String expected.\n"), fname);
               return FALSE;
             }
         }
-      
+
       /* Create a new uicontrol */
       GraphicHandle=sciGetHandle(CreateUIControl(styleProperty));
 
       /* Read and set all properties */
       for(inputIndex = 1; inputIndex<NBPROPERTIES; inputIndex++) /* Style has already been set */
         {
-           if(propertiesValuesIndices[inputIndex] != NOT_FOUND)  
+           if(propertiesValuesIndices[inputIndex] != NOT_FOUND)
             {
               /* Read property value */
               switch (VarType(propertiesValuesIndices[inputIndex]))
@@ -294,7 +294,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             }
         }
     }
-  
+
   FREE(propertiesValuesIndices);
 
   /* Create return variable */
