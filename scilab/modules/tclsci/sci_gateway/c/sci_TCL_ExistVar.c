@@ -16,7 +16,7 @@ int C2F(sci_TCL_ExistVar) _PARAMS((char *fname,unsigned long l))
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
-	
+
 	if (GetType(1) == sci_strings)
 	{
 		char *VarName=NULL;
@@ -29,7 +29,7 @@ int C2F(sci_TCL_ExistVar) _PARAMS((char *fname,unsigned long l))
 			Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 			return 0;
 		}
-		
+
 		if (Rhs==2)
 		{
 			/* two arguments given - get a pointer on the slave interpreter */
@@ -45,7 +45,7 @@ int C2F(sci_TCL_ExistVar) _PARAMS((char *fname,unsigned long l))
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong input argument: String expected.\n"));
+				Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
 				return 0;
 			}
 		}
@@ -66,7 +66,7 @@ int C2F(sci_TCL_ExistVar) _PARAMS((char *fname,unsigned long l))
 			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
-	
+
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 	}
@@ -75,7 +75,7 @@ int C2F(sci_TCL_ExistVar) _PARAMS((char *fname,unsigned long l))
 		Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
 		return 0;
 	}
-	
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
