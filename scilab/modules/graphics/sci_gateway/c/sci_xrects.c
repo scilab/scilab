@@ -67,7 +67,6 @@ int sci_xrects( char *fname, unsigned long fname_len )
   psubwin = sciGetCurrentSubWin();
   pFigure = sciGetParentFigure(psubwin);
   endGraphicDataWriting();
-  startFigureDataWriting(pFigure);
   for (i = 0; i < n1; ++i) { 
     /*       j = (i==0) ? 0 : 1; */
     if (*istk(l2+i) == 0){
@@ -95,7 +94,6 @@ int sci_xrects( char *fname, unsigned long fname_len )
     }
   }
 
-  endFigureDataWriting(pFigure);
   /** construct Compound and make it current object **/
   startFigureDataWriting(pFigure);
   sciSetCurrentObj(ConstructCompoundSeq(n1));
