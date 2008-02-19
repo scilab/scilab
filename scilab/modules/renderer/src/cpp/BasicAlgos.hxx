@@ -36,4 +36,3 @@ public:
 };
 
 #endif /* _BASIC_ALGOS_HXX_ */
-

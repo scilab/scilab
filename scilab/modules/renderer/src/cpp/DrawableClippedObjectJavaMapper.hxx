@@ -38,4 +38,3 @@ public:
 }
 
 #endif /* _DRAWABLE_CLIPPED_OBJECT_JAVA_MAPPER_HXX_ */
-

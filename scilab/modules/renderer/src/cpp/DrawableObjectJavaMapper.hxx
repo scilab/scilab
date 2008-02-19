@@ -42,4 +42,3 @@ public:
 }
 
 #endif /* _DRAWABLE_OBJECT_JAVA_MAPPER_HXX_ */
-
