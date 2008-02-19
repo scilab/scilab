@@ -25,7 +25,7 @@ function gr_k=get_gri(k,l)
   //** semi empirical equation :)
   //
   // input : k the index of the object in the
-  //         not compiled scicos structure 
+  //         not compiled scicos structure
   //        (scs_m.objs)
   //
   //        l the total number of graphic objects
@@ -36,7 +36,7 @@ function gr_k=get_gri(k,l)
   //          not compiled element in the current
   //          graphical structure
   //
-  if exists('%scicos_with_grid') then
+  if %scicos_with_grid then
       gr_k = l - k ; //create a grid in the last children
                      //if %scicos_with_grid exists
   else
