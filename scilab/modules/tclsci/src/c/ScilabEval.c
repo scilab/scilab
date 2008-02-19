@@ -1,7 +1,14 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2005 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 #include "TCL_Global.h"
 #include "ScilabEval.h"
 #include "sciprint.h"
@@ -73,7 +80,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
-		  sciprint(_("%s: No more memory.\n"));
+		  sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
           return TCL_ERROR;
       }
       strcpy(command,AsciiFromUTF8);
