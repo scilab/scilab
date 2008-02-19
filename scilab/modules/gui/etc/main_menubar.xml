@@ -88,7 +88,7 @@
 
     <!-- Control menu -->
     <menu label="Control" mnemonic="C" enabled="false">
-        <submenu label="Resume" mnemonic="R" enabled="false"> 
+        <submenu label="Resume" mnemonic="R"> 
             <callback instruction="resume;" type="0"/>
         </submenu>
         <submenu label="Abort" mnemonic="A"> 
