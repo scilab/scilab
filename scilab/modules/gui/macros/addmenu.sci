@@ -226,9 +226,9 @@ elseif callbackType == 1 then
   set(h, "callback", list(0, "execstr("+cb+")"));
 elseif callbackType == 2 then
   if type(fig)==1
-    set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
+    set(h, "callback", list(0, callbackStr+"(1)"));
   else
-    set(h, "callback", list(0, "execstr("+callbackStr+"("+string(get(fig,"figure_id"))+",1))"));
+    set(h, "callback", list(0, callbackStr+"("+string(get(fig,"figure_id"))+",1)"));
   end
 end
 
@@ -288,9 +288,9 @@ for k=1:size(submenuslabels,"*")
     set(h, "callback", list(0, "execstr("+cb+")"));
   elseif callbackType == 2 then
     if type(fig)==1
-      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+"))"));
+      set(h, "callback", list(0, callbackStr+"("+string(k)+")"));
     else
-      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+","+string(get(fig,"figure_id"))+"))"));
+      set(h, "callback", list(0, callbackStr+"("+string(k)+","+string(get(fig,"figure_id"))+")"));
     end
   end
 end
