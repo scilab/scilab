@@ -8,7 +8,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //==========================================
-function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags)
+function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,cc)
   
   if ~haveacompiler() then
   	error(_('A Fortran or C compiler is required.'))  
@@ -21,8 +21,9 @@ function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflag
   if rhs <= 5 then ldflags = ''; end 
   if rhs <= 6 then cflags  = ''; end 
   if rhs <= 7 then fflags  = ''; end 
+  if rhs <= 8 then cc  = ''; end 
   
-  ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,%t);
+  ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,%t,cc);
   
 endfunction
 //==========================================
