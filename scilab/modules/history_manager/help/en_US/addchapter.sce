@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
 //
@@ -14,5 +13,5 @@
 // ====================================================================
 
 path = SCI+'/modules/history_manager/help/'+getdefaultlanguage();
-add_help_chapter("history_manager",path,%T);
+add_help_chapter("History manager",path,%T);
 clear path add_help_chapter;
