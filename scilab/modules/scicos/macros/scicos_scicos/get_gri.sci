@@ -36,7 +36,7 @@ function gr_k=get_gri(k,l)
   //          not compiled element in the current
   //          graphical structure
   //
-  if %scicos_with_grid then
+  if exists('%scicos_with_grid') & %scicos_with_grid then
       gr_k = l - k ; //create a grid in the last children
                      //if %scicos_with_grid exists
   else
