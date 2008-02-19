@@ -74,7 +74,7 @@
     </menu>
 
     <!-- Preferences menu -->
-    <menu label="Preferences" mnemonic="P">
+    <menu label="Preferences" mnemonic="P" enabled="false">
         <submenu label="Language" mnemonic="L" enabled="false"/> 
         <submenu label="Colors" mnemonic="C" enabled="false"/> 
         <submenu label="File association" mnemonic="F" enabled="false"/> 
@@ -129,7 +129,9 @@
         </submenu>
         <submenu label="Configure" mnemonic="C" enabled="false"/> 
         <separator/>
-        <submenu label="Scilab demonstrations" mnemonic="D" enabled="false"/> 
+        <submenu label="Scilab demonstrations" mnemonic="D">
+             <callback instruction="scilab_demos();" type="0"/>
+       </submenu> 
         <separator/>
         <submenu label="Web links" mnemonic="W" enabled="false"/> 
         <separator/>
