@@ -39,6 +39,5 @@ endFigureDataWriting
 startFigureDataWriting
 sciGetJava2dViewPixelCoordinates
 sciGetJava2dViewCoordinates
-printName
 ; --------------------------------------- 
 
