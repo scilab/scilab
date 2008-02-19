@@ -14,11 +14,12 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
+import java.awt.EventQueue;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.Threading;
 
-import org.scilab.modules.graphic_export.PSTextRendererFactory;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
@@ -302,22 +303,36 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
   	@Override
 	public void destroy(int parentFigureIndex) {
-		// figure should not be add to the object cleaner or they will destroy themselves.
+  		
+  		// figure should not be add to the object cleaner or they will destroy themselves.
+  		// remove it from the figure list
   		FigureMapper.removeMapping(figureId);
   		
   		// call destroying on OpenGL thread in order to call it after any display call.
   		// It appears that destroying tabs while displaying causes deadlocks.
   		// According to JoGL java doc, we need to test wether we are on the
   		// OpenGL thread or not
-  		if (Threading.isOpenGLThread()) {
-  			getRendererProperties().closeCanvas();
-  		} else {
-  			Threading.invokeOnOpenGLThread(new Runnable() {
-  				public void run() {
-  					getRendererProperties().closeCanvas();
-  				}
-  			});
-  		}
+  		// Patch added here, invoke on OpenGL thread is blocking
+  		// (calling an invoke and wait). However when calling destroy
+  		// graphic is locked (startGraphicDataWritting)
+  		// so if a display occures it will wait and then block OpenGL
+  		// thread. So we are in a deadlock.
+  		// To prevent that I call the function on an other thread
+  		// with invoke later.
+  		EventQueue.invokeLater(new Runnable() {
+  			public void run() {
+  				if (Threading.isOpenGLThread()) {
+  		  			getRendererProperties().closeCanvas();
+  		  		} else {
+  		  			Threading.invokeOnOpenGLThread(new Runnable() {
+  		  				public void run() {
+  		  					getRendererProperties().closeCanvas();
+  		  				}
+  		  			});
+  		  		}
+  			}
+  		});
+  		
 	}
 	
 	

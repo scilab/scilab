@@ -82,7 +82,6 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */
   public void init(GLAutoDrawable gLDrawable) {
-	  gLDrawable.setAutoSwapBufferMode(false);
 	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
 	  
 	  if (curFigure == null) {
@@ -90,6 +89,7 @@ public class SciRenderer
 		  // nothing to render
 		  return;
 	  }
+	  gLDrawable.setAutoSwapBufferMode(false);
 	  
       if (curFigure.getIsRenderingEnable()) {
     	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();

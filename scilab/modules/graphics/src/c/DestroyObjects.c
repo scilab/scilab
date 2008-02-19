@@ -44,6 +44,7 @@
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "../../../tclsci/includes/GedManagement.h"
 
@@ -832,7 +833,10 @@ void clearUserData( sciPointObj * pObj )
  */
 void sciDeleteWindow( int winNum )
 {
-  sciDelGraphicObj(getFigureFromIndex(winNum));
+  sciPointObj * deletedFig = getFigureFromIndex(winNum);
+  startGraphicDataWriting();
+  sciDelGraphicObj(deletedFig);
+  endGraphicDataWriting();
 }
 /*--------------------------------------------------------------------------------*/
 void AllGraphWinDelete( void )

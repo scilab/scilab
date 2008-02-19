@@ -88,7 +88,8 @@ public abstract class FacetColorComputer {
 	 * @param i index of the color
 	 */
 	public double getColor(int i) {
-		return colors[i];
+		// abs taken from old code
+		return Math.abs(colors[i]);
 	}
 	
 	/**

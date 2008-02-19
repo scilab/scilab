@@ -457,6 +457,7 @@ void Objplot3d ( char    * fname ,
   long *hdltab;
   int i, mn;
   sciPointObj *psubwin = NULL, *pobj = NULL;
+  sciPointObj * parentFigure = NULL;
   double drect[6];
   char * loc = NULL;
   char * legx = NULL;
@@ -484,9 +485,12 @@ void Objplot3d ( char    * fname ,
   /* =================================================
    * Force SubWindow properties according to arguments 
    * ================================================= */
-
+  startGraphicDataWriting();
+  parentFigure = sciGetCurrentFigure();
   psubwin= sciGetCurrentSubWin();
+  endGraphicDataWriting();
 
+  startFigureDataWriting(parentFigure);
   checkRedrawing() ;
   
   /* Force psubwin->is3d to TRUE: we are in 3D mode */
@@ -683,6 +687,7 @@ void Objplot3d ( char    * fname ,
       int monotony = checkMonotony( x, dimvectx ) ;
       if ( monotony == 0 )
       {
+        endFigureDataWriting(parentFigure);
         sciprint(_("%s: x vector is not monotonous.\n"),"Objplot3d");
         return;
       }
@@ -714,6 +719,7 @@ void Objplot3d ( char    * fname ,
       int monotony = checkMonotony( y, dimvecty ) ;
       if ( monotony == 0 )
       {
+        endFigureDataWriting(parentFigure);
         sciprint(_("%s: x vector is not monotonous.\n"),"Objplot3d");
         return ;
       }
@@ -725,7 +731,11 @@ void Objplot3d ( char    * fname ,
                                     x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
                                     isfac,m1,n1,m2,n2,m3,n3,m3n,n3n) ;
     
-    if ( pNewSurface == NULL ) { return ; }
+    if ( pNewSurface == NULL )
+    {
+      endFigureDataWriting(parentFigure);
+      return ;
+    }
 
     sciSetCurrentObj( pNewSurface ) ;
     
@@ -737,6 +747,7 @@ void Objplot3d ( char    * fname ,
   else
     {
       if ((hdltab = MALLOC (*n * sizeof (long))) == NULL) {
+        endFigureDataWriting(parentFigure);
 	Scierror(999,"%s: No more memory.\n",fname);
 	return; 
       }
@@ -787,7 +798,9 @@ void Objplot3d ( char    * fname ,
    * ================================================= */
   // subwin has been modified
   forceRedraw(psubwin);
+  endFigureDataWriting(parentFigure);
   sciDrawObj(sciGetCurrentFigure ());
+
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
    
   FREE(loc); loc = NULL;

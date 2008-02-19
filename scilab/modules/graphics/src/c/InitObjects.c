@@ -1007,8 +1007,9 @@ void sciSetDefaultColorMap(sciPointObj * pFigure)
   int numColor = sciGetNumColors(getFigureModel()); 
   double * colorMap = MALLOC( 3 * numColor * sizeof(double) );
   if (colorMap == NULL)
-  {
-	  sciprint(_("%s: No more memory.\n"),"sciSetDefaultColorMap");
+  { 
+    sciprint(_("%s: No more memory.\n"),"sciSetDefaultColorMap");
+    return;
   }
   sciGetColormap(getFigureModel(), colorMap);
   sciSetColormap(pFigure, colorMap, numColor, 3);

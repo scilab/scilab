@@ -50,10 +50,7 @@ static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, in
 */
 static int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol)
 {
-  /*createScilabSetHashTable() ;*/
-
   return callSetProperty( pobj, *value, valueType, *numrow, *numcol, marker ) ;
-
 }
 /*--------------------------------------------------------------------------*/
 
@@ -273,15 +270,23 @@ int sci_set(char *fname, unsigned long fname_len)
 	 }
 
 	 if ( (hdl != (unsigned long)0) ) 
-	 { 
+	 {
+           sciPointObj * parentFigure;
 		 pobj = sciGetPointerFromHandle(hdl);
+                 parentFigure = sciGetParentFigure(pobj);
+
 		 if ( pobj == NULL )
 		 {
 			 Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
 			 return 0;
 		 }
 		 vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible */
-		 if ( (setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3)) < 0 )
+
+                 startFigureDataWriting(parentFigure);
+                 setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+		 endFigureDataWriting(parentFigure);
+
+                 if ( setStatus < 0 )
 		 {
 			 LhsVar(1)=0;
 			 return 0 ;
