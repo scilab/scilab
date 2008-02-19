@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../incremental_link/includes;../../../dynamic_link/src/c;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk/include"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk/include"
 				PreprocessorDefinitions="_DEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -118,7 +118,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../incremental_link/includes;../../../dynamic_link/src/c;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk/include"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk/include"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -825,11 +825,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File

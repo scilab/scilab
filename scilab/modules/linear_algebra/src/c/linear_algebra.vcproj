@@ -127,7 +127,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../incremental_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
