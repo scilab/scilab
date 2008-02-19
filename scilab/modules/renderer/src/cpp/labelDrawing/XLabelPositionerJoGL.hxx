@@ -40,4 +40,3 @@ protected:
 }
 
 #endif /* _X_LABEL_POSITIONER_JOGL_HXX_ */
-
