@@ -746,6 +746,21 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   {
     sciInitBackground(pObj,(*background));
   }
+
+
+  if ( sciInitGraphicContext( pObj ) == -1 )
+  {
+    FREE(pObj->pfeatures);
+    FREE(pObj);
+    return NULL ;
+  }
+
+  if ( sciInitFontContext( pObj ) == -1 )
+  {
+    FREE(pObj->pfeatures);
+    FREE(pObj);
+    return NULL ;
+  }
   
   return pObj;
 }
@@ -777,19 +792,6 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
     pobj->pObservers = DoublyLinkedList_new() ;
     createDrawingObserver( pobj ) ;
     pobj->pDrawer = NULL ;
-
-    if ( sciInitFontContext( pobj ) == -1 )
-    {
-      FREE(pobj->pfeatures);
-      FREE(pobj);
-      return NULL ;
-    }
-  
-    if ( sciInitGraphicContext( pobj ) == -1 )
-    {
-      deallocateText( pobj ) ;
-      return NULL ;
-    }
     
     if (sciAddNewHandle (pobj) == -1)
     {
@@ -2475,12 +2477,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
                                   0.0, 0.0, TRUE, NULL, FALSE, &defaultColor, &defaultColor,
                                   FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
 
-    if ( ppLabel->text == NULL )
-    {
-      FREE(ppLabel);
-      FREE(pobj);
-      return NULL ;
-    }
+    sciStandardBuildOperations(pobj, pparentsubwin);
 
     /* labels are not clipped */
     sciSetIsClipping(ppLabel->text, -1) ;
@@ -2488,32 +2485,9 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     /* Use centered mode */
     sciInitCenterPos(ppLabel->text, TRUE);
     sciInitAutoSize(ppLabel->text, TRUE);
-
-    if (sciAddNewHandle (pobj) == -1)
-    {
-      deallocateText( ppLabel->text ) ;
-      FREE(ppLabel);
-      FREE(pobj);
-      return NULL;
-    }
     
-    if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-    {
-      deallocateText( ppLabel->text ) ;
-      sciDelHandle (pobj);
-      FREE(ppLabel);
-      FREE(pobj);
-      return NULL;
-    }
-    
-    sciInitSelectedSons(pobj);
     sciInitIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
 
-    pobj->pObservers = DoublyLinkedList_new() ;
-    createDrawingObserver( pobj ) ;
-
-    pobj->pDrawer = NULL ;
-    
     sciInitIs3d( pobj, FALSE ) ; /* the text of labels is displayed using 2d scale */
 
     ppLabel->ptype = type;
@@ -2521,13 +2495,8 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     ppLabel->auto_rotation = TRUE;
 
     ppLabel->isselected = TRUE;
-    if (sciInitFontContext (pobj) == -1)
-    {
-      DestroyLabel( pobj ) ;
-      return (sciPointObj *) NULL;
-    }
     
-    return (sciPointObj *) pobj;
+    return pobj;
   }
   else
   {
