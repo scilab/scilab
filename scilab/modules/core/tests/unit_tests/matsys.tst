@@ -5,17 +5,21 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- INTERACTIVE TEST -->
+
 // test of matsys functions
-clear
 
 // debug
-if debug()<>0 then pause,end
-//debug(4)
-//if debug()<>4 then pause,end
-debug(0)
+// if debug()<>0 then pause,end
+// debug(4)
+// if debug()<>4 then pause,end
+// debug(0)
+
+clear
 
 //who
-a=33;bbb=-1;
+a=33;
+bbb=-1;
 vars=who('get');
 if or(vars(1:2)<>['bbb';'a']) then pause,end
 
@@ -24,7 +28,6 @@ ln=lines();lines(30);ln1=lines();
 if ln1(2)<>30 then pause,end
 lines(45,70);ln1=lines();
 if or(ln1<>[70,45]) then pause,end
-
 
 //argn
 deff('[x,y]=foo(a,b)','[lhs,rhs]=argn(0);x=[lhs,rhs];y=-1')
@@ -60,15 +63,15 @@ a=%s;if type(a)<>2  then pause,end
 
 //errcatch,errclear,iserror
 clear
-//errcatch(4,'continue')
-//unknown
-//if iserror()<>1 then pause,end
-//errclear()
-//if iserror()<>0 then pause,end
-//unknown
-//if iserror(4)<>1 then pause,end
-//errclear(4)
-//if iserror(4)<>0 then pause,end
+errcatch(4,'continue')
+unknown
+if iserror()<>1 then pause,end
+errclear()
+if iserror()<>0 then pause,end
+unknown
+if iserror(4)<>1 then pause,end
+errclear(4)
+if iserror(4)<>0 then pause,end
 errcatch(4,'continue','nomessage')
 unknown
 if iserror()<>1 then pause,end
@@ -95,15 +98,13 @@ errcatch()
 // lasterror
 errcatch(4,'continue','nomessage')
 unknown
-if stripblanks(lasterror(%f))<>'undefined variable : unknown' then pause,end
+if stripblanks(lasterror(%f))<>"Undefined variable : unknown" then pause,end
 [m,n]=lasterror();
-if stripblanks(m)<>'undefined variable : unknown' then pause,end
+if stripblanks(m)<>"Undefined variable : unknown" then pause,end
 if n<>4 then pause,end
 if lasterror()<>[] then pause,end
 [m,n]=lasterror();
 if m<>[]|n<>0 then pause,end
-
-
 
 //resume
 deff('foo()','[a,b]=resume(''x'',''y'')')
@@ -154,7 +155,7 @@ end
 
 // newfun, clearfun, funptr
 fptr=funptr('sin');
-if fptr<>623 then pause,end
+if fptr<>622 then pause,end
 newfun('mysin',fptr);
 if mysin(1)<>sin(1) then pause,end
 clearfun('mysin');

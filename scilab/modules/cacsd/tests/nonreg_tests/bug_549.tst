@@ -22,9 +22,10 @@
 //     t = [0:1/100:8];
 //    csim('step',t,G);
 //    Allard Benoit on Linux version 3.0 / 9.1 distribution Debian / Mandrake with  WMaker / KDE as window manager
-//    France  
+//    France
 //    November 18, 2003 at 15:38:42
 
+// <-- INTERACTIVE TEST -->
 
 p = poly(0,'p');
 G = syslin('c', (1-p)/((p+1)*(p+3)));
