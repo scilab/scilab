@@ -1,12 +1,11 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Cong WU
- * 
+ * Copyright (C) 2008 - INRIA - Cong WU
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -92,21 +91,21 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		int n1 = 0;
 
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
-		mn = m1*n1;  
+		mn = m1*n1;
 	}
 
-	
+
 	if (mn != 1)
     {
 		freeArrayOfString(Str,mn);
-        Scierror(36, _("%s: Wrong size for first input argument: Single string expected.\n")); 
+        Scierror(36, _("%s: Wrong size for first input argument: Single string expected.\n"), fname);
         return 0;
     }
 
     GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str2);
-    mn2 = m2*n2;  
+    mn2 = m2*n2;
 
-	if ( (int)strlen(Str[0]) == 0 ) 
+	if ( (int)strlen(Str[0]) == 0 )
 	{
 		values = (int *)MALLOC(sizeof(int));
 		values_end = (int *)MALLOC(sizeof(int));
@@ -125,7 +124,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 
 			int Output_Start = 0;
 			int Output_End = 0;
-            			
+
             for (x = 0; x < mn2; ++x)
             {
 				save = (char *)MALLOC( sizeof(char) * ( strlen(Str2[x]) +1) );
@@ -136,20 +135,20 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 					strcpy(save,Str2[x]);
 					answer = pcre_private(pointer,save,&Output_Start,&Output_End);
 					if ( answer == 0)
-					{         
-						if (Output_Start!=Output_End || Output_Start==0) 
+					{
+						if (Output_Start!=Output_End || Output_Start==0)
 						{
 							/*adding the answer into the outputmatrix*/
-							values[nbValues++]=Output_Start+start_point+1;         
+							values[nbValues++]=Output_Start+start_point+1;
 						}
-						else 
+						else
 						{
-							values[nbValues++]=Output_Start+start_point; 
+							values[nbValues++]=Output_Start+start_point;
 						}
-						values_end[nbValues_end++]=Output_End+start_point; 
+						values_end[nbValues_end++]=Output_End+start_point;
 						/*The number according to the str2 matrix*/
-						position[nbposition++]=x+1;                
-	                    pointer=pointer+Output_End;	
+						position[nbposition++]=x+1;
+	                    pointer=pointer+Output_End;
 						start_point=start_point+Output_End;
 					}
 					else
@@ -171,10 +170,10 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
         GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 
         if ( m3*n3 != 0) typ = cstk(l3)[0];
-        
+
 		if (typ== STR_ONCE)
 		{
-		
+
 			int x = 0;
 			int answer = 0;
 
@@ -185,30 +184,30 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
             {
                 answer = pcre_private(Str[0],Str2[x],&Output_Start,&Output_End);
                 if ( answer == 0)
-                {      
-					if (Output_Start!=Output_End || Output_Start==0) 
+                {
+					if (Output_Start!=Output_End || Output_Start==0)
 					{
 						/*adding the answer into the outputmatrix*/
-						values[nbValues++]=Output_Start+1;         
+						values[nbValues++]=Output_Start+1;
 					}
 					else
 					{
 						values[nbValues++]=Output_Start;
 					}
-					
-					values_end[nbValues_end++]=Output_End; 
+
+					values_end[nbValues_end++]=Output_End;
 					/*The number according to the str2 matrix*/
-                    position[nbposition++]=x+1;                
-                }    
+                    position[nbposition++]=x+1;
+                }
 				else
 				{
 					pcre_error(fname,answer);
 				}
             }
-        
+
 		}
 	}
-    
+
 	if (nbValues!=0)
 	{
 		match = (char**)MALLOC(sizeof(char*)*(nbValues));
@@ -221,11 +220,11 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 
 	for( i = 0; i < nbValues; i++)
 	{
-		if ( (values_end[i] - values[i]) > 1 ) 
+		if ( (values_end[i] - values[i]) > 1 )
 		{
 			match[i] = (char*)MALLOC(sizeof(char)*(values_end[i] - values[i] + 1));
 		}
-		else 
+		else
 		{
 			match[i] = (char*)MALLOC(sizeof(char)*(1));
 		}
@@ -241,7 +240,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 	freeArrayOfString(Str,mn);
 	freeArrayOfString(Str2,mn2);
 
-    numRow   = 1;/* Output values[] */ 
+    numRow   = 1;/* Output values[] */
     outIndex = 0;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
     for ( i = 0 ; i < nbValues ; i++ )
@@ -249,7 +248,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		stk(outIndex)[i] = (double)values[i] ;
     }
     LhsVar(1) = Rhs+1 ;
-    
+
 	if (Lhs >= 2)
 	{
 		numRow   = 1;
@@ -259,7 +258,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			stk(outIndex)[i] = (double)values_end[i] ;
 		}
-		LhsVar(2) = Rhs+2;  
+		LhsVar(2) = Rhs+2;
 	}
 
     if (Lhs == 3)
@@ -275,7 +274,7 @@ int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
     if (values) {FREE(values); values = NULL;}
 	if (values_end) {FREE(values_end); values_end = NULL;}
     if (position) {FREE(position); position = NULL;}
-	
+
     freeArrayOfString(match,nbValues);
     return 0;
 }
