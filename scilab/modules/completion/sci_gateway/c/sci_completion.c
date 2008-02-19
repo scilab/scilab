@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,7 +14,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "localization.h"
-#include "completion.h" 
+#include "completion.h"
 #include "Scierror.h"
 #include "toolsdictionary.h"
 /*--------------------------------------------------------------------------*/
@@ -36,7 +36,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"));
+		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"), fname);
 		return 0;
 	}
 
@@ -50,7 +50,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 			Results = completion(partOfWord, &sizeResults);
 			putResultOnStack(1,Results,sizeResults);
 			freePointerDictionary(Results,sizeResults);
-			C2F(putlhsvar)();	
+			C2F(putlhsvar)();
 		}
 		else /* Rhs == 2 */
 		{
@@ -95,7 +95,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 
 				putResultOnStack(1,Results,sizeResults);
 				freePointerDictionary(Results,sizeResults);
-				C2F(putlhsvar)();	
+				C2F(putlhsvar)();
 
 			}
 			else
@@ -152,7 +152,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 
 			freePointerDictionary(MacrosList,sizeMacrosList);
 		}
-		
+
 		if (Lhs > 4)
 		{
 			char **HandleGraphicsPropertiesList = NULL;
