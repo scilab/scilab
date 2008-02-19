@@ -16978,8 +16978,8 @@ fi
 if test $ac_cv_header_fftw3_h = yes; then
   :
 else
-  { { echo "$as_me:$LINENO: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : fftw3-dev)" >&5
-echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : fftw3-dev)" >&2;}
+  { { echo "$as_me:$LINENO: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)" >&5
+echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)" >&2;}
    { (exit 1); exit 1; }; }
 fi
 

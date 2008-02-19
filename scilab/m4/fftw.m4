@@ -3,7 +3,7 @@ dnl ------------------------------------------------------
 dnl Check if FFTW is usable and working
 dnl
 AC_DEFUN([AC_FFTW], [
-	AC_CHECK_HEADER([fftw3.h],[],[AC_MSG_ERROR([Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : fftw3-dev)])])
+	AC_CHECK_HEADER([fftw3.h],[],[AC_MSG_ERROR([Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)])])
 	save_LIBS="$LIBS"
 	AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
 			[FFTW3_LIB=-lfftw3],
