@@ -67,4 +67,3 @@ protected:
 }
 
 #endif /* _COMPUTE_BOUNDS_STRATEGY_HXX_ */
-
