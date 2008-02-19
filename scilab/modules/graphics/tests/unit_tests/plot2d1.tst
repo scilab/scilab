@@ -5,26 +5,18 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- INTERACTIVE TEST -->
+// <-- TEST WITH GRAPHIC -->
 
-// non regression bug for xclick in drawlater mode
+// non regression bug for plot2d
+// which were erasing figure before each plot
 
-// draw something
-plot2d;
+// two plot2d1 
+plot2d1;
+plot2d1;
 
-// first xclick to test
-xclick()
-
-drawlater();
-
-// no redraw performed yet
-xclick()
-
-// for a reshape and redraw
-f = gcf();
-f.figure_size = 2 * f.figure_size;
-
-// check now, before bug fix it returned [nan, nan]
-xclick()
-
+a = gca();
+// check that there are now two compounds ad axes children
+if ( size(a.children,'*') <> 2 ) then pause,end
+if ( a.children(1).type <> "Compound"  ) then pause,end
+if ( a.children(2).type <> "Compound"  ) then pause,end
 

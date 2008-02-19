@@ -223,8 +223,6 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   GetNax(7+iskip,opts,&nax,&flagNax);
   if (iskip==0) GetLogflags(fname,8,opts,&logFlags);
 
-  C2F(scigerase)();
-
   if ( isDefStrf( strf ) ) {
     char strfl[4];
     strcpy(strfl,DEFSTRFN);
