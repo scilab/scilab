@@ -200,7 +200,8 @@ static BOOL savelanguagepref_windows(void)
 
 	LANGUAGE=getlanguage();
 	LanguageCode=getcodefromlanguage(LANGUAGE);
-	if (LANGUAGE) {FREE(LANGUAGE);LANGUAGE=NULL;}
+	// FREE not need here because getcodefromlanguage returns a static array
+	//if (LANGUAGE) {FREE(LANGUAGE);LANGUAGE=NULL;}
 
 	wsprintf(Clef,SCILABREGISTRYKEY,SCI_VERSION_STRING);
 
