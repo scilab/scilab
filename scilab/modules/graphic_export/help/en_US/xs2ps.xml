@@ -75,23 +75,17 @@
     generated postscript file does not contrains the header part</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[ 
-    scf(0)
-    plot2d()
-    // Postcript export
-    filename='foo'; // ! no extension
-    xs2ps(0,filename)
-    //add the Postscript file header and create <filename>.eps file
-    if MSDOS then
-      unix_s(pathconvert('""'+WSCI+'/bin/BEpsf'+'""',%f)+' -p ' +filename)
-    else
-      unix_s(pathconvert('SCI/bin/BEpsf',%f)+' -p ' +filename)
-    end
-    // Gif export
-    xs2gif(0,'foo.gif')
-    // ppm export
-    xs2ppm(0,'foo.ppm')
-  ]]></EXAMPLE>
+<EXAMPLE><![CDATA[
+scf(0);
+plot2d();
+// Postcript export
+filename='foo.ps';
+xs2ps(0,filename)
+// Gif export
+xs2gif(0,'foo.gif');
+// ppm export
+xs2ppm(0,'foo.ppm');
+]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

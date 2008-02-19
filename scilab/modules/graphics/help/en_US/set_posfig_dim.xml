@@ -66,21 +66,14 @@
     <VERB>w=600</VERB>, <VERB>h=424</VERB>.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[ 
-    // make a figure with a specific shape 
-    f=scf(0);f.figure_size=[800,300];
-    plot2d()
-    set_posfig_dim(f.figure_size(1),f.figure_size(2))
-    filename='foo'; // ! no extension
-    xs2ps(0,filename)
-    //add the Postscript file header and create <filename>.eps file
-    if MSDOS then
-      unix_s(pathconvert('""'+WSCI+'/bin/BEpsf'+'""',%f)+' -p ' +filename)
-    else
-      unix_s(pathconvert('SCI/bin/BEpsf',%f)+' -p ' +filename)
-    end
-    
-  ]]></EXAMPLE>
+<EXAMPLE><![CDATA[ 
+// make a figure with a specific shape
+f=scf(0);f.figure_size=[800,300];
+plot2d();
+set_posfig_dim(f.figure_size(1),f.figure_size(2));
+filename='foo.ps';
+xs2ps(0,filename);
+]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

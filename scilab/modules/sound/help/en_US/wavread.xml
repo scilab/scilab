@@ -68,7 +68,7 @@ subplot(2,1,1)
 plot2d(y(1,:)) // first channel 
 subplot(2,1,2)
 plot2d(y(2,:)) // second channel
-y=wavread("SCI/demos/signal/sound/chimes.wav",[1 5]) //the first five samples
+y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //the first five samples
 ]]>
   </EXAMPLE>
   <SEE_ALSO>
