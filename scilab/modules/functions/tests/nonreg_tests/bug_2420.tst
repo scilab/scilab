@@ -15,4 +15,4 @@
 
 function a=strudel(),a='+\@+';endfunction
 t=fun2string(strudel);
-if stripblanks(t)<>"function a=ans(),a = '+\@+';endfunction" then pause,end
+if stripblanks(t)<>"function a=ans(),a = ''+\@+'';endfunction" then pause,end
