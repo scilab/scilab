@@ -1687,6 +1687,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/cmplxfunc/cmplxfunc_dial.sce \
 @GUI_TRUE@demos/cmplxfunc/MacCmplx.sci \
 @GUI_TRUE@demos/contourf.dem \
+@GUI_TRUE@demos/fec/fec.ex1 \
 @GUI_TRUE@demos/fec/fec.dem.gateway.sce \
 @GUI_TRUE@demos/fec/fec.ex2 \
 @GUI_TRUE@demos/fec/fec.ex2.dem.gateway.sce \

@@ -651,6 +651,7 @@ demos/cmplxfunc/cmplxfunc_dial.bin \
 demos/cmplxfunc/cmplxfunc_dial.sce \
 demos/cmplxfunc/MacCmplx.sci \
 demos/contourf.dem \
+demos/fec/fec.ex1 \
 demos/fec/fec.dem.gateway.sce \
 demos/fec/fec.ex2 \
 demos/fec/fec.ex2.dem.gateway.sce \
