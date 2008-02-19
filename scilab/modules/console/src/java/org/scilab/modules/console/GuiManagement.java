@@ -9,10 +9,10 @@
 package org.scilab.modules.console;
 
 
- /**
-   * All Scilab gui management used in Java console
+ /** 
+   * All Scilab gui management used in Java console 
    * @author Vincent COUVERT
-   * @copyright INRIA 2007
+   * @copyright INRIA 2007 
    */
 public class GuiManagement {
 
@@ -22,7 +22,7 @@ public class GuiManagement {
  protected GuiManagement() {
 	throw new UnsupportedOperationException();
  }
-
+  
  /**
    * Set Scilab parameters used to display data according the size of the console
    * @param nbRows number of rows that can be used to display data
