@@ -7,7 +7,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_symbolic)(void);
+int gw_symbolic(void);
 /*--------------------------------------------------------------------------*/ 
 int C2F(sci_addf) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_subf) _PARAMS((char *fname,unsigned long fname_len));

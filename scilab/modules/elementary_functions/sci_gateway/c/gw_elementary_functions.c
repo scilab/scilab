@@ -68,7 +68,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_isequalbitwise),"isequalbitwise"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_elementary_functions)(void)
+int gw_elementary_functions(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

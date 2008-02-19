@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_special_functions2)(void);
+int gw_special_functions2(void);
 /*--------------------------------------------------------------------------*/ 
 int sci_besselh(char *fname,unsigned long fname_len);
 int sci_besseli(char *fname,unsigned long fname_len);

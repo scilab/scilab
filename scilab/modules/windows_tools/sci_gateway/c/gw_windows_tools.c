@@ -30,7 +30,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_toprint),"toprint"},
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_windows_tools)(void)
+int gw_windows_tools(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

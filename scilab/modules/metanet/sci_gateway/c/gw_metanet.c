@@ -70,7 +70,7 @@ static gw_generic_table Tab[]=
 {C2F(intsm6ford),"m6ford"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_metanet)()
+int gw_metanet(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

@@ -24,7 +24,7 @@ static gw_generic_table Tab[]=
 	{C2F(intand),"and"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_boolean)()
+int gw_boolean(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

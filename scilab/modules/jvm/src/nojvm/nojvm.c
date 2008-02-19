@@ -21,9 +21,9 @@
 
 /*--------------------------------------------------------------------------*/ 
 /* not using gw_jvm.h */
-int C2F(gw_jvm)(void);
+int gw_jvm(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_jvm)()
+int gw_jvm(void)
 {
 	Scierror(999,_("Scilab Java module not installed.\n"));
 	return 0;

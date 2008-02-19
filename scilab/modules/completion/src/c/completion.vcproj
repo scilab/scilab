@@ -279,6 +279,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\gw_completion.h"
+				>
+			</File>
+			<File
 				RelativePath=".\resource.h"
 				>
 			</File>

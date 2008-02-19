@@ -7,7 +7,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_io)(void);
+int gw_io(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_oldload) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_read) _PARAMS((char *fname,unsigned long fname_len));

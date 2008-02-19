@@ -29,7 +29,7 @@ static gw_generic_table  Tab[]=
 	{C2F(sci_javalibrarypath),"javalibrarypath"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_jvm)(void)
+int gw_jvm(void)
 {  
 	Rhs = Max(0, Rhs);
 

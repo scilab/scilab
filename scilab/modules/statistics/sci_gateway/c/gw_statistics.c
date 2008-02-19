@@ -30,7 +30,7 @@ static gw_generic_table Tab[]=
 	{cdftI, "cdft"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_statistics)()
+int gw_statistics()
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

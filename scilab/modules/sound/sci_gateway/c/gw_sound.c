@@ -23,7 +23,7 @@ static gw_generic_table Tab[]={
 	{ sci_Beep,"beep"}
 };
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_sound)()
+int gw_sound(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

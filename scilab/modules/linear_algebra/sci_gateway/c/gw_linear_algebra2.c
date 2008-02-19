@@ -34,7 +34,7 @@ static gw_generic_table Tab[]={
 	{C2F(intbalanc),"balanc"},
 };
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_linear_algebra2)(void)
+int gw_linear_algebra2(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

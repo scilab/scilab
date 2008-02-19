@@ -31,7 +31,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_removetext),"removetext"}
 */
 /*--------------------------------------------------------------------------*/
-int C2F(gw_localization)()
+int gw_localization(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

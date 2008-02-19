@@ -13,7 +13,7 @@
 #include "stack-c.h"
 #include "gw_user.h"
 /*--------------------------------------------------------------------------*/ 
- int C2F(gw_user)()
+ int gw_user(void)
 {
    Rhs=Max(Rhs,0);
    return 0;

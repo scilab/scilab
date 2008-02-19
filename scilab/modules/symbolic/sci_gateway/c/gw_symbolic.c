@@ -25,7 +25,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_rdivf),"rdivf"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_symbolic)()
+int gw_symbolic(void)
 {
 	if (Rhs != 2)
 	{

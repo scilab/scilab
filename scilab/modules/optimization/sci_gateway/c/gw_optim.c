@@ -25,7 +25,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_qld),"qld"},
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_optim)()
+int gw_optim(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

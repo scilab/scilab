@@ -78,7 +78,7 @@ static gw_generic_table Tab[]=
 
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_core)()
+int gw_core(void)
 {  
 	Rhs = Max(0, Rhs);
 

@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_differential_equations2)(void);
+int gw_differential_equations2(void);
 /*--------------------------------------------------------------------------*/ 
 int C2F(sciimpl) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(dassli) _PARAMS((char *fname,unsigned long fname_len));

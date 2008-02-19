@@ -41,7 +41,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(gw_tclsci)()
+int gw_tclsci(void)
 {
 	Scierror(999,_("Scilab TCL/TK module not installed.\n"));
 	return 0;

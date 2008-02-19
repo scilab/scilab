@@ -17,7 +17,7 @@
 #include "machine.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_graphics)()
+int gw_graphics(void)
 {
 	Scierror(999,"Scilab Graphics module not installed.\n");
 	return 0;

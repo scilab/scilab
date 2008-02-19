@@ -36,7 +36,7 @@ static gw_generic_table Tab[]=
   {sci_xg2ps,"xg2ps"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_graphic_export)()
+int gw_graphic_export(void)
 {  
 	Rhs = Max(0, Rhs);
 	if ( getScilabMode() != SCILAB_NWNI )

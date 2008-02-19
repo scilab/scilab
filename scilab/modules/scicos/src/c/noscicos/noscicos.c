@@ -6,7 +6,7 @@
 #include "Scierror.h"
 #include "noscicos.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_scicos)()
+int gw_scicos(void)
 {
 	Scierror(999,"Scicos interface not installed.\n");
 	return 0;

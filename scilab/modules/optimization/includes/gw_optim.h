@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_optim)(void);
+int gw_optim(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_optim) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_semidef) _PARAMS((char *fname,unsigned long fname_len));

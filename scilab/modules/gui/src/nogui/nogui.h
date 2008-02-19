@@ -16,7 +16,7 @@
  *
  * @return 0
  */
-int C2F(gw_gui)(void);
+int gw_gui(void);
 
 /**
  * This function is a wrapper when /fake Scilab is compiled without the 

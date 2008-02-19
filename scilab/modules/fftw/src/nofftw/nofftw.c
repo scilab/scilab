@@ -13,7 +13,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_fftw)()
+int gw_fftw(void)
 {
 	Scierror(999,_("Scilab FFTW module not installed.\n"));
 	return 0;

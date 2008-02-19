@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_sound)(void);
+int gw_sound(void);
 /*--------------------------------------------------------------------------*/ 
 int sci_Beep __PARAMS((char *fname,unsigned long fname_len));
 int sci_Playsound __PARAMS((char *fname,unsigned long fname_len));

@@ -8,4 +8,4 @@
  *
  * @return 0 anyway
  */
-int C2F(gw_renderer)(void);
+int gw_renderer(void);

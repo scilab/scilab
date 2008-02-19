@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_polynomials)(void);
+int gw_polynomials(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_poly) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_roots) _PARAMS((char *fname,unsigned long fname_len));

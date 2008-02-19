@@ -58,7 +58,7 @@ static gw_generic_table Tab[]={
 {C2F(sci_end_scicosim),"end_scicosim"}
 };
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_scicos)()
+int gw_scicos(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

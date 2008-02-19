@@ -36,7 +36,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_mfull),"mfull"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_sparse)()
+int gw_sparse(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

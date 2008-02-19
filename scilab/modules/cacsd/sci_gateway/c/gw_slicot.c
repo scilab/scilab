@@ -38,7 +38,7 @@ static GenericTable Tab[]={
   {(Myinterfun) sci_gateway, C2F(intlinmeq),"linmeq"}
 };
 /*--------------------------------------------------------------------------*/  
-int C2F(gw_slicot)(void)
+int gw_slicot(void)
 {
 	Rhs = Max(0, Rhs);
 	#ifdef _MSC_VER

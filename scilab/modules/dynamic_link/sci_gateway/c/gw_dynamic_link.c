@@ -28,7 +28,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_c_link),"c_link"},
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_dynamic_link)()
+int gw_dynamic_link(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

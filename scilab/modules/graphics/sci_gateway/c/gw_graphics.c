@@ -100,7 +100,7 @@ static gw_generic_table Tab[]={
 
 /*--------------------------------------------------------------------------*/ 
 /* interface for the previous function Table */ 
-int C2F(gw_graphics)(void)
+int gw_graphics(void)
 {  
   Rhs = Max(0, Rhs);
   if ( getScilabMode() != SCILAB_NWNI )

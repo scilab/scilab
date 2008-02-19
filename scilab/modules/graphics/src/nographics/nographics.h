@@ -14,7 +14,7 @@
 #include "Scierror.h"
 #include "ObjectStructure.h"
 #include "Events.h"
-int C2F(gw_graphics)(void);
+int gw_graphics(void);
 
 void loadGraphicModule(void);
 

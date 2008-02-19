@@ -31,7 +31,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_rtitr),"rtitr"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_cacsd2)(void)
+int gw_cacsd2(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

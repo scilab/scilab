@@ -30,7 +30,7 @@ static gw_generic_table Tab[]={
 { sci_fftw_forget_wisdom,"fftw_forget_wisdom"}
 };
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_fftw)()
+int gw_fftw(void)
 {  
 	Rhs = Max(0, Rhs);
 

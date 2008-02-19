@@ -14,7 +14,7 @@
 
 #include "machine.h"
 
-int C2F(gw_user2)(void);
+int gw_user2(void);
 
 #endif /*__GW_USER2_H__*/
 /*--------------------------------------------------------------------------*/

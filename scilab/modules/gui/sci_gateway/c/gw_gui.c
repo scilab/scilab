@@ -47,7 +47,7 @@ static gw_generic_table Tab[]=
 	{sci_uiwait,"uiwait"},
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_gui)(void)
+int gw_gui(void)
 {  
 	Rhs = Max(0, Rhs);
 

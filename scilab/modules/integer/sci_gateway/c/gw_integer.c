@@ -51,7 +51,7 @@ static gw_generic_table Tab[]=
   {C2F(sciicumprod),"%i_cumprod"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_integer)()
+int gw_integer(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

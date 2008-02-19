@@ -22,7 +22,7 @@
 #include "localization.h"
 #include "core_math.h" /* Max */
 /*--------------------------------------------------------------------------*/
-int C2F(gw_gui)()
+int gw_gui()
 {
 	Scierror(999,_("Scilab GUI module not installed.\n"));
 	return 0;

@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_boolean)(void);
+int gw_boolean(void);
 /*--------------------------------------------------------------------------*/
 int C2F(intor) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intand) _PARAMS((char *fname,unsigned long fname_len));

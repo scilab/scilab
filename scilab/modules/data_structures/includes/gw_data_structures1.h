@@ -16,7 +16,9 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gwdatastructures1)(void);
+/* it can be called by fortran mklist.f & mkindx.f */
+int C2F(gwdatastructures1)(void); 
+int gw_data_structures1(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_glist) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_scilist) _PARAMS((char *fname,unsigned long fname_len));

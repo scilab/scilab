@@ -22,7 +22,7 @@ static gw_generic_table Tab[]=
 	{C2F(intricc),"ricc"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_cacsd1)(void)
+int gw_cacsd1(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

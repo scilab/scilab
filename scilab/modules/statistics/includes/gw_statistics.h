@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_statistics)(void);
+int gw_statistics(void);
 /*--------------------------------------------------------------------------*/ 
 int cdfbetI(char* fname,unsigned long l);
 int cdfbinI(char* fname,unsigned long l);

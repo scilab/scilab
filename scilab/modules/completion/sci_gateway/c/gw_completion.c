@@ -19,7 +19,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_completion),"completion"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_completion)()
+int gw_completion(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

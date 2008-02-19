@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_cacsd3)(void);
+int gw_cacsd3(void);
 /*--------------------------------------------------------------------------*/
 extern int C2F(sci_arl2) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len));

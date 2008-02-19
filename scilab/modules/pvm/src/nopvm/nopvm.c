@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_pvm)()
+int gw_pvm(void)
 {
 	Scierror(999,_("Scilab PVM module not installed.\n"));
 	return 0;

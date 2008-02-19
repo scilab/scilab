@@ -15,7 +15,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_metanet)()
+int gw_metanet(void)
 {
 	Scierror(999,_("Scilab module metanet not installed.\n"));
 	return 0;

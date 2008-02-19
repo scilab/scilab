@@ -25,7 +25,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_fstair),"fstair"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_cacsd0)(void)
+int gw_cacsd0(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

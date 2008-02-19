@@ -3,7 +3,6 @@
 /* Sylvestre LEDRU */
 /*--------------------------------------------------------------------------*/ 
 
-int C2F(gw_scicos)(void);
-int C2F(gw_cscicos)(void);
+int gw_scicos(void);
 int haltscicos(char *name, integer *win, integer *entry,long int name_len);
 

@@ -49,7 +49,7 @@ static gw_generic_table Tab[]=
 
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_string)(void)
+int gw_string(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

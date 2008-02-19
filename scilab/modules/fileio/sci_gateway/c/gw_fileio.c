@@ -53,7 +53,7 @@ static gw_generic_table Tab[]={
 	{C2F(sci_createdir),"createdir"}
 	};
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_fileio)(void)
+int gw_fileio(void)
 {
 	Rhs=Max(0,Rhs);
 	callFunctionFromGateway(Tab);

@@ -41,7 +41,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_get_absolute_file_path),"get_absolute_file_path"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_io)(void)
+int gw_io(void)
 {  
 	 /* Recursion */
 	 if (C2F(recu).rstk[C2F(recu).pt-1] / 100 == 9)

@@ -7,7 +7,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_renderer)()
+int gw_renderer()
 {
 	Scierror(999,_("Scilab Renderer module not installed.\n"));
 	return 0;

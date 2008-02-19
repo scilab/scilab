@@ -35,7 +35,7 @@
   {C2F(sci_TCL_ExistArray),"TCL_ExistArray"}
  };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_tclsci)()
+int gw_tclsci(void)
 {  
 	if ( getScilabMode() != SCILAB_NWNI )
 	{

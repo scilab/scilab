@@ -13,7 +13,7 @@
 #include "stack-c.h"
 #include "gw_user2.h"
 /*--------------------------------------------------------------------------*/ 
- int C2F(gw_user2)()
+ int gw_user2(void)
 {
    return 0;
 } 

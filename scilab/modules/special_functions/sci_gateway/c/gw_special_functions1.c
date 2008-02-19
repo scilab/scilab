@@ -28,7 +28,7 @@ static gw_generic_table Tab[]={
   {C2F(sci_calerf),"calerf"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_special_functions1)(void)
+int gw_special_functions1(void)
 {
 	Rhs = Max(0, Rhs);
 

@@ -21,7 +21,7 @@ static PROC_GATEWAY ptr_gw_scicos = NULL;
 static char* dynlibname_scicos = NULL;
 static char* gatewayname_scicos = NULL;
 /*--------------------------------------------------------------------------*/
-int C2F(gw_dynamic_scicos)(void)
+int gw_dynamic_scicos(void)
 {
 	dynamic_gateway_error_code err;
 	if (dynlibname_scicos == NULL)

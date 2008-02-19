@@ -67,8 +67,8 @@ char *buildModuleDynLibraryName(char *modulename)
 /*--------------------------------------------------------------------------*/
 char *buildGatewayName(char *modulename)
 {
-	/* example gw_scicos_ --> C2F(gw_scicos) */
-	#define FORMATGATEWAYNAME "gw_%s_" 
+	/* example gw_scicos */
+	#define FORMATGATEWAYNAME "gw_%s" 
 	/* @TODO THIS MUST BE REWRITED !!! It is not portable at all */
 
 	char *gatewayname = NULL;

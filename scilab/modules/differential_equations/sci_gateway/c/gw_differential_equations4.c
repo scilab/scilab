@@ -26,7 +26,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_feval),"feval"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_differential_equations4)(void)
+int gw_differential_equations4(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

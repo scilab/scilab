@@ -15,7 +15,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_randlib)()
+int gw_randlib(void)
 {
 	Scierror(999,_("Scilab randlib interface not installed.\n"));
 	return 0;

@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gwdatastructures2)(void);
+int gw_data_structures2(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getfield) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_setfield) _PARAMS((char *fname,unsigned long fname_len));

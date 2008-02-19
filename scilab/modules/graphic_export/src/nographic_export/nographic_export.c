@@ -16,7 +16,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_graphic_export)()
+int gw_graphic_export(void)
 {
 	Scierror(999,_("Scilab Graphic export module not installed.\n"));
 	return 0;

@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_history_manager)()
+int gw_history_manager(void)
 {
 	Scierror(999,_("Scilab history_manager module not installed.\n"));
 	return 0;

@@ -15,7 +15,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_sound)()
+int gw_sound(void)
 {
 	Scierror(999,_("Scilab sound module not installed.\n"));
 	return 0;

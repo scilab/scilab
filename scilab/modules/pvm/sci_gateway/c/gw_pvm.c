@@ -51,7 +51,7 @@ static gw_generic_table Tab[]={
   {intspvm_error_mode,"pvm_error_mode"},
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_pvm)(void)
+int gw_pvm(void)
 {
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_elementary_functions)(void);
+int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_real) _PARAMS((char *fname,unsigned long fname_len));

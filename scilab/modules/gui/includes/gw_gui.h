@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_gui)(void);
+int gw_gui(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len));

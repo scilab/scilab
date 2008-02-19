@@ -15,4 +15,4 @@
  *
  * @return 0 anyway
  */
-int C2F(gw_graphic_export)(void);
+int gw_graphic_export(void);

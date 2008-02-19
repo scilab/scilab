@@ -7,7 +7,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_tclsci)(void);
+int gw_tclsci(void);
 /*--------------------------------------------------------------------------*/ 
 int C2F(sci_TCL_DoOneEvent) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long fname_len));

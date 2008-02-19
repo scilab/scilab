@@ -15,7 +15,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_spreadsheet)()
+int gw_spreadsheet(void)
 {
 	Scierror(999,_("Scilab spreadsheet module not installed.\n"));
 	return 0;

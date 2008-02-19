@@ -29,7 +29,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_lstsize),"lstsize"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gwdatastructures1)()
+int gw_data_structures1(void)
 {
 	Rhs=Max(Rhs,0);
 	if (Top - Rhs + Lhs + 1 >= Bot)
@@ -41,5 +41,10 @@ int C2F(gwdatastructures1)()
 
 	callFunctionFromGateway(Tab);
 	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int C2F(gwdatastructures1)(void)
+{
+	return gw_data_structures1();
 }
 /*--------------------------------------------------------------------------*/

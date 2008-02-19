@@ -15,7 +15,7 @@
 #include "localization.h"
 #include "gw_completion.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_completion)()
+int gw_completion(void)
 {
 	Scierror(999,_("Scilab completion module not installed.\n"));
 	return 0;

@@ -24,7 +24,7 @@ static RendererTable Tab[]=
 //{C2F(sci_skeleton_c),"skeleton_c"},
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_renderer)()
+int gw_renderer(void)
 {  
 	Rhs = Max(0, Rhs);
 

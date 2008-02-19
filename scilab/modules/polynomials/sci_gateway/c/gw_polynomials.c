@@ -35,7 +35,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_cleanp),"cleanp"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_polynomials)(void)
+int gw_polynomials(void)
 {
 	callFunctionFromGateway(Tab);
 	return 0;

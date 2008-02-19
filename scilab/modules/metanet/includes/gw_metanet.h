@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_metanet)(void);
+int gw_metanet(void);
 /*--------------------------------------------------------------------------*/
 int C2F(intsm6loadg) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(intsm6saveg) _PARAMS((char *fname,unsigned long fname_len));

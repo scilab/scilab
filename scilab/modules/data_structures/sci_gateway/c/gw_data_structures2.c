@@ -22,7 +22,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_setfield),"setfield"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gwdatastructures2)(void)
+int gw_data_structures2(void)
 {
 	Rhs=Max(Rhs,0);
 	if (Top - Rhs + Lhs + 1 >= Bot)

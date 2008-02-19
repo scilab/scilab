@@ -23,7 +23,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_ldiv),"ldiv"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_cacsd3)(void)
+int gw_cacsd3(void)
 {  
 	if ( Fin-1 > 2) return 0;
 	callFunctionFromGateway(Tab);

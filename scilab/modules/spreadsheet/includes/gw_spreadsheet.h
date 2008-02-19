@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_spreadsheet)(void);
+int gw_spreadsheet(void);
 /*--------------------------------------------------------------------------*/ 
 int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));

@@ -11,9 +11,9 @@
 #include "machine.h" 
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_windows_tools)(void);
+int gw_windows_tools(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_windows_tools)(void)
+int gw_windows_tools(void)
 {
 	Scierror(999,"Scilab windows_tools module not installed.\n");
 	return 0;

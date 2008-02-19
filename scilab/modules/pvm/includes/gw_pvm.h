@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_pvm)(void);
+int gw_pvm(void);
 /*--------------------------------------------------------------------------*/ 
 int intspvm_addhosts _PARAMS((char *fname,unsigned long fname_len));
 int intspvm_barrier _PARAMS((char *fname,unsigned long fname_len));

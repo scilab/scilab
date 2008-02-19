@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_integer)(void);
+int gw_integer(void);
 /*--------------------------------------------------------------------------*/ 
 int C2F(sciint32) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sciint16) _PARAMS((char *fname,unsigned long fname_len));

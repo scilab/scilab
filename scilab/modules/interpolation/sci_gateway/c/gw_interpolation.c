@@ -29,7 +29,7 @@ static gw_generic_table Tab[]={
   {intbsplin3val,      "bsplin3val"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_interpolation)(void)
+int gw_interpolation(void)
 {
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

@@ -52,7 +52,7 @@ extern int C2F(matrdiv)();
 extern int C2F(matmult)();
 extern int C2F(matxpow)();
 /*--------------------------------------------------------------------------*/
-int C2F(matops)()
+int C2F(matops)(void)
 {
     static integer op;
 

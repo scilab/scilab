@@ -25,7 +25,7 @@ static gw_generic_table Tab[]=
 	{C2F(scibvode),"bvode"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_differential_equations6)(void)
+int gw_differential_equations6(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

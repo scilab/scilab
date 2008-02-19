@@ -38,7 +38,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_historymanager),"historymanager"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_history_manager)(void)
+int gw_history_manager(void)
 {
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

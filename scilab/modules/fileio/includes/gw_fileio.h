@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(gw_fileio)(void);
+int gw_fileio(void);
 /*--------------------------------------------------------------------------*/ 
 int intsmeof __PARAMS((char *fname,unsigned long fname_len));
 int intsmopen __PARAMS((char *fname,unsigned long fname_len));

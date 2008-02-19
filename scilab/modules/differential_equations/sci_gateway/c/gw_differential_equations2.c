@@ -27,7 +27,7 @@ static gw_generic_table Tab[]=
 };
 
 /*--------------------------------------------------------------------------*/
-int C2F(gw_differential_equations2)(void)
+int gw_differential_equations2(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

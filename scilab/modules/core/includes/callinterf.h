@@ -22,10 +22,10 @@
  *  ( file /core/src/c/addinter.h )
  ********************************************************/
 
-/* 01  C2F(gw_user)(); FREE */	#include "gw_user.h"
+/* 01  gw_user(); FREE */	    #include "gw_user.h"
 /* 02 */						#include "../../linear_algebra/includes/gw_linear_algebra.h"
-/* 03  C2F(gw_user)(); FREE */
-/* 04  C2F(gw_user)(); FREE */
+/* 03  gw_user(); FREE */
+/* 04  gw_user(); FREE */
 /* 05 */						#include "../../io/includes/gw_io.h"
 /* 06 */						#include "../../elementary_functions/includes/gw_elementary_functions.h"
 /* 07 */						#include "../../graphics/includes/gw_graphics.h"
@@ -35,7 +35,7 @@
 /* 11 */						#include "../../optimization/includes/gw_optim.h"
 /* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
-/* 14  C2F(gw_user)(); FREE */
+/* 14  gw_user(); FREE */
 /* 15 */						#include "../../metanet/includes/gw_metanet.h"
 /* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
@@ -45,7 +45,7 @@
 /* 21 */						#include "../../string/includes/gw_string.h"
 /* 22 */						#include "../../symbolic/includes/gw_symbolic.h"
 /* 23 */						#include "../../boolean/includes/gw_boolean.h"
-/* 24  C2F(gw_user2)(); FREE */	#include "gw_user2.h"
+/* 24  gw_user2(); FREE */	    #include "gw_user2.h"
 /* 25 */						#include "../../gui/includes/gw_gui.h"
 /* 26 */						#include "../../differential_equations/includes/gw_differential_equations2.h"
 /* 27 */						#include "../../sparse/includes/gw_sparse.h"
@@ -54,7 +54,7 @@
 /* 30 */						#include "../../differential_equations/includes/gw_differential_equations4.h"
 ///* 31 */						#include "../../differential_equations/includes/gw_differential_equations5.h"
 /* 32 */						#include "../../differential_equations/includes/gw_differential_equations6.h"
-/* 33  C2F(gw_user)(); FREE */
+/* 33  gw_user(); FREE */
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
 /* 35 */						#include "../../arnoldi/includes/gw_arnoldi.h"
 /* 36 */						#include "../../special_functions/includes/gw_special_functions1.h"

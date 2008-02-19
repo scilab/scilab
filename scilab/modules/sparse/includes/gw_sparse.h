@@ -6,7 +6,7 @@
 #define __GW_SPARSE__
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_sparse)(void);
+int gw_sparse(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_sparsefunc) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_spget) _PARAMS((char *fname,unsigned long fname_len));

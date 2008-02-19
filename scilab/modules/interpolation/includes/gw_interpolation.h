@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(gw_interpolation)(void);
+int gw_interpolation(void);
 /*--------------------------------------------------------------------------*/
 int intsplin(char *fname,unsigned long fname_len); 
 int intlsq_splin(char *fname,unsigned long fname_len);

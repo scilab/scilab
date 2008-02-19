@@ -24,7 +24,7 @@ static gw_generic_table Tab[]=
 {sci_iswaitingforinput,"iswaitingforinput"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_shell)()
+int gw_shell(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

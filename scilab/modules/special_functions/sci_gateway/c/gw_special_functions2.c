@@ -30,7 +30,7 @@ static gw_generic_table Tab[]={
   {sci_besselh,"besselh"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_special_functions2)(void)
+int gw_special_functions2(void)
 {
 	Rhs = Max(0, Rhs);
 	if (setjmp_slatec_jmp_env())

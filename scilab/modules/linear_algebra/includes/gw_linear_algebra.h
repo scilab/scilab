@@ -25,7 +25,7 @@
 #define YES 1
 #define NO 0
 /*--------------------------------------------------------------------------*/
-int C2F(gw_linear_algebra)(void);
+int gw_linear_algebra(void);
 /*--------------------------------------------------------------------------*/
 int C2F(inthess)(char *fname,unsigned long fname_len);
 int C2F(intqr)(char *fname,unsigned long fname_len);

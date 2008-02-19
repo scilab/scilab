@@ -24,7 +24,7 @@ static gw_generic_table Tab[]={
 	{sci_Rand, "Rand"}
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_randlib)(void)
+int gw_randlib(void)
 {
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

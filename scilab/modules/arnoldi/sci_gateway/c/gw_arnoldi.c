@@ -27,7 +27,7 @@ static gw_generic_table Tab[]={
   {C2F(intzneupd),"zneupd"},
 };
 /*--------------------------------------------------------------------------*/
-int C2F(gw_arnoldi)(void)
+int gw_arnoldi(void)
 {
 	Rhs = Max(0, Rhs);
 
