@@ -2,16 +2,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_dynamic_link.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -25,12 +25,12 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 	int ilib = 0;
 
 	CheckRhs(1,2);
-	CheckLhs(0,1);	
+	CheckLhs(0,1);
 
 	/* [test,ilib]=c_link(routine-name)  */
 	/* test = c_link(routine-name)  */
 	/* test = c_link(routine-name,num)  */
-	
+
 	if (Rhs == 2)
 	{
 		if (VarType(2) == sci_matrix)
@@ -61,7 +61,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			BOOL FindFunction = FALSE;
-			
+
 			FindFunction = c_link(routinename[0],&ilib);
 			if (routinename) {FREE(routinename);routinename = NULL;}
 
@@ -83,7 +83,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				*paramoutINT=(int)(FALSE);
 			}
-			
+
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
@@ -91,7 +91,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"));
+			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"), fname);
 		}
 	}
 	else
