@@ -66,4 +66,4 @@ protected:
 }
 
 #endif /* _AUTO_LOG_TICKS_COMPUTER_HXX_ */
-
+

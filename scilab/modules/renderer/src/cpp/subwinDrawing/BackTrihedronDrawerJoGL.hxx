@@ -46,4 +46,4 @@ protected:
 }
 
 #endif /* _BACK_TRIHEDRON_DRAWER_HXX_ */
-
+

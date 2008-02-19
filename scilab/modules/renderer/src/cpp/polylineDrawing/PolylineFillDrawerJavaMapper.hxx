@@ -63,4 +63,4 @@ private:
 }
 
 #endif /* _POLYLINE_FILL_DRAWER_JAVA_MAPPER_HXX_ */
-
+

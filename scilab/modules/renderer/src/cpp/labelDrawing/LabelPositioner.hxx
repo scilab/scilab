@@ -64,4 +64,4 @@ protected:
 }
 
 #endif /* _LABEL_POSITIONER_HXX_ */
-
+

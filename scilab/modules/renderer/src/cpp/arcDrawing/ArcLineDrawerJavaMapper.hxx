@@ -63,4 +63,4 @@ protected:
 }
 
 #endif /* _ARC_LINE_DRAWER_JAVA_MAPPER_HXX_ */
-
+

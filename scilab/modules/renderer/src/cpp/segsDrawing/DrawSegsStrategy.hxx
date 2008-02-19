@@ -51,4 +51,4 @@ protected:
 }
 
 #endif /* _DRAW_SEGS_STRATEGY_HXX_ */
-
+

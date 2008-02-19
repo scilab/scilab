@@ -51,4 +51,4 @@ protected:
 }
 
 #endif /* _TEXT_LINE_BOX_DRAWER_JOGL_H_ */
-
+

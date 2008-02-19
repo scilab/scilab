@@ -64,4 +64,4 @@ private:
 }
 
 #endif /* _SEGS_LINE_DRAWER_JAVA_MAPPER_HXX_ */
-
+

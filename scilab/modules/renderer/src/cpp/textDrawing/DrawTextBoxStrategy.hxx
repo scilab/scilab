@@ -54,4 +54,4 @@ protected:
 }
 
 #endif /* _DRAW_TEXT_BOX_STRATEGY_HXX_ */
-
+

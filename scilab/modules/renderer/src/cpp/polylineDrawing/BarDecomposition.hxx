@@ -96,4 +96,4 @@ protected:
 }
 
 #endif /* _BAR_DECOMPOSITION_HXX_ */
-
+

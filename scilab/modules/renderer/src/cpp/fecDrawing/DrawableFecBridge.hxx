@@ -42,4 +42,4 @@ public:
 }
 
 #endif /* _DRAWABLE_FEC_BRIDGE_HXX_ */
-
+

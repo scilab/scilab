@@ -66,4 +66,4 @@ protected:
 }
 
 #endif /* _SURFACE_MARK_DRAWER_JAVA_MAPPER_HXX_ */
-
+

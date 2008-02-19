@@ -68,4 +68,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_AXES_JAVA_MAPPER_HXX_ */
-
+

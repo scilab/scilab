@@ -55,4 +55,4 @@ protected:
 }
 
 #endif /* _ARC_LINE_DRAWER_JOGL_HXX_ */
-
+

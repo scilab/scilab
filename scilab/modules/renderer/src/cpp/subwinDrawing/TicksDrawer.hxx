@@ -74,4 +74,4 @@ protected:
 }
 
 #endif /* _TICKS_DRAWER_HXX_ */
-
+

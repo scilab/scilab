@@ -55,4 +55,4 @@ protected:
 }
 
 #endif /* _POLYLINE_ARROW_DRAWER_JOGL_HXX_ */
-
+

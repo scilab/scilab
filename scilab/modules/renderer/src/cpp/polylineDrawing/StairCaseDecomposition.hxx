@@ -57,4 +57,4 @@ protected:
 }
 
 #endif /* _STAIR_CASE_DECOMPOSITION_HXX_ */
-
+

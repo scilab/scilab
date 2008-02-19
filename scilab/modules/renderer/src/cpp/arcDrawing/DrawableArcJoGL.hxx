@@ -43,4 +43,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_ARC_JOGL_HXX_ */
-
+

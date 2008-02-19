@@ -56,4 +56,4 @@ protected:
 }
 
 #endif /* _DRAW_TEXT_CONTENT_STRATEGY_HXX_ */
-
+

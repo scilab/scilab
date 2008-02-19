@@ -40,4 +40,4 @@ protected:
 }
 
 #endif /* _Z_TICKS_DRAWER_JOGL_HXX_ */
-
+

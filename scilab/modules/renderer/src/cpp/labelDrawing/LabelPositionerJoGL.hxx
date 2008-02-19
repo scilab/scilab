@@ -48,4 +48,4 @@ protected:
 }
 
 #endif /* _LABEL_POSITIONER_JOGL_HXX_ */
-
+

@@ -68,4 +68,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_ARC_JAVA_MAPPER_HXX_ */
-
+

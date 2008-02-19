@@ -66,4 +66,4 @@ protected:
 }
 
 #endif /* _POLYLINE_BAR_DRAWER_JAVA_MAPPER_HXX_ */
-
+

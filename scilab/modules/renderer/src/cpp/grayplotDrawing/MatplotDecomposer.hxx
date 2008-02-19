@@ -71,4 +71,4 @@ protected:
 }
 
 #endif /* _GRAYPLOT_DECOMPOSER_HXX_ */
-
+

@@ -139,4 +139,4 @@ void setFacetsColors(double * colors, int colorsSize);
 
 }
 #endif
-
+

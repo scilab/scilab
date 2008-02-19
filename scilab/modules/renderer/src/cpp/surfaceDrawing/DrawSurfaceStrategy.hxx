@@ -48,4 +48,4 @@ protected:
 }
 
 #endif /* _DRAW_SURFACE_STRATEGY_HXX_ */
-
+

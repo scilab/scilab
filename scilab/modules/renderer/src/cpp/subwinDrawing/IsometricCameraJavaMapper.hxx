@@ -81,4 +81,3 @@ private:
 
 #endif /* _ISOMETRIC_CAMERA_JAVA_MAPPER_HXX_ */
 
-

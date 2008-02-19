@@ -72,4 +72,3 @@ public:
 
 #endif /* _CAMERA_JAVA_MAPPER_HXX_ */
 
-

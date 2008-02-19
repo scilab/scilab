@@ -64,4 +64,4 @@ private:
 }
 
 #endif /* _RECTANGLE_MARK_DRAWER_JAVA_MAPPER_HXX_ */
-
+

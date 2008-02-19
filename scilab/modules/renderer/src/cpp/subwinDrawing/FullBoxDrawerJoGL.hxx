@@ -46,4 +46,4 @@ protected:
 }
 
 #endif /* _FULL_BOX_DRAWER_JOGL_HXX_ */
-
+

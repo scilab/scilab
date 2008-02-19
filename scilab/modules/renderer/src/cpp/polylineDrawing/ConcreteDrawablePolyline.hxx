@@ -97,4 +97,4 @@ protected:
 }
 
 #endif /* _CONCRETE_DRAWABLE_POLYLINE_HXX_ */
-
+

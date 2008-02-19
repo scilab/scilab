@@ -79,4 +79,4 @@ protected:
 }
 
 #endif /* _COMPUTE_TICKS_STRATEGY_HXX_ */
-
+

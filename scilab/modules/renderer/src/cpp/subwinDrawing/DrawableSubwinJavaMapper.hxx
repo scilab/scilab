@@ -60,4 +60,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_SUBWIN_JAVA_MAPPER_HXX_ */
-
+

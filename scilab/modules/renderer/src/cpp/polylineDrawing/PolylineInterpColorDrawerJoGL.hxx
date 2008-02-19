@@ -55,4 +55,4 @@ protected:
 }
 
 #endif /* _POLYLINE_INTERP_COLOR_DRAWER_JOGL_HXX_ */
-
+

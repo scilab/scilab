@@ -41,4 +41,4 @@ protected:
 }
 
 #endif /* _DRAW_AXES_BOX_STRATEGY_HXX_ */
-
+

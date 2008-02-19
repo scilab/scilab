@@ -84,4 +84,4 @@ protected:
 }
 
 #endif /* _AXES_TICKS_COMPUTER_HXX_ */
-
+

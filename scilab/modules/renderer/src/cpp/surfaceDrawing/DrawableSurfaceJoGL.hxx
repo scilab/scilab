@@ -49,4 +49,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_SURFACE_JOGL_HXX_ */
-
+

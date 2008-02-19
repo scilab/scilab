@@ -61,4 +61,4 @@ protected:
 }
 
 #endif /* _FEC_FACET_DRAWER_JOGL_HXX_ */
-
+

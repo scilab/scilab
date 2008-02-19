@@ -54,4 +54,4 @@ protected:
 }
 
 #endif /* _TICKS_DRAWER_FACTORY_HXX_ */
-
+

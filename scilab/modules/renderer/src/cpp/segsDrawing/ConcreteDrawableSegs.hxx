@@ -89,4 +89,4 @@ protected:
 }
 
 #endif /* _CONCRETE_DRAWABLE_SEGS_HXX_ */
-
+

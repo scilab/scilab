@@ -72,4 +72,4 @@ protected:
 }
 
 #endif /* _LOGARITHMIC_BOUNDS_COMPUTER_HXX_ */
-
+

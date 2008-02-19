@@ -71,4 +71,4 @@ protected:
 }
 
 #endif /* _TITLE_POSITIONER_JAVA_MAPPER_HXX_ */
-
+

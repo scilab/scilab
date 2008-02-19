@@ -51,3 +51,4 @@ protected:
 }
 
 #endif /* _LABEL_POSITIONER_JAVA_MAPPER_HXX_ */
+

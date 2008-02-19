@@ -61,4 +61,4 @@ protected:
 }
 
 #endif /* _GRAYPLOT_DECOMPOSITION_STRATEGY_HXX_ */
-
+

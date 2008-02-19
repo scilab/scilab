@@ -52,4 +52,4 @@ protected:
 
 #endif /* _DRAWABLE_SEGS_JOGL_HXX_  */
 
-
+

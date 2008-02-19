@@ -113,4 +113,4 @@ protected:
 }
 
 #endif /* _CONCRETE_DRAWABLE_LEGEND_HXX_ */
-
+

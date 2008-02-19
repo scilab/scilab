@@ -40,4 +40,4 @@ public:
 }
 
 #endif /* _TEXT_CONTENT_DRAWER_JAVA_MAPPER_HXX_ */
-
+

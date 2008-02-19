@@ -70,4 +70,4 @@ private:
 }
 
 #endif /* _CENTERED_TEXT_DRAWER_JAVA_MAPPER_HXX_ */
-
+

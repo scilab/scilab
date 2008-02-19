@@ -51,4 +51,4 @@ public:
 }
 
 #endif /* _DRAWABLE_GRAYPLOT_BRIDGE_HXX_ */
-
+

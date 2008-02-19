@@ -62,5 +62,4 @@ private:
 
 }
 
-#endif /* _RECTANGLE_FILL_DRAWER_JAVA_MAPPER_HXX_ */
-
+#endif

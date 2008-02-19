@@ -58,5 +58,5 @@ protected:
 
 }
 
-#endif /* _CONCRETE_DRAWABLE_SURFACE_HXX_ */
-
+#endif
+

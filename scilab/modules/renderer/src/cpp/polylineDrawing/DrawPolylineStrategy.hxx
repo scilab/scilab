@@ -48,4 +48,4 @@ protected:
 }
 
 #endif /* _DRAW_POLYLINE_STRATEGY_HXX_ */
-
+

@@ -83,4 +83,4 @@ protected:
 }
 
 #endif /* _X_AXES_DRAWER_JAVA_MAPPER_HXX_ */
-
+

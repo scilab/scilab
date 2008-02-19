@@ -45,4 +45,4 @@ protected:
 }
 
 #endif /* _VERTICAL_BAR_DECOMPOSITION_HXX_ */
-
+

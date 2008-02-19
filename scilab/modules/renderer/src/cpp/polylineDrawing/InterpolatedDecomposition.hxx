@@ -58,4 +58,4 @@ protected:
 }
 
 #endif /* _INTERPOLATED_DECOMPOSITION_HXX_ */
-
+

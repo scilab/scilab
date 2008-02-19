@@ -56,4 +56,4 @@ protected:
 }
 
 #endif /* _SEGS_DECOMPOSER_HXX_ */
-
+

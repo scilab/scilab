@@ -130,4 +130,4 @@ protected:
 }
 
 #endif /* _CONCRETE_DRAWABLE_SUBWIN_HXX_ */
-
+

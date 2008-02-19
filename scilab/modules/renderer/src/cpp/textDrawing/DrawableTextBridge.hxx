@@ -41,4 +41,4 @@ public:
 }
 
 #endif /* _DRAWABLE_TEXT_BRIDGE_HXX_ */
-
+

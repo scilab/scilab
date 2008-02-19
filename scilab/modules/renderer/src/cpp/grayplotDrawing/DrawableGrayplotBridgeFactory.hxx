@@ -47,4 +47,4 @@ protected:
 }  
 
 #endif /* _DRAWABLE_GRAYPLOT_BRIDGE_FACTORY_H_ */
-
+

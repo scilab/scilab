@@ -107,4 +107,4 @@ protected:
 }
 
 #endif /* _CONCRETE_DRAWABLE_TEXT_H_ */
-
+

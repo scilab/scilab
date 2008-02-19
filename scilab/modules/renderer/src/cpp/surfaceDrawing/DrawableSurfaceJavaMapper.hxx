@@ -66,4 +66,4 @@ private:
 }
 
 #endif /* _DRAWABLE_SURFACE_JAVA_MAPPER_HXX_ */
-
+

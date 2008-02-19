@@ -66,4 +66,4 @@ private:
 }
 
 #endif /* _DRAWABLE_TEXT_JAVA_MAPPER_HXX_ */
-
+

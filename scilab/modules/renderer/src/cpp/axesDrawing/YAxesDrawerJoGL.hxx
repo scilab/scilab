@@ -47,4 +47,4 @@ protected:
 }
 
 #endif /* _Y_AXES_DRAWER_JOGL_HXX_ */
-
+

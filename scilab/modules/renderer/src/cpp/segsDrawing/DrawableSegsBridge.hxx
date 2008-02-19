@@ -42,4 +42,4 @@ public:
 }
 
 #endif /* _DRAWABLE_SEGS_BRIDGE_ */
-
+

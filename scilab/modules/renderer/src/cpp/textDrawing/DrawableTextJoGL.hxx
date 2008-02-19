@@ -48,4 +48,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_TEXT_JOGL_HXX_ */
-
+

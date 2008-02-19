@@ -64,4 +64,4 @@ protected:
 }
 
 #endif /* _BACK_TRIHEDRON_DRAWER_JAVA_MAPPER_HXX_ */
-
+

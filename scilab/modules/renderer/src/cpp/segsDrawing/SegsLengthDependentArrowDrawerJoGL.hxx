@@ -65,4 +65,4 @@ protected:
 }
 
 #endif /* _SEGS_ARROW_LENGTH_DEPENDENT_DRAWER_JOGL_HXX_ */
-
+

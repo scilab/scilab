@@ -50,4 +50,4 @@ protected:
 }
 
 #endif /* _DRAWABLE_ARC_BRIDGE_FACTORY_HXX_ */
-
+

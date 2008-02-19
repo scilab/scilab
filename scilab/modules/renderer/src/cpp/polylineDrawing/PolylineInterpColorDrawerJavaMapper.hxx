@@ -63,4 +63,4 @@ protected:
 }
 
 #endif /* _POLYLINE_INTERP_COLOR_DRAWER_JAVA_MAPPER_HXX_ */
-
+

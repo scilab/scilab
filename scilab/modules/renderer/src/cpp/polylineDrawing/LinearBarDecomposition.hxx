@@ -48,4 +48,4 @@ protected:
 }
 
 #endif /* _LINEAR_BAR_DECOMPOSITION_HXX_ */
-
+

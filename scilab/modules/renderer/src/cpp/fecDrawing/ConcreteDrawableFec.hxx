@@ -88,4 +88,3 @@ protected:
 
 #endif /* _CONCRETE_DRAWABLE_FEC_HXX_ */
 
-

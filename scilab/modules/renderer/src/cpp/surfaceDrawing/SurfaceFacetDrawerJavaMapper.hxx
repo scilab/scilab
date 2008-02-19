@@ -68,4 +68,4 @@ protected:
 }
 
 #endif /* _SURFACE_FACET_DRAWER_JAVA_MAPPER_HXX_ */
-
+

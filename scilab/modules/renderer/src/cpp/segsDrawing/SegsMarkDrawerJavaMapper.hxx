@@ -65,4 +65,4 @@ private:
 }
 
 #endif /* _SEGS_MARK_DRAWER_JAVA_MAPPER_HXX_ */
-
+

@@ -51,4 +51,4 @@ protected:
 }
 
 #endif /* _TITLE_POSITIONER_JOGL_HXX_ */
-
+

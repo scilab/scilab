@@ -60,4 +60,3 @@ protected:
 
 #endif /* _DRAWABLE_GRAYPLOT_JOGL_H_  */
 
-

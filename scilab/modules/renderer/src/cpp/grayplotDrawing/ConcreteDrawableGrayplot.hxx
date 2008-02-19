@@ -53,4 +53,4 @@ protected:
 }
 
 #endif /* _CONCRETE_DRAWABLE_GRAYPLOT_HXX_ */
-
+

@@ -68,4 +68,4 @@ private:
 }
 
 #endif /* _POLYLINE_ARROW_DRAWER_JAVA_MAPPER_HXX_ */
-
+

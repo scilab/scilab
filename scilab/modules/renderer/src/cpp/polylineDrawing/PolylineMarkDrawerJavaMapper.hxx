@@ -64,4 +64,4 @@ protected:
 }
 
 #endif /* _RECTANGLE_LINE_DRAWER_JAVA_MAPPER_HXX_ */
-
+

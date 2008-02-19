@@ -88,4 +88,4 @@ protected:
 }
 
 #endif /* _AUTOMATIC_TICKS_COMPUTER_HXX_ */
-
+

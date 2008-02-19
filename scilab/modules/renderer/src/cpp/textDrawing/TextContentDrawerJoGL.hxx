@@ -82,4 +82,4 @@ protected:
 }
 
 #endif /* _TEXT_CONTENT_DRAWER_JOGL_HXX_ */
-
+

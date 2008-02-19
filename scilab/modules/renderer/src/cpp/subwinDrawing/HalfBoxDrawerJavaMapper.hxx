@@ -64,4 +64,4 @@ protected:
 }
 
 #endif /* _HALF_BOX_DRAWER_JAVA_MAPPER_HXX_ */
-
+

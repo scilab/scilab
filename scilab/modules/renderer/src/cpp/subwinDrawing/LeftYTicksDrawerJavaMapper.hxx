@@ -76,4 +76,4 @@ protected:
 }
 
 #endif /* _LEFT_Y_TICKS_DRAWER_JAVA_MAPPER_HXX_ */
-
+

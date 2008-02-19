@@ -57,4 +57,4 @@ protected:
 }
 
 #endif /* _FEC_DRAWING_STRATEGY_HXX_ */
-
+

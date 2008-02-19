@@ -44,4 +44,4 @@ protected:
 }
 
 #endif /* _FILLED_TEXT_DAWER_JOGL_HXX_ */
-
+

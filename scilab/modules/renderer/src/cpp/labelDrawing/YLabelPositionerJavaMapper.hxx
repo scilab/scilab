@@ -67,4 +67,4 @@ protected:
 }
 
 #endif /* _Y_LABEL_POSITIONER_JAVA_MAPPER_HXX_ */
-
+

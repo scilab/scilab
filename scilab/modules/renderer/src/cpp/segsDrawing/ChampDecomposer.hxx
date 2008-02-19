@@ -90,4 +90,4 @@ private:
 }
 
 #endif /* _CHAMP_DECOMPOSER_HXX_ */
-
+

@@ -65,5 +65,4 @@ private:
 
 }
 
-#endif /* _DRAWABLE_POLYLINE_JAVA_MAPPER_HXX_ */
-
+#endif

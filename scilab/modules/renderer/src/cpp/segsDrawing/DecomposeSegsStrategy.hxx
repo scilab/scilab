@@ -62,4 +62,4 @@ protected:
 }
 
 #endif /* _DECOMPOSE_SEGS_STRATEGY_HXX_ */
-
+

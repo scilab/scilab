@@ -55,4 +55,4 @@ protected:
 }
 
 #endif /* _POLYLINE_LINE_DRAWER_JOGL_HXX_ */
-
+

@@ -65,4 +65,4 @@ protected:
 }
 
 #endif /* _SURFACE_LINE_DRAWER_JAVA_MAPPER_HXX_ */
-
+

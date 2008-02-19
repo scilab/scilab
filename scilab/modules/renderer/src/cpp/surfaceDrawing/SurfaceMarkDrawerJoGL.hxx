@@ -55,4 +55,4 @@ protected:
 }
 
 #endif /* _SURFACE_MARK_DRAWER_JOGL_HXX_ */
-
+

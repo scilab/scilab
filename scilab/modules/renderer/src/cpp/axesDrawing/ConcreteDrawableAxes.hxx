@@ -52,4 +52,4 @@ protected:
 }
 
 #endif /* _CONCRETE_DRAWABLE_AXES_HXX_ */
-
+

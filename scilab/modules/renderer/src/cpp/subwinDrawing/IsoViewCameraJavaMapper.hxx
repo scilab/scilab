@@ -81,4 +81,3 @@ private:
 
 #endif /* _ISOVIEW_CAMERA_JAVA_MAPPER_HXX_ */
 
-

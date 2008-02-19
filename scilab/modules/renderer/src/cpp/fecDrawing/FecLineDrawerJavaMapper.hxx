@@ -64,4 +64,4 @@ private:
 }
 
 #endif /* _FEC_LINE_DRAWER_JAVA_MAPPER_HXX_ */
-
+

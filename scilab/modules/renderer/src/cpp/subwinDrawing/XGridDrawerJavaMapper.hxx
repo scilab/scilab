@@ -63,4 +63,4 @@ protected:
 }
 
 #endif /* _X_GRID_DRAWER_JAVA_MAPPER_HXX_ */
-
+

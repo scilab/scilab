@@ -47,4 +47,4 @@ protected:
 }
 
 #endif /* _USER_DEF_LOG_TICKS_COMPUTER_HXX_ */
-
+

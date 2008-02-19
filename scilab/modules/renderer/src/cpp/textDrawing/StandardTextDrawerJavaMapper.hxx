@@ -69,4 +69,4 @@ private:
 }
 
 #endif /* _STANDARD_TEXT_DRAWER_JAVA_MAPPER_HXX_ */
-
+

@@ -54,4 +54,4 @@ namespace sciGraphics
 }
 
 #endif /* _SEGS_MARK_DRAWER_JOGL_HXX_ */
-
+

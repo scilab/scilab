@@ -89,4 +89,4 @@ protected:
 }
 
 #endif /* _USER_DEFINED_TICKS_COMPUTER_HXX_ */
-
+

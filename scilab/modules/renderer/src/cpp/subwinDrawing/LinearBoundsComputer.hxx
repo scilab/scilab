@@ -71,4 +71,4 @@ protected:
 }
 
 #endif /* _LINEAR_BOUNDS_COMPUTER_HXX_ */
-
+
