@@ -24,7 +24,7 @@ extern "C" {
 #endif
 
 #include "stack-c.h"
-#include "sciprint.h"
+
 
 typedef int Matrix;
 typedef unsigned long int vraiptrst;
