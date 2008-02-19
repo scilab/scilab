@@ -12,25 +12,6 @@
 //
 // <-- Short Description -->
 //    cd \ throws an error
-//
-//    -->cd \
-//     !--error 998
-//    Can't go to directory \
-//    at line       6 of function cd called by :
-//    cd \
-//
-//    In scilab-3.1.1, it works
-//
-//    -->cd \
-//     ans  =
-//
-//     C:\
-//
-//    This was reported on the newsgroup:
-//    http://groups.google.fr/group/comp.soft-
-//    sys.math.scilab/browse_thread/thread/3e2f8a72af0148fd/e0f7866780de7fbf
-//
-//    Since the Windows command interpreter accepts this (cd \ changes 
 // ...
 
 // ================== Test 1 ==================

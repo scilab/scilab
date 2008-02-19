@@ -20,5 +20,5 @@ for k=1:10000
   foo=msscanf('1.234 44 55 66 77 88 88 ', '%f %f %f %f %f %f %f '); 
 end
 
-leak = free-getmemory()
+leak = free-getmemory();
 if leak>4  then pause,end

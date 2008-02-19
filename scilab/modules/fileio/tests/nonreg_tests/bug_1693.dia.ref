@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 1693 -->
 //
 // <-- Bugzilla URL -->
@@ -5,30 +11,7 @@
 //
 // <-- Short Description -->
 //    cd \ throws an error
-//
-//    -->cd \
-//     !--error 998
-//    Can't go to directory \
-//    at line       6 of function cd called by :
-//    cd \
-//
-//    In scilab-3.1.1, it works
-//
-//    -->cd \
-//     ans  =
-//
-//     C:\
-//
-//    This was reported on the newsgroup:
-//    http://groups.google.fr/group/comp.soft-
-//    sys.math.scilab/browse_thread/thread/3e2f8a72af0148fd/e0f7866780de7fbf
-//
-//    Since the Windows command interpreter accepts this (cd \ changes
 // ...
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 28 décembre 2005
 // ================== Test 1 ==================
 cd \
  ans  =
