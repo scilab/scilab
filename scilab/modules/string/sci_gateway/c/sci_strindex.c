@@ -1,12 +1,11 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Cong WU
- * 
+ * Copyright (C) 2008 - INRIA - Cong WU
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -39,11 +38,11 @@ struct In
 {
 		int data;
 		int position;
-} ; 
+} ;
 int cmp( const void *a ,const void *b)
 {
 return (*(struct In *)a).data > (*(struct In *)b).data ? 1 : -1;
-} 
+}
 
 /*------------------------------------------------------------------------*/
 int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
@@ -70,7 +69,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 			return 0;
 		}
 		GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Strings_Input3);
-		m3n3 = m3*n3;  
+		m3n3 = m3*n3;
 
 		if (m3n3 != 1)
 		{
@@ -119,7 +118,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 			return 0;
 		}
 	}
-	
+
 	if ( (VarType(1) == sci_strings) && (VarType(2) == sci_strings) )
 	{
 		int m1 = 0, n1 = 0;
@@ -130,9 +129,9 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		char **Strings_Input2 = NULL;
 		int m2n2 = 0; /* m2 * n2 */
 
-	
+
         struct In *values=NULL;
-		
+
 	    int nbValues = 0;
 		int nbposition = 0;
 
@@ -164,7 +163,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 		else
 		{
 			values = (struct In *)MALLOC( sizeof(struct In) * ( strlen(Strings_Input1[0]) ) );
-			
+
 		}
 
 		if (bStrindex_with_pattern)
@@ -180,21 +179,21 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				w = pcre_private(Strings_Input1[0],Strings_Input2[x],&Output_Start,&Output_End);
 				if ( w == 0)
-				{         
+				{
 					values[nbValues++].data = Output_Start+1; /* adding the answer into the outputmatrix */
 					values[nbposition++].position = x+1;        /* The number according to the str2 matrix */
-				}     
+				}
 				else
 				{
 					pcre_error("GREP_NEW",w);
 					break;
 				}
 			}
-            
-		
-		
-           qsort(values,nbValues,sizeof(values[0]),cmp); 
-			
+
+
+
+           qsort(values,nbValues,sizeof(values[0]),cmp);
+
 
 		}
 		else
@@ -211,18 +210,18 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 						freeArrayOfString(Strings_Input1,m1n1);
 						if (next) {FREE(next); next = NULL;}
 						if (values) {FREE(values); values = NULL;}
-						Scierror(999, _("%s: Wrong size for second input argument: Non-empty string expected.\n"));
+						Scierror(999, _("%s: Wrong size for second input argument: Non-empty string expected.\n"), fname);
 						return 0;
 				}
 				if (Strings_Input2)
 				{
 					do
-					{	
+					{
 						next=getnext(Strings_Input2[x]);
 						/*Str is the input string matrix, Str2[x] is the substring to match; pos is the start point*/
-						w = kmp(*Strings_Input1,Strings_Input2[x],pos,next);      
+						w = kmp(*Strings_Input1,Strings_Input2[x],pos,next);
 						if (w !=0)
-						{            
+						{
 							values[nbValues++].data = w;
 							values[nbposition++].position = x+1;
 						}
@@ -231,7 +230,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 					while(w != 0);/* w is the answer of the kmp algorithem*/
 
 					/* values are sorted */
-					qsort(values,nbValues,sizeof(values[0]),cmp); 
+					qsort(values,nbValues,sizeof(values[0]),cmp);
 				}
 			}
 		}
@@ -257,7 +256,7 @@ int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
 			{
 				stk(outIndex)[i] = (double)values[i].position ;
 			}
-			LhsVar(2) = Rhs+2;    
+			LhsVar(2) = Rhs+2;
 		}
 
 		C2F(putlhsvar)();
