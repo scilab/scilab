@@ -1,20 +1,20 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan Cornet
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * desc : interface for sci_uimenu routine
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-#include <stdio.h> 
-#include <string.h> 
+#include <stdio.h>
+#include <string.h>
 /*--------------------------------------------------------------------------*/
 #include "sci_uimenu.h"
 #include "MALLOC.h" /* MALLOC */
@@ -78,7 +78,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 	      Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
 	      return FALSE;
 	    }
-          
+
           // Set the parent property
           callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, "parent");
         }
@@ -103,15 +103,15 @@ int sci_uimenu( char *fname,unsigned long fname_len )
       /* Read property name */
       if (VarType(inputIndex) != sci_strings)
         {
-          Scierror(999, _("%s: Wrong type for property name: String expected.\n"));
+          Scierror(999, _("%s: Wrong type for property name: String expected.\n"), fname);
           return FALSE;
         }
       else
         {
           GetRhsVar(inputIndex,STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-          propertyName = cstk(stkAdr); 
+          propertyName = cstk(stkAdr);
         }
-      
+
       /* Read property value */
       switch (VarType(inputIndex + 1)) {
       case sci_matrix:
@@ -132,7 +132,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
       }
       if (setStatus == SET_PROPERTY_ERROR)
         {
-          Scierror(999, _("Could not set property %s.\n"), propertyName);              
+          Scierror(999, _("Could not set property %s.\n"), propertyName);
           return FALSE;
         }
     }
