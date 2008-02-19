@@ -78,7 +78,7 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n", fname));
+              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), fname);
               return FALSE;
             }
           title = cstk(titleAdr);
