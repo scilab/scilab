@@ -19,7 +19,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +37,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
@@ -52,6 +58,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private static final int X_DIALOG_TYPE = 1;
 	private static final int X_CHOOSE_TYPE = 2;
 	private static final int X_MDIALOG_TYPE = 3;
+	private static final int X_CHOICES_TYPE = 4;
 	
 	/**
 	 * Offset around object and its ScrollPane
@@ -62,6 +69,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 * New line character for mutli-line text components
 	 */
 	private static final String NEW_LINE = "\n";
+	
+	/**
+	 * Separator used for x_choices 
+	 */
+	private static final String SEPARATOR = "[--sep--]";
 	
 	private int elementId;
 	
@@ -99,6 +111,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 */
 	private String[] buttonsLabels;
 	private int selectedButton; 
+	
+	/**
+	 * Used for x_choices
+	 */
+	private int[] defaultSelectedButtons;
+	private ButtonGroup[] buttonGroups;
+	private int[] userSelectedButtons;
 	
 	/**
 	 * Used for all Message Boxes
@@ -164,7 +183,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		message += mess[line] + "</HTML>";
 	}
 
-	/**DefaultValues
+	/**
+	 * DefaultValues
 	 * Display this MessageBox and wait for user selection 
 	 */
 	public void displayAndWait() {
@@ -183,7 +203,106 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		messageScrollPane.setOpaque(false);
 		messageScrollPane.getViewport().setOpaque(false);
 
-		if (scilabDialogType == X_MDIALOG_TYPE) {
+		if (scilabDialogType == X_CHOICES_TYPE) {
+			// Create a MessageBox for Scilab x_choices
+
+			// All objects in the MessageBox:
+			//  - Message
+			//  - Editable zone
+			objs = new Object[2]; 
+
+			objs[0] = messageScrollPane;
+			
+			// Search the max number of objects in a line
+			int curNumber = 0;
+			int numberOfLines = 0;
+			int numberOfColumns = 0;
+			List<Integer> buttonsPerLines = new ArrayList<Integer>();
+			for (int itemIndex = 0; itemIndex < lineLabels.length; itemIndex++) {
+				if (!lineLabels[itemIndex].equals(SEPARATOR)) {
+					curNumber++;
+				} else {
+					if (curNumber > numberOfColumns) {
+						numberOfColumns = curNumber;
+					}
+					// Store informations of current line
+					buttonsPerLines.add(curNumber);
+					curNumber = 0;
+					numberOfLines++;
+				}
+			}
+			// Store information of last line
+			// Because no separator after last line items
+			buttonsPerLines.add(curNumber);
+			numberOfLines++; 
+			
+			// Create the panel with button groups
+			JPanel panel = new JPanel(new GridLayout(numberOfLines, numberOfColumns));
+			buttonGroups = new ButtonGroup[numberOfLines];
+			
+			// Initialize return value
+			userSelectedButtons = new int[numberOfLines];
+			
+			int curItemIndex = 0;
+			int lineNumber = 0;
+			int buttonNumber = 0;
+			for (curItemIndex = 0; curItemIndex < lineLabels.length; curItemIndex++) {
+				// Add the label of the line 
+				panel.add(new JLabel(lineLabels[curItemIndex]));
+				buttonNumber = 0;
+				curItemIndex++;
+				// Add the button group
+				ButtonGroup group = new ButtonGroup();
+				while (curItemIndex < lineLabels.length &&  !lineLabels[curItemIndex].equals(SEPARATOR)) {
+					// Add a toggle button
+					JToggleButton button = new JToggleButton(lineLabels[curItemIndex]);
+					buttonNumber++;
+
+					// Select this button if default
+					if (buttonNumber == defaultSelectedButtons[lineNumber]) {
+						button.setSelected(true);
+					}
+					// Select this button if default selection is a non existing button
+					// And this button is the last of the line
+					if (buttonNumber == (buttonsPerLines.get(lineNumber) - 1) 
+							&& defaultSelectedButtons[lineNumber] > (buttonsPerLines.get(lineNumber) - 1)) {
+						button.setSelected(true);
+					}
+					// Add the button to the group (for toggle)
+					// And to the panal (for display)
+					group.add(button);
+					panel.add(button);
+					
+					// Increment item index
+					curItemIndex++;
+					
+				}
+				// Store the group to get the user selection when returning
+				buttonGroups[lineNumber] = group;
+				
+				// Increment current line number
+				lineNumber++;
+			}
+
+			// Display the panel
+			panel.doLayout();
+
+			// Editable text zone
+			JScrollPane scrollPane = new JScrollPane(panel);
+		
+			scrollWidth = (int) Math.min(WINDOW_WIDTH, panel.getPreferredSize().getWidth() + OFFSET);
+			scrollHeight = (int) Math.min(LISTBOX_HEIGHT, panel.getPreferredSize().getHeight() + OFFSET);
+			scrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
+
+			objs[1] = scrollPane;
+			
+			// And now the buttons
+			buttons = new Object[2];
+			btnOK.addActionListener(this);
+			btnCancel.addActionListener(this);
+			buttons[0] = btnCancel;
+			buttons[1] = btnOK;
+		} else if (scilabDialogType == X_MDIALOG_TYPE) {
 			// Create a MessageBox for Scilab x_mdialog
 
 			// All objects in the MessageBox:
@@ -357,6 +476,19 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 					userValues[textFieldIndex] = textFields[textFieldIndex].getText();
 				}
 				userValue = ""; /* To make getValueSize return a non zero value */
+			} else if (scilabDialogType == X_CHOICES_TYPE) {
+				
+				// Get the selected button index of each button group
+				for (int groupNum = 0; groupNum < buttonGroups.length; groupNum++) {
+					Enumeration<AbstractButton> theButtons = buttonGroups[groupNum].getElements();
+					for (int btnNum = 0; btnNum < buttonGroups[groupNum].getButtonCount(); btnNum++) {
+			            JToggleButton b = (JToggleButton) theButtons.nextElement();
+			            if (b.getModel() == buttonGroups[groupNum].getSelection()) {
+			            	userSelectedButtons[groupNum] = btnNum + 1;
+			            }
+			        }
+			    }
+				userValue = ""; /* To make getValueSize return a non zero value */
 			}
 			selectedButton = 1;
 		} else if (ae.getSource() == btnCancel) {
@@ -384,6 +516,23 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		return selectedButton;
 	}
 	
+	/**
+	 * Set the indices of the default selected buttons (x_choices)
+	 * @param indices the indices of the default selected buttons
+	 */
+	public void setDefaultSelectedButtons(int[] indices) {
+		defaultSelectedButtons = indices;
+		scilabDialogType = X_CHOICES_TYPE;
+	}
+
+	/**
+	 * Get the indices of the selected buttons (x_choices)
+	 * @return the indices of the selected buttons
+	 */
+	public int[] getUserSelectedButtons() {
+		return userSelectedButtons;
+	}
+
 	/**
 	 * Set the labels of the buttons in the MessageBox
 	 * @param labels the labels of the buttons

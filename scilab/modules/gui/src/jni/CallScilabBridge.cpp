@@ -205,6 +205,8 @@ voidsetMessageBoxMessagejintjstringID=NULL;
 voidsetMessageBoxMessagejintjobjectArrayID=NULL; 
 voidmessageBoxDisplayAndWaitjintID=NULL; 
 jintgetMessageBoxSelectedButtonjintID=NULL; 
+voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID=NULL; 
+jintArraygetMessageBoxUserSelectedButtonsjintID=NULL; 
 voidsetMessageBoxButtonsLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxInitialValuejintjobjectArrayID=NULL; 
 jobjectArraygetMessageBoxValuejintID=NULL; 
@@ -345,6 +347,8 @@ voidsetMessageBoxMessagejintjstringID=NULL;
 voidsetMessageBoxMessagejintjobjectArrayID=NULL; 
 voidmessageBoxDisplayAndWaitjintID=NULL; 
 jintgetMessageBoxSelectedButtonjintID=NULL; 
+voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID=NULL; 
+jintArraygetMessageBoxUserSelectedButtonsjintID=NULL; 
 voidsetMessageBoxButtonsLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxInitialValuejintjobjectArrayID=NULL; 
 jobjectArraygetMessageBoxValuejintID=NULL; 
@@ -3168,6 +3172,67 @@ curEnv->ExceptionDescribe() ;
 
                         
 return res;
+
+}
+
+void CallScilabBridge::setMessageBoxDefaultSelectedButtons (JavaVM * jvm_, long id, long * index, int indexSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxDefaultSelectedButtons", "(I[I)V" ) ;
+if (voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxDefaultSelectedButtons" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jintArray index_ = curEnv->NewIntArray( indexSize ) ;
+curEnv->SetIntArrayRegion( index_, 0, indexSize, (jint*) index ) ;
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID ,id, index_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long * CallScilabBridge::getMessageBoxUserSelectedButtons (JavaVM * jvm_, long id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jintArraygetMessageBoxUserSelectedButtonsjintID = curEnv->GetStaticMethodID(cls, "getMessageBoxUserSelectedButtons", "(I)[I" ) ;
+if (jintArraygetMessageBoxUserSelectedButtonsjintID == NULL) {
+std::cerr << "Could not access to the method " << "getMessageBoxUserSelectedButtons" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetMessageBoxUserSelectedButtonsjintID ,id);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
 
 }
 

@@ -162,6 +162,8 @@ jmethodID voidsetMessageBoxMessagejintjstringID; // cache method id
 jmethodID voidsetMessageBoxMessagejintjobjectArrayID; // cache method id
 jmethodID voidmessageBoxDisplayAndWaitjintID; // cache method id
 jmethodID jintgetMessageBoxSelectedButtonjintID; // cache method id
+jmethodID voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID; // cache method id
+jmethodID jintArraygetMessageBoxUserSelectedButtonsjintID; // cache method id
 jmethodID voidsetMessageBoxButtonsLabelsjintjobjectArrayID; // cache method id
 jmethodID voidsetMessageBoxInitialValuejintjobjectArrayID; // cache method id
 jmethodID jobjectArraygetMessageBoxValuejintID; // cache method id
@@ -430,6 +432,10 @@ static void setMessageBoxMessage(JavaVM * jvm_, long id, char ** message, int me
 static void messageBoxDisplayAndWait(JavaVM * jvm_, long id);
 
 static long getMessageBoxSelectedButton(JavaVM * jvm_, long id);
+
+static void setMessageBoxDefaultSelectedButtons(JavaVM * jvm_, long id, long * index, int indexSize);
+
+static long * getMessageBoxUserSelectedButtons(JavaVM * jvm_, long id);
 
 static void setMessageBoxButtonsLabels(JavaVM * jvm_, long id, char ** labels, int labelsSize);
 

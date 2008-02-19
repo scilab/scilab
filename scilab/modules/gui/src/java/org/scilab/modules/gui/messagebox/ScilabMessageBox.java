@@ -86,6 +86,22 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 	}
 
 	/**
+	 * Set the indices of the default selected buttons (x_choices)
+	 * @param indices the indices of the default selected buttons
+	 */
+	public void setDefaultSelectedButtons(int[] indices) {
+		ScilabBridge.setDefaultSelectedButtons(this, indices);
+	}
+
+	/**
+	 * Get the indices of the user selected buttons (x_choices)
+	 * @return the indices of the user selected buttons
+	 */
+	public int[] getUserSelectedButtons() {
+		return ScilabBridge.getUserSelectedButtons(this);
+	}
+
+	/**
 	 * Set the labels of the buttons in the MessageBox
 	 * @param labels the labels of the buttons
 	 */

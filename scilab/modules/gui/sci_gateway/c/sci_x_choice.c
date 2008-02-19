@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2006 - INRIA - Allan CORNET 
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT (Java implementation)
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,18 +10,127 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #include "gw_gui.h"
 #include "machine.h"
+#include "MALLOC.h"
 #include "stack-c.h"
+#include "localization.h"
+#include "CallMessageBox.h"
+#include "getPropertyAssignedValue.h"
+#include "Scierror.h"
+
 /*--------------------------------------------------------------------------*/
-//extern int C2F(scichoice) _PARAMS((char *fname,unsigned long fname_len));
-/*--------------------------------------------------------------------------*/
-int C2F(sci_xchoicesi) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_x_choice) _PARAMS((char *fname,unsigned long fname_len))
 {
-	//C2F(scichoice)(fname,fname_len);
-	LhsVar(1)=0;
-	C2F(putlhsvar)();
-	return 0;
+  int nbRow = 0, nbCol = 0;
+  int nbRowDefaultValues = 0, nbColDefaultValues = 0;
+  int nbRowLineLabels = 0, nbColLineLabels = 0;
+
+  int messageBoxID = 0;
+
+  int labelsAdr = 0;
+  int lineLabelsAdr = 0;
+  int defaultValuesAdr = 0;
+  double *defaultValues = NULL;
+  long int *defaultValuesInt = NULL;
+
+  int userValueSize = 0;
+  int *userValue = NULL;
+  double *userValueDouble = NULL;
+
+  int emptyMatrixAdr = 0;
+
+  int K = 0;
+
+  CheckRhs(3,3);
+  CheckLhs(0,1);
+
+  /* READ THE DEFAULT VALUES */
+  if (VarType(1) ==  sci_matrix)
+    {
+      GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&nbRowDefaultValues,&nbColDefaultValues,&defaultValuesAdr);
+      defaultValues = getDoubleMatrixFromStack(defaultValuesAdr);
+      
+      defaultValuesInt = (long int *)MALLOC(nbRowDefaultValues*nbColDefaultValues*sizeof(long int));
+      for (K = 0; K < nbRowDefaultValues*nbColDefaultValues; K++)
+        {
+          defaultValuesInt[K] = defaultValues[K];
+        }
+    }
+  else 
+    {
+      Scierror(999, _("%s: Wrong type for first input argument: Double vector expected.\n"), "x_choice");
+      return FALSE;
+    }
+  
+  /* READ THE MESSAGE */
+  if (VarType(2) == sci_strings)
+    {
+      GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &labelsAdr);
+    }
+  else
+    {
+      Scierror(999, _("%s: Wrong type for second input argument: String vector expected.\n"), "x_choice");
+      return FALSE;
+    }
+
+  /* Create the Java Object */
+  messageBoxID = createMessageBox();
+
+  /* Title is a default title */
+  setMessageBoxTitle(messageBoxID, _("Scilab Choices Request"));
+
+  /* Message */
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(labelsAdr), nbCol*nbRow);
+    
+  /* READ THE LABELS */
+  if (VarType(3) ==  sci_strings)
+    {
+      GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRowLineLabels,&nbColLineLabels,&lineLabelsAdr);
+      if (nbRow !=1 && nbCol !=1)
+      {
+        Scierror(999, _("%s: Wrong type for third input argument: String vector expected.\n"), "x_choice");
+        return FALSE;
+      }
+      setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack(lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
+    }
+  else 
+    {
+      Scierror(999, _("%s: Wrong type for third input argument: String vector expected.\n"), "x_choice");
+      return FALSE;
+    }
+  
+  /* Default selected buttons */
+  setMessageBoxDefaultSelectedButtons(messageBoxID, defaultValuesInt, nbRowDefaultValues*nbColDefaultValues);
+
+  /* Display it and wait for a user input */
+  messageBoxDisplayAndWait(messageBoxID);
+
+  /* Read the user answer */
+  userValueSize = getMessageBoxValueSize(messageBoxID);
+  if (userValueSize == 0)
+    {
+      nbRow = 0;nbCol = 0;
+      CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &emptyMatrixAdr);
+    }
+  else
+    {
+      userValue = getMessageBoxUserSelectedButtons(messageBoxID);
+  
+      userValueDouble = (double *)MALLOC(nbRowDefaultValues*nbColDefaultValues*sizeof(double));
+      for (K = 0; K < nbRowDefaultValues*nbColDefaultValues; K++)
+        {
+          userValueDouble[K] = userValue[K];
+        }
+
+      CreateVarFromPtr(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, &userValueDouble);
+    }
+
+  FREE(defaultValuesInt);
+
+  LhsVar(1) = Rhs+1;
+  C2F(putlhsvar)();
+  return TRUE;
 }
 /*--------------------------------------------------------------------------*/

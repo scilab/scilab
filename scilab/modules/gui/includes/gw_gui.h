@@ -21,7 +21,7 @@ int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_xchoicesi) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_x_choice) _PARAMS((char *fname,unsigned long fname_len));
 int sci_delmenu(char *fname,unsigned long fname_len);
 int sci_setmenu(char *fname,unsigned long fname_len);
 int sci_unsetmenu(char *fname,unsigned long fname_len);

@@ -398,6 +398,13 @@
 	<method name="getMessageBoxSelectedButton" returnType="int" modifier="static">
             <parameter name="id" type="int"/>
         </method>      
+	<method name="setMessageBoxDefaultSelectedButtons" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="index" type="int[]"/>
+       </method>      
+	<method name="getMessageBoxUserSelectedButtons" returnType="int[]" modifier="static">
+            <parameter name="id" type="int"/>
+       </method>      
 	<method name="setMessageBoxButtonsLabels" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
             <parameter name="labels" type="String[]"/>

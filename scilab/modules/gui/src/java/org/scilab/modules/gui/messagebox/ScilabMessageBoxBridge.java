@@ -81,6 +81,24 @@ public class ScilabMessageBoxBridge {
 	}
 	
 	/**
+	 * Set the indices of the default selected buttons (x_choices)
+	 * @param messageBox the MessageBox we want to set the defaults of
+	 * @param indices the indices of the default selected buttons
+	 */
+	public static void setDefaultSelectedButtons(MessageBox messageBox, int[] indices) {
+		messageBox.getAsSimpleMessageBox().setDefaultSelectedButtons(indices);
+	}
+	
+	/**
+	 * Get the indices of the user selected buttons (x_choices)
+	 * @param messageBox the MessageBox we want to get the indices of
+	 * @return the indices of the default selected buttons
+	 */
+	public static int[] getUserSelectedButtons(MessageBox messageBox) {
+		return messageBox.getAsSimpleMessageBox().getUserSelectedButtons();
+	}
+	
+	/**
 	 * Set the labels of the buttons in the MessageBox
 	 * @param messageBox the MessageBox we want to set the buttons labels of
 	 * @param labels the labels of the buttons

@@ -939,6 +939,24 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Set the indices of the default selected buttons (x_choices)
+	 * @param id the id of the MessageBox  
+	 * @param indices the indices of the default selected buttons
+	 */
+	public static void setMessageBoxDefaultSelectedButtons(int id, int[] indices) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setDefaultSelectedButtons(indices);
+	}
+
+	/**
+	 * Get the indices of the user selected buttons (x_choices)
+	 * @param id the id of the MessageBox  
+	 * @return the indices of the user selected buttons
+	 */
+	public static int[] getMessageBoxUserSelectedButtons(int id) {
+		return ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).getUserSelectedButtons();
+	}
+
+	/**
 	 * Set the labels of the buttons in the MessageBox
 	 * @param id the id of the MessageBox
 	 * @param labels the labels of the buttons

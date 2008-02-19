@@ -24,7 +24,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_x_message),"x_message"},
 	{C2F(sci_x_choose),"x_choose"},
 	{C2F(sci_x_mdialog),"x_mdialog"},
-	{C2F(sci_xchoicesi),"xchoicesi"},
+	{C2F(sci_x_choice),"xchoicesi"},
 	{sci_delmenu,"delmenu"},
 	{sci_setmenu,"setmenu"},
 	{sci_unsetmenu,"unsetmenu"},

@@ -59,6 +59,18 @@ public interface SimpleMessageBox {
 	int getSelectedButton();
 	
 	/**
+	 * Set the indices of the default selected buttons (x_choices)
+	 * @param indices the indices of the default selected buttons
+	 */
+	void setDefaultSelectedButtons(int[] indices);
+
+	/**
+	 * Get the indices of the user selected buttons (x_choices)
+	 * @return the indices of the user selected buttons
+	 */
+	int[] getUserSelectedButtons();
+
+	/**
 	 * Set the labels of the buttons in the MessageBox
 	 * @param labels the labels of the buttons
 	 */
