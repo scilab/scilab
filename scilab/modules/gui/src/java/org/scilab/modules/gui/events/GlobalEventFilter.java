@@ -1,5 +1,6 @@
 package org.scilab.modules.gui.events;
 
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
@@ -48,6 +49,8 @@ public class GlobalEventFilter {
 				keyCode += SCILAB_CTRL_OFFSET;
 			}
 			ClickInfos.getInstance().setMouseButtonNumber(keyCode);
+			ClickInfos.getInstance().setXCoordinate(MouseInfo.getPointerInfo().getLocation().x);
+			ClickInfos.getInstance().setYCoordinate(MouseInfo.getPointerInfo().getLocation().y);
 			ClickInfos.getInstance().notify();
 		}
 	}
