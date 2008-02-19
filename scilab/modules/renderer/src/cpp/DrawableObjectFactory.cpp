@@ -12,14 +12,6 @@
  *
  */
 
-/*------------------------------------------------------------------------*/
-/* file: DrawableObjectFactory.cpp                                        */
-/* Copyright INRIA 2007                                                   */
-/* Authors : Jean-Baptiste Silvy                                          */
-/* desc : Factory for drawable objects. Automaticaly create a drawable    */
-/*        object with the right algorithms from the garphic handle        */
-/*------------------------------------------------------------------------*/
-
 extern "C"
 {
 #include "../../../graphics/includes/GetProperty.h"
