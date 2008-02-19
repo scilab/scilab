@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent COUVERT 
- * 
+ * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #include "gw_gui.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -21,10 +21,10 @@
 int sci_uigetdir(char *fname,unsigned long l)
 {
   int fileChooserID = 0;
-  
+
   int nbRow = 0, nbCol = 0;
 
-  
+
   int voidSelectionAdr = 0;
 
   int titleAdr = 0;
@@ -42,14 +42,14 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
+              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), fname);
               return FALSE;
             }
           initialDirectory = cstk(initialDirectoryAdr);
         }
-      else 
+      else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), fname);
           return FALSE;
         }
     }
@@ -61,14 +61,14 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
+              Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), fname);
               return FALSE;
             }
           initialDirectory = cstk(initialDirectoryAdr);
         }
-      else 
+      else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"));
+          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), fname);
           return FALSE;
         }
 
@@ -78,21 +78,21 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"));
+              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n", fname));
               return FALSE;
             }
           title = cstk(titleAdr);
         }
-      else 
+      else
         {
-          Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"));
+          Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"), fname);
           return FALSE;
         }
     }
-  
+
   /* Create the Java Object */
   fileChooserID = createFileChooser();
-  
+
   /* Set options */
   if (title != NULL)
     {
@@ -112,12 +112,12 @@ int sci_uigetdir(char *fname,unsigned long l)
   /* Read the size of the selection, if 0 then no file selected */
   nbRow = getFileChooserSelectionSize(fileChooserID);
 
-  if (nbRow !=0 ) 
+  if (nbRow !=0 )
     {
 	  char **userSelection = NULL;
       /* The user selected a file --> returns the files names */
       nbCol = 1;
-      
+
       userSelection = getFileChooserSelection(fileChooserID);
 
       CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, userSelection);
@@ -130,7 +130,7 @@ int sci_uigetdir(char *fname,unsigned long l)
 
       CreateVar(Rhs+1, STRING_DATATYPE, &nbRow, &nbCol, &voidSelectionAdr);
     }
-  
+
   LhsVar(1)=Rhs+1;
   C2F(putlhsvar)();
 
