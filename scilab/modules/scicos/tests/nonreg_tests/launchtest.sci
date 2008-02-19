@@ -4,6 +4,15 @@ function launchtest(baseDir, testName)
 
 testFilename   = fullfile(baseDir, testName + '.test')
 modelFilename  = fullfile(baseDir, testName + '.cos')
+
+if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
+  resFilename    = fullfile(baseDir, testName + '_v4.res')
+  errFilename    = fullfile(baseDir, testName + '_v4.err')
+elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
+  resFilename    = fullfile(baseDir, testName + '_v5.res')
+  errFilename    = fullfile(baseDir, testName + '_v5.err')
+end
+
 outFilename    = fullfile(baseDir, testName + '.out')
 outRefFilename = outFilename + '.ref'
 
@@ -31,7 +40,11 @@ txt = [ "// Set display settings";
         "load(fullfile(''" + baseDir + "'', ''" + testName + "'' + ''.cos''))";
         "disp(scs_m)";
         "Info = list()";
-        "Info = scicos_simulate(scs_m,Info,[],''nw'')";
+        "try";
+        "  Info = scicos_simulate(scs_m,Info,[],''nw'')";
+        "catch";
+        "  disp(msprintf(''%-15s: ERROR while launching simulation'',''" + testName + "''))";
+        "end";
         "disp(Info)";
         "";
         "// Stop logging output";
@@ -41,7 +54,7 @@ txt = [ "// Set display settings";
 
 mputl(txt, testFilename);
 
-cmd = SCI + '/bin/scilab -nw -nb -args -nouserstartup -f ' + testFilename + ' > /dev/null';
+cmd = '(' + SCI + '/bin/scilab -nw -nb -args -nouserstartup -f ' + testFilename + ' > ' + resFilename + ') 2> ' + errFilename;
 
 host(cmd)
 
@@ -67,20 +80,22 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
   // Read output data
   try
     fidOut = mopen(outFilename, 'r');
+    out = mgetl(fidOut);
+    mclose(fidOut);
   catch
-    error('ERROR: Cannot read output data from file ''' + outFilename + '''');
+    disp(msprintf('%-15s: ERROR: Cannot read output data from file ' + outFilename, testName))
+    return // go on to next test
   end
-  out = mgetl(fidOut);
-  mclose(fidOut);
 
   // Read reference
   try
     fidRef = mopen(outRefFilename, 'r');
+    ref = mgetl(fidRef);
+    mclose(fidRef);
   catch
-    error('ERROR: Cannot read reference data from file ''' + outRefFilename + '''');
+    disp(msprintf('%-15s: ERROR: Cannot read reference data from file ' + outRefFilename, testName))
+    return // go on to next test
   end
-  ref = mgetl(fidRef);
-  mclose(fidRef);
 
   // Compare (%F means identical)
   if or(out<>ref)
@@ -99,7 +114,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
   end  
 
 else
-  disp(msprintf('%s: Warning: Unknown Scilab version, did nothing more than launching the simulation...'),testName);
+  disp(msprintf('%s: Warning: Unknown Scilab version, did nothing more than launching the simulation...'), testName)
 end
 
 endfunction
