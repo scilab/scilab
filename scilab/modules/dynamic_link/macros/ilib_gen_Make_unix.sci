@@ -21,6 +21,7 @@ function ilib_gen_Make_unix(names, ..
 							 fflags, ..
 							 cc ..							 
 							 )
+						 
 if libname == "" then libname = names(1);end 
 
 if ( strncpy(libname,3) == "lib")
@@ -111,7 +112,9 @@ end
 	if (warningmode == 'on') then
 	  disp(msprintf(gettext("%s: Modification of the Makefile in TMPDIR.\n"),"ilib_gen_Make"));
 	end
-	[msg,ierr] = unix_g("" + commandpath + "scicompile.sh " + libname + " " + filelist);
+	cmd=commandpath + "scicompile.sh " + libname + " " + filelist
+
+	[msg,ierr] = unix_g(cmd);
 
 	if ierr <> 0 then
 	  disp(msg);
@@ -124,43 +127,44 @@ endfunction
 
 
 function generateConfigure(workingPath, ldflags, ..
-							 cflags, ..
-							 fflags, ..
-							 cc)
-						 
-						  
-  // We launch ./configure in order to produce a "generic" Makefile 
-  // for this computer
-  cmd=''
-  	  // CFLAGS
-	  if cflags <> '' then
-		cmd = cmd +" CFLAGS="""+cflags+""""
-	  end
-	    
-  	  // LDFLAGS
-	  if ldflags <> '' then
-		cmd = cmd +" LDFLAGS="""+ldflags+""""
-	  end
-	  
-	  // FFLAGS
-	  if fflags <> '' then
-		cmd = cmd +" FFLAGS="""+fflags+""""
-	  end
-	  
-	  // CC
-	  if cc <> '' then
-		cmd = cmd +" CC="""+cc+""""
-	  end
-  
-  if (warningmode == 'on') then
-	disp(msprintf(gettext("%s: configure : Generate Makefile in %s\n"),"ilib_gen_Make",workingPath));
-  end
-  [msg,ierr] = unix_g(workingPath+"/compilerDetection.sh "+cmd);
-  
-  if ierr <> 0 then
-	disp(msg);
-	return %F;
-  end
-  return %T
-  
+	cflags, ..
+	fflags, ..
+	cc)
+
+
+// We launch ./configure in order to produce a "generic" Makefile 
+// for this computer
+cmd=''
+// CFLAGS
+if cflags <> '' then
+  cmd = cmd +" CFLAGS="""+cflags+""""
+end
+
+// LDFLAGS
+if ldflags <> '' then
+  cmd = cmd +" LDFLAGS="""+ldflags+""""
+end
+
+// FFLAGS
+if fflags <> '' then
+  cmd = cmd +" FFLAGS="""+fflags+""""
+end
+
+// CC
+if cc <> '' then
+  cmd = cmd +" CC="""+cc+""""
+end
+
+if (warningmode == 'on') then
+  disp(msprintf(gettext("%s: configure : Generate Makefile in %s\n"),"ilib_gen_Make",workingPath));
+end
+cmd=workingPath+"/compilerDetection.sh "+cmd
+[msg,ierr] = unix_g(cmd);
+
+if ierr <> 0 then
+  disp(msg);
+  return %F;
+end
+return %T
+
 endfunction
