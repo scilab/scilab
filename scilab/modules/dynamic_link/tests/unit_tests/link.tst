@@ -23,9 +23,7 @@ if ~isdir(TMP_DIR) then pause,end;
 
 //Example of the use of ilib_for_link with  a simple C code
     f1=['#include <math.h>'
-    'void fooc(c,a,b,m,n)'
-    'double a[],*b,c[];'
-    'int *m,*n;'
+    'void fooc(double c[],double a[], double *b,int *m,int *n)'
     '{'
     '   int i;'
     '   for ( i =0 ; i < (*m)*(*n) ; i++) '
