@@ -1,5 +1,3 @@
-//==========================================
-// Generate a shared library which can be used by link command. 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
 // 
@@ -9,6 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //==========================================
+// Generate a shared library which can be used by link command. 
 function libn = ilib_for_link(names, ..
                               files, ..
                               libs, ..
@@ -20,7 +19,7 @@ function libn = ilib_for_link(names, ..
                               cflags, ..
                               fflags, ..
                               cc)
-                            
+
   [lhs,rhs] = argn(0);
   
   if rhs <= 4 then makename = 'Makelib';end

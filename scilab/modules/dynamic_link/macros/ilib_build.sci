@@ -1,4 +1,3 @@
-//==========================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC/INRIA
 // 
@@ -7,7 +6,6 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
 //==========================================
 function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,ismex,cc)
 

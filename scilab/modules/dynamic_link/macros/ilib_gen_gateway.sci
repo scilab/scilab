@@ -1,8 +1,3 @@
-//==========================================
-// generate an interface gateway named name
-// from table table taking into account 
-// attributes of function i.e mex fmex or scilab interface 
-// if name is a full path just extract the filename 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
 // 
@@ -11,9 +6,15 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 //==========================================
 // ilib_gen_gateway used by ilib_build
 //==========================================
+// generate an interface gateway named name
+// from table table taking into account 
+// attributes of function i.e mex fmex or scilab interface 
+// if name is a full path just extract the filename 
+
 function ilib_gen_gateway(name,tables)
 
   k = strindex(name,['/','\']);

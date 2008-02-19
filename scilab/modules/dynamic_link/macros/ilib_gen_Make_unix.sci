@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC
-// Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
+// Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU (rewrite to use autotools)
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,7 +10,6 @@
 
 //==========================================
 // Generate a Makefile which can be used by ilib_*
-// Rewrited by Sylvestre Ledru in order to use autotools
 //==========================================
 function ilib_gen_Make_unix(names, ..
                                  files, ..
@@ -33,9 +32,10 @@ warningmode = warning('query');
 
 originPath = pwd();
 linkpath = TMPDIR;
+commandpath = SCI+"/modules/dynamic_link/src/scripts/";
+  
 //  if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' then
 if ldflags == '' & cflags == '' & fflags == '' & cc == '' then
-  commandpath = SCI+"/modules/dynamic_link/src/scripts/";
   // The normal configure in the standard path
   generateConfigure(commandpath)
 end
@@ -104,6 +104,14 @@ end
 	  end
 	  
 	  if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' then
+		// Rerun the configure, then remove the Makefile which is used
+		// to detect if the process has been launched or not
+		mdelete(linkpath+"/Makefile.orig")
+		// Copy this file because it is mandatory in the working dir
+		[status,msg]=copyfile(commandpath+"/compilerDetection.sh",linkpath);
+		if (status <> 1)
+		  error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));
+		end
 		// Rerun the ./configure with the flags
 		generateConfigure(linkpath, ldflags, cflags, fflags, cc)
 	  end
@@ -159,6 +167,7 @@ if (warningmode == 'on') then
   disp(msprintf(gettext("%s: configure : Generate Makefile in %s\n"),"ilib_gen_Make",workingPath));
 end
 cmd=workingPath+"/compilerDetection.sh "+cmd
+
 [msg,ierr] = unix_g(cmd);
 
 if ierr <> 0 then
