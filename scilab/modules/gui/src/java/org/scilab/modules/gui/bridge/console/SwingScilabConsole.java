@@ -65,7 +65,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		inputCmdView.setEditable(true);
 
 		((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-		((JTextPane) inputCmdView).getCaret().setVisible(true);
 
 		// Remove last line returned given by Scilab (carriage return)
 		try {
@@ -80,6 +79,8 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		}
 		
 		updateScrollPosition();
+
+		((JTextPane) inputCmdView).getCaret().setVisible(true);
 	}
 
 	/**
