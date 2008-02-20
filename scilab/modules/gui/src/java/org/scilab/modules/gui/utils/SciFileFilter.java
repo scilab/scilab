@@ -30,19 +30,19 @@ public class SciFileFilter extends FileFilter {
 	 * @param fileMask the file maks to apply
 	 */
 	public SciFileFilter(String fileMask) {
-		// Remove the * at the beginning
-		mask = fileMask.substring(1);
-		if (mask.equals(".*")) {
-			mask = "";
-		} else if (mask.equals(".sci")) {
-			description = "Scilab SCI file";
-		} else if (mask.equals(".sce")) {
-			description = "Scilab SCE file";
-		} else if (mask.equals(".bin")) {
-			description = "Scilab binary file";
+		if (fileMask.equals("*.sci")) {
+			description = "Scilab SCI files";
+		} else if (fileMask.equals("*.sce")) {
+			description = "Scilab SCE files";
+		} else if (fileMask.equals("*.bin")) {
+			description = "Scilab binary files";
+		} else if (fileMask.equals("*.cos*")) {
+			description = "Scicos files";
 		} else {
 			description = "All " + fileMask + " files";
 		}
+		// Create a regexp
+		mask = fileMask.replaceAll("\\*", ".\\*");
 	}
 
 	/**
@@ -55,7 +55,8 @@ public class SciFileFilter extends FileFilter {
 		if (pathname.isDirectory()) {
 			return true;
 		}
-		return pathname.getAbsolutePath().endsWith(mask);
+		return pathname.getAbsolutePath().matches(mask);
+		//return pathname.getAbsolutePath().endsWith(mask);
 	}
 
 	/**
