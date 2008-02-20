@@ -62,7 +62,7 @@ public class Scilab {
 			lookAndFeel = new LookAndFeelManager();
 		} catch(java.lang.NoClassDefFoundError exception) {
 			System.err.println("Could not initialize graphics Environment");
-			System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
+			System.err.println("An error occurred: "+ exception.getLocalizedMessage());
 			System.exit(-1);
 
 		}
