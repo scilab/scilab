@@ -32,8 +32,8 @@ function scs_m=do_icon_edit(%pt,scs_m)
   if size(K,'*')>1|%win<>Select(1,2) then
     message("Only one block can be selected in current window for this operation.")
     Cmenu=[];%pt=[];return
-  end    
-  
+  end
+
   gr_i=scs_m.objs(K).graphics.gr_i
   sz=scs_m.objs(K).graphics.sz
   if type(gr_i)<>15 then  gr_i=list(gr_i,[]);end
@@ -42,7 +42,7 @@ function scs_m=do_icon_edit(%pt,scs_m)
 
   coli=gr_i(2);
 
-  //Create the edition window  
+  //Create the edition window
   win=max(winsid())+1;
   fig=scf(win);xselect();
   fig.axes_size=fig.axes_size*sz(1)/sz(2)
@@ -75,45 +75,45 @@ function scs_m=do_icon_edit(%pt,scs_m)
     else
        emen='&Editer';
     end
-  end	
+  end
   delmenu(win,emen);delmenu(win,'3D Rot.')
-					      
-  exec('SCI/macros/scicos/entity_menu.sce',-1);
+
+  exec('SCI/modules/scicos/macros/scicos_scicos/entity_menu.sce',-1);
   add_entity_menu(win,emen) //add the edition menu
   ged(6,win)//start entity picker
-  
+
   //Infinite loop waiting for edition to finish
   realtimeinit(0.2);count=0
-  while or(win==winsid())&fig.user_data==[] 
+  while or(win==winsid())&fig.user_data==[]
     count=count+1;
     realtime(count)
   end
-  if and(win<>winsid()) then scf(gh_curwin),return,end //window destroyed 
+  if and(win<>winsid()) then scf(gh_curwin),return,end //window destroyed
   //Edition finish, disable handler and menus
   delmenu(win,emen)
 
   seteventhandler('') //remove the ged event handler
-  
+
   //Restore current window
   scf(gh_curwin)
   //Update Icon if requested
   if fig.user_data=='ok' then //user finished edition by "Ok"
     gr_i(1)=gen_code(win) //create the Scilab code of the graphics
     //check it
-    mac=null();deff('[]=mac()',gr_i(1),'n') 
+    mac=null();deff('[]=mac()',gr_i(1),'n')
     if check_mac(mac) then
       //update scicos object
       o=scs_m.objs(K)
       o.graphics.gr_i=gr_i
       scs_m.objs(K)=o
-      
+
       o_size = size(gh_curwin.children.children) ;
       gr_k=get_gri(K,o_size(1))
       drawlater() ;
       update_gr(gr_k,o)
       draw(gh_curwin.children);
-      show_pixmap() ; 
-      
+      show_pixmap() ;
+
     end
   end
   delete(fig)
