@@ -2,15 +2,17 @@ function launchtest(baseDir, testName)
 
 // =============================================================================
 
-testFilename   = fullfile(baseDir, testName + '.test')
-modelFilename  = fullfile(baseDir, testName + '.cos')
+mkdir(baseDir, testName) // create a subfolder for test results (NOT outputs)
+testDir        = fullfile(baseDir, testName)
+testFilename   = fullfile(testDir, testName + '.test')
+modelFilename  = fullfile(testDir, testName + '.cos')
 
 if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
-  resFilename    = fullfile(baseDir, testName + '_v4.res')
-  errFilename    = fullfile(baseDir, testName + '_v4.err')
+  resFilename    = fullfile(testDir, testName + '_v4.res')
+  errFilename    = fullfile(testDir, testName + '_v4.err')
 elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
-  resFilename    = fullfile(baseDir, testName + '_v5.res')
-  errFilename    = fullfile(baseDir, testName + '_v5.err')
+  resFilename    = fullfile(testDir, testName + '_v5.res')
+  errFilename    = fullfile(testDir, testName + '_v5.err')
 end
 
 outFilename    = fullfile(baseDir, testName + '.out')
@@ -26,11 +28,11 @@ txt = [ "// Set display settings";
         "";
         "// Set name of log file (used by ''diary'' below)";
         "if getversion() == ''scilab-4.1.2'' | getversion() == ''Scilab-4.1.2-SVN''";
-        "  diaryName = fullfile(''" + baseDir + "'',''" + testName + "'' + ''_v4.log'')";
+        "  diaryName = fullfile(''" + testDir + "'',''" + testName + "'' + ''_v4.log'')";
         "elseif getversion() == ''scilab-trunk-SVN'' | getversion() == ''scilab-5.0''";
-        "  diaryName = fullfile(''" + baseDir + "'',''" + testName + "'' + ''_v5.log'')";
+        "  diaryName = fullfile(''" + testDir + "'',''" + testName + "'' + ''_v5.log'')";
         "else";
-        "  diaryName = fullfile(''" + baseDir + "'',''" + testName + "'' + ''_diary.log'')";
+        "  diaryName = fullfile(''" + testDir + "'',''" + testName + "'' + ''_diary.log'')";
         "end";
         "";
         "// Start logging output";
