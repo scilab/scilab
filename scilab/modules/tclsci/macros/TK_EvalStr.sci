@@ -11,6 +11,6 @@
 //
 //
 function TK_EvalStr(Str)
-  warnobsolete('TCL_EvalStr', '5.1'));
+  warnobsolete('TCL_EvalStr', '5.1');
   TCL_EvalStr(Str)
 endfunction
