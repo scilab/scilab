@@ -19,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 /**
  * Class used to modify look and feel in Scilab GUIs
  * @author Allan CORNET
- * @author Marouane Sylvestre Ledru
+ * @author Sylvestre Ledru
  */
 public class LookAndFeelManager {
 	private static UIManager.LookAndFeelInfo[] availableLookAndFeels;
