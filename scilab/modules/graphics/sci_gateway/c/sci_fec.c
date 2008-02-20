@@ -96,7 +96,7 @@ int sci_fec(char *fname,unsigned long fname_len)
   GetColOut(fname,11,opts,&colOut);
   GetWithMesh(fname,12,opts,&withMesh);
 
-  SciGerase() ;
+  SciWin();
 
   if ( isDefStrf ( strf ) ) {
     char strfl[4];

@@ -71,7 +71,7 @@ int sci_matplot(char *fname,unsigned long fname_len)
   GetRect(fname,3,opts,&rect);
   GetNax(4,opts,&nax,&flagNax);
 
-  SciGerase() ;
+  SciWin();
 
   if ( isDefStrf( strf ) ) {
     char strfl[4];

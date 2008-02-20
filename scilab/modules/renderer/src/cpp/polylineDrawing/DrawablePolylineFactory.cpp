@@ -87,6 +87,8 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
     polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
     break;
   default:
+    polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
+    break;
     break;
   }
 

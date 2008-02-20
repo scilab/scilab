@@ -82,7 +82,7 @@ int sci_param3d( char * fname, unsigned long fname_len )
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
   GetOptionalDoubleArg(fname,8,"ebox",&ebox,6,opts);
 
-  SciGerase() ;
+  SciWin();
   ix1 = m1 * n1;
 
   /* NG beg */

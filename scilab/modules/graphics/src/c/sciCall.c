@@ -763,14 +763,14 @@ void Objplot3d ( char    * fname ,
 	    int intzcol = (int) zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
 			      (sciGetCurrentSubWin(),
-			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,
+			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
 			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	  }
 	  else {
 	    int intzcol = (int) -zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
 			      (sciGetCurrentSubWin(),
-			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,
+			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
 			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE));  
 	  }
 	}
@@ -778,7 +778,7 @@ void Objplot3d ( char    * fname ,
 	  int curcolor = sciGetForeground(sciGetCurrentSubWin()); /* current color equivalent for new graphics mode */
 	  sciSetCurrentObj (ConstructPolyline
 			    (sciGetCurrentSubWin(),
-			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,*n,
+			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
 			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	}
 
