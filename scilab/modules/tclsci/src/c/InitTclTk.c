@@ -71,14 +71,14 @@ static void *DaemonOpenTCLsci(void* in)
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL)
     {
-      sciprint(_("Unable to find TCL initialisation scripts.\nCheck your SCI environment variable.\nTCL initialisation failed !"));
+      sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
      }
   else fclose(tmpfile2);
 #else
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL)
     {
-      sciprint(_("The SCI environment variable is not set.\nTCL initialisation failed !\n"));
+      sciprint(_("The SCI environment variable is not set.\nTcl initialisation failed !\n"));
      }
   else closedir(tmpdir);
   strcpy(TkScriptpath,SciPath);
@@ -86,7 +86,7 @@ static void *DaemonOpenTCLsci(void* in)
   tmpfile2 = fopen(TkScriptpath,"r");
   if (tmpfile2==NULL)
     {
-      sciprint(_("Unable to find TCL initialisation scripts.\nCheck your SCI environment variable.\nTCL initialisation failed !"));
+      sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
      }
   else fclose(tmpfile2);
 #endif /* _MSC_VER */
@@ -96,17 +96,17 @@ static void *DaemonOpenTCLsci(void* in)
       TCLinterp = Tcl_CreateInterp();
       if ( TCLinterp == NULL )
 	{
-	  Scierror(999,_("TCL Error: Unable to create TCL interpreter (Tcl_CreateInterp).\n"));
+	  Scierror(999,_("Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"));
 	}
 
       if ( Tcl_Init(TCLinterp) == TCL_ERROR)
 	{
-	  Scierror(999,_("TCL Error: Error during the TCL initialization (Tcl_Init): %s\n"),TCLinterp->result);
+	  Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),TCLinterp->result);
 	}
 
       if ( Tk_Init(TCLinterp) == TCL_ERROR)
 	{
-		Scierror(999,_("TCL Error: Error during the TK initialization (Tk_Init):%s\n"),TCLinterp->result);
+		Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init):%s\n"),TCLinterp->result);
 		tkStarted=FALSE;
 	}
 
@@ -114,7 +114,7 @@ static void *DaemonOpenTCLsci(void* in)
 
       if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
 	{
-	  Scierror(999,_("TCL Error: Error during the Scilab/TCL init process. Could not set SciPath: %s\n"),TCLinterp->result);
+	  Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),TCLinterp->result);
 	}
 
       Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
@@ -128,7 +128,7 @@ static void *DaemonOpenTCLsci(void* in)
 		#endif
 			if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
 			{
-				Scierror(999,_("TCL Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath, TCLinterp->result);
+				Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath, TCLinterp->result);
 			}
 	}
 
