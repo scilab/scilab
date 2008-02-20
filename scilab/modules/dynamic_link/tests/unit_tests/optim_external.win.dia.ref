@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //============================================
 // external with optim
 // dynamic link test
@@ -35,7 +41,7 @@ l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
    building shared library (be patient)
 // incremental linking
 link(l,'rosenc','c');
-shared archive loaded.
+Shared archive loaded.
 Link done.
 //solve the problem
 x0=[40;10;50];
@@ -81,7 +87,7 @@ l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
    building shared library (be patient)
 // incremental linking
 link(l,'rosenf','f');
-shared archive loaded.
+Shared archive loaded.
 Link done.
 //solve the problem
 x0=[40;10;50];

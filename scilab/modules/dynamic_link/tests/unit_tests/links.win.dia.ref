@@ -1,10 +1,18 @@
-//===========================================================
-// Copyright INRIA
-//===========================================================
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+curPath = getcwd();
 pref='ext';
 suf='f';
 routines=[pref(ones(1,12))+string(1:12)+suf(ones(1,12))];
-chdir(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests');
+copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'externals.f', TMPDIR);
+chdir(TMPDIR)
+ ans  =
+ 
+  T  
 ilib_for_link(routines,'externals.o',[],"f");
    Generate a loader file
    Generate a Makefile
@@ -105,3 +113,4 @@ call('ext11f',n,1,'i',a,2,'r','out',2);  //loads b with a
 c=call('ext12f',n,1,'i','out',[1,10],2,'r');  //loads c with b
 if norm(c-a) > %eps then bugmes();quit;end
 //===========================================================
+chdir(curPath);

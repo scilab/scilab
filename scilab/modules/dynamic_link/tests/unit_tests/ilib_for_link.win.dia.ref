@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 if MSDOS then
   TMP_OS_DIR = getenv('TMP','err');
   if (TMP_OS_DIR == 'err') then bugmes();quit;end;
@@ -8,8 +14,7 @@ end
 TMP_DIR = TMP_OS_DIR+filesep()+'ilib_for_link';
 rmdir(TMP_DIR,'s');
 mkdir(TMP_OS_DIR,'ilib_for_link');
-f1=['int ext1c(n, a, b, c)'
-    'int *n;     double *a, *b, *c;'
+f1=['int ext1c(int *n, double *a, double *b, double *c)'
     '{int k;'
     '  for (k = 0; k < *n; ++k) '
     '      c[k] = a[k] + b[k];'
@@ -64,4 +69,4 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 // ulink() all libraries
 ulink();
 //remove TMP_DIR
-rmdir(TMP_DIR,'s');
+//rmdir(TMP_DIR,'s');

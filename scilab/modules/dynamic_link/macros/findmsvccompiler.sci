@@ -11,54 +11,6 @@
 //==========================================
 function MSCompiler = findmsvccompiler()
 
-  MSCompiler='unknown'; // unknown
-  
-  if MSDOS then
-    if is_msvc90pro() then
-      MSCompiler = 'msvc90pro';          // Microsoft Visual 2008 Studio Professional
-      return;
-    end
-      
-    if is_msvc90std() then
-      MSCompiler = 'msvc90std';          // Microsoft Visual 2008 Studio Standard      
-      return;
-    end
-      
-    if is_msvc90express() then
-      MSCompiler = 'msvc90express';      // Microsoft Visual 2008 Express 
-      return;
-    end
-      
-    if is_msvc80pro() then
-      MSCompiler = 'msvc80pro';          // Microsoft Visual 2005 Studio Professional
-      return;
-    end
-
-    if is_msvc80std() then
-      MSCompiler = 'msvc80std';          // Microsoft Visual 2005 Studio Standard
-      return;
-    end
-      
-    if is_msvc80express() then
-      MSCompiler = 'msvc80express';      // Microsoft Visual 2005 Express
-      return;
-    end
-      
-    if is_msvc71() then
-      MSCompiler = 'msvc71';             // Microsoft Visual Studio .NET 2003
-      return;
-    end
-      
-    if is_msvc70() then
-      MSCompiler = 'msvc70';             // Microsoft Visual Studio .NET 2002
-      return;
-    end
-    
-  else // NOT MSDOS
-    MSCompiler = 'unknown'; // unknown
-  end
-endfunction
-//==========================================
 
 
 //==========================================
@@ -192,4 +144,55 @@ function bOK = findWindowsSDK()
 
 endfunction
 //==========================================
+
+
+  MSCompiler='unknown'; // unknown
+  
+  if MSDOS then
+    if is_msvc90pro() then
+      MSCompiler = 'msvc90pro';          // Microsoft Visual 2008 Studio Professional
+      return;
+    end
+      
+    if is_msvc90std() then
+      MSCompiler = 'msvc90std';          // Microsoft Visual 2008 Studio Standard      
+      return;
+    end
+      
+    if is_msvc90express() then
+      MSCompiler = 'msvc90express';      // Microsoft Visual 2008 Express 
+      return;
+    end
+      
+    if is_msvc80pro() then
+      MSCompiler = 'msvc80pro';          // Microsoft Visual 2005 Studio Professional
+      return;
+    end
+
+    if is_msvc80std() then
+      MSCompiler = 'msvc80std';          // Microsoft Visual 2005 Studio Standard
+      return;
+    end
+      
+    if is_msvc80express() then
+      MSCompiler = 'msvc80express';      // Microsoft Visual 2005 Express
+      return;
+    end
+      
+    if is_msvc71() then
+      MSCompiler = 'msvc71';             // Microsoft Visual Studio .NET 2003
+      return;
+    end
+      
+    if is_msvc70() then
+      MSCompiler = 'msvc70';             // Microsoft Visual Studio .NET 2002
+      return;
+    end
+    
+  else // NOT MSDOS
+    MSCompiler = 'unknown'; // unknown
+  end
+endfunction
+//==========================================
+
   

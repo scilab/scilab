@@ -11,47 +11,6 @@
 //==========================================
 function bOK = configure_msvc()
 
-  if MSDOS then
-    msvc = findmsvccompiler();
-    bOK = %F;
-    
-    select msvc,
-      case  'msvc90pro' then          // Microsoft Visual 2008 Studio Professional
-        bOK = set_msvc90pro();
-        
-      case  'msvc90std' then          // Microsoft Visual 2008 Studio Standard      
-        bOK = set_msvc90std();
-        
-      case  'msvc90express' then      // Microsoft Visual 2008 Express 
-        bOK = set_msvc90express();
-        
-      case  'msvc80pro' then          // Microsoft Visual 2005 Studio Professional
-        bOK = set_msvc80pro();
-        
-      case  'msvc80std' then          // Microsoft Visual 2005 Studio Standard
-        bOK = set_msvc80std();    
-        
-      case  'msvc80express' then      // Microsoft Visual 2005 Express
-        bOK = set_msvc80express();    
-        
-      case  'msvc71' then             // Microsoft Visual Studio .NET 2003
-        bOK = set_msvc71();    
-        
-      case  'msvc70' then             // Microsoft Visual Studio .NET 2002
-        bOK = set_msvc70();  
-      
-      else
-    		warning('Microsoft Visual Studio C Compiler not found.');
-        bOK = %F;
-      end
-  else
-    bOK = %F;
-  end
-  
-endfunction
-//==========================================
-
-
 
 //==========================================
 //  functions defined only in configure_msvc
@@ -388,3 +347,45 @@ function bOK = commons_msvc90(MS_VS_DIRECTORY)
   end
 endfunction
 //==========================================
+
+  if MSDOS then
+    msvc = findmsvccompiler();
+    bOK = %F;
+    
+    select msvc,
+      case  'msvc90pro' then          // Microsoft Visual 2008 Studio Professional
+        bOK = set_msvc90pro();
+        
+      case  'msvc90std' then          // Microsoft Visual 2008 Studio Standard      
+        bOK = set_msvc90std();
+        
+      case  'msvc90express' then      // Microsoft Visual 2008 Express 
+        bOK = set_msvc90express();
+        
+      case  'msvc80pro' then          // Microsoft Visual 2005 Studio Professional
+        bOK = set_msvc80pro();
+        
+      case  'msvc80std' then          // Microsoft Visual 2005 Studio Standard
+        bOK = set_msvc80std();    
+        
+      case  'msvc80express' then      // Microsoft Visual 2005 Express
+        bOK = set_msvc80express();    
+        
+      case  'msvc71' then             // Microsoft Visual Studio .NET 2003
+        bOK = set_msvc71();    
+        
+      case  'msvc70' then             // Microsoft Visual Studio .NET 2002
+        bOK = set_msvc70();  
+      
+      else
+    		warning('Microsoft Visual Studio C Compiler not found.');
+        bOK = %F;
+      end
+  else
+    bOK = %F;
+  end
+  
+endfunction
+//==========================================
+
+
