@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -3110,7 +3111,6 @@ int sciSwitchWindow(int winnum)
       {
         sciSetCurrentObj(masousfen);
         sciSetOriginalSubWin(mafigure, masousfen);
-        set_cf_type(1);/* current figure is a graphic one */
       }
     }
     else
@@ -3122,7 +3122,6 @@ int sciSwitchWindow(int winnum)
   else
   {
     sciSetCurrentFigure(getFigureFromIndex(winnum));
-    set_cf_type(1);/* current figure is a graphic one */
   }
   return 0;
 }

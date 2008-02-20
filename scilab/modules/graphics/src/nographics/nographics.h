@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre Ledru
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -71,5 +72,3 @@ int C2F(SetDriver)(void);
 void GetDriver1(char *str, integer *v2,integer * v3,integer * v4, integer *v5,integer * v6,integer * v7,double * dv1,double * dv2,double * dv3,double * dv4);
 
 void sciGetIdFigure (int *vect, int *id, int *flag);
-
-void set_cf_type(int val);

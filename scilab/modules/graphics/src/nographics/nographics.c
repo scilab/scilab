@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan Cornet
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -177,11 +178,6 @@ void sciRedrawF(int *num)
 int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
 {
 	return 0;
-}
-/*--------------------------------------------------------------------------*/
-void set_cf_type( int val )
-{
-
 }
 /*--------------------------------------------------------------------------*/
 BOOL sciHasFigures( void )

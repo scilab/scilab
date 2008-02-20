@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,19 +21,6 @@
 
 #include "ObjectStructure.h"
 
-/**
-* To know if the current figure is a graphic one.
-* @return 
-*/
-int  get_cf_type( void ) ;
-
-/**
- * @TODO add comment
- *
- * @param val   
- */
-void set_cf_type( int val ) ;
-/*-----------------------------------------------------------------------------*/
 /**
  * Returns the pointer to the current selected figure. 
  */

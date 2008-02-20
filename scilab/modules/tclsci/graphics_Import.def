@@ -2,5 +2,4 @@ LIBRARY    graphics.dll
 
 
 EXPORTS
- set_cf_type
  

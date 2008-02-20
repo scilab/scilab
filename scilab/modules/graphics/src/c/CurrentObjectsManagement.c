@@ -37,19 +37,7 @@ static sciPointObj * sciCurrentFigure  = NULL ;
 BOOL sciIsConsoleCreated = FALSE ;
 BOOL sciIsScreenCreated  = FALSE ;
 /*----------------------------------------------------------------------------------*/
-static int cf_type = 1 ;
-/*----------------------------------------------------------------------------------*/
 static sciPointObj * getCurrentPointedFigure(void);
-/*----------------------------------------------------------------------------------*/
-int get_cf_type( void )
-{
-  return cf_type ;
-}
-/*----------------------------------------------------------------------------------*/
-void set_cf_type( int val )
-{
-  cf_type = val ;
-}
 /*----------------------------------------------------------------------------------*/
 static sciPointObj * getCurrentPointedFigure(void)
 {
@@ -74,7 +62,6 @@ sciPointObj * sciGetCurrentFigure( void )
       if ((pSousFen = ConstructSubWin(pfigure)) != NULL) {
         sciSetCurrentObj (pSousFen);
         sciSetOriginalSubWin (pfigure, pSousFen);
-        set_cf_type(1);/* current figure is a graphic one */
       }
     }
     endGraphicDataWriting();
@@ -93,7 +80,6 @@ BOOL sciIsCurrentFigure(sciPointObj * pFigure)
 int sciInitCurrentFigure( sciPointObj * mafigure )
 {
   sciCurrentFigure = mafigure ;
-  set_cf_type(1);/* current figure is a graphic one */
   return 0 ;
 }
 /*----------------------------------------------------------------------------------*/
