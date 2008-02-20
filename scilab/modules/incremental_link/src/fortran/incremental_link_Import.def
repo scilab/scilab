@@ -1,9 +1,0 @@
-LIBRARY    incremental_link.dll
-
-
-EXPORTS
-addinter_
-iscilink_
-scilinknorhs_
-iislink_
-
