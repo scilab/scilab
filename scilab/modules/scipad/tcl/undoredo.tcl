@@ -104,7 +104,14 @@ proc resetmodified {textarea} {
     foreach ta [getfullpeerset $textarea] {
         set listoffile("$ta",redostackdepth) 0
     }
-    $textarea edit modified false ;# <<Modified>> event is automatically generated
+    $textarea edit modified false
+    # Tk 8.4 sends automatically a <<Modified>> event to a text widget when
+    # editing the modified flag of this text widget, but 8.5 does only when
+    # the modified flag changes state (consistent with the manual) - See Tk
+    # bug 1799782 (fixed in 8.5.0) - However fixing that bug revealed another
+    # bug (Tk bug 1871474), so rather always manually send the needed event:
+    # the line below fixes Scilab bug 2650
+    event generate $textarea <<Modified>>
 }
 
 proc commonPrefix {a b} {

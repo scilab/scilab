@@ -3208,3 +3208,9 @@ Francois VOGEL, 31/10/07
    and for displaying information about cursor location in function
  * version --> 6.132
 
+Francois VOGEL, 20/02/08
+ * Fixed Scilab bug 2650 by working around Tk bug 1871474: Scipad didn't
+   report a saved buffer as such
+ * By Scilab team: sciprompt permanently set to 0 (scipad.sci)
+                   scicos keywords loading changed (dynamickeywords.sce)
+ * version --> 6.133
