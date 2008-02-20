@@ -26,11 +26,6 @@ int CloseTCLsci(void)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int GetTclCurrentFigure( void )
-{
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 {
 	return TRUE;
