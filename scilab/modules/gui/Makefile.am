@@ -226,6 +226,7 @@ images/icons/help-browser.png \
 images/icons/list-add.png \
 images/icons/list-remove.png \
 images/icons/printer.png \
+images/icons/scilab.png \
 images/icons/view-refresh.png \
 images/icons/window-new.png
 
