@@ -39,7 +39,7 @@ else
 	
 	// Set all properties
 	for i=1:2:Rhs
-	  set(h,varargin(i),varargin(i+1));
+	  set(h,getFigureProperty(varargin(i)),varargin(i+1));
 	end
 	
       end
@@ -51,7 +51,7 @@ else
 
 	// Set all properties
 	for i=2:2:Rhs
-	  set(h,varargin(i),varargin(i+1));
+	  set(h,getFigureProperty(varargin(i)),varargin(i+1));
 	end
       else
 	error(gettext("figure: invalid value type."),999) ;
@@ -88,5 +88,20 @@ if ~alreadyExists
   set(h,"background",addcolor([0.8 0.8 0.8]))
 end
 
+endfunction
+// -----------------------------------------------------------
+
+// -----------------------------------------------------------
+function sciFigProperty = getFigureProperty(tkFigProperty)
+// Vincent COUVERT - INRIA 2008
+// Get the Java figure property corresponding to the TK figure property
+
+if strcmpi(tkFigProperty, "backgroundcolor") == 0 then
+  sciFigProperty = "background";
+elseif strcmpi(tkFigProperty, "foregroundcolor") == 0 then
+  sciFigProperty = "foreground";
+else
+  sciFigProperty = tkFigProperty;
+end
 endfunction
 // -----------------------------------------------------------
