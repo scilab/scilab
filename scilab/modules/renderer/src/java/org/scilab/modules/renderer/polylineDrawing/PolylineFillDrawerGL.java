@@ -63,10 +63,13 @@ public class PolylineFillDrawerGL extends FillDrawerGL implements PolylineDrawer
 		glu.gluTessCallback(tess, GLU.GLU_TESS_BEGIN, callbacks);
 		glu.gluTessCallback(tess, GLU.GLU_TESS_END, callbacks);
 		glu.gluTessCallback(tess, GLU.GLU_TESS_COMBINE, callbacks);
-		glu.gluTessCallback(tess, GLU.GLU_TESS_ERROR, callbacks);
+		
+		// cause a systematic "Glu error: out of memory".
+		// remove message before finding a solution
+		//glu.gluTessCallback(tess, GLU.GLU_TESS_ERROR, callbacks);
 		
 		// set the rendering prperties
-		// specify that all the enclosed curve is displayed
+		// specify that all the enclosed curves are displayed
 		glu.gluTessProperty(tess, GLU.GLU_TESS_WINDING_RULE, GLU.GLU_TESS_WINDING_NONZERO);
 		
 		// draw the polygon
