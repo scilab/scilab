@@ -18,16 +18,10 @@ if ~c_link('foo') then
   ilib_for_link(['foo'],'foo.o',[],"c");
    Generate a loader file
    Generate a Makefile
- 
- ilib_gen_Make: configure : Generate Makefile in SCI/ 
-      modules/dynamic_link/src/scripts/                                 
- 
- ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDI 
-      R                                                                 
- 
- ilib_gen_Make: Copy foo.c to TMPDIR   
- 
- ilib_gen_Make: Modification of the Makefile in TMPDIR.   
+   ilib_gen_Make: configure : Generate Makefile in SCI/modules/dynamic_link/src/scripts/
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy foo.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
   // disable message
   warning_mode = warning('query');

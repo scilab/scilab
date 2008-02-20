@@ -50,20 +50,12 @@ ilib_build('foo',['scifun1','intfun1'],files,[]);
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
- 
- ilib_gen_Make: configure : Generate Makefile in SCI/ 
-      modules/dynamic_link/src/scripts/                                 
- 
- ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDI 
-      R                                                                 
- 
- ilib_gen_Make: Copy fun1.c to TMPDIR   
- 
- ilib_gen_Make: Copy fun2.c to TMPDIR   
- 
- ilib_gen_Make: Copy intfun1.c to TMPDIR   
- 
- ilib_gen_Make: Modification of the Makefile in TMPDIR.   
+   ilib_gen_Make: configure : Generate Makefile in SCI/modules/dynamic_link/src/scripts/
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy fun1.c to TMPDIR
+   ilib_gen_Make: Copy fun2.c to TMPDIR
+   ilib_gen_Make: Copy intfun1.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
 // disable message
 warning_mode = warning('query');
