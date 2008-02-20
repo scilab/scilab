@@ -233,6 +233,14 @@ void Cscale2default( void ) ;
 
 void set_window_scale_with_default( int i ) ;
 
+void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[],
+                                   int xPixCoords[], int yPixCoords[], int nbCoords,
+                                   int rect[4]);
+
+void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords[],
+                                    double xUserCoords[], double yUserCoords[], int nbCoords,
+                                    int rect[4]);
+
 #endif  /* _SCI_ECH */
 
 

@@ -40,6 +40,7 @@
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "dynamic_menus.h" /* StoreCommand */
+#include "Axes.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
@@ -2057,5 +2058,61 @@ void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
     }
     break;
   }
+}
+/*--------------------------------------------------------------------------*/
+/**
+ * Interface to function xchange "f2i". Convert user 2d coordinates
+ * to pixel ones.
+ * @param rect [x,y,w,h] of current subwin
+ */
+void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[],
+                                   int xPixCoords[], int yPixCoords[], int nbCoords,
+                                   int rect[4])
+{ 
+  /* coordinates transformation */
+  int i;
+  sciPointObj * selectedSubwin = sciGetCurrentSubWin();
+  updateSubwinScale(selectedSubwin);
+  for (i = 0; i < nbCoords; i++)
+  {
+    // specify a default value for Z
+    double curCoords[3] = {xCoords[i], yCoords[i], 0.0};
+    int curPixCoords[2];
+    sciGetPixelCoordinate(selectedSubwin, curCoords, curPixCoords);
+    xPixCoords[i] = curPixCoords[0];
+    yPixCoords[i] = curPixCoords[1];
+  }
+
+  /* get viewing area */
+  sciGetViewingArea(selectedSubwin, &rect[0], &rect[1], &rect[2], &rect[3]);
+ 
+}
+/*--------------------------------------------------------------------------*/
+/**
+* Interface to function xchange "i2f". Convert pixel coordinates
+* to user 2d coordinates.
+* @param rect [x,y,w,h] of current subwin
+*/
+void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords[],
+                                    double xUserCoords[], double yUserCoords[], int nbCoords,
+                                    int rect[4])
+{ 
+  /* coordinates transformation */
+  int i;
+  sciPointObj * selectedSubwin = sciGetCurrentSubWin();
+  updateSubwinScale(selectedSubwin);
+  for (i = 0; i < nbCoords; i++)
+  {
+    // specify a default value for Z
+    int curPixCoords[2] = {xPixCoords[i], yPixCoords[i]};
+    double curCoords[2];
+    sciGet2dViewCoordFromPixel(selectedSubwin, curPixCoords, curCoords);
+    xUserCoords[i] = curCoords[0];
+    yUserCoords[i] = curCoords[1];
+  }
+
+  /* get viewing area */
+  sciGetViewingArea(selectedSubwin, &rect[0], &rect[1], &rect[2], &rect[3]);
+
 }
 /*--------------------------------------------------------------------------*/

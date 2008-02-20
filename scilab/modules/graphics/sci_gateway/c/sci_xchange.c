@@ -21,13 +21,22 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "PloEch.h"
+#include "GetProperty.h"
+
+#define VIEWING_RECT_SIZE 4
 
 /*--------------------------------------------------------------------------*/
 int sci_xchange( char * fname, unsigned long fname_len )
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,l5,i;
-  integer four = 4 ;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,l5;
+  integer four = VIEWING_RECT_SIZE ;
   integer one  = 1 ;
+  int * xPixCoords;
+  int * yPixCoords;
+  double * xCoords;
+  double * yCoords;
+  int viewingRect[VIEWING_RECT_SIZE];
+
   CheckRhs(3,3);
   CheckLhs(1,3);
 
@@ -36,6 +45,7 @@ int sci_xchange( char * fname, unsigned long fname_len )
   GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
+  /* Convert coordinates */
   if ( strcmp(cstk(l3),"i2f") == 0) 
   {
     GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
@@ -43,23 +53,46 @@ int sci_xchange( char * fname, unsigned long fname_len )
 
     CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);
     CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);
+    /* Get rectangle */
+    CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE,&one,&four,&l5);
 
-    C2F(echelle2d)(stk(l3),stk(l4),istk(l1),istk(l2),&m1,&n1,"i2f",3L);
+    xPixCoords = istk(l1);
+    yPixCoords = istk(l2);
+    xCoords = stk(l3);
+    yCoords = stk(l4);
+
+    convertPixelCoordsToUserCoords(xPixCoords, yPixCoords,
+                                   xCoords, yCoords,
+                                   m1 * n1, viewingRect );
+
   }
   else 
   {
     CreateVar(Rhs+3,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l3);
     CreateVar(Rhs+4,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l4);
+    /* Get rectangle */
+    CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE,&one,&four,&l5);
+ 
+    xCoords = stk(l1);
+    yCoords = stk(l2);
+    xPixCoords = istk(l3);
+    yPixCoords = istk(l4);
 
-    C2F(echelle2d)(stk(l1),stk(l2),istk(l3),istk(l4),&m1,&n1,"f2i",3L);
+    convertUserCoordToPixelCoords(xCoords, yCoords,
+                                  xPixCoords, yPixCoords,
+                                  m1 * n1, viewingRect);
   }
 
-  CreateVar(Rhs+5,MATRIX_OF_DOUBLE_DATATYPE,&one,&four,&l5);
+  *stk(l5) = viewingRect[0];
+  *stk(l5 + 1) = viewingRect[1];
+  *stk(l5 + 2) = viewingRect[2];
+  *stk(l5 + 3) = viewingRect[3];
 
-  for (i=0; i < four ; i++) {*stk(l5+i) =  Cscale.WIRect1[i]; }
   LhsVar(1)=Rhs+3;
   LhsVar(2)=Rhs+4;
   LhsVar(3)=Rhs+5;
   return 0;
 }
 /*--------------------------------------------------------------------------*/
+
+#undef VIEWING_RECT_SIZE
