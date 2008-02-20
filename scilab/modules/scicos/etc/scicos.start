@@ -9,7 +9,7 @@ load('SCI/modules/scicos/macros/scicos_utils/lib')
 load('SCI/modules/scicos/macros/scicos_menus/lib')
 // ====================================================================
 //add help chapter
-//add_module_help_chapter('scicos');
+add_module_help_chapter('scicos');
 // ====================================================================
 //add demos
 //path=get_absolute_file_path('scicos.start');
