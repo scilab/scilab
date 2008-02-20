@@ -54,9 +54,19 @@ public class Scilab {
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
-		LookAndFeelManager lookAndFeel = new LookAndFeelManager();
 		String gtkLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
 		this.mode = mode;
+		LookAndFeelManager lookAndFeel = null;
+
+		try {
+			lookAndFeel = new LookAndFeelManager();
+		} catch(java.lang.NoClassDefFoundError exception) {
+			System.err.println("Could not initialize graphics Environment");
+			System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
+			System.exit(-1);
+
+		}
+
 		/* TODO Manages also windows */
 
 		if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)) {
@@ -70,9 +80,7 @@ public class Scilab {
 			try {
 				mainView = ScilabWindow.createWindow();
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Window.\n"
-						+ "Check if the thirdparties are available (Flexdock, JOGL...).\n"
-						+ SEE_DEFAULT_PATHS);
+				System.err.println("Cannot create Scilab Window.\nCheck if the thirdparties are available (Flexdock, JOGL...).\n"+SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
@@ -98,8 +106,7 @@ public class Scilab {
 
 				ScilabConsole.createConsole();
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Console.\n"
-						+ "Check if the thirdparties are available (JoGL/JRosetta...).\n"
+				System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).\n"
 						+ SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
