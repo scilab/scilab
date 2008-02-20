@@ -87,7 +87,7 @@ function ilib_gen_Make_unix(names,   ..
 			// The user provided the real filename
 			if filesMatching == [] then
 				if (warningmode == 'on') then
-					disp("Copy "+x+".* to TMPDIR")
+					mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",x);
 				end
 				copyfile(x, linkpath);
 				filelist = filelist + " " + x ;
