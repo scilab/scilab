@@ -25,24 +25,12 @@
 #include "BuildObjects.h"
 #include "CurrentObjectsManagement.h"
 
-
-extern int GetTclCurrentFigure( void ) ;
-
-
 /*--------------------------------------------------------------------------*/
 int get_current_figure_property( sciPointObj * pobj )
 {
   
-  if ( get_cf_type() == 1 )
-  {
-    /* return handle on the current figure */
-    return sciReturnHandle( sciGetHandle( sciGetCurrentFigure() ) ) ;
-  }
-  else
-  {
-    return sciReturnDouble( (double)GetTclCurrentFigure() ) ;
-  }
-  
+  /* return handle on the current figure */
+  return sciReturnHandle( sciGetHandle( sciGetCurrentFigure() ) ) ;
 
 }
 /*--------------------------------------------------------------------------*/

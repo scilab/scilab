@@ -6,12 +6,10 @@
 if TCLTK
 
 TCLSCI_C_SOURCES = src/c/GedManagement.c \
-src/c/TclUiGet.c \
 src/c/TCL_Global.c \
 src/c/InitTclTk.c \
 src/c/ScilabEval.c \
 src/c/setenvtcl.c \
-src/c/TclUiSet.c \
 src/c/InitializeTclTk.c \
 src/c/TerminateTclTk.c \
 src/c/withtk.c \
@@ -25,12 +23,10 @@ src/c/TCL_Command.c
 
 GATEWAY_C_SOURCES =  sci_gateway/c/sci_TCL_CreateSlave.c \
 sci_gateway/c/sci_opentk.c \
-sci_gateway/c/sci_TCL_gcf.c \
 sci_gateway/c/sci_TCL_SetVar.c \
 sci_gateway/c/sci_TCL_ExistVar.c \
 sci_gateway/c/sci_TCL_DoOneEvent.c \
 sci_gateway/c/sci_TCL_UnsetVar.c \
-sci_gateway/c/sci_get.c \
 sci_gateway/c/sci_TCL_ExistInterp.c \
 sci_gateway/c/gw_tclsci.c \
 sci_gateway/c/sci_TCL_EvalStr.c \
@@ -38,7 +34,6 @@ sci_gateway/c/sci_TCL_DeleteInterp.c \
 sci_gateway/c/sci_TCL_GetVersion.c \
 sci_gateway/c/sci_TCL_EvalFile.c \
 sci_gateway/c/sci_TCL_GetVar.c \
-sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_TCL_ExistArray.c \
 sci_gateway/c/sci_TCL_UpVar.c
 
@@ -272,13 +267,11 @@ libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
 #### tclsci : include files ####
 libscitclsci_la_includedir=$(pkgincludedir)/tclsci
-libscitclsci_la_include_HEADERS = includes/TclUiSet.h \
-includes/setenvtcl.h\
+libscitclsci_la_include_HEADERS = includes/setenvtcl.h\
 includes/GedManagement.h \
 includes/TCL_Global.h \
 includes/ScilabEval.h \
 includes/gw_tclsci.h \
-includes/TclUiGet.h \
 includes/InitializeTclTk.h
 
 

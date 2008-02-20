@@ -19,9 +19,9 @@ function myuidialog()
   e1=0;l1 =0
   initial=strcat(list_item,'|')
 
-  f = figure("Position",[50 50 300 200],...
+  f = figure("Position",[50 50 300 300],...
 	     "BackgroundColor",[0.9 0.9 0.9],...
-	     "Unit", "pixel");
+	     "Units", "pixels");
 
   m=uimenu(f,'label', 'menu');
   // create an item on the menu bar

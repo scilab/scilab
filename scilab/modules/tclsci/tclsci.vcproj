@@ -221,15 +221,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_get.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_opentk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_set.c"
 				>
 			</File>
 			<File
@@ -262,10 +254,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_TCL_ExistVar.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_TCL_gcf.c"
 				>
 			</File>
 			<File
@@ -322,14 +310,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\TCL_Global.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\TclUiGet.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\TclUiSet.c"
 				>
 			</File>
 			<File
@@ -400,14 +380,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\TclEvents.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\TclUiGet.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\TclUiSet.h"
 				>
 			</File>
 			<File
