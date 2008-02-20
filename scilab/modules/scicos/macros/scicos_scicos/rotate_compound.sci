@@ -60,23 +60,27 @@ function rotate_compound(sel_x, sel_y, sel_w, sel_h, blk, theta)
             w=gh_curwin.children.children(i).data(3);
             h=gh_curwin.children.children(i).data(4);
             xxx = rotate([x, x  , x+w, x+w;...
-                          y, y-h, y-h, y],theta*%pi/180,...
+                          y, y-h, y-h, y ],theta*%pi/180,...
                          [sel_x+sel_w/2;sel_y-sel_h/2])
             xpoly(xxx(1,:),xxx(2,:),"lines",1);
 
             gh_e = gce()
-            if i==1&blk==1 then //** select box
+            if (i==1) & (blk==1) then //** select box
               gh_e.mark_background = -1;
               gh_e.mark_style = 11;
               gh_e.mark_mode = "off"; //** used
               gh_e.line_mode = "off";
-            else
-              gh_e.mark_background = gh_curwin.children.children(i+1).mark_background
-              gh_e.mark_mode = gh_curwin.children.children(i+1).mark_mode
-              gh_e.mark_style = gh_curwin.children.children(i+1).mark_style
-              gh_e.mark_size = gh_curwin.children.children(i+1).mark_size
-              gh_e.mark_background = gh_curwin.children.children(i+1).mark_background
-              gh_e.mark_foreground = gh_curwin.children.children(i+1).mark_foreground
+
+            else //** it is not the selection box 
+            
+              mark_mode_flag = gh_curwin.children.children(i+1).mark_mode; 
+              if mark_mode_flag=="on" then 
+                gh_e.mark_mode = gh_curwin.children.children(i+1).mark_mode              
+                gh_e.mark_style = gh_curwin.children.children(i+1).mark_style
+                gh_e.mark_size = gh_curwin.children.children(i+1).mark_size
+                gh_e.mark_background = gh_curwin.children.children(i+1).mark_background
+                gh_e.mark_foreground = gh_curwin.children.children(i+1).mark_foreground
+              end 
 
               gh_e.background = gh_curwin.children.children(i+1).background
               gh_e.foreground = gh_curwin.children.children(i+1).foreground
@@ -96,8 +100,10 @@ function rotate_compound(sel_x, sel_y, sel_w, sel_h, blk, theta)
             //disp('text')
 
             //** get bounding box of text with no rotation
-            rect = stringbox(gh_curwin.children.children(i).text,gh_curwin.children.children(i).data(1),...
-                             gh_curwin.children.children(i).data(2))
+            //** rect = stringbox( string, x, y) 
+            rect = stringbox(gh_curwin.children.children(i).text, ...
+                             gh_curwin.children.children(i).data(1),... //** x
+                             gh_curwin.children.children(i).data(2) );  //** y
             x=rect(1,2);
             y=rect(2,2);
             w=rect(1,3)-rect(1,2);

@@ -71,7 +71,7 @@ function gh_blk = drawobj(o, gh_window)
 
       axes_font_style = gh_axes.font_style ;
       axes_font_size  = gh_axes.font_size  ;
-      //** axes_font_color = gh_axes.font_color ; //** optional
+      axes_font_color = gh_axes.font_color ; //** optional
 
       //** axes_line_mode   = gh_axes.line_mode ; //** optional
       axes_line_style  = gh_axes.line_style  ;
@@ -116,7 +116,7 @@ function gh_blk = drawobj(o, gh_window)
 
       gh_axes.font_style = axes_font_style ;
       gh_axes.font_size  = axes_font_size  ;
-      //** gh_axes.font_color = axes_font_color ; //** optional
+      gh_axes.font_color = axes_font_color ; //** optional
 
       //** gh_axes.line_mode   = axes_line_mode   ; //** optional
       gh_axes.line_style  = axes_line_style  ;
@@ -124,7 +124,7 @@ function gh_blk = drawobj(o, gh_window)
 
       //** gh_axes.mark_mode       = axes_mark_mode       ; //** optional
       //** gh_axes.mark_style      = axes_mark_style      ;
-      //** mark_size_unit = "tabulated"
+      //** mark_size_unit = "tabulated"                   ; 
       //** gh_axes.mark_size       = axes_mark_size       ;
       //** gh_axes.mark_foreground = axes_mark_foreground ; //** optional
       //** gh_axes.mark_background = axes_mark_background ; //** optional
@@ -147,13 +147,14 @@ function gh_blk = drawobj(o, gh_window)
       rotate_compound(sel_x, sel_y, sel_w, sel_h,1, o.graphics.theta);
       gh_blk = gh_curwin.children.children(1);
     end
+    //** Block rotation end 
 
     if ierr<>0 then 
       message(['Problem loading block '+o.gui'; lasterror();
 	       'Use Activate_Scilab_Window and redefine it in Scilab.'] ) ;
       gh_blk = [];
     end
-    //** Block rotation end 
+    
 
 
 
