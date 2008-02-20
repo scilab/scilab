@@ -7,6 +7,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [txt,space]=format_txt(txt,instr,prettyprint,nextinstr)
 // Add EOL and returns spaces to have good indentation (called by tree2code)
 // Inputs:
