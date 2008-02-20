@@ -40,7 +40,7 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
     warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newFunctionName)]
   end
   if argn(2) >= 2 then
-    warnMessage = [warnMessage, msprintf(_("This function will be definitelly removed in Scilab %s"), scilabRemovedVersion)]
+    warnMessage = [warnMessage, msprintf(_("This function will be permanently removed in Scilab %s"), scilabRemovedVersion)]
   end
 
   // Now show the warning
