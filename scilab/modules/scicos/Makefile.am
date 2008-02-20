@@ -284,3 +284,5 @@ include $(top_srcdir)/Makefile.incl.am
 #		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 #        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
 #    done;
+
+.NOTPARALLEL: libscisundials.la libsciscicos.la
