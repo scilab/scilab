@@ -4329,6 +4329,8 @@ install-data-local:
 #		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 #        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
 #    done;
+
+.NOTPARALLEL: build/Fblocknames build/Cblocknames
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

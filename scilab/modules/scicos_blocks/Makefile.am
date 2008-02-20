@@ -475,3 +475,5 @@ endif
 #		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
 #        rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
 #    done;
+
+.NOTPARALLEL: build/Fblocknames build/Cblocknames
