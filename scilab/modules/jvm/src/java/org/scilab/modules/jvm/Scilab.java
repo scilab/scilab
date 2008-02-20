@@ -54,28 +54,29 @@ public class Scilab {
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
-		String gtkLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
 		this.mode = mode;
-		LookAndFeelManager lookAndFeel = null;
-
-		try {
-			lookAndFeel = new LookAndFeelManager();
-		} catch(java.lang.NoClassDefFoundError exception) {
-			System.err.println("Could not initialize graphics Environment");
-			System.err.println("An error occurred: "+ exception.getLocalizedMessage());
-			System.exit(-1);
-
-		}
-
-		/* TODO Manages also windows */
-
-		if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)) {
-			lookAndFeel.setLookAndFeel(gtkLookAndFeel);
-		} else {
-			lookAndFeel.setSystemLookAndFeel();
-		}
 
 		if (mode == 2) { /* Mode GUI */
+
+			/* Init the look and feel manager */
+			String gtkLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+			LookAndFeelManager lookAndFeel = null;
+			try {
+				lookAndFeel = new LookAndFeelManager();
+
+				/* TODO Manages also windows */
+			
+				if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)) {
+					lookAndFeel.setLookAndFeel(gtkLookAndFeel);
+				} else {
+					lookAndFeel.setSystemLookAndFeel();
+				}
+
+			} catch(java.lang.NoClassDefFoundError exception) {
+				System.err.println("Could not initialize graphics Environment");
+				System.err.println("Scilab Graphical option may not be working correctly.");
+				System.err.println("An error occurred: "+ exception.getLocalizedMessage());
+			}
 
 			try {
 				mainView = ScilabWindow.createWindow();
@@ -118,9 +119,7 @@ public class Scilab {
 			consoleTab.addMember(ScilabConsole.getConsole());
 			mainView.addTab(consoleTab);
 			mainView.draw();
-		} else {
-			System.out.println("mode -NW");
-		}
+		} 
 
 	}
 
