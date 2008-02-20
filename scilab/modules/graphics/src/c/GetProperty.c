@@ -1298,6 +1298,12 @@ sciGetLegendPos (sciPointObj * pobj)
 sciPointObj *
 sciGetParentFigure (sciPointObj * pobj)
 {
+
+  if (pobj == NULL)
+  {
+    return NULL;
+  }
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -1330,7 +1336,6 @@ sciGetParentFigure (sciPointObj * pobj)
       }  
       break;
     default:
-      sciprint(_("Handle is not a son of any Figure.\n")) ;
       return NULL;
       break;
     }
@@ -1378,7 +1383,6 @@ sciGetParentSubwin (sciPointObj * pobj)
       return (sciPointObj *) subwin;  
       break;                                                     
     default:
-      sciprint(_("Handle is not a son of any SubWindow.\n")) ;
       return NULL;
       break;
     }

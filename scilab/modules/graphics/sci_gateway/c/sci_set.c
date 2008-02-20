@@ -271,6 +271,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
 	 if ( (hdl != (unsigned long)0) ) 
 	 {
+           sciPointObj * parentFigure;
 		 pobj = sciGetPointerFromHandle(hdl);
 
 		 if ( pobj == NULL )
@@ -279,8 +280,20 @@ int sci_set(char *fname, unsigned long fname_len)
 			 return 0;
 		 }
 		 vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible */
+                 
+                 parentFigure = sciGetParentFigure(pobj);
 
-                 setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+                 if (parentFigure != NULL)
+                 {
+                   /* try to protect figure if possible */
+                   startFigureDataWriting(parentFigure);
+                   setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+                   endFigureDataWriting(parentFigure);
+                 }
+                 else
+                 {
+                   setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+                 }
 
                  if ( setStatus < 0 )
 		 {
