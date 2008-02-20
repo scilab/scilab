@@ -396,7 +396,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     palettes = list();
     noldwin = 0      ;
     windows = [1 curwin] ;
-    pixmap = %scicos_display_mode ;// obsolete: the pixmap is "on" as default
+    pixmap = %scicos_display_mode ; // obsolete: the pixmap is "on" as default
 
 
     if ~exists('%scicos_gui_mode') then
@@ -723,33 +723,49 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	if size(%koko,'*') == 1 then
 
 	  Select_back = Select; //** save the selected object list
+          
+          ierr = 0
+	  
+          //** Debug Only code 
+          //** disp("//** EXECUTION")
+	  //** disp("//** "+%cor_item_exec(%koko,2))
 
-
-	  ierr=0
-	  disp("//** EXECUTION")
-	  disp("//** "+%cor_item_exec(%koko,2))
-
-          // RELEASE -->
+          //** RELEASE --> Please reactivate the error catcher before final release 
 	  //execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
-	  // DEBUG -->
-	  execstr('exec('+%cor_item_exec(%koko,2)+',1)')
+	  
+          //** exec(path [,mode]) executes sequentialy the scilab instructions contained in the file given by path with
+          //** an optional execution mode mode . 
+          //**            0 : the default value 
+          //**           -1 : nothing is printed 
+          //**            1 : echo of each command line 
+          //**            2 : prompt --> is printed 
+          //**            3 : echoes + prompts 
+          //**            4 : stops before each prompt. Execution resumes after a carriage return. 
+          //**            7 : stops + prompts + echoes : useful mode for demos. 
 
-	  // in case window has disappeared
+          //** Used for AGGRESSIVE DEBUG ONLY -->
+	  //** execstr('exec('+%cor_item_exec(%koko,2)+',1)')
+
+          //** Used for standard DEBUG ONLY -->
+          execstr('exec('+%cor_item_exec(%koko,2)+',-1)'); //** nothing is printed 
+
 	  if ierr > 0 then
-	    Cmenu='Replot'
-	    Select_back=[];Select=[]
-	    terr=['I recovered from the following error:';
-		  lasterror();
-		  'in '+%cor_item_exec(%koko,2)'+' action.']
-	    mprintf('%s\n',terr)
+	    Cmenu = 'Replot'
+	    Select_back = []; Select = [] ;
+	    terr = ['I recovered from the following error:';
+		     lasterror();
+		    'in '+%cor_item_exec(%koko,2)'+' action.'];
+	    mprintf('%s\n',terr); 
 
 	  elseif or(curwin==winsid()) then
 	    gh_current_window = scf(curwin);
-	    if ~isequal(Select,Select_back) then
+	  
+            if ~isequal(Select,Select_back) then
 	      selecthilite(Select_back, "off") ; // unHilite previous objects
 	      selecthilite(Select, "on") ;       // Hilite the actual selected object
 	    end
-	  else
+	  
+          else
 	    if %scicos_navig==[] then // in case window is not open
 	      %scicos_navig=1
 	      %diagram_path_objective=[]
@@ -767,6 +783,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
   end //**--->  end of the while loop: exit with the 'Quit' OR 'Leave' commands
 
+  //** if you are exited from the main loop with 'Quit'
   if Cmenu=='Quit' then
     //**  -------------- 'Quit' ------------------------------------
     do_exit() ;
@@ -829,7 +846,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       seteventhandler('scilab2scicos')
     end
     save(TMPDIR+'/AllWindows',AllWindows)
- //   scf(0)  // to protect scicos windows when in Scilab
+    //   scf(0)  // to protect scicos windows when in Scilab
     mprintf('%s\n','To reactivate Scicos, click on a diagram or type '"scicos();'"')
 
 
@@ -890,7 +907,7 @@ endfunction
 //** ----------------------------------------------------------------------------------------------------------------
 
 function restore_menu()
-  disp("//** [Call] restore_menu...")
+  //** disp("//** [Call] restore_menu...")
   for %Y=1:length(%scicos_menu)
     execstr( %scicos_menu(%Y)(1)+'_'+string(curwin)+'='+%scicos_menu(%Y)(1) )
   end
