@@ -46,8 +46,6 @@ public class DrawableGrayplotGL extends AutoDrawableObjectGL {
 		
 		int nbCol = xGrid.length - 1;
 		int nbRow = yGrid.length - 1;
-		System.err.println("Nbrow = " + nbRow);
-		System.err.println("Nbcol = " + nbCol);
 		
 		// rectangles are used to render each pixel
 		// Using textures would be much faster
