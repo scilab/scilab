@@ -138,14 +138,14 @@ public final class Jxgetmouse {
 			 */
 			if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
 				if (GlobalEventWatcher.isActivated()) {
-					GlobalEventFilter.filterKey(-keyChar, isControlDown);
+					GlobalEventFilter.filterKey(-keyChar, ((SwingScilabCanvas) keyEvent.getSource()).getFigureIndex(), isControlDown);
 				}
 			} else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
 				/*
 				 * Or If a TYPED is seen use keyChar
 				 */
 				if (GlobalEventWatcher.isActivated()) {
-					GlobalEventFilter.filterKey(keyChar, isControlDown);
+					GlobalEventFilter.filterKey(keyChar, ((SwingScilabCanvas) keyEvent.getSource()).getFigureIndex(), isControlDown);
 				}	
 			}	
 		}

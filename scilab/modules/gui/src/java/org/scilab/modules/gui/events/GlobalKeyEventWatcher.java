@@ -14,6 +14,8 @@ import java.awt.event.KeyEvent;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  
 /**
  * Global key event watcher.
@@ -33,7 +35,7 @@ public abstract class GlobalKeyEventWatcher implements AWTEventListener {
 	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
 	 */
 	public void eventDispatched(AWTEvent event) {
-		keyEventFilter((KeyEvent) event);
+			keyEventFilter((KeyEvent) event);
 	}
 	
 	/**

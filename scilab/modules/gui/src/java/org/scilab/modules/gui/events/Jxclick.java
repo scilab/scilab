@@ -107,8 +107,6 @@ public final class Jxclick {
 	 * @param keyEvent : the Key Event caught
 	 */
 	private static void keyActionFilter(KeyEvent keyEvent) {	
-		// DEBUG
-		//System.out.println(keyEvent.toString());
 		if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
 			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
 				keyChar = keyEvent.getKeyChar(); 
@@ -123,7 +121,7 @@ public final class Jxclick {
 		} else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
 			if (keyEvent.getSource() instanceof SwingScilabCanvas) {
 				if (GlobalEventWatcher.isActivated()) {
-					GlobalEventFilter.filterKey(keyChar, isControlDown);
+					GlobalEventFilter.filterKey(keyChar, ((SwingScilabCanvas)keyEvent.getSource()).getFigureIndex(), isControlDown);
 				}
 			}
 		} 

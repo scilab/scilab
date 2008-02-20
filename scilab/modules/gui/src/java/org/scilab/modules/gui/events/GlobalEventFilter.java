@@ -42,13 +42,14 @@ public class GlobalEventFilter {
 	 * @param keyPressed : the key pressed.
 	 * @param isControlDown : is CTRL key modifier activated.
 	 */
-	public static void filterKey(int keyPressed, boolean isControlDown) {
+	public static void filterKey(int keyPressed, int figureID,boolean isControlDown) {
 		int keyCode = keyPressed;
 		synchronized (ClickInfos.getInstance()) {
 			if (isControlDown) {
 				keyCode += SCILAB_CTRL_OFFSET;
 			}
 			ClickInfos.getInstance().setMouseButtonNumber(keyCode);
+			ClickInfos.getInstance().setWindowID(figureID);
 			ClickInfos.getInstance().setXCoordinate(MouseInfo.getPointerInfo().getLocation().x);
 			ClickInfos.getInstance().setYCoordinate(MouseInfo.getPointerInfo().getLocation().y);
 			ClickInfos.getInstance().notify();
