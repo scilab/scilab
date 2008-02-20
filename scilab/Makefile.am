@@ -157,5 +157,8 @@ pkgconfigdir = $(libdir)/pkgconfig
 # Files to install in Pkgconfig directory
 pkgconfig_DATA = scilab.pc
 
-
 .PHONY: macros localization doc
+
+.NOTPARALLEL: macros doc
+
+
