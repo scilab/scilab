@@ -2737,6 +2737,8 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
+
+  sciSetParent(pobj, NULL);
   ppobj=pUIMENU_FEATURE (pobj);
 
   /* Color property */
