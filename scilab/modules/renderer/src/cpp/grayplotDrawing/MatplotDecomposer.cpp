@@ -70,12 +70,12 @@ void MatplotDecomposer::decomposeGrayplot(double xGrid[], double yGrid[], int co
   }
 
   // fill color
-  for (int i = 0; i < nbRow - 1; i++)
+  for (int i = 0; i < nbCol - 1; i++)
   {
-    for (int j = 0; j < nbCol - 1; j++)
+    for (int j = 0; j < nbRow - 1; j++)
     {
       // scilab data are stored column wise
-      colors[i + (nbCol - 1) * j] = (int) ppGray->pvecz[i + (nbCol - 1) * j];
+      colors[j + (nbRow - 1) * i] = (int) ppGray->pvecz[j + (nbRow - 1) * i];
     }
   }
 
@@ -95,18 +95,18 @@ void MatplotDecomposer::decomposeMatplot(double xGrid[], double yGrid[])
   // (i+0.5,j+0.5), (i-0.5,j+0.5)
 
   // fill xgrid
-  for (int i = 0; i < nbRow; i++)
+  for (int i = 0; i < nbCol; i++)
   {
-    // we start at i = 0, but matrix inices at 1
-    // so the result is i - 0.5 + 1
+    // we start at i = 0, but matrix indices at 1
     xGrid[i] = i + 0.5;
   }
 
   // fill y grid
   // top of the matrix starts on Y max
-  for (int j = 0; j < nbCol; j++)
+  for (int j = 0; j < nbRow; j++)
   {
-    yGrid[j] = nbCol - j - 0.5;
+     // so the result is j - 0.5 + 1
+    yGrid[j] = nbRow - j - 0.5;
   }
 }
 /*---------------------------------------------------------------------------------*/
@@ -127,13 +127,13 @@ void MatplotDecomposer::decomposeMatplot1(double xGrid[], double yGrid[])
   // the matplot should fit in [xMin,xMax]x[yMin,yMax]
 
   // fill xgrid
-  for (int i = 0; i < nbRow; i++)
+  for (int i = 0; i < nbCol; i++)
   {
     xGrid[i] = xMin + i * (xMax - xMin) / (nbRow - 1);
   }
 
   // top of the matrix starts on Y max
-  for (int j = 0; j < nbCol; j++)
+  for (int j = 0; j < nbRow; j++)
   {
     yGrid[j] = yMax - j * (yMax - yMin) / (nbCol - 1);
   }

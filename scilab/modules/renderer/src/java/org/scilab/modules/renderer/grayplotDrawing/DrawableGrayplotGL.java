@@ -44,16 +44,18 @@ public class DrawableGrayplotGL extends AutoDrawableObjectGL {
 	public void drawGrayplot(double[] xGrid, double[] yGrid, double zCoord, int[] colors) {
 		GL gl  = getGL();
 		
-		int nbRow = xGrid.length - 1;
-		int nbCol = yGrid.length - 1;
+		int nbCol = xGrid.length - 1;
+		int nbRow = yGrid.length - 1;
+		System.err.println("Nbrow = " + nbRow);
+		System.err.println("Nbcol = " + nbCol);
 		
 		// rectangles are used to render each pixel
 		// Using textures would be much faster
 		// hower it would not be compatible with GL2PS, so for now we keep th eslow version
 		gl.glBegin(GL.GL_QUADS);
-		for (int i = 0; i < nbRow; i++) {
-			for (int j = 0; j < nbCol; j++) {
-				double[] curColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[j + nbCol * i]));
+		for (int i = 0; i < nbCol; i++) {
+			for (int j = 0; j < nbRow; j++) {
+				double[] curColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[j + nbRow * i]));
 				gl.glColor3d(curColor[0], curColor[1], curColor[2]);
 				gl.glVertex3d(xGrid[i], yGrid[j], zCoord);
 				gl.glVertex3d(xGrid[i], yGrid[j + 1], zCoord);

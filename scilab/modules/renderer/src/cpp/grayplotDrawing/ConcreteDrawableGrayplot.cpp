@@ -42,15 +42,17 @@ void ConcreteDrawableGrayplot::drawGrayplot(void)
   int nbCol = m_pDecomposer->getNbCol();
   int nbColors = m_pDecomposer->getNbColors();
   
-  double * xGrid = new double[nbRow];
-  double * yGrid = new double[nbCol];
+  // beware here the column are for X
+  // row on Y
+  double * xGrid = new double[nbCol];
+  double * yGrid = new double[nbRow];
   int * colors = new int[nbColors];
 
   // compute the grid and the colors to display
   m_pDecomposer->decomposeGrayplot(xGrid, yGrid, colors);
 
   // draw the grid on the screen
-  getGrayplotImp()->drawGrayplot(xGrid, nbRow, yGrid, nbCol,
+  getGrayplotImp()->drawGrayplot(xGrid, nbCol, yGrid, nbRow,
                                  m_pDecomposer->getZCoordinate(),
                                  colors, nbColors);
 

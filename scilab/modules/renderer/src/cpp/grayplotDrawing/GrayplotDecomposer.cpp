@@ -61,13 +61,13 @@ void GrayplotDecomposer::decomposeGrayplot(double xGrid[], double yGrid[], int c
   int nbCol = getNbCol();
 
   // fill xgrid
-  for (int i = 0; i < nbRow; i++)
+  for (int i = 0; i < nbCol; i++)
   {
     xGrid[i] = ppGray->pvecx[i];
   }
 
   // fill y grid
-  for (int j = 0; j < nbCol; j++)
+  for (int j = 0; j < nbRow; j++)
   {
     yGrid[j] = ppGray->pvecy[j];
   }
