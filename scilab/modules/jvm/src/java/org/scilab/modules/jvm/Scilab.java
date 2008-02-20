@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * Copyright (C) INRIA - Vincent COUVERT
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) INRIA - Bruno JOFRET
  * 
@@ -25,6 +25,7 @@ import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
+import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
@@ -44,7 +45,10 @@ public class Scilab {
 	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
 	
 	private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
-	
+
+	private static final int DEFAULTWIDTH = 600;
+	private static final int DEFAULTHEIGHT = 500;
+
 	private int mode;
 
 	private Window mainView;
@@ -72,20 +76,22 @@ public class Scilab {
 					lookAndFeel.setSystemLookAndFeel();
 				}
 
-			} catch(java.lang.NoClassDefFoundError exception) {
+			} catch (java.lang.NoClassDefFoundError exception) {
 				System.err.println("Could not initialize graphics Environment");
 				System.err.println("Scilab Graphical option may not be working correctly.");
-				System.err.println("An error occurred: "+ exception.getLocalizedMessage());
+				System.err.println("An error occurred: " + exception.getLocalizedMessage());
 			}
 
 			try {
 				mainView = ScilabWindow.createWindow();
 			} catch (NoClassDefFoundError exception) {
-				System.err.println("Cannot create Scilab Window.\nCheck if the thirdparties are available (Flexdock, JOGL...).\n"+SEE_DEFAULT_PATHS);
+				System.err.println("Cannot create Scilab Window.\n"
+						+ "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
-
+			mainView.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
+			
 			/************/
 			/* MENU BAR */
 			/************/
