@@ -172,7 +172,7 @@ Input/Output functions (files):
 	+ findfiles           - Finding all files with a given filespec
 
  - Profile changed:
-	+ ls under Linux/Unix has lost his second input argument (unix/linux command line option). It is now based on listfiles.
+	+ ls under Linux/Unix has lost his second input argument (unix/linux command line option). It is now based on listfiles. ls in Scilab 5 will always return one file per line (2 per lines before)
 	
  - Rewrite in native code:
 	+ isdir
