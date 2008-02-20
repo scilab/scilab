@@ -55,12 +55,6 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
     contour2d(x,y,z,nz);
     return,
   end
-  
-  if  get('figure_style')=='old' then 
-    opts=strcat([opts,"flag=flag"],',')
-    execstr('oldcontour(x,y,z,nz,'+opts+')')
-    return,
-  end
     
   if size(nz,'*')==1 then
     style=1:nz,

@@ -51,17 +51,16 @@ end
 [xc,yc]=contour2di(x,y,z,nz);
 fpf=xget("fpf");if fpf=='' then fpf='%.3g',end
 
-newstyle = get('figure_style')=='new'
-if newstyle then
-  fig=gcf();
-  autoc=fig.auto_clear;
-  if autoc=="on" then, xbasc(),end
-  a=gca();
-  v=fig.immediate_drawing;
-  fig.immediate_drawing="off"
-  fig.auto_clear="off"
-  cnt=0
-end
+
+fig=gcf();
+autoc=fig.auto_clear;
+if autoc=="on" then, xbasc(),end
+a=gca();
+v=fig.immediate_drawing;
+fig.immediate_drawing="off"
+fig.auto_clear="off"
+cnt=0
+
 
 // we draw the contour with call to plot2d for each level line
 // however the data_bounds will be always reset after each plot
@@ -84,9 +83,9 @@ while k < length(xc)
    n = yc(k)
    if xc(k) ~= level then 
      c = c+1; level = xc(k),levels=[level levels];
-     if newstyle then 
-       if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
-     end
+
+     if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+
    end
    err = execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')','errcatch','m');
    frameflag = 0 ;
@@ -95,29 +94,27 @@ while k < length(xc)
    // and, if not, restore good figure property values before exiting
    if err <> 0
      mprintf("Error %d : in plot2d called by contour2d",err);
-     if newstyle then
-       fig.immediate_drawing=v;
-       fig.auto_clear=autoc;
-     end
+     fig.immediate_drawing=v;
+     fig.auto_clear=autoc;
      return;
    end
    
-   if newstyle then 
-      unglue(a.children(1))
-      cnt = cnt+1
-   end
+
+    unglue(a.children(1))
+    cnt = cnt+1
+
    if stripblanks(fpf)<>'' then
       xstring(xc(k+1+n/2),yc(k+1+n/2)," "+msprintf(fpf,level))
-      if newstyle then cnt=cnt+1,end
+      cnt=cnt+1;
    end
    k=k+n+1;
 end
 
-if newstyle then 
-   if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
-   set('current_obj',a);
-   fig.immediate_drawing=v;
-   fig.auto_clear=autoc;
-end
+
+ if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+ set('current_obj',a);
+ fig.immediate_drawing=v;
+ fig.auto_clear=autoc;
+
 
 endfunction
