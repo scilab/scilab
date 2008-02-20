@@ -20,8 +20,7 @@ lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
    Generate a Makefile
    ilib_gen_Make: configure : Generate Makefile in SCI/modules/dynamic_link/src/scripts/
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
- 
- Copy mytest.o.* to TMPDIR   
+   ilib_gen_Make: Copy mytest.o to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
 link(lp,'mytest','c');

@@ -38,8 +38,7 @@ l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
    Generate a Makefile
    ilib_gen_Make: configure : Generate Makefile in SCI/modules/dynamic_link/src/scripts/
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
- 
- Copy rosenc.o.* to TMPDIR   
+   ilib_gen_Make: Copy rosenc.o to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
 // incremental linking
@@ -87,8 +86,7 @@ l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
    Generate a Makefile
    ilib_gen_Make: configure : Generate Makefile in SCI/modules/dynamic_link/src/scripts/
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
- 
- Copy rosenf.o.* to TMPDIR   
+   ilib_gen_Make: Copy rosenf.o to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
 // incremental linking
