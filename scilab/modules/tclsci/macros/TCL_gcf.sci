@@ -1,4 +1,3 @@
-function f = TCL_gcf()
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // 
@@ -8,8 +7,8 @@ function f = TCL_gcf()
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Close a graphic figure or delete an uimenu or an uicontrol
-// This function has been written for compatibility with old TK uicontrols/uimenus
+function f = TCL_gcf()
+// Get current graphic window (this function is obsolete since Uicontrols are Java objects)
 
 warnobsolete("gcf", "5.1");
 
