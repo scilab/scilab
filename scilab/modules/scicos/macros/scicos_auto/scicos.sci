@@ -420,11 +420,13 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       mdialog = x_mdialog;
       getvalue = x_getvalue;
 
-      //
+      //*************************************************************
       // WATCH OUT !!!
       // SOME HACK UNTIL SHOW_PIXMAP IS AVAILABLE
       //
-      // show_pixmap = drawnow;
+      show_pixmap = drawnow;
+      //** This hack will be removed when "show_pixmap" will be ready 
+
 
       if MSDOS then
 	//** ... for Windows machines
