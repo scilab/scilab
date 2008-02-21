@@ -240,7 +240,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
           if d_size > 0 then
             gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
             delete (gh_compound_delete); //** delete the object
-            draw(gh_curwin.children); //** display the buffer
+            //** draw(gh_curwin.children); //** display the buffer
+            drawnow();
             //** show_pixmap(); 
           end
 
@@ -254,7 +255,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       xe = rep(1); ye = rep(2) ;
       gh_link.data =  [xo yo ; xe ye ] ;   //** put the coordinate here
       gh_link.foreground = clr             //** put the color here ( 5 = red )
-      draw(gh_curwin.children); //** display the buffer
+      //** draw(gh_curwin.children); //** display the buffer
+      drawnow(); 
       //** show_pixmap(); 
 
     end
@@ -540,7 +542,9 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         // xpoly([xo;xc2],[yo;yc2],'lines')
         gh_link.data =  [xo yo ; xc2 yc2 ] ; //** temp
         gh_link.foreground = clr           ; //** put the color here
-        draw(gh_link.parent); //** display the buffer
+        
+        //** draw(gh_link.parent); //** display the buffer
+        drawnow(); 
         //** show_pixmap();           
         if %scicos_debug_gr then
           disp("d8");//** Debug
@@ -576,7 +580,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if d_size > 0 then
         gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
         delete (gh_compound_delete); //** delete the object
-        draw(gh_curwin.children); //** display the buffer
+        //** draw(gh_curwin.children); //** display the buffer
+        drawnow();
         //** show_pixmap();  
       end
       if %scicos_debug_gr then
@@ -604,7 +609,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
           //draw last segment
           //**xpoly([xl;xc2],[yl;yc2],'lines')
           gh_link.data =  [xl yl ; xc2 yc2] ; //** put the coordinate here
-          draw(gh_link.parent); //** display the buffer
+          //** draw(gh_link.parent); //** display the buffer
+          drawnow(); 
           //** show_pixmap(); 
         end
 
@@ -617,7 +623,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
           //draw last segment
           // xpoly([xl;xc2],[yl;yc2],'lines')
           gh_link.data = [xl yl ; xc2 yc2 ] ; //** put the coordinate here
-          draw(gh_link.parent); //** display the buffer
+          //** draw(gh_link.parent); //** display the buffer
+          drawnow(); 
           //** show_pixmap(); 
         end
 
@@ -650,7 +657,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
         gh_link = gh_curwin.children.children(1) ;
         gh_link.foreground = clr
-        draw(gh_link.parent) ; //** display the buffer
+        //** draw(gh_link.parent) ; //** display the buffer
+        drawnow(); 
         //** show_pixmap(); 
       //form link datas
       xl=[xl;xc2];yl=[yl(1:nx-1);yc2;yc2]
@@ -671,7 +679,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
         gh_link = gh_curwin.children.children(1) ;
         gh_link.foreground = clr
-        draw(gh_link.parent); //** display the buffer
+        //** draw(gh_link.parent); //** display the buffer
+        drawnow(); 
         //** show_pixmap(); 
 
       //form link datas
@@ -694,7 +703,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
     delete (gh_compound_delete); //** delete the object
   end
-  draw(gh_curwin.children); //** display the buffer
+  //** draw(gh_curwin.children); //** display the buffer
+  drawnow(); 
   //** show_pixmap(); 
   //**------------------------------------------------------------------------------------------
 
@@ -785,7 +795,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
   scs_m.objs($+1) = lk ;
 
   drawobj(lk) ;
-  draw(gh_curwin.children); //** display the buffer
+  //** draw(gh_curwin.children); //** display the buffer
+  drawnow(); 
   //** show_pixmap(); 
 
   //** update connected blocks

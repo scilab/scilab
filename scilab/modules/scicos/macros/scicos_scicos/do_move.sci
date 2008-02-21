@@ -311,7 +311,8 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     gh_block_invisible.visible = "off"; //** put the block invisible
     gh_objs_invisible = [gh_objs_invisible gh_block_invisible] ; //** add at the list
 
-    draw(gh_curwin.children); //** update the screen
+    //** draw(gh_curwin.children); //** update the screen
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
 
     //**-------------------------------------------------------------
@@ -389,7 +390,8 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	gh_poly_perlink(i).data = [oi.xx+(xc-xmin)  oi.yy+(yc-ymin) ];
 	draw( gh_poly_perlink(i) ); //** draw the moving segment
       end
-
+      
+      drawnow();
       //** show_pixmap() ; //** not useful on Scilab 5
 
       //**-------------------------------------------------------
@@ -427,9 +429,8 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	gh_poly_perlink(i).data = [oi.xx+(xc-xmin)  oi.yy+(yc-ymin) ];
 	draw( gh_poly_perlink(i) );
       end
-
       //** just "show" (each object is singularly updated)
-
+      drawnow();
       //** show_pixmap() ; //** not useful on Scilab 5 
 
       delta_x = rep(1) - xo_mouse ; //** compute delta positions
@@ -550,7 +551,8 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
       delta_x = rep(1) - xc ; delta_y = rep(2) - yc ; //** calc the differential position because
       move (gh_blk , [delta_x , delta_y]);            //** "move()" works only in differential
-      draw(gh_blk.parent); //** draw the block //** show it 
+      //** draw(gh_blk.parent); //** draw the block //** show it 
+      drawnow();
       //** show_pixmap() ; //** not useful on Scilab 5
 
       delta_move_x = delta_move_x + delta_x ; //** accumulate the delta to compute the
@@ -654,7 +656,8 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
 	//** xpolys(x1,y1,ct(1)) ; //draw moving part of the link
 	draw(gh_poly); //** draw the moving part of the link //** show on screen
-	//** show_pixmap() ; //** not useful on Scilab 5
+	drawnow();
+        //** show_pixmap() ; //** not useful on Scilab 5
 	
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
@@ -664,7 +667,8 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
         //** xpolys(x1,y1,ct(1))//erase moving part of the link
         draw(gh_poly); //** delete the moving part of the link
-	//** show_pixmap() ; //** not useful on Scilab 5
+	drawnow();
+        //** show_pixmap() ; //** not useful on Scilab 5
 	
         xc1 = rep(1) ; //** acquire muse coordinate
 	yc1 = rep(2) ;
@@ -719,7 +723,8 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
 	//** xpolys(x1,y1,ct(1))//draw moving part of the link
 	draw(gh_poly); //** draw the moving part of the link //** show on screen
-	//** show_pixmap() ; //** not useful on Scilab 5
+	drawnow();
+        //** show_pixmap() ; //** not useful on Scilab 5
 	
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
@@ -729,7 +734,8 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
 	//** xpolys(x1,y1,ct(1))//erase moving part of the link
         draw(gh_poly); //** delete the moving part of the link
-	//** show_pixmap() ; //** not useful on Scilab 5
+	drawnow();
+        //** show_pixmap() ; //** not useful on Scilab 5
 
 	xc1 = rep(1) ; 
 	yc1 = rep(2) ;
@@ -866,11 +872,13 @@ function scs_m = movelink4(scs_m)
   while and(rep(3)<>[3 0 2 5]) do
     //** xpolys(x1,y1,ct(1))//draw moving part of the link
     draw(gh_poly); //** draw the moving part of the link //** show on screen
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     draw(gh_poly); //** draw the moving part of the link //** show on screen
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5 
 
     if rep(3)==-100 then //active window has been closed
@@ -948,6 +956,7 @@ function scs_m = movelink1(scs_m)
 
     //** xpolys(xx,yy,ct(1))  //draw  the link
     draw(gh_poly); //** draw the moving part of the link //** show on screen
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
@@ -958,6 +967,7 @@ function scs_m = movelink1(scs_m)
 
     //** xpolys(xx,yy,ct(1)) //erase moving part of the link
     draw(gh_poly); //** draw the moving part of the link //** show on screen
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5 
 
     xc1 = rep(1); yc1 = rep(2) ; //** acquire muse coordinate
@@ -1095,7 +1105,9 @@ function scs_m = movelink2(scs_m)
 	[%win,Cmenu] = resume(curwin,'Quit') ;
     end
     draw(gh_poly); //** delete the moving part of the link
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
+    
     xc1 = rep(1); yc1 = rep(2); //** acquire muse coordinate
     x1(1:2) = X1(1:2)+e(1)*(xc-xc1) ; //** update coordinate
     y1(1:2) = Y1(1:2)+e(2)*(yc-yc1) ;
@@ -1218,6 +1230,7 @@ function scs_m = movelink3(scs_m)
   while and(rep(3)<>[3 0 2 5]) do
     //** xpolys(x1,y1,ct(1))//draw moving part of the link
     draw(gh_poly); //** draw the moving part of the link
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
@@ -1226,6 +1239,7 @@ function scs_m = movelink3(scs_m)
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     draw(gh_poly); //** draw the moving part of the link
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
 
     xc1 = rep(1); yc1 = rep(2)
@@ -1325,12 +1339,14 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
   while and(rep(3)<>[3 0 2 5]) do
     //** xpolys(x1,y1,ct(1))//draw moving part of the link
     draw(gh_poly); //** draw the moving part of the link
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
     if rep(3)==-100 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     draw(gh_poly); //** delete the moving part of the link
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
     xc1 = rep(1); yc1 = rep(2) ;
     x1(2) = X1(2)-(xc-xc1) ;
