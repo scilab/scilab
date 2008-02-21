@@ -87,8 +87,15 @@
     </menu>
 
     <menu label="Tools" mnemonic="T">
-        <submenu label="Toolbar" mnemonic="T"> 
-            <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="Show/Hide Toolbar" mnemonic="T"> 
+             <callback 
+             instruction="
+               if toolbar([SCILAB_FIGURE_ID])=='on' then
+                 toolbar([SCILAB_FIGURE_ID], 'off');
+               else
+                 toolbar([SCILAB_FIGURE_ID], 'on');
+               end"
+             type="0"/>
         </submenu>
         <separator/>
         <submenu label="Zoom" mnemonic="Z"> 

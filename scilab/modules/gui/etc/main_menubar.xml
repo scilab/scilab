@@ -100,12 +100,19 @@
         <submenu label="File association" mnemonic="F"> 
               <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
-        <submenu label="Toolbar" mnemonic="L"> 
-              <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="Show/Hide Toolbar" mnemonic="L"> 
+              <callback 
+              instruction="
+                if toolbar(-1)=='on' then
+                  toolbar(-1, 'off');
+                else
+                  toolbar(-1, 'on');
+                end"
+              type="0"/>
         </submenu>
         <separator/>
         <submenu label="Clear History" mnemonic="H"> 
-              <callback instruction="notavailablemessage();" type="0"/>
+               <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
         <submenu label="Clear Console" mnemonic="O"> 
           <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
