@@ -18,6 +18,8 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <curses.h>
+#include <term.h>
 
 #include "completion.h"
 #include "localization.h"
@@ -36,6 +38,8 @@
 #include "prompt.h"
 #include "completion.h"
 #include "x_VTPrsTbl.h"
+
+
 /*--------------------------------------------------------------------------*/
 #ifdef aix
 	#define ATTUNIX
@@ -78,17 +82,17 @@
 #endif
 
 #ifdef linux
-	#define ATTUNIX
-	#define TERMCAP
+#define ATTUNIX
+#define TERMCAP
 #endif
 
 #if defined(netbsd) || defined(freebsd)
 	#define TERMCAP
 #endif
 /*--------------------------------------------------------------------------*/
-#ifndef HAVE_TERMCAP
-	#undef TERMCAP
-#endif
+//#ifndef HAVE_TERMCAP
+//	#undef TERMCAP
+//#endif
 
 #ifdef B42UNIX
 	#define KEYPAD
@@ -169,9 +173,9 @@ static void move_right(char *source, int max_chars);
 static void move_left(char *source);
 static void display_string(char *string);
 static void backspace(int n);
-void doCompletion(char *, int *cursor, int *cursor_max);
+static void doCompletion(char *, int *cursor, int *cursor_max);
 static void erase_nchar(int n);
-static int  gchar_no_echo(int interrupt);
+static int gchar_no_echo(int interrupt);
 static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max);
 static void strip_blank(char *source);
 static int  translate(int ichar);
@@ -184,9 +188,6 @@ static void set_crmod(void);
 static void set_cbreak(void);
 
 /* --- extern functions ---  */
-extern void set_echo_mode(int mode);
-extern void set_is_reading(int mode);
-extern int  get_echo_mode(void);
 extern void C2F(sigbas)(int *n);
 
 /*  ---- interruption handling ---*/
@@ -726,7 +727,7 @@ static void display_string(char *string)
 /***********************************************************************
  * doCompletion - manages Scilab Completion
  **********************************************************************/
-void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
+static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 {
 	char **completionResults = NULL;
 	char msg[WK_BUF_SIZE]="";
@@ -954,8 +955,6 @@ static void set_crmod()
 
 static void init_io()
 {
-  int  tgetent(char *bp, const char *name);
-  char *tgetstr(char *id, char **area);
   char tc_buf[1024];       /* holds termcap buffer */
   char *area;
   char erase_char;
