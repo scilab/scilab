@@ -405,19 +405,21 @@ $(NON_BLOCK_C_SOURCES)
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
 BUILT_SOURCES = includes/blocks.h
 
-build/Cblocknames:
-	if test ! -d build; then mkdir build; fi
+build/Cblocknames:Makefile.am
+	@echo "-- Generates build/Cblocknames --"
+	@if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
-	for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
 
-build/Fblocknames:
-	if test ! -d build; then mkdir build; fi
+build/Fblocknames: Makefile.am
+	@echo "-- Generates build/Fblocknames --"
+	@if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
-	for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
+	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
 
-includes/blocks.h: $(SCICOS_BLOCKS_FORTRAN_SOURCES) $(SCICOS_BLOCKS_C_SOURCES) build/Cblocknames build/Fblocknames
-
-	$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
+includes/blocks.h: build/Cblocknames build/Fblocknames
+	@echo "-- Building includes/blocks.h --"
+	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
 
 CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/Fblocknames
 

@@ -4307,19 +4307,21 @@ install-data-local:
 
 .PHONY: macros java swig giws
 
-@SCICOS_TRUE@build/Cblocknames:
-@SCICOS_TRUE@	if test ! -d build; then mkdir build; fi
+@SCICOS_TRUE@build/Cblocknames:Makefile.am
+@SCICOS_TRUE@	@echo "-- Generates build/Cblocknames --"
+@SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
-@SCICOS_TRUE@	for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
 
-@SCICOS_TRUE@build/Fblocknames:
-@SCICOS_TRUE@	if test ! -d build; then mkdir build; fi
+@SCICOS_TRUE@build/Fblocknames: Makefile.am
+@SCICOS_TRUE@	@echo "-- Generates build/Fblocknames --"
+@SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
 # Get the filename, strip the extension and put into a file
-@SCICOS_TRUE@	for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
+@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
 
-@SCICOS_TRUE@includes/blocks.h: $(SCICOS_BLOCKS_FORTRAN_SOURCES) $(SCICOS_BLOCKS_C_SOURCES) build/Cblocknames build/Fblocknames
-
-@SCICOS_TRUE@	$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
+@SCICOS_TRUE@includes/blocks.h: build/Cblocknames build/Fblocknames
+@SCICOS_TRUE@	@echo "-- Building includes/blocks.h --"
+@SCICOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
 
 ##### WORKAROUND ####
 # Do not use the global clean-local rule because Scicos help is not managed
