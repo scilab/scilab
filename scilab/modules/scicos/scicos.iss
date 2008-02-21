@@ -1,11 +1,20 @@
+;
+; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+; Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+; Copyright (C) 2007-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+;
+; This file must be used under the terms of the CeCILL.
+; This source file is licensed as described in the file COPYING, which
+; you should have received as part of this distribution.  The terms
+; are also available at
+; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+;
 ;##############################################################################################################
 ; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
 ; Version TRUNK
-; Copyright INRIA 2007
 ;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
-; scicos module
+; action_binding module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define SCICOS "scicos"
@@ -32,6 +41,7 @@ Source: modules\{#SCICOS}\etc\{#SCICOS}.quit; DestDir: {app}\modules\{#SCICOS}\e
 Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;
 ;
+Source: modules\{#ACTION_BINDING}\help\addchapter.sce; DestDir: {app}\modules\{#ACTION_BINDING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
 Source: modules\{#SCICOS}\help\*.htm; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs ;Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\help\images\*.gif; DestDir: {app}\modules\{#SCICOS}\help\images; Components: {#COMPN_SCICOS}
 ;
