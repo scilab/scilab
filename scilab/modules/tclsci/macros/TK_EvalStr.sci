@@ -10,6 +10,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
+
+// @OBSOLETE
+
 function TK_EvalStr(Str)
   warnobsolete('TCL_EvalStr', '5.1');
   TCL_EvalStr(Str)

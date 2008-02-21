@@ -6,6 +6,8 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// @OBSOLETE
+
 function []=xclip(x,y,w,h)
 warnobsolete("clip_state and clip_box")
 // fixe une zone de clipping en cordonnees reelles

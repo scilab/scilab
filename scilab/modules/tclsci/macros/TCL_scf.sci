@@ -1,4 +1,3 @@
-function f = TCL_scf(num)
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // 
@@ -10,6 +9,10 @@ function f = TCL_scf(num)
 
 // Close a graphic figure or delete an uimenu or an uicontrol
 // This function has been written for compatibility with old TK uicontrols/uimenus
+
+// @OBSOLETE
+
+function f = TCL_scf(num)
 
 warnobsolete("scf", "5.1");
 

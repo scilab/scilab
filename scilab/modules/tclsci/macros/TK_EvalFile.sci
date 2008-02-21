@@ -10,6 +10,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
+
+// @OBSOLETE
+
 function TK_EvalFile(f1)
   warnobsolete("TCL_EvalFile", "5.1");
   TCL_EvalFile(f1)

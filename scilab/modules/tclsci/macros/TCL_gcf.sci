@@ -7,6 +7,8 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// @OBSOLETE
+
 function f = TCL_gcf()
 // Get current graphic window (this function is obsolete since Uicontrols are Java objects)
 
