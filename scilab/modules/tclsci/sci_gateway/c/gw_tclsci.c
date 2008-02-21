@@ -16,7 +16,7 @@
  static gw_generic_table Tab[]=
  {
   {C2F(sci_TCL_DoOneEvent),"TCL_DoOneEvent"},
-  {C2F(sci_TCL_EvalFile),"TCL_EvalFile"},
+  {C2F(sci_TCL_EvalFile),"__TCL_EvalFile"},
   {C2F(sci_TCL_EvalStr),"TCL_EvalStr"},
   {C2F(sci_TCL_GetVar),"TCL_GetVar"},
   {C2F(sci_TCL_SetVar),"TCL_SetVar"},
@@ -32,13 +32,13 @@
  };
 /*--------------------------------------------------------------------------*/
 int gw_tclsci(void)
-{  
+{
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		if (isTkStarted())
 		{
 			Rhs = Max(0, Rhs);
-			callFunctionFromGateway(Tab);		
+			callFunctionFromGateway(Tab);
 		}
 		else
 		{
@@ -50,7 +50,7 @@ int gw_tclsci(void)
 		Scierror(999,_("Tcl/TK interface disabled in -nogui mode.\n"));
 		return 0;
 	}
-	
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

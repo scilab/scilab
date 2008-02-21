@@ -25,7 +25,7 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="40" primitiveId="1" primitiveName="TCL_DoOneEvent" />
-<PRIMITIVE gatewayId="40" primitiveId="2" primitiveName="TCL_EvalFile" />
+<PRIMITIVE gatewayId="40" primitiveId="2" primitiveName="__TCL_EvalFile" />
 <PRIMITIVE gatewayId="40" primitiveId="3" primitiveName="TCL_EvalStr" />
 <PRIMITIVE gatewayId="40" primitiveId="4" primitiveName="TCL_GetVar" />
 <PRIMITIVE gatewayId="40" primitiveId="5" primitiveName="TCL_SetVar" />
