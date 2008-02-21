@@ -16,7 +16,6 @@
 #include <stdio.h>
 #include <string.h>
 /*--------------------------------------------------------------------------*/
-#include "sci_uimenu.h"
 #include "MALLOC.h" /* MALLOC */
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
@@ -30,6 +29,7 @@
 #include "SetHashTable.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "InitUIMenu.h"
 /*--------------------------------------------------------------------------*/
 int sci_uimenu( char *fname,unsigned long fname_len )
 {
@@ -49,6 +49,13 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
   /* Create a new menu */
   GraphicHandle=sciGetHandle(ConstructUimenu (pParent,labelmenu,callbackmenu,TRUE));
+
+  /* If no Rhs -> current figure is the parent (Ascendant compatibility) */
+  if (Rhs==0)
+    {
+      // Set the parent property
+      setMenuParent((sciPointObj*) GraphicHandle, -1, sci_handles, nbRow, nbCol);
+    }
 
   /**
    * Odd number of input arguments

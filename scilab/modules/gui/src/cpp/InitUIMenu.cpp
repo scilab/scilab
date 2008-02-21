@@ -25,6 +25,17 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
 
   int parentFigureIndex = 0; 
 
+  /* Special case to set current figure for parent */
+  if (stackPointer == -1)
+    {
+      // Get current figure index
+      parentFigureIndex = sciGetNum(sciGetCurrentFigure());
+      // Send to Java
+      CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
+      // Scilab relationship
+      sciSetParent(sciObj, sciGetCurrentFigure());
+    }
+
   if (nbRow*nbCol != 1) {
     // Parent must be a single value
     return SET_PROPERTY_ERROR;
