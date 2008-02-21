@@ -64,11 +64,15 @@ function drawobjs(scs_m, gh_window)
      end
    end
 
+   //** BEWARE
+   //** ----------------------> This section need revision <-------------------------------
+   //**
    // gh_a = gca()               ; //** need some explanations
    // drawtitle(scs_m.props)     ;
    // show_info(scs_m.props.doc) ;
    // draw(gh_a)                 ;
    
-   show_pixmap()              ;
+   drawnow();
+   //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction

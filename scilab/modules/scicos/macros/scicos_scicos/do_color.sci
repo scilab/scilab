@@ -130,6 +130,8 @@ function [scs_m] = do_color(%win, %pt, scs_m)
 
  //** pause
 
-  drawnow(); show_pixmap();
+  drawnow(); 
+  
+  //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction

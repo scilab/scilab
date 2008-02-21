@@ -118,11 +118,7 @@ function Open_()
     end
     //**--------------
     
-    drawlater() ;
-
-    drawobjs(scs_m) ;
-    
-    drawnow() ;show_pixmap() ;
+    drawobjs(scs_m) ; //** draw all the objects in the diagram data structure
     
     if size(%cpr)==0 then
       needcompile = 4 ;

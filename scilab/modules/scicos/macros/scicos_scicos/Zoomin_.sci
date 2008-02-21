@@ -1,7 +1,8 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Alan Layec <alan.layec@inria.fr>
+//                      - Alan Layec <alan.layec@inria.fr>
+
 //                      - Ramine Nikoukhah <ramine.nikoukhah@inria.fr>
 //                      - Simone Mannori <simone.mannori@inria.fr>
 //
@@ -43,13 +44,13 @@ function Zoomin_()
     viewport = viewport * zoomfactor - 0.5 * gh_window.figure_size*(1-zoomfactor)  ;
     viewport=max([0,0],min(viewport,-gh_window.figure_size+gh_window.axes_size)) 
     window_set_size(gh_window, viewport);
-    if exists('%scicos_with_grid') then
+    if exists('%scicos_with_grid') & %scicos_with_grid==%t then
       drawgrid(); //** draw the new grid and put in the bottom of stack
       swap_handles(gh_window.children.children($), gh_window.children.children(1));
       delete(gh_window.children.children(1)); //** delete the old grid
     end
     drawnow();
-    show_pixmap();
+    //** show_pixmap();
 
     xinfo(' ');
 endfunction

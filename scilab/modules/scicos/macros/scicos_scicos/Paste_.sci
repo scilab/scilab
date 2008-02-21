@@ -188,8 +188,8 @@ else //** no object is selected for "Paste": paste object in the void
     
     end //** object type 
   
-  show_pixmap(); //** update the screen 
-  
+  drawnow(); //** put the objects on the screen 
+  //** show_pixmap() ; //** not useful on Scilab 5 
   
  end //** valid Paste as "replace" or "in the void"
   

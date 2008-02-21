@@ -84,8 +84,8 @@ function [scs_m] = do_block(%pt,scs_m)
       gr_k=get_gri(K,o_size(1))
       drawlater() ;
       update_gr(gr_k,o)
-      draw(gh_curwin.children);
-      show_pixmap() ; //** re-draw the graphic object and show on screen
+      draw(gh_curwin.children); //** re-draw the graphic object and show on screen
+      //** show_pixmap() ; //** not useful on Scilab 5 
       break; //** exit from the while loop
     end
 

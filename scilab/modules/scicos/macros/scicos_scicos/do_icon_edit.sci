@@ -112,7 +112,7 @@ function scs_m=do_icon_edit(%pt,scs_m)
       drawlater() ;
       update_gr(gr_k,o)
       draw(gh_curwin.children);
-      show_pixmap() ;
+      //** show_pixmap() ; //** not useful on Scilab 5
 
     end
   end

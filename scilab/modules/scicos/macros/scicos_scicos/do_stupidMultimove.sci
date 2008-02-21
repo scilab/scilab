@@ -358,8 +358,9 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
        end//** end of the connected links
       //**---------------------------------------------------------------------------------------------
 
-    draw(gh_curwin.children); //** draw ALL the moving objects 
-    show_pixmap();
+    //** draw(gh_curwin.children); //** draw ALL the moving objects 
+    drawnow();
+    //** show_pixmap() ; //** not useful on Scilab 5
 
     end //** ... of while Interactive move LOOP --------------------------------------------------------------
     //**--------------------------------------------------------------------------------------------------------
@@ -473,8 +474,9 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
           end //** of if 
          //**------------------------------------------------------
 	 
-      draw(gh_curwin.children);
-      show_pixmap();
+      //** draw(gh_curwin.children);
+      drawnow(); 
+      //** show_pixmap() ; //** not useful on Scilab 5
 
     end //**----------------------------------------
 

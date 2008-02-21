@@ -129,7 +129,8 @@ function [palettes,windows] = do_load_as_palette(palettes,windows)
   
   xinfo("The Palette can be used to copy blocks or regions"); 
   
-  drawnow(); show_pixmap();
+  drawnow(); 
+  //** show_pixmap() ; //** not useful on Scilab 5
 
   scf(lastwin) ;
   

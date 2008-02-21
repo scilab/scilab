@@ -156,9 +156,11 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
   ini_data = gh_blk.children.data;
 
   //**-----------------------------------------------------------------
-  rep(3) = -1;
+  
   drawlater();
-  while 1 do
+
+  rep(3) = -1;
+  while %t do
     if with_gtk() then
       if rep(3)==10 then
 	global scicos_dblclk
@@ -168,12 +170,15 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
 	break
       end
     else
+
       if or(rep(3)==[0,2,3,5,-5,-100]) then break,end ; //** exit point
+
     end 
 
     gh_blk.children.data = [X_start,Y_start ; x1, y1 ; X_end, Y_end ];
-    draw(gh_curwin.children);
-    show_pixmap();
+    //** draw(gh_curwin.children);
+    drawnow();
+    //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse(0,[%t,%t]);
 
@@ -234,8 +239,9 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     //** update the graphics object with the last link geometrical correction 
     drawlater();
      gh_blk.children.data = [xx , yy];
-     draw(gh_blk.parent);
-    show_pixmap();
+     //** draw(gh_blk.parent);
+     drawnow(); 
+     //** show_pixmap() ; //** not useful on Scilab 5
     
     o.xx = xx; o.yy = yy ;
     scs_m.objs(k)=o ; //** update the scs_m data structure
@@ -244,8 +250,9 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     
     drawlater();
      gh_blk.children.data = ini_data;
-     draw(gh_blk.parent);
-    show_pixmap();
+     //** draw(gh_blk.parent);
+     drawnow(); 
+     //** show_pixmap() ; //** not useful on Scilab 5
     
     //** DO NOT update the scs_m datastructure ! ;)
   

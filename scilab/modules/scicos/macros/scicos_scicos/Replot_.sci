@@ -41,6 +41,7 @@ function Replot_()
        window_set_size(gh_curwin) ; //** OK
        set_background(gh_curwin)  ; //** OK
        drawobjs(scs_m)   ;  //** Redraw all
-     drawnow(); show_pixmap();
+     
+     //** drawnow(); show_pixmap();
     
 endfunction

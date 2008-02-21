@@ -311,8 +311,8 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     gh_block_invisible.visible = "off"; //** put the block invisible
     gh_objs_invisible = [gh_objs_invisible gh_block_invisible] ; //** add at the list
 
-    draw(gh_curwin.children);
-    show_pixmap ; //** update the screen
+    draw(gh_curwin.children); //** update the screen
+    //** show_pixmap() ; //** not useful on Scilab 5
 
     //**-------------------------------------------------------------
     gh_curwin.pixel_drawing_mode = "xor"  ; //** normal mode
@@ -390,7 +390,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	draw( gh_poly_perlink(i) ); //** draw the moving segment
       end
 
-      show_pixmap();
+      //** show_pixmap() ; //** not useful on Scilab 5
 
       //**-------------------------------------------------------
       // get new position
@@ -428,7 +428,9 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	draw( gh_poly_perlink(i) );
       end
 
-      show_pixmap(); //** just "show" (each object is singularly updated)
+      //** just "show" (each object is singularly updated)
+
+      //** show_pixmap() ; //** not useful on Scilab 5 
 
       delta_x = rep(1) - xo_mouse ; //** compute delta positions
       delta_y = rep(2) - yo_mouse ;
@@ -517,7 +519,9 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     //** Clear the graphic window WITHOUT changing his pamaters ! :)
       delete(gh_curwin.children.children) ; //** wipe out all the temp graphics object
       drawobjs(scs_m, gh_curwin) ;   //** re-draw all the graphics object
-    drawnow();show_pixmap() ;  //** draw the graphic object and show on screen
+    drawnow(); //** draw the graphic object and show on screen
+
+    //** show_pixmap() ; //** not useful on Scilab 5
 
 //**---  
   else // move an unconnected block
@@ -546,8 +550,8 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
       delta_x = rep(1) - xc ; delta_y = rep(2) - yc ; //** calc the differential position because
       move (gh_blk , [delta_x , delta_y]);            //** "move()" works only in differential
-      draw(gh_blk.parent); //** draw the block 
-      show_pixmap();       //** show it 
+      draw(gh_blk.parent); //** draw the block //** show it 
+      //** show_pixmap() ; //** not useful on Scilab 5
 
       delta_move_x = delta_move_x + delta_x ; //** accumulate the delta to compute the
       delta_move_y = delta_move_y + delta_y ; //** physical displacement of the block 
@@ -649,17 +653,20 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       while and(rep(3)<>[3 0 2 5]) do
 	
 	//** xpolys(x1,y1,ct(1)) ; //draw moving part of the link
-	draw(gh_poly); //** draw the moving part of the link
-	show_pixmap(); //** show on screen
-	rep = xgetmouse([%t,%t]); //** wait for user movement :)
+	draw(gh_poly); //** draw the moving part of the link //** show on screen
+	//** show_pixmap() ; //** not useful on Scilab 5
+	
+        rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
 	if rep(3)==-100 then //active window has been closed
 	  [%win,Cmenu] = resume(curwin,'Quit')
 	end
-	//** xpolys(x1,y1,ct(1))//erase moving part of the link
+	
+        //** xpolys(x1,y1,ct(1))//erase moving part of the link
         draw(gh_poly); //** delete the moving part of the link
-	show_pixmap(); //**
-	xc1 = rep(1) ; //** acquire muse coordinate
+	//** show_pixmap() ; //** not useful on Scilab 5
+	
+        xc1 = rep(1) ; //** acquire muse coordinate
 	yc1 = rep(2) ;
 	x1(2) = X1(2)-(xc-xc1)  ;
 	y1(2) = Y1(2)-(yc-yc1)  ; //** update coordinate
@@ -711,9 +718,8 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       while and(rep(3)<>[3 0 2 5]) do
 	
 	//** xpolys(x1,y1,ct(1))//draw moving part of the link
-	draw(gh_poly); //** draw the moving part of the link
-	show_pixmap(); //** show on screen
-	
+	draw(gh_poly); //** draw the moving part of the link //** show on screen
+	//** show_pixmap() ; //** not useful on Scilab 5
 	
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
@@ -723,7 +729,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
 	//** xpolys(x1,y1,ct(1))//erase moving part of the link
         draw(gh_poly); //** delete the moving part of the link
-	show_pixmap(); //**
+	//** show_pixmap() ; //** not useful on Scilab 5
 
 	xc1 = rep(1) ; 
 	yc1 = rep(2) ;
@@ -826,7 +832,8 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 
      gh_curwin.pixel_drawing_mode = "copy"  ; //** normal mode
      drawobjs(scs_m, gh_curwin) ;   //** re-draw all the graphics object
-  drawnow();show_pixmap() ;  //** draw the graphic object and show on screen
+  drawnow(); //** draw the graphic object and show on screen
+  //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction
 
@@ -858,13 +865,13 @@ function scs_m = movelink4(scs_m)
   //**---- Interactive loop -----------------------------
   while and(rep(3)<>[3 0 2 5]) do
     //** xpolys(x1,y1,ct(1))//draw moving part of the link
-    draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    draw(gh_poly); //** draw the moving part of the link //** show on screen
+    //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
-    draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    draw(gh_poly); //** draw the moving part of the link //** show on screen
+    //** show_pixmap() ; //** not useful on Scilab 5 
 
     if rep(3)==-100 then //active window has been closed
       [%win,Cmenu] = resume(curwin,'Quit')
@@ -940,8 +947,8 @@ function scs_m = movelink1(scs_m)
   while and(rep(3)<>[3 0 2 5]) do
 
     //** xpolys(xx,yy,ct(1))  //draw  the link
-    draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    draw(gh_poly); //** draw the moving part of the link //** show on screen
+    //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
@@ -950,8 +957,8 @@ function scs_m = movelink1(scs_m)
     end
 
     //** xpolys(xx,yy,ct(1)) //erase moving part of the link
-    draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    draw(gh_poly); //** draw the moving part of the link //** show on screen
+    //** show_pixmap() ; //** not useful on Scilab 5 
 
     xc1 = rep(1); yc1 = rep(2) ; //** acquire muse coordinate
     xx = X1 + e(1)*(xc-xc1) ;
@@ -1081,14 +1088,14 @@ function scs_m = movelink2(scs_m)
   rep(3)=-1
   //**---- Interactive loop -----------------------------
   while and(rep(3)<>[3 0 2 5]) do
-    draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    draw(gh_poly); //** draw the moving part of the link //** show on screen
+    
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
     if rep(3)==-100 then //active window has been closed
 	[%win,Cmenu] = resume(curwin,'Quit') ;
     end
     draw(gh_poly); //** delete the moving part of the link
-    show_pixmap(); //**
+    //** show_pixmap() ; //** not useful on Scilab 5
     xc1 = rep(1); yc1 = rep(2); //** acquire muse coordinate
     x1(1:2) = X1(1:2)+e(1)*(xc-xc1) ; //** update coordinate
     y1(1:2) = Y1(1:2)+e(2)*(yc-yc1) ;
@@ -1211,7 +1218,7 @@ function scs_m = movelink3(scs_m)
   while and(rep(3)<>[3 0 2 5]) do
     //** xpolys(x1,y1,ct(1))//draw moving part of the link
     draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
@@ -1219,7 +1226,7 @@ function scs_m = movelink3(scs_m)
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    //** show_pixmap() ; //** not useful on Scilab 5
 
     xc1 = rep(1); yc1 = rep(2)
     x1($-1:$) = X1($-1:$)+e(1)*(xc-xc1) ;
@@ -1318,13 +1325,13 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
   while and(rep(3)<>[3 0 2 5]) do
     //** xpolys(x1,y1,ct(1))//draw moving part of the link
     draw(gh_poly); //** draw the moving part of the link
-    show_pixmap(); //** show on screen
+    //** show_pixmap() ; //** not useful on Scilab 5
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
     if rep(3)==-100 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     draw(gh_poly); //** delete the moving part of the link
-    show_pixmap(); //**
+    //** show_pixmap() ; //** not useful on Scilab 5
     xc1 = rep(1); yc1 = rep(2) ;
     x1(2) = X1(2)-(xc-xc1) ;
     y1(2) = Y1(2)-(yc-yc1) ;

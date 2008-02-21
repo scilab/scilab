@@ -331,8 +331,9 @@ function [scs_m, fct] = do_addnew(scs_m)
     dy = ym - %yc ;
     drawlater();
      move (gh_blk , [dx dy]);
-     draw(gh_blk.parent);
-     show_pixmap();
+     draw(gh_blk.parent); //** re-draw the graphic object and show on screen
+     
+     //** show_pixmap() ; //** not useful on Scilab 5
 
      %xc = xm ;%yc = ym ; //** position update
 

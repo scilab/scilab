@@ -102,7 +102,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
                              maxi( scs_m.objs(K).thick(1) , 1) * ...
                              maxi(scs_m.objs(K).thick(2), 1) ;
         draw(gh_curwin.children);
-        show_pixmap() ;
+        //** show_pixmap() ; //** not useful on Scilab 5
         //>>>>>>>>>>>>>>>>>>>
       end
 

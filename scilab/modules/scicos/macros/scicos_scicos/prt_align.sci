@@ -136,19 +136,19 @@ function [scs_m]=prt_align(%pt,scs_m)
 
   drawlater(); //** new
 
-  diff_x=orig2(1)-graphics2.orig(1);
-  diff_y=orig2(2)-graphics2.orig(2);
+    diff_x=orig2(1)-graphics2.orig(1);
+    diff_y=orig2(2)-graphics2.orig(2);
 
-  move(gh_blk,[diff_x,diff_y]);  //** ..because "move()" works only in differential
-  draw(gh_blk.parent);
+    move(gh_blk,[diff_x,diff_y]);  //** ..because "move()" works only in differential
+    draw(gh_blk.parent);
 
-  show_pixmap(); //** new
+    //** show_pixmap() ; //** not useful on Scilab 5 
 
-  graphics2.orig=orig2
-  o2.graphics=graphics2
+  graphics2.orig = orig2 ;
+  o2.graphics    = graphics2 ;
 
-  scs_m_save=scs_m
-  scs_m.objs(k2)=o2
+  scs_m_save     = scs_m ;
+  scs_m.objs(k2) = o2 ;
 
-  [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t)
+  [scs_m_save,enable_undo,edited] = resume(scs_m_save,%t,%t)
 endfunction

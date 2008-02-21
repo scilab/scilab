@@ -55,6 +55,6 @@ function Fitdiagramtofigure_()
      delete(gh_window.children.children(1));
    end
    drawnow();
-   show_pixmap();
+   //** show_pixmap() ; //** not useful on Scilab 5
    xinfo(' ');
 endfunction

@@ -52,7 +52,8 @@ if typeof(o)=='Block' then
       drawlater();
       update_gr(gh_k,o)
       draw(gh_current_window.children);
-      show_pixmap() ;
+      
+      //** show_pixmap() ; //** not useful on Scilab 5 
       //Cmenu='Replot'
    else
       message('Mask can only be created for Super Blocks.')

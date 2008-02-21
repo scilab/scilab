@@ -67,7 +67,7 @@ function scs_m = do_ident(scs_m)
       drawlater();
       update_gr(gr_k,objet)
       draw(gh_curwin.children);
-      show_pixmap() ;
+      //** show_pixmap() ; //** not useful on Scilab 5
       scs_m.objs(numero_objet) = objet ; //** update the object data structure
     end
     //**----------------------------
@@ -94,7 +94,7 @@ function scs_m = do_ident(scs_m)
         update_gr(gr_k,scs_m.objs(numero))
       end
       draw(gh_curwin.children);
-      show_pixmap() ;
+      //** show_pixmap() ; //** not useful on Scilab 5
       //
     end
   else

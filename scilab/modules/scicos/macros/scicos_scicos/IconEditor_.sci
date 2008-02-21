@@ -31,6 +31,8 @@ function IconEditor_()
   edited = %t ;
 
 
-  drawnow(); show_pixmap() ;      //** re-draw the graphic object and show on screen
+  drawnow(); //** re-draw the graphic object and show on screen
+
+  //** show_pixmap() ; //** not useful on Scilab 5      
 
 endfunction

@@ -58,13 +58,16 @@ drawlater();  // for palettes, diagrams are already in this mode
 
   end  
 
-
 draw(gh_curwin.children);
-if gh_curwin.pixmap=='on' then 
-   show_pixmap();
-else
-   drawnow();  // in case of palettes
-end
+
+drawnow(); //**  ????
+
+
+//** if gh_curwin.pixmap=='on' then 
+//*    show_pixmap();
+//** else
+//**    drawnow();  // in case of palettes
+//** end
 
 scf(gh_winback); //** restore the 
 

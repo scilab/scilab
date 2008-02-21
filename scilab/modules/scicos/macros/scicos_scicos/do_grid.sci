@@ -36,7 +36,7 @@ function [%scs_wgrid]=do_grid(%scs_wgrid)
                 gh_window.children.children(1));
      delete(gh_window.children.children(1));
      drawnow();
-     show_pixmap();
+     //** show_pixmap() ; //** not useful on Scilab 5
      break
     end
   end

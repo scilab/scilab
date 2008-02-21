@@ -169,8 +169,9 @@ function [wa,ha] = do_export(scs_m, fname, titleflag)
     //** Graphics Window
     %draw_title()
     scf(gh_winc); //** put the focus in the graphics window 
-    drawobjs(scs_m,gcf())
-    drawnow(); show_pixmap() ;
+    drawobjs(scs_m, gcf())
+    drawnow(); 
+    //** show_pixmap() ; //** not useful on Scilab 5
     
   end 
 

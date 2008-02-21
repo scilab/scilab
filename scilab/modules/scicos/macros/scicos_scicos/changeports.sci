@@ -103,7 +103,8 @@ function scs_m = changeports(scs_m, path, o_n)
     //** quick update for new graphics
     update_gr(gr_k, o_n)    ;
     draw(gh_curwin.children); //** redraw the graphic data structure 
-    show_pixmap();
+    drawnow();
+    //** show_pixmap() ; //** not useful on Scilab 5 
 
   end
   //**-------- Scicos -----------------

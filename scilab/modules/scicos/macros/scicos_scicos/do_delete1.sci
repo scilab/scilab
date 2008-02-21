@@ -277,7 +277,7 @@ end //** ... end of while ()
 //** Show the results if the "gr" flag is TRUE 
   if gr==%t then
     draw(gh_curwin.children);
-    show_pixmap() ;
+    //** show_pixmap() ; //** not useful on Scilab 5
   end
   
 endfunction
