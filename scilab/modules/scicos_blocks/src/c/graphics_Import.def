@@ -49,3 +49,4 @@ sciSetMarkSizeUnit
 sciSetMarkBackground
 sciSetIsClipping
 sciSetSelectedSubWin
+sciSetBoxType
