@@ -79,8 +79,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		}
 		
 		updateScrollPosition();
-
-		((JTextPane) inputCmdView).getCaret().setVisible(true);
 	}
 
 	/**
