@@ -15,7 +15,7 @@
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
 	#ifdef _MSC_VER
-	if (GetEnvironmentVariable(var,buf,(DWORD)*buflen)==0)
+	if (GetEnvironmentVariable(var,buf,(DWORD)*buflen) == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;

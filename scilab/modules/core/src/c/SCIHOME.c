@@ -50,7 +50,7 @@ BOOL setSCIHOME(void)
 
 		char env[PATH_MAX+1+10];
 		char USERHOMESYSTEM[PATH_MAX];
-		iflag=1;
+		iflag = 0;
 
 		#ifdef _MSC_VER
 			C2F(getenvc)(&ierr,"APPDATA",USERHOMESYSTEM,&buflen,&iflag);
@@ -59,8 +59,10 @@ BOOL setSCIHOME(void)
 			C2F(getenvc)(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
 		#endif
 
-
-		if (ierr) {return FALSE; }
+		if (ierr) 
+		{
+			return FALSE; 
+		}
 		else
 		{
 			sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIR_SEPARATOR,BASEDIR);

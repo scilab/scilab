@@ -11,6 +11,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
+#include <stdio.h>
 #include "machine.h"
 #include "SetScilabEnvironment.h"
 #include "SCIHOME.h"
@@ -30,6 +32,9 @@ void SetScilabEnvironment(void)
 #else
 	SetSci();
 #endif
-	setSCIHOME();
+	if (!setSCIHOME())
+	{
+		fprintf(stderr,"Error : Impossible to define %s environment variable.\n","SCIHOME");
+	}
 }
 /*--------------------------------------------------------------------------*/
