@@ -306,6 +306,9 @@ ConstructSubWin(sciPointObj * pparentfigure)
 	  return (sciPointObj *) NULL;
 	}
 
+      /* update colors so they will fit the colormap of parent figure and not model one*/
+      sciRecursiveUpdateBaW(pobj, sciGetNumColors(getFigureModel()), sciGetNumColors(sciGetParentFigure(pobj)));
+
       sciGetLogFlags(paxesmdl, logFlags);
       sciInitLogFlags(pobj, logFlags);
 
@@ -731,22 +734,8 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   }
   
   ppText->stringsAlign = align ;
-  
-  sciInitIsBoxed(pObj,isboxed);
-  sciInitIsLine(pObj,isline);
-  sciInitIsFilled(pObj,isfilled);
+ 
   pObj->pDrawer = NULL ;
-
-  if ( foreground != NULL )
-  {
-    sciInitForeground(pObj,(*foreground));
-  }
-  
-  if ( background != NULL )
-  {
-    sciInitBackground(pObj,(*background));
-  }
-
 
   if ( sciInitGraphicContext( pObj ) == -1 )
   {
@@ -761,6 +750,21 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
     FREE(pObj);
     return NULL ;
   }
+
+  sciInitIsBoxed(pObj,isboxed);
+  sciInitIsLine(pObj,isline);
+  sciInitIsFilled(pObj,isfilled);
+
+  if ( foreground != NULL )
+  {
+    sciInitForeground(pObj,(*foreground));
+  }
+
+  if ( background != NULL )
+  {
+    sciInitBackground(pObj,(*background));
+  }
+
   
   return pObj;
 }

@@ -115,6 +115,6 @@ end
  set('current_obj',a);
  fig.immediate_drawing=v;
  fig.auto_clear=autoc;
-
+ draw(fig)
 
 endfunction

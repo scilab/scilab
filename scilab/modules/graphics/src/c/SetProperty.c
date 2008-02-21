@@ -242,6 +242,7 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
     }
   
   if((sciGetEntityType(pobj) == SCI_TEXT)        ||
+     (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
      (sciGetEntityType(pobj) == SCI_TITLE)       ||
      (sciGetEntityType(pobj) == SCI_LEGEND)      ||
      (sciGetEntityType(pobj) == SCI_AXES)        ||
@@ -278,14 +279,14 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
 
 
   /* objects that can have marks */
-  if((sciGetEntityType(pobj) == SCI_FIGURE) ||
-     (sciGetEntityType(pobj) == SCI_SUBWIN) ||
-     (sciGetEntityType(pobj) == SCI_LEGEND) ||
-     (sciGetEntityType(pobj) == SCI_ARC) ||
-     (sciGetEntityType(pobj) == SCI_POLYLINE) ||
+  if((sciGetEntityType(pobj) == SCI_FIGURE)    ||
+     (sciGetEntityType(pobj) == SCI_SUBWIN)    ||
+     (sciGetEntityType(pobj) == SCI_LEGEND)    ||
+     (sciGetEntityType(pobj) == SCI_ARC)       ||
+     (sciGetEntityType(pobj) == SCI_POLYLINE)  ||
      (sciGetEntityType(pobj) == SCI_RECTANGLE) ||
-     (sciGetEntityType(pobj) == SCI_SURFACE) ||
-     (sciGetEntityType(pobj) == SCI_AXES) ||
+     (sciGetEntityType(pobj) == SCI_SURFACE)   ||
+     (sciGetEntityType(pobj) == SCI_AXES)      ||
      (sciGetEntityType(pobj) == SCI_SEGS))
     {
       if(old_m +1 == sciGetMarkForeground(pobj)) {   /* 4 => deals with MarkForeground */

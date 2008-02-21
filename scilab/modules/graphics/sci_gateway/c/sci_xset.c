@@ -321,7 +321,7 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
 {
   if ( strcmp(str,"fpf") == 0) 
   {
-    strncpy(getFPF(),str1,32);
+    strcpy(getFPF(),str1);
   }
   else if ( strcmp(str,"auto clear")==0) 
   {
