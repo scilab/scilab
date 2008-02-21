@@ -22,10 +22,10 @@ I - TO RUN SCILAB (BINARY VERSION)
  
     3 - Scilab has been compiled with Visual C++ .NET 2005 Pro
 	      (Intel C 10 & Fortran 10, see III below).
-        All examples of incremental link given with Scilab are prepared
+        All examples of dynamic link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 5.0
+    4 - If you want use Microsoft Visual C++ 2005 or 2008 Express with Scilab 5.0
         download and install "Microsoft Plateform SDK R2"
         http://msdn.microsoft.com/vstudio/express/visualc/usingpsdk/
  

@@ -1,24 +1,17 @@
-Scilab 5.0 Release_Notes
-************************
-
-- Next to the on line help of the software, we advise you, to make
-the first move with Scilab, to consult the Scilab step-to-step web site
-(http://www.spas.cnrs-gif.fr/index.html).
+Scilab 5.0 (Alpha) Release_Notes
+********************************
 
 - Please note that:
-    - Scilab 4.x versions family will be the last versions working
-with the old graphics mode.
-    - Scilab v 4.0 is the last release working with Microsoft
-Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
-supported by Scilab operational team.
 
-- Scilab binary versions are built:
-    - for Linux: gcc-3.4.3 and g77 compilers with a platform under
-Mandriva 2005. No need to recompile except to use incremental link, we
-advise indeed to download the source files if you are using others
-compilers.
-    - for Windows: Visual Studio .Net 2003 and Fortran and C Intel
-compilers with a platform under Windows XP Service Pack 2 .
-    - Recall: No Scilab GTK version is provided and supported by
-the operational team. Same way about MinGW and Cygwin.
+  * files association with .sce,.sci is disabled in this version.
+  
+  * Please update your video card drivers to support Opengl 1.2 on Windows
+    ATI cards http://ati.amd.com/support/driver.html
+    Intel cards http://www.intel.com/support/graphics/
+    Matrox cards http://www.matrox.com/mga/support/drivers/certified/home.cfm
+    NVIDIA cards http://www.nvidia.com/content/drivers/drivers.asp
+    S3 cards http://www.s3graphics.com/en/resources/drivers/index.jsp  
+    SiS cards http://www.sis.com/download/
+    VIA cards http://www.viaarena.com/default.aspx?PageID=2
+
     
