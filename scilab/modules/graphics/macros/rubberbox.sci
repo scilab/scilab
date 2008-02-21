@@ -6,17 +6,34 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [rect,btn]=rubberbox(rect,edit_mode)
-  rhs=argn(2)
+//** 18 Feb 2008: Quick fix at the top by SM 
+
+function [rect,btn] = rubberbox(rect, edit_mode)
+//** initial_rect: vector with two or four entries.
+//** With four entries it gives the initial rectangle defined by [x_left, y_top, width, height]
+//** with two entries width and height are supposed to be 0,0.  
+
+//** edition_mode:a boolean. The default value is "edition_mode=%f" (false)
+//** if edition_mode==%f -> button press or click selects the first corner,
+//** a click is requested to select the opposite corner.
+//** if edition_mode==%t; button press selects the first corner, release
+//** selects the opposite corner
+  
+  rhs = argn(2)
   select rhs
-  case 0 then
-    edit_mode=%f
-    initial_rect=%f
-  case 1 then
-    initial_rect=type(rect)==1 
-    if ~initial_rect then  edit_mode=rect,end
-  case 2 then
-    initial_rect=%t
+    case 0 then //** no arguments 
+      edit_mode    = %f ; //** default 
+      initial_rect = %f ; //** default 
+    
+    case 1 then //** only "rect" or "edit_mode" is given 
+      initial_rect = type(rect)==1; //** the only arguments is really a rectangle ? 
+                                    //** type 1 is a vector 
+      if initial_rect then //** if the first arguments is positively a vector
+         edit_mode = %f ;  //** assume the second parameter "edit_mode" as default 
+      end
+    
+    case 2 then
+      initial_rect = %t
   end
 
   if edit_mode then 
@@ -33,7 +50,7 @@ function [rect,btn]=rubberbox(rect,edit_mode)
       [btn,xc,yc]=xclick(0)
       if or(btn==sel) then break,end
     end
-    rect(1)=xc;rect(2)=yc
+    rect(1)=xc; rect(2)=yc
     //first=%f
   end
   if size(rect,'*')==2 then rect(3)=0;rect(4)=0,end
