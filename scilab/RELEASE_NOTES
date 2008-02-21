@@ -1,3 +1,13 @@
+Scilab 5.0 Alpha Release_Notes
+******************************
+
+- Some menus/buttons functionnalities are not yet available in GUIs. 
+A click on them will display a dialog box.
+
+- Uicontrols have been mapped to java objects. However some functionnalities
+such has units property management are no yet available.
+
+
 Scilab 4.0 Release_Notes
 ***************************
 

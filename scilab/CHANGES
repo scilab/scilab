@@ -11,7 +11,11 @@ Graphical User Interface:
 =========================
  - Advanced docking system
  - Follow the Tango Desktop Project http://tango.freedesktop.org/
- - @TODO details
+ - GUI re-written in Java Swing:
+        + Same GUI for all OS (Menubars, toolbars...)
+        + Window docking available using FlexDock https://flexdock.dev.java.net/
+ - Uicontrols are now Java objects and can be included in a graphic window with graphics
+ - Dialogs are now Java objects (x_message, x_dialog...)
 
 Rendering:
 ==========
