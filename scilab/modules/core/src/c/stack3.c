@@ -601,20 +601,31 @@ int Name2where(char *namex)
  *             since it can be wrong (ex when name is transmited
  *             by fort (intfort : function )
  *----------------------------------------------------------------*/
-
 int C2F(str2name)(char *namex, integer *id, unsigned long name_len)
 {
-    integer ix;
-    integer lon;
-    lon = 0;
-    for (ix = 0 ; ix < (integer) name_len ; ix++ ) {
-      if ( namex[ix] == '\0') break;
-      ++lon;
-    }
-    C2F(cvname)(id, namex, &cx0, lon);
-    return 0;
-}
+	integer ix = 0;
+	integer lon = 0;
 
+	for (ix = 0 ; ix < (integer) name_len ; ix++ ) 
+	{
+		if ( namex[ix] == '\0') break;
+		lon++;
+	}
+
+	lon = (int)strlen(namex);
+	/* remove blanks in namex */
+	for (ix = 0; ix < lon; ix++)
+	{
+		if ( namex[ix] == ' ') 
+		{
+			namex[ix] = '\0';
+			lon = (int)strlen(namex);
+			break;
+		}
+	}
+	C2F(cvname)(id, namex, &cx0, lon);
+	return 0;
+}
 /*----------------------------------------------------------------
  *     objptr returns the adress of "name"
  *     in scilab's internal stack
