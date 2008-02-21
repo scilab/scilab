@@ -20,6 +20,7 @@ import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
+import org.scilab.modules.console.SciHistoryManager;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -194,4 +195,11 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		this.getConfiguration().getPromptView().setDefaultPrompt(prompt);
 	}
 	
+	/**
+	 * Clear the commands history 
+	 */
+	public void clearHistory() {
+		((SciHistoryManager) this.getConfiguration().getHistoryManager()).reset();
+	}
+
 }

@@ -102,7 +102,7 @@ public class SciHistoryManager implements HistoryManager {
 	 * @see com.artenum.rosetta.interfaces.core.HistoryManager#reset()
 	 */
 	public void reset() {
-		/* Nothing to do in because Scilab core does the work */
+		HistoryManagement.resetScilabHistory();
 	}
 
 	/**

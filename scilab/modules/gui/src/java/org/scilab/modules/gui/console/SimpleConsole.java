@@ -124,4 +124,10 @@ public interface SimpleConsole {
 	 * @param storeInHistory flag indicating if the input command has to be stored in the history
 	 */
 	void sendCommandsToScilab(String textToExec, boolean displayCmdInOutput, boolean storeInHistory);
+	
+	/**
+	 * Clear the commands history 
+	 */
+	void clearHistory();
+
 }

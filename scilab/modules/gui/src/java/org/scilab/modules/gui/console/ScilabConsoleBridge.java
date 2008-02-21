@@ -194,4 +194,12 @@ public class ScilabConsoleBridge {
 		return console.getAsSimpleConsole().isWaitingForInput();
 	}
 
+	/**
+	 * Clear the commands history
+	 * @param console the console we want to clear the history of 
+	 */
+	public static void clearHistory(Console console) {
+		console.getAsSimpleConsole().clearHistory();
+	}
+
 }

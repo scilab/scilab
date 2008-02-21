@@ -112,7 +112,7 @@
         </submenu>
         <separator/>
         <submenu label="Clear History" mnemonic="H"> 
-               <callback instruction="notavailablemessage();" type="0"/>
+           <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory" type="3"/>
         </submenu>
         <submenu label="Clear Console" mnemonic="O"> 
           <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>

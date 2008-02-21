@@ -912,6 +912,14 @@ public class ScilabBridge {
 		return ScilabConsoleBridge.isWaitingForInput(console);
 	}
 
+	/**
+	 * Clear the commands history
+	 * @param console the console we want to clear the history of 
+	 */
+	public static void clearHistory(Console console) {
+		ScilabConsoleBridge.clearHistory(console);
+	}
+	
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/

@@ -74,5 +74,10 @@ public interface Console extends Dockable {
 	 * @return true is Scilab is waiting for commands
 	 */
 	boolean isWaitingForInput();
+	
+	/**
+	 * Clear the commands history 
+	 */
+	void clearHistory();
 
 }

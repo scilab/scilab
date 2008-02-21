@@ -174,6 +174,13 @@ public class CallScilabBridge {
 		ScilabConsole.getConsole().setPrompt(prompt);
 	}
 	
+	/**
+	 * Clear the commands history 
+	 */
+	public static void clearHistory() {
+		ScilabConsole.getConsole().clearHistory();
+	}
+
 	/**************************/
 	/*                        */
 	/* OBJECT CREATION BRIDGE */

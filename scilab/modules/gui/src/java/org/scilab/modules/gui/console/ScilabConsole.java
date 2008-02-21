@@ -201,4 +201,12 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public boolean isWaitingForInput() {
 		return ScilabBridge.isWaitingForInput(this);
 	}
+	
+	/**
+	 * Clear the commands history 
+	 */
+	public void clearHistory() {
+		ScilabBridge.clearHistory(this);
+	}
+
 }
