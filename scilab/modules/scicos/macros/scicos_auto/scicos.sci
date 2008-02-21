@@ -403,8 +403,8 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       if with_tk() then %scicos_gui_mode=1, else %scicos_gui_mode=0, end
     end
 
-    %diagram_i_h=generic_i_h // pour pouvoir ecrire dans le champ user_data
-                       // des fenetre graphiques
+    %diagram_i_h = generic_i_h // pour pouvoir ecrire dans le champ user_data
+                               // des fenetre graphiques
 
     if %scicos_gui_mode==1 then
       //** scicos is active in graphical mode
@@ -419,14 +419,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       mpopup = createpopup;
       mdialog = x_mdialog;
       getvalue = x_getvalue;
-
-      //*************************************************************
-      // WATCH OUT !!!
-      // SOME HACK UNTIL SHOW_PIXMAP IS AVAILABLE
-      //
-      show_pixmap = drawnow;
-      //** This hack will be removed when "show_pixmap" will be ready 
-
 
       if MSDOS then
 	//** ... for Windows machines
@@ -542,14 +534,16 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       nc_save=gh_current_window.user_data(5)
       xselect()
      end
+
   else
-//    pause
+
     if or(curwin==winsid()) then
       gh_current_window = scf(curwin)
       if (gh_current_window.user_data~=[])&(isequalbitwise(gh_current_window.user_data(1),scs_m)) then
 	Select=gh_current_window.user_data(2)
       end
     end
+
   end
   exec(restore_menu,-1)
 
@@ -584,7 +578,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	viewport=[0,0]
 	window_set_size(gh_current_window,viewport)
 	drawnow();
-	show_pixmap() ;
+	//** show_pixmap() ;
       end
 
       if edited then
@@ -600,8 +594,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	end
       end
     end
-
-//pause
 
     if %scicos_navig==[] then
       if Scicos_commands<>[] then
@@ -834,17 +826,21 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
         end
       end
     end
+
     if ~ok then
       message(['Problem saving a backup; I cannot activate Scilab.';
-	       'Save your diagram scs_m manually.'])
-      pause
+	       'Save your diagram scs_m manually.']);
+      pause ;
     end
+
     AllWindows=unique([windows(:,2);inactive_windows(2)])
     AllWindows=intersect(AllWindows',winsid())
+
     for win_i= AllWindows
       scf(win_i)
       seteventhandler('scilab2scicos')
     end
+
     save(TMPDIR+'/AllWindows',AllWindows)
     //   scf(0)  // to protect scicos windows when in Scilab
     mprintf('%s\n','To reactivate Scicos, click on a diagram or type '"scicos();'"')
@@ -869,7 +865,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
     //
 
   end
-
 
 endfunction //** scicos(); end here :) : you had a good day
 //**------------------------------------------------------------------------------------
