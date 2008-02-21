@@ -111,8 +111,10 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	  //Here pTemp2 is the pointer on the current Axes
 	  pTemp2 = scoGetPointerAxes(pScopeMemory,i);
 	  sciInitFontSize(pTemp2, 0);
-	  sciSetIsBoxed(pTemp2,TRUE);
-	  //Here we don't want "smart" limits
+	  
+          //** sciSetIsBoxed(pTemp2,TRUE);
+	  sciSetBoxType(pTemp2,BT_ON);
+          //Here we don't want "smart" limits
 	  pSUBWIN_FEATURE(pTemp2)->tight_limits = TRUE;
 	  //Here PTemp2 is the pointer on the current Subwint
 	  //WRect is for position of Axes in the window
