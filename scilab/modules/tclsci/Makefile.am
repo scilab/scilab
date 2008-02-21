@@ -246,17 +246,8 @@ tcl/BWidget-1.8.0/progressbar.tcl \
 tcl/BWidget-1.8.0/labelframe.tcl \
 tcl/BWidget-1.8.0/README.txt \
 tcl/BWidget-1.8.0/titleframe.tcl \
-tcl/uicontrol.tcl \
-tcl/callbacks.tcl \
-tcl/get.tcl \
-tcl/figure.tcl \
-tcl/tkcontrols.tcl \
-tcl/uimenu.tcl \
 tcl/html_library.tcl \
-tcl/TK_Scilab.tcl \
-tcl/misc.tcl \
-tcl/set.tcl
-
+tcl/TK_Scilab.tcl 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
 libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start

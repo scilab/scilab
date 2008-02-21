@@ -626,21 +626,12 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/BWidget-1.8.0/labelframe.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/README.txt \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/titleframe.tcl \
-@TCLTK_TRUE@tcl/uicontrol.tcl \
-@TCLTK_TRUE@tcl/callbacks.tcl \
-@TCLTK_TRUE@tcl/get.tcl \
-@TCLTK_TRUE@tcl/figure.tcl \
-@TCLTK_TRUE@tcl/tkcontrols.tcl \
-@TCLTK_TRUE@tcl/uimenu.tcl \
 @TCLTK_TRUE@tcl/html_library.tcl \
-@TCLTK_TRUE@tcl/TK_Scilab.tcl \
-@TCLTK_TRUE@tcl/misc.tcl \
-@TCLTK_TRUE@tcl/set.tcl
+@TCLTK_TRUE@tcl/TK_Scilab.tcl 
 
 
 #### tclsci : init scripts ####
 @TCLTK_FALSE@libscitclsci_la_etcdir = $(mydatadir)/etc
-
 #### tclsci : init scripts ####
 @TCLTK_TRUE@libscitclsci_la_etcdir = $(mydatadir)/etc
 @TCLTK_FALSE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
