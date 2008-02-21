@@ -112,17 +112,18 @@ libscilinear_algebra_la_rootdir = $(mydatadir)
 libscilinear_algebra_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### linear_algebra : init scripts ####
+#### linear_algebra : init scripts ####
 libscilinear_algebra_la_etcdir = $(mydatadir)/etc
 libscilinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
-#### linear_algebra : gateway declaration ####
+#### linear_algebra : gateway declaration ####
 libscilinear_algebra_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xml
 
 
-#### linear_algebra : include files ####
+#### linear_algebra : include files ####
 libscilinear_algebra_la_includedir=$(pkgincludedir)/linear_algebra
 libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
-includes/gw_linear_algebra2.h
+includes/gw_linear_algebra2.h \
+includes/issymmetric.h
 
 include $(top_srcdir)/Makefile.incl.am

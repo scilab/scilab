@@ -253,7 +253,9 @@ DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_root_DATA) \
 	$(nobase_libsciscicos_la_demosElectrical_DATA) \
 	$(nobase_libsciscicos_la_demosMBlock_DATA)
 am__libsciscicos_la_include_HEADERS_DIST = src/c/noscicos/resource.h \
-	includes/intcscicos.h includes/scicos.h includes/gw_scicos.h
+	includes/intcscicos.h includes/scicos.h includes/gw_scicos.h \
+	includes/scicos-def.h includes/scicos_free.h \
+	includes/scicos_malloc.h
 libsciscicos_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciscicos_la_include_HEADERS)
 ETAGS = etags
@@ -567,7 +569,10 @@ DISABLE_HELP_CLEAN = yes
 @SCICOS_FALSE@libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
 @SCICOS_TRUE@libsciscicos_la_include_HEADERS = includes/intcscicos.h \
 @SCICOS_TRUE@includes/scicos.h \
-@SCICOS_TRUE@includes/gw_scicos.h
+@SCICOS_TRUE@includes/gw_scicos.h \
+@SCICOS_TRUE@includes/scicos-def.h \
+@SCICOS_TRUE@includes/scicos_free.h \
+@SCICOS_TRUE@includes/scicos_malloc.h
 
 
 #### scicos : cosf files ####

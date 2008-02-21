@@ -65,11 +65,6 @@ sci_gateway/c/sci_dneupd.c \
 sci_gateway/c/sci_dsaupd.c \
 sci_gateway/c/sci_znaupd.c
 
-libsciarnoldi_la_includedir=$(pkgincludedir)/arnoldi
-
-libsciarnoldi_la_include_HEADERS =
-
-
 libsciarnoldi_la_CFLAGS= 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-Iincludes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/
@@ -98,12 +93,16 @@ libsciarnoldi_la_rootdir = $(mydatadir)
 libsciarnoldi_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### arnoldi : init scripts ####
+#### arnoldi : init scripts ####
 libsciarnoldi_la_etcdir = $(mydatadir)/etc
 libsciarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
 
-#### arnoldi : gateway declaration ####
+#### arnoldi : gateway declaration ####
 libsciarnoldi_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi_gateway.xml
+
+#### arnoldi : include files ####
+libsciarnoldi_la_includedir=$(pkgincludedir)/arnoldi
+libsciarnoldi_la_include_HEADERS = includes/gw_arnoldi.h
 
 include $(top_srcdir)/Makefile.incl.am

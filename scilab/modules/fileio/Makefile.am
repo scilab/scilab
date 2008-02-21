@@ -72,7 +72,7 @@ libscifileio_la_CFLAGS=		-Iincludes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
                 -I$(top_srcdir)/modules/string/includes
-                
+
 pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
@@ -81,7 +81,6 @@ libscifileio_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/libs/libst/libscilibst.la \
     $(top_builddir)/modules/string/libscistring.la
-    
 
 #### Target ######
 modulename=fileio
@@ -92,15 +91,15 @@ libscifileio_la_rootdir = $(mydatadir)
 libscifileio_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### fileio : init scripts ####
+#### fileio : init scripts ####
 libscifileio_la_etcdir = $(mydatadir)/etc
 libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 
-#### fileio : gateway declaration ####
+#### fileio : gateway declaration ####
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
-#### fileio : include files ####
+#### fileio : include files ####
 libscifileio_la_includedir=$(pkgincludedir)/fileio
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
@@ -112,9 +111,19 @@ includes/createdirectory.h \
 includes/isdir.h \
 includes/removedir.h \
 includes/mopen.h \
-includes/mtell.h
+includes/mtell.h \
+includes/addfile.h \
+includes/delfile.h \
+includes/diary.h \
+includes/getfiledesc.h \
+includes/getfileinfo.h \
+includes/getfiletype.h \
+includes/mclose.h \
+includes/mget.h \
+includes/mput.h \
+includes/mseek.h
 
-#### fileio : demos files ####
+#### fileio : demos files ####
 libscifileio_la_demosdir=$(mydatadir)
 nobase_libscifileio_la_demos_DATA =
 

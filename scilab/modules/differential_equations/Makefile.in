@@ -28,6 +28,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -46,7 +47,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(libscidifferential_equations_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@am__append_1 = java
 @SWIG_TRUE@am__append_2 = swig
@@ -79,7 +81,8 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_etcdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_rootdir)" \
-	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscidifferential_equations_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscidifferential_equations_la_DEPENDENCIES =  \
@@ -158,6 +161,8 @@ libscidifferential_equations_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscidifferential_equations_la_etc_DATA) \
 	$(libscidifferential_equations_la_root_DATA) \
 	$(libscidifferential_equations_la_sci_gateway_DATA)
+libscidifferential_equations_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscidifferential_equations_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -480,13 +485,22 @@ modulename = differential_equations
 libscidifferential_equations_la_rootdir = $(mydatadir)
 libscidifferential_equations_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### differential_equations : init scripts ####
+#### differential_equations : init scripts ####
 libscidifferential_equations_la_etcdir = $(mydatadir)/etc
 libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/differential_equations.start
 
-#### differential_equations : gateway declaration ####
+#### differential_equations : gateway declaration ####
 libscidifferential_equations_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations_gateway.xml
+
+#### differential_equations : include files ####
+libscidifferential_equations_la_includedir = $(pkgincludedir)/differential_equations
+libscidifferential_equations_la_include_HEADERS = includes/gw_differential_equations1.h \
+includes/gw_differential_equations2.h \
+includes/gw_differential_equations3.h \
+includes/gw_differential_equations4.h \
+includes/gw_differential_equations6.h
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1178,6 +1192,23 @@ uninstall-libscidifferential_equations_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)/$$f"; \
 	done
+install-libscidifferential_equations_la_includeHEADERS: $(libscidifferential_equations_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscidifferential_equations_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscidifferential_equations_la_includedir)"
+	@list='$(libscidifferential_equations_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscidifferential_equations_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscidifferential_equations_la_includedir)/$$f'"; \
+	  $(libscidifferential_equations_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscidifferential_equations_la_includedir)/$$f"; \
+	done
+
+uninstall-libscidifferential_equations_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscidifferential_equations_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscidifferential_equations_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscidifferential_equations_la_includedir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1256,9 +1287,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidifferential_equations_la_etcdir)" "$(DESTDIR)$(libscidifferential_equations_la_rootdir)" "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidifferential_equations_la_etcdir)" "$(DESTDIR)$(libscidifferential_equations_la_rootdir)" "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" "$(DESTDIR)$(libscidifferential_equations_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1308,6 +1339,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscidifferential_equations_la_etcDATA \
+	install-libscidifferential_equations_la_includeHEADERS \
 	install-libscidifferential_equations_la_rootDATA \
 	install-libscidifferential_equations_la_sci_gatewayDATA
 
@@ -1348,6 +1380,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
+	uninstall-libscidifferential_equations_la_includeHEADERS \
 	uninstall-libscidifferential_equations_la_rootDATA \
 	uninstall-libscidifferential_equations_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1364,6 +1397,7 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am \
 	install-libscidifferential_equations_la_etcDATA \
+	install-libscidifferential_equations_la_includeHEADERS \
 	install-libscidifferential_equations_la_rootDATA \
 	install-libscidifferential_equations_la_sci_gatewayDATA \
 	install-man install-pdf install-pdf-am \
@@ -1373,6 +1407,7 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libscidifferential_equations_la_etcDATA \
+	uninstall-libscidifferential_equations_la_includeHEADERS \
 	uninstall-libscidifferential_equations_la_rootDATA \
 	uninstall-libscidifferential_equations_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

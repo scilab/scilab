@@ -336,68 +336,95 @@ libscicore_la_rootdir = $(mydatadir)
 libscicore_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### core : init scripts ####
+#### core : init scripts ####
 libscicore_la_etcdir = $(mydatadir)/etc
 libscicore_la_etc_DATA = etc/core.quit etc/core.start
 
-#### core : gateway declaration ####
+#### core : gateway declaration ####
 libscicore_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicore_la_sci_gateway_DATA = sci_gateway/core_gateway.xml
 
-#### core :  dtd files ####
+#### core :  dtd files ####
 libscicore_la_xmldir = $(mydatadir)/xml
 libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 
-#### core : include files ####
+#### core : include files ####
 libscicore_la_includedir=$(pkgincludedir)/core
 libscicore_la_include_HEADERS = \
-includes/CallScilab.h \
-includes/IsAScalar.h \
-includes/intmacr2tree.h \
-includes/core_math.h \
-includes/stack-def.h \
-includes/xscion.h \
-includes/stack.h \
-includes/setgetSCIpath.h \
-includes/getmodules.h \
-includes/callinter.h \
-includes/sciquit.h \
-includes/gw_core.h \
-includes/stack-c.h \
-includes/version.h \
-includes/Os_specific.h \
-includes/stack1.h \
-includes/SetScilabEnvironment.h \
-includes/returnanan.h \
-includes/stack2.h \
-includes/realmain.h \
-includes/stack3.h \
-includes/machine.h \
-includes/ExceptionMessage.h \
-includes/prompt.h \
-includes/loadversion.h \
-includes/tmpdir.h \
-includes/SCIHOME.h \
-includes/warningmode.h \
-includes/InitializeCore.h \
-includes/scirun.h \
-includes/fromjava.h \
-includes/inisci-c.h \
-includes/GetXmlFileEncoding.h \
-includes/syncexec.h \
+includes/BOOL.h \
 includes/callFunctionFromGateway.h \
+includes/callinter.h \
+includes/callinterf.h \
+includes/CallScilab.h \
+includes/cluni0.h \
+includes/commandwords.h \
+includes/core_math.h \
+includes/ExceptionMessage.h \
+includes/existfunction.h \
+includes/filesmanagement.h \
+includes/freeArrayOfString.h \
+includes/fromjava.h \
+includes/Funtab.h \
+includes/getcommandlineargs.h \
+includes/GetenvB.h \
+includes/GetExceptionCode.h \
+includes/getfunctionslist.h \
+includes/getmodules.h \
+includes/getvariablesname.h \
+includes/GetXmlFileEncoding.h \
+includes/gw_core.h \
+includes/gw_user.h \
+includes/gw_user2.h \
+includes/inffic.h \
+includes/inisci-c.h \
+includes/InitializeCore.h \
+includes/intmacr2tree.h \
+includes/isanan.h \
+includes/IsAScalar.h \
+includes/islittleendian.h \
 includes/librarieslist.h \
 includes/libraryinfo.h \
-includes/getvariablesname.h \
-includes/commandwords.h \
-includes/existfunction.h \
-includes/getfunctionslist.h \
+includes/loadversion.h \
+includes/machine.h \
+includes/machine.h.in \
+includes/machine.h.vc \
+includes/Os_specific.h \
+includes/PARAMS.h \
+includes/PATH_MAX.h \
+includes/prompt.h \
+includes/realmain.h \
+includes/returnanan.h \
+includes/returnProperty.h \
+includes/returnPropertyList.h \
+includes/SCIHOME.h \
+includes/scilabDefaults.h \
+includes/scilabmode.h \
+includes/scimem.h \
+includes/sciquit.h \
+includes/scirun.h \
+includes/setgetSCIpath.h \
+includes/SetScilabEnvironment.h \
+includes/sigbas.h \
+includes/stack-c.h \
+includes/stack-def.h \
+includes/stack.h \
+includes/stack1.h \
+includes/stack2.h \
+includes/stack3.h \
 includes/stackinfo.h \
+includes/stackTypeVariable.h \
+includes/stamp-h1 \
+includes/syncexec.h \
+includes/texmacs.h \
 includes/timerEvents.h \
-includes/freeArrayOfString.h
+includes/tmpdir.h \
+includes/version.h \
+includes/warningmode.h \
+includes/x_main.h \
+includes/xscion.h \
+includes/Thread_Wrapper.h
 
-
-#### core : demos files ####
+#### core : demos files ####
 libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
 libscicore_la_demosintro_DATA = demos/intro/extf.sce \
 demos/intro/Makefile.mak \

@@ -15,7 +15,7 @@ pkglib_LTLIBRARIES = libscifftw.la
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
 
-#### fftw : init scripts ####
+#### fftw : init scripts ####
 libscifftw_la_etcdir = $(mydatadir)/etc
 libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
@@ -40,7 +40,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 #### fftw : Conf files ####
 libscifftw_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### fftw : gateway declaration ####
+#### fftw : gateway declaration ####
 libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
@@ -55,7 +55,7 @@ libscifftw_la_CFLAGS=  	-Iincludes/ \
 
 libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
-#### fftw : include files ####
+#### fftw : include files ####
 libscifftw_la_includedir=$(pkgincludedir)/fftw
 libscifftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
 includes/sci_fftwlibraryisloaded.h \
@@ -65,7 +65,8 @@ includes/gw_fftw.h \
 includes/sci_fftw.h \
 includes/sci_get_fftw_wisdom.h \
 includes/sci_set_fftw_wisdom.h \
-includes/sci_fftw_forget_wisdom.h
+includes/sci_fftw_forget_wisdom.h \
+includes/with_fftw.h
 
 else
 

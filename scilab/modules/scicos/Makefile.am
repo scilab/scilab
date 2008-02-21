@@ -131,8 +131,10 @@ libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/intcscicos.h \
 includes/scicos.h \
-includes/gw_scicos.h
-
+includes/gw_scicos.h \
+includes/scicos-def.h \
+includes/scicos_free.h \
+includes/scicos_malloc.h
 
 #### scicos : cosf files ####
 libsciscicos_la_cosfdir=$(mydatadir)

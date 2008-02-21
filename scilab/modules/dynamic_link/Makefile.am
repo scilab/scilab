@@ -37,16 +37,22 @@ modulename=dynamic_link
 libscidynamic_link_la_rootdir = $(mydatadir)
 libscidynamic_link_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### dynamic_link : init scripts #### 
+#### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
 libscidynamic_link_la_etc_DATA = etc/dynamic_link.quit etc/dynamic_link.start
 
-#### dynamic_link : gateway declaration ####
+#### dynamic_link : gateway declaration ####
 libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml
 
+#### dynamic_link : include files ####
+libscidynamic_link_la_includedir=$(pkgincludedir)/dynamic_link
+libscidynamic_link_la_include_HEADERS = includes/AddFunctionInTable.h \
+includes/addinter.h \
+includes/dynamic_link.h \
+includes/gw_dynamic_link.h
 
-#### dynamic_link : compilation scripts #### 
+#### dynamic_link : compilation scripts #### 
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/
 libscidynamic_link_la_script_DATA = src/scripts/Makefile.in \
 src/scripts/configure.ac \
@@ -62,4 +68,5 @@ src/scripts/depcomp \
 src/scripts/install-sh \
 src/scripts/missing \
 src/scripts/scicompile.sh
+
 include $(top_srcdir)/Makefile.incl.am

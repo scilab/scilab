@@ -101,17 +101,19 @@ libsciio_la_rootdir = $(mydatadir)
 libsciio_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### io : init scripts ####
+####ï¿½io : init scripts ####
 libsciio_la_etcdir = $(mydatadir)/etc
 libsciio_la_etc_DATA = etc/io.quit etc/io.start
 
-#### io : gateway declaration ####
+####ï¿½io : gateway declaration ####
 libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
-#### io : include files ####
+####ï¿½io : include files ####
 libsciio_la_includedir=$(pkgincludedir)/io
 libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
-includes/gw_io.h
+includes/gw_io.h \
+includes/getenvc.h \
+includes/setenvc.h
 
 include $(top_srcdir)/Makefile.incl.am

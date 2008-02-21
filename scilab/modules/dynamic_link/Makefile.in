@@ -29,6 +29,7 @@
 
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -47,7 +48,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(libscidynamic_link_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@am__append_1 = java
 @SWIG_TRUE@am__append_2 = swig
@@ -82,7 +84,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_etcdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_rootdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)"
+	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)" \
+	"$(DESTDIR)$(libscidynamic_link_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscidynamic_link_la_DEPENDENCIES =  \
@@ -133,6 +136,8 @@ DATA = $(libscidynamic_link_la_etc_DATA) \
 	$(libscidynamic_link_la_root_DATA) \
 	$(libscidynamic_link_la_sci_gateway_DATA) \
 	$(libscidynamic_link_la_script_DATA)
+libscidynamic_link_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscidynamic_link_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -345,15 +350,23 @@ modulename = dynamic_link
 libscidynamic_link_la_rootdir = $(mydatadir)
 libscidynamic_link_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### dynamic_link : init scripts #### 
+#### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
 libscidynamic_link_la_etc_DATA = etc/dynamic_link.quit etc/dynamic_link.start
 
-#### dynamic_link : gateway declaration ####
+#### dynamic_link : gateway declaration ####
 libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml
 
-#### dynamic_link : compilation scripts #### 
+#### dynamic_link : include files ####
+libscidynamic_link_la_includedir = $(pkgincludedir)/dynamic_link
+libscidynamic_link_la_include_HEADERS = includes/AddFunctionInTable.h \
+includes/addinter.h \
+includes/dynamic_link.h \
+includes/gw_dynamic_link.h
+
+
+#### dynamic_link : compilation scripts #### 
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/
 libscidynamic_link_la_script_DATA = src/scripts/Makefile.in \
 src/scripts/configure.ac \
@@ -712,6 +725,23 @@ uninstall-libscidynamic_link_la_scriptDATA:
 	  echo " rm -f '$(DESTDIR)$(libscidynamic_link_la_scriptdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscidynamic_link_la_scriptdir)/$$f"; \
 	done
+install-libscidynamic_link_la_includeHEADERS: $(libscidynamic_link_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscidynamic_link_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscidynamic_link_la_includedir)"
+	@list='$(libscidynamic_link_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscidynamic_link_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscidynamic_link_la_includedir)/$$f'"; \
+	  $(libscidynamic_link_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscidynamic_link_la_includedir)/$$f"; \
+	done
+
+uninstall-libscidynamic_link_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscidynamic_link_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscidynamic_link_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscidynamic_link_la_includedir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -790,9 +820,10 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(DATA) $(HEADERS) \
+		all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_etcdir)" "$(DESTDIR)$(libscidynamic_link_la_rootdir)" "$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_etcdir)" "$(DESTDIR)$(libscidynamic_link_la_rootdir)" "$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -842,6 +873,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscidynamic_link_la_etcDATA \
+	install-libscidynamic_link_la_includeHEADERS \
 	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
 	install-libscidynamic_link_la_scriptDATA \
@@ -884,6 +916,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
+	uninstall-libscidynamic_link_la_includeHEADERS \
 	uninstall-libscidynamic_link_la_rootDATA \
 	uninstall-libscidynamic_link_la_sci_gatewayDATA \
 	uninstall-libscidynamic_link_la_scriptDATA \
@@ -901,6 +934,7 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscidynamic_link_la_etcDATA \
+	install-libscidynamic_link_la_includeHEADERS \
 	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
 	install-libscidynamic_link_la_scriptDATA \
@@ -912,6 +946,7 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscidynamic_link_la_etcDATA \
+	uninstall-libscidynamic_link_la_includeHEADERS \
 	uninstall-libscidynamic_link_la_rootDATA \
 	uninstall-libscidynamic_link_la_sci_gatewayDATA \
 	uninstall-libscidynamic_link_la_scriptDATA \

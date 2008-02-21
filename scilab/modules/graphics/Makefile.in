@@ -870,7 +870,12 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/DestroyObjects.h includes/sci_xrects.h \
 	includes/sci_xtitle.h includes/math_graphics.h \
 	includes/sci_drawnow.h includes/sci_param3d.h \
-	includes/CurrentObjectsManagement.h includes/ObjectSelection.h
+	includes/CurrentObjectsManagement.h includes/ObjectSelection.h \
+	includes/Actions.h includes/axesScale.h includes/Contour.h \
+	includes/getDictionaryGetProperties.h \
+	includes/getDictionarySetProperties.h includes/GrayPlot.h \
+	includes/sci_xload.h includes/sci_xsave.h \
+	includes/TerminateGraphics.h
 libscigraphics_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscigraphics_la_include_HEADERS)
 ETAGS = etags
@@ -1570,7 +1575,16 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_drawnow.h \
 @GUI_TRUE@includes/sci_param3d.h \
 @GUI_TRUE@includes/CurrentObjectsManagement.h \
-@GUI_TRUE@includes/ObjectSelection.h
+@GUI_TRUE@includes/ObjectSelection.h \
+@GUI_TRUE@includes/Actions.h \
+@GUI_TRUE@includes/axesScale.h \
+@GUI_TRUE@includes/Contour.h \
+@GUI_TRUE@includes/getDictionaryGetProperties.h \
+@GUI_TRUE@includes/getDictionarySetProperties.h \
+@GUI_TRUE@includes/GrayPlot.h \
+@GUI_TRUE@includes/sci_xload.h \
+@GUI_TRUE@includes/sci_xsave.h \
+@GUI_TRUE@includes/TerminateGraphics.h
 
 
 ### graphics : ged files ###

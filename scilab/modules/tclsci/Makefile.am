@@ -248,32 +248,34 @@ tcl/BWidget-1.8.0/README.txt \
 tcl/BWidget-1.8.0/titleframe.tcl \
 tcl/html_library.tcl \
 tcl/TK_Scilab.tcl 
-#### tclsci : init scripts ####
+#### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
 libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
-#### tclsci : gateway declaration ####
+#### tclsci : gateway declaration ####
 libscitclsci_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
-#### tclsci : include files ####
+#### tclsci : include files ####
 libscitclsci_la_includedir=$(pkgincludedir)/tclsci
 libscitclsci_la_include_HEADERS = includes/setenvtcl.h\
 includes/GedManagement.h \
 includes/TCL_Global.h \
 includes/ScilabEval.h \
 includes/gw_tclsci.h \
-includes/InitializeTclTk.h
+includes/InitializeTclTk.h \
+includes/sci_TCL_SetVar.h \
+includes/TerminateTclTk.h \
+includes/withtk.h
 
-
-#### tclsci : demos files sciGUI ####
+#### tclsci : demos files sciGUI ####
 libscitclsci_la_demossciGUIdir=$(mydatadir)/demos/sciGUI/
 libscitclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
 demos/sciGUI/test_demoplay.dpf \
 demos/sciGUI/scilab01.gif \
 demos/sciGUI/logo01.gif
 
-#### tclsci : demos files tk ####
+#### tclsci : demos files tk ####
 libscitclsci_la_demostkdir=$(mydatadir)/demos/tk/
 libscitclsci_la_demostk_DATA = demos/tk/timer \
 demos/tk/tk.dem \
@@ -316,7 +318,7 @@ modulename=tclsci
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
 
-#### tclsci : init scripts ####
+#### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
 libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 

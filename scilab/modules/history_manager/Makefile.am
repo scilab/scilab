@@ -70,20 +70,22 @@ modulename=history_manager
 libscihistory_manager_la_rootdir = $(mydatadir)
 libscihistory_manager_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### history_manager : init scripts ####
+#### history_manager : init scripts ####
 libscihistory_manager_la_etcdir = $(mydatadir)/etc
 libscihistory_manager_la_etc_DATA = etc/history_manager.quit etc/history_manager.start
 
-#### history_manager : gateway declaration ####
+#### history_manager : gateway declaration ####
 libscihistory_manager_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihistory_manager_la_sci_gateway_DATA = sci_gateway/history_manager_gateway.xml
 
-#### history_manager : include files ####
+#### history_manager : include files ####
 libscihistory_manager_la_includedir=$(pkgincludedir)/history_manager
 libscihistory_manager_la_include_HEADERS = includes/gw_history_manager.h \
-includes/HistoryManager.h
+includes/HistoryManager.h \
+includes/InitializeHistoryManager.h \
+includes/TerminateHistoryManager.h
 
-#### SWIG Declaration ####
+####ï¿½SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i
 
 if GUI

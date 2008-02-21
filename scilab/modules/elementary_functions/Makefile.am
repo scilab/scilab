@@ -424,21 +424,27 @@ libscielementary_functions_la_root_DATA = changelog.txt license.txt readme.txt v
 
 
 
-#### elementary_functions : init scripts ####
+#### elementary_functions : init scripts ####
 libscielementary_functions_la_etcdir = $(mydatadir)/etc
 libscielementary_functions_la_etc_DATA = etc/elementary_functions.quit etc/elementary_functions.start
 
-#### elementary_functions : gateway declaration ####
+#### elementary_functions : gateway declaration ####
 libscielementary_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscielementary_functions_la_sci_gateway_DATA = sci_gateway/elementary_functions_gateway.xml
 
 
-#### elementary_functions : include files ####
+#### elementary_functions : include files ####
 libscielementary_functions_la_includedir=$(pkgincludedir)/elementary_functions
 libscielementary_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementary_functions.h \
 includes/elementary_functions.h \
-includes/xerhlt.h
+includes/xerhlt.h \
+includes/idmax.h \
+includes/idmin.h \
+includes/int2db.h \
+includes/rea2b.h \
+includes/rea2db.h \
+includes/scidcopy.h \
+includes/unsfdcopy.h
 
 include $(top_srcdir)/Makefile.incl.am
-

@@ -26,15 +26,15 @@ modulename=jvm
 libscijvm_la_rootdir = $(mydatadir)
 libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### jvm : init scripts ####
+#### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
 libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
-#### jvm : gateway declaration ####
+#### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
 
-#### jvm : include files ####
+#### jvm : include files ####
 libscijvm_la_includedir=$(pkgincludedir)/jvm
 libscijvm_la_include_HEADERS = includes/TerminateJVM.h \
 includes/getScilabJavaVM.h \
@@ -42,7 +42,9 @@ includes/getScilabJNIEnv.h \
 includes/InitializeJVM.h \
 includes/gw_jvm.h \
 includes/addToClasspath.h \
-includes/addToLibrarypath.h
+includes/addToLibrarypath.h \
+includes/catchIfJavaException.h \
+includes/getScilabObject.h
 
 if GUI
 

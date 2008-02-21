@@ -434,7 +434,6 @@ libsciscicos_blocks_la_LIBADD = \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
 libsciscicos_blocks_la_root_DATA = changelog.txt license.txt readme.txt version.xml
@@ -445,7 +444,16 @@ libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
 #### scicos_blocks : include files ####
 libsciscicos_blocks_la_includedir=$(pkgincludedir)/scicos_blocks
-libsciscicos_blocks_la_include_HEADERS = 
+libsciscicos_blocks_la_include_HEADERS = includes/blocks-vc.h \
+includes/blocks.h.vc \
+includes/scicos_block.h \
+includes/scicos_block4.h \
+includes/scoBase.h \
+includes/scoGetProperty.h \
+includes/scoMemoryScope.h \
+includes/scoMisc.h \
+includes/scoSetProperty.h \
+includes/scoWindowScope.h
 
 #### scicos_blocks : MACROS ####
 MACROSDIRSEXT= macros/Branching \

@@ -534,8 +534,16 @@ includes/math_graphics.h \
 includes/sci_drawnow.h \
 includes/sci_param3d.h \
 includes/CurrentObjectsManagement.h \
-includes/ObjectSelection.h
-
+includes/ObjectSelection.h \
+includes/Actions.h \
+includes/axesScale.h \
+includes/Contour.h \
+includes/getDictionaryGetProperties.h \
+includes/getDictionarySetProperties.h \
+includes/GrayPlot.h \
+includes/sci_xload.h \
+includes/sci_xsave.h \
+includes/TerminateGraphics.h
 
 ### graphics : ged files ###
 libscigraphics_la_geddir = $(mydatadir)/tcl/ged

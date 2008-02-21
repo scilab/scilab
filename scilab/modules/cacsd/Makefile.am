@@ -242,23 +242,23 @@ modulename=cacsd
 libscicacsd_la_rootdir = $(mydatadir)
 libscicacsd_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### cacsd : init scripts ####
+####ï¿½cacsd : init scripts ####
 libscicacsd_la_etcdir = $(mydatadir)/etc
 libscicacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
 
-#### cacsd : gateway declaration ####
+####ï¿½cacsd : gateway declaration ####
 libscicacsd_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicacsd_la_sci_gateway_DATA = sci_gateway/cacsd_gateway.xml
 
-#### cacsd : include files ####
+####ï¿½cacsd : include files ####
 libscicacsd_la_includedir=$(pkgincludedir)/cacsd
 libscicacsd_la_include_HEADERS = includes/gw_cacsd0.h \
 includes/gw_cacsd1.h \
 includes/gw_cacsd2.h \
-includes/gw_cacsd3.h
+includes/gw_cacsd3.h \
+includes/gw_slicot.h
 
-
-#### cacsd : demos files ####
+####ï¿½cacsd : demos files ####
 libscicacsd_la_demosdir=$(mydatadir)
 nobase_libscicacsd_la_demos_DATA = demos/tracking/track.dem \
 demos/lqg/lqg.dem \

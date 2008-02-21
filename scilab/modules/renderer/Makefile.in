@@ -16,7 +16,7 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE
+###ï¿½TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
 
@@ -334,6 +334,7 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
 	src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
 	src/cpp/axesDrawing/YAxesDrawerJoGL.cpp \
+	src/cpp/segsDrawing/DecomposeSegsStrategy.cpp \
 	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
@@ -599,7 +600,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-XAxesDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-XAxesDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-YAxesDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-YAxesDrawerJoGL.lo
+@GUI_TRUE@	libscirenderer_la-YAxesDrawerJoGL.lo \
+@GUI_TRUE@	libscirenderer_la-DecomposeSegsStrategy.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1082,7 +1084,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
+@GUI_TRUE@src/cpp/axesDrawing/YAxesDrawerJoGL.cpp \
+@GUI_TRUE@src/cpp/segsDrawing/DecomposeSegsStrategy.cpp
 
 
 # List of the gateway c files
@@ -1158,17 +1161,23 @@ modulename = renderer
 libscirenderer_la_rootdir = $(mydatadir)
 libscirenderer_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### renderer : init scripts ####
+#### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
 libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
-#### renderer : gateway declaration ####
+#### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 #libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
-#### renderer : include files ####
+#### renderer : include files ####
 libscirenderer_la_includedir = $(pkgincludedir)/renderer
-libscirenderer_la_include_HEADERS = includes/gw_renderer.h
+libscirenderer_la_include_HEADERS = includes/gw_renderer.h \
+includes/BuildDrawingObserver.h \
+includes/DrawingBridge.h \
+includes/GetJavaProperty.h \
+includes/GraphicSynchronizerInterface.h \
+includes/SetJavaProperty.h
+
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
@@ -1339,6 +1348,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableText.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DecomposeSegsStrategy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawTextBoxStrategy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawabelGrayplotJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArc.Plo@am__quote@
@@ -3479,6 +3489,13 @@ libscirenderer_la-YAxesDrawerJoGL.lo: src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/YAxesDrawerJoGL.cpp' object='libscirenderer_la-YAxesDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YAxesDrawerJoGL.lo `test -f 'src/cpp/axesDrawing/YAxesDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
+
+libscirenderer_la-DecomposeSegsStrategy.lo: src/cpp/segsDrawing/DecomposeSegsStrategy.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DecomposeSegsStrategy.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DecomposeSegsStrategy.Tpo -c -o libscirenderer_la-DecomposeSegsStrategy.lo `test -f 'src/cpp/segsDrawing/DecomposeSegsStrategy.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DecomposeSegsStrategy.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-DecomposeSegsStrategy.Tpo $(DEPDIR)/libscirenderer_la-DecomposeSegsStrategy.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DecomposeSegsStrategy.cpp' object='libscirenderer_la-DecomposeSegsStrategy.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DecomposeSegsStrategy.lo `test -f 'src/cpp/segsDrawing/DecomposeSegsStrategy.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DecomposeSegsStrategy.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

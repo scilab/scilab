@@ -350,26 +350,29 @@ modulename = output_stream
 libscioutput_stream_la_rootdir = $(mydatadir)
 libscioutput_stream_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### output_stream : init scripts ####
+#### output_stream : init scripts ####
 libscioutput_stream_la_etcdir = $(mydatadir)/etc
 libscioutput_stream_la_etc_DATA = etc/output_stream.quit etc/output_stream.start
 
-#### output_stream : gateway declaration ####
+#### output_stream : gateway declaration ####
 libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioutput_stream_la_sci_gateway_DATA = 
 
-#### output_stream : include files ####
+#### output_stream : include files ####
 libscioutput_stream_la_includedir = $(pkgincludedir)/output_stream
 libscioutput_stream_la_include_HEADERS = includes/cerro.h \
-		includes/erro.h \
-		includes/error.h \
-		includes/errmds.h \
-		includes/sciprint.h \
-		includes/sciprint_nd.h \
-		includes/Scierror.h
+includes/erro.h \
+includes/error.h \
+includes/errmds.h \
+includes/sciprint.h \
+includes/sciprint_nd.h \
+includes/Scierror.h \
+includes/basout.h \
+includes/msgs.h \
+includes/sciprint_full.h
 
 
-#### output_stream : demos files ####
+#### output_stream : demos files ####
 libscioutput_stream_la_demosintrodir = $(mydatadir)/demos/intro/
 libscioutput_stream_la_demosintro_DATA = 
 

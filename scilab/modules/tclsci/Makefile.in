@@ -191,7 +191,8 @@ DATA = $(libscitclsci_la_demossciGUI_DATA) \
 am__libscitclsci_la_include_HEADERS_DIST = includes/setenvtcl.h \
 	includes/GedManagement.h includes/TCL_Global.h \
 	includes/ScilabEval.h includes/gw_tclsci.h \
-	includes/InitializeTclTk.h
+	includes/InitializeTclTk.h includes/sci_TCL_SetVar.h \
+	includes/TerminateTclTk.h includes/withtk.h
 libscitclsci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscitclsci_la_include_HEADERS)
 ETAGS = etags
@@ -630,28 +631,31 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/TK_Scilab.tcl 
 
 
-#### tclsci : init scripts ####
+#### tclsci : init scripts ####
 @TCLTK_FALSE@libscitclsci_la_etcdir = $(mydatadir)/etc
-#### tclsci : init scripts ####
+#### tclsci : init scripts ####
 @TCLTK_TRUE@libscitclsci_la_etcdir = $(mydatadir)/etc
 @TCLTK_FALSE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 @TCLTK_TRUE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
 
-#### tclsci : gateway declaration ####
+#### tclsci : gateway declaration ####
 @TCLTK_TRUE@libscitclsci_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @TCLTK_TRUE@libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
 
-#### tclsci : include files ####
+#### tclsci : include files ####
 @TCLTK_TRUE@libscitclsci_la_includedir = $(pkgincludedir)/tclsci
 @TCLTK_TRUE@libscitclsci_la_include_HEADERS = includes/setenvtcl.h\
 @TCLTK_TRUE@includes/GedManagement.h \
 @TCLTK_TRUE@includes/TCL_Global.h \
 @TCLTK_TRUE@includes/ScilabEval.h \
 @TCLTK_TRUE@includes/gw_tclsci.h \
-@TCLTK_TRUE@includes/InitializeTclTk.h
+@TCLTK_TRUE@includes/InitializeTclTk.h \
+@TCLTK_TRUE@includes/sci_TCL_SetVar.h \
+@TCLTK_TRUE@includes/TerminateTclTk.h \
+@TCLTK_TRUE@includes/withtk.h
 
 
-#### tclsci : demos files sciGUI ####
+#### tclsci : demos files sciGUI ####
 @TCLTK_TRUE@libscitclsci_la_demossciGUIdir = $(mydatadir)/demos/sciGUI/
 @TCLTK_TRUE@libscitclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
 @TCLTK_TRUE@demos/sciGUI/test_demoplay.dpf \
@@ -659,7 +663,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@demos/sciGUI/logo01.gif
 
 
-#### tclsci : demos files tk ####
+#### tclsci : demos files tk ####
 @TCLTK_TRUE@libscitclsci_la_demostkdir = $(mydatadir)/demos/tk/
 @TCLTK_TRUE@libscitclsci_la_demostk_DATA = demos/tk/timer \
 @TCLTK_TRUE@demos/tk/tk.dem \

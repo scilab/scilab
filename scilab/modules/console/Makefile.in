@@ -378,14 +378,14 @@ modulename = console
 libsciconsole_la_rootdir = $(mydatadir)
 libsciconsole_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### console : init scripts ####
+####ï¿½console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
 
-#### SWIG Declaration ####
+####ï¿½SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GuiManagement.i
 
-#### console : include files ####
+####ï¿½console : include files ####
 libscishell_la_includedir = $(pkgincludedir)/console
 libscishell_la_include_HEADERS = includes/ClearConsole.h \
 includes/ClearConsolePart.h \
@@ -395,7 +395,17 @@ includes/GetCharWithoutOutput.h \
 includes/InitializeConsole.h \
 includes/PromptToHome.h \
 includes/ScilabLinesUpdate.h \
-includes/SetConsolePrompt.h
+includes/SetConsolePrompt.h \
+includes/ClearConsole.hxx \
+includes/ClearConsolePart.hxx \
+includes/ConsoleIsWaitingForInput.h \
+includes/ConsoleIsWaitingForInput.hxx \
+includes/ConsolePrintf.hxx \
+includes/ConsoleRead.hxx \
+includes/GetCharWithoutOutput.hxx \
+includes/PromptToHome.hxx \
+includes/ScilabLinesUpdate.hxx \
+includes/SetConsolePrompt.hxx
 
 
 # Provides macros compilation, Java compilation, cleaning

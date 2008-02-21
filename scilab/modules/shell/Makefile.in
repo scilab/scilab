@@ -383,7 +383,11 @@ libscishell_la_includedir = $(pkgincludedir)/shell
 libscishell_la_include_HEADERS = includes/gw_shell.h \
 includes/scilines.h \
 includes/InitializeShell.h \
-includes/TerminateShell.h
+includes/TerminateShell.h \
+includes/more.h \
+includes/PutChar.h \
+includes/tohome.h \
+includes/zzledt.h
 
 @GUI_TRUE@USEANT = 1
 

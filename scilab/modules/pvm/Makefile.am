@@ -78,7 +78,8 @@ libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
 #### pvm : include files ####
 libscipvm_la_includedir=$(pkgincludedir)/pvm
-libscipvm_la_include_HEADERS = includes/gw_pvm.h
+libscipvm_la_include_HEADERS = includes/gw_pvm.h \
+includes/with_pvm.h
 
 #### pvm : demos files ####
 libscipvm_la_demosdir=$(mydatadir)/demos/

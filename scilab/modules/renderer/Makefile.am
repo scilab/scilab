@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### TEMPLATE MAKEFILE
+###ï¿½TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
 
@@ -356,17 +356,22 @@ modulename=renderer
 libscirenderer_la_rootdir = $(mydatadir)
 libscirenderer_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### renderer : init scripts ####
+#### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
 libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
-#### renderer : gateway declaration ####
+#### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 #libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
-#### renderer : include files ####
+#### renderer : include files ####
 libscirenderer_la_includedir=$(pkgincludedir)/renderer
-libscirenderer_la_include_HEADERS = includes/gw_renderer.h
+libscirenderer_la_include_HEADERS = includes/gw_renderer.h \
+includes/BuildDrawingObserver.h \
+includes/DrawingBridge.h \
+includes/GetJavaProperty.h \
+includes/GraphicSynchronizerInterface.h \
+includes/SetJavaProperty.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

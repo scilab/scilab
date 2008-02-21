@@ -147,7 +147,7 @@ am__libscifftw_la_include_HEADERS_DIST =  \
 	includes/sci_disposefftwlibrary.h includes/sci_fftw_flags.h \
 	includes/gw_fftw.h includes/sci_fftw.h \
 	includes/sci_get_fftw_wisdom.h includes/sci_set_fftw_wisdom.h \
-	includes/sci_fftw_forget_wisdom.h
+	includes/sci_fftw_forget_wisdom.h includes/with_fftw.h
 libscifftw_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscifftw_la_include_HEADERS)
 ETAGS = etags
@@ -337,7 +337,7 @@ pkglib_LTLIBRARIES = libscifftw.la
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
 
-#### fftw : init scripts ####
+#### fftw : init scripts ####
 libscifftw_la_etcdir = $(mydatadir)/etc
 libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_FALSE@FFTW_C_SOURCES = src/nofftw/nofftw.c
@@ -360,7 +360,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 #### fftw : Conf files ####
 @FFTW_TRUE@libscifftw_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### fftw : gateway declaration ####
+#### fftw : gateway declaration ####
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @FFTW_TRUE@libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 @FFTW_FALSE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
@@ -374,7 +374,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 @FFTW_TRUE@libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
-#### fftw : include files ####
+#### fftw : include files ####
 @FFTW_TRUE@libscifftw_la_includedir = $(pkgincludedir)/fftw
 @FFTW_TRUE@libscifftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
 @FFTW_TRUE@includes/sci_fftwlibraryisloaded.h \
@@ -384,7 +384,8 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@includes/sci_fftw.h \
 @FFTW_TRUE@includes/sci_get_fftw_wisdom.h \
 @FFTW_TRUE@includes/sci_set_fftw_wisdom.h \
-@FFTW_TRUE@includes/sci_fftw_forget_wisdom.h
+@FFTW_TRUE@includes/sci_fftw_forget_wisdom.h \
+@FFTW_TRUE@includes/with_fftw.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
