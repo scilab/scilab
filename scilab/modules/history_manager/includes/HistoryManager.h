@@ -13,6 +13,7 @@
 /*------------------------------------------------------------------------*/
 #ifndef __HISTORYMANAGER_C_H__
 #define __HISTORYMANAGER_C_H__
+#include "BOOL.h"
 #include "machine.h" /* BOOL */
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
@@ -26,20 +27,21 @@ extern "C" {
 	BOOL historyIsEnabled(void);
 
 	/**
+	 * append lines to History manager
+	 * @param array of string
+	 * @param size of the array of string
+	 * @return TRUE or FALSE
+	 */
+	BOOL appendLinesToScilabHistory(char **lines_, int numberoflines);
+	// Note it is lines_ because line is a keyword for term stuff
+
+	/**
 	* add a line to History manager
 	* @param a line to add
 	* line isn't added if it is the same as previous (FALSE)
 	* @return TRUE or FALSE
 	*/
 	BOOL appendLineToScilabHistory(char *line);
-
-	/**
-	* append lines to History manager
-	* @param array of string
-	* @param size of the array of string
-	* @return TRUE or FALSE
-	*/
-	BOOL appendLinesToScilabHistory(char **lines,int numberoflines);
 
 	/**
 	* Display history
