@@ -217,6 +217,8 @@ voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL;
 voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
 voidsetMessageBoxModaljintjbooleanID=NULL; 
+jbooleanisToolbarVisiblejintID=NULL; 
+voidsetToolbarVisiblejintjbooleanID=NULL; 
 
 
 }
@@ -359,6 +361,8 @@ voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL;
 voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
 voidsetMessageBoxModaljintjbooleanID=NULL; 
+jbooleanisToolbarVisiblejintID=NULL; 
+voidsetToolbarVisiblejintjbooleanID=NULL; 
 
 
 }
@@ -3611,6 +3615,54 @@ exit(EXIT_FAILURE);
 jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxModaljintjbooleanID ,id, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+bool CallScilabBridge::isToolbarVisible (JavaVM * jvm_, long figNum){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID jbooleanisToolbarVisiblejintID = curEnv->GetStaticMethodID(cls, "isToolbarVisible", "(I)Z" ) ;
+if (jbooleanisToolbarVisiblejintID == NULL) {
+std::cerr << "Could not access to the method " << "isToolbarVisible" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanisToolbarVisiblejintID ,figNum);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
+
+void CallScilabBridge::setToolbarVisible (JavaVM * jvm_, long figNum, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+jmethodID voidsetToolbarVisiblejintjbooleanID = curEnv->GetStaticMethodID(cls, "setToolbarVisible", "(IZ)V" ) ;
+if (voidsetToolbarVisiblejintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setToolbarVisible" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetToolbarVisiblejintjbooleanID ,figNum, status_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

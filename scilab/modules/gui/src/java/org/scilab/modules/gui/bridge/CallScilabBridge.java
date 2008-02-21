@@ -1706,4 +1706,38 @@ public class CallScilabBridge {
 	public static void setFrameRelief(int id, String reliefType) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setRelief(reliefType);
 	}
+	
+	/******************/
+	/*                */
+	/* TOOLBAR BRIDGE */
+	/*                */
+	/******************/
+	
+	/**
+	 * Set the visibility of a Toolbar
+	 * @param figNum the parentfigure
+	 * @param status true to set the Toolbar visible
+	 */
+	public static void setToolbarVisible(int figNum, boolean status) {
+		if (figNum == -1) {
+			ScilabConsole.getConsole().getToolBar().setVisible(status);
+		} else {
+			((ScilabRendererProperties) FigureMapper
+					.getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().setVisible(status);
+		}
+	}
+
+	/**
+	 * Get the visibility of a Toolbar
+	 * @param figNum the parentfigure
+	 * @return true to set the Toolbar visible
+	 */
+	public static boolean isToolbarVisible(int figNum) {
+		if (figNum == -1) {
+			return ScilabConsole.getConsole().getToolBar().isVisible();
+		} else {
+			return ((ScilabRendererProperties) FigureMapper
+					.getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().isVisible();
+		}
+	}
 }

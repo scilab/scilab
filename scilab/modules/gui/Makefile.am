@@ -1,6 +1,8 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006
+### Vincent COUVERT <vincent.couvert@inria.fr>
+### INRIA - Scilab 2008
 ##########
 
 include $(top_srcdir)/Makefile.incl.am
@@ -40,6 +42,7 @@ src/cpp/PopupMenu.cpp \
 src/cpp/ContextMenu.cpp \
 src/cpp/ListBox.cpp \
 src/cpp/Frame.cpp \
+src/cpp/Toolbar.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \
@@ -108,7 +111,6 @@ sci_gateway/c/sci_getinstalledlookandfeels.c \
 sci_gateway/c/sci_setlookandfeel.c \
 sci_gateway/c/sci_about.c \
 sci_gateway/c/sci_ClipBoard.c \
-sci_gateway/c/sci_hidetoolbar.c \
 sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_uigetdir.c \
 sci_gateway/c/sci_uicontrol.c \

@@ -442,5 +442,13 @@
             <parameter name="id" type="int"/>
             <parameter name="status" type="boolean"/>
         </method>      
+<!-- Toolbar -->
+	<method name="isToolbarVisible" returnType="boolean" modifier="static">      
+            <parameter name="figNum" type="int"/>
+        </method>      
+	<method name="setToolbarVisible" returnType="void" modifier="static">
+            <parameter name="figNum" type="int"/>
+            <parameter name="status" type="boolean"/>
+        </method>      
   </object>
 </package>

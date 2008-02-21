@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +18,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 /**
  * Interface for SimpleToolBar the associated object to Scilab GUIs ToolBar
  * @author Marouane BEN JELLOUL
+ * @author Vincent COUVERT
  */
 public interface SimpleToolBar {
 	
@@ -42,5 +44,17 @@ public interface SimpleToolBar {
 	 * @return id the id of the corresponding toolbar object
 	 */
 	int getElementId();
+	
+	/**
+	 * Get the visibility of the TooBar
+	 * @return true if the ToolBar is Visible
+	 */
+	boolean isVisible();
+
+	/**
+	 * Set the visibility of the Toolbar
+	 * @param newVisibleState true to set the toolbar visible
+	 */
+	void setVisible(boolean newVisibleState);
 	
 }

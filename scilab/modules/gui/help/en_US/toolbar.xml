@@ -9,8 +9,7 @@
 
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="toolbar">show or hide a toolbar
-  (Windows)</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="toolbar">show or hide a toolbar</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>state1=toolbar(winnum,state2)</CALLING_SEQUENCE_ITEM>
@@ -32,7 +31,7 @@
         <PARAM_NAME>winum</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: window's number (-1 : console )</SP>
+          <SP>: window's number (-1: Scilab console window)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -47,7 +46,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>show or hide a toolbar (Windows).</P>
+    <P>show or hide a toolbar.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[toolbar(-1,'off')
@@ -59,5 +58,8 @@ toolbar(h.figure_id,'off')
 
 ]]></EXAMPLE>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
+  <AUTHORS>
+  <AUTHORS_ITEM>Allan CORNET</AUTHORS_ITEM>
+  <AUTHORS_ITEM>Vincent COUVERT</AUTHORS_ITEM>
+  </AUTHORS>
 </MAN>

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,8 +34,7 @@ int C2F(sci_getlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_getinstalledlookandfeels) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_setlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l));
-int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l));
-int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l));
+int sci_toolbar(char *fname,unsigned long l);
 int C2F(sci_about) _PARAMS((char *fname,unsigned long l));
 int sci_uicontrol(char *fname,unsigned long l);
 int sci_uimenu(char *fname,unsigned long l);

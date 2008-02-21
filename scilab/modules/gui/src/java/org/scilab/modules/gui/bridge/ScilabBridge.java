@@ -273,6 +273,23 @@ public class ScilabBridge {
 		ScilabToolBarBridge.addSeparator(toolbar);
 	}
 
+	/**
+	 * Set the visibility of the Toolbar
+	 * @param toolbar the ToolBar
+	 * @param newVisibleState true to set the toolbar visible
+	 */
+	public static void setVisible(ToolBar toolbar, boolean newVisibleState) {
+		ScilabToolBarBridge.setVisible(toolbar, newVisibleState);
+	}
+	
+	/**
+	 * Get the visibility of the TooBar
+	 * @param toolbar the ToolBar
+	 * @return true if the ToolBar is Visible
+	 */
+	public static boolean isVisible(ToolBar toolbar) {
+		return ScilabToolBarBridge.isVisible(toolbar);
+	}
 
 	
 	/****************/

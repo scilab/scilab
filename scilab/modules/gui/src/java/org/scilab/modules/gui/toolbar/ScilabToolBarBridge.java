@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,6 +19,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 /**
  * Bridge for Scilab ToolBar in GUIs
  * @author Marouane BEN JELLOUL
+ * @author Vincent COUVERT
  */
 public class ScilabToolBarBridge {
 
@@ -52,5 +54,25 @@ public class ScilabToolBarBridge {
 	public static void addSeparator(ToolBar toolbar) {
 		toolbar.getAsSimpleToolBar().addSeparator();
 	}
+
+	/**
+	 * Set the visibility of the Toolbar
+	 * @param toolbar the ToolBar
+	 * @param newVisibleState true to set the toolbar visible
+	 */
+	public static void setVisible(ToolBar toolbar, boolean newVisibleState) {
+		toolbar.getAsSimpleToolBar().setVisible(newVisibleState);
+	}
+	
+	/**
+	 * Get the visibility of the TooBar
+	 * @param toolbar the ToolBar
+	 * @return true if the ToolBar is Visible
+	 */
+	public static boolean isVisible(ToolBar toolbar) {
+		return toolbar.getAsSimpleToolBar().isVisible();
+	}
+
+
 
 }

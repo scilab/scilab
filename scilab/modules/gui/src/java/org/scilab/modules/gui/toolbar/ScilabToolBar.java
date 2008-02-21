@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ *  
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -22,6 +23,7 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 /**
  * Class for Scilab ToolBars in GUIs
  * @author Marouane BEN JELLOUL
+ * @author Vincent COUVERT
  */
 public class ScilabToolBar extends ScilabUIElement implements ToolBar {
 
@@ -93,11 +95,11 @@ public class ScilabToolBar extends ScilabUIElement implements ToolBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
+	 * Get the visibility of the TooBar
+	 * @return true if the ToolBar is Visible
 	 */
 	public boolean isVisible() {
-		throw new UnsupportedOperationException();
+		return ScilabBridge.isVisible(this);
 	}
 
 	/**
@@ -117,10 +119,10 @@ public class ScilabToolBar extends ScilabUIElement implements ToolBar {
 	}
 
 	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newVisibleState is not used
+	 * Set the visibility of the Toolbar
+	 * @param newVisibleState true to set the toolbar visible
 	 */
 	public void setVisible(boolean newVisibleState) {
-		throw new UnsupportedOperationException();
+		ScilabBridge.setVisible(this, newVisibleState);
 	}
 }

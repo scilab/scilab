@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,73 +16,107 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "Toolbar.h"
+#include "getPropertyAssignedValue.h"
+#include "WindowList.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_toolbar) _PARAMS((char *fname,unsigned long l))
+int sci_toolbar(char *fname,unsigned long l)
 {
-	static int l1,n1,m1;
-	char *Output=NULL;
+  static int l1,n1,m1;
+  
+  char *Output = NULL;
 
-	CheckRhs(1,2);
-	CheckLhs(0,1);
+  char **param = NULL;
+  
+  int figNum = -2;
 
-	Output=(char*)MALLOC(4*sizeof(char));
+  CheckRhs(1,2);
+  CheckLhs(0,1);
+  
+  /* Figure number */
+  if ( GetType(1) == sci_matrix )
+    {
+      GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+      if (m1*n1 != 1)
+        {
+          Scierror(999, _("%s: Wrong size for first input argument: Scalar expected.\n"), fname);
+          return FALSE;
+        }
+      figNum = *istk(l1);
+      
+      if (figNum < -1)
+        {
+          Scierror(999, _("%s: Wrong value for first input argument: value greater than -2 expected.\n"), fname);
+          return FALSE;
+        }
 
-	if (Rhs==1)
-	{
-		if ( GetType(1) == sci_matrix )
-		{
-			int numwin=-2;
-			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+      if (figNum != -1) /* Check that the figure exists */
+        {
+          if (getFigureFromIndex(figNum)==NULL)
+            {
+              Scierror(999, _("%s: Wrong value for first input argument: 'Graphic Window Number %d' does not exist.\n"), fname, figNum);
+              return FALSE;
+            }
+        }
+    }
+  else
+    {
+      Scierror(999, _("%s: Wrong type for first input argument: Double value expected.\n"), fname);
+      return FALSE;
+    }
 
-			numwin=*istk(l1);
+  if (Rhs==2) /* New status */
+    {
+      if ((GetType(2) == sci_strings))
+        {
+          GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&l1);
+          param = getStringMatrixFromStack(l1);
 
-			/* TO DO interface with java */
+          if (m1*n1 != 1)
+            {
+              Scierror(999, _("%s: Wrong size for second input argument: 'on' or 'off' expected.\n"), fname);
+              return FALSE;
+            }
+          
+          if ( (strcmp(param[0],"off")==0) || (strcmp(param[0],"on")==0) )
+            {
+              setToolbarVisible(figNum, strcmp(param[0],"on")==0);
+            }
+          else
+            {
+              Scierror(999, _("%s: Wrong value second input argument: 'on' or 'off' expected.\n"), fname);
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for second input argument: 'on' or 'off' expected.\n"), fname);
+          return FALSE;
+        }
+    }
 
-			strcpy(Output,"off");
-		}
-		else
-		{
-			Scierror(999,_("Input argument type incorrect"));
-			return 0;
-		}
-	}
-	else /*Rhs == 2 */
-	{
-		if ( (GetType(1) == sci_matrix) && (GetType(2) == sci_strings) )
-		{
-			int numwin=-2;
-			char *param=NULL;
+  /* Returned value */
+  if (isToolbarVisible(figNum))
+    {
+      Output = strdup("on");
+    }
+  else
+    {
+      Output = strdup("off");
+    }
+  
+  n1 = 1;
+  m1 = (int)strlen(Output);
+  CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&m1,&n1,&Output);
+  LhsVar(1) = Rhs+1;
+  C2F(putlhsvar)();	
 
-			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-			numwin=*istk(l1);
+  if (Output) 
+    {
+      FREE(Output);
+      Output=NULL;
+    }
 
-			GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-			param=cstk(l1);
-
-			if ( (strcmp(param,"off")==0) || (strcmp(param,"on")==0) )
-			{
-				/* TO DO interface with java */
-
-				strcpy(Output,"off");
-			}
-			else
-			{
-				Scierror(999,_("Second parameter incorrect: 'on' or 'off'"));
-				return 0;
-			}
-		}
-		else
-		{
-			Scierror(999,_("Input argument(s) type incorrect"));
-			return 0;
-		}
-	}
-
-	n1=1;
-	CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
-	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
-	if (Output) {FREE(Output);Output=NULL;}
-	return 0;
+  return TRUE;
 }
 /*--------------------------------------------------------------------------*/

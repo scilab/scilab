@@ -429,10 +429,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_hidetoolbar.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_mpopup.c"
 				>
 			</File>
@@ -618,6 +614,10 @@
 			</File>
 			<File
 				RelativePath=".\TerminateGui.c"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\Toolbar.cpp"
 				>
 			</File>
 			<File
@@ -1211,6 +1211,14 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\TerminateGui.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Toolbar.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\Toolbar.hxx"
 				>
 			</File>
 			<File

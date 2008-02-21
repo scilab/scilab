@@ -17,6 +17,8 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006
+### Vincent COUVERT <vincent.couvert@inria.fr>
+### INRIA - Scilab 2008
 ##########
 
 ##########
@@ -108,9 +110,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_setmenu.c sci_gateway/c/sci_getlookandfeel.c \
 	sci_gateway/c/sci_getinstalledlookandfeels.c \
 	sci_gateway/c/sci_setlookandfeel.c sci_gateway/c/sci_about.c \
-	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_hidetoolbar.c \
-	sci_gateway/c/sci_toolbar.c sci_gateway/c/sci_uigetdir.c \
-	sci_gateway/c/sci_uicontrol.c \
+	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_toolbar.c \
+	sci_gateway/c/sci_uigetdir.c sci_gateway/c/sci_uicontrol.c \
 	sci_gateway/c/sci_uicontextmenu.c sci_gateway/c/sci_uimenu.c \
 	sci_gateway/c/sci_uiwait.c sci_gateway/c/sci_mpopup.c \
 	src/cpp/InitUIMenu.cpp src/jni/CallScilabBridge.cpp \
@@ -121,7 +122,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
 	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
 	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
-	src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	src/cpp/ListBox.cpp src/cpp/Frame.cpp src/cpp/Toolbar.cpp \
 	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
 	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
 	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
@@ -188,7 +189,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_setlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-sci_about.lo \
 @GUI_TRUE@	libscigui_la-sci_ClipBoard.lo \
-@GUI_TRUE@	libscigui_la-sci_hidetoolbar.lo \
 @GUI_TRUE@	libscigui_la-sci_toolbar.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetdir.lo \
 @GUI_TRUE@	libscigui_la-sci_uicontrol.lo \
@@ -210,7 +210,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-RadioButton.lo libscigui_la-Slider.lo \
 @GUI_TRUE@	libscigui_la-PopupMenu.lo \
 @GUI_TRUE@	libscigui_la-ContextMenu.lo libscigui_la-ListBox.lo \
-@GUI_TRUE@	libscigui_la-Frame.lo libscigui_la-SetUimenuLabel.lo \
+@GUI_TRUE@	libscigui_la-Frame.lo libscigui_la-Toolbar.lo \
+@GUI_TRUE@	libscigui_la-SetUimenuLabel.lo \
 @GUI_TRUE@	libscigui_la-GetUimenuLabel.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolStyle.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolString.lo \
@@ -568,6 +569,7 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/ContextMenu.cpp \
 @GUI_TRUE@src/cpp/ListBox.cpp \
 @GUI_TRUE@src/cpp/Frame.cpp \
+@GUI_TRUE@src/cpp/Toolbar.cpp \
 @GUI_TRUE@src/cpp/SetUimenuLabel.cpp \
 @GUI_TRUE@src/cpp/GetUimenuLabel.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolStyle.cpp \
@@ -636,7 +638,6 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_setlookandfeel.c \
 @GUI_TRUE@sci_gateway/c/sci_about.c \
 @GUI_TRUE@sci_gateway/c/sci_ClipBoard.c \
-@GUI_TRUE@sci_gateway/c/sci_hidetoolbar.c \
 @GUI_TRUE@sci_gateway/c/sci_toolbar.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetdir.c \
 @GUI_TRUE@sci_gateway/c/sci_uicontrol.c \
@@ -882,6 +883,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Slider.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Toolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UicontrolStyleToString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
@@ -896,7 +898,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_hidetoolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_mpopup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_raise_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo@am__quote@
@@ -1164,13 +1165,6 @@ libscigui_la-sci_ClipBoard.lo: sci_gateway/c/sci_ClipBoard.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_ClipBoard.lo `test -f 'sci_gateway/c/sci_ClipBoard.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ClipBoard.c
 
-libscigui_la-sci_hidetoolbar.lo: sci_gateway/c/sci_hidetoolbar.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_hidetoolbar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_hidetoolbar.Tpo -c -o libscigui_la-sci_hidetoolbar.lo `test -f 'sci_gateway/c/sci_hidetoolbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_hidetoolbar.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_hidetoolbar.Tpo $(DEPDIR)/libscigui_la-sci_hidetoolbar.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_hidetoolbar.c' object='libscigui_la-sci_hidetoolbar.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_hidetoolbar.lo `test -f 'sci_gateway/c/sci_hidetoolbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_hidetoolbar.c
-
 libscigui_la-sci_toolbar.lo: sci_gateway/c/sci_toolbar.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_toolbar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_toolbar.Tpo -c -o libscigui_la-sci_toolbar.lo `test -f 'sci_gateway/c/sci_toolbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_toolbar.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_toolbar.Tpo $(DEPDIR)/libscigui_la-sci_toolbar.Plo
@@ -1373,6 +1367,13 @@ libscigui_la-Frame.lo: src/cpp/Frame.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Frame.cpp' object='libscigui_la-Frame.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-Frame.lo `test -f 'src/cpp/Frame.cpp' || echo '$(srcdir)/'`src/cpp/Frame.cpp
+
+libscigui_la-Toolbar.lo: src/cpp/Toolbar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-Toolbar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-Toolbar.Tpo -c -o libscigui_la-Toolbar.lo `test -f 'src/cpp/Toolbar.cpp' || echo '$(srcdir)/'`src/cpp/Toolbar.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-Toolbar.Tpo $(DEPDIR)/libscigui_la-Toolbar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Toolbar.cpp' object='libscigui_la-Toolbar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-Toolbar.lo `test -f 'src/cpp/Toolbar.cpp' || echo '$(srcdir)/'`src/cpp/Toolbar.cpp
 
 libscigui_la-SetUimenuLabel.lo: src/cpp/SetUimenuLabel.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUimenuLabel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUimenuLabel.Tpo -c -o libscigui_la-SetUimenuLabel.lo `test -f 'src/cpp/SetUimenuLabel.cpp' || echo '$(srcdir)/'`src/cpp/SetUimenuLabel.cpp
