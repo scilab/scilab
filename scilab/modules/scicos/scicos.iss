@@ -41,7 +41,7 @@ Source: modules\{#SCICOS}\etc\{#SCICOS}.quit; DestDir: {app}\modules\{#SCICOS}\e
 Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\etc; Components: {#COMPN_SCICOS}
 ;
 ;
-Source: modules\{#SCICOS}\help\addchapter.sce; DestDir: {app}\modules\{#ACTION_BINDING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
+Source: modules\{#SCICOS}\help\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
 Source: modules\{#SCICOS}\help\*.htm; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs ;Components: {#COMPN_SCICOS}
 ;Source: modules\{#SCICOS}\help\images\*.gif; DestDir: {app}\modules\{#SCICOS}\help\images; Components: {#COMPN_SCICOS}
 ;
