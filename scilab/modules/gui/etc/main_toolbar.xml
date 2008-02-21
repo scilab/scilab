@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <toolbar>
     <!-- New Scilab -->
-    <button icon="window-new.png" enabled="false"/>
+    <button icon="window-new.png">
+        <callback instruction="notavailablemessage();" type="0"/>
+    </button>
 
     <separator/>
 
@@ -24,9 +26,13 @@
     <separator/>
 
     <!-- Copy -->
-    <button icon="edit-copy.png" enabled="false"/>
+    <button icon="edit-copy.png">
+        <callback instruction="notavailablemessage();" type="0"/>
+    </button>
     <!-- Paste -->
-    <button icon="edit-paste.png" enabled="false"/>
+    <button icon="edit-paste.png">
+        <callback instruction="notavailablemessage();" type="0"/>
+    </button>
 
     <separator/>
 
@@ -45,9 +51,13 @@
     <separator/>
 
     <!-- Change font -->
-    <button icon="format-text-bold.png" enabled="false"/>
+    <button icon="format-text-bold.png">
+        <callback instruction="notavailablemessage();" type="0"/>
+    </button>
     <!-- Print -->
-    <button icon="printer.png" enabled="false"/>
+    <button icon="printer.png">
+        <callback instruction="notavailablemessage();" type="0"/>
+    </button>
 
     <separator/>
 

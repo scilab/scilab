@@ -5,7 +5,9 @@
 
    <!-- File menu -->
    <menu label="File" mnemonic="F" enabled="false">
-        <submenu label="Launch new Scilab" mnemonic="N" enabled="false"/> 
+        <submenu label="Launch new Scilab" mnemonic="N"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
         <submenu label="Exec..." mnemonic="E">
             <callback 
@@ -40,7 +42,9 @@
               clear %fileToLoad"
             type="0"/>
         </submenu> 
-        <submenu label="Save..." mnemonic="S" enabled="false"/> 
+        <submenu label="Save..." mnemonic="S"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
         <submenu label="Change current directory..." mnemonic="C"> 
             <callback 
@@ -56,8 +60,12 @@
             <callback instruction="if iswaitingforinput() then printf('\n%s\n\n%s\n',prompt(),getcwd()); else printf('\n\n%s\n\n',getcwd());end" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
-        <submenu label="Print" mnemonic="P" enabled="false"/> 
+        <submenu label="Print setup..." mnemonic="R"> 
+             <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="Print" mnemonic="P"> 
+             <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
         <submenu label="Quit" mnemonic="Q"> 
             <callback instruction="exit();" type="0"/>
@@ -66,21 +74,39 @@
 
     <!-- Edit menu -->
     <menu label="Edit" mnemonic="E" enabled="false">
-        <submenu label="Select all" mnemonic="S" enabled="false"/> 
+        <submenu label="Select all" mnemonic="S"> 
+             <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
-        <submenu label="Copy" mnemonic="C" enabled="false"/> 
-        <submenu label="Paste" mnemonic="P" enabled="false"/> 
-        <submenu label="Empty clipboard" mnemonic="L" enabled="false"/> 
+        <submenu label="Copy" mnemonic="C"> 
+             <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="Paste" mnemonic="P"> 
+             <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="Empty clipboard" mnemonic="L"> 
+             <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
     </menu>
 
     <!-- Preferences menu -->
     <menu label="Preferences" mnemonic="P" enabled="false">
-        <submenu label="Language" mnemonic="L" enabled="false"/> 
-        <submenu label="Colors" mnemonic="C" enabled="false"/> 
-        <submenu label="File association" mnemonic="F" enabled="false"/> 
-        <submenu label="Toolbar" mnemonic="L" enabled="false"/> 
+        <submenu label="Language" mnemonic="L"> 
+              <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="Colors" mnemonic="C"> 
+              <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="File association" mnemonic="F"> 
+              <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="Toolbar" mnemonic="L"> 
+              <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
-        <submenu label="Clear History" mnemonic="H" enabled="false"/> 
+        <submenu label="Clear History" mnemonic="H"> 
+              <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <submenu label="Clear Console" mnemonic="O"> 
           <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
         </submenu>
@@ -105,11 +131,11 @@
             <callback instruction="scipad();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Scicos" mnemonic="S" enabled="false"> 
+        <submenu label="Scicos" mnemonic="S"> 
             <callback instruction="scicos();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="EditGraph" mnemonic="E" enabled="false"> 
+        <submenu label="EditGraph" mnemonic="E"> 
             <callback instruction="edit_graph();" type="0"/>
         </submenu>
         <separator/>
@@ -127,14 +153,20 @@
         <submenu label="Scilab Help" mnemonic="S"> 
             <callback instruction="help();" type="0"/>
         </submenu>
-        <submenu label="Configure" mnemonic="C" enabled="false"/> 
+        <submenu label="Configure" mnemonic="C"> 
+               <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
         <submenu label="Scilab demonstrations" mnemonic="D">
              <callback instruction="scilab_demos();" type="0"/>
-       </submenu> 
+        </submenu> 
         <separator/>
-        <submenu label="Web links" mnemonic="W" enabled="false"/> 
+        <submenu label="Web links" mnemonic="W"> 
+               <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
-        <submenu label="About Scilab..." mnemonic="A" enabled="false"/> 
+        <submenu label="About Scilab..." mnemonic="A"> 
+              <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
     </menu>
 </menubar>

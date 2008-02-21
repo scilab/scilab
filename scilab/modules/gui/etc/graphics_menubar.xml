@@ -16,7 +16,9 @@
               clear %fileToLoad"
             type="0"/>
         </submenu> 
-        <submenu label="Save..." mnemonic="S" enabled="false"/> 
+        <submenu label="Save..." mnemonic="S"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
         <submenu label="Export to BMP..." mnemonic="E"> 
             <callback 
@@ -68,10 +70,16 @@
               clear %fileToWrite"
             type="0"/>
         </submenu>
-        <submenu label="Copy to clipboard" mnemonic="C" enabled="false"/> 
+        <submenu label="Copy to clipboard" mnemonic="C"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
-        <submenu label="Print setup..." mnemonic="R" enabled="false"/> 
-        <submenu label="Print" mnemonic="P" enabled="false"/> 
+        <submenu label="Print setup..." mnemonic="R"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="Print" mnemonic="P"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
         <submenu label="Close" mnemonic="C">
             <callback instruction="delete(scf([SCILAB_FIGURE_ID]));" type="0"/>
@@ -79,12 +87,20 @@
     </menu>
 
     <menu label="Tools" mnemonic="T">
-        <submenu label="Toolbar" mnemonic="T" enabled="false"/> 
+        <submenu label="Toolbar" mnemonic="T"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
-        <submenu label="Zoom" mnemonic="Z" enabled="false"/> 
-        <submenu label="UnZoom" mnemonic="U" enabled="false"/> 
+        <submenu label="Zoom" mnemonic="Z"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="UnZoom" mnemonic="U"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
         <separator/>
-        <submenu label="2D/3D Rotation" mnemonic="R" enabled="false"/> 
+        <submenu label="2D/3D Rotation" mnemonic="R"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
     </menu>
 
     <menu label="Edit" mnemonic="E">
@@ -98,18 +114,20 @@
             <callback instruction="clf(scf([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Figure properties" mnemonic="F" enabled="false"> 
-            <callback instruction="ged(8,[SCILAB_FIGURE_ID]);" type="0"/>
+        <submenu label="Figure properties" mnemonic="F"> 
+            <callback instruction="ged(4,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
-        <submenu label="Axes properties" mnemonic="A" enabled="false"> 
-            <callback instruction="ged(9,[SCILAB_FIGURE_ID]);" type="0"/>
+        <submenu label="Axes properties" mnemonic="A"> 
+            <callback instruction="ged(5,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Start entity picker" mnemonic="S" enabled="false"> 
-            <callback instruction="ged(10,[SCILAB_FIGURE_ID]);" type="0"/>
+        <submenu label="Start entity picker" mnemonic="S"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+            <!--<callback instruction="ged(6,[SCILAB_FIGURE_ID]);" type="0"/>-->
         </submenu> 
-        <submenu label="Stop entity picker" mnemonic="T" enabled="false"> 
-            <callback instruction="ged(11,[SCILAB_FIGURE_ID]);" type="0"/>
+        <submenu label="Stop entity picker" mnemonic="T"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+            <!--<callback instruction="ged(7,[SCILAB_FIGURE_ID]);" type="0"/>-->
         </submenu>
     </menu>
 
@@ -118,6 +136,8 @@
             <callback instruction="help();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="About Scilab..." mnemonic="A" enabled="false"/> 
+        <submenu label="About Scilab..." mnemonic="A"> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
     </menu>
 </menubar>
