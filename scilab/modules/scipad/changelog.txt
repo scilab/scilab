@@ -3209,8 +3209,14 @@ Francois VOGEL, 31/10/07
  * version --> 6.132
 
 Francois VOGEL, 20/02/08
- * Fixed Scilab bug 2650 by working around Tk bug 1871474: Scipad didn't
-   report a saved buffer as such
- * By Scilab team: sciprompt permanently set to 0 (scipad.sci)
-                   scicos keywords loading changed (dynamickeywords.sce)
- * version --> 6.133
+* Fixed Scilab bug 2650 by working around Tk bug 1871474: Scipad didn't
+  report a saved buffer as such
+* By Scilab team: sciprompt permanently set to 0 (scipad.sci)
+  scicos keywords loading changed (dynamickeywords.sce)
+* version --> 6.133
+
+ES, 20/2/2008
+ * copyright and license (GPL) information added at the head of
+    every *sci and *tcl file (except for msg_files)
+ * version --> 6.134
+
