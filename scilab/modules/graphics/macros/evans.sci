@@ -6,6 +6,12 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+//** 21 Feb 2008 : Quick and dirty patch for Scilab 5 alpha by SM & JBS 
+//**  
+//**  BEWARE : this funtion need revision to avoid warning 
+//**           WARNING : Function xclip is obsolete.
+//**           WARNING : Please use clip_state and clip_box instead.
+
 function []=evans(n,d,kmax)
 	// Seuil maxi et mini (relatifs) de discretisation en espace
 	// Copyright INRIA
@@ -176,13 +182,13 @@ if q>0 then
     end,
   end;
   if maxi(k)>0 then
-    if gstyle=='new' then 
+    //** if gstyle=='new' then 
       plot2d(i1,i2,style=1);
       legs=[legs,'asymptotic directions']
-    else
-      plot2d(i1,i2,style=1,frameflag=0,axesflag=0);
-      legs=[legs,'asymptotic directions'],lstyle=[lstyle [1;1]];
-    end
+    //** else
+    //**   plot2d(i1,i2,style=1,frameflag=0,axesflag=0);
+    //**  legs=[legs,'asymptotic directions'],lstyle=[lstyle [1;1]];
+    //** end
      xset("clipgrf");
     for i=1:q,xsegs([i1,x1(i)+i1],[i2,y1(i)+i2]),end,
     xclip();
