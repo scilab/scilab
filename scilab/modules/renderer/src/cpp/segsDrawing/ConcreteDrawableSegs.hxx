@@ -59,6 +59,13 @@ public:
 
   virtual void removeDrawingStrategies(void);
 
+  /**
+   * Compute the bounding box a segs object
+   * Used to set the subwin size accordingly
+   * @param bounds [xmin, xmax, ymin, ymax, zmin, zmax]
+   */
+  virtual void getBoundingBox(double bounds[6]);
+
 protected:
 
   /*---------------------------------------------------------------------------------*/

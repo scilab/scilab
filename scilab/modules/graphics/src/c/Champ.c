@@ -65,9 +65,11 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 {
   integer n;
   double  xx[2],yy[2];
+  double boundingBox[6];
   integer nn1=1,nn2=2;  
   /* NG */
-  sciPointObj  *psubwin;
+  sciPointObj  * psubwin = NULL;
+  sciPointObj * newSegs = NULL;
   integer flag,type =1;
   double arsize1;
   integer *style;
@@ -83,11 +85,48 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
   
   /* get the bounding rect of the displayed champ */
-  getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;
+  /*getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;*/
   
-      
+  /* First create champ object *
+  /* F.Leray Allocation de style[dim = Nbr1] */
+  if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
+  {
+    sciprint(_("%s: No more memory.\n"),"champg");
+    return;
+  }
+
+  flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
+  arsize1 = *arfact;
+
   psubwin = sciGetCurrentSubWin() ;
+
+  /* then modify subwindow if needed */
   checkRedrawing() ;
+
+  /* force clipping */
+  sciSetIsClipping(psubwin, 0);
+
+  for(i=0;i<(*n1);i++) { style[i] = i ; }
+
+  newSegs = ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
+                          style,arsize1,colored,*arfact,typeofchamp);
+  sciSetCurrentObj(newSegs);
+
+  if( style != NULL )
+  {
+    FREE( style ) ;
+    style = NULL;
+  }
+
+  sciSetIsClipping(newSegs, 0);
+
+  /* Get segs bounding box */
+  forceRedraw(newSegs); /* update drawer */
+  sciGetAABoundingBox(newSegs, boundingBox);
+  xx[0] = boundingBox[0];
+  xx[1] = boundingBox[1];
+  yy[0] = boundingBox[2];
+  yy[1] = boundingBox[3];
 
   /* Force psubwin->is3d to FALSE: we are in 2D mode */
   if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
@@ -103,12 +142,6 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 
   pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
   pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
-
-  /* Force psubwin->axes.aaint to those given by argument aaint*/
-  /*****TO CHANGE F.Leray 10.09.04      for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
-
-  /* Force "cligrf" clipping */
-  sciSetIsClipping (psubwin,0); 
 
 
   if (sciGetGraphicMode (psubwin)->autoscaling)
@@ -149,32 +182,12 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 
   if( bounds_changed || axes_properties_changed )
   {
-    sciDrawObj(sciGetCurrentFigure());
+    forceRedraw(psubwin);
   }
 
-  flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
-  arsize1 = *arfact;
 
-  /* F.Leray Allocation de style[dim = Nbr1] */
-  if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
-  {
-    sciprint(_("%s: No more memory.\n"),"champg");
-    return;
-  }
+  sciDrawObj(sciGetCurrentFigure());
 
-  for(i=0;i<(*n1);i++) { style[i] = i ; }
-
-  sciSetCurrentObj(ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
-    style,arsize1,colored,*arfact,typeofchamp)); 
-
-  sciDrawObj( sciGetCurrentObj() ) ;
-  DrawAxesIfRequired( sciGetCurrentObj() ) ; /* force axes redrawing */
-  /* F.Leray Libération de style[dim = Nbr1]*/
-  if( style != NULL )
-  {
-    FREE( style ) ;
-    style = NULL;
-  }
   
 }
 

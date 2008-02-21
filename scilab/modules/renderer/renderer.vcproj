@@ -1088,6 +1088,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\segsDrawing\DecomposeSegsStrategy.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\segsDrawing\DrawableSegs.cpp"
 					>
 				</File>

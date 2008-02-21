@@ -106,8 +106,8 @@ void ChampDecomposer::getSegsColors(int colors[])
   }
 }
 /*---------------------------------------------------------------------------------*/
-void ChampDecomposer::getChampPos(double startXCoords[], double endXCoords[],
-                                  double startYCoords[], double endYCoords[])
+void ChampDecomposer::getDefaultChampPos(double startXCoords[], double endXCoords[],
+                                         double startYCoords[], double endYCoords[])
 {
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
   sciSegs * ppSegs = pSEGS_FEATURE(pSegs);
@@ -117,12 +117,33 @@ void ChampDecomposer::getChampPos(double startXCoords[], double endXCoords[],
   {
     for (int j = 0; j < ppSegs->Nbr2; j++)
     {
+      curMatrixIndex = i + ppSegs->Nbr1 * j;
       startXCoords[curMatrixIndex] = ppSegs->vx[i];
       endXCoords[curMatrixIndex] = ppSegs->vx[i] + ppSegs->vfx[curMatrixIndex];
       startYCoords[curMatrixIndex] = ppSegs->vy[j];
       endYCoords[curMatrixIndex] = ppSegs->vy[j] + ppSegs->vfy[curMatrixIndex];
-      curMatrixIndex++;
     }
+  }
+}
+/*---------------------------------------------------------------------------------*/
+void ChampDecomposer::getChampPos(double startXCoords[], double endXCoords[],
+                                  double startYCoords[], double endYCoords[])
+{
+  getDefaultChampPos(startXCoords, endXCoords, startYCoords, endYCoords);
+
+  // find the length of the longest vector
+  double curMaxLength = getMaxLength();
+  double maxLength = computeMaxUsableLength();
+
+  int nbSegs = getNbSegment();
+  
+  // modify the length proportionally so
+  // that the longest vector get the max usable length
+  for (int i = 0; i < nbSegs; i++)
+  {
+    double curVect[2] = {endXCoords[i] - startXCoords[i], endYCoords[i] - startYCoords[i]};
+    endXCoords[i] = startXCoords[i] + curVect[0] * maxLength / curMaxLength;
+    endYCoords[i] = startYCoords[i] + curVect[1] * maxLength / curMaxLength;
   }
 }
 /*---------------------------------------------------------------------------------*/
@@ -131,13 +152,12 @@ void ChampDecomposer::getChamp1Pos(double startXCoords[], double endXCoords[],
 {
   // same as getChampPos, but we modify the segs length
   // so that each segment has the same length as the longest vector
-  getChampPos(startXCoords, endXCoords, startYCoords, endYCoords);
+  getDefaultChampPos(startXCoords, endXCoords, startYCoords, endYCoords);
 
   // find the length of the longest vector
-  double maxLength = computeChamp1VectorLength();
+  double maxLength = computeMaxUsableLength();
 
   int nbSegs = getNbSegment();
-  // modify length
   for (int i = 0; i < nbSegs; i++)
   {
     double curVect[2] = {endXCoords[i] - startXCoords[i], endYCoords[i] - startYCoords[i]};
@@ -165,7 +185,7 @@ double ChampDecomposer::getMaxLength(void)
   return sqrt(maxLength);
 }
 /*---------------------------------------------------------------------------------*/
-double ChampDecomposer::computeChamp1VectorLength(void)
+double ChampDecomposer::computeMaxUsableLength(void)
 {
   int nbSegs = getNbSegment();
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();

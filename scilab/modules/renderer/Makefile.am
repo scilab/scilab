@@ -271,7 +271,8 @@ src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
 src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
 src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
 src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
-src/cpp/axesDrawing/YAxesDrawerJoGL.cpp
+src/cpp/axesDrawing/YAxesDrawerJoGL.cpp \
+src/cpp/segsDrawing/DecomposeSegsStrategy.cpp
 
 
 

@@ -7,18 +7,26 @@
 
 // <-- TEST WITH GRAPHIC -->
 //
-// <-- Non-regression test for bug 2726 -->
+// <-- Non-regression test for bug 2711 -->
 //
 // <-- Bugzilla URL -->
 // http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2708
 //
 // <-- Short Description -->
-// xrect hangs scilab with auto_clear mode "on"
+// The plot obtained with "champ" function is bad
 
-axes = gca();
-a.auto_clear = "on";
+  	
 
-// used to hang scilab
-xrect([0,1,1,1]);
+function yprim=f(t,y); yprim=y^2-t; endfunction
+t=-3:5; y=-3:3; nt=length(t); ny=length(y);
+ft=ones(nt,ny); fy=feval(t,y,f);
+champ(t,y,ft,fy)		
 
+a = gca();
+
+// champ data_bounds must be outside [-3,5] x [-3,3]
+if (a.data_bounds(1,1) >= -2.99) then, pause;end
+if (a.data_bounds(2,1) <= 5) then, pause;end
+if (a.data_bounds(1,2) >= -2.99) then, pause;end
+if (a.data_bounds(2,2) <= 3) then, pause;end
 

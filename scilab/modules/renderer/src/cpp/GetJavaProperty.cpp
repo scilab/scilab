@@ -82,3 +82,8 @@ void sciGetJavaViewingArea(sciPointObj * pSubwin, int * xPos, int * yPos,
   getSubwinDrawer(pSubwin)->getCamera()->getViewingArea(xPos, yPos, width, height);
 }
 /*---------------------------------------------------------------------------------*/
+void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6])
+{
+  getSegsDrawer(pSegs)->getBoundingBox(bounds);
+}
+/*---------------------------------------------------------------------------------*/

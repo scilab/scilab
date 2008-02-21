@@ -49,6 +49,13 @@ public:
    */
   virtual void getSegsColors(int colors[]) = 0;
 
+  /**
+   * Compute the bounding box a segs object
+   * Used to set the subwin size accordingly
+   * @param bounds [xmin, xmax, ymin, ymax, zmin, zmax]
+   */
+  virtual void getBoundingBox(double bounds[6]) = 0;
+
 protected:
 
   /**

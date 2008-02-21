@@ -81,6 +81,11 @@ void ConcreteDrawableSegs::removeDrawingStrategies(void)
   m_oDrawers.clear();
 }
 /*---------------------------------------------------------------------------------*/
+void ConcreteDrawableSegs::getBoundingBox(double bounds[6])
+{
+  m_pDecomposer->getBoundingBox(bounds);
+}
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableSegs::drawSegs(void)
 {
   int nbSegs = getNbSegment();

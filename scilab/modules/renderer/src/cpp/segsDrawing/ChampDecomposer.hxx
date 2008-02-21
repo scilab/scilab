@@ -51,6 +51,13 @@ public:
 
 protected:
 
+
+  /**
+   * Compute the vector [vx,vy] = [x,y] + [vx,vy];
+   */
+  void getDefaultChampPos(double startXCoords[], double endXCoords[],
+                          double startYCoords[], double endYCoords[]);
+
   /**
    * Get coordinates for a champ object (not colored)
    */
@@ -81,9 +88,9 @@ protected:
 private:
 
   /**
-   * Find the maximum length usable by segments in colored mode
+   * Find the maximum length usable by segments
    */
-  double computeChamp1VectorLength(void);
+  double computeMaxUsableLength(void);
 
 };
 

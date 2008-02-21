@@ -22,9 +22,9 @@ class DecomposeSegsStrategy
 {
 public:
 
-  DecomposeSegsStrategy(DrawableSegs * segs) {m_pDrawed = segs;}
+  DecomposeSegsStrategy(DrawableSegs * segs);
 
-  virtual ~DecomposeSegsStrategy(void) {m_pDrawed = NULL;}
+  virtual ~DecomposeSegsStrategy(void);
 
   /**
    * Compute the postions of the arraows to display
@@ -53,7 +53,19 @@ public:
    */
   DrawableSegs * getDrawedSegs(void) {return m_pDrawed;}
 
+  /**
+   * Compute the bounding box a segs object
+   * Used to set the subwin size accordingly
+   * @param bounds [xmin, xmax, ymin, ymax, zmin, zmax]
+   */
+  virtual void getBoundingBox(double bounds[6]);
+
 protected:
+
+  /**
+   * To be used in the min and max finding
+   */
+  void updateMinMax(double & curMin, double & curMax, double newVal);
 
   DrawableSegs * m_pDrawed;
 

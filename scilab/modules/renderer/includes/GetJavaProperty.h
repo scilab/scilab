@@ -84,6 +84,11 @@ void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2
 void sciGetJavaViewingArea(sciPointObj * pSubwin, int * xPos, int * yPos,
                            int * width, int * height);
 
+/**
+ * Get the bounding box used by a segs or champ object
+ */
+void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6]);
+
 #ifdef __cplusplus
 }
 #endif
