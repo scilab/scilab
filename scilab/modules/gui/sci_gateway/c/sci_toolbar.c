@@ -19,6 +19,9 @@
 #include "Toolbar.h"
 #include "getPropertyAssignedValue.h"
 #include "WindowList.h"
+#if _MSC_VER
+  #include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int sci_toolbar(char *fname,unsigned long l)
 {
