@@ -1,67 +1,27 @@
-############################################
-# TKSCILAB Gui Interface facility for Scilab
-# Bertrand Guiheneuf - 1998 
-############################################
+
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA 1998 - Bertrand Guiheneuf
+# Copyright (C) INRIA 2004 - Serge Steer
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
+############################################
+# TCLSCI Gui Interface facility for Scilab
+############################################
 
 if {[info exists SciPath]} { set env(SCIPATH) $SciPath };
-source "$env(SCIPATH)/modules/tclsci/tcl/misc.tcl"
-source "$env(SCIPATH)/modules/tclsci/tcl/callbacks.tcl"
-source "$env(SCIPATH)/modules/tclsci/tcl/tkcontrols.tcl"
-source "$env(SCIPATH)/modules/tclsci/tcl/set.tcl"
-source "$env(SCIPATH)/modules/tclsci/tcl/get.tcl"
-source "$env(SCIPATH)/modules/tclsci/tcl/figure.tcl"
-source "$env(SCIPATH)/modules/tclsci/tcl/uicontrol.tcl"
-source "$env(SCIPATH)/modules/tclsci/tcl/uimenu.tcl"
-
-
-
-
-
-######################################################################################
-######################################################################################
-######################################################################################
-
+############################################
 proc bgerror { m } {
 puts " Error: $m";
 }
+############################################
 # the root object is the first tk object
 set root .;
-
-
-# figure are special objects
-# their parent *must* be the root object
-# and we must keep a list of all figures,
-# delete them from the list when they are destroyed
-# and remember their order of creation.
-# This will allow to manage the gcf feature
-# which allows to know in which figure to draw.
-set FigList {};
-# FreeFigHandle is also a global list 
-# containing all the free figure handles.
-set FreeFigHandle {};
-
-
-set Win(0) $root;
-# this is the first object handle
-# the handle between 1 and 999 are reverved for figures handles
-set WinIdx 1000;
-
-
-set gcbo 0; # object which callback is currently executing 
-set gcf 0; #current figure index
-set gco 0; #current object handle 
-#. configure -bg #d0d0d0 ;
+############################################
 wm withdraw .;
-
-
-# default bindings 
-bind figure <Destroy> {CloseFigure %W};
-
-#set h [CreateFigure 0];
-
-
-#puts $h
-#set h1 [CreateUIControl 0  button]
- 
+############################################
