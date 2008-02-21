@@ -52,8 +52,9 @@ void DrawableClippedObject::setClipBox( void )
   case 1: // on state, use its own bounds
     {
       double * clipBounds = sciGetClipping(pObj) ; // array (x,y,w,h)
+      // beware in scilab y is upper left point
       setClipBox( clipBounds[0], clipBounds[0] + clipBounds[2],
-                  clipBounds[1], clipBounds[1] + clipBounds[3],
+                  clipBounds[1] - clipBounds[3], clipBounds[1],
                   0.0, 0.0 ) ;
       m_bXClippingEnable = true ;
       m_bYClippingEnable = true ;
