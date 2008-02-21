@@ -7,6 +7,7 @@
 
 #### Target ######
 modulename=scicos
+DISABLE_HELP_CLEAN=yes
 
 if SCICOS
 

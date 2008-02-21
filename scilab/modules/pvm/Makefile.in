@@ -1488,7 +1488,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_FALSE@@PVM_TRUE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 @PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
-@PVM_TRUE@		 if test -d $$dir; then \
+@PVM_TRUE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
 @PVM_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @PVM_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @PVM_TRUE@		fi; \
@@ -1655,7 +1655,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @GUI_FALSE@@PVM_FALSE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 @PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
-@PVM_FALSE@		 if test -d $$dir; then \
+@PVM_FALSE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
 @PVM_FALSE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @PVM_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @PVM_FALSE@		fi; \

@@ -1639,7 +1639,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_FALSE@@TCLTK_TRUE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 @TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
-@TCLTK_TRUE@		 if test -d $$dir; then \
+@TCLTK_TRUE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
 @TCLTK_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @TCLTK_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @TCLTK_TRUE@		fi; \
@@ -1806,7 +1806,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_FALSE@@TCLTK_FALSE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 @TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
-@TCLTK_FALSE@		 if test -d $$dir; then \
+@TCLTK_FALSE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
 @TCLTK_FALSE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @TCLTK_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @TCLTK_FALSE@		fi; \

@@ -1063,7 +1063,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GUI_FALSE@@JAVASCI_TRUE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 @JAVASCI_TRUE@	@for dir in $(DOCDIRS) ; do \
-@JAVASCI_TRUE@		 if test -d $$dir; then \
+@JAVASCI_TRUE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
 @JAVASCI_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 @JAVASCI_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 @JAVASCI_TRUE@		fi; \

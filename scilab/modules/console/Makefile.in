@@ -1112,7 +1112,7 @@ install-data-local:
 @GUI_FALSE@clean-local: clean-macros
 # Removes documentation (*.htm generated from .xml) 
 	@for dir in $(DOCDIRS) ; do \
-		 if test -d $$dir; then \
+		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
 			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
 			rm -f $(srcdir)/$$dir/$(DOCMASK); \
 		fi; \
