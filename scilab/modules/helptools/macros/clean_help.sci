@@ -10,14 +10,7 @@
 
 function clean_help(dirs)
 	
-	// =========================================================================================
-	// Author : Pierre MARECHAL
-	// Scilab team
-	// Copyright INRIA
-	// Date : August 2st 2006
-	//
 	// dirs is a set of directories for which html manuals are to be deleted
-	// =========================================================================================
 	
 	lines(0);
 	
@@ -27,8 +20,8 @@ function clean_help(dirs)
 	
 	ok = %F;
 	
-	// V�rification des param�tres
-	// --------------------------------------------------------------------------------
+	// Check of arguments
+	// ------------------------------------------------------------------------
 	[lhs,rhs]=argn(0);
 	if rhs > 1 then error(39); end
 	
@@ -36,29 +29,28 @@ function clean_help(dirs)
 		if type(dirs) <> 10 then error(55,1); end
 	end
 	
-	// Sauvegarde du chemin dans lequel l'on se trouve
-	// --------------------------------------------------------------------------------
+	// Save of the current dir
+	// ------------------------------------------------------------------------
 	current_directory = pwd();
 	
-	// Cas par d�faut : Nettoyage des r�pertoires cit�s dans %helps
-	// --------------------------------------------------------------------------------
+	// Default case, clean up of the %helps directories
+	// ------------------------------------------------------------------------
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
 		dirs_to_clean = %HELPS;
 		
-		//----------------------------------------------------------------------------------
-		// Patch because scicos is not written in xml
-		//----------------------------------------------------------------------------------
+		//---------------------------------------------------------------------
+		// Workaround because scicos is not written in xml
+		//---------------------------------------------------------------------
 		scs = grep(dirs_to_clean,'scicos');
 		if size(scs,'*') == 1 then dirs_to_clean(scs,:)=[]; end
-		// End of patch --------------------------------------------------------------------
-		
+		// End of patch -------------------------------------------------------
 		dirs = dirs_to_clean(:,1);
 	end
 	
-	// On transforme le ou les chemins donn�s en chemin absolu
-	// --------------------------------------------------------------------------------
+	// Translate path(s) into absolute path
+	// ------------------------------------------------------------------------
 	
 	for k=1:size(dirs,'*')
 		try
@@ -78,8 +70,8 @@ function clean_help(dirs)
 		end
 	end
 
-	// Nettoyage des r�pertoires un par un
-	// --------------------------------------------------------------------------------
+	// Cleanup directories one by one
+	// ------------------------------------------------------------------------
 
 	mprintf(gettext("-- Deleting "+getlanguage()+" help files --"));
 	
@@ -91,8 +83,8 @@ function clean_help(dirs)
 		end
 	end
 	
-	// Nettoyage des index et contents
-	// --------------------------------------------------------------------------------
+	// Clean up of indexes and contents
+	// ------------------------------------------------------------------------
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 	
