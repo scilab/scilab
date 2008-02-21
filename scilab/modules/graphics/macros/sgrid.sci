@@ -6,7 +6,15 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+
+//** 21 Feb 2008 : Quick and dirty patch for Scilab 5 alpha by SM & JBS 
+//**  
+//**  BEWARE : this funtion need revision to avoid warning 
+//**           WARNING : Function xclip is obsolete.
+//**           WARNING : Please use clip_state and clip_box instead.
+
 function [] = sgrid(zeta,wn,col)
+
 // sgrid()
 // sgrid(Z,Wn)
 // sgrid('new') 
