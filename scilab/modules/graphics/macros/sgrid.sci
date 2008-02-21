@@ -7,11 +7,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-//** 21 Feb 2008 : Quick and dirty patch for Scilab 5 alpha by SM & JBS 
-//**  
-//**  BEWARE : this funtion need revision to avoid warning 
-//**           WARNING : Function xclip is obsolete.
-//**           WARNING : Please use clip_state and clip_box instead.
 
 function [] = sgrid(zeta,wn,col)
 
@@ -57,9 +52,11 @@ end
 	// info on curves 
 
 	[rer,rec] = size(re)
-	xclip("clipgrf");
+
+        axes = gca();
+        axes.clip_state = "clipgrf";
 	xnumb(re(1,:),im(1,:),wn);
-	xclip();
+        axes.clip_state = "off";
 
 	// building an other grid 
 
@@ -77,8 +74,8 @@ end
 
 	// info on each curve ( straight lines )
 	[rer,rec] = size(re)
-	xclip("clipgrf");
+        axes.clip_state = "clipgrf";
 	xnumb(re(:,$)',im(:,$)',zeta);
-	xclip();
+        axes.clip_state = "off";
 	
 endfunction
