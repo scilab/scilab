@@ -31,9 +31,13 @@
  *     A set of elementary blocks 
  *------------------------------------------------*/
 
+#define Abs(x) ( (x) > 0) ? (x) : -(x)
+#define Min(x,y)	(((x)<(y))?(x):(y))
+#define Max(x,y)	(((x)>(y))?(x):(y))
+
 typedef  void (scicos0_block) __PARAMS((ARGS_scicos0));
 extern scicos0_block F2C(absblk), F2C(andlog), F2C(bidon), F2C(gain);
-extern scicos0_block F2C(cdummy), F2C(dband), F2C(cosblk);
+extern scicos0_block F2C(dband), F2C(cosblk);
 
 /*------------------------------------------------
  *     Scicos block simulator 
@@ -95,18 +99,6 @@ void C2F(gain)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
   C2F(dmmul)(rpar,ny,u,nu,y,ny,ny,nu,&un);
 }
 
-/*------------------------------------------------
- *     Scicos block simulator 
- *     Dummy state space x'=sin(t)
- *------------------------------------------------*/
-
-void C2F(cdummy)(flag, nevprt, t, xd, x, nx, z, nz, tvec, 
-	ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
-     integer *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
-     double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
-{
-  if ( *flag == 0 ) xd[0]=sin(*t);
-}
 
 /*------------------------------------------------
  *     Scicos block simulator 
