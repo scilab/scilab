@@ -39,8 +39,10 @@ void HorizontalBarDecomposition::getBarOrdinates(double bottom[], double top[])
 {
   sciPointObj * pPolyline = m_pDecomposition->getDrawedPolyline()->getDrawedObject();
   int nbVertices = m_pDecomposition->getDrawnVerticesLength();
-  double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
-  double * yShift = pPOLYLINE_FEATURE(pPolyline)->y_shift;
+
+  // for barh pvx and x_shift stand for abscissas
+  double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvx;
+  double * yShift = pPOLYLINE_FEATURE(pPolyline)->x_shift;
   double barWidth = pPOLYLINE_FEATURE(pPolyline)->bar_width;
 
 
@@ -65,17 +67,11 @@ void HorizontalBarDecomposition::getBarAbscissas(double left[], double right[])
 {
   sciPointObj * pPolyline = m_pDecomposition->getDrawedPolyline()->getDrawedObject();
   int nbVertices = m_pDecomposition->getDrawnVerticesLength();
-  double * xPoints = pPOLYLINE_FEATURE(pPolyline)->pvx;
-  double * xShift = pPOLYLINE_FEATURE(pPolyline)->x_shift;
+  // for barh pvy and y_shift stand for ordinates
+  double * xPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
+  double * xShift = pPOLYLINE_FEATURE(pPolyline)->y_shift;
 
   doubleArrayCopy(right, xPoints, nbVertices);
-  if (xShift != NULL)
-  {
-    for (int i = 0; i < nbVertices; i++)
-    {
-      right[i] += xShift[i];
-    }
-  }
 
   // special case for logFlags
   // bars start at x = 1 = 10^0, not x = 0 since 0 can not be displayed
@@ -89,6 +85,17 @@ void HorizontalBarDecomposition::getBarAbscissas(double left[], double right[])
   {
     setDoubleArraySingleValue(left, 0.0, nbVertices);
   }
+
+  if (xShift != NULL)
+  {
+    for (int i = 0; i < nbVertices; i++)
+    {
+      left[i] += xShift[i];
+      right[i] += xShift[i];
+    }
+  }
+
+  
 }
 /*---------------------------------------------------------------------------------*/
 

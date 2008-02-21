@@ -43,13 +43,6 @@ void VerticalBarDecomposition::getBarOrdinates(double bottom[], double top[])
 
   doubleArrayCopy(top, yPoints, nbVertices);
 
-  if (yShift != NULL)
-  {
-    for (int i = 0; i < nbVertices; i++)
-    {
-      top[i] += yShift[i];
-    }
-  }
 
   // special case for logFlags
   // bars start at y = 1 = 10^0, not y = 0 since 0 can not be displayed
@@ -64,8 +57,17 @@ void VerticalBarDecomposition::getBarOrdinates(double bottom[], double top[])
     setDoubleArraySingleValue(bottom, 0.0, nbVertices);
   }
 
-  // for barplot, bars start at y = 0
-  if (sciGetPolylineStyle(pPolyline) == 3 && yShift != NULL)
+
+  if (yShift != NULL)
+  {
+    for (int i = 0; i < nbVertices; i++)
+    {
+      top[i] += yShift[i];
+    }
+  }   
+
+  // for barplot, bars always start at y = 0
+  if (sciGetPolylineStyle(pPolyline) != 3 && yShift != NULL)
   {
     for (int i = 0; i < nbVertices; i++)
     {
