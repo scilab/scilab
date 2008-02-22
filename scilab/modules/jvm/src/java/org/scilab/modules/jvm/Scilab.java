@@ -46,8 +46,8 @@ public class Scilab {
 	
 	private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
 
-	private static final int DEFAULTWIDTH = 600;
-	private static final int DEFAULTHEIGHT = 500;
+	private static final int DEFAULTWIDTH = 650;
+	private static final int DEFAULTHEIGHT = 550;
 
 	private int mode;
 
