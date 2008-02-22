@@ -40,9 +40,10 @@ public class GlobalEventFilter {
 	 * Update ClickInfos structure when a KeyEvent occurs.
 	 * 
 	 * @param keyPressed : the key pressed.
+	 * @param figureID Scilab ID of the figure where the even occurred
 	 * @param isControlDown : is CTRL key modifier activated.
 	 */
-	public static void filterKey(int keyPressed, int figureID,boolean isControlDown) {
+	public static void filterKey(int keyPressed, int figureID, boolean isControlDown) {
 		int keyCode = keyPressed;
 		synchronized (ClickInfos.getInstance()) {
 			if (isControlDown) {
