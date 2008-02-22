@@ -707,16 +707,20 @@ int DestroyLabel (sciPointObj * pthis)
 
 int DestroyUimenu (sciPointObj * pthis)
 {
-  FREE(pUIMENU_FEATURE (pthis)->label) ;
-  FREE (pUIMENU_FEATURE (pthis)->callback);
+  if (pUIMENU_FEATURE (pthis)->callback != NULL)
+    {
+      FREE (pUIMENU_FEATURE (pthis)->callback);
+    }
 
   return sciStandardDestroyOperations(pthis) ;
 }
 
 int DestroyUicontrol (sciPointObj * pthis)
 {
-  //FREE(pUICONTROL_FEATURE (pthis)->label) ;
-  //FREE (pUICONTROL_FEATURE (pthis)->callback);
+  if (pUICONTROL_FEATURE (pthis)->callback != NULL)
+    {
+      FREE (pUICONTROL_FEATURE (pthis)->callback);
+    }
 
   return sciStandardDestroyOperations(pthis) ;
 }
