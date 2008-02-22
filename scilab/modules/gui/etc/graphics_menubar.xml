@@ -20,56 +20,58 @@
             <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Export to BMP..." mnemonic="E"> 
-            <callback 
-            instruction="
-              %fileToWrite = xgetfile('*.bmp', getcwd(), 'Select a file name');
-              if ~isempty(%fileToWrite) then 
-                xs2bmp([SCILAB_FIGURE_ID], %fileToWrite);
-              end
-              clear %fileToWrite"
-            type="0"/>
-        </submenu>
-		<submenu label="Export to GIF..." mnemonic="E"> 
-            <callback 
-            instruction="
-              %fileToWrite = xgetfile('*.gif', getcwd(), 'Select a file name');
-              if ~isempty(%fileToWrite) then 
-                xs2gif([SCILAB_FIGURE_ID], %fileToWrite);
-              end
-              clear %fileToWrite"
-            type="0"/>
-        </submenu>
-		<submenu label="Export to JPG..." mnemonic="E"> 
-            <callback 
-            instruction="
-              %fileToWrite = xgetfile('*.jpg', getcwd(), 'Select a file name');
-              if ~isempty(%fileToWrite) then 
-                xs2jpg([SCILAB_FIGURE_ID], %fileToWrite);
-              end
-              clear %fileToWrite"
-            type="0"/>
+		<submenu label="Export to ..." mnemonic="E">
+			<submenu label="BMP" mnemonic="E"> 
+				<callback 
+				instruction="
+				%fileToWrite = xgetfile('*.bmp', getcwd(), 'Select a file name');
+				if ~isempty(%fileToWrite) then 
+					xs2bmp([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite"
+				type="0"/>
+			</submenu>
+			<submenu label="GIF" mnemonic="E"> 
+				<callback 
+				instruction="
+				%fileToWrite = xgetfile('*.gif', getcwd(), 'Select a file name');
+				if ~isempty(%fileToWrite) then 
+					xs2gif([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite"
+				type="0"/>
+			</submenu>
+			<submenu label="JPG" mnemonic="E"> 
+				<callback 
+				instruction="
+				%fileToWrite = xgetfile('*.jpg', getcwd(), 'Select a file name');
+				if ~isempty(%fileToWrite) then 
+					xs2jpg([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite"
+				type="0"/>
+			</submenu>
+			<submenu label="PNG" mnemonic="E"> 
+				<callback 
+				instruction="
+				%fileToWrite = xgetfile('*.png', getcwd(), 'Select a file name');
+				if ~isempty(%fileToWrite) then 
+					xs2png([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite"
+				type="0"/>
+			</submenu>
+			<submenu label="PPM" mnemonic="E"> 
+				<callback 
+				instruction="
+				%fileToWrite = xgetfile('*.ppm', getcwd(), 'Select a file name');
+				if ~isempty(%fileToWrite) then 
+					xs2ppm([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite"
+				type="0"/>
+			</submenu>
 		</submenu>
-		<submenu label="Export to PNG..." mnemonic="E"> 
-            <callback 
-            instruction="
-              %fileToWrite = xgetfile('*.png', getcwd(), 'Select a file name');
-              if ~isempty(%fileToWrite) then 
-                xs2png([SCILAB_FIGURE_ID], %fileToWrite);
-              end
-              clear %fileToWrite"
-            type="0"/>
-		</submenu>
-		<submenu label="Export to PPM..." mnemonic="E"> 
-            <callback 
-            instruction="
-              %fileToWrite = xgetfile('*.ppm', getcwd(), 'Select a file name');
-              if ~isempty(%fileToWrite) then 
-                xs2ppm([SCILAB_FIGURE_ID], %fileToWrite);
-              end
-              clear %fileToWrite"
-            type="0"/>
-        </submenu>
         <submenu label="Copy to clipboard" mnemonic="C"> 
             <callback instruction="notavailablemessage();" type="0"/>
         </submenu>

@@ -15,10 +15,8 @@ package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.AWTEvent;
 import java.awt.Dimension;
-
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLJPanel;
-
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -76,8 +74,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	/**
 	 * Create a Scilab Canvas
 	 * 
-	 * @param figureIndex
-	 *            index of the displayed figure
+	 * @param figureIndex index of the displayed figure
 	 * @return the created canvas
 	 */
 	public static SwingScilabCanvas createCanvas(int figureIndex) {

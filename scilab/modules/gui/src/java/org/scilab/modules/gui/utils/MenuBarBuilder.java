@@ -196,15 +196,15 @@ public final class MenuBarBuilder {
 
 			NodeList menus = dom.getElementsByTagName(MENU);
 			Menu menu = ScilabMenu.createMenu();
-			for (int i = 0; i < menus.getLength(); i++) {
-				menu = ScilabMenu.createMenu();
+			for (int i = 0; i < menus.getLength(); i++) {				
+				menu = ScilabMenu.createMenu();				
 				menu.setText(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue());
 				if (menus.item(i).getAttributes().getNamedItem(MNEMONIC) != null) {
 					menu.setMnemonic(menus.item(i).getAttributes().getNamedItem(MNEMONIC).getNodeValue().charAt(0));
 				}
 				if (menus.item(i).getAttributes().getNamedItem(ENABLED) != null) {
 					menu.setEnabled(menus.item(i).getAttributes().getNamedItem(ENABLED).getNodeValue().equals(TRUE));
-				}
+				}			
 				addSubMenus(menu, i);
 				mb.add(menu);
 			}
@@ -218,18 +218,21 @@ public final class MenuBarBuilder {
 		 */
 		public void addSubMenus(Menu menu, int index) {
 			Node submenu = dom.getElementsByTagName(MENU).item(index).getFirstChild();
+			//Menu menuChild = ScilabMenu.createMenu();
 			
-			while (submenu != null) {
-				
+			while (submenu != null) {				
 				if (submenu.getNodeName() == SEPARATOR) {
 					// Add a separator
 					menu.addSeparator();
-				} else if (submenu.getNodeName() == SUBMENU) {
-					// Add a submenu
+				} else if (submenu.getNodeName() == SUBMENU) {					
+					// Add a submenu					
 					MenuItem menuItem = ScilabMenuItem.createMenuItem();
+					// Add the submenu to the parent menu
+					menu.add(menuItem);
 
 					// First we have to read its attributes
-					NamedNodeMap attributes = submenu.getAttributes();
+					NamedNodeMap attributes = submenu.getAttributes();					
+					
 					for (int i = 0; i < attributes.getLength(); i++) {
 						if (attributes.item(i).getNodeName() == LABEL) {
 							menuItem.setText(attributes.item(i).getNodeValue());
@@ -254,20 +257,72 @@ public final class MenuBarBuilder {
 									commandType = Integer.parseInt(cbAttributes.item(j).getNodeValue());
 								}
 							}
-						if (command != null && commandType != CallBack.UNTYPED) {
+							if (command != null && commandType != CallBack.UNTYPED) {
 							menuItem.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
 							}
 						}
+						else if (callback.getNodeName() == SUBMENU){
+							addSubMenuItem(menuItem, callback);
+						}						
 						// Read next child
 						callback = callback.getNextSibling();
-					}
-					// Add the submenu to the parent menu
-					menu.add(menuItem);
+					}					
+					
 				}
 				// Read next child
 				submenu = submenu.getNextSibling();
 			}
 		}
+		
+		/**
+		 * Add submenu for menu
+		 * @param menuItem will become a menu with subMenuItems
+		 * @param node to get attributs of the menu
+		 */
+		public void addSubMenuItem(MenuItem menuItem, Node node) {				
+
+			NamedNodeMap attributes = node.getAttributes();
+			MenuItem subMenuItem = ScilabMenuItem.createMenuItem();
+			
+			for (int i = 0; i < attributes.getLength(); i++) {
+				if (attributes.item(i).getNodeName() == LABEL) {
+					subMenuItem.setText(attributes.item(i).getNodeValue());
+					subMenuItem.setText(attributes.item(i).getNodeValue());
+				} else if (attributes.item(i).getNodeName() == MNEMONIC) {
+					subMenuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
+				} else if (attributes.item(i).getNodeName() == ENABLED) {
+					subMenuItem.setEnabled(attributes.item(i).getNodeValue().equals(TRUE));
+				}
+			}
+
+			// Then we get its callback (if exists)
+			Node callback = node.getFirstChild();
+			while (callback != null) {
+				if (callback.getNodeName() == CALLBACK) {
+					NamedNodeMap cbAttributes = callback.getAttributes();
+					String command = null;
+					int commandType = CallBack.UNTYPED;
+					for (int j = 0; j < cbAttributes.getLength(); j++) {
+						if (cbAttributes.item(j).getNodeName() == INSTRUCTION) {
+							command = cbAttributes.item(j).getNodeValue();
+						} else if (cbAttributes.item(j).getNodeName() == TYPE) {
+							commandType = Integer.parseInt(cbAttributes.item(j).getNodeValue());
+						}
+					}
+					if (command != null && commandType != CallBack.UNTYPED) {
+						subMenuItem.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
+					}
+				}
+				else if (callback.getNodeName() == SUBMENU){
+					addSubMenuItem(subMenuItem, callback);
+				}						
+				// Read next child
+				callback = callback.getNextSibling();
+			}				
+			menuItem.add(subMenuItem);
+			
+		}		
+		
 		
 		/**
 		 * Replace pattern [SCILAB_FIGURE_ID] by the figure index
