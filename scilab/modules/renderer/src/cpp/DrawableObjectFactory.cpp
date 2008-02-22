@@ -119,8 +119,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
   case SCI_PANNER:
   case SCI_SBH:
   case SCI_SBV:
-  case SCI_MENU:
-  case SCI_MENUCONTEXT:
   case SCI_STATUSB:
   case SCI_UIMENU: 
   case SCI_CONSOLE:

@@ -70,11 +70,6 @@ int sciDestroyFrame(       sciPointObj * pThis ) ;
 int sciDestroyWindow(      sciPointObj * pThis ) ;
 int sciDestroyWindowFrame( sciPointObj * pThis ) ;
 int sciDestroyScreen(      sciPointObj * pThis ) ;
-/* UNUSED : */
-
-extern int sciDelLabelsMenu (sciPointObj * pthis);
-extern int DestroyMenuContext (sciPointObj * pthis);
-extern int DestroySciMenu (sciPointObj * pthis);
 
 /* ADDED */
 

@@ -270,12 +270,6 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_SBV:
       return  &(pSBV_FEATURE (pobj)->relationship);
       break;
-    case SCI_MENU:
-      return  &(pMENU_FEATURE (pobj)->relationship);
-      break;
-    case SCI_MENUCONTEXT:
-      return  &(pMENUCONTEXT_FEATURE (pobj)->relationship);
-      break;
     case SCI_UICONTEXTMENU:
       return  &(pUICONTEXTMENU_FEATURE (pobj)->relationship);
       break;

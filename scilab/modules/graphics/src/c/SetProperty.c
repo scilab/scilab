@@ -212,9 +212,7 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) != SCI_TITLE)       &&
      (sciGetEntityType(pobj) != SCI_LEGEND)      &&
      (sciGetEntityType(pobj) != SCI_AXES)        &&
-     (sciGetEntityType(pobj) != SCI_MENU)        &&
      (sciGetEntityType(pobj) != SCI_UICONTROL)   &&
-     (sciGetEntityType(pobj) != SCI_MENUCONTEXT) &&
      (sciGetEntityType(pobj) != SCI_STATUSB)    &&
      (sciGetEntityType(pobj) != SCI_LABEL)      &&
      (sciGetEntityType(pobj) != SCI_UIMENU) )
@@ -246,8 +244,6 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) == SCI_TITLE)       ||
      (sciGetEntityType(pobj) == SCI_LEGEND)      ||
      (sciGetEntityType(pobj) == SCI_AXES)        ||
-     (sciGetEntityType(pobj) == SCI_MENU)        ||
-     (sciGetEntityType(pobj) == SCI_MENUCONTEXT) ||
      (sciGetEntityType(pobj) == SCI_STATUSB)     ||
      (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
      (sciGetEntityType(pobj) == SCI_FIGURE)      ||
@@ -341,8 +337,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_SURFACE:
 	case SCI_LIGHT:
 	case SCI_AXES:
-	case SCI_MENU:
-	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_TEXT:
@@ -374,8 +368,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_SURFACE:
 	case SCI_LIGHT:
 	case SCI_AXES:
-	case SCI_MENU:
-	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_TEXT:
@@ -397,8 +389,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
       switch (sciGetEntityType (pobj))
 	{
 	case SCI_AXES:
-	case SCI_MENU:
-	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	case SCI_TEXT:
 	case SCI_TITLE:
@@ -417,8 +407,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
       switch (sciGetEntityType (pobj))
 	{
 	case SCI_AXES:
-	case SCI_MENU:
-	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	case SCI_TEXT:
 	case SCI_TITLE:
@@ -1043,8 +1031,6 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     default:
@@ -1117,8 +1103,6 @@ sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     default:
@@ -1148,14 +1132,6 @@ int sciInitFontBackground( sciPointObj * pobj, int colorindex )
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_AXES:
-      (sciGetFontContext(pobj))->backgroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
-    case SCI_MENU:
-      (sciGetFontContext(pobj))->backgroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
-    case SCI_MENUCONTEXT:
       (sciGetFontContext(pobj))->backgroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
@@ -1234,14 +1210,6 @@ int sciInitFontForeground( sciPointObj * pobj, int colorindex )
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_AXES:
-      (sciGetFontContext(pobj))->foregroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
-    case SCI_MENU:
-      (sciGetFontContext(pobj))->foregroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
-    case SCI_MENUCONTEXT:
       (sciGetFontContext(pobj))->foregroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
@@ -1327,8 +1295,6 @@ int sciInitFontStyle( sciPointObj * pobj, int iAttributes )
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     default:
@@ -1413,8 +1379,6 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
@@ -1457,8 +1421,6 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: 
@@ -1563,8 +1525,6 @@ int sciInitLegendPos( sciPointObj * pobj, int x, int y )
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: 
@@ -1641,8 +1601,6 @@ int sciInitIsClipping( sciPointObj * pobj, int value )
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1769,8 +1727,6 @@ int sciInitHighLight( sciPointObj * pobj, BOOL value )
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1822,8 +1778,6 @@ int sciInitAddPlot( sciPointObj * pobj, BOOL value )
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1877,8 +1831,6 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1931,8 +1883,6 @@ int sciInitZooming( sciPointObj * pobj, BOOL value )
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -2004,8 +1954,6 @@ int sciInitXorMode( sciPointObj * pobj, int value )
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -2117,8 +2065,6 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     default:
       return -1 ;
@@ -2164,8 +2110,6 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AXES: 
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -3057,8 +3001,6 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_LIGHT:    
     case SCI_AXES:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -3269,8 +3211,6 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
     case SCI_SEGS:
     case SCI_FEC:
     case SCI_GRAYPLOT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LIGHT:
     case SCI_AGREG:
@@ -3339,10 +3279,8 @@ int sciInitAutoRotation( sciPointObj * pObj, BOOL value )
   case SCI_FEC:
   case SCI_SEGS:
   case SCI_LEGEND:
-    case SCI_GRAYPLOT:
+  case SCI_GRAYPLOT:
   case SCI_LIGHT:
-  case SCI_MENU:
-  case SCI_MENUCONTEXT:
   case SCI_STATUSB:
   case SCI_PANNER:
   case SCI_SBH:
@@ -3393,8 +3331,6 @@ int sciInitAutoPosition( sciPointObj * pObj, BOOL value )
   case SCI_LEGEND:
   case SCI_GRAYPLOT:
   case SCI_LIGHT:
-  case SCI_MENU:
-  case SCI_MENUCONTEXT:
   case SCI_STATUSB:
   case SCI_PANNER:
   case SCI_SBH:

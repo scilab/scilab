@@ -158,8 +158,6 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_SURFACE:
     case SCI_AXES:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_FIGURE:
     case SCI_SBV:
@@ -225,8 +223,6 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_FIGURE:
     case SCI_SBV:
@@ -283,8 +279,6 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_FIGURE:
     case SCI_SBV:
@@ -340,8 +334,6 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_FIGURE:
     case SCI_SBV:
@@ -402,8 +394,6 @@ sciGetCallbackLen (sciPointObj * pthis)
     case SCI_SURFACE:
     case SCI_AXES:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_FIGURE:
     case SCI_SBV:
@@ -471,19 +461,12 @@ sciDelCallback (sciPointObj * pthis)
       pPOLYLINE_FEATURE (pthis)->callback = NULL;
       break;
     case SCI_UIMENU:
-      /* Commented by Vincent when writing Java menus */
-/*       pUIMENU_FEATURE(pthis)->callbacklen=0; */
-/*       FREE(pUIMENU_FEATURE(pthis)->callback); */
-/*       pUIMENU_FEATURE(pthis)->callback=NULL; */
-      break;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_SURFACE:
     case SCI_AXES:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_FIGURE:
     case SCI_SBV:
@@ -538,8 +521,6 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_SURFACE:
     case SCI_AXES:
     case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_FIGURE:
     case SCI_SBV:
@@ -703,8 +684,6 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
   case SCI_FIGURE:
   case SCI_AXES:
   case SCI_LIGHT:
-  case SCI_MENU:
-  case SCI_MENUCONTEXT:
   case SCI_STATUSB:
   case SCI_PANNER:	
   case SCI_SBH:		

@@ -108,17 +108,6 @@ sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
 
 sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
 
-
-/* UNUSED : */
-
-sciPointObj *ConstructMenu (sciPointObj * pparentfigure,
-				      char plabel[], int n);
-
-sciPointObj *ConstructMenuContext (sciPointObj * pparentfigure);
-
-int sciAddLabelMenu (sciPointObj * pthis, char plabel[], int n);
-int sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu);
-
 sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback,BOOL handle_visible) ;
 
 sciPointObj * sciConstructConsole(     sciPointObj * pparent ) ;

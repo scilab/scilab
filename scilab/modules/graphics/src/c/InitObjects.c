@@ -256,8 +256,6 @@ sciInitGraphicContext (sciPointObj * pobj)
   case SCI_SURFACE:
   case SCI_LIGHT:
   case SCI_AXES:
-  case SCI_MENU:
-  case SCI_MENUCONTEXT:
   case SCI_STATUSB: 
   case SCI_LEGEND: /* Adding a graphic context to legend object F.Leray 21.01.05 */
   case SCI_TEXT:
@@ -347,8 +345,6 @@ sciInitFontContext (sciPointObj * pobj)
   case SCI_TITLE:
   case SCI_LEGEND:
   case SCI_AXES:
-  case SCI_MENU:
-  case SCI_MENUCONTEXT:
   case SCI_STATUSB:
   {
     initFCfromCopy( sciGetParent(pobj), pobj ) ;
@@ -858,8 +854,6 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */

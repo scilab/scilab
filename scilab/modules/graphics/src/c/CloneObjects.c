@@ -193,8 +193,6 @@ sciCloneObj (sciPointObj * pobj)
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:

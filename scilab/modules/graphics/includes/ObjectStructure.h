@@ -80,9 +80,6 @@
 #define pPANNER_FEATURE(pointobj)      ((sciPanner        *)pointobj->pfeatures)/** */
 #define pSBH_FEATURE(pointobj)         ((sciScrollBarHorz *)pointobj->pfeatures)/** */
 #define pSBV_FEATURE(pointobj)         ((sciScrollBarVert *)pointobj->pfeatures)/** */
-#define pLABELMENU_FEATURE(pointobj)   ((sciLabelMenu     *)pointobj->pfeatures)/** */
-#define pMENUCONTEXT_FEATURE(pointobj) ((sciMenuContext   *)pointobj->pfeatures)/** */
-#define pMENU_FEATURE(pointobj)        ((sciMenu          *)pointobj->pfeatures)/** */
 #define pAGREG_FEATURE(pointobj)       ((sciAgreg         *)pointobj->pfeatures)/** */
 #define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
 #define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
@@ -177,10 +174,7 @@ typedef enum
     SCI_SBH,			
     /**Entity type VERTICALL SCROLL BAR*/
     SCI_SBV,			
-    /**Entity type MENU*/
-    SCI_MENU,			
     /**Entity type CONTEXT MENU*/
-    SCI_MENUCONTEXT, // TODO remove
     SCI_UICONTEXTMENU,	
     /**Entity type STATUS BAR*/
     SCI_STATUSB,	    
@@ -1417,43 +1411,6 @@ typedef struct
 }
 sciScrollBarVert;  /** */
 
-
-/**@name LabelMenu
- * Structure used to specify a menu 
- */
-typedef struct tagLabelMenu
-{
-  char *plabel;
-  struct tagLabelMenu *pnextlabelmenu;
-}
-sciLabelMenu;  /** */
-
-
-
-/**@name Menu
- * Structure used to specify a menu 
- */
-typedef struct
-{
-  sciRelationShip relationship;
-  sciGraphicContext graphiccontext;
-  sciText text;
-  sciLabelMenu *plabelmenu;
-  HMENU  hPopMenu;			/** specifie the handle of the popup menu */
-}
-sciMenu /** */ , sciMenuContext;/** */
-
-
-/**@name MenuContext
- * Structure used to specify popupmenu called with the right mouse button
- *
- typedef struct {
- sciRelationShip    relationship;
- sciGraphicContext graphiccontext;
- sciText           text;
- sciLabelMenu      *plabelmenu;
- } sciMenuContext ;
- ATTENTION DECLARE SI DESSUS */
 
 /**@name StatusBar
  * Structure used to specify 

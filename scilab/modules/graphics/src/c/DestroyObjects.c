@@ -151,14 +151,6 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       DestroyScrollV (pthis);
       return 0;
       break;
-    case SCI_MENU:
-      DestroySciMenu (pthis);
-      return 0;
-      break;
-    case SCI_MENUCONTEXT:
-      DestroyMenuContext (pthis);
-      return 0;
-      break;
     case SCI_STATUSB:
       DestroyStatusBar (pthis);
       return 0;
@@ -208,7 +200,7 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
 /**sciDelGraphicObj
  * This function delete only users graphics object and its dependency limited to 
  * SCI_TITLE SCI_LEGEND SCI_ARC SCI_POLYLINE SCI_RECTANGLE SCI_SURFACE 
- * SCI_AXIS SCI_MENU SCI_MENUCONTEXT SCI_SUBWIN
+ * SCI_AXIS SCI_SUBWIN
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int
@@ -227,8 +219,6 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_SURFACE:
 
     case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_TEXT:
     case SCI_LABEL:
@@ -724,70 +714,6 @@ int DestroyUicontrol (sciPointObj * pthis)
 
   return sciStandardDestroyOperations(pthis) ;
 }
-
-
-/**del sciDelLabelsMenu
- * @memo This function destroies ALL LABELS menu and the elementaries structures
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-sciDelLabelsMenu (sciPointObj * pthis)
-{
-  sciLabelMenu *pscilabelmenutmp;
-  sciLabelMenu *pscilabelmenutofree;
-
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_MENU:
-      pscilabelmenutmp = (sciLabelMenu *) (pMENU_FEATURE (pthis)->plabelmenu);
-      break;
-    case SCI_MENUCONTEXT:
-      pscilabelmenutmp =
-	(sciLabelMenu *) (pMENUCONTEXT_FEATURE (pthis)->plabelmenu);
-      break;
-    default:
-    case SCI_AGREG:
-      return -1;
-      break;
-    }
-  while (pscilabelmenutmp != (sciLabelMenu *) NULL)
-    {
-      /* Il faut retirer tous les menus lies par la liste aussi */
-      pscilabelmenutofree = pscilabelmenutmp;
-      pscilabelmenutmp = pscilabelmenutmp->pnextlabelmenu;
-      FREE (pscilabelmenutofree->plabel);
-      FREE (pscilabelmenutofree);
-    }
-  return 0;
-}
-
-
-
-/**DestroyMenuContext
- * @memo This function destroies menu context and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyMenuContext (sciPointObj * pthis)
-{
-  sciDelLabelsMenu (pthis);
-  return sciStandardDestroyOperations(pthis) ;
-}
-
-
-
-/**DestroySciMenu
- * @memo This function destroies menu and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroySciMenu (sciPointObj * pthis)
-{
-  sciDelLabelsMenu (pthis);
-  FREE ((sciGetFontContext(pthis))->pfontname);
-  return sciStandardDestroyOperations(pthis) ;
-}
-
 
 
 /**delete_sgwin_entities(int win_num)
