@@ -39,7 +39,7 @@ else
 	
 	// Set all properties
 	for i=1:2:Rhs
-	  set(h,getFigureProperty(varargin(i)),varargin(i+1));
+	  set(h, getFigureProperty(varargin(i)), getPropertyValue(varargin(i),varargin(i+1)));
 	end
 	
       end
@@ -51,7 +51,7 @@ else
 
 	// Set all properties
 	for i=2:2:Rhs
-	  set(h,getFigureProperty(varargin(i)),varargin(i+1));
+	  set(h, getFigureProperty(varargin(i)), getPropertyValue(varargin(i),varargin(i+1)));
 	end
       else
 	error(gettext("figure: invalid value type."),999) ;
@@ -102,6 +102,21 @@ elseif strcmpi(tkFigProperty, "foregroundcolor") == 0 then
   sciFigProperty = "foreground";
 else
   sciFigProperty = tkFigProperty;
+end
+endfunction
+// -----------------------------------------------------------
+
+// -----------------------------------------------------------
+function sciPropertyValue = getPropertyValue(tkFigProperty, tkPropertyValue)
+// Vincent COUVERT - INRIA 2008
+// Get the Java property value corresponding to the TK property value
+
+if strcmpi(tkFigProperty, "backgroundcolor") == 0 then
+  sciPropertyValue = addcolor(tkPropertyValue);
+elseif strcmpi(tkFigProperty, "foregroundcolor") == 0 then
+  sciPropertyValue = addcolor(tkPropertyValue);
+else
+  sciPropertyValue = tkPropertyValue;
 end
 endfunction
 // -----------------------------------------------------------
