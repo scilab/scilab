@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="tclsci"
 	ProjectGUID="{C456D5B8-8A32-496A-A2EE-164B0D734126}"
 	RootNamespace="tclsci"
@@ -209,6 +209,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\GlobalTclInterp.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\gw_tclsci.c"
 				>
 			</File>
@@ -328,6 +332,10 @@
 			>
 			<File
 				RelativePath=".\includes\GedManagement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\GlobalTclInterp.h"
 				>
 			</File>
 			<File
