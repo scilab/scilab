@@ -1596,7 +1596,6 @@ public class CallScilabBridge {
 	 * @param indices the indices of the items to be selected
 	 */
 	public static void setListBoxSelectedIndices(int id, int[] indices) {
-		System.out.println("CallScilabBridge.setListBoxSelectedIndices");
 		((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setSelectedIndices(indices);
 	}
 	
