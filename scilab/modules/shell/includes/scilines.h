@@ -55,7 +55,7 @@ BOOL setColumnsSize(int colums);
 * @param new size of lines
 * @return TRUE or FALSE
 */ 
-BOOL setLinesSize(int lines);
+BOOL setLinesSize(int lines_);
 
 /**
 * get number of columns to display data
