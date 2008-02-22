@@ -314,9 +314,9 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 		// Scilab indices in Value begin at 1 and Java indices begin at 0
 		int[] javaIndices = getList().getSelectedIndices().clone();
 		int[] scilabIndices = javaIndices.clone();
-		//for (int i = 0; i < getList().getSelectedIndices().length; i++) {
-		//	scilabIndices[i] = scilabIndices[i] + 1;
-		//}
+		for (int i = 0; i < getList().getSelectedIndices().length; i++) {
+			scilabIndices[i] = scilabIndices[i] + 1;
+		}
 		return scilabIndices;
 	}
 
