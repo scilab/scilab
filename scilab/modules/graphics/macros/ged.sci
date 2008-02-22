@@ -193,7 +193,7 @@ for i=1:size(handles,1)
     iFig = iFig+1;
     figname= "Figure("+string(iFig)+")";
     TCL_EvalStr('set '+SelObject+" "+figname);
-   case "Uimenu"
+   case "uimenu"
     iUim = iUim+1;
     uimname= "Uimenu("+string(iUim)+")";
     TCL_EvalStr('set '+SelObject+" "+uimname);

@@ -682,7 +682,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "user_data = "+fmtuser_data(u)
 	]
-  case "Uimenu"
+  case "uimenu"
   t=[t;
   "parent: "+h.parent.type
   "children: "+fmtchildren(h.children)
