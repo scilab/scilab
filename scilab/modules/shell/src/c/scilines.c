@@ -10,32 +10,48 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <curses.h>
+#include <term.h>
 #include "scilines.h"
 #include "core_math.h"
 #include "stack-def.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_NUMBERS_LINES 28
-#define DEFAULT_NUMBERS_COLUMNS 72
+#define DEFAULT_NUMBERS_COLUMNS 80
 #define MIN_NUMBERS_LINES 0
 #define MIN_NUMBERS_COLUMNS 10
 /*--------------------------------------------------------------------------*/
-int scilines(int nl, int nc)
+int scilines(int nblines, int nbcolumns)
 {
-	setLinesSize(nl);
-	setColumnsSize(nc);
+	setLinesSize(nblines);
+	setColumnsSize(nbcolumns);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 int scilinesdefault(void)
 {
-	setLinesSize(DEFAULT_NUMBERS_LINES);
-	setColumnsSize(DEFAULT_NUMBERS_COLUMNS);
+#ifndef _MSC_VER
+
+	char tc_buf[1024];       /* holds termcap buffer */
+	if(tgetent(tc_buf, getenv("TERM")) == 1) {
+		setLinesSize(tgetnum("li")); /* retrieve from the term info the number
+										of lines */
+		setColumnsSize(tgetnum("co")); /* And the number of columns */
+	}else{
+		/* Haven't been able to detect the terminal */
+		setLinesSize(DEFAULT_NUMBERS_LINES);
+		setColumnsSize(DEFAULT_NUMBERS_COLUMNS);
+	}
 	return 0;
+#else
+		setLinesSize(DEFAULT_NUMBERS_LINES);
+		setColumnsSize(DEFAULT_NUMBERS_COLUMNS);
+#endif
 }
 /*--------------------------------------------------------------------------*/
-int C2F(scilines)(int *nl, int *nc)
+int C2F(scilines)(int *nblines, int *nbcolumns)
 {
-	return scilines(*nl,*nc);
+	return scilines(*nblines,*nbcolumns);
 }
 /*--------------------------------------------------------------------------*/
 int C2F(scilinesdefault)(void)
@@ -45,22 +61,15 @@ int C2F(scilinesdefault)(void)
 /*--------------------------------------------------------------------------*/
 BOOL setColumnsSize(int colums)
 {
-	BOOL bOK = FALSE;
-
 	C2F(iop).lct[4] = Max(MIN_NUMBERS_COLUMNS,colums);
-	bOK = TRUE;
-
-	return bOK;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL setLinesSize(int lines)
+BOOL setLinesSize(int lines_)
 {
-	BOOL bOK = FALSE;
 
-	C2F(iop).lct[1] = Max(MIN_NUMBERS_LINES,lines);
-	bOK = TRUE;
-
-	return bOK;
+	C2F(iop).lct[1] = Max(MIN_NUMBERS_LINES,lines_);
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 int getColumnsSize(void)
