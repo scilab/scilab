@@ -549,9 +549,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
 //** --- End of initialization -----------------------------------------------------------
 
-// DEBUG
-    gh_current_window.immediate_drawing="on";
-
   global Clipboard  // to make it possible to copy and paste from one
   // super block to another
 
@@ -566,9 +563,10 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       disp("Stacksize increased to "+string(2*%stack(1))) //
     end
 
+    //** Dynamic window resizing and centering -------------------------
     if or(winsid()==curwin) then
-      winsize=gh_current_window.figure_size;
-      axsize=gh_current_window.axes_size;
+      winsize = gh_current_window.figure_size;
+      axsize  = gh_current_window.axes_size;
 
       if or(winsize > axsize+21) then   // +21 is to compensate for
 					// scrollbar under windows
@@ -576,24 +574,26 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
         //viewport=xget('viewport')
         //viewport=max([0,0],min(viewport,-winsize+axsize))
 	viewport=[0,0]
-	window_set_size(gh_current_window,viewport)
+	window_set_size(gh_current_window, viewport)
 	drawnow();
-	//** show_pixmap() ;
       end
 
       if edited then
 	// store win dims, it should only be in do_exit but not possible
 	// now
-	data_bounds=gh_current_window.children.data_bounds
+	data_bounds = gh_current_window.children.data_bounds
 
-	winpos=gh_current_window.figure_position;
-	%curwpar=[data_bounds(:)',gh_current_window.axes_size,..
-		  xget('viewport'),winsize,winpos,%zoom]
-	if ~isequal(scs_m.props.wpar,%curwpar) then
-	  scs_m.props.wpar=%curwpar  // keep window dimensions
+	winpos   = gh_current_window.figure_position;
+	%curwpar = [data_bounds(:)',gh_current_window.axes_size,..
+		    xget('viewport'),winsize,winpos,%zoom];
+	if ~isequal(scs_m.props.wpar, %curwpar) then
+	  scs_m.props.wpar = %curwpar  // keep window dimensions
 	end
-      end
+
+      end //** edited section 
+
     end
+    //** --- ... end of: Dynamic window resizing and centering ----------
 
     if %scicos_navig==[] then
       if Scicos_commands<>[] then
@@ -603,7 +603,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       end
     end
 
-    if Cmenu=='Quit' then break,end
+    if Cmenu=='Quit' then break,end ; //** EXIT point ...
 
     //**--------------------------------------------------------------------
     if %scicos_navig<>[] then //** navigation mode active
@@ -650,7 +650,9 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	end
       end
     else
+
       %diagram_open=%t
+
       if ~or(curwin==winsid()) then
 	gh_current_window = scf(curwin);
         %zoom=restore(gh_current_window)
@@ -660,13 +662,12 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
         gh_current_window = scf(curwin);
       end
 
-
-
       if Select<>[] then
 	if ~or(Select(1,2) == winsid()) then
 	  Select = [] ; //** imply a full Reset
 	end
       end
+
       //**--------------------------------------------------------------------
 
       //** Command classification and message retrivial
@@ -676,7 +677,6 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
       //** ----------------- State variable filtering ----------------
       //** clear the %pt information for backward compatibility
       //** if 'Cmenu' is empty (no command) but '%pt' is not , it is better to clear '%pt'
-
 
       if ( Cmenu == [] & %pt <> []  ) then %pt=[]; end
 
@@ -739,6 +739,7 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 	  //** execstr('exec('+%cor_item_exec(%koko,2)+',1)')
 
           //** Used for standard DEBUG ONLY -->
+          disp(%cor_item_exec(%koko,2)); //** disp the current exec 
           execstr('exec('+%cor_item_exec(%koko,2)+',-1)'); //** nothing is printed 
 
 	  if ierr > 0 then
