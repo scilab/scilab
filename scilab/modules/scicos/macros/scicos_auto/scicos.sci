@@ -19,7 +19,7 @@
 // See the file ./license.txt
 //
 
-function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
+function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 //Copyright INRIA
 
 // scicos - block diagram graphic editor
@@ -278,30 +278,29 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
   if rhs>=1 then //** scicos_new(...) is called with some arguments
 
-    if type(scs_m)==10 then //diagram is given by its filename
-      %fil=scs_m
-      alreadyran=%f
-      [ok,scs_m,%cpr,edited] = do_load(%fil,'diagram')
-      if ~ok then return,end
+    if type(scs_m)==10 then // diagram is given by its filename
+      %fil = scs_m ;
+      alreadyran = %f
+      [ok,scs_m,%cpr,edited] = do_load(%fil,'diagram'); 
+      if ~ok then return, end
 
       if size(%cpr)==0 then
-	needcompile=4
-	%state0=list()
+	needcompile = 4 ;
+	%state0     = list(); 
       else
-	%state0=%cpr.state;
+	%state0 = %cpr.state;
 	needcompile=0
       end
 
-    else //diagram is given by its data structure
+    else // diagram is given by its data structure
 
       if ~super_block then
 	%cpr=list(); needcompile=4 ; alreadyran=%f , %state0=list()
       end
 
     end
-
+   
   else //** scicos_new() is called without arguments (AND - implicitly - is NOT a superblock)
-
 
     gh_Main_Scicos_window = scf(Main_Scicos_window);
     // In case a back up file exists
@@ -524,23 +523,24 @@ function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
   if %diagram_open then
     gh_current_window = gcf() ; //** get the current graphics window
-     if (gh_current_window.user_data==[])| (~isequalbitwise(gh_current_window.user_data(1),scs_m)) then
-      %zoom=restore(gh_current_window)
-      execstr('drawobjs(scs_m)', 'errcatch') ;
+     
+    if (gh_current_window.user_data==[]) | (~isequalbitwise(gh_current_window.user_data(1),scs_m)) then
+       %zoom = restore(gh_current_window) ; 
+       execstr('drawobjs(scs_m)', 'errcatch') ; 
      else
-      Select=gh_current_window.user_data(2)
-      enable_undo=gh_current_window.user_data(3)
-      scs_m_save=gh_current_window.user_data(4)
-      nc_save=gh_current_window.user_data(5)
-      xselect()
+       Select = gh_current_window.user_data(2) ; 
+       enable_undo = gh_current_window.user_data(3) ; 
+       scs_m_save  = gh_current_window.user_data(4) ; 
+       nc_save     = gh_current_window.user_data(5) ; 
+       xselect(); 
      end
 
   else
 
     if or(curwin==winsid()) then
-      gh_current_window = scf(curwin)
-      if (gh_current_window.user_data~=[])&(isequalbitwise(gh_current_window.user_data(1),scs_m)) then
-	Select=gh_current_window.user_data(2)
+      gh_current_window = scf(curwin) ;
+      if (gh_current_window.user_data~=[]) & (isequalbitwise(gh_current_window.user_data(1),scs_m)) then
+	Select=gh_current_window.user_data(2) ; 
       end
     end
 
