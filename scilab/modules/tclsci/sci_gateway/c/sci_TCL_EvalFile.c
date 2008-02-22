@@ -28,10 +28,12 @@ int sci_TCL_EvalFile(char *fname,unsigned long l)
   int m2,n2,l2;
   int RET;
 
+    Tcl_Interp *TCLinterpreter=NULL;
+
   CheckRhs(1,2);
   CheckLhs(1,1);
+  
 
-  Tcl_Interp *TCLinterpreter=NULL;
 
   if (GetType(1) == sci_strings)
     {
