@@ -18,8 +18,8 @@ src/c/TCL_ArrayDim.c \
 src/c/TCL_ArrayExist.c \
 src/c/TCL_ArrayGetVar.c \
 src/c/TCL_ArraySize.c \
-src/c/TCL_Command.c
-
+src/c/TCL_Command.c \
+src/c/GlobalTclInterp.c
 
 GATEWAY_C_SOURCES =  sci_gateway/c/sci_TCL_CreateSlave.c \
 sci_gateway/c/sci_opentk.c \
@@ -46,7 +46,8 @@ libscitclsci_la_CFLAGS= -Iincludes/ \
 			$(TCL_INC_PATH) \
 			$(TK_INC_PATH) \
 			-I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/localization/includes
 
 libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)
 
@@ -247,7 +248,7 @@ tcl/BWidget-1.8.0/labelframe.tcl \
 tcl/BWidget-1.8.0/README.txt \
 tcl/BWidget-1.8.0/titleframe.tcl \
 tcl/html_library.tcl \
-tcl/TK_Scilab.tcl 
+tcl/TK_Scilab.tcl
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
 libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
@@ -266,6 +267,7 @@ includes/gw_tclsci.h \
 includes/InitializeTclTk.h \
 includes/sci_TCL_SetVar.h \
 includes/TerminateTclTk.h \
+includes/GlobalTclInterp.h \
 includes/withtk.h
 
 #### tclsci : demos files sciGUI ####
