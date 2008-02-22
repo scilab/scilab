@@ -11,6 +11,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+/* For more information: http://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html */
+
 #include <errno.h>
 #include <string.h>
 #include <signal.h> /* for SIGINT */
@@ -221,6 +223,7 @@ static char *IM=NULL;            /* start insert mode */
 static char *IC=NULL;            /* insert character */
 static char *EI=NULL;            /* end insert mode */
 static char *CL=NULL;            /* clear screen */
+
 #endif
 
 
