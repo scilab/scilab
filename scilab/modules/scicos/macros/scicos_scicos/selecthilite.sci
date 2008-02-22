@@ -20,23 +20,20 @@
 //
 
 function selecthilite(Select, flag) 
-if Select==[] then return,end
+  if Select==[] then
+    return
+  end
   
-gh_winback = gcf() ; //** save the active window
+  gh_winback = gcf() ; //** save the active window
   
-//  gh_curwin = [] ; //** acquire the current Scicos window 
-  
-// Important assumption: all Selected are in the same window
-
-[junk, win, o] = get_selection(Select(1,:))
-gh_curwin = scf(win); //** select current window 
-drawlater();  // for palettes, diagrams are already in this mode
+  // Important assumption: all Selected are in the same window
+  [junk, win, o] = get_selection(Select(1,:))
+  gh_curwin = scf(win); //** select current window 
+  drawlater();  // for palettes, diagrams are already in this mode
 
   for i=1:size(Select,1)
 
     [junk, win, o] = get_selection(Select(i,:))
-
-//    gh_curwin = scf(win); //** select current window
 
     o_size = size ( gh_curwin.children.children ) ;
     //** initial size
@@ -58,17 +55,9 @@ drawlater();  // for palettes, diagrams are already in this mode
 
   end  
 
-draw(gh_curwin.children);
+  //** draw(gh_curwin.children);
+  drawnow();    //** 
 
-drawnow(); //**  ????
-
-
-//** if gh_curwin.pixmap=='on' then 
-//*    show_pixmap();
-//** else
-//**    drawnow();  // in case of palettes
-//** end
-
-scf(gh_winback); //** restore the 
+  scf(gh_winback); //** restore the previous active window
 
 endfunction

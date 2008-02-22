@@ -26,7 +26,7 @@ if size(Select,1)<>1 | curwin<>Select(1,2) then
 end
 i=Select(1)
 o=scs_m.objs(i)
-if typeof(o)=='Block' then
+if typeof(o)=="Block" then
    model=o.model
    graphics=o.graphics;
    if model.sim=='super' then  //
@@ -50,15 +50,14 @@ if typeof(o)=='Block' then
       o_size = size(gh_current_window.children.children);
       gh_k=get_gri(i,o_size(1))
       drawlater();
-      update_gr(gh_k,o)
-      draw(gh_current_window.children);
-      
-      //** show_pixmap() ; //** not useful on Scilab 5 
-      //Cmenu='Replot'
+        update_gr(gh_k,o)
+        //** draw(gh_current_window.children);
+        drawnow(); 
+        //** show_pixmap() ; //** not useful on Scilab 5 
    else
-      message('Mask can only be created for Super Blocks.')
+      message("Mask can only be created for Super Blocks.")
    end
 else
-  message('Mask can only be created for Super Blocks.')
+  message("Mask can only be created for Super Blocks.")
 end
 endfunction

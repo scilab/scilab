@@ -21,15 +21,15 @@
 
 function Defaultlinkcolors_()
 //
-    Cmenu=[]
+    Cmenu = [] ;
     [edited,options] = do_options(scs_m.props.options,'LinkColor') ;
 
     scs_m.props.options = options
 
     if edited then 
-      // Acquire the current clicked window and put to "on" the pixmap mode
+      //** Acquire the current clicked window
       gh_curwin = scf(%win) ;
-      //** Clear the graphic window WITHOUT changing his pamaters ! :)
+      //** Clear the graphic window WITHOUT changing his parameters ! :)
       drawlater() ;
         delete(gh_curwin.children.children) ; //** wipe out all the temp graphics object
         drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object

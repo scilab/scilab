@@ -89,20 +89,15 @@ function scs_m = changeports(scs_m, path, o_n)
   k = path($) ; //** the scs_m index of the target 
   if or(curwin==winsid()) then
     //** ------- Graphics ---------------
-    drawlater() ;
-    
-    // gh_curwin = gh_current_window;
     
     gh_curwin = scf(curwin) ;
     o_size = size(gh_curwin.children.children);
-
-    //
     gr_k = get_gri(k, o_size(1))
-
     //** redraw block
     //** quick update for new graphics
+    drawlater() ;
     update_gr(gr_k, o_n)    ;
-    draw(gh_curwin.children); //** redraw the graphic data structure 
+    //** draw(gh_curwin.children); //** redraw the graphic data structure 
     drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5 
 

@@ -31,11 +31,11 @@ if length(path)==2 then
     drawlater() ;
      gh_curwin = gh_current_window;
      o_size = size(gh_curwin.children.children);
-   //gr_k = o_size(1) - path(2) + 1; //** semi empirical equation :)
-     gr_k = get_gri(path(2), o_size(1)) ; 
+     gr_k = get_gri(path(2), o_size(1)) ; //** semi empirical equation :)
      update_gr(gr_k, o) //** update the graphics data structure only of the last object 
-    draw(gh_curwin.children); //** update the graphics window  //** show the diagram 
-    //** show_pixmap() ; 
+     //** draw(gh_curwin.children); //** update the graphics window  //** show the diagram 
+     drawnow(); 
+     //** show_pixmap() ; 
   else
     //** ---------------- BLOCK ------------------------
     //** the BLOCK and connected links are updated here 

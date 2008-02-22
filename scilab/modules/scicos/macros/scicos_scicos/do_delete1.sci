@@ -87,7 +87,7 @@ while K<>[] do
     DEL=[DEL k]
 
     //**----------------------------------- Link -------------------------------------------
-    if typ=='Link' then
+    if typ=="Link" then
 
       [ct,from,to]=(o.ct,o.from,o.to)
 
@@ -238,7 +238,7 @@ while K<>[] do
       end //elseif toblock.gui=='IMPSPLIT_f'
 
 //** -------------------------------------- Block ---------------------------------------
-    elseif typ=='Block' then
+    elseif typ=="Block" then
 
       // get connected links
       connected=get_connected(scs_m,k)
@@ -247,17 +247,17 @@ while K<>[] do
 
 
 //**--------------------------------------- Text ----------------------------------------
-    elseif typ=='Text' then
+    elseif typ=="Text" then
 	//** do nothing :)
 
 //** ---------------------------- already "Deleted" object :) ----------------------------
-    elseif typ=='Deleted' then
+    elseif typ=="Deleted" then
 	//** do nothing :)
 
 //** ---------------------------  in all the other possibles cases -----------------------
     else
 
-      message('This object can''t be deleted');
+      message("This object can''t be deleted");
 
     end //** link / Block / Text / Deleted / other...
 
@@ -276,7 +276,8 @@ end //** ... end of while ()
 
 //** Show the results if the "gr" flag is TRUE 
   if gr==%t then
-    draw(gh_curwin.children);
+    //** draw(gh_curwin.children);
+    drawnow(); 
     //** show_pixmap() ; //** not useful on Scilab 5
   end
   

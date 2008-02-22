@@ -43,7 +43,6 @@ function Backgroundcolor_()
         delete(gh_curwin.children.children) ; //** wipe out all the temp graphics object
         drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
       drawnow(); //** re-draw the graphic object and show on screen
-      
       //** show_pixmap() ; //** not useful on Scilab 5 
       Cmenu = [] ; %pt = [];
     end

@@ -78,7 +78,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
 		 
       end //** of ok
 
-    elseif typeof(scs_m.objs(K))=='Link' then
+    elseif typeof(scs_m.objs(K))=="Link" then
     //** it is a Link
       //** extract some link parameter
       [pos,ct] = (scs_m.objs(K).thick, scs_m.objs(K).ct) ;
@@ -94,14 +94,14 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
         //<<<<<<<<<<<<<<<<<
         drawlater() ;
         gh_curwin = gh_current_window;
-        o_size = size(gh_curwin.children.children);
-        //gr_k = o_size(1) - K + 1; //** semi empirical equation :)
-        gr_k=get_gri(K,o_size(1))
-        //This is done in accord to drawobj
+        o_size = size(gh_curwin.children.children); 
+        gr_k = get_gri(K,o_size(1)) ; //** semi empirical equation :)
+        // This is done in accord to drawobj
         gh_curwin.children.children(gr_k).children(1).thickness = ...
                              maxi( scs_m.objs(K).thick(1) , 1) * ...
                              maxi(scs_m.objs(K).thick(2), 1) ;
-        draw(gh_curwin.children);
+        //** draw(gh_curwin.children);
+        drawnow(); 
         //** show_pixmap() ; //** not useful on Scilab 5
         //>>>>>>>>>>>>>>>>>>>
       end

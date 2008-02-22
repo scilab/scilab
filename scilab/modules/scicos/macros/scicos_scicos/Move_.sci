@@ -25,10 +25,12 @@ function Move_()
 
   SelectSize = size (Select) ; //** [row, col]
   SelectSize = SelectSize(1) ; //**  row
+  
+  //** Filter out selection on other windows 
   if Select<>[] then
      if find(Select(:,2)<>curwin)<>[] then
        Select=[]
-       Cmenu = 'Move'
+       Cmenu = "Move"
        return
      end
   end

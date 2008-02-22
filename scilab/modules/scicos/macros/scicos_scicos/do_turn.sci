@@ -89,11 +89,10 @@ function [scs_m]=do_turn(%pt,scs_m,theta)
 
   scs_m.objs(k) = o ; 
 
-  o_n  = o ; //** "o" is already rotate
+  o_n  = o ; //** "o" is already rotated
 
-  scs_m = changeports(scs_m, path, o_n); 
+  scs_m = changeports(scs_m, path, o_n); //** the real object draw id done here 
   
-
   [scs_m_save,enable_undo,edited] = resume(scs_m_save,%t,%t)
 
 endfunction

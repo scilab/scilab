@@ -31,8 +31,8 @@ function Grid_()
       gh_window.children.children($).visible="off"
     end
   end
-  drawnow(); 
 
+  drawnow();
   //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction

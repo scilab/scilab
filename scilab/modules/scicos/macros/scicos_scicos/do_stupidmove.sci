@@ -158,9 +158,9 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
   //**-----------------------------------------------------------------
   
   drawlater();
-
   rep(3) = -1;
   while %t do
+    
     if with_gtk() then
       if rep(3)==10 then
 	global scicos_dblclk
@@ -178,6 +178,7 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     gh_blk.children.data = [X_start,Y_start ; x1, y1 ; X_end, Y_end ];
     //** draw(gh_curwin.children);
     drawnow();
+    drawlater(); //** go back in draw later mode
     //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse(0,[%t,%t]);
@@ -200,7 +201,9 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
 
     x1(2) = X1(2) - (xc - xc1) ;
     y1(2) = Y1(2) - (yc - yc1) ;
-  end //** of the while "interactive" loop  
+  end //** of the while "interactive" loop
+  
+  drawnow();   
   //**------------------------------------------------------------------
 
   gh_figure = gcf();
@@ -240,7 +243,7 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     drawlater();
      gh_blk.children.data = [xx , yy];
      //** draw(gh_blk.parent);
-     drawnow(); 
+     drawnow();
      //** show_pixmap() ; //** not useful on Scilab 5
     
     o.xx = xx; o.yy = yy ;
@@ -251,7 +254,7 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     drawlater();
      gh_blk.children.data = ini_data;
      //** draw(gh_blk.parent);
-     drawnow(); 
+     drawnow();
      //** show_pixmap() ; //** not useful on Scilab 5
     
     //** DO NOT update the scs_m datastructure ! ;)

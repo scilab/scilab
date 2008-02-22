@@ -41,13 +41,14 @@ function [rect,btn] = rubberbox(rect,edit_mode)
   else 
     sel=0:5 ; // press and click
   end
-  opt=[%t edit_mode]
 
-  first=%t
+  opt = [%t edit_mode] ;
+
+  first = %t ; 
 
   if ~initial_rect
     while %t
-      [btn,xc,yc]=xclick(0)
+      [btn,xc,yc] = xclick(0)
       if or(btn==sel) then break,end
     end
     rect(1)=xc;rect(2)=yc
@@ -61,14 +62,14 @@ function [rect,btn] = rubberbox(rect,edit_mode)
   oy=rect(2);yc=oy
   w=rect(3);h=rect(4)
   f=gcf();
-  immediate_drawing=f.immediate_drawing;
-  f.immediate_drawing='off';
+  immediate_drawing = f.immediate_drawing;
+  f.immediate_drawing = "off";
   pix=f.pixmap;
-  pixel_drawing_mode=f.pixel_drawing_mode;
-  f.pixel_drawing_mode='xor';
+  pixel_drawing_mode = f.pixel_drawing_mode;
+  f.pixel_drawing_mode = "xor";
   
   xrect(ox,oy,w,h)
-  r=gce();r.foreground=-1;
+  r=gce(); r.foreground=-1;
   draw_rect(r,w,h); 
   
   if ~with_gtk() then

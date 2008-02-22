@@ -22,7 +22,7 @@
 function [scs_m] = do_stupidMultimove(%pt, Select, scs_m)
 //** ---------------------------------   M U L T I     M O V E   -----------------------------------------
 
-have_moved=%f
+have_moved = %f ; //** flag to signal the movement of one or more objects (used to avoid not useful resume operations)
 
 // Acquire the current window
 // NB : the MultiMove works ONLY in the current window    
@@ -43,12 +43,11 @@ have_moved=%f
   //**------------------------------------------------------------------
   
   //** scs_m , Select, xc yc (mouse coordinate of the last valid event)
-  [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)  ; //** see below in the code
+  [scs_m, have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)  ; //** see below in the code
 
   //**------------------------------------------------------------------
 
-
-  if Cmenu=='Quit' then
+  if Cmenu=="Quit" then
     //active window has been closed
     [%win,Cmenu] = resume(%win,Cmenu)
   end
@@ -250,23 +249,26 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
   tmp_data = [] ;
   t_xmt = [] ; t_ymt  = [];
 
-  drawlater();
-
-
     //** ------------------------------- INTERACTIVE MOVEMENT LOOP ------------------------------
 
-    moved_dist=0
+    moved_dist = 0 ; 
     
     if with_gtk() then queue_state=[],end // GTK case
-    
-    while 1 do //** interactive move loop
+
+    while %t do //** interactive move loop
+      
+      drawlater() ; //** go back in drawlater mode  
+      
       if with_gtk() then // GTK case
 	rep = xgetmouse(queue_state=[],[%t,%t]); 
       else // Normal case
+
 	rep = xgetmouse(0,[%t,%t]); //** the event queue is NOT cleared
-	                             //** "getmotion" AND "getrelease" active because the mode is made with
-				     //** the left button pressed
+	                            //** "getmotion" AND "getrelease" active because the mode is made with
+				    //** the left button pressed
+        //** disp(rep); //** DEBUG only 
       end
+      
       //** left button release, right button (press, click) 
       if with_gtk() then   // GTK case
 	queue_state=1,
@@ -278,18 +280,18 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
 	  break ; //** ---> EXIT point of the while
 	end
       else  // Normal case
-	if or(rep(3)==[-5, 2, 3, 5]) then //** put the end exit from the loop condition here 
+	
+        if or(rep(3)==[-5, 2, 3, 5]) then //** put the end exit from the loop condition here 
           break ; //** ---> EXIT point of the while
 	end
+      
       end
 
       //** Window change and window closure protection
       gh_figure = gcf();
       if gh_figure.figure_id<>curwin | rep(3)==-100 then
-	[%win,Cmenu] = resume(curwin,'Quit') ;
+	[%win,Cmenu] = resume(curwin,"Quit") ;
       end
-
-
 
       //**------------------------------------------------------------------
       //** Mouse movement limitation: to avoid go off the screen ;) 
@@ -312,7 +314,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       move_x = move_x +  delta_x ;
       move_y = move_y +  delta_y ;
 
-      moved_dist=moved_dist+abs(delta_x)+abs(delta_y)
+      moved_dist = moved_dist + abs(delta_x) + abs(delta_y)
       // under window clicking on a block in a different window causes a move
       if moved_dist>.001 then have_moved=%t,end
 
@@ -320,7 +322,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       for k = SuperCompound_id 
           gh_k = get_gri(k,o_size(1)); //** calc the handle
           gh_ToBeMoved = gh_curwin.children.children(gh_k) ;
-	  move (gh_ToBeMoved, [delta_x , delta_y]);  //** ..because "move()" works only in differential
+	  move (gh_ToBeMoved, [delta_x , delta_y]);  //** ..because "move()" works only in differential "alone"
       end 
 
       //**---------------------------------------------------------------------------------------------
@@ -359,16 +361,16 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       //**---------------------------------------------------------------------------------------------
 
     //** draw(gh_curwin.children); //** draw ALL the moving objects 
-    drawnow();
+    drawnow() ; //** force the draw of the object
     //** show_pixmap() ; //** not useful on Scilab 5
 
-    end //** ... of while Interactive move LOOP --------------------------------------------------------------
+    end //** ... of while Interactive move LOOP 
     //**--------------------------------------------------------------------------------------------------------
 
     //**-----------------------------------------------
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-100 then
-         [%win,Cmenu] = resume(curwin,'Quit') ;
+         [%win,Cmenu] = resume(curwin,"Quit") ;
     end
     //**-----------------------------------------------
 
@@ -475,7 +477,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
          //**------------------------------------------------------
 	 
       //** draw(gh_curwin.children);
-      drawnow(); 
+      drawnow();
       //** show_pixmap() ; //** not useful on Scilab 5
 
     end //**----------------------------------------

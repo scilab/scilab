@@ -140,8 +140,8 @@ function [scs_m]=prt_align(%pt,scs_m)
     diff_y=orig2(2)-graphics2.orig(2);
 
     move(gh_blk,[diff_x,diff_y]);  //** ..because "move()" works only in differential
-    draw(gh_blk.parent);
-
+    //** draw(gh_blk.parent);
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5 
 
   graphics2.orig = orig2 ;

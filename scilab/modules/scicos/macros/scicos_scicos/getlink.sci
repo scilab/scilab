@@ -211,10 +211,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     gh_link = gh_curwin.children.children(1) ; //** the last object is the link
 
     rep(3)=-1; //** initialization
-    drawlater() ;
-    while 1 do //** infinite loop
+    
+    while %t do //** infinite loop
+      drawlater() ;
       //** for positive event exit from the loop
-
       //** Any event on the [right] button end the inner loop
       if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
 
@@ -256,9 +256,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       gh_link.data =  [xo yo ; xe ye ] ;   //** put the coordinate here
       gh_link.foreground = clr             //** put the color here ( 5 = red )
       //** draw(gh_curwin.children); //** display the buffer
-      drawnow(); 
+      drawnow();
       //** show_pixmap(); 
-
     end
     //** ----------------- end of last segment while loop ------------------------------
 
@@ -546,6 +545,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         //** draw(gh_link.parent); //** display the buffer
         drawnow(); 
         //** show_pixmap();           
+        
         if %scicos_debug_gr then
           disp("d8");//** Debug
         end
@@ -658,7 +658,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         gh_link = gh_curwin.children.children(1) ;
         gh_link.foreground = clr
         //** draw(gh_link.parent) ; //** display the buffer
-        drawnow(); 
+        drawnow();
         //** show_pixmap(); 
       //form link datas
       xl=[xl;xc2];yl=[yl(1:nx-1);yc2;yc2]
@@ -704,7 +704,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     delete (gh_compound_delete); //** delete the object
   end
   //** draw(gh_curwin.children); //** display the buffer
-  drawnow(); 
+  drawnow();
   //** show_pixmap(); 
   //**------------------------------------------------------------------------------------------
 
@@ -796,7 +796,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
   drawobj(lk) ;
   //** draw(gh_curwin.children); //** display the buffer
-  drawnow(); 
+  drawnow();
   //** show_pixmap(); 
 
   //** update connected blocks

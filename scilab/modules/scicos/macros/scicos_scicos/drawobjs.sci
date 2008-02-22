@@ -64,7 +64,7 @@ function drawobjs(scs_m, gh_window)
      end
    end
 
-   //** BEWARE
+   //** BEWARE : 
    //** ----------------------> This section need revision <-------------------------------
    //**
    // gh_a = gca()               ; //** need some explanations

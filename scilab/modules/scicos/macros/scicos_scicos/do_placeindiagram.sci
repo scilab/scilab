@@ -31,6 +31,7 @@ function scs_m=do_placeindiagram(scs_m,blk)
 
 //**-----------------------------------------------------------------
 //** ---> main loop that move the empty box until you click
+  drawlater();
   rep(3)=-1 ;
   while rep(3)==-1 , //move loop
 
@@ -46,7 +47,8 @@ function scs_m=do_placeindiagram(scs_m,blk)
     dx = xm - %xc ; dy = ym - %yc ;
     drawlater();
     move (gh_blk , [dx dy]);
-    draw(gh_blk.parent);
+    //** draw(gh_blk.parent);
+    drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
 
     %xc = xm ;%yc = ym ; //** position update
@@ -64,7 +66,7 @@ function scs_m=do_placeindiagram(scs_m,blk)
   xy = [%xc,%yc];
   blk.graphics.orig = xy ; //** update object position in the data strucure
 
-  scs_m_save = scs_m,nc_save=needcompile ;
+  scs_m_save = scs_m,nc_save = needcompile ;
    
   scs_m.objs($+1) = blk ; //** add the object to the data structure
 

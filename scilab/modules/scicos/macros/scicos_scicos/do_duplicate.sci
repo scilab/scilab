@@ -78,8 +78,8 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
       %xc = xy(1);  %yc = xy(2) ; //** default start position
       drawlater() ;
       gh_blk = drawobj(o); //** draw the block (in the buffer) - using the corresponding Interface Function
-                          //** Scilab Language - of the specific block (blk) and get back the graphic handler
-                          //** to handle the block as a single entity
+                           //** Scilab Language - of the specific block (blk) and get back the graphic handler
+                           //** to handle the block as a single entity
       //** draw(gh_blk.parent)
       drawnow();
       //** show_pixmap() ; //** not useful on Scilab 5
@@ -88,8 +88,8 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
       //** ---> main loop that move the empty box until you click
       gh_cw = gcf();
       rep(3)=-1 ; //** mouse move only : no pressing button events
-      drawlater();
       while 1 then //** infinite move loop
+        drawlater();
         //** Exit from the loop condition 
         if or(rep(3)==[0,2,3,5,-5]) then break, end ; //** exit point
 
@@ -108,7 +108,6 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
         drawnow();
         //** show_pixmap();
         %xc = xm ; %yc = ym ; //** position update
-
       end //** of the infinite while loop 
       //**---------------------------------------------------------------------------
 

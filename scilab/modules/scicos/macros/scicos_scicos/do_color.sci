@@ -123,15 +123,12 @@ function [scs_m] = do_color(%win, %pt, scs_m)
       end
     
     //** ----------------- Text ---------------------------  
-    elseif  typeof(o)=='Text' then
+    elseif  typeof(o)=="Text" then
       //not implemented
     end
   end
 
- //** pause
-
-  drawnow(); 
-  
+  drawnow();
   //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction
