@@ -4,14 +4,4 @@ Scilab 5.0 (Alpha) Release_Notes
 - Please note that:
 
   * files association with .sce,.sci is disabled in this version.
-  
-  * Please update your video card drivers to support Opengl 1.2 on Windows
-    ATI cards http://ati.amd.com/support/driver.html
-    Intel cards http://www.intel.com/support/graphics/
-    Matrox cards http://www.matrox.com/mga/support/drivers/certified/home.cfm
-    NVIDIA cards http://www.nvidia.com/content/drivers/drivers.asp
-    S3 cards http://www.s3graphics.com/en/resources/drivers/index.jsp  
-    SiS cards http://www.sis.com/download/
-    VIA cards http://www.viaarena.com/default.aspx?PageID=2
-
     

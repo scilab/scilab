@@ -17,12 +17,21 @@ Graphical User Interface:
  - Uicontrols are now Java objects and can be included in a graphic window with graphics
  - Dialogs are now Java objects (x_message, x_dialog...)
 
-Rendering:
+Graphics:
 ==========
- - Based on JoGL (Java OpenGL)
- - @TODO details
+ - New rendering engine based on JOGL (Java Binding for the OpenGL API):
+	* Support 3D hardware acceleration.
+	* Facet ordering issues fixed with the use of Z-buffer.
+ - Text possibilities extended:
+	* Support for floating point sizes.
+ 	* Text object are able to handle matrices of strings.
+ - All graphic objects are fully operational both in 2D and 3D modes.
+ - Clipping is operational both in 2D and 3D modes.
+ - New functions:
+	* swap_handles - Permute two handles in the graphic Hierarchy.
+	* relocate_handle - Move handles inside the graphic hierarchy.
 
-Rendering export:
+Graphic file export:
 =================
  - Export formats
  - New features (?)

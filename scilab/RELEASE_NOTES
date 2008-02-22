@@ -7,6 +7,32 @@ A click on them will display a dialog box.
 - Uicontrols have been mapped to java objects. However some functionnalities
 such has units property management are no yet available.
 
+- Graphics functionalities not yet fully functional
+	* xlcea
+	* viewport management
+	* show_pixmap
+	* driver / xinit / xend
+	* seteventhandler
+	* info_message
+	* Text object font management
+	* Figure name property
+
+- Graphics know bugs
+	* Displayed axes bounds my differ from Scilab 4.x.a
+	* Unwanted marks may appear.
+	* Some colours might be different from Scilab 4.x.
+	* Legend and labels might be misplaced.
+	* Text object space management
+	* Rendering is slow or not functional on some computer / graphic card / graphic card driver combination
+
+- It is strongly recommended to update graphic cards drivers to the latest revision:
+    For ATI cards: http://ati.amd.com/support/driver.html
+    For Intel cards: http://www.intel.com/support/graphics/
+    For Matrox cards: http://www.matrox.com/mga/support/drivers/certified/home.cfm
+    For NVIDIA cards: http://www.nvidia.com/content/drivers/drivers.asp
+    For S3 cards: http://www.s3graphics.com/en/resources/drivers/index.jsp  
+    For SiS cards: http://www.sis.com/download/
+    For VIA cards: http://www.viaarena.com/default.aspx?PageID=2
 
 Scilab 4.0 Release_Notes
 ***************************
