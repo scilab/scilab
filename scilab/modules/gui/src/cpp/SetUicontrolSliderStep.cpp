@@ -37,13 +37,25 @@ int SetUicontrolSliderStep(sciPointObj* sciObj, int stackPointer, int valueType,
       // Set the Java object property for sliders
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
         {
-          CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
-                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                       (int) pUICONTROL_FEATURE(sciObj)->sliderStep[0] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
+          /* BEGIN If sliderstep is a percentage */
+          //CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
+          //                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+          //                                            (int) pUICONTROL_FEATURE(sciObj)->sliderStep[0] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
+          
+          //CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
+          //                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+          //                                            (int) pUICONTROL_FEATURE(sciObj)->sliderStep[1] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
+          /* END If sliderstep is a percentage */
 
-           CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
-                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                       (int) pUICONTROL_FEATURE(sciObj)->sliderStep[1] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
+          /* BEGIN If sliderstep is a value */
+          CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
+                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                      (int) pUICONTROL_FEATURE(sciObj)->sliderStep[0]);
+          
+          CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
+                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                      (int) pUICONTROL_FEATURE(sciObj)->sliderStep[1]);
+          /* END If sliderstep is a value */
         }
       return SET_PROPERTY_SUCCEED;
     }

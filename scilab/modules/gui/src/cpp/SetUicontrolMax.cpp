@@ -50,14 +50,15 @@ int SetUicontrolMax(sciPointObj* sciObj, int stackPointer, int valueType, int nb
           CallScilabBridge::setSliderMaxValue(getScilabJavaVM(),
                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                       (int) pUICONTROL_FEATURE(sciObj)->max);
-          /* Ticks spacing */
-          CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
-                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                      (int) (pUICONTROL_FEATURE(sciObj)->sliderStep[0] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
+
+          /* Ticks spacing: if sliderstep is a percentage ?? */
+          //CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
+          //                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+          //                                            (int) pUICONTROL_FEATURE(sciObj)->sliderStep[0] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
           
-          CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
-                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                      (int) (pUICONTROL_FEATURE(sciObj)->sliderStep[1] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
+          //CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
+          //                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+          //                                            (int) pUICONTROL_FEATURE(sciObj)->sliderStep[1] * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min));
        }
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_LISTBOX)
         {
