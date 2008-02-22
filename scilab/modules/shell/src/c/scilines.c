@@ -10,8 +10,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include <curses.h>
-#include <term.h>
+#ifndef _MSC_VER
+	#include <curses.h>
+	#include <term.h>
+#endif
 #include "scilines.h"
 #include "core_math.h"
 #include "stack-def.h"
