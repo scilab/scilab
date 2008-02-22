@@ -38,7 +38,7 @@
   {sci_TCL_CreateSlave,"TCL_CreateSlave"},
   {sci_TCL_ExistInterp,"TCL_ExistInterp"},
   {sci_TCL_ExistArray,"TCL_ExistArray"},
-  {sci_TCL_EvalFile,"__TCL_EvalFile"}
+  {sci_TCL_EvalFile,"TCL_EvalFile"}
  };
 /*--------------------------------------------------------------------------*/
 int gw_tclsci(void)
