@@ -33,7 +33,7 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
       // Send to Java
       CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
       // Scilab relationship
-      sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
+      //sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
     }
 
   if (nbRow*nbCol != 1) {
@@ -51,7 +51,7 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
           CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
           // Scilab relationship
-          sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
+          //sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;
 
