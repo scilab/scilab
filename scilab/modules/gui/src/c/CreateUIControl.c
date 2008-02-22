@@ -97,14 +97,10 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE(pobj)->horizontalAlignment = CENTER_ALIGNMENT;
   pUICONTROL_FEATURE(pobj)->verticalAlignment = MIDDLE_ALIGNMENT;
 
+  /* SliderStep is set to NULL as default */
+  /* The getter for SliderStep returns [0.01*(max-min) 0.1*(max-min)] if SliderStep is NULL */
   /* Slider Step default */
-  if ((pUICONTROL_FEATURE (pobj)->sliderStep = CALLOC(2,sizeof(double))) == NULL )
-    {
-      sciprint(_("No more place to allocates default SliderStep default value."));
-      return (sciPointObj *) NULL;
-    }
-  pUICONTROL_FEATURE(pobj)->sliderStep[0] = 0.01;
-  pUICONTROL_FEATURE(pobj)->sliderStep[1] = 0.1;
+  pUICONTROL_FEATURE(pobj)->sliderStep = NULL;
 
   sciStandardBuildOperations(pobj, NULL);
       
