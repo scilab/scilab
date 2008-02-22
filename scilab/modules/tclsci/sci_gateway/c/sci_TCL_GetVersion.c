@@ -8,7 +8,7 @@
 #include "localization.h"
 #include "../../localization/includes/localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
+int sci_TCL_GetVersion(char *fname,unsigned long l)
 {
 	static int l1,n1,m1;
 	int major=0;
@@ -43,8 +43,7 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		}
 
 		sprintf(VersionString,"TCL/TK %d.%d.%d %s",major,minor,patchLevel,ReleaseType);
-		output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
-		strcpy(output,VersionString);
+		output=strdup(VersionString);
 		n1=1;
 		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 		if (output) {FREE(output);output=NULL;}
@@ -52,7 +51,7 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();
 	}
-	else 
+	else
 	{
 		if (GetType(1) == sci_strings)
 		{
@@ -69,7 +68,7 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 				VERSIONMATRIX[0]=(int)major;
 				VERSIONMATRIX[1]=(int)minor;
 				VERSIONMATRIX[2]=(int)patchLevel;
-				VERSIONMATRIX[3]=(int)type; 
+				VERSIONMATRIX[3]=(int)type;
 
 				m1=1;
 				n1=4;
@@ -87,7 +86,7 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 		{
 			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 		}
-		
+
 	}
 	return 0;
 }

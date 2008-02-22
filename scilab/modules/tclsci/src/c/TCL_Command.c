@@ -1,28 +1,27 @@
 /*
-**  -*- C -*-
-**
-** TCL_Command.c
-** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
-**
-** Started on  Wed Jan  9 09:15:30 2008 bruno
-** Last update Wed Jan 16 08:37:32 2008 bruno
-**
-** Copyright INRIA 2008
-*/
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 #include <stdlib.h>
-#ifndef _MSC_VER
-#include <unistd.h>
-#endif
 
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "strdup_windows.h"
 #define usleep(micro) Sleep(micro/1000)
-
+#else
+#include <unistd.h>
 #endif
+
 #include "MALLOC.h"
 #include "TCL_Command.h"
-
+#include "GlobalTclInterp.h"
 
 // TCL Interpreter creation and loop ID
 __threadId		TclThread;
@@ -30,6 +29,8 @@ __threadId		TclThread;
 char *			TclSlave;
 // Global Tcl Command Buffer
 char *			TclCommand;
+// Global Tcl Script to Evaluate
+char *			TclFile;
 // Global Tcl Return Code.
 int			TclInterpReturn;
 // Global Tcl Return Result.
@@ -48,7 +49,10 @@ __threadSignal		workIsDone;
 // Launch command
 __threadLock		launchCommand;
 
-
+// ***********************
+// ** Enable LocalDebug **
+// **********************
+//#define __LOCAL_DEBUG__
 
 
 extern BOOL TK_Started;
@@ -60,8 +64,10 @@ extern BOOL TK_Started;
 */
 static void *sleepAndSignal(void* in) {
   while(TK_Started) {
-    //printf(".");
-    //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+    printf(".");
+    fflush(NULL);
+#endif
     usleep(TIME_TO_SLEEP);
     __Lock(&wakeUpLock);
     __Signal(&wakeUp);
@@ -75,7 +81,7 @@ static void *sleepAndSignal(void* in) {
 ** in order the Scilab Global Tcl Interpreter
 ** do some "update" and let the Tcl Applications live.
 */
-void startTclLoop(Tcl_Interp *TCLinterp)
+void startTclLoop()
 {
   __threadId sleepThreadId;
 
@@ -93,34 +99,65 @@ void startTclLoop(Tcl_Interp *TCLinterp)
   ** TCL Event Loop : Threaded
   */
   while(TK_Started) {
-    //printf(".");
-    //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+    printf(".");
+    fflush(NULL);
+#endif
     /*
     ** -= IF =-
     ** there is a command to run
     ** RUN IT.
+    **
+    ** -= or =-
+    ** there is a script to load
+    ** LOAD IT.
     */
-    if (TclCommand != NULL)
+    if (TclCommand != NULL || TclFile != NULL)
       {
-	//printf("[LOCK] launch Command\n");
-	//fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+	printf("[LOCK] launch Command\n");
+	fflush(NULL);
+#endif
 	__Lock(&launchCommand);
 
 	/* Reinit local interpreter,
 	   default is the biggest one. */
-	LocalTCLinterp = TCLinterp;
+	LocalTCLinterp = getTclInterp();
+	releaseTclInterp();
 
 	/* Check if it's supposed to be run in root or slave */
 	if(TclSlave != NULL)
 	  {
-	    LocalTCLinterp = Tcl_GetSlave(TCLinterp, TclSlave);
+	    LocalTCLinterp = Tcl_GetSlave(LocalTCLinterp, TclSlave);
 	    FREE(TclSlave);
 	    TclSlave = NULL;
 	  }
-	/* Do the evaluation */
-	//printf("[TCL Daemon] Eval : %s\n", TclCommand);
-	//fflush(NULL);
-	TclInterpReturn = Tcl_Eval(LocalTCLinterp, TclCommand);
+	/*
+	** Do the evaluation
+	*/
+	if (TclCommand != NULL)
+	  {
+#ifdef __LOCAL_DEBUG__
+	    printf("[TCL Daemon] Eval : %s\n", TclCommand);
+	    fflush(NULL);
+#endif
+	    TclInterpReturn = Tcl_Eval(LocalTCLinterp, TclCommand);
+	    FREE(TclCommand);
+	    TclCommand = NULL;
+	  }
+	/*
+	** Do the evaluation
+	*/
+	else if (TclFile != NULL)
+	  {
+#ifdef __LOCAL_DEBUG__
+	    printf("[TCL Daemon] Load : %s\n", TclFile);
+	    fflush(NULL);
+#endif
+	    TclInterpReturn = Tcl_EvalFile(LocalTCLinterp, TclFile);
+	    FREE(TclFile);
+	    TclFile = NULL;
+	  }
 	/* Update return value and result */
 	if (LocalTCLinterp->result && strlen(LocalTCLinterp->result) != 0)
 	  {
@@ -130,10 +167,10 @@ void startTclLoop(Tcl_Interp *TCLinterp)
 	  {
 	    TclInterpResult = NULL;
 	  }
-	FREE(TclCommand);
-	TclCommand = NULL;
-	//printf("[SIGNAL] executionDone\n");
-	//fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+	printf("[SIGNAL] executionDone\n");
+	fflush(NULL);
+#endif
 	__Signal(&workIsDone);
 	__UnLock(&launchCommand);
       }
@@ -145,42 +182,60 @@ void startTclLoop(Tcl_Interp *TCLinterp)
     else
       {
 	__Lock(&wakeUpLock);
-	Tcl_Eval(TCLinterp, "update");
-	//printf("[TCL Daemon] Wait\n");
-	//fflush(NULL);
+	Tcl_Eval(getTclInterp(), "update");
+	releaseTclInterp();
+#ifdef __LOCAL_DEBUG__
+	printf("[TCL Daemon] Wait\n");
+	fflush(NULL);
+#endif
 	__Wait(&wakeUp, &wakeUpLock);
 	__UnLock(&wakeUpLock);
       }
   }
   /* TK is stopped... Kill interpreter. */
-  Tcl_DeleteInterp(TCLinterp);
+  deleteTclInterp();
 
 }
 
 /*
-** Send Tcl Command
+** Send Tcl_EvalFile
 ** Ask the interpreter to execute some command
 ** by send a SIGNAL to the other thread.
 */
-void sendTclCommand(char* command)
+int sendTclFileToSlave(char* file, char* slave)
 {
-  //printf("[TCL Send] Eval : %s\n", command);
-  //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+  printf("[TCL %s SendFile] File : %s\n", slave, file);
+  fflush(NULL);
+#endif
   __Lock(&singleExecutionLock);
   {
     __Lock(&launchCommand);
-    TclCommand = strdup(command);
+    TclFile = strdup(file);
+    if (slave != NULL)
+      {
+	TclSlave = strdup(slave);
+      }
+    else
+      {
+	TclSlave = NULL;
+      }
     __Lock(&wakeUpLock);
     __Signal(&wakeUp);
     __UnLock(&wakeUpLock);
-    //printf("[TCL Main]Wait EXECUTION DONE\n");
-    //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+    printf("[TCL Main] Wait EXECUTION DONE\n");
+    fflush(NULL);
+#endif
     __Wait(&workIsDone, &launchCommand);
-    //printf("[TCL Send] DONE\n");
-    //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+    printf("[TCL SendFile] DONE\n");
+    fflush(NULL);
+#endif
     __UnLock(&launchCommand);
   }
   __UnLock(&singleExecutionLock);
+  return getTclCommandReturn();
 }
 
 /*
@@ -188,27 +243,40 @@ void sendTclCommand(char* command)
 ** Ask the interpreter to execute some command
 ** by send a SIGNAL to the other thread.
 */
-void sendTclCommandToSlave(char* command, char* slave)
+int sendTclCommandToSlave(char* command, char* slave)
 {
-
-  //printf("[TCL %s Send] Eval : %s\n", slave, command);
-  //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+  printf("[TCL %s Send] Eval : %s\n", slave, command);
+  fflush(NULL);
+#endif
   __Lock(&singleExecutionLock);
   {
     __Lock(&launchCommand);
     TclCommand = strdup(command);
-    TclSlave = strdup(slave);
+    if (slave != NULL)
+      {
+	TclSlave = strdup(slave);
+      }
+    else
+      {
+	TclSlave = NULL;
+      }
     __Lock(&wakeUpLock);
     __Signal(&wakeUp);
     __UnLock(&wakeUpLock);
-    //printf("[TCL Main]Wait EXECUTION DONE\n");
-    //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+    printf("[TCL Main]Wait EXECUTION DONE\n");
+    fflush(NULL);
+#endif
     __Wait(&workIsDone, &launchCommand);
-    //printf("[TCL Send] DONE\n");
-    //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+    printf("[TCL Send] DONE\n");
+    fflush(NULL);
+#endif
     __UnLock(&launchCommand);
   }
   __UnLock(&singleExecutionLock);
+  return getTclCommandReturn();
 }
 
 
@@ -219,9 +287,13 @@ void sendTclCommandToSlave(char* command, char* slave)
 */
 int getTclCommandReturn(void)
 {
-  //printf("[TCL getTclCommandReturn]\n");
-  //fflush(NULL);
-  return TclInterpReturn;
+#ifdef __LOCAL_DEBUG__
+  printf("[TCL getTclCommandReturn]\n");
+  fflush(NULL);
+#endif
+  int commandResult = TclInterpReturn;
+  TclInterpReturn = 0;
+  return commandResult;
 }
 
 /*
@@ -232,8 +304,10 @@ int getTclCommandReturn(void)
 */
 char *getTclCommandResult(void)
 {
-  //printf("[TCL getTclCommandResult]\n");
-  //fflush(NULL);
+#ifdef __LOCAL_DEBUG__
+  printf("[TCL getTclCommandResult]\n");
+  fflush(NULL);
+#endif
   if (TclInterpResult != NULL) {
     char *result = strdup(TclInterpResult);
     TclInterpResult = NULL;

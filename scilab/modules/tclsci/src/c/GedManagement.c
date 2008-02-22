@@ -1,15 +1,29 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY
+ *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------------*/
-/* Copyright INRIA 2006                                                                    */
-/* File   : GedManagement.c                                                                */
-/* Author : Jean-Baptiste Silvy                                                            */
-/* Desc   : C functions to manage ged (only destroy for now)                               */
+/* File   : GedManagement.c                                                       */
+/* Desc   : C functions to manage ged (only destroy for now)                      */
 /*--------------------------------------------------------------------------------*/
 
 #include "GedManagement.h"
 #include "TCL_Global.h"
+#include "GlobalTclInterp.h"
+
 /*--------------------------------------------------------------------------------*/
 /* return the ged interpreter (default interpreter for now) */
-static Tcl_Interp * getGedInterpreter( void ) ;
+static Tcl_Interp * getGedInterpreter( void );
+static void releaseGedInterpreter(void);
+
 /*--------------------------------------------------------------------------------*/
 int sciDestroyGed( int figureId )
 {
@@ -20,10 +34,12 @@ int sciDestroyGed( int figureId )
     Tcl_Eval( gedInterp, "catch { destroy .ticks }" ) ;
     /* try to close the editor */
     Tcl_Eval( gedInterp, "catch { destroy .axes }"  ) ;
+    releaseGedInterpreter();
     return 0 ;
   }
   else
   {
+    releaseGedInterpreter();
     return 1 ;
   }
 }
@@ -36,6 +52,7 @@ int isGedOpenedOn( int figureId )
   {
     /* check is sciGedIsAlive variable exists */
     char * sGedWindowNum = (char * ) Tcl_GetVar( gedInterp, "sciGedIsAlive", TCL_GLOBAL_ONLY ) ;
+    releaseGedInterpreter();
     if ( sGedWindowNum )
     {
       /* get the number of the window ged modified */
@@ -65,11 +82,13 @@ int isGedOpenedOn( int figureId )
 
 /*--------------------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------------*/
-
-static Tcl_Interp * getGedInterpreter( void )
+Tcl_Interp *getGedInterpreter( void )
 {
-  return TCLinterp ;
+  return getTclInterp();
 }
 
+void releaseGedInterpreter(void)
+{
+  releaseTclInterp();
+}
 /*--------------------------------------------------------------------------------*/

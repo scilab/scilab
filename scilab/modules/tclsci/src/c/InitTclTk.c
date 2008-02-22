@@ -1,8 +1,16 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2005 */
-/* Allan CORNET */
-/* 2007 - INRIA - Sylvestre LEDRU */
-/*--------------------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include "InitTclTk.h"
 #ifndef _MSC_VER
 #include <dirent.h>
@@ -15,6 +23,7 @@
 #include "scilabmode.h"
 #include "ScilabEval.h"
 #include "TCL_Command.h"
+#include "GlobalTclInterp.h"
 #include "BOOL.h"
 
 /*--------------------------------------------------------------------------*/
@@ -91,45 +100,47 @@ static void *DaemonOpenTCLsci(void* in)
   else fclose(tmpfile2);
 #endif /* _MSC_VER */
 
-  if (TCLinterp == NULL)
+  if (getTclInterp() == NULL)
     {
-      TCLinterp = Tcl_CreateInterp();
-      if ( TCLinterp == NULL )
+      releaseTclInterp();
+      initTclInterp();
+      if ( getTclInterp() == NULL )
 	{
 	  Scierror(999,_("Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"));
 	}
-
-      if ( Tcl_Init(TCLinterp) == TCL_ERROR)
+      releaseTclInterp();
+      if ( Tcl_Init(getTclInterp()) == TCL_ERROR)
 	{
-	  Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),TCLinterp->result);
+	  Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),getTclInterp()->result);
 	}
-
-      if ( Tk_Init(TCLinterp) == TCL_ERROR)
+      releaseTclInterp();
+      if ( Tk_Init(getTclInterp()) == TCL_ERROR)
 	{
-		Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init):%s\n"),TCLinterp->result);
-		tkStarted=FALSE;
+	  Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init):%s\n"),getTclInterp()->result);
+	  tkStarted=FALSE;
 	}
-
+      releaseTclInterp();
       sprintf(MyCommand, "set SciPath \"%s\";",SciPath);
 
-      if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
+      if ( Tcl_Eval(getTclInterp(),MyCommand) == TCL_ERROR  )
 	{
-	  Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),TCLinterp->result);
+	  Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),getTclInterp()->result);
 	}
-
-      Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
+      releaseTclInterp();
+      Tcl_CreateCommand(getTclInterp(),"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
+      releaseTclInterp();
     }
 
 	if (TKmainWindow == NULL && tkStarted)
     {
-		#ifdef _MSC_VER
-			TKmainWindow = Tk_MainWindow(TCLinterp);
+			TKmainWindow = Tk_MainWindow(getTclInterp());
+			releaseTclInterp();
 			Tk_GeometryRequest(TKmainWindow,2,2);
-		#endif
-			if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
+			if ( Tcl_EvalFile(getTclInterp(),TkScriptpath) == TCL_ERROR  )
 			{
-				Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath, TCLinterp->result);
+				Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath, getTclInterp()->result);
 			}
+			releaseTclInterp();
 	}
 
 
@@ -142,8 +153,7 @@ static void *DaemonOpenTCLsci(void* in)
   // This start a periodic and endless call to "update"
   // TCL command. This causes any TCL application to start
   // and run as if it's in the main program thread.
-  startTclLoop(TCLinterp);
-
+  startTclLoop();
   return(0);
 
 }
@@ -169,7 +179,7 @@ BOOL CloseTCLsci(void)
 	{
 	  setTkStarted(FALSE);
 	  __WaitThreadDie(TclThread);
-	  TCLinterp=NULL;
+	  deleteTclInterp();
 	  TKmainWindow=NULL;
 	  return TRUE;
 	}

@@ -1,14 +1,14 @@
 /*
-**  -*- C -*-
-**
-** TCL_Command.h
-** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
-**
-** Started on  Wed Jan  9 09:16:50 2008 bruno
-** Last update Thu Jan 10 15:43:08 2008 bruno
-**
-** Copyright INRIA 2008
-*/
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 /*
 ** Manage Tcl Loop as a standalone one.
@@ -35,14 +35,21 @@
 ** in order the Scilab Global Tcl Interpreter
 ** do some "update" and let the Tcl Applications live.
 */
-void		startTclLoop(Tcl_Interp *TCLInterp);
+void		startTclLoop(void);
 
 /*
 ** Send Tcl Command
 ** Ask the interpreter to execute some command.
 ** Manage mutex and lock process.
 */
-void		sendTclCommand(char* command);
+#define		sendTclCommand(command)	sendTclCommandToSlave(command, NULL)
+
+/*
+** Send Tcl File
+** Ask the interpreter to load some file
+** Manage mutex and lock process.
+*/
+#define		sendTclFile(command)	sendTclFileToSlave(command, NULL)
 
 /*
 ** Send Tcl Command To Slave
@@ -50,13 +57,21 @@ void		sendTclCommand(char* command);
 ** Manage mutex and lock process.
 */
 
-void		sendTclCommandToSlave(char* command, char* slave);
+int		sendTclCommandToSlave(char* command, char* slave);
+
+/*
+** Send Tcl File To Slave
+** Ask the interpreter to load some file
+** Manage mutex and lock process.
+*/
+int		sendTclFileToSlave(char* command, char* slave);
+
 /*
 ** Get Tcl Command Return Value
 ** Porpagate return value of Tcl Interpreter
 ** caught in thread.
 */
-int getTclCommandReturn(void);
+int		getTclCommandReturn(void);
 
 /*
 ** Get Tcl Command Result
@@ -64,6 +79,6 @@ int getTclCommandReturn(void);
 ** caught in thread.
 ** This can be an error or a string value.
 */
-char *getTclCommandResult(void);
+char		*getTclCommandResult(void);
 
 #endif /* !__TCL_COMMAND_H__ */

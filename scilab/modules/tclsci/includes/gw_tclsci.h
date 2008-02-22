@@ -1,29 +1,39 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ *  Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------*/
-/* INRIA 2005 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/ 
 #ifndef __GW_TCLSCI__
 #define __GW_TCLSCI__
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int gw_tclsci(void);
-/*--------------------------------------------------------------------------*/ 
-int C2F(sci_TCL_DoOneEvent) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_GetVar) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_opentk) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_UnsetVar) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_ExistVar) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_UpVar) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_TCL_ExistArray) _PARAMS((char *fname,unsigned long fname_len));
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
+int sci_TCL_DoOneEvent (char *fname,unsigned long fname_len);
+int sci_TCL_EvalFile(char *fname,unsigned long fname_len);
+int sci_TCL_EvalStr(char *fname,unsigned long fname_len);
+int sci_TCL_GetVar(char *fname,unsigned long fname_len);
+int sci_TCL_SetVar(char *fname,unsigned long fname_len);
+int sci_opentk(char *fname,unsigned long fname_len);
+int sci_TCL_GetVersion(char *fname,unsigned long fname_len);
+int sci_TCL_UnsetVar(char *fname,unsigned long fname_len);
+int sci_TCL_ExistVar(char *fname,unsigned long fname_len);
+int sci_TCL_UpVar(char *fname,unsigned long fname_len);
+int sci_TCL_DeleteInterp(char *fname,unsigned long fname_len);
+int sci_TCL_CreateSlave(char *fname,unsigned long fname_len);
+int sci_TCL_ExistInterp(char *fname,unsigned long fname_len);
+int sci_TCL_ExistArray(char *fname,unsigned long fname_len);
+/*--------------------------------------------------------------------------*/
 #endif /*  __GW_TCLSCI__ */
 /*--------------------------------------------------------------------------*/
 

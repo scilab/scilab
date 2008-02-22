@@ -1,6 +1,16 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2005 */
-/* Allan CORNET */
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ *  Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "sciprint.h"
@@ -15,20 +25,20 @@
 /*--------------------------------------------------------------------------*/
  static gw_generic_table Tab[]=
  {
-  {C2F(sci_TCL_DoOneEvent),"TCL_DoOneEvent"},
-  {C2F(sci_TCL_EvalFile),"__TCL_EvalFile"},
-  {C2F(sci_TCL_EvalStr),"TCL_EvalStr"},
-  {C2F(sci_TCL_GetVar),"TCL_GetVar"},
-  {C2F(sci_TCL_SetVar),"TCL_SetVar"},
-  {C2F(sci_opentk),"opentk"},
-  {C2F(sci_TCL_GetVersion),"TCL_GetVersion"},
-  {C2F(sci_TCL_UnsetVar),"TCL_UnsetVar"},
-  {C2F(sci_TCL_ExistVar),"TCL_ExistVar"},
-  {C2F(sci_TCL_UpVar),"TCL_UpVar"},
-  {C2F(sci_TCL_DeleteInterp),"TCL_DeleteInterp"},
-  {C2F(sci_TCL_CreateSlave),"TCL_CreateSlave"},
-  {C2F(sci_TCL_ExistInterp),"TCL_ExistInterp"},
-  {C2F(sci_TCL_ExistArray),"TCL_ExistArray"}
+  {sci_TCL_DoOneEvent,"TCL_DoOneEvent"},
+  {sci_TCL_EvalStr,"TCL_EvalStr"},
+  {sci_TCL_GetVar,"TCL_GetVar"},
+  {sci_TCL_SetVar,"TCL_SetVar"},
+  {sci_opentk,"opentk"},
+  {sci_TCL_GetVersion,"TCL_GetVersion"},
+  {sci_TCL_UnsetVar,"TCL_UnsetVar"},
+  {sci_TCL_ExistVar,"TCL_ExistVar"},
+  {sci_TCL_UpVar,"TCL_UpVar"},
+  {sci_TCL_DeleteInterp,"TCL_DeleteInterp"},
+  {sci_TCL_CreateSlave,"TCL_CreateSlave"},
+  {sci_TCL_ExistInterp,"TCL_ExistInterp"},
+  {sci_TCL_ExistArray,"TCL_ExistArray"},
+  {sci_TCL_EvalFile,"__TCL_EvalFile"}
  };
 /*--------------------------------------------------------------------------*/
 int gw_tclsci(void)

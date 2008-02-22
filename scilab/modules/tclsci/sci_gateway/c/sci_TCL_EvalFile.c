@@ -1,36 +1,51 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2005 */
-/* Allan CORNET */
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "GlobalTclInterp.h"
+#include "TCL_Command.h"
 /*--------------------------------------------------------------------------*/
 extern BOOL FileExist(char *filename); /* From module fileio */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
+int sci_TCL_EvalFile(char *fname,unsigned long l)
 {
   /* execute Tcl scripts */
   int m1,n1,l1;
   int m2,n2,l2;
   int RET;
-  Tcl_Interp *TCLinterpreter=NULL;
 
   CheckRhs(1,2);
   CheckLhs(1,1);
 
+  Tcl_Interp *TCLinterpreter=NULL;
+
   if (GetType(1) == sci_strings)
     {
       GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-
-      if (TCLinterp == NULL)
+      /* Check if there is a global interpreter */
+      TCLinterpreter=getTclInterp();
+      releaseTclInterp();
+      if (TCLinterpreter == NULL)
 	{
 	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 	  return 0;
 	}
 
+      /* Check if the file to load exists*/
       if(!FileExist(cstk(l1)))
 	{
 	  Scierror(999,_("file %s not found.\n"),cstk(l1));
@@ -43,12 +58,14 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 	  if (GetType(2) == sci_strings)
 	    {
 	      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-	      TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
-	      if (TCLinterpreter==NULL)
+	      TCLinterpreter = Tcl_GetSlave(getTclInterp(), cstk(l2));
+	      releaseTclInterp();
+	      if (TCLinterpreter == NULL)
 		{
 		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 		  return 0;
 		}
+	      RET=sendTclFileToSlave(cstk(l2), cstk(l1));
 	    }
 	  else
 	    {
@@ -56,14 +73,9 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 	      return 0;
 	    }
 	}
-      else
-	{
-	  /* only one argument given - use the main interpreter */
-	  TCLinterpreter=TCLinterp;
-	}
-
-      RET=Tcl_EvalFile(TCLinterpreter,cstk(l1));
-
+      else {
+	RET=sendTclFile(cstk(l1));
+      }
       if (RET==TCL_ERROR)
 	{
 	  const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);

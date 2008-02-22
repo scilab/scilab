@@ -1,6 +1,15 @@
-/*--------------------------------------------------------------------------*/
-/* INRIA 2005 */
-/* Allan CORNET */
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "TCL_Global.h"
@@ -9,11 +18,12 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "TCL_Command.h"
+#include "GlobalTclInterp.h"
 #ifdef _MSC_VER
-	#include "strdup_windows.h"
+#include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
+int sci_TCL_EvalStr(char *fname,unsigned long l)
 {
   CheckRhs(1,2);
   CheckLhs(1,1);
@@ -27,15 +37,18 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
       int m2,n2,l2;
       char **ReturnArrayString=NULL;
       int k=0;
+      int tclInterpReturnValue;
 
       GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
 
-      if (TCLinterp == NULL)
+      if (getTclInterp() == NULL)
 	{
+	  releaseTclInterp();
 	  freeArrayOfString(Str,m1*n1);
 	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 	  return 0;
 	}
+      releaseTclInterp();
 
       if (Rhs==2)
 	{
@@ -43,12 +56,14 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 	  if (GetType(2) == sci_strings)
 	    {
 	      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-	      if (Tcl_GetSlave(TCLinterp,cstk(l2)) == NULL)
+	      if (Tcl_GetSlave(getTclInterp(),cstk(l2)) == NULL)
 		{
+		  releaseTclInterp();
 		  freeArrayOfString(Str,m1*n1);
 		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 		  return 0;
 		}
+	      releaseTclInterp();
 	      tclSlave =  strdup(cstk(l2));
 	    }
 	  else
@@ -65,15 +80,16 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 	{
 
 	  if (tclSlave != NULL) {
-	    sendTclCommandToSlave(Str[i], tclSlave);
+	    tclInterpReturnValue = sendTclCommandToSlave(Str[i], tclSlave);
 	  }
 	  else {
-	    sendTclCommand(Str[i]);
+	    tclInterpReturnValue = sendTclCommand(Str[i]);
 	  }
 
-	  if (getTclCommandReturn() == TCL_ERROR)
+	  if (tclInterpReturnValue == TCL_ERROR)
 	    {
-	      const char *trace = Tcl_GetVar(TCLinterp, "errorInfo", TCL_GLOBAL_ONLY);
+	      const char *trace = Tcl_GetVar(getTclInterp(), "errorInfo", TCL_GLOBAL_ONLY);
+	      releaseTclInterp();
 	      freeArrayOfString(Str,m1*n1);
 	      if(Err>0)
 		{
@@ -81,7 +97,8 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 		}
 	      else
 		{
-		  Scierror(999,"%s, %s at line %i\n	%s\n",fname,TCLinterp->result,i+1,(char *)trace);
+		  Scierror(999,"%s, %s at line %i\n	%s\n",fname,getTclInterp()->result,i+1,(char *)trace);
+		  releaseTclInterp();
 		}
 	      return 0;
             }
@@ -89,7 +106,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
 	    {
 	      /* return result of the successful evaluation of the script */
 	      /* return a matrix of string results */
-	      ReturnArrayString[k++]=getTclCommandResult();
+	      ReturnArrayString[k++] = getTclCommandResult();
             }
 	}
       CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, ReturnArrayString);

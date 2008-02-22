@@ -25,17 +25,17 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="40" primitiveId="1" primitiveName="TCL_DoOneEvent" />
-<PRIMITIVE gatewayId="40" primitiveId="2" primitiveName="__TCL_EvalFile" />
-<PRIMITIVE gatewayId="40" primitiveId="3" primitiveName="TCL_EvalStr" />
-<PRIMITIVE gatewayId="40" primitiveId="4" primitiveName="TCL_GetVar" />
-<PRIMITIVE gatewayId="40" primitiveId="5" primitiveName="TCL_SetVar" />
-<PRIMITIVE gatewayId="40" primitiveId="6" primitiveName="opentk" />
-<PRIMITIVE gatewayId="40" primitiveId="7" primitiveName="TCL_GetVersion" />
-<PRIMITIVE gatewayId="40" primitiveId="8" primitiveName="TCL_UnsetVar" />
-<PRIMITIVE gatewayId="40" primitiveId="9" primitiveName="TCL_ExistVar" />
-<PRIMITIVE gatewayId="40" primitiveId="10" primitiveName="TCL_UpVar" />
-<PRIMITIVE gatewayId="40" primitiveId="11" primitiveName="TCL_DeleteInterp" />
-<PRIMITIVE gatewayId="40" primitiveId="12" primitiveName="TCL_CreateSlave" />
-<PRIMITIVE gatewayId="40" primitiveId="13" primitiveName="TCL_ExistInterp" />
-<PRIMITIVE gatewayId="40" primitiveId="14" primitiveName="TCL_ExistArray" />
+<PRIMITIVE gatewayId="40" primitiveId="2" primitiveName="TCL_EvalStr" />
+<PRIMITIVE gatewayId="40" primitiveId="3" primitiveName="TCL_GetVar" />
+<PRIMITIVE gatewayId="40" primitiveId="4" primitiveName="TCL_SetVar" />
+<PRIMITIVE gatewayId="40" primitiveId="5" primitiveName="opentk" />
+<PRIMITIVE gatewayId="40" primitiveId="6" primitiveName="TCL_GetVersion" />
+<PRIMITIVE gatewayId="40" primitiveId="7" primitiveName="TCL_UnsetVar" />
+<PRIMITIVE gatewayId="40" primitiveId="8" primitiveName="TCL_ExistVar" />
+<PRIMITIVE gatewayId="40" primitiveId="9" primitiveName="TCL_UpVar" />
+<PRIMITIVE gatewayId="40" primitiveId="10" primitiveName="TCL_DeleteInterp" />
+<PRIMITIVE gatewayId="40" primitiveId="11" primitiveName="TCL_CreateSlave" />
+<PRIMITIVE gatewayId="40" primitiveId="12" primitiveName="TCL_ExistInterp" />
+<PRIMITIVE gatewayId="40" primitiveId="13" primitiveName="TCL_ExistArray" />
+<PRIMITIVE gatewayId="40" primitiveId="14" primitiveName="__TCL_EvalFile" />
 </GATEWAY>

@@ -35,160 +35,145 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   int nc,ncomm=-1;
 
   if (C2F(iop).ddt==-1)
-  {
-	/* trace for debugging */
-    int argc=1;
-	char *AsciiFromUTF8=NULL;
-	char *msg=_("TCL_EvalScilabCmd %s");
+    {
+      /* trace for debugging */
+      int argc=1;
+      char *AsciiFromUTF8=NULL;
+      char *msg=_("TCL_EvalScilabCmd %s");
 
-	AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
+      AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
-    /* UTF to ANSI */
-	Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
+      /* UTF to ANSI */
+      Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 
-    sciprint_full(msg,AsciiFromUTF8);
-	if (msg) {FREE(msg);msg=NULL;}
+      sciprint_full(msg,AsciiFromUTF8);
+      if (msg) {FREE(msg);msg=NULL;}
 
-    while (argv[++argc]) sciprint(" %s",argv[argc]);
-    sciprint("\n");
+      while (argv[++argc]) sciprint(" %s",argv[argc]);
+      sciprint("\n");
 
-	if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
-  }
+      if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
+    }
 
   if (argv[1] != (char *)0)
-  {
-	  char *AsciiFromUTF8=NULL;
-	  AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
+    {
+      char *AsciiFromUTF8=NULL;
+      AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
-	  /* UTF to ANSI */
-	  Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
+      /* UTF to ANSI */
+      Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 
-    if (strlen(AsciiFromUTF8)>=bsiz)
-	{
-      command = (char *) MALLOC (bsiz * sizeof (char));
+      command = strdup(AsciiFromUTF8);
       if (command == (char *) 0)
-      {
-		sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
-        return TCL_ERROR;
-      }
-      memset(command,'\0',bsiz);
-      strncpy(command,AsciiFromUTF8,bsiz-1);
-	  sciprint(_("Warning: ScilabEval command is too long and has been truncated to %d characters!\n"),bsiz-1);
-    }
-	else
 	{
-      command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
-      if (command == (char *) 0)
-      {
-		  sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
-          return TCL_ERROR;
-      }
-      strcpy(command,AsciiFromUTF8);
-    }
-	if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
+	  sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
+	  return TCL_ERROR;
+	}
 
-    if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
+      if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
+
+      if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{
-      /* sync or sync seq */
+	  /* sync or sync seq */
 	  // TODO : Scilab is supposed to be busy there. Add mutex lock...
 	  // C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
-      seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
-      ns=(int)strlen(command);
-      if (C2F(iop).ddt==-1)
-	  {
-		  char *msg=_("Execution starts for %s");
-		  sciprint_full(msg,command);
-		  if (msg){FREE(msg);msg=NULL;}
-          sciprint("\n");
-	  }
-      C2F(syncexec)(command,&ns,&ierr,&seq,ns);
-      if (C2F(iop).ddt==-1)
-	  {
-		  char *msg=_("Execution ends for %s");
-		  sciprint_full(msg,command);
-		  if (msg){FREE(msg);msg=NULL;}
-          sciprint("\n");
-	  }
-      // TODO : Scilab is supposed to be busy there. Add mutex lock...
-      // C2F(tksynchro)(&C2F(recu).paus);
-      if (ierr != 0) return TCL_ERROR;
-    }
-    else if (strncmp(command,"flush",5)==0)
+	  seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
+	  ns=(int)strlen(command);
+	  if (C2F(iop).ddt==-1)
+	    {
+	      char *msg=_("Execution starts for %s");
+	      sciprint_full(msg,command);
+	      if (msg){FREE(msg);msg=NULL;}
+	      sciprint("\n");
+	    }
+	  C2F(syncexec)(command,&ns,&ierr,&seq,ns);
+	  if (C2F(iop).ddt==-1)
+	    {
+	      char *msg=_("Execution ends for %s");
+	      sciprint_full(msg,command);
+	      if (msg){FREE(msg);msg=NULL;}
+	      sciprint("\n");
+	    }
+	  // TODO : Scilab is supposed to be busy there. Add mutex lock...
+	  // C2F(tksynchro)(&C2F(recu).paus);
+	  if (ierr != 0) return TCL_ERROR;
+	}
+      else if (strncmp(command,"flush",5)==0)
 	{
-      /* flush */
-      if (C2F(iop).ddt==-1) sciprint(_(" Flushing starts for queued commands.\n"));
-      while (ismenu() && ncomm<arbitrary_max_queued_callbacks-1)
-	  {
-        ncomm++;
-        comm[ncomm] = (char *) MALLOC (bsiz+1);
-        if (comm[ncomm] == (char *) 0)
-        {
-			sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
-			return TCL_ERROR;
-        }
-        seqf[ncomm]=GetCommand (comm[ncomm]);
-      }
-      if (ismenu()) sciprint(_("Warning: Too many callbacks in queue!\n"));
-      for (nc = 0 ; nc <= ncomm ; nc++ )
-	  {
-	    // TODO : Scilab is supposed to be busy there. Add mutex lock...
-	    // C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
-        if (C2F(iop).ddt==-1)
-        {
-	      if (seqf[nc]==0)
-		  {
-			  char *msg=_("Flushed execution starts for %s - No option");
-			  sciprint_full(msg,comm[nc]);
-			  if (msg){FREE(msg);msg=NULL;}
-              sciprint("\n");
-		  }
-	      else
-		  {
-			  char *msg=_("Flushed execution starts for %s - seq");
-			  sciprint_full(msg,comm[nc]);
-			  if (msg){FREE(msg);msg=NULL;}
-              sciprint("\n");
-		  }
-        }
-        ns=(int)strlen(comm[nc]);
-        C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
-        if (C2F(iop).ddt==-1)
-        {
-			char *msg=_("Flushed execution ends for %s");
-			sciprint_full(msg,comm[nc]);
-			if (msg){FREE(msg);msg=NULL;}
-            sciprint("\n");
-        }
-        FREE(comm[nc]);
-	// TODO : Scilab is supposed to be busy there. Add mutex lock...
-	// C2F(tksynchro)(&C2F(recu).paus);
-        if (ierr != 0) return TCL_ERROR;
-      }
-      if (C2F(iop).ddt==-1) sciprint(_("Flushing ends\n"));
-    }
-    else
-	{
-      /* seq or no option */
-      StoreCommand(command);
-
-      if ( (argv[2] != (char *)0) && (strncmp(argv[2],"seq",3)==0) )
-	  {
-        SetCommandflag(1);
-      }
+	  /* flush */
+	  if (C2F(iop).ddt==-1) sciprint(_(" Flushing starts for queued commands.\n"));
+	  while (ismenu() && ncomm<arbitrary_max_queued_callbacks-1)
+	    {
+	      ncomm++;
+	      comm[ncomm] = (char *) MALLOC (bsiz+1);
+	      if (comm[ncomm] == (char *) 0)
+		{
+		  sciprint(_("%s: No more memory.\n"),"TCL_EvalScilabCmd");
+		  return TCL_ERROR;
+		}
+	      seqf[ncomm]=GetCommand (comm[ncomm]);
+	    }
+	  if (ismenu()) sciprint(_("Warning: Too many callbacks in queue!\n"));
+	  for (nc = 0 ; nc <= ncomm ; nc++ )
+	    {
+	      // TODO : Scilab is supposed to be busy there. Add mutex lock...
+	      // C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
+	      if (C2F(iop).ddt==-1)
+		{
+		  if (seqf[nc]==0)
+		    {
+		      char *msg=_("Flushed execution starts for %s - No option");
+		      sciprint_full(msg,comm[nc]);
+		      if (msg){FREE(msg);msg=NULL;}
+		      sciprint("\n");
+		    }
+		  else
+		    {
+		      char *msg=_("Flushed execution starts for %s - seq");
+		      sciprint_full(msg,comm[nc]);
+		      if (msg){FREE(msg);msg=NULL;}
+		      sciprint("\n");
+		    }
+		}
+	      ns=(int)strlen(comm[nc]);
+	      C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
+	      if (C2F(iop).ddt==-1)
+		{
+		  char *msg=_("Flushed execution ends for %s");
+		  sciprint_full(msg,comm[nc]);
+		  if (msg){FREE(msg);msg=NULL;}
+		  sciprint("\n");
+		}
+	      FREE(comm[nc]);
+	      // TODO : Scilab is supposed to be busy there. Add mutex lock...
+	      // C2F(tksynchro)(&C2F(recu).paus);
+	      if (ierr != 0) return TCL_ERROR;
+	    }
+	  if (C2F(iop).ddt==-1) sciprint(_("Flushing ends\n"));
+	}
       else
-	  {
-		/* unknown option */
-        Tcl_SetResult(theinterp,NULL,NULL);
-	  }
-    }
-    FREE(command);
+	{
+	  /* seq or no option */
+	  StoreCommand(command);
 
-  }
+	  if ( (argv[2] != (char *)0) && (strncmp(argv[2],"seq",3)==0) )
+	    {
+	      SetCommandflag(1);
+	    }
+	  else
+	    {
+	      /* unknown option */
+	      Tcl_SetResult(theinterp,NULL,NULL);
+	    }
+	}
+      FREE(command);
+
+    }
   else
-  {
-	/* ScilabEval called without argument */
-	Scierror(999,_("%s: Wrong number of input argument(s): at least one expected.\n"),"TCL_EvalScilabCmd");
-  }
+    {
+      /* ScilabEval called without argument */
+      Scierror(999,_("%s: Wrong number of input argument(s): at least one expected.\n"),"TCL_EvalScilabCmd");
+    }
 
   return TCL_OK;
 }

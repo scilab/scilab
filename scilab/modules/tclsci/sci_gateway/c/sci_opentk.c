@@ -6,13 +6,13 @@
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_opentk) _PARAMS((char *fname,unsigned long l))
+int sci_opentk(char *fname,unsigned long l)
 {
 	Tcl_Interp *TCLinterpLocal=NULL;
 
 	CheckRhs(0,0);
 	CheckLhs(1,1);
-  
+
 	TCLinterpLocal = Tcl_CreateInterp();
     Tcl_Init(TCLinterpLocal);
     Tk_Init(TCLinterpLocal);
@@ -21,8 +21,8 @@ int C2F(sci_opentk) _PARAMS((char *fname,unsigned long l))
     Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
 
 	LhsVar(1) = 0;
-	C2F(putlhsvar)();	
-	
+	C2F(putlhsvar)();
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
