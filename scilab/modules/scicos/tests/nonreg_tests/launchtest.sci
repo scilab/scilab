@@ -105,13 +105,13 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
     status.details = msprintf('  Compare the following files for more details: %s and %s', outFilename, outRefFilename);
     status.id      = 1; // KO
   else
-    status.msg     = 'OK: Output and reference are equal';
+    status.msg     = 'OK';
     status.details = '';
     status.id      = 0; // OK
   end
 
   disp(msprintf('%-15s: %s', testName, status.msg))
-  if status.id == 1
+  if status.id == 1 // KO
     disp(msprintf('%s', status.details))
   end  
 
