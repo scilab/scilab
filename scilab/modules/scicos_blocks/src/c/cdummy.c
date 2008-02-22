@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+#include <math.h> /* sin */
 #include "scicos_block.h"
 
 void cdummy(scicos_block *block,int flag)

@@ -277,6 +277,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\cdummy.c"
+				>
+			</File>
+			<File
 				RelativePath=".\cevscpe.c"
 				>
 			</File>

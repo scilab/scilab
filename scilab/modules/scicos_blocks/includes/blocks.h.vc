@@ -83,7 +83,7 @@ extern void F2C(absblk) __PARAMS((ARGS_scicos));
 extern void F2C(andlog) __PARAMS((ARGS_scicos));
 extern void F2C(bidon) __PARAMS((ARGS_scicos));
 extern void F2C(gain) __PARAMS((ARGS_scicos));
-extern void F2C(cdummy) __PARAMS((ARGS_scicos));
+extern void cdummy __PARAMS((ARGS_scicos));
 extern void F2C(dband) __PARAMS((ARGS_scicos));
 extern void F2C(cosblk) __PARAMS((ARGS_scicos));
 extern void F2C(ifthel) __PARAMS((ARGS_scicos));
@@ -404,7 +404,7 @@ OpTab tabsim[] ={
 {"bouncexy",(ScicosF) bouncexy},
 {"canimxy3d",(ScicosF) canimxy3d},
 {"canimxy",(ScicosF) canimxy},
-{"cdummy",(ScicosF) F2C(cdummy)},
+{"cdummy",(ScicosF) cdummy},
 {"cevscpe",(ScicosF) cevscpe},
 {"cfscope",(ScicosF) cfscope},
 {"cmat3d",(ScicosF) cmat3d},
