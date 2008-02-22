@@ -50,3 +50,5 @@ sciSetMarkBackground
 sciSetIsClipping
 sciSetSelectedSubWin
 sciSetBoxType
+forceRedraw
+sciDrawSingleObj
