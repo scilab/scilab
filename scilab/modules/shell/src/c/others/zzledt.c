@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Scilab 
+ * Copyright (C) 2008 - INRIA - Sylvestre LEDRU (Completion in nw & nwni modes)
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,6 +21,7 @@
 #include <ctype.h>
 #include <curses.h>
 #include <term.h>
+
 
 #include "completion.h"
 #include "localization.h"
@@ -255,6 +257,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   int character_count;
   char wk_buf[WK_BUF_SIZE + 1];
 
+
   GetCurrentPrompt(Sci_Prompt);
 
   if(getScilabMode() != SCILAB_STD)
@@ -267,8 +270,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
     if(!tty)
     { /* if not an interactive terminal */
-      /* read a line into the buffer, but not too
-       * big */
+      /* read a line into the buffer, but not too big */
       fputs(SCIPROMPT,stdout);
       *eof = (fgets(buffer, *buf_size, stdin) == NULL);
       *len_line = strlen(buffer);
@@ -988,14 +990,14 @@ static void init_io()
     }
     area = strings;       /* point to place where strings are to
 			   * be stored */
-    KS = tgetstr("ks", &area);
-    KE = tgetstr("ke", &area);
-    CE = tgetstr("ce", &area);
-    BC = tgetstr("bc", &area);
-    IM = tgetstr("im", &area);
-    IC = tgetstr("ic", &area);
-    EI = tgetstr("ei", &area);
-    CL = tgetstr("cl", &area);
+    KS = tgetstr("ks", &area); /* term_keypad_on */
+    KE = tgetstr("ke", &area); /* term_keypad_off */
+    CE = tgetstr("ce", &area); /* clear end of line */
+    BC = tgetstr("bc", &area); /* backspace */
+    IM = tgetstr("im", &area); /* Enter insert mode */
+    IC = tgetstr("ic", &area); /* Insert char */
+    EI = tgetstr("ei", &area); /* Leave insert mode */
+    CL = tgetstr("cl", &area); /* Clear scren */
   }
 #endif
   setvbuf(stdin, NULL, _IONBF, 0); /* ehrlich juin 2001 */
