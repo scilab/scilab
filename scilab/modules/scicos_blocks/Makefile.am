@@ -34,6 +34,7 @@ src/c/bounce_ball.c \
 src/c/bouncexy.c \
 src/c/canimxy3d.c \
 src/c/canimxy.c \
+src/c/cdummy.c \
 src/c/cevscpe.c \
 src/c/cfscope.c \
 src/c/cmat3d.c \
