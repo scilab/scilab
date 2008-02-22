@@ -14,7 +14,6 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="tclsci">
-<!-- =================== -->
 <!--
  Scilab
  Interface description. In this file, we define the list of the function which
@@ -31,7 +30,6 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
 
 <PRIMITIVE gatewayId="40" primitiveId="1" primitiveName="TCL_DoOneEvent" />
 <PRIMITIVE gatewayId="40" primitiveId="2" primitiveName="TCL_EvalStr" />

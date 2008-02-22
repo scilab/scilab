@@ -1,8 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004 - Jaime Urzua
+// 
+
+
 function hout=waitbar(x,mes,h)
 // Draw a wait bar
 // This file is part of sciGUI toolbox
-// Copyright (C) 2004 Jaime Urzua Grez 
-// mailto:jaime_urzua@yahoo.com
 // rev. 0.1
 //
 // This program is free software; you can redistribute it and/or modify

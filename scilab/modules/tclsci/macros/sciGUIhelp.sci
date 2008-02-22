@@ -1,9 +1,10 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004 - Jaime Urzua
+
+
 function sciGUIhelp(key)
 // Browse help
 // This file is part of sciGUI toolbox
-// Copyright (C) 2004 Jaime Urzua Grez
-// mailto:jaime_urzua@yahoo.com
-// rev. 0.2 2004-06-24
 //
 // This program is free software; you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
