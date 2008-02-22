@@ -44,11 +44,12 @@ int scilinesdefault(void)
 		setLinesSize(DEFAULT_NUMBERS_LINES);
 		setColumnsSize(DEFAULT_NUMBERS_COLUMNS);
 	}
-	return 0;
+	
 #else
 		setLinesSize(DEFAULT_NUMBERS_LINES);
 		setColumnsSize(DEFAULT_NUMBERS_COLUMNS);
 #endif
+       return 0;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(scilines)(int *nblines, int *nbcolumns)
