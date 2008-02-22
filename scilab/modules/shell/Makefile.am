@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Allan CORNET
+# Copyright (C) 2008 - INRIA - Sylvestre LEDRU
 # 
 # This file is distributed under the same license as the Scilab package.
 
@@ -44,7 +45,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/completion/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/
 
-libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS)
+libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TERMCAP_LIB)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

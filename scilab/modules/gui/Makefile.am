@@ -162,7 +162,7 @@ GUI_C_SOURCES = src/nogui/nogui.c
 
 endif
 
-libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(TERMCAP_LIB) $(X_EXTRA_LIBS)
+libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
 
 pkglib_LTLIBRARIES = libscigui.la
 
