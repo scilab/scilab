@@ -76,11 +76,11 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
   /* warning C4047: '=' : 'scoGraphicalObject' differs in levels of indirection from 'BOOL' */
   if ((sciIsExistingFigure(win_id)))
     {
-		pTemp = getFigureFromIndex(win_id);
+                pTemp = getFigureFromIndex(win_id);
       if (pFIGURE_FEATURE(pTemp)->user_data != NULL)
-	{
+        {
       user_data = scoGetUserData(pTemp);
-	}
+        }
     }
   /*if ((user_data == -1 ) || (user_data == win_id))*/
   if ((user_data == -1 ) || (user_data == block_number))
@@ -94,74 +94,76 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
       scoSetHandleScopeWindow(pScopeMemory,sciGetHandle(pTemp));
       scoSetWindowIDInUserData(pScopeMemory,block_number);
       for (i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
-	{
-	  if (i == 0)
-	    {
-	      //We are getting the Handle of the current axes but in the same time we are constructing it (see below)
-	      //Here pTemp is the pointer on the ScopeWindow
-	      //scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetSelectedSubWin(pTemp)));
-		  // J-B please check this 
-			scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetFirstTypedSelectedSon( pTemp, SCI_SUBWIN )) );
-	    }
-	  else
-	    {
-	      //Here pTemp is the pointer on the ScopeWindow
-	      scoSetHandleAxes(pScopeMemory,i,sciGetHandle(ConstructSubWin(pTemp)));
-	    }
-	  //Here pTemp2 is the pointer on the current Axes
-	  pTemp2 = scoGetPointerAxes(pScopeMemory,i);
-	  sciInitFontSize(pTemp2, 0);
-	  
+        {
+          if (i == 0)
+            {
+              //We are getting the Handle of the current axes but in the same time we are constructing it (see below)
+              //Here pTemp is the pointer on the ScopeWindow
+              //scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetSelectedSubWin(pTemp)));
+                  // J-B please check this 
+                        scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetFirstTypedSelectedSon( pTemp, SCI_SUBWIN )) );
+            }
+          else
+            {
+              //Here pTemp is the pointer on the ScopeWindow
+              scoSetHandleAxes(pScopeMemory,i,sciGetHandle(ConstructSubWin(pTemp)));
+            }
+          //Here pTemp2 is the pointer on the current Axes
+          pTemp2 = scoGetPointerAxes(pScopeMemory,i);
+          sciInitFontSize(pTemp2, 0);
+          
           //** sciSetIsBoxed(pTemp2,TRUE);
-	  sciSetBoxType(pTemp2,BT_ON);
+          sciSetBoxType(pTemp2,BT_ON);
           //Here we don't want "smart" limits
-	  pSUBWIN_FEATURE(pTemp2)->tight_limits = TRUE;
-	  //Here PTemp2 is the pointer on the current Subwint
-	  //WRect is for position of Axes in the window
-	  pSUBWIN_FEATURE(pTemp2)->WRect[0] = 0;
-	  pSUBWIN_FEATURE(pTemp2)->WRect[1] = (double)i/scoGetNumberOfSubwin(pScopeMemory);
-	  pSUBWIN_FEATURE(pTemp2)->WRect[2] = 1;
-	  pSUBWIN_FEATURE(pTemp2)->WRect[3] = (double)1/scoGetNumberOfSubwin(pScopeMemory);
-	  switch(dimension)
-	    {
-	    case 3:
-	      pSUBWIN_FEATURE(pTemp2)->is3d = TRUE;
-	      pSUBWIN_FEATURE(pTemp2)->axes.axes_visible[2] = TRUE;
-	      //SRECT is here to give number of x,y, or z legends
-	      pSUBWIN_FEATURE(pTemp2)->SRect[4] = zmin[i];
-	      pSUBWIN_FEATURE(pTemp2)->SRect[5] = zmax[i];
-	    case 2:
-	      pSUBWIN_FEATURE(pTemp2)->axes.axes_visible[1] = TRUE;
-	      pSUBWIN_FEATURE(pTemp2)->SRect[2] = ymin[i];
-	      pSUBWIN_FEATURE(pTemp2)->SRect[3] = ymax[i];
-	    case 1:
-	      pSUBWIN_FEATURE(pTemp2)->axes.axes_visible[0] = TRUE;
-	      pSUBWIN_FEATURE(pTemp2)->SRect[0] = xmin[i];
-	      pSUBWIN_FEATURE(pTemp2)->SRect[1] = xmax[i];
-	      break;
-	    default:
-	      sciprint("SCOPE ERROR : Error in dimension number\n");
-	      break;
-	    }
+          pSUBWIN_FEATURE(pTemp2)->tight_limits = TRUE;
+          //Here PTemp2 is the pointer on the current Subwint
+          //WRect is for position of Axes in the window
+          pSUBWIN_FEATURE(pTemp2)->WRect[0] = 0;
+          pSUBWIN_FEATURE(pTemp2)->WRect[1] = (double)i/scoGetNumberOfSubwin(pScopeMemory);
+          pSUBWIN_FEATURE(pTemp2)->WRect[2] = 1;
+          pSUBWIN_FEATURE(pTemp2)->WRect[3] = (double)1/scoGetNumberOfSubwin(pScopeMemory);
+          switch(dimension)
+            {
+            case 3:
+              pSUBWIN_FEATURE(pTemp2)->is3d = TRUE;
+              pSUBWIN_FEATURE(pTemp2)->axes.axes_visible[2] = TRUE;
+              //SRECT is here to give number of x,y, or z legends
+              pSUBWIN_FEATURE(pTemp2)->SRect[4] = zmin[i];
+              pSUBWIN_FEATURE(pTemp2)->SRect[5] = zmax[i];
+            case 2:
+              pSUBWIN_FEATURE(pTemp2)->axes.axes_visible[1] = TRUE;
+              pSUBWIN_FEATURE(pTemp2)->SRect[2] = ymin[i];
+              pSUBWIN_FEATURE(pTemp2)->SRect[3] = ymax[i];
+            case 1:
+              pSUBWIN_FEATURE(pTemp2)->axes.axes_visible[0] = TRUE;
+              pSUBWIN_FEATURE(pTemp2)->SRect[0] = xmin[i];
+              pSUBWIN_FEATURE(pTemp2)->SRect[1] = xmax[i];
+              break;
+            default:
+              sciprint("SCOPE ERROR : Error in dimension number\n");
+              break;
+            }
+	  forceRedraw(pTemp2);
 
-	}
+        }
       if(win_pos != NULL)
-	{
-		if (win_pos[0] >= 0) {
-			sciInitScreenPosition(pTemp, win_pos[0], win_pos[1]);
-		}
-	}
+        {
+                if (win_pos[0] >= 0) {
+                        sciInitScreenPosition(pTemp, win_pos[0], win_pos[1]);
+                }
+        }
       if(win_dim != NULL)
-	{
-	  if (win_dim[0] >= 0) {
-	    /*sciSetDim(pTemp, &win_dim[0], &win_dim[1]);
-	    sciSetDim(pTemp2, &win_dim[0], &win_dim[1]);*/
-		  sciSetDimension(pTemp, win_dim[0], win_dim[1]);
-		  sciSetDimension(pTemp2,win_dim[0], win_dim[1]);
+        {
+          if (win_dim[0] >= 0) {
+            /*sciSetDim(pTemp, &win_dim[0], &win_dim[1]);
+            sciSetDim(pTemp2, &win_dim[0], &win_dim[1]);*/
+                  sciSetDimension(pTemp, win_dim[0], win_dim[1]);
+                  sciSetDimension(pTemp2,win_dim[0], win_dim[1]);
           }
-	}
+        }
 
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+      
       sciDrawObj(pTemp);
     }
   else
@@ -187,98 +189,102 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
     {
       /*if we have to redraw the axis for x-axis*/
       if (scoGetNewDraw(pScopeMemory,i) < 0)
-	{
-	  bool = 1;
-	  pAxes = scoGetPointerAxes(pScopeMemory,i);
-	  period = scoGetPeriod(pScopeMemory,i);
+        {
+          bool = 1;
+          pAxes = scoGetPointerAxes(pScopeMemory,i);
+          period = scoGetPeriod(pScopeMemory,i);
 
-	  /*Calculating the current period counter and update the value of x bounds*/
-	  current_period_counter = (int)(t/period);
-	  pSUBWIN_FEATURE(pAxes)->SRect[0] = period*(current_period_counter);
-	  pSUBWIN_FEATURE(pAxes)->SRect[1] = period*(current_period_counter+1);
-	  /*Don't forget to save the new value - because we have activated the refresh we are going one step over*/
-	  scoSetPeriodCounter(pScopeMemory,i,current_period_counter);
-	  
-	  /*Instruction to reinitialize the ShortDraw and to copy the last points of the ShortDraw in the LongDraw to be sure to have continuity*/
-	  pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
-	  switch(sciGetEntityType(pShortDraw))
-	    {
-	      /*Getting Number of Points in the ShortDraw
-		Then for each polyline in the axis :
-		-Reinitialize LongDraw
-		-Copy last points of the ShortDraw into the LongDraw
-		-Initialize LongDraw
-		-Reinitialize the ShortDraw
-		-copy last points of the last short into the new for continuity
-		-initialize shortdraw
-	      */
-	    case SCI_POLYLINE:
-	      {
-		NbrPts = pPOLYLINE_FEATURE(pShortDraw)->n1;
-		for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-		  {
-		    pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-		    pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-		    //We don't have to draw it because for instance there will be only one point and if it is a line it is not good
-		    pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
+          /*Calculating the current period counter and update the value of x bounds*/
+          current_period_counter = (int)(t/period);
+          pSUBWIN_FEATURE(pAxes)->SRect[0] = period*(current_period_counter);
+          pSUBWIN_FEATURE(pAxes)->SRect[1] = period*(current_period_counter+1);
+	  forceRedraw(pAxes);
+          /*Don't forget to save the new value - because we have activated the refresh we are going one step over*/
+          scoSetPeriodCounter(pScopeMemory,i,current_period_counter);
+          
+          /*Instruction to reinitialize the ShortDraw and to copy the last points of the ShortDraw in the LongDraw to be sure to have continuity*/
+          pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
+          switch(sciGetEntityType(pShortDraw))
+            {
+              /*Getting Number of Points in the ShortDraw
+                Then for each polyline in the axis :
+                -Reinitialize LongDraw
+                -Copy last points of the ShortDraw into the LongDraw
+                -Initialize LongDraw
+                -Reinitialize the ShortDraw
+                -copy last points of the last short into the new for continuity
+                -initialize shortdraw
+              */
+            case SCI_POLYLINE:
+              {
+                NbrPts = pPOLYLINE_FEATURE(pShortDraw)->n1;
+                for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+                  {
+                    pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+                    pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+                    //We don't have to draw it because for instance there will be only one point and if it is a line it is not good
+                    pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
 
-		    pPOLYLINE_FEATURE(pLongDraw)->n1 = 0;
-		    //We copy previous values to ensure the continuity
-		    C2F(dcopy)(&NbrPts,pPOLYLINE_FEATURE(pShortDraw)->pvx,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx,&c__1);
-		    C2F(dcopy)(&NbrPts,pPOLYLINE_FEATURE(pShortDraw)->pvy,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy,&c__1);
-		    pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPts;
-		    
-		    //The next starting point
-		    pPOLYLINE_FEATURE(pShortDraw)->pvx[0] = pPOLYLINE_FEATURE(pLongDraw)->pvx[NbrPts-1];
-		    pPOLYLINE_FEATURE(pShortDraw)->pvy[0] = pPOLYLINE_FEATURE(pLongDraw)->pvy[NbrPts-1];
-		    pPOLYLINE_FEATURE(pShortDraw)->n1 = 1;
-		  }
-		break;
-	      }
-	    case SCI_SEGS:
-	      {
-		NbrPts = pSEGS_FEATURE(pShortDraw)->Nbr1;
-		for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-		  {
-		    pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-		    pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-		    pSEGS_FEATURE(pShortDraw)->visible = FALSE;
+                    pPOLYLINE_FEATURE(pLongDraw)->n1 = 0;
+                    //We copy previous values to ensure the continuity
+                    C2F(dcopy)(&NbrPts,pPOLYLINE_FEATURE(pShortDraw)->pvx,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx,&c__1);
+                    C2F(dcopy)(&NbrPts,pPOLYLINE_FEATURE(pShortDraw)->pvy,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy,&c__1);
+                    pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPts;
+                    
+                    //The next starting point
+                    pPOLYLINE_FEATURE(pShortDraw)->pvx[0] = pPOLYLINE_FEATURE(pLongDraw)->pvx[NbrPts-1];
+                    pPOLYLINE_FEATURE(pShortDraw)->pvy[0] = pPOLYLINE_FEATURE(pLongDraw)->pvy[NbrPts-1];
+                    pPOLYLINE_FEATURE(pShortDraw)->n1 = 1;
+                  }
+                break;
+              }
+            case SCI_SEGS:
+              {
+                NbrPts = pSEGS_FEATURE(pShortDraw)->Nbr1;
+                for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+                  {
+                    pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+                    pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+                    pSEGS_FEATURE(pShortDraw)->visible = FALSE;
 
-		    pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
-		    pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
-		    C2F(dcopy)(&NbrPts,pSEGS_FEATURE(pShortDraw)->vx ,&c__1,pSEGS_FEATURE(pLongDraw)->vx,&c__1);
-		    C2F(dcopy)(&NbrPts,pSEGS_FEATURE(pShortDraw)->vy ,&c__1,pSEGS_FEATURE(pLongDraw)->vy,&c__1);
-		    pSEGS_FEATURE(pLongDraw)->Nbr1 = NbrPts;
-		    pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPts;
-		  }
-		break;
-	      }
-	    default:
-	      sciprint("SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n");
-	      break;
-	    }
-	  //Dont forget to reinit it
-	  scoSetNewDraw(pScopeMemory,i,0);
-	}
+                    pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
+                    pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
+                    C2F(dcopy)(&NbrPts,pSEGS_FEATURE(pShortDraw)->vx ,&c__1,pSEGS_FEATURE(pLongDraw)->vx,&c__1);
+                    C2F(dcopy)(&NbrPts,pSEGS_FEATURE(pShortDraw)->vy ,&c__1,pSEGS_FEATURE(pLongDraw)->vy,&c__1);
+                    pSEGS_FEATURE(pLongDraw)->Nbr1 = NbrPts;
+                    pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPts;
+                  }
+                break;
+              }
+            default:
+              sciprint("SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n");
+              break;
+            }
+          //Dont forget to reinit it
+          scoSetNewDraw(pScopeMemory,i,0);
+        }
     }
   //if we have modified some thing it is that we need to redraw the window
   if(bool == 1)
     {
       if(scoGetPointerScopeWindow(pScopeMemory) !=  NULL)
-	{
-	  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	  //pixmap mode
-	  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-	    {
-			/* TODO : not implemented */
-			/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-	    }
-	  sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
-	}
+        {
+          sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+          //pixmap mode
+          if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
+            {
+                        /* TODO : not implemented */
+                        /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+            }
+	  forceRedraw(pShortDraw);
+	  forceRedraw(pLongDraw);
+           sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+          //**redrawHierarchy(scoGetPointerScopeWindow(pScopeMemory));
+        }
       else
-	{
-	  scoScopeError(pScopeMemory,0);
-	}
+        {
+          scoScopeError(pScopeMemory,0);
+        }
     }
 
   //Now that we have redraw the window we can reactivate the shortdraw because there will be more than one point in the futur
@@ -286,30 +292,30 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
   for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
       for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-	{
-	  pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
-	  switch(sciGetEntityType(pShortDraw))
-	    {
-	    case SCI_POLYLINE:
-	      {
-		pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-		pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-		pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
-		break;
-	      }
-	    case SCI_SEGS:
-	      {
-		pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-		pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-		pSEGS_FEATURE(pShortDraw)->visible = TRUE;
-		break;
-	      }
-	    default:
-	      {
-		break;
-	      }
-	    }
-	}
+        {
+          pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
+          switch(sciGetEntityType(pShortDraw))
+            {
+            case SCI_POLYLINE:
+              {
+                pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+                pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+                pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
+                break;
+              }
+            case SCI_SEGS:
+              {
+                pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+                pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+                pSEGS_FEATURE(pShortDraw)->visible = TRUE;
+                break;
+              }
+            default:
+              {
+                break;
+              }
+            }
+        }
     }
 }
 
@@ -327,90 +333,90 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
     {
       pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
       switch(sciGetEntityType(pShortDraw))
-	{
-	case SCI_POLYLINE:
-	  NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
-	  break;
-	case SCI_SEGS:
-	  NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
-	  break;
-	default:
-	  sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-	  break;
-	}
+        {
+        case SCI_POLYLINE:
+          NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+          break;
+        case SCI_SEGS:
+          NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
+          break;
+        default:
+          sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+          break;
+        }
       /*If this scope needs a redraw*/
       if (NbrPtsShort >= scoGetShortDrawSize(pScopeMemory,i))
-	{
-	  /*Block for Realloc*/
-	  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-	  switch(sciGetEntityType(pLongDraw))
-	    {
-	    case SCI_POLYLINE:
-	      NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
-	      break;
-	    case SCI_SEGS:
-	      NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
-	      break;
-	    default:
-	      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-	      break;
-	    }
-	  if ((NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)) >= scoGetLongDrawSize(pScopeMemory,i))
-	    {
-	      for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-		{
-		  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-		  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i),1000);
-		}
-	      //Dont forget this one - If in the futur LongDrawSize is a table we can put it in the scoReallocLongDraw() function
-	      scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)+1000);
-	    }
-	  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-	  /*End od block for Realloc*/
+        {
+          /*Block for Realloc*/
+          pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
+          switch(sciGetEntityType(pLongDraw))
+            {
+            case SCI_POLYLINE:
+              NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+              break;
+            case SCI_SEGS:
+              NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
+              break;
+            default:
+              sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+              break;
+            }
+          if ((NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)) >= scoGetLongDrawSize(pScopeMemory,i))
+            {
+              for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+                {
+                  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+                  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i),1000);
+                }
+              //Dont forget this one - If in the futur LongDrawSize is a table we can put it in the scoReallocLongDraw() function
+              scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)+1000);
+            }
+          pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
+          /*End od block for Realloc*/
 
-	  /*Block for Draw*/
-	  switch(sciGetEntityType(pLongDraw))
-	    {
-	    case SCI_POLYLINE:
-	      NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1-1;
-	      NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
-	      break;
-	    case SCI_SEGS:
-	      NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
-	      NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
-	      break;
-	    default:
-	      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-	      break;
-	    }
+          /*Block for Draw*/
+          switch(sciGetEntityType(pLongDraw))
+            {
+            case SCI_POLYLINE:
+              NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1-1;
+              NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+              break;
+            case SCI_SEGS:
+              NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
+              NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
+              break;
+            default:
+              sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+              break;
+            }
 
-	  for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-	    {
-	      pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-	      pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-	      if(pShortDraw != NULL)
-		{
-		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  sciSetSelectedSubWin(scoGetPointerAxes(pScopeMemory,i));
-		  //Not sure that this trick is useful - leak of code ?
-		  pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
-		  //pixmap
-		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-		    {
-				/* TODO : not implemented */
-				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-		    }
-		  sciDrawObj(pShortDraw);
-		  //Here too but - if you delete the line on top dont forget to delete this line
-		  pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
-		}
-	      else
-		{
-		  scoScopeError(pScopeMemory,0);
-		}
-	      /*End of Block for Draw*/
+          for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+            {
+              pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+              pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+              if(pShortDraw != NULL)
+                {
+                  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+                  sciSetSelectedSubWin(scoGetPointerAxes(pScopeMemory,i));
+                  //Not sure that this trick is useful - leak of code ?
+                  pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
+                  //pixmap
+                  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
+                    {
+                                /* TODO : not implemented */
+                                /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+                    }
+                  sciDrawSingleObj(pShortDraw);
+                  //Here too but - if you delete the line on top dont forget to delete this line
+                  pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
+                }
+              else
+                {
+                  scoScopeError(pScopeMemory,0);
+                }
+              /*End of Block for Draw*/
 
-	      /*Block for Memory*/
+              /*Block for Memory*/
 
               /*
                * Alan's patch, 04/10/2007 : add NbrPtsToCopy
@@ -424,59 +430,59 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
               inc = NbrPtsLong!=0; 
               NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
 
-	      switch(sciGetEntityType(pShortDraw))
-		{
-		case SCI_POLYLINE:
+              switch(sciGetEntityType(pShortDraw))
+                {
+                case SCI_POLYLINE:
                   NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
-		  //We have draw but now we have to copy values in the memory of the shortdraw
-		  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvx+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
-		  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvy+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
-		  pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong+NbrPtsToCopy;
-		  break;
-		case SCI_SEGS:
-		  C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vx,&c__1,pSEGS_FEATURE(pLongDraw)->vx+NbrPtsLong,&c__1);
-		  C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vy,&c__1,pSEGS_FEATURE(pLongDraw)->vy+NbrPtsLong,&c__1);
-		  pSEGS_FEATURE(pLongDraw)->Nbr1 = NbrPtsLong+NbrPtsShort;
-		  pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPtsLong+NbrPtsShort;
-		  break;
-		default:
-		  sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-		  break;
-		}
-	      /*End of Block for Memory*/
-	    }
+                  //We have draw but now we have to copy values in the memory of the shortdraw
+                  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvx+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
+                  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvy+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
+                  pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong+NbrPtsToCopy;
+                  break;
+                case SCI_SEGS:
+                  C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vx,&c__1,pSEGS_FEATURE(pLongDraw)->vx+NbrPtsLong,&c__1);
+                  C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vy,&c__1,pSEGS_FEATURE(pLongDraw)->vy+NbrPtsLong,&c__1);
+                  pSEGS_FEATURE(pLongDraw)->Nbr1 = NbrPtsLong+NbrPtsShort;
+                  pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPtsLong+NbrPtsShort;
+                  break;
+                default:
+                  sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                  break;
+                }
+              /*End of Block for Memory*/
+            }
 
-	  /*Block for Detecting redrawing of x-axis values and others activities*/
-	  current_period_counter = (int)(t/scoGetPeriod(pScopeMemory,i));
-	  //Maybe for the axes we are at the end of it - it is here that we detect and notify it
-	  if (current_period_counter != scoGetPeriodCounter(pScopeMemory,i))
-	    {
-	      scoSetNewDraw(pScopeMemory,i,-1);
-	      scoSetPeriodCounter(pScopeMemory,i,current_period_counter);
-	    }
-	  else
-	    {
-	      for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-		{
-		  pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-		  switch(sciGetEntityType(pShortDraw))
-		    {
-		    case SCI_POLYLINE:
-		      /*Last point is next first point*/
-		      pPOLYLINE_FEATURE(pShortDraw)->pvx[0] = pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort];
-		      pPOLYLINE_FEATURE(pShortDraw)->pvy[0] = pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort];
-		      pPOLYLINE_FEATURE(pShortDraw)->n1 = 1;
-		      break;
-		    case SCI_SEGS:
-		      /*Do Nothing*/
-		      break;
-		    default:
-		      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-		      break;
-		    }
-		}
-	    }
-	}
+          /*Block for Detecting redrawing of x-axis values and others activities*/
+          current_period_counter = (int)(t/scoGetPeriod(pScopeMemory,i));
+          //Maybe for the axes we are at the end of it - it is here that we detect and notify it
+          if (current_period_counter != scoGetPeriodCounter(pScopeMemory,i))
+            {
+              scoSetNewDraw(pScopeMemory,i,-1);
+              scoSetPeriodCounter(pScopeMemory,i,current_period_counter);
+            }
+          else
+            {
+              for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+                {
+                  pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+                  switch(sciGetEntityType(pShortDraw))
+                    {
+                    case SCI_POLYLINE:
+                      /*Last point is next first point*/
+                      pPOLYLINE_FEATURE(pShortDraw)->pvx[0] = pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort];
+                      pPOLYLINE_FEATURE(pShortDraw)->pvy[0] = pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort];
+                      pPOLYLINE_FEATURE(pShortDraw)->n1 = 1;
+                      break;
+                    case SCI_SEGS:
+                      /*Do Nothing*/
+                      break;
+                    default:
+                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                      break;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -574,18 +580,18 @@ void scoAddCoupleOfPolylines(ScopeMemory * pScopeMemory, int * colors)
   for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
       for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-	{
-	  if(colors != NULL)
-	    {
-	      scoAddPolylineForShortDraw(pScopeMemory,i,j,colors[j+1+inc]);
-	      scoAddPolylineForLongDraw(pScopeMemory,i,j,colors[j+1+inc]);
-	    }
-	  else
-	    {
-	      scoAddPolylineForShortDraw(pScopeMemory,i,j,-1);
-	      scoAddPolylineForLongDraw(pScopeMemory,i,j,-1);
-	    }
-	}
+        {
+          if(colors != NULL)
+            {
+              scoAddPolylineForShortDraw(pScopeMemory,i,j,colors[j+1+inc]);
+              scoAddPolylineForLongDraw(pScopeMemory,i,j,colors[j+1+inc]);
+            }
+          else
+            {
+              scoAddPolylineForShortDraw(pScopeMemory,i,j,-1);
+              scoAddPolylineForLongDraw(pScopeMemory,i,j,-1);
+            }
+        }
       inc = j+inc; //not +1 because of we have exited the loop
     }
 }
@@ -601,41 +607,45 @@ void scoDelCoupleOfPolylines(ScopeMemory * pScopeMemory)
   if(scoGetPointerScopeWindow(pScopeMemory) != NULL)
     {
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
-	{
-	  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-	  NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
-	  if(NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) > scoGetLongDrawSize(pScopeMemory,i))
-	    {
-	      //We realloc because maybe if we add the shortdraw the size would be bigger than the longdraw size
-	      for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-		{
-		  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-		  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i), 1000);
-		}
-	      scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) + 1000);
-	    }
+        {
+          pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
+          NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+          if(NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) > scoGetLongDrawSize(pScopeMemory,i))
+            {
+              //We realloc because maybe if we add the shortdraw the size would be bigger than the longdraw size
+              for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+                {
+                  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+                  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i), 1000);
+                }
+              scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i) + 1000);
+            }
       
-	  pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
-	  NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
-	  pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-	  NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+          pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
+          NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+          pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
+          NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
       
-	  for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-	    {
-	      pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-	      pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-	      //Here we copy values in memory
-	      C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvx,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
-	      C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvy,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
+          for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+            {
+              pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+              pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+              //Here we copy values in memory
+              C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvx,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
+              C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(pShortDraw)->pvy,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
 
-	      pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong + NbrPtsShort;
-	      pPOLYLINE_FEATURE(pShortDraw)->n1 = 0;
-	      //Destruction of the polyline - no presence in the menu editor anymore
-	      DestroyPolyline(pShortDraw);
-	    }
-	}
+              pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong + NbrPtsShort;
+              pPOLYLINE_FEATURE(pShortDraw)->n1 = 0;
+              //Destruction of the polyline - no presence in the menu editor anymore
+              DestroyPolyline(pShortDraw);
+	      forceRedraw(pLongDraw);
+            }
+        }
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+      
+      
       sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+      //**redrawHierarchy(scoGetPointerScopeWindow(pScopeMemory));
     }
 }
 
@@ -664,55 +674,55 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
       vy2 = (double*)scicos_malloc(longdraw_size*sizeof(double));
 
       for(j = 0 ; j < longdraw_size ; j++)
-	{
-	  //same than before
-	  vx2[j] = 0.0;
-	  vy2[j] = 0.0;
-	}
+        {
+          //same than before
+          vx2[j] = 0.0;
+          vy2[j] = 0.0;
+        }
       
       style[0] = 0;
 
       pAxes = scoGetPointerAxes(pScopeMemory,i);
 
       for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-	{
+        {
 
-	  pLongDraw = ConstructSegs(pAxes, 0, vx2, vy2, longdraw_size, longdraw_size, NULL, NULL,0,style, 0, TRUE, 0, 0);
-	  pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
-	  pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
-	  if (color == NULL)
-	    {
-	      sciSetForeground(pLongDraw, -1);
-	    }
-	  else
-	    {
-	      sciSetForeground(pLongDraw, color[j]);
-	    }
-	  sciSetIsLine(pLongDraw, 1);
-	  sciSetLineStyle(pLongDraw, 1);
-	  sciSetMarkStyle(pLongDraw, 0);
-	  sciSetIsMark(pLongDraw, 0);
-	  sciSetIsClipping(pLongDraw, 0);
-	  scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
+          pLongDraw = ConstructSegs(pAxes, 0, vx2, vy2, longdraw_size, longdraw_size, NULL, NULL,0,style, 0, TRUE, 0, 0);
+          pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
+          pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
+          if (color == NULL)
+            {
+              sciSetForeground(pLongDraw, -1);
+            }
+          else
+            {
+              sciSetForeground(pLongDraw, color[j]);
+            }
+          sciSetIsLine(pLongDraw, 1);
+          sciSetLineStyle(pLongDraw, 1);
+          sciSetMarkStyle(pLongDraw, 0);
+          sciSetIsMark(pLongDraw, 0);
+          sciSetIsClipping(pLongDraw, 0);
+          scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 
-	  pShortDraw = ConstructSegs(pAxes, 0, vx1, vy1, 2, 2, NULL, NULL,0,style, 0, TRUE, 0, 0);
-	  pSEGS_FEATURE(pShortDraw)->Nbr1 = 0;
-	  pSEGS_FEATURE(pShortDraw)->Nbr2 = 0;
-	  if (color == NULL)
-	    {
-	      sciSetForeground(pShortDraw, -1);
-	    }
-	  else
-	    {
-	      sciSetForeground(pShortDraw, color[j]);
-	    }
-	  sciSetIsLine(pShortDraw, 1);
-	  sciSetLineStyle(pShortDraw, 1);
-	  sciSetMarkStyle(pShortDraw, 0);
-	  sciSetIsMark(pShortDraw, 0);
-	  sciSetIsClipping(pShortDraw, 0);
-	  scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
-	}
+          pShortDraw = ConstructSegs(pAxes, 0, vx1, vy1, 2, 2, NULL, NULL,0,style, 0, TRUE, 0, 0);
+          pSEGS_FEATURE(pShortDraw)->Nbr1 = 0;
+          pSEGS_FEATURE(pShortDraw)->Nbr2 = 0;
+          if (color == NULL)
+            {
+              sciSetForeground(pShortDraw, -1);
+            }
+          else
+            {
+              sciSetForeground(pShortDraw, color[j]);
+            }
+          sciSetIsLine(pShortDraw, 1);
+          sciSetLineStyle(pShortDraw, 1);
+          sciSetMarkStyle(pShortDraw, 0);
+          sciSetIsMark(pShortDraw, 0);
+          sciSetIsClipping(pShortDraw, 0);
+          scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
+        }
 
       scicos_free(vx2);
       scicos_free(vy2);
@@ -753,18 +763,18 @@ void scoAddCoupleOfSpheres(ScopeMemory * pScopeMemory, double * radius, int * co
   for (i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     { 
       for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-	{
-	  if(colors != NULL)
-	    {
-	      scoAddSphereForShortDraw(pScopeMemory,i,j,radius[i+j], colors[i+j]);
-	      scoAddSphereForLongDraw(pScopeMemory,i,j,radius[i+j], colors[i+j]);
-	    }
-	  else
-	    {
-	      scoAddSphereForShortDraw(pScopeMemory,i,j,1,1);
-	      scoAddSphereForLongDraw(pScopeMemory,i,j,1,1);
-	    }
-	}
+        {
+          if(colors != NULL)
+            {
+              scoAddSphereForShortDraw(pScopeMemory,i,j,radius[i+j], colors[i+j]);
+              scoAddSphereForLongDraw(pScopeMemory,i,j,radius[i+j], colors[i+j]);
+            }
+          else
+            {
+              scoAddSphereForShortDraw(pScopeMemory,i,j,1,1);
+              scoAddSphereForLongDraw(pScopeMemory,i,j,1,1);
+            }
+        }
     }
 }
 
@@ -808,7 +818,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));
   for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
-		sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title,&title[i],1,1); /* 1,1 is nbrow, nbcol */
+                sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title,&title[i],1,1); /* 1,1 is nbrow, nbcol */
       sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label,&x_title,1,1); /* 1,1 is nbrow, nbcol */
       sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,&y_title,1,1);/* 1,1 is nbrow, nbcol */
 
@@ -816,6 +826,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
       sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 0);
       sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label, 0);
       sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title, 0);
+      forceRedraw(scoGetPointerAxes(pScopeMemory,i));
     }
 
   if(z!= NULL)
@@ -824,10 +835,10 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
       z_title = z;
 
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
-	{
-	  sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
-	  sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,&z_title,1,1); /* 1,1 is nbrow, nbcol */
-	}
+        {
+          sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
+          sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,&z_title,1,1); /* 1,1 is nbrow, nbcol */
+        }
     }
   for(i = 0; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
     {
@@ -855,7 +866,8 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
     }
   /*End of code for naming window */
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-  sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+   sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+  //**redrawHierarchy(scoGetPointerScopeWindow(pScopeMemory));
 }
 
 void scoDrawScopeXYStyle(ScopeMemory * pScopeMemory)
@@ -873,40 +885,40 @@ void scoDrawScopeXYStyle(ScopeMemory * pScopeMemory)
 
       NbrPtsShort = pPOLYLINE_FEATURE(Pinceau)->n1;
       if(NbrPtsShort >= scoGetShortDrawSize(pScopeMemory,0))
-	{
-	  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	  //pixmap
-	  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-	    {
-			/* TODO : not implemented */
-			/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-	    }
-	  sciDrawObj(Pinceau);
-	  NbrPtsLong = pPOLYLINE_FEATURE(Trait)->n1;
-	  if(NbrPtsLong + NbrPtsShort >= scoGetLongDrawSize(pScopeMemory,0))
-	    {
-	      for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; j++)
-		{
-		  scoReallocLongDraw(scoGetPointerLongDraw(pScopeMemory,0,j), NbrPtsLong, NbrPtsShort, 5000);
-		}
-	      scoSetLongDrawSize(pScopeMemory, 0, NbrPtsLong + NbrPtsShort + 5000);
-	    }
-	  NbrPtsLong = pPOLYLINE_FEATURE(Trait)->n1;
-	  C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(Pinceau)->pvx,&c__1,pPOLYLINE_FEATURE(Trait)->pvx+NbrPtsLong,&c__1);
-	  C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(Pinceau)->pvy,&c__1,pPOLYLINE_FEATURE(Trait)->pvy+NbrPtsLong,&c__1);
-	  if(pPOLYLINE_FEATURE(Pinceau)->pvz != NULL)
-	    {
-	      C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(Pinceau)->pvz,&c__1,pPOLYLINE_FEATURE(Trait)->pvz+NbrPtsLong,&c__1);
-	    }      
-	  pPOLYLINE_FEATURE(Trait)->n1 = NbrPtsLong + NbrPtsShort;
-	  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[NbrPtsShort-1];
-	  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[NbrPtsShort-1];
-	  if(pPOLYLINE_FEATURE(Pinceau)->pvz != NULL)
-	    {
-	      pPOLYLINE_FEATURE(Pinceau)->pvz[0] = pPOLYLINE_FEATURE(Pinceau)->pvz[NbrPtsShort-1];
-	    }
-	  pPOLYLINE_FEATURE(Pinceau)->n1 = 1;
-	}
+        {
+          sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+          //pixmap
+          if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
+            {
+                        /* TODO : not implemented */
+                        /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+            }
+          sciDrawSingleObj(Pinceau);
+          NbrPtsLong = pPOLYLINE_FEATURE(Trait)->n1;
+          if(NbrPtsLong + NbrPtsShort >= scoGetLongDrawSize(pScopeMemory,0))
+            {
+              for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; j++)
+                {
+                  scoReallocLongDraw(scoGetPointerLongDraw(pScopeMemory,0,j), NbrPtsLong, NbrPtsShort, 5000);
+                }
+              scoSetLongDrawSize(pScopeMemory, 0, NbrPtsLong + NbrPtsShort + 5000);
+            }
+          NbrPtsLong = pPOLYLINE_FEATURE(Trait)->n1;
+          C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(Pinceau)->pvx,&c__1,pPOLYLINE_FEATURE(Trait)->pvx+NbrPtsLong,&c__1);
+          C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(Pinceau)->pvy,&c__1,pPOLYLINE_FEATURE(Trait)->pvy+NbrPtsLong,&c__1);
+          if(pPOLYLINE_FEATURE(Pinceau)->pvz != NULL)
+            {
+              C2F(dcopy)(&NbrPtsShort,pPOLYLINE_FEATURE(Pinceau)->pvz,&c__1,pPOLYLINE_FEATURE(Trait)->pvz+NbrPtsLong,&c__1);
+            }      
+          pPOLYLINE_FEATURE(Trait)->n1 = NbrPtsLong + NbrPtsShort;
+          pPOLYLINE_FEATURE(Pinceau)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[NbrPtsShort-1];
+          pPOLYLINE_FEATURE(Pinceau)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[NbrPtsShort-1];
+          if(pPOLYLINE_FEATURE(Pinceau)->pvz != NULL)
+            {
+              pPOLYLINE_FEATURE(Pinceau)->pvz[0] = pPOLYLINE_FEATURE(Pinceau)->pvz[NbrPtsShort-1];
+            }
+          pPOLYLINE_FEATURE(Pinceau)->n1 = 1;
+        }
     }
 }
 
@@ -923,22 +935,23 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
   if(scoGetLongDrawSize(pScopeMemory,0) == 0)
     {
       for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
-	{
-	  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
-	  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
-	  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
-	  if(u3 != NULL)
-	    {
-	      pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];
-	    }
-	}
+        {
+          Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
+          pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
+          pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
+          if(u3 != NULL)
+            {
+              pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];
+            }
+        }
 
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
       if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-	{
-		/* TODO : not implemented */
-		/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-	}
+        {
+                /* TODO : not implemented */
+                /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+        }
+      //** redrawHierarchy(scoGetPointerScopeWindow(pScopeMemory));
       sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
     }
   //if a lot of elements to draw (more than 2 :p)
@@ -947,171 +960,171 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
       nbr_curves = scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2;
       /*if it is a mark style scope*/
       if(scoGetShortDrawSize(pScopeMemory,0) == 1)
-	{
-	  //3D scope Mode
-	  if(u3 != NULL)
-	    {
-	      for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
-		{
-		  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
-		  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
-		  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
-		
-		  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
-		  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
-		  pPOLYLINE_FEATURE(Gomme)->pvz[0] = pPOLYLINE_FEATURE(Trait)->pvz[scoGetLongDrawSize(pScopeMemory,0)-1];
+        {
+          //3D scope Mode
+          if(u3 != NULL)
+            {
+              for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+                {
+                  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
+                  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
+                  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
+                
+                  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvz[0] = pPOLYLINE_FEATURE(Trait)->pvz[scoGetLongDrawSize(pScopeMemory,0)-1];
 
-		  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
-		    {
-		      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
-		      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
-		      pPOLYLINE_FEATURE(Trait)->pvz[j] = pPOLYLINE_FEATURE(Trait)->pvz[j-1];
-		    }
+                  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
+                    {
+                      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
+                      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
+                      pPOLYLINE_FEATURE(Trait)->pvz[j] = pPOLYLINE_FEATURE(Trait)->pvz[j-1];
+                    }
 
-		  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
-		  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
-		  pPOLYLINE_FEATURE(Trait)->pvz[0] = pPOLYLINE_FEATURE(Pinceau)->pvz[0];
-		
-		  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
-		  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
-		  pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];		
+                  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
+                  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
+                  pPOLYLINE_FEATURE(Trait)->pvz[0] = pPOLYLINE_FEATURE(Pinceau)->pvz[0];
+                
+                  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];           
 
-		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-		    {
-				/* TODO : not implemented */
-				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-		    }
-		  sciDrawObj(Pinceau);
-		  sciDrawObj(Gomme);
-		}
-	    }
-	  //2D Scope Mode
-	  else
-	    {
-	      for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
-		{
-		  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
-		  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
-		  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
-		
-		  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
-		  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+                  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
+                    {
+                                /* TODO : not implemented */
+                                /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+                    }
+                  sciDrawSingleObj(Pinceau);
+                  sciDrawSingleObj(Gomme);
+                }
+            }
+          //2D Scope Mode
+          else
+            {
+              for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+                {
+                  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
+                  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
+                  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
+                
+                  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
 
-		  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
-		    {
-		      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
-		      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
-		    }
+                  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
+                    {
+                      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
+                      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
+                    }
 
-		  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
-		  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
-		
-		  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
-		  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
+                  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
+                  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
+                
+                  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
 
-		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-		    {
-				/* TODO : not implemented */
-				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-		    }
-		  sciDrawObj(Pinceau);
-		  sciDrawObj(Gomme);
-		}
-	    }
-	}
+                  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+                  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
+                    {
+                                /* TODO : not implemented */
+                                /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+                    }
+                  sciDrawSingleObj(Pinceau);
+                  sciDrawSingleObj(Gomme);
+                }
+            }
+        }
       /*if it is a line style scope*/
       else
-	{
-	  //3D Scope Mode
-	  if(u3 != NULL)
-	    {
-	      for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
-		{
-		  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
-		  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
-		  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
+        {
+          //3D Scope Mode
+          if(u3 != NULL)
+            {
+              for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+                {
+                  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
+                  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
+                  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
 
-		  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
-		  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
-		  pPOLYLINE_FEATURE(Gomme)->pvz[0] = pPOLYLINE_FEATURE(Trait)->pvz[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvz[0] = pPOLYLINE_FEATURE(Trait)->pvz[scoGetLongDrawSize(pScopeMemory,0)-1];
 
-		  pPOLYLINE_FEATURE(Gomme)->pvx[1] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-2];
-		  pPOLYLINE_FEATURE(Gomme)->pvy[1] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-2];
-		  pPOLYLINE_FEATURE(Gomme)->pvz[1] = pPOLYLINE_FEATURE(Trait)->pvz[scoGetLongDrawSize(pScopeMemory,0)-2];
+                  pPOLYLINE_FEATURE(Gomme)->pvx[1] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-2];
+                  pPOLYLINE_FEATURE(Gomme)->pvy[1] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-2];
+                  pPOLYLINE_FEATURE(Gomme)->pvz[1] = pPOLYLINE_FEATURE(Trait)->pvz[scoGetLongDrawSize(pScopeMemory,0)-2];
 
-		  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
-		    {
-		      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
-		      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
-		      pPOLYLINE_FEATURE(Trait)->pvz[j] = pPOLYLINE_FEATURE(Trait)->pvz[j-1];
-		    }
+                  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
+                    {
+                      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
+                      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
+                      pPOLYLINE_FEATURE(Trait)->pvz[j] = pPOLYLINE_FEATURE(Trait)->pvz[j-1];
+                    }
 
-		  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
-		  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
-		  pPOLYLINE_FEATURE(Trait)->pvz[0] = pPOLYLINE_FEATURE(Pinceau)->pvz[0];
-		
-		  pPOLYLINE_FEATURE(Pinceau)->pvx[1] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
-		  pPOLYLINE_FEATURE(Pinceau)->pvy[1] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
-		  pPOLYLINE_FEATURE(Pinceau)->pvz[1] = pPOLYLINE_FEATURE(Pinceau)->pvz[0];
+                  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
+                  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
+                  pPOLYLINE_FEATURE(Trait)->pvz[0] = pPOLYLINE_FEATURE(Pinceau)->pvz[0];
+                
+                  pPOLYLINE_FEATURE(Pinceau)->pvx[1] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
+                  pPOLYLINE_FEATURE(Pinceau)->pvy[1] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
+                  pPOLYLINE_FEATURE(Pinceau)->pvz[1] = pPOLYLINE_FEATURE(Pinceau)->pvz[0];
 
-		  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
-		  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
-		  pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvz[0] = u3[i];
 
-		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-		    {
-				/* TODO : not implemented */
-				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-		    }
-		  sciDrawObj(Pinceau);
-		  sciDrawObj(Gomme);
-		}
-	    }
-	  //2D Scope Mode
-	  else
-	    {
-	      for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
-		{
-		  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
-		  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
-		  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
+                  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+                  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
+                    {
+                                /* TODO : not implemented */
+                                /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+                    }
+                  sciDrawSingleObj(Pinceau);
+                  sciDrawSingleObj(Gomme);
+                }
+            }
+          //2D Scope Mode
+          else
+            {
+              for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+                {
+                  Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
+                  Gomme = scoGetPointerShortDraw(pScopeMemory,0,i+nbr_curves);
+                  Trait = scoGetPointerLongDraw(pScopeMemory,0,i);
 
-		  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
-		  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvx[0] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-1];
+                  pPOLYLINE_FEATURE(Gomme)->pvy[0] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-1];
 
-		  pPOLYLINE_FEATURE(Gomme)->pvx[1] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-2];
-		  pPOLYLINE_FEATURE(Gomme)->pvy[1] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-2];
+                  pPOLYLINE_FEATURE(Gomme)->pvx[1] = pPOLYLINE_FEATURE(Trait)->pvx[scoGetLongDrawSize(pScopeMemory,0)-2];
+                  pPOLYLINE_FEATURE(Gomme)->pvy[1] = pPOLYLINE_FEATURE(Trait)->pvy[scoGetLongDrawSize(pScopeMemory,0)-2];
 
-		  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
-		    {
-		      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
-		      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
-		    }
+                  for (j = scoGetLongDrawSize(pScopeMemory,0)-1 ; j > 0 ; j--)
+                    {
+                      pPOLYLINE_FEATURE(Trait)->pvx[j] = pPOLYLINE_FEATURE(Trait)->pvx[j-1];
+                      pPOLYLINE_FEATURE(Trait)->pvy[j] = pPOLYLINE_FEATURE(Trait)->pvy[j-1];
+                    }
 
-		  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
-		  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
-		
-		  pPOLYLINE_FEATURE(Pinceau)->pvx[1] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
-		  pPOLYLINE_FEATURE(Pinceau)->pvy[1] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
+                  pPOLYLINE_FEATURE(Trait)->pvx[0] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
+                  pPOLYLINE_FEATURE(Trait)->pvy[0] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
+                
+                  pPOLYLINE_FEATURE(Pinceau)->pvx[1] = pPOLYLINE_FEATURE(Pinceau)->pvx[0];
+                  pPOLYLINE_FEATURE(Pinceau)->pvy[1] = pPOLYLINE_FEATURE(Pinceau)->pvy[0];
 
-		  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
-		  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvx[0] = u1[i];
+                  pPOLYLINE_FEATURE(Pinceau)->pvy[0] = u2[i];
 
-		  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-		  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-		    {
-				/* TODO : not implemented */
-				/*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-		    }
-		  sciDrawObj(Pinceau);
-		  sciDrawObj(Gomme);
-		}
-	    }
-	}
-	 
+                  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+                  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
+                    {
+                                /* TODO : not implemented */
+                                /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+                    }
+                  sciDrawSingleObj(Pinceau);
+                  sciDrawSingleObj(Gomme);
+                }
+            }
+        }
+         
     }
 }
 
