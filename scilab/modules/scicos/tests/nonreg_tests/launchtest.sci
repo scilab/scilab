@@ -45,7 +45,7 @@ txt = [ "// Set display settings";
         "try";
         "  Info = scicos_simulate(scs_m,Info,[],''nw'')";
         "catch";
-        "  disp(msprintf(''%-15s: ERROR while launching simulation'',''" + testName + "''))";
+        "  disp(msprintf(''%-20s: ERROR while launching simulation'',''" + testName + "''))";
         "end";
         "disp(Info)";
         "";
@@ -70,9 +70,9 @@ if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
   mdelete(outFilename)
 
   if status
-	  disp(msprintf('%-15s: Reference file successfully generated',testName))
+	  disp(msprintf('%-20s: Reference file successfully generated',testName))
   else
-	  disp(msprintf('%-15s: WARNING: Reference file not generated',testName))
+	  disp(msprintf('%-20s: WARNING: Reference file not generated',testName))
   end
 
 elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
@@ -85,7 +85,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
     out = mgetl(fidOut);
     mclose(fidOut);
   catch
-    disp(msprintf('%-15s: ERROR: Cannot read output data from file ' + outFilename, testName))
+    disp(msprintf('%-20s: ERROR: Cannot read output data from file ' + outFilename, testName))
     return // go on to next test
   end
 
@@ -95,7 +95,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
     ref = mgetl(fidRef);
     mclose(fidRef);
   catch
-    disp(msprintf('%-15s: ERROR: Cannot read reference data from file ' + outRefFilename, testName))
+    disp(msprintf('%-20s: ERROR: Cannot read reference data from file ' + outRefFilename, testName))
     return // go on to next test
   end
 
@@ -110,7 +110,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
     status.id      = 0; // OK
   end
 
-  disp(msprintf('%-15s: %s', testName, status.msg))
+  disp(msprintf('%-20s: %s', testName, status.msg))
   if status.id == 1 // KO
     disp(msprintf('%s', status.details))
   end  
