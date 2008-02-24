@@ -54,9 +54,9 @@ function %zoom=restore(gh_curwin)
   menu_stuff() ;
 
   if ~super_block then
-    delmenu(curwin,_('Stop'))
-    addmenu(curwin, _('Stop'))
-    unsetmenu(curwin,_('Stop'))
+    delmenu(curwin,_('stop'))
+    addmenu(curwin, _('stop'))
+    unsetmenu(curwin,_('stop'))
   else
     unsetmenu(curwin,_('Simulate'))
   end
