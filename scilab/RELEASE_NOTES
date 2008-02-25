@@ -20,6 +20,7 @@ such has units property management are no yet available.
 	* info_message
 	* Text object font management
 	* Figure name property
+	* Postscript formats for graphic export
 
 - Graphics know bugs
 	* Displayed axes bounds my differ from Scilab 4.x.a
