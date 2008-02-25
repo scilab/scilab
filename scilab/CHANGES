@@ -34,8 +34,8 @@ Graphics:
 
 Graphic file export:
 =================
- - Export formats
- - New features (?)
+  - xs2jpeg, xs2png functions added to export graphics under jpeg and png formats.     	
+  - Removed functions xs2emf and xs2fig from export graphics.
 
 Consoles:
 =========
@@ -372,9 +372,9 @@ Graphics:
     + click, double_click, press, release ,move.
     + key press and release, with or without Shift and Ctrl modifiers.
 
-  - xs2jpeg, xs2png functions added to export graphics under jpeg and png formats. 
-    	
-  - Removed functions xs2emf and xs2fig from export graphics.
+  - xs2bmp xs2emf functions added to export graphics under bmp and EMF
+    (Enhanced Meta File) formats. These functions are only available under
+    Windows.
 
   - Colorbar function added. Thanks to Bruno Pincon.
 
