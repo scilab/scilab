@@ -89,9 +89,13 @@ src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp
 
 GIWS_WRAPPERS = \
-src/jni/DrawableRectangleGL.giws.xml \
+src/jni/CallScilabBridge.giws.xml \
+src/jni/FileChooser.giws.xml \
 src/jni/Jxclick.giws.xml \
-src/jni/Jxgetmouse.giws.xml
+src/jni/Jxgetmouse.giws.xml \
+src/jni/SwingScilabMenu.giws.xml \
+src/jni/SwingScilabWindow.giws.xml \
+src/jni/UIElementMapper.giws.xml
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_x_message_modeless.c \

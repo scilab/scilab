@@ -616,9 +616,13 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetUicontrolSliderStep.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
-@GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
+@GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
+@GUI_TRUE@src/jni/FileChooser.giws.xml \
 @GUI_TRUE@src/jni/Jxclick.giws.xml \
-@GUI_TRUE@src/jni/Jxgetmouse.giws.xml
+@GUI_TRUE@src/jni/Jxgetmouse.giws.xml \
+@GUI_TRUE@src/jni/SwingScilabMenu.giws.xml \
+@GUI_TRUE@src/jni/SwingScilabWindow.giws.xml \
+@GUI_TRUE@src/jni/UIElementMapper.giws.xml
 
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 @GUI_TRUE@sci_gateway/c/sci_x_message_modeless.c \
