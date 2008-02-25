@@ -5,13 +5,13 @@ Scilab 5.0 Alpha Release_Notes
 A click on them will display a dialog box.
 
 - Uicontrols have been mapped to java objects. However some functionnalities
-such has units property management are no yet available.
+such as units property management are no yet available.
 
 - Uicontrols ascendant incompatibilities:
         * Figure size has to be increased beacause of the automatic insertion of a menubar and the height of the docking bar.
         * Popup uicontrols width has to be increased because of the little triangle used to select a new value.
 
-- Graphics functionalities not yet fully functional
+- Graphic functionalities are not yet fully functional:
 	* xlcea
 	* viewport management
 	* show_pixmap
@@ -23,13 +23,13 @@ such has units property management are no yet available.
 	* Postscript formats for graphic export
 
 - Graphics know bugs
-	* Displayed axes bounds my differ from Scilab 4.x.a
+	* Displayed axe bounds may differ from Scilab 4.x.a
 	* Unwanted marks may appear.
 	* Some colours might be different from Scilab 4.x.
 	* Legend and labels might be misplaced.
 	* Text object space management
 	* Rendering is slow or not functional on some computer / graphic card / graphic card driver combination.
-	  Errors often appears on ATI and Intel cards under Linux and also with old Nvidia drivers.
+	  Errors often appear on ATI and Intel cards under Linux and also with old Nvidia drivers.
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
     For ATI cards: http://ati.amd.com/support/driver.html
@@ -44,12 +44,16 @@ such has units property management are no yet available.
 - Scicos:
 	* Some functionalites of the new graphics API are still not fully available/working at the moment
 	  of this release (e.g. show_pixmap, VIEWPORT pan control, etc.)
-	* Some mouse and keys events are not detected (e.g. button release)
+	* Some mouse and key events are not detected (e.g. button release)
           - For these - and others - reasons, some feature of the Scicos editor are still non functional
 	  - The Scicos simulation engine is correcly working (scicos_simulate)
         * BEWARE : the "Stop" simulation button is not working: set the simulation time to your final time
-        * BEWARE : Modelica support is not available because the absence of the Modelica compiler.
+        * BEWARE : Modelica support is not available
           
+- Scilab is not fully translated into French.
+
+- Dynamic/incremental link may bug on usual archs/compiler or with modified flags
+
 
 
 Scilab 4.0 Release_Notes
