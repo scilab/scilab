@@ -192,7 +192,8 @@ etc/gui.start \
 etc/graphics_menubar.xml \
 etc/graphics_toolbar.xml \
 etc/main_menubar.xml \
-etc/main_toolbar.xml
+etc/main_toolbar.xml \
+etc/flexdock-themes.xml
 
 
 #### gui : gateway declaration ####
