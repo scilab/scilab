@@ -107,7 +107,8 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 					}
 				}
 				setlanguagecode(CURRENTLANGUAGESTRING);
-
+				/*
+				  Commented since we want the user to restart scilab when the locale is changed
 				if (updateHelpIndex)
 				{
 					#define UPDATESCILABHELPMACRO "try update_scilab_help();catch end;clear update_scilab_help;"
@@ -115,11 +116,11 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 					integer seq = 1 ;
 					int macroCallLength=0;
 
-					/* update help index */
+					// update help index 
 					macroCallLength = (int)strlen(UPDATESCILABHELPMACRO);
 					C2F(syncexec)(UPDATESCILABHELPMACRO,&macroCallLength,&ierr,&seq, macroCallLength);
 				}
-
+			*/
 				/* save language pref. */
 				savelanguagepref();
 
