@@ -71,7 +71,7 @@ public abstract class SciAbstractDataType {
 	public void disp() {
 		Get();
 		System.out.println(getTypeDescription() + " " + getName() + "=");
-		//				System.out.println("Scilab.Exec( \"disp(" + getName() +");\");");
 		Scilab.Exec("disp(" + getName() + ");");
+		System.out.flush();
 	}
 }

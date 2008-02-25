@@ -119,6 +119,7 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 		Get();
 		System.out.println("Matrix " + getName() + "=");
 		Scilab.Exec("disp(" + getName() + ");"); // Call the scilab command
+		System.out.flush();
 	}
 
 	/**

@@ -10,6 +10,7 @@
  *
  */
 
+#include <stdio.h>
 #include "javasci_Scilab.h"
 #include "../../../modules/graphics/includes/WindowList.h"
 
@@ -65,6 +66,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
 		  bOK=0;
 	  }
 	  else bOK=1;
+	  fflush(stdout);
   }
 
   (*env)->ReleaseStringUTFChars(env, job , cjob);
