@@ -71,7 +71,7 @@ public final class MenuBarBuilder {
 		
 		InvocationHandler invocationHandler = new MenuBarConfigurationHandler(fileToLoad);
 		
-		return Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), resultClass, invocationHandler);
+		return Proxy.newProxyInstance(invocationHandler.getClass().getClassLoader(), resultClass, invocationHandler);
 	}
 
 	/**
@@ -102,19 +102,15 @@ public final class MenuBarBuilder {
 		} catch (IllegalArgumentException e) {
 			System.err.println(CANNOT_CREATE_MENUBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-			//System.exit(-1);
 		} catch (SAXException e) {
 			System.err.println(CANNOT_CREATE_MENUBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-			//System.exit(-1);
 		} catch (IOException e) {
 			System.err.println(CANNOT_CREATE_MENUBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-			//e.printStackTrace();
 		} catch (ParserConfigurationException e) {
 			System.err.println(CANNOT_CREATE_MENUBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
-			//System.exit(-1);
 		}
 		
 		return menubar;
