@@ -4,4 +4,5 @@ Scilab 5.0 (Alpha) Release_Notes
 - Please note that:
 
   * files association with .sce,.sci is disabled in this version.
+  *	the export in postscript format is not available for this version.
     
