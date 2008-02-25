@@ -16,6 +16,7 @@ function h=%h_load(fd)
   if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'c',fd)
   immediate_drawing="";
+  disp(version);
   
   h=[];
   
@@ -57,7 +58,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       figure_position=mget(2,'sl',fd); // figure_position
       figure_size=mget(2,'sl',fd); // figure_size
       axes_size=mget(2,'sl',fd); //axes_size
-      if ( is_higher_than([4 1 0 0]) ) then
+      if ( is_higher_than([4 1 2 0]) ) then
         viewport = mget(2,'sl',fd) ; // viewport
         info_message = ascii(mget(mget(1,'c',fd),'c',fd)) ; // info_message
       end
@@ -74,9 +75,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       visible=toggle(mget(1,'c',fd)); // visible
       figure_position=mget(2,'sl',fd); // figure_position
+      // if figure is iconified in old scilab version, its position is -32000, -32000]
+      figure_position = max(figure_position, [0,0]);
       figure_size=mget(2,'sl',fd); // figure_size
       axes_size=mget(2,'sl',fd); // axes_size
-      if ( is_higher_than([4 1 0 0]) ) then
+      if ( is_higher_than([4 1 2 0]) ) then
         viewport = mget(2,'sl',fd) ; // viewport
         info_message = ascii(mget(mget(1,'c',fd),'c',fd)) ; // info_message
       end
@@ -84,17 +87,19 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       figure_name=ascii(mget(mget(1,'c',fd),'c',fd)) // figure_name
       figure_id=mget(1,'sl',fd); // figure_id
       // create the figure
-      h=scf(figure_id)
+      h=scf(figure_id);
        h.visible=visible;  // can be set now as we act on immediate_drawing everywhere else F.Leray 18.02.05
       h.figure_position=figure_position
       h.figure_size=figure_size
       h.axes_size=axes_size
-      if ( is_higher_than([4 1 0 0]) ) then
+      if ( is_higher_than([4 1 2 0]) ) then
         h.viewport = viewport // should be set before auto_resize
         h.info_message = info_message ;
       end
       h.auto_resize=auto_resize
+disp(auto_resize);
       h.figure_name=figure_name
+disp(figure_name);
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,'c',fd)); // pixmap
       h.pixel_drawing_mode=ascii(mget(mget(1,'c',fd),'c',fd)) // pixel_drawing_mode
@@ -105,7 +110,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       
     end
     
-    if ( is_higher_than([4 1 0 0]) ) then
+    if ( is_higher_than([4 1 2 0]) ) then
       h.event_handler = ascii(mget(mget(1,'c',fd),'c',fd)) ; // event_handler
       h.event_handler_enable = ascii(mget(mget(1,'c',fd),'c',fd)) ; // event_handler_enable
     end
@@ -145,16 +150,17 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"grid"        , mget(mget(1,'c',fd),'il',fd)) //grid
     set(a,"x_location"  , ascii(mget(mget(1,'c',fd),'c',fd))) // x_location
     set(a,"y_location"  , ascii(mget(mget(1,'c',fd),'c',fd))) // y_location
+
     view            =  ascii(mget(2,'c',fd)); // view
 
     // title
     set(titl,"visible"   , toggle(mget(1,'c',fd))) // title.visible
-    if is_higher_than( [4 0 0 0] ) then
+    if is_higher_than( [4 1 2 0] ) then
       set(titl, "text", load_text_matrix( fd ) ) ;
     else
       set(titl,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
     end
-    if is_higher_than([3 1 0 2]) then
+    if is_higher_than([4 1 2 0]) then
       set(titl,"font_foreground", mget(1,'il',fd)); // title.font_foreground
     end
     set(titl,"foreground", mget(1,'il',fd)); // title.foreground
@@ -177,12 +183,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     // x_label
     set(x_label,"visible"   , toggle(mget(1,'c',fd))) // x_label.visible
-    if is_higher_than( [4 0 0 0] ) then
+    if is_higher_than( [4 1 2 0] ) then
       set(x_label, "text", load_text_matrix( fd ) ) ;
     else
       set(x_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
     end
-    if is_higher_than([3 1 0 2]) then
+    if is_higher_than([4 1 2 0]) then
       set(x_label,"font_foreground", mget(1,'il',fd)); // x_label.font_foreground
     end
     set(x_label,"foreground", mget(1,'il',fd)); // x_label.foreground
@@ -204,12 +210,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     // y_label
     set(y_label,"visible"        , toggle(mget(1,'c',fd)))
-    if is_higher_than( [4 0 0 0] ) then
+    if is_higher_than( [4 1 2 0] ) then
       set(y_label, "text", load_text_matrix( fd ) ) ;
     else
       set(y_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
     end
-    if is_higher_than([3 1 0 2]) then
+    if is_higher_than([4 1 2 0]) then
       set(y_label,"font_foreground", mget(1,'il',fd)); // y_label.font_foreground
     end
     set(y_label,"foreground"     , mget(1,'il',fd));
@@ -233,12 +239,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       // z_label
       z_label=a.z_label
       set(z_label,"visible"        , toggle(mget(1,'c',fd)))
-      if is_higher_than( [4 0 0 0] ) then
+      if is_higher_than( [4 1 2 0] ) then
 	set(z_label, "text", load_text_matrix( fd ) ) ;
       else
 	set(z_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
       end
-      if is_higher_than([3 1 0 2]) then
+      if is_higher_than([4 1 2 0]) then
 	set(z_label,"font_foreground", mget(1,'il',fd)); // z_label.font_foreground
       end
       set(z_label,"foreground"     , mget(1,'il',fd));
@@ -286,7 +292,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(a,"auto_ticks"           , auto_ticks)
     end
     
-    if is_higher_than([3 1 0 2]) then
+    if is_higher_than([4 1 2 0]) then
       // migth be now 'off','hidden_axis','back_half' or 'on'
       boxtype = ascii(mget(mget(1,'c',fd),'c',fd)) ;
       set( a, "box", boxtype  ) // box
@@ -355,7 +361,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"auto_clear"           , toggle(mget(1,'c',fd))) // auto_clear
     set(a,"auto_scale"           , toggle(mget(1,'c',fd))) // auto_scale
 
-    if is_higher_than([3 1 0 2] ) then // 4 0 0 0 and after
+    if is_higher_than([4 1 2 0] ) then // 4 0 0 0 and after
       set(a,"hidden_axis_color", mget(1,'il',fd)) ; // hidden_axis_color
     end
     
@@ -399,7 +405,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"log_flags"            , log_flags);
 	
     set(a,"axes_visible"          , axes_visible) ;
-    if is_higher_than([3 1 0 2] ) then
+    if is_higher_than([4 1 2 0] ) then
       set(a, "box", boxtype ) ;
     end   
 
@@ -407,6 +413,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     load_user_data(fd) ; // user_data
     
   case "Polyline"
+
     visible=toggle(mget(1,'c',fd)) // visible
     sz=mget(2,'il',fd); // data
     data=matrix(mget(prod(sz),'dl',fd),sz(1),-1); 
@@ -431,8 +438,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     
     mark_mode      = toggle(mget(1,'c',fd)) // mark_mode
-    mark_style     = mget(1,'il',fd); // mark_style
-    mark_size      = mget(1,'il',fd); // mark_size
+    mark_style     = mget(1,'c',fd); // mark_style
+    mark_size      = mget(1,'c',fd); // mark_size
+    
     msu='tabulated'
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,'c',fd))=='t' then // mark_size_unit
@@ -475,7 +483,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       clip_box = [] ;
     end
-    
     // draw the polyline and set properties
     xpoly(data(:,1),data(:,2))
     //plot2d( data(:,1),data(:,2));
@@ -998,7 +1005,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
   case "Text"
     visible         = toggle(mget(1,'c',fd)) // visible
     
-    if is_higher_than( [4 0 0 0] ) then
+    if is_higher_than( [4 1 2 0] ) then
       text            = load_text_matrix( fd ) ;
     else
       text            = load_text_vector(fd) // text
@@ -1040,7 +1047,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set( h, "background"     , mget( 1, 'il', fd ) ) ; // background
     end
     
-    if is_higher_than( [4 0 0 0] ) then
+    if is_higher_than( [4 1 2 0] ) then
       set( h, "alignment", ascii(mget(mget(1,'c',fd),'c',fd)  ) ) ; // alignment
     end
     
