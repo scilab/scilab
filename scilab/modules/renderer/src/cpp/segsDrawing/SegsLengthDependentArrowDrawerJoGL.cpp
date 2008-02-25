@@ -69,14 +69,13 @@ void SegsLengthDependentArrowDrawerJoGL::drawSegs(const double xStarts[], const 
 
   // arrow size is negative there
   double maxArrowSize = - sciGetArrowSize(pSegs);
-  double lineWidth = sciGetLineWidth(pSegs);
 
   // fill it
   // the longest vector has the specified length
   // for the others its proportional to their length
   for (int i = 0; i < nbSegment; i++)
   {
-    arrowSizes[i] = lineWidth * maxArrowSize * getVectorLength(i) / maxLength;
+    arrowSizes[i] = maxArrowSize * getVectorLength(i) / maxLength;
   }
 
   initializeDrawing();
