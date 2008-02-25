@@ -16,6 +16,7 @@ Graphical User Interface:
         + Window docking available using FlexDock https://flexdock.dev.java.net/
  - Uicontrols are now Java objects and can be included in a graphic window with graphics
  - Dialogs are now Java objects (x_message, x_dialog...)
+ - Completion on variable and function names avaible using TAB key or CTRL-SPACE
 
 Graphics:
 ==========
