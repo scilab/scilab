@@ -5,3 +5,5 @@ EXPORTS
 ;
 ; renderer
 sciDrawObj  
+sciDrawSingleObj
+forceRedraw

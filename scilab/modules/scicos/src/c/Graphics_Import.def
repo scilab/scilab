@@ -2,13 +2,11 @@ LIBRARY    graphics.dll
 
 
 EXPORTS
-SciWin
 sciGetParentSubwin
 sciGetPointerFromHandle
-sciGetFirstTypedSelectedSon
-ConstructCompoundSeq
 sciSetCurrentObj
+ConstructCompoundSeq
 sciSetFontSize
 sciGetCurrentObj
-sciGetCurrentFigure
 Objstring
+SciWin
