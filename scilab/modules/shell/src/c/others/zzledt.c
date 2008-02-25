@@ -653,9 +653,9 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
      {
      	strcpy(wk_buf,line);
      	FREE(line);
-     	*buf_size = (int)strlen(wk_buf);
+        *len_line = (int)strlen(wk_buf);
      }
-     else *buf_size = 0;
+     else *len_line = 0;
      /* End of call to Java Console */
   }
 
@@ -671,7 +671,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   else
   {
     *len_line = strlen(wk_buf);
-    strncpy(buffer, wk_buf,*buf_size);
+    strncpy(buffer, wk_buf,*len_line);
     if(getScilabMode() != SCILAB_STD)
     {
       putchar('\r');  putchar('\n');

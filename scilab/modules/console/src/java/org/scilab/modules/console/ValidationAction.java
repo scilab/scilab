@@ -15,6 +15,8 @@ package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JTextPane;
+
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
 import com.artenum.rosetta.interfaces.ui.PromptView;
@@ -42,6 +44,12 @@ public class ValidationAction extends AbstractConsoleAction {
 	 * @param e the event to threat
 	 */
 	public synchronized void actionPerformed(ActionEvent e) {
+		
+		/* If occured during a "more" message */
+		if (!((JTextPane) configuration.getInputCommandView()).isEditable()) {
+			return;
+		}
+		
 		// Init
 		InputParsingManager inputParsingManager = configuration.getInputParsingManager();
 		PromptView promptView = configuration.getPromptView();

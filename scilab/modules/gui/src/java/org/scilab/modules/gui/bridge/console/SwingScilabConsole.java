@@ -15,8 +15,10 @@ package org.scilab.modules.gui.bridge.console;
 import java.awt.Dimension;
 
 import javax.swing.JTextPane;
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardEndHandler;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.JTextComponent.KeyBinding;
 
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
@@ -100,6 +102,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 			e.printStackTrace();
 		}
 		
+		this.getConfiguration().getPromptView().setVisible(false);
+		this.getConfiguration().getInputCommandView().setEditable(false);
+		
 		// Add a keylistener which will set the returned char
 		OneCharKeyEventListener keyListener = new OneCharKeyEventListener(this);
 		((JTextPane) this.getConfiguration().getInputCommandView()).addKeyListener(keyListener);
@@ -117,10 +122,13 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		((JTextPane) this.getConfiguration().getInputCommandView()).removeKeyListener(keyListener);
 		((JTextPane) this.getConfiguration().getOutputView()).removeKeyListener(keyListener);
 		
+		this.getConfiguration().getPromptView().setVisible(true);
+		this.getConfiguration().getInputCommandView().setEditable(true);
+
 		// Send back the focus the the input view
 		this.getConfiguration().getInputCommandView().requestFocus();
 		((JTextPane) this.getConfiguration().getInputCommandView()).getCaret().setVisible(true);
-
+		
 		return retChar;
 	}
 
