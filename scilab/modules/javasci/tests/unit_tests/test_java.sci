@@ -17,16 +17,15 @@ function bOK = test_java(java_filename)
   exec 'SCI/modules/javasci/tests/unit_tests/java.sci';
   
   [rep,stat] = javac(java_filename);
-  if stat <> 0 then pause,end;
-
-  [rep,stat] = java(java_filename);
-  if stat <> 0 then pause,end;
-
-  disp(rep);
-  
-  [path,fname,extension] = fileparts(java_filename);
-  mdelete(fname+'.class');
-	bOK = %T;
+  if stat == 0 then
+    [rep,stat] = java(java_filename);
+    if stat == 0 then 
+      disp(rep);
+      bOK = %T;
+    end
+    [path,fname,extension] = fileparts(java_filename);
+    mdelete(fname+'.class');
+	end
 	
 endfunction
 // ====================================================================

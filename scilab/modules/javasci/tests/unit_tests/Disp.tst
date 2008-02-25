@@ -13,6 +13,6 @@ exec 'SCI/modules/javasci/tests/unit_tests/test_java.sci';
 
 java_file_to_test = 'Disp.java';
 
-test_java(java_file_to_test);
+if test_java(java_file_to_test) <> %T then pause,end;
 
 // ====================================================================
