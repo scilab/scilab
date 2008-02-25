@@ -28,7 +28,7 @@ function CodeGeneration_()
 //@l@n, 14/10/07
 //
 //
-//** 10 Set 2007 : cleaner startup code by    
+//** 10 Set 2007 : cleaner startup code by Simone Mannori  
 
     k = [] ; //** index of the CodeGen source superbloc candidate
 
@@ -55,7 +55,7 @@ function CodeGeneration_()
         [ok, XX, alreadyran, flgcdgen, szclkINTemp, freof] = ...
                         do_compile_superblock42(XX, scs_m, k, alreadyran);
         //**quick fix for sblock that contains scope
-        gh_curwin=scf(curwin)
+        gh_curwin = scf(curwin); 
 
       if ok then
         scs_m = changeports(scs_m,list('objs',k), XX);  //scs_m.objs(k)=XX

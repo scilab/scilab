@@ -27,8 +27,9 @@ function Cut_()
       return
   end
   
-  gh_curwin = gh_current_window ; //** acquire the current window handler
-  
+  gh_curwin = scf(%win); ; //** acquire the current window handler
+  gh_axes = gca(); 
+
   if Select(1,2)==curwin then
     scs_m_save = scs_m     ; //** save the diagram
     nc_save = needcompile  ; 
@@ -53,7 +54,8 @@ function Cut_()
       //** The last object in scs_m is associated to the first object in the graphics datastructure
       while getfield(1,scs_m.objs($))=='Deleted' then
 	  scs_m.objs($) = null(); //** erase the 'Deleted' elements from scs_m.objs
-          gh_object_to_delete = gh_curwin.children.children(1); //** the top element
+          
+          gh_object_to_delete = gh_axes.children(1); //** the top element
           delete(gh_object_to_delete) ; //** delete the elements from the graphics datastructure 
                                         //** in order to mantain the coherency 
 

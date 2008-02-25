@@ -91,7 +91,8 @@ function scs_m = changeports(scs_m, path, o_n)
     //** ------- Graphics ---------------
     
     gh_curwin = scf(curwin) ;
-    o_size = size(gh_curwin.children.children);
+    gh_axes = gca() ; 
+    o_size = size(gh_axes.children);
     gr_k = get_gri(k, o_size(1))
     //** redraw block
     //** quick update for new graphics
@@ -364,10 +365,9 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
     //** New graphics section
     drawlater() ; //
     
-    // gh_curwin = gh_current_window; // bugged ?
-    
-    gh_curwin = scf(curwin) ; 
-    o_size = size(gh_curwin.children.children);
+    gh_curwin = scf(curwin) ;
+    gh_axes = gca(); 
+    o_size = size(gh_axes.children);
 
     k = path($) ; //** the scs_m index of the target
     gr_k = get_gri(k, o_size(1))
@@ -421,9 +421,9 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
       scs_m.objs(Link_index) = oi; //** update the scs_m
 
       if  or(curwin==winsid()) then
-        ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
-        gh_link = gh_curwin.children.children(ghi);  //** recover the handle
-        gh_link.children.data = [oi.xx , oi.yy];//** update the object
+        ghi = get_gri(Link_index, o_size(1) );   //** calc the index of the connected link
+        gh_link = gh_axes.children(ghi);         //** recover the handle
+        gh_link.children.data = [oi.xx , oi.yy]; //** update the object
       end
 
    end //** for loop
@@ -476,9 +476,9 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
       scs_m.objs(Link_index) = oi;    //** update the scs_m
 
       if  or(curwin==winsid()) then
-        ghi = get_gri(Link_index, o_size(1) );       //** calc the index of the connected link
-        gh_link = gh_curwin.children.children(ghi);  //** recover the handle
-        gh_link.children.data = [oi.xx , oi.yy];//** update the object
+        ghi = get_gri(Link_index, o_size(1) );   //** calc the index of the connected link
+        gh_link = gh_axes.children(ghi);         //** recover the handle
+        gh_link.children.data = [oi.xx , oi.yy]; //** update the object
       end
 
   end //** for loop
@@ -487,8 +487,4 @@ function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
   //** ------------------------ END OF : ADJUST THE CONNECTED LINKS -------------------------------  
 
 endfunction
-
-
-
-
 

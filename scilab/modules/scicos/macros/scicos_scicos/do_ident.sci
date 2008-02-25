@@ -44,43 +44,45 @@ function scs_m = do_ident(scs_m)
   objet = scs_m.objs(numero_objet) ; //** isolate the object data structure
   type_objet = typeof(objet)       ;
 
-  gh_curwin = gh_current_window ; //** acquire the current window handler
-  o_size = size(gh_curwin.children.children) ; //** o_size(1) is the number of compound object
-  //gr_k = o_size(1) - k + 1 ; //** semi empirical equation :)
-  gr_k=get_gri(k,o_size(1));
+  //** Acquire the current clicked window 
+  gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
+  o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
+  gr_k = get_gri(k,o_size(1));
+  
   //** select the possible cases
-  if type_objet == 'Block' then
+  if type_objet == "Block" then
     //** -------- BLOCK --------------
     identification = objet.graphics.id
     if identification == [] then
       identification = emptystr() ;
     end
     //** Use a dialog box to acquire/modify the id string
-    texte_1 = 'Set Block identification' ;
-    texte_2 = 'ID'                       ;
+    texte_1 = "Set Block identification" ;
+    texte_2 = "ID"                       ;
     [ok, identification] = getvalue(texte_1, texte_2, list('str', 1), identification) ;
 
     if ok then
       objet.graphics.id = stripblanks(identification); //** update the identification structure
       //gr_k = o_size(1) - numero_objet + 1 ; //** semi empirical equation :)
-      gr_k=get_gri(numero_objet,o_size(1));
+      gr_k = get_gri(numero_objet, o_size(1));
       drawlater();
-      update_gr(gr_k,objet)
-      //** draw(gh_curwin.children);
-      drawnow(); 
-      //** show_pixmap() ; //** not useful on Scilab 5
+        update_gr(gr_k, objet);
+        //** draw(gh_curwin.children);
+        drawnow(); 
+        //** show_pixmap() ; //** not useful on Scilab 5
       scs_m.objs(numero_objet) = objet ; //** update the object data structure
     end
     //**----------------------------
-  elseif type_objet == 'Link' then
+  elseif type_objet == "Link" then
     //** ----- LINK -----------
     identification = objet.id ;
     if identification == [] then
       identification = emptystr() ;
     end
     //** Use a dialog box to acquire/modify the id string
-    texte_1 = 'Set link Identification' ;
-    texte_2 = 'ID'                      ;
+    texte_1 = "Set link Identification" ;
+    texte_2 = "ID"                      ;
     [ok, identification] = getvalue(texte_1, texte_2, list('str', 1),identification) ;
     //
     if ok then
@@ -89,19 +91,19 @@ function scs_m = do_ident(scs_m)
       //- set identification to all connected links
       drawlater();
       for numero = c_links ;
-        scs_m.objs(numero).id = identification
-        //gr_k = o_size(1) - numero + 1 ; //** semi empirical equation :)
-        gr_k=get_gri(numero,o_size(1))
-        update_gr(gr_k,scs_m.objs(numero))
+        scs_m.objs(numero).id = identification ;
+        gr_k = get_gri(numero, o_size(1)) ; 
+        update_gr(gr_k, scs_m.objs(numero)) ;
       end
+
       //** draw(gh_curwin.children);
       drawnow(); 
       //** show_pixmap() ; //** not useful on Scilab 5
-      //
+      
     end
   else
   //** It is NOT a Block AND it is NOT a Link: for any other object type
-    x_message('It is impossible to set ID for this type of object')
+    message("It is impossible to set ID for this type of object")
   end
   //
 

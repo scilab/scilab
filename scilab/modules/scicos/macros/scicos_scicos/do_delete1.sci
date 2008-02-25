@@ -65,11 +65,13 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
   DELL= [] // table of redefined links
   outin = ['out','in']
 
-  gh_curwin = gh_current_window ; //** acquire the current window handler
-  o_size = size(gh_curwin.children.children) ; //** o_size(1) is the number of compound object
-                                               //** at the beginning of this operation
-					       //** this variable is very important for the selective
-					       //** elimination of undesired object(s)
+  //** Acquire the current clicked window 
+  gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
+  o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
+                                    //** at the beginning of this operation
+	       		            //** this variable is very important for the selective
+			            //** elimination of undesired object(s)
 //**	Delete object until "K" is empty
 //** ----------------------------------------------------------------------------------------------
 while K<>[] do
@@ -167,9 +169,8 @@ while K<>[] do
 	    DELL=[DELL  connected(1)]
 	    scs_m.objs(connected(2))=o1 //change link
 	    if gr==%t then
-	      //gr_k = o_size(1) - connected(2) + 1 ;
-              gr_k=get_gri(connected(2),o_size(1))
-	      gh_object = gh_curwin.children.children(gr_k);
+	      gr_k = get_gri(connected(2), o_size(1)) ; 
+	      gh_object = gh_axes.children(gr_k);
 	      gh_object.children.data = [o1.xx , o1.yy];
             end
 	    scs_m.objs(to2(1))=mark_prt(scs_m.objs(to2(1)),to2(2),outin(to2(3)+1),ct2(2),..
@@ -220,9 +221,8 @@ while K<>[] do
 	    DELL=[DELL  connected(1)]
 	    scs_m.objs(connected(2))=o1 //change link
 	    if gr==%t then
-//	      gr_k = o_size(1) - connected(2) + 1 ;
-              gr_k=get_gri(connected(2),o_size(1))
-	      gh_object = gh_curwin.children.children(gr_k);
+              gr_k = get_gri(connected(2),o_size(1)) ; 
+	      gh_object = gh_axes.children(gr_k)     ;
 	      gh_object.children.data = [o1.xx , o1.yy];
             end
 
@@ -269,7 +269,7 @@ end //** ... end of while ()
     scs_m.objs(k) = mlist('Deleted')
     if gr==%t then
       gr_k = get_gri(k,o_size(1)) ;
-      gh_object_invisible = gh_curwin.children.children(gr_k);
+      gh_object_invisible = gh_axes.children(gr_k);
       gh_object_invisible.visible = "off";
     end
   end

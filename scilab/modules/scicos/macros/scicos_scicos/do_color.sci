@@ -32,7 +32,7 @@ function [scs_m] = do_color(%win, %pt, scs_m)
     
      xc = %pt(1); yc = %pt(2);
     
-     KK = getobj(scs_m,[xc;yc])
+     KK = getobj(scs_m,[xc;yc]);
      
      if KK==[] then
          return ; //** Exit point -> No object found 
@@ -40,12 +40,7 @@ function [scs_m] = do_color(%win, %pt, scs_m)
   
   else
     
-   //** BEWARE : look at the win_id of the selected object !!!
-   //** TO DO: look at the variable  and filter the right object 
-   
-//**   disp("Select=");disp(Select);
-
-   KK = Select(:,1)'; //** take all the object selected 
+  KK = Select(:,1)'; //** take all the object selected 
 
   end
   //
@@ -56,11 +51,11 @@ function [scs_m] = do_color(%win, %pt, scs_m)
   //**----------------------------------------------------------
   //** the code below is modified according the new graphics API
   gh_curwin = scf(%win);
-  
+  gh_axes = gca(); 
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
   //** I need an equivalent index for the graphics 
   
-  o_size = size (gh_curwin.children.children ) ; //** the size:number of all the object 
+  o_size = size (gh_axes.children ) ; //** the size:number of all the object 
   
   //** "k" is the object index in the data structure "scs_m"
   //** compute the equivalent "gh_k" for the graphics datastructure 
@@ -70,8 +65,8 @@ function [scs_m] = do_color(%win, %pt, scs_m)
   
   for K = KK //** for all the selected object(s)
     o = scs_m.objs(K) ; //** the scs_m object  
-    gh_obj_K = get_gri(K,o_size(1)); //** compute the index in the graphics DS 
-    gh_compound = gh_curwin.children.children(gh_obj_K); //** get the compound handle 
+    gh_obj_K = get_gri(K, o_size(1)); //** compute the index in the graphics DS 
+    gh_compound = gh_axes.children(gh_obj_K); //** get the compound handle 
     
     //** ------------------ Link --------------------------
     if typeof(o)=="Link" then
@@ -112,23 +107,20 @@ function [scs_m] = do_color(%win, %pt, scs_m)
       if coln<>[] then
 	
 	if coln<>coli then
-	  o.graphics.gr_i(2) = coln ; 
-	  scs_m.objs(K) = o ;
-          update_gr(gh_obj_K,o)
-	  //size_of_graphic_objext = size(gh_compound.children) ;
-	  //first_graphic_objext = size_of_graphic_objext(1)    ;
-	  //gh_compound.children(first_graphic_objext).background = coln; //** update the propriety
+	  o.graphics.gr_i(2) = coln ; //** update the object propriety 
+	  scs_m.objs(K) = o ;     //** update the diagram 
+          update_gr(gh_obj_K,o) ; //** update the graphics data structure 
 	end
       
       end
     
     //** ----------------- Text ---------------------------  
     elseif  typeof(o)=="Text" then
-      //not implemented
+      //** not implemented
     end
   end
 
-  drawnow();
+  drawnow(); //** force a redraw 
   //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction

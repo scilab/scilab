@@ -36,10 +36,10 @@ function [o, modified, newparameters, needcompile, edited] = clickin(o)
 //   
 
 if needcompile==4 then
-      %cpr=list()
+      %cpr = list() ; 
 end  // for standard_document to work
 
-modified = %f;          //** not very clear internal flags 
+modified = %f ;        //** not very clear internal flags 
 newparameters = list();
 needcompile = 0 ;
 
@@ -63,47 +63,41 @@ if typeof(o)=="Block" then
   //**----------------Look for a SuperBlock ----------------------------
   if o.model.sim=="super" then
 
-      lastwin = curwin; // save the current window
+      lastwin = curwin ; // save the current window
 
-      global inactive_windows
-      jkk=[]
+      global inactive_windows; 
+      jkk = [] ;
 
       for jk=1:size(inactive_windows(2),'*')
-         if isequal(inactive_windows(1)(jk),super_path) then 
-           jkk=[jkk,jk]
+         if isequal(inactive_windows(1)(jk), super_path) then 
+           jkk = [jkk,jk]
          end
       end
-      curwinc=-1
+ 
+      curwinc = -1 ; 
 
       for jk=jkk 
-        curwinc=inactive_windows(2)(jk),
-//        ha=gcf(curwinc)
-//        if diffobjs(o.model.rpar,ha.user_data) then
-//           pause
-//           xdel(curwinc)
-//           curwinc=-1
-//        else
-           inactive_windows(1)(jk)=null();inactive_windows(2)(jk)=[]
-           curwin=curwinc           
-//        end
+        curwinc = inactive_windows(2)(jk) ;
+        inactive_windows(1)(jk) = null()  ;
+        inactive_windows(2)(jk) = []      ; 
+        curwin = curwinc ;           
       end
-      if curwinc <0 then
+
+      if curwinc<0 then
         curwin = get_new_window(windows) ; //** need a brand new window where open the 
-      end
+      end                                  //** super block
+                                           
+      if %diagram_open then      //** if the window is already open  
+        gh_curwin = scf(curwin); //** recover the handle  
+      end                        //** 
 
-                                         //** super block
-    if %diagram_open then     //** if the window is open open 
-      gh_curwin = scf(curwin); //**   
-    end                       //** 
-
-
-
-    ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch') ;
-    // the errcatch here is introduced to get aournd the bug #2553
-    if ierr<>0 then 
-      disp('Error in GUI of block '+o.gui)
-      edited=%f
-      return
+      ierr = execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch') ;
+      // the errcatch here is introduced to get around the bug #2553
+      
+      if ierr<>0 then //** if any erros is detected  
+        disp('Error in GUI of block '+o.gui)
+        edited = %f ;
+        return ; //** EXIT point 
     end
 
     //** Added to unset the last upper left point
@@ -111,22 +105,17 @@ if typeof(o)=="Block" then
     TCL_UnsetVar('numx')
     TCL_UnsetVar('numy')
     
-    //** the recursive superblock opening 
-    
-
-
     //** Check is this comments is still valid 
     //edited variable is returned by SUPER_f -- NO LONGER TRUE
     if ~%exit then
       edited = ~isequalbitwise(o,o_n) //diffobjs(o,o_n)
       if edited then
-	o = o_n
+	o = o_n ;
 	modified = prod( size(newparameters) )>0 ; 
       end
-    
     end
     
-    curwin = lastwin
+    curwin = lastwin ;
     if (~(or(curwin==winsid()))) then
           Cmenu = resume("Open/Set"); //** if the curwin is not present 
     end                               
@@ -144,15 +133,15 @@ if typeof(o)=="Block" then
     TCL_UnsetVar('numy')
 
     if ierr<>0 then 
-      disp('Error in GUI of block '+o.gui)
-      edited=%f
-      return
+      disp('Error in GUI of block '+o.gui);
+      edited = %f ;
+      return ; //** EXIT point 
     end
     modified = prod(size(newparameters))>0 // never used because if there is a change
                                            // needcompile>=2 and newparams not used 
-    edited = ~isequalbitwise(o,o_n) 
+    edited = ~isequalbitwise(o,o_n) ; 
     if edited then
-      o = o_n
+      o = o_n ; 
     end
 
   //**-------------------- C superblock ??? -----------------------------  
@@ -166,13 +155,13 @@ if typeof(o)=="Block" then
 
     if ierr<>0 then 
       disp('Error in GUI of block '+o.gui)
-      edited=%f
-      return
+      edited = %f ;
+      return ; //** EXIT point 
     end
     modified = prod(size(newparameters))>0
     edited = modified  // Not sure it is correct. 
     if edited then
-      o = o_n
+      o = o_n ; 
     end
 
 
@@ -180,7 +169,7 @@ if typeof(o)=="Block" then
   //**--------------------- Standard block -------------------------------  
   else
 
-    ierr=execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
+    ierr = execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
 
     //** Added to unset the last upper left point
     //** of the dialog box
@@ -189,7 +178,7 @@ if typeof(o)=="Block" then
 
     if ierr<>0 then 
       disp('Error in GUI of block '+o.gui)
-      edited=%f
+      edited = %f ; 
       return
     end
     //Alan - 09/02/07 : replace <> operator by ~isequal
@@ -200,70 +189,79 @@ if typeof(o)=="Block" then
       model = o.model
       model_n = o_n.model
       if ~is_modelica_block(o) then
-	modified=or(model.sim<>model_n.sim)|..
-		 ~isequal(model.state,model_n.state)|..
-		 ~isequal(model.dstate,model_n.dstate)|..
-		 ~isequal(model.odstate,model_n.odstate)|..
-		 ~isequal(model.rpar,model_n.rpar)|..
-		 ~isequal(model.ipar,model_n.ipar)|..
-		 ~isequal(model.opar,model_n.opar)|..
-		 ~isequal(model.label,model_n.label)
+	modified = or(model.sim<>model_n.sim)|..
+		      ~isequal(model.state,model_n.state)|..
+		      ~isequal(model.dstate,model_n.dstate)|..
+		      ~isequal(model.odstate,model_n.odstate)|..
+		      ~isequal(model.rpar,model_n.rpar)|..
+		      ~isequal(model.ipar,model_n.ipar)|..
+		      ~isequal(model.opar,model_n.opar)|..
+		      ~isequal(model.label,model_n.label)
+
 	if ~modified then
 	  for i=1:lstsize(model.opar)
 	    if typeof(model.opar(i))<>typeof(model_n.opar(i)) then
-	      modified=%t
+	      modified = %t
 	      break
 	    end
 	  end
 	end
+
 	if or(model.in<>model_n.in)|or(model.out<>model_n.out)|...
 	   or(model.in2<>model_n.in2)|or(model.out2<>model_n.out2)|...
            or(model.outtyp<>model_n.outtyp)|or(model.intyp<>model_n.intyp) then
 	  // input or output port sizes or type changed
 	  needcompile=1
 	end
-	if or(model.firing<>model_n.firing)  then 
+	
+        if or(model.firing<>model_n.firing)  then 
 	  // initexe changed
 	  needcompile=2
 	end
-	if (size(model.in,'*')<>size(model_n.in,'*'))|..
+	
+        if (size(model.in,'*')<>size(model_n.in,'*'))|..
 	      (size(model.out,'*')<>size(model_n.out,'*'))|..
 	       (size(model.evtin,'*')<>size(model_n.evtin,'*'))|..
 	        (size(model.evtout,'*')<>size(model_n.evtout,'*')) then
 	  // number of input (evt or regular ) or output (evt or regular) changed
 	  needcompile=4
 	end
-	if model.sim=='input'|model.sim=='output' then
+	
+        if model.sim=='input'|model.sim=='output' then
 	  if model.ipar<>model_n.ipar then
 	    needcompile=4
 	  end
 	end
-	if or(model.blocktype<>model_n.blocktype)|..
+	
+        if or(model.blocktype<>model_n.blocktype)|..
 	      or(model.dep_ut<>model_n.dep_ut)  then 
 	  // type 'c','d','z','l' or dep_ut changed
 	  needcompile=4
 	end
-	if (model.nzcross<>model_n.nzcross)|(model.nmode<>model_n.nmode) then 
+	
+        if (model.nzcross<>model_n.nzcross)|(model.nmode<>model_n.nmode) then 
 	  // size of zero cross changed
 	  needcompile=4
 	end
-	if prod(size(model_n.sim))>1 then
+	
+        if prod(size(model_n.sim))>1 then
 	  if model_n.sim(2)>1000 then  // Fortran or C Block
 	    if model.sim(1)<>model_n.sim(1) then  //function name has changed
 	      needcompile=4
 	    end
 	  end
 	end
+      
       else //implicit block
 	//force compilation if an implicit block has been edited
 	modified=or(model_n<>model)
 	eq=model.equations;eqn=model_n.equations;
 
-	if or(eq.model<>eqn.model)|or(eq.inputs<>eqn.inputs)|..
-				      or(eq.outputs<>eqn.outputs) then  
+	if or(eq.model<>eqn.model)|or(eq.inputs<>eqn.inputs)|or(eq.outputs<>eqn.outputs) then  
 	  needcompile=4
 	end
-	if (size(o.model.sim)>1) then
+	
+        if (size(o.model.sim)>1) then
 	  if (o.model.sim(2)==30004) then // only if it is the Modelica generic block
 	    if or(o.graphics.exprs<>o_n.graphics.exprs) then  // if equation in generic Modelica Mblock change
 	      needcompile=4
@@ -271,9 +269,12 @@ if typeof(o)=="Block" then
 	    end
 	  end
 	end
+
       end
       o=o_n
+    
     end
+
   end
 
 //**---------------------- Link -------------------------------------------------

@@ -19,13 +19,13 @@
 // See the file ../license.txt
 //
 
-function [palettes,windows] = do_load_as_palette(palettes,windows)
+function [palettes,windows] = do_load_as_palette(palettes, windows)
 //** 
 //**    
 //**   
   [ok,scs_m,cpr,edited] = do_load() ;
   
-  if ~ok then return,end //** if fail --> Exit 
+  if ~ok then return, end //** if fail --> Exit 
 
   maxpal = -mini([-200;windows(:,1)]) ; //** look for the last valid palette 
    
@@ -45,6 +45,7 @@ function [palettes,windows] = do_load_as_palette(palettes,windows)
   palettes(kpal) = scs_m ; //** save the diagram in the datastructure 
   
   gh_curwin = scf(curwin) ; //** open the new palette windows with proper id 
+  gh_axes = gca(); 
 
   if ~MSDOS then //** Unix case
     delmenu(curwin,'3D Rot.')
@@ -100,7 +101,7 @@ function [palettes,windows] = do_load_as_palette(palettes,windows)
   gh_curwin.figure_size = [w h] ; 
   
   //** axes settings 
-  gh_axes = gh_curwin.children ; //** axes handle
+  //** gh_axes = gh_curwin.children ; //** axes handle
   gh_axes.tight_limits = "on"  ; //** set the limit "gh_axes.data_bounds" in "hard mode"
   
 

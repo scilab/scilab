@@ -22,20 +22,22 @@
 function Defaultlinkcolors_()
 //
     Cmenu = [] ;
-    [edited,options] = do_options(scs_m.props.options,'LinkColor') ;
+    [edited,options] = do_options(scs_m.props.options,"LinkColor") ;
 
-    scs_m.props.options = options
+    scs_m.props.options = options ;
 
     if edited then 
       //** Acquire the current clicked window
       gh_curwin = scf(%win) ;
+      gh_axes = gca(); 
       //** Clear the graphic window WITHOUT changing his parameters ! :)
       drawlater() ;
-        delete(gh_curwin.children.children) ; //** wipe out all the temp graphics object
-        drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
-      drawnow(); //** re-draw the graphic object and show on screen
+        delete(gh_axes.children) ;   //** wipe out all the graphics object in the axe 
+        drawobjs(scs_m, gh_curwin) ; //** re-create all the graphics object
+      //** drawnow(); //** re-draw the graphic object and show on screen (now included in drawobjs)
       //** show_pixmap() ; //** not useful on Scilab 5      
-     Cmenu = [] ; %pt = [];
+     
+      Cmenu = [] ; %pt = [];
     end
 
 endfunction

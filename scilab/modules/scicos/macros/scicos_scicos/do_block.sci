@@ -58,8 +58,9 @@ function [scs_m] = do_block(%pt,scs_m)
 
   if gr_i==[] then gr_i=' ',end
 
-  // Acquire the current clicked window and put to "on" the pixmap mode
+  //** Acquire the current clicked window figure and axis handles
   gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
   while %t do
     //** use a dialog box to get input
     gr_i = dialog(['Give scilab instructions to draw block';
@@ -78,15 +79,14 @@ function [scs_m] = do_block(%pt,scs_m)
       o.graphics.gr_i = list(gr_i,coli) ; //** update the graphic command string
       scs_m.objs(K) = o ; //** update the data structure
 
-      //** Alan/Simone 13/12/06 : Use of update_gr
-      o_size = size(gh_curwin.children.children) ;
-      //gr_k = o_size(1) - K + 1 ; //** semi empirical equation :)
-      gr_k=get_gri(K,o_size(1))
+      //** Alan/Simone 13/12/06 : Use of update_gr 
+      o_size = size(gh_axes.children) ;
+      gr_k   = get_gri(K, o_size(1)) ; //** compute the index in the graphics data structure 
       drawlater() ;
-      update_gr(gr_k,o)
-      //** draw(gh_curwin.children); //** re-draw the graphic object and show on screen
-      drawnow();
-      //** show_pixmap() ; //** not useful on Scilab 5 
+         update_gr(gr_k, o);
+         //** draw(gh_curwin.children); //** re-draw the graphic object and show on screen
+         drawnow();
+         //** show_pixmap() ; //** not useful on Scilab 5 
       break; //** exit from the while loop
     end
 
