@@ -14,59 +14,40 @@
 #include <stdlib.h>
 #include <string.h>
 #include "machine.h"
-#include "command.h"
-#include "../../core/src/c/flags.h"
 #include "sci_mem_alloc.h"
 #include "scilabmode.h"
 #include "ConsoleRead.h"
 #include "zzledt.h"
 #include "prompt.h"
 #include "SetConsolePrompt.h"
-/*--------------------------------------------------------------------------*/
-static char save_prompt[10];
-/*--------------------------------------------------------------------------*/
-extern char input_line[MAX_LINE_LEN + 1]; /* defined in command.c */
+#include "TermReadAndProcess.h"
 /*--------------------------------------------------------------------------*/
 void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* interrupt, int *modex, long int dummy1)
-{
-  int i = 0;
+{  
   char *line = NULL;
 
-  GetCurrentPrompt(save_prompt);
-
-  set_is_reading (TRUE);
   if (getScilabMode() == SCILAB_STD)
   {
-	  SetConsolePrompt(save_prompt);
-	  i = 0;
-	  line = ConsoleRead();
+	static char save_prompt[10];
 
-	  if (line)
-	  {
-		  strcpy(input_line,line);  
-		  *len_line = (int)strlen(line);
-		  FREE(line); /* malloc in ConsoleRead */
-		  line = NULL;
-	  }
-	  SetConsolePrompt(save_prompt);
+	GetCurrentPrompt(save_prompt);
+
+	line = ConsoleRead();
+
+	SetConsolePrompt(save_prompt);
   }
   else
   {
-	i = read_line (save_prompt,*interrupt);
+	line = TermReadAndProcess();
   }
 
-  if (i==-1) 
-  { 
-	/* dynamic menu canceled read SS*/
-    *len_line = 0;
-    *eof = -1;
-    return;
+  if (line)
+  {
+	 strncpy (buffer, line, *buf_size);
+	 *len_line = (int)strlen(line);
+	 FREE(line); 
+	 line = NULL;
   }
-  strncpy (buffer, input_line, *buf_size);
-  *len_line = (int)strlen (buffer);
 
-  *eof = (i == 1) ? TRUE : FALSE;
-  set_is_reading (FALSE);
-  return;
 }
 /*--------------------------------------------------------------------------*/
