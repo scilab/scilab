@@ -581,11 +581,12 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       if edited then
 	// store win dims, it should only be in do_exit but not possible
 	// now
-	data_bounds = gh_current_window.children.data_bounds
-
+	//** data_bounds = gh_current_window.children.data_bounds
+        scf(gh_current_window);
+        gh_axes = gca(); 
+        data_bounds = gh_axes.data_bounds; 
 	winpos   = gh_current_window.figure_position;
-	%curwpar = [data_bounds(:)',gh_current_window.axes_size,..
-		    xget('viewport'),winsize,winpos,%zoom];
+	%curwpar = [data_bounds(:)',gh_current_window.axes_size, xget('viewport'),winsize,winpos,%zoom];
 	if ~isequal(scs_m.props.wpar, %curwpar) then
 	  scs_m.props.wpar = %curwpar  // keep window dimensions
 	end
@@ -627,7 +628,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	    if isequal(%diagram_path_objective,super_path) then // must add after testing &%scicos_navig<>[]
 	      if ~or(curwin==winsid()) then
 		gh_current_window = scf(curwin);
-                %zoom=restore(gh_current_window)
+                %zoom = restore(gh_current_window); 
                 execstr('drawobjs(scs_m)', 'errcatch') ;
 		%scicos_navig=[];
 		Select_back=[];Select=[]
