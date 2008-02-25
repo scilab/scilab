@@ -18,6 +18,9 @@
 #include "../../localization/includes/localization.h"
 #include "syncexec.h"
 #include "dynamic_menus.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
