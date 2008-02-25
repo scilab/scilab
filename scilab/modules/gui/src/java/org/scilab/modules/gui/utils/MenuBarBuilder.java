@@ -260,8 +260,7 @@ public final class MenuBarBuilder {
 							if (command != null && commandType != CallBack.UNTYPED) {
 							menuItem.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
 							}
-						}
-						else if (callback.getNodeName() == SUBMENU){
+						} else if (callback.getNodeName() == SUBMENU) {
 							addSubMenuItem(menuItem, callback);
 						}						
 						// Read next child
@@ -312,8 +311,7 @@ public final class MenuBarBuilder {
 					if (command != null && commandType != CallBack.UNTYPED) {
 						subMenuItem.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
 					}
-				}
-				else if (callback.getNodeName() == SUBMENU){
+				} else if (callback.getNodeName() == SUBMENU) {
 					addSubMenuItem(subMenuItem, callback);
 				}						
 				// Read next child
