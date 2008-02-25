@@ -28,7 +28,8 @@ such has units property management are no yet available.
 	* Some colours might be different from Scilab 4.x.
 	* Legend and labels might be misplaced.
 	* Text object space management
-	* Rendering is slow or not functional on some computer / graphic card / graphic card driver combination
+	* Rendering is slow or not functional on some computer / graphic card / graphic card driver combination.
+	  Errors often appears on ATI and Intel cards under Linux and also with old Nvidia drivers.
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
     For ATI cards: http://ati.amd.com/support/driver.html
