@@ -299,42 +299,62 @@ libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 ## Change to include other Scilab modules/lib
 #libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
 
-GIWS_WRAPPERS=src/jni/GraphicSynchronizer.giws.xml \
-src/jni/PolylineBarDrawerGL.giws.xml \
-src/jni/CameraGL.giws.xml \
-src/jni/DrawablePolylineGL.giws.xml \
-src/jni/PolylineArrrowDrawerGL.giws.xml \
-src/jni/ScilabGraphicWindow.giws.xml \
-src/jni/DrawableRectangleGL.giws.xml \
+GIWS_WRAPPERS=src/jni/ArcFillDrawerGL.giws.xml \
+src/jni/ArcLineDrawerGL.giws.xml \
+src/jni/BackTrihedronDrawerGL.giws.xml \
+src/jni/BottomXTicksDrawerGL.giws.xml \
+src/jni/CenteredTextDrawerGL.giws.xml \
 src/jni/DrawableArcGL.giws.xml \
-src/jni/PolylineMarkdrawerGL.giws.xml \
-src/jni/RectangleFillDrawerGL.giws.xml \
-src/jni/ArcFillDrawerGL.giws.xml \
+src/jni/DrawableAxesGL.giws.xml \
+src/jni/DrawableFecGL.giws.xml \
+src/jni/DrawableFigureGL.giws.xml \
+src/jni/DrawableGrayplotGL.giws.xml \
+src/jni/DrawablePolylineGL.giws.xml \
+src/jni/DrawableRectangleGL.giws.xml \
+src/jni/DrawableSegsGL.giws.xml \
+src/jni/DrawableSubwinGL.giws.xml \
+src/jni/DrawableSurfaceGL.giws.xml \
+src/jni/DrawableTextGL.giws.xml \
+src/jni/FecFacetDrawerGL.giws.xml \
+src/jni/FecLineDrawerGL.giws.xml \
+src/jni/FilledTextDrawerGL.giws.xml \
+src/jni/FullBoxDrawerGL.giws.xml \
+src/jni/GraphicSynchronizerJava.giws.xml \
+src/jni/HalfBoxDrawerGL.giws.xml \
+src/jni/IsometricCameraGL.giws.xml \
+src/jni/IsoViewCameraGL.giws.xml \
+src/jni/LeftYTicksDrawerGL.giws.xml \
+src/jni/MiddleXTicksDrawerGL.giws.xml \
+src/jni/MiddleYTicksDrawerGL.giws.xml \
+src/jni/PolylineArrrowDrawerGL.giws.xml \
+src/jni/PolylineBarDrawerGL.giws.xml \
+src/jni/PolylineFillDrawer.giws.xml \
 src/jni/PolylineInterpColorDrawerGL.giws.xml \
 src/jni/PolylineLineDrawerGL.giws.xml \
-src/jni/DrawableSubwinGL.giws.xml \
+src/jni/PolylineMarkdrawerGL.giws.xml \
+src/jni/RectangleFillDrawerGL.giws.xml \
 src/jni/RectangleLineDrawerGL.giws.xml \
-src/jni/ArcLineDrawerGL.giws.xml \
-src/jni/DrawableFigureGL.giws.xml \
-src/jni/PolylineFillDrawer.giws.xml \
 src/jni/RectangleMarkDrawerGL.giws.xml \
-src/jni/DrawableTextGL.giws.xml \
-src/jni/StandardTextDrawerGL.giws.xml \
-src/jni/DrawableSurfaceGL.giws.xml \
-src/jni/SurfaceLineDrawerGL.giws.xml \
-src/jni/SurfaceFacetDrawerGL.giws.xml \
-src/jni/SurfaceMarkDrawerGL.giws.xml \
-src/jni/DrawableSegsGL.giws.xml \
-src/jni/SegsArrowdrawerGL.giws.xml \
+src/jni/RightYTicksDrawerGL.giws.xml \
+src/jni/ScilabGraphicWindow.giws.xml \
+src/jni/SegsArrowDrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
 src/jni/SegsMarkDrawerGL.giws.xml \
-src/jni/DrawableGrayplotGL.giws.xml \
-src/jni/DrawableFecGL.giws.xml \
-src/jni/DrawableFecGL.giws.xml \
-src/jni/FecFacetDrawerGL.giws.xml \
-src/jni/DrawableAxesGL.giws.xml \
+src/jni/StandardTextDrawerGL.giws.xml \
+src/jni/SurfaceFacetDrawerGL.giws.xml \
+src/jni/SurfaceLineDrawerGL.giws.xml \
+src/jni/SurfaceMarkDrawerGL.giws.xml \
+src/jni/TitlePositionerGL.giws.xml \
+src/jni/TopXTicksDrawerGL.giws.xml \
 src/jni/XAxesDrawerGL.giws.xml \
-src/jni/YAxesDrawerGL.giws.xml
+src/jni/XGridDrawerGL.giws.xml \
+src/jni/XLabelPositionerGL.giws.xml \
+src/jni/YAxesDrawerGL.giws.xml \
+src/jni/YGridDrawerGL.giws.xml \
+src/jni/YLabelPositionerGL.giws.xml \
+src/jni/ZGridDrawerGL.giws.xml \
+src/jni/ZLabelPositionerGL.giws.xml \
+src/jni/ZTicksDrawerGL.giws.xml
 
 else
 

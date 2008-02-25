@@ -1112,42 +1112,62 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 #libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
-@GUI_TRUE@GIWS_WRAPPERS = src/jni/GraphicSynchronizer.giws.xml \
-@GUI_TRUE@src/jni/PolylineBarDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/CameraGL.giws.xml \
-@GUI_TRUE@src/jni/DrawablePolylineGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineArrrowDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/ScilabGraphicWindow.giws.xml \
-@GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
+@GUI_TRUE@GIWS_WRAPPERS = src/jni/ArcFillDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/ArcLineDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/BackTrihedronDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/BottomXTicksDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/CenteredTextDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/DrawableArcGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineMarkdrawerGL.giws.xml \
-@GUI_TRUE@src/jni/RectangleFillDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/ArcFillDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableAxesGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableFigureGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableGrayplotGL.giws.xml \
+@GUI_TRUE@src/jni/DrawablePolylineGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableSegsGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableSubwinGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableSurfaceGL.giws.xml \
+@GUI_TRUE@src/jni/DrawableTextGL.giws.xml \
+@GUI_TRUE@src/jni/FecFacetDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/FecLineDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/FilledTextDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/FullBoxDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/GraphicSynchronizerJava.giws.xml \
+@GUI_TRUE@src/jni/HalfBoxDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/IsometricCameraGL.giws.xml \
+@GUI_TRUE@src/jni/IsoViewCameraGL.giws.xml \
+@GUI_TRUE@src/jni/LeftYTicksDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/MiddleXTicksDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/MiddleYTicksDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/PolylineArrrowDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/PolylineBarDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/PolylineFillDrawer.giws.xml \
 @GUI_TRUE@src/jni/PolylineInterpColorDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/PolylineLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableSubwinGL.giws.xml \
+@GUI_TRUE@src/jni/PolylineMarkdrawerGL.giws.xml \
+@GUI_TRUE@src/jni/RectangleFillDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/RectangleLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/ArcLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableFigureGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineFillDrawer.giws.xml \
 @GUI_TRUE@src/jni/RectangleMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableTextGL.giws.xml \
-@GUI_TRUE@src/jni/StandardTextDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableSurfaceGL.giws.xml \
-@GUI_TRUE@src/jni/SurfaceLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SurfaceFacetDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableSegsGL.giws.xml \
-@GUI_TRUE@src/jni/SegsArrowdrawerGL.giws.xml \
+@GUI_TRUE@src/jni/RightYTicksDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/ScilabGraphicWindow.giws.xml \
+@GUI_TRUE@src/jni/SegsArrowDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SegsLineDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SegsMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableGrayplotGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
-@GUI_TRUE@src/jni/FecFacetDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableAxesGL.giws.xml \
+@GUI_TRUE@src/jni/StandardTextDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/SurfaceFacetDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/SurfaceLineDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/TitlePositionerGL.giws.xml \
+@GUI_TRUE@src/jni/TopXTicksDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/XAxesDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/YAxesDrawerGL.giws.xml
+@GUI_TRUE@src/jni/XGridDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/XLabelPositionerGL.giws.xml \
+@GUI_TRUE@src/jni/YAxesDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/YGridDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/YLabelPositionerGL.giws.xml \
+@GUI_TRUE@src/jni/ZGridDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/ZLabelPositionerGL.giws.xml \
+@GUI_TRUE@src/jni/ZTicksDrawerGL.giws.xml
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
