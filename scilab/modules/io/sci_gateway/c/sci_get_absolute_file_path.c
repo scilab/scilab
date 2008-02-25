@@ -49,7 +49,7 @@ int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len
 			filename=cstk(l1);
 
 			C2F(getfiledesc)(&fdmax);
-			for(i=fdmax-1;i>=0;i++)
+			for(i=fdmax-1;i>=0;i--)
 			{
 				FILE fa;
 				integer swap2=0;
