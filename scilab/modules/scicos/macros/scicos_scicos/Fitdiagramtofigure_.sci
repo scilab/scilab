@@ -53,9 +53,9 @@ function Fitdiagramtofigure_()
 
    if %scicos_with_grid then
      drawgrid();
-     swap_handles(gh_window.children.children($),...
-                  gh_window.children.children(1));
-     delete(gh_window.children.children(1));
+     swap_handles(gh_axes.children($),...
+                  gh_axes.children(1));
+     delete(gh_axes.children(1));
    end
    drawnow();
    //** show_pixmap() ; //** not useful on Scilab 5
