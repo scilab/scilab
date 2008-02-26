@@ -42,14 +42,20 @@ such as units property management are no yet available.
 
 
 - Scicos:
-	* Some functionalites of the new graphics API are still not fully available/working at the moment
-	  of this release (e.g. show_pixmap, VIEWPORT pan control, etc.)
-	* Some mouse and key events are not detected (e.g. button release)
-          - For these - and others - reasons, some feature of the Scicos editor are still non functional
-	  - The Scicos simulation engine is correcly working (scicos_simulate)
-        * BEWARE : the "Stop" simulation button is not working: set the simulation time to your final time
-        * BEWARE : Modelica support is not available
-          
+        - The basic features of the editor are fully functional and tested.
+	- The Scicos simulation engine is correcly working (standard and "scicossimulate()" batch mode)
+        - BUT ...
+	  * Some functionalites of the new graphics API are still not fully available/working at the moment
+	  (see above for the details) of this alpha release (e.g. show_pixmap, VIEWPORT pan control, no scrollbar, etc.)
+	  * Some mouse and key events are not detected properly (e.g. button release)
+            - For these - and others - reasons, some feature of the Scicos editor are not functional
+               * BEWARE : the "Stop" simulation button is not working: please set the simulation time to your final time
+               * BEWARE : after a simulation, you need to manually destroy the scope output windows BEFORE restart
+                          the simulation (Scicos scope library needs some revision for Scilab 5 new API) 
+               * BEWARE : Modelica support is not available: the Modelica demos cannot run.
+               * BEWARE : Some blocks may have bizarre look for the presence of older graphics instructions not supported
+                          anymore
+
 - Scilab is not translated into French.
 
 - Dynamic/incremental link may bug on usual archs/compiler or with modified flags
