@@ -147,6 +147,7 @@ libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes/
 libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
+			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/figureDrawing/ \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \

@@ -674,6 +674,7 @@ JARMASK = *.jar
 @GUI_TRUE@libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ \
 @GUI_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/jni/ \
+@GUI_TRUE@			-I$(top_srcdir)/modules/renderer/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/cpp/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/cpp/figureDrawing/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphic_export/includes/ \
