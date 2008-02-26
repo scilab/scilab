@@ -65,7 +65,7 @@ int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
 				
 				/* Replaces SCI, ~, HOME, TMPDIR by the real path */
 				lout = FILENAME_MAX;
-				C2F(cluni0)(Input_Matrix[i], real_path, &out_n, strlen(Input_Matrix[i]), lout);
+				C2F(cluni0)(Input_Matrix[i], real_path, &out_n, (long)strlen(Input_Matrix[i]), lout);
 				
 				fp = fopen(real_path,"rb");
 				

@@ -50,12 +50,12 @@ int gw_io(void)
 		{
 			case 1: 
 			{
-				C2F(intexec)("exec",4); /* 4 = strlen("exec") */
+				C2F(intexec)("exec",(unsigned long)strlen("exec"));
 				return 0;
 			}
 			case 2: 
 			{
-				C2F(intexecstr)("execstr",7); /* 4 = strlen("execstr") */
+				C2F(intexecstr)("execstr",(unsigned long)strlen("execstr"));
 				return 0;
 			}
 			case 3: 
@@ -65,12 +65,12 @@ int gw_io(void)
 			}
 			case 4:  
 			{
-				C2F(intsave)(); /* 4 = strlen("save") */
+				C2F(intsave)(); 
 				return 0;
 			}
 			case 5:
 			{
-				C2F(intload)("load", 4); /* 4 = strlen("load") */
+				C2F(sci_load)("load",(unsigned long)strlen("load"));
 			}
 			case 6: 
 			{
@@ -83,7 +83,7 @@ int gw_io(void)
 			}
 			case 8: 
 			{
-				C2F(intexec)("exec",4); /* 4 = strlen("exec") */
+				C2F(intexec)("exec",(unsigned long)strlen("exec"));
 				return 0;
 			}
 		}
