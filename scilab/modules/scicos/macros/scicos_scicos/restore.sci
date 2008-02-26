@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function %zoom=restore(gh_curwin)
+function %zoom = restore(gh_curwin)
 // Copyright INRIA
 
   gh_current_window = gh_curwin ; 
@@ -35,16 +35,16 @@ function %zoom=restore(gh_curwin)
   
   if size(scs_m.props.wpar,'*')>12 then
 
-    winsize=scs_m.props.wpar(9:10)
-    winpos=scs_m.props.wpar(11:12)
-    screensz=evstr(TCL_EvalStr('wm  maxsize .')) 
+    winsize  = scs_m.props.wpar(9:10)  ;
+    winpos   = scs_m.props.wpar(11:12) ; 
+    screensz = evstr(TCL_EvalStr('wm  maxsize .'));
     if min(winsize)>0  then  // window is not iconified
-      winpos=max(0,winpos-max(0,-screensz+winpos+winsize) )
+      winpos = max(0,winpos-max(0,-screensz+winpos+winsize) ) ; 
       scs_m;  // only used locally, does not affect the real scs_m
-      scs_m.props.wpar(11:12)=winpos  // make sure window remains inside screen
+      scs_m.props.wpar(11:12) = winpos  // make sure window remains inside screen
     end
 	
-    %zoom=scs_m.props.wpar(13)
+    %zoom = scs_m.props.wpar(13) ;
     pwindow_read_size(gh_curwin) ;
     window_read_size(gh_curwin)  ;
   else

@@ -36,9 +36,11 @@ function window_set_size(gh_window, viewport)
   // end
 
   if exists("gh_window","local")==0 then 
-      gh_curwin = gh_current_window; //** using the semiglobal variable
+      gh_curwin = scf(gh_current_window); //** using the semiglobal variable
+      gh_axes = gca(); 
   else
-      gh_curwin = gh_window ; //** using the passing argument
+      gh_curwin = scf(gh_window) ; //** using the passing argument
+      gh_axes = gca(); 
   end 
   
   r = gh_curwin.figure_size ; //** acquire the current figure phisical size
@@ -76,7 +78,6 @@ function window_set_size(gh_window, viewport)
   gh_curwin.axes_size = [width height];
 
   //** axes settings
-  gh_axes = gh_curwin.children ; //** axes handle
   gh_axes.tight_limits = "on"  ; //** set the limit "gh_axes.data_bounds" in "hard mode"
 
   //** The default margin are [ 0.125 0.125 0.125 0.125 ]

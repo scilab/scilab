@@ -20,22 +20,22 @@
 // See the file ../license.txt
 //
 
-function [scs_m]=prt_align(%pt,scs_m)
+function [scs_m] = prt_align(%pt,scs_m)
 //** 25/07/07: Al@n's patch for rotation of blocks
-  win=%win
-  xc1=%pt(1)
-  yc1=%pt(2)
-  //check if first click is on
-  //a block
-  k1=getblock(scs_m,[xc1;yc1])
+  win = %win
+  xc1 = %pt(1)
+  yc1 = %pt(2)
+  // check if first click is on
+  // a block
+  k1 = getblock(scs_m,[xc1;yc1]);
   if k1<>[] then
-    o1=scs_m.objs(k1)
+    o1 = scs_m.objs(k1); 
   else
     return
   end
   //
   while %t
-    [btn,%pt2,win,Cmenu]=cosclick()
+    [btn,%pt2,win,Cmenu] = cosclick() ;
     //check if second click is on
     //a block
     if Cmenu<>[] & Cmenu<>'SelectLink' then
@@ -127,17 +127,19 @@ function [scs_m]=prt_align(%pt,scs_m)
    //** TOBEDONE
    //** error or redraw
   else
-   gh_curwin=gh_win
+   gh_curwin = gh_win ;
   end
-  o_size = size(gh_curwin.children.children); //** the size:number of all the object
-  //gh_k = o_size(1) - k2 + 1 ; //** semi empirical equation :)
-  gh_k=get_gri(k2,o_size(1))
-  gh_blk = gh_curwin.children.children(gh_k); //** new
+  
+  scf(gh_curwin)  ;
+  gh_axes = gca() ;
+  o_size = size(gh_axes.children); //** the size:number of all the object
+  gh_k   = get_gri(k2,o_size(1)) ; 
+  gh_blk = gh_axes.children(gh_k); //** new
 
   drawlater(); //** new
 
-    diff_x=orig2(1)-graphics2.orig(1);
-    diff_y=orig2(2)-graphics2.orig(2);
+    diff_x = orig2(1)-graphics2.orig(1);
+    diff_y = orig2(2)-graphics2.orig(2);
 
     move(gh_blk,[diff_x,diff_y]);  //** ..because "move()" works only in differential
     //** draw(gh_blk.parent);

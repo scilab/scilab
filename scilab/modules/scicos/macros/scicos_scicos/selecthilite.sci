@@ -26,29 +26,30 @@ function selecthilite(Select, flag)
   
   gh_winback = gcf() ; //** save the active window
   
-  // Important assumption: all Selected are in the same window
+  // Important assumption: all Selected object are in the same window
   [junk, win, o] = get_selection(Select(1,:))
+  
   gh_curwin = scf(win); //** select current window 
+  gh_axes = gca(); 
+
   drawlater();  // for palettes, diagrams are already in this mode
 
   for i=1:size(Select,1)
 
     [junk, win, o] = get_selection(Select(i,:))
 
-    o_size = size ( gh_curwin.children.children ) ;
+    o_size = size ( gh_axes.children ) ;
     //** initial size
     //** at this point I need to build the [scs_m] <-> [gh_window] datastructure
     //** I need an equivalent index for the graphics
-
     //** "k" is the object index in the data structure "scs_m"
     //** compute the equivalent "gh_k" for the graphics datastructure
     k = Select (i,1)
-    //gh_k = o_size(1) - k + 1 ; //** semi empirical equation :)
-    gh_k = get_gri(k,o_size(1)); //** Alan -
+    gh_k = get_gri(k,o_size(1)); //** Alan :) 
 
     if gh_k>0 then //** Alan - to disable some crash when we have delete obj
         //** get the handle of the graphics entity to modify
-        gh_obj = gh_curwin.children.children(gh_k);
+        gh_obj = gh_axes.children(gh_k);
         //** update mark_mode property
         gh_obj.children(1).mark_mode = flag  ;
     end

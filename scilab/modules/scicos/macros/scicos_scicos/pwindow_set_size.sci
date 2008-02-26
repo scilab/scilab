@@ -26,12 +26,12 @@ function pwindow_set_size(gh_window)
   
   if rhs==0 then //** without arguments (default) assume ... 
      //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
-     gh_curwin = gh_current_window ; //** get the handle of the current graphics window     
-     
+     gh_curwin = scf(gh_current_window) ; //** get the handle of the current graphics window
+     gh_axes = gca();
   else //** the arguments is explicit 
      //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
-     gh_curwin = gh_window ; //** get the handle of the current graphics window     
-     
+     gh_curwin = scf(gh_window) ; //** get the handle of the current graphics window     
+     gh_axes = gca();
   end        
 //
 

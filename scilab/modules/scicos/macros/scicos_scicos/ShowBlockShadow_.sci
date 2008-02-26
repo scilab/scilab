@@ -27,11 +27,12 @@ function ShowBlockShadow_()
   scs_m.props.options = options ;
 
   if edited then
-    // Acquire the current clicked window and put to "on" the pixmap mode
+    //** Acquire the current clicked window 
     gh_curwin = scf(%win) ;
+    gh_axes = gca()       ; 
     //** Clear the graphic window WITHOUT changing his pamaters ! :)
     drawlater() ;
-      delete(gh_curwin.children.children) ; //** wipe out all the temp graphics object
+      delete(gh_axes.children) ; //** wipe out all the temp graphics object
       drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
     //** drawnow(); //** re-draw the graphic object and show on screen
     //** show_pixmap() ;

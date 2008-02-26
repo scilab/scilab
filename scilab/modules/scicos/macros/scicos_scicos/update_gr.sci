@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function update_gr(gr_k,o)
+function update_gr(gr_k, o)
  //** 20/02/2008 : This nice function, initially written by Alan Layec, has been
  //**              changed - just a bit - by Simone Mannori for Scilab 5 integration
  //**              Enjoy :)    
@@ -28,12 +28,12 @@ function update_gr(gr_k,o)
   gh_blk = drawobj(o) ; //** new object in gh_curwin.children.children(1)
   
   //** This line is OK : export the Select information to the new object  
-  gh_blk.children(1).mark_mode = gh_curwin.children.children(gr_k+1).children(1).mark_mode;
+  gh_blk.children(1).mark_mode = gh_axes.children(gr_k+1).children(1).mark_mode;
   
    //** update the object in the old position
-  //**                destination                            source 
-  swap_handles(gh_curwin.children.children(gr_k+1), gh_curwin.children.children(1));
+  //**               destination              source 
+  swap_handles(gh_axes.children(gr_k+1), gh_axes.children(1));
   
-  delete(gh_curwin.children.children(1)); //** remove the object top of stack :) 
+  delete(gh_axes.children(1)); //** remove the object top of stack :) 
 
 endfunction

@@ -22,7 +22,6 @@
 function Paste_()
 
 //** 02 May 2007: Update the paste operation with "Replace" (paste over) operation 
-
 //** 10 Aug. 2007 : updated function 
 
 //** Verify window and last mouse "click" position 
@@ -35,6 +34,7 @@ function Paste_()
 //** if I am in the current window and the mouse position are OK     
     
   gh_curwin = scf(curwin); //** put the focus in the current window and recover the handle
+  gh_axes = gca(); 
   drawlater(); //** put in "drawlater" mode 
   
 //** Select : matrix of selected object

@@ -29,8 +29,9 @@ if length(path)==2 then
     scs_m(path) = o ; 
     //** quick update for new graphics
     drawlater() ;
-     gh_curwin = gh_current_window;
-     o_size = size(gh_curwin.children.children);
+     gh_curwin = scf(gh_current_window);
+     gh_axes = gca(); 
+     o_size = size(gh_axes.children);
      gr_k = get_gri(path(2), o_size(1)) ; //** semi empirical equation :)
      update_gr(gr_k, o) //** update the graphics data structure only of the last object 
      //** draw(gh_curwin.children); //** update the graphics window  //** show the diagram 

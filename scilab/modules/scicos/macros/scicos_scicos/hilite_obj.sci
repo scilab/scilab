@@ -42,35 +42,35 @@ function hilite_obj(k,win)
      gh_winback = gcf();
      //** get the handle of the cur. windows
      gh_curwin = scf(win);
+     gh_axes = gca(); 
    else
      return; //** exit point: thw win specified is not in the SCICOS
    end       //** valid window
  else //** use the default active window
    //** get the handle of the cur. figure
    gh_curwin = gcf();
+   gh_axes = gca(); 
    //** get the 'win_id' of the cur. figure
    win = gh_curwin.figure_id;
  end
 
  //** Retrieve graphical handles of objs to hilite
- o_size = size(gh_curwin.children.children);
+ o_size = size(gh_axes.children);
 
  //**----------------------------------------------------------------
  //**
  drawlater();
 
  //** k becomes a single column vector
- k=k(:);
+ k = k(:);
  for i=1:size(k,1) //** loop on number of objects
-   //** semi empirical equation :)
-   //gh_k = o_size(1) - k(i) + 1;
-   gh_k=get_gri(k(i),o_size(1))
+   gh_k = get_gri(k(i),o_size(1)); 
    //**
-   gh_blk = gh_curwin.children.children(gh_k);
+   gh_blk = gh_axes.children(gh_k);
    //** set red color for foreground mark property
    gh_blk.children(1).mark_foreground = 5;
    //** bigger thickness (+3)
-   gh_blk.children(1).thickness=gh_blk.children(1).thickness + 3;
+   gh_blk.children(1).thickness = gh_blk.children(1).thickness + 3;
    //** activate the selection markers
    gh_blk.children(1).mark_mode = "on";
  end

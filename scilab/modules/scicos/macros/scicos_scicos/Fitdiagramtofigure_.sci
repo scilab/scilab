@@ -22,9 +22,11 @@
 
 function Fitdiagramtofigure_()
 //** Alan-21/12/06 : Fit diagram to figure (Based on new graphics)
-   Cmenu=[];
-   xinfo('Fit diagram to figure');
-   gh_curwin = gh_current_window; //** get the handle of the current graphics window
+   Cmenu = [];
+   xinfo("Fit diagram to figure");
+   gh_curwin = scf(%win) ; //** get the handle of the current graphics window
+   gh_axes = gca(); 
+
    r = gh_curwin.figure_size;     //** acquire the current figure physical size
    rect = dig_bound(scs_m);       //** Scicos diagram size
    if rect==[] then               //** if the schematics is not defined
@@ -43,11 +45,12 @@ function Fitdiagramtofigure_()
      printf("zoom_h=%f\n",%zoom_h);
    end
 
-   %zoom=min(%zoom_w,%zoom_h);
+   %zoom = min(%zoom_w,%zoom_h);
 
-   gh_window = gcf();             //*get handle of current window
+   gh_window = gcf();             //* get handle of current window
 
    window_set_size(gh_window);
+
    if %scicos_with_grid then
      drawgrid();
      swap_handles(gh_window.children.children($),...

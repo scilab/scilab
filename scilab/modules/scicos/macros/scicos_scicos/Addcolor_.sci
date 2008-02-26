@@ -37,7 +37,7 @@ function Addcolor_()
       //** drawnow(); //** re-draw the graphic object and show on screen (now included in drawobjs)
       //** show_pixmap() ; //** not useful on Scilab 5      
      
-      Cmenu = [] ; %pt = [];
+      Cmenu = [] ; %pt = [];sx
 
     else
       Cmenu = [] ; %pt = [];

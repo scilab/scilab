@@ -63,6 +63,7 @@ if obj_selected > 1 then
   elseif windows(kc,1)<0 then //** RIGTH click inside a palette window
 
     gh_curwin = scf(%win) ;
+    gh_axes = gca(); 
        
     state_var = 3 ; //** magic number by Ramine:
                     //** valid object inside a palette 
@@ -75,6 +76,7 @@ if obj_selected > 1 then
   elseif %win==curwin then //click inside the current window 
 
     gh_curwin = scf(%win) ;
+    gh_axes = gca();
     state_var = 1; //** Magic number by Ramine
                    //** You can modify all the proprieties of an object 
     
@@ -106,6 +108,7 @@ else //** single / multiple object(s) switch
   elseif windows(kc,1)<0 then //** RIGTH click inside a palette window
 
     gh_curwin = scf(%win) ;
+    gh_axes = gca(); 
     
     kpal = -windows(kc,1)    ;
     palette = palettes(kpal) ;
@@ -119,9 +122,9 @@ else //** single / multiple object(s) switch
       
       state_pal = 1 ; //** mark the palette alteration  
 		      
-      o_size = size(gh_curwin.children.children);  
+      o_size = size(gh_axes.children);  
       gh_k   = get_gri(k,o_size(1)) ;
-      gh_blk = gh_curwin.children.children(gh_k);
+      gh_blk = gh_axes.children(gh_k);
        
       Select = [k %win];               //** select
 
@@ -136,7 +139,8 @@ else //** single / multiple object(s) switch
   elseif %win==curwin then //click inside the current window 
 
     gh_curwin = scf(%win) ;
-    o_size = size(gh_curwin.children.children)
+    gh_axes = gca();
+    o_size = size(gh_axes.children)
     k = getobj(scs_m,%pt)
     
     if k<>[] then 
@@ -144,7 +148,7 @@ else //** single / multiple object(s) switch
       state_var = 1; //** Magic number by Ramine
                      //** You can modify all the proprieties of an object 
       gh_k = get_gri(k,o_size(1))
-      gh_blk = gh_curwin.children.children(gh_k);
+      gh_blk = gh_axes.children(gh_k);
       
       Select = [k,%win]
       selecthilite(Select, 'on') ; //** immediate screen update 
@@ -158,11 +162,12 @@ else //** single / multiple object(s) switch
   elseif slevel>1 then
     execstr('k = getobj(scs_m_'+string(windows(kc,1))+',%pt)')
     gh_curwin = scf(%win) ;
-    o_size = size(gh_curwin.children.children)
+    gh_axes = gca();
+    o_size = size(gh_axes.children)
     
     if k<>[] then
       gh_k   = get_gri(k,o_size(1))
-      gh_blk = gh_curwin.children.children(gh_k);
+      gh_blk = gh_axes.children(gh_k);
       Select = [k,%win];
       selecthilite(Select, 'on') ; // update the image
       state_var = 3 ; //** Magic number by Ramine

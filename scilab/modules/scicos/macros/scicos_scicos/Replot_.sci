@@ -33,14 +33,15 @@ function Replot_()
     //**         3) close manually the Scicos window (click over [X])
     //**         4) type "resume" on the scilex window  
     
-    gh_curwin = gh_current_window ; //** get the handle of the current graphics window
-        
-     drawlater();
+    gh_curwin = scf(gh_current_window) ; //** get the handle of the current graphics window
+    gh_axes = gca();   
+    
+    drawlater();
        clf(gh_curwin) ; //** clear the current graphic window
        %wdm = scs_m.props.wpar
        window_set_size(gh_curwin) ; //** OK
        set_background(gh_curwin)  ; //** OK
-       drawobjs(scs_m)   ;  //** Redraw all
+       drawobjs(scs_m,gh_curwin)  ;  //** Redraw all
        //** drawnow()   ; 
        //**  show_pixmap();
     

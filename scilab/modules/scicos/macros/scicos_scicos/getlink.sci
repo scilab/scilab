@@ -46,10 +46,11 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
   nc_save    = needcompile
 
   //** new graphics
-  gh_curwin = gh_current_window ; //** acquire the current window handler
+  gh_curwin = scf(%win) ;
+  gh_axes = gca();        //** acquire the current window handler
 
-  if typeof(o1)=='Link' then  // add a split block
-    pt=[xc1;yc1]
+  if typeof(o1)=="Link" then  // add a split block
+    pt = [xc1;yc1] ; 
     [xx,yy,ct,from,to]=(o1.xx,o1.yy,o1.ct,o1.from,o1.to);
     if (-wh==size(xx,'*')) then
       wh=-(wh+1)
@@ -200,7 +201,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
   //** new graphics
   drawlater()           ;         // draw later mode
-  o_size = size(gh_curwin.children.children) ; //** o_size(1) is the number of compound object
+  o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
   p_size = o_size ;
 
   while %t do //loop on link segments
@@ -208,7 +209,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     //** the first step is the the creation of a dummy graphic object (a link of ZERO leght)
     //** and store this handler to modify it later 
     xpoly([xo;xe] , [yo;ye], 'lines')        ; //** draw the first 'dummy' object
-    gh_link = gh_curwin.children.children(1) ; //** the last object is the link
+    gh_link = gh_axes.children(1) ; //** the last object is the link
 
     rep(3)=-1; //** initialization
     
@@ -235,10 +236,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
 
       //** any rigth mouse event OR [Esc] OR [d] key : I want to disengage the current Link action
       if or(rep(3)==[2 5 12 65307 100]) then
-          p_size = size(gh_curwin.children.children)
+          p_size = size(gh_axes.children)
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
-            gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
+            gh_compound_delete = glue(gh_axes.children(1:d_size) );
             delete (gh_compound_delete); //** delete the object
             //** draw(gh_curwin.children); //** display the buffer
             drawnow();
@@ -288,10 +289,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       if xin==[] then
          hilite_obj(kto)
          message('This block has no input port.');
-         p_size = size(gh_curwin.children.children);
+         p_size = size(gh_axes.children);
          d_size = p_size(1) - o_size(1);
          if d_size > 0 then
-            gh_compound_delete = glue(gh_curwin.children.children(1:d_size));
+            gh_compound_delete = glue(gh_axes.children(1:d_size));
              delete (gh_compound_delete); //** delete the object
          end
          if %scicos_debug_gr then
@@ -318,10 +319,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
         message(['Selected ports don''t have the same type'
                  'The port at the origin of the link has type '+string(typo);
                  'the port at the end has type '+string(typin(k))+'.'])
-          p_size = size(gh_curwin.children.children)
+          p_size = size(gh_axes.children)
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
-             gh_compound_delete = glue(gh_curwin.children.children(1:d_size));
+             gh_compound_delete = glue(gh_axes.children(1:d_size));
              delete (gh_compound_delete); //** delete the object
           end
           if %scicos_debug_gr then
@@ -340,10 +341,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
              message(['Selected port is already connected.';..
                       'To start a link off another link, place the cursor';..
                       'on the split point and double click, or type l.']),
-             p_size = size(gh_curwin.children.children)
+             p_size = size(gh_axes.children)
              d_size = p_size(1)-o_size(1);
              if d_size > 0 then
-               gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
+               gh_compound_delete = glue(gh_axes.children(1:d_size) );
                delete (gh_compound_delete); //** delete the object
              end
              if %scicos_debug_gr then
@@ -414,10 +415,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
            message(['Selected port is already connected.';..
                     'To start a link off another link, place the cursor';..
                     'on the split point and double click, or type l.']),
-           p_size = size(gh_curwin.children.children)
+           p_size = size(gh_axes.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
-               gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
+               gh_compound_delete = glue(gh_axes.children(1:d_size) );
                delete (gh_compound_delete); //** delete the object
            end
            if %scicos_debug_gr then
@@ -448,10 +449,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
            message(['Selected port is already connected.';..
                     'To start a link off another link, place the cursor';..
                     'on the split point and double click, or type l.']),
-           p_size = size(gh_curwin.children.children)
+           p_size = size(gh_axes.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
-             gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
+             gh_compound_delete = glue(gh_axes.children(1:d_size) );
              delete (gh_compound_delete); //** delete the object
            end
            if %scicos_debug_gr then
@@ -479,10 +480,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
             message(['Selected port is already connected.';..
                      'To start a link off another link, place the cursor';..
                      'on the split point and double click, or type l.']),
-            p_size = size(gh_curwin.children.children)
+            p_size = size(gh_axes.children)
             d_size = p_size(1)-o_size(1);
             if d_size > 0 then
-              gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
+              gh_compound_delete = glue(gh_axes.children(1:d_size) );
               delete (gh_compound_delete); //** delete the object
             end
             if %scicos_debug_gr then
@@ -575,10 +576,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       message(['Selected port is already connected.';..
                'To start a link off another link, place the cursor';..
                'on the split point and double click, or type l.']),
-      p_size = size(gh_curwin.children.children)
+      p_size = size(gh_axes.children)
       d_size = p_size(1)-o_size(1);
       if d_size > 0 then
-        gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
+        gh_compound_delete = glue(gh_axes.children(1:d_size) );
         delete (gh_compound_delete); //** delete the object
         //** draw(gh_curwin.children); //** display the buffer
         drawnow();
@@ -650,12 +651,12 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       // xpoly([xl(nx-1);xl(nx);xc2],[yl(nx-1);yc2;yc2],'lines')
       //drawlater ;
         nx = prod(size(xl)) ;
-        gh_link_del = gh_curwin.children.children(1) ;
+        gh_link_del = gh_axes.children(1) ;
         delete( gh_link_del );
-        gh_link_del = gh_curwin.children.children(1) ;
+        gh_link_del = gh_axes.children(1) ;
         delete( gh_link_del );
         xpoly([xl(nx-1) ; xl(nx) ; xc2] , [yl(nx-1) ; yc2 ; yc2] ,'lines');
-        gh_link = gh_curwin.children.children(1) ;
+        gh_link = gh_axes.children(1) ;
         gh_link.foreground = clr
         //** draw(gh_link.parent) ; //** display the buffer
         drawnow();
@@ -672,12 +673,12 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       //xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
       //drawlater ;
         nx = prod(size(xl)) ;
-        gh_link_del = gh_curwin.children.children(1) ;
+        gh_link_del = gh_axes.children(1) ;
         delete( gh_link_del );
-        gh_link_del = gh_curwin.children.children(1) ;
+        gh_link_del = gh_axes.children(1) ;
         delete( gh_link_del );
         xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
-        gh_link = gh_curwin.children.children(1) ;
+        gh_link = gh_axes.children(1) ;
         gh_link.foreground = clr
         //** draw(gh_link.parent); //** display the buffer
         drawnow(); 
@@ -696,11 +697,11 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
   //** ----> Put the graphical handling update here :)
 
   //**---- Mr. Clean :) -----------------------------------------------------------------------
-  p_size = size(gh_curwin.children.children) ; //** p_size(1) is the number of compound object
+  p_size = size(gh_axes.children) ; //** p_size(1) is the number of compound object
   d_size = p_size(1) - o_size(1) ;             //** at the and of this "Link" operation
   drawlater() ;
   if d_size > 0 then
-    gh_compound_delete = glue(gh_curwin.children.children(1:d_size) );
+    gh_compound_delete = glue(gh_axes.children(1:d_size) );
     delete (gh_compound_delete); //** delete the object
   end
   //** draw(gh_curwin.children); //** display the buffer
@@ -750,17 +751,16 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       CLKSPLIT_f('plot',sp)
     end
 
-    glue(gh_curwin.children.children(1) ); //** create the compound
+    glue(gh_axes.children(1) ); //** create the compound
     //** be very careful: here the graphics datastructure has ONE more element than the
     //** "scs_m.objs" ;)
     //---------------------------
       scs_m.objs(ks)   = link1 ; //** adjust the data of the first half of the old "splitted" link
 
-      //gh_ks = o_size(1) + 1 - ks + 1 ; //** I need to compensate for the last entry
-      gh_ks = get_gri(ks,o_size(1)) + 1
+      gh_ks = get_gri(ks,o_size(1)) + 1 ; //** I need to compensate for the last entry
 
-      gh_curwin.children.children(gh_ks).children.data = [ link1.xx , link1.yy]  ; //** update the graphics datastructure
-      link1_color = gh_curwin.children.children(gh_ks).children.foreground       ; //** save the color
+      gh_axes.children(gh_ks).children.data = [ link1.xx , link1.yy]  ; //** update the graphics datastructure
+      link1_color = gh_axes.children(gh_ks).children.foreground       ; //** save the color
 
       //---------------------------
 
@@ -771,8 +771,8 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       scs_m.objs(nx+1) = link2 ;
 
       xpoly (link2.xx , link2.yy) ;
-      gh_curwin.children.children(1).foreground = link1_color ;
-      glue(gh_curwin.children.children(1) ); //** create the compound :)
+      gh_axes.children(1).foreground = link1_color ;
+      glue(gh_axes.children(1) ); //** create the compound :)
 
     //---------------------------
 
