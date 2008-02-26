@@ -173,7 +173,17 @@
         </submenu>
         <separator/>
         <submenu label="About Scilab..." mnemonic="A"> 
-              <callback instruction="notavailablemessage();" type="0"/>
+              <callback instruction="x_message([
+              'Scilab 5 alpha and future versions are released under the terms of the CeCILL license.';
+              'Some Scilab modules are released under the GPLv2 license.';
+              '';
+              'Authors:';
+              'Scilab Consortium / INRIA / ENPC / Contributors';
+              '';
+              'Version 5.0 Alpha';
+              '';
+              'http://www.scilab.org/'])"
+              type="0"/>
         </submenu>
     </menu>
 </menubar>
