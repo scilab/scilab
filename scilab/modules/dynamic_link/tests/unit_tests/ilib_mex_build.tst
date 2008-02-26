@@ -16,7 +16,11 @@ mputl([
 '}'
 ],'mexfunction16.c');
 
-ilib_mex_build('libmex',['mexf16','mexFunction','cmex'],['mexfunction16.c'],[],'Makelib','','','')
+if ~MSDOS then
+  ilib_mex_build('libmex',['mexf16','mexFunction','cmex'],['mexfunction16.c'],[],'Makelib','','','');
+else
+  ilib_mex_build('libmex',['mexf16','mexfunction16','cmex'],[],[],'Makelib','','','');
+end
 exec(TMPDIR+'/loader.sce');
 mexf16(rand(2,3,2));
 
