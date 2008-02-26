@@ -59,12 +59,11 @@ function drawobjs(scs_m, gh_window)
    //** Update selected object
    //** if the Select is NOT empty and some object are selected in the current window
    if (Select<>[]) & (find(Select(:,2)==gh_curwin.figure_id))<>[] then
-     o_size = size (gh_curwin.children.children);
+     o_size = size (gh_axes.children);
      for i=find(Select(:,2)==gh_curwin.figure_id)
-       // gh_k = o_size(1) - Select(i,1) + 1 ; //** semi empirical equation :)
-       gh_k = get_gri(Select(i,1),o_size(1))
-       gh_curwin.children.children(gh_k).children(1).mark_mode="on" ; //** set the mark
-       draw(gh_curwin.children.children(gh_k).children(1))          ; //** draw the object
+       gh_k = get_gri(Select(i,1),o_size(1)) ;
+       gh_axes.children(gh_k).children(1).mark_mode="on" ; //** set the mark
+       //** draw(gh_curwin.children.children(gh_k).children(1)) ; //** draw the object
      end
    end
 

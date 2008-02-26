@@ -72,14 +72,16 @@ elseif flag=='Background' then
     ok=%t
     options('Background')=rep
   end
-elseif flag=='LinkColor' then
-  lcols_rl=list('colors regular links',options('Link')(1),colors);
-  lcols_el=list('colors event links  ',options('Link')(2),colors);
-  rep=x_choices('Default regular and event link colors',list(lcols_rl,lcols_el))
+
+elseif flag=="LinkColor" then
+  lcols_rl = list("Colors regular links",options("Link")(1),colors);
+  lcols_el = list("Colors event links  ",options("Link")(2),colors);
+  rep = x_choices("Default regular and event link colors",list(lcols_rl,lcols_el))
   if rep<>[] then
-    ok=%t
-    options('Link')=rep
+    ok = %t
+    options("Link") = rep ; 
   end
+
 elseif flag=='ID' then  
   lfid_l=list('Link ID fontId',options('ID')(2)(1)+1,fontsIds);
   lfiz_l=list('Link ID fontsize',options('ID')(2)(2)+1,fontsSiz);
