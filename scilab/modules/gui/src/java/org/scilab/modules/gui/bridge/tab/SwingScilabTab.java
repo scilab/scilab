@@ -14,6 +14,14 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.AbstractAction;
 import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
@@ -89,8 +97,10 @@ public class SwingScilabTab extends View implements SimpleTab {
      */
 	public void repaint() {
 		super.repaint();
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getName());
+		if (isActive()) {
+			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getName());
 		}
+	}
 	
 	/**
 	 * Sets the Name of a swing Scilab tab

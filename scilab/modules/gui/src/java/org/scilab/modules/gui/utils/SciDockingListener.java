@@ -13,6 +13,10 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.util.Iterator;
+import java.util.Set;
+
+import org.flexdock.docking.Dockable;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.event.DockingListener;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -50,8 +54,27 @@ public class SciDockingListener implements DockingListener {
 	 */
 	public void dockingComplete(DockingEvent e) {
 		debug("dockingComplete");
+		int newId = 0;
+
+		DockingListener[] newListeners = e.getNewDockingPort().getDockingListeners();
+		if (newListeners.length == 2) { 
+			/* This docking port has been created when the parent window were created */
+			/* So this docking port has a sciDockingListener */
+			newId = ((SciDockingListener) newListeners[1]).getAssociatedWindowId();
+		} else { /* Docking port created by Flexdock itself */
+			/* Retrieve the ID of the parent window */
+			Set<Dockable> allDockables = e.getNewDockingPort().getDockables();
+			/* Have to find an other dockable than the one we just docked */
+			Iterator<Dockable> it =  allDockables.iterator();
+			Dockable dock = it.next();
+			while (dock == e.getDockable()) {
+				dock = it.next();
+			}
+			newId = ((SwingScilabTab) dock).getParentWindowId();
+		}
 		SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
-			dockedTab.setParentWindowId(associatedScilabWindowId);
+		dockedTab.setParentWindowId(newId);
+
 	}
 
 	/**
@@ -104,6 +127,14 @@ public class SciDockingListener implements DockingListener {
 	 */
 	public void setAssociatedWindowId(int id) {
 		this.associatedScilabWindowId = id;
+	}
+	
+	/**
+	 * Get the window object associated to this docking listener
+	 * @return the id of the window associated
+	 */
+	public int getAssociatedWindowId() {
+		return this.associatedScilabWindowId;
 	}
 	
 	/**
