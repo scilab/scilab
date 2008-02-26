@@ -250,7 +250,7 @@
 					>
 					<Tool
 						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -261,6 +261,22 @@
 						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="Import"
+			>
+			<File
+				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\output_stream_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\string_Import.def"
+				>
 			</File>
 		</Filter>
 		<File

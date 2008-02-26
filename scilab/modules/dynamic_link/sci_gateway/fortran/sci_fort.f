@@ -28,10 +28,7 @@ cc      implicit undefined (a-z)
       sadr(l)=(l/2)+1
 
       call ref2val
-      if (rhs .eq. 0) then
-         call error(39)
-         return
-      endif
+      
       nbvars = 0
       flag=.false.
 c     maximum number of variables ( see stack.h) 

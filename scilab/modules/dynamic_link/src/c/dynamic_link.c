@@ -33,6 +33,24 @@ static int SearchFandS(char *op, int ilib);
 #define TMPL 256
 #define debug C2F(iop).ddt==1
 /*---------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+/* struct used by fortran (F2C) */
+/* required to be defined in C */
+typedef struct {
+	char name[nlgh+1];
+} CINTER_struct;
+
+__declspec (dllexport) CINTER_struct C2F(cinter);
+
+/* struct used by fortran (F2C) */
+/* required to be defined in C */
+typedef struct {
+	integer ibuf[lsiz];
+} IBFU_struct;
+__declspec (dllexport) CINTER_struct C2F(ibfu);
+
+#endif
+/*---------------------------------------------------------------------------*/
 typedef char Name[MAXNAME];   /* could be changed to dynamic structure */
 
 typedef void (*function) ();

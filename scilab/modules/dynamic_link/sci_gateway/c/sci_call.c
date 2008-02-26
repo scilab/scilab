@@ -20,13 +20,16 @@ extern int C2F(intfort) _PARAMS((char *fname,unsigned long fname_len)); /* fortr
 /*--------------------------------------------------------------------------*/
 int C2F(sci_fort) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intfort)(fname,fname_len);
-	return 0;
+	return C2F(sci_call)(fname,fname_len);
 }
 /*--------------------------------------------------------------------------*/
 int C2F(sci_call) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intfort)(fname,fname_len);
+	if (Rhs == 0)
+	{
+		Error(39);
+	}
+	else C2F(intfort)(fname,fname_len);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
