@@ -52,8 +52,9 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
     delmenu(curwin,'UnZoom')
     delmenu(curwin,'Zoom')
     delmenu(curwin,'Edit')
-  else  //** Windows case  
-        toolbar(curwin, "off"); //** by Vincent C. 
+  else  //** Windows case
+     //** This function create problem under Windows
+     //**   toolbar(curwin, "off"); //** by Vincent C. 
      // French
   	delmenu(curwin,'&Editer')
   	delmenu(curwin,'&Outils')

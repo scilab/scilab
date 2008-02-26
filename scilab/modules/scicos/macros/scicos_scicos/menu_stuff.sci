@@ -29,15 +29,16 @@ if ~MSDOS then
   delmenu(curwin,_('File'))
   delmenu(curwin,_('Insert'))
 else
-  toolbar(curwin, "off"); //** by Vincent C.
+ //** This function cause problems under Windows 
+ //** toolbar(curwin, "off"); //** by Vincent C.
  // Use Scilab Localisation
   delmenu(curwin,_('File'))
   delmenu(curwin,_('Edit'))
   delmenu(curwin,_('Tools'))
   delmenu(curwin,_('Insert'))
   end
-menuss=menus;
-menuss(1)=menus(1)(2:$);
-menubar(curwin,menuss)
+menuss    = menus        ;
+menuss(1) = menus(1)(2:$);
+menubar(curwin,menuss)   ; 
 
 endfunction

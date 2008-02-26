@@ -94,7 +94,8 @@ function [palettes,windows] = do_palettes(palettes, windows)
     delmenu(curwin,'Edit')
     delmenu(curwin,'Insert')
   else
-     toolbar(curwin, "off"); //** by Vincent C.
+     //** This function create problem under Windows
+     //** toolbar(curwin, "off"); //** by Vincent C.
      // French
         // delmenu(curwin,'&Fichier')
     	delmenu(curwin,'&Editer')
