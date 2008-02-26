@@ -1,6 +1,7 @@
 
 #include "CreateUIContextMenu.h"
-
+#include "BuildDrawingObserver.h" /* createDrawingObserver */
+#include "ContextMenu.h" /* createContextMenu */
 /**
  * CreateUIContextMenu
  * @author Vincent COUVERT

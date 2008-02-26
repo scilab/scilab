@@ -55,7 +55,7 @@ int C2F(sci_x_choice) _PARAMS((char *fname,unsigned long fname_len))
       defaultValuesInt = (long int *)MALLOC(nbRowDefaultValues*nbColDefaultValues*sizeof(long int));
       for (K = 0; K < nbRowDefaultValues*nbColDefaultValues; K++)
         {
-          defaultValuesInt[K] = defaultValues[K];
+          defaultValuesInt[K] = (long)defaultValues[K];
         }
     }
   else 

@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "CallMessageBox.h"
+#include "getPropertyAssignedValue.h" /* getStringMatrixFromStack */
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len))
@@ -45,7 +46,7 @@ int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len))
   /* Title is a default title */
   setMessageBoxTitle(messageBoxID, _("Scilab Message"));
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, (char**)messageAdr, nbCol*nbRow);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(messageAdr), nbCol*nbRow);
   /* Modality */
   setMessageBoxModal(messageBoxID, FALSE);
   /* Display it and wait for a user input */
