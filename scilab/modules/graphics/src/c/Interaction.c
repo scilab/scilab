@@ -383,10 +383,10 @@ sciGetCallbackLen (sciPointObj * pthis)
       return pPOLYLINE_FEATURE (pthis)->callbacklen;
       break;    
     case SCI_UIMENU:
-      return strlen(pUIMENU_FEATURE(pthis)->callback);
+      return (int)strlen(pUIMENU_FEATURE(pthis)->callback);
       break;
     case SCI_UICONTROL:
-      return strlen(pUICONTROL_FEATURE(pthis)->callback);
+      return (int)strlen(pUICONTROL_FEATURE(pthis)->callback);
       break;
     case SCI_TEXT:
     case SCI_TITLE:

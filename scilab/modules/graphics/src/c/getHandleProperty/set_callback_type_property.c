@@ -37,7 +37,7 @@ int set_callback_type_property( sciPointObj * pobj, int stackPointer, int valueT
     return SET_PROPERTY_ERROR ;
   }
 
-  cbType = getDoubleFromStack(stackPointer);
+  cbType = (int)getDoubleFromStack(stackPointer);
 
   if (cbType < -1 || cbType > 2)
     {

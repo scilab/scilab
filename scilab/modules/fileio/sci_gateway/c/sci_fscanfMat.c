@@ -64,7 +64,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	shortcut_path = cstk(l1);
 	real_path     = (char*)MALLOC(sizeof(char*)*FILENAME_MAX);
 	lout          = FILENAME_MAX;
-	C2F(cluni0)( shortcut_path, real_path, &out_n, strlen(shortcut_path), lout);
+	C2F(cluni0)( shortcut_path, real_path, &out_n, (long)strlen(shortcut_path), lout);
 
 	if (( f = fopen(real_path,"r")) == (FILE *)0)
 	{
