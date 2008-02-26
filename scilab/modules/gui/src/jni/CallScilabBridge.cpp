@@ -392,7 +392,6 @@ long CallScilabBridge::newWindow (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewWindowID = curEnv->GetStaticMethodID(cls, "newWindow", "()I" ) ;
 if (jintnewWindowID == NULL) {
@@ -416,7 +415,6 @@ long CallScilabBridge::newMenuBar (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewMenuBarID = curEnv->GetStaticMethodID(cls, "newMenuBar", "()I" ) ;
 if (jintnewMenuBarID == NULL) {
@@ -440,7 +438,6 @@ long CallScilabBridge::newMenu (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewMenuID = curEnv->GetStaticMethodID(cls, "newMenu", "()I" ) ;
 if (jintnewMenuID == NULL) {
@@ -464,7 +461,6 @@ long CallScilabBridge::newPushButton (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewPushButtonID = curEnv->GetStaticMethodID(cls, "newPushButton", "()I" ) ;
 if (jintnewPushButtonID == NULL) {
@@ -488,7 +484,6 @@ long CallScilabBridge::newEditBox (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewEditBoxID = curEnv->GetStaticMethodID(cls, "newEditBox", "()I" ) ;
 if (jintnewEditBoxID == NULL) {
@@ -512,7 +507,6 @@ long CallScilabBridge::newLabel (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewLabelID = curEnv->GetStaticMethodID(cls, "newLabel", "()I" ) ;
 if (jintnewLabelID == NULL) {
@@ -536,7 +530,6 @@ long CallScilabBridge::newCheckBox (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewCheckBoxID = curEnv->GetStaticMethodID(cls, "newCheckBox", "()I" ) ;
 if (jintnewCheckBoxID == NULL) {
@@ -560,7 +553,6 @@ long CallScilabBridge::newRadioButton (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewRadioButtonID = curEnv->GetStaticMethodID(cls, "newRadioButton", "()I" ) ;
 if (jintnewRadioButtonID == NULL) {
@@ -584,7 +576,6 @@ long CallScilabBridge::newSlider (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewSliderID = curEnv->GetStaticMethodID(cls, "newSlider", "()I" ) ;
 if (jintnewSliderID == NULL) {
@@ -608,7 +599,6 @@ long CallScilabBridge::newPopupMenu (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewPopupMenuID = curEnv->GetStaticMethodID(cls, "newPopupMenu", "()I" ) ;
 if (jintnewPopupMenuID == NULL) {
@@ -632,7 +622,6 @@ long CallScilabBridge::newListBox (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewListBoxID = curEnv->GetStaticMethodID(cls, "newListBox", "()I" ) ;
 if (jintnewListBoxID == NULL) {
@@ -656,7 +645,6 @@ long CallScilabBridge::newFrame (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewFrameID = curEnv->GetStaticMethodID(cls, "newFrame", "()I" ) ;
 if (jintnewFrameID == NULL) {
@@ -680,14 +668,13 @@ char * CallScilabBridge::newContextMenu (JavaVM * jvm_, char ** menuLabels, int 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jstringnewContextMenujobjectArrayID = curEnv->GetStaticMethodID(cls, "newContextMenu", "([Ljava/lang/String;)Ljava/lang/String;" ) ;
 if (jstringnewContextMenujobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "newContextMenu" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray menuLabels_ = curEnv->NewObjectArray( menuLabelsSize, stringArrayClass, NULL);
@@ -733,7 +720,6 @@ long CallScilabBridge::newContextMenu (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewContextMenuID = curEnv->GetStaticMethodID(cls, "newContextMenu", "()I" ) ;
 if (jintnewContextMenuID == NULL) {
@@ -757,7 +743,6 @@ void CallScilabBridge::destroyWidget (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voiddestroyWidgetjintID = curEnv->GetStaticMethodID(cls, "destroyWidget", "(I)V" ) ;
 if (voiddestroyWidgetjintID == NULL) {
@@ -779,7 +764,6 @@ void CallScilabBridge::destroyFrame (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voiddestroyFramejintID = curEnv->GetStaticMethodID(cls, "destroyFrame", "(I)V" ) ;
 if (voiddestroyFramejintID == NULL) {
@@ -801,7 +785,6 @@ void CallScilabBridge::setFigureAsParent (JavaVM * jvm_, long figureID, long obj
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFigureAsParentjintjintID = curEnv->GetStaticMethodID(cls, "setFigureAsParent", "(II)V" ) ;
 if (voidsetFigureAsParentjintjintID == NULL) {
@@ -823,7 +806,6 @@ void CallScilabBridge::setMenuAsParent (JavaVM * jvm_, long menuID, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMenuAsParentjintjintID = curEnv->GetStaticMethodID(cls, "setMenuAsParent", "(II)V" ) ;
 if (voidsetMenuAsParentjintjintID == NULL) {
@@ -845,7 +827,6 @@ void CallScilabBridge::setRootAsParent (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetRootAsParentjintID = curEnv->GetStaticMethodID(cls, "setRootAsParent", "(I)V" ) ;
 if (voidsetRootAsParentjintID == NULL) {
@@ -867,7 +848,6 @@ void CallScilabBridge::setParent (JavaVM * jvm_, long parentID, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetParentjintjintID = curEnv->GetStaticMethodID(cls, "setParent", "(II)V" ) ;
 if (voidsetParentjintjintID == NULL) {
@@ -889,7 +869,6 @@ void CallScilabBridge::setPushButtonParent (JavaVM * jvm_, long parentID, long o
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetPushButtonParentjintjintID = curEnv->GetStaticMethodID(cls, "setPushButtonParent", "(II)V" ) ;
 if (voidsetPushButtonParentjintjintID == NULL) {
@@ -911,7 +890,6 @@ void CallScilabBridge::setEditBoxParent (JavaVM * jvm_, long parentID, long objI
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetEditBoxParentjintjintID = curEnv->GetStaticMethodID(cls, "setEditBoxParent", "(II)V" ) ;
 if (voidsetEditBoxParentjintjintID == NULL) {
@@ -933,7 +911,6 @@ void CallScilabBridge::setLabelParent (JavaVM * jvm_, long parentID, long objID)
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetLabelParentjintjintID = curEnv->GetStaticMethodID(cls, "setLabelParent", "(II)V" ) ;
 if (voidsetLabelParentjintjintID == NULL) {
@@ -955,7 +932,6 @@ void CallScilabBridge::setCheckBoxParent (JavaVM * jvm_, long parentID, long obj
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetCheckBoxParentjintjintID = curEnv->GetStaticMethodID(cls, "setCheckBoxParent", "(II)V" ) ;
 if (voidsetCheckBoxParentjintjintID == NULL) {
@@ -977,7 +953,6 @@ void CallScilabBridge::setRadioButtonParent (JavaVM * jvm_, long parentID, long 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetRadioButtonParentjintjintID = curEnv->GetStaticMethodID(cls, "setRadioButtonParent", "(II)V" ) ;
 if (voidsetRadioButtonParentjintjintID == NULL) {
@@ -999,7 +974,6 @@ void CallScilabBridge::setSliderParent (JavaVM * jvm_, long parentID, long objID
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderParentjintjintID = curEnv->GetStaticMethodID(cls, "setSliderParent", "(II)V" ) ;
 if (voidsetSliderParentjintjintID == NULL) {
@@ -1021,7 +995,6 @@ void CallScilabBridge::setPopupMenuParent (JavaVM * jvm_, long parentID, long ob
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetPopupMenuParentjintjintID = curEnv->GetStaticMethodID(cls, "setPopupMenuParent", "(II)V" ) ;
 if (voidsetPopupMenuParentjintjintID == NULL) {
@@ -1043,7 +1016,6 @@ void CallScilabBridge::setListBoxParent (JavaVM * jvm_, long parentID, long objI
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetListBoxParentjintjintID = curEnv->GetStaticMethodID(cls, "setListBoxParent", "(II)V" ) ;
 if (voidsetListBoxParentjintjintID == NULL) {
@@ -1065,7 +1037,6 @@ void CallScilabBridge::setFrameParent (JavaVM * jvm_, long parentID, long objID)
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameParentjintjintID = curEnv->GetStaticMethodID(cls, "setFrameParent", "(II)V" ) ;
 if (voidsetFrameParentjintjintID == NULL) {
@@ -1087,7 +1058,6 @@ void CallScilabBridge::setWidgetText (JavaVM * jvm_, long objID, char * text){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetTextjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetText", "(ILjava/lang/String;)V" ) ;
 if (voidsetWidgetTextjintjstringID == NULL) {
@@ -1111,7 +1081,6 @@ char * CallScilabBridge::getWidgetText (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jstringgetWidgetTextjintID = curEnv->GetStaticMethodID(cls, "getWidgetText", "(I)Ljava/lang/String;" ) ;
 if (jstringgetWidgetTextjintID == NULL) {
@@ -1140,7 +1109,6 @@ void CallScilabBridge::setFrameText (JavaVM * jvm_, long objID, char * text){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameTextjintjstringID = curEnv->GetStaticMethodID(cls, "setFrameText", "(ILjava/lang/String;)V" ) ;
 if (voidsetFrameTextjintjstringID == NULL) {
@@ -1164,7 +1132,6 @@ char * CallScilabBridge::getFrameText (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jstringgetFrameTextjintID = curEnv->GetStaticMethodID(cls, "getFrameText", "(I)Ljava/lang/String;" ) ;
 if (jstringgetFrameTextjintID == NULL) {
@@ -1193,7 +1160,6 @@ void CallScilabBridge::setWidgetBackgroundColor (JavaVM * jvm_, long objID, long
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setWidgetBackgroundColor", "(IIII)V" ) ;
 if (voidsetWidgetBackgroundColorjintjintjintjintID == NULL) {
@@ -1215,7 +1181,6 @@ long * CallScilabBridge::getWidgetBackgroundColor (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetWidgetBackgroundColorjintID = curEnv->GetStaticMethodID(cls, "getWidgetBackgroundColor", "(I)[I" ) ;
 if (jintArraygetWidgetBackgroundColorjintID == NULL) {
@@ -1251,7 +1216,6 @@ void CallScilabBridge::setWidgetForegroundColor (JavaVM * jvm_, long objID, long
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetForegroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setWidgetForegroundColor", "(IIII)V" ) ;
 if (voidsetWidgetForegroundColorjintjintjintjintID == NULL) {
@@ -1273,7 +1237,6 @@ long * CallScilabBridge::getWidgetForegroundColor (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetWidgetForegroundColorjintID = curEnv->GetStaticMethodID(cls, "getWidgetForegroundColor", "(I)[I" ) ;
 if (jintArraygetWidgetForegroundColorjintID == NULL) {
@@ -1309,7 +1272,6 @@ void CallScilabBridge::setFrameBackgroundColor (JavaVM * jvm_, long objID, long 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameBackgroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setFrameBackgroundColor", "(IIII)V" ) ;
 if (voidsetFrameBackgroundColorjintjintjintjintID == NULL) {
@@ -1331,7 +1293,6 @@ long * CallScilabBridge::getFrameBackgroundColor (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetFrameBackgroundColorjintID = curEnv->GetStaticMethodID(cls, "getFrameBackgroundColor", "(I)[I" ) ;
 if (jintArraygetFrameBackgroundColorjintID == NULL) {
@@ -1367,7 +1328,6 @@ void CallScilabBridge::setFrameForegroundColor (JavaVM * jvm_, long objID, long 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameForegroundColorjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setFrameForegroundColor", "(IIII)V" ) ;
 if (voidsetFrameForegroundColorjintjintjintjintID == NULL) {
@@ -1389,7 +1349,6 @@ long * CallScilabBridge::getFrameForegroundColor (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetFrameForegroundColorjintID = curEnv->GetStaticMethodID(cls, "getFrameForegroundColor", "(I)[I" ) ;
 if (jintArraygetFrameForegroundColorjintID == NULL) {
@@ -1425,7 +1384,6 @@ void CallScilabBridge::setWidgetFontName (JavaVM * jvm_, long objID, char * name
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetFontNamejintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetFontName", "(ILjava/lang/String;)V" ) ;
 if (voidsetWidgetFontNamejintjstringID == NULL) {
@@ -1449,7 +1407,6 @@ char * CallScilabBridge::getWidgetFontName (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jstringgetWidgetFontNamejintID = curEnv->GetStaticMethodID(cls, "getWidgetFontName", "(I)Ljava/lang/String;" ) ;
 if (jstringgetWidgetFontNamejintID == NULL) {
@@ -1478,7 +1435,6 @@ void CallScilabBridge::setWidgetFontWeight (JavaVM * jvm_, long objID, char * we
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetFontWeightjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetFontWeight", "(ILjava/lang/String;)V" ) ;
 if (voidsetWidgetFontWeightjintjstringID == NULL) {
@@ -1502,7 +1458,6 @@ void CallScilabBridge::setWidgetFontSize (JavaVM * jvm_, long objID, long size){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetFontSizejintjintID = curEnv->GetStaticMethodID(cls, "setWidgetFontSize", "(II)V" ) ;
 if (voidsetWidgetFontSizejintjintID == NULL) {
@@ -1524,7 +1479,6 @@ long CallScilabBridge::getWidgetFontSize (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetWidgetFontSizejintID = curEnv->GetStaticMethodID(cls, "getWidgetFontSize", "(I)I" ) ;
 if (jintgetWidgetFontSizejintID == NULL) {
@@ -1548,7 +1502,6 @@ void CallScilabBridge::setWidgetFontAngle (JavaVM * jvm_, long objID, char * ang
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetFontAnglejintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetFontAngle", "(ILjava/lang/String;)V" ) ;
 if (voidsetWidgetFontAnglejintjstringID == NULL) {
@@ -1572,7 +1525,6 @@ void CallScilabBridge::setFrameFontName (JavaVM * jvm_, long objID, char * name)
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameFontNamejintjstringID = curEnv->GetStaticMethodID(cls, "setFrameFontName", "(ILjava/lang/String;)V" ) ;
 if (voidsetFrameFontNamejintjstringID == NULL) {
@@ -1596,7 +1548,6 @@ char * CallScilabBridge::getFrameFontName (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jstringgetFrameFontNamejintID = curEnv->GetStaticMethodID(cls, "getFrameFontName", "(I)Ljava/lang/String;" ) ;
 if (jstringgetFrameFontNamejintID == NULL) {
@@ -1625,7 +1576,6 @@ void CallScilabBridge::setFrameFontWeight (JavaVM * jvm_, long objID, char * wei
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameFontWeightjintjstringID = curEnv->GetStaticMethodID(cls, "setFrameFontWeight", "(ILjava/lang/String;)V" ) ;
 if (voidsetFrameFontWeightjintjstringID == NULL) {
@@ -1649,7 +1599,6 @@ void CallScilabBridge::setFrameFontSize (JavaVM * jvm_, long objID, long size){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameFontSizejintjintID = curEnv->GetStaticMethodID(cls, "setFrameFontSize", "(II)V" ) ;
 if (voidsetFrameFontSizejintjintID == NULL) {
@@ -1671,7 +1620,6 @@ long CallScilabBridge::getFrameFontSize (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetFrameFontSizejintID = curEnv->GetStaticMethodID(cls, "getFrameFontSize", "(I)I" ) ;
 if (jintgetFrameFontSizejintID == NULL) {
@@ -1695,7 +1643,6 @@ void CallScilabBridge::setFrameFontAngle (JavaVM * jvm_, long objID, char * angl
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameFontAnglejintjstringID = curEnv->GetStaticMethodID(cls, "setFrameFontAngle", "(ILjava/lang/String;)V" ) ;
 if (voidsetFrameFontAnglejintjstringID == NULL) {
@@ -1719,7 +1666,6 @@ void CallScilabBridge::setWidgetPosition (JavaVM * jvm_, long objID, long x, lon
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetPositionjintjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setWidgetPosition", "(IIIII)V" ) ;
 if (voidsetWidgetPositionjintjintjintjintjintID == NULL) {
@@ -1741,7 +1687,6 @@ long * CallScilabBridge::getWidgetPosition (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetWidgetPositionjintID = curEnv->GetStaticMethodID(cls, "getWidgetPosition", "(I)[I" ) ;
 if (jintArraygetWidgetPositionjintID == NULL) {
@@ -1777,7 +1722,6 @@ void CallScilabBridge::setFramePosition (JavaVM * jvm_, long objID, long x, long
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFramePositionjintjintjintjintjintID = curEnv->GetStaticMethodID(cls, "setFramePosition", "(IIIII)V" ) ;
 if (voidsetFramePositionjintjintjintjintjintID == NULL) {
@@ -1799,7 +1743,6 @@ long * CallScilabBridge::getFramePosition (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetFramePositionjintID = curEnv->GetStaticMethodID(cls, "getFramePosition", "(I)[I" ) ;
 if (jintArraygetFramePositionjintID == NULL) {
@@ -1835,7 +1778,6 @@ void CallScilabBridge::setWidgetCallback (JavaVM * jvm_, long objID, char * text
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetCallbackjintjstringjintID = curEnv->GetStaticMethodID(cls, "setWidgetCallback", "(ILjava/lang/String;I)V" ) ;
 if (voidsetWidgetCallbackjintjstringjintID == NULL) {
@@ -1859,7 +1801,6 @@ void CallScilabBridge::setFrameCallback (JavaVM * jvm_, long objID, char * text,
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameCallbackjintjstringjintID = curEnv->GetStaticMethodID(cls, "setFrameCallback", "(ILjava/lang/String;I)V" ) ;
 if (voidsetFrameCallbackjintjstringjintID == NULL) {
@@ -1883,7 +1824,6 @@ void CallScilabBridge::setWidgetHorizontalAlignment (JavaVM * jvm_, long objID, 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetHorizontalAlignmentjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetHorizontalAlignment", "(ILjava/lang/String;)V" ) ;
 if (voidsetWidgetHorizontalAlignmentjintjstringID == NULL) {
@@ -1907,7 +1847,6 @@ void CallScilabBridge::setWidgetVerticalAlignment (JavaVM * jvm_, long objID, ch
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetVerticalAlignmentjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetVerticalAlignment", "(ILjava/lang/String;)V" ) ;
 if (voidsetWidgetVerticalAlignmentjintjstringID == NULL) {
@@ -1931,7 +1870,6 @@ void CallScilabBridge::setSliderMinorTickSpacing (JavaVM * jvm_, long objID, lon
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderMinorTickSpacingjintjintID = curEnv->GetStaticMethodID(cls, "setSliderMinorTickSpacing", "(II)V" ) ;
 if (voidsetSliderMinorTickSpacingjintjintID == NULL) {
@@ -1953,7 +1891,6 @@ void CallScilabBridge::setSliderMajorTickSpacing (JavaVM * jvm_, long objID, lon
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderMajorTickSpacingjintjintID = curEnv->GetStaticMethodID(cls, "setSliderMajorTickSpacing", "(II)V" ) ;
 if (voidsetSliderMajorTickSpacingjintjintID == NULL) {
@@ -1975,7 +1912,6 @@ void CallScilabBridge::setListBoxSelectedIndices (JavaVM * jvm_, long objID, lon
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetListBoxSelectedIndicesjintjintArrayID = curEnv->GetStaticMethodID(cls, "setListBoxSelectedIndices", "(I[I)V" ) ;
 if (voidsetListBoxSelectedIndicesjintjintArrayID == NULL) {
@@ -2000,7 +1936,6 @@ long * CallScilabBridge::getListBoxSelectedIndices (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetListBoxSelectedIndicesjintID = curEnv->GetStaticMethodID(cls, "getListBoxSelectedIndices", "(I)[I" ) ;
 if (jintArraygetListBoxSelectedIndicesjintID == NULL) {
@@ -2036,7 +1971,6 @@ long CallScilabBridge::getListBoxSelectionSize (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetListBoxSelectionSizejintID = curEnv->GetStaticMethodID(cls, "getListBoxSelectionSize", "(I)I" ) ;
 if (jintgetListBoxSelectionSizejintID == NULL) {
@@ -2060,7 +1994,6 @@ void CallScilabBridge::setPopupMenuSelectedIndex (JavaVM * jvm_, long objID, lon
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetPopupMenuSelectedIndexjintjintID = curEnv->GetStaticMethodID(cls, "setPopupMenuSelectedIndex", "(II)V" ) ;
 if (voidsetPopupMenuSelectedIndexjintjintID == NULL) {
@@ -2082,7 +2015,6 @@ long CallScilabBridge::getPopupMenuSelectedIndex (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetPopupMenuSelectedIndexjintID = curEnv->GetStaticMethodID(cls, "getPopupMenuSelectedIndex", "(I)I" ) ;
 if (jintgetPopupMenuSelectedIndexjintID == NULL) {
@@ -2106,7 +2038,6 @@ void CallScilabBridge::setSliderValue (JavaVM * jvm_, long objID, long index){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderValuejintjintID = curEnv->GetStaticMethodID(cls, "setSliderValue", "(II)V" ) ;
 if (voidsetSliderValuejintjintID == NULL) {
@@ -2128,7 +2059,6 @@ long CallScilabBridge::getSliderValue (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetSliderValuejintID = curEnv->GetStaticMethodID(cls, "getSliderValue", "(I)I" ) ;
 if (jintgetSliderValuejintID == NULL) {
@@ -2152,7 +2082,6 @@ void CallScilabBridge::setRadioButtonChecked (JavaVM * jvm_, long objID, bool st
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetRadioButtonCheckedjintjbooleanID = curEnv->GetStaticMethodID(cls, "setRadioButtonChecked", "(IZ)V" ) ;
 if (voidsetRadioButtonCheckedjintjbooleanID == NULL) {
@@ -2176,7 +2105,6 @@ bool CallScilabBridge::isRadioButtonChecked (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jbooleanisRadioButtonCheckedjintID = curEnv->GetStaticMethodID(cls, "isRadioButtonChecked", "(I)Z" ) ;
 if (jbooleanisRadioButtonCheckedjintID == NULL) {
@@ -2200,7 +2128,6 @@ void CallScilabBridge::setCheckBoxChecked (JavaVM * jvm_, long objID, bool statu
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetCheckBoxCheckedjintjbooleanID = curEnv->GetStaticMethodID(cls, "setCheckBoxChecked", "(IZ)V" ) ;
 if (voidsetCheckBoxCheckedjintjbooleanID == NULL) {
@@ -2224,7 +2151,6 @@ bool CallScilabBridge::isCheckBoxChecked (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jbooleanisCheckBoxCheckedjintID = curEnv->GetStaticMethodID(cls, "isCheckBoxChecked", "(I)Z" ) ;
 if (jbooleanisCheckBoxCheckedjintID == NULL) {
@@ -2248,7 +2174,6 @@ void CallScilabBridge::setSliderMinValue (JavaVM * jvm_, long objID, long value)
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderMinValuejintjintID = curEnv->GetStaticMethodID(cls, "setSliderMinValue", "(II)V" ) ;
 if (voidsetSliderMinValuejintjintID == NULL) {
@@ -2270,7 +2195,6 @@ void CallScilabBridge::setSliderMaxValue (JavaVM * jvm_, long objID, long value)
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderMaxValuejintjintID = curEnv->GetStaticMethodID(cls, "setSliderMaxValue", "(II)V" ) ;
 if (voidsetSliderMaxValuejintjintID == NULL) {
@@ -2292,7 +2216,6 @@ void CallScilabBridge::setSliderVertical (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderVerticaljintID = curEnv->GetStaticMethodID(cls, "setSliderVertical", "(I)V" ) ;
 if (voidsetSliderVerticaljintID == NULL) {
@@ -2314,7 +2237,6 @@ void CallScilabBridge::setSliderHorizontal (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetSliderHorizontaljintID = curEnv->GetStaticMethodID(cls, "setSliderHorizontal", "(I)V" ) ;
 if (voidsetSliderHorizontaljintID == NULL) {
@@ -2336,7 +2258,6 @@ void CallScilabBridge::setListBoxMultipleSelectionEnabled (JavaVM * jvm_, long o
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetListBoxMultipleSelectionEnabledjintjbooleanID = curEnv->GetStaticMethodID(cls, "setListBoxMultipleSelectionEnabled", "(IZ)V" ) ;
 if (voidsetListBoxMultipleSelectionEnabledjintjbooleanID == NULL) {
@@ -2360,7 +2281,6 @@ char ** CallScilabBridge::getListBoxAllItemsText (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jobjectArraygetListBoxAllItemsTextjintID = curEnv->GetStaticMethodID(cls, "getListBoxAllItemsText", "(I)[Ljava/lang/String;" ) ;
 if (jobjectArraygetListBoxAllItemsTextjintID == NULL) {
@@ -2395,7 +2315,6 @@ long CallScilabBridge::getListBoxNumberOfItems (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetListBoxNumberOfItemsjintID = curEnv->GetStaticMethodID(cls, "getListBoxNumberOfItems", "(I)I" ) ;
 if (jintgetListBoxNumberOfItemsjintID == NULL) {
@@ -2419,14 +2338,13 @@ void CallScilabBridge::setListBoxText (JavaVM * jvm_, long objID, char ** text, 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetListBoxTextjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setListBoxText", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetListBoxTextjintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setListBoxText" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray text_ = curEnv->NewObjectArray( textSize, stringArrayClass, NULL);
@@ -2465,7 +2383,6 @@ char ** CallScilabBridge::getPopupMenuAllItemsText (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jobjectArraygetPopupMenuAllItemsTextjintID = curEnv->GetStaticMethodID(cls, "getPopupMenuAllItemsText", "(I)[Ljava/lang/String;" ) ;
 if (jobjectArraygetPopupMenuAllItemsTextjintID == NULL) {
@@ -2500,7 +2417,6 @@ long CallScilabBridge::getPopupMenuNumberOfItems (JavaVM * jvm_, long objID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetPopupMenuNumberOfItemsjintID = curEnv->GetStaticMethodID(cls, "getPopupMenuNumberOfItems", "(I)I" ) ;
 if (jintgetPopupMenuNumberOfItemsjintID == NULL) {
@@ -2524,14 +2440,13 @@ void CallScilabBridge::setPopupMenuText (JavaVM * jvm_, long objID, char ** text
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetPopupMenuTextjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setPopupMenuText", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetPopupMenuTextjintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setPopupMenuText" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray text_ = curEnv->NewObjectArray( textSize, stringArrayClass, NULL);
@@ -2570,7 +2485,6 @@ void CallScilabBridge::setWidgetRelief (JavaVM * jvm_, long objID, char * relief
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetWidgetReliefjintjstringID = curEnv->GetStaticMethodID(cls, "setWidgetRelief", "(ILjava/lang/String;)V" ) ;
 if (voidsetWidgetReliefjintjstringID == NULL) {
@@ -2594,7 +2508,6 @@ void CallScilabBridge::setFrameRelief (JavaVM * jvm_, long objID, char * reliefT
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFrameReliefjintjstringID = curEnv->GetStaticMethodID(cls, "setFrameRelief", "(ILjava/lang/String;)V" ) ;
 if (voidsetFrameReliefjintjstringID == NULL) {
@@ -2618,7 +2531,6 @@ void CallScilabBridge::setRootMenuEnabled (JavaVM * jvm_, char * menuName, bool 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetRootMenuEnabledjstringjbooleanID = curEnv->GetStaticMethodID(cls, "setRootMenuEnabled", "(Ljava/lang/String;Z)V" ) ;
 if (voidsetRootMenuEnabledjstringjbooleanID == NULL) {
@@ -2644,7 +2556,6 @@ void CallScilabBridge::setRootSubMenuEnabled (JavaVM * jvm_, char * menuName, lo
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetRootSubMenuEnabledjstringjintjbooleanID = curEnv->GetStaticMethodID(cls, "setRootSubMenuEnabled", "(Ljava/lang/String;IZ)V" ) ;
 if (voidsetRootSubMenuEnabledjstringjintjbooleanID == NULL) {
@@ -2670,7 +2581,6 @@ void CallScilabBridge::setFigureMenuEnabled (JavaVM * jvm_, long figureID, char 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID = curEnv->GetStaticMethodID(cls, "setFigureMenuEnabled", "(ILjava/lang/String;Z)V" ) ;
 if (voidsetFigureMenuEnabledjintjstringjbooleanID == NULL) {
@@ -2696,7 +2606,6 @@ void CallScilabBridge::setFigureSubMenuEnabled (JavaVM * jvm_, long figureID, ch
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFigureSubMenuEnabledjintjstringjintjbooleanID = curEnv->GetStaticMethodID(cls, "setFigureSubMenuEnabled", "(ILjava/lang/String;IZ)V" ) ;
 if (voidsetFigureSubMenuEnabledjintjstringjintjbooleanID == NULL) {
@@ -2722,7 +2631,6 @@ void CallScilabBridge::removeRootMenu (JavaVM * jvm_, char * menuName){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidremoveRootMenujstringID = curEnv->GetStaticMethodID(cls, "removeRootMenu", "(Ljava/lang/String;)V" ) ;
 if (voidremoveRootMenujstringID == NULL) {
@@ -2746,7 +2654,6 @@ void CallScilabBridge::removeFigureMenu (JavaVM * jvm_, long figureID, char * me
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidremoveFigureMenujintjstringID = curEnv->GetStaticMethodID(cls, "removeFigureMenu", "(ILjava/lang/String;)V" ) ;
 if (voidremoveFigureMenujintjstringID == NULL) {
@@ -2770,7 +2677,6 @@ char * CallScilabBridge::displayAndWaitContextMenu (JavaVM * jvm_, long ID){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jstringdisplayAndWaitContextMenujintID = curEnv->GetStaticMethodID(cls, "displayAndWaitContextMenu", "(I)Ljava/lang/String;" ) ;
 if (jstringdisplayAndWaitContextMenujintID == NULL) {
@@ -2799,7 +2705,6 @@ long CallScilabBridge::newFileChooser (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewFileChooserID = curEnv->GetStaticMethodID(cls, "newFileChooser", "()I" ) ;
 if (jintnewFileChooserID == NULL) {
@@ -2823,7 +2728,6 @@ void CallScilabBridge::setFileChooserTitle (JavaVM * jvm_, long id, char * title
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFileChooserTitlejintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserTitle", "(ILjava/lang/String;)V" ) ;
 if (voidsetFileChooserTitlejintjstringID == NULL) {
@@ -2847,7 +2751,6 @@ void CallScilabBridge::setFileChooserInitialDirectory (JavaVM * jvm_, long id, c
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFileChooserInitialDirectoryjintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserInitialDirectory", "(ILjava/lang/String;)V" ) ;
 if (voidsetFileChooserInitialDirectoryjintjstringID == NULL) {
@@ -2871,7 +2774,6 @@ void CallScilabBridge::setFileChooserMask (JavaVM * jvm_, long id, char * mask){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFileChooserMaskjintjstringID = curEnv->GetStaticMethodID(cls, "setFileChooserMask", "(ILjava/lang/String;)V" ) ;
 if (voidsetFileChooserMaskjintjstringID == NULL) {
@@ -2895,7 +2797,6 @@ void CallScilabBridge::fileChooserDisplayAndWait (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidfileChooserDisplayAndWaitjintID = curEnv->GetStaticMethodID(cls, "fileChooserDisplayAndWait", "(I)V" ) ;
 if (voidfileChooserDisplayAndWaitjintID == NULL) {
@@ -2917,7 +2818,6 @@ long CallScilabBridge::getFileChooserSelectionSize (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetFileChooserSelectionSizejintID = curEnv->GetStaticMethodID(cls, "getFileChooserSelectionSize", "(I)I" ) ;
 if (jintgetFileChooserSelectionSizejintID == NULL) {
@@ -2941,7 +2841,6 @@ char ** CallScilabBridge::getFileChooserSelection (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jobjectArraygetFileChooserSelectionjintID = curEnv->GetStaticMethodID(cls, "getFileChooserSelection", "(I)[Ljava/lang/String;" ) ;
 if (jobjectArraygetFileChooserSelectionjintID == NULL) {
@@ -2976,7 +2875,6 @@ void CallScilabBridge::setFileChooserDirectorySelectionOnly (JavaVM * jvm_, long
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFileChooserDirectorySelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserDirectorySelectionOnly", "(I)V" ) ;
 if (voidsetFileChooserDirectorySelectionOnlyjintID == NULL) {
@@ -2998,7 +2896,6 @@ void CallScilabBridge::setFileChooserFileSelectionOnly (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetFileChooserFileSelectionOnlyjintID = curEnv->GetStaticMethodID(cls, "setFileChooserFileSelectionOnly", "(I)V" ) ;
 if (voidsetFileChooserFileSelectionOnlyjintID == NULL) {
@@ -3020,7 +2917,6 @@ long CallScilabBridge::newMessageBox (JavaVM * jvm_){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintnewMessageBoxID = curEnv->GetStaticMethodID(cls, "newMessageBox", "()I" ) ;
 if (jintnewMessageBoxID == NULL) {
@@ -3044,7 +2940,6 @@ void CallScilabBridge::setMessageBoxTitle (JavaVM * jvm_, long id, char * title)
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxTitlejintjstringID = curEnv->GetStaticMethodID(cls, "setMessageBoxTitle", "(ILjava/lang/String;)V" ) ;
 if (voidsetMessageBoxTitlejintjstringID == NULL) {
@@ -3068,7 +2963,6 @@ void CallScilabBridge::setMessageBoxMessage (JavaVM * jvm_, long id, char * mess
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxMessagejintjstringID = curEnv->GetStaticMethodID(cls, "setMessageBoxMessage", "(ILjava/lang/String;)V" ) ;
 if (voidsetMessageBoxMessagejintjstringID == NULL) {
@@ -3092,14 +2986,13 @@ void CallScilabBridge::setMessageBoxMessage (JavaVM * jvm_, long id, char ** mes
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxMessagejintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxMessage", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetMessageBoxMessagejintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setMessageBoxMessage" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray message_ = curEnv->NewObjectArray( messageSize, stringArrayClass, NULL);
@@ -3138,7 +3031,6 @@ void CallScilabBridge::messageBoxDisplayAndWait (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidmessageBoxDisplayAndWaitjintID = curEnv->GetStaticMethodID(cls, "messageBoxDisplayAndWait", "(I)V" ) ;
 if (voidmessageBoxDisplayAndWaitjintID == NULL) {
@@ -3160,7 +3052,6 @@ long CallScilabBridge::getMessageBoxSelectedButton (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetMessageBoxSelectedButtonjintID = curEnv->GetStaticMethodID(cls, "getMessageBoxSelectedButton", "(I)I" ) ;
 if (jintgetMessageBoxSelectedButtonjintID == NULL) {
@@ -3184,7 +3075,6 @@ void CallScilabBridge::setMessageBoxDefaultSelectedButtons (JavaVM * jvm_, long 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxDefaultSelectedButtons", "(I[I)V" ) ;
 if (voidsetMessageBoxDefaultSelectedButtonsjintjintArrayID == NULL) {
@@ -3209,7 +3099,6 @@ long * CallScilabBridge::getMessageBoxUserSelectedButtons (JavaVM * jvm_, long i
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintArraygetMessageBoxUserSelectedButtonsjintID = curEnv->GetStaticMethodID(cls, "getMessageBoxUserSelectedButtons", "(I)[I" ) ;
 if (jintArraygetMessageBoxUserSelectedButtonsjintID == NULL) {
@@ -3245,14 +3134,13 @@ void CallScilabBridge::setMessageBoxButtonsLabels (JavaVM * jvm_, long id, char 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxButtonsLabelsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxButtonsLabels", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetMessageBoxButtonsLabelsjintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setMessageBoxButtonsLabels" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray labels_ = curEnv->NewObjectArray( labelsSize, stringArrayClass, NULL);
@@ -3291,14 +3179,13 @@ void CallScilabBridge::setMessageBoxInitialValue (JavaVM * jvm_, long id, char *
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxInitialValuejintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxInitialValue", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetMessageBoxInitialValuejintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setMessageBoxInitialValue" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray value_ = curEnv->NewObjectArray( valueSize, stringArrayClass, NULL);
@@ -3337,7 +3224,6 @@ char ** CallScilabBridge::getMessageBoxValue (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jobjectArraygetMessageBoxValuejintID = curEnv->GetStaticMethodID(cls, "getMessageBoxValue", "(I)[Ljava/lang/String;" ) ;
 if (jobjectArraygetMessageBoxValuejintID == NULL) {
@@ -3372,7 +3258,6 @@ long CallScilabBridge::getMessageBoxValueSize (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetMessageBoxValueSizejintID = curEnv->GetStaticMethodID(cls, "getMessageBoxValueSize", "(I)I" ) ;
 if (jintgetMessageBoxValueSizejintID == NULL) {
@@ -3396,14 +3281,13 @@ void CallScilabBridge::setMessageBoxListBoxItems (JavaVM * jvm_, long id, char *
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxListBoxItemsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxListBoxItems", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetMessageBoxListBoxItemsjintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setMessageBoxListBoxItems" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray items_ = curEnv->NewObjectArray( itemsSize, stringArrayClass, NULL);
@@ -3442,7 +3326,6 @@ long CallScilabBridge::getMessageBoxSelectedItem (JavaVM * jvm_, long id){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jintgetMessageBoxSelectedItemjintID = curEnv->GetStaticMethodID(cls, "getMessageBoxSelectedItem", "(I)I" ) ;
 if (jintgetMessageBoxSelectedItemjintID == NULL) {
@@ -3466,14 +3349,13 @@ void CallScilabBridge::setMessageBoxLineLabels (JavaVM * jvm_, long id, char ** 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxLineLabelsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxLineLabels", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetMessageBoxLineLabelsjintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setMessageBoxLineLabels" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray labels_ = curEnv->NewObjectArray( labelsSize, stringArrayClass, NULL);
@@ -3512,14 +3394,13 @@ void CallScilabBridge::setMessageBoxColumnLabels (JavaVM * jvm_, long id, char *
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxColumnLabelsjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxColumnLabels", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetMessageBoxColumnLabelsjintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setMessageBoxColumnLabels" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray labels_ = curEnv->NewObjectArray( labelsSize, stringArrayClass, NULL);
@@ -3558,14 +3439,13 @@ void CallScilabBridge::setMessageBoxDefaultInput (JavaVM * jvm_, long id, char *
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxDefaultInputjintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setMessageBoxDefaultInput", "(I[Ljava/lang/String;)V" ) ;
 if (voidsetMessageBoxDefaultInputjintjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "setMessageBoxDefaultInput" << std::endl;
 exit(EXIT_FAILURE);
 }
-
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 // create java array of strings.
 jobjectArray values_ = curEnv->NewObjectArray( valuesSize, stringArrayClass, NULL);
@@ -3604,7 +3484,6 @@ void CallScilabBridge::setMessageBoxModal (JavaVM * jvm_, long id, bool status){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetMessageBoxModaljintjbooleanID = curEnv->GetStaticMethodID(cls, "setMessageBoxModal", "(IZ)V" ) ;
 if (voidsetMessageBoxModaljintjbooleanID == NULL) {
@@ -3628,7 +3507,6 @@ bool CallScilabBridge::isToolbarVisible (JavaVM * jvm_, long figNum){
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID jbooleanisToolbarVisiblejintID = curEnv->GetStaticMethodID(cls, "isToolbarVisible", "(I)Z" ) ;
 if (jbooleanisToolbarVisiblejintID == NULL) {
@@ -3652,7 +3530,6 @@ void CallScilabBridge::setToolbarVisible (JavaVM * jvm_, long figNum, bool statu
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
-                jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
 jmethodID voidsetToolbarVisiblejintjbooleanID = curEnv->GetStaticMethodID(cls, "setToolbarVisible", "(IZ)V" ) ;
 if (voidsetToolbarVisiblejintjbooleanID == NULL) {
