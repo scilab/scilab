@@ -29,7 +29,7 @@ if ~MSDOS then
   delmenu(curwin,_('File'))
   delmenu(curwin,_('Insert'))
 else
-  hidetoolbar(curwin)
+  toolbar(curwin, "off"); //** by Vincent C.
  // Use Scilab Localisation
   delmenu(curwin,_('File'))
   delmenu(curwin,_('Edit'))

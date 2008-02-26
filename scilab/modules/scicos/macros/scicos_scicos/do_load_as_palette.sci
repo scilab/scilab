@@ -53,7 +53,7 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
     delmenu(curwin,'Zoom')
     delmenu(curwin,'Edit')
   else  //** Windows case  
-        hidetoolbar(curwin)
+        toolbar(curwin, "off"); //** by Vincent C. 
      // French
   	delmenu(curwin,'&Editer')
   	delmenu(curwin,'&Outils')

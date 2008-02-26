@@ -94,7 +94,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
     delmenu(curwin,'Edit')
     delmenu(curwin,'Insert')
   else
-     hidetoolbar(curwin)
+     toolbar(curwin, "off"); //** by Vincent C.
      // French
         // delmenu(curwin,'&Fichier')
     	delmenu(curwin,'&Editer')
