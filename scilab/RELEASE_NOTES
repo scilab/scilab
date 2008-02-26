@@ -23,7 +23,7 @@ such as units property management are no yet available.
 	* Postscript formats for graphic export
 
 - Graphics know bugs
-	* Displayed axe bounds may differ from Scilab 4.x.a
+	* Displayed axe bounds may differ from Scilab 4.x.
 	* Unwanted marks may appear.
 	* Some colours might be different from Scilab 4.x.
 	* Legend and labels might be misplaced.
@@ -50,11 +50,15 @@ such as units property management are no yet available.
         * BEWARE : the "Stop" simulation button is not working: set the simulation time to your final time
         * BEWARE : Modelica support is not available
           
-- Scilab is not fully translated into French.
+- Scilab is not translated into French.
 
 - Dynamic/incremental link may bug on usual archs/compiler or with modified flags
 
+- Some license issues have not been fixed.
 
+-  .sce / .sci file associations are disabled in this alpha version
+
+-  Postscript export is not available for this alpha version
 
 Scilab 4.0 Release_Notes
 ***************************
