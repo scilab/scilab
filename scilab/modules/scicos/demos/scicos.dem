@@ -37,83 +37,83 @@ end
 //    demos_name=[demos_name;'Live tutorials']        
 
 while %t do
-  n=tk_choose(demos_name,'Choose a demo')
+  n=x_choose(demos_name,'Choose a demo')
   if n ==0 then break,end
   select demos_name(n)
   case 'Goto/From Demonstration' then
-   scicos('SCI/demos/scicos/goto_demo.cosf');
+   scicos('SCI/modules/scicos/demos/goto_demo.cosf');
   case 'Discrete-Kalman Filter' then
-   scicos('SCI/demos/scicos/Discrete-KalmanFilter.cosf');
+   scicos('SCI/modules/scicos/demos/Discrete-KalmanFilter.cosf');
   case 'Inverted Pendulum' then
-   exec (SCI+'/demos/scicos/setw.sci');
+   exec (SCI+'/modules/scicos/demos/setw.sci');
    getf(SCI+'/macros/scicos_blocks/Sources/RAND_m.sci');
-   scicos('SCI/demos/scicos/Inverted_pendulum.cosf');
+   scicos('SCI/modules/scicos/demos/Inverted_pendulum.cosf');
   case 'Lorentz attractor' then
-   scicos('SCI/demos/scicos/Lorentz.cosf');
+   scicos('SCI/modules/scicos/demos/Lorentz.cosf');
   case 'Datatype' then
-   scicos('SCI/demos/scicos/demo_Datatype.cosf');
+   scicos('SCI/modules/scicos/demos/demo_Datatype.cosf');
   case 'Digital Pulse Generator' then
-   scicos('SCI/demos/scicos/demo_flipflop.cosf');
+   scicos('SCI/modules/scicos/demos/demo_flipflop.cosf');
   case 'WaterTank' then
-   scicos('SCI/demos/scicos/demo_watertank.cosf');
+   scicos('SCI/modules/scicos/demos/demo_watertank.cosf');
   case 'Kalman filter' then  
-    scicos('SCI/demos/scicos/Kalman_1.cosf');
+    scicos('SCI/modules/scicos/demos/Kalman_1.cosf');
   case 'Simple Thermostat' then  
-    scicos('SCI/demos/scicos/Simple_Thermostat.cosf');
+    scicos('SCI/modules/scicos/demos/Simple_Thermostat.cosf');
   case 'Continuous Plant discrete controller' then  
-    scicos('SCI/demos/scicos/Plant_DiscreteController.cosf');
+    scicos('SCI/modules/scicos/demos/Plant_DiscreteController.cosf');
   case 'Simple demo' then  
-    scicos('SCI/demos/scicos/Simple_Demo.cosf');
+    scicos('SCI/modules/scicos/demos/Simple_Demo.cosf');
   case 'Bouncing ball' then  
-    scicos('SCI/demos/scicos/Bouncing_ball.cosf');	
+    scicos('SCI/modules/scicos/demos/Bouncing_ball.cosf');	
   case 'Table lookup example' then  
-    scicos('SCI/demos/scicos/Table_Lookup.cosf');	
+    scicos('SCI/modules/scicos/demos/Table_Lookup.cosf');	
   case 'Threshold' then  
-    scicos('SCI/demos/scicos/Threshold_ZeroCrossing.cosf');	
+    scicos('SCI/modules/scicos/demos/Threshold_ZeroCrossing.cosf');	
   case 'Scilab Block' then  
-    scicos('SCI/demos/scicos/Scilab_Block.cosf');	
+    scicos('SCI/modules/scicos/demos/Scilab_Block.cosf');	
   case 'Thermostat' then  
-    scicos('SCI/demos/scicos/Temp.cosf');	
+    scicos('SCI/modules/scicos/demos/Temp.cosf');	
   case 'Fibonacci' then  
-    scicos('SCI/demos/scicos/fibo.cosf');
+    scicos('SCI/modules/scicos/demos/fibo.cosf');
   case 'Cont.Disc-Observer.cosf' then  
-    scicos('SCI/demos/scicos/Cont.Disc-Observer.cosf');
+    scicos('SCI/modules/scicos/demos/Cont.Disc-Observer.cosf');
   case 'Controller.cosf' then  
-    scicos('SCI/demos/scicos/Controller.cosf');
+    scicos('SCI/modules/scicos/demos/Controller.cosf');
   case 'System-Observer.cosf' then  
-    scicos('SCI/demos/scicos/System-Observer.cosf');
+    scicos('SCI/modules/scicos/demos/System-Observer.cosf');
   case 	'bouncing balls' then
-    scicos('SCI/demos/scicos/bounce.cosf');
+    scicos('SCI/modules/scicos/demos/bounce.cosf');
 //  case 'Live demo' then
-//    getf('SCI/demos/scicos/scicos_play.sci','n')
-//    scicos_play('SCI/demos/scicos/live.dat')
+//    getf('SCI/modules/scicos/demos/scicos_play.sci','n')
+//    scicos_play('SCI/modules/scicos/demos/live.dat')
   case 'sound demo' then  
-    scicos('SCI/demos/scicos/sound.cosf');
+    scicos('SCI/modules/scicos/demos/sound.cosf');
   case 'Synchro Block demo' then  
-    scicos('SCI/demos/scicos/Ifsub.cosf');
+    scicos('SCI/modules/scicos/demos/Ifsub.cosf');
   case 'Colpitts oscillator' then
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
-      scicos('SCI/demos/scicos/Electrical/Colpitts_Oscillator.cosf');
+      scicos('SCI/modules/scicos/demos/Electrical/Colpitts_Oscillator.cosf');
     end
   case 'Electrical circuit: RLC' then  
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
-      scicos('SCI/demos/scicos/Electrical/RLC_circuit.cosf');
+      scicos('SCI/modules/scicos/demos/Electrical/RLC_circuit.cosf');
     end
   case 'Electrical circuit: Rectifier' then  
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
-     scicos('SCI/demos/scicos/Electrical/Bridge_Rectifier.cosf');
+     scicos('SCI/modules/scicos/demos/Electrical/Bridge_Rectifier.cosf');
     end
   case 'Regulated Thermo Hydraulic plant' then  
     if ~(haveacompiler()) then
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
-      scicos('SCI/demos/scicos/Hydraulics.cosf');
+      scicos('SCI/modules/scicos/demos/Hydraulics.cosf');
     end
    case 'Live tutorials' then
     tuti=['Simple block construction';
@@ -134,8 +134,8 @@ while %t do
 	  break
 	end
       end
-      str='SCI/demos/scicos/tut'+string(n)
-      getf('SCI/demos/scicos/scicos_play.sci')
+      str='SCI/modules/scicos/demos/tut'+string(n)
+      getf('SCI/modules/scicos/demos/scicos_play.sci')
       scicos_play(str)
       chdir(dirr)
     end

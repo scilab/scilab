@@ -18,12 +18,12 @@ load('SCI/modules/scicos/macros/scicos_menus/lib')
 add_module_help_chapter('scicos');
 // ====================================================================
 //add demos
-//path=get_absolute_file_path('scicos.start');
-//path=getshortpathname(path);
-//path=strsubst(path,'\','/');
-//pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/scicos.dem',%f,%f);
-//add_demo("Scicos",pathdemos);
-//clear path pathdemos;
+path=get_absolute_file_path('scicos.start');
+path=getshortpathname(path);
+path=strsubst(path,'\','/');
+pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/scicos.dem',%f,%f);
+add_demo("Scicos",pathdemos);
+clear path pathdemos;
 
 // Define Scicos data tables ===========================================
 
