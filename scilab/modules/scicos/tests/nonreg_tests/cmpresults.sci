@@ -1,4 +1,4 @@
-function cmpresults(testName,nbCols,idxCols)
+function cmpresults(testName,nbCols,idxCols,plotTitle)
 
 disp(" -= " + testName + " =-")
 disp("Reading results from Scilab 4...")
@@ -18,4 +18,4 @@ end
 disp("Plotting diff = f(t)...")
 t = AA(:,1);
 plot(t,BB(:,idxCols)-AA(:,idxCols))
-
+title(plotTitle)
