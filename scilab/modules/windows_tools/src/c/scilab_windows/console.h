@@ -14,6 +14,8 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
+#include "BOOL.h"
+
 /**
 * Update Colors of console
 */
@@ -49,6 +51,12 @@ void CloseScilabConsole(void);
 * @return a name
 */
 char *getScilexConsoleName(void);
+
+/* return colums size of screen console */
+int getXConsoleScreenSize(void);
+
+/* return lines size of screen console */
+int getYConsoleScreenSize(void);
 
 #endif /* __CONSOLE_H__ */
 /*--------------------------------------------------------------------------*/ 

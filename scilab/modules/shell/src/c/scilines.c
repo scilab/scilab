@@ -17,6 +17,10 @@
 #include "scilines.h"
 #include "core_math.h"
 #include "stack-def.h"
+#ifdef _MSC_VER
+#include "../../../windows_tools/src/c/scilab_windows/console.h"
+#include "scilabmode.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_NUMBERS_LINES 28
 #define DEFAULT_NUMBERS_COLUMNS 80
@@ -46,8 +50,16 @@ int scilinesdefault(void)
 	}
 	
 #else
+	if (getScilabMode() != SCILAB_STD)
+	{
+		setColumnsSize(getXConsoleScreenSize());
+		setLinesSize(getYConsoleScreenSize());
+	}
+	else
+	{
 		setLinesSize(DEFAULT_NUMBERS_LINES);
 		setColumnsSize(DEFAULT_NUMBERS_COLUMNS);
+	}
 #endif
        return 0;
 }

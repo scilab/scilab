@@ -11,16 +11,18 @@
 */
 
 /*--------------------------------------------------------------------------*/
+
 #define  _WIN32_WINNT 0x0500 // GetConsoleWindow
 #include <Windows.h>
 #include <shlwapi.h>
 #include <stdio.h>
 #pragma comment(lib, "shlwapi.lib")
-#include "console.h"
-#include "version.h"
-#include "MALLOC.h"
+
 #include "../WinConsole.h"
 #include "WndThread.h"
+#include "console.h"
+#include "version.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 #define NameConsole "Console" 
 /*--------------------------------------------------------------------------*/
@@ -150,9 +152,18 @@ char *getScilexConsoleName(void)
 
 	if (strlen(ScilexConsoleName) > 0)
 	{
-		retName = (char*)MALLOC(sizeof(char)*(strlen(ScilexConsoleName)+1));
-		if (retName) strcpy(retName,ScilexConsoleName);
+		retName = strdup(ScilexConsoleName);
 	}
 	return retName;
+}
+/*--------------------------------------------------------------------------*/
+int getXConsoleScreenSize(void)
+{
+	return (csbiInfoSave.srWindow.Right - csbiInfoSave.srWindow.Left);
+}
+/*--------------------------------------------------------------------------*/
+int getYConsoleScreenSize(void)
+{
+	return (csbiInfoSave.srWindow.Bottom - csbiInfoSave.srWindow.Top);
 }
 /*--------------------------------------------------------------------------*/
