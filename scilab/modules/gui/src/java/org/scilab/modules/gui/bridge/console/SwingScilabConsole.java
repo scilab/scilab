@@ -15,10 +15,8 @@ package org.scilab.modules.gui.bridge.console;
 import java.awt.Dimension;
 
 import javax.swing.JTextPane;
-import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardEndHandler;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
-import javax.swing.text.JTextComponent.KeyBinding;
 
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
