@@ -24,6 +24,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -202,7 +203,10 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		// Make the scroll Pane transparent
 		messageScrollPane.setOpaque(false);
 		messageScrollPane.getViewport().setOpaque(false);
-
+		/* Make the Border of the ScrollPane invisible */
+		messageScrollPane.setBorder(BorderFactory.createEmptyBorder());
+		messageScrollPane.setViewportBorder(BorderFactory.createEmptyBorder());
+		
 		if (scilabDialogType == X_CHOICES_TYPE) {
 			// Create a MessageBox for Scilab x_choices
 
@@ -443,6 +447,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			}
 		}
 		// Display
+		((JScrollPane) objs[0]).setBorder(BorderFactory.createEmptyBorder());
 		setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
 		pack();
 		super.setModal(modal); /* Must call the JDialog class setModal */
