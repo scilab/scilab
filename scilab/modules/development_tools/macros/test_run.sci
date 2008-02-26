@@ -557,9 +557,14 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		dia(grep(dia,"TMPDIR1"))                   = [];
 		dia(grep(dia,"diary(0)"))                  = [];
 		
-		dia = strsubst(dia,TMPDIR,'TMPDIR');
-		dia = strsubst(dia,TMPDIR1,'TMPDIR');
-		dia = strsubst(dia,TMPDIR1,'TMPDIR');
+		dia = strsubst(dia,TMPDIR ,"TMPDIR");
+		dia = strsubst(dia,TMPDIR1,"TMPDIR");
+		
+		if MSDOS then
+			strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
+			strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
+		end
+		
 		dia = strsubst(dia,SCI,'SCI');
 		
 		//suppress the prompts
