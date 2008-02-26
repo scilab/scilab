@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for Max_clique function
 // =============================================================================
 

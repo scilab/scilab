@@ -5,6 +5,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for find_path function
 // =============================================================================
 

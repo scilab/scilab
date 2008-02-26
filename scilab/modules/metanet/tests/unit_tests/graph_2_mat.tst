@@ -6,11 +6,11 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for graph_2_mat function
 // =============================================================================
 
 g=load_graph(SCI+"/modules/metanet/tests/unit_tests/colored");
 a=graph_2_mat(g)
 a=graph_2_mat(g,'node-node')
-
-

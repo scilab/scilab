@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for girth function
 // =============================================================================
 
@@ -16,4 +18,3 @@ g('node_x')=[285  284  335  160  405  189  118  45];
 g('node_y')=[266  179   83  176  368  252  64  309];
 show_graph(g);
 d=girth(g)
- 

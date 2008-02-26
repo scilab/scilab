@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for min_lcost_cflow function
 // =============================================================================
 
@@ -32,4 +34,3 @@ g1('node_color')=nodecolor;
 g1('edge_font_size')=edgefontsize;
 g1('edge_label')=string(phi);
 show_graph(g1);
- 

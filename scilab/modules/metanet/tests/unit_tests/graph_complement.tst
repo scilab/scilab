@@ -6,9 +6,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for graph_complement function
 // =============================================================================
-
 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 13 14 15 17 17 16 16];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 15 12 13 9 10 14 11 16 14 15 1 17];
@@ -22,5 +23,3 @@ g1=graph_complement(g);
 show_graph(g1,'new');
 g=graph_complement(g1);
 show_graph(g);
- 
-

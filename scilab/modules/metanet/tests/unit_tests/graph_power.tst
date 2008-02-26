@@ -6,9 +6,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for graph_power function
 // =============================================================================
-
 
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
 he=[2 6 3 6 7 8 8 8 4 7 3 5];

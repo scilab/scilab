@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for adj_lists function
 // =============================================================================
 
@@ -17,4 +19,3 @@ g('node_y')=[61 125 129 189 173 135 236 249];
 show_graph(g)
 [lp,la,ls]=adj_lists(g)
 [lp,la,ls]=adj_lists(1,g('node_number'),ta,he)
- 

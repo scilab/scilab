@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+
 // unit tests for add_node function
 // =============================================================================
 
@@ -19,4 +21,3 @@ n=g('node_number');
 g1=add_node(g,[270 140]);
 g1('node_color')=[ones(1,n) 11];
 show_graph(g1);
-
