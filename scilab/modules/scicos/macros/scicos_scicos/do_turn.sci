@@ -28,8 +28,9 @@ function [scs_m]=do_turn(%pt,scs_m,theta)
   win = %win;
 
   //** get the handle of the current window
-  gh_curwin = gh_current_window ; //** acquire the current window handler
-  o_size = size(gh_curwin.children.children) ; //** o_size(1) is the number of compound object
+  gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
+  o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
 
   //** get the mouse coord.
   xc = %pt(1);
@@ -63,25 +64,27 @@ function [scs_m]=do_turn(%pt,scs_m,theta)
 
   scs_m_save = scs_m ; //** ... for undo ...
 
-  path = list('objs',k)      ; //** acquire the index in the "global" diagram
+  path = list('objs',k) ; //** acquire the index in the "global" diagram
 
   o = scs_m.objs(k)
 
-  if typeof(o)=='Link' then
-    return
-  end //**disable rotation for link
+  if typeof(o)=="Link" then
+    return ; //** disable rotation for link
+  end 
+
+  //** Rotation enabled for "Block" and "Text"
 
   //**--------- scs_m theta update -------------------------
   geom = o.graphics ;
-  geom.theta = geom.theta + theta
+  geom.theta = geom.theta + theta ;
   
   //** angle normalization 
   while geom.theta>=360 then
-    geom.theta=geom.theta-360;
+    geom.theta = geom.theta-360;
   end
   
   while geom.theta<=-360 then
-    geom.theta=geom.theta+360;
+    geom.theta = geom.theta+360;
   end
   
   //** 
@@ -93,6 +96,6 @@ function [scs_m]=do_turn(%pt,scs_m,theta)
 
   scs_m = changeports(scs_m, path, o_n); //** the real object draw id done here 
   
-  [scs_m_save,enable_undo,edited] = resume(scs_m_save,%t,%t)
+  [scs_m_save,enable_undo,edited] = resume(scs_m_save,%t,%t); 
 
 endfunction

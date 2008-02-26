@@ -26,8 +26,10 @@ have_moved = %f ; //** flag to signal the movement of one or more objects (used 
 
 // Acquire the current window
 // NB : the MultiMove works ONLY in the current window    
-  gh_curwin = gh_current_window ;
-
+  //** gh_curwin = gh_current_window ;
+  gh_curwin = scf(%win) ;
+  gh_axes = gca();
+  
   xc = %pt(1) ; //** recover mouse position of the last event
   yc = %pt(2) ;
 
@@ -75,14 +77,16 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
   //**----------------------------------------------------------------------------------
   //**
   //** the code below is modified according the new graphics API
-  gh_curwin = gh_current_window ; //** acqiore the current window handle
+  //** gh_curwin = gh_current_window ; //**  the current window handle
+  gh_curwin = scf(%win) ;
+  gh_axes = gca();
 
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure
   //** I need an equivalent index for the graphics
 
   //** This variable is fundamental because at the end of the move the number of graphics 
   //** object MUST BE the same 
-  o_size = size (gh_curwin.children.children ) ; //** o_size(1) number of "Compound" objects 
+  o_size = size (gh_axes.children ) ; //** o_size(1) number of "Compound" objects 
 
   //**-----------------------------------------------------------------------------------------------
   //** Acquire axes physical limits (visible limits are smaller) to avoid "off window" move
@@ -208,8 +212,8 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       for l=1:length(connected) //** scan all the connected links
         i  = connected(l)  ;
         oi = scs_m.objs(i) ;
-        gh_i = get_gri(i,o_size(1)); //** calc the handle of all the connected link(s)
-        gh_link_i = [ gh_link_i gh_curwin.children.children(gh_i) ]; //** vector of handles
+        gh_i = get_gri(i, o_size(1)); //** calc the handle of all the connected link(s)
+        gh_link_i = [ gh_link_i gh_axes.children(gh_i) ]; //** vector of handles
         [xl, yl, ct, from, to] = (oi.xx, oi.yy, oi.ct, oi.from, oi.to)
           //**------------------------------------------
           if from(1)==ext_block(l) then 
@@ -321,7 +325,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       //** Move the SuperCompound
       for k = SuperCompound_id 
           gh_k = get_gri(k,o_size(1)); //** calc the handle
-          gh_ToBeMoved = gh_curwin.children.children(gh_k) ;
+          gh_ToBeMoved = gh_axes.children(gh_k) ;
 	  move (gh_ToBeMoved, [delta_x , delta_y]);  //** ..because "move()" works only in differential "alone"
       end 
 
@@ -445,7 +449,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
         //** Move back the SuperCompound
         for k = SuperCompound_id 
           gh_k = get_gri(k,o_size(1)); //** calc the handle 
-          gh_ToBeMoved = gh_curwin.children.children(gh_k) ;
+          gh_ToBeMoved = gh_axes.children(gh_k) ;
 	  move (gh_ToBeMoved, [-move_x , -move_y]);  //** ..because "move()" works only in differential
         end
 

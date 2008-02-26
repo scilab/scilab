@@ -30,11 +30,6 @@ function [%pt, scs_m] = do_tild(%pt, scs_m)
 //**  BEWARE: this version has some residual graphical bug with some 
 //**          Modelica electrical connected blocks
 //* 
-
-  //** dead code ? 
-  //** win = %win ; //** acquire the window id (semiglobal)
-  //** gh_curwin = gh_current_window ; //** acquire the current window handler
-  //** o_size = size(gh_curwin.children.children) ; //** o_size(1) is the number of compound object
   
   xc = %pt(1) ;
   yc = %pt(2) ;
@@ -60,7 +55,7 @@ function [%pt, scs_m] = do_tild(%pt, scs_m)
        
     o_n  = o ; //** "o" is already flipped  
     
-    scs_m = changeports(scs_m, path, o_n); 
+    scs_m = changeports(scs_m, path, o_n); //** this routine do the job 
   
     [scs_m_save, enable_undo, edited] = resume(scs_m_save, %t, %t)
   

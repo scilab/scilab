@@ -43,13 +43,13 @@ function gh_blk = drawobj(o, gh_window)
 
   if rhs==1 then //** without arguments (default) assume ...
      //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
-     gh_curwin = scf(curwin); 
-     // gh_curwin = gh_current_window ; //** get the handle of the current graphics window
+     gh_curwin = scf(curwin);
+     gh_axes = gca(); 
 
   else //** the arguments is explicit
      //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
-     gh_curwin = gh_window ; //** get the handle of the current graphics window
-
+     gh_curwin = scf(gh_window) ; //** get the handle of the current graphics window
+     gh_axes = gca(); 
   end
 
   gh_blk = [] ; //** create the empty object value
@@ -58,7 +58,7 @@ function gh_blk = drawobj(o, gh_window)
   if typeof(o)=="Block" then //** Block draw 
     //** ---------------------- Block -----------------------------
 
-    o_size = size ( gh_curwin.children.children ) ; //** initial size (number of graphic object
+    o_size = size ( gh_axes.children ) ; //** initial size (number of graphic object
 
 
    //** Save graphics axes state
@@ -66,8 +66,6 @@ function gh_blk = drawobj(o, gh_window)
       //** incorrect "gr_i" old graphics instructions
 
       //** figure_background = gh_curwin.background  ;
-
-      gh_axes = gh_curwin.children ;
 
       axes_font_style = gh_axes.font_style ;
       axes_font_size  = gh_axes.font_size  ;
@@ -112,8 +110,6 @@ function gh_blk = drawobj(o, gh_window)
    //** Restore graphics axes state 
       //** Restore the state of the graphics window 
 
-      gh_axes = gh_curwin.children ;
-
       gh_axes.font_style = axes_font_style ;
       gh_axes.font_size  = axes_font_size  ;
       gh_axes.font_color = axes_font_color ; //** optional
@@ -136,16 +132,16 @@ function gh_blk = drawobj(o, gh_window)
 
    //**... end of figure and axes state restoring
 
-    p_size = size(gh_curwin.children.children); //** size after the draw
+    p_size = size(gh_axes.children); //** size after the draw
     //** aggregate the graphics entities
     d_size =  p_size(1) - o_size(1);
 
-    gh_blk = glue(gh_curwin.children.children(d_size:-1:1));
+    gh_blk = glue(gh_axes.children(d_size:-1:1));
 
     //** 24/07/07: Al@n's patch for rotation of blocks
     if o.graphics.theta<>0 then
       rotate_compound(sel_x, sel_y, sel_w, sel_h,1, o.graphics.theta);
-      gh_blk = gh_curwin.children.children(1);
+      gh_blk = gh_axes.children(1);
     end
     //** Block rotation end 
 
@@ -161,7 +157,7 @@ function gh_blk = drawobj(o, gh_window)
   //** ---------- Link -------------------------------
   elseif typeof(o)=="Link" then //** Link draw 
 
-    o_size = size ( gh_curwin.children.children ) ; //** initial size
+    o_size = size ( gh_axes.children ) ; //** initial size
 
         xpoly(o.xx, o.yy,'lines')  ; //** draw the polyline "Link"
         gh_e = gce()               ;
@@ -170,10 +166,10 @@ function gh_blk = drawobj(o, gh_window)
 	gh_e.mark_style = 11       ;
         gh_e.mark_mode = "off"     ; //** put "mark_mode" off, ready for 'Select' operation
 
-    p_size = size ( gh_curwin.children.children ) ; //** size after the draw
+    p_size = size ( gh_axes.children ) ; //** size after the draw
     //** aggregate the graphics entities
     d_size = p_size(1) - o_size(1) ;
-    gh_blk = glue( gh_curwin.children.children(d_size:-1:1) ) ;
+    gh_blk = glue( gh_axes.children(d_size:-1:1) ) ;
 
   //** ---------- Deleted ----- CAUTION: also "Deleted" object MUST be draw ! ----
   elseif typeof(o)=="Deleted" then //** Dummy "deleted" draw
@@ -181,7 +177,7 @@ function gh_blk = drawobj(o, gh_window)
     //** draw a dummy object
 
     xpoly ([0;1],[0;1]) ; //** just a dummy object
-    gh_blk = glue( gh_curwin.children.children(1) ) ; //** create the Compound macro object
+    gh_blk = glue( gh_axes.children(1) ) ; //** create the Compound macro object
 
     //** gh_blk.visible = "off"  ; //** set to invisible :)
     set (gh_blk,"visible","off");  //** set to invisible -> faster version
@@ -191,7 +187,7 @@ function gh_blk = drawobj(o, gh_window)
   elseif typeof(o)=="Text" then //** Text draw
     //**  ------ Put the new graphics here -----------
     //**
-    o_size = size ( gh_curwin.children.children ) ; //** initial size
+    o_size = size ( gh_axes.children ) ; //** initial size
     exe_string = o.gui+'(''plot'',o)' ;
     execstr(o.gui+'(''plot'',o)') ;
    
@@ -203,14 +199,14 @@ function gh_blk = drawobj(o, gh_window)
     //** rect = stringbox(gh_curwin.children.children(1))                     ;
     //** xrect(rect(1,2),rect(2,2),rect(1,3)-rect(1,2),rect(2,2)-rect(2,4)) ;
 
-    if gh_curwin.children.children(1).type == 'Compound' then
+    if gh_axes.children(1).type == "Compound" then
 
-       matrix_dim = size(gh_curwin.children.children(1).children)
+       matrix_dim = size(gh_axes.children(1).children)
        imax = matrix_dim(1); jmax = matrix_dim(2);
        xvec = [] ; yvec = [] ; 
        for i=1:imax
           for j=1:jmax
-	    rect = stringbox( gh_curwin.children.children(1).children(i,j) ) 
+	    rect = stringbox( gh_axes.children(1).children(i,j) ) 
             xvec = [xvec rect(1,2) rect(1,3)]
 	    yvec = [yvec rect(2,2) rect(2,4)]
 	  end
@@ -222,7 +218,7 @@ function gh_blk = drawobj(o, gh_window)
     else //** single string
        //** 21/07/07: Al@n's patch for rotation of text
        //** get the handle of txt
-       gh_txt = gh_curwin.children.children(1)
+       gh_txt = gh_axes.children(1)
        //** get bounding box of text with no rotation
        rect = stringbox(gh_txt)
        x1=rect(1,2);y1=rect(2,2);w=rect(1,3)-rect(1,2);h=rect(2,2)-rect(2,4);
@@ -252,11 +248,11 @@ function gh_blk = drawobj(o, gh_window)
     gh_e.mark_mode = "off"        ; //** used
     gh_e.line_mode = "off"        ;
 
-    p_size = size ( gh_curwin.children.children ) ; //** size after the draw
+    p_size = size ( gh_axes.children ) ; //** size after the draw
     //** aggregate the graphics entities
     d_size =  p_size(1) - o_size(1) ;
 
-    gh_blk = glue( gh_curwin.children.children(d_size:-1:1) ) ;
+    gh_blk = glue( gh_axes.children(d_size:-1:1) ) ;
   
  end //** of the main if
 
