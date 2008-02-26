@@ -823,6 +823,25 @@ int sciDestroyConsole( sciPointObj * pThis )
 int sciStandardDestroyOperations( sciPointObj * pThis )
 {
   int res = 0 ;
+
+  /* Update current object if needed */
+  if (pThis == sciGetCurrentObj())
+  {
+    if (sciGetParent(pThis) != NULL)
+    {
+      sciSetCurrentObj(sciGetParent(pThis));
+    }
+    else if (getFirstFigure() != NULL)
+    {
+      sciSetCurrentObj(sciGetCurrentSubWin());
+    }
+    else
+    {
+      /* no more object */
+      sciSetCurrentObj(NULL);
+    }
+  }
+
   deleteObservers( pThis ) ;
   destroyHandleDrawer( pThis ) ;
   clearUserData( pThis ) ;

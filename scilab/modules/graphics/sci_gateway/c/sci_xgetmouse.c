@@ -25,6 +25,7 @@
 #include "GetProperty.h"
 #include "ObjectSelection.h"
 #include "WindowList.h"
+#include "Axes.h"
 /*--------------------------------------------------------------------------*/
 int sci_xgetmouse( char *fname,unsigned long fname_len )
 {
@@ -34,6 +35,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
   int pixelCoords[2];
   double userCoords2D[2];
+  sciPointObj * clickedSubwin = NULL;
 
   CheckRhs(0,2);
   CheckLhs(1,2);
@@ -67,11 +69,13 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   
   // Get return values
   mouseButtonNumber = getJxgetmouseMouseButtonNumber();
-  pixelCoords[0] = getJxgetmouseXCoordinate();
-  pixelCoords[1] = getJxgetmouseYCoordinate();
+  pixelCoords[0] = (int) getJxgetmouseXCoordinate();
+  pixelCoords[1] = (int) getJxgetmouseYCoordinate();
 
   // Convert pixel coordinates to user coordinates
-  sciGet2dViewCoordFromPixel(sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN), pixelCoords, userCoords2D);
+  clickedSubwin = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
+  updateSubwinScale(clickedSubwin);
+  sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
 
   switch (Lhs) {
   case 1: 
