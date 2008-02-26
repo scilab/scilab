@@ -26,7 +26,7 @@ function [scs_m,needcompile] = do_replace(scs_m, needcompile, Clipboard, Select)
 //** This function is able to replace any block with any other block. 
 //** Most of the works is done inside "changeports()".
   
-  gh_curwin = scf(curwin) //** set the the current window and recover the handle
+  gh_curwin = scf(curwin); //** set the the current window and recover the handle
   
   //** SOURCE OBJECT Preparation 
   o_n = Clipboard ; //** "Clipboard arrives with the correct graphic object 
@@ -46,7 +46,7 @@ function [scs_m,needcompile] = do_replace(scs_m, needcompile, Clipboard, Select)
   
   path = list('objs',k)      ; //** acquire the index in the "global" diagram
     
-  scs_m = changeports(scs_m, path, o_n);
+  scs_m = changeports(scs_m, path, o_n); //** this is the routine that do the dirty job
   
   //** upper level variable update  
   nc_save     = needcompile //** need explanation 

@@ -26,8 +26,9 @@ function [scs_m] = do_move(%pt, scs_m)
 //** 19 October 2007: I have prayed for all my sins : TXH to Alan Layec that
 //**                  has show me the way to redemption.
 
-//** Acquire the current window
-  gh_curwin = gh_current_window ;
+//** Acquire the current window and axes handles 
+  gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
 
 //** get block to move
   win = %win  ; //** recover 'clicked' window
@@ -136,19 +137,23 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 //**-----------------------------------------------------------------------------------
 
 //**-----------------------------------------------------------------------------------
-  gh_curwin = gh_current_window ;
-  drawlater(); //** stay in drawlater mode
+  //** Acquire the current window and axes handles 
+  gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
+
+  //** NO: for correct XOR operation in Scilab 5 you must work in drawnow() mode
+  drawnow(); 
+  //** drawlater(); //** go in drawlater mode
 
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
   //** I need an equivalent index for the graphics
 
-  o_size = size (gh_curwin.children.children ) ; //** the size: number of all the object
+  o_size = size (gh_axes.children ) ; //** the size: number of all the object
 
   //** "k" is the object index in the data structure "scs_m"
   //** compute the equivalent "gh_k" for the graphics datastructure
-  //gh_k = o_size(1) - k + 1 ; //** semi empirical equation :)
-  gh_k=get_gri(k,o_size(1))
-  gh_blk = gh_curwin.children.children(gh_k);
+  gh_k   = get_gri(k, o_size(1))
+  gh_blk = gh_axes.children(gh_k);
 
 //**-----------------------------------------------------------------------------------
 //
@@ -296,18 +301,18 @@ function scs_m = moveblock(scs_m,k,xc,yc)
   [mxx,nxx] = size(xx)
 
   if connected<>[] then // move a block and connected links
-    drawlater(); //** postpone the drawing
+    
+    //** NO: NO: NO: for Scilab 5
+    //** drawlater(); //** postpone the drawing
     [xmin,ymin] = getorigin(o) ;
     xc = xmin ;
     yc = ymin ;
 
     [xy,sz] = (o.graphics.orig,o.graphics.sz)
 
-    // clear block
-    //** drawobj(o)
-    //gr_k = o_size(1) - k + 1 ; //** from scs_m to gh_
-    gr_k=get_gri(k,o_size(1))
-    gh_block_invisible = gh_curwin.children.children(gr_k);
+    //** clear block
+    gr_k=get_gri(k,o_size(1)) ; //** from scs_m to gh_
+    gh_block_invisible = gh_axes.children(gr_k);
     gh_block_invisible.visible = "off"; //** put the block invisible
     gh_objs_invisible = [gh_objs_invisible gh_block_invisible] ; //** add at the list
 
@@ -316,6 +321,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     //** drawlater() ; //** go back in immediate_drawing = "off" :)
     //** show_pixmap() ; //** not useful on Scilab 5
 
+    //** -------------- eXORcist mode ON -------------------------------------------- 
     //**-------------------------------------------------------------
     gh_curwin.pixel_drawing_mode = "xor"  ; //** normal mode
     //** Interactive loop that move object and link
@@ -327,7 +333,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     //** Create the empty block rectangle and store the handles
     //** rectangle (block)
-    xrect(xc, yc+sz(2), sz(1), sz(2)) ; //** the empty rectangle block
+    xrect(xc, yc+sz(2), sz(1), sz(2)) ; //** the damned empty rectangle block
     gh_rect_bloc = gce() ;
     gh_rect_bloc.foreground = default_color(0) ;
     gh_interactive_move = [gh_interactive_move gh_rect_bloc] ;
@@ -445,9 +451,11 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     end //** ... end of while() loop
     //**-----------------------------------------------------------
-
+     
+    //** NO: For Scilab 5 
+    //** drawlater();
+    
     //** At the exit of the interactive loop pass to the "copy" mode
-    drawlater();
     gh_curwin.pixel_drawing_mode = "copy"  ; //** normal mode
 
     delete(gh_interactive_move) ; //** delete all the object used during the interc move
@@ -517,9 +525,9 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     end
 
     //** Clear the graphic window WITHOUT changing his paramaters ! :)
-    delete(gh_curwin.children.children) ; //** wipe out all the temp graphics object
+    delete(gh_axes.children) ; //** wipe out all the temp graphics object
     drawobjs(scs_m, gh_curwin) ;   //** re-draw all the graphics object
-    //** drawnow(); //** draw the graphic object and show on screen
+    //** drawnow(); //** draw the graphic object and show on screen (now included in "drawobjs()"
     //** show_pixmap() ; //** not useful on Scilab 5
 
 //**---  
@@ -537,7 +545,9 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     delta_move_x = 0 ; delta_move_y = 0 ; //** init 
 
-    drawlater(); 
+    //**  NO: for Scilab 5 
+    //** drawlater(); 
+    
     rep(3) = -1 ;
     while rep(3)==-1 , // move loop
 
@@ -594,18 +604,25 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 //**
 //** ----> This routine handle the main case of a LINK ONLY move <-----------------------------
 
-  gh_curwin = gh_current_window ;
-  drawlater(); //** stay in drawlater mode
+  //** Acquire the current clicked window handles
+  gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
+
+  //** NO: for Scilab 5 
+  //** drawlater(); //** stay in drawlater mode
+  
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure
   //** I need an equivalent index for the graphics
-  o_size = size (gh_curwin.children.children ) ; //** the size: number of all the object
+  o_size = size (gh_axes.children ) ; //** the size: number of all the object
   //** "k" is the object index in the data structure "scs_m"
   //** compute the equivalent "gh_k" for the graphics datastructure
-  //gh_k = o_size(1) - k + 1 ; //** semi empirical equation :)
-  gh_k=get_gri(k,o_size(1))
-  gh_blk = gh_curwin.children.children(gh_k);
-
-  drawlater(); //** postpone the drawing
+  gh_k   = get_gri(k,o_size(1));
+  gh_blk = gh_axes.children(gh_k);
+ 
+  //** NO: for Scilab 5
+  //** drawlater(); //** postpone the drawing
+  
+  //** ------------- eXORcist mode ON -------------------------------------------------------
   gh_curwin.pixel_drawing_mode = "xor"  ; //** xor mode
   gh_interactive_move = [] ; //** initialize the object vector
   o = scs_m.objs(k)
@@ -824,14 +841,14 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 
   //** Clear the graphic window WHITOUT changing his parameters AND recreate all the good graphics object
   drawlater() ;
-     delete(gh_curwin.children.children) ; //** wipe out all the temp graphics object
+     delete(gh_axes.children) ; //** wipe out all the temp graphics object
 
      gh_curwin.background = options.Background(1) ; //** "options" is sub structure of scs_m
-     gh_curwin.children.background =  options.Background(1) ;
+     gh_axes.background   = options.Background(1) ;
 
      gh_curwin.pixel_drawing_mode = "copy"  ; //** normal mode
      drawobjs(scs_m, gh_curwin) ;   //** re-draw all the graphics object
-  drawnow(); //** draw the graphic object and show on screen
+  //** drawnow(); //** draw the graphic object and show on screen: now included in drawobjs();
   //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction

@@ -27,20 +27,24 @@ function drawobjs(scs_m, gh_window)
    rhs = argn(2) ; //** get the number of right side arguments
    
    if rhs==1 then //** without arguments (default) assume ...
-       //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
+       //** 
        gh_curwin = gcf(); //** get the handle of the current graphics window
+       gh_axes   = gca(); //** and axes 
+       
        if exists('%scicos_with_grid') & %scicos_with_grid then
            drawgrid();
        end
 
        for i=1 : lstsize(scs_m.objs) //** draw object by object
             scs_m_index = i ; //** creation of a semiglobal variable for object indexing
-	    gh_blk = drawobj(scs_m.objs(i),gh_curwin);                                            
+	    gh_blk = drawobj(scs_m.objs(i), gh_curwin);
        end
 
     else //** the argument is explicit
-       //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
-       gh_curwin = gh_window ; //** get the handle of the current graphics window
+       //** 
+       gh_curwin = scf(gh_window) ; //** set the handle of the current graphics window
+       gh_axes   = gca();           //** and axes
+
        if exists('%scicos_with_grid') & %scicos_with_grid then
            drawgrid(gh_curwin);
        end
@@ -64,13 +68,8 @@ function drawobjs(scs_m, gh_window)
      end
    end
 
-   //** BEWARE : 
-   //** ----------------------> This section need revision <-------------------------------
-   //**
-   // gh_a = gca()               ; //** need some explanations
-   // drawtitle(scs_m.props)     ;
-   // show_info(scs_m.props.doc) ;
-   // draw(gh_a)                 ;
+   drawtitle(scs_m.props)     ; //** 
+   show_info(scs_m.props.doc) ; //** User defined function (usually empty, do nothing) 
    
    drawnow();
    //** show_pixmap() ; //** not useful on Scilab 5

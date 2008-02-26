@@ -27,7 +27,7 @@ function Addcolor_()
       scs_m.props.options = options ;
       set_cmap(scs_m.props.options('Cmap')) ;
       set_background() ;
-      //** Acquire the current clicked window 
+      //** Acquire the current clicked window handles
       gh_curwin = scf(%win) ;
       gh_axes = gca(); 
       //** Clear the graphic window WITHOUT changing his parameters ! :)

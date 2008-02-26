@@ -22,9 +22,13 @@
 function drawtitle(wpar)
 // draw window title
 //**
-//** 2 August 2007 :    
+//** 26 Feb 2008 : Update for Scilab 5 by Simone Mannori    
 //**
 
-xname(wpar.title(1)) ; //** BEWARE : OLD GRAPHICS INSTRUCTION ! 
+      //** Acquire the current clicked window handles
+      gh_curwin = gcf();
+      gh_axes   = gca(); 
+
+      gh_curwin.figure_name = wpar.title(1); //** put the title
 
 endfunction

@@ -28,7 +28,11 @@ function [scs_m] = do_stupidmove(%pt,Select,scs_m)
 //** 23 Nov 2006 : introduce some mechanism to limit the "off window" object move
 
 // Acquire the current window
-  gh_curwin = gh_current_window ;
+  //** gh_curwin = gh_current_window ;
+  gh_curwin = scf(%win) ;
+  gh_axes = gca();
+
+
 // get block to move
   rela = 0.1   ; //** "relative object position tollerance"
   win  = %win ;  //** window id
@@ -44,13 +48,13 @@ function [scs_m] = do_stupidmove(%pt,Select,scs_m)
   
   //** "k" is the object index in the data structure "scs_m"
   if k==[] then
-    return
-  end ;//** if NO object found -> exit
+    return ; //** if NO object found -> exit
+  end ;
 
   scs_m_save = scs_m ; //** make a backup of the data structure
 
   //**-------------------------------------------------------------------
-  if typeof(scs_m.objs(k))=='Link' then
+  if typeof(scs_m.objs(k))=="Link" then
     //**------------------- Link ------------------------------
     //** scs_m , k (scs_m object index), xc yc (mouse coordinate of the last valid event)
     scs_m = stupid_movecorner(scs_m, k, xc, yc, wh) ; //** see below in this file
@@ -59,9 +63,9 @@ function [scs_m] = do_stupidmove(%pt,Select,scs_m)
   //**------------------------------------------------------------------
 
   //** check if the windows was find closed by the previous function calls 
-  if Cmenu=='Quit' then
+  if Cmenu=="Quit" then
     //active window has been closed
-    [%win,Cmenu] = resume(%win, Cmenu)
+    [%win,Cmenu] = resume(%win, Cmenu) ; //** EXIT point 
   end
 
   [scs_m_save,enable_undo,edited,nc_save,needreplay] = resume(scs_m_save,%t,%t,needcompile,needreplay)
@@ -76,8 +80,9 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
   
   //**----------------------------------------------------------------------------------
   //** the code below is modified according the new graphics API
-  gh_curwin = gh_current_window ; 
-  
+  //** gh_curwin = gh_current_window ; 
+  gh_curwin = scf(%win) ;
+  gh_axes = gca();
   //**-----------------------------------------------------------------------------------
   //** Acquire axes phisical limits (visible limits are smaller)    
      
@@ -94,14 +99,12 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
   
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
   //** I need an equivalent index for the graphics 
-  o_size = size (gh_curwin.children.children ) ; //** the size:number of all the object 
+  o_size = size (gh_axes.children ) ; //** the size:number of all the object 
   
   //** "k" is the object index in the data structure "scs_m"
   //** compute the equivalent "gh_k" for the graphics datastructure 
-  //gh_k = o_size(1) - k + 1 ; //** semi empirical equation :) //** Updated by Alan 
-  gh_k = get_gri(k,o_size(1))
-  //** disp (gh_k);
-  gh_blk = gh_curwin.children.children(gh_k);
+  gh_k = get_gri(k,o_size(1)) ; //** Updated by Alan 
+  gh_blk = gh_axes.children(gh_k);
   
   //**-----------------------------------------------------------------------------------
   
@@ -157,10 +160,11 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
 
   //**-----------------------------------------------------------------
   
-  drawlater();
   rep(3) = -1;
+  //**---------------------------------------------------------------------
   while %t do
-    
+    drawlater(); //** go in draw later mode
+    //** ---------------------------------------------
     if with_gtk() then
       if rep(3)==10 then
 	global scicos_dblclk
@@ -170,25 +174,25 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
 	break
       end
     else
-
-      if or(rep(3)==[0,2,3,5,-5,-100]) then break,end ; //** exit point
-
+      if or(rep(3)==[0,2,3,5,-5,-100]) then
+        break ; ; //** exit point for the while loop 
+      end 
     end 
+    //** --------------------------------------------
 
     gh_blk.children.data = [X_start,Y_start ; x1, y1 ; X_end, Y_end ];
     //** draw(gh_curwin.children);
     drawnow();
-    drawlater(); //** go back in draw later mode
     //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse(0,[%t,%t]);
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-100 then
-         [%win,Cmenu] = resume(curwin,'Quit') ;
+         [%win,Cmenu] = resume(curwin,"Quit") ;
     end
 
-    //**------------------------------------------------------------------
+    //**--------------------------------
       //** Mouse movement limitation
        if rep(1)>x_min & rep(1)<x_max
 	   xc1 = rep(1);
@@ -197,13 +201,14 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
        if rep(2)>y_min & rep(2)<y_max
 	   yc1 = rep(2) 
        end
-    //**------------------------------------------------------------------
+    //**--------------------------------
 
     x1(2) = X1(2) - (xc - xc1) ;
     y1(2) = Y1(2) - (yc - yc1) ;
   end //** of the while "interactive" loop
-  
-  drawnow();   
+  //**---------------------------------------------------------------------
+
+  drawnow(); //** be sure to stay in drawnow mode    
   //**------------------------------------------------------------------
 
   gh_figure = gcf();

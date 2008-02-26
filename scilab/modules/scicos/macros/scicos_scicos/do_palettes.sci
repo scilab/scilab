@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [palettes,windows] = do_palettes(palettes,windows)
+function [palettes,windows] = do_palettes(palettes, windows)
 
 
   global ClipboardPal
@@ -29,10 +29,12 @@ function [palettes,windows] = do_palettes(palettes,windows)
     kpal = choose(scicos_pal(:,1),'Choose a Palette')
     
     //** if no Palette are choosen the exit 
-    if kpal==0 then return,end
+    if kpal==0 then
+        return ; //** EXIT point 
+    end
   else
-    kpal=ClipboardPal
-    ClipboardPal=[]
+    kpal = ClipboardPal ;
+    ClipboardPal = []   ; 
   end
   
   lastwin = curwin ; //** save the current graphic window_id 
@@ -58,10 +60,12 @@ function [palettes,windows] = do_palettes(palettes,windows)
       //xset('window',curwin)
     end
     
-    windows=[windows;[-kpal curwin]]
-    palettes = add_palette(palettes,scicos_pal(kpal,2),kpal)
+    windows = [windows; [-kpal curwin] ];
+    palettes = add_palette(palettes, scicos_pal(kpal,2),kpal); 
     
-    if palettes(kpal)==list() then return,end
+    if palettes(kpal)==list() then
+      return; //** EXIT point 
+    end
   
   else //selected palettes is already loaded 
   
@@ -72,14 +76,15 @@ function [palettes,windows] = do_palettes(palettes,windows)
   //** Alan : no grid for palette
   %scicos_with_grid = %f ;
 
-  //
-  //** xset('window',curwin),
+
   gh_current_window = [];
   
   gh_current_window = scf(curwin) ; //** open a graphic window and get the handler
   gh_curwin = gh_current_window   ;
-  gh_palette = gh_curwin          ;
+  gh_axes   = gca()               ;
   
+  gh_palette  = gh_curwin          ;
+  gh_pal_axes = gh_axes            ;
   //** delete the unuseful menu options 
 
   if ~MSDOS then
@@ -108,20 +113,20 @@ function [palettes,windows] = do_palettes(palettes,windows)
   //**-------------------------------------------------------
   rect = dig_bound(palettes(kpal));
   if rect==[] then rect=[0 0 400,600],end
-  %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
+  %wsiz = [rect(3)-rect(1),rect(4)-rect(2)];
   // window size is limited to 400 x 300 : ajust dimensions
   // to remain isometric.
   
   if %wsiz(1)<400 then 
-    rect(1)=rect(1)-(400-%wsiz(1))/2
-    rect(3)=rect(3)+(400-%wsiz(1))/2
-    %wsiz(1)=400 
+    rect(1) = rect(1)-(400-%wsiz(1))/2 ;
+    rect(3) = rect(3)+(400-%wsiz(1))/2 ;
+    %wsiz(1)= 400; 
   end
 
   if %wsiz(2)<300 then 
-    rect(2)=rect(2)-(300-%wsiz(2))/2
-    rect(4)=rect(4)+(300-%wsiz(2))/2
-    %wsiz(2)=300 
+    rect(2) = rect(2)-(300-%wsiz(2))/2 ;
+    rect(4) = rect(4)+(300-%wsiz(2))/2 ;
+    %wsiz(2)= 300; 
   end
 
   %zoom = 1.2
@@ -151,11 +156,7 @@ function [palettes,windows] = do_palettes(palettes,windows)
   wrect = [0 0 1 1] ; //** default value 
   frect = [rect(1) rect(2) ; rect(3) rect(4)] ; //** vector to matrix conversion       ; 
   arect = [1 1 1 1] / 32 ; //** 1/32 of margin  
-
-  gh_pal_axes = gh_palette.children ;
-
-
-  
+ 
   gh_pal_axes.axes_bounds = wrect ; //** default : axes_bounds = [0,0,1,1] = [xmin ymin xmax ymax] 
  
   gh_pal_axes.data_bounds = frect ; //** default : data_bounds = [0,0 ; 1,1] = [xmin ymin ; xmax ymax ]
@@ -164,7 +165,7 @@ function [palettes,windows] = do_palettes(palettes,windows)
  
   gh_pal_axes.mark_mode = "off"   ;
 
-  options = palettes(kpal).props.options
+  options = palettes(kpal).props.options ;
     
   //** I switch to the direct acces 
   gh_palette.background = options.Background(1) ; //** "options" is sub structure of scs_m  

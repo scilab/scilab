@@ -25,9 +25,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
 //** Change the size (w,h) of a Block
 //** 02/12/06-@l@n- : use of objects permutation in
 //**                  gh_curwin.children.children()
-
 //** 8 Aug 2007 : improved version 
-
 
   win = %win;
 
@@ -49,7 +47,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
   //** filter the object type
   if K<>[] then
 
-    if typeof(scs_m.objs(K))=='Block' then
+    if typeof(scs_m.objs(K))=="Block" then
     //** ----- Block ------------------------------------------
       
       //** save the diagram for  
@@ -79,7 +77,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
       end //** of ok
 
     elseif typeof(scs_m.objs(K))=="Link" then
-    //** it is a Link
+    //** ----- Link ------------------------------------------
       //** extract some link parameter
       [pos,ct] = (scs_m.objs(K).thick, scs_m.objs(K).ct) ;
       Thick = pos(1) ;
@@ -89,21 +87,17 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
 			          list('vec','1','vec',1),[string(Thick);string(Type)])
       if ok then
 	edited = or(scs_m.objs(K).thick<>[Thick,Type]) ; //** set flag if the parm are edited
-	scs_m.objs(K).thick = [Thick,Type]             ; //** update the 'scs_m' data structure
-        //** quick update for new graphics
-        //<<<<<<<<<<<<<<<<<
+	scs_m.objs(K).thick = [Thick, Type]            ; //** update the 'scs_m' data structure
+        //** update for new graphics (Scilab 5)
         drawlater() ;
-        gh_curwin = gh_current_window;
-        o_size = size(gh_curwin.children.children); 
-        gr_k = get_gri(K,o_size(1)) ; //** semi empirical equation :)
-        // This is done in accord to drawobj
-        gh_curwin.children.children(gr_k).children(1).thickness = ...
-                             maxi( scs_m.objs(K).thick(1) , 1) * ...
-                             maxi(scs_m.objs(K).thick(2), 1) ;
-        //** draw(gh_curwin.children);
+          gh_curwin = scf(%win) ;
+          gh_axes   = gca(); 
+          o_size = size(gh_axes.children); 
+          gr_k = get_gri(K, o_size(1)) ; 
+          gh_axes.children(gr_k).children(1).thickness = maxi(scs_m.objs(K).thick(1) , 1) * maxi(scs_m.objs(K).thick(2), 1) ;
+          //** draw(gh_curwin.children);
         drawnow(); 
         //** show_pixmap() ; //** not useful on Scilab 5
-        //>>>>>>>>>>>>>>>>>>>
       end
 
     else
