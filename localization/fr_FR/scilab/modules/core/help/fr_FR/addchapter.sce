@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/core/help/'+getlanguage();
-add_help_chapter("Module Core",path,%T);
+add_help_chapter("Scilab",path,%T);
 clear path add_help_chapter;
 // ====================================================================
