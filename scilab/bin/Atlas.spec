@@ -6,6 +6,7 @@ GenuineIntel Family 15 Model  3 Atlas_PIVHT.dll      # Pentium IV (Prescott)
 GenuineIntel Family 15 Model  2 Atlas_PIVHT.dll      # Pentium IV with Hyperthreading
 GenuineIntel Family 15 Model  * Atlas_PIV.dll        # Pentium IV
 GenuineIntel Family  6 Model 15 Atlas_C2D.dll        # Core Duo , Core 2 Duo
+GenuineIntel Family  6 Model 14 Atlas_C2D.dll        # Core Duo , Core 2 Duo
 GenuineIntel Family  6 Model  9 Atlas_PIII.dll       # Pentium M
 GenuineIntel Family  6 Model  8 Atlas_PIII.dll       # Pentium III (Coppermine)
 GenuineIntel Family  6 Model  7 Atlas_PIII.dll       # Pentium III (Katmai)
