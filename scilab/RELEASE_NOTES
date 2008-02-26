@@ -56,9 +56,9 @@ such as units property management are no yet available.
 
 - Some license issues have not been fixed.
 
--  .sce / .sci file associations are disabled in this alpha version
+- .sce / .sci file associations are disabled in this alpha version
 
--  Postscript export is not available for this alpha version
+- Postscript export is not available for this alpha version
 
 Scilab 4.0 Release_Notes
 ***************************
