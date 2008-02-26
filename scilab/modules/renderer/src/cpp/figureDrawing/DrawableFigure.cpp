@@ -112,6 +112,14 @@ void DrawableFigure::drawInContext( void )
   endDrawing() ;
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::redrawInContext( void )
+{
+  // force update of all the graphic hierarchy
+  familyHasChanged();
+  // draw as usual
+  drawInContext();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFigure::draw( void )
 { 
   if ( !checkAutoRedraw() && !isDisplayingSingleObject() )

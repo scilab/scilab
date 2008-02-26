@@ -32,10 +32,15 @@ public:
 
   /**
    * Real operations to draw the figure.
-   * Can be only called if the rendering context (canvas)
-   * is created
+   * Can only be called within the OpenGL thread
    */
   virtual void drawInContext( void ) ;
+
+  /**
+   * redraw all the figure and all its chidren
+   * Can only be called within the OpenGL thread
+   */
+  void redrawInContext( void );
 
   /**
    * Like display but to display only a single object

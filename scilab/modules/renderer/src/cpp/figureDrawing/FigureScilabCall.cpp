@@ -55,7 +55,7 @@ void redrawFigure(int figureId)
   }
 
   startFigureDataDisplaying(curFig);
-  redrawHierarchy(curFig);
+  (sciGraphics::getFigureDrawer(curFig))->redrawInContext() ;
   endFigureDataDisplaying(curFig);
 }
 /*--------------------------------------------------------------------------*/
