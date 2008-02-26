@@ -4,19 +4,16 @@ demos_name=[
     'Simple Thermostat'
     'Continuous Plant discrete controller'
     'Simple demo'
-    'Bouncing ball'
     'Table lookup example'
     'Threshold'
     'Scilab Block'
     'Thermostat'
     'Fibonacci'
-    'Cont.Disc-Observer.cosf'
-    'Controller.cosf'
-    'System-Observer.cosf'
-	'bouncing balls'	
+    'Cont.Disc-Observer'
+    'Controller'
+    'System-Observer'	
     'Synchro Block demo'
     'Kalman filter'
-    'Discrete-Kalman Filter'
     'Inverted Pendulum'
     'Lorentz attractor'
     'Datatype'
@@ -24,15 +21,14 @@ demos_name=[
     'WaterTank'
     'Goto/From Demonstration'];
 
-// disabled problem with .au file
-//if ~MSDOS then demos_name=[demos_name;'sound demo'];end
-if with_modelica_compiler() then
-  demos_name=[demos_name;
-              'Colpitts oscillator'
-	      'Electrical circuit: RLC'
-	      'Electrical circuit: Rectifier'
-              'Regulated Thermo Hydraulic plant'];
-end
+//** Modelica is disabled in this alpha release 
+// if with_modelica_compiler() & then
+//  demos_name=[demos_name;
+//              'Colpitts oscillator'
+//	      'Electrical circuit: RLC'
+//	      'Electrical circuit: Rectifier'
+//              'Regulated Thermo Hydraulic plant'];
+// end
 
 //    demos_name=[demos_name;'Live tutorials']        
 
@@ -46,10 +42,10 @@ while %t do
    scicos('SCI/modules/scicos/demos/Discrete-KalmanFilter.cosf');
   case 'Inverted Pendulum' then
    exec (SCI+'/modules/scicos/demos/setw.sci');
-   getf(SCI+'/macros/scicos_blocks/Sources/RAND_m.sci');
+   // getf(SCI+'/macros/scicos_blocks/Sources/RAND_m.sci');
    scicos('SCI/modules/scicos/demos/Inverted_pendulum.cosf');
   case 'Lorentz attractor' then
-   scicos('SCI/modules/scicos/demos/Lorentz.cosf');
+   scicos('SCI/modules/scicos/demos/Lorentz.cos');
   case 'Datatype' then
    scicos('SCI/modules/scicos/demos/demo_Datatype.cosf');
   case 'Digital Pulse Generator' then
@@ -57,15 +53,15 @@ while %t do
   case 'WaterTank' then
    scicos('SCI/modules/scicos/demos/demo_watertank.cosf');
   case 'Kalman filter' then  
-    scicos('SCI/modules/scicos/demos/Kalman_1.cosf');
+    scicos('SCI/modules/scicos/demos/Kalman_1.cos');
   case 'Simple Thermostat' then  
-    scicos('SCI/modules/scicos/demos/Simple_Thermostat.cosf');
+    scicos('SCI/modules/scicos/demos/Simple_Thermostat.cos');
   case 'Continuous Plant discrete controller' then  
     scicos('SCI/modules/scicos/demos/Plant_DiscreteController.cosf');
   case 'Simple demo' then  
     scicos('SCI/modules/scicos/demos/Simple_Demo.cosf');
   case 'Bouncing ball' then  
-    scicos('SCI/modules/scicos/demos/Bouncing_ball.cosf');	
+    scicos('SCI/modules/scicos/demos/Bouncing_ball.cos');	
   case 'Table lookup example' then  
     scicos('SCI/modules/scicos/demos/Table_Lookup.cosf');	
   case 'Threshold' then  
@@ -73,15 +69,15 @@ while %t do
   case 'Scilab Block' then  
     scicos('SCI/modules/scicos/demos/Scilab_Block.cosf');	
   case 'Thermostat' then  
-    scicos('SCI/modules/scicos/demos/Temp.cosf');	
+    scicos('SCI/modules/scicos/demos/Temp.cos');	
   case 'Fibonacci' then  
-    scicos('SCI/modules/scicos/demos/fibo.cosf');
-  case 'Cont.Disc-Observer.cosf' then  
-    scicos('SCI/modules/scicos/demos/Cont.Disc-Observer.cosf');
-  case 'Controller.cosf' then  
-    scicos('SCI/modules/scicos/demos/Controller.cosf');
-  case 'System-Observer.cosf' then  
-    scicos('SCI/modules/scicos/demos/System-Observer.cosf');
+    scicos('SCI/modules/scicos/demos/fibo.cos');
+  case 'Cont.Disc-Observer' then  
+    scicos('SCI/modules/scicos/demos/Cont.Disc-Observer.cos');
+  case 'Controller' then  
+    scicos('SCI/modules/scicos/demos/Controller.cos');
+  case 'System-Observer' then  
+    scicos('SCI/modules/scicos/demos/System-Observer.cos');
   case 	'bouncing balls' then
     scicos('SCI/modules/scicos/demos/bounce.cosf');
 //  case 'Live demo' then
