@@ -50,8 +50,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
 	private static final long serialVersionUID = 7939976395338222763L;
 	
-	private static final int WINDOW_WIDTH = 400;
-	private static final int MESSAGE_HEIGHT = 100;
+	private static final int WINDOW_WIDTH = 650;
+	private static final int MESSAGE_HEIGHT = 200;
 	private static final int LISTBOX_HEIGHT = 200;
 	
 	private static final int X_MESSAGE_TYPE = 0;
