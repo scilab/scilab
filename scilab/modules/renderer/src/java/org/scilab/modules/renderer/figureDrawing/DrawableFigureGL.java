@@ -271,18 +271,15 @@ public class DrawableFigureGL extends ObjectGL {
 	    gl.glMatrixMode(GL.GL_MODELVIEW);
 	    gl.glLoadIdentity();
 	    
-	    // not needed here it should be drawn first
-	    gl.glDisable(GL.GL_DEPTH_TEST);
 	    gl.glColor3d(color[0], color[1], color[2]);
 	    
-	    // draw it in the back just to be sure
+	    // draw it in the back
 	    gl.glBegin(GL.GL_QUADS);
-	    gl.glVertex3d(0.0, 0.0, 1.0);
-	    gl.glVertex3d(1.0, 0.0, 1.0);
-	    gl.glVertex3d(1.0, 1.0, 1.0);
-	    gl.glVertex3d(0.0, 1.0, 1.0);
+	    gl.glVertex3d(0.0, 0.0, -1.0);
+	    gl.glVertex3d(1.0, 0.0, -1.0);
+	    gl.glVertex3d(1.0, 1.0, -1.0);
+	    gl.glVertex3d(0.0, 1.0, -1.0);
 	    gl.glEnd();
-	    gl.glEnable(GL.GL_DEPTH_TEST);
   	}
   	
   	
