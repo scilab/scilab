@@ -19,7 +19,7 @@ Graphical User Interface:
  - Completion on variable and function names avaible using TAB key or CTRL-SPACE
 
 Graphics:
-==========
+=========
  - New rendering engine based on JOGL (Java Binding for the OpenGL API):
 	* Support 3D hardware acceleration.
 	* Facet ordering issues fixed with the use of Z-buffer.
@@ -33,7 +33,7 @@ Graphics:
 	* relocate_handle - Move handles inside the graphic hierarchy.
 
 Graphic file export:
-=================
+====================
   - xs2jpeg, xs2png functions added to export graphics under jpeg and png formats.     	
   - Removed functions xs2emf and xs2fig from export graphics.
 
@@ -138,10 +138,6 @@ Source reorganisation:
 New Scilab Functions:
 =====================
  - Function rewrited from Fortran to C for better maintenance
-
-
-Scipad editor:
-==============
 
 
 Time and date functions:
@@ -336,7 +332,7 @@ Internal API:
 	+ "f" => EXTERNAL_DATATYPE
 	These declarations are in modules/core/includes/stackTypeVariable.h
  - define TRUE_ and FALSE_ removed for TRUE and FALSE
-
+ - Many other things... Have a look to the sources...
 
 
                      Main Changes Scilab 3.0 -> 4.0
