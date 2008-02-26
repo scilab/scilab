@@ -16,7 +16,6 @@ function bOK = configure_msvc()
 //  functions defined only in configure_msvc
 //==========================================
 function bOK = set_msvc90pro()
-  // NEED TO INSTALL .NET 2008 Pro to check
   bOK = %F;
   try
     MSVSDir = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VisualStudio\9.0\Setup\VS\Pro','ProductDir');
@@ -27,7 +26,6 @@ function bOK = set_msvc90pro()
 endfunction
 //==========================================
 function bOK = set_msvc90std()
-  // NEED TO INSTALL .NET 2008 Std to check
   bOK = %F;
   try
     MSVSDir = winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VisualStudio\9.0\Setup\VS\Std','ProductDir');
@@ -344,6 +342,56 @@ endfunction
 function bOK = commons_msvc90(MS_VS_DIRECTORY)
   bOK = %F;
   if (MS_VS_DIRECTORY <> '') then
+    if ( part(MS_VS_DIRECTORY,length(MS_VS_DIRECTORY)) == filesep() ) then 
+      MSVSDir = part(MS_VS_DIRECTORY,1:length(MS_VS_DIRECTORY)-1);
+    end;
+  
+    err = setenv('VSINSTALLDIR',MSVSDir);
+    if (err == %F) then bOK = %F,return,end
+
+    SDK = get_ms_SDK();
+    if SDK <> '' then
+      err = setenv('WindowsSdkDir',SDK);
+      if (err == %F) then bOK = %F,return,end
+    end
+  
+    MSVCDir = MSVSDir + filesep() + 'VC';
+    err = setenv('VCINSTALLDIR',MSVCDir);
+    if (err == %F) then bOK = %F,return,end
+  
+    DevEnvDir = MSVSDir + filesep() + 'Common7\IDE';
+    err = setenv('DevEnvDir',DevEnvDir);
+    if (err == %F) then bOK = %F,return,end
+  
+    PATH = getenv('PATH','ndef');
+    if (PATH == 'ndef') then  bOK = %F,return,end
+  
+    err=setenv('PATH',DevEnvDir + pathsep() + ..
+               MSVCDir + filesep() + 'bin' + pathsep() + ..
+               MSVSDir + filesep() + 'Common7\Tools'+ pathsep() + ..
+               MSVCDir + filesep() + 'VCPackages' + pathsep() + ..
+               PATH + pathsep() + ..
+               WSCI + filesep() + 'bin' + pathsep());
+    if (err == %F) then bOK=%F,return,end
+  
+    INCLUDE = getenv('INCLUDE','');  
+    INCLUDE = MSVCDir + filesep() + 'INCLUDE' + pathsep() + ..
+              SDK + pathsep() + ..
+              INCLUDE;
+
+    
+    err = setenv('INCLUDE',INCLUDE);
+    if (err == %F) then bOK = %F,return,end
+  
+    LIB = getenv('LIB','');  
+    LIB = MSVCDir + filesep() + 'LIB' + pathsep() + ..
+          SDK + filesep() + 'lib' + pathsep() + ..
+          LIB;
+    err = setenv('LIB',LIB);
+    if (err == %F) then bOK = %F,return,end
+
+  
+    bOK = %T;
   end
 endfunction
 //==========================================
