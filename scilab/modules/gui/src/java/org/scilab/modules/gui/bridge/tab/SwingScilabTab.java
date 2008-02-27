@@ -48,6 +48,8 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -91,6 +93,9 @@ public class SwingScilabTab extends View implements SimpleTab {
 		super.repaint();
 		if (isActive()) {
 			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getName());
+			// Draw the parent Window, if do no do that, parent Window has no more 
+			// a toolbar/menubar drawn when active tab is killed
+			((Window) UIElementMapper.getCorrespondingUIElement(parentWindowId)).draw();
 		}
 	}
 	
