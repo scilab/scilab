@@ -87,27 +87,28 @@ function [palettes,windows] = do_palettes(palettes, windows)
   gh_pal_axes = gh_axes            ;
   //** delete the unuseful menu options 
 
-  if ~MSDOS then
+  if ~MSDOS then //** Unix case
     delmenu(curwin,'3D Rot.')
     delmenu(curwin,'UnZoom')
     delmenu(curwin,'Zoom')
     delmenu(curwin,'Edit')
     delmenu(curwin,'Insert')
-  else
-     //** This function create problem under Windows
-     //** toolbar(curwin, "off"); //** by Vincent C.
+  
+  else //** Windows case
      // French
-        // delmenu(curwin,'&Fichier')
     	delmenu(curwin,'&Editer')
   	delmenu(curwin,'&Outils')
   	delmenu(curwin,'&Inserer')
      // English
-  	  // delmenu(curwin,'&File')
         delmenu(curwin,'&Edit')
         delmenu(curwin,'&Tools')
         delmenu(curwin,'&Insert')
   end
   
+//** This function MAY cause problems
+  toolbar(curwin, "off"); //** by Vincent C.
+  drawnow(); //** by SM & AC   
+
   //** BEWARE : OLD GRAPHICS !
   xselect(); //** rise the current graphics window 
  

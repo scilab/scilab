@@ -52,9 +52,8 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
     delmenu(curwin,'UnZoom')
     delmenu(curwin,'Zoom')
     delmenu(curwin,'Edit')
-  else  //** Windows case
-     //** This function create problem under Windows
-     //**   toolbar(curwin, "off"); //** by Vincent C. 
+  
+  else //** Windows case
      // French
   	delmenu(curwin,'&Editer')
   	delmenu(curwin,'&Outils')
@@ -64,6 +63,10 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
   	delmenu(curwin,'&Tools')
 	delmenu(curwin,'&Insert')
   end
+
+//** This function MAY cause problems
+  toolbar(curwin, "off"); //** by Vincent C.
+  drawnow(); //** by SM & AC 
 
   rect = dig_bound(scs_m);
 

@@ -29,14 +29,17 @@ if ~MSDOS then
   delmenu(curwin,_('File'))
   delmenu(curwin,_('Insert'))
 else
- //** This function cause problems under Windows 
- //** toolbar(curwin, "off"); //** by Vincent C.
  // Use Scilab Localisation
   delmenu(curwin,_('File'))
   delmenu(curwin,_('Edit'))
   delmenu(curwin,_('Tools'))
   delmenu(curwin,_('Insert'))
   end
+
+//** This function MAY cause problems
+  toolbar(curwin, "off"); //** by Vincent C.
+  drawnow(); //** by SM & AC 
+
 menuss    = menus        ;
 menuss(1) = menus(1)(2:$);
 menubar(curwin,menuss)   ; 
