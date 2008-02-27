@@ -24,9 +24,12 @@ function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select
 // do_delete - delete a scicos object
 // get first object to delete
 
-if %win<>curwin then disp('window mismatch in do_delete'),return,end
+  if %win<>curwin then
+    disp("Window mismatch in do_delete"); 
+    return ; //** EXIT point 
+  end
 
-  Select=Select(find(Select(:,2)==curwin),:)  //make sure only current window selects are considered
+  Select = Select(find(Select(:,2)==curwin),:)  //make sure only current window selects are considered
 
   win = %win;
   xc = %pt(1); yc = %pt(2)  ;
@@ -56,37 +59,38 @@ if %win<>curwin then disp('window mismatch in do_delete'),return,end
   //**              to update the graphics datastructure: now the coherency is
   //**              re-estabilished (La-Li-Lu-Le-Lo).
 
-  gh_curwin = gh_current_window ; //** acquire the current window handler
+  //** gh_curwin = gh_current_window ; //** acquire the current window handler
+  gh_curwin = scf(%win) ;
+  gh_axes = gca(); 
 
   if DEL<>[] then //** if any object has been deleted .....
 
     needcompile = 4 ; //** signal to the compiler
 
-    //**Update Selection
-    if (Select<>[]) & ...
-           (find(Select(:,2)==gh_curwin.figure_id))<>[] then
-        new_Select=[]
+    //** Update Selection
+    if (Select<>[]) & (find(Select(:,2)==gh_curwin.figure_id))<>[] then
+        new_Select = []
         for i=1:size(Select,1)
             if find(Select(i,1)==DEL)==[] | ...
-             find(Select(i,2)==gh_curwin.figure_id)==[] then
-               new_Select=[new_Select;
-                           Select(i,:)];
+             find(Select(i,2)==%win)==[] then
+               new_Select = [new_Select; Select(i,:)];
             end
         end
-        Select=new_Select;
+        Select = new_Select;
     end
 
     //suppress right-most deleted elements
     //** while ("the last elements of "scs_m.objs" is 'Deleted' type ....
-    while getfield(1,scs_m.objs($)) == 'Deleted' then
+    while getfield(1,scs_m.objs($)) == "Deleted" then
 
       scs_m.objs($) = null(); //** erase the 'Deleted' elements from scs_m.objs
-      gh_object_to_delete = gh_curwin.children.children(1); //** the top element
+      gh_object_to_delete = gh_axes.children(1); //** the top element
       delete(gh_object_to_delete) ; //** delete the elements from the graphics datastructure 
                                     //** in order to mantain the coherency 
       if lstsize(scs_m.objs)==0 then
            break
       end
+
     end
 
     [scs_m_save,nc_save,enable_undo,edited,needreplay] = resume(scs_m_save,nc_save,%t,%t,needreplay);
