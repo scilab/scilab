@@ -13,13 +13,5 @@
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/version.dtd">
 
 <MODULE_VERSION name="shell">
-
-<VERSION>
-	<major>5</major>
-	<minor>0</minor>
-	<maintenance>0</maintenance>
-	<revision>0</revision>
-	<string>unstable-svn</string>
-</VERSION>
-
+<VERSION major="5" minor="0" maintenance="0" revision="0" string="unstable-svn" />
 </MODULE_VERSION>
