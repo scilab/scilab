@@ -37,8 +37,8 @@ else
   end
 
 //** This function MAY cause problems
-  toolbar(curwin, "off"); //** by Vincent C.
-  drawnow(); //** by SM & AC 
+  //** toolbar(curwin, "off"); //** by Vincent C.
+  //** drawnow(); //** by SM & AC 
 
 menuss    = menus        ;
 menuss(1) = menus(1)(2:$);

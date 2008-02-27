@@ -106,8 +106,8 @@ function [palettes,windows] = do_palettes(palettes, windows)
   end
   
 //** This function MAY cause problems
-  toolbar(curwin, "off"); //** by Vincent C.
-  drawnow(); //** by SM & AC   
+  //** toolbar(curwin, "off"); //** by Vincent C.
+  //** drawnow(); //** by SM & AC   
 
   //** BEWARE : OLD GRAPHICS !
   xselect(); //** rise the current graphics window 

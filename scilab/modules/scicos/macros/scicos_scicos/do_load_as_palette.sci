@@ -65,8 +65,8 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
   end
 
 //** This function MAY cause problems
-  toolbar(curwin, "off"); //** by Vincent C.
-  drawnow(); //** by SM & AC 
+  //** toolbar(curwin, "off"); //** by Vincent C.
+  //** drawnow(); //** by SM & AC 
 
   rect = dig_bound(scs_m);
 
