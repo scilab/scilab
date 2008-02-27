@@ -124,10 +124,10 @@
         </submenu> 
         <separator/>
         <submenu label="Figure properties" mnemonic="F"> 
-            <callback instruction="ged(7,[SCILAB_FIGURE_ID]);" type="0"/>
+            <callback instruction="ged(8,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
         <submenu label="Axes properties" mnemonic="A"> 
-            <callback instruction="ged(8,[SCILAB_FIGURE_ID]);" type="0"/>
+            <callback instruction="ged(9,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
         <separator/>
         <submenu label="Start entity picker" mnemonic="S"> 
