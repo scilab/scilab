@@ -278,7 +278,7 @@ msgstr ""
 #
 # File: src/c/stack2.c, line: 1178
 #, c-format
-msgid "%s: Wrong type for argument %d: Mmatrix expected.\n"
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
 
 #

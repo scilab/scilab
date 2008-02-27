@@ -1182,7 +1182,7 @@ int C2F(getmatdims)(integer *number,integer *m,integer *n)
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   typ = *istk(il );
   if (typ > sci_strings) {
-    Scierror(199,_("%s: Wrong type for argument %d: Mmatrix expected.\n"), fname,*number);
+    Scierror(199,_("%s: Wrong type for argument %d: Matrix expected.\n"), fname,*number);
     return  FALSE;
   }
   *m = *istk(il + 1);
