@@ -568,15 +568,14 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       winsize = gh_current_window.figure_size;
       axsize  = gh_current_window.axes_size;
 
-      if or(winsize > axsize+21) then   // +21 is to compensate for
-					// scrollbar under windows
-					//disp(winsize,axsize)
-        //viewport=xget('viewport')
-        //viewport=max([0,0],min(viewport,-winsize+axsize))
-	viewport=[0,0]
-	window_set_size(gh_current_window, viewport)
-	drawnow();
-      end
+      //* if or(winsize > axsize+21) then   // +21 is to compensate for
+      //* 					// scrollbar under windows
+      //*                                   //viewport=xget('viewport')
+      //*                                   //viewport=max([0,0],min(viewport,-winsize+axsize))
+      //*	viewport=[0,0]
+      //**	window_set_size(gh_current_window, viewport)
+      //**	drawnow();
+      //** end
 
       if edited then
 	// store win dims, it should only be in do_exit but not possible
