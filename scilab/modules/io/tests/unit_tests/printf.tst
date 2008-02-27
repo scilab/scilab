@@ -28,11 +28,11 @@ printf("printf test 9:<%-20s>\n", "bar");
 //==================================
 printf("printf test 10: 123456789012345\n");
 //==================================
-printf("printf test 11:<%15s>\n", "h�yesterettsjustitiarius");
+printf("printf test 11:<%15s>\n", "høyesterettsjustitiarius");
 //==================================
 printf("printf test 12: 123456789012345678901234567890\n");
 //==================================
-printf("printf test 13:<%30s>\n", "h�yesterettsjustitiarius");
+printf("printf test 13:<%30s>\n", "høyesterettsjustitiarius");
 //==================================
 printf("printf test 14:%5.2f\n", -12.34);
 //==================================
