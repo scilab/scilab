@@ -35,7 +35,7 @@ if type(B) <> 10 then pause, end
 // Test 2.3
 A = getversion("scilab");
 if type(A) <> 1          then pause, end
-if or( size(A) <> [1 6]) then pause, end
+if or( size(A) <> [1 4]) then pause, end
 
 // Test 2.4
 A = getversion("scilab","string_info")
@@ -46,7 +46,7 @@ module_list = getmodules();
 for i=1:size(module_list,"*")
 	A = getversion(module_list(i));
 	B = getversion(module_list(i),"string_info");
-	if type(A) <> 10 then pause, end
-	if type(B) <> 1         then pause, end
-	if or( size(B) <> [1 6] then pause, end
+	if type(A) <> 1 then pause, end
+	if type(B) <> 10 then pause, end
+	if or( size(B) <> [1 1]) then pause, end
 end
