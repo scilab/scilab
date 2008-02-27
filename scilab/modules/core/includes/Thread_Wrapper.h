@@ -29,6 +29,7 @@
 	#define	pthread_t								HANDLE
 	#define	pthread_create(t,u,f,d)					*(t)=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)f,d,0,NULL)
 	#define	pthread_join(thread, result)			((WaitForSingleObject((thread),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(thread))
+	#define	pthread_cancel(thread)					TerminateThread(thread,0)
 
     /* returns to previous version with mutex */
     /* I don't want to manage a exception here on some windows and not some others */
