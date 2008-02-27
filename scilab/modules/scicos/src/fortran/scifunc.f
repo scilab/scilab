@@ -32,6 +32,10 @@ c     Copyright INRIA
       integer mlhs,mrhs
       logical allowptr
 C
+Cc (DLL Intel Fortran)     
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /scsptr/
+cDEC$ ENDIF  
       common /scsptr/ ptr   
 c
 

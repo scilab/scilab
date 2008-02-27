@@ -22,6 +22,12 @@ c
 c
 c
       include 'stack.h'
+
+Cc (DLL Intel Fortran)     
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /cosdebugcounter/
+cDEC$ ENDIF      
+      
       common /cosdebugcounter/ counter
       logical getrhsvar, createvar,checklhs,checkrhs
       integer counter

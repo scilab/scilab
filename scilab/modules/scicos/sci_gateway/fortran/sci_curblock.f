@@ -23,6 +23,10 @@ c
 c
       include 'stack.h'
       integer kfun
+Cc (DLL Intel Fortran)     
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /curblk/
+cDEC$ ENDIF  
       common /curblk/ kfun
       integer iadr, sadr
       character*(*) fname

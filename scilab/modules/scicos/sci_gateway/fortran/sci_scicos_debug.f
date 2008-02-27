@@ -23,6 +23,11 @@ c
 c
 c
       include 'stack.h'
+Cc (DLL Intel Fortran)     
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /cosdebug/
+cDEC$ ENDIF      
+      
       common /cosdebug/ cosd
       logical getrhsvar, createvar,checklhs,checkrhs
       integer cosd
