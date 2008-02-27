@@ -1633,6 +1633,8 @@ Optional Packages:
   --with-umfpack-include=DIR
                           Set the path to the UMFPACK headers
   --with-fftw             Compile with the FFTW 3 library
+  --with-fftw-include=DIR Set the path to the FFTW headers
+  --with-fftw-library=DIR Set the path to the FFTW libraries
   --with-pvm              Compile with PVM library
   --with-pvm-include=DIR  Set the path to the PVM headers
   --with-pvm-library=DIR  Set the path to the PVM library
@@ -9779,7 +9781,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 9782 "configure"
+// #line 9784 "configure"
 
 
 public class conftest {
@@ -9829,7 +9831,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9832 "configure"
+// #line 9834 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -9877,7 +9879,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 9880 "configure"
+// #line 9882 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -9904,7 +9906,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 9907 "configure"
+// #line 9909 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11120,7 +11122,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11123 "configure"
+// #line 11125 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11186,7 +11188,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11189 "configure"
+// #line 11191 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11252,7 +11254,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11255 "configure"
+// #line 11257 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11318,7 +11320,7 @@ echo $ECHO_N "checking jrosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11321 "configure"
+// #line 11323 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -11384,7 +11386,7 @@ echo $ECHO_N "checking jrosetta-engine... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11387 "configure"
+// #line 11389 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -11450,7 +11452,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11453 "configure"
+// #line 11455 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -16723,6 +16725,30 @@ fi
 FFTW_ENABLE=no
 if test "$with_fftw" = yes; then
 
+
+
+# Check whether --with-fftw_include was given.
+if test "${with_fftw_include+set}" = set; then
+  withval=$with_fftw_include; with_fftw_include=$withval
+else
+  with_fftw_include='yes'
+
+fi
+
+
+
+# Check whether --with-fftw_library was given.
+if test "${with_fftw_library+set}" = set; then
+  withval=$with_fftw_library; with_fftw_library=$withval
+else
+  with_fftw_library='yes'
+
+fi
+
+
+if test "x$with_fftw_include" != "xyes"; then
+	save_CFLAGS="$CFLAGS"
+	CFLAGS="-I$with_fftw_include"
 	if test "${ac_cv_header_fftw3_h+set}" = set; then
   { echo "$as_me:$LINENO: checking for fftw3.h" >&5
 echo $ECHO_N "checking for fftw3.h... $ECHO_C" >&6; }
@@ -16854,7 +16880,149 @@ echo "${ECHO_T}$ac_cv_header_fftw3_h" >&6; }
 
 fi
 if test $ac_cv_header_fftw3_h = yes; then
-  :
+  FFTW3_CFLAGS="$CFLAGS"
+else
+  { { echo "$as_me:$LINENO: error: Cannot find headers (fftw3.h) of the library FFTW in $with_fftw_include. Please install the dev package (Debian : libfftw3-dev)" >&5
+echo "$as_me: error: Cannot find headers (fftw3.h) of the library FFTW in $with_fftw_include. Please install the dev package (Debian : libfftw3-dev)" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+	CFLAGS="$save_CFLAGS"
+else
+	if test "${ac_cv_header_fftw3_h+set}" = set; then
+  { echo "$as_me:$LINENO: checking for fftw3.h" >&5
+echo $ECHO_N "checking for fftw3.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_fftw3_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_fftw3_h" >&5
+echo "${ECHO_T}$ac_cv_header_fftw3_h" >&6; }
+else
+  # Is the header compilable?
+{ echo "$as_me:$LINENO: checking fftw3.h usability" >&5
+echo $ECHO_N "checking fftw3.h usability... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <fftw3.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+echo "${ECHO_T}$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ echo "$as_me:$LINENO: checking fftw3.h presence" >&5
+echo $ECHO_N "checking fftw3.h presence... $ECHO_C" >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <fftw3.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+echo "${ECHO_T}$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: accepted by the compiler, rejected by the preprocessor!" >&5
+echo "$as_me: WARNING: fftw3.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: proceeding with the compiler's result" >&5
+echo "$as_me: WARNING: fftw3.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: present but cannot be compiled" >&5
+echo "$as_me: WARNING: fftw3.h: present but cannot be compiled" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h:     check for missing prerequisite headers?" >&5
+echo "$as_me: WARNING: fftw3.h:     check for missing prerequisite headers?" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: see the Autoconf documentation" >&5
+echo "$as_me: WARNING: fftw3.h: see the Autoconf documentation" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h:     section \"Present But Cannot Be Compiled\"" >&5
+echo "$as_me: WARNING: fftw3.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: proceeding with the preprocessor's result" >&5
+echo "$as_me: WARNING: fftw3.h: proceeding with the preprocessor's result" >&2;}
+    { echo "$as_me:$LINENO: WARNING: fftw3.h: in the future, the compiler will take precedence" >&5
+echo "$as_me: WARNING: fftw3.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------------------------- ##
+## Report this to http://www.scilab.org/cgi-bin/bugzilla_bug_II/ ##
+## ------------------------------------------------------------- ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ echo "$as_me:$LINENO: checking for fftw3.h" >&5
+echo $ECHO_N "checking for fftw3.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_fftw3_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_cv_header_fftw3_h=$ac_header_preproc
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_fftw3_h" >&5
+echo "${ECHO_T}$ac_cv_header_fftw3_h" >&6; }
+
+fi
+if test $ac_cv_header_fftw3_h = yes; then
+  FFTW3_CFLAGS=""
 else
   { { echo "$as_me:$LINENO: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)" >&5
 echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)" >&2;}
@@ -16862,6 +17030,85 @@ echo "$as_me: error: Cannot find headers (fftw3.h) of the library fftw. Please i
 fi
 
 
+fi
+
+
+# --with-fftw-library set then check in this dir
+if test "x$with_fftw_library" != "xyes"; then
+	save_LIBS="$LIBS"
+	LIBS="-L$with_fftw_library -lfftw3"
+	{ echo "$as_me:$LINENO: checking for fftw_plan_dft_r2c in -lfftw3" >&5
+echo $ECHO_N "checking for fftw_plan_dft_r2c in -lfftw3... $ECHO_C" >&6; }
+if test "${ac_cv_lib_fftw3_fftw_plan_dft_r2c+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lfftw3  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char fftw_plan_dft_r2c ();
+int
+main ()
+{
+return fftw_plan_dft_r2c ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_fftw3_fftw_plan_dft_r2c=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_fftw3_fftw_plan_dft_r2c=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_fftw3_fftw_plan_dft_r2c" >&5
+echo "${ECHO_T}$ac_cv_lib_fftw3_fftw_plan_dft_r2c" >&6; }
+if test $ac_cv_lib_fftw3_fftw_plan_dft_r2c = yes; then
+  FFTW3_LIB="-L$with_fftw_library -lfftw3"
+else
+  { { echo "$as_me:$LINENO: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c) in $with_fftw_library. Check if libfftw3 is installed and if the version is correct" >&5
+echo "$as_me: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c) in $with_fftw_library. Check if libfftw3 is installed and if the version is correct" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+	LIBS="$save_LIBS"
+else
 	save_LIBS="$LIBS"
 	{ echo "$as_me:$LINENO: checking for fftw_plan_dft_r2c in -lfftw3" >&5
 echo $ECHO_N "checking for fftw_plan_dft_r2c in -lfftw3... $ECHO_C" >&6; }
@@ -16925,7 +17172,7 @@ fi
 { echo "$as_me:$LINENO: result: $ac_cv_lib_fftw3_fftw_plan_dft_r2c" >&5
 echo "${ECHO_T}$ac_cv_lib_fftw3_fftw_plan_dft_r2c" >&6; }
 if test $ac_cv_lib_fftw3_fftw_plan_dft_r2c = yes; then
-  FFTW3_LIB=-lfftw3
+  FFTW3_LIB="-lfftw3"
 else
   { { echo "$as_me:$LINENO: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c). Check if libfftw3 is installed and if the version is correct" >&5
 echo "$as_me: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c). Check if libfftw3 is installed and if the version is correct" >&2;}
@@ -16934,11 +17181,13 @@ echo "$as_me: error: libfftw3 : library missing. (Cannot find symbol fftw_plan_d
 fi
 
 	LIBS="$save_LIBS"
+fi
 
 
 cat >>confdefs.h <<\_ACEOF
 #define WITH_FFTW
 _ACEOF
+
 
 
    FFTW_ENABLE=yes
@@ -23562,7 +23811,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23565 "configure"
+#line 23814 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -23946,7 +24195,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 23949 "configure"
+#line 24198 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -25140,13 +25389,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:25143: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:25392: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:25146: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:25395: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:25149: output\"" >&5)
+  (eval echo "\"\$as_me:25398: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -26231,7 +26480,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 26234 "configure"' > conftest.$ac_ext
+  echo '#line 26483 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -27864,11 +28113,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27867: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28116: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:27871: \$? = $ac_status" >&5
+   echo "$as_me:28120: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -28186,11 +28435,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28189: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28438: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:28193: \$? = $ac_status" >&5
+   echo "$as_me:28442: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -28291,11 +28540,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28294: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28543: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:28298: \$? = $ac_status" >&5
+   echo "$as_me:28547: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -28346,11 +28595,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28349: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28598: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:28353: \$? = $ac_status" >&5
+   echo "$as_me:28602: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -31175,7 +31424,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31178 "configure"
+#line 31427 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31275,7 +31524,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31278 "configure"
+#line 31527 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -33313,11 +33562,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33316: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33565: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:33320: \$? = $ac_status" >&5
+   echo "$as_me:33569: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -33412,11 +33661,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33415: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33664: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33419: \$? = $ac_status" >&5
+   echo "$as_me:33668: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33464,11 +33713,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33467: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33716: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33471: \$? = $ac_status" >&5
+   echo "$as_me:33720: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -34847,11 +35096,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34850: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:35099: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:34854: \$? = $ac_status" >&5
+   echo "$as_me:35103: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -34946,11 +35195,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34949: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:35198: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:34953: \$? = $ac_status" >&5
+   echo "$as_me:35202: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -34998,11 +35247,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:35001: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:35250: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:35005: \$? = $ac_status" >&5
+   echo "$as_me:35254: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -40329,6 +40578,7 @@ echo ""
 if test $FFTW_ENABLE = yes;  then
    echo "FFTW Configuration:"
    echo "FFTW LIBS .......... = $FFTW3_LIB"
+   echo "FFTW CFLAGS ........ = $FFTW3_CFLAGS"
 else
    echo "Not using FFTW"
 fi

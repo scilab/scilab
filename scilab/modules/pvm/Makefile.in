@@ -1404,9 +1404,9 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	fi )
 
 @PVM_TRUE@install-html-local:
-@PVM_TRUE@	echo "-- Install of htm help files --"; \
-@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
+@PVM_TRUE@	@echo "-- Install of htm help files --"; \
+@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@PVM_TRUE@	for dir in $(DOCDIRS) ; do \
 @PVM_TRUE@	 if test -d $$dir; then \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
@@ -1417,9 +1417,9 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	 fi; \
 @PVM_TRUE@	done
-@PVM_TRUE@	echo "-- Install of images help files --"; \
-@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@PVM_TRUE@	@for dir in $(DOCIMGDIRS) ; do \
+@PVM_TRUE@	@echo "-- Install of images help files --"; \
+@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@PVM_TRUE@	for dir in $(DOCIMGDIRS) ; do \
 @PVM_TRUE@	 if test -d $$dir; then \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
@@ -1432,7 +1432,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	done
 
 # If the user wants the help sources to be installed
-@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	@echo "-- Install of XML sources of help files --"; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 if test -d $$dir; then \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
@@ -1571,9 +1572,9 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	fi )
 
 @PVM_FALSE@install-html-local:
-@PVM_FALSE@	echo "-- Install of htm help files --"; \
-@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
+@PVM_FALSE@	@echo "-- Install of htm help files --"; \
+@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@PVM_FALSE@	for dir in $(DOCDIRS) ; do \
 @PVM_FALSE@	 if test -d $$dir; then \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @PVM_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
@@ -1584,9 +1585,9 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		fi; \
 @PVM_FALSE@	 fi; \
 @PVM_FALSE@	done
-@PVM_FALSE@	echo "-- Install of images help files --"; \
-@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@PVM_FALSE@	@for dir in $(DOCIMGDIRS) ; do \
+@PVM_FALSE@	@echo "-- Install of images help files --"; \
+@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@PVM_FALSE@	for dir in $(DOCIMGDIRS) ; do \
 @PVM_FALSE@	 if test -d $$dir; then \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @PVM_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
@@ -1599,7 +1600,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	done
 
 # If the user wants the help sources to be installed
-@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	@echo "-- Install of XML sources of help files --"; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 if test -d $$dir; then \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \

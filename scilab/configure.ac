@@ -1232,6 +1232,7 @@ echo ""
 if test $FFTW_ENABLE = yes;  then
    echo "FFTW Configuration:"
    echo "FFTW LIBS .......... = $FFTW3_LIB"
+   echo "FFTW CFLAGS ........ = $FFTW3_CFLAGS"
 else
    echo "Not using FFTW"
 fi

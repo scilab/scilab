@@ -137,9 +137,9 @@ DOCIMGMASK = *
 DOCMASKXML = *.xml
 
 install-html-local:
-	echo "-- Install of htm help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCDIRS) ; do \
+	@echo "-- Install of htm help files --"; \
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+	for dir in $(DOCDIRS) ; do \
 	 if test -d $$dir; then \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
@@ -150,9 +150,9 @@ install-html-local:
 		fi; \
 	 fi; \
 	done
-	echo "-- Install of images help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCIMGDIRS) ; do \
+	@echo "-- Install of images help files --"; \
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+	for dir in $(DOCIMGDIRS) ; do \
 	 if test -d $$dir; then \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
@@ -166,7 +166,8 @@ install-html-local:
 
 if INSTALL_HELP_XML 
 # If the user wants the help sources to be installed
-	@for dir in $(DOCDIRS) ; do \
+	@echo "-- Install of XML sources of help files --"; \
+	for dir in $(DOCDIRS) ; do \
 	 if test -d $$dir; then \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \

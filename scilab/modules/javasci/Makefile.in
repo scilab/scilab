@@ -976,9 +976,9 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	fi )
 
 @JAVASCI_TRUE@install-html-local:
-@JAVASCI_TRUE@	echo "-- Install of htm help files --"; \
-@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@JAVASCI_TRUE@	@for dir in $(DOCDIRS) ; do \
+@JAVASCI_TRUE@	@echo "-- Install of htm help files --"; \
+@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@JAVASCI_TRUE@	for dir in $(DOCDIRS) ; do \
 @JAVASCI_TRUE@	 if test -d $$dir; then \
 @JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @JAVASCI_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
@@ -989,9 +989,9 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		fi; \
 @JAVASCI_TRUE@	 fi; \
 @JAVASCI_TRUE@	done
-@JAVASCI_TRUE@	echo "-- Install of images help files --"; \
-@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@JAVASCI_TRUE@	@for dir in $(DOCIMGDIRS) ; do \
+@JAVASCI_TRUE@	@echo "-- Install of images help files --"; \
+@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@JAVASCI_TRUE@	for dir in $(DOCIMGDIRS) ; do \
 @JAVASCI_TRUE@	 if test -d $$dir; then \
 @JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @JAVASCI_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
@@ -1004,7 +1004,8 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	done
 
 # If the user wants the help sources to be installed
-@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	@echo "-- Install of XML sources of help files --"; \
+@INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	 if test -d $$dir; then \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \

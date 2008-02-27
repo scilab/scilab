@@ -1561,9 +1561,9 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	fi )
 
 @TCLTK_TRUE@install-html-local:
-@TCLTK_TRUE@	echo "-- Install of htm help files --"; \
-@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_TRUE@	@echo "-- Install of htm help files --"; \
+@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@TCLTK_TRUE@	for dir in $(DOCDIRS) ; do \
 @TCLTK_TRUE@	 if test -d $$dir; then \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
@@ -1574,9 +1574,9 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		fi; \
 @TCLTK_TRUE@	 fi; \
 @TCLTK_TRUE@	done
-@TCLTK_TRUE@	echo "-- Install of images help files --"; \
-@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@TCLTK_TRUE@	@for dir in $(DOCIMGDIRS) ; do \
+@TCLTK_TRUE@	@echo "-- Install of images help files --"; \
+@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@TCLTK_TRUE@	for dir in $(DOCIMGDIRS) ; do \
 @TCLTK_TRUE@	 if test -d $$dir; then \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
@@ -1589,7 +1589,8 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	done
 
 # If the user wants the help sources to be installed
-@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	@echo "-- Install of XML sources of help files --"; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 if test -d $$dir; then \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \
@@ -1728,9 +1729,9 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@	fi )
 
 @TCLTK_FALSE@install-html-local:
-@TCLTK_FALSE@	echo "-- Install of htm help files --"; \
-@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@TCLTK_FALSE@	@echo "-- Install of htm help files --"; \
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@TCLTK_FALSE@	for dir in $(DOCDIRS) ; do \
 @TCLTK_FALSE@	 if test -d $$dir; then \
 @TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
@@ -1741,9 +1742,9 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@		fi; \
 @TCLTK_FALSE@	 fi; \
 @TCLTK_FALSE@	done
-@TCLTK_FALSE@	echo "-- Install of images help files --"; \
-@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-@TCLTK_FALSE@	@for dir in $(DOCIMGDIRS) ; do \
+@TCLTK_FALSE@	@echo "-- Install of images help files --"; \
+@TCLTK_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
+@TCLTK_FALSE@	for dir in $(DOCIMGDIRS) ; do \
 @TCLTK_FALSE@	 if test -d $$dir; then \
 @TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
@@ -1756,7 +1757,8 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_FALSE@	done
 
 # If the user wants the help sources to be installed
-@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	@for dir in $(DOCDIRS) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	@echo "-- Install of XML sources of help files --"; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	for dir in $(DOCDIRS) ; do \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 if test -d $$dir; then \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASKXML) >/dev/null 2>&1; then \

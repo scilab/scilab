@@ -51,7 +51,8 @@ libscifftw_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.
 libscifftw_la_CFLAGS=  	-Iincludes/ \
 			-Isrc/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes \
+			$(FFTW3_CFLAGS)
 
 libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
