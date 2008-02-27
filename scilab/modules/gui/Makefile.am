@@ -113,7 +113,6 @@ sci_gateway/c/sci_setmenu.c \
 sci_gateway/c/sci_getlookandfeel.c \
 sci_gateway/c/sci_getinstalledlookandfeels.c \
 sci_gateway/c/sci_setlookandfeel.c \
-sci_gateway/c/sci_about.c \
 sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_uigetdir.c \

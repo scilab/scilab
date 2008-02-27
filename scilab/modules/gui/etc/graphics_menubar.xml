@@ -146,7 +146,7 @@
         </submenu>
         <separator/>
         <submenu label="About Scilab..." mnemonic="A"> 
-            <callback instruction="notavailablemessage();" type="0"/>
+            <callback instruction="about()" type="0"/>
         </submenu>
     </menu>
 </menubar>

@@ -9,15 +9,14 @@
 
   <DATE>$LastChangedDate$</DATE>
 
-  <SHORT_DESCRIPTION name="about">show "about scilab" dialog box
-  (Windows)</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="about">show "about scilab" dialog box</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>about()</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
-    <P>show "about scilab" dialog box (Windows).</P>
+    <P>show "about scilab" dialog box.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[about()

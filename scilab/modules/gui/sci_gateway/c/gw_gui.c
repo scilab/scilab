@@ -35,7 +35,6 @@ static gw_generic_table Tab[]=
 	{C2F(sci_getlookandfeel),"getlookandfeel"},
 	{C2F(sci_getinstalledlookandfeels),"getinstalledlookandfeels"},
 	{C2F(sci_setlookandfeel),"setlookandfeel"},
-	{C2F(sci_about),"about"},
 	{C2F(sci_ClipBoard),"ClipBoard"},
 	{sci_toolbar,"toolbar"},
 	{sci_uigetdir,"uigetdir"},
