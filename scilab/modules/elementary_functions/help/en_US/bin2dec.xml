@@ -27,7 +27,7 @@
     <CALLING_SEQUENCE_ITEM>y=bin2dec(str)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
-  <PARAM>apt-get install rar unrar unace-nonfree
+  <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>str</PARAM_NAME>
