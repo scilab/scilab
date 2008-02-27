@@ -15,11 +15,8 @@
 #include "ContextMenu.h" /* createContextMenu */
 sciPointObj * CreateUIContextMenu(void)
 {
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
-
   sciPointObj *pobj = (sciPointObj *) NULL;
-  sciUimenu *ppobj=NULL;
+  sciUicontextmenu *ppobj=NULL;
 
   if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)
     {	
