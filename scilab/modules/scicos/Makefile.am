@@ -155,11 +155,12 @@ macros/scicos_scicos/Threshold.cosf
 
 
 #### scicos : demos files ####
+#### Custom Scicos Demos for Scilab 5.0 ALPHA #########
 libsciscicos_la_demosdir=$(mydatadir)
 nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
-demos/Bouncing_ball.cosf \
+demos/Bouncing_ball.cos \
 demos/CodeGen \
-demos/Cont.Disc-Observer.cosf \
+demos/Cont.Disc-Observer.cos \
 demos/Controller.cosf \
 demos/demo_Datatype.cosf \
 demos/demo_flipflop.cosf \
@@ -169,17 +170,17 @@ demos/dialogs_play.sci \
 demos/dialogs.sci \
 demos/Discrete-KalmanFilter.cosf \
 demos/Electrical \
-demos/fibo.cosf \
+demos/fibo.cos \
 demos/Finite_state_Buck.cosf \
 demos/Finite_state_SwingUp.cosf \
 demos/goto_demo.cosf \
 demos/Hydraulics.cosf \
 demos/Ifsub.cosf \
 demos/imppart_Hydraulics.mo \
-demos/Inverted_pendulum.cosf \
-demos/Kalman_1.cosf \
+demos/Inverted_pendulum.cos \
+demos/Kalman_1.cos \
 demos/live.dat \
-demos/Lorentz.cosf \
+demos/Lorentz.cos \
 demos/MBlock \
 demos/Plant_DiscreteController.cosf \
 demos/scicos.dem \
@@ -189,11 +190,11 @@ demos/Scilab_Block.cosf \
 demos/setw.sci \
 demos/Signal_Builder.cosf \
 demos/Simple_Demo.cosf \
-demos/Simple_Thermostat.cosf \
+demos/Simple_Thermostat.cos \
 demos/sound.cosf \
-demos/System-Observer.cosf \
+demos/System-Observer.cos \
 demos/Table_Lookup.cosf \
-demos/Temp.cosf \
+demos/Temp.cos \
 demos/Thermique_bloc.cosf \
 demos/Threshold_ZeroCrossing.cosf \
 demos/tut1 \
