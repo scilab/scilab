@@ -26,7 +26,6 @@
 #include "readline_nw.h"
 #include "prompt.h"
 #include "MALLOC.h"
-#include "command.h"
 #include "dynamic_menus.h"
 #include "HistoryManager.h"
 #include "scilabmode.h"
@@ -260,7 +259,7 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
 * a pointer to an allocated zone (alloc) where
 * the read characters are stored is returned 
 ***************************************************/
-char * readline_nw (char *prompt, int interrupt)
+char * readline_nw (char *prompt)
 {
 	unsigned char cur_char;
 	char *new_line = NULL;
@@ -293,7 +292,7 @@ char * readline_nw (char *prompt, int interrupt)
 	{
 		cur_char = msdos_getch();
 
-		if (interrupt&&(ismenu () == 1))
+		if (ismenu () == 1)
 		{
 			/* abort current line aquisition SS */
 			sendprompt=0;

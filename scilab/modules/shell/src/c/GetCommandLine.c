@@ -31,7 +31,7 @@
 #define WK_BUF_SIZE 520
 
 #define NUL '\0'
-
+#define strdup _strdup
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[10];
 
@@ -166,7 +166,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   ** or fortran will be lost !!!!
   */
   strcpy(buffer, __CommandLine);
-  *len_line = strlen(buffer);
+  *len_line = (int)strlen(buffer);
   *eof = FALSE;
 }
 

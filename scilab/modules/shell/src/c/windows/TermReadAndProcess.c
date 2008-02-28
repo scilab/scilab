@@ -12,24 +12,32 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-
+#include "HistoryManager.h"
 #include "TermReadAndProcess.h"
-#include "command.h"
+#include "MALLOC.h"
 #include "prompt.h"
+#include "readline_nw.h"
 /*--------------------------------------------------------------------------*/
-extern char input_line[MAX_LINE_LEN + 1]; /* defined in command.c */
-
+#define strdup _strdup
+/*--------------------------------------------------------------------------*/
 char * TermReadAndProcess(void)
 {
 	static char save_prompt[10];
 	char *line = NULL;
-	int i = 0;
-	int interrupt = 0;
+	char *returnedline = NULL;
 
 	GetCurrentPrompt(save_prompt);
-	i = read_line (save_prompt,interrupt);
-	line =  strdup(input_line);
-	return line;
-	
+
+	line = readline_nw (save_prompt);
+	if (line)
+	{
+		returnedline = strdup(line);
+		appendLineToScilabHistory(line);
+		FREE(line);
+		line = NULL;
+	}
+	strcpy(save_prompt,"");
+	return returnedline;
+
 }
 /*--------------------------------------------------------------------------*/

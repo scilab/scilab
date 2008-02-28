@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../core/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes"
+				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../core/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -128,7 +128,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../core/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes"
+				AdditionalIncludeDirectories=".;windows;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../../libs/intl;../../../console/includes/;../../../core/includes;../../../output_stream/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../history_manager/includes/;../../../action_binding/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -208,10 +208,6 @@
 			</File>
 			<File
 				RelativePath=".\windows\clrscrPart_nw.c"
-				>
-			</File>
-			<File
-				RelativePath=".\windows\command.c"
 				>
 			</File>
 			<File
@@ -296,10 +292,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\windows\command.h"
-				>
-			</File>
-			<File
 				RelativePath=".\windows\gotoxy_nw.h"
 				>
 			</File>
@@ -344,16 +336,24 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\LibScilab_Import.def"
+		<Filter
+			Name="Import"
 			>
-		</File>
+			<File
+				RelativePath=".\LibScilab_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\sciconsole_Import.def"
+				>
+			</File>
+			<File
+				RelativePath=".\Scilab_windows_Import.def"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"
-			>
-		</File>
-		<File
-			RelativePath=".\sciconsole_Import.def"
 			>
 		</File>
 		<File

@@ -11,10 +11,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include <stdio.h>
 #ifdef _MSC_VER
 #include <conio.h>
 #endif
+#include <stdio.h>
 #include "more.h"
 #include "scilabmode.h"
 #include "localization.h"
@@ -35,15 +35,11 @@ int linesmore(void)
 
 #if _MSC_VER
 		ch = _getch();
+		if ( (ch != ' ') && (ch != 13) && (ch != 'y') ) retval = 1;
 #else
 		ch = getchar();
-#endif
-
-		#if _MSC_VER
-		if ( (ch != ' ') && (ch != 13) && (ch != 'y') ) retval = 1;
-		#else
 		if ( (ch != ' ') && (ch != '\n') && (ch != 'y') ) retval = 1;
-		#endif
+#endif
 
 		sciprint("\n");
 	}
