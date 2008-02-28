@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <setjmp.h>
 #include <signal.h>
+#include "Thread_Wrapper.h"
 #include "scilab_main.h"
 #include "machine.h"
 #include "scilabmode.h"
@@ -27,9 +28,14 @@ static void interrupt (int an_int);
 /*--------------------------------------------------------------------------*/
 jmp_buf env;
 /*--------------------------------------------------------------------------*/
+__declspec(dllexport) __threadSignal	LaunchScilab;
+__declspec(dllexport) __threadLock	LaunchScilabLock;
+/*--------------------------------------------------------------------------*/
 void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
 {
-	setbuf (stderr, (char *) NULL);
+  __InitSignal(&LaunchScilab);
+  __InitLock(&LaunchScilabLock);
+  setbuf (stderr, (char *) NULL);
 	if (!setjmp (env))
 	{
 		/* first time */
