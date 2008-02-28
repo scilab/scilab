@@ -37,6 +37,13 @@
  *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
  */
 /*--------------------------------------------------------------------------*/
+
+#ifdef _MSC_VER
+	#define IMPORT_SIGNAL __declspec(dllimport)
+#else
+	#define IMPORT_SIGNAL extern
+#endif
+
 typedef int (*Scig_command_handler) __PARAMS((char *));
 typedef struct commandRec
 {
@@ -54,7 +61,7 @@ extern void write_scilab  __PARAMS((char *s));
 /*
 ** Extern Signal to say we git a StoreCommand.
 */
-extern __threadSignal LaunchScilab;
+IMPORT_SIGNAL __threadSignal LaunchScilab;
 
 #ifdef _MSC_VER
 extern BOOL IsToThePrompt(void);
