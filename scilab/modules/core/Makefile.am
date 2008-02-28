@@ -1,10 +1,10 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -28,7 +28,6 @@ src/c/realmain.c \
 src/c/stack3.c \
 src/c/str2sci.c \
 src/c/cluni0.c \
-src/c/flags.c \
 src/c/getmodules.c \
 src/c/fromc.c \
 src/c/setgetSCIpath.c \
@@ -306,7 +305,7 @@ libscicore_la_CFLAGS=  	-Iincludes/ \
                         -I$(top_srcdir)/modules/string/includes
 
 # Used by sci_getdebuginfo:
-if TCLTK 
+if TCLTK
 libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
 		                  $(TK_INC_PATH)
 endif
