@@ -12,6 +12,9 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#ifdef _MSC_VER
+#include <conio.h>
+#endif
 #include "more.h"
 #include "scilabmode.h"
 #include "localization.h"
