@@ -5,9 +5,6 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-# List of the cpp files
-SHELL_CPP_SOURCES =
-
 # List of the c files
 SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
@@ -54,12 +51,12 @@ libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TERMCAP_LIB)
 pkglib_LTLIBRARIES = libscishell.la
 
 # All the sources needed by libscishell.la
-libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(SHELL_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
 libscishell_la_LIBADD = \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/completion/libscicompletion.la
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/completion/libscicompletion.la
 
 modulename=shell
 
