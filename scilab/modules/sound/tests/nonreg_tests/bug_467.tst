@@ -33,10 +33,10 @@
 //    z = wavread('c:\b.wav',100000);   
 // ...
 
-result = execstr("[x,y] = wavread(SCI+''/modules/sound/nonreg_tests/bug_467.wav'',''size'')","errcatch","n");
+result = execstr("[x,y] = wavread(SCI+''/modules/sound/tests/nonreg_tests/bug_467.wav'',''size'')","errcatch","n");
 
 if result <> 0 then pause,end
 
 if result == 0 then 
-   if execstr("z = wavread(SCI+""/modules/sound/nonreg_tests/bug_467.wav"",10)","errcatch","n") <> 0 then pause,end
+   if execstr("z = wavread(SCI+""/modules/sound/tests/nonreg_tests/bug_467.wav"",10)","errcatch","n") <> 0 then pause,end
 end
