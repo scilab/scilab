@@ -42,6 +42,7 @@ if test ! -z $SCIVERBOSE; then
 else
 	SCIVERBOSE=0
 fi
+
 if test -n "$SCI"; then
 	if test ! -d "$SCI/modules"; then
 		echo "Cannot find directory $SCI/modules/ !"
@@ -67,7 +68,7 @@ start_debug() {
 }
 
 start_profiling() {
-	VALGRIND_OPTIONS=" --num-callers=6 --demangle=no --leak-check=yes --smc-check=all --db-attach=yes "
+	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=6 --demangle=no --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --suppressions=$SCI/tools/profiling/valgrind.supp"
 	  if test -n "$DEVENV"; then
 		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
 		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
@@ -79,7 +80,8 @@ start_profiling() {
 }
 
 start_profiling_visu() {
-	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --dump-instr=yes --trace-jump=yes "
+	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes"
+#--dump-instr=yes 
 	if test -n "$DEVENV"; then
 		echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
 		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
@@ -723,21 +725,21 @@ if test "$rest" = "yes"; then
 	if test -n "$PROFILING"; then
 		start_profiling
 	else
-	if test -n "$PROFILING_VISU"; then
-		start_profiling_visu
-	else
-		if test -n "$ELECTRIC_FENCE"; then
-			start_electric_fence
+		if test -n "$PROFILING_VISU"; then
+			start_profiling_visu
 		else
-			if test -n "$now"; then
-				sci_exe="do_scilex_now"
-				$sci_exe $sci_args
+			if test -n "$ELECTRIC_FENCE"; then
+				start_electric_fence
 			else
-				sci_exe="do_scilex"
-				$sci_exe $sci_args
-			fi
-		fi
-    fi
-	fi
-  fi
-fi
+				if test -n "$now"; then
+					sci_exe="do_scilex_now"
+					$sci_exe $sci_args
+				else
+					sci_exe="do_scilex"
+					$sci_exe $sci_args
+				fi # now
+			fi # Not electric fense
+		fi # not profiling visu
+	fi # not profiling
+  fi #not debug
+fi # if rest
