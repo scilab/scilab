@@ -1,79 +1,124 @@
-Scilab 5.0 Alpha Release_Notes
-******************************
+                      Scilab 5.0 Alpha Release_Notes
+                      ==============================
 
-Please note that Scilab 5.0 alpha version still contains some well known bug, messing features and may have some slow behaviours.
-It is a testing only version, it should only be used to test what will be 
+Please note that Scilab 5.0 alpha version still contains some well known bug,
+messing features and may have some slow behaviours.
+It is a testing only version, it should only be used to test what will be
 Scilab 5 family and not at all in production environment.
-The period between the alpha and beta/stable versions will mainly be used to 
+The period between the alpha and beta/stable versions will mainly be used to
 debug and optimize Scilab.
 
 List of missing/buggy features:
 
-- Some menus/buttons functionnalities are not yet available in GUIs. 
-A click on them will display a dialog box.
+
+- Some menus/buttons functionnalities are not yet available in GUIs.
+  A click on them will display a dialog box.
+
 
 - Uicontrols have been mapped to java objects. However some functionnalities
-such as units property management are no yet available.
+  such as units property management are no yet available.
+
 
 - Uicontrols ascendant incompatibilities:
-        * Figure size has to be increased beacause of the automatic insertion of a menubar and the height of the docking bar.
-        * Popup uicontrols width has to be increased because of the little triangle used to select a new value.
+    * Figure size has to be increased beacause of the automatic insertion of
+      a menubar and the height of the docking bar.
+    * Popup uicontrols width has to be increased because of the little triangle
+      used to select a new value.
+
 
 - Graphic functionalities are not yet fully functional:
-	* xlcea
-	* viewport management
-	* show_pixmap
-	* driver / xinit / xend
-	* seteventhandler
-	* info_message
-	* Text object font management
-	* Figure name property
-	* Postscript formats for graphic export
+    * xlcea
+    * viewport management
+    * show_pixmap
+    * driver / xinit / xend
+    * seteventhandler
+    * info_message
+    * Text object font management
+    * Figure name property
+    * Postscript formats for graphic export
+
 
 - Graphics know bugs
-	* Displayed axe bounds may differ from Scilab 4.x.
-	* Unwanted marks may appear.
-	* Some colours might be different from Scilab 4.x.
-	* Legend and labels might be misplaced.
-	* Text object space management
-	* Rendering is slow or not functional on some computer / graphic card / graphic card driver combination.
-	  Errors often appear on ATI and Intel cards under Linux and also with old Nvidia drivers.
+    * Displayed axe bounds may differ from Scilab 4.x.
+    * Unwanted marks may appear.
+    * Some colours might be different from Scilab 4.x.
+    * Legend and labels might be misplaced.
+    * Text object space management
+    * Rendering is slow or not functional on some
+      computer / graphic card / graphic card driver combination.
+      Errors often appear on ATI and Intel cards under Linux and also with 
+      old Nvidia drivers.
+
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
-    For ATI cards: http://ati.amd.com/support/driver.html
-    For Intel cards: http://www.intel.com/support/graphics/
-    For Matrox cards: http://www.matrox.com/mga/support/drivers/certified/home.cfm
-    For NVIDIA cards: http://www.nvidia.com/content/drivers/drivers.asp
-    For S3 cards: http://www.s3graphics.com/en/resources/drivers/index.jsp  
-    For SiS cards: http://www.sis.com/download/
-    For VIA cards: http://www.viaarena.com/default.aspx?PageID=2
+    * For ATI cards: http://ati.amd.com/support/driver.html
+    * For Intel cards: http://www.intel.com/support/graphics/
+    * For Matrox cards: http://www.matrox.com/mga/support/drivers/certified/home.cfm
+    * For NVIDIA cards: http://www.nvidia.com/content/drivers/drivers.asp
+    * For S3 cards: http://www.s3graphics.com/en/resources/drivers/index.jsp  
+    * For SiS cards: http://www.sis.com/download/
+    * For VIA cards: http://www.viaarena.com/default.aspx?PageID=2
 
 
 - Scicos:
-        - The basic features of the editor are fully functional and tested.
-	- The Scicos simulation engine is correcly working (standard and "scicossimulate()" batch mode)
-        - BUT ...
-	  * Some functionalites of the new graphics API are still not fully available/working at the moment
-	  (see above for the details) of this alpha release (e.g. show_pixmap, VIEWPORT pan control, no scrollbar, etc.)
-	  * Some mouse and key events are not detected properly (e.g. button release)
-            - For these - and others - reasons, some feature of the Scicos editor are not functional
-               * BEWARE : the "Stop" simulation button is not working: please set the simulation time to your final time
-               * BEWARE : after a simulation, you need to manually destroy the scope output windows BEFORE restart
-                          the simulation (Scicos scope library needs some revision for Scilab 5 new API) 
-               * BEWARE : Modelica support is not available: the Modelica demos cannot run.
-               * BEWARE : Some blocks may have bizarre look for the presence of older graphics instructions not supported
-                          anymore
+    * The basic features of the editor are fully functional and tested.
+    * The Scicos simulation engine is correcly working (standard and
+      "scicossimulate()" batch mode)
+      BUT ...
+        * Some functionalites of the new graphics API are still not fully 
+          available/working at the moment (see above for the details) of this
+          alpha release (e.g. show_pixmap, VIEWPORT pan control, no scrollbar, etc.)
+        * Some mouse and key events are not detected properly (e.g. button release)
+            For these - and others - reasons, some feature of the Scicos editor
+            are not functional :
+              * BEWARE : the "Stop" simulation button is not working: please set 
+                the simulation time to your final time
+              * BEWARE : after a simulation, you need to manually destroy the
+                scope output windows BEFORE restart the simulation (Scicos scope
+                library needs some revision for Scilab 5 new API)
+              * BEWARE : Modelica support is not available: the Modelica demos
+                cannot run.
+              * BEWARE : Some blocks may have bizarre look for the presence of
+                older graphics instructions not supported anymore
+
 
 - Scilab is not translated into French.
 
+
 - Dynamic/incremental link may bug on usual archs/compiler or with modified flags
+
 
 - Some license issues have not been fixed.
 
+
 - .sce / .sci file associations are disabled in this alpha version
+
 
 - Postscript export is not available for this alpha version
 
+
+- Some Linux distributions with SELinux enabled may prevent Scilab from running
+  under the default security context. Newer Linux distributions have enabled new 
+  kernel security extensions from the SELinux project at the NSA. These  extensions
+  allow finer-grained control over system security. However, SELinux also changes
+  some default system behaviors, such as shared library loading, that can be
+  problematic to third party programs.
+
+  If you receive the error message:
+  "cannot restore segment prot after reloc: Permission denied"
+  when launching Scilab, then your SELinux configuration is preventing Scilab
+  from launching.
+
+  To rectify this issue, you can either:
+    * Change the default security context for Scilab by issuing the command:
+      chcon -t texrel_shlib_t <scilab_path>/thirdparty/java/lib/i386/server/libjvm.so
+      chcon -t texrel_shlib_t ~/flexdock/RubberBand.so
+    * Disabling SELinux altogether by setting the line
+      SELINUX=disabled
+      in your /etc/sysconfig/selinux file.
+
+  For more information about SELinux, please consult your Linux distribution
+  vendor.
 
 
 
