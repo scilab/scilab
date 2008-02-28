@@ -2,6 +2,7 @@ package org.scilab.modules.gui.events.callback;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.GlobalEventFilter;
@@ -68,7 +69,8 @@ public abstract class ScilabCallBack extends CallBack {
 				// Save current user edited line
 				String currentCmd = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole())
 												.getConfiguration().getInputCommandView().getText();
-				ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getCommand(), false, false);
+				//ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getCommand(), false, false);
+				InterpreterManagement.putCommandInScilabQueue(getCommand());
 				// Back to current user edited line
 				((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole())
 									.getConfiguration().getInputCommandView().setText(currentCmd);
