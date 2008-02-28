@@ -36,6 +36,7 @@ List of missing/buggy features:
     * Text object font management
     * Figure name property
     * Postscript formats for graphic export
+    * Graphic Editor (GED)
 
 
 - Graphics know bugs
@@ -80,6 +81,7 @@ List of missing/buggy features:
                 cannot run.
               * BEWARE : Some blocks may have bizarre look for the presence of
                 older graphics instructions not supported anymore
+    * This version has been adapted from scicos-4.2.
 
 
 - Scilab is not translated into French.
@@ -119,6 +121,10 @@ List of missing/buggy features:
 
   For more information about SELinux, please consult your Linux distribution
   vendor.
+
+
+- Scilab will freeze if you launch a script from Scipad Editor.
+
 
 
 

@@ -71,7 +71,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     if next_scicos_call==[] then
       next_scicos_call=1
       verscicos=get_scicos_version()
-      ttxxtt=['Scicos version '+part(verscicos,7:length(verscicos))
+      ttxxtt=['Scicos version '+part(verscicos,7:length(verscicos)) + ' (adapted for Scilab 5 by The Scilab Consortium)'
               'Copyright (c) 1992-2008 Metalau project INRIA'
               'Licensed under the GNU Public License (GPL)']
       write(%io(2),ttxxtt)
