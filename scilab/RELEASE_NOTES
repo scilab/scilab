@@ -36,6 +36,7 @@ List of missing/buggy features:
     * Text object font management
     * Figure name property
     * Postscript formats for graphic export
+	* Graphic Editor (GED)
 
 
 - Graphics know bugs
