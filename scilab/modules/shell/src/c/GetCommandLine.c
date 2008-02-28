@@ -25,13 +25,14 @@
 
 #ifdef _MSC_VER
 	#define IMPORT_SIGNAL __declspec(dllimport)
+	#define strdup _strdup
 #else
 	#define IMPORT_SIGNAL extern
 #endif
 #define WK_BUF_SIZE 520
 
 #define NUL '\0'
-#define strdup _strdup
+
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[10];
 
