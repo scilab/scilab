@@ -1,11 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CONRET 
- * 
+ * Copyright (C) 2007 - INRIA - Allan CONRET
+ * Copyright (C) 2008 - INRIA - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,6 +20,7 @@
 #include "getcommandlineargs.h"
 #include "texmacs.h"
 #include "x_main.h"
+#include "Thread_Wrapper.h"
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
 /*--------------------------------------------------------------------------*/
@@ -26,6 +28,12 @@ char *ProgramName;
 /*--------------------------------------------------------------------------*/
 int  sci_show_banner=1;
 /*--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+__threadSignal	LaunchScilab;
+__threadLock	LaunchScilabLock;
+/*--------------------------------------------------------------------------*/
+
 void mainscic(int argc, char **argv)
 {
   int i;
@@ -36,6 +44,9 @@ void mainscic(int argc, char **argv)
   InitScriptType initial_script_type = SCILAB_SCRIPT;
 
   char  *display = NULL;
+
+  __InitSignal(&LaunchScilab);
+  __InitLock(&LaunchScilabLock);
 
   #if (defined __GNUC__  )
 		putenv ("COMPILER=gcc");

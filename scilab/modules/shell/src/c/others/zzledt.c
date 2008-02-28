@@ -1,12 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Scilab 
+ * Copyright (C) 2007 - INRIA - Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU (Completion in nw & nwni modes)
- * 
+ * Copyright (C) 2008 - INRIA - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -46,43 +47,43 @@
 
 /*--------------------------------------------------------------------------*/
 #ifdef aix
-	#define ATTUNIX
+#define ATTUNIX
 #endif
 
 #ifdef aix370
-	#define ATTUNIX
+#define ATTUNIX
 #endif
 
 #ifdef cdcu
-	#define ATTUNIX
+#define ATTUNIX
 #endif
 
 #ifdef cray
-	#define B42UNIX
+#define B42UNIX
 #endif
 
 #ifdef hpux
-	#define ATTUNIX
+#define ATTUNIX
 #endif
 
 #ifdef sgi
-	#define ATTUNIX
+#define ATTUNIX
 #endif
 
 #ifdef sun
-	#define ATTUNIX
-	#define TERMCAP
+#define ATTUNIX
+#define TERMCAP
 #endif
 
 #ifdef ultrix
-	#define B42UNIX
-	#define TERMCAP
+#define B42UNIX
+#define TERMCAP
 #endif
 
 #if !defined(linux) && !defined(netbsd) && !defined(freebsd)
-	#ifdef  __alpha
-		#define B42UNIX
-	#endif
+#ifdef  __alpha
+#define B42UNIX
+#endif
 #endif
 
 #ifdef linux
@@ -91,7 +92,7 @@
 #endif
 
 #if defined(netbsd) || defined(freebsd)
-	#define TERMCAP
+#define TERMCAP
 #endif
 /*--------------------------------------------------------------------------*/
 //#ifndef HAVE_TERMCAP
@@ -99,19 +100,19 @@
 //#endif
 
 #ifdef B42UNIX
-	#define KEYPAD
-	#include <sys/file.h>
-	#include <sgtty.h>
-	static short save_sg_flags;
-	static struct sgttyb arg;
-	static struct tchars arg1;
+#define KEYPAD
+#include <sys/file.h>
+#include <sgtty.h>
+static short save_sg_flags;
+static struct sgttyb arg;
+static struct tchars arg1;
 #endif
 
 #ifdef ATTUNIX
-	#define KEYPAD
-	#include <termio.h>
-	static struct termio save_term;
-	static struct termio arg;
+#define KEYPAD
+#include <termio.h>
+static struct termio save_term;
+static struct termio arg;
 #endif
 
 #define EXCL                  0x0021
@@ -179,7 +180,7 @@ static void display_string(char *string);
 static void backspace(int n);
 static void doCompletion(char *, int *cursor, int *cursor_max);
 static void erase_nchar(int n);
-static int gchar_no_echo(int interrupt);
+static int gchar_no_echo(void);
 static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max);
 static void strip_blank(char *source);
 static int  translate(int ichar);
@@ -227,31 +228,35 @@ static char *CL=NULL;            /* clear screen */
 #endif
 
 
-void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
+//void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
 
 /*-------------- End of Declarations  specific for console mode-----------------  */
 static void updateToken(char *linebuffer)
 {
   if (linebuffer)
-  {
-     char *token = NULL;
-     token = (char*)MALLOC(sizeof(char)*(strlen(linebuffer)+1));
-     if (token)
-     {
-       strcpy(token,linebuffer);
-       setSearchedTokenInScilabHistory(token);
-       FREE(token);
-       token = NULL;
-     }
-  }
+    {
+      char *token = NULL;
+      token = (char*)MALLOC(sizeof(char)*(strlen(linebuffer)+1));
+      if (token)
+	{
+	  strcpy(token,linebuffer);
+	  setSearchedTokenInScilabHistory(token);
+	  FREE(token);
+	  token = NULL;
+	}
+    }
 }
 /***********************************************************************
  * line editor
  **********************************************************************/
 
-void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
-		 int *menusflag,int * modex,long int dummy1)
+//void TermReadAndProcess(char *buffer,int *buf_size,int *len_line,int * eof,
+//			int *menusflag,int * modex,long int dummy1)
+char *TermReadAndProcess(void)
 {
+
+  //fprintf(stderr, "[TERM READ N PROCESS]...\n");
+  //fflush(NULL);
   int cursor_max = 0;
   int cursor = 0;
   int yank_len,i;
@@ -260,434 +265,369 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   int character_count;
   char wk_buf[WK_BUF_SIZE + 1];
 
+  char *buffer;
 
   GetCurrentPrompt(Sci_Prompt);
 
-  if(getScilabMode() != SCILAB_STD)
-  {
-    if(init_flag)
+  if(init_flag)
     {
       init_io();
       init_flag = FALSE;
     }
 
-    if(!tty)
+  if(!tty)
     { /* if not an interactive terminal */
       /* read a line into the buffer, but not too big */
       fputs(SCIPROMPT,stdout);
-      *eof = (fgets(buffer, *buf_size, stdin) == NULL);
-      *len_line = strlen(buffer);
-      /* remove newline character if there */
-      if(buffer[*len_line - 1] == '\n') (*len_line)--;
       return;
     }
-  }
 
   if (interrupted)
-  {
-    /* restore the state */
-    interrupted=0;
-    strcpy(wk_buf,wk_buf_save);
-    cursor=cursor_save;
-	cursor_save=0;
-    cursor_max=cursor_max_save;
-	cursor_max_save=0;
-  }
-  else wk_buf[0] = NUL; /* initialize empty  buffer */
-
-  if(getScilabMode() != SCILAB_STD)
-  {
-#ifdef KEYPAD
-    set_cbreak();
-    enable_keypad_mode();
-#endif
-    if(sendprompt) printf(Sci_Prompt);/* write prompt */
-  }
+    {
+      /* restore the state */
+      interrupted=0;
+      strcpy(wk_buf,wk_buf_save);
+      cursor=cursor_save;
+      cursor_save=0;
+      cursor_max=cursor_max_save;
+      cursor_max_save=0;
+    }
   else
-  {
-    /* Send new prompt to Java Console, do not display it */
-    SetConsolePrompt(Sci_Prompt);
-  }
+    {
+      wk_buf[0] = NUL; /* initialize empty  buffer */
+    }
+
+#ifdef KEYPAD
+  set_cbreak();
+  enable_keypad_mode();
+#endif
+  if(sendprompt)
+    {
+      printf(Sci_Prompt);/* write prompt */
+    }
 
   sendprompt=1;
-  set_is_reading(TRUE); /* did not exist in old gtk version */
 
   setSearchedTokenInScilabHistory(NULL);
 
 
-  if (getScilabMode()!=SCILAB_STD)
-  {
-    while(1)
+  while(1)
     {
+      //fprintf(stderr, ".");
+      //fflush(NULL);
       /* main loop to read keyboard input */
       /* get next keystroke (no echo) returns -1 if interrupted */
-      keystroke = gchar_no_echo(*menusflag);
-
-      if (keystroke==-1)
-      {
-        /* preserve the state */
-        interrupted=1;
-        strcpy(wk_buf_save,wk_buf);
-        cursor_save=cursor;
-        cursor_max_save=cursor_max;
-        sendprompt=0;
-        *eof=-1;
-        return;
-      }
-
+      keystroke = gchar_no_echo();
+      //fprintf(stderr, "keystroke [%d]\n", keystroke);
+      //fflush(NULL);
       if ( (keystroke ==  CTRL_C) || (keystroke == CTRL_X) ) /* did not exist in old gtk version */
-      {
-		int j = SIGINT;
-		C2F(sigbas)(&j);
-		keystroke = '\n';
-      };
+	{
+	  int j = SIGINT;
+	  C2F(sigbas)(&j);
+	  keystroke = '\n';
+	};
 
       /* check for ascii extended characters */
       if( ( iscntrl(keystroke) && groundtable[keystroke] != CASE_PRINT) || keystroke > 0x0100 )
-      {
-	/* stroke is line editing command */
-	switch(keystroke)
-        {
-	  case CTRL_P: case UP_ARROW: /* move one line up if any in history */
-	  {
-	    char *line = getPreviousLineInScilabHistory();
-	    if (line)
+	{
+	  /* stroke is line editing command */
+	  switch(keystroke)
 	    {
-	      CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
-	      FREE(line);
-	    }
-	  }
-	  break;
-
-  	  case CTRL_N: case DOWN_ARROW:  /* move one line down if any in history */
-	  {
-	    char *line = getNextLineInScilabHistory();
-	    if (line)
-	    {
-	      CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
-	      FREE(line);
-	    }
-	  }
-	  break;
-
-	  case CTRL_B: case LEFT_ARROW:/* move left*/
-	    if(cursor > 0)
-            {
-              /* is there room to move left */
-	      cursor--;
-	      backspace(1);
-	    }
-	    else
-            {
-	      putchar(BEL);
-	    }
-	  break;
-
-	  case CTRL_F: case RIGHT_ARROW: /* move right*/
-
-	  if(cursor < cursor_max) {/* is there room to move right */
-	    putchar(wk_buf[cursor++]);
-	  }
-	  else {
-	    putchar(BEL);
-	  }
-	  break;
-
-	  case HOME:
-	    backspace(cursor); /* move to beginning of the line */
-	    cursor = 0;
-	  break;
-
-	  case ENDS:  /* move to end of line */
-	    while(cursor < cursor_max)
-            {
-	      putchar(wk_buf[cursor++]);
-	    }
-	  break;
-			case TAB:
-				
-				doCompletion(&wk_buf, &cursor, &cursor_max);
-
-				break;
-	  case INS: /* toggle insert/overwrite flag */
-	    insert_flag = !insert_flag;
-	  break;
-
-	  case CTRL_X: case CTRL_C: /** we never get there CTRL_C is explored above **/
-	  {
-	    int j = SIGINT;
-	    C2F(sigbas)(&j);
-	  };
-	  break;
-
-	  case CTRL_D: /* delete next character*/
-	    if(cursor == cursor_max)
-            {
-	      /* reminder that backing up over edge */
-	      putchar(BEL);
-	      break;
-	    }
-	    move_left(&wk_buf[cursor]);
-	    cursor_max--;
-	    /* and write rest of line to end */
-	    display_string(&wk_buf[cursor]);
-	    /* erase extra character now at end. */
-	    erase_nchar(1);
-	    /* backspace to proper cursor position */
-	    backspace(cursor_max - cursor);
-            //updateToken(wk_buf);
-	  break;
-
-	  case BS: case DEL: /* backspace with delete */
-	    if(cursor == 0)
-            {
-	      /* reminder that backing up over edge */
-	      putchar(BEL);
-	      break;
-	    }
-	    /* move string in work, one left from cursor */
-	    move_left(&wk_buf[cursor - 1]);
-	    cursor_max--;
-	    cursor--;
-	    backspace(1);
-	    /* and write rest of line to end */
-	    display_string(&wk_buf[cursor]);
-	    /* erase extra character now at end. */
-	    erase_nchar(1);
-	    /* backspace to proper cursor position */
-	    backspace(cursor_max - cursor);
-            //updateToken(wk_buf);
-	  break;
-
-	  case CTRL_K: /* delete to end of line */
-	    if(cursor == cursor_max)
-            {
-	      /* reminder that backing up over edge */
-	      putchar(BEL);
-	      break;
-	    }
-	    /* erase  character  at end. */
-	    erase_nchar(cursor_max - cursor);
-	    /* store cutted part in tyank buffer*/
-	    strcpy(yank_buf,&wk_buf[cursor]);
-	    /* backspace to proper cursor position */
-	    wk_buf[cursor] = NUL;
-	    cursor_max = cursor;
-            //updateToken(wk_buf);
-	  break;
-
-	  case CTRL_Y: /* Paste at the current point */
-	    yank_len=strlen(yank_buf);
-	    if(yank_len!=0 )
-            {
-	      if (cursor==cursor_max)
-              {
-	        strcpy(&wk_buf[cursor],yank_buf);
-	        display_string(&wk_buf[cursor]);
-	        cursor = cursor_max + yank_len;
-	        cursor_max = cursor;
-	      }
-	      else
-              {
-	        for(i = 0; i <= cursor_max-cursor; i++) wk_buf[cursor_max+yank_len-i]=wk_buf[cursor_max-i];
-	        wk_buf[cursor_max+yank_len]=NUL;
-	        strncpy(&wk_buf[cursor],yank_buf,yank_len);
-	        erase_nchar(cursor_max - cursor);
-	        display_string(&wk_buf[cursor]);
-	        backspace(cursor_max-cursor);
-	        cursor_max=cursor_max+yank_len;
-	        cursor=cursor+yank_len;
-	      }
-	    }
-            //updateToken(wk_buf);
-	  break;
-
-	  case CTRL_Z:
-	  break;
-
-	  case CTRL_L:
-	  #ifdef TERMCAP
-	    fputs(CL,stdout);
-	    wk_buf[0]=NUL;
-	    goto exit;
-	  #else
-	    putchar(BEL);
-	  #endif
-          break;
-
-	  case LDEL: /* clear line buffer */
-	    backspace(cursor);
-	    erase_nchar(cursor_max);
-	    wk_buf[0] = NUL;
-	    cursor = cursor_max = 0;
-	  break;
-
-	  case LF: case CR: /* carrage return indicates line is ok;*/
-	    strip_blank(wk_buf);/* first strip any trailing blanks */
-	    if (wk_buf[0]==EXCL)
-	    {
-	      char *token = NULL;
-	      token = (char*)MALLOC(sizeof(char)*strlen(&wk_buf[1]));
-	      if (token)
+	    case CTRL_P: case UP_ARROW: /* move one line up if any in history */
 	      {
-	        char *line = NULL;
-		strcpy(token,&wk_buf[1]);
-		setSearchedTokenInScilabHistory(token);
-		line = getNextLineInScilabHistory();
+		char *line = getPreviousLineInScilabHistory();
 		if (line)
-		{
-		  CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
-		  FREE(line);
-		  line = NULL;
-		}
-		FREE(token);
-		token = NULL;
+		  {
+		    CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+		    FREE(line);
+		  }
 	      }
 	      break;
-	    }
-	    else
-	    {
-	      if (strlen(wk_buf)>=0)
+
+	    case CTRL_N: case DOWN_ARROW:  /* move one line down if any in history */
 	      {
-		appendLineToScilabHistory(wk_buf);
-		setSearchedTokenInScilabHistory(NULL);
+		char *line = getNextLineInScilabHistory();
+		if (line)
+		  {
+		    CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+		    FREE(line);
+		  }
 	      }
-	    }
-	    goto exit;
-	  break;
+	      break;
 
-	  case SEARCH_BACKWARD:
-	  break;
-
-	  case SEARCH_FORWARD:
-	  break;
-
-	  default:
-	    putchar(BEL);
-	  break;
-	}
-      }
-      else
-      {
-        /* alpha/numeric keystroke.
-         * substitute blank fill for tab char
-         */
-        if(keystroke == '\t')
-	{
-	  keystroke = ' ';
-	  character_count = TAB_SKIP - (cursor%TAB_SKIP);
-	  if(character_count == 0) character_count = TAB_SKIP;
-	}
-        else
-	{
-	  if(keystroke == EOF) character_count = 0;
-	  else character_count = 1;
-	}
-
-        while(character_count--)
-	{
-	  if(get_echo_mode()==0)
-	  {
-	    wk_buf[cursor] = keystroke;
-	    cursor++;
-	  }
-	  else
-	  {
-	    if(insert_flag)
-            {
-              /* insert mode, move rest of line right and
-	       * add character at cursor
-               */
-	       move_right(&wk_buf[cursor], WK_BUF_SIZE - cursor);
-	       /* bump max cursor but not over buffer
-	        * size
-                */
-	       cursor_max = (++cursor_max > WK_BUF_SIZE) ? WK_BUF_SIZE : cursor_max;
-	       /* if cursor at end of line, backspace so
-	        * that new character overwrites last one */
-	       if(cursor == WK_BUF_SIZE)
-               {
-		 cursor--;
-		 backspace(1);
-	       }
-	       wk_buf[cursor] = keystroke;
-	       display_string(&wk_buf[cursor]);
-	       cursor++;
-	       backspace(cursor_max - cursor);
-	    }
-            else
-            {
-		/* overstrike mode */
-		if(cursor == WK_BUF_SIZE)
-                {
+	    case CTRL_B: case LEFT_ARROW:/* move left*/
+	      if(cursor > 0)
+		{
+		  /* is there room to move left */
 		  cursor--;
 		  backspace(1);
 		}
-		wk_buf[cursor] = keystroke;
-		putchar(keystroke);
-		if(cursor < WK_BUF_SIZE - 1)
-                {
-		  cursor++;
-		  cursor_max = Max(cursor_max, cursor);
+	      else
+		{
+		  putchar(BEL);
 		}
-		else
-                {
-		  backspace(1);
-		}
-	   }
-	   updateToken(wk_buf);
-         }
-       }
-     }
-   }
-  }
-  else
-  {
-     /* Call Java Console to get a string */
-     char *line = NULL;
-     *len_line = 0;
-     cursor = 0;
+	      break;
 
-     line = ConsoleRead();
-     if (line)
-     {
-     	strcpy(wk_buf,line);
-     	FREE(line);
-        *len_line = (int)strlen(wk_buf);
-     }
-     else *len_line = 0;
-     /* End of call to Java Console */
-  }
+	    case CTRL_F: case RIGHT_ARROW: /* move right*/
+
+	      if(cursor < cursor_max) {/* is there room to move right */
+		putchar(wk_buf[cursor++]);
+	      }
+	      else {
+		putchar(BEL);
+	      }
+	      break;
+
+	    case HOME:
+	      backspace(cursor); /* move to beginning of the line */
+	      cursor = 0;
+	      break;
+
+	    case ENDS:  /* move to end of line */
+	      while(cursor < cursor_max)
+		{
+		  putchar(wk_buf[cursor++]);
+		}
+	      break;
+	    case TAB:
+
+	      doCompletion(&wk_buf, &cursor, &cursor_max);
+
+	      break;
+	    case INS: /* toggle insert/overwrite flag */
+	      insert_flag = !insert_flag;
+	      break;
+
+	    case CTRL_X: case CTRL_C: /** we never get there CTRL_C is explored above **/
+	      {
+		int j = SIGINT;
+		C2F(sigbas)(&j);
+	      };
+	      break;
+
+	    case CTRL_D: /* delete next character*/
+	      if(cursor == cursor_max)
+		{
+		  /* reminder that backing up over edge */
+		  putchar(BEL);
+		  break;
+		}
+	      move_left(&wk_buf[cursor]);
+	      cursor_max--;
+	      /* and write rest of line to end */
+	      display_string(&wk_buf[cursor]);
+	      /* erase extra character now at end. */
+	      erase_nchar(1);
+	      /* backspace to proper cursor position */
+	      backspace(cursor_max - cursor);
+	      //updateToken(wk_buf);
+	      break;
+
+	    case BS: case DEL: /* backspace with delete */
+	      if(cursor == 0)
+		{
+		  /* reminder that backing up over edge */
+		  putchar(BEL);
+		  break;
+		}
+	      /* move string in work, one left from cursor */
+	      move_left(&wk_buf[cursor - 1]);
+	      cursor_max--;
+	      cursor--;
+	      backspace(1);
+	      /* and write rest of line to end */
+	      display_string(&wk_buf[cursor]);
+	      /* erase extra character now at end. */
+	      erase_nchar(1);
+	      /* backspace to proper cursor position */
+	      backspace(cursor_max - cursor);
+	      //updateToken(wk_buf);
+	      break;
+
+	    case CTRL_K: /* delete to end of line */
+	      if(cursor == cursor_max)
+		{
+		  /* reminder that backing up over edge */
+		  putchar(BEL);
+		  break;
+		}
+	      /* erase  character  at end. */
+	      erase_nchar(cursor_max - cursor);
+	      /* store cutted part in tyank buffer*/
+	      strcpy(yank_buf,&wk_buf[cursor]);
+	      /* backspace to proper cursor position */
+	      wk_buf[cursor] = NUL;
+	      cursor_max = cursor;
+	      //updateToken(wk_buf);
+	      break;
+
+	    case CTRL_Y: /* Paste at the current point */
+	      yank_len=strlen(yank_buf);
+	      if(yank_len!=0 )
+		{
+		  if (cursor==cursor_max)
+		    {
+		      strcpy(&wk_buf[cursor],yank_buf);
+		      display_string(&wk_buf[cursor]);
+		      cursor = cursor_max + yank_len;
+		      cursor_max = cursor;
+		    }
+		  else
+		    {
+		      for(i = 0; i <= cursor_max-cursor; i++) wk_buf[cursor_max+yank_len-i]=wk_buf[cursor_max-i];
+		      wk_buf[cursor_max+yank_len]=NUL;
+		      strncpy(&wk_buf[cursor],yank_buf,yank_len);
+		      erase_nchar(cursor_max - cursor);
+		      display_string(&wk_buf[cursor]);
+		      backspace(cursor_max-cursor);
+		      cursor_max=cursor_max+yank_len;
+		      cursor=cursor+yank_len;
+		    }
+		}
+	      //updateToken(wk_buf);
+	      break;
+
+	    case CTRL_Z:
+	      break;
+
+	    case CTRL_L:
+#ifdef TERMCAP
+	      fputs(CL,stdout);
+	      wk_buf[0]=NUL;
+	      goto exit;
+#else
+	      putchar(BEL);
+#endif
+	      break;
+
+	    case LDEL: /* clear line buffer */
+	      backspace(cursor);
+	      erase_nchar(cursor_max);
+	      wk_buf[0] = NUL;
+	      cursor = cursor_max = 0;
+	      break;
+
+	    case LF: case CR: /* carrage return indicates line is ok;*/
+	      strip_blank(wk_buf);/* first strip any trailing blanks */
+	      if (wk_buf[0]==EXCL)
+		{
+		  char *token = NULL;
+		  token = (char*)MALLOC(sizeof(char)*strlen(&wk_buf[1]));
+		  if (token)
+		    {
+		      char *line = NULL;
+		      strcpy(token,&wk_buf[1]);
+		      setSearchedTokenInScilabHistory(token);
+		      line = getNextLineInScilabHistory();
+		      if (line)
+			{
+			  CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+			  FREE(line);
+			  line = NULL;
+			}
+		      FREE(token);
+		      token = NULL;
+		    }
+		  break;
+		}
+	      else
+		{
+		  if (strlen(wk_buf)>=0)
+		    {
+		      appendLineToScilabHistory(wk_buf);
+		      setSearchedTokenInScilabHistory(NULL);
+		    }
+		}
+	      goto exit;
+	      break;
+
+	    case SEARCH_BACKWARD:
+	      break;
+
+	    case SEARCH_FORWARD:
+	      break;
+
+	    default:
+	      putchar(BEL);
+	      break;
+	    }
+	}
+      else
+	{
+	  /* alpha/numeric keystroke.
+	   * substitute blank fill for tab char
+	   */
+	  if(keystroke == '\t')
+	    {
+	      keystroke = ' ';
+	      character_count = TAB_SKIP - (cursor%TAB_SKIP);
+	      if(character_count == 0) character_count = TAB_SKIP;
+	    }
+	  else
+	    {
+	      if(keystroke == EOF) character_count = 0;
+	      else character_count = 1;
+	    }
+
+	  while(character_count--)
+	    {
+	      if(insert_flag)
+		{
+		  /* insert mode, move rest of line right and
+		   * add character at cursor
+		   */
+		  move_right(&wk_buf[cursor], WK_BUF_SIZE - cursor);
+		  /* bump max cursor but not over buffer
+		   * size
+		   */
+		  cursor_max = (++cursor_max > WK_BUF_SIZE) ? WK_BUF_SIZE : cursor_max;
+		  /* if cursor at end of line, backspace so
+		   * that new character overwrites last one */
+		  if(cursor == WK_BUF_SIZE)
+		    {
+		      cursor--;
+		      backspace(1);
+		    }
+		  wk_buf[cursor] = keystroke;
+		  display_string(&wk_buf[cursor]);
+		  cursor++;
+		  backspace(cursor_max - cursor);
+		}
+	      else
+		{
+		  /* overstrike mode */
+		  if(cursor == WK_BUF_SIZE)
+		    {
+		      cursor--;
+		      backspace(1);
+		    }
+		  wk_buf[cursor] = keystroke;
+		  putchar(keystroke);
+		  if(cursor < WK_BUF_SIZE - 1)
+		    {
+		      cursor++;
+		      cursor_max = Max(cursor_max, cursor);
+		    }
+		  else
+		    {
+		      backspace(1);
+		    }
+		}
+	      updateToken(wk_buf);
+	    }
+	}
+    }
 
  exit:
   /* copy to return buffer */
-  if(get_echo_mode()==0)
-  {
-    *len_line=cursor;
-    strncpy(buffer,wk_buf,*buf_size);
-    set_echo_mode(TRUE);
-    wk_buf[0] = NUL;
-  }
-  else
-  {
-    *len_line = strlen(wk_buf);
-    strncpy(buffer, wk_buf,*len_line);
-    if(getScilabMode() != SCILAB_STD)
-    {
-      putchar('\r');  putchar('\n');
-    }
-  }
+  buffer=strdup(wk_buf);
+  putchar('\r');  putchar('\n');
 #ifdef KEYPAD
-  if(getScilabMode() != SCILAB_STD)
-  {
-    set_crmod();
-    disable_keypad_mode();
-  }
+  set_crmod();
+  disable_keypad_mode();
 #endif
-  *eof = FALSE;
-  set_is_reading(FALSE);
 
-  return;
+  return buffer;
 }
 
 /***********************************************************************
@@ -734,42 +674,42 @@ static void display_string(char *string)
  **********************************************************************/
 static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 {
-	char **completionResults = NULL;
-	char msg[WK_BUF_SIZE]="";
-	int sizecompletionResults = 0;
+  char **completionResults = NULL;
+  char msg[WK_BUF_SIZE]="";
+  int sizecompletionResults = 0;
 #define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
 
-	completionResults = completion(wk_buf, &sizecompletionResults);
+  completionResults = completion(wk_buf, &sizecompletionResults);
 
-	if (sizecompletionResults==1){ /* Only one result. Display it */
-		if (strcmp(wk_buf,completionResults[0])!=0){ /* No the same as previously displayed */
-			CopyLineAtPrompt(wk_buf,completionResults[0],cursor,cursor_max);
-		}
-		FREE(completionResults[0]);
+  if (sizecompletionResults==1){ /* Only one result. Display it */
+    if (strcmp(wk_buf,completionResults[0])!=0){ /* No the same as previously displayed */
+      CopyLineAtPrompt(wk_buf,completionResults[0],cursor,cursor_max);
+    }
+    FREE(completionResults[0]);
 
-	}else{
-		int j=0;
-		int nbCharLine=0;
-		int newElementSize=0;
+  }else{
+    int j=0;
+    int nbCharLine=0;
+    int newElementSize=0;
 
-		display_string("\r\n");
-		/* More than one result. Display them */
-		for (j=0; j<sizecompletionResults; j++){
+    display_string("\r\n");
+    /* More than one result. Display them */
+    for (j=0; j<sizecompletionResults; j++){
 
-			newElementSize=strlen(completionResults[j])+strlen(" ");
-			if ((nbCharLine + newElementSize) > MAX_LINE_SIZE){ /* New line or not ?*/
-				display_string(msg); /* Display the message itself */
-				display_string("\r\n"); /* �\r is to avoid align pb */
-				strcpy(msg,"");
-				nbCharLine=0;
-			}
-			nbCharLine+=newElementSize;
-			sprintf(msg,"%s %s", msg, completionResults[j]);
-							
-		}
-		sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
-		display_string(msg);
-	}
+      newElementSize=strlen(completionResults[j])+strlen(" ");
+      if ((nbCharLine + newElementSize) > MAX_LINE_SIZE){ /* New line or not ?*/
+	display_string(msg); /* Display the message itself */
+	display_string("\r\n"); /* �\r is to avoid align pb */
+	strcpy(msg,"");
+	nbCharLine=0;
+      }
+      nbCharLine+=newElementSize;
+      sprintf(msg,"%s %s", msg, completionResults[j]);
+
+    }
+    sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
+    display_string(msg);
+  }
 }
 /***********************************************************************
  * backspace - move cursor n char to the left
@@ -778,11 +718,11 @@ static void backspace(int n)
 {
   if(n < 1)
     return;
-  if (getScilabMode() == SCILAB_STD) {
-    while(n--)
-      putchar('\010');
-  }
-  else {
+  //  if (getScilabMode() == SCILAB_STD) {
+  //    while(n--)
+  //      putchar('\010');
+  //  }
+  //  else {
     while(n--)
 #ifdef TERMCAP
       if(BC) {                 /* if control-H won-t work */
@@ -794,7 +734,7 @@ static void backspace(int n)
 #else
     putchar('\010');
 #endif
-  }
+    //  }
 }
 
 /***********************************************************************
@@ -833,11 +773,14 @@ static void strip_blank(char *source)
  * if interrupt is true, gchar_no_echo escape if an event arises
  **********************************************************************/
 
-static int gchar_no_echo(int interrupt)
+static int gchar_no_echo(void)
 {
   int i;
   /* get next character, gotten in cbreak mode so no wait for <cr> */
-  i = GetCharWithEventsLoop(interrupt);/* i=-1 if return on an event */
+  //i = GetCharWithEventsLoop(interrupt);/* i=-1 if return on an event */
+
+  //** Blouno : disable Event Loop
+  i = getchar();
 
   /* if more than one character */
   if(i == ESC) {
@@ -875,7 +818,9 @@ static int translate(int ichar)
     }
     /* if any sequence not finished yet */
     if(not_done) {
-      ichar = GetCharWithEventsLoop(0);
+      //ichar = GetCharWithEventsLoop(0);
+      //** Blouno : disable Event Loop
+      ichar = getchar();
     }
     else {
       /* hopefully at first character */

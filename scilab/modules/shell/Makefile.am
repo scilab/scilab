@@ -1,7 +1,8 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Allan CORNET
 # Copyright (C) 2008 - INRIA - Sylvestre LEDRU
-# 
+# Copyright (C) 2008 - INRIA - Bruno JOFRET
+#
 # This file is distributed under the same license as the Scilab package.
 
 # List of the cpp files
@@ -12,8 +13,8 @@ SHELL_C_SOURCES = src/c/clc.c \
 src/c/tohome.c \
 src/c/more.c \
 src/c/scilines.c \
+src/c/GetCommandLine.c \
 src/c/others/mainscic.c \
-src/c/others/GetCharWithEventsLoop.c \
 src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
@@ -43,6 +44,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/core/includes \
 			-I$(top_srcdir)/modules/completion/includes \
+			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/
 
 libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TERMCAP_LIB)
