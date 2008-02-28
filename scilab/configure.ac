@@ -41,6 +41,7 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 # strip executable
 AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
+
 AC_SYS_LARGEFILE
 
 # In order to be able to change the scilab directory
@@ -978,9 +979,11 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
 ## libtool
 #########################
 
-AC_PROG_LIBTOOL
-LT_INIT([shared static dlopen])
+AC_PROG_LIBTOOL([shared static dlopen])
+AM_PROG_LIBTOOL
 
+# Avoid to link all the dep from others libraries (*.la included by LIBADD)
+link_all_deplibs=no
 
 # Check to see if building shared libraries
 libtool_build_shared_libs='no'
@@ -1162,6 +1165,26 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 #fi
 
 AC_OUTPUT
+
+# To distribution packager, you can uncomment this stuff is you want to 
+# disable the rpath issue
+# However, you will have to set all the LD_LIBRARY_PATH to .libs/ directory
+# since scilab is compiling macros and help into the source tree (ie before
+# the "make install")
+# You should consider using chrpath:
+# http://directory.fsf.org/project/chrpath/
+# to remove it before the make install
+
+#case ${host} in
+#  *-pc-linux-gnu)
+#    AC_MSG_RESULT([Fixing libtool for -rpath problems.])
+#    sed < libtool > libtool-2 \
+#    's/^hardcode_libdir_flag_spec.*$/hardcode_libdir_flag_spec=" -D__LIBTOOL_IS_A_FOOL__ "/'
+#    mv libtool-2 libtool
+#    chmod 755 libtool
+#  ;;
+#esac
+#
 
 echo ""
 
