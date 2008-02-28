@@ -50,8 +50,9 @@ int scilinesdefault(void)
 	}
 	
 #else
-	if (getScilabMode() != SCILAB_STD)
+	if ( (getScilabMode() != SCILAB_STD) && (getScilabMode() != SCILAB_API) )
 	{
+		/* -NW or -NWNI mode */
 		setColumnsSize(getXConsoleScreenSize());
 		setLinesSize(getYConsoleScreenSize());
 	}
