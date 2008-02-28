@@ -594,11 +594,12 @@ DISABLE_HELP_CLEAN = yes
 
 
 #### scicos : demos files ####
+#### Custom Scicos Demos for Scilab 5.0 ALPHA #########
 @SCICOS_TRUE@libsciscicos_la_demosdir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
-@SCICOS_TRUE@demos/Bouncing_ball.cosf \
+@SCICOS_TRUE@demos/Bouncing_ball.cos \
 @SCICOS_TRUE@demos/CodeGen \
-@SCICOS_TRUE@demos/Cont.Disc-Observer.cosf \
+@SCICOS_TRUE@demos/Cont.Disc-Observer.cos \
 @SCICOS_TRUE@demos/Controller.cosf \
 @SCICOS_TRUE@demos/demo_Datatype.cosf \
 @SCICOS_TRUE@demos/demo_flipflop.cosf \
@@ -608,17 +609,17 @@ DISABLE_HELP_CLEAN = yes
 @SCICOS_TRUE@demos/dialogs.sci \
 @SCICOS_TRUE@demos/Discrete-KalmanFilter.cosf \
 @SCICOS_TRUE@demos/Electrical \
-@SCICOS_TRUE@demos/fibo.cosf \
+@SCICOS_TRUE@demos/fibo.cos \
 @SCICOS_TRUE@demos/Finite_state_Buck.cosf \
 @SCICOS_TRUE@demos/Finite_state_SwingUp.cosf \
 @SCICOS_TRUE@demos/goto_demo.cosf \
 @SCICOS_TRUE@demos/Hydraulics.cosf \
 @SCICOS_TRUE@demos/Ifsub.cosf \
 @SCICOS_TRUE@demos/imppart_Hydraulics.mo \
-@SCICOS_TRUE@demos/Inverted_pendulum.cosf \
-@SCICOS_TRUE@demos/Kalman_1.cosf \
+@SCICOS_TRUE@demos/Inverted_pendulum.cos \
+@SCICOS_TRUE@demos/Kalman_1.cos \
 @SCICOS_TRUE@demos/live.dat \
-@SCICOS_TRUE@demos/Lorentz.cosf \
+@SCICOS_TRUE@demos/Lorentz.cos \
 @SCICOS_TRUE@demos/MBlock \
 @SCICOS_TRUE@demos/Plant_DiscreteController.cosf \
 @SCICOS_TRUE@demos/scicos.dem \
@@ -628,11 +629,11 @@ DISABLE_HELP_CLEAN = yes
 @SCICOS_TRUE@demos/setw.sci \
 @SCICOS_TRUE@demos/Signal_Builder.cosf \
 @SCICOS_TRUE@demos/Simple_Demo.cosf \
-@SCICOS_TRUE@demos/Simple_Thermostat.cosf \
+@SCICOS_TRUE@demos/Simple_Thermostat.cos \
 @SCICOS_TRUE@demos/sound.cosf \
-@SCICOS_TRUE@demos/System-Observer.cosf \
+@SCICOS_TRUE@demos/System-Observer.cos \
 @SCICOS_TRUE@demos/Table_Lookup.cosf \
-@SCICOS_TRUE@demos/Temp.cosf \
+@SCICOS_TRUE@demos/Temp.cos \
 @SCICOS_TRUE@demos/Thermique_bloc.cosf \
 @SCICOS_TRUE@demos/Threshold_ZeroCrossing.cosf \
 @SCICOS_TRUE@demos/tut1 \
