@@ -172,16 +172,8 @@ pkglib_LTLIBRARIES = libscigui.la
 
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
 
-libscigui_la_LIBADD = \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-    $(top_builddir)/modules/tclsci/libscitclsci.la \
-    $(top_builddir)/modules/string/libscistring.la
-
-
-# Cyclic dep
-#	$(top_builddir)/modules/graphics/libscigraphics.la
-
+#  cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
+libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/jvm/libscijvm.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename=gui
 

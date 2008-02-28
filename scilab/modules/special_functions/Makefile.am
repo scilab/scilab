@@ -37,20 +37,13 @@ libscispecial_functions_la_include_HEADERS = includes/gw_special_functions1.h \
 includes/gw_special_functions2.h
 
 libscispecial_functions_la_CFLAGS=  	-Iincludes/ \
-					-I$(top_builddir)/modules/elementary_functions/includes/ \
-					-I$(top_builddir)/modules/output_stream/includes/
+-I$(top_builddir)/modules/elementary_functions/includes/ \
+-I$(top_builddir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 
 libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscispecial_functions_la_LIBADD = \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la
-
-#\
-#	$(top_builddir)/libs/blas/libsciblas.la \
-#	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
-
+libscispecial_functions_la_LIBADD =  $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la
 
 
 

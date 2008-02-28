@@ -46,13 +46,7 @@ pkglib_LTLIBRARIES = libscirandlib.la
 
 libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 
-libscirandlib_la_LIBADD = \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/core/libscicore.la
-
-#	$(top_builddir)/libs/blas/libsciblas.la \
-#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
-
+libscirandlib_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 
 

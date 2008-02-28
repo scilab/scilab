@@ -84,7 +84,15 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscipolynomials_la_DEPENDENCIES =
+libscipolynomials_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/libs/lapack/libscilapack.la
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo bezout.lo \
 	recbez.lo sfact1.lo dmptld.lo dpodiv.lo dmptra.lo dmpins.lo \
@@ -436,10 +444,7 @@ libscipolynomials_la_CFLAGS = -Iincludes/ \
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libscipolynomials_la_LIBADD = 
-# Cyclic dependencies :
-#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
-#	$(top_builddir)/modules/core/libscicore.la
+libscipolynomials_la_LIBADD = $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
 
 #### Target ######
 modulename = polynomials

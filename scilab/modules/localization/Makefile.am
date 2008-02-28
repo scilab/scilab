@@ -42,9 +42,7 @@ pkglib_LTLIBRARIES = libscilocalization.la
 
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 
-libscilocalization_la_LIBADD = 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/libs/hashtable/libscihashtable.la
-
+libscilocalization_la_LIBADD =  $(top_builddir)/modules/io/libsciio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename=localization
 

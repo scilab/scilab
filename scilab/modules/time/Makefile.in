@@ -84,9 +84,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscitime_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscitime_la-realtime.lo libscitime_la-timer.lo \
 	libscitime_la-getdate.lo libscitime_la-InversionMatrixInt.lo
 am__objects_2 = libscitime_la-sci_realtime.lo \
@@ -320,11 +320,7 @@ libscitime_la_CFLAGS = -Iincludes/ \
 
 pkglib_LTLIBRARIES = libscitime.la
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
-libscitime_la_LIBADD = \
-       $(top_builddir)/modules/intersci/libsciintersci.la \
-       $(top_builddir)/modules/core/libscicore.la \
-       $(top_builddir)/libs/MALLOC/libscimalloc.la
-
+libscitime_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = time

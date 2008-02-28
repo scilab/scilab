@@ -85,9 +85,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisound_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/libs/libst/libscilibst.la \
-	$(top_builddir)/modules/core/libscicore.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/libs/libst/libscilibst.la
 am__objects_1 = libscisound_la-raw.lo libscisound_la-sox.lo \
 	libscisound_la-wav.lo
 am__objects_2 = libscisound_la-sci_savewave.lo \
@@ -316,11 +317,7 @@ libscisound_la_CFLAGS = -Iincludes/ \
 
 pkglib_LTLIBRARIES = libscisound.la
 libscisound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
-libscisound_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/libs/libst/libscilibst.la \
-	$(top_builddir)/modules/core/libscicore.la
-
+libscisound_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
 
 #### Target ######
 modulename = sound

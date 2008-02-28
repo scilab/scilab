@@ -85,7 +85,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciwindows_tools_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libsciwindows_tools_la-nowindows_tools.lo
 am_libsciwindows_tools_la_OBJECTS = $(am__objects_1)
 libsciwindows_tools_la_OBJECTS = $(am_libsciwindows_tools_la_OBJECTS)
@@ -311,10 +311,7 @@ pkglib_LTLIBRARIES = libsciwindows_tools.la
 
 # All the sources needed by libsciwindows_tools.la
 libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)
-libsciwindows_tools_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
-
+libsciwindows_tools_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Name of the module and the path ######
 modulename = windows_tools
 

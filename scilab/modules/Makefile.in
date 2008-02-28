@@ -19,6 +19,8 @@
 ### INRIA - Scilab 2006/2007
 ##########
 
+# The order DOES matter !!!
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -124,6 +126,7 @@ libscilab_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/sparse/libscisparse.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
@@ -168,17 +171,18 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
-	boolean output_stream intersci dynamic_link linear_algebra \
-	differential_equations signal_processing fileio core metanet \
-	optimization interpolation localization sound statistics time \
-	integer special_functions double randlib data_structures \
-	mexlib symbolic tclsci sparse io completion shell \
-	history_manager action_binding console renderer graphic_export \
-	gui graphics windows_tools functions others overloading \
+DIST_SUBDIRS = core output_stream action_binding arnoldi \
+	elementary_functions string dynamic_link history_manager \
+	fileio spreadsheet jvm tclsci renderer gui graphics \
+	graphic_export optimization symbolic randlib statistics \
+	special_functions interpolation linear_algebra integer \
+	data_structures mexlib differential_equations cacsd \
+	polynomials boolean double pvm io localization intersci \
+	metanet signal_processing sound time sparse completion shell \
+	console windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools fftw pvm \
-	spreadsheet jvm demo_tools scicos_blocks scicos . javasci
+	development_tools compatibility_functions helptools fftw \
+	demo_tools scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -357,18 +361,20 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
-# The order DOES matter !!!
-SUBDIRS = polynomials string cacsd elementary_functions arnoldi \
-	boolean output_stream intersci dynamic_link linear_algebra \
-	differential_equations signal_processing fileio core metanet \
-	optimization interpolation localization sound statistics time \
-	integer special_functions double randlib data_structures \
-	mexlib symbolic tclsci sparse io completion shell \
-	history_manager action_binding console renderer graphic_export \
-	gui graphics windows_tools functions others overloading \
-	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools fftw pvm \
-	spreadsheet jvm demo_tools $(am__append_1) scicos . \
+# core is the main module of Scilab. All the compilation deps has been removed 
+# since it already linked almost the whole world
+SUBDIRS = core output_stream action_binding arnoldi \
+	elementary_functions string dynamic_link history_manager \
+	fileio spreadsheet jvm tclsci renderer gui graphics \
+	graphic_export optimization symbolic randlib statistics \
+	special_functions interpolation linear_algebra integer \
+	data_structures mexlib differential_equations cacsd \
+	polynomials boolean double pvm io localization intersci \
+	metanet signal_processing core interpolation sound time \
+	randlib sparse completion shell console windows_tools \
+	functions others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools fftw demo_tools $(am__append_1) scicos . \
 	$(am__append_2)
 modulename = 
 
@@ -417,6 +423,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/sparse/libscisparse.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \

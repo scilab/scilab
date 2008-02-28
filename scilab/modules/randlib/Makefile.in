@@ -86,8 +86,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirandlib_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/core/libscicore.la
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = libscirandlib_la-fsultra.lo libscirandlib_la-mt.lo \
 	libscirandlib_la-igngeom.lo libscirandlib_la-kiss.lo \
 	libscirandlib_la-urand.lo libscirandlib_la-clcg2.lo \
@@ -351,13 +352,7 @@ libscirandlib_la_CFLAGS = -Iincludes/ \
 
 pkglib_LTLIBRARIES = libscirandlib.la
 libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
-libscirandlib_la_LIBADD = \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/core/libscicore.la
-
-
-#	$(top_builddir)/libs/blas/libsciblas.la \
-#	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscirandlib_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 #### Target ######
 modulename = randlib

@@ -86,7 +86,14 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciumfpack_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+	$(top_builddir)/modules/libmx/libmx.la \
+	$(top_builddir)/modules/libmat/libmat.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/sparse/libscisparse.la \
+	$(top_builddir)/modules/libmex/libmex.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/libs/lapack/libscilapack.la
 am__objects_1 = libsciumfpack_la-intscispt.lo \
 	libsciumfpack_la-taucs_scilab.lo
 am_libsciumfpack_la_OBJECTS = $(am__objects_1)
@@ -319,7 +326,7 @@ libsciumfpack_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
 libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES) 
 #$(GATEWAY_C_SOURCES)
-libsciumfpack_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+libsciumfpack_la_LIBADD = $(top_builddir)/modules/libmx/libmx.la $(top_builddir)/modules/libmat/libmat.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/libmex/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
 libsciumfpack_la_CFLAGS = -Iincludes/ \
 			-Isrc/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \

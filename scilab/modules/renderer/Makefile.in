@@ -84,7 +84,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscirenderer_la_LIBADD =
+@GUI_TRUE@libscirenderer_la_DEPENDENCIES =  \
+@GUI_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la \
+@GUI_TRUE@	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
+@GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 	src/cpp/subwinDrawing/DrawableSubwin.cpp \
@@ -1108,7 +1111,8 @@ top_srcdir = @top_srcdir@
 # All the sources needed by libscirenderer.la
 @GUI_TRUE@libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
-#libscirenderer_la_LIBADD = $(top_builddir)/modules/graphics/libscigraphics.la
+# cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
+@GUI_TRUE@libscirenderer_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 @GUI_TRUE@GIWS_WRAPPERS = src/jni/ArcFillDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/ArcLineDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/BackTrihedronDrawerGL.giws.xml \

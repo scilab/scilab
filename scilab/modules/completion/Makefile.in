@@ -89,7 +89,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscicompletion_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/graphics/libscigraphics.la
 am__objects_1 = libscicompletion_la-Completion_wrap.lo
 am__objects_2 = libscicompletion_la-completion.lo \
 	libscicompletion_la-completion_generic.lo \
@@ -343,10 +347,7 @@ pkglib_LTLIBRARIES = libscicompletion.la
 
 # All the sources needed by libscicompletion.la
 libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
-libscicompletion_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
-
+libscicompletion_la_LIBADD = $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/graphics/libscigraphics.la
 #### Name of the module and the path ######
 modulename = completion
 

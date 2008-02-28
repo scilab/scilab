@@ -89,7 +89,12 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifftw_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@FFTW_TRUE@libscifftw_la_DEPENDENCIES = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+@FFTW_TRUE@libscifftw_la_DEPENDENCIES =  \
+@FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@FFTW_TRUE@	$(top_builddir)/modules/core/libscicore.la \
+@FFTW_TRUE@	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
+@FFTW_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+@FFTW_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
 	src/c/fftwlibname.c src/c/fftw_utilities.c src/c/with_fftw.c \
 	sci_gateway/c/gw_fftw.c \
@@ -362,7 +367,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 @FFTW_FALSE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
 @FFTW_TRUE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
-@FFTW_TRUE@libscifftw_la_LIBADD = $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
+@FFTW_TRUE@libscifftw_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 @FFTW_FALSE@libscifftw_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 @FFTW_TRUE@libscifftw_la_CFLAGS = -Iincludes/ \
 @FFTW_TRUE@			-Isrc/c/ \

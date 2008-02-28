@@ -76,10 +76,15 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscidouble_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/libs/lapack/libscilapack.la
 am__objects_1 = libscidouble_la-gw_double.lo
 am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matsubst.lo vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo \
@@ -316,12 +321,7 @@ sci_gateway/fortran/matadd.f
 pkglib_LTLIBRARIES = libscidouble.la
 libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscidouble_la_LIBADD = \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la  \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la
-
+libscidouble_la_LIBADD = $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/boolean/libsciboolean.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
 
 #### Target ######
 modulename = double

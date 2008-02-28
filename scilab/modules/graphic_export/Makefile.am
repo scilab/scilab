@@ -53,7 +53,7 @@ libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCE
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-#libscigraphic_export_la_LIBADD = $(top_builddir)/modules/graphic_export/libscigraphic_export.la
+libscigraphic_export_la_LIBADD =  $(top_builddir)/modules/jvm/libscijvm.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/graphics/libscigraphics.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \

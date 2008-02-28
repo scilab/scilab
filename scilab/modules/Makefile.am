@@ -4,48 +4,57 @@
 ##########
 
 # The order DOES matter !!!
-SUBDIRS = polynomials
+
+# core is the main module of Scilab. All the compilation deps has been removed 
+# since it already linked almost the whole world
+SUBDIRS = core 
 
 SUBDIRS += \
-string \
-cacsd \
-elementary_functions \
-arnoldi \
-boolean \
 output_stream \
-intersci \
-dynamic_link \
-linear_algebra \
-differential_equations \
-signal_processing \
-fileio \
-core \
-metanet \
-optimization \
-interpolation \
-localization \
-sound \
-statistics \
-time \
-integer \
-special_functions \
-double \
-randlib \
-data_structures \
-mexlib \
-symbolic \
-tclsci \
-sparse \
-io \
-completion \
-shell \
-history_manager \
 action_binding \
-console \
+arnoldi \
+elementary_functions \
+string \
+dynamic_link \
+history_manager \
+fileio \
+spreadsheet \
+jvm \
+tclsci \
 renderer \
-graphic_export \
 gui \
 graphics \
+graphic_export \
+optimization \
+symbolic \
+randlib \
+statistics \
+special_functions \
+interpolation \
+linear_algebra \
+integer \
+data_structures \
+mexlib \
+differential_equations \
+cacsd \
+polynomials \
+boolean \
+double \
+pvm \
+io \
+localization \
+intersci \
+metanet \
+signal_processing \
+core \
+interpolation \
+sound \
+time \
+randlib \
+sparse \
+completion \
+shell \
+console \
 windows_tools \
 functions \
 others \
@@ -59,9 +68,6 @@ development_tools \
 compatibility_functions \
 helptools \
 fftw \
-pvm \
-spreadsheet \
-jvm \
 demo_tools
 
 #umfpack
@@ -139,6 +145,7 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/sparse/libscisparse.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \

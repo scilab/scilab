@@ -22,11 +22,11 @@ endif
 
 # Includes need for the compilation
 libsciaction_binding_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
-					-Iincludes/ \
-					-Isrc/c/ \
-					-Isrc/jni/ \
-					-I$(top_srcdir)/libs/MALLOC/includes/ \
-					-I$(top_srcdir)/modules/output_stream/includes
+-Iincludes/ \
+-Isrc/c/ \
+-Isrc/jni/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -37,9 +37,7 @@ libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(CONSOLE_C_JNI_SO
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libsciaction_binding_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
+libsciaction_binding_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Name of the module and the path ######
 modulename=action_binding
 

@@ -43,12 +43,12 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ 
 
 # Includes need for the compilation
 libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
-					-Iincludes/ \
-					-Isrc/c/ \
-					-I$(top_srcdir)/libs/MALLOC/includes/ \
-					-I$(top_srcdir)/modules/console/includes/ \
-					-I$(top_srcdir)/modules/history_manager/includes/ \
-					-I$(top_srcdir)/modules/output_stream/includes/
+-Iincludes/ \
+-Isrc/c/ \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/
 
 libscihistory_manager_la_LDFLAGS = $(JAVA_JNI_LIBS)
 
@@ -60,10 +60,7 @@ pkglib_LTLIBRARIES = libscihistory_manager.la
 libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
-libscihistory_manager_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
-
+libscihistory_manager_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 modulename=history_manager
 
 #### history_manager : Conf files ####

@@ -308,7 +308,7 @@ libdummy_lapack_la_SOURCES = dlamch.f slamch.f
 libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
 
 
-libscilapack_la_LIBADD = libdummy-lapack.la
+libscilapack_la_LIBADD = libdummy-lapack.la 
 
 if USE_EMBEDDED_BLAS
 libscilapack_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la

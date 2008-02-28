@@ -100,17 +100,7 @@ libsciscicos_la_CFLAGS= -Iincludes/ \
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libsciscicos_la_LIBADD = \
-	$(top_builddir)/modules/scicos/libscisundials.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/time/libscitime.la \
-	$(top_builddir)/modules/gui/libscigui.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
+libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)

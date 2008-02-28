@@ -77,11 +77,8 @@ pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 
-libscifileio_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/libs/libst/libscilibst.la \
-    $(top_builddir)/modules/string/libscistring.la
-
+# pb of order $(top_builddir)/modules/shell/libscishell.la
+libscifileio_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
 #### Target ######
 modulename=fileio
 

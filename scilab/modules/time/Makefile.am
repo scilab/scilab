@@ -26,11 +26,7 @@ pkglib_LTLIBRARIES = libscitime.la
 
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscitime_la_LIBADD = \
-       $(top_builddir)/modules/intersci/libsciintersci.la \
-       $(top_builddir)/modules/core/libscicore.la \
-       $(top_builddir)/libs/MALLOC/libscimalloc.la
-
+libscitime_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 

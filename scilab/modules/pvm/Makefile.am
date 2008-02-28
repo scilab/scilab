@@ -56,9 +56,7 @@ pkglib_LTLIBRARIES = libscipvm.la
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscipvm_la_LIBADD = \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+libscipvm_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 libscipvm_la_LDFLAGS = $(PVM_LIB)
 

@@ -42,21 +42,16 @@ sci_gateway/fortran/sci_lstcat.f \
 sci_gateway/fortran/sci_list.f
 
 libscidata_structures_la_CFLAGS=  	-Iincludes/ \
-					-I$(top_srcdir)/libs/MALLOC/includes/ \
-					-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
                     -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libscidata_structures.la
 
 libscidata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libscidata_structures_la_LIBADD = \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/modules/string/libscistring.la
-
+# cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la 
+libscidata_structures_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename=data_structures

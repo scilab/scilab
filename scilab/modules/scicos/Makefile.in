@@ -92,15 +92,22 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@libsciscicos_la_DEPENDENCIES =  \
-@SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/gui/libscigui.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
+@SCICOS_TRUE@	$(top_builddir)/libs/blas/libsciblas.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la \
-@SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
+@SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
+@SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+@SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/tree.c src/c/sciblk2i.c src/c/scicos_malloc.c \
 	src/c/import.c src/c/scicosexit.c src/c/slider.c \
@@ -532,17 +539,7 @@ DISABLE_HELP_CLEAN = yes
 
 #libsciscicos_la_LDFLAGS = -lf2c
 @SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-@SCICOS_TRUE@libsciscicos_la_LIBADD = \
-@SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/gui/libscigui.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la \
-@SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
+@SCICOS_TRUE@libsciscicos_la_LIBADD = $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 #### scicos : Conf files ####
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)

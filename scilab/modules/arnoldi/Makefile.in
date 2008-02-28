@@ -85,7 +85,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciarnoldi_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+	$(top_builddir)/libs/blas/libsciblas.la \
+	$(top_builddir)/libs/lapack/libscilapack.la
 am__objects_1 = libsciarnoldi_la-dsconv.lo libsciarnoldi_la-dsortc.lo \
 	libsciarnoldi_la-dsaup2.lo libsciarnoldi_la-dneigh.lo \
 	libsciarnoldi_la-znaupd.lo libsciarnoldi_la-dsesrt.lo \
@@ -397,12 +398,9 @@ libsciarnoldi_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 libsciarnoldi_la_FFLAGS = -Isrc/arpack/
 pkglib_LTLIBRARIES = libsciarnoldi.la
 libsciarnoldi_la_SOURCES = $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libsciarnoldi_la_LIBADD = \
-$(top_builddir)/libs/MALLOC/libscimalloc.la
 
-
-# Cyclic deps
-#$(top_builddir)/modules/core/libscicore.la
+# cyclic: $(top_builddir)/modules/core/libscicore.la 
+libsciarnoldi_la_LIBADD = $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/libs/lapack/libscilapack.la
 
 #### Target ######
 modulename = arnoldi

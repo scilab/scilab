@@ -44,10 +44,8 @@ pkglib_LTLIBRARIES = libscioutput_stream.la
 
 libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
-#libscioutput_stream_la_LIBADD =
-
-libscioutput_stream_la_LIBADD= $(top_builddir)/modules/string/libscistring.la
-
+# Many stuff depends on this one ... commented
+#libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename=output_stream
 

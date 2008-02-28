@@ -86,6 +86,7 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciboolean_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = libsciboolean_la-matboolean.lo \
 	libsciboolean_la-vect_or.lo libsciboolean_la-vect_and.lo
@@ -327,13 +328,9 @@ pkglib_LTLIBRARIES = libsciboolean.la
 libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libsciboolean_la_LIBADD = \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
-#$(top_builddir)/libs/blas/libsciblas.la:
-#	(cd $(top_builddir)/libs/blas/; make libsciblas.la)
-#SUFFIXES = .la
-#.la:
-#	echo "oh oh"
 modulename = boolean
 
 #### boolean : Conf files ####

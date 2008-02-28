@@ -21,9 +21,7 @@ libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libsciwindows_tools_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
-
+libsciwindows_tools_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Name of the module and the path ######
 modulename=windows_tools
 
