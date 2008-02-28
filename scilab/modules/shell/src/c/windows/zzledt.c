@@ -23,31 +23,34 @@
 #include "TermReadAndProcess.h"
 /*--------------------------------------------------------------------------*/
 void C2F (zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int* interrupt, int *modex, long int dummy1)
-{  
-  char *line = NULL;
+{
+	int i = 0;
+	char *line = NULL;
 
-  if (getScilabMode() == SCILAB_STD)
-  {
-	static char save_prompt[10];
+	if (getScilabMode() == SCILAB_STD)
+	{
+		static char save_prompt[10];
 
-	GetCurrentPrompt(save_prompt);
+		GetCurrentPrompt(save_prompt);
 
-	line = ConsoleRead();
+		SetConsolePrompt(save_prompt);
+		line = ConsoleRead();
+		SetConsolePrompt(save_prompt);
+	}
+	else
+	{
+		line = TermReadAndProcess();
+	}
 
-	SetConsolePrompt(save_prompt);
-  }
-  else
-  {
-	line = TermReadAndProcess();
-  }
+	if (line)
+	{
+		strncpy (buffer, line, *buf_size);
+		*len_line = (int)strlen (buffer);
+		FREE(line);
+		line = NULL;
+	}
 
-  if (line)
-  {
-	 strncpy (buffer, line, *buf_size);
-	 *len_line = (int)strlen(line);
-	 FREE(line); 
-	 line = NULL;
-  }
-
+	*eof = FALSE;
 }
 /*--------------------------------------------------------------------------*/
+
