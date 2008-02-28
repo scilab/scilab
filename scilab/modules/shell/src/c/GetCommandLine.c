@@ -10,17 +10,24 @@
  *
  */
 #include <string.h>
+#include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
 #include "ConsoleRead.h"
 #include "machine.h"
 #include "SetConsolePrompt.h"
 #include "scilabmode.h"
 #include "sci_mem_alloc.h"
-#include "Thread_Wrapper.h"
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
 
+
+
+#ifdef _MSC_VER
+	#define IMPORT_SIGNAL __declspec(dllimport)
+#else
+	#define IMPORT_SIGNAL extern
+#endif
 #define WK_BUF_SIZE 520
 
 #define NUL '\0'
@@ -32,8 +39,8 @@ static char * __CommandLine;
 
 /*--------------------------------------------------------------------------*/
 
-extern __threadSignal	LaunchScilab;
-extern __threadLock	LaunchScilabLock;
+IMPORT_SIGNAL __threadSignal	LaunchScilab;
+IMPORT_SIGNAL __threadLock	LaunchScilabLock;
 
 static __threadSignal	TimeToWork;
 
