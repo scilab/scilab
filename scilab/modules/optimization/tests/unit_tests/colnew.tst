@@ -5,7 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-getf('bvode_tst.sci')
+getf(SCI+'/modules/optimization/tests/unit_tests/bvode_tst.sci')
+
 
 [z,zf]=col1();
 if maxi(abs(z-zf))>1.e-5 then pause,end
