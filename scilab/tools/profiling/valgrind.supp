@@ -810,3 +810,23 @@
    fun:_ZN20ParallelScavengeHeap19failed_mem_allocateEjb
    fun:_ZN29VM_ParallelGCFailedAllocation4doitEv
 }
+{
+   <insert a suppression name here>
+   Memcheck:Cond
+   fun:_ZN20LinearLeastSquareFit6updateEdd
+   fun:_ZN20PSAdaptiveSizePolicy32update_minor_pause_old_estimatorEd
+   fun:_ZN18AdaptiveSizePolicy20minor_collection_endEN7GCCause5CauseE
+   fun:_ZN10PSScavenge16invoke_no_policyEv
+   fun:_ZN10PSScavenge6invokeEv
+   fun:_ZN20ParallelScavengeHeap19failed_mem_allocateEjb
+}
+{
+   <insert a suppression name here>
+   Memcheck:Addr2
+   fun:getenv
+   fun:findJavaTZ_md
+   fun:Java_java_util_TimeZone_getSystemTimeZoneID
+   obj:*
+   obj:*
+   obj:*
+}
