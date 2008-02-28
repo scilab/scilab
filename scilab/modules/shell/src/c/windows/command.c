@@ -17,7 +17,6 @@
 #include "localization.h"
 #include "win_mem_alloc.h" /* MALLOC */
 #include "prompt.h"
-#include "../../core/src/c/flags.h"
 #include "HistoryManager.h"
 #include "readline_nw.h"
 /*--------------------------------------------------------------------------*/
