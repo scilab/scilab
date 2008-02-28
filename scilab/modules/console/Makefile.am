@@ -72,8 +72,8 @@ libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration
 SWIG_WRAPPERS = src/jni/GuiManagement.i
 
 ####�console : include files ####
-libscishell_la_includedir=$(pkgincludedir)/console
-libscishell_la_include_HEADERS = includes/ClearConsole.h \
+libsciconsole_la_includedir=$(pkgincludedir)/console
+libsciconsole_la_include_HEADERS = includes/ClearConsole.h \
 includes/ClearConsolePart.h \
 includes/ConsolePrintf.h \
 includes/ConsoleRead.h \
