@@ -19,10 +19,13 @@ dynamic_link \
 history_manager \
 fileio \
 spreadsheet \
-jvm \
 tclsci \
 renderer \
+shell \
+completion \
+console \
 gui \
+jvm \
 graphics \
 graphic_export \
 optimization \
@@ -52,9 +55,6 @@ sound \
 time \
 randlib \
 sparse \
-completion \
-shell \
-console \
 windows_tools \
 functions \
 others \

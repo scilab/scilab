@@ -42,7 +42,8 @@ libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) 
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/graphics/libscigraphics.la
+libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+#$(top_builddir)/modules/graphics/libscigraphics.la
 #### Name of the module and the path ######
 modulename=completion
 

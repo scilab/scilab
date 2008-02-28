@@ -298,7 +298,9 @@ libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
 # cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
-libscirenderer_la_LIBADD =  $(top_builddir)/modules/jvm/libscijvm.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscirenderer_la_LIBADD =  $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+
+# needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 
 
 GIWS_WRAPPERS=src/jni/ArcFillDrawerGL.giws.xml \

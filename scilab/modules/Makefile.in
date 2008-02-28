@@ -173,16 +173,15 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
-	fileio spreadsheet jvm tclsci renderer gui graphics \
-	graphic_export optimization symbolic randlib statistics \
-	special_functions interpolation linear_algebra integer \
-	data_structures mexlib differential_equations cacsd \
+	fileio spreadsheet tclsci renderer shell completion console \
+	gui jvm graphics graphic_export optimization symbolic randlib \
+	statistics special_functions interpolation linear_algebra \
+	integer data_structures mexlib differential_equations cacsd \
 	polynomials boolean double pvm io localization intersci \
-	metanet signal_processing sound time sparse completion shell \
-	console windows_tools functions others overloading \
-	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools fftw \
-	demo_tools scicos_blocks scicos . javasci
+	metanet signal_processing sound time sparse windows_tools \
+	functions others overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools fftw demo_tools scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -365,17 +364,16 @@ top_srcdir = @top_srcdir@
 # since it already linked almost the whole world
 SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
-	fileio spreadsheet jvm tclsci renderer gui graphics \
-	graphic_export optimization symbolic randlib statistics \
-	special_functions interpolation linear_algebra integer \
-	data_structures mexlib differential_equations cacsd \
+	fileio spreadsheet tclsci renderer shell completion console \
+	gui jvm graphics graphic_export optimization symbolic randlib \
+	statistics special_functions interpolation linear_algebra \
+	integer data_structures mexlib differential_equations cacsd \
 	polynomials boolean double pvm io localization intersci \
 	metanet signal_processing core interpolation sound time \
-	randlib sparse completion shell console windows_tools \
-	functions others overloading maple2scilab m2sci texmacs scipad \
-	scilab2fortran development_tools compatibility_functions \
-	helptools fftw demo_tools $(am__append_1) scicos . \
-	$(am__append_2)
+	randlib sparse windows_tools functions others overloading \
+	maple2scilab m2sci texmacs scipad scilab2fortran \
+	development_tools compatibility_functions helptools fftw \
+	demo_tools $(am__append_1) scicos . $(am__append_2)
 modulename = 
 
 #### Basic files ####
