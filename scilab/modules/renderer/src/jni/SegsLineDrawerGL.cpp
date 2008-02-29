@@ -78,6 +78,9 @@ std::cerr << "Could not create a Global Ref of " << this->className() <<  std::e
 exit(EXIT_FAILURE);
 }
 
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
+
 constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
 if(constructObject == NULL){
 std::cerr << "Could not retrieve the constructor of the class " << this->className() << " with the profile : " << construct << param << std::endl;
@@ -95,6 +98,9 @@ if(this->instance == NULL){
 std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
 exit(EXIT_FAILURE);
 }
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
+
                 /* Methods ID set to NULL */
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
@@ -114,9 +120,15 @@ SegsLineDrawerGL::SegsLineDrawerGL(JavaVM * jvm_, jobject JObj) {
         JNIEnv * curEnv = getCurrentEnv();
 
         this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
+
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass);
+        curEnv->DeleteLocalRef(localClass);
+
         if (this->instanceClass == NULL) {
                std::cerr << "Could not create a Global Ref of " << this->instanceClass <<  std::endl;
                exit(EXIT_FAILURE);
+   
         }
 
         this->instance = curEnv->NewGlobalRef(JObj) ;

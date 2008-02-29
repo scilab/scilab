@@ -78,6 +78,9 @@ std::cerr << "Could not create a Global Ref of " << this->className() <<  std::e
 exit(EXIT_FAILURE);
 }
 
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
+
 constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
 if(constructObject == NULL){
 std::cerr << "Could not retrieve the constructor of the class " << this->className() << " with the profile : " << construct << param << std::endl;
@@ -95,6 +98,9 @@ if(this->instance == NULL){
 std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
 exit(EXIT_FAILURE);
 }
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
+
                 /* Methods ID set to NULL */
 jintnewWindowID=NULL; 
 jintnewMenuBarID=NULL; 
@@ -229,9 +235,15 @@ CallScilabBridge::CallScilabBridge(JavaVM * jvm_, jobject JObj) {
         JNIEnv * curEnv = getCurrentEnv();
 
         this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
+
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass);
+        curEnv->DeleteLocalRef(localClass);
+
         if (this->instanceClass == NULL) {
                std::cerr << "Could not create a Global Ref of " << this->instanceClass <<  std::endl;
                exit(EXIT_FAILURE);
+   
         }
 
         this->instance = curEnv->NewGlobalRef(JObj) ;
@@ -710,6 +722,7 @@ const char *tempString = curEnv->GetStringUTFChars(res, 0);
 char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
 strcpy(myStringBuffer, tempString);
 curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(stringArrayClass);
 
 return myStringBuffer;
 
@@ -2375,7 +2388,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 char ** CallScilabBridge::getPopupMenuAllItemsText (JavaVM * jvm_, long objID){
@@ -2477,7 +2491,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 void CallScilabBridge::setWidgetRelief (JavaVM * jvm_, long objID, char * reliefType){
@@ -3023,7 +3038,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 void CallScilabBridge::messageBoxDisplayAndWait (JavaVM * jvm_, long id){
@@ -3171,7 +3187,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 void CallScilabBridge::setMessageBoxInitialValue (JavaVM * jvm_, long id, char ** value, int valueSize){
@@ -3216,7 +3233,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 char ** CallScilabBridge::getMessageBoxValue (JavaVM * jvm_, long id){
@@ -3318,7 +3336,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 long CallScilabBridge::getMessageBoxSelectedItem (JavaVM * jvm_, long id){
@@ -3386,7 +3405,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 void CallScilabBridge::setMessageBoxColumnLabels (JavaVM * jvm_, long id, char ** labels, int labelsSize){
@@ -3431,7 +3451,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 void CallScilabBridge::setMessageBoxDefaultInput (JavaVM * jvm_, long id, char ** values, int valuesSize){
@@ -3476,7 +3497,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 }
 
 void CallScilabBridge::setMessageBoxModal (JavaVM * jvm_, long id, bool status){

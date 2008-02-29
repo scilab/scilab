@@ -78,6 +78,9 @@ std::cerr << "Could not create a Global Ref of " << this->className() <<  std::e
 exit(EXIT_FAILURE);
 }
 
+/* localClass is not needed anymore */
+curEnv->DeleteLocalRef(localClass);
+
 constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
 if(constructObject == NULL){
 std::cerr << "Could not retrieve the constructor of the class " << this->className() << " with the profile : " << construct << param << std::endl;
@@ -95,6 +98,9 @@ if(this->instance == NULL){
 std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
 exit(EXIT_FAILURE);
 }
+/* localInstance not needed anymore */
+curEnv->DeleteLocalRef(localInstance);
+
                 /* Methods ID set to NULL */
 voiddisplayID=NULL; 
 voidinitializeDrawingjintID=NULL; 
@@ -105,6 +111,9 @@ voidsetFigureIndexjintID=NULL;
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(stringArrayClass);
+jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
+curEnv->DeleteLocalRef(localStringArrayClass);
 jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID=NULL; 
 jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID=NULL; 
@@ -123,9 +132,15 @@ YAxesDrawerGL::YAxesDrawerGL(JavaVM * jvm_, jobject JObj) {
         JNIEnv * curEnv = getCurrentEnv();
 
         this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
+
+jclass localClass = curEnv->GetObjectClass(JObj);
+        this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass);
+        curEnv->DeleteLocalRef(localClass);
+
         if (this->instanceClass == NULL) {
                std::cerr << "Could not create a Global Ref of " << this->instanceClass <<  std::endl;
                exit(EXIT_FAILURE);
+   
         }
 
         this->instance = curEnv->NewGlobalRef(JObj) ;
@@ -143,6 +158,9 @@ voidsetFigureIndexjintID=NULL;
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
 stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(stringArrayClass);
+jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
+curEnv->DeleteLocalRef(localStringArrayClass);
 jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID=NULL; 
 jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID=NULL; 
@@ -332,7 +350,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 return (res == JNI_TRUE);
 
 }
@@ -383,7 +402,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 return res;
 
 }
@@ -455,7 +475,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 return (res == JNI_TRUE);
 
 }
@@ -530,7 +551,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+
 return res;
 
 }
