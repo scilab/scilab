@@ -7,7 +7,7 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_JNI_SOURCES = src/jni/org_scilab_modules_gui_bridge.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
 
 CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \

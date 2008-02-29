@@ -91,7 +91,7 @@ libsciconsole_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciact
 am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/jni/DropFiles_wrap.c src/noconsole/noconsole.c \
 	src/c/InitializeConsole.c src/c/GuiManagement.c \
-	src/c/dropFiles.c src/jni/org_scilab_modules_gui_bridge.cpp \
+	src/c/dropFiles.c src/jni/CallScilabBridge.cpp \
 	src/cpp/ClearConsole.cpp src/cpp/ClearConsolePart.cpp \
 	src/cpp/ConsolePrintf.cpp src/cpp/ConsoleRead.cpp \
 	src/cpp/ConsoleIsWaitingForInput.cpp \
@@ -103,8 +103,7 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 @GUI_TRUE@am__objects_2 = libsciconsole_la-InitializeConsole.lo \
 @GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
 @GUI_TRUE@	libsciconsole_la-dropFiles.lo
-@GUI_TRUE@am__objects_3 =  \
-@GUI_TRUE@	libsciconsole_la-org_scilab_modules_gui_bridge.lo
+@GUI_TRUE@am__objects_3 = libsciconsole_la-CallScilabBridge.lo
 @GUI_TRUE@am__objects_4 = libsciconsole_la-ClearConsole.lo \
 @GUI_TRUE@	libsciconsole_la-ClearConsolePart.lo \
 @GUI_TRUE@	libsciconsole_la-ConsolePrintf.lo \
@@ -326,7 +325,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the cpp files
-@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/org_scilab_modules_gui_bridge.cpp
+@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
 @GUI_TRUE@CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
 @GUI_TRUE@src/cpp/ClearConsolePart.cpp \
 @GUI_TRUE@src/cpp/ConsolePrintf.cpp \
@@ -537,6 +536,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ConsoleIsWaitingForInput.Plo@am__quote@
@@ -552,7 +552,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-noconsole.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -638,12 +637,12 @@ libsciconsole_la-dropFiles.lo: src/c/dropFiles.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciconsole_la-org_scilab_modules_gui_bridge.lo: src/jni/org_scilab_modules_gui_bridge.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-org_scilab_modules_gui_bridge.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Tpo -c -o libsciconsole_la-org_scilab_modules_gui_bridge.lo `test -f 'src/jni/org_scilab_modules_gui_bridge.cpp' || echo '$(srcdir)/'`src/jni/org_scilab_modules_gui_bridge.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Tpo $(DEPDIR)/libsciconsole_la-org_scilab_modules_gui_bridge.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/org_scilab_modules_gui_bridge.cpp' object='libsciconsole_la-org_scilab_modules_gui_bridge.lo' libtool=yes @AMDEPBACKSLASH@
+libsciconsole_la-CallScilabBridge.lo: src/jni/CallScilabBridge.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-CallScilabBridge.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-CallScilabBridge.Tpo -c -o libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-CallScilabBridge.Tpo $(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CallScilabBridge.cpp' object='libsciconsole_la-CallScilabBridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-org_scilab_modules_gui_bridge.lo `test -f 'src/jni/org_scilab_modules_gui_bridge.cpp' || echo '$(srcdir)/'`src/jni/org_scilab_modules_gui_bridge.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
 
 libsciconsole_la-ClearConsole.lo: src/cpp/ClearConsole.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp

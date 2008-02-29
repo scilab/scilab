@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "ConsoleRead.hxx"
 /*--------------------------------------------------------------------------*/
-#include "org_scilab_modules_gui_bridge.hxx"
+#include "CallScilabBridge.hxx"
 using namespace  org_scilab_modules_gui_bridge;
 char *ConsoleRead(void)
 {

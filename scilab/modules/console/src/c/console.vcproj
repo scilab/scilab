@@ -207,6 +207,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath="..\jni\CallScilabBridge.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\ClearConsole.cpp"
 				>
 			</File>
@@ -255,10 +259,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\org_scilab_modules_gui_bridge.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\PromptToHome.cpp"
 				>
 			</File>
@@ -275,6 +275,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\jni\CallScilabBridge.hxx"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\ClearConsole.h"
 				>
@@ -337,10 +341,6 @@
 			</File>
 			<File
 				RelativePath=".\InterpreterManagement.h"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\org_scilab_modules_gui_bridge.hxx"
 				>
 			</File>
 			<File

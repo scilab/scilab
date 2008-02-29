@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "ConsolePrintf.hxx"
 /*--------------------------------------------------------------------------*/
-#include "org_scilab_modules_gui_bridge.hxx"
+#include "CallScilabBridge.hxx"
 using namespace  org_scilab_modules_gui_bridge;
 int ConsolePrintf(char *line)
 {
