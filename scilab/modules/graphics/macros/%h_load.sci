@@ -16,7 +16,6 @@ function h=%h_load(fd)
   if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'c',fd)
   immediate_drawing="";
-  disp(version);
   
   h=[];
   
@@ -97,9 +96,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         h.info_message = info_message ;
       end
       h.auto_resize=auto_resize
-disp(auto_resize);
       h.figure_name=figure_name
-disp(figure_name);
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,'c',fd)); // pixmap
       h.pixel_drawing_mode=ascii(mget(mget(1,'c',fd),'c',fd)) // pixel_drawing_mode
