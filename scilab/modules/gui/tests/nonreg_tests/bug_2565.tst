@@ -11,9 +11,8 @@
 // http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2565
 //
 // <-- Short Description -->
-//    Many uicontrols are created with default properties, but return [] when inquired.
-
-// Java version of uicontrol solves this problem
+//    Sscalar uicontrol('listbox') string entries are tcl-substituted, vector string
+//    entries not (i.e., dollars, brackets, backslashes are taken literally, etc.)
 
 f = figure(1);
 h = uicontrol(f,"style","listbox",..
