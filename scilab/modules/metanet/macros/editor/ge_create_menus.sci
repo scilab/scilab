@@ -9,26 +9,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function ge_create_menus(win)
-  if ~MSDOS then
-    delmenu(win,'3D Rot.')
-    delmenu(win,'UnZoom')
-    delmenu(win,'2D Zoom')
-    delmenu(win,'Edit')
-    delmenu(win,'File')
-    delmenu(win,'Insert')
-  else 
-    hidetoolbar(win)
-    // French
-    delmenu(win,'&Fichier')
-    delmenu(win,'&Editer')
-    delmenu(win,'&Outils')
-    delmenu(win,'&Inserer')
-    // English
-    delmenu(win,'&File')
-    delmenu(win,'&Edit')
-    delmenu(win,'&Tools')
-    delmenu(win,'&Insert')
-  end
+  toolbar(win, "off");
+  delmenu(win,gettext("File"));
+  delmenu(win,gettext("Tools"));
+  delmenu(win,gettext("Edit"));
+  delmenu(win,gettext("?"));
   menus=list([])
   for k=1:length(Menus)
     delmenu(win,Menus(k)(1))
