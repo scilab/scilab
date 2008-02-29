@@ -2,17 +2,19 @@ function launchtest(baseDir, testName)
 
 // =============================================================================
 
-mkdir(baseDir, testName) // create a subfolder for test results (NOT outputs)
-testDir        = fullfile(baseDir, testName)
-testFilename   = fullfile(testDir, testName + '.test')
-modelFilename  = fullfile(testDir, testName + '.cos')
+// testDir        = fullfile(baseDir, testName)
+// mkdir(testDir) // create a subfolder for test results (NOT outputs)
+testFilename   = fullfile(baseDir, testName + '.test')
+modelFilename  = fullfile(baseDir, testName + '.cos')
 
 if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
-  resFilename    = fullfile(testDir, testName + '_v4.res')
-  errFilename    = fullfile(testDir, testName + '_v4.err')
+  diaryFilename  = fullfile(baseDir, testName + '_v4.log')
+  resFilename    = fullfile(baseDir, testName + '_v4.res')
+  errFilename    = fullfile(baseDir, testName + '_v4.err')
 elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
-  resFilename    = fullfile(testDir, testName + '_v5.res')
-  errFilename    = fullfile(testDir, testName + '_v5.err')
+  diaryFilename  = fullfile(baseDir, testName + '_v5.log')
+  resFilename    = fullfile(baseDir, testName + '_v5.res')
+  errFilename    = fullfile(baseDir, testName + '_v5.err')
 end
 
 outFilename    = fullfile(baseDir, testName + '.out')
@@ -26,20 +28,11 @@ txt = [ "// Set display settings";
         "lines(28,72)";
         "lines(0)";
         "";
-        "// Set name of log file (used by ''diary'' below)";
-        "if getversion() == ''scilab-4.1.2'' | getversion() == ''Scilab-4.1.2-SVN''";
-        "  diaryName = fullfile(''" + testDir + "'',''" + testName + "'' + ''_v4.log'')";
-        "elseif getversion() == ''scilab-trunk-SVN'' | getversion() == ''scilab-5.0''";
-        "  diaryName = fullfile(''" + testDir + "'',''" + testName + "'' + ''_v5.log'')";
-        "else";
-        "  diaryName = fullfile(''" + testDir + "'',''" + testName + "'' + ''_diary.log'')";
-        "end";
-        "";
         "// Start logging output";
-        "diary(diaryName)";
+        "diary(''" + diaryFilename + "'')";
         "";
         "// Load and launch simulation, displaying some debug data in the mean time";
-        "load(fullfile(''" + baseDir + "'', ''" + testName + "'' + ''.cos''))";
+        "load(''" + modelFilename + "'')";
         "disp(scs_m)";
         "// Info = list()";
         "// Force compilation";
@@ -48,7 +41,7 @@ txt = [ "// Set display settings";
         "try";
         "  Info = scicos_simulate(scs_m,Info,[],''nw'')";
         "catch";
-        "  disp(msprintf(''%-20s: ERROR while launching simulation'',''" + testName + "''))";
+        "  disp(msprintf(''%-25s: ERROR while launching simulation'',''" + testName + "''))";
         "end";
         "disp(Info)";
         "";
@@ -73,9 +66,9 @@ if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
   mdelete(outFilename)
 
   if status
-	  disp(msprintf('%-20s: Reference file successfully generated',testName))
+	  disp(msprintf('%-25s: Reference file successfully generated',testName))
   else
-	  disp(msprintf('%-20s: WARNING: Reference file not generated',testName))
+	  disp(msprintf('%-25s: WARNING: Reference file not generated',testName))
   end
 
 elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
@@ -88,7 +81,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
     out = mgetl(fidOut);
     mclose(fidOut);
   catch
-    disp(msprintf('%-20s: ERROR: Cannot read output data from file ' + outFilename, testName))
+    disp(msprintf('%-25s: ERROR: Cannot read output data from file ' + outFilename, testName))
     return // go on to next test
   end
 
@@ -98,7 +91,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
     ref = mgetl(fidRef);
     mclose(fidRef);
   catch
-    disp(msprintf('%-20s: ERROR: Cannot read reference data from file ' + outRefFilename, testName))
+    disp(msprintf('%-25s: ERROR: Cannot read reference data from file ' + outRefFilename, testName))
     return // go on to next test
   end
 
@@ -113,7 +106,7 @@ elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
     status.id      = 0; // OK
   end
 
-  disp(msprintf('%-20s: %s', testName, status.msg))
+  disp(msprintf('%-25s: %s', testName, status.msg))
   if status.id == 1 // KO
     disp(msprintf('%s', status.details))
   end  
