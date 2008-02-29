@@ -28,6 +28,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -46,7 +47,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(am__libscitclsci_la_include_HEADERS_DIST) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@@TCLTK_TRUE@am__append_1 = java
 @SWIG_TRUE@@TCLTK_TRUE@am__append_2 = swig
@@ -76,7 +78,12 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscitclsci_la_etcdir)"
+	"$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" \
+	"$(DESTDIR)$(libscitclsci_la_demostkdir)" \
+	"$(DESTDIR)$(libscitclsci_la_etcdir)" \
+	"$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscitclsci_la_tcldir)" \
+	"$(DESTDIR)$(libscitclsci_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @TCLTK_TRUE@libscitclsci_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciaction_binding.la \
@@ -155,8 +162,23 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscitclsci_la_SOURCES)
 DIST_SOURCES = $(am__libscitclsci_la_SOURCES_DIST)
+libscitclsci_la_demossciGUIDATA_INSTALL = $(INSTALL_DATA)
+libscitclsci_la_demostkDATA_INSTALL = $(INSTALL_DATA)
 libscitclsci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscitclsci_la_etc_DATA)
+libscitclsci_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+nobase_libscitclsci_la_tclDATA_INSTALL = $(install_sh_DATA)
+DATA = $(libscitclsci_la_demossciGUI_DATA) \
+	$(libscitclsci_la_demostk_DATA) $(libscitclsci_la_etc_DATA) \
+	$(libscitclsci_la_sci_gateway_DATA) \
+	$(nobase_libscitclsci_la_tcl_DATA)
+am__libscitclsci_la_include_HEADERS_DIST = includes/setenvtcl.h \
+	includes/GedManagement.h includes/TCL_Global.h \
+	includes/ScilabEval.h includes/gw_tclsci.h \
+	includes/InitializeTclTk.h includes/sci_TCL_SetVar.h \
+	includes/TerminateTclTk.h includes/GlobalTclInterp.h \
+	includes/withtk.h
+libscitclsci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libscitclsci_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -391,6 +413,237 @@ top_srcdir = @top_srcdir@
 #### tclsci : init scripts ####
 @TCLTK_TRUE@libscitclsci_la_etcdir = $(mydatadir)/etc
 @TCLTK_TRUE@libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
+
+### TCL macros ###
+@TCLTK_TRUE@libscitclsci_la_tcldir = $(mydatadir)
+@TCLTK_TRUE@nobase_libscitclsci_la_tcl_DATA = tcl/utils/tk_choose.tcl \
+@TCLTK_TRUE@tcl/utils/Notebook.tcl \
+@TCLTK_TRUE@tcl/utils/Balloon.tcl \
+@TCLTK_TRUE@tcl/utils/Combobox.tcl \
+@TCLTK_TRUE@tcl/sciGUI/data/initial.help \
+@TCLTK_TRUE@tcl/sciGUI/data/dontshow.txt \
+@TCLTK_TRUE@tcl/sciGUI/data/tp00.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp01.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp10.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp02.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/initial \
+@TCLTK_TRUE@tcl/sciGUI/data/tp04.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/giftable.txt \
+@TCLTK_TRUE@tcl/sciGUI/data/ndemo_tx01.txt \
+@TCLTK_TRUE@tcl/sciGUI/data/tp05.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/error.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp06.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp15.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp16.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/info.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp08.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/tp17.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/scilab01.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/passwd.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/warning.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/question.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/hourglass.gif \
+@TCLTK_TRUE@tcl/sciGUI/data/icontable.txt \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/ANNOUNCE.txt \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/combobox.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/README.txt \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/combobox.html \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/example.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/gpl.txt \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/license.txt \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help_2htm.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help_tbl.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/readme.txt \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help_chk.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/balloonhelp.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/rnotebook.tcl \
+@TCLTK_TRUE@tcl/sciGUI/local_extra/spinbutton.tcl \
+@TCLTK_TRUE@tcl/sciGUI/license.txt \
+@TCLTK_TRUE@tcl/sciGUI/sciBar.tcl \
+@TCLTK_TRUE@tcl/sciGUI/sciGUI.tcl \
+@TCLTK_TRUE@tcl/sciGUI/sciConfig.tcl \
+@TCLTK_TRUE@tcl/sciGUI/sciBrowseVar.tcl \
+@TCLTK_TRUE@tcl/sciGUI/sciDemoPlay.tcl \
+@TCLTK_TRUE@tcl/sciGUI/sciEditVar.tcl \
+@TCLTK_TRUE@tcl/sciGUI/sciBrowseHelp.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/select.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/tree.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/basic.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/tmpldlg.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/demo.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/dnd.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/bwidget.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/manager.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/demo/x1.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/tests/entry.test \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/SelectColor.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/SpinBox.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ButtonBox.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ScrollView.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/LabelFrame.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ProgressDlg.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/TitleFrame.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/Dialog.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/Separator.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/Entry.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/navtree.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/SelectFont.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/PanelFrame.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/Button.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/MessageDlg.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/PanedWindow.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/Label.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/options.htm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/NoteBook.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/Widget.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ListBox.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/BWidget.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ArrowButton.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/PasswdDlg.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ProgressBar.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/DropSite.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/PagesManager.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ScrollableFrame.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/DynamicHelp.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/contents.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ScrolledWindow.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/MainFrame.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/Tree.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/LabelEntry.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/DragSite.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/index.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/StatusBar.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/BWman/ComboBox.html \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/folder.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/minus.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/paste.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/dragfile.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/oplink.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/file.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/bold.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/underline.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/dragicon.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/opmove.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/new.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/error.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/redo.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/opcopy.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/info.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/cut.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/print.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/overstrike.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/palette.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/save.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/open.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/passwd.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/plus.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/italic.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/undo.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/warning.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/openfold.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/hourglass.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/question.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/target.xbm \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/images/copy.gif \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/lang/en.rc \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/lang/da.rc \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/lang/es.rc \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/lang/fr.rc \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/lang/de.rc \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/mainframe.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/dialog.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/utils.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/wizard.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/labelentry.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/entry.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/init.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/pagesmgr.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/font.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/pkgIndex.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/scrollframe.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/panelframe.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/button.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/panedw.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/label.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/notebook.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/widget.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/listbox.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/scrollw.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/passwddlg.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/scrollview.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/xpm2image.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/arrow.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/progressdlg.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/tree.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/separator.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/dragsite.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/dynhelp.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/CHANGES.txt \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/ChangeLog \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/combobox.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/statusbar.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/messagedlg.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/bitmap.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/color.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/LICENSE.txt \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/spinbox.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/buttonbox.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/dropsite.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/progressbar.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/labelframe.tcl \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/README.txt \
+@TCLTK_TRUE@tcl/BWidget-1.8.0/titleframe.tcl \
+@TCLTK_TRUE@tcl/html_library.tcl \
+@TCLTK_TRUE@tcl/TK_Scilab.tcl
+
+
+#### tclsci : gateway declaration ####
+@TCLTK_TRUE@libscitclsci_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+@TCLTK_TRUE@libscitclsci_la_sci_gateway_DATA = sci_gateway/tclsci_gateway.xml
+
+#### tclsci : include files ####
+@TCLTK_TRUE@libscitclsci_la_includedir = $(pkgincludedir)/tclsci
+@TCLTK_TRUE@libscitclsci_la_include_HEADERS = includes/setenvtcl.h\
+@TCLTK_TRUE@includes/GedManagement.h \
+@TCLTK_TRUE@includes/TCL_Global.h \
+@TCLTK_TRUE@includes/ScilabEval.h \
+@TCLTK_TRUE@includes/gw_tclsci.h \
+@TCLTK_TRUE@includes/InitializeTclTk.h \
+@TCLTK_TRUE@includes/sci_TCL_SetVar.h \
+@TCLTK_TRUE@includes/TerminateTclTk.h \
+@TCLTK_TRUE@includes/GlobalTclInterp.h \
+@TCLTK_TRUE@includes/withtk.h
+
+
+#### tclsci : demos files sciGUI ####
+@TCLTK_TRUE@libscitclsci_la_demossciGUIdir = $(mydatadir)/demos/sciGUI/
+@TCLTK_TRUE@libscitclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
+@TCLTK_TRUE@demos/sciGUI/test_demoplay.dpf \
+@TCLTK_TRUE@demos/sciGUI/scilab01.gif \
+@TCLTK_TRUE@demos/sciGUI/logo01.gif
+
+
+#### tclsci : demos files tk ####
+@TCLTK_TRUE@libscitclsci_la_demostkdir = $(mydatadir)/demos/tk/
+@TCLTK_TRUE@libscitclsci_la_demostk_DATA = demos/tk/timer \
+@TCLTK_TRUE@demos/tk/tk.dem \
+@TCLTK_TRUE@demos/tk/rolodex.sce \
+@TCLTK_TRUE@demos/tk/demredraw.sci \
+@TCLTK_TRUE@demos/tk/rgb.txt \
+@TCLTK_TRUE@demos/tk/timer.sce \
+@TCLTK_TRUE@demos/tk/puzzle \
+@TCLTK_TRUE@demos/tk/uicontrol.sci \
+@TCLTK_TRUE@demos/tk/scale.sce \
+@TCLTK_TRUE@demos/tk/cscroll \
+@TCLTK_TRUE@demos/tk/tcolor \
+@TCLTK_TRUE@demos/tk/puzzle.sce \
+@TCLTK_TRUE@demos/tk/scroll.sce \
+@TCLTK_TRUE@demos/tk/uicontrol1.sce \
+@TCLTK_TRUE@demos/tk/tcolor.sce \
+@TCLTK_TRUE@demos/tk/rolodex \
+@TCLTK_TRUE@demos/tk/vscale
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 @TCLTK_TRUE@mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -787,6 +1040,40 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libscitclsci_la_demossciGUIDATA: $(libscitclsci_la_demossciGUI_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscitclsci_la_demossciGUIdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)"
+	@list='$(libscitclsci_la_demossciGUI_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscitclsci_la_demossciGUIDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f'"; \
+	  $(libscitclsci_la_demossciGUIDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f"; \
+	done
+
+uninstall-libscitclsci_la_demossciGUIDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscitclsci_la_demossciGUI_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)/$$f"; \
+	done
+install-libscitclsci_la_demostkDATA: $(libscitclsci_la_demostk_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscitclsci_la_demostkdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_demostkdir)"
+	@list='$(libscitclsci_la_demostk_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscitclsci_la_demostkDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f'"; \
+	  $(libscitclsci_la_demostkDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f"; \
+	done
+
+uninstall-libscitclsci_la_demostkDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscitclsci_la_demostk_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitclsci_la_demostkdir)/$$f"; \
+	done
 install-libscitclsci_la_etcDATA: $(libscitclsci_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscitclsci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_etcdir)"
@@ -803,6 +1090,59 @@ uninstall-libscitclsci_la_etcDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscitclsci_la_etcdir)/$$f"; \
+	done
+install-libscitclsci_la_sci_gatewayDATA: $(libscitclsci_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscitclsci_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)"
+	@list='$(libscitclsci_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscitclsci_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)/$$f'"; \
+	  $(libscitclsci_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libscitclsci_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscitclsci_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)/$$f"; \
+	done
+install-nobase_libscitclsci_la_tclDATA: $(nobase_libscitclsci_la_tcl_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscitclsci_la_tcldir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_tcldir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscitclsci_la_tcl_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libscitclsci_la_tclDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_tcldir)/$$f'"; \
+	  $(nobase_libscitclsci_la_tclDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_tcldir)/$$f"; \
+	done
+
+uninstall-nobase_libscitclsci_la_tclDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libscitclsci_la_tcl_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_tcldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitclsci_la_tcldir)/$$f"; \
+	done
+install-libscitclsci_la_includeHEADERS: $(libscitclsci_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscitclsci_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscitclsci_la_includedir)"
+	@list='$(libscitclsci_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscitclsci_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitclsci_la_includedir)/$$f'"; \
+	  $(libscitclsci_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitclsci_la_includedir)/$$f"; \
+	done
+
+uninstall-libscitclsci_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscitclsci_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscitclsci_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscitclsci_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -884,9 +1224,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
 @TCLTK_FALSE@all-local:
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitclsci_la_demossciGUIdir)" "$(DESTDIR)$(libscitclsci_la_demostkdir)" "$(DESTDIR)$(libscitclsci_la_etcdir)" "$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libscitclsci_la_tcldir)" "$(DESTDIR)$(libscitclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -937,7 +1277,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscitclsci_la_etcDATA
+install-data-am: install-data-local \
+	install-libscitclsci_la_demossciGUIDATA \
+	install-libscitclsci_la_demostkDATA \
+	install-libscitclsci_la_etcDATA \
+	install-libscitclsci_la_includeHEADERS \
+	install-libscitclsci_la_sci_gatewayDATA \
+	install-nobase_libscitclsci_la_tclDATA
 
 install-dvi: install-dvi-am
 
@@ -975,7 +1321,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscitclsci_la_etcDATA \
+uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
+	uninstall-libscitclsci_la_demostkDATA \
+	uninstall-libscitclsci_la_etcDATA \
+	uninstall-libscitclsci_la_includeHEADERS \
+	uninstall-libscitclsci_la_sci_gatewayDATA \
+	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -988,13 +1339,23 @@ uninstall-am: uninstall-libscitclsci_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscitclsci_la_etcDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libscitclsci_la_etcDATA \
+	install-info-am install-libscitclsci_la_demossciGUIDATA \
+	install-libscitclsci_la_demostkDATA \
+	install-libscitclsci_la_etcDATA \
+	install-libscitclsci_la_includeHEADERS \
+	install-libscitclsci_la_sci_gatewayDATA install-man \
+	install-nobase_libscitclsci_la_tclDATA install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libscitclsci_la_demossciGUIDATA \
+	uninstall-libscitclsci_la_demostkDATA \
+	uninstall-libscitclsci_la_etcDATA \
+	uninstall-libscitclsci_la_includeHEADERS \
+	uninstall-libscitclsci_la_sci_gatewayDATA \
+	uninstall-nobase_libscitclsci_la_tclDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
