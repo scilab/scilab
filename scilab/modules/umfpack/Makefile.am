@@ -33,7 +33,11 @@ libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
 libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES) 
 #$(GATEWAY_C_SOURCES)
 
-libsciumfpack_la_LIBADD =  $(top_builddir)/modules/libmx/libmx.la $(top_builddir)/modules/libmat/libmat.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/libmex/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
+libsciumfpack_la_LIBADD =  $(top_builddir)/modules/libmx/libmx.la $(top_builddir)/modules/libmat/libmat.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/libmex/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+
+if USE_EMBEDDED_LAPACK
+libsciumfpack_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
+endif
 
 if USE_EMBEDDED_BLAS
 libsciumfpack_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la 

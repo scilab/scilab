@@ -47,13 +47,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la 
+@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
+@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la 
 DIST_COMMON = $(libscisignal_processing_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_2 = java
-@SWIG_TRUE@am__append_3 = swig
-@GIWS_TRUE@am__append_4 = giws
+@GUI_TRUE@am__append_3 = java
+@SWIG_TRUE@am__append_4 = swig
+@GIWS_TRUE@am__append_5 = giws
 subdir = modules/signal_processing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -91,7 +92,7 @@ libscisignal_processing_la_DEPENDENCIES = $(top_builddir)/modules/elementary_fun
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
+	$(am__append_1) $(am__append_2)
 am__objects_1 = sci_ffir.lo degree.lo parcha.lo ouch.lo dfftbi.lo \
 	dsqrtc.lo tranze.lo chebc.lo tscccf.lo dsn2.lo hammin.lo \
 	bounn.lo nstabl.lo ino.lo desia.lo desi11.lo cmpse3.lo \
@@ -430,7 +431,7 @@ libscisignal_processing_la_LIBADD = $(top_builddir)/modules/elementary_functions
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
+	$(am__append_1) $(am__append_2)
 
 #### Target ######
 modulename = signal_processing
@@ -474,7 +475,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
+TARGETS_ALL = $(am__append_3) $(am__append_4) $(am__append_5)
 
 ################ MACROS ######################"
 # Rule to build a macro

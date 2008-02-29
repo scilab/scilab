@@ -59,14 +59,15 @@ host_triplet = @host@
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphic_export/includes/
 
-@GUI_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
-@GUI_FALSE@am__append_3 = -I$(top_srcdir)/modules/output_stream/includes
+@GUI_TRUE@@USE_EMBEDDED_LAPACK_TRUE@am__append_2 = $(top_builddir)/libs/lapack/libscilapack.la
+@GUI_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_3 = $(top_builddir)/libs/blas/libsciblas.la
+@GUI_FALSE@am__append_4 = -I$(top_srcdir)/modules/output_stream/includes
 DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_4 = java
-@SWIG_TRUE@am__append_5 = swig
-@GIWS_TRUE@am__append_6 = giws
+@GUI_TRUE@am__append_5 = java
+@SWIG_TRUE@am__append_6 = swig
+@GIWS_TRUE@am__append_7 = giws
 subdir = modules/graphics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -111,8 +112,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @GUI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@GUI_TRUE@	$(top_builddir)/libs/lapack/libscilapack.la \
-@GUI_TRUE@	$(am__append_2)
+@GUI_TRUE@	$(am__append_2) $(am__append_3)
 am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/GetCommandArg.c src/c/WindowList.c src/c/Events.c \
 	src/c/getHandleProperty/get_figure_position_property.c \
@@ -1073,7 +1073,7 @@ libscigraphics_la_CFLAGS =  \
 	-Isrc/c/ -Isrc/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ $(am__append_1) \
-	$(am__append_3)
+	$(am__append_4)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 @GUI_TRUE@src/c/WindowList.c \
@@ -1470,8 +1470,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @GUI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@GUI_TRUE@	$(top_builddir)/libs/lapack/libscilapack.la \
-@GUI_TRUE@	$(am__append_2)
+@GUI_TRUE@	$(am__append_2) $(am__append_3)
 
 #### graphics : Conf files ####
 @GUI_TRUE@libscigraphics_la_rootdir = $(mydatadir)
@@ -1771,7 +1770,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_4) $(am__append_5) $(am__append_6)
+TARGETS_ALL = $(am__append_5) $(am__append_6) $(am__append_7)
 
 ################ MACROS ######################"
 # Rule to build a macro

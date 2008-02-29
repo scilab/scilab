@@ -53,7 +53,8 @@ DIST_COMMON = $(am__libsciscicos_blocks_la_include_HEADERS_DIST) \
 @GUI_TRUE@am__append_1 = java
 @SWIG_TRUE@am__append_2 = swig
 @GIWS_TRUE@am__append_3 = giws
-@SCICOS_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_4 = $(top_builddir)/libs/blas/libsciblas.la
+@SCICOS_TRUE@@USE_EMBEDDED_LAPACK_TRUE@am__append_4 = $(top_builddir)/libs/lapack/libscilapack.la
+@SCICOS_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_5 = $(top_builddir)/libs/blas/libsciblas.la
 subdir = modules/scicos_blocks
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -97,8 +98,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@SCICOS_TRUE@	$(top_builddir)/libs/lapack/libscilapack.la \
-@SCICOS_TRUE@	$(am__append_4)
+@SCICOS_TRUE@	$(am__append_4) $(am__append_5)
 am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/c/acos_blk.c src/c/acosh_blk.c src/c/asin_blk.c \
 	src/c/asinh_blk.c src/c/atan_blk.c src/c/atanh_blk.c \
@@ -1222,8 +1222,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@SCICOS_TRUE@	$(top_builddir)/libs/lapack/libscilapack.la \
-@SCICOS_TRUE@	$(am__append_4)
+@SCICOS_TRUE@	$(am__append_4) $(am__append_5)
 
 #### scicos_blocks : Conf files ####
 @SCICOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)

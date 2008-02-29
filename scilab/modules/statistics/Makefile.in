@@ -47,12 +47,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
 DIST_COMMON = $(libscistatistics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@am__append_2 = java
+@SWIG_TRUE@am__append_3 = swig
+@GIWS_TRUE@am__append_4 = giws
 subdir = modules/statistics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -87,7 +88,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscistatistics_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/lapack/libscilapack.la
+	$(am__append_1)
 am__objects_1 = libscistatistics_la-CdfBase.lo \
 	libscistatistics_la-ipmpar1.lo
 am__objects_2 = psi.lo alngam.lo erfc1.lo cdff.lo spmpar.lo cumnor.lo \
@@ -410,7 +411,10 @@ libscistatistics_la_CFLAGS = -Iincludes/ \
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
 libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libscistatistics_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
+libscistatistics_la_LIBADD =  \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(am__append_1)
 
 #### Target ######
 modulename = statistics
@@ -439,7 +443,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
 
 ################ MACROS ######################"
 # Rule to build a macro

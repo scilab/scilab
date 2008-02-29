@@ -48,13 +48,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la 
+@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
+@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la 
 DIST_COMMON = $(libsciumfpack_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_2 = java
-@SWIG_TRUE@am__append_3 = swig
-@GIWS_TRUE@am__append_4 = giws
+@GUI_TRUE@am__append_3 = java
+@SWIG_TRUE@am__append_4 = swig
+@GIWS_TRUE@am__append_5 = giws
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -93,7 +94,7 @@ libsciumfpack_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/libmex/libmex.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
+	$(am__append_1) $(am__append_2)
 am__objects_1 = libsciumfpack_la-intscispt.lo \
 	libsciumfpack_la-taucs_scilab.lo
 am_libsciumfpack_la_OBJECTS = $(am__objects_1)
@@ -332,7 +333,7 @@ libsciumfpack_la_LIBADD = $(top_builddir)/modules/libmx/libmx.la \
 	$(top_builddir)/modules/libmex/libmex.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
+	$(am__append_1) $(am__append_2)
 libsciumfpack_la_CFLAGS = -Iincludes/ \
 			-Isrc/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
@@ -353,7 +354,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
+TARGETS_ALL = $(am__append_3) $(am__append_4) $(am__append_5)
 
 ################ MACROS ######################"
 # Rule to build a macro
