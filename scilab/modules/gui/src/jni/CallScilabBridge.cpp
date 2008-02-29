@@ -234,8 +234,6 @@ CallScilabBridge::CallScilabBridge(JavaVM * jvm_, jobject JObj) {
 
         JNIEnv * curEnv = getCurrentEnv();
 
-        this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
-
 jclass localClass = curEnv->GetObjectClass(JObj);
         this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass);
         curEnv->DeleteLocalRef(localClass);

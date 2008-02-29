@@ -110,8 +110,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetTextParametersjintjintjintjdoublejdoublejintjintID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
-stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-stringArrayClass = (jclass) curEnv->NewGlobalRef(stringArrayClass);
+
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);
@@ -127,8 +126,6 @@ CenteredTextDrawerGL::CenteredTextDrawerGL(JavaVM * jvm_, jobject JObj) {
         jvm=jvm_;
 
         JNIEnv * curEnv = getCurrentEnv();
-
-        this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
 
 jclass localClass = curEnv->GetObjectClass(JObj);
         this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass);
@@ -154,8 +151,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetTextParametersjintjintjintjdoublejdoublejintjintID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
-stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-stringArrayClass = (jclass) curEnv->NewGlobalRef(stringArrayClass);
+
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);

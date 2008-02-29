@@ -109,8 +109,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
-stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-stringArrayClass = (jclass) curEnv->NewGlobalRef(stringArrayClass);
+
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);
@@ -127,8 +126,6 @@ RightYTicksDrawerGL::RightYTicksDrawerGL(JavaVM * jvm_, jobject JObj) {
         jvm=jvm_;
 
         JNIEnv * curEnv = getCurrentEnv();
-
-        this->instanceClass = (jclass) curEnv->NewGlobalRef(curEnv->GetObjectClass(JObj));
 
 jclass localClass = curEnv->GetObjectClass(JObj);
         this->instanceClass = (jclass) curEnv->NewGlobalRef(localClass);
@@ -153,8 +150,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
-stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-stringArrayClass = (jclass) curEnv->NewGlobalRef(stringArrayClass);
+
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);
