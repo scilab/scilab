@@ -17,7 +17,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l))
+int sci_winopen(char *fname,unsigned long l)
 {
 	int m1 = 0,n1 = 0,l1 = 0;
 

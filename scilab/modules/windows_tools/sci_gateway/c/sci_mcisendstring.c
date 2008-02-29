@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib, "winmm.lib")
 /*--------------------------------------------------------------------------*/
-int C2F(sci_mcisendstring) _PARAMS((char *fname,unsigned long l))
+int sci_mcisendstring(char *fname,unsigned long l)
 {
 	int m1,n1,l1;
 

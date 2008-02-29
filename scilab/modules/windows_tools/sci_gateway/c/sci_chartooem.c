@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_chartooem) _PARAMS((char *fname,unsigned long l))
+int sci_chartooem(char *fname,unsigned long l)
 {
 	static int l1,n1,m1;
 	char *Output=NULL;

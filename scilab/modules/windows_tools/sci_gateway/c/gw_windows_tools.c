@@ -18,16 +18,16 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-{C2F(sci_winopen),"winopen"},
-{C2F(sci_winqueryreg),"winqueryreg"},
-{C2F(sci_findfileassociation),"findfileassociation"},
-{C2F(sci_dos),"dos"},
-{C2F(sci_mcisendstring),"mcisendstring"},
-{C2F(sci_oemtochar),"oemtochar"},
-{C2F(sci_chartooem),"chartooem"},
-{C2F(sci_consolebox),"consolebox"},
-{C2F(sci_printsetupbox),"printsetupbox"},
-{C2F(sci_toprint),"toprint"},
+{sci_winopen,"winopen"},
+{sci_winqueryreg,"winqueryreg"},
+{sci_findfileassociation,"findfileassociation"},
+{sci_dos,"dos"},
+{sci_mcisendstring,"mcisendstring"},
+{sci_oemtochar,"oemtochar"},
+{sci_chartooem,"chartooem"},
+{sci_consolebox,"consolebox"},
+{sci_printsetupbox,"printsetupbox"},
+{sci_toprint,"toprint"},
 };
 /*--------------------------------------------------------------------------*/
 int gw_windows_tools(void)

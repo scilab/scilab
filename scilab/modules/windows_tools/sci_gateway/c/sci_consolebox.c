@@ -21,7 +21,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_consolebox) _PARAMS((char *fname,unsigned long l))
+int sci_consolebox(char *fname,unsigned long l)
 {
 	static int l1,n1,m1;
 	char *Output=NULL;

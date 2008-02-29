@@ -26,7 +26,7 @@
 /*--------------------------------------------------------------------------*/
 extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
+int sci_toprint(char *fname,unsigned long l)
 {
 	int l1 = 0, m1 = 0, n1 = 0;
 

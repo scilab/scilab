@@ -18,7 +18,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l))
+int sci_printsetupbox(char *fname,unsigned long l)
 {
 	static int n1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));

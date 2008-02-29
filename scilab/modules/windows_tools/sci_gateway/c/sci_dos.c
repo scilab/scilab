@@ -30,7 +30,7 @@ pipeinfo pipeErr= {INVALID_HANDLE_VALUE, NULL,0};
 /*--------------------------------------------------------------------------*/
 static int PrintOuput(char **ouput,int nbrlines);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
+int sci_dos(char *fname,unsigned long l)
 {
 	int m1,n1,l1;
 	int *Status=NULL;

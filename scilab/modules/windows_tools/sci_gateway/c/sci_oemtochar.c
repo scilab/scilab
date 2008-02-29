@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_oemtochar) _PARAMS((char *fname,unsigned long l))
+int sci_oemtochar(char *fname,unsigned long l)
 {
 	int l1 = 0,n1 = 0,m1 = 0;
 	char *Output = NULL;
