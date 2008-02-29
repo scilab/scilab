@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Sylvestre LEDRU (nicer default plot3d)
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -59,7 +60,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
   if (Rhs <= 0)
   {
     int one = 1 ;
-    sprintf(C2F(cha1).buf,"t=-%%pi:0.3:%%pi;%s(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);",fname);
+    sprintf(C2F(cha1).buf,"x = %%pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);%s(x, x, z, 70, 70);e=gce();e.color_flag = 1;",fname);
     sci_demo(fname,C2F(cha1).buf, &one);
     return 0;
   }
@@ -142,7 +143,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     }
     if ( m1*n1 <= 1 || m2*n2 <= 1 ) 
     {
-      Scierror(999,_("%s: Wrong size for first and second input arguments: size >= 2 expected.\n"),fname);
+      Scierror(999,_("%s: Wrong size for first and second input arguments: size >= %d expected.\n"),fname,2);
       return 0;
     }
   }
