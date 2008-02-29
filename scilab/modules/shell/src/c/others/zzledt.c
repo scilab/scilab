@@ -303,6 +303,7 @@ char *TermReadAndProcess(void)
 #endif
   if(sendprompt)
     {
+      printf("\n");
       printf(Sci_Prompt);/* write prompt */
     }
 

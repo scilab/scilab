@@ -19,7 +19,7 @@ c     issue prompt with optional pause
 
       escape=0
       if (pause .ne. 1) then
-         call basout(io,wte,' ')
+c         call basout(io,wte,' ')
          call setprlev(paus)
       else
 C     version with pause ( mode(7) )
