@@ -333,7 +333,12 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(left_);
+curEnv->DeleteLocalRef(right_);
+curEnv->DeleteLocalRef(bottom_);
+curEnv->DeleteLocalRef(top_);
+curEnv->DeleteLocalRef(zCoord_);
+
 }
 
 }

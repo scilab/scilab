@@ -723,6 +723,7 @@ char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
 strcpy(myStringBuffer, tempString);
 curEnv->ReleaseStringUTFChars(res, tempString);
 curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(menuLabels_);
 
 return myStringBuffer;
 
@@ -1941,7 +1942,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(indices_);
+
 }
 
 long * CallScilabBridge::getListBoxSelectedIndices (JavaVM * jvm_, long objID){
@@ -2389,6 +2391,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(text_);
 
 }
 
@@ -2492,6 +2495,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(text_);
 
 }
 
@@ -3039,6 +3043,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(message_);
 
 }
 
@@ -3107,7 +3112,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(index_);
+
 }
 
 long * CallScilabBridge::getMessageBoxUserSelectedButtons (JavaVM * jvm_, long id){
@@ -3188,6 +3194,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(labels_);
 
 }
 
@@ -3234,6 +3241,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(value_);
 
 }
 
@@ -3337,6 +3345,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(items_);
 
 }
 
@@ -3406,6 +3415,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(labels_);
 
 }
 
@@ -3452,6 +3462,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(labels_);
 
 }
 
@@ -3498,6 +3509,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(values_);
 
 }
 

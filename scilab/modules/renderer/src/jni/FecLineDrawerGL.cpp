@@ -336,7 +336,13 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(xCoords_);
+curEnv->DeleteLocalRef(yCoords_);
+curEnv->DeleteLocalRef(values_);
+curEnv->DeleteLocalRef(fristPoints_);
+curEnv->DeleteLocalRef(secondPoints_);
+curEnv->DeleteLocalRef(thirdPoints_);
+
 }
 
 }

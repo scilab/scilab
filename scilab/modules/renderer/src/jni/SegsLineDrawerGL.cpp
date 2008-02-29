@@ -339,7 +339,14 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(startXCoords_);
+curEnv->DeleteLocalRef(endXCoords_);
+curEnv->DeleteLocalRef(startYCoords_);
+curEnv->DeleteLocalRef(endYCoords_);
+curEnv->DeleteLocalRef(startZCoords_);
+curEnv->DeleteLocalRef(endZCoords_);
+curEnv->DeleteLocalRef(colors_);
+
 }
 
 }

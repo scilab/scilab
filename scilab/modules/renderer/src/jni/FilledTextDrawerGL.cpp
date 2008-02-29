@@ -361,6 +361,7 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(text_);
 
 }
 

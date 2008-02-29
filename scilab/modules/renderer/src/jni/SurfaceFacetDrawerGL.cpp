@@ -350,7 +350,10 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(xCoords_);
+curEnv->DeleteLocalRef(yCoords_);
+curEnv->DeleteLocalRef(zCoords_);
+
 }
 
 void SurfaceFacetDrawerGL::setFacetsColors (double * colors, int colorsSize){
@@ -372,7 +375,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(colors_);
+
 }
 
 }

@@ -414,7 +414,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(rgbmat_);
+
 }
 
 double * DrawableFigureGL::getColorMapData (){

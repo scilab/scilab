@@ -342,7 +342,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(gridPositions_);
+
 }
 
 }

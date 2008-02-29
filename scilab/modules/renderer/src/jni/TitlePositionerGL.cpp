@@ -344,7 +344,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(cornersCoords_);
+
 }
 
 double * TitlePositionerGL::getLabelPosition (double distanceToAxis){

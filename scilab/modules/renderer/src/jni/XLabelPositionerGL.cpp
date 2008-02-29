@@ -323,7 +323,8 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(cornersCoords_);
+
 }
 
 double * XLabelPositionerGL::getLabelPosition (double distanceToAxis){

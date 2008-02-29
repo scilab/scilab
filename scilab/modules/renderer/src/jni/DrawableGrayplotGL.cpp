@@ -390,7 +390,10 @@ if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(xGrid_);
+curEnv->DeleteLocalRef(yGrid_);
+curEnv->DeleteLocalRef(colors_);
+
 }
 
 }

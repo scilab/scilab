@@ -351,6 +351,8 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(ticksPositions_);
+curEnv->DeleteLocalRef(ticksLabels_);
 
 return (res == JNI_TRUE);
 
@@ -403,6 +405,9 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(ticksPositions_);
+curEnv->DeleteLocalRef(ticksLabels_);
+curEnv->DeleteLocalRef(subticksPositions_);
 
 return res;
 
@@ -476,6 +481,9 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(ticksPositions_);
+curEnv->DeleteLocalRef(ticksLabels_);
+curEnv->DeleteLocalRef(labelsExponents_);
 
 return (res == JNI_TRUE);
 
@@ -552,6 +560,10 @@ curEnv->ExceptionDescribe() ;
 }
 
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(ticksPositions_);
+curEnv->DeleteLocalRef(ticksLabels_);
+curEnv->DeleteLocalRef(labelsExponents_);
+curEnv->DeleteLocalRef(subticksPositions_);
 
 return res;
 
