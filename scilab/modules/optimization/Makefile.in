@@ -47,12 +47,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libscioptimization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@am__append_2 = java
+@SWIG_TRUE@am__append_3 = swig
+@GIWS_TRUE@am__append_4 = giws
 subdir = modules/optimization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -87,13 +88,12 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscioptimization_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/lapack/libscilapack.la
+	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
 am__objects_1 = libscioptimization_la-intqld.lo \
 	libscioptimization_la-sp.lo \
 	libscioptimization_la-fsolvetable.lo \
@@ -480,7 +480,14 @@ libscioptimization_la_CFLAGS = -Iincludes/ \
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscioptimization.la
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscioptimization_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
+libscioptimization_la_LIBADD =  \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
 
 #### Target ######
 modulename = optimization
@@ -560,7 +567,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
 
 ################ MACROS ######################"
 # Rule to build a macro

@@ -41,11 +41,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la 
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@am__append_2 = java
+@SWIG_TRUE@am__append_3 = swig
+@GIWS_TRUE@am__append_4 = giws
 subdir = modules/double
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -76,7 +77,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscidouble_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
@@ -84,7 +84,7 @@ libscidouble_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/lapack/libscilapack.la
+	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
 am__objects_1 = libscidouble_la-gw_double.lo
 am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matsubst.lo vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo \
@@ -321,7 +321,15 @@ sci_gateway/fortran/matadd.f
 pkglib_LTLIBRARIES = libscidouble.la
 libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscidouble_la_LIBADD = $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/boolean/libsciboolean.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
+libscidouble_la_LIBADD =  \
+	$(top_builddir)/modules/boolean/libsciboolean.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/polynomials/libscipolynomials.la \
+	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/libs/lapack/libscilapack.la $(am__append_1)
 
 #### Target ######
 modulename = double
@@ -342,7 +350,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
 
 ################ MACROS ######################"
 # Rule to build a macro

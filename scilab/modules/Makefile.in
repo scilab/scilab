@@ -58,9 +58,7 @@ host_triplet = @host@
 #endif
 @FFTW_TRUE@am__append_5 = $(top_builddir)/modules/fftw/libscifftw.la
 @SCICOS_TRUE@am__append_6 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_7 = \
-@USE_EMBEDDED_BLAS_TRUE@$(top_builddir)/libs/blas/libsciblas.la
-
+@USE_EMBEDDED_BLAS_TRUE@am__append_7 = $(top_builddir)/libs/blas/libsciblas.la
 @USE_EMBEDDED_LAPACK_TRUE@am__append_8 = \
 @USE_EMBEDDED_LAPACK_TRUE@$(top_builddir)/libs/lapack/libscilapack.la
 

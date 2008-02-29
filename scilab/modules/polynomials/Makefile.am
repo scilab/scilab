@@ -111,9 +111,11 @@ pkglib_LTLIBRARIES = libscipolynomials.la
 
 libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscipolynomials_la_LIBADD =  $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
+libscipolynomials_la_LIBADD =  $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la
 
-
+if USE_EMBEDDED_BLAS
+libscipolynomials_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
+endif
 
 #### Target ######
 modulename=polynomials

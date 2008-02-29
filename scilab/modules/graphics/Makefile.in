@@ -106,7 +106,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @GUI_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 @GUI_TRUE@	$(top_builddir)/modules/renderer/libscirenderer.la \
 @GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
-@GUI_TRUE@	$(top_builddir)/libs/blas/libsciblas.la \
 @GUI_TRUE@	$(top_builddir)/modules/gui/libscigui.la \
 @GUI_TRUE@	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
@@ -1466,7 +1465,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 @GUI_TRUE@	$(top_builddir)/modules/renderer/libscirenderer.la \
 @GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
-@GUI_TRUE@	$(top_builddir)/libs/blas/libsciblas.la \
 @GUI_TRUE@	$(top_builddir)/modules/gui/libscigui.la \
 @GUI_TRUE@	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \

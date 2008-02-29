@@ -47,12 +47,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libscispecial_functions_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
-@SWIG_TRUE@am__append_2 = swig
-@GIWS_TRUE@am__append_3 = giws
+@GUI_TRUE@am__append_2 = java
+@SWIG_TRUE@am__append_3 = swig
+@GIWS_TRUE@am__append_4 = giws
 subdir = modules/special_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -85,11 +86,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscispecial_functions_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/blas/libsciblas.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(am__append_1)
 am__objects_1 = libscispecial_functions_la-sci_dlgamma.lo \
 	libscispecial_functions_la-sci_oldbessely.lo \
 	libscispecial_functions_la-sci_bessely.lo \
@@ -359,7 +360,12 @@ libscispecial_functions_la_CFLAGS = -Iincludes/ \
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libscispecial_functions_la_LIBADD = $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la
+libscispecial_functions_la_LIBADD =  \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(am__append_1)
 
 #### Target ######
 modulename = special_functions
@@ -384,7 +390,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C) 
 ####�and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2) $(am__append_3)
+TARGETS_ALL = $(am__append_2) $(am__append_3) $(am__append_4)
 
 ################ MACROS ######################"
 # Rule to build a macro

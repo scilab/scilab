@@ -78,7 +78,7 @@ libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 # cyclic: $(top_builddir)/modules/core/libscicore.la 
 libsciarnoldi_la_LIBADD =  $(top_builddir)/libs/lapack/libscilapack.la
 if USE_EMBEDDED_BLAS
-libsciarnoldi_la_LIBADD += d$(top_builddir)/libs/blas/libsciblas.la
+libsciarnoldi_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
 endif
 
 #### Target ######

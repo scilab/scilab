@@ -181,8 +181,7 @@ $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
 $(top_builddir)/libs/libst/libscilibst.la
 
 if USE_EMBEDDED_BLAS
-libscilab_la_LIBADD += \
-$(top_builddir)/libs/blas/libsciblas.la
+libscilab_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
 endif
 
 if USE_EMBEDDED_LAPACK
