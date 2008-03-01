@@ -54,6 +54,8 @@ function gh_blk = drawobj(o, gh_window)
 
   gh_blk = [] ; //** create the empty object value
 
+   //** moved to "drawobjs()"
+  //**mark_size = int(%zoom*2.5); //** in pixel : size of the selection square markers
 
   if typeof(o)=="Block" then //** Block draw 
     //** ---------------------- Block -----------------------------
@@ -100,12 +102,13 @@ function gh_blk = drawobj(o, gh_window)
 
         xrect(sel_x, sel_y, sel_w, sel_h); //** draw the selection box 
 
-        gh_e = gce()              ; //** get the "select box" handle
-        gh_e.mark_background = -1 ; //**
-        gh_e.mark_style = 11      ;
-        gh_e.mark_mode = "off"    ; //** used
-        gh_e.line_mode = "off"    ;
-        // gh_e.visible = "off"      ; //** put invisible
+        gh_e = gce()                  ; //** get the "select box" handle
+         gh_e.mark_size_unit = "point" ;
+         gh_e.mark_size = mark_size    ; // size of the square selection boxes
+         gh_e.mark_style = 11          ; //** boxes
+         gh_e.mark_background = -1     ; //** filled boxes 
+         gh_e.mark_mode = "off"        ; //** put it off 
+         gh_e.line_mode = "off"        ; //** idem 
 
    //** Restore graphics axes state 
       //** Restore the state of the graphics window 
@@ -161,10 +164,12 @@ function gh_blk = drawobj(o, gh_window)
 
         xpoly(o.xx, o.yy,'lines')  ; //** draw the polyline "Link"
         gh_e = gce()               ;
-        gh_e.thickness = maxi( o.thick(1) , 1) * maxi(o.thick(2), 1) ; //** thickness
-        gh_e.foreground = o.ct(1)  ; //** link color
-	gh_e.mark_style = 11       ;
-        gh_e.mark_mode = "off"     ; //** put "mark_mode" off, ready for 'Select' operation
+         gh_e.thickness = maxi( o.thick(1) , 1) * maxi(o.thick(2), 1) ; //** thickness
+         gh_e.foreground = o.ct(1)  ; //** link color
+         gh_e.mark_size_unit = "point" ;
+         gh_e.mark_size = mark_size    ; // size of the square selection boxes
+         gh_e.mark_style = 11          ; //** boxes
+         gh_e.mark_mode = "off"        ; //** put "mark_mode" off, ready for 'Select' operation
 
     p_size = size ( gh_axes.children ) ; //** size after the draw
     //** aggregate the graphics entities
@@ -241,12 +246,13 @@ function gh_blk = drawobj(o, gh_window)
     end
 
     gh_e = gce()                  ; //** get the "select box" handle
-    gh_e.mark_background = -1     ; //**
-    gh_e.mark_style = 11          ;
-    gh_e.mark_size_unit = "point" ;
-    gh_e.mark_size = 5            ;
-    gh_e.mark_mode = "off"        ; //** used
-    gh_e.line_mode = "off"        ;
+     gh_e.mark_size_unit = "point" ;
+     gh_e.mark_size = mark_size    ; // size of the square selection boxes
+     gh_e.mark_style = 11          ; //** boxes
+     gh_e.mark_background = -1     ; //** filled boxes 
+
+    gh_e.mark_mode = "off"        ; //** put it off 
+    gh_e.line_mode = "off"        ; //** idem 
 
     p_size = size ( gh_axes.children ) ; //** size after the draw
     //** aggregate the graphics entities

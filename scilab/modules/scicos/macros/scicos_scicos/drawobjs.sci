@@ -23,6 +23,9 @@ function drawobjs(scs_m, gh_window)
 //**
 
    drawlater() ;
+   
+   //** to be moved to upper level 
+   mark_size = int(%zoom*2.5); //** in pixel : size of the selection square markers
 
    rhs = argn(2) ; //** get the number of right side arguments
    
