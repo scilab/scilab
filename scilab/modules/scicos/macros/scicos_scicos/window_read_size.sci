@@ -42,9 +42,9 @@ function window_read_size(gh_window)
 
   wrect = [0 , 0, 1, 1] ;
   gh_axes.axes_bounds = wrect ;
-
-  xset('viewport',scs_m.props.wpar(7),scs_m.props.wpar(8))
-				
+  
+  gh_window.viewport = [scs_m.props.wpar(7), scs_m.props.wpar(8)]
+		
   xselect(); //** put the current window in foreground
 
 endfunction

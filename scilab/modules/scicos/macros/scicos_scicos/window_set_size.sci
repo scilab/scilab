@@ -87,16 +87,17 @@ function window_set_size(gh_window, viewport)
 
   //** Margins can be re-introduced here now
   margins = [0.02 0.02 0.02 0.02]
-  wp=w*(ax+margins(1)+margins(2));
-  hp=h*(ay+margins(3)+margins(4));
-  xmin=rect(3)-wp*(bx+(1/ax))+margins(1)*wp;
-  ymin=rect(4)-hp*(by+(1/ay))+margins(3)*hp;
-  xmax=xmin+wp; ymax=ymin+hp;
+  wp = w*(ax+margins(1)+margins(2));
+  hp = h*(ay+margins(3)+margins(4));
+  xmin = rect(3)-wp*(bx+(1/ax))+margins(1)*wp;
+  ymin = rect(4)-hp*(by+(1/ay))+margins(3)*hp;
+  xmax = xmin+wp;
+  ymax = ymin+hp;
 
   mrect = [xmin ymin ; xmax ymax] ; //** vector to matrix conversion
   gh_axes.data_bounds = mrect ; //** default : data_bounds = [xmin ymin ; xmax ymax ]
 
-  wrect = [0 , 0, 1, 1] ;
+  wrect = [0, 0, 1, 1] ;
   gh_axes.axes_bounds = wrect ; //** default : axes_bounds = [xleft yup width height] all include in [0,1]
                                 //** xleft,yup : upper left corner
                                 //** width height : ratio
@@ -121,8 +122,8 @@ function window_set_size(gh_window, viewport)
   
   end 
   
-   viewport = [%XSHIFT, %YSHIFT]; 
-    set_viewport(viewport) ; //**
+  viewport = [%XSHIFT, %YSHIFT] ; 
+  gh_curwin.viewport = viewport ; //**
 
   xselect(); //** put the current window in foreground
 
