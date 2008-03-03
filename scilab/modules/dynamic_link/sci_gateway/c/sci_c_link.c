@@ -25,7 +25,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 	int ilib = 0;
 
 	CheckRhs(1,2);
-	CheckLhs(0,1);
+	CheckLhs(1,2);
 
 	/* [test,ilib]=c_link(routine-name)  */
 	/* test = c_link(routine-name)  */
