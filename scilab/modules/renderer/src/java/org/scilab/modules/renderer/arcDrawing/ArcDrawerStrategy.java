@@ -11,11 +11,7 @@
  *
  */
 
-
 package org.scilab.modules.renderer.arcDrawing;
-
-import javax.media.opengl.glu.GLU;
-import javax.media.opengl.glu.GLUnurbs;
 
 /**
  * Interface for arc drawing

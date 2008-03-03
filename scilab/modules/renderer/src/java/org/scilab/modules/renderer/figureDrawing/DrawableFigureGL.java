@@ -20,6 +20,9 @@ import javax.media.opengl.Threading;
 
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
+import org.scilab.modules.renderer.arcDrawing.FastArcRendererFactory;
+import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.ObjectGLCleaner;
 
@@ -31,6 +34,8 @@ import org.scilab.modules.renderer.ObjectGLCleaner;
  * @author Jean-Baptiste Silvy
  */
 public class DrawableFigureGL extends ObjectGL {
+	
+	private static final double EPSILON = 0.01;
 	
 	/** Mapping between scilab pixel drawing mode and OpenGL ones */
 	private static final int[] LOGICAL_OPS = {GL.GL_CLEAR,
@@ -71,6 +76,9 @@ public class DrawableFigureGL extends ObjectGL {
 	private TextRendererFactory textRendererFactory;
 
 	
+	/** Default ArcRenderer */
+	private ArcRendererFactory arcRendererFactory;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -84,6 +92,7 @@ public class DrawableFigureGL extends ObjectGL {
       	pixmapModeOn = true;
       	renderingTarget = null;
       	setDefaultTextRenderer();
+      	setDefaultArcRendererFactory();
     }
 	
 	/**
@@ -92,6 +101,15 @@ public class DrawableFigureGL extends ObjectGL {
 	public void setDefaultTextRenderer() {
 		textRendererFactory = new JOGLTextRendererFactory();
 		//textRendererFactory = new PSTextRendererFactory();
+
+	}
+	
+	/**
+	 * Set the default ArcRenderer Factory
+	 */
+	public void setDefaultArcRendererFactory() {
+		arcRendererFactory = new NurbsArcRendererFactory();
+		//arcRendererFactory = new FastArcRendererFactory();
 
 	}
 	
@@ -274,14 +292,17 @@ public class DrawableFigureGL extends ObjectGL {
 	    gl.glColor3d(color[0], color[1], color[2]);
 	    
 	    // draw it in the back
-            gl.glDisable(GL.GL_DEPTH_TEST);
+	    // just above the zFar clipping plane
+	    // this is needed even with the depth test disable.
+	    // GL2PS does not take it into consideration apparently
+        gl.glDisable(GL.GL_DEPTH_TEST);
 	    gl.glBegin(GL.GL_QUADS);
-	    gl.glVertex3d(0.0, 0.0, -1.0);
-	    gl.glVertex3d(1.0, 0.0, -1.0);
-	    gl.glVertex3d(1.0, 1.0, -1.0);
-	    gl.glVertex3d(0.0, 1.0, -1.0);
+	    gl.glVertex3d(0.0, 0.0, -1.0 + EPSILON);
+	    gl.glVertex3d(1.0, 0.0, -1.0 + EPSILON);
+	    gl.glVertex3d(1.0, 1.0, -1.0 + EPSILON);
+	    gl.glVertex3d(0.0, 1.0, -1.0 + EPSILON);
 	    gl.glEnd();
-            gl.glEnable(GL.GL_DEPTH_TEST);
+        gl.glEnable(GL.GL_DEPTH_TEST);
   	}
   	
   	
@@ -498,6 +519,23 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public TextRendererFactory getTextRendererFactory() {
 		return textRendererFactory;
+		
+	}	
+	
+	/**
+	 * setArcRendererFactory
+	 * @param arcRendererFactory ArcRendererFactory
+	 */
+	public void setArcRendererFactory(ArcRendererFactory arcRendererFactory) {
+		this.arcRendererFactory = arcRendererFactory;
+	}
+	
+	/**
+	 * getArcRendererFactory
+	 * @return ArcRendererFactory
+	 */
+	public ArcRendererFactory getArcRendererFactory() {
+		return arcRendererFactory;
 		
 	}
 }

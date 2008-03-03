@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Sylvestre Koumar
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,6 +35,9 @@ public abstract class ArcTools {
 	
 	/**size of the angular region of the arc */
 	private double angularRegion;
+	
+	/** number of slice for the circle */
+	protected static final int NB_SLICES = 64;
 	
 
 	

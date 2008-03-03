@@ -13,16 +13,16 @@
 package org.scilab.modules.renderer.arcDrawing;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
- * ArcLineTools
+ * FastArcFillTools
  * @author Sylvestre Koumar
  *
  */
-public abstract class ArcLineTools extends ArcTools {
+public class FastArcFillTools extends ArcFillTools {
 
 	/**
 	 * Constructor
@@ -32,39 +32,19 @@ public abstract class ArcLineTools extends ArcTools {
 	 * @param startAngle double
 	 * @param endAngle double
 	 */
-	protected ArcLineTools(Vector3D center, Vector3D semiMinorAxis,
+	protected FastArcFillTools(Vector3D center, Vector3D semiMinorAxis,
 			Vector3D semiMajorAxis, double startAngle, double endAngle) {
 		super(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 	}
 
 	/**
-	 * beginRendering
-	 * @param gl GL
-	 * @param lineStyle int
-	 * @param thickness float
-	 * @param color double[]
-	 */
-	protected void beginRendering(GL gl, int lineStyle, float thickness, double[] color) {
-		
-		gl.glLineWidth(thickness);
-		GLTools.beginDashMode(gl, lineStyle, thickness);
-		
-		// set color
-		gl.glColor3d(color[0], color[1], color[2]);
-		
-		// transform the ellipse so we can draw a circle
-		gl.glPushMatrix();
-		
-		setCoordinatesToCircleGL(gl);		
-	}
-	
-	/**
-	 * endRendering
+	 * drawCircle
 	 * @param gl GL
 	 */
-	protected void endRendering(GL gl) {
-		gl.glPopMatrix();
-        GLTools.endDashMode(gl);
+	protected void drawCircle(GL gl) {	
+		GLU glu = new GLU();
+		glu.gluPartialDisk(glu.gluNewQuadric(),  0.0, 1.0, NB_SLICES, 1, 0, Math.toDegrees(getSweepAngle()));
+		
 	}
 
 }

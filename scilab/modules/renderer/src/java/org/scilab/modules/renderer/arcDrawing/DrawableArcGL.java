@@ -34,5 +34,6 @@ public class DrawableArcGL extends DrawableClippedObjectGL {
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) { }
+
 	
 }

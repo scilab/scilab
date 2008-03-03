@@ -12,53 +12,39 @@
 
 package org.scilab.modules.renderer.arcDrawing;
 
-import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
+
 /**
- * ArcFillTools
+ * ArcRendererFactory
  * @author Sylvestre Koumar
  *
  */
-public abstract class ArcFillTools extends ArcTools {
+public interface ArcRendererFactory {	
 
 	/**
-	 * ArcFillTools
+	 * createArcFillRenderer
 	 * @param center Vector3D
 	 * @param semiMinorAxis Vector3D
 	 * @param semiMajorAxis Vector3D
 	 * @param startAngle double
 	 * @param endAngle double
+	 * @return
 	 */
-	protected ArcFillTools(Vector3D center, Vector3D semiMinorAxis,
-			Vector3D semiMajorAxis, double startAngle, double endAngle) {
-		super(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
-	}
-
-	/**
-	 * beginRendering
-	 * @param gl GL
-	 * @param color double[]
-	 */
-	protected void beginRendering(GL gl, double[] color) {
-		
-		// set color
-		gl.glColor3d(color[0], color[1], color[2]);
-		
-		// transform the ellipse so we can draw a circle
-		gl.glPushMatrix();
-		
-		setCoordinatesToCircleGL(gl);
-		
-	}
+	ArcFillTools createArcFillRenderer(Vector3D center, Vector3D semiMinorAxis,
+			Vector3D semiMajorAxis, double startAngle, double endAngle);
 	
 	/**
-	 * endRendering
-	 * @param gl GL
+	 * createArcLineRenderer
+	 * @param center Vector3D
+	 * @param semiMinorAxis Vector3D
+	 * @param semiMajorAxis Vector3D
+	 * @param startAngle double
+	 * @param endAngle double
+	 * @return
 	 */
-	protected void endRendering(GL gl) {
-		gl.glPopMatrix();
-	}
-
+	ArcLineTools createArcLineRenderer(Vector3D center, Vector3D semiMinorAxis,
+			Vector3D semiMajorAxis, double startAngle, double endAngle);
+	
 
 }

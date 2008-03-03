@@ -15,14 +15,14 @@ package org.scilab.modules.renderer.arcDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
- * ArcLineTools
+ * FastArcLineTools
  * @author Sylvestre Koumar
  *
  */
-public abstract class ArcLineTools extends ArcTools {
+public class FastArcLineTools extends ArcLineTools {
+
 
 	/**
 	 * Constructor
@@ -32,39 +32,23 @@ public abstract class ArcLineTools extends ArcTools {
 	 * @param startAngle double
 	 * @param endAngle double
 	 */
-	protected ArcLineTools(Vector3D center, Vector3D semiMinorAxis,
+	protected FastArcLineTools(Vector3D center, Vector3D semiMinorAxis,
 			Vector3D semiMajorAxis, double startAngle, double endAngle) {
 		super(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 	}
-
-	/**
-	 * beginRendering
-	 * @param gl GL
-	 * @param lineStyle int
-	 * @param thickness float
-	 * @param color double[]
-	 */
-	protected void beginRendering(GL gl, int lineStyle, float thickness, double[] color) {
-		
-		gl.glLineWidth(thickness);
-		GLTools.beginDashMode(gl, lineStyle, thickness);
-		
-		// set color
-		gl.glColor3d(color[0], color[1], color[2]);
-		
-		// transform the ellipse so we can draw a circle
-		gl.glPushMatrix();
-		
-		setCoordinatesToCircleGL(gl);		
-	}
 	
 	/**
-	 * endRendering
+	 * drawCircle
 	 * @param gl GL
 	 */
-	protected void endRendering(GL gl) {
-		gl.glPopMatrix();
-        GLTools.endDashMode(gl);
+	protected void drawCircle(GL gl) {		
+		gl.glBegin(GL.GL_LINE_STRIP);
+		for (int i = 0; i < NB_SLICES; i++) {
+			double angle = (getSweepAngle() * i) / ((double) (NB_SLICES - 1));
+			gl.glVertex3d(Math.cos(angle), Math.sin(angle), 0.0);
+		}
+		gl.glEnd();	
+		
 	}
 
 }

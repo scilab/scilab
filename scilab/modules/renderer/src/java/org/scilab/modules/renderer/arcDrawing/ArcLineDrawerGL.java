@@ -16,14 +16,10 @@ package org.scilab.modules.renderer.arcDrawing;
 
 
 import javax.media.opengl.GL;
-import javax.media.opengl.glu.GLU;
-import javax.media.opengl.glu.GLUnurbs;
-
-
-
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
+
 
 /**
  * Class containing functions called by RectangleLineDrawerJoGL.cpp
@@ -67,14 +63,14 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
 		
-		drawer = new NurbsArcLineTools(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
+		drawer = getParentFigureGL().getArcRendererFactory().createArcLineRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
 
 	}
 	
 	/**
-	 * quicly call the parent figure
+	 * Quicly call the parent figure
 	 * @param parentFigureIndex index of parent figure
 	 */
 	@Override

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Sylvestre Koumar
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -49,7 +49,7 @@ public class NurbsArcLineTools extends ArcLineTools {
 	 * drawCircle
 	 * @param gl current GL pipeline
 	 */
-	public void drawCircle(GL gl) {
+	public void drawCircle(GL gl) {		
 		double displayedAngle = 0.0;
 		int nbQuarter = 0;
 		GLU glu = new GLU();

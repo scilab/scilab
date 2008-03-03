@@ -39,7 +39,7 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	}
 	
 	/**
-	 * quicly call the parent figure
+	 * Quicly call the parent figure
 	 * @param parentFigureIndex index of parent figure
 	 */
 	@Override
@@ -91,10 +91,11 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		Vector3D center = new Vector3D(centerX, centerY, centerZ);
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
-		
-		drawer = new NurbsArcFillTools(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
+	
+		drawer = getParentFigureGL().getArcRendererFactory().createArcFillRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
+		
 	}
 	
 	/**

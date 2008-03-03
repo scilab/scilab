@@ -31,8 +31,7 @@ public final class NurbsArcGL {
 	/** Number of coordinates of a control point */
 	public static final int SIZE_3D = 3;
 	/** Number of coordinates of a control point */
-	public static final int SIZE_2D = 2;
-	
+	public static final int SIZE_2D = 2;	
 
 	
 	/** Angle for a quarter of a circle */
@@ -128,17 +127,15 @@ public final class NurbsArcGL {
 				ind4D++;
 				ind3D++;
 			}
-		}
-		
-		return controlPoints3D;
-		
+		}		
+		return controlPoints3D;		
 	}
 	
 	
 	/**
-	 * feef 
-	 * @param glu "r 
-	 * @return "t"t
+	 * createNurbsDrawer 
+	 * @param glu GLU 
+	 * @return nurbsObj GLUnurbs
 	 */
 	public static GLUnurbs createNurbsDrawer(GLU glu) {
 		GLUnurbs nurbsObj = glu.gluNewNurbsRenderer();
@@ -147,9 +144,9 @@ public final class NurbsArcGL {
 	}
 	
 	/**
-	 * "g""g
-	 * @param glu "g"g
-	 * @param nurbsObj "gg"
+	 * destroyNurbsObj
+	 * @param glu GLU
+	 * @param nurbsObj GLUnurbs
 	 */
 	public static void destroyNurbsObj(GLU glu, GLUnurbs nurbsObj) {
 		// not yet implemented in JOGL
