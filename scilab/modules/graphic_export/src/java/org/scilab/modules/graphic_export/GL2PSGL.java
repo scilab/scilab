@@ -807,4 +807,15 @@ public class GL2PSGL extends DebugGL {
 		gl.glNormal3f(arg0, arg1, arg2);
 	}
 	
+	/**
+	 * glColorMask
+	 * @param arg0 boolean
+	 * @param arg1 boolean
+	 * @param arg2 boolean
+	 * @param arg3 boolean
+	 */
+	public void glColorMask(boolean arg0, boolean arg1, boolean arg2, boolean arg3) {
+		gl.glColorMask(arg0, arg1, arg2, arg3);
+	}
+	
 }
