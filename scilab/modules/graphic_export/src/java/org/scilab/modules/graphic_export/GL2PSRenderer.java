@@ -16,8 +16,6 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.arcDrawing.FastArcRendererFactory;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 
 /**
@@ -103,18 +101,12 @@ public class GL2PSRenderer extends ExportRenderer {
 		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 		gLDrawable.setGL(newGL);
 		
-		/*DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
-		exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
-		exportedFigure.setArcRendererFactory(new FastArcRendererFactory());*/
+		FigureMapper.getCorrespondingFigure(figureIndex).setTextRendererFactory(new PSTextRendererFactory());
 		
-		sciRend.init(gLDrawable);
+		sciRend.display(gLDrawable);	
 		gl2ps.gl2psEndPage();
 		gLDrawable.setGL(gl);
-		/*exportedFigure.setDefaultArcRendererFactory();
-		exportedFigure.setDefaultTextRenderer();*/
-		
-		/*sciRend.init(gLDrawable);
-		sciRend.display(gLDrawable);*/
+	    FigureMapper.getCorrespondingFigure(figureIndex).setDefaultTextRenderer();
 	}
 
 
