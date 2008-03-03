@@ -36,6 +36,7 @@
 #include "msgs.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DrawingBridge.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1) ;
 /*--------------------------------------------------------------------------*/
@@ -113,6 +114,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   if (strcmp(cstk(l1),"clipping") == 0)
   {
     sciSetClipping(sciGetCurrentObj(),xx);
+    forceRedraw(sciGetCurrentObj());
   }
   else if ( strcmp(cstk(l1),"colormap") == 0)
   {
@@ -126,6 +128,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
     subwin = sciGetCurrentSubWin();
     sciSetMarkSize(subwin,(int)xx[0]);
+    forceRedraw(subwin);
   }
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
@@ -136,13 +139,15 @@ int sci_xset( char *fname, unsigned long fname_len )
 
     // force mark drawing
     sciSetIsMark(subwin, TRUE);
-    
+    forceRedraw(subwin);
   }
   else if ( strcmp(cstk(l1),"font size") == 0) {
     fontSize = xx[0];
-    sciSetFontSize(sciGetCurrentSubWin(), fontSize);
+    subwin = sciGetCurrentSubWin();
+    sciSetFontSize(subwin, fontSize);
     sciSetFontSize(sciGetParent(subwin), fontSize);
-  } 
+    forceRedraw(subwin);
+  }
   /* NG beg */
   else if ( strcmp(cstk(l1),"old_style") == 0)
   {
@@ -168,16 +173,19 @@ int sci_xset( char *fname, unsigned long fname_len )
     /* special treatement for xset("cligrf") */
     sciPointObj * psubwin = sciGetCurrentSubWin();
     sciSetIsClipping(psubwin,0);
+    forceRedraw(psubwin);
   }
   else if( strcmp(cstk(l1),"clipoff") == 0 ) {
     /* special treatement for xset("clipoff") */
     sciPointObj * psubwin = sciGetCurrentSubWin();
     sciSetIsClipping(psubwin,-1);
+    forceRedraw(psubwin);
   }
   else if( strcmp(cstk(l1),"hidden3d") == 0 ) {
     /* special treatement for xset("hidden3d") */
     sciPointObj * psubwin = sciGetCurrentSubWin();
     pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
+    forceRedraw(psubwin);
   }
   else if ( strcmp(cstk(l1),"window") == 0 || strcmp(cstk(l1),"figure") == 0 )
   {
@@ -195,23 +203,28 @@ int sci_xset( char *fname, unsigned long fname_len )
         pSUBWIN_FEATURE (subwin)->axes.ticscolor= x[0];
         sciSetFontForeground(subwin,x[0]); 
       }
+      forceRedraw(subwin);
     } 
     else if ( strcmp(cstk(l1),"background") == 0) {
-      sciSetBackground(subwin, x[0]); 
+      sciSetBackground(subwin, x[0]);
+      forceRedraw(subwin);
     }  
     else if ( strcmp(cstk(l1),"thickness") == 0) {
       sciSetLineWidth(subwin, x[0]); 
-      sciSetLineWidth(sciGetParent(subwin), x[0]);   
+      sciSetLineWidth(sciGetParent(subwin), x[0]);
+      forceRedraw(subwin);
     } 
     else if ( strcmp(cstk(l1),"line style") == 0) {
       sciSetLineStyle(subwin, x[0]); 
       sciSetLineStyle(sciGetParent(subwin), x[0]);   
+      forceRedraw(subwin);
     }  
     else if ( strcmp(cstk(l1),"mark") == 0) {
       sciSetIsMark(subwin,1);                  /* A REVOIR F.Leray 21.01.05 */
       sciSetIsMark(sciGetParent(subwin),1);
       sciSetMarkStyle(subwin,x[0]); 
       sciSetMarkStyle(sciGetParent(subwin),x[0]);   
+      forceRedraw(subwin);
     } 
     else if ( strcmp(cstk(l1),"colormap") == 0) {
       sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
@@ -219,20 +232,23 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1),"font size") == 0) {
       sciSetFontSize(subwin, fontSize); 
       sciSetFontSize(sciGetParent(subwin), fontSize);
-    }     
+      forceRedraw(subwin);
+    }
     else if ( strcmp(cstk(l1),"dashes") == 0) {
       sciSetLineStyle(subwin, x[0]); 
-      sciSetLineStyle(sciGetParent(subwin), x[0]);   
+      sciSetLineStyle(sciGetParent(subwin), x[0]);
+      forceRedraw(subwin);
     }  
     else if ( strcmp(cstk(l1),"font") == 0) {
       sciSetFontStyle(subwin, x[0]); 
       sciSetFontSize(subwin,  x[1]);  
       sciSetFontStyle(sciGetParent(subwin), x[0]); 
-      sciSetFontSize(sciGetParent(subwin), x[1]);  
+      sciSetFontSize(sciGetParent(subwin), x[1]);
+      forceRedraw(subwin);
     } 
     else if ( strcmp(cstk(l1),"alufunction") == 0) {
       sciSetXorMode(subwin, x[0]); 
-      sciSetXorMode(sciGetParent(subwin), x[0]);   
+      sciSetXorMode(sciGetParent(subwin), x[0]);
     }
     else if ( strcmp(cstk(l1),"auto clear") == 0) {
       if ( x[0] == 1 )
@@ -244,7 +260,8 @@ int sci_xset( char *fname, unsigned long fname_len )
       {
         sciSetAddPlot(subwin, FALSE); 
         sciSetAddPlot(sciGetParent(subwin), FALSE);  
-      } 
+      }
+      forceRedraw(subwin);
     } 
     else if ( strcmp(cstk(l1),"auto scale") == 0) {
       if ( x[0] == 1 )
@@ -256,7 +273,8 @@ int sci_xset( char *fname, unsigned long fname_len )
       {
         sciSetAutoScale(subwin, FALSE); 
         sciSetAutoScale(sciGetParent(subwin), FALSE);  
-      } 
+      }
+      forceRedraw(subwin);
     }
     else if ( strcmp(cstk(l1),"wresize") == 0) {
       if ( x[0] == 1 )
@@ -269,10 +287,10 @@ int sci_xset( char *fname, unsigned long fname_len )
         sciSetResize(subwin, FALSE); 
         sciSetResize(sciGetParent(subwin), FALSE);  
       }
+      forceRedraw(subwin);
     }
     else if ( strcmp(cstk(l1),"wpos") == 0) {
       sciSetScreenPosition(sciGetParent(subwin), x[0], x[1]);
-
     }
     else if ( strcmp(cstk(l1),"wpdim") == 0) {
       sciSetWindowDim(sciGetParent(subwin), x[0], x[1] ) ;
@@ -283,13 +301,14 @@ int sci_xset( char *fname, unsigned long fname_len )
     } /*Ajout A.Djalel le 10/11/03 */
     else if ( strcmp(cstk(l1),"pixmap") == 0) {
       sciSetPixmapMode(sciGetParent(subwin), x[0]);
-    }  
+    }
     else if ( strcmp(cstk(l1),"wshow") == 0) { /* a supprimer ce n'est pas une propriete mais une action */
       pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
       sciSetVisibility (subwin, TRUE); 
     }
     else if (strcmp(cstk(l1),"viewport") == 0) {
-      // TODO
+      int viewport[4] = {x[0], x[1], 0, 0};
+      sciSetViewport(sciGetParentFigure(subwin), viewport);
     }
     else if (strcmp(cstk(l1),"wwpc") == 0) {
       // TODO
@@ -304,13 +323,17 @@ int sci_xset( char *fname, unsigned long fname_len )
       {
         sciSetIsLine(subwin, TRUE);
       }
+      forceRedraw(subwin);
     }
     else
     {
       sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
     }
 
-    if(strcmp(cstk(l1),"window") != 0) sciRedrawFigure();   
+    if(strcmp(cstk(l1),"window") != 0)
+    {
+      sciRedrawFigure();
+    }
   }
    
   LhsVar(1)=0;
@@ -333,6 +356,7 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
     else{
       sciSetAddPlot( subwin,TRUE);
     }
+    forceRedraw(subwin);
   }
   else if ( strcmp(str,"default")==0)
   {

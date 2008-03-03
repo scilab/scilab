@@ -202,9 +202,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"viewport") == 0)
     {
-      // TODO; update when we will have viewport
-      x1[0] = 0;
-      x1[1] = 0;
+      sciGetViewport(sciGetCurrentFigure(), x1);
       x2 = 2;
     }
     else if(strcmp(cstk(l1),"alufunction") == 0)
