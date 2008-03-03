@@ -55,8 +55,6 @@ public class DrawableFigureGL extends ObjectGL {
 											  GL.GL_NAND,
 											  GL.GL_SET};
 	
-	private static final double EPSILON = 0.01;
-	
 	/** Canvas to draw the figure */
 	private RendererProperties guiProperties;
 	/** store the figureIndex */
