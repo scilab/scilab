@@ -1068,7 +1068,7 @@ let generate_code path filename fun_name model with_jac =
     nb_modes
     (List.length model.when_clauses + nb_modes)
     (if model.io_dependency then "true" else "false");
-  Printf.fprintf oc "#include <math.h>\n#include <scicos/scicos_block.h>\n";
+  Printf.fprintf oc "#include <math.h>\n#include <scicos_block.h>\n";
   List.iter
     (fun (name, _) ->
       Printf.fprintf oc

@@ -61,7 +61,7 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               "IN_EDP4(t)","0","","IN_EDP5(t)","0","","IN_EDP6(t)","0","",..
               "IN_EDP7(t)","1","0","1","0","1","1","","","","2","101","0.1","0",..
               "","0","IN_CL1(t)","0","IN_CL2(t)",["2","4","5","6","8"]),..
-              ["#include <scicos/scicos_block.h>";
+              ["#include <scicos_block.h>";
               "#include <math.h>";
               " ";
               "void  termique_implicite(scicos_block *block,int flag)";

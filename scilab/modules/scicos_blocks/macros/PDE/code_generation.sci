@@ -36,7 +36,7 @@ function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
 // (explicite) et de type 10004 (implicite).                                             //
 //---------------------------------------------------------------------------------------//
 
-  Code=['#include '"'+SCI+'/routines/scicos/scicos_block.h'"'
+  Code=['#include '"'+SCI+'/modules/scicos_blocks/scicos_block.h'"'
         '#include <math.h>'
         ' '       
         'void  '+rdnom+'(scicos_block *block,int flag)'

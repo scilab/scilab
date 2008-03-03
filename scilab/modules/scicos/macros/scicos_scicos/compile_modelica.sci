@@ -211,7 +211,7 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     //--------------------------------
     libs=[];
     if MSDOS then ext='\*.lib',else ext='/*.a',end 
-    // removing .a or .ilib sufixs
+    // removing .a or .lib sufixs
     for k=1:size(mlibs,'*')
       aa=listfiles(mlibs(k)+ext);
       for j=1:size(aa,'*')

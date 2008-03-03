@@ -1,4 +1,4 @@
-#include <scicos/includes/scicos_block.h>
+#include <scicos_block.h>
 void 
 bounce4(blockp, flagr)
      

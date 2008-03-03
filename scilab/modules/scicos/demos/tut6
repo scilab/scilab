@@ -75,7 +75,7 @@ diagram5.cos
 //x_dialog:Function definition in C
   #include <math.h>
   #include <stdlib.h>
-  #include <scicos/scicos_block.h>
+  #include <scicos_block.h>
   void toto(scicos_block *block,int flag)
   {
     if (flag == 4) { /* initialization */

@@ -831,15 +831,15 @@ function ok=gen_ccode42();
 
   //** copy source code of machine.h/scicos_block4.h
   //   in target path
-  txt=mgetl(SCI+'/routinmachine.h');
-  ierr=execstr('mputl(txt,rpat+machine.h'')','errcatch')
+  txt=mgetl(SCI+'/modules/core/includes/machine.h');
+  ierr=execstr('mputl(txt,rpat+''/machine.h'')','errcatch')
   if ierr<>0 then
     message(lasterror())
     ok=%f
     return
   end
 
-  txt=mgetl(SCI+'/routines/scicos/scicos_block4.h');
+  txt=mgetl(SCI+'/modules/scicos_blocks/includes/scicos_block4.h');
   ierr=execstr('mputl(txt,rpat+''/scicos_block4.h'')','errcatch')
   if ierr<>0 then
     message(lasterror())
