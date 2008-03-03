@@ -103,18 +103,18 @@ public class GL2PSRenderer extends ExportRenderer {
 		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 		gLDrawable.setGL(newGL);
 		
-		DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+		/*DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
 		exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
-		exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
+		exportedFigure.setArcRendererFactory(new FastArcRendererFactory());*/
 		
 		sciRend.init(gLDrawable);
 		gl2ps.gl2psEndPage();
 		gLDrawable.setGL(gl);
-		exportedFigure.setDefaultArcRendererFactory();
-		exportedFigure.setDefaultTextRenderer();
+		/*exportedFigure.setDefaultArcRendererFactory();
+		exportedFigure.setDefaultTextRenderer();*/
 		
-		sciRend.init(gLDrawable);
-		sciRend.display(gLDrawable);
+		/*sciRend.init(gLDrawable);
+		sciRend.display(gLDrawable);*/
 	}
 
 
