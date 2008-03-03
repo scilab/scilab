@@ -446,9 +446,7 @@ libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
 #### scicos_blocks : include files ####
 libsciscicos_blocks_la_includedir=$(pkgincludedir)/scicos_blocks
-libsciscicos_blocks_la_include_HEADERS = includes/blocks-vc.h \
-includes/blocks.h.vc \
-includes/scicos_block.h \
+libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 includes/scicos_block4.h \
 includes/scoBase.h \
 includes/scoGetProperty.h \
