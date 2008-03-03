@@ -185,7 +185,7 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     drawnow();
     //** show_pixmap() ; //** not useful on Scilab 5
 
-    rep = xgetmouse(0,[%t,%t]);
+    rep = xgetmouse([%t,%t]); //** 
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-100 then

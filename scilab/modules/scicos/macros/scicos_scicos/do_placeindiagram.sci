@@ -35,8 +35,8 @@ function scs_m=do_placeindiagram(scs_m,blk)
   rep(3)=-1 ;
   while rep(3)==-1 , //move loop
 
-    // get new position
-    rep = xgetmouse(0,[%t,%t])
+    //** get new position
+    rep = xgetmouse([%t,%t])
 
     //** Protection from window closing
     if rep(3)==-100 then //active window has been closed

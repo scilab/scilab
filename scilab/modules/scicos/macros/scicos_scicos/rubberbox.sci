@@ -90,31 +90,36 @@ function [rect,btn] = rubberbox(rect,edit_mode)
     end 
  
   else
- 
+                    //** 
      while rep(3)<>-5 do  // make sure to eat up the double click (10)
-      //** Alan, Ramine patch to disable rubberbox 12/10/07
-      //if 1 then rep=xgetmouse(0,opt);else rep=xgetmouse(0,opt),end
-      rep=xgetmouse(0,opt);
-      if rep(3)==-100 then  btn=rep(3);return;end//window has been closed
-      draw_rect(r,w,h) 
-      xc1=rep(1);yc1=rep(2)
-      ox=mini(xc,xc1)
-      oy=maxi(yc,yc1)
-      w=abs(xc-xc1);h=abs(yc-yc1)
-      r.data=[ox,oy,w,h]
-      draw_rect(r,w,h) 
-      first=%f
+
+      rep = xgetmouse(opt);
+      
+      if rep(3)==-100 then //** window has been closed
+          btn = rep(3);
+          return;
+      end 
+      
+      draw_rect(r,w,h);  
+      xc1 = rep(1); yc1 = rep(2) ;
+      ox = mini(xc,xc1) ;
+      oy = maxi(yc,yc1) ;
+      w  = abs(xc-xc1)  ;
+      h  = abs(yc-yc1)  ;
+      r.data=[ox,oy,w,h] ;
+      draw_rect(r,w,h)   ;
+      first = %f         ;
     end    
        
   end
     
-  draw_rect(r,w,h);
-  delete(r)
-  rect=[ox,oy,w,h]
-  btn=rep(3)
+  draw_rect(r,w,h) ;
+  delete(r)        ; 
+  rect = [ox,oy,w,h]
+  btn = rep(3)
   //f.pixmap=pix
-  f.pixel_drawing_mode = pixel_drawing_mode
-  f.immediate_drawing = immediate_drawing
+  f.pixel_drawing_mode = pixel_drawing_mode ;
+  f.immediate_drawing = immediate_drawing   ;
 endfunction
 
 function draw_rect(r,w,h)

@@ -93,8 +93,8 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
         //** Exit from the loop condition 
         if or(rep(3)==[0,2,3,5,-5]) then break, end ; //** exit point
 
-        // get new position
-        rep = xgetmouse(0,[%t,%t])
+        //** get new position
+        rep = xgetmouse([%t,%t]); //** 
 
         //** Protection from window closing
         if rep(3)==-100 then //active window has been closed

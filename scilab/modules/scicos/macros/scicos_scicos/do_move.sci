@@ -551,7 +551,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     rep(3) = -1 ;
     while rep(3)==-1 , // move loop
 
-      rep = xgetmouse(0,[%t,%t]); //** get new position
+      rep = xgetmouse([%t,%t]); //** get new position
 
       if rep(3)==-100 then //** active window has been closed
 	[%win,Cmenu] = resume(curwin,"Quit")
@@ -796,7 +796,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
     //**---- Interactive loop -----------------------------
     while and(rep(3)<>[3 0 2 5]) do
       //** xpolys(x1,y1,ct(1))//draw moving part of the link
-      rep = xgetmouse(0);
+      rep = xgetmouse([%t,%t]);
       if rep(3)==-100 then //active window has been closed
 	//** driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')

@@ -264,14 +264,13 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
       drawlater() ; //** go back in drawlater mode
 
       if with_gtk() then // GTK case
-	rep = xgetmouse(queue_state=[],[%t,%t]);
+	
+        rep = xgetmouse(queue_state=[],[%t,%t]);
+      
       else // Normal case
 
-	rep = xgetmouse([%t,%t]); //** the event queue is NOT cleared
-	                            //** "getmotion" AND "getrelease" active because the mode is made with
-				    //** the left button pressed
-        //** disp(rep);
-	//** DEBUG only
+	rep = xgetmouse([%t,%t]); //** 
+        //** disp(rep); 	//** DEBUG only
       end
 
       //** left button release, right button (press, click)
