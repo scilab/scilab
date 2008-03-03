@@ -190,7 +190,7 @@ BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
 
 void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle ) ;
 
-void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize ) ;
+void sciGetViewport( sciPointObj * pObj, int viewport[4] );
 
 char * sciGetInfoMessage( sciPointObj * pObj ) ;
 

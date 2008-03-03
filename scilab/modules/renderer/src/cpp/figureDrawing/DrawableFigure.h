@@ -114,6 +114,26 @@ public:
    void setRenderingEnable(bool isEnable);
 
    /**
+    * Set the auto_resize status (on or off).
+    */
+   void setAutoResizeMode(bool onOrOff);
+
+   /**
+    * Get tje auto_resize status (on or off).
+    */
+   bool getAutoResizeMode(void);
+
+   /**
+    * Get the viewport on the canvas
+    */
+   void getViewport(int viewport[4]);
+
+   /**
+    * Set the viewport on the canvas
+    */
+   void setViewport(const int viewport[4]);
+
+   /**
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;

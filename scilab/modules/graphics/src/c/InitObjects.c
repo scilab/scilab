@@ -59,6 +59,16 @@ sciPointObj * getAxesModel( void )
   return paxesmdl ;
 }
 
+BOOL isFigureModel(sciPointObj * pObj)
+{
+  return (pObj == pfiguremdl);
+}
+
+BOOL isAxesModel(sciPointObj * pObj)
+{
+  return (pObj == paxesmdl);
+}
+
 
 /* DJ.A 08/01/04 */
 int C2F(graphicsmodels) (void)
@@ -459,7 +469,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   (ppSubWin->axes).reverse[1] = FALSE;
   (ppSubWin->axes).reverse[2] = FALSE;
   
-  ppSubWin->axes.rect = BT_OFF;  
+  ppSubWin->axes.rect = BT_ON;  
   ppSubWin->axes.ticscolor = -1;
   ppSubWin->axes.subint[0] =  1;
   ppSubWin->axes.subint[1] =  1;
@@ -565,7 +575,7 @@ int InitAxesModel()
   ppaxesmdl->axes.subint[2]  = 1;
   ppaxesmdl->axes.xdir='d'; 
   ppaxesmdl->axes.ydir='l';  
-  ppaxesmdl->axes.rect  = BT_OFF;
+  ppaxesmdl->axes.rect  = BT_ON;
   
   ppaxesmdl->user_data = (int *) NULL; /* to be complete */
   ppaxesmdl->size_of_user_data = 0;
@@ -807,7 +817,6 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_FIGURE:
       if (pobj == pfiguremdl)
 	{
-	  (sciGetGraphicMode (pobj))->wresize = TRUE;
 	  (sciGetGraphicMode (pobj))->addplot = TRUE;
 	  (sciGetGraphicMode (pobj))->autoscaling = TRUE;
 	  (sciGetGraphicMode (pobj))->zooming = FALSE;
@@ -815,7 +824,6 @@ sciInitGraphicMode (sciPointObj * pobj)
 	}
       else
 	{
-	  (sciGetGraphicMode (pobj))->wresize = (sciGetGraphicMode (pfiguremdl))->wresize;
 	  (sciGetGraphicMode (pobj))->addplot = (sciGetGraphicMode (pfiguremdl))->addplot;
 	  (sciGetGraphicMode (pobj))->autoscaling = (sciGetGraphicMode (pfiguremdl))->autoscaling;
 	  (sciGetGraphicMode (pobj))->zooming = (sciGetGraphicMode (pfiguremdl))->zooming;
@@ -825,7 +833,6 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_SUBWIN:
       if (pobj == paxesmdl)
 	{
-	  (sciGetGraphicMode (pobj))->wresize =sciGetResize (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->addplot =sciGetAddPlot (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->autoscaling =sciGetAutoScale (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->zooming =sciGetZooming (sciGetParent (pobj));
@@ -969,12 +976,18 @@ FigureModelData * newFigureModelData( void )
 
   modelData->figureWidth  = 610 ;
   modelData->figureHeight = 461 ;
-  modelData->windowWidth  = 600 ;
-  modelData->windowHeight = 400 ;
+  modelData->windowWidth  = 610 ;
+  modelData->windowHeight = 461 ;
   modelData->windowPosition[0] = 200 ;
   modelData->windowPosition[1] = 200 ;
   modelData->colorMap = NULL ;
   modelData->numColors = 0 ;
+  modelData->pixmapMode = FALSE;
+  modelData->autoResizeMode = TRUE;
+  modelData->viewport[0] = 0;
+  modelData->viewport[1] = 0;
+  modelData->viewport[2] = 610;
+  modelData->viewport[0] = 461;
 
   return modelData ;
 }

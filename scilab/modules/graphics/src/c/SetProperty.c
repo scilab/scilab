@@ -2093,10 +2093,17 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      (sciGetGraphicMode (pobj))->wresize = value;
+      if (isFigureModel(pobj))
+      {
+        pFIGURE_FEATURE(pobj)->pModelData->autoResizeMode = value;
+      }
+      else
+      {
+        sciSetJavaAutoResizeMode(pobj, value);
+      }
       break;
     case SCI_SUBWIN:
-      (sciGetGraphicMode (pobj))->wresize = value;
+      sciInitResize(sciGetParentFigure(pobj), value);
       break;
     case SCI_TEXT:
     case SCI_TITLE:
@@ -3652,36 +3659,32 @@ int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
   return sciInitGridStyle( pObj, xStyle, yStyle, zStyle ) ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciInitViewport( sciPointObj * pObj, int xSize, int ySize )
+/**
+ * Set the viewport property of a figure.
+ * Effective only if the auto_resize property is enable
+ */
+int sciSetViewport( sciPointObj * pObj, const int viewport[4] )
 {
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_FIGURE:
-    /* TODO */
-    return 0 ;
+    if (isFigureModel(pObj))
+    {
+      pFIGURE_FEATURE(pObj)->pModelData->viewport[0] = viewport[0];
+      pFIGURE_FEATURE(pObj)->pModelData->viewport[1] = viewport[1];
+      pFIGURE_FEATURE(pObj)->pModelData->viewport[2] = viewport[2];
+      pFIGURE_FEATURE(pObj)->pModelData->viewport[3] = viewport[3];
+    }
+    else
+    {
+      sciSetJavaViewport(pObj, viewport);
+    }
+    return 0;
   default:
     printSetGetErrorMessage("viewport");
     return -1 ;
   }
   return -1 ;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
- * Set the viewport property of a figure.
- * Effective only if the auto_resize property is enable
- */
-int sciSetViewport( sciPointObj * pObj, int xSize, int ySize )
-{
-  int curXSize = 0 ;
-  int curYSize = 0 ;
-  sciGetViewport( pObj, &curXSize, &curYSize ) ;
-  if ( sciGetResize( pObj ) || ( xSize == curYSize && xSize == curYSize ) )
-  {
-    /* nothing to do */
-    return 1 ;
-  }
-
-  return sciInitViewport( pObj, xSize, ySize ) ;
 
 }
 /*-----------------------------------------------------------------------------------*/

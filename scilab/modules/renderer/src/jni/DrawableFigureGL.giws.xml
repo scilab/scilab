@@ -65,8 +65,21 @@
     </method>
     <method name="getPixmapMode" returnType="boolean">
     </method>
+    <method name="setAutoResizeMode" returnType="void">
+      <param type="boolean" name="onOrOff" />
+    </method>
+    <method name="getAutoResizeMode" returnType="boolean">
+    </method>
     <method name="setIsRenderingEnable" returnType="void">
       <param type="boolean" name="isEnable" />
+    </method>
+    <method name="getViewport" returnType="int[]">
+    </method>
+    <method name="setViewport" returnType="void">
+      <param type="int" name="posX" />
+      <param type="int" name="posY" />
+      <param type="int" name="width" />
+      <param type="int" name="height" />
     </method>
   </object>
 </package>

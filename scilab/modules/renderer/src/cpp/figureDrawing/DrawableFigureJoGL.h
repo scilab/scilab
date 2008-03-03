@@ -122,6 +122,26 @@ public:
   virtual void setRenderingEnable(bool isEnable);
 
   /**
+   * Set the auto_resize status (on or off).
+   */
+  virtual void setAutoResizeMode(bool onOrOff);
+
+  /**
+   * Get tje auto_resize status (on or off).
+   */
+  virtual bool getAutoResizeMode(void);
+
+  /**
+   * Get the viewport on the canvas
+   */
+  virtual void getViewport(int viewport[4]);
+
+  /**
+   * Set the viewport on the canvas
+   */
+  virtual void setViewport(const int viewport[4]);
+
+  /**
    * Return the drawn object
    */
   DrawableFigure * getFigureDrawer( void ) ;

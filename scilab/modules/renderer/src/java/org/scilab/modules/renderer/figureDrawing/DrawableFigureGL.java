@@ -14,8 +14,6 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
-import java.awt.EventQueue;
-
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.Threading;
@@ -52,6 +50,8 @@ public class DrawableFigureGL extends ObjectGL {
 											  GL.GL_NAND,
 											  GL.GL_SET};
 	
+	private static final double EPSILON = 0.01;
+	
 	/** Canvas to draw the figure */
 	private RendererProperties guiProperties;
 	/** store the figureIndex */
@@ -69,6 +69,7 @@ public class DrawableFigureGL extends ObjectGL {
 	
 	/** Default TextRenderer */
 	private TextRendererFactory textRendererFactory;
+
 	
 	/**
 	 * Default Constructor
@@ -132,7 +133,6 @@ public class DrawableFigureGL extends ObjectGL {
 		}
 		this.figureId = figureId;
 		FigureMapper.addMapping(figureId, this);
-		//super.setFigureIndex(figureId);
 	}
 	
 	/**
@@ -302,11 +302,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
   	@Override
 	public void destroy(int parentFigureIndex) {
-  		
-  		// figure should not be add to the object cleaner or they will destroy themselves.
-  		// remove it from the figure list
-  		FigureMapper.removeMapping(figureId);
-  		
   		// call destroying on OpenGL thread in order to call it after any display call.
   		// It appears that destroying tabs while displaying causes deadlocks.
   		// According to JoGL java doc, we need to test wether we are on the
@@ -318,8 +313,13 @@ public class DrawableFigureGL extends ObjectGL {
   		// thread. So we are in a deadlock.
   		// To prevent that I call the function on an other thread
   		// with invoke later.
-  		EventQueue.invokeLater(new Runnable() {
+  		Thread destroyThread = new Thread(new Runnable() {
   			public void run() {
+  				// destroy all the objects stored in the destroy list
+				destroyedObjects.destroyAll(figureId);
+				// figure should not be add to the object cleaner or they will destroy themselves.
+				// remove it from the figure list
+				FigureMapper.removeMapping(figureId);
   				if (Threading.isOpenGLThread()) {
   		  			getRendererProperties().closeCanvas();
   		  		} else {
@@ -331,6 +331,8 @@ public class DrawableFigureGL extends ObjectGL {
   		  		}
   			}
   		});
+  		
+  		destroyThread.start();
   		
 	}
 	
@@ -428,6 +430,43 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public boolean getPixmapMode() {
 		return pixmapModeOn;
+	}
+	
+	/**
+     * Specify wether the canvas should fit the parent tab size
+     * (and consequently the scrollpane size) or not
+     * @param onOrOff true to enable autoresize mode
+     */
+    public void setAutoResizeMode(boolean onOrOff) {
+    	getRendererProperties().setAutoResizeMode(onOrOff);
+    }
+    
+    /**
+     * @return wether the resize mode is on or off
+     */
+    public boolean getAutoResizeMode() {
+    	return getRendererProperties().getAutoResizeMode();
+    }
+    
+    /**
+	 * Get the part of the canvas which is currently viewed
+	 * @return [x,y,w,h] array
+	 */
+   public int[] getViewport() {
+	   return getRendererProperties().getViewport();
+   }
+   
+   /**
+	 * Specify a new viewport for the canvas
+	 * For SwingScilabCanvas viewport can not be modified
+	 * since it match the parent tab size
+	 * @param posX X coordinate of upper left point of the viewport within the canvas
+	 * @param posY Y coordinate of upper left point of the viewport within the canvas
+	 * @param width width of the viewport
+	 * @param height height of the viewport
+	 */
+	public void setViewport(int posX, int posY, int width, int height) {
+		getRendererProperties().setViewport(posX, posY, width, height);
 	}
 	
 	/**

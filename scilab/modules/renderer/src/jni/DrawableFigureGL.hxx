@@ -77,7 +77,11 @@ jmethodID voidsetWindowSizejintjintID; // cache method id
 jmethodID voidsetInfoMessagejstringID; // cache method id
 jmethodID voidsetPixmapModejbooleanID; // cache method id
 jmethodID jbooleangetPixmapModeID; // cache method id
+jmethodID voidsetAutoResizeModejbooleanID; // cache method id
+jmethodID jbooleangetAutoResizeModeID; // cache method id
 jmethodID voidsetIsRenderingEnablejbooleanID; // cache method id
+jmethodID jintArraygetViewportID; // cache method id
+jmethodID voidsetViewportjintjintjintjintID; // cache method id
 
 
 /**
@@ -169,7 +173,15 @@ void setPixmapMode(bool onOrOff);
 
 bool getPixmapMode();
 
+void setAutoResizeMode(bool onOrOff);
+
+bool getAutoResizeMode();
+
 void setIsRenderingEnable(bool isEnable);
+
+long * getViewport();
+
+void setViewport(long posX, long posY, long width, long height);
 
 
                         /**

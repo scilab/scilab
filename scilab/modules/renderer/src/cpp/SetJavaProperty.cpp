@@ -59,4 +59,13 @@ void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int h
   getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height);
 }
 /*---------------------------------------------------------------------------------*/
-
+void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode)
+{
+  getFigureDrawer(pFigure)->setAutoResizeMode(resizeMode == TRUE);
+}
+/*---------------------------------------------------------------------------------*/
+void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4])
+{
+  getFigureDrawer(pFigure)->setViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/

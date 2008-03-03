@@ -42,8 +42,11 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	
 	/**
 	 * To be called when the cpp object is destroyed
+	 * @param parentFigureIndex index of parent figure
 	 */
-	public void clean() {
+	public void clean(int parentFigureIndex) {
+		super.clean(parentFigureIndex);
+		setFigureIndex(parentFigureIndex);
 		updateGLContext();
 		clearDisplayList();
 	}
@@ -53,7 +56,7 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	public void clearDisplayList() {
 		// We need to be sure that the memory used by the display list is freed
-		if (dlIndex != GLTools.UNINIT_DL_INDEX) {
+		if (getGL().glIsList(dlIndex)) {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
 		dlIndex = GLTools.UNINIT_DL_INDEX;
@@ -67,7 +70,7 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 * until endRecordDL is called
 	 */
 	protected void startRecordDL() {
-		if (dlIndex != GLTools.UNINIT_DL_INDEX) {
+		if (getGL().glIsList(dlIndex)) {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
 		dlIndex = getGL().glGenLists(1);
@@ -93,7 +96,7 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 * @return true if the display list has already been created, false otherwise.
 	 */
 	protected synchronized boolean isDLInit() {
-		return (dlIndex != GLTools.UNINIT_DL_INDEX);
+		return (getGL().glIsList(dlIndex));
 	}
 	
 	/**

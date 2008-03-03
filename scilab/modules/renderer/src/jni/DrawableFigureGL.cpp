@@ -127,7 +127,11 @@ voidsetWindowSizejintjintID=NULL;
 voidsetInfoMessagejstringID=NULL; 
 voidsetPixmapModejbooleanID=NULL; 
 jbooleangetPixmapModeID=NULL; 
+voidsetAutoResizeModejbooleanID=NULL; 
+jbooleangetAutoResizeModeID=NULL; 
 voidsetIsRenderingEnablejbooleanID=NULL; 
+jintArraygetViewportID=NULL; 
+voidsetViewportjintjintjintjintID=NULL; 
 
 
 }
@@ -178,7 +182,11 @@ voidsetWindowSizejintjintID=NULL;
 voidsetInfoMessagejstringID=NULL; 
 voidsetPixmapModejbooleanID=NULL; 
 jbooleangetPixmapModeID=NULL; 
+voidsetAutoResizeModejbooleanID=NULL; 
+jbooleangetAutoResizeModeID=NULL; 
 voidsetIsRenderingEnablejbooleanID=NULL; 
+jintArraygetViewportID=NULL; 
+voidsetViewportjintjintjintjintID=NULL; 
 
 
 }
@@ -716,6 +724,48 @@ return (res == JNI_TRUE);
 
 }
 
+void DrawableFigureGL::setAutoResizeMode (bool onOrOff){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetAutoResizeModejbooleanID==NULL) { /* Use the cache Luke */ voidsetAutoResizeModejbooleanID = curEnv->GetMethodID(this->instanceClass, "setAutoResizeMode", "(Z)V" ) ;
+if (voidsetAutoResizeModejbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setAutoResizeMode" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+jboolean onOrOff_ = ((bool) onOrOff ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetAutoResizeModejbooleanID ,onOrOff_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+bool DrawableFigureGL::getAutoResizeMode (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jbooleangetAutoResizeModeID==NULL) { /* Use the cache Luke */ jbooleangetAutoResizeModeID = curEnv->GetMethodID(this->instanceClass, "getAutoResizeMode", "()Z" ) ;
+if (jbooleangetAutoResizeModeID == NULL) {
+std::cerr << "Could not access to the method " << "getAutoResizeMode" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleangetAutoResizeModeID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
+
 void DrawableFigureGL::setIsRenderingEnable (bool isEnable){
 
 JNIEnv * curEnv = getCurrentEnv();
@@ -729,6 +779,58 @@ exit(EXIT_FAILURE);
 jboolean isEnable_ = ((bool) isEnable ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallVoidMethod( this->instance, voidsetIsRenderingEnablejbooleanID ,isEnable_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long * DrawableFigureGL::getViewport (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jintArraygetViewportID==NULL) { /* Use the cache Luke */ jintArraygetViewportID = curEnv->GetMethodID(this->instanceClass, "getViewport", "()[I" ) ;
+if (jintArraygetViewportID == NULL) {
+std::cerr << "Could not access to the method " << "getViewport" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetViewportID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+return myArray;
+
+}
+
+void DrawableFigureGL::setViewport (long posX, long posY, long width, long height){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetViewportjintjintjintjintID==NULL) { /* Use the cache Luke */ voidsetViewportjintjintjintjintID = curEnv->GetMethodID(this->instanceClass, "setViewport", "(IIII)V" ) ;
+if (voidsetViewportjintjintjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setViewport" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetViewportjintjintjintjintID ,posX, posY, width, height);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

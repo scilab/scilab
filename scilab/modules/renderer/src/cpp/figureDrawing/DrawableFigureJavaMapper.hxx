@@ -74,6 +74,12 @@ public:
   virtual bool getPixmapMode(void);
 
   virtual void setRenderingEnable(bool isEnable);
+
+  virtual void setAutoResizeMode(bool onOrOff);
+  virtual bool getAutoResizeMode(void);
+
+  virtual void getViewport(int viewport[4]);
+  virtual void setViewport(const int viewport[4]);
   /*----------------------------------------------------------------------*/
 
 protected:

@@ -18,7 +18,7 @@ import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.canvas.ScrolledSwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
@@ -164,7 +164,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public int addMember(Canvas member) {
 		// TODO : Check wether we want a Canvas in a Tab or not.
-		return this.addMember((SwingScilabCanvas) member.getAsSimpleCanvas());
+		return this.addMember((ScrolledSwingScilabCanvas) member.getAsSimpleCanvas());
 	}
 	
 	/**
@@ -172,7 +172,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member the member to add
 	 * @return index of member in ArrayList
 	 */
-	private int addMember(SwingScilabCanvas member) {
+	private int addMember(ScrolledSwingScilabCanvas member) {
 		// TODO : Check wether we want a Canvas in a Tab or not.
 		this.setContentPane(member);
 		return this.getComponentZOrder(member);
@@ -402,14 +402,14 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @param member canvas to remove 
 	 */
 	public void removeMember(Canvas member) {
-		this.removeMember((SwingScilabCanvas) member.getAsSimpleCanvas());
+		this.removeMember((ScrolledSwingScilabCanvas) member.getAsSimpleCanvas());
 	}
 	
 	/**
 	 * We want to be able to remove directly a Canvas from a Tab.
 	 * @param member canvas to remove 
 	 */
-	public void removeMember(SwingScilabCanvas member) {
+	public void removeMember(ScrolledSwingScilabCanvas member) {
 		this.remove(member);
 		this.revalidate();
 	}

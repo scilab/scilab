@@ -66,6 +66,17 @@ void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable);
  */
 void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height);
 
+/**
+ * Set the auto_resize mode of a figure
+ */
+void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode);
+
+/**
+ * Set the position and size of the viewport on the canvas
+ * @param viewport [x,y,w,h] array
+ */
+void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4]);
+
 #ifdef __cplusplus
 }
 #endif

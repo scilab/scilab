@@ -143,6 +143,26 @@ void DrawableFigureJoGL::setRenderingEnable(bool isEnable)
   getFigureJavaMapper()->setRenderingEnable(isEnable);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setAutoResizeMode(bool onOrOff)
+{
+  getFigureJavaMapper()->setAutoResizeMode(onOrOff);
+}
+/*---------------------------------------------------------------------------------*/
+bool DrawableFigureJoGL::getAutoResizeMode(void)
+{
+  return getFigureJavaMapper()->getAutoResizeMode();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::getViewport(int viewport[4])
+{
+  getFigureJavaMapper()->getViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setViewport(const int viewport[4])
+{
+  getFigureJavaMapper()->setViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 {
   return dynamic_cast<DrawableFigure *>(getDrawer()) ;

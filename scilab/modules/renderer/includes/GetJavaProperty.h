@@ -89,6 +89,17 @@ void sciGetJavaViewingArea(sciPointObj * pSubwin, int * xPos, int * yPos,
  */
 void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6]);
 
+/**
+ * Get the auto resize status od a figure object
+ */
+BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure);
+
+/**
+ * Get the viewport on the canvas
+ * @param viewport [x,y,w,h] array
+ */
+void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4]);
+
 #ifdef __cplusplus
 }
 #endif

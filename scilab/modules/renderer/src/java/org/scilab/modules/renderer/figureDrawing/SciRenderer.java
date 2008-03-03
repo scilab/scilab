@@ -55,16 +55,15 @@ public class SciRenderer
 		// nothing to render
 		return;
 	}
-	
     // should call the draw function of the corresponding figure
 	if (curFigure.getIsRenderingEnable()) {
 		FigureScilabCall.displayFigure(renderedFigure);
 	}
 	
 	// seems that buffers will be swaped any way with GLJPanel
-	if (!gLDrawable.getAutoSwapBufferMode()) {
-		gLDrawable.swapBuffers();
-	}
+//	if (!gLDrawable.getAutoSwapBufferMode()) {
+//		gLDrawable.swapBuffers();
+//	}
 
   }
     
@@ -91,11 +90,8 @@ public class SciRenderer
 	  }
 	  gLDrawable.setAutoSwapBufferMode(false);
 	  
-      if (curFigure.getIsRenderingEnable()) {
-    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
-    	  FigureScilabCall.redrawFigure(renderedFigure);
-      }
-      GL gl = gLDrawable.getGL();
+	  
+	  GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);    // white Background
       gl.glClear(GL.GL_COLOR_BUFFER_BIT); // clear here othrwise we don't know what we will have
@@ -104,6 +100,11 @@ public class SciRenderer
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
+	  
+      if (curFigure.getIsRenderingEnable()) {
+    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
+    	  FigureScilabCall.redrawFigure(renderedFigure);
+      }
 
     }
     

@@ -25,7 +25,7 @@
 /*------------------------------------------------------------------------*/
 int get_viewport_property( sciPointObj * pobj )
 {
-  int viewport[2] ;
+  int viewport[4] ;
 
   if( sciGetEntityType(pobj) != SCI_FIGURE )
   {
@@ -33,8 +33,10 @@ int get_viewport_property( sciPointObj * pobj )
     return -1 ;
   }
 
-  sciGetViewport( pobj, &viewport[0], &viewport[1] ) ;
+  sciGetViewport( pobj, viewport ) ;
 
+  /* For now we just give viewport position */
+  /* until we have a better management of tab sizes */
   return sciReturnRowIntVector( viewport, 2 ) ;
 
 }

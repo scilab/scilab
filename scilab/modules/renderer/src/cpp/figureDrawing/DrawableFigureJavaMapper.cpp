@@ -171,5 +171,30 @@ void DrawableFigureJavaMapper::setRenderingEnable(bool isEnable)
   m_pJavaObject->setIsRenderingEnable(isEnable);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setAutoResizeMode(bool onOrOff)
+{
+  m_pJavaObject->setAutoResizeMode(onOrOff);
+}
+/*---------------------------------------------------------------------------------*/
+bool DrawableFigureJavaMapper::getAutoResizeMode(void)
+{
+  return m_pJavaObject->getAutoResizeMode();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::getViewport(int viewport[4])
+{
+  long * javaViewport = m_pJavaObject->getViewport();
+  viewport[0] = javaViewport[0];
+  viewport[1] = javaViewport[1];
+  viewport[2] = javaViewport[2];
+  viewport[3] = javaViewport[3];
 
+  delete[] javaViewport;
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setViewport(const int viewport[4])
+{
+  m_pJavaObject->setViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+}
+/*---------------------------------------------------------------------------------*/
 }

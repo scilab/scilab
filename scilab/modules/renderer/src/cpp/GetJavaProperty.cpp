@@ -87,3 +87,20 @@ void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6])
   getSegsDrawer(pSegs)->getBoundingBox(bounds);
 }
 /*---------------------------------------------------------------------------------*/
+BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
+{
+ if (getFigureDrawer(pFigure)->getAutoResizeMode())
+ {
+   return TRUE;
+ }
+ else
+ {
+   return FALSE;
+ }
+}
+/*---------------------------------------------------------------------------------*/
+void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
+{
+  getFigureDrawer(pFigure)->getViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/

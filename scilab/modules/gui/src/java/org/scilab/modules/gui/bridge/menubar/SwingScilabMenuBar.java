@@ -12,8 +12,11 @@
 
 package org.scilab.modules.gui.bridge.menubar;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -51,7 +54,28 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.ContextMenu)
 	 */
 	public void add(SwingScilabMenu newMenu) {
-		super.add(newMenu);
+		final SwingScilabMenu tmpMenu = newMenu;
+		
+		// HACK HERE TO GET SCICOS FUNCTIONNAL
+		// call add and remove within the Event thread
+		if (!SwingUtilities.isEventDispatchThread()) {
+			try {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						add(tmpMenu);
+					}
+				});
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			super.add(newMenu);
+		}
+		//super.add(newMenu);
 	}
 
 	/**
@@ -107,16 +131,36 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 		parentMenu.getItem(menuItemPosition).setEnabled(status);
 	}
 	
+	
 	/**
 	 * Remove a menu giving its name
 	 * @param menuName the name of the menu
 	 */
 	public void removeMenu(String menuName) {
-
 		for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
+			final int tmpMenuIndex = menuIndex;
 			// Check the name of each menu until one matches the name
 			if (this.getMenu(menuIndex).getText().equals(menuName)) {
-				this.remove(menuIndex);
+				// HACK HERE TO GET SCICOS FUNCTIONNAL
+				// call add and remove within the Event thread
+				if (!SwingUtilities.isEventDispatchThread()) {
+					try {
+						SwingUtilities.invokeAndWait(new Runnable() {
+							public void run() {
+								remove(tmpMenuIndex);
+							}
+						});
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else {
+					this.remove(menuIndex);
+				}
+				//this.remove(menuIndex);
 				// Redraw the menuBar to display the changes
 				this.repaint();
 				this.doLayout();

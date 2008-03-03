@@ -1915,7 +1915,14 @@ sciGetResize (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      return (sciGetGraphicMode (pobj))->wresize;
+      if (isFigureModel(pobj))
+      {
+        return pFIGURE_FEATURE(pobj)->pModelData->autoResizeMode;
+      }
+      else
+      {
+        return sciGetJavaAutoResizeMode(pobj);
+      }
       break;
     case SCI_SUBWIN:
       /* the value is inhirated by the parent */
@@ -3687,27 +3694,26 @@ void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zSty
  * viewport property is only enable when the auto_resize property of the figure is
  * disable.
  */
-void sciGetViewport( sciPointObj * pObj, int * xSize, int * ySize )
+void sciGetViewport( sciPointObj * pObj, int viewport[4] )
 {
   switch ( sciGetEntityType(pObj) )
   {
   case SCI_FIGURE:
-    if ( !sciGetResize(pObj) )
+    if (isFigureModel(pObj))
     {
-      /** TODO, update */
-      *xSize = 0 ;
-      *ySize = 0 ;
+      viewport[0] = pFIGURE_FEATURE(pObj)->pModelData->viewport[0];
+      viewport[1] = pFIGURE_FEATURE(pObj)->pModelData->viewport[1];
+      viewport[2] = pFIGURE_FEATURE(pObj)->pModelData->viewport[2];
+      viewport[3] = pFIGURE_FEATURE(pObj)->pModelData->viewport[3];
     }
     else
     {
-      *xSize = 0 ;
-      *ySize = 0 ;
+      sciGetJavaViewport(pObj, viewport);
     }
-    break ;
+    break;
   default:
     printSetGetErrorMessage("viewport");
-    *xSize = -1 ;
-    *ySize = -1 ;
+    break;
   }
 }
 /*----------------------------------------------------------------------------------*/

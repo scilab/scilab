@@ -14,7 +14,7 @@ package org.scilab.modules.gui.canvas;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.bridge.canvas.ScrolledSwingScilabCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -37,7 +37,7 @@ public class ScilabCanvasBridge {
 	 * @return the created canvas
 	 */
 	public static SimpleCanvas createCanvas(int figureIndex) {
-		return SwingScilabCanvas.createCanvas(figureIndex);
+		return ScrolledSwingScilabCanvas.createCanvas(figureIndex);
 	}
 
 	/**
@@ -145,6 +145,47 @@ public class ScilabCanvasBridge {
 	 */
 	public static void repaint(Canvas canvas) {
 		canvas.getAsSimpleCanvas().repaint();
+	}
+	
+	/**
+	 * Specify wether the canvas should fit the parent tab size
+	 * (and consequently the scrollpane size) or not
+	 * @param onOrOff true to enable autoresize mode
+	 * @param canvas the canvas we want to repaint
+	 */
+	public static void setAutoResizeMode(Canvas canvas, boolean onOrOff) {
+		canvas.getAsSimpleCanvas().setAutoResizeMode(onOrOff);
+	}
+	
+	/**
+	 * @param canvas the canvas we want to repaint
+	 * @return wether the resize mode is on or off
+	 */
+	public static boolean getAutoResizeMode(Canvas canvas) {
+		return canvas.getAsSimpleCanvas().getAutoResizeMode();
+	}
+	
+	/**
+	 * Get the part of the canvas which is currently viewed
+	 * @param canvas the canvas we want to repaint
+	 * @return [x,y,w,h] array
+	 */
+	public static int[] getViewingRegion(Canvas canvas) {
+		return canvas.getAsSimpleCanvas().getViewingRegion();
+	}
+	
+	/**
+	 * Specify a new viewport for the canvas
+	 * For SwingScilabCanvas viewport can not be modified
+	 * since it match the parent tab size
+	 * @param canvas the canvas we want to repaint
+	 * @param posX X coordinate of upper left point of the viewport within the canvas
+	 * @param posY Y coordinate of upper left point of the viewport within the canvas
+	 * @param width width of the viewport
+	 * @param height height of the viewport
+	 */
+	public static void setViewingRegion(Canvas canvas, int posX, int posY, int width, int height) {
+		canvas.getAsSimpleCanvas().setViewingRegion(posX, posY, width, height);
 	}
 	
 }

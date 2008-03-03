@@ -27,9 +27,7 @@
 /*------------------------------------------------------------------------*/
 int set_viewport_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int status1 ;
-  int status2 ;
-  double * values = getDoubleMatrixFromStack( stackPointer ) ;
+  int values[4];
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -45,14 +43,18 @@ int set_viewport_property( sciPointObj * pobj, int stackPointer, int valueType, 
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint("Argument must be a vector of size 2.\n");
+    sciprint("Argument must be a vector of size 4.\n");
     return SET_PROPERTY_ERROR ;
   }
 
-  /* force auto_resize. With auto_resize disable, resize does not work */
-  status1 = sciSetResize( pobj, FALSE ) ;
-  status2 = sciSetViewport( pobj, (int)values[0], (int)values[1]  ) ;
+  /* For now we just use viewport positions */
+  copyDoubleVectorToIntFromStack(stackPointer, values, 2);
 
-  return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
+  /* dummy values */
+  values[2] = 0;
+  values[3] = 0;
+
+  /* force auto_resize. With auto_resize disable, resize does not work */
+  return sciSetViewport(pobj, values);
 }
 /*------------------------------------------------------------------------*/

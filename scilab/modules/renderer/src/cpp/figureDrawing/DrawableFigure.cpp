@@ -92,21 +92,18 @@ void DrawableFigure::drawInContext( void )
   initializeDrawing() ;
   // retest on auto_redraw
   // because display may come directly from JoGL
-  if ( checkVisibility() )
+  if (isDisplayingSingleObject())
   {
-    if (isDisplayingSingleObject())
+    setFigureParameters() ;
+    displaySingleObject();
+  }
+  else if ( checkVisibility() )
+  {
+    if (checkAutoRedraw())
     {
+      drawBackground();
       setFigureParameters() ;
-      displaySingleObject();
-    }
-    else
-    {
-      if (checkAutoRedraw())
-      {
-        drawBackground();
-        setFigureParameters() ;
-        displayChildren() ;
-      }
+      displayChildren() ;
     }
   }
   endDrawing() ;
@@ -183,5 +180,24 @@ void DrawableFigure::setRenderingEnable(bool isEnable)
   getFigureImp()->setRenderingEnable(isEnable);
 }
 /*---------------------------------------------------------------------------------*/
-
+void DrawableFigure::setAutoResizeMode(bool onOrOff)
+{
+  getFigureImp()->setAutoResizeMode(onOrOff);
+}
+/*---------------------------------------------------------------------------------*/
+bool DrawableFigure::getAutoResizeMode(void)
+{
+  return getFigureImp()->getAutoResizeMode();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::getViewport(int viewport[4])
+{
+  getFigureImp()->getViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::setViewport(const int viewport[4])
+{
+  getFigureImp()->setViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/
 }

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,8 +16,10 @@ package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.AWTEvent;
 import java.awt.Dimension;
+
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLJPanel;
+
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -30,9 +33,11 @@ import org.scilab.modules.renderer.figureDrawing.SciRenderer;
  * 
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
- * @author Jean-Baptiste Silvy
+ * @author Jean-Baptiste silvy
  */
 public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
+
+	
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
@@ -57,18 +62,10 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		this.addGLEventListener(new SciRenderer(figureIndex));
 		this.figureIndex = figureIndex;
 		
-		/**
-		 * FIXed : No more Magical Hack !!!
-		 * {
-		 */
 		// Focusable in order to catch KeyEvents...
 		this.setFocusable(true);
 		// Enable mouse Events sensitivity...
 		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
-		/**
-		 * }
-		 * end Magical HACK
-		 */
 	}
 
 	/**
@@ -79,7 +76,6 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public static SwingScilabCanvas createCanvas(int figureIndex) {
 		GLCapabilities cap = new GLCapabilities();
-		cap.setDoubleBuffered(true);
 		
 		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
 		
@@ -128,8 +124,12 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		this.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+		if (!getAutoResizeMode()) {
+			// in autoresize mode, we don't have any control on the object size
+			setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
+		}
 	}
+	
 
 	/**
 	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab canvas
@@ -149,4 +149,46 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public int getFigureIndex() {
 		return figureIndex;
 	}
+	
+	/**
+	 * Specify wether the canvas should fit the parent tab size
+	 * (and consequently the scrollpane size) or not
+	 * However JOGLSwingCanvas is always resized
+	 * @param onOrOff true to enable autoresize mode
+	 */
+	public void setAutoResizeMode(boolean onOrOff) {
+		
+	}
+	
+	/**
+	 * @return wether the resize mode is on or off
+	 * However JOGLSwingCanvas is always resized
+	 */
+	public boolean getAutoResizeMode() {
+		return true;
+	}
+	
+	/**
+	 * Get the part of the canvas which is currently viewed
+	 * @return [x,y,w,h] array
+	 */
+	public int[] getViewingRegion() {
+		// here all the canvas is visible
+		int[] res = {0, 0, getWidth(), getHeight()};
+		return res;
+	}
+	
+	/**
+	 * Specify a new viewport for the canvas
+	 * For SwingScilabCanvas viewport can not be modified
+	 * since it match the parent tab size
+	 * @param posX X coordinate of upper left point of the viewport within the canvas
+	 * @param posY Y coordinate of upper left point of the viewport within the canvas
+	 * @param width width of the viewport
+	 * @param height height of the viewport
+	 */
+	public void setViewingRegion(int posX, int posY, int width, int height) {
+		// nothing to do
+	}
+
 }

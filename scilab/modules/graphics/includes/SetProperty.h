@@ -228,8 +228,7 @@ int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value );
 int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; 
 int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; /* SET */
 
-int sciInitViewport( sciPointObj * pObj, int xSize, int ySize ) ;
-int sciSetViewport(  sciPointObj * pObj, int xSize, int ySize ) ; /* SET */
+int sciSetViewport(  sciPointObj * pObj, const int viewport[4] ) ; /* SET */
 
 int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
 

@@ -389,9 +389,7 @@ typedef struct
   /** The min max ranges of the the graphics window is given by users  */
   BOOL autoscaling;    
   /** Is zooming allowed                                               */
-  BOOL zooming; 
-  /** Is the graphic automatically resized to fill the graphics window */
-  BOOL wresize;	    
+  BOOL zooming;   
   /** drawing xor mode                                                         */
   int xormode;
   	       	       
@@ -430,10 +428,12 @@ typedef struct
   int figureHeight ;
   int windowWidth ;
   int windowHeight ;
-  int windowPosition[2] ;
+  int windowPosition[2];
+  int viewport[4]; /* 4 but for now only two are used */
   double * colorMap ;
   int numColors ;
   BOOL pixmapMode ;
+  BOOL autoResizeMode;
 }
 FigureModelData ;
 
