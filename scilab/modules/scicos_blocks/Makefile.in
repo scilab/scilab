@@ -570,7 +570,6 @@ libsciscicos_blocks_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libsciscicos_blocks_la_etc_DATA) \
 	$(libsciscicos_blocks_la_root_DATA)
 am__libsciscicos_blocks_la_include_HEADERS_DIST =  \
-	includes/blocks-vc.h includes/blocks.h.vc \
 	includes/scicos_block.h includes/scicos_block4.h \
 	includes/scoBase.h includes/scoGetProperty.h \
 	includes/scoMemoryScope.h includes/scoMisc.h \
@@ -1234,9 +1233,7 @@ JARMASK = *.jar
 
 #### scicos_blocks : include files ####
 @SCICOS_TRUE@libsciscicos_blocks_la_includedir = $(pkgincludedir)/scicos_blocks
-@SCICOS_TRUE@libsciscicos_blocks_la_include_HEADERS = includes/blocks-vc.h \
-@SCICOS_TRUE@includes/blocks.h.vc \
-@SCICOS_TRUE@includes/scicos_block.h \
+@SCICOS_TRUE@libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 @SCICOS_TRUE@includes/scicos_block4.h \
 @SCICOS_TRUE@includes/scoBase.h \
 @SCICOS_TRUE@includes/scoGetProperty.h \
