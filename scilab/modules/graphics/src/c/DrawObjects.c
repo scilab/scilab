@@ -802,12 +802,14 @@ int sciRefreshObj( sciPointObj * pobj )
 int
 sciDrawObjIfRequired (sciPointObj * pobj)
 {
-  sciPointObj * pfigure = sciGetParentFigure(pobj);
+  /*sciPointObj * pfigure = sciGetParentFigure(pobj);
 
   if( pFIGURE_FEATURE(pfigure)->auto_redraw && pFIGURE_FEATURE(pfigure)->visible )
   {
     sciDrawObj( pobj ) ;
-  }
+  }*/
+
+  sciDrawObj( pobj ) ;
 
   return 0;
 }

@@ -63,7 +63,9 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
 		
-		drawer = getParentFigureGL().getArcRendererFactory().createArcLineRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
+		ArcRendererFactory fact = getParentFigureGL().getArcRendererFactory();
+		
+		drawer = fact.createArcLineRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
 

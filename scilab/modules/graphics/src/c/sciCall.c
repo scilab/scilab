@@ -71,7 +71,7 @@ void Objrect ( double * x         ,
   startFigureDataWriting(pFigure);
   psubwin = sciGetCurrentSubWin();
   /* check if the auto_clear property is on and then erase everything */
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
   newObj = ConstructRectangle(psubwin ,*x,*y,*height, *width, 0, 0,
                               foreground, background, isfilled, isline, n, flagstring) ;
     
@@ -85,12 +85,6 @@ void Objrect ( double * x         ,
   sciSetCurrentObj( newObj ) ; 
   *hdl=sciGetHandle( newObj ) ;
   endFigureDataWriting(pFigure);
-
-  /* if the window has been cleared we must redraw everything */
-  if ( redraw )
-  {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-  }
 
 }
 
@@ -116,7 +110,7 @@ void Objarc( double * angle1    ,
 
   startFigureDataWriting(sciGetCurrentFigure());
   psubwin = sciGetCurrentSubWin() ;
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
   sciSetCurrentObj (ConstructArc
          (psubwin,*x,*y,
 	  *height, *width, *angle1, *angle2, foreground, background, isfilled, isline));
@@ -126,14 +120,8 @@ void Objarc( double * angle1    ,
   endFigureDataWriting(sciGetCurrentFigure());
 
   /* if the window has been cleared we must redraw everything */
-  if ( redraw )
-  {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-  }
-  else
-  {
-    sciDrawObjIfRequired( pobj ) ;
-  }
+  sciDrawObj( pobj ) ;
+
 
  
 }
@@ -157,7 +145,7 @@ void Objpoly ( double  * x     ,
   psubwin = sciGetCurrentSubWin();  
 
   
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
   startFigureDataWriting(pFigure);
   if (mark <= 0)
     { 
@@ -174,10 +162,7 @@ void Objpoly ( double  * x     ,
    pobj = sciGetCurrentObj();
    *hdl=sciGetHandle(pobj);
 
-   if ( redraw )
-   {
-     sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-   }
+   sciDrawObj(sciGetCurrentObj());
 }
   
 
@@ -198,7 +183,7 @@ void Objfpoly ( double  * x    ,
   int closed = 1; /* we close the polyline by default */
   psubwin = sciGetCurrentSubWin();
   
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
 
   if(shading == 2)
     {
@@ -229,11 +214,6 @@ void Objfpoly ( double  * x    ,
       pobj = sciGetCurrentObj();
       *hdl=sciGetHandle(sciGetCurrentObj ());  
     }
-  
-  if ( redraw )
-  {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-  }
 
 }
 
@@ -254,20 +234,13 @@ void Objsegs ( integer * style,
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
   sciPointObj *psubwin = sciGetCurrentSubWin();
 
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
 
   n2=n1;
   fx=x;fy=y;
   sciSetCurrentObj (ConstructSegs(psubwin,type,
 				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp));
-  if ( redraw )
-  {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-  }
-  else
-  {
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-  }
+  sciDrawObj(sciGetCurrentObj());
 }
 /*-----------------------------------------------------------
  * Objstring:
@@ -302,7 +275,7 @@ void Objstring( char            ** fname      ,
   psubwin = sciGetCurrentSubWin();
   endGraphicDataWriting();
 
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
 
   startFigureDataWriting(pFigure);
   sciSetCurrentObj( ConstructText( psubwin   ,
@@ -327,14 +300,7 @@ void Objstring( char            ** fname      ,
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, *angle); 
 
-  if ( redraw )
-  {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-  }
-  else
-  {
-    sciDrawObjIfRequired(pobj);
-  }
+  sciDrawObj(pobj);
   endFigureDataReading(pFigure);
  
 }
@@ -347,19 +313,13 @@ void Objtitle( char * str,
                long * hdl )
 { 
   BOOL redraw = FALSE ;
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
   sciSetCurrentObj (ConstructTitle
   		(sciGetCurrentSubWin(),str,n));
   
   *hdl=sciGetHandle(sciGetCurrentObj ());
-  if ( redraw )
-  {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-  }
-  else
-  {
-    sciDrawObjIfRequired(sciGetCurrentObj ()) ;
-  }
+
+  sciDrawObjIfRequired(sciGetCurrentObj ()) ;
 }
 
 
@@ -827,20 +787,12 @@ void Objdrawaxis ( char     dir    ,
                    int      nb_tics_labels )
 {
   BOOL redraw = FALSE ;
-  redraw = checkRedrawing() ;
+  checkRedrawing() ;
   sciSetCurrentObj (ConstructAxes 
 		    ((sciPointObj *)
 		     sciGetCurrentSubWin(),
 		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels));  
   sciDrawObjIfRequired(sciGetCurrentObj ());
-  
-  if ( redraw )
-  {
-    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-  }
-
-  /* F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
-     one axis. ConstructAxis is apparently unused!!*/
      
 }
 

@@ -64,7 +64,7 @@ void reinitSubWin( sciPointObj * pSubWin )
 {
   sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin) ;
   
-  clearSubWin(   pSubWin ) ;
+  clearSubWin( pSubWin ) ;
  
   initSubWinBounds( pSubWin ) ;
   ppSubWin->axes.xdir = 'd' ;
@@ -134,6 +134,7 @@ BOOL checkRedrawing( void )
   {
       /* redraw the axis */
       reinitSubWin( pSubWin ) ;
+      forceRedraw(pSubWin);
       return TRUE ;
   }
   return FALSE ;
