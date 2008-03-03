@@ -1,10 +1,3 @@
-package org.scilab.modules.gui.events;
-
-import java.awt.AWTEvent;
-import java.awt.event.AWTEventListener;
-import java.awt.event.MouseEvent;
-
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Bruno Jofret
@@ -17,6 +10,14 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+package org.scilab.modules.gui.events;
+
+import java.awt.AWTEvent;
+import java.awt.event.AWTEventListener;
+import java.awt.event.MouseEvent;
+
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 
 /**
  * This class create a global mouse event watcher
@@ -93,6 +94,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		 */
 		this.lastMouse = (MouseEvent) mouseEvent;
 		if (mouseEvent.getSource() instanceof SwingScilabCanvas) {
+			this.inCanvas = true;
 			this.canvas = (SwingScilabCanvas) mouseEvent.getSource();
 			this.isControlDown = lastMouse.isControlDown();
 			switch (mouseEvent.getID()) {
@@ -118,7 +120,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 						public void run() { launchFilter(); } 
 					};
 					timer.start();
-				}			
+				}
 				break;
 				/* ENTERED */
 			case MouseEvent.MOUSE_ENTERED :
@@ -139,18 +141,19 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 			default:
 				break;
 			}
-		} else {
+
+		}
 		/*
 		 * Manage RELEASED on a Canvas
 		 * Means we are still in a Canvas (ENTERED && !EXITED)
 		 * and the event is not comming from a Canvas itself.
 		 * and got a RELEASED
 		 */
-			if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas) {
+			if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas 
+					&& (this.action == UNMANAGED || this.action == MOVED)) {
 				this.action = RELEASED;
 				mouseEventFilter(lastMouse, canvas, this.action, this.isControlDown);	
 			}
-		}
 	}
 
 	/**
@@ -162,12 +165,11 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		this.action = newAction;
 	}
 
-
 	/**
 	 * Thread to manage old style scilab
 	 * click management.
 	 */
-	public void launchFilter() {
+	private void launchFilter() {
 		this.freedom = false;
 		try {
 			synchronized (this) {
@@ -181,7 +183,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		this.freedom = true;
 		this.action = UNMANAGED;		
 	}
-
+	
 	/**
 	 * Method to filter the event received.
 	 * Depends off what kind of function is called.

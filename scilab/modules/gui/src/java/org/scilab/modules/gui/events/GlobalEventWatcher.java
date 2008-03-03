@@ -1,7 +1,3 @@
-package org.scilab.modules.gui.events;
-
-import java.awt.AWTEvent;
-import java.awt.Toolkit;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Bruno Jofret
@@ -13,6 +9,11 @@ import java.awt.Toolkit;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+package org.scilab.modules.gui.events;
+
+import java.awt.AWTEvent;
+import java.awt.Toolkit;
 
 /**
  * This implements a Global event watcher,
