@@ -27,3 +27,12 @@ Hello_0=['disp(''hello Franck'')';'disp(''hello Peter'')']
 addmenu(0, 'Bye',list(0,'French_Bye'))
 French_Bye_0='disp(''Au revoir'')'
 
+// a rough test which used to freeze Scilab
+for i = 1:1000,
+  addmenu('Hello',['john','micheal','ernest','franck','eddie','marcel','nestor','Hypolite','Peter','Jack','Patrick','Rodrigo']);
+  addmenu('Hello2',['john','micheal','ernest','franck','eddie','marcel','nestor','Hypolite','Peter','Jack','Patrick','Rodrigo']);
+  delmenu('Hello');
+  delmenu('Hello2');
+end
+
+
