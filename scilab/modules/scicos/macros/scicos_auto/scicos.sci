@@ -77,12 +77,13 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       write(%io(2),ttxxtt)
     end
     //prepare from and to workspace stuff
-    curdir=getcwd()
-    chdir(TMPDIR)
-    mkdir('Workspace')
-    chdir('Workspace')
-    %a=who('get');
-    %a=%a(1:$-predef()+1);  // exclude protected variables
+    curdir = getcwd() ;
+    chdir(TMPDIR)     ;
+    mkdir("Workspace");
+    chdir("Workspace");
+    %a = who("get")   ;
+    %a = %a(1:$-predef()+1);  // exclude protected variables
+    
     for %ij=1:size(%a,1)
       var=%a(%ij)
       if var<>'ans' & typeof(evstr(var))=='st' then
@@ -95,22 +96,23 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
         end
       end
     end
+
     chdir(curdir)
     // end of /prepare from and to workspace stuff
 
     //set up navigation
-    super_path=[] // path to the currently opened superblock
-    %scicos_navig=[]
-    inactive_windows=list(list(),[])
-    Scicos_commands=[]
+    super_path    = [] // path to the currently opened superblock
+    %scicos_navig = []
+    inactive_windows = list(list(),[])
+    Scicos_commands = [];
   end
 
-  %diagram_open=%t   //default choice
+  %diagram_open = %t   // default choice
   if super_path<>[] then
     if isequal(%diagram_path_objective,super_path) then
       if %scicos_navig<>[] then
-	%diagram_open=%t
-	%scicos_navig=[]
+	%diagram_open = %t
+	%scicos_navig = []
 	gh_curwin = scf(curwin);
       end
     elseif  %scicos_navig<>[] then
@@ -563,30 +565,31 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       disp("Stacksize increased to "+string(2*%stack(1))) //
     end
 
-    //** Dynamic window resizing and centering -------------------------
-    if or(winsid()==curwin) then
+    //** Dynamic window resizing and centering ------------------------- 
+    if or(winsid()==curwin) then //** if the current window is in the 
       winsize = gh_current_window.figure_size;
       axsize  = gh_current_window.axes_size;
 
-      //* if or(winsize > axsize+21) then   // +21 is to compensate for
-      //* 					// scrollbar under windows
-      //*                                   //viewport=xget('viewport')
-      //*                                   //viewport=max([0,0],min(viewport,-winsize+axsize))
-      //*	viewport=[0,0]
-      //**	window_set_size(gh_current_window, viewport)
-      //**	drawnow();
-      //** end
+      //** +21 is to compensate for scrollbar under windows
+      if or(winsize > axsize+21) then   
+        viewport = gh_current_window.viewport;
+        viewport = max([0,0], min(viewport,-winsize+axsize)); 
+        window_set_size(gh_current_window, viewport)
+        drawnow(); //** update the diagram on screen 
+      end
 
       if edited then
 	// store win dims, it should only be in do_exit but not possible
 	// now
-	//** data_bounds = gh_current_window.children.data_bounds
         scf(gh_current_window);
         gh_axes = gca(); 
         data_bounds = gh_axes.data_bounds; 
-	winpos   = gh_current_window.figure_position;
-	%curwpar = [data_bounds(:)',gh_current_window.axes_size, xget('viewport'),winsize,winpos,%zoom];
-	if ~isequal(scs_m.props.wpar, %curwpar) then
+	winpos   = gh_current_window.figure_position ;
+        viewport = gh_current_window.viewport ; 
+	axsize   = gh_current_window.axes_size;
+        %curwpar = [data_bounds(:)', axsize, viewport, winsize, winpos, %zoom];
+	
+       if ~isequal(scs_m.props.wpar, %curwpar) then
 	  scs_m.props.wpar = %curwpar  // keep window dimensions
 	end
 
@@ -594,6 +597,9 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
     end
     //** --- ... end of: Dynamic window resizing and centering ----------
+
+    //** Dynamic mark size 
+    //** mark_size = int(%zoom*3.0); //** in pixel : size of the selection square markers
 
     if %scicos_navig==[] then
       if Scicos_commands<>[] then
@@ -696,10 +702,10 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
 	//** I'm not ready to exec a command: I need more information using cosclik()
         EnableAllMenus()
-	[btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
+	 [btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ; 
         DisableAllMenus()
 
-	if (Cmenu_n=='SelectLink' | Cmenu_n=='MoveLink') & Cmenu<>[] & CmenuType==1 & %pt==[] then
+	if (Cmenu_n=="SelectLink" | Cmenu_n=="MoveLink") & Cmenu<>[] & CmenuType==1 & %pt==[] then
 	  if %pt_n<>[] then %pt = %pt_n; end
 	else
 	  if Cmenu_n<>[] then Cmenu = Cmenu_n; end
