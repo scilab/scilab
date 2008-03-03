@@ -334,23 +334,29 @@ public class DrawableFigureGL extends ObjectGL {
   		// with invoke later.
   		Thread destroyThread = new Thread(new Runnable() {
   			public void run() {
-  				// destroy all the objects stored in the destroy list
-				destroyedObjects.destroyAll(figureId);
-				// figure should not be add to the object cleaner or they will destroy themselves.
-				// remove it from the figure list
-				FigureMapper.removeMapping(figureId);
+
   				if (Threading.isOpenGLThread()) {
-  		  			getRendererProperties().closeCanvas();
-  		  		} else {
-  		  			Threading.invokeOnOpenGLThread(new Runnable() {
-  		  				public void run() {
-  		  					getRendererProperties().closeCanvas();
-  		  				}
-  		  			});
-  		  		}
+  					// destroy all the objects stored in the destroy list
+  					destroyedObjects.destroyAll(figureId);
+  					// figure should not be add to the object cleaner or they will destroy themselves.
+  					// remove it from the figure list
+  					FigureMapper.removeMapping(figureId);
+  					getRendererProperties().closeCanvas();
+  				} else {
+  					Threading.invokeOnOpenGLThread(new Runnable() {
+  						public void run() {
+  							// destroy all the objects stored in the destroy list
+  							destroyedObjects.destroyAll(figureId);
+  							// figure should not be add to the object cleaner or they will destroy themselves.
+  							// remove it from the figure list
+  							FigureMapper.removeMapping(figureId);
+  							getRendererProperties().closeCanvas();
+  						}
+  					});
+  				}
   			}
   		});
-  		
+
   		destroyThread.start();
   		
 	}
