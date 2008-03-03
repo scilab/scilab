@@ -54,8 +54,8 @@ function gh_blk = drawobj(o, gh_window)
 
   gh_blk = [] ; //** create the empty object value
 
-   //** moved to "drawobjs()"
-  //**mark_size = int(%zoom*2.5); //** in pixel : size of the selection square markers
+  //** moved to "drawobjs()"
+  mark_size = int(%zoom * 3.0); //** in pixel : size of the selection square markers
 
   if typeof(o)=="Block" then //** Block draw 
     //** ---------------------- Block -----------------------------
