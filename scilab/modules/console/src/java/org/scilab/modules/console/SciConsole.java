@@ -210,17 +210,21 @@ public abstract class SciConsole extends JPanel {
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
-		 SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				jSP.getViewport().setViewPosition(new Point(0,
-						sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-				jSP.revalidate();
-			}
-		});
-		 //jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
+    	SwingUtilities.invokeLater(new Runnable() {
+    		public void run() {
+    			jSP.getViewport().setViewPosition(new Point(0,
+    					sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
+				//jSP.revalidate();
+			}	
+		});	
+		//jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
     	//jSP.invalidate();
     	//jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
  		//jSP.revalidate();
+		
+    	// Update the scrollbar properties
+		jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
+		jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
    }
 
     /**
@@ -395,8 +399,13 @@ public abstract class SciConsole extends JPanel {
 	 */
 	public void doLayout() {
 		super.doLayout();
-		// Send the size of the console to Scilab to adjust display
+		
+		// Send the size of the console to Scilab to adjust display (if resized)
 		scilabLinesUpdate();
+		
+    	// Update the scrollbar properties (if resized)
+		jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
+		jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
 	}
 
 	/**
