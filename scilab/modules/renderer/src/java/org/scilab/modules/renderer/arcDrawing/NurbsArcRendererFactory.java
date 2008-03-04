@@ -19,7 +19,7 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Sylvestre Koumar
  *
  */
-public class NurbsArcRendererFactory implements ArcRendererFactory{
+public class NurbsArcRendererFactory implements ArcRendererFactory {
 	
 	
 	/**

@@ -29,7 +29,7 @@ public interface ArcRendererFactory {
 	 * @param semiMajorAxis Vector3D
 	 * @param startAngle double
 	 * @param endAngle double
-	 * @return
+	 * @return arcFillTools ArcFillTools
 	 */
 	ArcFillTools createArcFillRenderer(Vector3D center, Vector3D semiMinorAxis,
 			Vector3D semiMajorAxis, double startAngle, double endAngle);
@@ -41,7 +41,7 @@ public interface ArcRendererFactory {
 	 * @param semiMajorAxis Vector3D
 	 * @param startAngle double
 	 * @param endAngle double
-	 * @return
+	 * @return arcLineTools ArcLineTools
 	 */
 	ArcLineTools createArcLineRenderer(Vector3D center, Vector3D semiMinorAxis,
 			Vector3D semiMajorAxis, double startAngle, double endAngle);

@@ -39,12 +39,24 @@ public class FastArcLineTools extends ArcLineTools {
 	
 	/**
 	 * drawCircle
+	 * Call gl routine to draw  a circle
 	 * @param gl GL
 	 */
 	protected void drawCircle(GL gl) {		
 		gl.glBegin(GL.GL_LINE_STRIP);
+		
+		double drawAngle;
+		
+		if(getSweepAngle() < -2*Math.PI) {
+			drawAngle = -2*Math.PI;		
+		}else if(getSweepAngle() >= -2*Math.PI && getSweepAngle() <= 2*Math.PI) {
+			drawAngle = getSweepAngle();		
+		} else {
+			drawAngle = 2*Math.PI;		
+		}		
+		
 		for (int i = 0; i < NB_SLICES; i++) {
-			double angle = (getSweepAngle() * i) / ((double) (NB_SLICES - 1));
+			double angle = (drawAngle * i) / ((double) (NB_SLICES - 1));
 			gl.glVertex3d(Math.cos(angle), Math.sin(angle), 0.0);
 		}
 		gl.glEnd();	

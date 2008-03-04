@@ -39,11 +39,22 @@ public class FastArcFillTools extends ArcFillTools {
 
 	/**
 	 * drawCircle
+	 * Call gl routine to draw  a circle
 	 * @param gl GL
 	 */
 	protected void drawCircle(GL gl) {	
 		GLU glu = new GLU();
-		glu.gluPartialDisk(glu.gluNewQuadric(),  0.0, 1.0, NB_SLICES, 1, 0, Math.toDegrees(getSweepAngle()));
+		double drawAngle;
+				
+		if(getSweepAngle() < -2*Math.PI) {
+			drawAngle = -2*Math.PI;		
+		}else if(getSweepAngle() >= -2*Math.PI && getSweepAngle() <= 2*Math.PI) {
+			drawAngle = getSweepAngle();		
+		} else {
+			drawAngle = 2*Math.PI;		
+		}
+		
+		glu.gluPartialDisk(glu.gluNewQuadric(),  0.0, 1.0, NB_SLICES, 1, 0, Math.toDegrees(drawAngle));
 		
 	}
 

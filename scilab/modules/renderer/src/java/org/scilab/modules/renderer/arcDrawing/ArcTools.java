@@ -24,7 +24,10 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  */
 public abstract class ArcTools {
 	
-	/** scale to transform th ellipse into a circle */
+	/** number of slice for the circle */
+	protected static final int NB_SLICES = 64;
+	
+	/** scale to transform the ellipse into a circle */
 	private Vector3D scale;
 	/** To put the ellipse in the right position */
 	private Matrix4D rotationMatrix;
@@ -34,11 +37,7 @@ public abstract class ArcTools {
 	private double startAngle;
 	
 	/**size of the angular region of the arc */
-	private double angularRegion;
-	
-	/** number of slice for the circle */
-	protected static final int NB_SLICES = 64;
-	
+	private double angularRegion;	
 
 	
 	/**

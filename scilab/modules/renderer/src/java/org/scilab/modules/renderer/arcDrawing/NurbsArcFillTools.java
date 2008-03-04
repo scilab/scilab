@@ -21,7 +21,7 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 
 /**
- * sdd
+ * NurbsArcFillTools
  * @author Sylvestre Koumar
  * @author Jean-Baptiste Silvy
  */
@@ -72,7 +72,7 @@ public class NurbsArcFillTools extends ArcFillTools {
 	}
 	
 	/**
-	 * ada
+	 * drawCircle
 	 * @param gl current GL pipeline
 	 */
 	protected void drawCircle(GL gl) {

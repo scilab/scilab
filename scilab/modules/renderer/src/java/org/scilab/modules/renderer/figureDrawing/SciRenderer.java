@@ -90,6 +90,10 @@ public class SciRenderer
 	  }
 	  gLDrawable.setAutoSwapBufferMode(false);
 	  
+	  if (curFigure.getIsRenderingEnable()) {
+    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
+    	  FigureScilabCall.redrawFigure(renderedFigure);
+      }
 	  
 	  GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
@@ -100,11 +104,6 @@ public class SciRenderer
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
-	  
-      if (curFigure.getIsRenderingEnable()) {
-    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
-    	  FigureScilabCall.redrawFigure(renderedFigure);
-      }
 
     }
     

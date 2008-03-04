@@ -19,7 +19,7 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Sylvestre Koumar
  *
  */
-public class FastArcRendererFactory implements ArcRendererFactory{
+public class FastArcRendererFactory implements ArcRendererFactory {
 
 	/**
 	 * Constructor
