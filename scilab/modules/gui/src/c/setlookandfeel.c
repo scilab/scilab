@@ -32,8 +32,7 @@ BOOL setlookandfeel(char *lookandfeekstr)
 		{
 			constructObject = (*env)->GetMethodID(env, classLookAndFeel, construct , param ) ;
 			localInstance = (*env)->NewObject(env, classLookAndFeel, constructObject ) ;
-			jmethodID methodSetLookAndFeel = (*env)->GetMethodID(env,classLookAndFeel, "setLookAndFeel", "(Ljava/lang/String;)"); 
-			jobjectArray jStrings = (*env)->CallObjectMethod(env,localInstance,methodSetLookAndFeel,NULL);
+			jmethodID methodSetLookAndFeel = (*env)->GetMethodID(env,classLookAndFeel, "setLookAndFeel", "(Ljava/lang/String;)Z"); 
 			jstring jstr = (*env)->NewStringUTF(env,lookandfeekstr);
 			return (BOOL) (*env)->CallBooleanMethod(env,localInstance,methodSetLookAndFeel,jstr);
 		}
