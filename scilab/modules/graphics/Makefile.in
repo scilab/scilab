@@ -379,7 +379,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/nues1.c src/c/SetProperty.c src/c/BasicAlgos.c \
 	src/c/BuildObjects.c src/c/sciCall.c src/c/CloneObjects.c \
 	src/c/InitObjects.c src/c/pixel_mode.c src/c/Format.c \
-	src/c/Champ.c src/c/StringMatrix.c src/c/FeC.c src/c/Actions.c \
+	src/c/Champ.c src/c/StringMatrix.c src/c/FeC.c \
 	src/c/Plo2dEch.c src/c/Plo2dn.c src/c/Gray.c \
 	src/c/DestroyObjects.c src/c/math_graphics.c \
 	src/c/Interaction.c src/c/HandleManagement.c src/c/StringBox.c \
@@ -708,7 +708,6 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-Champ.lo \
 @GUI_TRUE@	libscigraphics_la-StringMatrix.lo \
 @GUI_TRUE@	libscigraphics_la-FeC.lo \
-@GUI_TRUE@	libscigraphics_la-Actions.lo \
 @GUI_TRUE@	libscigraphics_la-Plo2dEch.lo \
 @GUI_TRUE@	libscigraphics_la-Plo2dn.lo \
 @GUI_TRUE@	libscigraphics_la-Gray.lo \
@@ -879,7 +878,7 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_xtitle.h includes/math_graphics.h \
 	includes/sci_drawnow.h includes/sci_param3d.h \
 	includes/CurrentObjectsManagement.h includes/ObjectSelection.h \
-	includes/Actions.h includes/axesScale.h includes/Contour.h \
+	includes/axesScale.h includes/Contour.h \
 	includes/getDictionaryGetProperties.h \
 	includes/getDictionarySetProperties.h includes/GrayPlot.h \
 	includes/sci_xload.h includes/sci_xsave.h \
@@ -1357,7 +1356,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/Champ.c \
 @GUI_TRUE@src/c/StringMatrix.c \
 @GUI_TRUE@src/c/FeC.c \
-@GUI_TRUE@src/c/Actions.c \
 @GUI_TRUE@src/c/Plo2dEch.c \
 @GUI_TRUE@src/c/Plo2dn.c \
 @GUI_TRUE@src/c/Gray.c \
@@ -1588,7 +1586,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_param3d.h \
 @GUI_TRUE@includes/CurrentObjectsManagement.h \
 @GUI_TRUE@includes/ObjectSelection.h \
-@GUI_TRUE@includes/Actions.h \
 @GUI_TRUE@includes/axesScale.h \
 @GUI_TRUE@includes/Contour.h \
 @GUI_TRUE@includes/getDictionaryGetProperties.h \
@@ -1889,7 +1886,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Actions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Axes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-BasicAlgos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-BuildObjects.Plo@am__quote@
@@ -4266,13 +4262,6 @@ libscigraphics_la-FeC.lo: src/c/FeC.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/FeC.c' object='libscigraphics_la-FeC.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-FeC.lo `test -f 'src/c/FeC.c' || echo '$(srcdir)/'`src/c/FeC.c
-
-libscigraphics_la-Actions.lo: src/c/Actions.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-Actions.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-Actions.Tpo -c -o libscigraphics_la-Actions.lo `test -f 'src/c/Actions.c' || echo '$(srcdir)/'`src/c/Actions.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-Actions.Tpo $(DEPDIR)/libscigraphics_la-Actions.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Actions.c' object='libscigraphics_la-Actions.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-Actions.lo `test -f 'src/c/Actions.c' || echo '$(srcdir)/'`src/c/Actions.c
 
 libscigraphics_la-Plo2dEch.lo: src/c/Plo2dEch.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-Plo2dEch.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-Plo2dEch.Tpo -c -o libscigraphics_la-Plo2dEch.lo `test -f 'src/c/Plo2dEch.c' || echo '$(srcdir)/'`src/c/Plo2dEch.c
