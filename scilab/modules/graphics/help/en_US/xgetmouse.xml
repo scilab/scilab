@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,16 +19,10 @@
   <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="xgetmouse"> get the mouse events and current position</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>rep=xgetmouse([flag], [sel])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>rep=xgetmouse([sel])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer. If present, the mouse click event queue is not cleared when entering  xgetmouse.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>sel</PARAM_NAME>
         <PARAM_DESCRIPTION>
@@ -47,7 +42,7 @@
     <P>
     If the mouse pointer is located in the current graphics window, <VERB>xgetmouse</VERB> returns
     in <VERB>rep</VERB> the current pointer position (x,y) and the value <VERB>ibutton</VERB>.
-     
+
     The <VERB>ibutton</VERB> value indicates the event type:
   </P>
     <DESCRIPTION_INDENT>
@@ -116,6 +111,10 @@
             <SP>: graphic window has been closed</SP>
           </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
+    <P>
+    WARNING: In previous versions of Scilab (&lt;5.0), the user could give a flag to precise if the mouse click event queue had to be cleared when entering xgetmouse.
+    This option is now obsolete and will be removed in Scilab 5.1.
+    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -131,7 +130,7 @@ r=gce();// the handle of the rectangle
 rep=[xc,yc,-1];first=%f;
 
 while rep(3)==-1 do // mouse just moving ...
-  if first then rep=xgetmouse();else rep=xgetmouse(0);end
+  rep=xgetmouse();
   xc1=rep(1);yc1=rep(2);
   ox=mini(xc,xc1);
   oy=maxi(yc,yc1);

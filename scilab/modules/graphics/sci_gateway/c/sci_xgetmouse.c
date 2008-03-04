@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,6 +26,9 @@
 #include "ObjectSelection.h"
 #include "WindowList.h"
 #include "Axes.h"
+#include "sciprint.h"
+#include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xgetmouse( char *fname,unsigned long fname_len )
 {
@@ -37,34 +40,80 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   double userCoords2D[2];
   sciPointObj * clickedSubwin = NULL;
 
+  int displayWarning = FALSE;
+  int selPosition = 0;
+
   CheckRhs(0,2);
   CheckLhs(1,2);
 
   // Select current figure or create it
   sciGetCurrentFigure();
 
-  if (Rhs<=0)
+  switch(Rhs)
     {
-      // Call Java xgetmouse
-      CallJxgetmouse();
-    }
-  else
-    {
-      if (GetType(1)==sci_boolean)
+    case 1:
+      if (GetType(1)==sci_matrix)
         {
-          GetRhsVar(1,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1);
-          CheckDims(1,m*n,1,2,1);
-          sel[0]=*istk(l1);
-          sel[1]=*istk(l1+1);
-
-          // Call Java xgetmouse
-          CallJxgetmouseWithOptions(sel[0], sel[1]);
+          displayWarning = TRUE;
+        }
+      else if (GetType(1)==sci_boolean)
+        {
+          selPosition = 1;
         }
       else
         {
-          // Call Java xgetmouse
-         CallJxgetmouse();
+          Scierror(999, _("%s: Wrong type for first input argument: Single double or Boolean vector expected.\n"), "xgetmouse");
+          return FALSE;
         }
+      break;
+    case 2:
+      if (GetType(1)==sci_matrix)
+        {
+          displayWarning = TRUE;
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for first input argument: Single double expected.\n"), "xgetmouse");
+          return FALSE;
+        }
+      
+      if (GetType(2)==sci_boolean)
+        {
+          selPosition = 2;
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for second input argument: Boolean vector expected.\n"), "xgetmouse");
+          return FALSE;
+        }
+      break;
+    default:
+      // Call Java xgetmouse
+      CallJxgetmouse();
+      break;
+    }
+
+
+  // Display a warning if a flag has been given (obsolete use)
+  if (displayWarning)
+    {
+      sciprint(_("Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionnality will be permanently removed in Scilab 5.1.\n"));
+    }
+  
+  // Call Java to get mouse information
+  if (selPosition!=0)
+    {
+      GetRhsVar(selPosition,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1);
+      CheckDims(selPosition,m*n,1,2,1);
+      sel[0]=*istk(l1);
+      sel[1]=*istk(l1+1);
+  
+      // Call Java xgetmouse
+      CallJxgetmouseWithOptions(sel[0], sel[1]);
+    }
+  else
+    {
+      CallJxgetmouse();
     }
   
   // Get return values
