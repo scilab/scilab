@@ -14,6 +14,9 @@
 Source: bin\scicos_blocks.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 Source: bin\scicos_blocks_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;
+Source: bin\scicos_blocks.lib; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
+Source: bin\scicos_blocks_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
+;
 Source: modules\{#SCICOS_BLOCKS}\VERSION.xml; DestDir: {app}\modules\{#SCICOS_BLOCKS}; Components: {#COMPN_SCICOS}
 Source: modules\{#SCICOS_BLOCKS}\readme.txt; DestDir: {app}\modules\{#SCICOS_BLOCKS}; Components: {#COMPN_SCICOS}
 Source: modules\{#SCICOS_BLOCKS}\license.txt; DestDir: {app}\modules\{#SCICOS_BLOCKS}; Components: {#COMPN_SCICOS}

@@ -22,13 +22,13 @@
 Source: bin\noscicos.lib; DestDir: {app}\bin; DestName: scicos.lib; Components: not ({#COMPN_SCICOS})
 Source: bin\noscicos.dll; DestDir: {app}\bin; DestName: scicos.dll; Components: not ({#COMPN_SCICOS})
 ;
-Source: bin\scicos_f.lib; DestDir: {app}\bin; DestName: scicos.lib; Components: {#COMPN_SCICOS}
+Source: bin\scicos_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 Source: bin\scicos_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;
 Source: bin\scicos_sundials.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;
-Source: bin\scicos.lib; DestDir: {app}\bin; DestName: scicos.lib; Components: {#COMPN_SCICOS}
-Source: bin\scicos.dll; DestDir: {app}\bin; DestName: scicos.dll; Components: {#COMPN_SCICOS}
+Source: bin\scicos.lib; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
+Source: bin\scicos.dll; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;
 Source: modules\{#SCICOS}\VERSION.xml; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
 Source: modules\{#SCICOS}\readme.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_SCICOS}
