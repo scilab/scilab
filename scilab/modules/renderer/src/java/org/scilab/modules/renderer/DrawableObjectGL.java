@@ -56,12 +56,11 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	public void clearDisplayList() {
 		// We need to be sure that the memory used by the display list is freed
-          
-          // if (getGL().glIsList(dlIndex)) {
-// 			getGL().glDeleteLists(dlIndex, 1);
-// 		}
-// 		dlIndex = GLTools.UNINIT_DL_INDEX;
-//                 System.err.println("End List =" + dlIndex);
+        System.err.println("Clear list = " + dlIndex);
+        if (getGL().glIsList(dlIndex)) {
+        	getGL().glDeleteLists(dlIndex, 1);
+ 		}
+ 		dlIndex = GLTools.UNINIT_DL_INDEX;
 	}
 	
 	

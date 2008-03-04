@@ -337,8 +337,9 @@ public class DrawableFigureGL extends ObjectGL {
   			public void run() {
 
   				if (Threading.isOpenGLThread()) {
-  					// destroy all the objects stored in the destroy list
-  					destroyedObjects.destroyAll(figureId);
+  					// no need to destroy objects here
+  					// associated ressources like display lists and texture will be freed with the context
+  					
   					// figure should not be add to the object cleaner or they will destroy themselves.
   					// remove it from the figure list
   					FigureMapper.removeMapping(figureId);
@@ -346,8 +347,8 @@ public class DrawableFigureGL extends ObjectGL {
   				} else {
   					Threading.invokeOnOpenGLThread(new Runnable() {
   						public void run() {
-  							// destroy all the objects stored in the destroy list
-  							destroyedObjects.destroyAll(figureId);
+  							// no need to destroy objects here
+  		  					// associated ressources like display lists and texture will be freed with the context
   							// figure should not be add to the object cleaner or they will destroy themselves.
   							// remove it from the figure list
   							FigureMapper.removeMapping(figureId);
