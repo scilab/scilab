@@ -14,10 +14,14 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2008
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 # SUBDIRS = src/ocaml/
 
@@ -609,7 +613,6 @@ DISABLE_HELP_CLEAN = yes
 @SCICOS_TRUE@libsciscicos_la_demosdir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
 @SCICOS_TRUE@demos/Bouncing_ball.cos \
-@SCICOS_TRUE@demos/CodeGen \
 @SCICOS_TRUE@demos/Cont.Disc-Observer.cos \
 @SCICOS_TRUE@demos/Controller.cosf \
 @SCICOS_TRUE@demos/demo_Datatype.cosf \
@@ -619,7 +622,6 @@ DISABLE_HELP_CLEAN = yes
 @SCICOS_TRUE@demos/dialogs_play.sci \
 @SCICOS_TRUE@demos/dialogs.sci \
 @SCICOS_TRUE@demos/Discrete-KalmanFilter.cosf \
-@SCICOS_TRUE@demos/Electrical \
 @SCICOS_TRUE@demos/fibo.cos \
 @SCICOS_TRUE@demos/Finite_state_Buck.cosf \
 @SCICOS_TRUE@demos/Finite_state_SwingUp.cosf \
@@ -631,7 +633,6 @@ DISABLE_HELP_CLEAN = yes
 @SCICOS_TRUE@demos/Kalman_1.cos \
 @SCICOS_TRUE@demos/live.dat \
 @SCICOS_TRUE@demos/Lorentz.cos \
-@SCICOS_TRUE@demos/MBlock \
 @SCICOS_TRUE@demos/Plant_DiscreteController.cosf \
 @SCICOS_TRUE@demos/scicos.dem \
 @SCICOS_TRUE@demos/scicos_learn.sci \

@@ -1,7 +1,11 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2008
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 # SUBDIRS = src/ocaml/
 
@@ -153,7 +157,6 @@ macros/scicos_scicos/Threshold.cosf
 libsciscicos_la_demosdir=$(mydatadir)
 nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
 demos/Bouncing_ball.cos \
-demos/CodeGen \
 demos/Cont.Disc-Observer.cos \
 demos/Controller.cosf \
 demos/demo_Datatype.cosf \
@@ -163,7 +166,6 @@ demos/dialogs_learn.sci \
 demos/dialogs_play.sci \
 demos/dialogs.sci \
 demos/Discrete-KalmanFilter.cosf \
-demos/Electrical \
 demos/fibo.cos \
 demos/Finite_state_Buck.cosf \
 demos/Finite_state_SwingUp.cosf \
@@ -175,7 +177,6 @@ demos/Inverted_pendulum.cos \
 demos/Kalman_1.cos \
 demos/live.dat \
 demos/Lorentz.cos \
-demos/MBlock \
 demos/Plant_DiscreteController.cosf \
 demos/scicos.dem \
 demos/scicos_learn.sci \
@@ -198,7 +199,6 @@ demos/tut4 \
 demos/tut5 \
 demos/tut6
 
-
 libsciscicos_la_demosCodeGendir=$(mydatadir)/demos/CodeGen/
 nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/Fibo_standalone.c \
 demos/CodeGen/Therm.cosf \
@@ -206,7 +206,6 @@ demos/CodeGen/Therm_standalone.c \
 demos/CodeGen/fibo.cosf \
 demos/CodeGen/data \
 demos/CodeGen/controller.cosf
-
 
 libsciscicos_la_demosElectricaldir=$(mydatadir)/demos/Electrical/
 nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/DC_DC_Buck_Converter.cosf \

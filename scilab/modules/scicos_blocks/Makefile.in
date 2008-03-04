@@ -14,10 +14,14 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2008
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
@@ -573,7 +577,8 @@ am__libsciscicos_blocks_la_include_HEADERS_DIST =  \
 	includes/scicos_block.h includes/scicos_block4.h \
 	includes/scoBase.h includes/scoGetProperty.h \
 	includes/scoMemoryScope.h includes/scoMisc.h \
-	includes/scoSetProperty.h includes/scoWindowScope.h
+	includes/scoSetProperty.h includes/scoWindowScope.h \
+	includes/blocks.h
 libsciscicos_blocks_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciscicos_blocks_la_include_HEADERS)
 ETAGS = etags
@@ -1240,7 +1245,8 @@ JARMASK = *.jar
 @SCICOS_TRUE@includes/scoMemoryScope.h \
 @SCICOS_TRUE@includes/scoMisc.h \
 @SCICOS_TRUE@includes/scoSetProperty.h \
-@SCICOS_TRUE@includes/scoWindowScope.h
+@SCICOS_TRUE@includes/scoWindowScope.h \
+@SCICOS_TRUE@includes/blocks.h
 
 
 #### scicos_blocks : MACROS ####
