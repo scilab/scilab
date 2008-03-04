@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="graphics"
 	ProjectGUID="{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
 	RootNamespace="graphics"
@@ -196,10 +196,6 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath=".\src\c\Actions.c"
-				>
-			</File>
 			<File
 				RelativePath=".\src\c\Axes.c"
 				>
@@ -1706,10 +1702,6 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath=".\includes\Actions.h"
-				>
-			</File>
 			<File
 				RelativePath=".\includes\Axes.h"
 				>
