@@ -15,8 +15,6 @@ package org.scilab.modules.gui.bridge.console;
 import java.awt.Dimension;
 
 import javax.swing.JTextPane;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
