@@ -88,7 +88,7 @@ public class SciRenderer
 		  // nothing to render
 		  return;
 	  }
-	  gLDrawable.setAutoSwapBufferMode(false);
+	  //gLDrawable.setAutoSwapBufferMode(false);
 	  
 	  if (curFigure.getIsRenderingEnable()) {
     	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
@@ -123,7 +123,7 @@ public class SciRenderer
    */
   public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)
     {
-
+	  
     }
 
 

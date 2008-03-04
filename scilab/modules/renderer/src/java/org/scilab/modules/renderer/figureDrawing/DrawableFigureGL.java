@@ -17,6 +17,7 @@ package org.scilab.modules.renderer.figureDrawing;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.Threading;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
@@ -350,7 +351,16 @@ public class DrawableFigureGL extends ObjectGL {
   							// figure should not be add to the object cleaner or they will destroy themselves.
   							// remove it from the figure list
   							FigureMapper.removeMapping(figureId);
-  							getRendererProperties().closeCanvas();
+  							if (SwingUtilities.isEventDispatchThread()) {
+  								getRendererProperties().closeCanvas();
+  							} else {
+  								SwingUtilities.invokeLater(new Runnable() {
+  									public void run() {
+  										getRendererProperties().closeCanvas();
+  									}
+  								});
+  							}
+  							
   						}
   					});
   				}

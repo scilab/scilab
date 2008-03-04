@@ -93,6 +93,11 @@ public class CoordinateTransformation {
 		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, oglModelViewMatrix, 0);
 		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, oglProjectionMatrix, 0);
 		gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
+		// force values to 0 to be compatible when
+		// OpenGL pipeline is enable. The viewport position
+		// is modified. See http://www.javagaming.org/forums/index.php?topic=16414.0.
+		viewPort[0] = 0;
+		viewPort[1] = 0;
 		
 		// projection (without viewport is done by v' = P.M.v
 		// where v' is the canvas coordinates and v scene coordinates

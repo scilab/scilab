@@ -221,7 +221,7 @@ void Camera::zoomRect(const double corners[4][2])
   getNewBounds(corners, yAxisBound1, yAxisBound2, oldDataBounds[2], oldDataBounds[3],
               &(newDataBounds[2]), &(newDataBounds[3]));
 
-  // x axis
+  // z axis
 
   // (xmin, ymin zmin)
   double zAxisBound1[3] = {oldDataBounds[0], oldDataBounds[2], oldDataBounds[4]};
