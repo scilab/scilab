@@ -296,7 +296,6 @@ src/c/Format.c \
 src/c/Champ.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
-src/c/Actions.c \
 src/c/Plo2dEch.c \
 src/c/Plo2dn.c \
 src/c/Gray.c \
@@ -411,7 +410,7 @@ libscigraphics_la_LDFLAGS =  $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 
-libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 if USE_EMBEDDED_LAPACK
@@ -539,7 +538,6 @@ includes/sci_drawnow.h \
 includes/sci_param3d.h \
 includes/CurrentObjectsManagement.h \
 includes/ObjectSelection.h \
-includes/Actions.h \
 includes/axesScale.h \
 includes/Contour.h \
 includes/getDictionaryGetProperties.h \
