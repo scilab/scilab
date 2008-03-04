@@ -818,4 +818,12 @@ public class GL2PSGL extends DebugGL {
 		gl.glColorMask(arg0, arg1, arg2, arg3);
 	}
 	
+	/**
+	 * glIsList
+	 * @param arg0 int
+	 */
+	public boolean glIsList(int arg0) {
+		return gl.glIsList(arg0);
+	}
+	
 }
