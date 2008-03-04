@@ -220,17 +220,13 @@ changes. We'll be thankful in any case for your continuing effort.
 COPYRIGHT ISSUES
 ----------------
 
-Scilab Team requires that you agree to make your contribution freely
-usable. This is their official statement:
+Scipad is released under GPL, and thus we ask that each translation file
+is made freely available under the same terms. Copyright is held by the author
+of the translation. For more information about GPL, please refer to 
 
-  "After discussion with people from INRIA legal department, we think 
-  that a very simple thing to do is to ask people to put their code in
-  public domain or, if they do not want, to give it the LGPL licence. 
-  To give it the LGPL license is very simple, see:
-
-  http://www.gnu.org/copyleft/lesser.html#SEC4
-
-  Note that I am talking about LGPL and NOT GPL."
+http://www.fsf.org/licensing/licenses/licenses.html#GPL
+http://gplv3.fsf.org/
+http://www.gnu.org/licenses/gpl-3.0.html
 
 ===================================================================
 

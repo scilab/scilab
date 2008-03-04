@@ -3220,3 +3220,11 @@ ES, 20/2/2008
     every *sci and *tcl file (except for msg_files)
  * version --> 6.134
 
+ES, 4/3/2008
+ * msg_files are GPL as well (with the silent consent of most
+   current translators, and the explicit consent of a few); 
+   reference to it in AddingTranslations.txt
+ * english reference to GPL in the aboutme box and its translation
+   in it.msg
+ * new zh_cn.msg received
+ * version --> 6.135

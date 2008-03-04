@@ -1,3 +1,28 @@
+#  Scipad - programmer's editor and debugger for Scilab
+#
+#  Copyright (C) 2002 -      INRIA, Matthieu Philippe
+#  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
+#  Copyright (C) 2004-2008 - Francois Vogel
+#
+#  Localization files ( in tcl/msg_files/) are copyright of the 
+#  individual authors, listed in the header of each file
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+# See the file scipad/license.txt
+#
 # in sync at least with v6.124
 # English is the original language of Scipad
 # Scipad Tcl/Tk source should use english texts
@@ -20,7 +45,7 @@
                     Spanish translation by Juan Nicolás Quesada 2006.\n\
                     Chinese translation by Yung-Jang Lee 2007.\n\
                     Danish translation by Kim B. Hansen 2007."
-
+::msgcat::mcset eng Scipad_is_released_under_GPL "SciPad is released under GPL"
 
 # popupmenus.tcl
 ::msgcat::mcset eng "AddWatch" "Add %s as watch"
