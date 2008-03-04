@@ -213,20 +213,17 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 			break;
 			case 0:default: /* Open -O*/
 			{
-				/* open a new scilab for each files */
-				wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
-
-				/*
 				if (! HaveAnotherWindowScilab())
 				{
 					wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
 				}
 				else
 				{
-					char *ScilabDestination=NULL;
+					char *ScilabDestination = NULL;
 
+					ScilabDestination = getLastScilabFinded();
 					wsprintf(Cmd,MSG_SCIMSG6,FinalFileName);
-					ScilabDestination = (char*)ChooseAnotherWindowScilab();
+
 					if (ScilabDestination)
 					{
 						SendCommandToAnotherScilab(MSG_SCIMSG7,ScilabDestination,Cmd);
@@ -238,7 +235,6 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 						wsprintf(Cmd,MSG_SCIMSG8,PathWScilex,FinalFileName);
 					}
 				}
-				*/
 			}
 			break;
 		}

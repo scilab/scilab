@@ -23,9 +23,16 @@
 BOOL HaveAnotherWindowScilab(void);
 
 /**
-* open a dialog box to select another scilab
-* @return a string
+* returns name of the first Scilab finded
+* @return name
 */
-char * ChooseAnotherWindowScilab(void);
+char * getFirstScilabFinded(void);
+
+/**
+* returns name of the last Scilab finded
+* @return name
+*/
+char * getLastScilabFinded(void);
+
 #endif /*__FINDSCILAB_H__ */
 /*--------------------------------------------------------------------------*/ 

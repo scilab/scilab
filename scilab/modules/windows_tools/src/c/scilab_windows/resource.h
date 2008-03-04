@@ -10,18 +10,12 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
 #define IDD_STARTUPBOX                  101
 #define IDD_SPLASHSCREEN                102
-#define IDD_CHOOSEASCILAB               103
 #define IDB_BITMAP_SPLASHSCREEN         104
 #define IDC_CHECKSTARTUP                1001
 #define IDC_STARTUPMESSAGE              1002
 #define IDC_OPENRELEASENOTES            1003
-#define IDC_LISTCHOOSEASCILAB           1004
-#define IDC_OK                          1005
-
-
 
 // Next default values for new objects
 // 
