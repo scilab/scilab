@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+/* @TODO: rewrite using GIWS ! */
 #include <jni.h>
 #include <string.h>
 #include "MALLOC.h"
@@ -20,16 +20,23 @@ char ** getinstalledlookandfeels(int *sizeReturned)
 {
 	char **ListLookAndFeels = NULL;
 	JNIEnv *env = getScilabJNIEnv();
+	jmethodID constructObject = NULL ;
+	jobject localInstance ;
 
+	const char* construct="<init>";
+	const char* param="()V";
 	if (env)
 	{
 		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeelManager");
 		if (classLookAndFeel)
 		{
-			jmethodID methodgetInstalledLookAndFeels = (*env)->GetStaticMethodID(env,classLookAndFeel, "getInstalledLookAndFeels", "()[Ljava/lang/String;"); 
-			jobjectArray jStrings = (*env)->CallStaticObjectMethod(env,classLookAndFeel,methodgetInstalledLookAndFeels,NULL);
+			constructObject = (*env)->GetMethodID(env, classLookAndFeel, construct , param ) ;
+			localInstance = (*env)->NewObject(env, classLookAndFeel, constructObject ) ;
 
-			jobjectArray objStrInstalledLookAndFeels = (*env)->CallStaticObjectMethod(env,classLookAndFeel,methodgetInstalledLookAndFeels);
+			jmethodID methodgetInstalledLookAndFeels = (*env)->GetMethodID(env,classLookAndFeel, "getInstalledLookAndFeels", "()[Ljava/lang/String;"); 
+			jobjectArray jStrings = (*env)->CallObjectMethod(env,localInstance,methodgetInstalledLookAndFeels,NULL);
+
+			jobjectArray objStrInstalledLookAndFeels = (*env)->CallObjectMethod(env,localInstance,methodgetInstalledLookAndFeels);
 			*sizeReturned=(*env)->GetArrayLength(env,objStrInstalledLookAndFeels);
 			if (*sizeReturned > 0)
 			{
