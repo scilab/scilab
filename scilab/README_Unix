@@ -8,26 +8,20 @@
  0 - COPYRIGHT NOTICE
  ********************
  
- Scilab is free software. 
- See the included license: "license.txt" in English
-                           "licence.txt" in French
+ Scilab is a free software released under the terms of the CeCILL license.
+ See the included license: "COPYING" in English
+                           "COPYING-FR" in French
  
  ******************************************************************************
  
  In the following, all the paths are relative to the Scilab directory 
- (scilab-4.0 directory).
+ (scilab-5.0 directory).
  
  I - TO INSTALL SCILAB
  *********************
  
-  A - IF YOU HAVE A COMPILED VERSION
-  ----------------------------------
-  
-    Simply do, in Scilab directory:
-      make
-   
-  B - IF YOU HAVE A SOURCE VERSION
-  --------------------------------
+  IF YOU HAVE A SOURCE VERSION
+  ----------------------------
   
     This distribution has been tested on the following machines:
     SUN Sparcstation (Solaris 5.8), HPUX workstation c8000 (HP.UX 11.11) and PC linux
