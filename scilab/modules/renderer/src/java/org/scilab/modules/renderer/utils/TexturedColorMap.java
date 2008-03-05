@@ -174,6 +174,11 @@ public class TexturedColorMap extends ColorMap {
 	 * @param colorIndex color index to apply
 	 */
 	public void applyTexCoord(GL gl, double colorIndex) {
+		// apply color for GL2PS
+		// it won't be used with JOGL driver.
+		// We just get texture color with JOGL
+		gl.glColor3dv(getColor((int) colorIndex), 0);
+		
 		// use texture
 		// color offset is here to put the index in the missdle of the color
 		gl.glTexCoord1d((colorIndex - COLOR_OFFSET) / getSize());

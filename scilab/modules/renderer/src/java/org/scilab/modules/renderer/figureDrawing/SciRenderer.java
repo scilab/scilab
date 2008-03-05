@@ -104,6 +104,8 @@ public class SciRenderer
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
+      gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_DECAL); // Color of texture will not be 
+      																		// mixed with the color of the polygon
 
     }
     

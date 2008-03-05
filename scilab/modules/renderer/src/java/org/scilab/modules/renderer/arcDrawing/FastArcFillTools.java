@@ -23,6 +23,11 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  *
  */
 public class FastArcFillTools extends ArcFillTools {
+	
+	/**
+	 * To avoid drawing the circle several times
+	 */
+	private final static double TWO_PI = 2*Math.PI;
 
 	/**
 	 * Constructor
@@ -46,13 +51,13 @@ public class FastArcFillTools extends ArcFillTools {
 		GLU glu = new GLU();
 		double drawAngle;
 				
-		if(getSweepAngle() < -2*Math.PI) {
-			drawAngle = -2*Math.PI;		
-		}else if(getSweepAngle() >= -2*Math.PI && getSweepAngle() <= 2*Math.PI) {
+		if (getSweepAngle() < -TWO_PI) {
+			drawAngle = -TWO_PI;		
+		} else if (getSweepAngle() >= -TWO_PI && getSweepAngle() <= TWO_PI) {
 			drawAngle = getSweepAngle();		
 		} else {
-			drawAngle = 2*Math.PI;		
-		}
+			drawAngle = TWO_PI;		
+		}	
 		
 		glu.gluPartialDisk(glu.gluNewQuadric(),  0.0, 1.0, NB_SLICES, 1, 0, Math.toDegrees(drawAngle));
 		

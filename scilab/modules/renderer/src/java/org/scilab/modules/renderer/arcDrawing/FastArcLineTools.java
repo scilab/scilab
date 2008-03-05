@@ -22,6 +22,11 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  *
  */
 public class FastArcLineTools extends ArcLineTools {
+	
+	/**
+	 * To avoid drawing the circle several times
+	 */
+	private final static double TWO_PI = 2*Math.PI;
 
 
 	/**
@@ -47,12 +52,12 @@ public class FastArcLineTools extends ArcLineTools {
 		
 		double drawAngle;
 		
-		if(getSweepAngle() < -2*Math.PI) {
-			drawAngle = -2*Math.PI;		
-		}else if(getSweepAngle() >= -2*Math.PI && getSweepAngle() <= 2*Math.PI) {
+		if (getSweepAngle() < -TWO_PI) {
+			drawAngle = -TWO_PI;		
+		} else if (getSweepAngle() >= -TWO_PI && getSweepAngle() <= TWO_PI) {
 			drawAngle = getSweepAngle();		
 		} else {
-			drawAngle = 2*Math.PI;		
+			drawAngle = TWO_PI;		
 		}		
 		
 		for (int i = 0; i < NB_SLICES; i++) {

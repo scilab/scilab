@@ -53,7 +53,7 @@ public class PolylineInterpColorDrawerGL extends AutoDrawableObjectGL {
 		colormapTexture.enable();
 		colormapTexture.bind();
 		
-		gl.glColor3d(1.0, 1.0, 1.0);
+		gl.glColor3d(0.0, 1.0, 0.0);
 		gl.glBegin(GL.GL_TRIANGLE_FAN); // works with triangles and quads
 		for (int i = 0; i < xCoords.length; i++) {
 			getColorMap().applyTexCoord(gl, colors[i]);

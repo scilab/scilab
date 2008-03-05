@@ -125,7 +125,7 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
 		gl.glPolygonOffset(1.0f, 1.0f);
 		
-		gl.glColor3d(1.0, 1.0, 1.0);
+		gl.glColor3d(0.0, 1.0, 0.0);
 		
 		gl.glBegin(GL.GL_TRIANGLES);
 		for (int i = 0; i < nbTriangles; i++) {
