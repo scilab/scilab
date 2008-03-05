@@ -1,0 +1,98 @@
+
+                      libpmd.so  Version 1.0
+                      ----------------------
+
+ Linux Library for the PMD  devices
+ -------------------------------------
+
+Currently Supporting:
+--------------------
+1. PMD1208LS
+2. PMD1024LS
+3. PMD1024HLS
+4. PMD1208FS
+5. PMD1608FS
+
+Introduction:
+-------------
+
+This driver was written by Warren J. Jasper at North Carolina State
+University with help from Melih Gunay and Mike Erickson
+(mikee@signalscape.com) It is a library API for the PMD family of
+devices from Measurement Computing.
+
+Please send comments and bug fixes to wjasper@tx.ncsu.edu.  The source
+for the driver is located at ftp://lx10.tx.ncsu.edu/pub/Linux/drivers.
+
+CURRENTLY, THIS CODE WILL ONLY WORK ON THE 2.6 LINUX KERNEL.  HID is
+not correctly implemented under 2.4.X and will not interface with the
+PMD devices.
+
+NOTE: This API uses the Linux HID driver.  Currently, the HID driver
+does not support block transfers of report usages correctly, and has
+severe performance issues, especially compared to the Windows HID driver.
+I welcome any and all feedback on how to imporove the reliability and
+the performance of these drivers.
+
+
+Distribution contents:
+----------------------
+README                  - this file
+Makefile                - Makefile to compile and install the driver
+License                 - Gnu Public License
+pmd-1208LS.c            - Source code for the library, pmd-1208LS specific
+pmd-1208LS.h            - Header file for the library, pmd-1208LS specific
+pmd-1208FS.c            - Source code for the library, pmd-1208FS specific
+pmd-1208FS.h            - Header file for the library, pmd-1208FS specific
+pmd-1024LS.c            - Source code for the library, pmd-1024LS specific
+pmd-1024LS.h            - Header file for the library, pmd-1024LS specific
+pmd-1608FS.c            - Source code for the library, pmd-1608FS specific
+pmd-1608FS.h            - Header file for the library, pmd-1608FS specific
+pmd.c                   - Source code for the library
+pmd.h                   - Header file for the library
+test-pmd1208LS.c        - test program for the PMD-1208LS
+test-pmd1208FS.c        - test program for the PMD-1208FS
+test-pmd1024LS.c        - test program for the PMD-1024LS
+test-pmd1608FS.c        - test program for the PMD-1608FS
+
+
+Building and installing the driver:
+-----------------------------------
+
+1. Untar the tar file:
+   tar zxvf PMD.1.2.tgz
+
+2. This should create the following files:
+    README
+    Makefile
+    License
+    test-pmd1208LS.c
+    test-pmd1024LS.c
+    test-pmd1208FS.c
+    test-pmd1608FS.c
+    pmd-1208LS.c
+    pmd-1208LS.h
+    pmd-1208FS.c
+    pmd-1208FS.h
+    pmd-1608FS.c
+    pmd-1608FS.h
+    pmd-1024LS.c
+    pmd-1024LS.h
+    pmd.c
+    pmd.h
+
+3. To make the library type:
+     make
+   To make a static version
+     make static
+
+4. To install the library
+     make install
+
+Note:
+-----
+Your kernel needs to be configured with /dev/usb/hiddev support.
+Right now, only woks on the 2.6.X kernels.
+
+If the device nodes are not located in /dev/usb/hiddev*, the please
+edit the code accordingly.
