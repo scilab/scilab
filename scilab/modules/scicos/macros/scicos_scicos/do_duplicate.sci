@@ -89,9 +89,11 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
       gh_cw = gcf();
       rep(3)=-1 ; //** mouse move only : no pressing button events
       while 1 then //** infinite move loop
-        drawlater();
+ 
         //** Exit from the loop condition 
-        if or(rep(3)==[0,2,3,5,-5]) then break, end ; //** exit point
+        if or(rep(3)==[0,2,3,5,-5]) then
+            break ; //** exit point
+        end ; 
 
         //** get new position
         rep = xgetmouse([%t,%t]); //** 
@@ -103,14 +105,17 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
 
         xm = rep(1) ; ym = rep(2) ;
         dx = xm - %xc ; dy = ym - %yc ;
-        move (gh_blk , [dx dy]);
-        //** draw(gh_blk.parent);
+ 
+        drawlater();
+         move (gh_blk , [dx dy]);
+         //** draw(gh_blk.parent);
         drawnow();
         //** show_pixmap();
-        %xc = xm ; %yc = ym ; //** position update
+        
+         %xc = xm ; %yc = ym ; //** position update
       end //** of the infinite while loop 
       //**---------------------------------------------------------------------------
-
+      
     //** someone has closed the active windows
     if get(gh_cw,"figure_id") <> curwin then
       //** active window has been closed
@@ -119,12 +124,13 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
 
     //** the user has click or press the mouse right button (ESC)
     if or(rep(3)==[2 5]) then
-      delete(gh_blk) ; //** delete the elements from the graphics datastructure
+      drawlater(); 
+       delete(gh_blk) ; //** delete the elements from the graphics datastructure
                        //** in order to mantain the coherency
-      gh_a = gca();
-      //** draw(gh_a)  ;
+       //** gh_a = gca();
+       //** draw(gh_a)  ;
       drawnow();
-      //** show_pixmap();
+       //** show_pixmap();
       return ;  //**   the program came back with no action
     end
 
