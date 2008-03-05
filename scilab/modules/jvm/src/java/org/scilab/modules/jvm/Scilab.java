@@ -48,6 +48,16 @@ public class Scilab {
 
 	private static final int DEFAULTWIDTH = 650;
 	private static final int DEFAULTHEIGHT = 550;
+	
+	/** Index of windows vista version */
+	private static final double VISTA_VERSION = 6.0;
+	
+	private static final String ENABLE_JAVA2D_OPENGL_PIPELINE = "sun.java2d.opengl";
+	private static final String ENABLE = "true";
+	private static final String DISABLE = "false";
+	private static final String ENABLE_WITH_DEBUG = "True";
+	private static final String DISABLE_DDRAW = "sun.java2d.noddraw";
+	
 
 	private int mode;
 
@@ -59,6 +69,11 @@ public class Scilab {
 	 */
 	public Scilab(int mode) {
 		this.mode = mode;
+		
+		// Set options for JOGL
+		// they must be set before creating GUI
+		setJOGLFlags();
+		
 		
 		try {
 			String gtkLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
@@ -137,6 +152,52 @@ public class Scilab {
 	 */
 	public void setPrompt(String prompt) {
 		ScilabConsole.getConsole().setPrompt(prompt);
+	}
+	
+	/**
+	 * Set the command line flags to the JVM
+	 */
+	public static void setJOGLFlags() {
+		
+		// Uneash OpenGL power
+		System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, ENABLE_WITH_DEBUG);
+		
+		if (isWindowsPlateform()) {
+			if (findWindowsVersion() >= VISTA_VERSION) {
+				// don't enable OpenGL because of aero
+				System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
+			}
+			// desactivate direct3d and direct draw under windows
+			System.setProperty(DISABLE_DDRAW, ENABLE);
+		}
+		System.setProperty("jogl.GLContext.nofree", "");
+
+	}
+	
+	/**
+	 * @return true if the os is windows, false otherwise
+	 */
+	public static boolean isWindowsPlateform() {
+		// get os name
+		String osName = System.getProperty("os.name");
+		osName = osName.toLowerCase();
+		return osName.contains("windows");
+	}
+	
+	/**
+	 * Find the verion of windows used on the computer if one
+	 * @return negative value if the OS is not windows, the version of windows otherwise
+	 */
+	public static double findWindowsVersion() {
+		// default valu enot windows
+		double windowsVersion = -1.0;
+		
+		if (isWindowsPlateform()) {
+			// windows plateform
+			windowsVersion = Double.valueOf(System.getProperty("os.version"));
+		}
+		
+		return windowsVersion;
 	}
 	
 }
