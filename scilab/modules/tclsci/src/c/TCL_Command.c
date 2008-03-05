@@ -122,8 +122,7 @@ void startTclLoop()
 
 	/* Reinit local interpreter,
 	   default is the biggest one. */
-	LocalTCLinterp = getTclInterp();
-	releaseTclInterp();
+	LocalTCLinterp = requestTclInterp();
 
 	/* Check if it's supposed to be run in root or slave */
 	if(TclSlave != NULL)
@@ -182,8 +181,7 @@ void startTclLoop()
     else
       {
 	__Lock(&wakeUpLock);
-	Tcl_Eval(getTclInterp(), "update");
-	releaseTclInterp();
+	Tcl_Eval(requestTclInterp(), "update");
 #ifdef __LOCAL_DEBUG__
 	printf("[TCL Daemon] Wait\n");
 	fflush(NULL);

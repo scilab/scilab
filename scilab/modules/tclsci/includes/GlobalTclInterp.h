@@ -1,14 +1,14 @@
 /*
-**  -*- C -*-
-**
-** GlobalTclInterp.h
-** Made by  Bruno JOFRET <bruno.jofret@inria.fr>
-**
-** Started on  Thu Feb  7 10:16:24 2008 bruno
-** Last update Tue Feb 19 22:48:08 2008 bruno
-**
-** Copyright INRIA 2008
-*/
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #ifndef __GLOBALTCLINTERP_H___
 #define __GLOBALTCLINTERP_H___
@@ -36,5 +36,11 @@ Tcl_Interp *getTclInterp(void);
 ** Release Tcl Interp after use.
 */
 void releaseTclInterp(void);
+
+/*
+** Get the Global Interpreter
+** without any Control
+*/
+Tcl_Interp *requestTclInterp(void);
 
 #endif /* !__GLOBALTCLINTERP_H___ */

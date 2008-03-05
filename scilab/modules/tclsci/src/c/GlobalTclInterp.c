@@ -54,3 +54,14 @@ Tcl_Interp *getTclInterp(void) {
 void releaseTclInterp(void) {
   __UnLock(&singleInterpAccess);
 }
+
+/*
+** WARNING
+** Get the Global Interpreter
+** without any lock
+** should not be used ouside of the main
+** TCL loop (the one containing update)
+*/
+Tcl_Interp *requestTclInterp(void) {
+  return __globalTclInterp;
+}
