@@ -73,25 +73,33 @@ function [rect,btn] = rubberbox(rect,edit_mode)
   draw_rect(r,w,h); 
   
   if ~with_gtk() then
-      
+
+    //** Scilab 5 compliant code inside 
     while rep(3)==-1 do
-      //** Alan, Ramine patch to disable rubberbox 12/10/07
-      //if 1 then rep=xgetmouse(0,opt);else rep=xgetmouse(0,opt),end
-      rep=xgetmouse(0,opt);
-      if rep(3)==-100 then  btn=rep(3);return;end//window has been closed
-      draw_rect(r,w,h) 
-      xc1=rep(1);yc1=rep(2)
-      ox=mini(xc,xc1)
-      oy=maxi(yc,yc1)
-      w=abs(xc-xc1);h=abs(yc-yc1)
-      r.data=[ox,oy,w,h]
-      draw_rect(r,w,h)  
-      first=%f
+      rep = xgetmouse(opt); //** update for Scilab 5
+      
+      //** window closing protection 
+      if rep(3)==-100 then // window has been closed
+        btn = rep(3);
+        return ;
+      end
+      
+      draw_rect(r,w,h) ;  
+      xc1 = rep(1) ;
+      yc1 = rep(2) ; 
+      ox  = mini(xc,xc1) ;
+      oy  = maxi(yc,yc1) ; 
+      w   = abs(xc-xc1) ;
+      h   = abs(yc-yc1) ;
+      r.data = [ox,oy,w,h] ;
+      draw_rect(r,w,h);  
+      first = %f ;
     end 
  
   else
-                    //** 
+     //** whith GTK
      while rep(3)<>-5 do  // make sure to eat up the double click (10)
+     
 
       rep = xgetmouse(opt);
       
