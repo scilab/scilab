@@ -25,7 +25,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
   global ClipboardPal
   
   if ClipboardPal==[] then
-    //** Call a Tk interactive menu in order to choose a palette 
+    //** Call a menu dialmog box in order to choose a palette 
     kpal = choose(scicos_pal(:,1),'Choose a Palette')
     
     //** if no Palette are choosen the exit 
@@ -56,8 +56,8 @@ function [palettes,windows] = do_palettes(palettes, windows)
     curwin = get_new_window(windows)
     
     if or(curwin==winsid()) then
+      //** BEWARE : OLD GRAPHICS !
       xdel(curwin);
-      //xset('window',curwin)
     end
     
     windows = [windows; [-kpal curwin] ];
@@ -114,7 +114,11 @@ function [palettes,windows] = do_palettes(palettes, windows)
  
   //**-------------------------------------------------------
   rect = dig_bound(palettes(kpal));
-  if rect==[] then rect=[0 0 400,600],end
+  
+  if rect==[] then 
+    rect = [0 0 400,600]; //** default palette size
+  end
+  
   %wsiz = [rect(3)-rect(1),rect(4)-rect(2)];
   // window size is limited to 400 x 300 : ajust dimensions
   // to remain isometric.
@@ -135,7 +139,11 @@ function [palettes,windows] = do_palettes(palettes, windows)
   h = %zoom*%wsiz(2)
   w = %zoom*%wsiz(1)
 
-  if ~MSDOS then h1=h+50,else h1=h,end
+  if ~MSDOS then
+    h1 = h + 50 ; //** Linux 
+  else
+    h1 = h ;  //** Windows 
+  end
   
 //  xset('wresize',1); //** xset("wresize",flag). If flag=1 then the graphic is automatically resized
 //                     //** to fill the graphics window. 
@@ -165,7 +173,9 @@ function [palettes,windows] = do_palettes(palettes, windows)
   
   gh_pal_axes.margins     = arect ; //** arect
  
-  gh_pal_axes.mark_mode = "off"   ;
+  gh_pal_axes.mark_mode = "off"   ; //** 
+  gh_pal_axes.box = "off"         ; //** 
+  gh_pal_axes.tight_limits = "on" ; //** 
 
   options = palettes(kpal).props.options ;
     
@@ -185,7 +195,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
   gh_palette.auto_resize = "on"       ; //** 
   gh_palette.pixmap      = "off"      ;
   gh_palette.immediate_drawing = "on" ;
-  
+
   //** put the focus in the previous window. 
   set ("current_figure" , lastwin ); //** new graphic 
 
