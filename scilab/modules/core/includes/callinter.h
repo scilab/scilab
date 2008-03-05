@@ -13,6 +13,11 @@ c     include file instead of subroutine to avoid recursion pbs. This file
 c     must be included in each routine which compute an external
  60   call  parse
       if(fun.eq.99) then
+         if(err.gt.0.or.err1.gt.0) then
+c     .     test if we are under errcatch('stop') mode (imode=3)           
+            imode=mod(abs(errct)/100000,8)
+            if (imode.ne.3) goto 97
+         endif
          fun=0
          goto 200
       endif
