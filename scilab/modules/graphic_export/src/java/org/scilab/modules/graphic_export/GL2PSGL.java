@@ -821,6 +821,7 @@ public class GL2PSGL extends DebugGL {
 	/**
 	 * glIsList
 	 * @param arg0 int
+	 * @return gl.glIsList(arg0) boolean
 	 */
 	public boolean glIsList(int arg0) {
 		return gl.glIsList(arg0);
