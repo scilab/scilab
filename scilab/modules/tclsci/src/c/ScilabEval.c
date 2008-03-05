@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,7 +31,7 @@ static int c_n1 = -1;
 /*--------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
-  int ns,ierr,seq;
+  int ns,ierr,seq = 0;
   char *command;
 
   char *comm[arbitrary_max_queued_callbacks];
@@ -89,7 +90,9 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	      if (msg){FREE(msg);msg=NULL;}
 	      sciprint("\n");
 	    }
-	  C2F(syncexec)(command,&ns,&ierr,&seq,ns);
+	  syncexec(command,&ns,&ierr,&seq,ns);
+	  //StoreCommand(command);
+	  //SetCommandflag(1);
 	  if (C2F(iop).ddt==-1)
 	    {
 	      char *msg=_("Execution ends for %s");
@@ -139,8 +142,8 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		    }
 		}
 	      ns=(int)strlen(comm[nc]);
-	      C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
-	      if (C2F(iop).ddt==-1)
+	      syncexec(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
+	     if (C2F(iop).ddt==-1)
 		{
 		  char *msg=_("Flushed execution ends for %s");
 		  sciprint_full(msg,comm[nc]);

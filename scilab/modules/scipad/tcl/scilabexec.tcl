@@ -4,7 +4,7 @@
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
 #  Copyright (C) 2004-2008 - Francois Vogel
 #
-#  Localization files ( in tcl/msg_files/) are copyright of the 
+#  Localization files ( in tcl/msg_files/) are copyright of the
 #  individual authors, listed in the header of each file
 #
 # This program is free software; you can redistribute it and/or modify
@@ -83,7 +83,7 @@ proc execfile {{buf "current"}} {
     # this is in case a script modifies a file opened in Scipad
     checkifanythingchangedondisk $pad
 
-    return $outval 
+    return $outval
 }
 
 proc execselection {} {
@@ -100,11 +100,11 @@ proc execselection {} {
     set selindices [gettaselind $textareacur any]
     if {$selindices != ""} {
         set f [gettatextstring $textareacur $selindices]
-        #SciEval does not digest multilines, nor comments. The following hacks are 
-        # not optimal - they can produce very long lines, and get confused about 
+        #SciEval does not digest multilines, nor comments. The following hacks are
+        # not optimal - they can produce very long lines, and get confused about
         # quoted strings containing //.
-        #strip comments from // to \n (note - \n stays, as the interpreter allows 
-        #    "...//bla\n rest" ) (NOTE: this way strings like "...//..." are truncated 
+        #strip comments from // to \n (note - \n stays, as the interpreter allows
+        #    "...//bla\n rest" ) (NOTE: this way strings like "...//..." are truncated
         #    -- FIXIT -- has to use tag textquoted information)
         regsub -all -line "//.*(\\n|\\Z)" $f "\n" f1
         unset f
@@ -178,7 +178,7 @@ proc importmatlab {} {
     set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
     if {$sourcefile !=""} {
         set sourcedir [file dirname $sourcefile]
-        set destfile [file rootname $sourcefile].sci 
+        set destfile [file rootname $sourcefile].sci
         set convcomm "execstr(\"res=mfile2sci(\"\"$sourcefile\"\",\
                       \"\"$sourcedir\"\",%f,%f,1,%t)\",\"errcatch\",\"m\")"
         set impcomm \
@@ -207,8 +207,8 @@ proc helpskeleton {} {
     #  really defined; then call help_skeleton, and pipe the
     # result to a new (unsaved) buffer.
     # NB: execing the file can have far-reaching consequences
-    #  if the file does more than just defining functions. 
-    # Responsibility left to the user.   
+    #  if the file does more than just defining functions.
+    # Responsibility left to the user.
     global tileprocalreadyrunning
     if {$tileprocalreadyrunning} {return}
     if {[isscilabbusy 0]} {return}
@@ -370,25 +370,24 @@ proc isscilabbusy {{messagenumber "nomessage"} args} {
 proc scilaberror {funnameargs} {
     global ScilabErrorMessageBox
     global errnum errline errmsg errfunc
-    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();\
-                   TCL_EvalStr(\"global errnum errline errmsg errfunc; \
-                                 set errnum  \"+string(db_n)+\"; \
-                                 set errline \"+string(db_l)+\"; \
-                                 set errfunc \"\"\"+strsubst( \
-                                                              db_func,\"\"\"\",\"\\\"\"\") \
-                                                   +\"\"\"; \
-                                 set errmsg  \"\"\"+strsubst( \
-                                                    strsubst( \
-                                                    strsubst( \
-                                                    strsubst( \
-                                                    strsubst( \
-                                                               db_str,\"\"\"\",\"\\\"\"\") \
-                                                                     ,\"''\",\"\\''\") \
-                                                                     ,\"$\",\"\\$\") \
-                                                                     ,\"\[\",\"\\\[\") \
-                                                                     ,\"\]\",\"\\\]\") \
-                                                   +\"\"\" \" , \"scipad\" )" \
-                  "sync" "seq"
+# Bruno : Communication between Scipad and Scilab through
+# TCL global interp is not a clever idea...
+    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
+    ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
+    ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
+    ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
+    ScilabEval_lt  "TCL_SetVar(\"errmsg\" ,  strsubst( \
+                                                     strsubst( \
+                                                     strsubst( \
+                                                     strsubst( \
+                                                     strsubst( \
+                                                                db_str,\"\"\"\",\"\\\"\"\") \
+                                                                      ,\"''\",\"\\''\") \
+                                                                      ,\"$\",\"\\$\") \
+                                                                      ,\"\[\",\"\\\[\") \
+                                                                      ,\"\]\",\"\\\]\") \
+                                                    , \"scipad\" )" "sync" "seq"
+    ScilabEval_lt "flush"
     if {$ScilabErrorMessageBox} {
         tk_messageBox -title [mc "Scilab execution error"] \
           -message [concat [mc "The shell reported an error while trying to execute "]\
@@ -400,6 +399,7 @@ proc scilaberror {funnameargs} {
         canceldebug_bp
     }
     blinkline $errline $errfunc
+
 }
 
 proc blinkline {li ma {nb 3}} {

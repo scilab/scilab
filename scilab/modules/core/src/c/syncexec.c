@@ -1,11 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Serge STEER
- * 
+ * Copyright (C) 2008 - INRIA - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,14 +15,14 @@
 #include "stack-c.h"
 #include "core_math.h"
 #include "parse.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #define Pt (C2F(recu).pt)
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 IMPORT struct {
 	int iflag, interruptible;
 } C2F(basbrk);
-/*--------------------------------------------------------------------------*/ 
-int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
+/*--------------------------------------------------------------------------*/
+int syncexec(char *str, int *ns, int *ierr, int *seq, long int str_len)
 {
 	extern int C2F(bexec)();
 
@@ -62,8 +63,9 @@ int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
 L60:
 
 	C2F(parse)();
+
 	if (Err > 0) {
-		goto L9999;
+	  goto L9999;
 	}
 
 	if (C2F(com).fun == 99) {
@@ -93,6 +95,7 @@ L60:
 		}
 		goto L95;
 	}
+
 
 L89:
 	if (Top < Rhs) {
@@ -192,9 +195,17 @@ L9999:
 	if (Err != 9999999) *ierr = 1;
 	--Top;
 	--C2F(recu).niv;
-	C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
+	/*
+	** OVVERRIDE WHAT PARSE AS PUT INTO THIS
+	** F. FLAG !!!!
+	** We want to be interruptible after having an error
+	** _VERY_ CRAPPY CODE
+	*/
+	//C2F(basbrk).interruptible = Ids[4 + Pt * nsiz];
+	C2F(basbrk).interruptible = TRUE;
 	Pt=Pts;Top=Tops;
+	C2F(recu).icall = 0;
 	return 0;
 } /* syncexec */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 
