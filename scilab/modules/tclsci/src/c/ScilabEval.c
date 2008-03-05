@@ -51,7 +51,6 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 
       sciprint_full(msg,AsciiFromUTF8);
-      if (msg) {FREE(msg);msg=NULL;}
 
       while (argv[++argc]) sciprint(" %s",argv[argc]);
       sciprint("\n");
@@ -87,17 +86,13 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	    {
 	      char *msg=_("Execution starts for %s");
 	      sciprint_full(msg,command);
-	      if (msg){FREE(msg);msg=NULL;}
 	      sciprint("\n");
 	    }
 	  syncexec(command,&ns,&ierr,&seq,ns);
-	  //StoreCommand(command);
-	  //SetCommandflag(1);
 	  if (C2F(iop).ddt==-1)
 	    {
 	      char *msg=_("Execution ends for %s");
 	      sciprint_full(msg,command);
-	      if (msg){FREE(msg);msg=NULL;}
 	      sciprint("\n");
 	    }
 	  // TODO : Scilab is supposed to be busy there. Add mutex lock...
@@ -130,14 +125,12 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		    {
 		      char *msg=_("Flushed execution starts for %s - No option");
 		      sciprint_full(msg,comm[nc]);
-		      if (msg){FREE(msg);msg=NULL;}
 		      sciprint("\n");
 		    }
 		  else
 		    {
 		      char *msg=_("Flushed execution starts for %s - seq");
 		      sciprint_full(msg,comm[nc]);
-		      if (msg){FREE(msg);msg=NULL;}
 		      sciprint("\n");
 		    }
 		}
@@ -147,7 +140,6 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		{
 		  char *msg=_("Flushed execution ends for %s");
 		  sciprint_full(msg,comm[nc]);
-		  if (msg){FREE(msg);msg=NULL;}
 		  sciprint("\n");
 		}
 	      FREE(comm[nc]);
