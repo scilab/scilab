@@ -51,7 +51,7 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
+				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -248,11 +248,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_special_functions1.h"
+				RelativePath="..\..\includes\gw_special_functions1.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\gw_special_functions1.h"
+				RelativePath="..\..\sci_gateway\c\gw_special_functions1.h"
 				>
 			</File>
 			<File
