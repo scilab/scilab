@@ -10,7 +10,7 @@ EXPORTS
  cf_type
  GetData
  recu_
- syncexec_
+ syncexec
  putlhsvar_
  createvar_
  stack_
