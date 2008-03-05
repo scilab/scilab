@@ -30,13 +30,17 @@ char ** getinstalledlookandfeels(int *sizeReturned)
 		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeelManager");
 		if (classLookAndFeel)
 		{
+			jmethodID methodgetInstalledLookAndFeels;
+			jobjectArray jStrings;
+			jobjectArray objStrInstalledLookAndFeels;
+
 			constructObject = (*env)->GetMethodID(env, classLookAndFeel, construct , param ) ;
 			localInstance = (*env)->NewObject(env, classLookAndFeel, constructObject ) ;
 
-			jmethodID methodgetInstalledLookAndFeels = (*env)->GetMethodID(env,classLookAndFeel, "getInstalledLookAndFeels", "()[Ljava/lang/String;"); 
-			jobjectArray jStrings = (*env)->CallObjectMethod(env,localInstance,methodgetInstalledLookAndFeels,NULL);
+			methodgetInstalledLookAndFeels = (*env)->GetMethodID(env,classLookAndFeel, "getInstalledLookAndFeels", "()[Ljava/lang/String;"); 
+			jStrings = (*env)->CallObjectMethod(env,localInstance,methodgetInstalledLookAndFeels,NULL);
 
-			jobjectArray objStrInstalledLookAndFeels = (*env)->CallObjectMethod(env,localInstance,methodgetInstalledLookAndFeels);
+			objStrInstalledLookAndFeels = (*env)->CallObjectMethod(env,localInstance,methodgetInstalledLookAndFeels);
 			*sizeReturned=(*env)->GetArrayLength(env,objStrInstalledLookAndFeels);
 			if (*sizeReturned > 0)
 			{

@@ -30,10 +30,12 @@ BOOL setlookandfeel(char *lookandfeekstr)
 		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeelManager");
 		if (classLookAndFeel)
 		{
+			jmethodID methodSetLookAndFeel;
+			jstring jstr;
 			constructObject = (*env)->GetMethodID(env, classLookAndFeel, construct , param ) ;
 			localInstance = (*env)->NewObject(env, classLookAndFeel, constructObject ) ;
-			jmethodID methodSetLookAndFeel = (*env)->GetMethodID(env,classLookAndFeel, "setLookAndFeel", "(Ljava/lang/String;)Z"); 
-			jstring jstr = (*env)->NewStringUTF(env,lookandfeekstr);
+			methodSetLookAndFeel = (*env)->GetMethodID(env,classLookAndFeel, "setLookAndFeel", "(Ljava/lang/String;)Z"); 
+			jstr = (*env)->NewStringUTF(env,lookandfeekstr);
 			return (BOOL) (*env)->CallBooleanMethod(env,localInstance,methodSetLookAndFeel,jstr);
 		}
 	}
@@ -54,9 +56,10 @@ BOOL setsystemlookandfeel(void)
 		jclass classLookAndFeel = (*env)->FindClass(env, "org/scilab/modules/gui/utils/LookAndFeelManager");
 		if (classLookAndFeel)
 		{
+			jmethodID methodSetSystemLookAndFeels;
 			constructObject = (*env)->GetMethodID(env, classLookAndFeel, construct , param ) ;
 			localInstance = (*env)->NewObject(env, classLookAndFeel, constructObject ) ;
-			jmethodID methodSetSystemLookAndFeels = (*env)->GetMethodID(env,classLookAndFeel, "setSystemLookAndFeel", "()Z"); 
+			methodSetSystemLookAndFeels = (*env)->GetMethodID(env,classLookAndFeel, "setSystemLookAndFeel", "()Z"); 
 			return (BOOL) (*env)->CallBooleanMethod(env,localInstance,methodSetSystemLookAndFeels);
 		}
 	}
