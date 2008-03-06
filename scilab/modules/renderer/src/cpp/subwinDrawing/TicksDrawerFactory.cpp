@@ -90,7 +90,6 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
       ticksComputer = new AutomaticTicksComputer(m_pDrawer);
     }
     
-    new AutomaticTicksComputer(m_pDrawer);
     double bounds[6];
     sciGetDisplayedDataBounds(pSubwin, bounds);
     ticksComputer->setAxisBounds(bounds[0], bounds[1]);
@@ -166,7 +165,6 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
       ticksComputer = new AutomaticTicksComputer(m_pDrawer);
     }
 
-    new AutomaticTicksComputer(m_pDrawer);
     double bounds[6];
     sciGetDisplayedDataBounds(pSubwin, bounds);
     ticksComputer->setAxisBounds(bounds[2], bounds[3]);
@@ -247,7 +245,6 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
       ticksComputer = new AutomaticTicksComputer(m_pDrawer);
     }
 
-    new AutomaticTicksComputer(m_pDrawer);
     double bounds[6];
     sciGetDisplayedDataBounds(pSubwin, bounds);
     ticksComputer->setAxisBounds(bounds[4], bounds[5]);
