@@ -46,15 +46,14 @@ else
 				AC_MSG_ERROR([Unable to find pcre-config in the path. Please check your installation of pcre (example : libpcre3 & libpcre3-dev with Debian)])
 		fi
 fi
-saved_cflags=$CFLAGS
+saved_cflags="$CFLAGS"
 saved_LIBS="$LIBS"
 		
 PCRE_CFLAGS=`$PCRE_CONFIG --cflags`
 PCRE_LIBS=`$PCRE_CONFIG --libs-posix`
 PCRE_VERSION=`$PCRE_CONFIG --version`
 
-
-
+LIBS="$PCRE_LIBS $LIBS"
 CFLAGS="$PCRE_CFLAGS $CFLAGS"
 
 AC_CHECK_LIB([pcre], [pcre_compile],
@@ -69,21 +68,15 @@ AC_CHECK_LIB([pcreposix], [regexec],
 AC_CHECK_HEADERS([pcre.h])
 
 LIBS="$saved_LIBS"
-CFLAGS=$saved_cflags
+CFLAGS="$saved_cflags"
 
-AC_SUBST(PCRE_FLAGS)
+AC_SUBST(PCRE_CFLAGS)
 AC_SUBST(PCRE_LIBS)
 AC_SUBST(PCRE_VERSION)
 
-AC_DEFINE_UNQUOTED([PCRE_FLAGS],["$PCRE_FLAGS"],[PCRE flags])
+AC_DEFINE_UNQUOTED([PCRE_CFLAGS],["$PCRE_CFLAGS"],[PCRE flags])
 AC_DEFINE_UNQUOTED([PCRE_LIBS],["$PCRE_LIBS"],[PCRE library])
 AC_DEFINE_UNQUOTED([PCRE_VERSION],["$PCRE_VERSION"],[PCRE version])
-
-#CFLAGS="$CFLAGS $PCRE_FLAGS"
-#AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([pcre : library missing])])
-
-
-#AC_CHECK_HEADERS([pcre/tree.h],,[AC_MSG_ERROR([pcre : library missing missing])])	
 
 # Gets compilation and library flags
 ])
