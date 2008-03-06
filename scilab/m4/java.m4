@@ -63,6 +63,16 @@ AC_DEFUN([AC_GREP_FILE], [
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_PROG_JAVAC], [
+# Mac OS X
+    if test "x$JAVAC" = "x" ; then
+	case "$host_os" in
+	     *darwin* ) 
+	     # Don't follow the symlink since Java under MacOS is messy
+		JAVAC="/System/Library/Frameworks/JavaVM.framework/Home/bin/javac"
+		DONT_FOLLOW_SYMLINK=yes
+		;;
+	esac
+	fi
     if test "x$JAVAC" = "x" ; then
         AC_PATH_PROG(JAVAC, javac)
         if test "x$JAVAC" = "x" ; then
@@ -75,7 +85,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
     fi
 
     # Check for installs which uses a symlink. If it is the case, try to resolve JAVA_HOME from it
-    if test -h "$JAVAC" ; then
+    if test -h "$JAVAC" -a "x$DONT_FOLLOW_SYMLINK" != "xyes"; then
 		FOLLOW_SYMLINKS($JAVAC,"javac")
 		JAVAC=$SYMLINK_FOLLOWED_TO
         TMP=`dirname $SYMLINK_FOLLOWED_TO`
@@ -179,17 +189,30 @@ EOF
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_DETECT_JVM], [
-
+	AC_MSG_CHECKING([JAVA_HOME variable]) 
 	# check if JAVA_HOME is set. If it is the case, try to use if first
 	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" == "x"; then
 		if test -x $JAVA_HOME/bin/javac${EXEEXT}; then
 		    AC_MSG_RESULT([JAVA_HOME variable found, use it as JVM root directory])
-    	    ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
+    		    ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
 			JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
 		else
 		    AC_MSG_RESULT([JAVA_HOME variable found, but unable to find javac
 Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK (Java Developement Kit) ? )])
 		fi
+	else
+		AC_MSG_RESULT([not defined])
+	fi
+
+# Mac OS default path
+	if test "x$JAVAC" = "x" && test "x$ac_java_jvm_dir" != "x"; then
+		case "$host_os" in
+		     *darwin* ) 
+			AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
+			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Home/"
+			JAVAC=$ac_java_jvm_dir/bin/javac
+			;;
+		esac
 	fi
 
     # if we do not know the jvm dir, javac will be found on the PATH
@@ -319,7 +342,14 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
          if test -f "$F" ; then
              ac_java_jvm_jni_include_flags="-I`dirname $F`"
          else
-             AC_MSG_ERROR([Could not locate Java's jni.h include file])
+		case "$host_os" in
+		     *darwin* ) 
+		     	      ac_java_jvm_jni_include_flags="-I$ac_java_jvm_dir/Headers/"
+			      ;;
+		      *)
+	                   AC_MSG_ERROR([Could not locate Java's jni.h include file])
+			   ;;
+			   esac
          fi
     fi
 
@@ -392,8 +422,11 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
     # Check for known JDK installation layouts
 
-    if test "$ac_java_jvm_name" = "jdk"; then
+    # Gives the name of the symbol we want to look for.
+    # Mac OS X add a trailing _Impl
+    libSymbolToTest="JNI_GetCreatedJavaVMs"
 
+    if test "$ac_java_jvm_name" = "jdk"; then
         # Sun/Blackdown 1.4 for Linux (client JVM)
 
         F=jre/lib/$machine/libjava.so
@@ -438,6 +471,25 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
             if test -f $ac_java_jvm_dir/$F ; then
                 AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljvm"
+
+                D=$ac_java_jvm_dir/jre/lib/i386/server
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+            fi
+        fi
+
+        # Sun on MacOS X Java Compiler
+
+        F=../Libraries/libjava.jnilib
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+		libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
 
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
@@ -497,7 +549,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
         LIBS="$LIBS $ac_java_jvm_jni_lib_flags"
         AC_TRY_LINK([
             #include <jni.h>
-        ],[JNI_GetCreatedJavaVMs(NULL,0,NULL);],
+        ],[$libSymbolToTest(NULL,0,NULL);],
             ac_java_jvm_working_jni_link=yes,
             ac_java_jvm_working_jni_link=no)
         AC_LANG_POP()
@@ -517,7 +569,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
         LIBS="$LIBS -L$srcdir/win -ljvm"
         AC_TRY_LINK([
             #include <jni.h>
-        ],[JNI_GetCreatedJavaVMs(NULL,0,NULL);],
+        ],[$libSymbolToTest(NULL,0,NULL);],
             ac_java_jvm_working_jni_link=yes,
             ac_java_jvm_working_jni_link=no)
         AC_LANG_POP()
@@ -590,6 +642,7 @@ AC_DEFUN([AC_JAVA_WITH_JDK], [
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_TOOLS], [
+	
     AC_JAVA_TOOLS_CHECK(JAVA, java, $ac_java_jvm_dir/bin)
 
     # Don't error if java_g can not be found
