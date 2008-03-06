@@ -18,7 +18,6 @@
 *
 * See the file ./license.txt
 */
-
 #include <math.h>
 #include "scicos_block4.h"
 #include <stdio.h>

@@ -18,12 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h> /* getenv */
 #include "scicos_block4.h"
 #include "machine.h"
 #include "stack-c.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> /* getenv */
 #include "MALLOC.h"
 
 #if WIN32
