@@ -201,8 +201,6 @@ extern  integer C2F(xscion)();
 
 extern int scilab_timer_check();
 
-ScicosImport  scicos_imp;
-
 static integer nblk, nordptr, nlnk, ng, ncord, noord, nzord,niord,
   nclock,nordclk,niord,nmod;
 
@@ -210,6 +208,21 @@ static integer *neq;
 
 static  double Atol, rtol, ttol, deltat,hmax;
 static integer hot;
+
+/* Variable declaration moved to scicos.c because it was in the scicos-def.h therefore
+ * multiple declaration of the variable and linkers were complaining about duplicate
+ * symbols
+ */
+
+COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
+IMPORT_SCICOS  SOLVER_struct C2F(cmsolver);
+IMPORT_SCICOS CURBLK_struct C2F(curblk);
+IMPORT_SCICOS RTFACTOR_struct C2F(rtfactor);
+IMPORT_SCICOS SCSPTR_struct C2F(scsptr);
+IMPORT_SCICOS DBCOS_struct C2F(dbcos);
+IMPORT_SCICOS COSTOL_struct C2F(costol);
+IMPORT_SCICOS COSHLT_struct C2F(coshlt);
+IMPORT_SCICOS COSDEBUG_struct C2F(cosdebug);
 
 /* defined in scicos-def.h */
 /*

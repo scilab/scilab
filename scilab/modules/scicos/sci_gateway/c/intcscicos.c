@@ -61,6 +61,10 @@ extern void Objstring(char *fname,
                 BOOL isline,
                 BOOL isfilled);
 
+/* variable defined in scicos.c */
+extern CURBLK_struct C2F(curblk);
+struct {integer isrun;} C2F(cosim); /* declaration of cosim -valable partout- */
+
 /* TO DO new graphics function */
 /*
 extern void updateScaleIfRequired(sciPointObj * pSubWin);

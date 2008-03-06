@@ -48,8 +48,6 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int kfun);
 static int *il_state_save; /*n'est valable que dans inctscicos.c*/
 static int *il_sim_save; /*n'est valable que dans inctscicos.c*/
 
-struct {integer kfun;} C2F(curblk); /* declaration of curblk -valable partout- */
-struct {integer isrun;} C2F(cosim); /* declaration of cosim -valable partout- */
 typedef struct /* declaration of outtb_elem -valable dans inctscicos.c- */
 {
   int lnk;

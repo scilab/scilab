@@ -26,55 +26,46 @@ typedef struct {
   int counter;
 } COSDEBUGCOUNTER_struct;
 
-COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
 
 typedef struct {
   int solver;
 } SOLVER_struct;
 
-IMPORT_SCICOS  SOLVER_struct C2F(cmsolver);
 
 typedef struct {
   integer kfun;
 } CURBLK_struct;
 
-IMPORT_SCICOS CURBLK_struct C2F(curblk);
 
 typedef struct {
   double scale;
 }  RTFACTOR_struct;
 
-IMPORT_SCICOS RTFACTOR_struct C2F(rtfactor);
 
 
 typedef struct {
   integer ptr;
 }  SCSPTR_struct;
 
-IMPORT_SCICOS SCSPTR_struct C2F(scsptr);
 
 typedef struct {
 	integer idb;
 } DBCOS_struct;
 
-IMPORT_SCICOS DBCOS_struct C2F(dbcos);
 
 typedef struct {
 	double atol, rtol, ttol, deltat;
 } COSTOL_struct;
 
-IMPORT_SCICOS COSTOL_struct C2F(costol);
 
 typedef struct {
 	integer halt;
 }  COSHLT_struct;
 
-IMPORT_SCICOS COSHLT_struct C2F(coshlt);
 
 typedef struct {
 	int cosd;
 } COSDEBUG_struct;
 
-IMPORT_SCICOS COSDEBUG_struct C2F(cosdebug);
 
 #endif /*SCICOS_DEF*/

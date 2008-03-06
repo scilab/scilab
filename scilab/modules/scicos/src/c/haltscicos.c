@@ -24,7 +24,12 @@
 /* CORNET Allan */
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
-#include "scicos-def.h"
+//#include "scicos-def.h"
+
+typedef struct {
+	integer halt;
+}  COSHLT_struct;
+extern COSHLT_struct  C2F(coshlt);
 /*--------------------------------------------------------------------------*/ 
 int haltscicos(char *name, integer *win, integer *entry,long int name_len)
 {
