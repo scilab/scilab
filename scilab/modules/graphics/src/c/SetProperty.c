@@ -3762,7 +3762,10 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
       strcpy( ppFigure->eventHandler, name ) ;
 
       /* Java is called to set the listener */
-      setFigureEventHandler(sciGetNum(pObj), name);
+      if (!isFigureModel(pObj))
+        {
+          setFigureEventHandler(sciGetNum(pObj), name);
+        }
 
       if ( strcmp( name, "" ) == 0 )
       {
@@ -3798,7 +3801,10 @@ int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
       pFIGURE_FEATURE(pObj)->isEventHandlerEnable = enable ;
   
       /* Java is called to enable or disable the listener */
-      setFigureEventHandlerEnabled(sciGetNum(pObj), enable);
+      if (!isFigureModel(pObj))
+        {
+          setFigureEventHandlerEnabled(sciGetNum(pObj), enable);
+        }
   
       return 0 ;
     }
