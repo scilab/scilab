@@ -345,7 +345,6 @@ public class DrawableFigureGL extends ObjectGL {
   					// figure should not be add to the object cleaner or they will destroy themselves.
   					// remove it from the figure list
   					FigureMapper.removeMapping(figureId);
-  					getRenderingTarget().getContext().destroy();
   					getRendererProperties().closeCanvas();
   				} else {
   					Threading.invokeOnOpenGLThread(new Runnable() {
