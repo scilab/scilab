@@ -54,6 +54,8 @@
 #include "MALLOC.h"
 #include "DrawingBridge.h"
 #include "Scierror.h"
+
+#include "CallFigure.h"
 /*---------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
 /* Modify the viewing angles of a subwindow                                           */
@@ -3759,6 +3761,9 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
 
       strcpy( ppFigure->eventHandler, name ) ;
 
+      /* Java is called to set the listener */
+      setFigureEventHandler(sciGetNum(pObj), name);
+
       if ( strcmp( name, "" ) == 0 )
       {
         sciInitIsEventHandlerEnable( pObj, FALSE ) ;
@@ -3791,6 +3796,10 @@ int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
   case SCI_FIGURE:
     {
       pFIGURE_FEATURE(pObj)->isEventHandlerEnable = enable ;
+  
+      /* Java is called to enable or disable the listener */
+      setFigureEventHandlerEnabled(sciGetNum(pObj), enable);
+  
       return 0 ;
     }
   default:

@@ -176,6 +176,8 @@ jmethodID voidsetMessageBoxDefaultInputjintjobjectArrayID; // cache method id
 jmethodID voidsetMessageBoxModaljintjbooleanID; // cache method id
 jmethodID jbooleanisToolbarVisiblejintID; // cache method id
 jmethodID voidsetToolbarVisiblejintjbooleanID; // cache method id
+jmethodID voidsetEventHandlerjintjstringID; // cache method id
+jmethodID voidsetEventHandlerEnabledjintjbooleanID; // cache method id
 
 
 /**
@@ -462,6 +464,10 @@ static void setMessageBoxModal(JavaVM * jvm_, long id, bool status);
 static bool isToolbarVisible(JavaVM * jvm_, long figNum);
 
 static void setToolbarVisible(JavaVM * jvm_, long figNum, bool status);
+
+static void setEventHandler(JavaVM * jvm_, long figNum, char * command);
+
+static void setEventHandlerEnabled(JavaVM * jvm_, long figNum, bool status);
 
 
                         /**

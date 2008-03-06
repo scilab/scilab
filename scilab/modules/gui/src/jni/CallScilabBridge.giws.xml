@@ -450,5 +450,14 @@
             <parameter name="figNum" type="int"/>
             <parameter name="status" type="boolean"/>
         </method>      
+<!-- EventHandler -->
+	<method name="setEventHandler" returnType="void" modifier="static">
+            <parameter name="figNum" type="int"/>
+            <parameter name="command" type="String"/>
+        </method>      
+	<method name="setEventHandlerEnabled" returnType="void" modifier="static">
+            <parameter name="figNum" type="int"/>
+            <parameter name="status" type="boolean"/>
+        </method>      
   </object>
 </package>

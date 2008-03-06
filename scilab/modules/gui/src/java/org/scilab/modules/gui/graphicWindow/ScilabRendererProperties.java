@@ -191,6 +191,14 @@ public class ScilabRendererProperties implements RendererProperties {
 	}
 	
 	/**
+	 * Get the parent canvas
+	 * @return the parent canvas
+	 */
+	public Canvas getCanvas() {
+		return parentCanvas;
+	}
+	
+	/**
      * Close the rendering canvas
      */
    public void closeCanvas() {

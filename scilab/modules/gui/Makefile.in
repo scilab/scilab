@@ -117,14 +117,15 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/jni/Jxclick.cpp src/cpp/DestroyUIControl.cpp \
 	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
 	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
-	src/cpp/CallMessageBox.cpp src/cpp/PushButton.cpp \
-	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
-	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
-	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
-	src/cpp/ListBox.cpp src/cpp/Frame.cpp src/cpp/Toolbar.cpp \
-	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
-	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
-	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
+	src/cpp/CallFigure.cpp src/cpp/CallMessageBox.cpp \
+	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
+	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
+	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp \
+	src/cpp/ContextMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	src/cpp/Toolbar.cpp src/cpp/SetUimenuLabel.cpp \
+	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
+	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
+	src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -202,6 +203,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-Jxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallJxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallFileChooser.lo \
+@GUI_TRUE@	libscigui_la-CallFigure.lo \
 @GUI_TRUE@	libscigui_la-CallMessageBox.lo \
 @GUI_TRUE@	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
 @GUI_TRUE@	libscigui_la-Label.lo libscigui_la-CheckBox.lo \
@@ -555,6 +557,7 @@ JARMASK = *.jar
 @GUI_TRUE@src/jni/Jxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallJxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallFileChooser.cpp \
+@GUI_TRUE@src/cpp/CallFigure.cpp \
 @GUI_TRUE@src/cpp/CallMessageBox.cpp \
 @GUI_TRUE@src/cpp/PushButton.cpp \
 @GUI_TRUE@src/cpp/EditBox.cpp \
@@ -719,6 +722,7 @@ includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallFileChooser.h \
+includes/CallFigure.h \
 includes/CallJxclick.h \
 includes/CallJxgetmouse.h \
 includes/CallMessageBox.h \
@@ -880,6 +884,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFileChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxgetmouse.Plo@am__quote@
@@ -1346,6 +1351,13 @@ libscigui_la-CallFileChooser.lo: src/cpp/CallFileChooser.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallFileChooser.cpp' object='libscigui_la-CallFileChooser.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallFileChooser.lo `test -f 'src/cpp/CallFileChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallFileChooser.cpp
+
+libscigui_la-CallFigure.lo: src/cpp/CallFigure.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallFigure.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallFigure.Tpo -c -o libscigui_la-CallFigure.lo `test -f 'src/cpp/CallFigure.cpp' || echo '$(srcdir)/'`src/cpp/CallFigure.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallFigure.Tpo $(DEPDIR)/libscigui_la-CallFigure.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallFigure.cpp' object='libscigui_la-CallFigure.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallFigure.lo `test -f 'src/cpp/CallFigure.cpp' || echo '$(srcdir)/'`src/cpp/CallFigure.cpp
 
 libscigui_la-CallMessageBox.lo: src/cpp/CallMessageBox.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallMessageBox.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallMessageBox.Tpo -c -o libscigui_la-CallMessageBox.lo `test -f 'src/cpp/CallMessageBox.cpp' || echo '$(srcdir)/'`src/cpp/CallMessageBox.cpp

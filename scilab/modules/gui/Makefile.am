@@ -31,6 +31,7 @@ src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
+src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/EditBox.cpp \
@@ -206,6 +207,7 @@ includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallFileChooser.h \
+includes/CallFigure.h \
 includes/CallJxclick.h \
 includes/CallJxgetmouse.h \
 includes/CallMessageBox.h \

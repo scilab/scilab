@@ -225,6 +225,8 @@ voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL;
 voidsetMessageBoxModaljintjbooleanID=NULL; 
 jbooleanisToolbarVisiblejintID=NULL; 
 voidsetToolbarVisiblejintjbooleanID=NULL; 
+voidsetEventHandlerjintjstringID=NULL; 
+voidsetEventHandlerEnabledjintjbooleanID=NULL; 
 
 
 }
@@ -373,6 +375,8 @@ voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL;
 voidsetMessageBoxModaljintjbooleanID=NULL; 
 jbooleanisToolbarVisiblejintID=NULL; 
 voidsetToolbarVisiblejintjbooleanID=NULL; 
+voidsetEventHandlerjintjstringID=NULL; 
+voidsetEventHandlerEnabledjintjbooleanID=NULL; 
 
 
 }
@@ -3588,6 +3592,52 @@ exit(EXIT_FAILURE);
 jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallStaticVoidMethod(cls, voidsetToolbarVisiblejintjbooleanID ,figNum, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setEventHandler (JavaVM * jvm_, long figNum, char * command){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetEventHandlerjintjstringID = curEnv->GetStaticMethodID(cls, "setEventHandler", "(ILjava/lang/String;)V" ) ;
+if (voidsetEventHandlerjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setEventHandler" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring command_ = curEnv->NewStringUTF( command );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetEventHandlerjintjstringID ,figNum, command_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setEventHandlerEnabled (JavaVM * jvm_, long figNum, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetEventHandlerEnabledjintjbooleanID = curEnv->GetStaticMethodID(cls, "setEventHandlerEnabled", "(IZ)V" ) ;
+if (voidsetEventHandlerEnabledjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setEventHandlerEnabled" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetEventHandlerEnabledjintjbooleanID ,figNum, status_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

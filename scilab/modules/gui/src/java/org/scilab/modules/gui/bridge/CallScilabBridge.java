@@ -1746,4 +1746,31 @@ public class CallScilabBridge {
 					.getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().isVisible();
 		}
 	}
+	
+	/***********************/
+	/*                     */
+	/* EVENTHANDLER BRIDGE */
+	/*                     */
+	/***********************/
+	
+	/**
+	 * Set the event handler of the figure
+	 * @param figNum the figure
+	 * @param command the name of the Scilab function to call
+	 */
+	public static void setEventHandler(int figNum, String command) {
+		System.out.println("Set the EventHandler of figure " + figNum + " to " + command);
+		//((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum).getRendererProperties()).getCanvas().setEventHandler(command);
+	}
+	
+	/**
+	 * Set the status of the event handler of the figure
+	 * @param figNum the figure
+	 * @param status is true to set the event handler active
+	 */
+	public static void setEventHandlerEnabled(int figNum, boolean status) {
+		System.out.println("Set the EventHandler status  of figure " + figNum + " to " + status);
+		//((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum)
+		//		.getRendererProperties()).getCanvas().setEventHandlerEnabled(status);
+	}
 }
