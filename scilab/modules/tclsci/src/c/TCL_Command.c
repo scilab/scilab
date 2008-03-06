@@ -23,8 +23,6 @@
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 
-// TCL Interpreter creation and loop ID
-__threadId		TclThread;
 // Globla Tcl Slave Name
 char *			TclSlave;
 // Global Tcl Command Buffer
