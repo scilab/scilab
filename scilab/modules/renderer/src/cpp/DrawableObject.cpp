@@ -33,11 +33,7 @@ DrawableObject::DrawableObject( sciPointObj * drawed )
 /*---------------------------------------------------------------------------------*/
 DrawableObject::~DrawableObject( void )
 {
-  if ( m_pImp != NULL )
-  {
-    delete m_pImp ;
-    m_pImp = NULL ;
-  }
+  setDrawableImp(NULL);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::display( void )
@@ -126,6 +122,15 @@ void DrawableObject::directionScale(double vectorX[], double vectorY[], double v
   getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->directionScale(vectorX, vectorY, vectorZ,
                                                                  startingPointsX, startingPointsY,
                                                                  startingPointsZ, vectorLength);
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::setDrawableImp( DrawableObjectBridge * imp )
+{
+  if (m_pImp != NULL)
+  {
+    delete m_pImp;
+  }
+  m_pImp = imp;
 }
 /*------------------------------------------------------------------------------------------*/
 bool DrawableObject::checkVisibility( void )

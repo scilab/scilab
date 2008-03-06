@@ -89,24 +89,26 @@ void DrawableFigure::drawBackground(void)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::drawInContext( void )
 {
-  initializeDrawing() ;
   // retest on auto_redraw
   // because display may come directly from JoGL
   if (isDisplayingSingleObject())
   {
+    initializeDrawing() ;
     setFigureParameters() ;
     displaySingleObject();
+    endDrawing() ;
   }
   else if ( checkVisibility() )
   {
     if (checkAutoRedraw())
     {
+      initializeDrawing() ;
       drawBackground();
       setFigureParameters() ;
       displayChildren() ;
+      endDrawing() ;
     }
   }
-  endDrawing() ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::redrawInContext( void )
@@ -114,7 +116,7 @@ void DrawableFigure::redrawInContext( void )
   // force update of all the graphic hierarchy
   familyHasChanged();
   // draw as usual
-  drawInContext();
+  //drawInContext();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::draw( void )

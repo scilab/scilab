@@ -302,6 +302,8 @@ public class DrawableFigureGL extends ObjectGL {
 	    gl.glVertex3d(0.0, 1.0, -1.0 + EPSILON);
 	    gl.glEnd();
         gl.glEnable(GL.GL_DEPTH_TEST);
+
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
   	}
   	
   	
@@ -343,6 +345,7 @@ public class DrawableFigureGL extends ObjectGL {
   					// figure should not be add to the object cleaner or they will destroy themselves.
   					// remove it from the figure list
   					FigureMapper.removeMapping(figureId);
+  					getRenderingTarget().getContext().destroy();
   					getRendererProperties().closeCanvas();
   				} else {
   					Threading.invokeOnOpenGLThread(new Runnable() {

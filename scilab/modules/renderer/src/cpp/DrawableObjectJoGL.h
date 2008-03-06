@@ -68,7 +68,7 @@ public:
   /**
    * Set the Java mapper to use
    */
-  void setJavaMapper( DrawableObjectJavaMapper * javaMapper ) { m_pJavaMapper = javaMapper ; }
+  void setJavaMapper( DrawableObjectJavaMapper * javaMapper ) ;
 
 protected:
   

@@ -99,7 +99,7 @@ public:
   /**
    * Set the driver dependent implementation of algorithms
    */
-  void setDrawableImp( DrawableObjectBridge * imp ) { m_pImp = imp ; }
+  void setDrawableImp( DrawableObjectBridge * imp ) ;
 
   /**
   * Get the driver dependent implementation of algorithm

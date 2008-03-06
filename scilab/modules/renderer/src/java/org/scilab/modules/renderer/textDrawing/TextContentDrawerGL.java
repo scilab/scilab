@@ -187,7 +187,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	public void destroyTextRenderer() {
 		// useless unless we share texture between OpenGL contexts
-		//textRenderer.dispose();
+		textRenderer.dispose();
 		textRenderer = null;
 	}
 	

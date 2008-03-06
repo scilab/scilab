@@ -64,6 +64,7 @@ public class SciRenderer
 //	if (!gLDrawable.getAutoSwapBufferMode()) {
 //		gLDrawable.swapBuffers();
 //	}
+	
 
   }
     
@@ -90,11 +91,6 @@ public class SciRenderer
 	  }
 	  //gLDrawable.setAutoSwapBufferMode(false);
 	  
-	  if (curFigure.getIsRenderingEnable()) {
-    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
-    	  FigureScilabCall.redrawFigure(renderedFigure);
-      }
-	  
 	  GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);    // white Background
@@ -106,6 +102,14 @@ public class SciRenderer
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
       gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_DECAL); // Color of texture will not be 
       																		// mixed with the color of the polygon
+
+      gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
+      gl.glLogicOp(GL.GL_COPY);
+      
+	  if (curFigure.getIsRenderingEnable()) {
+    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
+    	  FigureScilabCall.redrawFigure(renderedFigure);
+      }
 
     }
     
