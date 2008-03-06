@@ -32,20 +32,20 @@ static BOOL EMBEDDED_JRE=FALSE;
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadDynLibJVM(char *SCILAB_PATH)
 {
-	/* 1] search in SCI/java/jre */
-	/* 2] search in PATH */
-	/* else ERROR Java not found */
+	/* 1. search in SCI/java/jre 
+	 * 2. search in LD_LIBRARY_PATH and co (see man dlopen) 
+	 * else ERROR Java not found */
 
 	BOOL bOK=FALSE;
 	char *JVMLibFullName=NULL;
 	
-	/* 1] search in SCI/java/jre */
+	/* 1. search in SCI/java/jre */
 	JVMLibFullName=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMLibFullName,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/libjava",SHARED_LIB_EXT);
 
 	if (LoadFuntionsJVM(JVMLibFullName)==NULL)
 	{
-		  /* 2] search in PATH */
+		  /* 2. search in LD_LIBRARY_PATH */
 			if (JVMLibFullName){FREE(JVMLibFullName);JVMLibFullName=NULL;};
 			JVMLibFullName=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 			sprintf(JVMLibFullName,"%s%s","libjava",SHARED_LIB_EXT);
