@@ -302,7 +302,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
     end
    
-  else //** scicos_new() is called without arguments (AND - implicitly - is NOT a superblock)
+  else //** scicos() is called without arguments (AND - implicitly - is NOT a superblock)
 
     gh_Main_Scicos_window = scf(Main_Scicos_window);
     // In case a back up file exists
@@ -745,7 +745,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	  //** execstr('exec('+%cor_item_exec(%koko,2)+',1)')
 
           //** Used for standard DEBUG ONLY -->
-          //** disp(%cor_item_exec(%koko,2)); //** disp the current exec 
+          disp(%cor_item_exec(%koko,2)); //** disp the current exec 
           execstr('exec('+%cor_item_exec(%koko,2)+',-1)'); //** nothing is printed 
 
 	  if ierr > 0 then
