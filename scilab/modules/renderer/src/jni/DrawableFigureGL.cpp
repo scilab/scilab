@@ -453,6 +453,8 @@ myArray[i]=resultsArray[i];
 }
 curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
+                        curEnv->DeleteLocalRef(res);
+
 return myArray;
 
 }
@@ -815,6 +817,8 @@ for (jsize i = 0; i < len; i++){
 myArray[i]=resultsArray[i];
 }
 curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+                        curEnv->DeleteLocalRef(res);
 
 return myArray;
 

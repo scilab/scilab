@@ -354,6 +354,8 @@ myArray[i]=resultsArray[i];
 }
 curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
+                        curEnv->DeleteLocalRef(res);
+
 return myArray;
 
 }
