@@ -87,7 +87,8 @@ if ~alreadyExists
   // Set the default background if figure has just been created (compatibility with versions < 5.0)
   set(h,"background",addcolor([0.8 0.8 0.8]))
 end
-
+// Hide the current axis
+set(gca(),"visible","off");
 endfunction
 // -----------------------------------------------------------
 
