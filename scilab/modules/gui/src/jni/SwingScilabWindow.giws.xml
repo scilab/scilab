@@ -1,6 +1,0 @@
-<package name="org.scilab.modules.gui.bridge.window">
-  <object name="SwingScilabWindow">
-	<method name="getToolbar" returnType="String">
-	</method>
-  </object>
-</package>
