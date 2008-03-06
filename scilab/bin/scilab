@@ -265,6 +265,9 @@ fi
 
 # Get the proc name matching to the one of the JVM
 # Inspiration and data are from http://www.google.com/codesearch?hl=en&q=+java+ppc+libjava.so+show:a78sz0SP41k:zxNozD-vc0A:FWiIy7Hinmg&sa=N&cd=2&ct=rc&cs_p=http://fresh.t-systems-sfr.com/unix/src/misc/tclBlendSrc1.2.5.tar.gz&cs_f=tclBlend1.2.5/configure.in#a0
+# For Mac OS X, we will get stuff like that:
+# uname -s Power Macintosh
+# uname -m Darwin
 
 JAVA_SHLIB="libjava.so"
 
@@ -285,7 +288,7 @@ case $OS in
 			"ia64")
 				proc="i64"
 				;;
-            "ppc")
+		    "ppc")
 				proc="ppc"
 				;;
 			"alpha")  
@@ -321,6 +324,10 @@ case $OS in
 		proc="win32"
 		JAVA_SHLIB="jvm.dll"
 		;;
+    *darwin* | *Darwin*) # MacOS X
+	# For Mac OS X, Since path are different from the JVM normal tree, don't need to detect 
+	# the CPU
+	;;
 	*)
 		echo "Could not find the Java configuration for the OS <${OS}>. Please contact us."
 		;;
@@ -334,14 +341,23 @@ esac
 			echo "Cannot find $LIBJAVA"
 		fi
 	else
-		CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
+            CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
+
+	    case $OS in
+		*darwin* | *Darwin*)
+		    # Seems to be always that under Mac OS X. Don't hesitate to submit a bug report if it is not the case.
+		    LD_LIBRARY_PATH="/System/Library/Frameworks/JavaVM.framework/Libraries::$LD_LIBRARY_PATH"
+		    ;;
+		*)
 		# @TODO This is the default path of the official sun JVM. 
 		# It is different for other implementation of the JVM....
 		LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
+		;;
+	    esac
 	fi
 else
 	if test $SCIVERBOSE -ne 0; then
-		echo "Have not been able to find any Java VM on this computer. Scilab maybe not be working"
+		echo "Have not been able to find any Java VM on this computer. Some features may be broken."
 	fi
 fi
 
