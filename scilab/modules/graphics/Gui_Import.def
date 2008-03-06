@@ -71,4 +71,6 @@ SetUicontrolRelief
 GetUicontrolSliderStep
 SetUicontrolSliderStep
 DestroyUIControl
+setFigureEventHandler
+setFigureEventHandlerEnabled
 ;
