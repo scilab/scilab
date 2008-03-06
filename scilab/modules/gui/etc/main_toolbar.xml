@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <toolbar>
     <!-- New Scilab -->
-    <button icon="window-new.png">
+    <button icon="window-new.png" tooltiptext="New Scilab">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
 
     <separator/>
 
     <!-- Scipad -->
-    <button icon="accessories-text-editor.png">
+    <button icon="accessories-text-editor.png" tooltiptext="Launch Scipad">
         <callback instruction="scipad();" type="0"/>
     </button>
     <!-- Open File -->
-    <button icon="document-open.png">
+    <button icon="document-open.png" tooltiptext="Open a file">
         <callback 
         instruction="
           %fileToOpen = xgetfile('*.sci', getcwd(), 'Select a file to open with Scipad');
@@ -26,18 +26,18 @@
     <separator/>
 
     <!-- Copy -->
-    <button icon="edit-copy.png">
+    <button icon="edit-copy.png" tooltiptext="Copy">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
     <!-- Paste -->
-    <button icon="edit-paste.png">
+    <button icon="edit-paste.png" tooltiptext="Paste">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
 
     <separator/>
 
     <!-- Change current directory -->
-    <button icon="folder.png">
+    <button icon="folder.png" tooltiptext="Change Current Directory">
         <callback 
         instruction="
           %newDir = uigetdir(getcwd(), 'Select a directory');
@@ -51,18 +51,18 @@
     <separator/>
 
     <!-- Change font -->
-    <button icon="format-text-bold.png">
+    <button icon="format-text-bold.png" tooltiptext="Choose Font...">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
     <!-- Print -->
-    <button icon="printer.png">
+    <button icon="printer.png" tooltiptext="Print">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
 
     <separator/>
 
     <!-- Help -->
-    <button icon="help-browser.png">
+    <button icon="help-browser.png" tooltiptext="Help Browser">
         <callback instruction="help();" type="0"/>
     </button>
 </toolbar>

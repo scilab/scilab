@@ -1884,6 +1884,15 @@ public class ScilabBridge {
 		ScilabPushButtonBridge.destroy(pushButton);
 	}
 
+	/**
+	 * Set the string to be displayed when the mouse cursor is over the PushButton
+	 * @param pushButton the PushButton
+	 * @param toolTipText the string to set
+	 */
+	public static void setToolTipText(PushButton pushButton, String toolTipText) {
+		ScilabPushButtonBridge.setToolTipText(pushButton, toolTipText);
+	}
+	
 	/******************/
 	/* TextBox Bridge */
 	/******************/

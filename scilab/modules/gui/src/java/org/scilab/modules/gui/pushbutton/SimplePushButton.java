@@ -27,4 +27,12 @@ public interface SimplePushButton extends Widget {
 	 * @param filename the path to the icon image to set to the PushButton
 	 */
 	void setIcon(String filename);
+	
+	/**
+	 * Set the string to be displayed when the mouse cursor is over the PushButton
+	 * TODO move this method in Widget or UIElement
+	 * 
+	 * @param toolTipText the string to set
+	 */
+	void setToolTipText(String toolTipText);
 }

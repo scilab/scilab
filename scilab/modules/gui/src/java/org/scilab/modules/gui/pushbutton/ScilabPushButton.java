@@ -232,4 +232,13 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Set the string to be displayed when the mouse cursor is over the PushButton
+	 * @param toolTipText the string to set
+	 */
+	public void setToolTipText(String toolTipText) {
+		ScilabBridge.setToolTipText(this, toolTipText);
+	}
+
 }

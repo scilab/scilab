@@ -2,25 +2,25 @@
 <toolbar>
 <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure --> 
     <!-- Rotate -->
-    <button icon="view-refresh.png">
+    <button icon="view-refresh.png" tooltiptext="Rotate">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
 
     <separator/>
 
     <!-- Zoom In -->
-    <button icon="list-add.png">
+    <button icon="list-add.png" tooltiptext="Zoom In">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
     <!-- Zoom Out -->
-    <button icon="list-remove.png">
+    <button icon="list-remove.png" tooltiptext="Zoom Out">
         <callback instruction="notavailablemessage();" type="0"/>
     </button>
 
     <separator/>
 
     <!-- Help -->
-    <button icon="help-browser.png">
+    <button icon="help-browser.png" tooltiptext="Help Browser">
         <callback instruction="help();" type="0"/>
     </button>
 </toolbar>

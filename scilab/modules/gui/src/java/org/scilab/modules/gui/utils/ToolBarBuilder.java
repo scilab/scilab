@@ -126,6 +126,7 @@ public final class ToolBarBuilder {
 		protected static final String INSTRUCTION = "instruction";
 		protected static final String TRUE = "true";
 		protected static final String FALSE = "false";
+		protected static final String TOOLTIPTEXT = "tooltiptext";
 		
 		protected static final String DEFAULT_ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/";
 
@@ -211,8 +212,10 @@ public final class ToolBarBuilder {
 						} else if (buttonAttributes.item(i).getNodeName().equals(ENABLED)) {
 							// Enable are disable the button
 							pushButton.setEnabled(buttonAttributes.item(i).getNodeValue().equals(TRUE));
+						} else if (buttonAttributes.item(i).getNodeName().equals(TOOLTIPTEXT)) {
+							// Add a ToolTip on the button
+							pushButton.setToolTipText(buttonAttributes.item(i).getNodeValue());
 						}
-						
 					}
 					// Add the button to the toolbar
 					tb.add(pushButton);
