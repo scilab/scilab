@@ -22,7 +22,9 @@
 #ifndef _MSC_VER
 	#include <pthread.h>
 #else
-	#define _WIN32_WINNT 0x500
+	#ifndef _WIN32_WINNT
+		#define _WIN32_WINNT 0x500
+	#endif
 	#include <Windows.h>
 	#include <process.h>
 
