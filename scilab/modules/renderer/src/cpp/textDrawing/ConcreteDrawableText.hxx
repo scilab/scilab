@@ -59,11 +59,6 @@ public:
   void setTextDrawingStrategy(DrawTextContentStrategy * strategy);
 
   /**
-   * Delete the strategy used for drawing text.
-   */
-  void removeTextDrawingStrategy(void);
-
-  /**
    * To know if there is really some text to display.
    * Useful for labels objects which display text.
    */

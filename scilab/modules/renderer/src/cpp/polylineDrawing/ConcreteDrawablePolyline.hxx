@@ -69,11 +69,6 @@ public:
    */
   void setDecompositionStrategy(DecomposeLineStrategy * strategy);
 
-  /**
-   * Remove all algorithms for decomposing lines.
-   */
-  void removeDecompositionStrategy(void);
-
 
 protected:
 

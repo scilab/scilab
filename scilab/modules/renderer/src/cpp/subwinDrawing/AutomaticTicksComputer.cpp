@@ -82,7 +82,7 @@ void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[
     sprintf(buffer, labelsFormat, positions[i]);
 
     // add the string to labels
-    if (labels[i] != NULL) {delete labels[i];}
+    if (labels[i] != NULL) {delete[] labels[i];}
 
     labels[i] = new char[strlen(buffer) + 1];
     strcpy(labels[i], buffer);

@@ -56,7 +56,6 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
 {
   sciPointObj * pPolyline = polyline->getDrawedObject();
 
-  polyline->removeDecompositionStrategy();
   polyline->removeDrawingStrategies();
 
 
@@ -88,7 +87,6 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
     break;
   default:
     polyline->setDecompositionStrategy(new InterpolatedDecomposition(polyline));
-    break;
     break;
   }
 

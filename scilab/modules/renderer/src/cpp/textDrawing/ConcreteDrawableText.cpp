@@ -35,7 +35,7 @@ ConcreteDrawableText::ConcreteDrawableText(sciPointObj * pObj) : DrawableText(pO
 ConcreteDrawableText::~ConcreteDrawableText(void)
 {
   removeBoxDrawingStrategies();
-  removeTextDrawingStrategy();
+  setTextDrawingStrategy(NULL);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::getBoundingRectangle(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
@@ -66,13 +66,11 @@ void ConcreteDrawableText::removeBoxDrawingStrategies(void)
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::setTextDrawingStrategy(DrawTextContentStrategy * strategy)
 {
+  if (m_pDrawingTextStrategy != NULL)
+  {
+    delete m_pDrawingTextStrategy;
+  }
   m_pDrawingTextStrategy = strategy;
-}
-/*---------------------------------------------------------------------------------*/
-void ConcreteDrawableText::removeTextDrawingStrategy(void)
-{
-  delete m_pDrawingTextStrategy;
-  m_pDrawingTextStrategy = NULL;
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::drawBox(void)

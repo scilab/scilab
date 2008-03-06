@@ -29,7 +29,7 @@ ConcreteDrawablePolyline::ConcreteDrawablePolyline(sciPointObj * pObj)
 ConcreteDrawablePolyline::~ConcreteDrawablePolyline(void)
 {
    removeDrawingStrategies();
-   removeDecompositionStrategy();
+   setDecompositionStrategy(NULL);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawablePolyline::addDrawingStrategy(DrawPolylineStrategy * strategy)
@@ -50,13 +50,11 @@ void ConcreteDrawablePolyline::removeDrawingStrategies(void)
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawablePolyline::setDecompositionStrategy(DecomposeLineStrategy * strategy)
 {
+  if (m_pDecomposeStrategy != NULL)
+  {
+    delete m_pDecomposeStrategy;
+  }
   m_pDecomposeStrategy = strategy;
-}
-/*---------------------------------------------------------------------------------*/
-void ConcreteDrawablePolyline::removeDecompositionStrategy(void)
-{
-  delete m_pDecomposeStrategy;
-  m_pDecomposeStrategy = NULL;
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawablePolyline::getDrawnVertices(double xCoords[], double yCcoords[], double zCcoords[])

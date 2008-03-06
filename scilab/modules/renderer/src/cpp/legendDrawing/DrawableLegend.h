@@ -27,6 +27,8 @@ public:
 
   DrawableLegend( sciPointObj * pObj ) : DrawableObject( pObj ) {}
 
+  virtual ~DrawableLegend(void) {}
+
 protected:
 
   /**

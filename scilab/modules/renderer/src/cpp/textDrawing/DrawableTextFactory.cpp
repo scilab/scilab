@@ -49,7 +49,6 @@ void DrawableTextFactory::update( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableTextFactory::setStrategies(ConcreteDrawableText * text)
 {
-  text->removeTextDrawingStrategy();
   text->removeBoxDrawingStrategies();
 
   sciPointObj * pText = text->getDrawedObject();
