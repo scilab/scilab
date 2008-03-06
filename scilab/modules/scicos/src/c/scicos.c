@@ -36,9 +36,8 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
-#include "machine.h"
 
+#include "machine.h"
 #include "dynamic_link.h"
 #include "scicos-def.h"
 #include "stack-def.h"
@@ -46,8 +45,8 @@
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
+#include <math.h>
 #include "core_math.h"
-
 #include "math_graphics.h"
 #include "MALLOC.h"  /* malloc */
 
@@ -89,15 +88,12 @@ typedef struct {
 #endif
 */
 
-#ifdef abs
-	#undef abs
-#endif
+
 #define abs(x) ((x) >= 0 ? (x) : -(x))
 #ifndef WIN32
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif
-
 #define freeall \
               if (*neq>0) CVodeFree(&cvode_mem);\
               if (*neq>0) N_VDestroy_Serial(y);\
@@ -182,6 +178,7 @@ struct {
   int solver;
 } C2F(cmsolver);
 */
+
 extern void  F2C(sciblk)();
 extern void  sciblk2();
 extern void  sciblk4();
@@ -242,6 +239,7 @@ extern struct {
   integer halt;
 }  C2F(coshlt);
 */
+
 /* Table of constant values */
 
 static integer c__90 = 90;
@@ -1420,7 +1418,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 
   while(*told < *tf) {
 
-  // removed in scilab 5
+    // removed in scilab 5
 /*
     if (inxsci == 1 && scilab_timer_check() == 1) {
       C2F(sxevents)();
