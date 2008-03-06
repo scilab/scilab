@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "JVM.h"
 #include "JVM_commons.h"
 #include "JVM_functions.h"
@@ -52,7 +53,7 @@ JNIEnv *getScilabJNIEnv(void)
 #ifdef _MSC_VER
 		MessageBox(NULL,_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf(_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
+		fprintf(stderr,_("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
 #endif
 	}
 	return JNIEnv_SCILAB;
@@ -75,14 +76,17 @@ BOOL startJVM(char *SCI_PATH)
 		}
 		else 
 		{
+			fprintf(stderr,_("\nWeird error. Calling from Java but haven't been able to find the already existing JVM.\n"));
 			FreeDynLibJVM();
 			return FALSE;
 		}
 	}
 	else
 	{
-		if (! LoadDynLibJVM(SCI_PATH) ) return FALSE;
-		else
+		if (! LoadDynLibJVM(SCI_PATH) ) {
+			fprintf(stderr,_("\nCould not load JVM dynamic library. Calling from Java but haven't been able to find the already existing JVM.\n"));
+			return FALSE;
+		}else
 		{
 			/**
 			* http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/invocation.html#wp15956
@@ -137,7 +141,7 @@ BOOL startJVM(char *SCI_PATH)
 #ifdef _MSC_VER
 			MessageBox(NULL,_("\nIncorrect version JNI (needs at least JDK 1.4).\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-			printf(_("\nIncorrect version JNI (needs at least JDK 1.4).\n"));
+			fprintf(stderr,_("\nIncorrect version JNI (needs at least JDK 1.4).\n"));
 #endif
 			exit(1);
 #endif
@@ -162,7 +166,7 @@ BOOL startJVM(char *SCI_PATH)
 
 			if (status != JNI_OK)
 			{
-				printf(_("Error in the creation of the Java VM : %s\n"),getJniErrorFromStatusCode(status));
+				fprintf(stderr,_("Error in the creation of the Java VM: %s\n"),getJniErrorFromStatusCode(status));
 				FreeDynLibJVM();
 				if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
 				if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
@@ -176,9 +180,9 @@ BOOL startJVM(char *SCI_PATH)
 	if (res != 0)
 	{
 #ifdef _MSC_VER
-		MessageBox(NULL,_("\nCall to AttachCurrentThread.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
+		MessageBox(NULL,_("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf(_("\nCall to AttachCurrentThread.\n"));
+		fprintf(stderr,_("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"));
 #endif
 		FreeDynLibJVM();
 		if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
