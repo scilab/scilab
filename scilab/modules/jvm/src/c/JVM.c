@@ -84,7 +84,7 @@ BOOL startJVM(char *SCI_PATH)
 	else
 	{
 		if (! LoadDynLibJVM(SCI_PATH) ) {
-			fprintf(stderr,_("\nCould not load JVM dynamic library. Calling from Java but haven't been able to find the already existing JVM.\n"));
+			fprintf(stderr,_("\nCould not load JVM dynamic library.\n"));
 			return FALSE;
 		}else
 		{
