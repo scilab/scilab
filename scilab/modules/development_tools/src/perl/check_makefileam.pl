@@ -30,14 +30,6 @@ if( dirname($0) =~ m/^\// )
 my $sci_modules_dir = $directory;
 $sci_modules_dir =~ s/\/development_tools\/src\/perl//g;
 
-
-print 'dirname($0)      =  '.dirname($0)."\n";
-print 'getcwd()         =  '.getcwd()."\n";
-print '$directory       =  '.$directory."\n";
-print '$sci_modules_dir =  '.$sci_modules_dir."\n";
-
-exit(0);
-
 # Module list
 my %modules = get_module_list();
 
