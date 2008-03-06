@@ -43,11 +43,6 @@ void banner(void)
 	sciprint(_("This is a development and not at all a final or stable version of Scilab 5.0\nthat will be released in the future. A lot of features are missing and buggy.\n"));
 	sciprint(_("In no event will the authors be held liable for any damages arising from,\nout of or in connection with the software or the use or other dealings\nin the software.\n"));
 
-	#if defined(__APPLE__)
-		sciprint("\n\n");
-		sciprint(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support the port of Scilab to MacOS.\n"));
-	#endif /* __APPLE__ */
-
 	#if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
 		sciprint("\n\n");
 		sciprint(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
