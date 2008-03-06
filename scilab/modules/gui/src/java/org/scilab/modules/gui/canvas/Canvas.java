@@ -84,4 +84,15 @@ public interface Canvas extends Dockable {
 	  */
 	 void setViewingRegion(int posX, int posY, int width, int height);
 	 
+	 /**
+	  * Set the event handler of the Canvas
+	  * @param command the name of the Scilab function to call
+	  */
+	 void setEventHandler(String command);
+
+	 /**
+	  * Set the status of the event handler of the Canvas
+	  * @param status is true to set the event handler active
+	  */
+	 void setEventHandlerEnabled(boolean status);
 }

@@ -1760,7 +1760,7 @@ public class CallScilabBridge {
 	 */
 	public static void setEventHandler(int figNum, String command) {
 		System.out.println("Set the EventHandler of figure " + figNum + " to " + command);
-		//((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum).getRendererProperties()).getCanvas().setEventHandler(command);
+		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum).getRendererProperties()).getCanvas().setEventHandler(command);
 	}
 	
 	/**
@@ -1770,7 +1770,7 @@ public class CallScilabBridge {
 	 */
 	public static void setEventHandlerEnabled(int figNum, boolean status) {
 		System.out.println("Set the EventHandler status  of figure " + figNum + " to " + status);
-		//((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum)
-		//		.getRendererProperties()).getCanvas().setEventHandlerEnabled(status);
+		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum)
+				.getRendererProperties()).getCanvas().setEventHandlerEnabled(status);
 	}
 }

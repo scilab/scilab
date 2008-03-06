@@ -210,5 +210,20 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 		ScilabBridge.setViewingRegion(this, posX, posY, width, height);
 	}
 	
-	
+	/**
+	 * Set the event handler of the Canvas
+	 * @param command the name of the Scilab function to call
+	 */
+	public void setEventHandler(String command) {
+		ScilabBridge.setEventHandler(this, command);
+	}
+
+	/**
+	 * Set the status of the event handler of the Canvas
+	 * @param status is true to set the event handler active
+	 */
+	public void setEventHandlerEnabled(boolean status) {
+		ScilabBridge.setEventHandlerEnabled(this, status);
+	}
+
 }

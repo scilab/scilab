@@ -1081,7 +1081,24 @@ public class ScilabBridge {
 		ScilabCanvasBridge.setViewingRegion(canvas, posX, posY, width, height);
 	}
 	
-	
+	/**
+	 * Set the event handler of the Canvas
+	 * @param canvas the Canvas
+	 * @param command the name of the Scilab function to call
+	 */
+	public static void setEventHandler(Canvas canvas, String command) {
+		ScilabCanvasBridge.setEventHandler(canvas, command);
+	}
+
+	/**
+	 * Set the status of the event handler of the Canvas
+	 * @param canvas the Canvas
+	 * @param status is true to set the event handler active
+	 */
+	public static void setEventHandlerEnabled(Canvas canvas, boolean status) {
+		ScilabCanvasBridge.setEventHandlerEnabled(canvas, status);
+	}
+
 	/*****************/
 	/* MenuBar Bridge */
 	/*****************/

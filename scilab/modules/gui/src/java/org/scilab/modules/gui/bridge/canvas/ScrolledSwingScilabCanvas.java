@@ -243,4 +243,20 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		}
 	}
 
+	/**
+	 * Set the event handler of the Canvas
+	 * @param command the name of the Scilab function to call
+	 */
+	public void setEventHandler(String command) {
+		// TODO Blouno !
+	}
+
+	/**
+	 * Set the status of the event handler of the Canvas
+	 * @param status is true to set the event handler active
+	 */
+	public void setEventHandlerEnabled(boolean status) {
+		// TODO Blouno !
+	}
+
 }
