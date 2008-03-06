@@ -21,7 +21,7 @@
 #include "filesmanagement.h"
 #include "localization.h"
 
-struct soundstream ftf;
+extern struct soundstream ftf; /* Defined in mgeti.c */
 
 
 
