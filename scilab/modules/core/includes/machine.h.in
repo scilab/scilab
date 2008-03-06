@@ -352,7 +352,7 @@
 #undef PATH_SEPARATOR
 
 /* PCRE flags */
-#undef PCRE_FLAGS
+#undef PCRE_CFLAGS
 
 /* PCRE library */
 #undef PCRE_LIBS
