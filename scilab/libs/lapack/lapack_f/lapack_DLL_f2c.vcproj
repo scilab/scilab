@@ -11,6 +11,9 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 		<ToolFile
@@ -20,7 +23,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
@@ -121,7 +124,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
@@ -216,6 +219,178 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine=""
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="f2c rule"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../f2c"
+				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="0"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				Description="Build Lapack.def file"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul&#x0D;&#x0A;copy *.def lapack1.def &gt;nul&#x0D;&#x0A;copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				OutputFile="../../../bin/lapack.dll"
+				ModuleDefinitionFile="..\..\..\bin\lapack.def"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine=""
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="f2c rule"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="../../f2c"
+				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
+				RuntimeLibrary="0"
+				EnableEnhancedInstructionSet="1"
+				UsePrecompiledHeader="0"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				Description="Build Lapack.def file"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul&#x0D;&#x0A;copy *.def lapack1.def &gt;nul&#x0D;&#x0A;copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/lapack.dll"
+				ModuleDefinitionFile="..\..\..\bin\lapack.def"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
@@ -1211,6 +1386,14 @@
 				>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
 					>
 					<Tool
 						Name="VCCLCompilerTool"

@@ -10,13 +10,16 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -132,7 +135,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -250,6 +253,214 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Build LibScilab.def"
+				CommandLine="LibScilab.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="3"
+				TypeLibraryName="$(ConfigurationName)/LibScilab.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
+				BasicRuntimeChecks="0"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
+				SuppressStartupBanner="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1036"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine=""
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
+				OutputFile="../../bin/LibScilab.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				IgnoreAllDefaultLibraries="false"
+				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				ModuleDefinitionFile="..\LibScilab.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="../../bin/LibScilab.lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Build LibScilab.def"
+				CommandLine="LibScilab.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="3"
+				TypeLibraryName="$(ConfigurationName)/LibScilab.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="NDEBUG;_USRDLL;LIBSCILAB_EXPORTS;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				EnableEnhancedInstructionSet="1"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				Detect64BitPortabilityProblems="false"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine=""
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
+				OutputFile="../../bin/LibScilab.dll"
+				LinkIncremental="0"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories=""
+				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				ModuleDefinitionFile="..\LibScilab.def"
+				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
+				SubSystem="2"
+				OptimizeForWindows98="1"
+				SupportUnloadOfDelayLoadedDLL="true"
+				ImportLibrary="../../bin/LibScilab.lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
 	</Configurations>

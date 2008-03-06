@@ -11,6 +11,9 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 		<ToolFile
@@ -183,6 +186,145 @@
 				ExecutionBucket="15"
 			/>
 		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="f2c rule"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../../../libs/f2c"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="0"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="../../../../libs/data_structures_f.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Build data_structures_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def data_structures_f.def &gt;nul&#x0D;&#x0A;copy data_structures_f.def ..\..\..\..\..\libs\data_structures_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="f2c rule"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../../../libs/f2c"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="../../../../libs/data_structures_f.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Build data_structures_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def data_structures_f.def &gt;nul&#x0D;&#x0A;copy data_structures_f.def ..\..\..\..\..\libs\data_structures_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -283,46 +425,200 @@
 			<File
 				RelativePath=".\extractfields.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\followpath.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\forcerhs.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\gratyp.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\insertfield.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\intl_e.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\intl_i.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\lsstyp.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\lstops.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\mlist.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\rattyp.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_definedfields.f"
@@ -343,26 +639,112 @@
 						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_getfield.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_list.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_lstcat.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_lstsize.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_setfield.f"
 				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="f2c rule"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\udptr.f"
@@ -377,6 +759,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
 					>
 					<Tool
 						Name="f2c rule"

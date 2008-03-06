@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="generatePoFile"
 	ProjectGUID="{6880D4DF-BC7A-411F-AD9B-20A14429A92F}"
 	RootNamespace="generatePoFile"
@@ -11,13 +11,16 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="0"
 			>
@@ -37,7 +40,47 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				ReBuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				CleanCommandLine="rmdir /s /q  $(SolutionDir)locale"
+				Output=""
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				ReBuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				CleanCommandLine="rmdir /s /q  $(SolutionDir)locale"
+				Output=""
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="0"
 			>
