@@ -54,7 +54,7 @@ if test "$FC_TRAILING_UNDERSCORE" = yes; then
   AC_DEFINE([WTU],,[If trailing underscores])
 fi
 
-$RM pipof.f pipof.o
+rm -f pipof.f pipof.o
 
 AC_MSG_RESULT([$FC_LEADING_UNDERSCORE])
 AC_MSG_CHECKING([for trailing underscores with Fortran (name-mangling scheme)])

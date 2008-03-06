@@ -9471,7 +9471,7 @@ _ACEOF
 
 fi
 
-$RM pipof.f pipof.o
+rm -f pipof.f pipof.o
 
 { echo "$as_me:$LINENO: result: $FC_LEADING_UNDERSCORE" >&5
 echo "${ECHO_T}$FC_LEADING_UNDERSCORE" >&6; }
