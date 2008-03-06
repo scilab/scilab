@@ -4,6 +4,18 @@
 ##########
 dnl Process this file with autoconf to produce a configure script.
 
+
+AC_REVISION($Revision$)dnl
+AC_INIT([Scilab],[5],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/])
+AC_PREREQ(2.60)
+
+SCI_BUILDDIR="`pwd`"
+SCI_SRCDIR="$srcdir"
+SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
+
+SCILAB_LIBRARY_VERSION=5:0:0
+AC_SUBST(SCILAB_LIBRARY_VERSION)
+
 #shared library versioning
 #GENERIC_LIBRARY_VERSION=1:2:0
 #                       | | |
@@ -17,14 +29,6 @@ dnl Process this file with autoconf to produce a configure script.
 #                |        +- increment if source code has changed
 #                |           set to zero if current is incremented
 #                +- increment if interfaces have been added, removed or changed
-
-AC_REVISION($Revision$)dnl
-AC_INIT([Scilab],[5],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/])
-AC_PREREQ(2.60)
-
-SCI_BUILDDIR="`pwd`"
-SCI_SRCDIR="$srcdir"
-SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
 # Check if we have a space in the path to the source tree
 SPACE_IN_PATH=`echo "$SCI_SRCDIR_FULL"|grep " " > /dev/null; echo $?`
@@ -242,14 +246,6 @@ fi
 ###############################
 
 SCIVERSION=`cat $SCI_SRCDIR/Version.incl | sed -e "s/SCIVERSION=//" `
-
-########################
-## removing and cleaning
-########################
-
-RM='rm -f'
-FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.cos *.obj'
-
 
 #############################################
 ## Compilers and options according to machine

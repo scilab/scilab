@@ -138,6 +138,9 @@ am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
 	zlaqr1.lo dlaqr2.lo dlaqr1.lo
 am_libscilapack_la_OBJECTS = $(am__objects_1)
 libscilapack_la_OBJECTS = $(am_libscilapack_la_OBJECTS)
+libscilapack_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libscilapack_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -234,8 +237,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -248,6 +251,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -331,7 +335,8 @@ top_srcdir = @top_srcdir@
 
 #### Target ######
 modulename = lapack
-pkglib_LTLIBRARIES = libscilapack.la 
+pkglib_LTLIBRARIES = libscilapack.la
+libscilapack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
 noinst_LTLIBRARIES = libdummy-lapack.la
 LAPACK_FORTRAN_SOURCES = dlasv2.f \
 zgeqpf.f \
@@ -761,7 +766,7 @@ clean-pkglibLTLIBRARIES:
 libdummy-lapack.la: $(libdummy_lapack_la_OBJECTS) $(libdummy_lapack_la_DEPENDENCIES) 
 	$(libdummy_lapack_la_LINK)  $(libdummy_lapack_la_OBJECTS) $(libdummy_lapack_la_LIBADD) $(LIBS)
 libscilapack.la: $(libscilapack_la_OBJECTS) $(libscilapack_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libscilapack_la_OBJECTS) $(libscilapack_la_LIBADD) $(LIBS)
+	$(libscilapack_la_LINK) -rpath $(pkglibdir) $(libscilapack_la_OBJECTS) $(libscilapack_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

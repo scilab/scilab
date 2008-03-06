@@ -78,6 +78,8 @@ zher2.f
 
 pkglib_LTLIBRARIES = libsciblas.la
 
+libsciblas_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 
 libsciblas_la_LIBADD =

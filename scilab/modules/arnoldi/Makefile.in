@@ -123,8 +123,8 @@ am_libsciarnoldi_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciarnoldi_la_OBJECTS = $(am_libsciarnoldi_la_OBJECTS)
 libsciarnoldi_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(libsciarnoldi_la_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
-	-o $@
+	$(libsciarnoldi_la_FFLAGS) $(FFLAGS) \
+	$(libsciarnoldi_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -238,8 +238,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -252,6 +252,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -399,6 +400,7 @@ libsciarnoldi_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 
 libsciarnoldi_la_FFLAGS = -Isrc/arpack/
 pkglib_LTLIBRARIES = libsciarnoldi.la
+libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libsciarnoldi_la_SOURCES = $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 libsciarnoldi_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 	$(am__append_1) $(am__append_2)

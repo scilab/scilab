@@ -69,9 +69,10 @@ libscistring_la_CFLAGS= \
 	-Iincludes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes
-libscistring_la_LDFLAGS = $(PCRE_LIBS)
 
 pkglib_LTLIBRARIES = libscistring.la
+
+libscistring_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

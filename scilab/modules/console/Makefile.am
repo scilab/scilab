@@ -49,6 +49,8 @@ libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 # Name of the library
 pkglib_LTLIBRARIES = libsciconsole.la
 
+libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 # All the sources needed by libsciconsole.la
 libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES)
 

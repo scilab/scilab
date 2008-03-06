@@ -50,11 +50,11 @@ libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/history_manager/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/
 
-libscihistory_manager_la_LDFLAGS = $(JAVA_JNI_LIBS)
-
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscihistory_manager.la
+
+libscihistory_manager_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS)
 
 # All the sources needed by libscihistory_manager.la
 libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES)

@@ -24,11 +24,15 @@ libmex_la_LIBADD = $(MEXLIB_DEP)
 
 libmex_la_CFLAGS=  $(MEXLIB_FLAGS)
 
+libmex_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libmat_la_SOURCES = $(MEXLIB_C_SOURCES)
 
 libmat_la_LIBADD = $(MEXLIB_DEP)
 
 libmat_la_CFLAGS=  $(MEXLIB_FLAGS)
+
+libmat_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libmx_la_SOURCES = $(MEXLIB_C_SOURCES)
 
@@ -36,6 +40,7 @@ libmx_la_LIBADD = $(MEXLIB_DEP)
 
 libmx_la_CFLAGS=  $(MEXLIB_FLAGS)
 
+libmx_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### Target ######
 modulename=mexlib

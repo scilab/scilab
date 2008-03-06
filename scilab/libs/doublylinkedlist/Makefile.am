@@ -13,6 +13,8 @@ libscidoublylinkedlist_la_CFLAGS= -Isrc/ -Iincludes/
 
 pkglib_LTLIBRARIES = libscidoublylinkedlist.la
 
+libscidoublylinkedlist_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libscidoublylinkedlist_la_SOURCES = $(DOUBLYLINKEDLIST_C_SOURCES)
 
 libscidoublylinkedlist_la_LIBADD = 

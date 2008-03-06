@@ -117,8 +117,8 @@ am_libsciinterpolation_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 libsciinterpolation_la_OBJECTS = $(am_libsciinterpolation_la_OBJECTS)
 libsciinterpolation_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(libsciinterpolation_la_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+	$(libsciinterpolation_la_FFLAGS) $(FFLAGS) \
+	$(libsciinterpolation_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -235,8 +235,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -249,6 +249,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -359,6 +360,7 @@ libsciinterpolation_la_CFLAGS = -Iincludes/ \
                 -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
+libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 libsciinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la \

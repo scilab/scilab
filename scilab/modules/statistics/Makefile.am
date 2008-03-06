@@ -88,6 +88,8 @@ libscistatistics_la_CFLAGS=  	-Iincludes/ \
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
 
+libscistatistics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscistatistics_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 

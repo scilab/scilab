@@ -207,6 +207,9 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 @SCICOS_TRUE@	$(am__objects_3) $(am__objects_4) \
 @SCICOS_TRUE@	$(am__objects_5)
 libsciscicos_la_OBJECTS = $(am_libsciscicos_la_OBJECTS)
+libsciscicos_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libsciscicos_la_LDFLAGS) $(LDFLAGS) -o $@
 @SCICOS_FALSE@am_libsciscicos_la_rpath = -rpath $(pkglibdir)
 @SCICOS_TRUE@am_libsciscicos_la_rpath = -rpath $(pkglibdir)
 libscisundials_la_LIBADD =
@@ -354,8 +357,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -368,6 +371,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -452,7 +456,11 @@ top_srcdir = @top_srcdir@
 #### Target ######
 modulename = scicos
 DISABLE_HELP_CLEAN = yes
+libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
 @SCICOS_FALSE@pkglib_LTLIBRARIES = libsciscicos.la 
+
+# Code not factorized with the one on the bottom since sundials must be
+# compiled first
 @SCICOS_TRUE@pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
 @SCICOS_TRUE@SCICOS_C_SOURCES = src/c/tree.c \
 @SCICOS_TRUE@src/c/sciblk2i.c \
@@ -541,8 +549,6 @@ DISABLE_HELP_CLEAN = yes
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos_blocks/includes
 
 @SCICOS_FALSE@libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
-
-#libsciscicos_la_LDFLAGS = -lf2c
 @SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 @SCICOS_TRUE@libsciscicos_la_LIBADD =  \
 @SCICOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
@@ -826,7 +832,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciscicos.la: $(libsciscicos_la_OBJECTS) $(libsciscicos_la_DEPENDENCIES) 
-	$(F77LINK) $(am_libsciscicos_la_rpath) $(libsciscicos_la_OBJECTS) $(libsciscicos_la_LIBADD) $(LIBS)
+	$(libsciscicos_la_LINK) $(am_libsciscicos_la_rpath) $(libsciscicos_la_OBJECTS) $(libsciscicos_la_LIBADD) $(LIBS)
 libscisundials.la: $(libscisundials_la_OBJECTS) $(libscisundials_la_DEPENDENCIES) 
 	$(LINK) $(am_libscisundials_la_rpath) $(libscisundials_la_OBJECTS) $(libscisundials_la_LIBADD) $(LIBS)
 

@@ -44,11 +44,11 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/
 
-libscishell_la_LDFLAGS = $(JAVA_JNI_LIBS) $(TERMCAP_LIB)
-
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscishell.la
+
+libscishell_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(TERMCAP_LIB)
 
 # All the sources needed by libscishell.la
 libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES)

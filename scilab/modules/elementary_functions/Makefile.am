@@ -383,6 +383,8 @@ libscielementary_functions_la_CFLAGS= 	-Iincludes/ \
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 
+libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la

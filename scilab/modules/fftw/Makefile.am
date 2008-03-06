@@ -12,6 +12,8 @@ modulename=fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
 
+libscifftw_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
+
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
 
@@ -52,8 +54,6 @@ libscifftw_la_CFLAGS=  	-Iincludes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			$(FFTW3_CFLAGS)
-
-libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
 #### fftw : include files ####
 libscifftw_la_includedir=$(pkgincludedir)/fftw

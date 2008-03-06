@@ -6,7 +6,9 @@
 #### Target ######
 modulename=lapack
 
-pkglib_LTLIBRARIES = libscilapack.la 
+pkglib_LTLIBRARIES = libscilapack.la
+
+libscilapack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
 
 noinst_LTLIBRARIES = libdummy-lapack.la
 

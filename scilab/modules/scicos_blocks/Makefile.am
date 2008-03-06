@@ -9,6 +9,8 @@
 
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
 
+libsciscicos_blocks_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 #### Target ######
 modulename=scicos_blocks
 

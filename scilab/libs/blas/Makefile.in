@@ -91,6 +91,9 @@ am__objects_1 = zrotg.lo zhpr2.lo zher2k.lo dspr.lo xerbla.lo dcopy.lo \
 	zsyrk.lo ztrmv.lo zherk.lo dsymm.lo zher2.lo
 am_libsciblas_la_OBJECTS = $(am__objects_1)
 libsciblas_la_OBJECTS = $(am_libsciblas_la_OBJECTS)
+libsciblas_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libsciblas_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -186,8 +189,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -200,6 +203,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -354,6 +358,7 @@ dsymm.f \
 zher2.f
 
 pkglib_LTLIBRARIES = libsciblas.la
+libsciblas_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libsciblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 libsciblas_la_LIBADD = 
 
@@ -479,7 +484,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciblas.la: $(libsciblas_la_OBJECTS) $(libsciblas_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libsciblas_la_OBJECTS) $(libsciblas_la_LIBADD) $(LIBS)
+	$(libsciblas_la_LINK) -rpath $(pkglibdir) $(libsciblas_la_OBJECTS) $(libsciblas_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

@@ -377,8 +377,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -391,6 +391,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -617,7 +618,6 @@ JARMASK = *.jar
 @GUI_TRUE@src/jni/Jxclick.giws.xml \
 @GUI_TRUE@src/jni/Jxgetmouse.giws.xml \
 @GUI_TRUE@src/jni/SwingScilabMenu.giws.xml \
-@GUI_TRUE@src/jni/SwingScilabWindow.giws.xml \
 @GUI_TRUE@src/jni/UIElementMapper.giws.xml
 
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
@@ -681,8 +681,8 @@ JARMASK = *.jar
 @GUI_TRUE@			-I$(top_srcdir)/modules/graphic_export/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/string/includes/
 
-libscigui_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
 pkglib_LTLIBRARIES = libscigui.la
+libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
 
 #  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la

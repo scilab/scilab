@@ -39,6 +39,8 @@ sci_gateway/c/sci_TCL_UpVar.c
 
 pkglib_LTLIBRARIES = libscitclsci.la
 
+libscitclsci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
+
 libscitclsci_la_CFLAGS= -Iincludes/ \
 			-Isrc/c \
 			-Isci_gateway/c/ \
@@ -48,8 +50,6 @@ libscitclsci_la_CFLAGS= -Iincludes/ \
 			-I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes
-
-libscitclsci_la_LDFLAGS= $(TCLTK_LIBS)
 
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
 

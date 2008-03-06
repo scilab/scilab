@@ -73,6 +73,8 @@ libsciarnoldi_la_FFLAGS= -Isrc/arpack/
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
 
+libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 libsciarnoldi_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la 

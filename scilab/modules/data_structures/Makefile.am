@@ -48,6 +48,8 @@ libscidata_structures_la_CFLAGS=  	-Iincludes/ \
 
 pkglib_LTLIBRARIES = libscidata_structures.la
 
+libscidata_structures_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libscidata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la 

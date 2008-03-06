@@ -372,6 +372,8 @@ endif
 # the system)
 pkglib_LTLIBRARIES = libscirenderer.la
 
+libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 
 #### Name of the module and the path ######
 modulename=renderer

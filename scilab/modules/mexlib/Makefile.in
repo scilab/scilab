@@ -88,21 +88,21 @@ am_libmat_la_OBJECTS = $(am__objects_1)
 libmat_la_OBJECTS = $(am_libmat_la_OBJECTS)
 libmat_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmat_la_CFLAGS) \
-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(CFLAGS) $(libmat_la_LDFLAGS) $(LDFLAGS) -o $@
 libmex_la_DEPENDENCIES = $(MEXLIB_DEP)
 am__objects_2 = libmex_la-mexlib.lo
 am_libmex_la_OBJECTS = $(am__objects_2)
 libmex_la_OBJECTS = $(am_libmex_la_OBJECTS)
 libmex_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmex_la_CFLAGS) \
-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(CFLAGS) $(libmex_la_LDFLAGS) $(LDFLAGS) -o $@
 libmx_la_DEPENDENCIES = $(MEXLIB_DEP)
 am__objects_3 = libmx_la-mexlib.lo
 am_libmx_la_OBJECTS = $(am__objects_3)
 libmx_la_OBJECTS = $(am_libmx_la_OBJECTS)
 libmx_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(libmx_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+	--mode=link $(CCLD) $(libmx_la_CFLAGS) $(CFLAGS) \
+	$(libmx_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -209,8 +209,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -223,6 +223,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -317,12 +318,15 @@ pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmex_la_LIBADD = $(MEXLIB_DEP)
 libmex_la_CFLAGS = $(MEXLIB_FLAGS)
+libmex_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libmat_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmat_la_LIBADD = $(MEXLIB_DEP)
 libmat_la_CFLAGS = $(MEXLIB_FLAGS)
+libmat_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libmx_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmx_la_LIBADD = $(MEXLIB_DEP)
 libmx_la_CFLAGS = $(MEXLIB_FLAGS)
+libmx_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### Target ######
 modulename = mexlib

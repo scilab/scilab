@@ -36,6 +36,8 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 # the system)
 pkglib_LTLIBRARIES = libscicompletion.la
 
+libscicompletion_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 # All the sources needed by libscicompletion.la
 libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
 

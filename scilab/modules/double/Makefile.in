@@ -93,6 +93,9 @@ am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matext1.lo matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
 am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscidouble_la_OBJECTS = $(am_libscidouble_la_OBJECTS)
+libscidouble_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libscidouble_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -202,8 +205,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -216,6 +219,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -320,6 +324,7 @@ sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
 pkglib_LTLIBRARIES = libscidouble.la
+libscidouble_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscidouble_la_LIBADD =  \
@@ -462,7 +467,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscidouble.la: $(libscidouble_la_OBJECTS) $(libscidouble_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libscidouble_la_OBJECTS) $(libscidouble_la_LIBADD) $(LIBS)
+	$(libscidouble_la_LINK) -rpath $(pkglibdir) $(libscidouble_la_OBJECTS) $(libscidouble_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

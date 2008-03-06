@@ -122,6 +122,10 @@ am_libscisignal_processing_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4)
 libscisignal_processing_la_OBJECTS =  \
 	$(am_libscisignal_processing_la_OBJECTS)
+libscisignal_processing_la_LINK = $(LIBTOOL) --tag=F77 \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
+	$(AM_FFLAGS) $(FFLAGS) $(libscisignal_processing_la_LDFLAGS) \
+	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -238,8 +242,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -252,6 +256,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -425,6 +430,7 @@ libscisignal_processing_la_CFLAGS = -Iincludes/ \
 -I$(top_builddir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
+libscisignal_processing_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscisignal_processing_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
@@ -586,7 +592,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscisignal_processing.la: $(libscisignal_processing_la_OBJECTS) $(libscisignal_processing_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libscisignal_processing_la_OBJECTS) $(libscisignal_processing_la_LIBADD) $(LIBS)
+	$(libscisignal_processing_la_LINK) -rpath $(pkglibdir) $(libscisignal_processing_la_OBJECTS) $(libscisignal_processing_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

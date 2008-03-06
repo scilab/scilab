@@ -27,6 +27,8 @@ src/c/javasci_SciBooleanArray.c
 
 pkglib_LTLIBRARIES = libjavasci.la
 
+libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
 
 libjavasci_la_CFLAGS = -Iincludes/ \

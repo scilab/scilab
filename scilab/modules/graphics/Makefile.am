@@ -406,8 +406,6 @@ libscigraphics_la_CXXFLAGS =  	-Iincludes/ \
 				-I$(top_srcdir)/modules/jvm/includes \
 			 	-I$(top_srcdir)/modules/graphic_export/includes/
 
-libscigraphics_la_LDFLAGS =  $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
-
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 
 libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
@@ -718,6 +716,8 @@ libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
 endif
 
 pkglib_LTLIBRARIES = libscigraphics.la
+
+libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
 
 modulename=graphics
 

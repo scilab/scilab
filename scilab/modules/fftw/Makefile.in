@@ -239,8 +239,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -253,6 +253,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -335,6 +336,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 modulename = fftw
 pkglib_LTLIBRARIES = libscifftw.la
+libscifftw_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
@@ -375,7 +377,6 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @FFTW_TRUE@			$(FFTW3_CFLAGS)
 
-@FFTW_TRUE@libscifftw_la_LDFLAGS = $(FFTW3_LIB)
 
 #### fftw : include files ####
 @FFTW_TRUE@libscifftw_la_includedir = $(pkgincludedir)/fftw

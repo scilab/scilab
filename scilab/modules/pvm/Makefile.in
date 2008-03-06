@@ -283,8 +283,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -297,6 +297,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -427,13 +428,14 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@libscipvm_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/c/  -I$(top_srcdir)/modules/output_stream/includes/
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
+@PVM_FALSE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+@PVM_TRUE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
 @PVM_FALSE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 @PVM_FALSE@libscipvm_la_LIBADD = \
 @PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
 
 @PVM_TRUE@libscipvm_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
-@PVM_TRUE@libscipvm_la_LDFLAGS = $(PVM_LIB)
 @PVM_FALSE@modulename = pvm
 @PVM_TRUE@modulename = pvm
 

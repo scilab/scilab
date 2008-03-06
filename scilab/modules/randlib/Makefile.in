@@ -102,6 +102,9 @@ am__objects_3 = gennf.lo genchi.lo setgmn.lo gengam.lo sexpo.lo \
 am_libscirandlib_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscirandlib_la_OBJECTS = $(am_libscirandlib_la_OBJECTS)
+libscirandlib_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libscirandlib_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -217,8 +220,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -231,6 +234,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -351,6 +355,7 @@ libscirandlib_la_CFLAGS = -Iincludes/ \
 				-I$(top_builddir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscirandlib.la
+libscirandlib_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 libscirandlib_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
@@ -503,7 +508,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscirandlib.la: $(libscirandlib_la_OBJECTS) $(libscirandlib_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libscirandlib_la_OBJECTS) $(libscirandlib_la_LIBADD) $(LIBS)
+	$(libscirandlib_la_LINK) -rpath $(pkglibdir) $(libscirandlib_la_OBJECTS) $(libscirandlib_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

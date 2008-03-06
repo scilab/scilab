@@ -548,6 +548,9 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@am_libsciscicos_blocks_la_OBJECTS = $(am__objects_1) \
 @SCICOS_TRUE@	$(am__objects_2) $(am__objects_3)
 libsciscicos_blocks_la_OBJECTS = $(am_libsciscicos_blocks_la_OBJECTS)
+libsciscicos_blocks_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libsciscicos_blocks_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -666,8 +669,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -680,6 +683,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -761,6 +765,7 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
+libsciscicos_blocks_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### Target ######
 modulename = scicos_blocks
@@ -1326,7 +1331,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciscicos_blocks.la: $(libsciscicos_blocks_la_OBJECTS) $(libsciscicos_blocks_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libsciscicos_blocks_la_OBJECTS) $(libsciscicos_blocks_la_LIBADD) $(LIBS)
+	$(libsciscicos_blocks_la_LINK) -rpath $(pkglibdir) $(libsciscicos_blocks_la_OBJECTS) $(libsciscicos_blocks_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

@@ -20,6 +20,8 @@ libscimalloc_la_CFLAGS=
 
 pkglib_LTLIBRARIES = libscimalloc.la
 
+libscimalloc_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libscimalloc_la_SOURCES = $(MALLOC_C_SOURCES)
 
 libscimalloc_la_LIBADD = 

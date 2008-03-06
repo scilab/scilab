@@ -75,6 +75,8 @@ libscifileio_la_CFLAGS=		-Iincludes/ \
 
 pkglib_LTLIBRARIES = libscifileio.la
 
+libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la

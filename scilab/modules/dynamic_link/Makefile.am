@@ -25,6 +25,8 @@ libscidynamic_link_la_CFLAGS = \
 -Iincludes/
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
+
+libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # cyclic $(top_builddir)/modules/core/libscicore.la 

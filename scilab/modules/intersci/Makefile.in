@@ -91,8 +91,8 @@ am_libsciintersci_la_OBJECTS = $(am__objects_1)
 libsciintersci_la_OBJECTS = $(am_libsciintersci_la_OBJECTS)
 libsciintersci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libsciintersci_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
-	-o $@
+	$(libsciintersci_la_CFLAGS) $(CFLAGS) \
+	$(libsciintersci_la_LDFLAGS) $(LDFLAGS) -o $@
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_2 = intersci-n.$(OBJEXT) getrhs.$(OBJEXT) crerhs.$(OBJEXT) \
@@ -204,8 +204,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -218,6 +218,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -317,6 +318,7 @@ src/exe/check.c
 
 libsciintersci_la_includedir = $(pkgincludedir)/intersci
 pkglib_LTLIBRARIES = libsciintersci.la
+libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \

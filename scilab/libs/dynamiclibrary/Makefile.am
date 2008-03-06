@@ -14,6 +14,8 @@ libscidynamiclibrary_la_CFLAGS= -Isrc/ -Iincludes/
 
 pkglib_LTLIBRARIES = libscidynamiclibrary.la
 
+libscidynamiclibrary_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 libscidynamiclibrary_la_SOURCES = $(DYNAMICLIBRARY_C_SOURCES)
 
 libscidynamiclibrary_la_LIBADD = 

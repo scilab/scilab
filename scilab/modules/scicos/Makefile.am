@@ -13,9 +13,12 @@
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
 
-if SCICOS
+libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
 
-pkglib_LTLIBRARIES =  libscisundials.la libsciscicos.la
+if SCICOS
+# Code not factorized with the one on the bottom since sundials must be
+# compiled first
+pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
 
 SCICOS_C_SOURCES = src/c/tree.c \
 src/c/sciblk2i.c \
@@ -99,8 +102,6 @@ libsciscicos_la_CFLAGS= -Iincludes/ \
 			-I$(top_srcdir)/modules/string/includes \
 			-I$(top_srcdir)/modules/intersci/src/lib \
 			-I$(top_srcdir)/modules/scicos_blocks/includes
-
-#libsciscicos_la_LDFLAGS = -lf2c
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

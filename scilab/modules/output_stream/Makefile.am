@@ -39,8 +39,9 @@ libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -Isrc/c/ \
 -I$(top_srcdir)/modules/string/includes
 
-libscioutput_stream_la_LDFLAGS =
 pkglib_LTLIBRARIES = libscioutput_stream.la
+
+libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 

@@ -72,6 +72,8 @@ endif
 # the system)
 pkglib_LTLIBRARIES = libscigraphic_export.la
 
+libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 
 #### Name of the module and the path ######
 modulename=graphic_export

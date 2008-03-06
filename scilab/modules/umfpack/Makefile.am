@@ -8,6 +8,8 @@ modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
 
+libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(UMFPACK3_LIB)
+
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
 
@@ -48,8 +50,6 @@ libsciumfpack_la_CFLAGS=  	-Iincludes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/mexlib/includes
-
-libsciumfpack_la_LDFLAGS = $(UMFPACK3_LIB)
 
 #### umfpack : include files ####
 libsciumfpack_la_includedir=$(pkgincludedir)/umfpack

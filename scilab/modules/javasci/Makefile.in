@@ -109,7 +109,7 @@ am__libjavasci_la_SOURCES_DIST = src/c/javasci_Scilab2.c \
 libjavasci_la_OBJECTS = $(am_libjavasci_la_OBJECTS)
 libjavasci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libjavasci_la_CFLAGS) \
-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(CFLAGS) $(libjavasci_la_LDFLAGS) $(LDFLAGS) -o $@
 @JAVASCI_TRUE@am_libjavasci_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -224,8 +224,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -238,6 +238,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -336,6 +337,7 @@ modulename = javasci
 @JAVASCI_TRUE@src/c/javasci_SciBooleanArray.c
 
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci.la
+@JAVASCI_TRUE@libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 @JAVASCI_TRUE@libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
 @JAVASCI_TRUE@libjavasci_la_CFLAGS = -Iincludes/ \
 @JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \

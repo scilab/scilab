@@ -109,6 +109,9 @@ am__objects_3 = sci_fort.lo
 am_libscidynamic_link_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscidynamic_link_la_OBJECTS = $(am_libscidynamic_link_la_OBJECTS)
+libscidynamic_link_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libscidynamic_link_la_LDFLAGS) $(LDFLAGS) -o $@
 libscidynamic_link_la_scriptSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(libscidynamic_link_la_script_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -227,8 +230,8 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PCRE_CFLAGS = @PCRE_CFLAGS@
 PCRE_CONFIG = @PCRE_CONFIG@
-PCRE_FLAGS = @PCRE_FLAGS@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 POW_LIB = @POW_LIB@
@@ -241,6 +244,7 @@ PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -342,6 +346,7 @@ libscidynamic_link_la_CFLAGS = \
 -Iincludes/
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
+libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # cyclic $(top_builddir)/modules/core/libscicore.la 
@@ -506,7 +511,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscidynamic_link.la: $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_LIBADD) $(LIBS)
+	$(libscidynamic_link_la_LINK) -rpath $(pkglibdir) $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_LIBADD) $(LIBS)
 install-libscidynamic_link_la_scriptSCRIPTS: $(libscidynamic_link_la_script_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscidynamic_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libscidynamic_link_la_scriptdir)"

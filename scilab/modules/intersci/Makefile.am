@@ -26,6 +26,8 @@ libsciintersci_la_includedir=$(pkgincludedir)/intersci
 
 pkglib_LTLIBRARIES = libsciintersci.la
 
+libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
 bin_PROGRAMS = intersci
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 
