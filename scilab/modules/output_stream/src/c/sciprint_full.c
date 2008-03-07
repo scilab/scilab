@@ -2,11 +2,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Francois Vogel
- * 
+ * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -32,9 +33,9 @@
 #endif
 /*--------------------------------------------------------------------------*/
 /* MAXCHARSSCIPRINT_FULL is for sciprint_full - more than this gets truncated */
-#define MAXCHARSSCIPRINT_FULL 5000  
+#define MAXCHARSSCIPRINT_FULL 5000
 /*--------------------------------------------------------------------------*/
-void sciprint_full(char *fmt,...) 
+void sciprint_full(char *fmt,...)
 {
 	integer lstr;
 	va_list ap;
@@ -43,7 +44,6 @@ void sciprint_full(char *fmt,...)
 	int count=0;
 	int p_s=0;
 	static integer colwidth;
-	char *MSG;
 
 	s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
 	if (s_buf == (char *) 0)
@@ -89,40 +89,28 @@ void sciprint_full(char *fmt,...)
 	if (lstr<colwidth)
 	{
 		sciprint("%s",s_buf);
-	} 
-	else 
+	}
+	else
 	{
 		strncpy(split_s_buf,s_buf+p_s,colwidth-1);
 		split_s_buf[colwidth]='\0';
 		p_s=p_s+colwidth-1;
 		sciprint("%s",split_s_buf);
 		sciprint("\n");
-		while (p_s+colwidth-1<(int)lstr) 
+		while (p_s+colwidth-1<(int)lstr)
 		{
 			strncpy(split_s_buf,s_buf+p_s,colwidth-1);
 			split_s_buf[colwidth]='\0';
 			p_s=p_s+colwidth-1;
-			MSG=_("  (cont'd) %s");
-			if (MSG)
-			{
-				sciprint(MSG,split_s_buf);
-				sciprint("\n");
-			}
-			if (MSG) {FREE(MSG);MSG=NULL;}
+			sciprint(_("  (cont'd) %s\n"),split_s_buf);
 		}
 		strncpy(split_s_buf,s_buf+p_s,lstr-p_s);
 		split_s_buf[lstr-p_s]='\0';
-		MSG=_("     (end) %s");
-		if (MSG)
-		{
-			sciprint(MSG,split_s_buf);
-			sciprint("\n");
-		}
-		if (MSG) {FREE(MSG);MSG=NULL;}
+		sciprint(_("     (end) %s\n"),split_s_buf);
 	}
 
 	if (s_buf){FREE(s_buf);s_buf=NULL;}
 	if (split_s_buf){FREE(split_s_buf);split_s_buf=NULL;}
 
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
