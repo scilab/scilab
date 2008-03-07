@@ -376,7 +376,7 @@ function bOK = commons_msvc90(MS_VS_DIRECTORY)
   
     INCLUDE = getenv('INCLUDE','');  
     INCLUDE = MSVCDir + filesep() + 'INCLUDE' + pathsep() + ..
-              SDK + pathsep() + ..
+              SDK + 'INCLUDE' + pathsep() +  ..
               INCLUDE;
 
     
