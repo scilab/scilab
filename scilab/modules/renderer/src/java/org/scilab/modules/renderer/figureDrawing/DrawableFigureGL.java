@@ -310,54 +310,40 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
   	@Override
 	public void destroy(int parentFigureIndex) {
-  		// call destroying on OpenGL thread in order to call it after any display call.
-  		// It appears that destroying tabs while displaying causes deadlocks.
-  		// According to JoGL java doc, we need to test wether we are on the
-  		// OpenGL thread or not
-  		// Patch added here, invoke on OpenGL thread is blocking
-  		// (calling an invoke and wait). However when calling destroy
-  		// graphic is locked (startGraphicDataWritting)
-  		// so if a display occures it will wait and then block OpenGL
-  		// thread. So we are in a deadlock.
-  		// To prevent that I call the function on an other thread
-  		// with invoke later.
+  		setIsRenderingEnable(false);
+  		FigureMapper.removeMapping(figureId);
+  		
+  		// destroy context
+  		// destroy it here otherwise it crashes Scilab if Scilab quit
+  		if (Threading.isOpenGLThread()) {
+  			getRenderingTarget().getContext().destroy();
+  		} else {
+  			Threading.invokeOnOpenGLThread(new Runnable() {
+  				public void run() {
+  					getRenderingTarget().getContext().destroy();
+  				}
+  			});
+  		}
+
+  		// then destroy canvas
+  		// call it on an other thread to avoid deadlocks
   		Thread destroyThread = new Thread(new Runnable() {
   			public void run() {
 
-  				if (Threading.isOpenGLThread()) {
-  					// no need to destroy objects here
-  					// associated ressources like display lists and texture will be freed with the context
-  					
-  					// figure should not be add to the object cleaner or they will destroy themselves.
-  					// remove it from the figure list
-  					FigureMapper.removeMapping(figureId);
+  				if (SwingUtilities.isEventDispatchThread()) {
   					getRendererProperties().closeCanvas();
   				} else {
-  					Threading.invokeOnOpenGLThread(new Runnable() {
+  					SwingUtilities.invokeLater(new Runnable() {
   						public void run() {
-  							// no need to destroy objects here
-  		  					// associated ressources like display lists and texture will be freed with the context
-  							// figure should not be add to the object cleaner or they will destroy themselves.
-  							// remove it from the figure list
-  							FigureMapper.removeMapping(figureId);
-  							if (SwingUtilities.isEventDispatchThread()) {
-  								getRendererProperties().closeCanvas();
-  							} else {
-  								SwingUtilities.invokeLater(new Runnable() {
-  									public void run() {
-  										getRendererProperties().closeCanvas();
-  									}
-  								});
-  							}
-  							
+  							getRendererProperties().closeCanvas();
   						}
   					});
   				}
+
   			}
   		});
 
   		destroyThread.start();
-  		
 	}
 	
 	
