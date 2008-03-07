@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 /* Copyright INRIA */
-#include "../machine.h"
+#include "machine.h"
 
 /* Element wise product */
 
