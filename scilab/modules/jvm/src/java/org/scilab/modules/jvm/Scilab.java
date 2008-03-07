@@ -165,7 +165,9 @@ public class Scilab {
 	public static void setJOGLFlags() {
 		
 		// Uneash OpenGL power
-		System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, ENABLE_WITH_DEBUG);
+		// Not yet
+		//System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, ENABLE_WITH_DEBUG);
+		System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
 		
 		if (isWindowsPlateform()) {
 			if (findWindowsVersion() >= VISTA_VERSION) {
@@ -175,7 +177,6 @@ public class Scilab {
 			// desactivate direct3d and direct draw under windows
 			System.setProperty(DISABLE_DDRAW, ENABLE);
 		}
-		System.setProperty("jogl.GLContext.nofree", "");
 
 	}
 	
