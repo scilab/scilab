@@ -82,6 +82,24 @@ public final class GLTools {
 	}
 	
 	/**
+	 * Enable polygon offset
+	 * @param gl current gl pipeline
+	 */
+	public static void pushPolygonsBack(GL gl) {
+		gl.glPolygonOffset(1.0f, 1.0f);
+		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
+		gl.glPolygonOffset(1.0f, 1.0f);
+	}
+	
+	/**
+	 * Disable polygon offset
+	 * @param gl current gl pipeline
+	 */
+	public static void endPushPolygonsBack(GL gl) {
+		gl.glDisable(GL.GL_POLYGON_OFFSET_FILL);
+	}
+	
+	/**
 	 * Change coordinates to pixel values (for x and y).
 	 * To get back to user coordinates call endPixelCoordinates
 	 * @param gl current OpenGL pipeline

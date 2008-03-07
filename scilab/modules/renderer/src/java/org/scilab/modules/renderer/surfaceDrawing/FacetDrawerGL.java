@@ -18,6 +18,7 @@ import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class used to draw facets from their positions and colors
@@ -82,7 +83,7 @@ public abstract class FacetDrawerGL {
 	public void endDrawing(GL gl) {
 		gl.glEnd();
 		gl.glDisable(GL.GL_CULL_FACE);
-		gl.glDisable(GL.GL_POLYGON_OFFSET_FILL);
+		GLTools.pushPolygonsBack(gl);
 	}
 
 	/**
@@ -99,8 +100,7 @@ public abstract class FacetDrawerGL {
 		
 		// enable polygon offset because we need to draw lines on polygons
 		// and consequently they are drawn with the same Z.
-		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
-		gl.glPolygonOffset(1.0f, 1.0f);
+		GLTools.pushPolygonsBack(gl);
 		
 		if (getNbVertices() == TRIANGLE_NB_FACETS) {
 			// triangle

@@ -254,9 +254,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
 		
 		// push back polygons from the box lines
-		gl.glPolygonOffset(1.0f, 1.0f);
-		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
-		gl.glPolygonOffset(1.0f, 1.0f);
+		GLTools.pushPolygonsBack(gl);
 		
 		gl.glBegin(GL.GL_QUADS);
 		for (int i = 0; i < BACK_FACETS[concealedCornerIndex].length; i++) {
@@ -267,7 +265,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		}
 		gl.glEnd();
 		
-		gl.glDisable(GL.GL_POLYGON_OFFSET_FILL);
+		GLTools.endPushPolygonsBack(gl);
 		
 		// the concealed line is draw wiht dashes
 		gl.glLineWidth(getThickness());

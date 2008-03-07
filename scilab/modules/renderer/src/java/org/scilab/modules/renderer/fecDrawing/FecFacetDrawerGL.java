@@ -16,6 +16,7 @@ package org.scilab.modules.renderer.fecDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 import com.sun.opengl.util.texture.Texture;
 
@@ -122,8 +123,7 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		colormapTexture.bind();
 		
 		// push back polygons from the box lines
-		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
-		gl.glPolygonOffset(1.0f, 1.0f);
+		GLTools.pushPolygonsBack(gl);
 		
 		gl.glColor3d(0.0, 1.0, 0.0);
 		
@@ -138,7 +138,7 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		}
 		gl.glEnd();
 		
-		gl.glDisable(GL.GL_POLYGON_OFFSET_FILL);
+		GLTools.endPushPolygonsBack(gl);
 		
 		colormapTexture.disable();
 		

@@ -25,6 +25,8 @@ import org.scilab.modules.renderer.utils.TexturedColorMap;
  */
 public abstract class ObjectGL {
 
+	public static int nbObjectsCount = 0;
+	
 	/** Glu instance to use glu functionalities */
 	private GLU curGluInstance = new GLU();
 	/** current context to draw in */
@@ -38,6 +40,9 @@ public abstract class ObjectGL {
 	 * Default constructor
 	 */
 	public ObjectGL() {
+		nbObjectsCount++;
+		//System.err.println("creating object " + this.getClass().getCanonicalName());
+		System.err.println("Nb objects count: " + nbObjectsCount);
 		curGluInstance = null;
 	}
 	
@@ -154,5 +159,17 @@ public abstract class ObjectGL {
 	protected void setParentFigureGL(DrawableFigureGL figureGL) {
 		this.parentFigureGL = figureGL;
 	}
+	
+	/**
+	 * gevkppzekpgv
+	 * @throws Throwable egegeg
+	 */
+	public void finalize() throws Throwable {
+		super.finalize();
+		nbObjectsCount--;
+		//System.err.println("destroying object " + this.getClass().getCanonicalName());
+		System.err.println("Nb objects count: " + nbObjectsCount);
+	}
+	
 	
 }
