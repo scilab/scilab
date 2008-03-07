@@ -525,4 +525,23 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 		getParent().remove(this);
 		this.setVisible(false);
 	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param infoBarToAdd the InfoBar associated to the Frame.
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		/* Unimplemented for Frames */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the Frame.
+	 */
+	public TextBox getInfoBar() {
+		/* Unimplemented for Frames */
+		throw new UnsupportedOperationException();
+	}
+
 }

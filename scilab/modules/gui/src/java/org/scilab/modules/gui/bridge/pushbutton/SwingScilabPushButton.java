@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
@@ -197,5 +198,24 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 		getParent().remove(this);
 		this.setVisible(false);
 	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param infoBarToAdd the InfoBar associated to the PushButton.
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		/* Unimplemented for PushButtons */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the PushButton.
+	 */
+	public TextBox getInfoBar() {
+		/* Unimplemented for PushButtons */
+		throw new UnsupportedOperationException();
+	}
+
 }
 

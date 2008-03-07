@@ -12,6 +12,7 @@
 package org.scilab.modules.gui.utils;
 
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.window.Window;
@@ -34,13 +35,15 @@ public final class BarUpdater {
 	 * @param parentWindowsID : the ID of the window we want to update.
 	 * @param newMenuBar the new MenuBar to display.
 	 * @param newToolBar the new ToolBar to display.
+	 * @param newInfoBar the new InfoBar to display.
 	 * @param newWindowTitle the new Title to display
 	 */
-	public static void updateBars(int parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar, String newWindowTitle) {
+	public static void updateBars(int parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar, TextBox newInfoBar, String newWindowTitle) {
 		UIElement element = UIElementMapper.getCorrespondingUIElement(parentWindowsID);
 		if (element != null) {
 			element.addMenuBar(newMenuBar);
 			element.addToolBar(newToolBar);
+			element.addInfoBar(newInfoBar);
 			((Window) element).setTitle(newWindowTitle);
 		}
 	}

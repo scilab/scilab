@@ -21,6 +21,7 @@ import javax.swing.JScrollBar;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
@@ -249,4 +250,23 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 		getParent().remove(this);
 		this.setVisible(false);
 	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param infoBarToAdd the InfoBar associated to the Slider.
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		/* Unimplemented for Sliders */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the Slider.
+	 */
+	public TextBox getInfoBar() {
+		/* Unimplemented for Sliders */
+		throw new UnsupportedOperationException();
+	}
+
 }

@@ -15,7 +15,9 @@
 package org.scilab.modules.gui.uielement;
 
 import org.scilab.modules.gui.utils.Layout;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 
 /**
@@ -38,9 +40,9 @@ public abstract class ScilabUIElement implements UIElement {
 	private MenuBar menuBar;
 
 	/**
-	 * The title associated to the UIElement
+	 * The InfoBar associated to the UIElement
 	 */
-	private String title;
+	private TextBox infoBar;
 
 	/**
 	 * The layout of the foreground of the UIElement
@@ -148,6 +150,25 @@ public abstract class ScilabUIElement implements UIElement {
 	 */
 	public ToolBar getToolBar() {
 		return toolBar;
+	}
+	
+	/**
+	 * Sets the InfoBar associated to an UIElement
+	 * @param infoBar the InfoBar to set
+	 */
+	public void addInfoBar(TextBox infoBar) {
+		if (infoBar != null) {
+			infoBar.setRelief(ScilabRelief.RIDGE);
+		}
+		this.infoBar = infoBar;
+	}
+
+	/**
+	 * Gets the InfoBar associated to an UIElement
+	 * @return the InfoBar
+	 */
+	public TextBox getInfoBar() {
+		return infoBar;
 	}
 	
 	/*******************************/

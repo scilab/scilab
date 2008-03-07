@@ -20,6 +20,8 @@ import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
@@ -59,6 +61,7 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 		/* TOOLBAR */
 		ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
 		
+		TextBox infoBar = ScilabTextBox.createTextBox();
 		
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		/* Destroy the graphic figure when the tab is closed */
@@ -66,6 +69,7 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
 		graphicTab.addMenuBar(menuBar);
 		graphicTab.addToolBar(toolBar);
+		graphicTab.addInfoBar(infoBar);
 		graphicTab.addMember(graphicCanvas);
 		this.addTab(graphicTab);
 		// don't draw for now

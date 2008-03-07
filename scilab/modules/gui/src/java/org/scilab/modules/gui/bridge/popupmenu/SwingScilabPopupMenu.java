@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
@@ -254,4 +255,23 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 		getParent().remove(this);
 		this.setVisible(false);
 	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param infoBarToAdd the InfoBar associated to the PopupMenu.
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		/* Unimplemented for PopupMenus */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the PopupMenu.
+	 */
+	public TextBox getInfoBar() {
+		/* Unimplemented for PopupMenus */
+		throw new UnsupportedOperationException();
+	}
+
 }

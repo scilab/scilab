@@ -192,6 +192,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		// Adding the MenuBar of the last added Tab
 		this.addMenuBar(newTab.getMenuBar());
 		this.addToolBar(newTab.getToolBar());
+		this.addInfoBar(newTab.getInfoBar());
 	}
 	
 	/**
@@ -245,8 +246,17 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
 	 */
 	public void addInfoBar(TextBox newInfoBar) {
-		this.infoBar = newInfoBar.getAsSimpleTextBox();
-		super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
+		// Remove old InfoBar if already set
+		if (this.infoBar != null) {
+			super.remove((SwingScilabTextBox) this.infoBar);
+		}
+		if (newInfoBar != null) {
+			this.infoBar = newInfoBar.getAsSimpleTextBox();
+			super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
+		} else {
+			this.infoBar = null;
+		}
+		this.repaint();
 	}
 
 	/**

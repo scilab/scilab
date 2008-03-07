@@ -27,6 +27,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
@@ -242,4 +243,23 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			meAsAMenu.add(childMenu);
 		}
 	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param infoBarToAdd the InfoBar associated to the MenuItem.
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		/* Unimplemented for MenuItems */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the MenuItem.
+	 */
+	public TextBox getInfoBar() {
+		/* Unimplemented for MenuItems */
+		throw new UnsupportedOperationException();
+	}
+
 }

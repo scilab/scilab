@@ -12,6 +12,7 @@
 package org.scilab.modules.gui.uielement;
 
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
+import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -45,6 +46,12 @@ public interface SimpleUIElement {
 	 * @param newToolBar the ToolBar to set to the window
 	 */
 	void addToolBar(SimpleToolBar newToolBar);
+
+	/**
+	 * Sets a InfoBar to a window
+	 * @param newInfoBar the InfoBar to set to the window
+	 */
+	void addInfoBar(SimpleTextBox newInfoBar);
 
 //	public abstract void resize();
 //

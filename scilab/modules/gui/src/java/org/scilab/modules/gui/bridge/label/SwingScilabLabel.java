@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabAlignment;
@@ -160,4 +161,23 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 		getParent().remove(this);
 		this.setVisible(false);
 	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param infoBarToAdd the InfoBar associated to the Label.
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		/* Unimplemented for Labels */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the Label.
+	 */
+	public TextBox getInfoBar() {
+		/* Unimplemented for Labels */
+		throw new UnsupportedOperationException();
+	}
+
 }

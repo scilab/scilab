@@ -31,8 +31,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 public class ScilabWindow extends ScilabUIElement implements Window {
 	
 	private SimpleWindow component;
-		
-	private TextBox infoBar;
 	
 	/**
 	 * Constructor
@@ -43,13 +41,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 
 		super.addMenuBar(null);
 		super.addToolBar(null);
-		// FIXME : infoBar must not be null when creating a Window !!
-		// Setter should not exists as used in java.
-		// Just think Scilab...
-		this.infoBar = null;
-		
-		//setMenuBarId(UIElementMapper.getDefaultId());
-		//setToolBarId(UIElementMapper.getDefaultId());
+		super.addInfoBar(null);
 	}
 	
 	/**
@@ -192,15 +184,7 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
 	 */
 	public void addInfoBar(TextBox newInfoBar) {
-		this.infoBar = newInfoBar;
+		super.addInfoBar(newInfoBar);
 		ScilabBridge.addInfoBar(this, newInfoBar);
-	}
-	
-	/**
-	 * Get a Scilab InfoBar from this Scilab window
-	 * @return this window InfoBar
-	 */
-	public TextBox getInfoBar() {
-		return this.infoBar;
 	}
 }

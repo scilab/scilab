@@ -44,6 +44,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
@@ -70,6 +71,8 @@ public class SwingScilabTab extends View implements SimpleTab {
 	
 	private ToolBar toolBar;
 	
+	private TextBox infoBar;
+
 	/**
 	 * Constructor
 	 * @param name the name of the tab (used to identify it)
@@ -90,7 +93,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public void repaint() {
 		super.repaint();
 		if (isActive()) {
-			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getName());
+			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
 		}
 	}
 	
@@ -474,6 +477,22 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public ToolBar getToolBar() {
 		return this.toolBar;
+	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param newInfoBar the InfoBar to set.
+	 */
+	public void setInfoBar(TextBox newInfoBar) {
+		this.infoBar = newInfoBar;
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the Tab.
+	 */
+	public TextBox getInfoBar() {
+		return this.infoBar;
 	}
 	
 	/**

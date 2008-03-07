@@ -29,6 +29,7 @@ import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.utils.Position;
@@ -161,6 +162,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public int addMember(Canvas member) {
 		updateMenuBar(member);
 		updateToolBar(member);
+		updateInfoBar(member);
 		return ScilabBridge.addMember(this, member);
 	}
 
@@ -172,6 +174,7 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public int addMember(Console member) {
 		updateMenuBar(member);
 		updateToolBar(member);
+		updateInfoBar(member);
 		return ScilabBridge.addMember(this, member);
 	}
 	
@@ -351,6 +354,31 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		}
 	}
 	
+	/**
+	 * Add a InfoBar to this Tab
+	 * @Override the UIElement behavior
+	 * Explicitly set the InfoBar in the Tab implementation.
+	 * @param infoBar the InfoBar to set.
+	 * @see org.scilab.modules.gui.uielement.ScilabUIElement#addInfoBar(org.scilab.modules.gui.textbox.TextBox)
+	 */
+	@Override
+	public void addInfoBar(TextBox infoBar) {
+		super.addInfoBar(infoBar);
+		this.getAsSimpleTab().setInfoBar(infoBar);
+	}
+	
+	/**
+	 * Update the Tab InfoBar.
+	 * If the element added has its own, the Tab will take this
+	 * one as its.
+	 * @param element : the element added.
+	 */
+	private void updateInfoBar(UIElement element) {
+		if (element.getInfoBar() != null) {
+			this.addInfoBar(element.getInfoBar());
+		}
+	}
+
 	/**
 	 * Add a ToolBar to this Tab
 	 * @Override the UIElement behavior

@@ -138,8 +138,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getInfoMessage()
 	 */
 	public void setInfoMessage(String infoMessage) {
-		// TODO write infoMessage in infoBar
-		//parentTab.setName(infoMessage);
+		parentTab.getInfoBar().setText(infoMessage);
 	}
 
 	/**

@@ -26,6 +26,7 @@ import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -216,6 +217,18 @@ public interface SimpleTab {
 	 * @param newToolBar : the ToolBar to associate.
 	 */
 	void setToolBar(ToolBar newToolBar);
+	
+	/**
+	 * Get the InfoBar associated to this tab
+	 * @return infoBar the InfoBar associated.
+	 */
+	TextBox getInfoBar();
+	
+	/**
+	 * Set the InfoBar associated to this tab
+	 * @param newInfoBar the InfoBar to associate.
+	 */
+	void setInfoBar(TextBox newInfoBar);
 	
 	/**
 	 * Set the callback of the tab

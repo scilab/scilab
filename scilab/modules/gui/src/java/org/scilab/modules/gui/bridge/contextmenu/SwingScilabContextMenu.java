@@ -25,6 +25,7 @@ import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
@@ -253,4 +254,23 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 		BlockingResult.getInstance().setResult("");
 		super.firePopupMenuCanceled();
 	}
+	
+	/**
+	 * Setter for InfoBar
+	 * @param infoBarToAdd the InfoBar associated to the ContextMenu.
+	 */
+	public void addInfoBar(TextBox infoBarToAdd) {
+		/* Unimplemented for ContextMenus */
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Getter for InfoBar
+	 * @return the InfoBar associated to the ContextMenu.
+	 */
+	public TextBox getInfoBar() {
+		/* Unimplemented for ContextMenus */
+		throw new UnsupportedOperationException();
+	}
+
 }

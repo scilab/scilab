@@ -18,6 +18,7 @@ package org.scilab.modules.gui.uielement;
 //import javax.swing.border.LineBorder;
 
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -35,15 +36,19 @@ public interface UIElement {
 	 * Associate the Tool bar to the UIElement
 	 * @param toolBarToAdd - the Tool bar.
 	 */
-	// FIXME : Must be available at all !!
 	void addToolBar(ToolBar toolBarToAdd);
 
 	/**
 	 * Associate the Menu bar to the UIElement
 	 * @param menuBarToAdd - the Menu bar.
 	 */
-	// FIXME : Must be available at all !!
 	void addMenuBar(MenuBar menuBarToAdd);
+	
+	/**
+	 * Associate the InfoBar to the UIElement
+	 * @param infoBarToAdd - the Infobar.
+	 */
+	void addInfoBar(TextBox infoBarToAdd);
 	
 //	public abstract void resize();
 //
@@ -111,15 +116,21 @@ public interface UIElement {
 	//void setBackground(Color color);
 	
 	/**
-	 * Get the Id of the menubar in the UIElementMapper
+	 * Get the menubar in the UIElementMapper
 	 * @return the MenuBar of the UIElement
 	 */
 	MenuBar getMenuBar();
 	
 	
 	/**
-	 * Get the Id of the toolbar in the UIElementMapper
+	 * Get the toolbar in the UIElementMapper
 	 * @return the ToolBar of the UIElement
 	 */
 	ToolBar getToolBar();
+
+	/**
+	 * Get the InfoBar in the UIElementMapper
+	 * @return the InfoBar of the UIElement
+	 */
+	TextBox getInfoBar();
 }

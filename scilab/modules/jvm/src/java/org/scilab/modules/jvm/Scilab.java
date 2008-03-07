@@ -1,4 +1,4 @@
-/*
+   /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
@@ -19,6 +19,8 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -135,10 +137,13 @@ public class Scilab {
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
-
+			
+			TextBox infoBar = ScilabTextBox.createTextBox();
+			
 			/** Adding content into container */
 			ScilabConsole.getConsole().addToolBar(toolBar);
 			ScilabConsole.getConsole().addMenuBar(menuBar);
+			ScilabConsole.getConsole().addInfoBar(infoBar);
 			consoleTab.addMember(ScilabConsole.getConsole());
 			mainView.addTab(consoleTab);
 			mainView.draw();
