@@ -38,6 +38,9 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 	public SwingScilabTextBox() {
 		super();
 		setEditable(false);
+		/* Default settings for InfoBar (do not modify) */
+		setRelief(ScilabRelief.RIDGE);
+		setOpaque(false);
 	}
 
 	/**
