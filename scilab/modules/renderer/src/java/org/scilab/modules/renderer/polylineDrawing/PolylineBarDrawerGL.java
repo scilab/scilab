@@ -183,10 +183,13 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		double[] color = getLineColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
-		// set dash mode
+		// set dash mode		
 		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
-				
+
+		// push a little bars to the background
+		GLTools.pushPolygonsBack(gl);
+		
 		for (int i = 0; i < left.length; i++) {
 			gl.glBegin(GL.GL_LINE_LOOP);
 			gl.glVertex3d(left[i], bottom[i], zCoord[i]);
@@ -195,6 +198,8 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 			gl.glVertex3d(left[i], top[i], zCoord[i]);
 			gl.glEnd();
 		}
+		
+		GLTools.endPushPolygonsBack(gl);
 		
 		GLTools.endDashMode(gl);
 		

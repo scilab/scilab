@@ -15,6 +15,7 @@
 package org.scilab.modules.renderer.drawers;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class containing functions called by RectangleFillDrawerJoGL.cpp
@@ -32,6 +33,27 @@ public class FillDrawerGL extends AutoDrawableObjectGL {
 		super();
 		backColor = -1;
 	}
+	
+	/**
+	 * Function called before beginning to use OpenGL methods.
+	 * @param parentFigureIndex index of the parent figure.
+	 *                          Needed to get the GL context to draw in.
+	 */
+	public void initializeDrawing(int parentFigureIndex) {
+		super.initializeDrawing(parentFigureIndex);
+		
+		// polygons are pushed back for better drawing with lines
+		GLTools.pushPolygonsBack(getGL());
+	}
+	
+	
+	/**
+	 * Function called at the end of the OpenGL use.
+	 */
+	public void endDrawing() {
+		GLTools.endPushPolygonsBack(getGL());
+	}
+	
 	
 	/**
 	 * Set rectangle background color

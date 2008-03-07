@@ -17,7 +17,7 @@ package org.scilab.modules.renderer.polylineDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.drawers.FillDrawerGL;
 
 import com.sun.opengl.util.texture.Texture;
 
@@ -28,7 +28,7 @@ import com.sun.opengl.util.texture.Texture;
  * in fill drawing. 
  * @author Jean-Baptiste Silvy
  */
-public class PolylineInterpColorDrawerGL extends AutoDrawableObjectGL {
+public class PolylineInterpColorDrawerGL extends FillDrawerGL {
 	
 	
 	/**
