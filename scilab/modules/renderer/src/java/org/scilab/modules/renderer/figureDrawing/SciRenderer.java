@@ -48,6 +48,8 @@ public class SciRenderer
    */    
   public void display(GLAutoDrawable gLDrawable) {
 	
+    //long startTime = System.currentTimeMillis();
+
 	DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
 	
 	if (curFigure == null) {
@@ -64,7 +66,10 @@ public class SciRenderer
 //	if (!gLDrawable.getAutoSwapBufferMode()) {
 //		gLDrawable.swapBuffers();
 //	}
-	
+        long endTime = System.currentTimeMillis();	
+
+
+        //  System.err.println("Time Java = " + (endTime - startTime));
 
   }
     

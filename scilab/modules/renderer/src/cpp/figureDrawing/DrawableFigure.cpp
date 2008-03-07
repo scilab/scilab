@@ -13,10 +13,21 @@
 
 #include "DrawableFigure.h"
 #include "DrawableFigureBridge.h"
+
+//#include <time.h>
+//#include <sched.h>
+//#include <iostream>
+
 extern "C"
 {
 #include "GetProperty.h"
 }
+
+
+// struct timespec t_t1 ;
+// struct timespec t_t2 ;
+// struct timespec t_t3 ;
+// struct timespec t_t4 ;
 
 namespace sciGraphics
 {
@@ -89,8 +100,10 @@ void DrawableFigure::drawBackground(void)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::drawInContext( void )
 {
+  
   // retest on auto_redraw
   // because display may come directly from JoGL
+  //clock_gettime(0, &t_t2);
   if (isDisplayingSingleObject())
   {
     initializeDrawing() ;
@@ -109,6 +122,11 @@ void DrawableFigure::drawInContext( void )
       endDrawing() ;
     }
   }
+  //clock_gettime(0, &t_t3);
+
+  //double timeSpent = (double) (t_toc.tv_sec - t_tic.tv_sec) + (double) (t_toc.tv_nsec - t_tic.tv_nsec) * 1.0E-9;
+  //std::cout << "BB " << timeSpent * 1000.0 << std::endl;
+
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::redrawInContext( void )
@@ -128,7 +146,23 @@ void DrawableFigure::draw( void )
   }
 
   // make sure the context is created
+ 
+  //clock_gettime(0, &t_t1);
   drawCanvas() ;
+  //clock_gettime(0, &t_t4);
+
+//   double aa = (double) (t_t4.tv_sec - t_t1.tv_sec)
+//     + (double) (t_t4.tv_nsec - t_t1.tv_nsec) * 1.0E-9;
+
+//   double bb = (double) (t_t3.tv_sec - t_t2.tv_sec)
+//     + (double) (t_t3.tv_nsec - t_t2.tv_nsec) * 1.0E-9;
+
+//   double cc = (double) (t_t2.tv_sec - t_t1.tv_sec + t_t4.tv_sec - t_t3.tv_sec)
+//     + (double) (t_t2.tv_nsec - t_t1.tv_nsec + t_t4.tv_nsec - t_t3.tv_nsec) * 1.0E-9;
+
+//   std::cout << "AA " << aa * 1000.0 << std::endl;
+//   std::cout << "BB " << bb * 1000.0 << std::endl;
+//   std::cout << "CC " << cc * 1000.0 << std::endl;
 
 }
 /*---------------------------------------------------------------------------------*/
