@@ -156,7 +156,7 @@ am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
 	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
 	itosci.lo formatnumber.lo wmdsp.lo stackr2d.lo stacki2d.lo \
-	stackc2i.lo
+	stackc2i.lo isinstring.lo promptecho.lo
 am__objects_3 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
@@ -599,7 +599,9 @@ src/fortran/formatnumber.f \
 src/fortran/wmdsp.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
-src/fortran/stackc2i.f
+src/fortran/stackc2i.f \
+src/fortran/isinstring.f \
+src/fortran/promptecho.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
@@ -2381,6 +2383,12 @@ stacki2d.lo: src/fortran/stacki2d.f
 
 stackc2i.lo: src/fortran/stackc2i.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stackc2i.lo `test -f 'src/fortran/stackc2i.f' || echo '$(srcdir)/'`src/fortran/stackc2i.f
+
+isinstring.lo: src/fortran/isinstring.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isinstring.lo `test -f 'src/fortran/isinstring.f' || echo '$(srcdir)/'`src/fortran/isinstring.f
+
+promptecho.lo: src/fortran/promptecho.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o promptecho.lo `test -f 'src/fortran/promptecho.f' || echo '$(srcdir)/'`src/fortran/promptecho.f
 
 sci_errclear.lo: sci_gateway/fortran/sci_errclear.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_errclear.lo `test -f 'sci_gateway/fortran/sci_errclear.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_errclear.f
