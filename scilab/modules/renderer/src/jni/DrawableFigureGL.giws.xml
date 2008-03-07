@@ -21,7 +21,9 @@
     <method name="closeRenderingCanvas" returnType="void">
     </method>
     <method name="drawBackground" returnType="void">
-      <param type="int" name="backgroundColor" />
+    </method>
+    <method name="setBackgroundColor" returnType="void">
+      <param type="int" name="colorIndex" />
     </method>
     <method name="setLogicalOp" returnType="void">
       <param type="int" name="logicOpIndex" />

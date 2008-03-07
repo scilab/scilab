@@ -70,8 +70,7 @@ void DrawableFigureJoGL::setFigureParameters(void)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::drawBackground(void)
 {
-  sciPointObj * pFigure = getFigureDrawer()->getDrawedObject();
-  getFigureJavaMapper()->drawBackground(sciGetGraphicContext(pFigure)->backgroundcolor);
+  getFigureJavaMapper()->drawBackground();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setColorMap( const double rgbMat[], int nbColor )
@@ -161,6 +160,11 @@ void DrawableFigureJoGL::getViewport(int viewport[4])
 void DrawableFigureJoGL::setViewport(const int viewport[4])
 {
   getFigureJavaMapper()->setViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setBackgroundColor(int backColor)
+{
+  getFigureJavaMapper()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )

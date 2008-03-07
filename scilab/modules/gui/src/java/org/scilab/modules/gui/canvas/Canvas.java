@@ -85,6 +85,14 @@ public interface Canvas extends Dockable {
 	 void setViewingRegion(int posX, int posY, int width, int height);
 	 
 	 /**
+	  * Set the background of the Canvas.
+	  * @param red red channel
+	  * @param green green channel 
+	  * @param blue blue channel
+	  */
+	 void setBackgroundColor(double red, double green, double blue);
+	 
+	 /**
 	  * Set the event handler of the Canvas
 	  * @param command the name of the Scilab function to call
 	  */

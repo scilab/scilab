@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -56,6 +57,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	public static ScrolledSwingScilabCanvas createCanvas(int figureIndex) {
 		ScrollabeSwingScilabCanvas viewedCanvas = ScrollabeSwingScilabCanvas.createCanvas(figureIndex);
 		ScrolledSwingScilabCanvas newCanvas = new ScrolledSwingScilabCanvas(viewedCanvas);
+		newCanvas.setBackgroundColor(1.0, 1.0, 1.0);
 		return newCanvas;
 	}
 	
@@ -241,6 +243,17 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			getViewport().setViewPosition(new Point(realPosX, realPosY));
 			revalidate();
 		}
+	}
+	
+	/**
+	 * Set the background of the Canvas.
+	 * @param red red channel
+	 * @param green green channel 
+	 * @param blue blue channel
+	 */
+	public void setBackgroundColor(double red, double green, double blue) {
+		getCanvas().setBackgroundColor(red, green, blue);
+		this.setBackground(new Color((float) red, (float) green, (float) blue));
 	}
 
 	/**

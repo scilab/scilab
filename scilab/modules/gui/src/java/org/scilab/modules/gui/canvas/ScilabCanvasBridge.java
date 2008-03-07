@@ -178,7 +178,7 @@ public class ScilabCanvasBridge {
 	 * Specify a new viewport for the canvas
 	 * For SwingScilabCanvas viewport can not be modified
 	 * since it match the parent tab size
-	 * @param canvas the canvas we want to repaint
+	 * @param canvas the canvas we want to modify
 	 * @param posX X coordinate of upper left point of the viewport within the canvas
 	 * @param posY Y coordinate of upper left point of the viewport within the canvas
 	 * @param width width of the viewport
@@ -186,6 +186,17 @@ public class ScilabCanvasBridge {
 	 */
 	public static void setViewingRegion(Canvas canvas, int posX, int posY, int width, int height) {
 		canvas.getAsSimpleCanvas().setViewingRegion(posX, posY, width, height);
+	}
+	
+	/**
+	 * Set the background of the Canvas.
+	 * @param canvas the canvas we want to modify
+	 * @param red red channel
+	 * @param green green channel 
+	 * @param blue blue channel
+	 */
+	public static void setBackgroundColor(Canvas canvas, double red, double green, double blue) {
+		canvas.getAsSimpleCanvas().setBackgroundColor(red, green, blue);
 	}
 	
 	/**
@@ -205,5 +216,4 @@ public class ScilabCanvasBridge {
 	public static void setEventHandlerEnabled(Canvas canvas, boolean status) {
 		canvas.getAsSimpleCanvas().setEventHandlerEnabled(status);
 	}
-
 }

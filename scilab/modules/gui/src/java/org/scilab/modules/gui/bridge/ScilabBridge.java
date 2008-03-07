@@ -1082,6 +1082,17 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Set the background of the Canvas.
+	 * @param canvas the canvas we want to modify
+	 * @param red red channel
+	 * @param green green channel 
+	 * @param blue blue channel
+	 */
+	public static void setBackgroundColor(Canvas canvas, double red, double green, double blue) {
+		ScilabCanvasBridge.setBackgroundColor(canvas, red, green, blue);
+	}
+	
+	/**
 	 * Set the event handler of the Canvas
 	 * @param canvas the Canvas
 	 * @param command the name of the Scilab function to call
@@ -1098,7 +1109,7 @@ public class ScilabBridge {
 	public static void setEventHandlerEnabled(Canvas canvas, boolean status) {
 		ScilabCanvasBridge.setEventHandlerEnabled(canvas, status);
 	}
-
+	
 	/*****************/
 	/* MenuBar Bridge */
 	/*****************/

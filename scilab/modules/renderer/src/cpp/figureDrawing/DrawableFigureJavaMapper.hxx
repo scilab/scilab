@@ -47,7 +47,7 @@ public:
 
   virtual void closeRenderingCanvas(void);
 
-  virtual void drawBackground(int colorIndex);
+  virtual void drawBackground();
   
   virtual void setLogicalOp(int logicOpIndex);
 
@@ -80,6 +80,8 @@ public:
 
   virtual void getViewport(int viewport[4]);
   virtual void setViewport(const int viewport[4]);
+
+  virtual void setBackgroundColor(int colorIndex);
   /*----------------------------------------------------------------------*/
 
 protected:

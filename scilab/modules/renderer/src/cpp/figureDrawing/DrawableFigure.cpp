@@ -202,4 +202,9 @@ void DrawableFigure::setViewport(const int viewport[4])
   getFigureImp()->setViewport(viewport);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::setBackgroundColor(int backColor)
+{
+  getFigureImp()->setBackgroundColor(backColor);
+}
+/*---------------------------------------------------------------------------------*/
 }

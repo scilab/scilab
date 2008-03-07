@@ -60,7 +60,8 @@ jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voiddrawCanvasID; // cache method id
 jmethodID voidcloseRenderingCanvasID; // cache method id
-jmethodID voiddrawBackgroundjintID; // cache method id
+jmethodID voiddrawBackgroundID; // cache method id
+jmethodID voidsetBackgroundColorjintID; // cache method id
 jmethodID voidsetLogicalOpjintID; // cache method id
 jmethodID voidsetColorMapDatajdoubleArrayID; // cache method id
 jmethodID jdoubleArraygetColorMapDataID; // cache method id
@@ -139,7 +140,9 @@ void drawCanvas();
 
 void closeRenderingCanvas();
 
-void drawBackground(long backgroundColor);
+void drawBackground();
+
+void setBackgroundColor(long colorIndex);
 
 void setLogicalOp(long logicOpIndex);
 

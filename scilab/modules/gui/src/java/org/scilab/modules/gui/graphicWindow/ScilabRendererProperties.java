@@ -241,4 +241,14 @@ public class ScilabRendererProperties implements RendererProperties {
 		parentCanvas.setViewingRegion(posX, posY, width, height);
 	}
 	
+	/**
+	 * Set the background of the Canvas.
+	 * @param red red channel
+	 * @param green green channel 
+	 * @param blue blue channel
+	 */
+	public void setBackgroundColor(double red, double green, double blue) {
+		parentCanvas.setBackgroundColor(red, green, blue);
+	}
+	
 }

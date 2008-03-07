@@ -74,9 +74,11 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Default TextRenderer */
 	private TextRendererFactory textRendererFactory;
 
-	
 	/** Default ArcRenderer */
 	private ArcRendererFactory arcRendererFactory;
+	
+	/** index of the background color */
+	private int backGroundColorIndex;
 	
 	/**
 	 * Default Constructor
@@ -92,6 +94,7 @@ public class DrawableFigureGL extends ObjectGL {
       	renderingTarget = null;
       	setDefaultTextRenderer();
       	setDefaultArcRendererFactory();
+      	backGroundColorIndex = 0;
     }
 	
 	/**
@@ -99,8 +102,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setDefaultTextRenderer() {
 		textRendererFactory = new JOGLTextRendererFactory();
-		//textRendererFactory = new PSTextRendererFactory();
-
 	}
 	
 	/**
@@ -108,8 +109,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setDefaultArcRendererFactory() {
 		arcRendererFactory = new NurbsArcRendererFactory();
-		//arcRendererFactory = new FastArcRendererFactory();
-
 	}
 	
 	/**
@@ -264,46 +263,33 @@ public class DrawableFigureGL extends ObjectGL {
   	 */
   	public RendererProperties getRendererProperties() { return guiProperties; }
   	
+  	
+  	/**
+  	 * Set the background of the canvas
+  	 * @param colorIndex color index in the colormap
+  	 */
+  	public void setBackgroundColor(int colorIndex) {
+  		backGroundColorIndex = colorIndex;
+  		double[] color = getBackgroundColor();
+  		getRendererProperties().setBackgroundColor(color[0], color[1], color[2]);
+  	}
+  	
+  	/**
+  	 * @return 3 channels of the background color
+  	 */
+  	public double[] getBackgroundColor() {
+  		return getColorMap().getColor(backGroundColorIndex);
+  	}
+  	
   	/**
   	 * Set the background color of the figure
-  	 * @param colorIndex index of the color to use
   	 */
-  	public void drawBackground(int colorIndex) {
+  	public void drawBackground() {
   		GL gl = getGL();
-  		double[] color = getColorMap().getColor(colorIndex);
+  		double[] color = getBackgroundColor();
   		// not really needed actually
   		gl.glClearColor((float) color[0], (float) color[1], (float) color[2], 1.0f); // alpha is set to 1
-		
-		// for compatibility with Scilab 4
-		// logic_op only applies to axes (not to background)
-		gl.glDisable(GL.GL_COLOR_LOGIC_OP);
-	    gl.glColorMask(true, true, true, false);
-		
-		// draw a quad in the background with color mode
-		
-	    // set up very basic view
-	    gl.glMatrixMode(GL.GL_PROJECTION);
-	    gl.glLoadIdentity();
-	    gl.glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
-	    gl.glMatrixMode(GL.GL_MODELVIEW);
-	    gl.glLoadIdentity();
-	    
-	    gl.glColor3d(color[0], color[1], color[2]);
-	    
-	    // draw it in the back
-	    // just above the zFar clipping plane
-	    // this is needed even with the depth test disable.
-	    // GL2PS does not take it into consideration apparently
-        gl.glDisable(GL.GL_DEPTH_TEST);
-	    gl.glBegin(GL.GL_QUADS);
-	    gl.glVertex3d(0.0, 0.0, -1.0 + EPSILON);
-	    gl.glVertex3d(1.0, 0.0, -1.0 + EPSILON);
-	    gl.glVertex3d(1.0, 1.0, -1.0 + EPSILON);
-	    gl.glVertex3d(0.0, 1.0, -1.0 + EPSILON);
-	    gl.glEnd();
-        gl.glEnable(GL.GL_DEPTH_TEST);
-
-		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
+  		gl.glClear(GL.GL_COLOR_BUFFER_BIT);
   	}
   	
   	

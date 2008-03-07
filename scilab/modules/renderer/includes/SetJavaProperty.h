@@ -77,6 +77,11 @@ void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode);
  */
 void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4]);
 
+/**
+ * Set the background color of canvas
+ */
+void sciSetJavaBackground(sciPointObj * pFigure, int backColor);
+
 #ifdef __cplusplus
 }
 #endif

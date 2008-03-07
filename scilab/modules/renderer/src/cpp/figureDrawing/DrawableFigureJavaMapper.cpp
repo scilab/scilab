@@ -74,9 +74,9 @@ void DrawableFigureJavaMapper::closeRenderingCanvas(void)
   m_pJavaObject->closeRenderingCanvas();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::drawBackground(int colorIndex)
+void DrawableFigureJavaMapper::drawBackground(void)
 {
-  m_pJavaObject->drawBackground(colorIndex); 
+  m_pJavaObject->drawBackground(); 
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setLogicalOp(int logicOpIndex)
@@ -195,6 +195,11 @@ void DrawableFigureJavaMapper::getViewport(int viewport[4])
 void DrawableFigureJavaMapper::setViewport(const int viewport[4])
 {
   m_pJavaObject->setViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setBackgroundColor(int colorIndex)
+{
+  m_pJavaObject->setBackgroundColor(colorIndex);
 }
 /*---------------------------------------------------------------------------------*/
 }

@@ -110,7 +110,8 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
 voidcloseRenderingCanvasID=NULL; 
-voiddrawBackgroundjintID=NULL; 
+voiddrawBackgroundID=NULL; 
+voidsetBackgroundColorjintID=NULL; 
 voidsetLogicalOpjintID=NULL; 
 voidsetColorMapDatajdoubleArrayID=NULL; 
 jdoubleArraygetColorMapDataID=NULL; 
@@ -165,7 +166,8 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voiddrawCanvasID=NULL; 
 voidcloseRenderingCanvasID=NULL; 
-voiddrawBackgroundjintID=NULL; 
+voiddrawBackgroundID=NULL; 
+voidsetBackgroundColorjintID=NULL; 
 voidsetLogicalOpjintID=NULL; 
 voidsetColorMapDatajdoubleArrayID=NULL; 
 jdoubleArraygetColorMapDataID=NULL; 
@@ -363,17 +365,36 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void DrawableFigureGL::drawBackground (long backgroundColor){
+void DrawableFigureGL::drawBackground (){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voiddrawBackgroundjintID==NULL) { /* Use the cache Luke */ voiddrawBackgroundjintID = curEnv->GetMethodID(this->instanceClass, "drawBackground", "(I)V" ) ;
-if (voiddrawBackgroundjintID == NULL) {
+if (voiddrawBackgroundID==NULL) { /* Use the cache Luke */ voiddrawBackgroundID = curEnv->GetMethodID(this->instanceClass, "drawBackground", "()V" ) ;
+if (voiddrawBackgroundID == NULL) {
 std::cerr << "Could not access to the method " << "drawBackground" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voiddrawBackgroundjintID ,backgroundColor);
+                         curEnv->CallVoidMethod( this->instance, voiddrawBackgroundID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableFigureGL::setBackgroundColor (long colorIndex){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetBackgroundColorjintID==NULL) { /* Use the cache Luke */ voidsetBackgroundColorjintID = curEnv->GetMethodID(this->instanceClass, "setBackgroundColor", "(I)V" ) ;
+if (voidsetBackgroundColorjintID == NULL) {
+std::cerr << "Could not access to the method " << "setBackgroundColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetBackgroundColorjintID ,colorIndex);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

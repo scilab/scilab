@@ -215,6 +215,9 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciInitNumColors(pobj, 0);
   sciSetDefaultColorMap(pobj);
 
+  /* for java */
+  sciInitBackground(pobj, sciGetBackground(pfiguremdl));
+
   /* Add the figure in the list of created figures */
   addNewFigureToList(pobj);
 

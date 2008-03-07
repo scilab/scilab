@@ -15,6 +15,7 @@
 package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.AWTEvent;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.media.opengl.GLCapabilities;
@@ -36,8 +37,6 @@ import org.scilab.modules.renderer.figureDrawing.SciRenderer;
  * @author Jean-Baptiste silvy
  */
 public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
-
-	
 
 	private static final long serialVersionUID = 6101347094617535625L;
 
@@ -190,6 +189,17 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public void setViewingRegion(int posX, int posY, int width, int height) {
 		// nothing to do
 	}
+	
+	/**
+	 * Set the background of the Canvas.
+	 * @param red red channel
+	 * @param green green channel 
+	 * @param blue blue channel
+	 */
+	public void setBackgroundColor(double red, double green, double blue) {
+		this.setBackground(new Color((float) red, (float) green, (float) blue));
+	}
+	
 
 	/**
 	 * Set the event handler of the Canvas

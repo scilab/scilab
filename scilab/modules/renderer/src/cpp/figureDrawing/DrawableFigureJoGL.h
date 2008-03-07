@@ -142,6 +142,11 @@ public:
   virtual void setViewport(const int viewport[4]);
 
   /**
+   * Set the background of the figure
+   */
+  virtual void setBackgroundColor(int backColor);
+
+  /**
    * Return the drawn object
    */
   DrawableFigure * getFigureDrawer( void ) ;

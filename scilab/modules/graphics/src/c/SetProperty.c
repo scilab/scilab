@@ -539,7 +539,14 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 
   if (sciGetGraphicContext(pobj) != NULL)
   {
-    sciGetGraphicContext(pobj)->backgroundcolor = Max (0, Min (colorindex - 1, m + 1));
+    int newIndex = Max (0, Min (colorindex - 1, m + 1));
+    sciGetGraphicContext(pobj)->backgroundcolor = newIndex;
+
+    if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
+    {
+      sciSetJavaBackground(pobj, newIndex);
+    }
+
     return 0;
   }
 
@@ -2269,7 +2276,7 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if ( pobj == getFigureModel() )
+      if ( isFigureModel(pobj) )
       {
         pFIGURE_FEATURE(pobj)->pModelData->figureWidth  = newWidth ;
         pFIGURE_FEATURE(pobj)->pModelData->figureHeight = newHeight;

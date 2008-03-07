@@ -134,6 +134,11 @@ public:
    void setViewport(const int viewport[4]);
 
    /**
+    * Set the background of the figure
+    */
+   void setBackgroundColor(int backColor);
+
+   /**
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;

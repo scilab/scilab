@@ -69,3 +69,8 @@ void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4])
   getFigureDrawer(pFigure)->setViewport(viewport);
 }
 /*---------------------------------------------------------------------------------*/
+void sciSetJavaBackground(sciPointObj * pFigure, int backColor)
+{
+  getFigureDrawer(pFigure)->setBackgroundColor(backColor);
+}
+/*---------------------------------------------------------------------------------*/

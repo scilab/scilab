@@ -211,6 +211,16 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	}
 	
 	/**
+	 * Set the background of the Canvas.
+	 * @param red red channel
+	 * @param green green channel 
+	 * @param blue blue channel
+	 */
+	public void setBackgroundColor(double red, double green, double blue) {
+		ScilabBridge.setBackgroundColor(this, red, green, blue);
+	}
+	
+	/**
 	 * Set the event handler of the Canvas
 	 * @param command the name of the Scilab function to call
 	 */
@@ -225,5 +235,5 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	public void setEventHandlerEnabled(boolean status) {
 		ScilabBridge.setEventHandlerEnabled(this, status);
 	}
-
+	
 }
