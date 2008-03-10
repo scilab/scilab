@@ -51,9 +51,10 @@ public abstract class JavaCallBack extends CallBack {
 	public void actionPerformed(ActionEvent e) {
 		if (!GlobalEventWatcher.isActivated()) {
 			callBack();
-		} else {
+		} 
+		else {
 			if (this.command != null) {
-				GlobalEventFilter.filterCallback(e, this.command);
+				GlobalEventFilter.filterCallback(this.command);
 			}
 		}
 	}

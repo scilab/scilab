@@ -3,8 +3,6 @@ package org.scilab.modules.gui.events.callback;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.console.SciConsole;
-import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.GlobalEventFilter;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 
@@ -37,7 +35,12 @@ public abstract class ScilabCallBack extends CallBack {
 			private static final long serialVersionUID = -7286803341046313407L;
 
 			public void callBack() {
-				this.storeCommand(this.getCommand());
+				Thread launchMe = new Thread() {
+					public void run() {
+						InterpreterManagement.putCommandInScilabQueue(getCommand());
+					}
+				};
+				launchMe.start();
 			}
 		});
 	}
@@ -52,32 +55,8 @@ public abstract class ScilabCallBack extends CallBack {
 				callBack();
 		} else {
 			if (this.command != null) {
-				GlobalEventFilter.filterCallback(e, this.command);
+				GlobalEventFilter.filterCallback(this.command);
 			}
 		}
-	}
-
-	/**
-	 * Put the command recieved through the callback.
-	 *
-	 * @param command : The command to throw to Scilab
-	 */
-	public void storeCommand(String command) {
-		this.command = command;
-		Thread launchMe = new Thread() {
-			public void run() {
-				// Save current user edited line
-				String currentCmd = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole())
-												.getConfiguration().getInputCommandView().getText();
-				//ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getCommand(), false, false);
-				InterpreterManagement.putCommandInScilabQueue(getCommand());
-				// Back to current user edited line
-				((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole())
-									.getConfiguration().getInputCommandView().setText(currentCmd);
-				((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole())
-									.getConfiguration().getInputCommandView().setCaretPositionToEnd();
-			}
-		};
-		launchMe.start();
 	}
 }

@@ -12,7 +12,7 @@ import javax.swing.AbstractAction;
  * @author bruno
  *
  */
-public abstract class CallBack extends AbstractAction implements ActionListener {
+public abstract class CallBack extends AbstractAction {
 	
 	/**
 	 * Unmanaged command type constant
