@@ -45,10 +45,10 @@ while %t
 		break
 	else
 	  if num == 15
-	     if fileinfo("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.bin") == [] then
+	     if fileinfo(TMPDIR + filesep() + "cmplxfunc_dial.bin") == [] then
 	       exec("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.sce");
 	     end
-	     [resp]=demo_mdialog("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.bin");
+	     [resp]=demo_mdialog(TMPDIR + filesep() +"cmplxfunc_dial.bin");
 		  if resp == [] then
 		    resp = rep_init;
 		  else

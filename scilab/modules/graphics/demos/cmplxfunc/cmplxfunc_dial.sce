@@ -36,4 +36,4 @@ namevar= [
 	
 value=["(1)./((z+2).*(2-z))";"Disk";"1.9";"No"];
 
-save("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.bin",titl,namevar,value);
+save(TMPDIR+filesep()+"cmplxfunc_dial.bin",titl,namevar,value);
