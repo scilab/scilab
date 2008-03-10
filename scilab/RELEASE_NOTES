@@ -33,6 +33,7 @@ List of missing/buggy features:
     * Text object font management
     * Figure name property
     * Postscript formats for graphic export
+    * Graphic Editor (GED)
 
 
 - Graphics know bugs
@@ -77,7 +78,7 @@ List of missing/buggy features:
                 cannot run.
               * BEWARE : Some blocks may have bizarre look for the presence of
                 older graphics instructions not supported anymore
-
+    * This version has been adapted from scicos-4.2.
 
 - Scilab is not translated into French.
 
