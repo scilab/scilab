@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.utils.SciTranslator;
 
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -26,7 +27,6 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  */
 public class GlobalEventFilter {
 
-	private static final int SCILAB_CTRL_OFFSET = 1000;
 	private static final int SCILAB_CALLBACK = -2;
 
 	/**
@@ -44,12 +44,8 @@ public class GlobalEventFilter {
 	 * @param isControlDown : is CTRL key modifier activated.
 	 */
 	public static void filterKey(int keyPressed, int figureID, boolean isControlDown) {
-		int keyCode = keyPressed;
 		synchronized (ClickInfos.getInstance()) {
-			if (isControlDown) {
-				keyCode += SCILAB_CTRL_OFFSET;
-			}
-			ClickInfos.getInstance().setMouseButtonNumber(keyCode);
+			ClickInfos.getInstance().setMouseButtonNumber(SciTranslator.javaKey2Scilab(keyPressed, isControlDown));
 			ClickInfos.getInstance().setWindowID(figureID);
 			ClickInfos.getInstance().setXCoordinate(MouseInfo.getPointerInfo().getLocation().x);
 			ClickInfos.getInstance().setYCoordinate(MouseInfo.getPointerInfo().getLocation().y);
@@ -63,7 +59,7 @@ public class GlobalEventFilter {
 	 * @param event : the event caught.
 	 * @param command : the callback that was supposed to be called.
 	 */
-	public static void filterCallback(ActionEvent event, String command) {
+	public static void filterCallback(String command) {
 		synchronized (ClickInfos.getInstance()) {
 			ClickInfos.getInstance().setMouseButtonNumber(SCILAB_CALLBACK);
 			ClickInfos.getInstance().setMenuCallback(command);
@@ -79,18 +75,14 @@ public class GlobalEventFilter {
 	 * 
 	 * @param mouseEvent the event caught.
 	 * @param source the canvas where the event occurs.
-	 * @param buttonCode the Scilab button code.
+	 * @param buttonAction the Scilab button code mean PRESSED / RELEASED / CLICKED / DCLICKED.
 	 * @param isControlDown true if the CTRL key has been pressed
 	 */
-	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonCode, boolean isControlDown) {
+	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonAction, boolean isControlDown) {
 		synchronized (ClickInfos.getInstance()) {
 			ClickInfos.getInstance().setXCoordinate(mouseEvent.getPoint().getX());
 			ClickInfos.getInstance().setYCoordinate(mouseEvent.getPoint().getY());
-			if (isControlDown) {
-				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton() + SCILAB_CTRL_OFFSET);
-			} else {
-				ClickInfos.getInstance().setMouseButtonNumber(buttonCode + mouseEvent.getButton());
-			}
+			ClickInfos.getInstance().setMouseButtonNumber(SciTranslator.javaButton2Scilab(mouseEvent.getButton(), buttonAction, isControlDown));
 			ClickInfos.getInstance().setWindowID(source.getFigureIndex());
 			ClickInfos.getInstance().notify();
 		}

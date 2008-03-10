@@ -1,8 +1,3 @@
-package org.scilab.modules.gui.events;
-
-import java.awt.AWTEvent;
-import java.awt.event.AWTEventListener;
-import java.awt.event.KeyEvent;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Bruno Jofret
@@ -14,8 +9,11 @@ import java.awt.event.KeyEvent;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+package org.scilab.modules.gui.events;
 
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import java.awt.AWTEvent;
+import java.awt.event.AWTEventListener;
+import java.awt.event.KeyEvent;
  
 /**
  * Global key event watcher.

@@ -18,6 +18,7 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.gui.utils.SciTranslator;
 
 /**
  * This class create a global mouse event watcher
@@ -26,40 +27,14 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  */
 public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 
-	/**
-	 * Those static final constant are only for reverse compatibility
-	 * With old Scilab.
-	 * Java button are :
-	 * 1 = left
-	 * 2 = middle
-	 * 3 = right
-	 * We add those statics state integers such as
-	 * button + state = scilab return value.
-	 * 
-	 * ex : left PRESSED = 1 + (-1) = 0
-	 * 
-	 * MOVE does not feat the rule because 
-	 * it does not have any Button associated with.
-	 */
-	/** Internal state PRESSED */ 
-	public static final int PRESSED = -1;
-	/** Internal state RELEASED */
-	public static final int RELEASED = -6;
-	/** Internal state CLICKED */
-	public static final int CLICKED = 2;
-	/** Internal state DCLICKED */
-	public static final int DCLICKED = 9;
-	/** Internal state MOVED */
-	public static final int MOVED = -100;
 
-	private static final int UNMANAGED = -10000;
-	private static final int TIMETOSLEEP = 300;
+
 
 	private boolean isControlDown;
 	private boolean inCanvas;
 	private boolean freedom = true;
-	private int action = UNMANAGED;
 	private long eventMask;
+	private SciTranslator clickTranslator;
 	private MouseEvent lastMouse;
 	private SwingScilabCanvas canvas;
 
@@ -72,6 +47,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	 */
 	public GlobalMouseEventWatcher(long eventMask) {
 		this.eventMask = eventMask;
+		clickTranslator = new SciTranslator();
 	}
 
 	/** 
@@ -101,23 +77,27 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 			/* CLICKED */
 			case MouseEvent.MOUSE_CLICKED :
 				if (lastMouse.getClickCount() == 1) {
-					setAction(CLICKED);
-				} else {
+					clickTranslator.setClickAction(SciTranslator.CLICKED);
+				} 
+				else {
 					/*
 					 * Means mouseEvent.getClickCount() >= 2
 					 */ 
-					setAction(DCLICKED);
-					synchronized (this) {
-						this.notify();
+					clickTranslator.setClickAction(SciTranslator.DCLICKED);
+					synchronized (clickTranslator) {
+						// To unlock javaClick2Scilab done in launchfilter
+						clickTranslator.notify();
 					}
 				}		
 				break;
 				/* PRESSED */
 			case MouseEvent.MOUSE_PRESSED :
-				setAction(PRESSED);
+				clickTranslator.setClickAction(SciTranslator.PRESSED);
 				if (this.freedom) {
 					Thread timer = new Thread() {
-						public void run() { launchFilter(); } 
+						public void run() { 
+							launchFilter(); 
+							} 
 					};
 					timer.start();
 				}
@@ -125,14 +105,14 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 				/* ENTERED */
 			case MouseEvent.MOUSE_ENTERED :
 				this.inCanvas = true;
-				mouseEventFilter(lastMouse, canvas, MOVED, this.isControlDown);
+				mouseEventFilter(lastMouse, canvas, SciTranslator.MOVED, this.isControlDown);
 				break;
 				/* MOVED */
 			case MouseEvent.MOUSE_MOVED :
-				mouseEventFilter(lastMouse, canvas, MOVED, this.isControlDown);
+				mouseEventFilter(lastMouse, canvas, SciTranslator.MOVED, this.isControlDown);
 				break;
 			case MouseEvent.MOUSE_DRAGGED :
-				mouseEventFilter(lastMouse, canvas, MOVED, this.isControlDown);
+				mouseEventFilter(lastMouse, canvas, SciTranslator.MOVED, this.isControlDown);
 				break;
 				/* EXITED */
 			case MouseEvent.MOUSE_EXITED :
@@ -150,19 +130,10 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		 * and got a RELEASED
 		 */
 			if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas 
-					&& (this.action == UNMANAGED || this.action == MOVED)) {
-				this.action = RELEASED;
-				mouseEventFilter(lastMouse, canvas, this.action, this.isControlDown);	
+					&& (clickTranslator.getClickAction() == SciTranslator.UNMANAGED || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
+				clickTranslator.setClickAction(SciTranslator.RELEASED);
+				mouseEventFilter(lastMouse, canvas, clickTranslator.getClickAction(), this.isControlDown);	
 			}
-	}
-
-	/**
-	 * Setter for action
-	 * (just in case we need a lock in the future)
-	 * @param newAction : the Action to remember.
-	 */
-	private void setAction(int newAction) {
-		this.action = newAction;
 	}
 
 	/**
@@ -171,17 +142,8 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	 */
 	private void launchFilter() {
 		this.freedom = false;
-		try {
-			synchronized (this) {
-				wait(TIMETOSLEEP);
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		mouseEventFilter(lastMouse, canvas, this.action, this.isControlDown);
+		mouseEventFilter(lastMouse, canvas, clickTranslator.javaClick2Scilab(), this.isControlDown);
 		this.freedom = true;
-		this.action = UNMANAGED;		
 	}
 	
 	/**
