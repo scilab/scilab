@@ -68,6 +68,8 @@ GNU/Linux - Unix:
  - Dynamic libraries
  - Advanced numerical libraries can be used (Atlas, MKL...)
  - Use librairies when available on the system
+ - Versioned libraries
+ - Easier profiling (memory and call graph)
  - Better startup script
 	+ Debug
 	+ Profiling (valgrind)
