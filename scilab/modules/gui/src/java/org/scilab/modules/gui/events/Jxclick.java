@@ -16,6 +16,7 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+import org.scilab.modules.gui.utils.SciTranslator;
 
 /**
  * This class implements the xclick Scilab method
@@ -25,7 +26,6 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 public final class Jxclick {
 
 	private static int keyChar;
-	private static boolean isControlDown;
 
 	/**
 	 * PRIVATE constructor
@@ -110,18 +110,20 @@ public final class Jxclick {
 		if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
 			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
 				keyChar = keyEvent.getKeyChar(); 
-			} else {
+			} 
+			else {
 				if (keyEvent.isShiftDown()) {
 					keyChar = keyEvent.getKeyCode();
-				} else {
+				} 
+				else {
 					keyChar = Character.toLowerCase(keyEvent.getKeyCode());
 				}
 			}
-			isControlDown = ((KeyEvent) keyEvent).isControlDown();
-		} else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
+		} 
+		else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {	
 			if (keyEvent.getSource() instanceof SwingScilabCanvas) {
 				if (GlobalEventWatcher.isActivated()) {
-					GlobalEventFilter.filterKey(keyChar, ((SwingScilabCanvas)keyEvent.getSource()).getFigureIndex(), isControlDown);
+					GlobalEventFilter.filterKey(keyChar, ((SwingScilabCanvas)keyEvent.getSource()).getFigureIndex(),((KeyEvent) keyEvent).isControlDown());
 				}
 			}
 		} 
@@ -135,9 +137,9 @@ public final class Jxclick {
 	 * @param isControlDown true if the CTRL key has been pressed
 	 */
 	private static void mouseActionFilter(MouseEvent mouseEvent, SwingScilabCanvas canvas, int scilabMouseAction, boolean isControlDown) {	
-		if (scilabMouseAction == GlobalMouseEventWatcher.PRESSED
-				|| scilabMouseAction == GlobalMouseEventWatcher.CLICKED
-				|| scilabMouseAction == GlobalMouseEventWatcher.DCLICKED) {
+		if (scilabMouseAction == SciTranslator.PRESSED
+				|| scilabMouseAction == SciTranslator.CLICKED
+				|| scilabMouseAction == SciTranslator.DCLICKED) {
 			GlobalEventFilter.filterMouse(mouseEvent, canvas, scilabMouseAction, isControlDown);
 		}
 	}	
