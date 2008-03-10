@@ -25,7 +25,7 @@ demolist = [
 	"acosh","func12()";
 	"tanh","func13()";
 	"atanh","func14()";
-	"custom","func15()";]
+	"custom","func15()"];
 
 Title = [
 	"visualisation of  complex";
@@ -45,7 +45,9 @@ while %t
 		break
 	else
 	  if num == 15
-	     exec("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.sce");
+	     if fileinfo("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.bin") == [] then
+	       exec("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.sce");
+	     end
 	     [resp]=demo_mdialog("SCI/modules/graphics/demos/cmplxfunc/cmplxfunc_dial.bin");
 		  if resp == [] then
 		    resp = rep_init;
