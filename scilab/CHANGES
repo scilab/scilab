@@ -348,6 +348,14 @@ Internal API:
  - Many other things... Have a look to the sources...
 
 
+Scicos:
+=======
+ - Test framework currently under development:
+  + Unitary tests (30% done)
+  + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2) (30% done)
+  + Benchmarks (0% done)
+
+
                      Main Changes Scilab 3.0 -> 4.0
                      ==============================
 
