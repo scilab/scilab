@@ -28,15 +28,11 @@ List of missing/buggy features:
 
 - Graphic functionalities are not yet fully functional:
     * xlcea
-    * viewport management
     * show_pixmap
     * driver / xinit / xend
-    * seteventhandler
-    * info_message
     * Text object font management
     * Figure name property
     * Postscript formats for graphic export
-	* Graphic Editor (GED)
 
 
 - Graphics know bugs
