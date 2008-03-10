@@ -18,7 +18,6 @@ if newest(['SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/b
 if newest('SCI/modules/graphics/macros/bode.'+['sci','bin']) <> 2 then pause,end
 if newest(['SCI\etc\scilab.start';'SCI\etc\scilab.quit']) <> 1 then pause,end
 if newest(['SCI\etc\scilab.quit';'SCI\etc\scilab.start']) <> 2 then pause,end
-if newest(['SCI\etc\scilab.start','SCI\etc\scilab.start';'SCI\etc\scilab.quit','SCI\etc\scilab.quit']) <> 1 then pause,end
 if newest(['SCI\etc\scilab.start','SCI\etc\scilab.quit','SCI/nofile.txt']) <> 1 then pause,end
 if newest(['SCI\etc\scilab.start','SCI/nofile.txt','SCI\etc\scilab.quit']) <> 1 then pause,end
 if newest('SCI/nofile.txt') <> 1 then pause,end
@@ -27,7 +26,6 @@ if newest(['SCI\etc\scilab.start','SCI/nofile.txt','SCI\etc\scilab.quit']) <> 1 
 if newest('SCI/nofile.txt') <> 1 then pause,end
 if newest(['SCI\etc\scilab.start','SCI\etc\scilab.quit','SCI/nofile.txt']) <> 1 then pause,end
 if newest(['SCI\etc\scilab.start','SCI/nofile.txt','SCI\etc\scilab.quit']) <> 1 then pause,end
-
 if execstr('newest(''rrr'',''SCI\bin\libscilab.dll'',3)','errcatch') <> 999 then pause,end
 if execstr('newest([''SCI\etc\scilab.start'',''SCI\etc\scilab.start'';''SCI\etc\scilab.quit'',''SCI\etc\scilab.quit''])','errcatch') <> 999 then pause,end
 // =============================================================================

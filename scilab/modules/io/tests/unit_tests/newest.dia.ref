@@ -9,11 +9,15 @@ f1=a(2);
 r1=newest(f1);
 clear a f1 r1
 // =============================================================================
+if newest([]) <> [] then bugmes();quit;end
+if newest() <> [] then bugmes();quit;end
 if newest('SCI/etc/scilab.start') <> 1 then bugmes();quit;end
 if newest('SCI/nofile.txt') <> 1 then bugmes();quit;end
+if newest('SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin') <> 2 then bugmes();quit;end
+if newest(['SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin'])<> 2  then bugmes();quit;end
+if newest('SCI/modules/graphics/macros/bode.'+['sci','bin']) <> 2 then bugmes();quit;end
 if newest(['SCI\etc\scilab.start';'SCI\etc\scilab.quit']) <> 1 then bugmes();quit;end
 if newest(['SCI\etc\scilab.quit';'SCI\etc\scilab.start']) <> 2 then bugmes();quit;end
-if newest(['SCI\etc\scilab.start','SCI\etc\scilab.start';'SCI\etc\scilab.quit','SCI\etc\scilab.quit']) <> 1 then bugmes();quit;end
 if newest(['SCI\etc\scilab.start','SCI\etc\scilab.quit','SCI/nofile.txt']) <> 1 then bugmes();quit;end
 if newest(['SCI\etc\scilab.start','SCI/nofile.txt','SCI\etc\scilab.quit']) <> 1 then bugmes();quit;end
 if newest('SCI/nofile.txt') <> 1 then bugmes();quit;end
@@ -23,6 +27,5 @@ if newest('SCI/nofile.txt') <> 1 then bugmes();quit;end
 if newest(['SCI\etc\scilab.start','SCI\etc\scilab.quit','SCI/nofile.txt']) <> 1 then bugmes();quit;end
 if newest(['SCI\etc\scilab.start','SCI/nofile.txt','SCI\etc\scilab.quit']) <> 1 then bugmes();quit;end
 if execstr('newest(''rrr'',''SCI\bin\libscilab.dll'',3)','errcatch') <> 999 then bugmes();quit;end
-if newest([]) <> [] then bugmes();quit;end
-if newest() <> [] then bugmes();quit;end
+if execstr('newest([''SCI\etc\scilab.start'',''SCI\etc\scilab.start'';''SCI\etc\scilab.quit'',''SCI\etc\scilab.quit''])','errcatch') <> 999 then bugmes();quit;end
 // =============================================================================
