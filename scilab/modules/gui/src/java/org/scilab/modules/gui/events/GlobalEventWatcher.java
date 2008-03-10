@@ -54,7 +54,7 @@ public final class GlobalEventWatcher {
 		GlobalEventWatcher.keyWatcher = keyWatcher;
 		Toolkit.getDefaultToolkit().addAWTEventListener(keyWatcher,
 				AWTEvent.KEY_EVENT_MASK);
-		GlobalEventWatcher.activated = true;
+		activated = true;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public final class GlobalEventWatcher {
 		GlobalEventWatcher.mouseWatcher = mouseWatcher;
 		Toolkit.getDefaultToolkit().addAWTEventListener(mouseWatcher,
 				mouseWatcher.getEventMask());
-			GlobalEventWatcher.activated = true;
+			activated = true;
 	}
 
 	
