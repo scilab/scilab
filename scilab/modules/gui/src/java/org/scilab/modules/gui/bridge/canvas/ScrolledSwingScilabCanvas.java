@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,23 +21,24 @@ import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab Canvas without scrollbars in GUIs This implementation requires
  * JOGL
- * 
+ *
  * @author Jean-Baptiste Silvy
  */
 public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanvas {
 
 	private static final int VIEWPORT_SIZE = 4;
-	
+
 	/** The real canvas */
 	private ScrollabeSwingScilabCanvas canvas;
-	
-	
+
+	private ScilabEventListener eventHandler;
 	/**
 	 * Default contsructor
 	 * @param canvas the canvas to view
@@ -49,7 +50,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		// the panel is totally redrawed each time.
 		this.getViewport().setScrollMode(JViewport.BLIT_SCROLL_MODE);
 	}
-	
+
 	/**
 	 * @param figureIndex index of the figure which will be drawn
 	 * @return new instance of canvas ready to display the figure
@@ -60,7 +61,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		newCanvas.setBackgroundColor(1.0, 1.0, 1.0);
 		return newCanvas;
 	}
-	
+
 	/**
 	 * Set the canvas implementation of the canvas
 	 * @param canvas canvas to surround with scroll pane
@@ -69,14 +70,14 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		this.canvas = canvas;
 		this.setViewportView(canvas);
 	}
-	
+
 	/**
 	 * @return enclosed canvas
 	 */
 	protected ScrollabeSwingScilabCanvas getCanvas() {
 		return canvas;
 	}
-	
+
 	/**
 	 * OpenGL function forcing redraw of the canvas
 	 */
@@ -115,7 +116,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	}
 
 	/**
-	 * @return get the position of the canvas within the 
+	 * @return get the position of the canvas within the
 	 */
 	public Position getPosition() {
 		return new Position(getCanvas().getX(), getCanvas().getY());
@@ -145,16 +146,16 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	public void setPosition(Position newPosition) {
 		getCanvas().setLocation(newPosition.getX(), newPosition.getY());
 	}
-	
+
 	/**
 	 * Get the Figuer Index : the Scilab ID of the figure.
-	 * 
+	 *
 	 * @return the ID.
 	 */
 	public int getFigureIndex() {
 		return getCanvas().getFigureIndex();
 	}
-	
+
 	/**
 	 * Specify wether the canvas should fit the parent tab size
 	 * (and consequently the scrollpane size) or not
@@ -162,11 +163,11 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 */
 	public void setAutoResizeMode(boolean onOrOff) {
 		getCanvas().setAutoResizeMode(onOrOff);
-		
+
 		// so the canvas will retrieve its good position
 		getCanvas().revalidate();
 	}
-	
+
 	/**
 	 * @return wether the resize mode is on or off
 	 */
@@ -186,7 +187,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 					 (int) viewport.getHeight()};
 		return res;
 	}
-	
+
 	/**
 	 * Specify a new viewport for the canvas
 	 * For SwingScilabCanvas viewport can not be modified
@@ -206,7 +207,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			// - if the viewport is larger than the canvas, then it can't be moved
 			// - if the viewport is smaller than the canvas, then it should remains
 			//   inside the canvas
-			
+
 			int canvasWidth = getCanvas().getWidth();
 			int canvasHeight = getCanvas().getHeight();
 			int[] curViewedRegion = getViewingRegion();
@@ -214,12 +215,12 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			int viewPortPosY = curViewedRegion[1];
 			int viewportWidth = curViewedRegion[2];
 			int viewportHeight = curViewedRegion[VIEWPORT_SIZE - 1];
-			
+
 			// use previous values as default ones
 			int realPosX = 0;
 			int realPosY = 0;
-			
-			
+
+
 			if (viewportWidth <= canvasWidth) {
 				// viewport smaller than the canvas
 				// check that the viewport stays in the canvas
@@ -232,23 +233,23 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			}
 			// last check, greater than 0
 			realPosX = Math.max(0, realPosX);
-			
+
 			if (viewportHeight <= canvasHeight) {
 				realPosY = Math.min(posY, canvasHeight - viewportHeight);
 			} else {
 				realPosY = viewPortPosY;
 			}
 			realPosY = Math.max(0, realPosY);
-			
+
 			getViewport().setViewPosition(new Point(realPosX, realPosY));
 			revalidate();
 		}
 	}
-	
+
 	/**
 	 * Set the background of the Canvas.
 	 * @param red red channel
-	 * @param green green channel 
+	 * @param green green channel
 	 * @param blue blue channel
 	 */
 	public void setBackgroundColor(double red, double green, double blue) {
@@ -260,16 +261,33 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 * Set the event handler of the Canvas
 	 * @param command the name of the Scilab function to call
 	 */
-	public void setEventHandler(String command) {
-		// TODO Blouno !
+	public void setEventHandler(String funName) {
+		eventHandler = new ScilabEventListener(funName, getFigureIndex());
 	}
+
 
 	/**
 	 * Set the status of the event handler of the Canvas
 	 * @param status is true to set the event handler active
 	 */
 	public void setEventHandlerEnabled(boolean status) {
-		// TODO Blouno !
+		if (status) {
+			enableEventHandler();
+		}
+		else {
+			disableEventHandler();
+		}
 	}
 
+	private void enableEventHandler() {
+		canvas.addKeyListener(eventHandler);
+		canvas.addMouseListener(eventHandler);
+		canvas.addMouseMotionListener(eventHandler);
+	}
+
+	private void disableEventHandler() {
+		canvas.removeKeyListener(eventHandler);
+		canvas.removeMouseListener(eventHandler);
+		canvas.removeMouseMotionListener(eventHandler);
+	}
 }
