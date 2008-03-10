@@ -315,6 +315,15 @@ History manager:
 	+ gethistory
 	+ resethistory
 
+Tests:
+======
+ - Tests are now embedded into Scilab (binary and sources)
+ - Many tests added 
+	+ Unitary
+	+ Non regression
+	+ Benchmarks
+
+
 Internal API:
 =============
  - Used in functions GetRhsVar, PutLhsVar... The datatype naming have been 
