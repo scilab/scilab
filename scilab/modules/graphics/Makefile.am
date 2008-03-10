@@ -655,7 +655,6 @@ demos/bike.dem \
 demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
 demos/cmplxfunc/cmplxfunc.sce \
 demos/cmplxfunc/cmplxfunc.sci \
-demos/cmplxfunc/cmplxfunc_dial.bin \
 demos/cmplxfunc/cmplxfunc_dial.sce \
 demos/cmplxfunc/MacCmplx.sci \
 demos/contourf.dem \
