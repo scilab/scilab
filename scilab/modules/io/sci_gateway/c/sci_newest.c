@@ -20,7 +20,6 @@ static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 /*--------------------------------------------------------------------------*/
 int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 {
-
 	CheckLhs(1,1);
 	if (Rhs == 0)
 	{
@@ -61,17 +60,8 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 					char **Str = NULL;
 
 					GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
-					if ( (m1 == 1) || (n1 == 1) )
-					{
-						RetIndex = GetIndexLastModifiedFileInList(Str,m1*n1);
-						freeArrayOfString(Str,m1*n1);
-					}
-					else
-					{
-						Scierror(999,_("%s: Wrong size for first input argument: Vector of strings expected.\n"),fname);
-						freeArrayOfString(Str,m1*n1);
-						return 0;
-					}
+					RetIndex = GetIndexLastModifiedFileInList(Str,m1*n1);
+					freeArrayOfString(Str,m1*n1);
 				}
 				else
 				{
