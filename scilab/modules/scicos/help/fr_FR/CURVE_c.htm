@@ -27,7 +27,7 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
 Bloc Scicos
 <BR><A NAME="tex2html1"
   HREF="./CURVE_c.htm">fr</A> - <A NAME="tex2html2"
-  HREF="../../eng/scicos/CURVE_c.htm">eng</A>
+  HREF="../en_US/CURVE_c.htm">eng</A>
 
 </DIV>
 <H2><A NAME="SECTION00010000000000000000"></A><A NAME="CURVE_c"></A>
@@ -40,7 +40,7 @@ Construction de signal
  -->
 <IMG
  WIDTH="135" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/CURVE_c_blk.gif"
+ SRC="../images/CURVE_c_blk.gif"
  ALT="\epsfig{file=CURVE_c.eps,height=90pt}">
 </DIV>
 <BR>
@@ -82,7 +82,7 @@ Boîte de dialogue</A>
 <DIV ALIGN="CENTER">
 <IMG
  WIDTH="477" HEIGHT="195" BORDER="0"
- SRC="../../images/scicos/CURVE_c_gui.gif"
+ SRC="../images/CURVE_c_gui.gif"
  ALT="\begin{figure}\begin{center}
 \epsfig{file=CURVE_c_gui.eps,width=300pt}
 \end{center}\end{figure}">
@@ -96,26 +96,26 @@ Boîte de dialogue</A>
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="128" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img3_fr.gif"
+ SRC="../images/CURVE_c_img3_fr.gif"
  ALT="$ 0, 1, 2, 3, 4, 5, 6, 7$"></SPAN>.
     This parameter defines the spline method for interpolating the
     points. The Signal builder block computes a linear or a cubic
     spline or sub-spline <SPAN CLASS="MATH"><IMG
  WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img4_fr.gif"
+ SRC="../images/CURVE_c_img4_fr.gif"
  ALT="$ S$"></SPAN> which interpolates the <SPAN CLASS="MATH"><IMG
  WIDTH="55" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img5_fr.gif"
+ SRC="../images/CURVE_c_img5_fr.gif"
  ALT="$ (x_i,y_i)$"></SPAN>
     points, i.e., we have <!-- MATH
  $S(x_i)=y_i$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img6_fr.gif"
+ SRC="../images/CURVE_c_img6_fr.gif"
  ALT="$ S(x_i)=y_i$"></SPAN> for all <SPAN CLASS="MATH"><IMG
  WIDTH="78" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img7_fr.gif"
+ SRC="../images/CURVE_c_img7_fr.gif"
  ALT="$ i=1,..,n$"></SPAN>.  Several
     kind of splines may be computed by selecting the appropriate
     spline method:
@@ -129,13 +129,13 @@ Boîte de dialogue</A>
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="98" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img8_fr.gif"
+ SRC="../images/CURVE_c_img8_fr.gif"
  ALT="$ t_{i} \leq t &lt; t_{i+1}$"></SPAN>, <!-- MATH
  $y(t)=y_{i}$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img9_fr.gif"
+ SRC="../images/CURVE_c_img9_fr.gif"
  ALT="$ y(t)=y_{i}$"></SPAN>
 
 <P>
@@ -146,14 +146,14 @@ Boîte de dialogue</A>
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="98" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img10_fr.gif"
+ SRC="../images/CURVE_c_img10_fr.gif"
  ALT="$ t_i \leq t &lt; t_{i+1}$"></SPAN>,
     <!-- MATH
  $y(t)=y_i+(t-t_i)(y_{i+1}-y_i)/(t_{i+1}-t_i).$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="314" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img11_fr.gif"
+ SRC="../images/CURVE_c_img11_fr.gif"
  ALT="$ y(t)=y_i+(t-t_i)(y_{i+1}-y_i)/(t_{i+1}-t_i).$"></SPAN>
 
 <P>
@@ -161,21 +161,21 @@ Boîte de dialogue</A>
 <LI><B>2: "Order 2 method"</B>. The interpolation is done by passing
     2-order polynomials between <SPAN CLASS="MATH"><IMG
  WIDTH="55" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img5_fr.gif"
+ SRC="../images/CURVE_c_img5_fr.gif"
  ALT="$ (x_i,y_i)$"></SPAN> and
     <!-- MATH
  $(x_{i+1},y_{i+1})$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img12_fr.gif"
+ SRC="../images/CURVE_c_img12_fr.gif"
  ALT="$ (x_{i+1},y_{i+1})$"></SPAN>. The Derivative at <SPAN CLASS="MATH"><IMG
  WIDTH="55" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img5_fr.gif"
+ SRC="../images/CURVE_c_img5_fr.gif"
  ALT="$ (x_i,y_i)$"></SPAN> is identical
     for two adjacent polynomials. The derivative at <SPAN CLASS="MATH"><IMG
  WIDTH="59" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img13_fr.gif"
+ SRC="../images/CURVE_c_img13_fr.gif"
  ALT="$ (x_1,y_1)$"></SPAN>
     can be selected arbitrary, so it is selected such that the sum of
     derivatives at all points be minimum. This condition provides a
@@ -186,13 +186,13 @@ Boîte de dialogue</A>
 <LI><B>3:"not_a_knot"</B>. The cubic spline is computed by using the
     following conditions (considering <SPAN CLASS="MATH"><IMG
  WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img14_fr.gif"
+ SRC="../images/CURVE_c_img14_fr.gif"
  ALT="$ n$"></SPAN> points <!-- MATH
  $x_1,...,x_n$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="71" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img15_fr.gif"
+ SRC="../images/CURVE_c_img15_fr.gif"
  ALT="$ x_1,...,x_n$"></SPAN>):
     <P><!-- MATH
  \begin{displaymath}
@@ -203,7 +203,7 @@ S^{(3)}(x_2^-) = S^{(3)}(x_2^+)
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
  WIDTH="157" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img16_fr.gif"
+ SRC="../images/CURVE_c_img16_fr.gif"
  ALT="$\displaystyle S^{(3)}(x_2^-) = S^{(3)}(x_2^+)$">
 </DIV><P></P> <P><!-- MATH
  \begin{displaymath}
@@ -215,7 +215,7 @@ S^{(3)}(x_{n-1}^+)
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
  WIDTH="187" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img17_fr.gif"
+ SRC="../images/CURVE_c_img17_fr.gif"
  ALT="$\displaystyle S^{(3)}(x_{n-1}^-) =
 S^{(3)}(x_{n-1}^+)$">
 </DIV><P></P>
@@ -224,11 +224,11 @@ S^{(3)}(x_{n-1}^+)$">
 </LI>
 <LI><B>4:"periodic"</B>. A periodic cubic spline is computed (<SPAN CLASS="MATH"><IMG
  WIDTH="14" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img18_fr.gif"
+ SRC="../images/CURVE_c_img18_fr.gif"
  ALT="$ y$"></SPAN>
     must verify <SPAN CLASS="MATH"><IMG
  WIDTH="61" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img19_fr.gif"
+ SRC="../images/CURVE_c_img19_fr.gif"
  ALT="$ y_1=y_n$"></SPAN>) by using the conditions:  
 <BR><P><!-- MATH
  \begin{displaymath}
@@ -240,7 +240,7 @@ S^{'}(x_n)
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
  WIDTH="125" HEIGHT="42" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img20_fr.gif"
+ SRC="../images/CURVE_c_img20_fr.gif"
  ALT="$\displaystyle S^{'}(x_1) =
 S^{'}(x_n)$">
 </DIV><P></P> 
@@ -253,17 +253,17 @@ S^{''}(x_1) = S^{''}(x_n)
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
  WIDTH="132" HEIGHT="42" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img21_fr.gif"
+ SRC="../images/CURVE_c_img21_fr.gif"
  ALT="$\displaystyle S^{''}(x_1) = S^{''}(x_n)$">
 </DIV><P></P>.
 <BR>
 In this case the value
     of <SPAN CLASS="MATH"><IMG
  WIDTH="22" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img22_fr.gif"
+ SRC="../images/CURVE_c_img22_fr.gif"
  ALT="$ y_n$"></SPAN> is ignored and <SPAN CLASS="MATH"><IMG
  WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img23_fr.gif"
+ SRC="../images/CURVE_c_img23_fr.gif"
  ALT="$ y_1$"></SPAN> is used instead. Note that in order
     to generate a periodic signal, <I>Periodic</I> flag should be
     activated.
@@ -272,11 +272,11 @@ In this case the value
 </LI>
 <LI><B>5:"monotone"</B>. In this case a sub-spline (<SPAN CLASS="MATH"><IMG
  WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img4_fr.gif"
+ SRC="../images/CURVE_c_img4_fr.gif"
  ALT="$ S$"></SPAN> is only one
     continuously differentiable) is computed such that <SPAN CLASS="MATH"><IMG
  WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img4_fr.gif"
+ SRC="../images/CURVE_c_img4_fr.gif"
  ALT="$ S$"></SPAN> is monotone
     on each interval: 
 <BR>
@@ -285,17 +285,17 @@ if <!-- MATH
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="73" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img24_fr.gif"
+ SRC="../images/CURVE_c_img24_fr.gif"
  ALT="$ y_i \le y_{i+1}$"></SPAN>, <SPAN CLASS="MATH"><IMG
  WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img4_fr.gif"
+ SRC="../images/CURVE_c_img4_fr.gif"
  ALT="$ S$"></SPAN> is increasing on
     <!-- MATH
  $[x_i, x_{i+1}]$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="70" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img25_fr.gif"
+ SRC="../images/CURVE_c_img25_fr.gif"
  ALT="$ [x_i, x_{i+1}]$"></SPAN>. 
 <BR>
 if <!-- MATH
@@ -303,17 +303,17 @@ if <!-- MATH
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="53" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img26_fr.gif"
+ SRC="../images/CURVE_c_img26_fr.gif"
  ALT="$ y_i \&gt; y_{i+1}$"></SPAN>, <SPAN CLASS="MATH"><IMG
  WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img4_fr.gif"
+ SRC="../images/CURVE_c_img4_fr.gif"
  ALT="$ S$"></SPAN> is decreasing on
     <!-- MATH
  $[x_i, x_{i+1}]$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="70" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img25_fr.gif"
+ SRC="../images/CURVE_c_img25_fr.gif"
  ALT="$ [x_i, x_{i+1}]$"></SPAN>.
 
 <P>
@@ -329,7 +329,7 @@ S^{'}(x_1) = S^{'}(x_n)=0
 <DIV ALIGN="CENTER" CLASS="mathdisplay">
 <IMG
  WIDTH="157" HEIGHT="42" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img27_fr.gif"
+ SRC="../images/CURVE_c_img27_fr.gif"
  ALT="$\displaystyle S^{'}(x_1) = S^{'}(x_n)=0$">
 </DIV><P></P>
 
@@ -338,27 +338,27 @@ S^{'}(x_1) = S^{'}(x_n)=0
 <LI><B>7:"fast"</B>. In this case a sub-spline is computed by using a
     simple local scheme for the derivative at <SPAN CLASS="MATH"><IMG
  WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img28_fr.gif"
+ SRC="../images/CURVE_c_img28_fr.gif"
  ALT="$ x_i$"></SPAN> of the
     interpolation polynomial of <!-- MATH
  $(x_{i-1},y_{i-1})$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img29_fr.gif"
+ SRC="../images/CURVE_c_img29_fr.gif"
  ALT="$ (x_{i-1},y_{i-1})$"></SPAN>, <!-- MATH
  $(x_{i},y_{i})$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="55" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img30_fr.gif"
+ SRC="../images/CURVE_c_img30_fr.gif"
  ALT="$ (x_{i},y_{i})$"></SPAN>,
     <!-- MATH
  $(x_{i+1},y_{i+1})$
  -->
 <SPAN CLASS="MATH"><IMG
  WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img12_fr.gif"
+ SRC="../images/CURVE_c_img12_fr.gif"
  ALT="$ (x_{i+1},y_{i+1})$"></SPAN>, except for the end points (derivative at
     these points are computed from the 3 left most points and the 3
     right most points).
@@ -385,7 +385,7 @@ S^{'}(x_1) = S^{'}(x_n)=0
 <LI><B>Periodic signal(y/n)</B>. If <B>y</B> is selected, the created
    signal will be periodic with the period of <SPAN CLASS="MATH"><IMG
  WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img31_fr.gif"
+ SRC="../images/CURVE_c_img31_fr.gif"
  ALT="$ t_n$"></SPAN>. Note that if the
    <I>Periodic</I> spline method is selected, the output signal will be
    a continuous signal, otherwise the signal will be discontinuous at
@@ -453,14 +453,14 @@ S^{'}(x_1) = S^{'}(x_n)=0
         signal is periodic or not. If the signal is not periodic, the
         signal stays constant beyond <SPAN CLASS="MATH"><IMG
  WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img31_fr.gif"
+ SRC="../images/CURVE_c_img31_fr.gif"
  ALT="$ t_n$"></SPAN>, otherwise it is clamped
         to <SPAN CLASS="MATH"><IMG
  WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img23_fr.gif"
+ SRC="../images/CURVE_c_img23_fr.gif"
  ALT="$ y_1$"></SPAN> at <SPAN CLASS="MATH"><IMG
  WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
- SRC="../../images/scicos/CURVE_c_img31_fr.gif"
+ SRC="../images/CURVE_c_img31_fr.gif"
  ALT="$ t_n$"></SPAN>.
 
 <P>
