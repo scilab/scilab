@@ -20,105 +20,104 @@ static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 /*--------------------------------------------------------------------------*/
 int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 {
-	CheckLhs(1,1);
-	if (Rhs < 1)
-	{
-		/* no input argument: return an empty matrix - newest() = [] */
-		int m1,n1,l1;
-		m1=0;
-		n1=0;
-		l1=0;
 
+	CheckLhs(1,1);
+	if (Rhs == 0)
+	{
+		/* newest() returns [] */
+		int m1 = 0,n1 = 0,l1 = 0;
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
-		return 0;
 	}
 	else
 	{
-		int m1,n1,l1;
-		int RetIndex=1;
-		int j=0;
-
-		for (j=1;j<=Rhs;j++)
-		{
-			if (j == 1)
-			{
-				/* first input argument can be a matrix but should be an empty one: return an error
-				   when a numerical matrix is encountered - newest([2, 3]) = ERROR */
-				if (GetType(j) == sci_matrix)
-				{
-					GetRhsVar(j,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-
-					if ( (m1==0) && (n1==0) )
-					{
-						/* first input argument is an empty matrix: return an empty matrix - newest([]) = [] */
-						m1=0;
-						n1=0;
-						l1=0;
-
-						CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-						LhsVar(1)=Rhs+1;
-						C2F(putlhsvar)();
-						return 0;
-					}
-					else
-					{
-						/* non-empty matrix encountered: return an error */
-						Scierror(999,_("%s: Wrong type for first argument: String expected.\n"),fname);
-						return 0;
-					}
-				}
-			}
-
-			/* otherwise: input arguments should be strings */
-			if (GetType(j) != sci_strings)
-			{
-				Scierror(999,_("%s: Wrong type for #%d input argument: String expected.\n"),fname,j);
-				return 0;
-			}
-		}
+		int m1 = 0,n1 = 0,l1 = 0;
+		int RetIndex = 1;
 
 		if (Rhs == 1)
 		{
-			char **Str=NULL;
-
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
-
-			if ( (m1 != 1) && (n1 != 1) )
+			if (GetType(1) == sci_matrix)
 			{
-				Scierror(999,_("%s: Wrong size for first input argument: Vector of strings expected.\n"),fname);
-				return 0;
+				GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+				if ( (m1 == 0) && (n1 == 0) ) /* newest([]) returns [] */
+				{
+					m1 = 0;n1 = 0;l1 = 0;
+					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
+					LhsVar(1)=Rhs+1;
+					C2F(putlhsvar)();
+					return 0;
+				}
+				else
+				{
+					Scierror(999,_("%s: Wrong type for first argument: String expected.\n"),fname);
+					return 0;
+				}
 			}
-			RetIndex=GetIndexLastModifiedFileInList(Str,m1*n1);
-			freeArrayOfString(Str,m1*n1);
-		}
-		else
-		{
-			char **Str=NULL;
-			int RhsBackup=Rhs;
-
-			Str=(char**)MALLOC(sizeof(char*)*RhsBackup);
-
-			for (j=1;j<=RhsBackup;j++)
+			else
 			{
+				if (GetType(1) == sci_strings)
+				{
+					char **Str = NULL;
 
-				GetRhsVar(j,STRING_DATATYPE,&m1,&n1,&l1);
-				Str[j-1]=MALLOC(sizeof(char)*(strlen(cstk(l1))+1));
-				strcpy(Str[j-1],cstk(l1));
+					GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
+					if ( (m1 == 1) || (n1 == 1) )
+					{
+						RetIndex = GetIndexLastModifiedFileInList(Str,m1*n1);
+						freeArrayOfString(Str,m1*n1);
+					}
+					else
+					{
+						Scierror(999,_("%s: Wrong size for first input argument: Vector of strings expected.\n"),fname);
+						freeArrayOfString(Str,m1*n1);
+						return 0;
+					}
+				}
+				else
+				{
+					Scierror(999,_("%s: Wrong type for first argument: String expected.\n"),fname);
+					return 0;
+				}
+			}
+		}
+		else /* Rhs > 1 */
+		{
+			int i = 1;
+			char **Str = NULL;
+			int RhsBackup = Rhs;
+
+			/* check that all input arguments are strings */
+			for (i = 1; i <= Rhs ; i++)
+			{
+				if (GetType(i) != sci_strings)
+				{
+					Scierror(999,_("%s: Wrong type for #%d input argument: String expected.\n"),fname,i);
+					return 0;
+				}
 			}
 
-			RetIndex=GetIndexLastModifiedFileInList(Str,RhsBackup);
+			Str = (char**)MALLOC(sizeof(char*) * RhsBackup);
+			if (Str)
+			{
+				for (i = 1; i <= RhsBackup; i++)
+				{
+					GetRhsVar(i,STRING_DATATYPE,&m1,&n1,&l1);
+					Str[i-1] = MALLOC(sizeof(char)*(strlen(cstk(l1))+1));
+					if (Str[i-1]) strcpy(Str[i-1],cstk(l1));
+				}
 
-			freeArrayOfString(Str,RhsBackup);
+				RetIndex = GetIndexLastModifiedFileInList(Str,RhsBackup);
+				freeArrayOfString(Str,RhsBackup);
+			}
 		}
 
-		if (RetIndex>=1)
+		/* Output on scilab's stack */
+		if (RetIndex >= 1)
 		{
-			int *paramoutINT=(int*)MALLOC(sizeof(int));
+			int *paramoutINT = (int*)MALLOC(sizeof(int));
 			*paramoutINT = RetIndex;
 
-			n1=1;
+			n1 = 1;
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
@@ -135,7 +134,6 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
 		}
-
 	}
 	return 0;
 }
