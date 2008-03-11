@@ -32,7 +32,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	
 	private StringMatrixGL textMatrix;
 	private TextAlignementStrategy textDrawer;
-	private SciTextRenderer textRenderer;
 	private int fontColorIndex;
 	private Font fontType;
 	/** Rotation angle in radian */
@@ -175,20 +174,17 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * @return instance of SciTextRenderer
 	 */
 	public SciTextRenderer getTextRenderer() {
-		if (textRenderer == null) {
-			textRenderer = (SciTextRenderer) getParentFigureGL().getTextRendererFactory().createTextRenderer(getFont(), getFontColor()); 
-			// SciTextRenderer.create(getFont(), getFontColor());
-		}
-		return textRenderer;
+		return getParentFigureGL().getTextWriter(getFont(), getFontColor());
 	}
 	
 	/**
-	 * Destroy the current text renderer.
+	 * get the textRenderer with a new font size
+	 * @param newSize new isze to apply to the font
+	 * @return new instance of text renderer with a new size
 	 */
-	public void destroyTextRenderer() {
-		// useless unless we share texture between OpenGL contexts
-		textRenderer.dispose();
-		textRenderer = null;
+	public SciTextRenderer getTextRenderer(float newSize) {
+		setFont(getFont().deriveFont(newSize));
+		return getTextRenderer();
 	}
 	
 	/**

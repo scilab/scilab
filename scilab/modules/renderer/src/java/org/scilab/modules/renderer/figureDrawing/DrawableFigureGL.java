@@ -14,6 +14,8 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
+import java.awt.Font;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.Threading;
@@ -23,6 +25,7 @@ import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
+import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.ObjectGLCleaner;
 
@@ -65,6 +68,8 @@ public class DrawableFigureGL extends ObjectGL {
 	
 	private boolean pixmapModeOn;
 	
+	private SciTextRenderer textWriter;
+	
 	/** Keep a pointer on the OpenGL rendering target (Canvas, pBuffer, ...). */
 	private GLAutoDrawable renderingTarget;
 	
@@ -92,6 +97,7 @@ public class DrawableFigureGL extends ObjectGL {
       	setDefaultTextRenderer();
       	setDefaultArcRendererFactory();
       	backGroundColorIndex = 0;
+      	textWriter = null;
     }
 	
 	/**
@@ -508,4 +514,39 @@ public class DrawableFigureGL extends ObjectGL {
 		return arcRendererFactory;
 		
 	}
+	
+	/**
+	 * Get a text renderer with the specified color and font
+	 * @param font specified font
+	 * @param color 3 color channels
+	 * @return text renderer to use
+	 */
+	public SciTextRenderer getTextWriter(Font font, double[] color) {
+		// check if we need to recreate a new one
+		if (textWriter == null || !textWriter.hasFont(font)) {
+			if (textWriter != null) {
+				// free resources used by the current one if exists
+				textWriter.flush();
+				textWriter.dispose();
+			}
+			textWriter = (SciTextRenderer) getTextRendererFactory().createTextRenderer(font, color);
+		} else {
+			textWriter.setColor(color[0], color[1], color[2]);
+		}
+		
+		return textWriter;
+	}
+	
+	/**
+	 * Destroy the current text writter, then force the creation of a new one
+	 */
+	public void destroyTextWriter() {
+		if (textWriter != null) {
+			// free resources used by the current one
+			textWriter.flush();
+			textWriter.dispose();
+		}
+		textWriter = null;
+	}
+	
 }

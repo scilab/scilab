@@ -112,7 +112,8 @@ public class SciRenderer
       gl.glLogicOp(GL.GL_COPY);
       
 	  if (curFigure.getIsRenderingEnable()) {
-    	  FigureMapper.getCorrespondingFigure(renderedFigure).getColorMap().clearTexture();
+		  curFigure.getColorMap().clearTexture();
+		  curFigure.destroyTextWriter();
     	  FigureScilabCall.redrawFigure(renderedFigure);
       }
 

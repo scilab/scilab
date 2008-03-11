@@ -93,5 +93,17 @@ public class SciTextRenderer extends TextRenderer {
 					 res.getHeight());
 		return res;
 	}
+	
+	/**
+	 * Compare the font of the sciRenderer with an other
+	 * @param font font to compare
+	 * @return true if the fonts are the sames
+	 */
+	public boolean hasFont(Font font) {
+		Font thisFont = getFont();
+		
+		return   (thisFont.getSize2D() == font.getSize2D())
+			  && (thisFont.getFontName().equals(font.getFontName()));
+	}
 
 }

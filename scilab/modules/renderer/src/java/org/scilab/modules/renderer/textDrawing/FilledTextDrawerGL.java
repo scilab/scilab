@@ -105,10 +105,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		stringPos.scale(factor);
 		
 		// create a new renderer with a new font.
-		destroyTextRenderer();
-		setFont(getFont().deriveFont(newFontSize));
-		//renderer = SciTextRenderer.create(getFont().deriveFont(newFontSize), getFontColor());
-		renderer = getTextRenderer();
+		renderer = getTextRenderer(newFontSize);
 		
 		// update StringSizes with the new renderer
 		textMatrix.update(renderer);
@@ -117,7 +114,6 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		
 		drawText(renderer, textMatrix, stringPos);
 		
-		destroyTextRenderer();
 	}
 
 	/**
