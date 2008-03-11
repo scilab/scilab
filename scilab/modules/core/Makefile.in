@@ -164,7 +164,7 @@ am__objects_2 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
 	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
 	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
 	itosci.lo formatnumber.lo wmdsp.lo stackr2d.lo stacki2d.lo \
-	stackc2i.lo isinstring.lo promptecho.lo getlin.lo
+	stackc2i.lo isinstring.lo promptecho.lo
 am__objects_3 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
@@ -608,8 +608,7 @@ src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
 src/fortran/isinstring.f \
-src/fortran/promptecho.f \
-src/fortran/getlin.f
+src/fortran/promptecho.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
