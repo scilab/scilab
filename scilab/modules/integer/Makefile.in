@@ -1563,11 +1563,13 @@ install-html-local:
 	for dir in $(DOCDIRS) ; do \
 		if test -d $$dir; then \
 			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
+			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 				done ; \
+			fi; \
+			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
 				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
 					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \

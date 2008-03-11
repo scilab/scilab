@@ -1447,11 +1447,13 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	for dir in $(DOCDIRS) ; do \
 @TCLTK_TRUE@		if test -d $$dir; then \
 @TCLTK_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@TCLTK_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
+@TCLTK_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 @TCLTK_TRUE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 @TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @TCLTK_TRUE@				done ; \
+@TCLTK_TRUE@			fi; \
+@TCLTK_TRUE@			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
 @TCLTK_TRUE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
 @TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
