@@ -19,18 +19,34 @@
 ### INRIA - Scilab 2006
 ##########
 
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+# Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 ##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-### 
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+# Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 ##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-### 
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
@@ -476,32 +492,33 @@ top_srcdir = @top_srcdir@
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
-#### the procedure will be the same with Microsoft Windows (C) 
-####�and Linux/Unix
+#### the procedure will be the same with Microsoft Windows (C)
+#### and Linux/Unix
 #######################################################################
 @PVM_FALSE@TARGETS_ALL = $(am__append_4) $(am__append_5) \
 @PVM_FALSE@	$(am__append_6)
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
-#### the procedure will be the same with Microsoft Windows (C) 
-####�and Linux/Unix
+#### the procedure will be the same with Microsoft Windows (C)
+#### and Linux/Unix
 #######################################################################
 @PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @PVM_TRUE@	$(am__append_3) $(am__append_4) $(am__append_5) \
 @PVM_TRUE@	$(am__append_6)
 
-################ MACROS ######################"
+################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
 @PVM_FALSE@SUFFIXES = .sci 
 
-################ MACROS ######################"
+################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
 @PVM_TRUE@SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
+
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -511,6 +528,7 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@pkgdocdir = $(mydatadir)
 
 ########### INSTALL DOCUMENTATION ###################
+
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -524,8 +542,10 @@ top_srcdir = @top_srcdir@
 
 # Which directories we have to install
 @PVM_TRUE@DOCDIRS = help/fr_FR help/en_US
+
 # What is the mask of the help output
 @PVM_FALSE@DOCMASK = *.htm
+
 # What is the mask of the help output
 @PVM_TRUE@DOCMASK = *.htm
 
@@ -544,6 +564,12 @@ top_srcdir = @top_srcdir@
 
 # What is the mask of the help source
 @PVM_TRUE@DOCMASKXML = *.xml
+
+# Chapter file
+@PVM_FALSE@HELP_CHAPTERFILE = addchapter.sce
+
+# Chapter file
+@PVM_TRUE@HELP_CHAPTERFILE = addchapter.sce
 
 ########### INSTALL DATA ###################
 # Install macros
@@ -574,12 +600,6 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 # List of the function of a module
 @PVM_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Chapter file 
-@PVM_FALSE@HELP_CHAPTERDIR = help/en_US/
-# Chapter file 
-@PVM_TRUE@HELP_CHAPTERDIR = help/en_US/
-@PVM_FALSE@HELP_CHAPTERFILE = addchapter.sce
-@PVM_TRUE@HELP_CHAPTERFILE = addchapter.sce
 # Where to export JAVA files (.jar)
 @PVM_FALSE@JARDIR = jar/
 # Where to export JAVA files (.jar)
@@ -1401,15 +1421,17 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	@echo "-- Install of htm help files --"; \
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
 @PVM_TRUE@	for dir in $(DOCDIRS) ; do \
-@PVM_TRUE@	 if test -d $$dir; then \
-@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@PVM_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_TRUE@		  done ; \
+@PVM_TRUE@		if test -d $$dir; then \
+@PVM_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@PVM_TRUE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@PVM_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_TRUE@				done ; \
+@PVM_TRUE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_TRUE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_TRUE@			fi; \
 @PVM_TRUE@		fi; \
-@PVM_TRUE@	 fi; \
 @PVM_TRUE@	done
 @PVM_TRUE@	@echo "-- Install of images help files --"; \
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
@@ -1439,16 +1461,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
 @PVM_TRUE@install-data-local:
-# Install the help chapter
-@PVM_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
-@PVM_TRUE@	if test -f $$HELPFILE; then \
-@PVM_TRUE@		echo "-- Install of help --"; \
-@PVM_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@PVM_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@PVM_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-@PVM_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-@PVM_TRUE@	fi
-# Install the tests	
+# Install the tests
 @PVM_TRUE@	@echo "-- Install tests (if any) --"; \
 @PVM_TRUE@	for dir in $(TESTS_DIR); do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
@@ -1569,15 +1582,17 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	@echo "-- Install of htm help files --"; \
 @PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
 @PVM_FALSE@	for dir in $(DOCDIRS) ; do \
-@PVM_FALSE@	 if test -d $$dir; then \
-@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@PVM_FALSE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_FALSE@		  done ; \
+@PVM_FALSE@		if test -d $$dir; then \
+@PVM_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_FALSE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@PVM_FALSE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@PVM_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_FALSE@				done ; \
+@PVM_FALSE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_FALSE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_FALSE@			fi; \
 @PVM_FALSE@		fi; \
-@PVM_FALSE@	 fi; \
 @PVM_FALSE@	done
 @PVM_FALSE@	@echo "-- Install of images help files --"; \
 @PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
@@ -1607,16 +1622,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
 @PVM_FALSE@install-data-local:
-# Install the help chapter
-@PVM_FALSE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
-@PVM_FALSE@	if test -f $$HELPFILE; then \
-@PVM_FALSE@		echo "-- Install of help --"; \
-@PVM_FALSE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@PVM_FALSE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@PVM_FALSE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-@PVM_FALSE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-@PVM_FALSE@	fi
-# Install the tests	
+# Install the tests
 @PVM_FALSE@	@echo "-- Install tests (if any) --"; \
 @PVM_FALSE@	for dir in $(TESTS_DIR); do \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \

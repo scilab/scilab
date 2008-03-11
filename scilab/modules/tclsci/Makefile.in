@@ -19,10 +19,18 @@
 ### INRIA - Scilab 2006
 ##########
 
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+# Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 ##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-### 
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
@@ -651,18 +659,19 @@ top_srcdir = @top_srcdir@
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
-#### the procedure will be the same with Microsoft Windows (C) 
-####�and Linux/Unix
+#### the procedure will be the same with Microsoft Windows (C)
+#### and Linux/Unix
 #######################################################################
 @TCLTK_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
 @TCLTK_TRUE@	$(am__append_3)
 
-################ MACROS ######################"
+################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
 @TCLTK_TRUE@SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
+
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
@@ -673,6 +682,7 @@ top_srcdir = @top_srcdir@
 
 # Which directories we have to install
 @TCLTK_TRUE@DOCDIRS = help/fr_FR help/en_US
+
 # What is the mask of the help output
 @TCLTK_TRUE@DOCMASK = *.htm
 
@@ -683,6 +693,9 @@ top_srcdir = @top_srcdir@
 
 # What is the mask of the help source
 @TCLTK_TRUE@DOCMASKXML = *.xml
+
+# Chapter file
+@TCLTK_TRUE@HELP_CHAPTERFILE = addchapter.sce
 
 ########### INSTALL DATA ###################
 # Install macros
@@ -698,9 +711,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@MACROBINMASK = *.bin
 # List of the function of a module
 @TCLTK_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Chapter file 
-@TCLTK_TRUE@HELP_CHAPTERDIR = help/en_US/
-@TCLTK_TRUE@HELP_CHAPTERFILE = addchapter.sce
 # Where to export JAVA files (.jar)
 @TCLTK_TRUE@JARDIR = jar/
 # JAR files
@@ -1435,15 +1445,17 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	@echo "-- Install of htm help files --"; \
 @TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
 @TCLTK_TRUE@	for dir in $(DOCDIRS) ; do \
-@TCLTK_TRUE@	 if test -d $$dir; then \
-@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@TCLTK_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@TCLTK_TRUE@		  done ; \
+@TCLTK_TRUE@		if test -d $$dir; then \
+@TCLTK_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@TCLTK_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@TCLTK_TRUE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@				done ; \
+@TCLTK_TRUE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_TRUE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@			fi; \
 @TCLTK_TRUE@		fi; \
-@TCLTK_TRUE@	 fi; \
 @TCLTK_TRUE@	done
 @TCLTK_TRUE@	@echo "-- Install of images help files --"; \
 @TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
@@ -1473,16 +1485,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 fi; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	done
 @TCLTK_TRUE@install-data-local:
-# Install the help chapter
-@TCLTK_TRUE@	@HELPFILE=$(HELP_CHAPTERDIR)$(HELP_CHAPTERFILE); \
-@TCLTK_TRUE@	if test -f $$HELPFILE; then \
-@TCLTK_TRUE@		echo "-- Install of help --"; \
-@TCLTK_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@TCLTK_TRUE@		$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR); \
-@TCLTK_TRUE@		echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-@TCLTK_TRUE@		$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
-@TCLTK_TRUE@	fi
-# Install the tests	
+# Install the tests
 @TCLTK_TRUE@	@echo "-- Install tests (if any) --"; \
 @TCLTK_TRUE@	for dir in $(TESTS_DIR); do \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
