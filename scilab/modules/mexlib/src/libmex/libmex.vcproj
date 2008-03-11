@@ -402,18 +402,22 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\..\..\..\bin\blasplus.lib"
+		<Filter
+			Name="Libraries Dependencies"
 			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\bin\lapack.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\bin\LibScilab.lib"
-			>
-		</File>
+			<File
+				RelativePath="..\..\..\..\bin\blasplus.lib"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\bin\lapack.lib"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\bin\LibScilab.lib"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\mexlib.iss"
 			>

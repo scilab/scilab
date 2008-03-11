@@ -517,24 +517,36 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Import"
+			Name="Libraries Dependencies"
 			>
 			<File
-				RelativePath=".\LibScilab_Import.def"
+				RelativePath=".\shell_header.def"
 				>
 			</File>
-			<File
-				RelativePath=".\scicompletion_Import.def"
+			<Filter
+				Name="Import"
 				>
-			</File>
-			<File
-				RelativePath=".\sciconsole_Import.def"
-				>
-			</File>
-			<File
-				RelativePath=".\Scilab_windows_Import.def"
-				>
-			</File>
+				<File
+					RelativePath=".\libjvm_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\scicompletion_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\sciconsole_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\Scilab_windows_Import.def"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"
@@ -546,10 +558,6 @@
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\shell_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\shell_header.def"
 			>
 		</File>
 		<File

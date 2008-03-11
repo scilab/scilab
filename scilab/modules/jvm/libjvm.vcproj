@@ -104,6 +104,92 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../java/jdk/include;../../java/jdk/include/win32;includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/dynamiclibrary/includes;../../libs/intl"
+				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="0"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+				CompileAs="1"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libjvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def libjvmtmp.def &gt;nul&#x0D;&#x0A;copy ..\jvm_header.def+libjvmtmp.def  ..\libjvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="LibScilab.lib"
+				OutputFile="../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="libjvm.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
@@ -166,92 +252,6 @@
 				LinkTimeCodeGeneration="0"
 				ImportLibrary="../../bin/$(ProjectName).lib"
 				TargetMachine="1"
-				CLRUnmanagedCodeCheck="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TargetEnvironment="3"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../java/jdk/include;../../java/jdk/include/win32;includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/dynamiclibrary/includes;../../libs/intl"
-				PreprocessorDefinitions="FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="0"
-				RuntimeLibrary="3"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-				CompileAs="1"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libjvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def libjvmtmp.def &gt;nul&#x0D;&#x0A;copy ..\jvm_header.def+libjvmtmp.def  ..\libjvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
-				OutputFile="../../bin/$(ProjectName).dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="libjvm.def"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -574,16 +574,28 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Libraries Dependencies"
+			>
+			<File
+				RelativePath=".\jvm_header.def"
+				>
+			</File>
+			<Filter
+				Name="Imports"
+				>
+				<File
+					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+			</Filter>
+		</Filter>
 		<File
 			RelativePath=".\jvm.iss"
 			>
 		</File>
 		<File
 			RelativePath=".\sci_gateway\jvm_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\LibScilab_Import.def"
 			>
 		</File>
 		<File

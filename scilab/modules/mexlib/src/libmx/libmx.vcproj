@@ -398,18 +398,22 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
-		<File
-			RelativePath="..\..\..\..\bin\blasplus.lib"
+		<Filter
+			Name="Libraries Dependencies"
 			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\bin\lapack.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\bin\LibScilab.lib"
-			>
-		</File>
+			<File
+				RelativePath="..\..\..\..\bin\blasplus.lib"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\bin\lapack.lib"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\bin\LibScilab.lib"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

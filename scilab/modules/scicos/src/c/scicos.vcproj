@@ -593,40 +593,48 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Imports"
+			Name="Libraries Dependencies"
 			>
 			<File
-				RelativePath=".\Dynamic_link_Import.def"
+				RelativePath=".\scicos_header.def"
 				>
 			</File>
-			<File
-				RelativePath=".\Graphics_Import.def"
+			<Filter
+				Name="Imports"
 				>
-			</File>
-			<File
-				RelativePath=".\Intersci_Import.def"
-				>
-			</File>
-			<File
-				RelativePath=".\LibScilab_Import.def"
-				>
-			</File>
-			<File
-				RelativePath=".\Output_stream_Import.def"
-				>
-			</File>
-			<File
-				RelativePath=".\Scicos_blocks_f_Import.def"
-				>
-			</File>
-			<File
-				RelativePath=".\scicos_f_Import.def"
-				>
-			</File>
-			<File
-				RelativePath=".\String_Import.def"
-				>
-			</File>
+				<File
+					RelativePath=".\Dynamic_link_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\Graphics_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\Intersci_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\Output_stream_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\Scicos_blocks_f_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\scicos_f_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\String_Import.def"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath="..\..\..\..\bin\blasplus.lib"

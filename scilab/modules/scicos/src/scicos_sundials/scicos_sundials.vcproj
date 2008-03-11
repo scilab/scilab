@@ -104,6 +104,92 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine=""
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_sundials_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_SUNDIALS_EXPORTS"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="0"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_sundials.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicos_sundialstmp.def &gt;nul&#x0D;&#x0A;copy ..\scicos_sundials_header.def+scicos_sundialstmp.def  ..\scicos_sundials.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="scicos_sundials.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
@@ -165,92 +251,6 @@
 				LinkTimeCodeGeneration="0"
 				ImportLibrary="../../../../bin/$(ProjectName).lib"
 				TargetMachine="1"
-				CLRUnmanagedCodeCheck="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-				CommandLine=""
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TargetEnvironment="3"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_sundials_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_SUNDIALS_EXPORTS"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="0"
-				RuntimeLibrary="3"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				Description="Make dependencies"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scicos_sundials.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scicos_sundialstmp.def &gt;nul&#x0D;&#x0A;copy ..\scicos_sundials_header.def+scicos_sundialstmp.def  ..\scicos_sundials.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				OutputFile="../../../../bin/$(ProjectName).dll"
-				LinkIncremental="1"
-				ModuleDefinitionFile="scicos_sundials.def"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
-				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -491,6 +491,10 @@
 				RelativePath=".\sundials_types.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Libraries Dependencies"
+			>
 		</Filter>
 	</Files>
 	<Globals>
