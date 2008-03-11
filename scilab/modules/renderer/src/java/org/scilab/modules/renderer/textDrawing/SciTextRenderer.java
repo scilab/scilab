@@ -81,18 +81,6 @@ public class SciTextRenderer extends TextRenderer {
 		super.setColor((float) red, (float) green, (float) blue, 1.0f);
 	}
 	
-	/**
-	 * @param str String to get the bounding rectangle
-	 * @return bounding box of the text.
-	 */
-	@Override
-	public Rectangle2D getBounds(String str) {
-		Rectangle2D res = super.getBounds(str);
-		res.setFrame(res.getX(), res.getY(),
-					 res.getWidth(),
-					 res.getHeight());
-		return res;
-	}
 	
 	/**
 	 * Compare the font of the sciRenderer with an other
