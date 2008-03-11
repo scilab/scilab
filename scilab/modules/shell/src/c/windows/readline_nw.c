@@ -30,11 +30,19 @@
 #include "HistoryManager.h"
 #include "scilabmode.h"
 #include "sigbas.h"
+#include "completion.h"
+#include "freeArrayOfString.h"
+#include "scilines.h"
 /*--------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
 #define SPACE	' '
 #define isterm(f) ((f==stdin)|| f==stdout || f==stderr)
+
+#ifdef TAB_KEY
+#undef TAB_KEY
+#endif
+#define TAB_KEY 9
 
 #ifdef PIPE
 #undef PIPE
@@ -188,13 +196,15 @@ extern int IsFromC(void);
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
 static int sendprompt = 1;  /* default */
+static int lenCurrentLine = 0;
 /*--------------------------------------------------------------------------*/
-static char msdos_getch ();
-static void fix_line ();
-static void redraw_line ();
-static void clear_line ();
-static void clear_eoline ();
-static void copy_line ();
+static char msdos_getch (void);
+static void fix_line (void);
+static void redraw_line(char *prompt);
+static void clear_line (char *prompt);
+static void clear_eoline (char *prompt);
+static void copy_line (char *line);
+static void doCompletion(const char *current_line,const char *prompt);
 /*--------------------------------------------------------------------------*/
 /* user_putc and user_puts should be used in the place of
 * fputc(ch,stdout) and fputs(str,stdout) for all output
@@ -209,6 +219,15 @@ static int user_putc (int ch)
 static int user_puts (char *str)
 {
 	return fputs (str, stdout);
+}
+/*--------------------------------------------------------------------------*/
+static void doNewLine(BOOL displayPrompt)
+{
+	fputs ("\n", stdout);
+	if (displayPrompt) fputs (SCIPROMPT, stdout);
+	cur_line[0] = '\0';
+	cur_pos = 0;
+	max_pos = 0;
 }
 /*--------------------------------------------------------------------------*/
 static void strip_blank(char *source)
@@ -296,6 +315,12 @@ char * readline_nw (char *prompt)
 	{
 		cur_char = msdos_getch();
 
+		if (cur_char == TAB_KEY)
+		{
+			doCompletion(cur_line,prompt);
+			cur_char = 0;
+		}
+
 		if (ismenu () == 1)
 		{
 			/* abort current line aquisition SS */
@@ -369,7 +394,7 @@ char * readline_nw (char *prompt)
 				}
 				break;
 			case CTRL_K: 
-				clear_eoline ();
+				clear_eoline (prompt);
 				max_pos = cur_pos;
 				break;
 			case CTRL_P: 
@@ -452,7 +477,7 @@ char * readline_nw (char *prompt)
 					cur_pos -= 1;
 					backspace ();
 				}
-				clear_eoline ();
+				clear_eoline (prompt);
 				max_pos = cur_pos;
 				break;
 			case CR_1: case CR_2:
@@ -564,7 +589,7 @@ static void copy_line (char *line)
 }
 /*--------------------------------------------------------------------------*/
 /* Convert Arrow keystrokes to Control characters: */
-static char msdos_getch ()
+static char msdos_getch (void)
 {
 	char c = 0;
 
@@ -630,5 +655,89 @@ static char msdos_getch ()
 		c = CTRL_U;
 	}
 	return c;
+}
+/*--------------------------------------------------------------------------*/
+static void doCompletion(const char *current_line,const char *prompt)
+{
+	char *backup_line = NULL;
+	char *wordToFind = NULL;
+	char **completionDictionary = NULL;
+	int sizeCompletionDictionary = 0;
+	char *pch = NULL;
+
+	pch = strrchr (cur_line,' ');
+
+	if (pch)
+	{
+		if ( (pch-cur_line) > 0 )
+		{
+			pch++;
+			wordToFind = pch;
+		}
+	}
+	else wordToFind = cur_line;
+
+	completionDictionary = completion(wordToFind,&sizeCompletionDictionary);
+	if (sizeCompletionDictionary)
+	{
+		if (sizeCompletionDictionary == 1)
+		{
+			char *wordtodisp = completionDictionary[0];
+			if ( strcmp(wordtodisp,wordToFind) != 0)
+			{
+				backup_line = (char *) MALLOC (sizeof(char)*(strlen (cur_line) +strlen (wordtodisp)+ 1));
+				if (backup_line) strcpy (backup_line , cur_line);
+				
+				backup_line[strlen (cur_line) - strlen(wordToFind)] = '\0';
+				
+				doNewLine(FALSE);
+				fputs ("\n", stdout);
+				redraw_line((char*)prompt);
+				strcat(backup_line,wordtodisp);
+				strcpy(cur_line,backup_line);
+				fputs (cur_line, stdout);
+				cur_pos = strlen(cur_line);
+				max_pos = strlen(cur_line);
+				FREE(backup_line);
+			}
+		}
+		else
+		{
+			int i = 0;
+			backup_line = (char *) MALLOC (sizeof(char)*(strlen (cur_line) + 1));
+			if (backup_line) strcpy (backup_line , cur_line);
+			
+			doNewLine(FALSE);
+			fputs ("\n", stdout);
+			for(i= 0;i<sizeCompletionDictionary;i++)
+			{
+				int b=getColumnsSize();
+				int newlenLine = lenCurrentLine + strlen(completionDictionary[i]) + strlen(" ");
+				if ( newlenLine >= (getColumnsSize() - 10) )
+				{
+					fputs ("\n", stdout);
+					lenCurrentLine = 0;
+				}
+				else
+				{
+					lenCurrentLine = newlenLine;
+				}
+				
+				fputs (completionDictionary[i], stdout);
+				fputs (" ", stdout);
+				
+			}
+			fputs ("\n", stdout);
+			lenCurrentLine = 0;
+			
+			redraw_line((char*)prompt);
+			strcpy(cur_line,backup_line);
+			fputs (cur_line, stdout);
+			cur_pos = strlen(cur_line);
+			max_pos = strlen(cur_line);
+			FREE(backup_line);
+		}
+		freeArrayOfString(completionDictionary,sizeCompletionDictionary);
+	}
 }
 /*--------------------------------------------------------------------------*/

@@ -1,0 +1,5 @@
+LIBRARY    scicompletion.dll
+
+
+EXPORTS
+completion

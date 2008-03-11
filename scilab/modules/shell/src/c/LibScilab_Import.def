@@ -21,3 +21,4 @@ createvar_
 createvarfromptr_
 GetCurrentPrompt
 set_is_reading
+freeArrayOfString
