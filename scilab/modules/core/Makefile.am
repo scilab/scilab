@@ -193,8 +193,7 @@ src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
 src/fortran/isinstring.f \
-src/fortran/promptecho.f \
-src/fortran/getlin.f
+src/fortran/promptecho.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
