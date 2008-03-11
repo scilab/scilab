@@ -953,8 +953,10 @@ install-html-local:
 					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 				done ; \
-				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
+					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+				done ; \
 			fi; \
 		fi; \
 	done

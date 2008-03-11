@@ -1428,8 +1428,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @PVM_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @PVM_TRUE@				done ; \
-@PVM_TRUE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_TRUE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_TRUE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
+@PVM_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_TRUE@				done ; \
 @PVM_TRUE@			fi; \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
@@ -1589,8 +1591,10 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @PVM_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @PVM_FALSE@				done ; \
-@PVM_FALSE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_FALSE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_FALSE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
+@PVM_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_FALSE@				done ; \
 @PVM_FALSE@			fi; \
 @PVM_FALSE@		fi; \
 @PVM_FALSE@	done

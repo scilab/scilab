@@ -921,8 +921,10 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @TCLTK_TRUE@				done ; \
-@TCLTK_TRUE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_TRUE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
+@TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@				done ; \
 @TCLTK_TRUE@			fi; \
 @TCLTK_TRUE@		fi; \
 @TCLTK_TRUE@	done
@@ -1082,8 +1084,10 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @TCLTK_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @TCLTK_FALSE@				done ; \
-@TCLTK_FALSE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_FALSE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_FALSE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
+@TCLTK_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_FALSE@				done ; \
 @TCLTK_FALSE@			fi; \
 @TCLTK_FALSE@		fi; \
 @TCLTK_FALSE@	done

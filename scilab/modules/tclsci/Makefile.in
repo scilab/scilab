@@ -1452,8 +1452,10 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @TCLTK_TRUE@				done ; \
-@TCLTK_TRUE@				echo "$(INSTALL_DATA) $(HELP_CHAPTERFILE) $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_TRUE@				$(INSTALL_DATA) "$(HELP_CHAPTERFILE)" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
+@TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@TCLTK_TRUE@				done ; \
 @TCLTK_TRUE@			fi; \
 @TCLTK_TRUE@		fi; \
 @TCLTK_TRUE@	done
