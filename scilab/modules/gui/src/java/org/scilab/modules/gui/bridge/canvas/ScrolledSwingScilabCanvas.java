@@ -182,9 +182,9 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	public int[] getViewingRegion() {
 		Rectangle viewport = getViewport().getViewRect();
 		int[] res = {(int) viewport.getX(),
-					 (int) viewport.getY(),
-					 (int) viewport.getWidth(),
-					 (int) viewport.getHeight()};
+				(int) viewport.getY(),
+				(int) viewport.getWidth(),
+				(int) viewport.getHeight()};
 		return res;
 	}
 
@@ -262,6 +262,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 * @param command the name of the Scilab function to call
 	 */
 	public void setEventHandler(String funName) {
+		disableEventHandler();
 		eventHandler = new ScilabEventListener(funName, getFigureIndex());
 	}
 
@@ -286,8 +287,10 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	}
 
 	private void disableEventHandler() {
-		canvas.removeKeyListener(eventHandler);
-		canvas.removeMouseListener(eventHandler);
-		canvas.removeMouseMotionListener(eventHandler);
+		if (eventHandler != null) {
+			canvas.removeKeyListener(eventHandler);
+			canvas.removeMouseListener(eventHandler);
+			canvas.removeMouseMotionListener(eventHandler);
+		}
 	}
 }
