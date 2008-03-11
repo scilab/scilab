@@ -16,5 +16,5 @@
 //
 
 if grep("2" ,"/2(]*)?$\1/" ,"r")       <> 1      then pause, end
-if or( regexp("xabyabbbz","/ab*/","r") <> [2 5]) then pause, end
+if or( regexp("xabyabbbz","/ab*/")     <> [2 5]) then pause, end
 if strindex("2","/2(]*)?$\1/" ,"r")    <> 1      then pause, end
