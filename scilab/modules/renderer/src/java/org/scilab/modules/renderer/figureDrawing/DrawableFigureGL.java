@@ -22,7 +22,6 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
-import org.scilab.modules.renderer.arcDrawing.FastArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.ObjectGLCleaner;
@@ -35,8 +34,6 @@ import org.scilab.modules.renderer.ObjectGLCleaner;
  * @author Jean-Baptiste Silvy
  */
 public class DrawableFigureGL extends ObjectGL {
-	
-	private static final double EPSILON = 0.01;
 	
 	/** Mapping between scilab pixel drawing mode and OpenGL ones */
 	private static final int[] LOGICAL_OPS = {GL.GL_CLEAR,
@@ -110,33 +107,19 @@ public class DrawableFigureGL extends ObjectGL {
 	public void setDefaultArcRendererFactory() {
 		arcRendererFactory = new NurbsArcRendererFactory();
 	}
-	
-	/**
-	 * Set .OR. get if the rendering is enable for this figure.
-	 * @param setMode if true act as a set function, if false act a get function
-	 * @param isEnable when in set mode, specify the new value for rendering
-	 * @return if in get mode return the current rendering value
-	 */
-	private synchronized boolean isRenderingEnable(boolean setMode, boolean isEnable) {
-		if (setMode) {
-			isReadyForRendering = isEnable;
-		}
-		return isReadyForRendering;
-	}
-	
 	/**
 	 * Specify a new state for the rendering enable mode
 	 * @param isEnalbe if true figure can no be rendered
 	 */
-	public void setIsRenderingEnable(boolean isEnalbe) {
-		isRenderingEnable(true, isEnalbe);
+	public synchronized void setIsRenderingEnable(boolean isEnalbe) {
+		isReadyForRendering = isEnalbe;
 	}
 	
 	/**
 	 * @return true if the figure can be rendered, false otherwise
 	 */
-	public boolean getIsRenderingEnable() {
-		return isRenderingEnable(false, false);
+	public synchronized boolean getIsRenderingEnable() {
+		return isReadyForRendering;
 	}
 	
 	/**
@@ -144,11 +127,9 @@ public class DrawableFigureGL extends ObjectGL {
 	 * @param figureId new figure Id
 	 */
 	public void setFigureIndex(int figureId) {
-		if (FigureMapper.containsFigure(this)) {
-			FigureMapper.removeMapping(this.figureId);
-		}
-		this.figureId = figureId;
+		// a chack will be performed to see if the figure is alredy here
 		FigureMapper.addMapping(figureId, this);
+		this.figureId = figureId;
 	}
 	
 	/**

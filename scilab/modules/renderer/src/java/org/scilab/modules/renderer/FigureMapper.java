@@ -55,15 +55,18 @@ public final class FigureMapper {
 	 * @param figureId id of the figure
 	 * @param figure corresponding figure
 	 */
-	public static void addMapping(int figureId, DrawableFigureGL figure) {
-		MAPPER.put(figureId, figure);
+	public static synchronized void addMapping(int figureId, DrawableFigureGL figure) {
+		// chack if the figure is not already in the list
+		if (!containsFigure(figure)) {
+			MAPPER.put(figureId, figure);
+		}
 	}
 	
 	/**
 	 * Remove a canvas from the mapping
 	 * @param figureId id of the figure
 	 */
-	public static void removeMapping(int figureId) {
+	public static synchronized void removeMapping(int figureId) {
 		MAPPER.remove(figureId);
 	}
 	
@@ -72,7 +75,7 @@ public final class FigureMapper {
 	 * @param figureId id of the figure
 	 * @return the corresponding canvas
 	 */
-	public static DrawableFigureGL getCorrespondingFigure(int figureId) {
+	public static synchronized DrawableFigureGL getCorrespondingFigure(int figureId) {
 		return MAPPER.get(figureId);
 	}
 	
@@ -81,7 +84,7 @@ public final class FigureMapper {
 	 * @param figure figure object to be searched
 	 * @return true if the figure already exists in the hashmap, false otherwise
 	 */
-	public static boolean containsFigure(DrawableFigureGL figure) {
+	public static synchronized boolean containsFigure(DrawableFigureGL figure) {
 		return MAPPER.containsValue(figure);
 	}
 	
