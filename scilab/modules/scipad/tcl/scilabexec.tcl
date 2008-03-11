@@ -370,8 +370,8 @@ proc isscilabbusy {{messagenumber "nomessage"} args} {
 proc scilaberror {funnameargs} {
     global ScilabErrorMessageBox
     global errnum errline errmsg errfunc
-# Bruno : Communication between Scipad and Scilab through
-# TCL global interp is not a clever idea...
+    # Bruno : Communication between Scipad and Scilab through
+    # TCL global interp is not a clever idea...
     ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
     ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
     ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
@@ -387,7 +387,6 @@ proc scilaberror {funnameargs} {
                                                                       ,\"\[\",\"\\\[\") \
                                                                       ,\"\]\",\"\\\]\") \
                                                     , \"scipad\" )" "sync" "seq"
-    ScilabEval_lt "flush"
     if {$ScilabErrorMessageBox} {
         tk_messageBox -title [mc "Scilab execution error"] \
           -message [concat [mc "The shell reported an error while trying to execute "]\
