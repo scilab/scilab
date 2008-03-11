@@ -64,21 +64,21 @@ public class CoordinateTransformation {
 	/**
 	 * @return current projection matrix
 	 */
-	public Matrix4D getProjectionMatrix() {
+	public synchronized Matrix4D getProjectionMatrix() {
 		return projectMatrix;
 	}
 	
 	/**
 	 * @return current inverse of projection matrix
 	 */
-	public Matrix4D getUnprojectMatrix() {
+	public synchronized Matrix4D getUnprojectMatrix() {
 		return unprojectMatrix;
 	}
 	
 	/**
 	 * @return current viewPort
 	 */
-	public double[] getViewPort() {
+	public synchronized double[] getViewPort() {
 		return viewPort;
 	}
 	
@@ -86,7 +86,7 @@ public class CoordinateTransformation {
 	 * Update the projection data of the coordinates.
 	 * @param gl current Gl pipeline
 	 */
-	public void update(GL gl) {
+	public synchronized void update(GL gl) {
 		// get OpenGL transformation matrices
 		double[] oglModelViewMatrix = new double[MATRIX_4X4_SIZE];
 		double[] oglProjectionMatrix = new double[MATRIX_4X4_SIZE];
@@ -136,7 +136,7 @@ public class CoordinateTransformation {
 	 * @param pos scene position
 	 * @return pixel coordinate of the point.
 	 */
-	public Vector3D project(GL gl, Vector3D pos) {
+	public synchronized Vector3D project(GL gl, Vector3D pos) {
 		Vector3D canvasCoord = projectMatrix.mult(pos);
 		canvasCoord.setX(viewPort[0] + viewPort[2] * (canvasCoord.getX() + 1.0) / 2.0);
 		canvasCoord.setY(viewPort[1] + viewPort[VIEW_PORT_SIZE - 1] * (canvasCoord.getY() + 1.0) / 2.0);
@@ -150,7 +150,7 @@ public class CoordinateTransformation {
 	 * @param canvasPos canvas position
 	 * @return scene coordinate of the point
 	 */
-	public Vector3D unProject(GL gl, Vector3D canvasPos) {
+	public synchronized Vector3D unProject(GL gl, Vector3D canvasPos) {
 		Vector3D sceneCoord 
 			= new Vector3D(2.0 * (canvasPos.getX() - viewPort[0]) / viewPort[2] - 1.0,
 						   2.0 * (canvasPos.getY() - viewPort[1]) / viewPort[VIEW_PORT_SIZE - 1] - 1.0,

@@ -44,7 +44,7 @@ public class ObjectGLCleaner {
 	 * Add an obkect in the list of objects which will be destroyed
 	 * @param obj object to add.
 	 */
-	public void addObjectToDestroy(ObjectGL obj) {
+	public synchronized void addObjectToDestroy(ObjectGL obj) {
 		destroyedObjects.add(obj);
 	}
 	
@@ -53,7 +53,7 @@ public class ObjectGLCleaner {
 	 * Should be called within OpenGL context
 	 * @param parentFigureIndex index of the figure containing this objects
 	 */
-	public void destroyAll(int parentFigureIndex) {
+	public synchronized void destroyAll(int parentFigureIndex) {
 		ListIterator<ObjectGL> it = destroyedObjects.listIterator();
 		
 		while (it.hasNext()) {
