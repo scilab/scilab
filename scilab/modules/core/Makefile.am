@@ -80,16 +80,15 @@ src/c/freeArrayOfString.c \
 src/c/getstaticdebuginfo.c \
 src/c/getdynamicdebuginfo.c \
 src/c/gw_dynamic_scicos.c \
-src/c/callDynamicGateway.c
+src/c/callDynamicGateway.c \
+src/c/getlin.c
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
-src/fortran/complexify.f \
 src/fortran/allowptr.f \
 src/fortran/dldsp.f \
 src/fortran/bcol.f \
-src/fortran/getlin.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \

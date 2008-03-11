@@ -144,23 +144,23 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-getstaticdebuginfo.lo \
 	libscicore_la-getdynamicdebuginfo.lo \
 	libscicore_la-gw_dynamic_scicos.lo \
-	libscicore_la-callDynamicGateway.lo
-am__objects_2 = algebre.lo clunit.lo complexify.lo allowptr.lo \
-	dldsp.lo bcol.lo getlin.lo isany.lo hmcreate.lo nextj.lo \
-	functionsforbasout.lo setgetmode.lo showstack.lo misops.lo \
-	iseye.lo chkvar.lo setippty.lo compil.lo funnam.lo isnum.lo \
-	cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo \
-	folhp.lo cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo \
-	prompt.lo intstr.lo createref.lo btof.lo matzs.lo getnum.lo \
-	btofm.lo getsym.lo findequal.lo stackg.lo find.lo israt.lo \
-	setlnb.lo mrknmd.lo stackgl.lo allops.lo print.lo mname.lo \
-	prntid.lo command.lo ref2val.lo namstr.lo stack.lo isbrk.lo \
-	majmin.lo dmdspf.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo \
-	getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo \
-	whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo sigbas.lo \
-	indxg.lo matz.lo istrue.lo inisci.lo ptover.lo getfunction.lo \
-	stackp.lo dbasin.lo macro.lo lspdsp.lo extlarg.lo getstr.lo \
-	cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
+	libscicore_la-callDynamicGateway.lo libscicore_la-getlin.lo
+am__objects_2 = algebre.lo clunit.lo allowptr.lo dldsp.lo bcol.lo \
+	isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
+	setgetmode.lo showstack.lo misops.lo iseye.lo chkvar.lo \
+	setippty.lo compil.lo funnam.lo isnum.lo cmdstr.lo logops.lo \
+	atome.lo hndlops.lo cmplxt.lo skpins.lo folhp.lo cvname.lo \
+	funs.lo fact.lo inibrk.lo typ2cod.lo prompt.lo intstr.lo \
+	createref.lo btof.lo matzs.lo getnum.lo btofm.lo getsym.lo \
+	findequal.lo stackg.lo find.lo israt.lo setlnb.lo mrknmd.lo \
+	stackgl.lo allops.lo print.lo mname.lo prntid.lo command.lo \
+	ref2val.lo namstr.lo stack.lo isbrk.lo majmin.lo dmdspf.lo \
+	xerbla.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo \
+	error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo \
+	defmat.lo mklist.lo dmdsp.lo sigbas.lo indxg.lo matz.lo \
+	istrue.lo inisci.lo ptover.lo getfunction.lo stackp.lo \
+	dbasin.lo macro.lo lspdsp.lo extlarg.lo getstr.lo cvwm.lo \
+	storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
 	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
 	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
 	itosci.lo formatnumber.lo wmdsp.lo stackr2d.lo stacki2d.lo \
@@ -496,15 +496,14 @@ src/c/freeArrayOfString.c \
 src/c/getstaticdebuginfo.c \
 src/c/getdynamicdebuginfo.c \
 src/c/gw_dynamic_scicos.c \
-src/c/callDynamicGateway.c
+src/c/callDynamicGateway.c \
+src/c/getlin.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
-src/fortran/complexify.f \
 src/fortran/allowptr.f \
 src/fortran/dldsp.f \
 src/fortran/bcol.f \
-src/fortran/getlin.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \
@@ -989,6 +988,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getcommandlineargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getdynamicdebuginfo.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getlin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmodules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getstaticdebuginfo.Plo@am__quote@
@@ -1621,6 +1621,13 @@ libscicore_la-callDynamicGateway.lo: src/c/callDynamicGateway.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-callDynamicGateway.lo `test -f 'src/c/callDynamicGateway.c' || echo '$(srcdir)/'`src/c/callDynamicGateway.c
 
+libscicore_la-getlin.lo: src/c/getlin.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getlin.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getlin.Tpo -c -o libscicore_la-getlin.lo `test -f 'src/c/getlin.c' || echo '$(srcdir)/'`src/c/getlin.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-getlin.Tpo $(DEPDIR)/libscicore_la-getlin.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getlin.c' object='libscicore_la-getlin.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getlin.lo `test -f 'src/c/getlin.c' || echo '$(srcdir)/'`src/c/getlin.c
+
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_stacksize.Tpo $(DEPDIR)/libscicore_la-sci_stacksize.Plo
@@ -2070,9 +2077,6 @@ algebre.lo: src/fortran/algebre.f
 clunit.lo: src/fortran/clunit.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o clunit.lo `test -f 'src/fortran/clunit.f' || echo '$(srcdir)/'`src/fortran/clunit.f
 
-complexify.lo: src/fortran/complexify.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o complexify.lo `test -f 'src/fortran/complexify.f' || echo '$(srcdir)/'`src/fortran/complexify.f
-
 allowptr.lo: src/fortran/allowptr.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o allowptr.lo `test -f 'src/fortran/allowptr.f' || echo '$(srcdir)/'`src/fortran/allowptr.f
 
@@ -2081,9 +2085,6 @@ dldsp.lo: src/fortran/dldsp.f
 
 bcol.lo: src/fortran/bcol.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bcol.lo `test -f 'src/fortran/bcol.f' || echo '$(srcdir)/'`src/fortran/bcol.f
-
-getlin.lo: src/fortran/getlin.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o getlin.lo `test -f 'src/fortran/getlin.f' || echo '$(srcdir)/'`src/fortran/getlin.f
 
 isany.lo: src/fortran/isany.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isany.lo `test -f 'src/fortran/isany.f' || echo '$(srcdir)/'`src/fortran/isany.f
