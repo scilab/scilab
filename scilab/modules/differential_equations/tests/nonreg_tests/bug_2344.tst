@@ -37,6 +37,9 @@ ml      = 1;
 mu      = 1;
 info(3) =[ml,mu];
 
+// recorded message is cleared. if we have one ...
+lasterror(%t);
+
 execstr("yy0=dassl([y0,y0d],t0,t,dres1,info);","errcatch");
 error_str = lasterror();
 if error_str <> []  then pause,end
