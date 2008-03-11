@@ -5,6 +5,7 @@ EXPORTS
 ; --------------------------------------- 
 ; linear_algebra_f
 ; --------------------------------------- 
+    complexify_
 	bschur_
 	dgelsy1_
 	zgelsy1_

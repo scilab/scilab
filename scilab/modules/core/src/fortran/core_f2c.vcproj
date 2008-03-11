@@ -407,10 +407,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\complexify.c"
-				>
-			</File>
-			<File
 				RelativePath=".\copyvar.c"
 				>
 			</File>
@@ -988,10 +984,6 @@
 			</File>
 			<File
 				RelativePath=".\compil.f"
-				>
-			</File>
-			<File
-				RelativePath=".\complexify.f"
 				>
 			</File>
 			<File
