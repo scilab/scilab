@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
+ * Copyright (C) 2008-2008 - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,21 +17,14 @@
 #include "machine.h"
 
 /*
- * Checks if there's something on the 
- * commandQueue 
+ * Checks if there's something on the
+ * commandQueue
  * @return
  */
 integer ismenu(void);
 
 /**
- * @TODO : add comment
- *
- * @param flag  
- */
-void SetCommandflag(int flag);
-
-/**
- * try to execute a command or add it to the end of command queue 
+ * try to execute a command or add it to the end of command queue
  *
  * @param command the command
  * @return <ReturnValue>
@@ -38,18 +32,18 @@ void SetCommandflag(int flag);
 int StoreCommand (char *command);
 
 /**
- * try to execute a command or add it to the end of command queue 
- * 
+ * try to execute a command or add it to the end of command queue
+ *
  * @param command the command
- * @param flag set to 1 to show the command in Scilab console
+ * @param flag a internal execution flag for sequential execution
  * @return <ReturnValue>
  */
-int StoreCommand1 (char *command, int flag);
+int StoreCommandWithFlag (char *command, int flag);
 
 /**
  * @TODO add comment
  *
- * @param str   
+ * @param str
  * @return <ReturnValue>
  */
 int GetCommand (char *str);

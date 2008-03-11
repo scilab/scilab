@@ -25,14 +25,8 @@
 /*
  *  Command queue functions
  *  This function is used to store Scilab command in a queue
- *  ( the queue is checked in the Scilab Event Loop )
- *  The queue is filled by the function related to dynamic buttons and menus
- *  One can also set a handler to deal with the commands
- *  if he wants to bypass the queue
  *
- *  PUBLIC : set_scig_command_handler(Scig_command_handler f)
- *           void reset_scig_command_handler()
- *           int StoreCommand( char *command)
+ *  PUBLIC : int StoreCommand( char *command)
  *           integer C2F(ismenu)()
  *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
  */
@@ -44,7 +38,6 @@
 	#define IMPORT_SIGNAL extern
 #endif
 
-typedef int (*Scig_command_handler) __PARAMS((char *));
 typedef struct commandRec
 {
   char              *command;		/* command info one string two integers */
@@ -52,10 +45,6 @@ typedef struct commandRec
   struct commandRec *next;
 } CommandRec, *CommandRecPtr;
 /*--------------------------------------------------------------------------*/
-int  scig_command_handler_none (char *command);
-extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_handler f));
-extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));
-extern void  reset_scig_command_handler __PARAMS((void));
 extern void write_scilab  __PARAMS((char *s));
 
 /*
@@ -68,60 +57,25 @@ extern BOOL IsToThePrompt(void);
 #endif /*_MSC_VER*/
 /*--------------------------------------------------------------------------*/
 static CommandRec *commandQueue = NULL;
-static Scig_command_handler scig_command_handler = scig_command_handler_none;
-/*--------------------------------------------------------------------------*/
-/*
- * changing the default command handler
- */
-/*--------------------------------------------------------------------------*/
-int  scig_command_handler_none (char *command)
-{
-  return 0;
-}
-/*--------------------------------------------------------------------------*/
-Scig_command_handler set_scig_command_handler (Scig_command_handler f)
-{
-  Scig_command_handler old = scig_command_handler;
-  scig_command_handler = f;
-  return old;
-}
-/*--------------------------------------------------------------------------*/
-void reset_scig_command_handler ()
-{
-  scig_command_handler = scig_command_handler_none;
-}
+static __threadLock commandQueueSingleAccess;
 /*--------------------------------------------------------------------------*/
 int StoreCommand ( char *command)
 {
-  return (StoreCommand1 (command, 0));
+  return (StoreCommandWithFlag (command, 0));
 }
 /*--------------------------------------------------------------------------*/
 /*
  * try to execute a command or add it to the end of command queue
  * flag = 0 : the command is not shown in scilab window
- * flag = 1 : the command is shown in scilab window (if at prompt)
+ * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
 /*--------------------------------------------------------------------------*/
-int StoreCommand1 (char *command,int flag)
+int StoreCommandWithFlag (char *command,int flag)
 {
 #ifdef _MSC_VER
   //if ( (flag == 1) && ( !IsToThePrompt () ) ) flag=0;
 #endif
-  switch (flag)
-    {
-    case 1: /* the command is shown in scilab window (if at prompt) */
-      {
-	//write_scilab (command);
-	return (0);
-      }
-      break;
-    case 0:
-    default : /* the command is not shown in Scilab */
-      {
-	CommandRec *p, *q, *r;
-
-	/** first check if we have a special handler set for commands **/
-	if (scig_command_handler (command) == 1)  return 0;
+  CommandRec *p, *q, *r;
 
 	p = (CommandRec *) MALLOC (sizeof (CommandRec));
 	if (p == (CommandRec *) 0)
@@ -129,7 +83,7 @@ int StoreCommand1 (char *command,int flag)
 	    sciprint(_("%s: No more memory.\n"),"send_command");
 	    return (1);
 	  }
-	p->flag = 0;
+	p->flag = flag;
 	p->command = (char *) MALLOC ((strlen (command) + 1) * sizeof (char));
 	if (p->command == (char *) 0)
 	  {
@@ -142,9 +96,11 @@ int StoreCommand1 (char *command,int flag)
 	if (!commandQueue) commandQueue = p;
 	else
 	  {
+	    __Lock(&commandQueueSingleAccess);
 	    q = commandQueue;
 	    while ((r = q->next))	q = r;
 	    q->next = p;
+	    __UnLock(&commandQueueSingleAccess);
 	  }
 #ifdef _MSC_VER
 	//if (IsToThePrompt ()) write_scilab ("\n");
@@ -154,21 +110,8 @@ int StoreCommand1 (char *command,int flag)
 	//**
 	__Signal(&LaunchScilab);
 	return (0);
-
-	break;
-      }
-    }
 }
 
-void SetCommandflag(int flag)
-{
-  CommandRec *p, *r;
-  if (commandQueue != NULL) {
-    p = commandQueue;
-    while ((r = p->next))	p = r;
-    p->flag=flag;
-  }
-}
 /*--------------------------------------------------------------------------*/
 /*
  * Gets info on the first queue element
@@ -177,27 +120,27 @@ void SetCommandflag(int flag)
 /*--------------------------------------------------------------------------*/
 int GetCommand ( char *str)
 {
-  int flag;
-  flag = 0;
+  int flag = 0;
   if (commandQueue != NULL)
     {
 
       CommandRec *p;
 
-
+      __Lock(&commandQueueSingleAccess);
       p = commandQueue;
       strcpy (str, p->command);
       flag=p->flag;
 
       commandQueue = p->next;
-      FREE (p->command);
+         FREE (p->command);
       FREE (p);
       if (C2F(iop).ddt==-1) {
         if (flag==0) { sciprint_full("   Unqueuing %s - No option\n",str); }
         else         { sciprint_full("   Unqueuing %s - seq\n",str); }
       }
+      __UnLock(&commandQueueSingleAccess);
     }
-  return flag;
+ return flag;
 }
 
 integer ismenu(void)
