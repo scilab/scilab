@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
-  return StoreCommand(command);
+  return StoreCommandWithFlag(command, 1);
 }
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)
