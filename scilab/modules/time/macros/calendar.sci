@@ -48,7 +48,7 @@ function listcal = calendar(varargin)
 	gettext("Dec")];
           
   mth = mths(c(:,2),:);
-  cal=Calendar(c(2),c(1));
+  cal=Calendar(c(1),c(2));
   listcal=list(sprintf('%s %d',mth,c(1)),gettext("   M      Tu     W      Th     F     Sat     Sun"),cal);
 endfunction
 //------------------------------------------------------------------------

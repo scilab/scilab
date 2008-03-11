@@ -48,10 +48,10 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 	if ( IsAScalar(Rhs-1) && IsAScalar(Rhs) )
 	{
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		month=*istk(l1);
+		year=*istk(l1);
 
 		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		year=*istk(l1);
+		month=*istk(l1);
 
 		if ( (year<1800) || (year>3000) )
 		{
