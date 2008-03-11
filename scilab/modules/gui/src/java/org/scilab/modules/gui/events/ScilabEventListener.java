@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,6 +33,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 	private int mouseY = 0;
 	private SciTranslator eventTranslator = new SciTranslator();
 	private boolean freedom = true;
+	private boolean inCanvas = false;
 
 	public ScilabEventListener(String callback, int windowsId) {
 		eventTranslator.setClickAction(SciTranslator.UNMANAGED);
@@ -43,7 +44,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 	private void callScilab() {
 		// @FIXME : choose to send it to scilab or to display it
 		//
-		//InterpreterManagement.putCommandInScilabQueue(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
+		InterpreterManagement.putCommandInScilabQueue(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
 		//
 		//System.err.println(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
 	}
@@ -51,33 +52,35 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 	private void invokeScilab() {
 		// @FIXME : choose to send it to scilab or to display it
 		//
-		//InterpreterManagement.putCommandInScilabQueue(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
+		InterpreterManagement.putCommandInScilabQueue(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
 		//
 		//System.err.println(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
-	}	
+	}
 
 	public void keyPressed(KeyEvent keyEvent) {
-		if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
-			eventTranslator.setClickAction(SciTranslator.javaKey2Scilab(keyEvent.getKeyChar(), keyEvent.isControlDown()));
-			callScilab();
-		} 
-		else {
-			int keyChar;
-			if (keyEvent.isShiftDown()) {
-				keyChar = keyEvent.getKeyCode();
-			} 
-			else {
-				keyChar = Character.toLowerCase(keyEvent.getKeyCode());
+		if (inCanvas) {
+			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
+				eventTranslator.setClickAction(SciTranslator.javaKey2Scilab(keyEvent.getKeyChar(), keyEvent.isControlDown()));
 				callScilab();
 			}
-			eventTranslator.setClickAction(SciTranslator.javaKey2Scilab(keyChar,
-					keyEvent.isControlDown()));
-			callScilab();
+			else {
+				int keyChar;
+				if (keyEvent.isShiftDown()) {
+					keyChar = keyEvent.getKeyCode();
+				}
+				else {
+					keyChar = Character.toLowerCase(keyEvent.getKeyCode());
+					callScilab();
+				}
+				eventTranslator.setClickAction(SciTranslator.javaKey2Scilab(keyChar,
+						keyEvent.isControlDown()));
+				callScilab();
+			}
 		}
 	}
 
 	public void keyReleased(KeyEvent arg0) {
-		if(eventTranslator.getClickAction() != SciTranslator.UNMANAGED) {
+		if(inCanvas && eventTranslator.getClickAction() != SciTranslator.UNMANAGED) {
 			eventTranslator.setClickAction(-eventTranslator.getClickAction());
 			callScilab();
 			eventTranslator.setClickAction(SciTranslator.UNMANAGED);
@@ -97,9 +100,9 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 							arg0.getButton(),
 							SciTranslator.CLICKED,
 							arg0.isControlDown()));
-		} 
+		}
 		else {
-			/* Means mouseEvent.getClickCount() >= 2 */ 
+			/* Means mouseEvent.getClickCount() >= 2 */
 			eventTranslator.setClickAction(
 					SciTranslator.javaButton2Scilab(
 							arg0.getButton(),
@@ -109,15 +112,15 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 			synchronized (eventTranslator) {
 				eventTranslator.notify();
 			}
-		}		
+		}
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
-		// Do nothing !!!
+		inCanvas = true;
 	}
 
 	public void mouseExited(MouseEvent arg0) {
-		// Do nothing !!!
+		inCanvas = false;
 	}
 
 	public void mousePressed(MouseEvent arg0) {
