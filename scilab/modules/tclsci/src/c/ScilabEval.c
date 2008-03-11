@@ -151,15 +151,14 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	}
       else
 	{
-	  /* seq or no option */
-	  StoreCommand(command);
-
 	  if ( (argv[2] != (char *)0) && (strncmp(argv[2],"seq",3)==0) )
 	    {
-	      SetCommandflag(1);
+	      StoreCommandWithFlag(command, 1);
 	    }
 	  else
 	    {
+	      /* seq or no option */
+	      StoreCommand(command);
 	      /* unknown option */
 	      Tcl_SetResult(theinterp,NULL,NULL);
 	    }
