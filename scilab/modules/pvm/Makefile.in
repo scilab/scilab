@@ -1423,7 +1423,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	for dir in $(DOCDIRS) ; do \
 @PVM_TRUE@		if test -d $$dir; then \
 @PVM_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@PVM_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
 @PVM_TRUE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 @PVM_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @PVM_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
@@ -1586,7 +1586,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	for dir in $(DOCDIRS) ; do \
 @PVM_FALSE@		if test -d $$dir; then \
 @PVM_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_FALSE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
+@PVM_FALSE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
 @PVM_FALSE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 @PVM_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @PVM_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
