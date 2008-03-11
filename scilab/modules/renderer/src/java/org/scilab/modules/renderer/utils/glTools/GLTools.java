@@ -62,6 +62,10 @@ public final class GLTools {
 	 * @param thickness thickness of the line to draw
 	 */
 	public static void beginDashMode(GL gl, int lineStyle, float thickness) {
+			
+		// set thickness
+		gl.glLineWidth(thickness);
+		
 		if (lineStyle <= 1 || lineStyle >= STIPPLE_PATTERN.length) {
 			// plain mode, no need to set dash style
 			return;
