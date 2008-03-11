@@ -4,6 +4,7 @@
 #include "stack-def.h" /* for paus */
 #include "texmacs.h"
 #include "prompt.h"
+#include "readline.h"
 
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')
@@ -19,15 +20,12 @@
 static int first=1;
 static int texmacs_mode=0;
 
-
-extern int LineRead();
-
 void settexmacs(void) {
   texmacs_mode=1;
 }
 
 
-int  C2F(intexmacs)(void) {
+int C2F(intexmacs)(void) {
   return texmacs_mode;
 }
 
