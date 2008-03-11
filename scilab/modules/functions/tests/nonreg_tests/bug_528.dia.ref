@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 528 -->
 //
 // <-- Bugzilla URL -->
@@ -24,6 +30,6 @@
 //    Commands:  fun2string(ones)
 //
 //    Enrico SEGRE on Linux version  distribution RH9-i386 with   as window manager
-//0...
+// ...
 execstr("fun2string(ones)","errcatch");
-if lasterror()<>"First argument is incorrect." then bugmes();quit;end
+if lasterror()<> _("Wrong first argument.") then bugmes();quit;end

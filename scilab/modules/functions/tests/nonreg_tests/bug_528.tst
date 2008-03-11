@@ -36,4 +36,4 @@
 // exec("bug528.sce")
 
 execstr("fun2string(ones)","errcatch");
-if lasterror()<>"First argument is incorrect." then pause,end
+if lasterror()<> _("Wrong first argument.") then pause,end
