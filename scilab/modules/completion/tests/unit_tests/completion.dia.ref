@@ -9,7 +9,7 @@ if s < 748 then bugmes();quit;end
 //===============================
 functions1 = completion('%','functions');
 s = size(functions1,'*');
-if s < 19 then bugmes();quit;end
+if s < 17 then bugmes();quit;end
 //===============================
 commands1 = completion('%','commands');
 s = size(commands1,'*');

@@ -16,7 +16,7 @@ if s < 748 then pause,end
 //===============================
 functions1 = completion('%','functions');
 s = size(functions1,'*');
-if s < 19 then pause,end
+if s < 17 then pause,end
 //===============================
 commands1 = completion('%','commands');
 s = size(commands1,'*');
