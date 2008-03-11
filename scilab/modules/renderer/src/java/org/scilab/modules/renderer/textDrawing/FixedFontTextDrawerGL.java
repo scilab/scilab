@@ -42,7 +42,6 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 		stringPos = placeTextGrid(stringPos, textCenterPix, getRotationAngle());
 		drawText(renderer, textMatrix, stringPos);
 		
-		destroyTextRenderer();
 	}
 
 
@@ -70,7 +69,6 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 		Vector3D[] bbox = getBoundingBox(textMatrix);
 		bbox = placeBoundingBox(bbox, textCenterPix, getRotationAngle());
 		
-		destroyTextRenderer();
 		return bbox;
 	}
 
