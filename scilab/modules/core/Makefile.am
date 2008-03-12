@@ -88,7 +88,6 @@ src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
 src/fortran/dldsp.f \
-src/fortran/bcol.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \

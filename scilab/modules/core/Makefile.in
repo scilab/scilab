@@ -146,7 +146,7 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-gw_dynamic_scicos.lo \
 	libscicore_la-callDynamicGateway.lo
 am__objects_2 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
-	bcol.lo isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
+	isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
 	setgetmode.lo showstack.lo misops.lo iseye.lo chkvar.lo \
 	setippty.lo compil.lo funnam.lo isnum.lo cmdstr.lo logops.lo \
 	atome.lo hndlops.lo cmplxt.lo skpins.lo folhp.lo cvname.lo \
@@ -503,7 +503,6 @@ src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
 src/fortran/dldsp.f \
-src/fortran/bcol.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \
@@ -2079,9 +2078,6 @@ allowptr.lo: src/fortran/allowptr.f
 
 dldsp.lo: src/fortran/dldsp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dldsp.lo `test -f 'src/fortran/dldsp.f' || echo '$(srcdir)/'`src/fortran/dldsp.f
-
-bcol.lo: src/fortran/bcol.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bcol.lo `test -f 'src/fortran/bcol.f' || echo '$(srcdir)/'`src/fortran/bcol.f
 
 isany.lo: src/fortran/isany.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isany.lo `test -f 'src/fortran/isany.f' || echo '$(srcdir)/'`src/fortran/isany.f
