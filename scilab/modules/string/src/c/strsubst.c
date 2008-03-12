@@ -155,6 +155,7 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 	replacedString = MALLOC (sizeof(char)*(len+ 1));
 	if (replacedString == NULL) return NULL;
 	strncpy(replacedString,input_string,Output_Start);
+	replacedString[Output_Start]='\0';
 	strcat(replacedString,replacement_string);
 	tail=input_string+Output_End;
 	strcat(replacedString,tail);
