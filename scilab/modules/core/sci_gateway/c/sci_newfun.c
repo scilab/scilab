@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2006 - 2008 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
@@ -12,6 +12,7 @@
  */
 #include "gw_core.h"
 #include "machine.h"
+#include "BOOL.h"
 #include "stack-c.h"
 #include "Funtab.h"
 #include "IsAScalar.h"
@@ -43,13 +44,40 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 		{
 			if (Is_a_correct_function_name(VarName))
 			{
+				BOOL IdAlreadyExist = FALSE;
 				int id[nsiz];
-				int zero=0;
-				int fptr=nameptr;
-				int job = SCI_HFUNCTIONS_ENTER;
+				int i = 0;
+				int zero = 0;
+				int fptr = nameptr;
+				int job = 0 ;
 
-				C2F(cvname)(id,VarName,&zero,(unsigned long)strlen(VarName));
+				/* initialize id */
+				for(i = 0; i < nsiz; i++) id[i] = 0;
+
+				/* checks in functions table that nameptr exists */
+				job = SCI_HFUNCTIONS_BACKSEARCH;
 				C2F(funtab)(id,&fptr,&job,VarName,(unsigned long)strlen(VarName));
+
+				for(i = 0; i < nsiz; i++) 
+				{
+					if ( id[i] != 0 )
+					{
+						IdAlreadyExist = TRUE;
+						break;
+					}
+				}
+
+				if (IdAlreadyExist) /* nameptr exists */
+				{
+					C2F(cvname)(id,VarName,&zero,(unsigned long)strlen(VarName));
+					job = SCI_HFUNCTIONS_ENTER;
+					C2F(funtab)(id,&fptr,&job,VarName,(unsigned long)strlen(VarName));
+				}
+				else
+				{
+					Scierror(999,_("%s: Invalid \"nameptr\" value.\n"),fname);
+					return 0;
+				}
 
 				LhsVar(1)=0;
 				PutLhsVar();
