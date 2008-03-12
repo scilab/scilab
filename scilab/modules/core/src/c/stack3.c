@@ -766,3 +766,183 @@ int getlengthchain(char *namex)
 	return nlr1;
 }
 /*--------------------------------------------------------------------------*/
+/**
+	returns 1 if the variable is complex else 0
+*/
+int iIsComplex(int _iVar)
+{
+	/*Check if variable are by value or by reference*/
+	int it = 0;
+	int il = iadr(*Lstk(Top - Rhs + _iVar));
+	int iValType = *istk(il);
+
+	if( iValType < 0)
+	{//by reference
+        il = iadr(*istk(il+1));
+	}
+	it = *istk(il + 3);
+
+	//if it > 1 the value is an interger so is not complex
+	if(it > 1)
+		it = 0;
+	return it;
+}
+
+/*--------------------------------------------------------------------------*/
+/**
+	GetRhsPolyVar
+
+	returns array of coeff of polynom matrix
+	example :
+
+	In			: 
+	_iVarNum	: Variable number in the stack
+
+	Out			:
+	_piRows		: Matrix lines
+	_piCols		: Matrix columns
+	_piPow		: Array of max pow for each polymon in the matrix ( size = iRows * iCols )
+	_pdblReal	: Returns array of coeff of polynom matrix ( size = sum of _piPow )
+
+	Warning		: if _pblReal == NULL, this fonction return _piRows and _piCols with good values to allow array of Pow and array of Values.
+*/
+void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
+	int iValType		= *istk(iAddrBase);
+	int iAddrOffset		= 0;
+	int iAddrData		= 0;
+	int iIndex			= 0;
+	int *piToto			= NULL;
+
+	if(iValType < 0)
+	{
+		iAddrBase		= iadr(*istk(iAddrBase + 1));
+		iValType		= *istk(iAddrBase);
+	}
+	piToto				= istk(iAddrBase);
+	*_piRows			= *istk(iAddrBase + 1);
+	*_piCols			= *istk(iAddrBase + 2);
+	*_piVarName			= istk(iAddrBase + 4);
+	iAddrOffset			= iAddrBase + 8; //4 Stack header + 4 variable name
+
+	if(iValType != sci_poly || iIsComplex(1) == TRUE)
+	{
+		//Error bad type of data
+		return;
+	}
+	
+
+	if(_piPow == NULL)
+		return;
+
+	/*Get all offest*/
+	for(iIndex = 0 ; iIndex < *_piRows * *_piCols; iIndex++)
+	{
+		_piPow[iIndex] = *istk(iAddrOffset + iIndex + 1) - *istk(iAddrOffset + iIndex );
+	}
+
+	*_piReal	= sadr(iAddrOffset + 1 + *_piRows * *_piCols);
+}
+
+void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
+	int iValType		= *istk(iAddrBase);
+	int iAddrOffset		= 0;
+	int iAddrData		= 0;
+	int iIndex			= 0;
+	double *toto		= NULL;
+	double toto2		= 0;
+	double toto3		= 0;
+
+	if(iValType < 0)
+	{
+		iAddrBase		= iadr(*istk(iAddrBase + 1));
+		iValType		= *istk(iAddrBase);
+	}
+	*_piRows			= *istk(iAddrBase + 1);
+	*_piCols			= *istk(iAddrBase + 2);
+	*_piVarName			= istk(iAddrBase + 4);
+	iAddrOffset			= iAddrBase + 8; //4 Stack header + 4 variable name
+	if(iValType != sci_poly || iIsComplex(1) == FALSE)
+	{
+		//Error bad type of data
+		return;
+	}
+	
+
+	if(_piPow == NULL)
+		return;
+
+	/*Get all offest*/
+	for(iIndex = 0 ; iIndex < *_piRows * *_piCols; iIndex++)
+	{
+		_piPow[iIndex] = *istk(iAddrOffset + iIndex + 1) - *istk(iAddrOffset + iIndex );
+	}
+
+	*_piReal	= sadr(iAddrOffset + 1 + *_piRows * *_piCols);
+	*_piImg		= sadr(iAddrOffset + 1 + *_piRows * *_piCols) + iArraySum(_piPow, 0, *_piRows * *_piCols);
+}
+
+int iArraySum(int *_piArray, int _iStart, int _iEnd)
+{
+/*
+	if(_iStart == _iEnd)
+		return _piArray[_iEnd];
+	return _piArray[_iEnd] + iArraySum(_piArray, _iStart, _iEnd-1);
+*/
+	int iIndex = 0;
+	int iVal = 0;
+	for(iIndex = 0 ; iIndex < _iEnd ; iIndex++)
+	{
+		iVal += _piArray[iIndex];
+	}
+	return iVal;
+}
+
+/*CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);*/
+void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData)
+{
+	int iIndex			= 0;
+	double* pdblToto	= NULL;
+	int* piToto			= NULL;
+
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iNewVal));
+	int iAddrPtr		= 0;
+	int iAddrData		= 0;
+	piToto				= istk(iAddrBase);
+	*istk(iAddrBase)	= 2;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	*istk(iAddrBase + 3)= 0; // Non complex values
+	memcpy(istk(iAddrBase + 4), *_piVarName, 4 * sizeof(int)); // name of variable ( scilab format )
+
+	iAddrPtr = iAddrBase + 8;
+	*istk(iAddrPtr) = 1;
+	iAddrPtr++;
+	for(iIndex = 0 ; iIndex < _iRows * _iCols ; iIndex++)
+	{
+		*istk(iAddrPtr + iIndex) = _piPow[iIndex] + *istk(iAddrPtr -1 + iIndex);
+	}
+	iAddrData = iAddrBase + (9 + _iRows * _iCols);
+
+
+	for(iIndex = 0 ; iIndex < iArraySum(_piPow, 0, _iRows * _iCols) ; iIndex++)
+	{
+		int iTemp = sadr(iAddrData + iIndex);
+		pdblToto = stk(iTemp);
+		*stk(iTemp) = _pdblRealData[iIndex];
+	}
+	C2F(intersci).ntypes[Top - Rhs + _iNewVal - 1] = '$';
+	Top++;
+
+	*Lstk(3) = sadr(iAddrData + iIndex + 1);
+	pdblToto = stk(*Lstk(3));
+
+}
+
+void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData)
+{
+
+}
