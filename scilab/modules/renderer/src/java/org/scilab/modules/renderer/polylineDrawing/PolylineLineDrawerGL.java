@@ -45,7 +45,6 @@ public class PolylineLineDrawerGL extends LineDrawerGL implements PolylineDrawer
 		GL gl = getGL();
 		
 		// set dash mode
-		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
 		// set color

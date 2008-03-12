@@ -48,7 +48,6 @@ public class FecLineDrawerGL extends LineDrawerGL {
 		
 		GL gl =  getGL();
 		
-		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
 		double[] color = getLineColor();

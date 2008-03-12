@@ -183,8 +183,7 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		double[] color = getLineColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
-		// set dash mode		
-		gl.glLineWidth(getThickness());
+		// set dash mode
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 
 		// push a little bars to the background

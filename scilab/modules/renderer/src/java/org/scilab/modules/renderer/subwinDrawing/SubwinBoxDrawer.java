@@ -268,7 +268,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		GLTools.endPushPolygonsBack(gl);
 		
 		// the concealed line is draw wiht dashes
-		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, 2, getThickness());
 		
 		double[] hiddenColor = getHiddenAxisColor();
@@ -296,7 +295,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		GL gl = getGL();
 		
 		
-		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
 		double[] color = getLineColor();
@@ -319,7 +317,6 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		GL gl = getGL();
 		
 		// set dash mode
-		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
 		double[] color = getLineColor();

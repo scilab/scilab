@@ -126,7 +126,6 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	public void drawGrid(Vector3D[] startingPoints, Vector3D[] middlePoints, Vector3D[] endPoints) {
 		GL gl = getGL();
 		
-		gl.glLineWidth(getGridThickness());
 		GLTools.beginDashMode(gl, 2, getGridThickness());
 		
 		double[] color = getGridColor();

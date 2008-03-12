@@ -46,7 +46,6 @@ public abstract class ArcLineTools extends ArcTools {
 	 */
 	protected void beginRendering(GL gl, int lineStyle, float thickness, double[] color) {
 		
-		gl.glLineWidth(thickness);
 		GLTools.beginDashMode(gl, lineStyle, thickness);
 		
 		// set color

@@ -54,7 +54,6 @@ public class RectangleLineDrawerGL extends LineDrawerGL implements RectangleDraw
 		GL gl = getGL();
 		
 		// set dash mode
-		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
 		// set color

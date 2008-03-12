@@ -58,7 +58,6 @@ public class SegsLineDrawerGL extends LineDrawerGL {
 		int nbSegs = startXCoords.length;
 		GL gl = getGL();
 		
-		gl.glLineWidth(getThickness());
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
 		gl.glBegin(GL.GL_LINES);
