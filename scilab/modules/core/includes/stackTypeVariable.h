@@ -109,4 +109,10 @@
  */
 #define EXTERNAL_DATATYPE "f"
 
+/** @def MATRIX_OF_POLYNOMIAL_DATATYPE
+ * A matrix of polynomial coeff
+ * if the size of the matrix is 1,1, it is a single value
+ */
+#define MATRIX_OF_POLYNOMIAL_DATATYPE "x"
+
 #endif /*__STACKTYPEVARIABLE_H__ */
