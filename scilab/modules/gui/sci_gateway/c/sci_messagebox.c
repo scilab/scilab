@@ -179,10 +179,6 @@ int sci_messagebox(char *fname,unsigned long fname_len)
     {
       setMessageBoxIcon(messageBoxID, getStringMatrixFromStack(iconAdr)[0]);
     }
-  else
-    {
-      setMessageBoxIcon(messageBoxID, strdup("scilab"));
-    }
     
   /* Buttons */
   if (buttonsTextAdr != 0)
