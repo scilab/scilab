@@ -64,7 +64,7 @@ sci_gateway/c/sci_regexp.c
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f
 
-libscistring_la_CFLAGS= \
+libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-Isrc/c \
 	-Iincludes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
