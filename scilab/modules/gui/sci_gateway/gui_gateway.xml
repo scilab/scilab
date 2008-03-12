@@ -32,27 +32,25 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="25" primitiveId="1" primitiveName="x_dialog" />
-<PRIMITIVE gatewayId="25" primitiveId="2" primitiveName="x_message" />
-<PRIMITIVE gatewayId="25" primitiveId="3" primitiveName="x_choose" />
-<PRIMITIVE gatewayId="25" primitiveId="4" primitiveName="x_mdialog" />
-<PRIMITIVE gatewayId="25" primitiveId="5" primitiveName="xchoicesi" />
-<PRIMITIVE gatewayId="25" primitiveId="6" primitiveName="delmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="7" primitiveName="setmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="8" primitiveName="unsetmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="9" primitiveName="xgetfile" />
-<PRIMITIVE gatewayId="25" primitiveId="10" primitiveName="x_message_modeless" />
-<PRIMITIVE gatewayId="25" primitiveId="11" primitiveName="raise_window" />
-<PRIMITIVE gatewayId="25" primitiveId="12" primitiveName="getlookandfeel"/>
-<PRIMITIVE gatewayId="25" primitiveId="13" primitiveName="getinstalledlookandfeels"/>
-<PRIMITIVE gatewayId="25" primitiveId="14" primitiveName="setlookandfeel"/>
-<PRIMITIVE gatewayId="25" primitiveId="15" primitiveName="ClipBoard"/>
-<PRIMITIVE gatewayId="25" primitiveId="16" primitiveName="toolbar"/>
-<PRIMITIVE gatewayId="25" primitiveId="17" primitiveName="uigetdir"/>
-<PRIMITIVE gatewayId="25" primitiveId="18" primitiveName="uicontrol"/>
-<PRIMITIVE gatewayId="25" primitiveId="19" primitiveName="uimenu"/>
-<PRIMITIVE gatewayId="25" primitiveId="20" primitiveName="uipopup"/>
-<PRIMITIVE gatewayId="25" primitiveId="21" primitiveName="x_choose_modeless" />
-<PRIMITIVE gatewayId="25" primitiveId="22" primitiveName="uicontextmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="23" primitiveName="uiwait" />
-<PRIMITIVE gatewayId="25" primitiveId="24" primitiveName="messagebox" />
+<PRIMITIVE gatewayId="25" primitiveId="2" primitiveName="x_choose" />
+<PRIMITIVE gatewayId="25" primitiveId="3" primitiveName="x_mdialog" />
+<PRIMITIVE gatewayId="25" primitiveId="4" primitiveName="xchoicesi" />
+<PRIMITIVE gatewayId="25" primitiveId="5" primitiveName="delmenu" />
+<PRIMITIVE gatewayId="25" primitiveId="6" primitiveName="setmenu" />
+<PRIMITIVE gatewayId="25" primitiveId="7" primitiveName="unsetmenu" />
+<PRIMITIVE gatewayId="25" primitiveId="8" primitiveName="xgetfile" />
+<PRIMITIVE gatewayId="25" primitiveId="9" primitiveName="raise_window" />
+<PRIMITIVE gatewayId="25" primitiveId="10" primitiveName="getlookandfeel"/>
+<PRIMITIVE gatewayId="25" primitiveId="11" primitiveName="getinstalledlookandfeels"/>
+<PRIMITIVE gatewayId="25" primitiveId="12" primitiveName="setlookandfeel"/>
+<PRIMITIVE gatewayId="25" primitiveId="13" primitiveName="ClipBoard"/>
+<PRIMITIVE gatewayId="25" primitiveId="14" primitiveName="toolbar"/>
+<PRIMITIVE gatewayId="25" primitiveId="15" primitiveName="uigetdir"/>
+<PRIMITIVE gatewayId="25" primitiveId="16" primitiveName="uicontrol"/>
+<PRIMITIVE gatewayId="25" primitiveId="17" primitiveName="uimenu"/>
+<PRIMITIVE gatewayId="25" primitiveId="18" primitiveName="uipopup"/>
+<PRIMITIVE gatewayId="25" primitiveId="19" primitiveName="x_choose_modeless" />
+<PRIMITIVE gatewayId="25" primitiveId="20" primitiveName="uicontextmenu" />
+<PRIMITIVE gatewayId="25" primitiveId="21" primitiveName="uiwait" />
+<PRIMITIVE gatewayId="25" primitiveId="22" primitiveName="messagebox" />
 </GATEWAY>

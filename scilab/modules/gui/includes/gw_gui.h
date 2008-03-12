@@ -19,7 +19,6 @@
 int gw_gui(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_x_message) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_x_choice) _PARAMS((char *fname,unsigned long fname_len));
@@ -28,7 +27,6 @@ int sci_setmenu(char *fname,unsigned long fname_len);
 int sci_unsetmenu(char *fname,unsigned long fname_len);
 int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len));
 int sci_uigetdir(char *fname,unsigned long l);
-int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_getlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;
 int C2F(sci_getinstalledlookandfeels) _PARAMS(( char * fname, unsigned long fname_len )) ;

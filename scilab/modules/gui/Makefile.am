@@ -99,7 +99,6 @@ src/jni/SwingScilabMenu.giws.xml \
 src/jni/UIElementMapper.giws.xml
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
-sci_gateway/c/sci_x_message_modeless.c \
 sci_gateway/c/gw_gui.c \
 sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
@@ -107,7 +106,6 @@ sci_gateway/c/sci_raise_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_x_choose_modeless.c \
 sci_gateway/c/sci_xgetfile.c \
-sci_gateway/c/sci_x_message.c \
 sci_gateway/c/sci_unsetmenu.c \
 sci_gateway/c/sci_delmenu.c \
 sci_gateway/c/sci_setmenu.c \

@@ -9,21 +9,18 @@
 
 // @OBSOLETE
 
-function answ=buttondialog(msg,btn,icon)
+function varargout = x_message(msg, buttons)
 
 //warnobsolete("messagebox", "5.1");
 
 rhs = argn(2);
 
-if rhs == 1 then
-  error(msprintf(gettext("%s: Wrong number of input arguments: 2 or 3 expected.\n"), "buttondialog"));
-elseif rhs == 2 then
-  answ = messagebox(msg, "modal", tokens(btn, "|"));
+if rhs==1
+  messagebox(msg, "modal");
+  varargout(1) = [];
 else
-  answ = messagebox(msg, "modal", icon, tokens(btn, "|"));
+  answ = messagebox(msg, "modal", buttons);
+  varargout(1) = answ;
 end
 
-answ = string(answ);
-
 endfunction
-

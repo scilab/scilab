@@ -22,7 +22,6 @@
 static gw_generic_table Tab[]=
 {
 	{C2F(sci_x_dialog),"x_dialog"},
-	{C2F(sci_x_message),"x_message"},
 	{C2F(sci_x_choose),"x_choose"},
 	{C2F(sci_x_mdialog),"x_mdialog"},
 	{C2F(sci_x_choice),"xchoicesi"},
@@ -30,7 +29,6 @@ static gw_generic_table Tab[]=
 	{sci_setmenu,"setmenu"},
 	{sci_unsetmenu,"unsetmenu"},
 	{C2F(sci_xgetfile),"xgetfile"},
-	{C2F(sci_x_message_modeless),"x_message_modeless"},
  	{C2F(sci_raise_window),"raise_window"},
 	{C2F(sci_getlookandfeel),"getlookandfeel"},
 	{C2F(sci_getinstalledlookandfeels),"getinstalledlookandfeels"},
