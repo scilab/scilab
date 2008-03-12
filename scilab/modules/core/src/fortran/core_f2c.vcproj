@@ -359,10 +359,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\bcol.c"
-				>
-			</File>
-			<File
 				RelativePath=".\bexec.c"
 				>
 			</File>
@@ -936,10 +932,6 @@
 			</File>
 			<File
 				RelativePath=".\basnms.f"
-				>
-			</File>
-			<File
-				RelativePath=".\bcol.f"
 				>
 			</File>
 			<File
