@@ -458,27 +458,23 @@ function [Makename,txt]=gen_make(blknam,files,filestan,libs,Makename,ldflags,cfl
   if rhs <= 6 then cflags   = '', end
 
   //** generate Makefile for LCC compilator
-  if with_lcc()==%T then
-
-    txt=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
-    Makename = strsubst(Makename,'/','\')+'.lcc'
-
-  //** generate Makefile for Crosoft compilator
-  elseif getenv('WIN32','NO')=='OK' then
-
-    txt=gen_make_win32(blknam,files,filestan,libs,ldflags,cflags)
-    select COMPILER;
-      case 'VC++' then
-        Makename = strsubst(Makename,'/','\')+'.mak'
-    end
-
-  //** unix case
-  else
-
-    txt=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags)
-
-  end
-
+ 
+   if MSDOS then
+     if findmsvccompiler() <> 'unknown' then 
+       txt=gen_make_win32(blknam,files,filestan,libs,ldflags,cflags);
+       Makename = strsubst(Makename,'/','\')+'.mak';
+     else
+       if findlcccompiler() <> %F then 
+         txt=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags);
+         Makename = strsubst(Makename,'/','\')+'.lcc';
+       end
+     end
+   else
+   	txt=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags);
+   end
+   
+ 
+ 
 endfunction
 
 //** gen_make_unix : generate text of the Makefile
