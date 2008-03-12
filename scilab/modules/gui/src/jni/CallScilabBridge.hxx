@@ -174,6 +174,7 @@ jmethodID voidsetMessageBoxLineLabelsjintjobjectArrayID; // cache method id
 jmethodID voidsetMessageBoxColumnLabelsjintjobjectArrayID; // cache method id
 jmethodID voidsetMessageBoxDefaultInputjintjobjectArrayID; // cache method id
 jmethodID voidsetMessageBoxModaljintjbooleanID; // cache method id
+jmethodID voidsetMessageBoxIconjintjstringID; // cache method id
 jmethodID jbooleanisToolbarVisiblejintID; // cache method id
 jmethodID voidsetToolbarVisiblejintjbooleanID; // cache method id
 jmethodID voidsetEventHandlerjintjstringID; // cache method id
@@ -460,6 +461,8 @@ static void setMessageBoxColumnLabels(JavaVM * jvm_, long id, char ** labels, in
 static void setMessageBoxDefaultInput(JavaVM * jvm_, long id, char ** values, int valuesSize);
 
 static void setMessageBoxModal(JavaVM * jvm_, long id, bool status);
+
+static void setMessageBoxIcon(JavaVM * jvm_, long id, char * name);
 
 static bool isToolbarVisible(JavaVM * jvm_, long figNum);
 

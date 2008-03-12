@@ -575,6 +575,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\messageboxoptions.c"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\PopupMenu.cpp"
 				>
 			</File>
@@ -600,6 +604,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_getlookandfeel.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_messagebox.c"
 				>
 			</File>
 			<File
@@ -1149,6 +1157,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\men_scilab.h"
+				>
+			</File>
+			<File
+				RelativePath=".\messageboxoptions.h"
 				>
 			</File>
 			<File

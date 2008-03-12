@@ -44,6 +44,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_x_choose_modeless),"x_choose_modeless"},
 	{sci_uicontextmenu,"uicontextmenu"},
 	{sci_uiwait,"uiwait"},
+	{sci_messagebox,"messagebox"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

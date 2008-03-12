@@ -223,6 +223,7 @@ voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL;
 voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
 voidsetMessageBoxModaljintjbooleanID=NULL; 
+voidsetMessageBoxIconjintjstringID=NULL; 
 jbooleanisToolbarVisiblejintID=NULL; 
 voidsetToolbarVisiblejintjbooleanID=NULL; 
 voidsetEventHandlerjintjstringID=NULL; 
@@ -373,6 +374,7 @@ voidsetMessageBoxLineLabelsjintjobjectArrayID=NULL;
 voidsetMessageBoxColumnLabelsjintjobjectArrayID=NULL; 
 voidsetMessageBoxDefaultInputjintjobjectArrayID=NULL; 
 voidsetMessageBoxModaljintjbooleanID=NULL; 
+voidsetMessageBoxIconjintjstringID=NULL; 
 jbooleanisToolbarVisiblejintID=NULL; 
 voidsetToolbarVisiblejintjbooleanID=NULL; 
 voidsetEventHandlerjintjstringID=NULL; 
@@ -3546,6 +3548,29 @@ exit(EXIT_FAILURE);
 jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxModaljintjbooleanID ,id, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setMessageBoxIcon (JavaVM * jvm_, long id, char * name){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetMessageBoxIconjintjstringID = curEnv->GetStaticMethodID(cls, "setMessageBoxIcon", "(ILjava/lang/String;)V" ) ;
+if (voidsetMessageBoxIconjintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setMessageBoxIcon" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring name_ = curEnv->NewStringUTF( name );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetMessageBoxIconjintjstringID ,id, name_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

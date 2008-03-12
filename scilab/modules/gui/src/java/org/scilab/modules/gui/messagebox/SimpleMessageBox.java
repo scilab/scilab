@@ -129,4 +129,10 @@ public interface SimpleMessageBox {
 	 * @param status true to set the MessageBox modal and false else
 	 */
 	void setModal(boolean status);
+	
+	/**
+	 * Set the MessageBox icon
+	 * @param name the name of the icon
+	 */
+	void setIcon(String name);
 }

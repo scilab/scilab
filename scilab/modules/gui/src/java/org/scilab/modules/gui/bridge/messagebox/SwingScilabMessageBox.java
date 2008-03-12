@@ -27,6 +27,7 @@ import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -61,6 +62,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private static final int X_MDIALOG_TYPE = 3;
 	private static final int X_CHOICES_TYPE = 4;
 	
+	private static final String SCIDIR = System.getenv("SCI");
+
 	/**
 	 * Offset around object and its ScrollPane
 	 */
@@ -76,7 +79,16 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 */
 	private static final String SEPARATOR = "[--sep--]";
 	
+	/**
+	 * Icons
+	 */
+	private Icon scilabIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/scilab.png");
+	private Icon passwdIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/emblem-readonly.png");
+	private Icon hourglassIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/process-working.png");
+
 	private int elementId;
+	
+	private Icon messageIcon; //= new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
 	
 	private int scilabDialogType = X_MESSAGE_TYPE;
 
@@ -125,8 +137,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 */
 	private String message;
 	private String title;
-	private Image imageForIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage();
-	private int messageType = JOptionPane.QUESTION_MESSAGE;
+	private Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+	private int messageType = -1;
 	private Object[] objs;
 	private Object[] buttons;
 	private boolean modal = true;
@@ -436,19 +448,26 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 				buttons = new Object[1];
 				btnOK.addActionListener(this);
 				buttons[0] = btnOK;
-				messageType = JOptionPane.INFORMATION_MESSAGE;
+				//messageType = JOptionPane.INFORMATION_MESSAGE;
 			} else {
 				buttons = new Object[buttonsLabels.length];
 				for (int buttonNb = 0; buttonNb < buttonsLabels.length; buttonNb++) {
 					JButton currentButton = new JButton(buttonsLabels[buttonNb]);
 					currentButton.addActionListener(this);
-					buttons[buttonNb] = currentButton;
+					buttons[buttonsLabels.length - buttonNb - 1] = currentButton;
 				}
 			}
 		}
 		// Display
 		((JScrollPane) objs[0]).setBorder(BorderFactory.createEmptyBorder());
-		setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
+		if (messageType != -1) {
+			setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
+		} else {
+			if (messageIcon == null) {
+				messageIcon = scilabIcon;
+			}
+			setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, messageIcon, buttons));
+		}
 		pack();
 		super.setModal(modal); /* Must call the JDialog class setModal */
 		setVisible(true);
@@ -682,6 +701,29 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	 */
 	public void setModal(boolean status) {
 		modal = status;
+	}
+
+	
+	/**
+	 * Set the MessageBox icon
+	 * @param name the name of the icon
+	 */
+	public void setIcon(String name) {
+		if (name.equals("error")) {
+			messageType = JOptionPane.ERROR_MESSAGE;
+		} else if (name.equals("hourglass")) {
+			messageIcon = hourglassIcon;
+		} else if (name.equals("info")) {
+			messageType = JOptionPane.INFORMATION_MESSAGE;
+		} else if (name.equals("passwd")) {
+			messageIcon = passwdIcon;
+		} else if (name.equals("question")) {
+			messageType = JOptionPane.QUESTION_MESSAGE;		
+		} else if (name.equals("warning")) {
+			messageType = JOptionPane.WARNING_MESSAGE;			
+		} else {
+			messageIcon = scilabIcon;
+		}
 	}
 
 }

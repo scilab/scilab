@@ -104,4 +104,10 @@ void setMessageBoxModal(int ID, BOOL status)
   CallScilabBridge::setMessageBoxModal(getScilabJavaVM(), ID, status);
 }
 
+void setMessageBoxIcon(int ID, char *name)
+{
+  CallScilabBridge::setMessageBoxIcon(getScilabJavaVM(), ID, name);
+}
+
+
 

@@ -21,7 +21,8 @@ src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
 src/c/CreateUIContextMenu.c \
-src/c/UicontrolStyleToString.c
+src/c/UicontrolStyleToString.c \
+src/c/messageboxoptions.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -120,7 +121,8 @@ sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uicontextmenu.c \
 sci_gateway/c/sci_uimenu.c \
 sci_gateway/c/sci_uiwait.c \
-sci_gateway/c/sci_mpopup.c
+sci_gateway/c/sci_mpopup.c \
+sci_gateway/c/sci_messagebox.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

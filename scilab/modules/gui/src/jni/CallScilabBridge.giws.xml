@@ -442,6 +442,10 @@
             <parameter name="id" type="int"/>
             <parameter name="status" type="boolean"/>
         </method>      
+	<method name="setMessageBoxIcon" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="name" type="String"/>
+        </method>      
 <!-- Toolbar -->
 	<method name="isToolbarVisible" returnType="boolean" modifier="static">      
             <parameter name="figNum" type="int"/>

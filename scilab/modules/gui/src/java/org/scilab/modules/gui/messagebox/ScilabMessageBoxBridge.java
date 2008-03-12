@@ -188,4 +188,13 @@ public class ScilabMessageBoxBridge {
 		messageBox.getAsSimpleMessageBox().setModal(status);
 	}
 
+	/**
+	 * Set the MessageBox icon
+	 * @param messageBox the MessageBox we want to set the icon of
+	 * @param name the name of the icon
+	 */
+	public static void setIcon(MessageBox messageBox, String name) {
+		messageBox.getAsSimpleMessageBox().setIcon(name);
+	}
+
 }

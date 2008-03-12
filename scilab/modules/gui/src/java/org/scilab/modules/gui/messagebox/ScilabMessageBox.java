@@ -242,5 +242,12 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 	public void setModal(boolean status) {
 		ScilabBridge.setModal(this, status);
 	}
-
+	
+	/**
+	 * Set the MessageBox icon
+	 * @param name the name of the icon
+	 */
+	public void setIcon(String name) {
+		ScilabBridge.setIcon(this, name);
+	}
 }

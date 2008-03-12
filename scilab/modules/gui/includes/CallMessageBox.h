@@ -166,5 +166,13 @@ void setMessageBoxDefaultInput(int ID, char** values, int nbValues);
  */
 void setMessageBoxModal(int ID, BOOL status);
 
+/**
+ * Set the MessageBox icon
+ *
+ * @param ID the ID of the MessageBox 
+ * @param name the name of the icon
+ */
+void setMessageBoxIcon(int ID, char *name);
+
 #endif /* !__CALLMESSAGEBOX_H__ */
 

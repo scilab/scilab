@@ -1053,6 +1053,15 @@ public class CallScilabBridge {
 		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setModal(status);
 	}
 	
+	/**
+	 * Set the MessageBox icon
+	 * @param id the id of the MessageBox
+	 * @param name the name of the icon
+	 */
+	public static void setMessageBoxIcon(int id, String name) {
+		((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setIcon(name);
+	}
+	
 	/************************/
 	/*                      */
 	/* OBJECT COLORS BRIDGE */
