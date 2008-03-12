@@ -28,4 +28,10 @@ if MSDOS then
 	if test3 <> "..\Program Files\scilab\readme.txt" then pause,end
 	if test4 <> "..\scilab\readme.txt"               then pause,end
 	
+	if isdir('d:') then
+		cd("d:");
+		test5 = getrelativefilename("D:\","C:\Program Files\scilab\readme.txt");
+		if test5 <> "C:\Program Files\scilab\readme.txt" then pause,end
+	end
+	
 end
