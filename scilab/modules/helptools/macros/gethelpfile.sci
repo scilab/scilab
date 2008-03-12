@@ -69,7 +69,7 @@ function path=genhelpfromfunc(key)
 	execstr('%fun='+key)
 	if type(%fun)==11 then comp(%fun),end
 	if type(%fun)<> 13 then return,end
-	[status,message]=mkdir(TMPDIR,'localman')
+	status=mkdir(TMPDIR,'localman')
 	
 	if and(status<>[1 2]) then return, end
 	if fileinfo(TMPDIR+'/localman/whatis.htm')==[] then
