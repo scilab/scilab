@@ -11,7 +11,6 @@ function [x_out,ka_out,kb_out]=intersect(a_in,b_in)
 // returns the vector of common values of two vectors
 
 	[lhs,rhs]=argn()
-	pause
 	if a_in==[]|b_in==[] then x=[],ka=[],kb=[],return,end
 	[a_in,ka]=unique(a_in(:));
 	[b_in,kb]=unique(b_in(:));
