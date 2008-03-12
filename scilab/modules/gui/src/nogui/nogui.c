@@ -18,7 +18,6 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "nogui.h"
-#include "xscimore.h"
 #include "localization.h"
 #include "core_math.h" /* Max */
 /*--------------------------------------------------------------------------*/
@@ -41,10 +40,6 @@ int XClearScreenConsole(char *fname)
 /*--------------------------------------------------------------------------*/
 int C2F(sxevents)(){
 	return 0;
-}
-/*--------------------------------------------------------------------------*/
-void C2F(xscimore)(int *n){
-	n=0;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(checkevts)(int *i){

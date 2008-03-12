@@ -1152,14 +1152,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\men_choice.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\men_scilab.h"
-				>
-			</File>
-			<File
 				RelativePath=".\messageboxoptions.h"
 				>
 			</File>
@@ -1425,18 +1417,6 @@
 			</File>
 			<File
 				RelativePath="..\jni\UIElementMapper.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\wmen_scilab.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\write_scilab.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\xscimore.h"
 				>
 			</File>
 		</Filter>

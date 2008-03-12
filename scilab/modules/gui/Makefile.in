@@ -729,10 +729,7 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
 #### gui : include files ####
 libscigui_la_includedir = $(pkgincludedir)/gui
-libscigui_la_include_HEADERS = includes/men_choice.h \
-includes/men_scilab.h \
-includes/gw_gui.h \
-includes/wmen_scilab.h \
+libscigui_la_include_HEADERS = includes/gw_gui.h \
 includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
@@ -805,7 +802,6 @@ includes/SetUiobjectTag.h \
 includes/Slider.h \
 includes/TerminateGui.h \
 includes/write_scilab.h \
-includes/xscimore.h \
 includes/Toolbar.h
 
 
