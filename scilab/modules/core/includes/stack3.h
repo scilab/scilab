@@ -95,7 +95,12 @@ int C2F(putvar) __PARAMS((int *number, char *namex, unsigned long name_len ));
  * @return  -1 if error
 */ 
 int getlengthchain(char *namex);
-
+int iIsComplex(int _iVar);
+void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal);
+void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
+int iArraySum(int *_piArray, int _iStart, int _iEnd);
+void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData);
+void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData);
 #endif 
 
 
