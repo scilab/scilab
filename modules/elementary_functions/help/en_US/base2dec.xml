@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+    <LANGUAGE>eng</LANGUAGE>
+    <TITLE>base2dec</TITLE>
+    <TYPE>Scilab Function</TYPE>
+    <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006) $</DATE>
+    <SHORT_DESCRIPTION name="base2dec">conversion from base b representation to integers</SHORT_DESCRIPTION>
+
+    <CALLING_SEQUENCE>
+        <CALLING_SEQUENCE_ITEM>d=base2dec(s,b)</CALLING_SEQUENCE_ITEM>
+    </CALLING_SEQUENCE>
+
+    <PARAM>
+        <PARAM_INDENT>
+            <PARAM_ITEM>
+                <PARAM_NAME>d</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>: matrix of  integers</SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+                <PARAM_NAME>s</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>: matrix of character strings corresponding to base b representation</SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+                <PARAM_NAME>b</PARAM_NAME>
+                <PARAM_DESCRIPTION>
+                    <SP>: integer, the base</SP>
+                </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+        </PARAM_INDENT>
+    </PARAM>
+
+    <DESCRIPTION>
+        <P>
+            <VERB>base2dec(x,b)</VERB> returns the  matrix of numbers corresponding
+            to the base <VERB>b</VERB> representation.
+        </P>
+    </DESCRIPTION>
+    <EXAMPLE>
+<![CDATA[
+base2dec(['ABC','0','A'],16)
+]]>
+    </EXAMPLE>
+
+    <SEE_ALSO>
+        <SEE_ALSO_ITEM>
+            <LINK>bin2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>oct2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>hex2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2bin</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2oct</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2hex</LINK>
+        </SEE_ALSO_ITEM>
+    </SEE_ALSO>
+    
+</MAN>

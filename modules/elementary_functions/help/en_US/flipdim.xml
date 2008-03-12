@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>flip x components along a given dimension</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate$</DATE>
+
+  <SHORT_DESCRIPTION name="flipdim">flip x components along a given
+  dimension</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=flipdim(x,dim)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar, a vector or an array of reals</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a positive integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar, a vector or an array of reals</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Given <VERB>x</VERB>, a scalar/vector/array of reals and
+    <VERB>dim</VERB> a positive integer, this function flips the x components
+    along the dimension number <VERB>dim</VERB> of <VERB>x</VERB>
+    (<VERB>x</VERB> and <VERB>y</VERB> have the same size)</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[// example 1: flip x components along the first dimension
+x=[1 2 3 4; 5 6 7 8];
+dim=1;
+y=flipdim(x,dim)
+
+// example 2: flip x components along the second dimension
+dim=2;
+y=flipdim(x,dim)
+
+// example 3: flip x components along the third dimension
+x=matrix(1:48,[3 2,4,2]);
+dim=3;
+y=flipdim(x,dim)
+  ]]></EXAMPLE>
+
+  <AUTHOR>F.Belahcene</AUTHOR>
+</MAN>

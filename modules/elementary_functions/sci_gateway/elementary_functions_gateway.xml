@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="elementary_functions">
+<!-- =================== -->
+<!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+<!-- =================== -->
+
+<PRIMITIVE gatewayId="6" primitiveId="1" primitiveName="abs" />
+<PRIMITIVE gatewayId="6" primitiveId="2" primitiveName="real" />
+<PRIMITIVE gatewayId="6" primitiveId="3" primitiveName="imag" />
+<PRIMITIVE gatewayId="6" primitiveId="4" primitiveName="conj" />
+<PRIMITIVE gatewayId="6" primitiveId="5" primitiveName="round" />
+<PRIMITIVE gatewayId="6" primitiveId="6" primitiveName="int" />
+<PRIMITIVE gatewayId="6" primitiveId="7" primitiveName="size" />
+<PRIMITIVE gatewayId="6" primitiveId="8" primitiveName="sum" />
+<PRIMITIVE gatewayId="6" primitiveId="9" primitiveName="prod" />
+<PRIMITIVE gatewayId="6" primitiveId="10" primitiveName="diag" />
+<PRIMITIVE gatewayId="6" primitiveId="11" primitiveName="triu" />
+<PRIMITIVE gatewayId="6" primitiveId="12" primitiveName="tril" />
+<PRIMITIVE gatewayId="6" primitiveId="13" primitiveName="eye" />
+<PRIMITIVE gatewayId="6" primitiveId="14" primitiveName="rand" />
+<PRIMITIVE gatewayId="6" primitiveId="15" primitiveName="ones" />
+<PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="max" />
+<PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="maxi" />
+<PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="min" />
+<PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="mini" />
+<PRIMITIVE gatewayId="6" primitiveId="18" primitiveName="kron" />
+<PRIMITIVE gatewayId="6" primitiveId="21" primitiveName="matrix" />
+<PRIMITIVE gatewayId="6" primitiveId="22" primitiveName="sin" />
+<PRIMITIVE gatewayId="6" primitiveId="23" primitiveName="cos" />
+<PRIMITIVE gatewayId="6" primitiveId="24" primitiveName="atan" />
+<PRIMITIVE gatewayId="6" primitiveId="25" primitiveName="exp" />
+<PRIMITIVE gatewayId="6" primitiveId="26" primitiveName="sqrt" />
+<PRIMITIVE gatewayId="6" primitiveId="27" primitiveName="log" />
+<PRIMITIVE gatewayId="6" primitiveId="29" primitiveName="sign" />
+<PRIMITIVE gatewayId="6" primitiveId="30" primitiveName="clean" />
+<PRIMITIVE gatewayId="6" primitiveId="31" primitiveName="floor" />
+<PRIMITIVE gatewayId="6" primitiveId="32" primitiveName="ceil" />
+<PRIMITIVE gatewayId="6" primitiveId="33" primitiveName="expm" />
+<PRIMITIVE gatewayId="6" primitiveId="34" primitiveName="cumsum" />
+<PRIMITIVE gatewayId="6" primitiveId="35" primitiveName="cumprod" />
+<PRIMITIVE gatewayId="6" primitiveId="36" primitiveName="testmatrix" />
+<PRIMITIVE gatewayId="6" primitiveId="37" primitiveName="isreal" />
+<PRIMITIVE gatewayId="6" primitiveId="38" primitiveName="frexp" />
+<PRIMITIVE gatewayId="6" primitiveId="39" primitiveName="zeros" />
+<PRIMITIVE gatewayId="6" primitiveId="40" primitiveName="tan" />
+<PRIMITIVE gatewayId="6" primitiveId="41" primitiveName="log1p" />
+<PRIMITIVE gatewayId="6" primitiveId="42" primitiveName="imult" />
+<PRIMITIVE gatewayId="6" primitiveId="43" primitiveName="asin" />
+<PRIMITIVE gatewayId="6" primitiveId="44" primitiveName="acos" />
+<PRIMITIVE gatewayId="6" primitiveId="45" primitiveName="number_properties" />
+<PRIMITIVE gatewayId="6" primitiveId="46" primitiveName="nearfloat" />
+<PRIMITIVE gatewayId="6" primitiveId="47" primitiveName="dsearch" />
+<PRIMITIVE gatewayId="6" primitiveId="48" primitiveName="isequal" />
+<PRIMITIVE gatewayId="6" primitiveId="49" primitiveName="spones" />
+<PRIMITIVE gatewayId="6" primitiveId="50" primitiveName="gsort" />
+<PRIMITIVE gatewayId="6" primitiveId="51" primitiveName="isequalbitwise" />
+</GATEWAY>

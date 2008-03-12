@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>integer corresponding to a binary form</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate$</DATE>
+
+  <SHORT_DESCRIPTION name="bin2dec">integer corresponding to a binary
+  form</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=bin2dec(str)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string or a vector/matrix of strings containing only
+          characters '1' and '0' </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar or a vector/matrix of positives integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Given <VERB>str</VERB> a binary string, this function returns
+    <VERB>y</VERB> the decimal number whose the binary representation is given
+    by <VERB>str</VERB> ( <VERB>y</VERB> and <VERB>str</VERB> have the same
+    size)</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[// example 1 :
+// '1010110' : is the binary representation of 86 
+str='1010110';
+y=bin2dec(str)
+
+// example 2 :
+// '1011011' : is the binary representation of 91 
+// '1010010' : is the binary representation of 82
+str=['1011011'; '1010010']
+y=bin2dec(str)
+  ]]></EXAMPLE>
+
+    <SEE_ALSO>
+        <SEE_ALSO_ITEM>
+            <LINK>base2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>oct2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>hex2dec</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2bin</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2oct</LINK>
+        </SEE_ALSO_ITEM>
+        <SEE_ALSO_ITEM>
+            <LINK>dec2hex</LINK>
+        </SEE_ALSO_ITEM>
+    </SEE_ALSO>
+</MAN>
