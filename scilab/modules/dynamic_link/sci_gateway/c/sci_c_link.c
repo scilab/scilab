@@ -36,16 +36,21 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 		if (VarType(2) == sci_matrix)
 		{
 			int m1 = 0, n1 = 0, l1 = 0;
-			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+			GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			if ( (m1 == n1) && (n1 == 1) )
 			{
-				ilib = (int)*stk(l1);
+				ilib =  (int)*stk(l1);
 			}
 			else
 			{
 				Scierror(999,_("%s : second argument must be a unique id of a shared library.\n"),fname);
 				return 0;
 			}
+		}
+		else
+		{
+			Scierror(999,_("%s : second argument must be a unique id of a shared library.\n"),fname);
+			return 0;
 		}
 	}
 	else ilib = -1;
@@ -65,15 +70,7 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 			FindFunction = c_link(routinename[0],&ilib);
 			if (routinename) {FREE(routinename);routinename = NULL;}
 
-			if (Lhs == 2)
-			{
-				int one = 1;
-				int l = 0;
-
-				CreateVar(Rhs+2, MATRIX_OF_INTEGER_DATATYPE, &one, &one,&l);
-				*istk(l) = (int)ilib;
-				LhsVar(2)=Rhs+2;
-			}
+			
 
 			if ( FindFunction )
 			{
@@ -86,8 +83,20 @@ int C2F(sci_c_link) _PARAMS((char *fname,unsigned long fname_len))
 
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
+
+			if (Lhs == 2)
+			{
+				int one = 1;
+				int l = 0;
+
+				CreateVar(Rhs+2, MATRIX_OF_INTEGER_DATATYPE, &one, &one,&l);
+				*istk(l) = (int)ilib;
+				LhsVar(2)=Rhs+2;
+			}
+
 			C2F(putlhsvar)();
 			if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+			
 		}
 		else
 		{
