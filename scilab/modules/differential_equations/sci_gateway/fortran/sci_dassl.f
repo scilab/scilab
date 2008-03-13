@@ -23,8 +23,7 @@ c
       character*(nlgh+1) namjac
       external bresd,bjacd
       external setfresd,setfjacd
-      integer setslatecjmp
-      external setslatecjmp
+
       common /dassln/ namer,namej,names
       common/ierode/iero
       common/cjac/namjac
