@@ -11,7 +11,6 @@
  */
 package org.scilab.modules.gui.events;
 
-import java.awt.MouseInfo;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -44,7 +43,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 	private void callScilab() {
 		// @FIXME : choose to send it to scilab or to display it
 		//
-		InterpreterManagement.putCommandInScilabQueue(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
+		InterpreterManagement.requestScilabExec(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
 		//
 		//System.err.println(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
 	}
@@ -52,7 +51,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 	private void invokeScilab() {
 		// @FIXME : choose to send it to scilab or to display it
 		//
-		InterpreterManagement.putCommandInScilabQueue(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
+		InterpreterManagement.requestScilabExec(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
 		//
 		//System.err.println(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
 	}
