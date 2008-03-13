@@ -15,6 +15,10 @@ DISABLE_HELP_CLEAN=yes
 
 libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
 
+
+include $(top_srcdir)/Makefile.incl.am
+
+
 if SCICOS
 # Code not factorized with the one on the bottom since sundials must be
 # compiled first
@@ -250,8 +254,71 @@ src/scicos_sundials/sundials_smalldense.c \
 src/scicos_sundials/sundials_math.c \
 src/scicos_sundials/ida.c
 
-
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
+
+######### Modelica #############
+
+
+TARGET = modelicac
+
+bin_PROGRAMS = $(TARGET)
+modelicac_SOURCES = $(MLS)
+
+OCAMLLIBS=nums.cma
+
+MLS = src/modelica_compiler/parseTree.ml src/modelica_compiler/linenum.ml src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml\
+	src/modelica_compiler/precompilation.ml src/modelica_compiler/compilation.ml src/modelica_compiler/instantiation.ml\
+	src/modelica_compiler/graphNodeSet.ml src/modelica_compiler/symbolicExpression.ml\
+	src/modelica_compiler/squareSparseMatrix.ml src/modelica_compiler/bipartiteGraph.ml src/modelica_compiler/hungarianMethod.ml\
+	src/modelica_compiler/causalityGraph.ml\
+	src/modelica_compiler/optimization.ml  src/modelica_compiler/xMLCodeGeneration.ml src/modelica_compiler/optimizingCompiler.ml\
+	src/modelica_compiler/scicosCodeGeneration.ml src/modelica_compiler/scicosOptimizingCompiler.ml
+
+MLIS = src/modelica_compiler/parseTree.mli\
+	src/modelica_compiler/precompilation.mli src/modelica_compiler/compilation.mli src/modelica_compiler/instantiation.mli\
+	src/modelica_compiler/graphNodeSet.mli src/modelica_compiler/symbolicExpression.mli \
+	src/modelica_compiler/squareSparseMatrix.mli src/modelica_compiler/bipartiteGraph.mli src/modelica_compiler/hungarianMethod.mli \
+	src/modelica_compiler/causalityGraph.mli \
+	src/modelica_compiler/optimization.mli \
+	src/modelica_compiler/xMLCodeGeneration.mli \
+	src/modelica_compiler/optimizingCompiler.mli \
+	src/modelica_compiler/scicosCodeGeneration.mli 
+
+PARSER_SRC = src/modelica_compiler/parser.mly
+LEXER_SRC = src/modelica_compiler/lexer.mll
+INCLUDE = -I src/modelica_compiler/
+
+SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
+
+.ml.cmo:
+	ocamlc $(INCLUDE)  -c $<
+
+.ml.cmx:
+	ocamlopt $(INCLUDE) -c $<
+
+.mli.cmi:
+	ocamlc $(INCLUDE) -c $<
+
+.mll.ml:
+	ocamllex $<
+
+.mly.ml:
+	ocamlyacc $<
+
+# call the ocaml/Yacc
+generate-parser: $(PARSER_SRC)
+	ocamlyacc $(<)
+	$(RM) -f $(<:.mly=.mli)
+
+# Call the lexer
+generate-lexer: $(LEXER_SRC)
+	ocamllex $(<)
+
+# Build the binary 
+$(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
+	ocamlopt -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+
+CLEANFILES = src/modelica_compiler/*.cmi src/modelica_compiler/*.o src/modelica_compiler/*.cmo src/modelica_compiler/*.cm[aiox] $(TARGET) src/modelica_compiler/parser.mli src/modelica_compiler/lexer.mli src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml
 
 else
 
@@ -272,7 +339,7 @@ libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
 endif
 
-include $(top_srcdir)/Makefile.incl.am
+
 
 #### WORKAROUND ####
 # Do not use the global clean-local rule because Scicos help is not managed
