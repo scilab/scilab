@@ -70,7 +70,6 @@ host_triplet = @host@
 
 # YASP (Yet Another Scilab Parser) stuff
 # When you are working on a next gen module, please add the name of the library here
-# SUBDIRS 
 @YASP_TRUE@am__append_10 = 
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -392,8 +391,7 @@ libscilab_la_rootdir = $(mydatadir)
 #
 pkglib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
-libscilab_la_LDFLAGS = = --no-undefined --relax $(am__append_4) \
-	$(am__append_5)
+libscilab_la_LDFLAGS = $(am__append_4) $(am__append_5)
 
 # Core modules
 
