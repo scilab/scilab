@@ -6,6 +6,12 @@
 // =============================================================================
 A = [ 1 8 4 5 2 1];
 B = [ 9 7 4 2 1 4];
+
+[v,ka,kb] = intersect([],[]);
+if v <> [] then pause,end
+if ka <> [] then pause,end
+if kb <> [] then pause,end
+
 [v,ka,kb] = intersect(A,B);
 if or(A(ka) <> B(kb)) then pause,end
 
