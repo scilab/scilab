@@ -407,6 +407,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallWaitBar.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CheckBox.cpp"
 				>
 			</File>
@@ -424,6 +428,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\DestroyUIControl.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\DestroyWaitBar.cpp"
 				>
 			</File>
 			<File
@@ -555,7 +563,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitProgressionBar.c"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\InitUIMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\InitWaitBar.c"
 				>
 			</File>
 			<File
@@ -615,6 +631,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_progressionbar.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_raise_window.c"
 				>
 			</File>
@@ -652,6 +672,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_unsetmenu.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_waitbar.c"
 				>
 			</File>
 			<File
@@ -856,6 +880,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\CallWaitBar.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallWaitBar.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\CheckBox.h"
 				>
 			</File>
@@ -885,6 +917,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\DestroyUIControl.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\DestroyWaitBar.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\DestroyWaitBar.hxx"
 				>
 			</File>
 			<File
@@ -1112,11 +1152,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitProgressionBar.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\InitUIMenu.h"
 				>
 			</File>
 			<File
 				RelativePath="..\cpp\InitUIMenu.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\InitWaitBar.h"
 				>
 			</File>
 			<File
@@ -1169,6 +1217,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\RadioButton.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_mpopup.h"
 				>
 			</File>
 			<File
@@ -1409,6 +1461,10 @@
 			</File>
 			<File
 				RelativePath="..\jni\UIElementMapper.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\write_scilab.h"
 				>
 			</File>
 		</Filter>
