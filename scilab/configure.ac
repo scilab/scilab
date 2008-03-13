@@ -715,14 +715,12 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 
 		if test "$with_ocaml" != no; then
 		   AC_CHECK_PROG_OCAML()
-		   AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)
-
 		fi
 		SCICOS_ENABLE=yes
 fi
 AC_SUBST(SCICOS_ENABLE)
 
-
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
 AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
 
