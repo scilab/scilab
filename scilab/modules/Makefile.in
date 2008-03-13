@@ -47,14 +47,14 @@ host_triplet = @host@
 #endif
 @SCICOS_TRUE@am__append_1 = scicos_blocks
 
-# javasci should be compile at the end because it needs libscilab.la
-# Don't forget that the order in subdirs does matter !!!
-@JAVASCI_TRUE@am__append_2 = javasci
-
 # YASP (Yet Another Scilab Parser) stuff
 # When you are working on a next gen module, please add it into the list of
 # SUBDIRS
-@YASP_TRUE@am__append_3 = 
+@YASP_TRUE@am__append_2 = 
+
+# javasci should be compile at the end because it needs libscilab.la
+# Don't forget that the order in subdirs does matter !!!
+@JAVASCI_TRUE@am__append_3 = javasci
 @USE_EMBEDDED_LAPACK_FALSE@am__append_4 = $(LAPACK_LIBS)
 @USE_EMBEDDED_BLAS_FALSE@am__append_5 = $(BLAS_LIBS)
 
@@ -382,7 +382,7 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	randlib sparse windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools fftw \
-	demo_tools $(am__append_1) scicos . $(am__append_2) \
+	demo_tools $(am__append_1) scicos $(am__append_2) . \
 	$(am__append_3)
 
 #### Basic files ####

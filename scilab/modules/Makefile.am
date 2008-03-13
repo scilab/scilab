@@ -82,19 +82,20 @@ endif
 
 SUBDIRS += scicos
 
-SUBDIRS += .
-
-# javasci should be compile at the end because it needs libscilab.la
-# Don't forget that the order in subdirs does matter !!!
-if JAVASCI
-SUBDIRS += javasci
-endif
 
 # YASP (Yet Another Scilab Parser) stuff
 # When you are working on a next gen module, please add it into the list of
 # SUBDIRS
 if YASP
 SUBDIRS += 
+endif
+
+SUBDIRS += .
+
+# javasci should be compile at the end because it needs libscilab.la
+# Don't forget that the order in subdirs does matter !!!
+if JAVASCI
+SUBDIRS += javasci
 endif
 
 #### Basic files ####
