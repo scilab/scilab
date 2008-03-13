@@ -36,5 +36,6 @@ class InterpreterManagementJNI {
   }
 
   public final static native int putCommandInScilabQueue(String jarg1);
+  public final static native int requestScilabExec(String jarg1);
   public final static native int interruptScilab();
 }

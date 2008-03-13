@@ -36,6 +36,20 @@ public  static int putCommandInScilabQueue(String command) {
 
   
  /**
+   * Put a command in Scilab command queue so that Scilab executes it
+   * The command is executed as soon as possible and may not be interrupted by another one.
+   * WARNING : if the command is taking some time, scilab will not do anything else
+   * before the command returns.
+   *
+   * @param command the command to execute
+   * @return execution status
+   */
+public  static int requestScilabExec(String command) {
+    return InterpreterManagementJNI.requestScilabExec(command);
+  }
+
+  
+ /**
   * Stop Scilab current work
   * @return execution status
   */

@@ -22,6 +22,17 @@
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
+  return StoreCommand(command);
+}
+/*--------------------------------------------------------------------------*/
+/*
+ * requestScilabExec
+ *
+ * WARNING : if the command is taking some time, scilab will not do anything else
+ * before the command returns.
+ */
+int requestScilabExec(char *command)
+{
   return StoreCommandWithFlag(command, 1);
 }
 /*--------------------------------------------------------------------------*/
