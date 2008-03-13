@@ -16,19 +16,19 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 static char SCIPATH[PATH_MAX];
 /*--------------------------------------------------------------------------*/ 
 void setSCIpath(char *path)
 {
-	strcpy(SCIPATH,path);
+	if (path) strcpy(SCIPATH,path);
 }
 /*--------------------------------------------------------------------------*/ 
 char *getSCIpath(void)
 {
-	char *pathtoreturn=NULL;
-	pathtoreturn=(char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+1));
-	strcpy(pathtoreturn,SCIPATH);
-	return pathtoreturn;
+	return strdup(SCIPATH);
 }
 /*--------------------------------------------------------------------------*/ 
