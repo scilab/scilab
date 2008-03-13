@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/ 
 char *getScilabDirectory(BOOL UnixStyle)
 {
-	LPSTR ScilabModuleName=NULL;
+	char ScilabModuleName[MAX_PATH + 1];
 	char drive[_MAX_DRIVE];
 	char dir[_MAX_DIR];
 	char fname[_MAX_FNAME];
@@ -29,16 +29,13 @@ char *getScilabDirectory(BOOL UnixStyle)
 	char *SciPathName=NULL;
 	char *DirTmp=NULL;
 
-	ScilabModuleName = (LPSTR) MALLOC (MAX_PATH + 1);
-
-	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle("libScilab"), (LPSTR) ScilabModuleName, MAX_PATH))
+	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle("libScilab"), (char*) ScilabModuleName, MAX_PATH))
 	{
-		if (ScilabModuleName) {FREE(ScilabModuleName);ScilabModuleName=NULL;}
 		return NULL;
 	}
 
 	_splitpath(ScilabModuleName,drive,dir,fname,ext);
-	if (ScilabModuleName) {FREE(ScilabModuleName);ScilabModuleName=NULL;}
+
 	if (dir[strlen(dir)-1] == '\\') dir[strlen(dir)-1] = '\0';
 
 	DirTmp=strrchr (dir, '\\');
