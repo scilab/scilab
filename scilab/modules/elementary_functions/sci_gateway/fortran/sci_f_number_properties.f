@@ -97,7 +97,7 @@ c     2/ go on
          tiniest = dlamch('u')
          if ( tiniest/b .ne. 0.d0 ) then
 c     denormalised number are used
-            do i = 1, dlamch('n') - 1
+            do i = 1, int(dlamch('n')) - 1
                tiniest = tiniest / b
             enddo
          endif
