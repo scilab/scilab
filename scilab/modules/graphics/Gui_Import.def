@@ -73,4 +73,5 @@ SetUicontrolSliderStep
 DestroyUIControl
 setFigureEventHandler
 setFigureEventHandlerEnabled
+DestroyWaitBar
 ;
