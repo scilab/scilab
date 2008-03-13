@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 /*-------------------------------------------------------------------------------*/
 #include <ctype.h>
 #include <stdio.h>
@@ -18,10 +19,11 @@
 #include <time.h>
 #include <locale.h>
 #include <errno.h>
+#include <pcre.h>
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "pcre_private.h"
-#include <pcre.h>
+
 
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
@@ -31,7 +33,7 @@ for the input on Windows. I've now abstracted the modes into two macros that
 are set here, to make it easier to fiddle with them, and removed "b" from the
 input mode under Windows. */
 
-#if defined(_WIN32) || defined(WIN32)
+#if _MSC_VER
 #include <io.h>                /* For _setmode() */
 #include <fcntl.h>             /* For _O_BINARY */
 #define INPUT_MODE   "r"
@@ -109,9 +111,6 @@ static size_t gotten_store=0;
 char *buffer = NULL;
 
 
-
-
-
 static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 				  int start_offset, int options, int *use_offsets, int use_size_offsets,
 				  int flag, unsigned long int *limit, int errnumber);
@@ -156,8 +155,6 @@ void *block = MALLOC(size);
 gotten_store = size;
 return block;
 }
-
-
 
 
 /*************************************************
@@ -467,7 +464,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			for (i = 0; i < timeit; i++)
 			{
 				re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
-				if (re != NULL) FREE(re);
+				/* "re" allocated by pcre_compile (better to use free function associated to pcre)*/
+				if (re != NULL) (*pcre_free)(re);
 			}
 			
 		}
@@ -512,9 +510,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 		copynamesptr = copynames;
 		getnamesptr = getnames;
-  
-		
-		
+  		
 		callout_count = 0;
 		callout_fail_count = 999999;
 		callout_fail_id = -1;
@@ -770,17 +766,19 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					{
 						*Output_Start=use_offsets[i];
 						*Output_End=use_offsets[i+1];
-						// TO DO REORGANIZE CODE & OUTPUT ERRORS 
-						// IT WORKS by a MIRACLE ...
 						if (buffer) FREE(buffer);
-						//if (offsets) FREE(offsets);
-						//if (use_offsets) FREE(use_offsets);
-						//I commented this two lines because it crashed scilab:(
-						if (re ) FREE(re);
-						if (extra ) FREE(extra);
+
+						/* use_offsets = offsets no need to free use_offsets if we free offsets */
+						if (offsets) FREE(offsets);
+
+						/* "re" allocated by pcre_compile (better to use free function associated)*/
+						if (re) (*pcre_free)(re);
+
+						if (extra) FREE(extra);
 						if (tables)
 						{
-							FREE((void *)tables);
+							/* "tables" allocated by pcre_maketables (better to use free function associated to pcre)*/
+							(*pcre_free)((void *)tables);
 							setlocale(LC_CTYPE, "C");
 						}
 						return 0;
@@ -867,12 +865,10 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
     continue;
     }    /* End of loop for data lines */
 
-  
-
-
   }
 	
-	FREE(buffer);
-	FREE(offsets);
+	if (buffer) FREE(buffer);
+	if (offsets) FREE(offsets);
 	return PCRE_EXIT;
 }
+
