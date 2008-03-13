@@ -699,10 +699,10 @@ AC_SUBST(TERMCAP_LIB)
 #################
 
 AC_ARG_WITH(scicos,
-    AC_HELP_STRING([--without-scicos],[Compile without Scicos ]))
+    AC_HELP_STRING([--without-scicos],[Compile without Scicos]))
 
 AC_ARG_WITH(ocaml,
-    AC_HELP_STRING([--without-ocaml],[Do not compile ocaml modules]))
+    AC_HELP_STRING([--without-ocaml],[Do not compile ocaml modules (modelica)]))
 
 
 SCICOS_ENABLE=no
@@ -715,6 +715,8 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 
 		if test "$with_ocaml" != no; then
 		   AC_CHECK_PROG_OCAML()
+		   AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)
+
 		fi
 		SCICOS_ENABLE=yes
 fi
@@ -739,7 +741,7 @@ if test "$with_umfpack" = yes; then
 fi
 
 AC_SUBST(UMFPACK_ENABLE)
-AM_CONDITIONAL(UMFPACK, test "$with_enable" = yes)
+AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
 
 
 #################
@@ -748,7 +750,6 @@ AM_CONDITIONAL(UMFPACK, test "$with_enable" = yes)
 
 AC_ARG_WITH(fftw,
     AC_HELP_STRING([--with-fftw],[Compile with the FFTW 3 library]))
-# @TODO change that to add the possibility to specify a directory
 
 FFTW_ENABLE=no
 if test "$with_fftw" = yes; then
@@ -1006,7 +1007,7 @@ AC_DEFINE_UNQUOTED([PATH_SEPARATOR], ["$PATH_SEPARATOR"],
 
 AH_TOP([#ifndef MACHINE_H
 #define MACHINE_H
-
+/* This file defines global element configuration of the build host */
 ])
 
 AH_BOTTOM([
@@ -1038,18 +1039,27 @@ AH_BOTTOM([
 #endif /* MACHINE_H  */
 ])
 
-AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
-AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
-
-
-
-dnl #########################
-dnl ## substituting variables
-dnl #########################
-AC_SUBST(tcldir)
-
 # Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
+
+
+
+#################
+## NEXT GEN SCILAB (Yasp = Yet Another Scilab Puffin)
+#################
+
+AC_ARG_ENABLE(yasp,
+    AC_HELP_STRING([--enable-yasp],[Enable the compilation of the Yasp modules]))
+
+if test "$enable_yasp" = yes; then
+   AC_MSG_WARN([=====================================])
+   AC_MSG_WARN([YASP (Yet Another Scilab Puffin) is the future engine of Scilab 6. This option is only for crazy stuntman.])
+   AC_MSG_WARN([=====================================])
+   sleep 2
+   YASP_ENABLE=yes
+fi
+
+AM_CONDITIONAL(YASP, test "$enable_yasp" = yes)
 
 
 #################
@@ -1142,8 +1152,14 @@ Makefile
 etc/modules.xml
 scilab-lib.properties
 ])
-#Scicos stuff
-#modules/scicos/src/ocaml/Makefile
+
+# Detection of the module for the future version of Scilab 6
+# ie we detect module which ends with _yasp
+if test "$enable_yasp" = yes; then
+   AC_CONFIG_FILES([
+
+  ])
+fi
 
 # This script is used by Scicos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
