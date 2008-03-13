@@ -54,6 +54,8 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.waitbar.ScilabWaitBar;
+import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
@@ -239,6 +241,15 @@ public class CallScilabBridge {
 	public static int newMessageBox() {
 		MessageBox messageBox = ScilabMessageBox.createMessageBox();
 		return UIElementMapper.add(messageBox);
+	}
+	
+	/**
+	 * Create a new WaitBar in Scilab GUIs
+	 * @return the ID of the WaitBar in the UIElementMapper
+	 */
+	public static int newWaitBar() {
+		WaitBar waitBar = ScilabWaitBar.createWaitBar();
+		return UIElementMapper.add(waitBar);
 	}
 	
 	/**
@@ -1780,4 +1791,46 @@ public class CallScilabBridge {
 		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figNum)
 				.getRendererProperties()).getCanvas().setEventHandlerEnabled(status);
 	}
+	
+	/******************/
+	/*                */
+	/* WAITBAR BRIDGE */
+	/*                */
+	/******************/
+	
+	/**
+	 * Set the WaitBar message (multi-line)
+	 * @param id the id of the waitBar
+	 * @param message the message of the waitBar
+	 */
+	public static void setWaitBarMessage(int id, String[] message) {
+		((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setMessage(message);
+	}
+
+	/**
+	 * Set the WaitBar value
+	 * @param id the id of the waitBar
+	 * @param value the value of the waitBar
+	 */
+	public static void setWaitBarValue(int id, int value) {
+		((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setValue(value);
+	}
+
+	/**
+	 * Destroy a WaitBar
+	 * @param id the id of the WaitBar to destroy
+	 */
+	public static void destroyWaitBar(int id) {
+		((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).close();
+	}
+	
+	/**
+	 * Indicates if the total execution time is known
+	 * @param id the id of the WaitBar to destroy
+	 * @param status true if the total progress time in unknown
+	 */
+	public static void setWaitBarIndeterminateMode(int id, boolean status) {
+		((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setIndeterminateMode(status);
+	}
+
 }

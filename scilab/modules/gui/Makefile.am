@@ -20,6 +20,8 @@ src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
+src/c/InitWaitBar.c \
+src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/messageboxoptions.c
@@ -28,12 +30,14 @@ GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
 src/cpp/DestroyUIControl.cpp \
+src/cpp/DestroyWaitBar.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
+src/cpp/CallWaitBar.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
@@ -120,7 +124,9 @@ sci_gateway/c/sci_uicontextmenu.c \
 sci_gateway/c/sci_uimenu.c \
 sci_gateway/c/sci_uiwait.c \
 sci_gateway/c/sci_mpopup.c \
-sci_gateway/c/sci_messagebox.c
+sci_gateway/c/sci_messagebox.c \
+sci_gateway/c/sci_waitbar.c \
+sci_gateway/c/sci_progressionbar.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

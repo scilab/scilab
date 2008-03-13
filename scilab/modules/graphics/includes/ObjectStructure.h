@@ -91,6 +91,8 @@
 #define pWINDOW_FEATURE(pointobj)      ((sciWindow        *)pointobj->pfeatures)/** */
 #define pWINDOWFRAME_FEATURE(pointobj) ((sciWindowFrame   *)pointobj->pfeatures)/** */
 #define pSCREEN_FEATURE(pointobj)      ((sciScreen        *)pointobj->pfeatures)/** */
+#define pWAITBAR_FEATURE(pointobj)     ((sciWaitbar        *)pointobj->pfeatures)/** */
+#define pPROGRESSIONBAR_FEATURE(pointobj)     ((sciProgressionbar        *)pointobj->pfeatures)/** */
 
 #ifndef _MSC_VER
 typedef unsigned short HMENU;
@@ -195,7 +197,11 @@ typedef enum
     /** Entity type WINDOWFRAME created by JB Silvy 27/02/07 */
     SCI_WINDOWFRAME,
     /** Entity type SCREEN created by JB Silvy 27/02/07 */
-    SCI_SCREEN
+    SCI_SCREEN,
+    /** Entity type WAITBAR */
+    SCI_WAITBAR,
+    /** Entity type PROGRESSIONBAR */
+    SCI_PROGRESSIONBAR
   }
 /**Struct of Entity type*/
 sciEntityType;	
@@ -703,6 +709,20 @@ typedef struct
   int hashMapIndex;
 }/** */
 sciUicontextmenu;
+
+typedef struct
+{
+  sciRelationShip relationship;
+  int hashMapIndex;
+}/** */
+sciWaitbar;
+
+typedef struct
+{
+  sciRelationShip relationship;
+  int hashMapIndex;
+}/** */
+sciProgressionbar;
 
 typedef struct
 {

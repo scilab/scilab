@@ -253,6 +253,12 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_SCREEN:
       return "Screen" ;
       break ;
+    case SCI_WAITBAR:
+      return "Waitbar" ;
+      break ;
+    case SCI_PROGRESSIONBAR:
+      return "Progressionbar" ;
+      break ;
     default:
       return (char *)NULL;
       break;

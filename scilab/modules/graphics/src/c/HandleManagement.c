@@ -303,6 +303,12 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_SCREEN:
       return  &(pSCREEN_FEATURE (pobj)->relationship);
       break;
+    case SCI_WAITBAR:
+      return  &(pWAITBAR_FEATURE (pobj)->relationship);
+      break;
+    case SCI_PROGRESSIONBAR:
+      return  &(pPROGRESSIONBAR_FEATURE (pobj)->relationship);
+      break;
     default:
       return (sciRelationShip *) NULL;
       break;

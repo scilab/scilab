@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004 - Jaime Urzua
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -17,6 +18,13 @@ function sta=winclose(h)
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
+
+// Java waitbar or progressbar
+if type(h) == 9 then
+  delete(h);
+  sta=1
+  return
+end
 
   if execstr('TCL_GetVar(''sciGUITable(win,id)'')','errcatch')<>0 then
     sta=1

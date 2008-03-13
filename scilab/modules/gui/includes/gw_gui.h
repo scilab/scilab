@@ -40,6 +40,8 @@ int C2F(sci_x_choose_modeless) _PARAMS((char *fname,unsigned long fname_len));
 int sci_uicontextmenu(char *fname,unsigned long l);
 int sci_uiwait(char *fname,unsigned long l);
 int sci_messagebox(char *fname,unsigned long l);
+int sci_waitbar(char *fname,unsigned long l);
+int sci_progressionbar(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

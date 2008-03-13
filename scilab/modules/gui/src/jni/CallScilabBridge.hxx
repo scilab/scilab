@@ -179,6 +179,11 @@ jmethodID jbooleanisToolbarVisiblejintID; // cache method id
 jmethodID voidsetToolbarVisiblejintjbooleanID; // cache method id
 jmethodID voidsetEventHandlerjintjstringID; // cache method id
 jmethodID voidsetEventHandlerEnabledjintjbooleanID; // cache method id
+jmethodID jintnewWaitBarID; // cache method id
+jmethodID voidsetWaitBarMessagejintjobjectArrayID; // cache method id
+jmethodID voidsetWaitBarValuejintjintID; // cache method id
+jmethodID voiddestroyWaitBarjintID; // cache method id
+jmethodID voidsetWaitBarIndeterminateModejintjbooleanID; // cache method id
 
 
 /**
@@ -471,6 +476,16 @@ static void setToolbarVisible(JavaVM * jvm_, long figNum, bool status);
 static void setEventHandler(JavaVM * jvm_, long figNum, char * command);
 
 static void setEventHandlerEnabled(JavaVM * jvm_, long figNum, bool status);
+
+static long newWaitBar(JavaVM * jvm_);
+
+static void setWaitBarMessage(JavaVM * jvm_, long id, char ** message, int messageSize);
+
+static void setWaitBarValue(JavaVM * jvm_, long id, long value);
+
+static void destroyWaitBar(JavaVM * jvm_, long objID);
+
+static void setWaitBarIndeterminateMode(JavaVM * jvm_, long objID, bool status);
 
 
                         /**

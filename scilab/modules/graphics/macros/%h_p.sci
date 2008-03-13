@@ -17,8 +17,12 @@ function %h_p(h)
     t1=[t1;part('=',ones(1,length(t1)))]
     t=[t1;t]
   else
-    t='Handle of type ""'+h.type+'"" with properties:'
-    t=[t;part('=',ones(1,length(t)))]
+    if (h.type=="Waitbar" | h.type=="Progressionbar")
+       t="Handle of type """+h.type+"""";
+    else
+      t="Handle of type """+h.type+""" with properties:"
+      t=[t;part('=',ones(1,length(t)))]
+    end
     select h.type
     case "Polyline"
       if size(h.data,'*') > 10 then 

@@ -228,6 +228,11 @@ jbooleanisToolbarVisiblejintID=NULL;
 voidsetToolbarVisiblejintjbooleanID=NULL; 
 voidsetEventHandlerjintjstringID=NULL; 
 voidsetEventHandlerEnabledjintjbooleanID=NULL; 
+jintnewWaitBarID=NULL; 
+voidsetWaitBarMessagejintjobjectArrayID=NULL; 
+voidsetWaitBarValuejintjintID=NULL; 
+voiddestroyWaitBarjintID=NULL; 
+voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 
 
 }
@@ -379,6 +384,11 @@ jbooleanisToolbarVisiblejintID=NULL;
 voidsetToolbarVisiblejintjbooleanID=NULL; 
 voidsetEventHandlerjintjstringID=NULL; 
 voidsetEventHandlerEnabledjintjbooleanID=NULL; 
+jintnewWaitBarID=NULL; 
+voidsetWaitBarMessagejintjobjectArrayID=NULL; 
+voidsetWaitBarValuejintjintID=NULL; 
+voiddestroyWaitBarjintID=NULL; 
+voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 
 
 }
@@ -3663,6 +3673,141 @@ exit(EXIT_FAILURE);
 jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
 
                          curEnv->CallStaticVoidMethod(cls, voidsetEventHandlerEnabledjintjbooleanID ,figNum, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::newWaitBar (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewWaitBarID = curEnv->GetStaticMethodID(cls, "newWaitBar", "()I" ) ;
+if (jintnewWaitBarID == NULL) {
+std::cerr << "Could not access to the method " << "newWaitBar" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewWaitBarID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::setWaitBarMessage (JavaVM * jvm_, long id, char ** message, int messageSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetWaitBarMessagejintjobjectArrayID = curEnv->GetStaticMethodID(cls, "setWaitBarMessage", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetWaitBarMessagejintjobjectArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setWaitBarMessage" << std::endl;
+exit(EXIT_FAILURE);
+}
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
+
+// create java array of strings.
+jobjectArray message_ = curEnv->NewObjectArray( messageSize, stringArrayClass, NULL);
+if (message_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < messageSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( message[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( message_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetWaitBarMessagejintjobjectArrayID ,id, message_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(message_);
+
+}
+
+void CallScilabBridge::setWaitBarValue (JavaVM * jvm_, long id, long value){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetWaitBarValuejintjintID = curEnv->GetStaticMethodID(cls, "setWaitBarValue", "(II)V" ) ;
+if (voidsetWaitBarValuejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setWaitBarValue" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetWaitBarValuejintjintID ,id, value);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::destroyWaitBar (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiddestroyWaitBarjintID = curEnv->GetStaticMethodID(cls, "destroyWaitBar", "(I)V" ) ;
+if (voiddestroyWaitBarjintID == NULL) {
+std::cerr << "Could not access to the method " << "destroyWaitBar" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voiddestroyWaitBarjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setWaitBarIndeterminateMode (JavaVM * jvm_, long objID, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetWaitBarIndeterminateModejintjbooleanID = curEnv->GetStaticMethodID(cls, "setWaitBarIndeterminateMode", "(IZ)V" ) ;
+if (voidsetWaitBarIndeterminateModejintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setWaitBarIndeterminateMode" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetWaitBarIndeterminateModejintjbooleanID ,objID, status_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

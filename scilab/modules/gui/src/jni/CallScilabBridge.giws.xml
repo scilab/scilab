@@ -463,5 +463,22 @@
             <parameter name="figNum" type="int"/>
             <parameter name="status" type="boolean"/>
         </method>      
+<!-- Wait Bar -->
+	<method name="newWaitBar" returnType="int" modifier="static"/>      
+	<method name="setWaitBarMessage" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="message" type="String[]"/>
+        </method>      
+	<method name="setWaitBarValue" returnType="void" modifier="static">
+            <parameter name="id" type="int"/>
+            <parameter name="value" type="int"/>
+        </method>      
+        <method name="destroyWaitBar" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>
+        <method name="setWaitBarIndeterminateMode" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>
   </object>
 </package>

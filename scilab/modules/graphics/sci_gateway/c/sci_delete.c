@@ -32,6 +32,7 @@
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DestroyUIControl.h"
+#include "DestroyWaitBar.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
@@ -103,10 +104,14 @@ int sci_delete(char *fname,unsigned long fname_len)
     
     sciEntityType objType = sciGetEntityType( pobj ) ;
 
-    if (sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
+    if (objType == SCI_UIMENU || objType == SCI_UICONTROL)
       {
         DestroyUIControl(pobj);
         sciStandardDestroyOperations(pobj);
+      }
+    else if (objType == SCI_WAITBAR || objType == SCI_PROGRESSIONBAR)
+      {
+        DestroyWaitBar(pobj);
       }
     else if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
       {

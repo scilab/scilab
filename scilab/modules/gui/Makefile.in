@@ -106,7 +106,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/c/buildMainWindowTitle.c src/c/getMainWindowTitle.c \
 	src/c/getScreenProperties.c src/c/InitializeGUI.c \
 	src/c/setMainWindowTitle.c src/c/addmenu.c \
-	src/c/CreateUIControl.c src/c/CreateUIContextMenu.c \
+	src/c/CreateUIControl.c src/c/InitWaitBar.c \
+	src/c/InitProgressionBar.c src/c/CreateUIContextMenu.c \
 	src/c/UicontrolStyleToString.c src/c/messageboxoptions.c \
 	sci_gateway/c/sci_x_choice.c sci_gateway/c/gw_gui.c \
 	sci_gateway/c/sci_x_mdialog.c sci_gateway/c/sci_x_dialog.c \
@@ -121,12 +122,14 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_uigetdir.c sci_gateway/c/sci_uicontrol.c \
 	sci_gateway/c/sci_uicontextmenu.c sci_gateway/c/sci_uimenu.c \
 	sci_gateway/c/sci_uiwait.c sci_gateway/c/sci_mpopup.c \
-	sci_gateway/c/sci_messagebox.c src/cpp/InitUIMenu.cpp \
+	sci_gateway/c/sci_messagebox.c sci_gateway/c/sci_waitbar.c \
+	sci_gateway/c/sci_progressionbar.c src/cpp/InitUIMenu.cpp \
 	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
-	src/cpp/DestroyUIControl.cpp src/cpp/CallJxclick.cpp \
-	src/jni/Jxgetmouse.cpp src/cpp/CallJxgetmouse.cpp \
-	src/cpp/CallFileChooser.cpp src/cpp/CallFigure.cpp \
-	src/cpp/CallMessageBox.cpp src/cpp/PushButton.cpp \
+	src/cpp/DestroyUIControl.cpp src/cpp/DestroyWaitBar.cpp \
+	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
+	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
+	src/cpp/CallFigure.cpp src/cpp/CallMessageBox.cpp \
+	src/cpp/CallWaitBar.cpp src/cpp/PushButton.cpp \
 	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
 	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
 	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
@@ -178,6 +181,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-setMainWindowTitle.lo \
 @GUI_TRUE@	libscigui_la-addmenu.lo \
 @GUI_TRUE@	libscigui_la-CreateUIControl.lo \
+@GUI_TRUE@	libscigui_la-InitWaitBar.lo \
+@GUI_TRUE@	libscigui_la-InitProgressionBar.lo \
 @GUI_TRUE@	libscigui_la-CreateUIContextMenu.lo \
 @GUI_TRUE@	libscigui_la-UicontrolStyleToString.lo \
 @GUI_TRUE@	libscigui_la-messageboxoptions.lo
@@ -202,17 +207,21 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_uimenu.lo \
 @GUI_TRUE@	libscigui_la-sci_uiwait.lo \
 @GUI_TRUE@	libscigui_la-sci_mpopup.lo \
-@GUI_TRUE@	libscigui_la-sci_messagebox.lo
+@GUI_TRUE@	libscigui_la-sci_messagebox.lo \
+@GUI_TRUE@	libscigui_la-sci_waitbar.lo \
+@GUI_TRUE@	libscigui_la-sci_progressionbar.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
 @GUI_TRUE@	libscigui_la-DestroyUIControl.lo \
+@GUI_TRUE@	libscigui_la-DestroyWaitBar.lo \
 @GUI_TRUE@	libscigui_la-CallJxclick.lo \
 @GUI_TRUE@	libscigui_la-Jxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallJxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallFileChooser.lo \
 @GUI_TRUE@	libscigui_la-CallFigure.lo \
 @GUI_TRUE@	libscigui_la-CallMessageBox.lo \
+@GUI_TRUE@	libscigui_la-CallWaitBar.lo \
 @GUI_TRUE@	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
 @GUI_TRUE@	libscigui_la-Label.lo libscigui_la-CheckBox.lo \
 @GUI_TRUE@	libscigui_la-RadioButton.lo libscigui_la-Slider.lo \
@@ -556,6 +565,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/c/setMainWindowTitle.c \
 @GUI_TRUE@src/c/addmenu.c \
 @GUI_TRUE@src/c/CreateUIControl.c \
+@GUI_TRUE@src/c/InitWaitBar.c \
+@GUI_TRUE@src/c/InitProgressionBar.c \
 @GUI_TRUE@src/c/CreateUIContextMenu.c \
 @GUI_TRUE@src/c/UicontrolStyleToString.c \
 @GUI_TRUE@src/c/messageboxoptions.c
@@ -564,12 +575,14 @@ JARMASK = *.jar
 @GUI_TRUE@src/jni/CallScilabBridge.cpp \
 @GUI_TRUE@src/jni/Jxclick.cpp \
 @GUI_TRUE@src/cpp/DestroyUIControl.cpp \
+@GUI_TRUE@src/cpp/DestroyWaitBar.cpp \
 @GUI_TRUE@src/cpp/CallJxclick.cpp \
 @GUI_TRUE@src/jni/Jxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallJxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallFileChooser.cpp \
 @GUI_TRUE@src/cpp/CallFigure.cpp \
 @GUI_TRUE@src/cpp/CallMessageBox.cpp \
+@GUI_TRUE@src/cpp/CallWaitBar.cpp \
 @GUI_TRUE@src/cpp/PushButton.cpp \
 @GUI_TRUE@src/cpp/EditBox.cpp \
 @GUI_TRUE@src/cpp/Label.cpp \
@@ -656,7 +669,9 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_uimenu.c \
 @GUI_TRUE@sci_gateway/c/sci_uiwait.c \
 @GUI_TRUE@sci_gateway/c/sci_mpopup.c \
-@GUI_TRUE@sci_gateway/c/sci_messagebox.c
+@GUI_TRUE@sci_gateway/c/sci_messagebox.c \
+@GUI_TRUE@sci_gateway/c/sci_waitbar.c \
+@GUI_TRUE@sci_gateway/c/sci_progressionbar.c
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
@@ -896,11 +911,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallMessageBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallScilabBridge.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallWaitBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CheckBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUIControl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyWaitBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-EditBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Frame.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Plo@am__quote@
@@ -925,7 +942,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectTag.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitProgressionBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitWaitBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitializeGUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxgetmouse.Plo@am__quote@
@@ -975,6 +994,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_messagebox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_mpopup.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_progressionbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_raise_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setmenu.Plo@am__quote@
@@ -985,6 +1005,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_waitbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose_modeless.Plo@am__quote@
@@ -1098,6 +1119,20 @@ libscigui_la-CreateUIControl.lo: src/c/CreateUIControl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateUIControl.c' object='libscigui_la-CreateUIControl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-CreateUIControl.lo `test -f 'src/c/CreateUIControl.c' || echo '$(srcdir)/'`src/c/CreateUIControl.c
+
+libscigui_la-InitWaitBar.lo: src/c/InitWaitBar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-InitWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitWaitBar.Tpo -c -o libscigui_la-InitWaitBar.lo `test -f 'src/c/InitWaitBar.c' || echo '$(srcdir)/'`src/c/InitWaitBar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-InitWaitBar.Tpo $(DEPDIR)/libscigui_la-InitWaitBar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitWaitBar.c' object='libscigui_la-InitWaitBar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-InitWaitBar.lo `test -f 'src/c/InitWaitBar.c' || echo '$(srcdir)/'`src/c/InitWaitBar.c
+
+libscigui_la-InitProgressionBar.lo: src/c/InitProgressionBar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-InitProgressionBar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitProgressionBar.Tpo -c -o libscigui_la-InitProgressionBar.lo `test -f 'src/c/InitProgressionBar.c' || echo '$(srcdir)/'`src/c/InitProgressionBar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-InitProgressionBar.Tpo $(DEPDIR)/libscigui_la-InitProgressionBar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitProgressionBar.c' object='libscigui_la-InitProgressionBar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-InitProgressionBar.lo `test -f 'src/c/InitProgressionBar.c' || echo '$(srcdir)/'`src/c/InitProgressionBar.c
 
 libscigui_la-CreateUIContextMenu.lo: src/c/CreateUIContextMenu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-CreateUIContextMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CreateUIContextMenu.Tpo -c -o libscigui_la-CreateUIContextMenu.lo `test -f 'src/c/CreateUIContextMenu.c' || echo '$(srcdir)/'`src/c/CreateUIContextMenu.c
@@ -1281,6 +1316,20 @@ libscigui_la-sci_messagebox.lo: sci_gateway/c/sci_messagebox.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_messagebox.lo `test -f 'sci_gateway/c/sci_messagebox.c' || echo '$(srcdir)/'`sci_gateway/c/sci_messagebox.c
 
+libscigui_la-sci_waitbar.lo: sci_gateway/c/sci_waitbar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_waitbar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_waitbar.Tpo -c -o libscigui_la-sci_waitbar.lo `test -f 'sci_gateway/c/sci_waitbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_waitbar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_waitbar.Tpo $(DEPDIR)/libscigui_la-sci_waitbar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_waitbar.c' object='libscigui_la-sci_waitbar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_waitbar.lo `test -f 'sci_gateway/c/sci_waitbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_waitbar.c
+
+libscigui_la-sci_progressionbar.lo: sci_gateway/c/sci_progressionbar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_progressionbar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_progressionbar.Tpo -c -o libscigui_la-sci_progressionbar.lo `test -f 'sci_gateway/c/sci_progressionbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_progressionbar.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_progressionbar.Tpo $(DEPDIR)/libscigui_la-sci_progressionbar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_progressionbar.c' object='libscigui_la-sci_progressionbar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_progressionbar.lo `test -f 'sci_gateway/c/sci_progressionbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_progressionbar.c
+
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
@@ -1330,6 +1379,13 @@ libscigui_la-DestroyUIControl.lo: src/cpp/DestroyUIControl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-DestroyUIControl.lo `test -f 'src/cpp/DestroyUIControl.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUIControl.cpp
 
+libscigui_la-DestroyWaitBar.lo: src/cpp/DestroyWaitBar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-DestroyWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-DestroyWaitBar.Tpo -c -o libscigui_la-DestroyWaitBar.lo `test -f 'src/cpp/DestroyWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/DestroyWaitBar.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-DestroyWaitBar.Tpo $(DEPDIR)/libscigui_la-DestroyWaitBar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyWaitBar.cpp' object='libscigui_la-DestroyWaitBar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-DestroyWaitBar.lo `test -f 'src/cpp/DestroyWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/DestroyWaitBar.cpp
+
 libscigui_la-CallJxclick.lo: src/cpp/CallJxclick.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallJxclick.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallJxclick.Tpo -c -o libscigui_la-CallJxclick.lo `test -f 'src/cpp/CallJxclick.cpp' || echo '$(srcdir)/'`src/cpp/CallJxclick.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallJxclick.Tpo $(DEPDIR)/libscigui_la-CallJxclick.Plo
@@ -1371,6 +1427,13 @@ libscigui_la-CallMessageBox.lo: src/cpp/CallMessageBox.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallMessageBox.cpp' object='libscigui_la-CallMessageBox.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallMessageBox.lo `test -f 'src/cpp/CallMessageBox.cpp' || echo '$(srcdir)/'`src/cpp/CallMessageBox.cpp
+
+libscigui_la-CallWaitBar.lo: src/cpp/CallWaitBar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallWaitBar.Tpo -c -o libscigui_la-CallWaitBar.lo `test -f 'src/cpp/CallWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/CallWaitBar.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallWaitBar.Tpo $(DEPDIR)/libscigui_la-CallWaitBar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallWaitBar.cpp' object='libscigui_la-CallWaitBar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallWaitBar.lo `test -f 'src/cpp/CallWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/CallWaitBar.cpp
 
 libscigui_la-PushButton.lo: src/cpp/PushButton.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-PushButton.lo -MD -MP -MF $(DEPDIR)/libscigui_la-PushButton.Tpo -c -o libscigui_la-PushButton.lo `test -f 'src/cpp/PushButton.cpp' || echo '$(srcdir)/'`src/cpp/PushButton.cpp
