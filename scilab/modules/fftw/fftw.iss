@@ -25,7 +25,7 @@ Source: modules\{#FFTW}\help\addchapter.sce; DestDir: {app}\modules\{#FFTW}\help
 ;
 ;Source: modules\{#FFTW}\demos\*.*; DestDir: {app}\modules\{#FFTW}\demos; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;
-;Source: modules\{#FFTW}\help\*.htm; DestDir: {app}\modules\{#FFTW}\help; Flags: recursesubdirs; Components: {#COMPN_FFTW}
+Source: modules\{#FFTW}\help\*.htm; DestDir: {app}\modules\{#FFTW}\help; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;
 ;
 Source: modules\{#FFTW}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#FFTW}\includes; Components: {#COMPN_FFTW}
