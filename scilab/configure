@@ -40077,8 +40077,9 @@ ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/M
 
 # Detection of the module for the future version of Scilab 6
 # ie we detect module which ends with _yasp
+
 if test "$enable_yasp" = yes; then
-   ac_config_files="$ac_config_files "
+   ac_config_files="$ac_config_files modules/development_tools/src/fake/Makefile"
 
 fi
 
@@ -40911,6 +40912,7 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "etc/modules.xml") CONFIG_FILES="$CONFIG_FILES etc/modules.xml" ;;
     "scilab-lib.properties") CONFIG_FILES="$CONFIG_FILES scilab-lib.properties" ;;
+    "modules/development_tools/src/fake/Makefile") CONFIG_FILES="$CONFIG_FILES modules/development_tools/src/fake/Makefile" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}

@@ -1153,9 +1153,10 @@ scilab-lib.properties
 
 # Detection of the module for the future version of Scilab 6
 # ie we detect module which ends with _yasp
+
 if test "$enable_yasp" = yes; then
    AC_CONFIG_FILES([
-
+   modules/development_tools/src/fake/Makefile
   ])
 fi
 
