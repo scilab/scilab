@@ -2,7 +2,7 @@
 
 #ifndef MACHINE_H
 #define MACHINE_H
-
+/* This file defines global element configuration of the build host */
 
 
 /* Define C2F without Trailing Underscore */
