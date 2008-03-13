@@ -90,7 +90,12 @@ if JAVASCI
 SUBDIRS += javasci
 endif
 
-modulename=
+# YASP (Yet Another Scilab Parser) stuff
+# When you are working on a next gen module, please add it into the list of
+# SUBDIRS
+if YASP
+SUBDIRS += 
+endif
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -189,13 +194,13 @@ libscilab_la_LIBADD += \
 $(top_builddir)/libs/lapack/libscilapack.la
 endif 
 
-#BUILT_SOURCES = modules
 
-# Generate the module list from the SUBDIRS
-# COMMENTED : because it must be hardcoded (the order does matter)
-#modules:
-#	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules
+# YASP (Yet Another Scilab Parser) stuff
+# When you are working on a next gen module, please add the name of the library here
+if YASP
+libscilab_la_LIBADD += 
+endif
 
-# include $(top_srcdir)/Makefile.incl.am
+
 
 
