@@ -1,0 +1,98 @@
+#!/bin/sh
+
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - INRIA
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+if [ $# -ne 2 ]; then
+    echo "Usage: sci2pdf in_xml_file out_pdf_or_ps_file"
+    echo "Converts an XML document conforming to scilab.rnc to PDF"
+    echo "or to PostScript."
+    echo "A PostScript file is generated if out_pdf_or_ps_file ends"
+    echo "with '.ps'."
+    exit 1
+fi
+
+echo $2 | grep '^.*\.ps$' 1> /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    format=-ps
+else
+    format=-pdf
+fi
+
+binDir=`dirname $0`
+libDir=$binDir/../lib
+### This XSL style sheet fixes bugs in ../docbook_xsl/fo/htmltbl.xsl
+docbookXslDir=$binDir/../xsl
+
+foDir=/tmp/sci2pdf_tmp
+rm -rf "$foDir"
+mkdir "$foDir"
+
+baseName=`basename $1`
+flatXMLFile="$foDir/$baseName"
+
+foFile="$foDir/__doc.fo"
+
+cp=$libDir/sci_doc_kit.jar:\
+$libDir/jeuclid-core.jar:$libDir/commons-logging.jar:\
+$libDir/batik.jar:$libDir/js.jar
+
+java -cp "$cp" org.scilab.doc_kit.CopyConvert $format "$1" "$flatXMLFile"
+
+type xsltproc 1> /dev/null 2>&1
+if [ $? -eq 0 ]; then
+
+    xsltproc -o "$foFile" \
+        --stringparam paper.type A4 \
+        --stringparam generate.toc "book toc,title,figure,table,example,equation part toc,title reference toc,title" \
+        --stringparam toc.section.depth 3 \
+        --stringparam section.autolabel 1 \
+        --stringparam variablelist.as.blocks 1 \
+        --stringparam shade.verbatim 1 \
+            "$docbookXslDir/fo/docbook.xsl" "$flatXMLFile"
+
+else
+
+    java -Xmx512m -cp "$libDir/saxon.jar:$libDir/docbook-xsl-saxon.jar" \
+        com.icl.saxon.StyleSheet \
+        -o "$foFile" \
+        "$flatXMLFile" \
+        "$docbookXslDir/fo/docbook.xsl" \
+        use.extensions=1 \
+        graphicsize.extension=0 \
+        paper.type=A4 \
+        "generate.toc=book toc,title,figure,table,example,equation part toc,title reference toc,title" \
+        toc.section.depth=3 \
+        section.autolabel=1 \
+        variablelist.as.blocks=1 \
+        shade.verbatim=1
+
+fi
+
+type xep 1> /dev/null 2>&1
+if [ $? -eq 0 ]; then
+
+    xep -valid -fo "$foFile" $format "$2"
+
+else
+
+    cp2=$libDir/fop.jar:$libDir/fop-hyph.jar:$libDir/avalon-framework.jar:\
+$libDir/commons-io.jar:$libDir/commons-logging.jar:\
+$libDir/xmlgraphics-commons.jar:\
+$libDir/jimi.jar:\
+$libDir/batik.jar:$libDir/js.jar
+
+    java -Xmx512m -cp "$cp2" org.apache.fop.cli.Main \
+        -dpi 120 -r -fo "$foFile" $format "$2"
+
+fi
+
+rm -rf "$foDir"
+
+

@@ -1,0 +1,85 @@
+#!/bin/sh
+
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - INRIA
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+if [ $# -ne 2 ]; then
+    echo "Usage: sci2jh in_xml_file out_javahelp_jar_file"
+    echo "Converts an XML document conforming to scilab.rnc"
+    echo "to a JavaHelp[tm] .jar file."
+    echo "out_javahelp_jar_file must end with '_help.jar'."
+    exit 1
+fi
+
+echo $2 | grep '^.*_help\.jar$' 1> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "$2 must end with '_help.jar'."
+    exit 2
+fi
+
+type jar 1> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Don't find the 'jar' command-line utility."
+    exit 3
+fi
+
+binDir=`dirname $0`
+### Need an absolute directory
+binDir=`(cd $binDir 2> /dev/null && pwd;)`
+libDir=$binDir/../lib
+docbookXslDir=$binDir/../docbook_xsl
+cssDir=$binDir/../css
+
+helpset=`basename $2 .jar`
+helpsetDir="/tmp/$helpset"
+
+baseName=`basename $1`
+flatXMLFile="$helpsetDir/$baseName"
+
+rm -rf "$helpsetDir"
+mkdir "$helpsetDir"
+cp "$cssDir/javahelp.css" "$helpsetDir"
+
+cp=$libDir/sci_doc_kit.jar:\
+$libDir/jeuclid-core.jar:$libDir/commons-logging.jar:\
+$libDir/batik.jar:$libDir/js.jar
+
+java -cp "$cp" org.scilab.doc_kit.CopyConvert "$1" "$flatXMLFile"
+
+type xsltproc 1> /dev/null 2>&1
+if [ $? -eq 0 ]; then
+
+    xsltproc --stringparam base.dir "$helpsetDir/" \
+        --stringparam html.stylesheet "javahelp.css" \
+        --stringparam generate.toc " " \
+            "$docbookXslDir/javahelp/javahelp.xsl" "$flatXMLFile"
+
+else
+
+    java -Xmx512m -cp "$libDir/saxon.jar:$libDir/docbook-xsl-saxon.jar" \
+        com.icl.saxon.StyleSheet \
+        "$flatXMLFile" \
+        "$docbookXslDir/javahelp/javahelp.xsl" \
+        base.dir="$helpsetDir/" \
+        html.stylesheet=javahelp.css \
+        use.extensions=1 \
+        graphicsize.extension=0 \
+        "generate.toc= "
+
+fi
+
+rm -f "$flatXMLFile"
+
+### Do it this way or full text search will not work.
+(cd "$helpsetDir" ; \
+java -cp "$libDir/jhall.jar" com.sun.java.help.search.Indexer .)
+
+jar cf "$2" -C /tmp "$helpset"
+
+rm -rf "$helpsetDir"
