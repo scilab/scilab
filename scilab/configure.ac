@@ -1043,26 +1043,6 @@ AH_BOTTOM([
 # Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
-
-
-#################
-## NEXT GEN SCILAB (Yasp = Yet Another Scilab Puffin)
-#################
-
-AC_ARG_ENABLE(yasp,
-    AC_HELP_STRING([--enable-yasp],[Enable the compilation of the Yasp modules]))
-
-if test "$enable_yasp" = yes; then
-   AC_MSG_WARN([=====================================])
-   AC_MSG_WARN([YASP (Yet Another Scilab Puffin) is the future engine of Scilab 6. This option is only for crazy stuntman.])
-   AC_MSG_WARN([=====================================])
-   sleep 2
-   YASP_ENABLE=yes
-fi
-
-AM_CONDITIONAL(YASP, test "$enable_yasp" = yes)
-
-
 #################
 ## stop on warning
 #################

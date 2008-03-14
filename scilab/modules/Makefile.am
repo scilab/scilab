@@ -82,14 +82,6 @@ endif
 
 SUBDIRS += scicos
 
-
-# YASP (Yet Another Scilab Parser) stuff
-# When you are working on a next gen module, please add it into the list of
-# SUBDIRS
-if YASP
-SUBDIRS += 
-endif
-
 SUBDIRS += .
 
 # javasci should be compile at the end because it needs libscilab.la
@@ -194,14 +186,3 @@ if USE_EMBEDDED_LAPACK
 libscilab_la_LIBADD += \
 $(top_builddir)/libs/lapack/libscilapack.la
 endif 
-
-
-# YASP (Yet Another Scilab Parser) stuff
-# When you are working on a next gen module, please add the name of the library here
-if YASP
-libscilab_la_LIBADD += 
-endif
-
-
-
-
