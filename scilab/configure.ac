@@ -517,6 +517,9 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1-pre 20071112])
 				JOGL=$PACKAGE_JAR_FILE
 				AC_SUBST(JOGL)
+				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser])
+				JHALL=$PACKAGE_JAR_FILE
+				AC_SUBST(JHALL)
 				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
 				GLUEGEN_RT=$PACKAGE_JAR_FILE
 				AC_SUBST(GLUEGEN_RT)

@@ -365,6 +365,7 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+JHALL = @JHALL@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -835,7 +836,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@PARSER_SRC = src/modelica_compiler/parser.mly
 @SCICOS_TRUE@LEXER_SRC = src/modelica_compiler/lexer.mll
 @SCICOS_TRUE@INCLUDE = -I src/modelica_compiler/
-@SCICOS_TRUE@CLEANFILES = src/modelica_compiler/*.cmi src/modelica_compiler/*.cmo src/modelica_compiler/*.cm[aiox] $(TARGET) src/modelica_compiler/parser.mli src/modelica_compiler/lexer.mli src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml
+@SCICOS_TRUE@CLEANFILES = src/modelica_compiler/*.cmi src/modelica_compiler/*.o src/modelica_compiler/*.cmo src/modelica_compiler/*.cm[aiox] $(TARGET) src/modelica_compiler/parser.mli src/modelica_compiler/lexer.mli src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 all: all-am
 
