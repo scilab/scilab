@@ -328,5 +328,3 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 	*_pdblImg *= iSignImg;
 }
 
-
-/*test Tonio SVN*/
