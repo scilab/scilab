@@ -12,34 +12,36 @@ AC_DEFUN([AC_CHECK_PROG_OCAML],[
 	OCAMLDEP=
 	AC_CHECK_PROG(OCAMLC,ocamlc,ocamlc,no)
 	if test "$OCAMLC" = no; then
-		AC_MSG_ERROR([ocamlc not found])
-	else
-
-		AC_CHECK_PROG(OCAMLOPT,ocamlopt,ocamlopt,no)
-		if test "$OCAMLOPT" = no; then
-			AC_MSG_ERROR([ocamlopt not found])
-		else
-			AC_CHECK_PROG(OCAMLDEP,ocamldep,ocamldep,no)
-			if test "$OCAMLDEP" = no; then
-				AC_MSG_ERROR([ocamldep not found])
-			else
-				AC_CHECK_PROG(OCAMLYACC,ocamlyacc,ocamlyacc,no)
-				if test "$OCAMLYACC" = no; then
-					AC_MSG_ERROR([ocamlyacc not found])
-				else
-					AC_DEFINE([WITH_OCAML],[],[With OCAML])
-					OCAMLC=ocamlc
-					OCAMLOPT=ocamlopt
-					OCAMLDEP=ocamldep
-					OCAMLDEP=ocamlyacc
-				fi
-			fi
-		fi
+		AC_MSG_ERROR([ocamlc not found. Mandatory to build Scicos.])
 	fi
+	AC_CHECK_PROG(OCAMLOPT,ocamlopt,ocamlopt,no)
+	if test "$OCAMLOPT" = no; then
+		AC_MSG_ERROR([ocamlopt not found. Mandatory to build Scicos.])
+	fi
+	AC_CHECK_PROG(OCAMLDEP,ocamldep,ocamldep,no)
+	if test "$OCAMLDEP" = no; then
+		AC_MSG_ERROR([ocamldep not found. Mandatory to build Scicos.])
+	fi
+	AC_CHECK_PROG(OCAMLYACC,ocamlyacc,ocamlyacc,no)
+	if test "$OCAMLYACC" = no; then
+		AC_MSG_ERROR([ocamlyacc not found. Mandatory to build Scicos.])
+	fi
+	AC_CHECK_PROG(OCAMLLEX,ocamllex,ocamllex,no)
+	if test "$OCAMLLEX" = no; then
+		AC_MSG_ERROR([ocamllex not found. Mandatory to build Scicos.])
+	fi
+	AC_DEFINE([WITH_OCAML],[],[With OCAML])
+	OCAMLC=ocamlc
+	OCAMLOPT=ocamlopt
+	OCAMLDEP=ocamldep
+	OCAMLYACC=ocamlyacc
+	OCAMLLEX=ocamllex
+
 	AC_SUBST(OCAMLC)
 	AC_SUBST(OCAMLOPT)
 	AC_SUBST(OCAMLDEP)
 	AC_SUBST(OCAMLYACC)
+	AC_SUBST(OCAMLLEX)
 	AC_SUBST(WITH_OCAML)
 ]
 )
