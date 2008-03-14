@@ -19,7 +19,8 @@ bin_PROGRAMS		= scilab-bin
 bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
-
+scilab_bin_LDFLAGS 		= --no-undefined --relax
+#-static
 # libshell is mandatory here since main_linux.c depends on it.
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la

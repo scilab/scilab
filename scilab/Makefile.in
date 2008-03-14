@@ -49,9 +49,10 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	COPYING config/compile config/config.guess config/config.rpath \
-	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing
+	ABOUT-NLS COPYING config.guess config.sub config/compile \
+	config/config.guess config/config.rpath config/config.sub \
+	config/depcomp config/install-sh config/ltmain.sh \
+	config/missing depcomp install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -80,6 +81,9 @@ am_scilab_bin_OBJECTS = main_linux.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/shell/libscishell.la
+scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(bin_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
@@ -203,6 +207,7 @@ NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
+OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
 PACKAGE = @PACKAGE@
@@ -314,7 +319,8 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
 bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/c/main_linux.c
-
+scilab_bin_LDFLAGS = --no-undefined --relax
+#-static
 # libshell is mandatory here since main_linux.c depends on it.
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la
@@ -428,7 +434,7 @@ clean-binPROGRAMS:
 	done
 scilab-bin$(EXEEXT): $(scilab_bin_OBJECTS) $(scilab_bin_DEPENDENCIES) 
 	@rm -f scilab-bin$(EXEEXT)
-	$(LINK) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
+	$(scilab_bin_LINK) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
 install-binSCRIPTS: $(bin_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"

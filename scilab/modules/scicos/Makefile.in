@@ -387,6 +387,7 @@ NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
+OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
 PACKAGE = @PACKAGE@
@@ -823,7 +824,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@	src/modelica_compiler/optimization.ml  src/modelica_compiler/xMLCodeGeneration.ml src/modelica_compiler/optimizingCompiler.ml\
 @SCICOS_TRUE@	src/modelica_compiler/scicosCodeGeneration.ml src/modelica_compiler/scicosOptimizingCompiler.ml
 
-@SCICOS_TRUE@MLIS = src/modelica_compiler/parseTree.mli\
+@SCICOS_TRUE@MLIS = src/modelica_compiler/parseTree.mli \
 @SCICOS_TRUE@	src/modelica_compiler/precompilation.mli src/modelica_compiler/compilation.mli src/modelica_compiler/instantiation.mli\
 @SCICOS_TRUE@	src/modelica_compiler/graphNodeSet.mli src/modelica_compiler/symbolicExpression.mli \
 @SCICOS_TRUE@	src/modelica_compiler/squareSparseMatrix.mli src/modelica_compiler/bipartiteGraph.mli src/modelica_compiler/hungarianMethod.mli \
@@ -835,8 +836,9 @@ JARMASK = *.jar
 
 @SCICOS_TRUE@PARSER_SRC = src/modelica_compiler/parser.mly
 @SCICOS_TRUE@LEXER_SRC = src/modelica_compiler/lexer.mll
-@SCICOS_TRUE@INCLUDE = -I src/modelica_compiler/
-@SCICOS_TRUE@CLEANFILES = src/modelica_compiler/*.cmi src/modelica_compiler/*.o src/modelica_compiler/*.cmo src/modelica_compiler/*.cm[aiox] $(TARGET) src/modelica_compiler/parser.mli src/modelica_compiler/lexer.mli src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml
+@SCICOS_TRUE@BASE_PATH = src/modelica_compiler
+@SCICOS_TRUE@INCLUDE = -I $(BASE_PATH)
+@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 all: all-am
 
@@ -2036,33 +2038,34 @@ install-data-local:
 
 .PHONY: macros java swig giws
 
+# @TODO check how to avoid the rebuild of the parser/lexer
+
 @SCICOS_TRUE@.ml.cmo:
-@SCICOS_TRUE@	ocamlc $(INCLUDE)  -c $<
+@SCICOS_TRUE@	$(OCAMLC) $(INCLUDE)  -c $<
 
 @SCICOS_TRUE@.ml.cmx:
-@SCICOS_TRUE@	ocamlopt $(INCLUDE) -c $<
+@SCICOS_TRUE@	$(OCAMLOPT) $(INCLUDE) -c $<
 
 @SCICOS_TRUE@.mli.cmi:
-@SCICOS_TRUE@	ocamlc $(INCLUDE) -c $<
+@SCICOS_TRUE@	$(OCAMLC) $(INCLUDE) -c $<
 
 @SCICOS_TRUE@.mll.ml:
-@SCICOS_TRUE@	ocamllex $<
+@SCICOS_TRUE@	$(OCAMLYACC) $<
 
 @SCICOS_TRUE@.mly.ml:
-@SCICOS_TRUE@	ocamlyacc $<
-
+@SCICOS_TRUE@	$(OCAMLLEX) $<
 # call the ocaml/Yacc
 @SCICOS_TRUE@generate-parser: $(PARSER_SRC)
-@SCICOS_TRUE@	ocamlyacc $(<)
+@SCICOS_TRUE@	$(OCAMLYACC) $(<)
 @SCICOS_TRUE@	$(RM) -f $(<:.mly=.mli)
 
 # Call the lexer
 @SCICOS_TRUE@generate-lexer: $(LEXER_SRC)
-@SCICOS_TRUE@	ocamllex $(<)
+@SCICOS_TRUE@	$(OCAMLLEX) $(<)
 
 # Build the binary 
 @SCICOS_TRUE@$(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-@SCICOS_TRUE@	ocamlopt -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+@SCICOS_TRUE@	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
 #### WORKAROUND ####
 # Do not use the global clean-local rule because Scicos help is not managed

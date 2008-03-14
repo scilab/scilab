@@ -274,7 +274,7 @@ MLS = src/modelica_compiler/parseTree.ml src/modelica_compiler/linenum.ml src/mo
 	src/modelica_compiler/optimization.ml  src/modelica_compiler/xMLCodeGeneration.ml src/modelica_compiler/optimizingCompiler.ml\
 	src/modelica_compiler/scicosCodeGeneration.ml src/modelica_compiler/scicosOptimizingCompiler.ml
 
-MLIS = src/modelica_compiler/parseTree.mli\
+MLIS = src/modelica_compiler/parseTree.mli \
 	src/modelica_compiler/precompilation.mli src/modelica_compiler/compilation.mli src/modelica_compiler/instantiation.mli\
 	src/modelica_compiler/graphNodeSet.mli src/modelica_compiler/symbolicExpression.mli \
 	src/modelica_compiler/squareSparseMatrix.mli src/modelica_compiler/bipartiteGraph.mli src/modelica_compiler/hungarianMethod.mli \
@@ -284,41 +284,46 @@ MLIS = src/modelica_compiler/parseTree.mli\
 	src/modelica_compiler/optimizingCompiler.mli \
 	src/modelica_compiler/scicosCodeGeneration.mli 
 
+
 PARSER_SRC = src/modelica_compiler/parser.mly
 LEXER_SRC = src/modelica_compiler/lexer.mll
-INCLUDE = -I src/modelica_compiler/
+BASE_PATH = src/modelica_compiler
+INCLUDE = -I $(BASE_PATH)
 
 SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
+# @TODO check how to avoid the rebuild of the parser/lexer
+
 .ml.cmo:
-	ocamlc $(INCLUDE)  -c $<
+	$(OCAMLC) $(INCLUDE)  -c $<
 
 .ml.cmx:
-	ocamlopt $(INCLUDE) -c $<
+	$(OCAMLOPT) $(INCLUDE) -c $<
 
 .mli.cmi:
-	ocamlc $(INCLUDE) -c $<
+	$(OCAMLC) $(INCLUDE) -c $<
 
 .mll.ml:
-	ocamllex $<
+	$(OCAMLYACC) $<
 
 .mly.ml:
-	ocamlyacc $<
+	$(OCAMLLEX) $<
 
 # call the ocaml/Yacc
 generate-parser: $(PARSER_SRC)
-	ocamlyacc $(<)
+	$(OCAMLYACC) $(<)
 	$(RM) -f $(<:.mly=.mli)
 
 # Call the lexer
 generate-lexer: $(LEXER_SRC)
-	ocamllex $(<)
+	$(OCAMLLEX) $(<)
 
 # Build the binary 
 $(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-	ocamlopt -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
-CLEANFILES = src/modelica_compiler/*.cmi src/modelica_compiler/*.o src/modelica_compiler/*.cmo src/modelica_compiler/*.cm[aiox] $(TARGET) src/modelica_compiler/parser.mli src/modelica_compiler/lexer.mli src/modelica_compiler/parser.ml src/modelica_compiler/lexer.ml
+
+CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
 
 else
 
