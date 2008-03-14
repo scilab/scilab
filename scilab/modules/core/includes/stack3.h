@@ -98,9 +98,11 @@ int getlengthchain(char *namex);
 int iIsComplex(int _iVar);
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal);
 void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
+void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal);
+void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg);
 int iArraySum(int *_piArray, int _iStart, int _iEnd);
-void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData);
-void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData);
+void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData);
+void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData);
+void CreateSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData);
+void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData, double* _pdblImgData);
 #endif 
-
-
