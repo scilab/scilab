@@ -4131,10 +4131,11 @@ public class ScilabBridge {
 
 	/**
 	 * Create a new Help Browser
+	 * @param helps help chapters and directories
 	 * @return the created Help Browser
 	 */
-	public static SimpleHelpBrowser createHelpBrowser() {
-		return ScilabHelpBrowserBridge.createHelpBrowser();
+	public static SimpleHelpBrowser createHelpBrowser(String[] helps) {
+		return ScilabHelpBrowserBridge.createHelpBrowser(helps);
 	}
 
 	/**

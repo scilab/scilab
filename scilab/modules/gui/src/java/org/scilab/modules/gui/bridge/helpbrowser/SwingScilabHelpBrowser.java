@@ -36,13 +36,22 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 
     /**
 	 * Constructor
-	 */
-	public SwingScilabHelpBrowser() {
-		super();
-
-        File[] jarFiles = new File[1];
-        jarFiles[0] = new File(System.getenv("SCI") + "/thirdparty/scilab_help.jar");
-        for (int i = 0; i < jarFiles.length; ++i) {
+	 * @param helps help chapters and directories
+	 */		
+	public SwingScilabHelpBrowser(String[] helps) {
+		super();	
+			
+		/* First half of helps is directories list */
+		/* Second half of helps is chapters titles */
+		
+	    File[] jarFiles = new File[helps.length / 2];
+	    for (int k = 0; k < helps.length; k++) {
+			System.out.println("Loading help from: " + helps[k]);
+			jarFiles[k] =  new File(helps[k] + "scilab_help.jar");
+		}
+	    this.setModel(new DefaultHelpModel(new HelpSet()));
+        
+	    for (int i = 0; i < jarFiles.length; ++i) {
             URI jarURI = jarFiles[i].toURI();
 
             StringBuilder buffer = new StringBuilder("jar:");
@@ -65,8 +74,10 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            this.setModel(new DefaultHelpModel(helpSet));
+            //this.setModel(new DefaultHelpModel(helpSet));
+			this.getModel().getHelpSet().add(helpSet);
         }
+
 	}
 	
 	/**

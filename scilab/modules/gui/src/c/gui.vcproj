@@ -627,7 +627,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_help.c"
+				RelativePath="..\..\sci_gateway\c\sci_helpbrowser.c"
 				>
 			</File>
 			<File

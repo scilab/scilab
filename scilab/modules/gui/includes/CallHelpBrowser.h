@@ -18,15 +18,20 @@
 
 /**
  * Launch a Scilab Help Browser
+ *
+ * @param helps help chapters and directories
+ * @param helpsSize number of entries in helps
  */
-void launchHelpBrowser(void);
+void launchHelpBrowser(char **helps, int helpsSize);
 
 /**
  * Search a keyword in Scilab Help Browser
  *
+ * @param helps help chapters and directories
+ * @param helpsSize number of entries in helps
  * @param keyword the keyword to search
  */
-BOOL searchKeyword(char *keyword);
+BOOL searchKeyword(char **helps, int helpsSize, char *keyword);
 
 #endif /* !__CALLHELPBROWSER_H__ */
 

@@ -42,18 +42,20 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
 	/**
 	 * Constructor
+	 * @param helps help chapters and directories
 	 */
-	protected ScilabHelpBrowser() {
-		component = ScilabBridge.createHelpBrowser();
+	protected ScilabHelpBrowser(String[] helps) {
+		component = ScilabBridge.createHelpBrowser(helps);
 	}
 
 	/**
 	 * Creates a Scilab Help Browser
+	 * @param helps help chapters and directories
 	 * @return the created Help Browser
 	 */
-	public static HelpBrowser createHelpBrowser() {
+	public static HelpBrowser createHelpBrowser(String[] helps) {
 		if (instance == null) {
-			instance = new ScilabHelpBrowser();
+			instance = new ScilabHelpBrowser(helps);
 			helpTab = ScilabTab.createTab("Help Browser");
 			helpTab.addMember(instance);
 			helpTab.setCallback(ScilabCallBack
@@ -86,10 +88,11 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	 * @return the console
 	 */
 	public static HelpBrowser getHelpBrowser() {
-		if (instance == null) {
-			instance = new ScilabHelpBrowser();
-		}
-		return instance;
+		throw new UnsupportedOperationException();
+//		if (instance == null) {
+//			instance = new ScilabHelpBrowser();
+//		}
+//		return instance;
 	}
 	
 	/**

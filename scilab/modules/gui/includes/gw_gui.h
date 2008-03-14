@@ -42,7 +42,7 @@ int sci_uiwait(char *fname,unsigned long l);
 int sci_messagebox(char *fname,unsigned long l);
 int sci_waitbar(char *fname,unsigned long l);
 int sci_progressionbar(char *fname,unsigned long l);
-int sci_help(char *fname,unsigned long l);
+int sci_helpbrowser(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

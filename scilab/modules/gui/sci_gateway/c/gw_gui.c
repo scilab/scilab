@@ -45,7 +45,7 @@ static gw_generic_table Tab[]=
 	{sci_messagebox,"messagebox"},
 	{sci_waitbar,"waitbar"},
 	{sci_progressionbar,"progressionbar"},
-	{sci_help,"jhelp"}
+	{sci_helpbrowser,"helpbrowser"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

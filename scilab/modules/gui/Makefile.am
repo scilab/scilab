@@ -128,7 +128,7 @@ sci_gateway/c/sci_mpopup.c \
 sci_gateway/c/sci_messagebox.c \
 sci_gateway/c/sci_waitbar.c \
 sci_gateway/c/sci_progressionbar.c \
-sci_gateway/c/sci_help.c
+sci_gateway/c/sci_helpbrowser.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

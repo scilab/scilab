@@ -481,8 +481,11 @@
           <parameter type="boolean" name="status"/>
         </method>
 <!-- Help Browser -->
-	<method name="launchHelpBrowser" returnType="void" modifier="static"/>      
+	<method name="launchHelpBrowser" returnType="void" modifier="static">
+          <parameter type="String[]" name="helps"/>
+        </method>      
         <method name="searchKeyword" returnType="boolean" modifier="static">
+          <parameter type="String[]" name="helps"/>
           <parameter type="String" name="keyword"/>
         </method>
   </object>

@@ -233,8 +233,8 @@ voidsetWaitBarMessagejintjobjectArrayID=NULL;
 voidsetWaitBarValuejintjintID=NULL; 
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
-voidlaunchHelpBrowserID=NULL; 
-jbooleansearchKeywordjstringID=NULL; 
+voidlaunchHelpBrowserjobjectArrayID=NULL; 
+jbooleansearchKeywordjobjectArrayjstringID=NULL; 
 
 
 }
@@ -391,8 +391,8 @@ voidsetWaitBarMessagejintjobjectArrayID=NULL;
 voidsetWaitBarValuejintjintID=NULL; 
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
-voidlaunchHelpBrowserID=NULL; 
-jbooleansearchKeywordjstringID=NULL; 
+voidlaunchHelpBrowserjobjectArrayID=NULL; 
+jbooleansearchKeywordjobjectArrayjstringID=NULL; 
 
 
 }
@@ -3820,48 +3820,100 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void CallScilabBridge::launchHelpBrowser (JavaVM * jvm_){
+void CallScilabBridge::launchHelpBrowser (JavaVM * jvm_, char ** helps, int helpsSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidlaunchHelpBrowserID = curEnv->GetStaticMethodID(cls, "launchHelpBrowser", "()V" ) ;
-if (voidlaunchHelpBrowserID == NULL) {
+jmethodID voidlaunchHelpBrowserjobjectArrayID = curEnv->GetStaticMethodID(cls, "launchHelpBrowser", "([Ljava/lang/String;)V" ) ;
+if (voidlaunchHelpBrowserjobjectArrayID == NULL) {
 std::cerr << "Could not access to the method " << "launchHelpBrowser" << std::endl;
 exit(EXIT_FAILURE);
 }
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
-                         curEnv->CallStaticVoidMethod(cls, voidlaunchHelpBrowserID );
+// create java array of strings.
+jobjectArray helps_ = curEnv->NewObjectArray( helpsSize, stringArrayClass, NULL);
+if (helps_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < helpsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( helps[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( helps_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidlaunchHelpBrowserjobjectArrayID ,helps_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(helps_);
+
 }
 
-bool CallScilabBridge::searchKeyword (JavaVM * jvm_, char * keyword){
+bool CallScilabBridge::searchKeyword (JavaVM * jvm_, char ** helps, int helpsSize, char * keyword){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jbooleansearchKeywordjstringID = curEnv->GetStaticMethodID(cls, "searchKeyword", "(Ljava/lang/String;)Z" ) ;
-if (jbooleansearchKeywordjstringID == NULL) {
+jmethodID jbooleansearchKeywordjobjectArrayjstringID = curEnv->GetStaticMethodID(cls, "searchKeyword", "([Ljava/lang/String;Ljava/lang/String;)Z" ) ;
+if (jbooleansearchKeywordjobjectArrayjstringID == NULL) {
 std::cerr << "Could not access to the method " << "searchKeyword" << std::endl;
 exit(EXIT_FAILURE);
 }
+jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 
+// create java array of strings.
+jobjectArray helps_ = curEnv->NewObjectArray( helpsSize, stringArrayClass, NULL);
+if (helps_ == NULL)
+{
+std::cerr << "Could not allocate Java string array, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < helpsSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( helps[i] );
+if (TempString == NULL)
+{
+std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
+exit(EXIT_FAILURE);
+}
+
+curEnv->SetObjectArrayElement( helps_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
 jstring keyword_ = curEnv->NewStringUTF( keyword );
 
-                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleansearchKeywordjstringID ,keyword_);
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleansearchKeywordjobjectArrayjstringID ,helps_, keyword_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
-                        
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(helps_);
+
 return (res == JNI_TRUE);
 
 }

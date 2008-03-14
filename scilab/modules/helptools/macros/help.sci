@@ -25,6 +25,9 @@ function help(key)
 			INDEX=make_help_index()
 			
 			if argn(2)==0 then
+				//global %helps
+				//allChapters = %helps;
+				//helpbrowser(allChapters);
 				browsehelp(INDEX,"index");
 				return
 			end
@@ -40,6 +43,9 @@ function help(key)
 			
 			if path<>[] then
 				browsehelp(path,key)
+				//global %helps
+				//allChapters = %helps;
+				//helpbrowser(allChapters, key);
 			else
 				apropos(key)
 			end
