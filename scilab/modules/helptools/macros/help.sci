@@ -26,8 +26,7 @@ function help(key)
 			
 			if argn(2)==0 then
 				//global %helps
-				//allChapters = %helps;
-				//helpbrowser(allChapters);
+				//helpbrowser(%helps(:,1));
 				browsehelp(INDEX,"index");
 				return
 			end
@@ -42,10 +41,9 @@ function help(key)
 			path=gethelpfile(key)
 			
 			if path<>[] then
-				browsehelp(path,key)
 				//global %helps
-				//allChapters = %helps;
-				//helpbrowser(allChapters, key);
+				//helpbrowser(%helps(:,1), key);
+				browsehelp(path,key)
 			else
 				apropos(key)
 			end

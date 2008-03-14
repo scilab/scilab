@@ -15,6 +15,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.StringTokenizer;
 
 import javax.help.BadIDException;
 import javax.help.DefaultHelpModel;
@@ -40,14 +41,20 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	 */		
 	public SwingScilabHelpBrowser(String[] helps) {
 		super();	
-			
-		/* First half of helps is directories list */
-		/* Second half of helps is chapters titles */
 		
-	    File[] jarFiles = new File[helps.length / 2];
+	    File[] jarFiles = new File[helps.length];
+	    String moduleName = "";
 	    for (int k = 0; k < helps.length; k++) {
-			System.out.println("Loading help from: " + helps[k]);
-			jarFiles[k] =  new File(helps[k] + "scilab_help.jar");
+			/* Search module name */
+			StringTokenizer tok = new StringTokenizer(helps[k], "/");
+			while (tok.hasMoreTokens()) {
+				if (tok.nextToken().equals("modules")) {
+					moduleName = tok.nextToken();
+					break;
+				}
+			}
+			/* Jar file name */
+			jarFiles[k] =  new File(helps[k] + moduleName + "_help.jar");
 		}
 	    this.setModel(new DefaultHelpModel(new HelpSet()));
         
