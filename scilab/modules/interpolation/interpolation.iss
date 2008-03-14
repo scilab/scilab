@@ -25,7 +25,7 @@ Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.start; DestDir: {app}\modu
 ;
 Source: modules\{#INTERPOLATION}\help\addchapter.sce; DestDir: {app}\modules\{#INTERPOLATION}\help; Flags: recursesubdirs; Components:  {#COMPN_INTERP}
 ;
-Source: modules\{#INTERPOLATION}\help\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+;Source: modules\{#INTERPOLATION}\help\*.htm; DestDir: {app}\modules\{#INTERPOLATION}\help; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 ;
 ;
 Source: modules\{#INTERPOLATION}\includes\*.h; DestDir: {app}\modules\{#INTERPOLATION}\includes; Components: {#COMPN_INTERP}

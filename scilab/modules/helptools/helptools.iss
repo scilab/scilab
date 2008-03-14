@@ -33,7 +33,7 @@ Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.start; DestDir: {app}\modules\{#HE
 Source: modules\{#HELPTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 ;
-Source: modules\{#HELPTOOLS}\help\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\help\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}

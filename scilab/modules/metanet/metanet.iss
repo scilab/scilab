@@ -34,7 +34,7 @@ Source: modules\{#METANET}\etc\{#METANET}.start; DestDir: {app}\modules\{#METANE
 ;
 Source: modules\{#METANET}\help\addchapter.sce; DestDir: {app}\modules\{#METANET}\help; Flags: recursesubdirs; Components:  {#COMPN_METANET}
 ;
-Source: modules\{#METANET}\help\*.htm; DestDir: {app}\modules\{#METANET}\help; Flags: recursesubdirs; Components: {#COMPN_METANET}
+;Source: modules\{#METANET}\help\*.htm; DestDir: {app}\modules\{#METANET}\help; Flags: recursesubdirs; Components: {#COMPN_METANET}
 ;
 ;
 Source: modules\{#METANET}\includes\*.h; DestDir: {app}\modules\{#METANET}\includes; Components: {#COMPN_METANET}

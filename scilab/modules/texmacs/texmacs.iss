@@ -14,7 +14,7 @@ Source: modules\{#TEXMACS}\etc\{#TEXMACS}.start; DestDir: {app}\modules\{#TEXMAC
 ;
 Source: modules\{#TEXMACS}\help\addchapter.sce; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components:  {#COMPN_TEXMACS}
 ;
-Source: modules\{#TEXMACS}\help\*.htm; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
+;Source: modules\{#TEXMACS}\help\*.htm; DestDir: {app}\modules\{#TEXMACS}\help; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
 ;
 Source: modules\{#TEXMACS}\macros\lib; DestDir: {app}\modules\{#TEXMACS}\macros; Components: {#COMPN_TEXMACS}

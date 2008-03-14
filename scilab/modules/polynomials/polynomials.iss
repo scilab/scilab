@@ -30,7 +30,7 @@ Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.start; DestDir: {app}\modules\
 ;
 Source: modules\{#POLYNOMIALS}\help\addchapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help; Flags: recursesubdirs; Components:  {#COMPN_POLY}
 ;
-Source: modules\{#POLYNOMIALS}\help\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\; Flags: recursesubdirs; Components: {#COMPN_POLY}
+;Source: modules\{#POLYNOMIALS}\help\*.htm; DestDir: {app}\modules\{#POLYNOMIALS}\help\; Flags: recursesubdirs; Components: {#COMPN_POLY}
 ;
 ;
 Source: modules\{#POLYNOMIALS}\includes\*.h; DestDir: {app}\modules\{#POLYNOMIALS}\includes; Components: {#COMPN_POLY}

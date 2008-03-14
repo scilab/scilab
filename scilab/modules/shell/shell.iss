@@ -32,7 +32,7 @@ Source: modules\{#SHELL}\help\addchapter.sce; DestDir: {app}\modules\{#SHELL}\he
 Source: modules\{#SHELL}\etc\{#SHELL}.quit; DestDir: {app}\modules\{#SHELL}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\etc\{#SHELL}.start; DestDir: {app}\modules\{#SHELL}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SHELL}\help\*.htm; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#SHELL}\help\*.htm; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;
 Source: modules\{#SHELL}\macros\buildmacros.sce; DestDir: {app}\modules\{#SHELL}\macros; Components: {#COMPN_SCILAB}

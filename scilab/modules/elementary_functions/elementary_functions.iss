@@ -24,7 +24,7 @@ Source: modules\{#ELEMFUNCTIONS}\etc\{#ELEMFUNCTIONS}.start; DestDir: {app}\modu
 ;
 Source: modules\{#ELEMFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#ELEMFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#ELEMFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;
 Source: modules\{#ELEMFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#ELEMFUNCTIONS}\includes; Components: {#COMPN_SCILAB}

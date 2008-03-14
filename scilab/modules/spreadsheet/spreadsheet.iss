@@ -36,7 +36,7 @@ Source: modules\{#SPREADSHEET}\etc\{#SPREADSHEET}.start; DestDir: {app}\modules\
 ;
 Source: modules\{#SPREADSHEET}\help\addchapter.sce; DestDir: {app}\modules\{#SPREADSHEET}\help; Flags: recursesubdirs; Components:  {#COMPN_SPREADSHEET}
 ;
-Source: modules\{#SPREADSHEET}\help\*.htm; DestDir: {app}\modules\{#SPREADSHEET}\help; Flags: recursesubdirs; Components: {#COMPN_SPREADSHEET}
+;Source: modules\{#SPREADSHEET}\help\*.htm; DestDir: {app}\modules\{#SPREADSHEET}\help; Flags: recursesubdirs; Components: {#COMPN_SPREADSHEET}
 ;
 ;
 Source: modules\{#SPREADSHEET}\macros\buildmacros.sce; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SPREADSHEET}

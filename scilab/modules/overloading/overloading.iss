@@ -27,7 +27,7 @@ Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.start; DestDir: {app}\modules\
 ;
 Source: modules\{#OVERLOADING}\help\addchapter.sce; DestDir: {app}\modules\{#OVERLOADING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#OVERLOADING}\help\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#OVERLOADING}\help\*.htm; DestDir: {app}\modules\{#OVERLOADING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;
 ;Source: modules\{#OVERLOADING}\includes\*.h; DestDir: {app}\modules\{#OVERLOADING}\includes; Components: {#COMPN_SCILAB}

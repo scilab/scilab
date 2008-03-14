@@ -22,7 +22,7 @@ Source: modules\{#SPFUNCTIONS}\etc\{#SPFUNCTIONS}.start; DestDir: {app}\modules\
 ;
 Source: modules\{#SPFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#SPFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#SPFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#SPFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;
 ;Source: modules\{#SPFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#SPFUNCTIONS}\includes; Components: {#COMPN_SCILAB}

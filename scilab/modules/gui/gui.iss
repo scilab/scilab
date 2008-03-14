@@ -38,7 +38,7 @@ Source: modules\{#GUI}\images\icons\*.png; DestDir: {app}\modules\{#GUI}\images\
 ;
 Source: modules\{#GUI}\help\addchapter.sce; DestDir: {app}\modules\{#GUI}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#GUI}\help\*.htm; DestDir: {app}\modules\{#GUI}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#GUI}\help\*.htm; DestDir: {app}\modules\{#GUI}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;
 Source: modules\{#GUI}\includes\*.h; DestDir: {app}\modules\{#GUI}\includes; Components: {#COMPN_SCILAB}
