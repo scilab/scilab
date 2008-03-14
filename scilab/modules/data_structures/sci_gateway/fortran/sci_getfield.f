@@ -34,7 +34,7 @@ c     get arg2
       il2=iadr(lstk(top))
       if(istk(il2).lt.0) il2=iadr(istk(il2+1))
       if(istk(il2).lt.15.or.istk(il2).gt.17) then
-         err=1
+         err=2
          call error(56)
          return
       endif
