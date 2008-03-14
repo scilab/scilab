@@ -60,11 +60,13 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		echo "-- Building documentation (English) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e \"xmltohtml();exit;\"";\
-		$(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e "xmltohtml();exit;";\
+		echo "-- Warning : Building documentation : Temporary Disabled --"; \
+		# echo "$(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e \"xmltohtml();exit;\"";\
+		# $(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e "xmltohtml();exit;";\
 		echo "-- Building documentation (French) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e \"xmltohtml();exit;\""; \
-		$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;"; \
+		echo "-- Warning : Building documentation : Temporary Disabled --"; \
+		# echo "$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e \"xmltohtml();exit;\""; \
+		# $(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi

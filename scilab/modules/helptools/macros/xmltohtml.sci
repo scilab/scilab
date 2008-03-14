@@ -10,6 +10,9 @@
 
 function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
+	mprintf("This function has been temporary disabled \n");
+	exit(0);
+	
 	// =========================================================================
 	// Authors : Pierre MARECHAL
 	// Copyright INRIA
