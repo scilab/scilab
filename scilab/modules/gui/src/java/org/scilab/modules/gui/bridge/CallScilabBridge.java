@@ -55,6 +55,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
 import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
@@ -1864,5 +1865,39 @@ public class CallScilabBridge {
 	public static void closeHelpBrowser() {
 		ScilabHelpBrowser.getHelpBrowser().close();
 	}
-
+	
+	/************/
+	/*          */
+	/* WEBLINKS */
+	/*          */
+	/************/
+	
+	/**
+	 * Open a Browser on Scilab Web Site
+	 */
+	public static void openScilabWebSite() {
+		WebBrowser.openUrl("http://www.scilab.org/");
+	}
+	
+	/**
+	 * Open a Browser on Contributions Web Site
+	 */
+	public static void openContributionsWebSite() {
+		WebBrowser.openUrl("http://www.scilab.org/contrib/index_contrib.php?page=howto.html");
+	}
+	
+	/**
+	 * Open a Browser on Bugzilla Web Site
+	 */
+	public static void openBugzillaWebSite() {
+		WebBrowser.openUrl("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi");
+	}
+	
+	/**
+	 * Open a Browser on Newsgroup Web Site
+	 */
+	public static void openNewsgroupWebSite() {
+		WebBrowser.openUrl("http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab");
+	}
+	
 }

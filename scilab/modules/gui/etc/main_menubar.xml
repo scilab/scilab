@@ -169,7 +169,18 @@
         </submenu> 
         <separator/>
         <submenu label="Web links" mnemonic="W"> 
-               <callback instruction="notavailablemessage();" type="0"/>
+            <submenu label="Scilab Web Site" mnemonic="W"> 
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite" type="3"/>
+            </submenu>
+            <submenu label="Contributions" mnemonic="C"> 
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite" type="3"/>
+            </submenu>
+            <submenu label="Bug And Request database" mnemonic="R"> 
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite" type="3"/>
+            </submenu>
+            <submenu label="Newsgroup Archives" mnemonic="N"> 
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openNewsgroupWebSite" type="3"/>
+            </submenu>
         </submenu>
         <separator/>
         <submenu label="About Scilab..." mnemonic="A"> 
