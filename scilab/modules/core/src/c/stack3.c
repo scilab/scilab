@@ -765,6 +765,27 @@ int getlengthchain(char *namex)
 	if (m1 * n1 != 1)  return -1;
 	return nlr1;
 }
+
+/*Compute sum of array's elements*/
+int iArraySum(int *_piArray, int _iStart, int _iEnd)
+{
+	/*Recursive function*/
+	/*
+	if(_iStart == _iEnd)
+		return _piArray[_iEnd];
+	return _piArray[_iEnd] + iArraySum(_piArray, _iStart, _iEnd-1);
+	*/
+
+	/*Iterative function*/
+	int iIndex = 0;
+	int iVal = 0;
+	for(iIndex = 0 ; iIndex < _iEnd ; iIndex++)
+	{
+		iVal += _piArray[iIndex];
+	}
+	return iVal;
+}
+
 /*--------------------------------------------------------------------------*/
 /**
 	returns 1 if the variable is complex else 0
@@ -802,49 +823,23 @@ int iIsComplex(int _iVar)
 	_piRows		: Matrix lines
 	_piCols		: Matrix columns
 	_piPow		: Array of max pow for each polymon in the matrix ( size = iRows * iCols )
-	_pdblReal	: Returns array of coeff of polynom matrix ( size = sum of _piPow )
+	_piReal		: Returns a pointer on array of coeff of polynom matrix ( size = sum of _piPow )
 
 	Warning		: if _pblReal == NULL, this fonction return _piRows and _piCols with good values to allow array of Pow and array of Values.
 */
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal)
 {
-	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
-	int iValType		= *istk(iAddrBase);
-	int iAddrOffset		= 0;
-	int iAddrData		= 0;
-	int iIndex			= 0;
-	int *piToto			= NULL;
-
-	if(iValType < 0)
-	{
-		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iValType		= *istk(iAddrBase);
-	}
-	piToto				= istk(iAddrBase);
-	*_piRows			= *istk(iAddrBase + 1);
-	*_piCols			= *istk(iAddrBase + 2);
-	*_piVarName			= istk(iAddrBase + 4);
-	iAddrOffset			= iAddrBase + 8; //4 Stack header + 4 variable name
-
-	if(iValType != sci_poly || iIsComplex(1) == TRUE)
-	{
-		//Error bad type of data
-		return;
-	}
-	
-
-	if(_piPow == NULL)
-		return;
-
-	/*Get all offest*/
-	for(iIndex = 0 ; iIndex < *_piRows * *_piCols; iIndex++)
-	{
-		_piPow[iIndex] = *istk(iAddrOffset + iIndex + 1) - *istk(iAddrOffset + iIndex );
-	}
-
-	*_piReal	= sadr(iAddrOffset + 1 + *_piRows * *_piCols);
+	GetRhsCPolyVar(_iVarNum, _piVarName, _piRows, _piCols, _piPow, _piReal, NULL);
 }
 
+/*--------------------------------------------------------------------------*/
+/**
+	GetRhsCPolyVar
+
+	returns array of coeff of complex polynom matrix
+	_piImg		: Returns a pointer on array of img coeff of polynom matrix ( size = sum of _piPow )
+
+*/
 void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg)
 {
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
@@ -852,9 +847,6 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	int iAddrOffset		= 0;
 	int iAddrData		= 0;
 	int iIndex			= 0;
-	double *toto		= NULL;
-	double toto2		= 0;
-	double toto3		= 0;
 
 	if(iValType < 0)
 	{
@@ -865,7 +857,7 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	*_piCols			= *istk(iAddrBase + 2);
 	*_piVarName			= istk(iAddrBase + 4);
 	iAddrOffset			= iAddrBase + 8; //4 Stack header + 4 variable name
-	if(iValType != sci_poly || iIsComplex(1) == FALSE)
+	if(iValType != sci_poly)
 	{
 		//Error bad type of data
 		return;
@@ -882,36 +874,90 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	}
 
 	*_piReal	= sadr(iAddrOffset + 1 + *_piRows * *_piCols);
-	*_piImg		= sadr(iAddrOffset + 1 + *_piRows * *_piCols) + iArraySum(_piPow, 0, *_piRows * *_piCols);
+	if(_piImg != NULL && iIsComplex(_iVarNum))
+		*_piImg		= sadr(iAddrOffset + 1 + *_piRows * *_piCols) + iArraySum(_piPow, 0, *_piRows * *_piCols);
+
+	C2F(intersci).ntypes[_iVarNum - 1] = '$' ;
+	C2F(intersci).iwhere[_iVarNum - 1] = *Lstk(_iVarNum);
+	C2F(intersci).lad[_iVarNum - 1] = *_piReal;
 }
 
-int iArraySum(int *_piArray, int _iStart, int _iEnd)
+/**********************************************************************
+ * SPARSE MATRICES 
+ *       [it,m,n,nel,mnel,icol,lr,lc] 
+ *       nel : number of non nul elements 
+ *       istk(mnel+i-1), i=1,m : number of non nul elements of row i 
+ *       non nul elements are stored in row order as follows:
+ *       istk(icol+j-1) ,j=1,nel, column of the j-th non null element 
+ *       stk(lr + j-1)  ,j=1,nel, real value of the j-th non null element 
+ *       stk(lc + j-1)  ,j=1,nel, imag. value of the j-th non null element 
+ *       lc is to be used only if matrix is complex (it==1)
+ **********************************************************************/
+void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal)
 {
-/*
-	if(_iStart == _iEnd)
-		return _piArray[_iEnd];
-	return _piArray[_iEnd] + iArraySum(_piArray, _iStart, _iEnd-1);
-*/
-	int iIndex = 0;
-	int iVal = 0;
-	for(iIndex = 0 ; iIndex < _iEnd ; iIndex++)
+	GetRhsCSparseVar(_iVarNum, _piRows, _piCols, _piTotalElem, _piElemByRow, _piColByRow, _piReal, NULL);
+}
+
+void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
+	int iValType		= *istk(iAddrBase);
+	int iAddrColByRow	= 0;
+	int iAddrData		= 0;
+	int iAddElemByRow	= 0;
+	int iAddrRealData	= 0;
+	int iAddrImgData	= 0;
+	int iIndex			= 0;
+	if(iValType < 0)
 	{
-		iVal += _piArray[iIndex];
+		iAddrBase		= iadr(*istk(iAddrBase + 1));
+		iValType		= *istk(iAddrBase);
 	}
-	return iVal;
+
+	*_piRows			= *istk(iAddrBase + 1);
+	*_piCols			= *istk(iAddrBase + 2);
+	*_piTotalElem		= *istk(iAddrBase + 4);
+
+	//if ptr are NULL, juste return the matrix size
+	if(_piElemByRow == NULL || _piColByRow == NULL)
+		return;
+
+	iAddElemByRow		= iAddrBase + 5;
+	iAddrColByRow		= iAddElemByRow + *_piRows;
+	iAddrRealData		= iAddrColByRow + *_piTotalElem;
+	iAddrImgData		= iAddrColByRow + 2 * (*_piTotalElem);
+
+	for(iIndex = 0 ; iIndex < *_piTotalElem ; iIndex++)
+	{
+		_piElemByRow[iIndex] = *istk(iAddElemByRow + iIndex);
+	}
+
+	for(iIndex = 0 ; iIndex < *_piTotalElem ; iIndex++)
+	{
+		_piColByRow[iIndex] = *istk(iAddrColByRow + iIndex);
+	}
+
+	*_piReal = sadr(iAddrRealData);
+	if(_piImg != NULL && iIsComplex(_iVarNum))
+		*_piImg	 = sadr(iAddrRealData) + *_piTotalElem;
+
+	C2F(intersci).ntypes[_iVarNum - 1] = '$' ;
+	C2F(intersci).iwhere[_iVarNum - 1] = *Lstk(_iVarNum);
+	C2F(intersci).lad[_iVarNum - 1] = *_piReal;
 }
 
 /*CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);*/
-void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData)
+void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData)
+{
+	CreateCPolyVarFromPtr(_iNewVal, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, NULL);
+}
+
+void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData)
 {
 	int iIndex			= 0;
-	double* pdblToto	= NULL;
-	int* piToto			= NULL;
-
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iNewVal));
 	int iAddrPtr		= 0;
 	int iAddrData		= 0;
-	piToto				= istk(iAddrBase);
 	*istk(iAddrBase)	= 2;
 	*istk(iAddrBase + 1)= _iRows;
 	*istk(iAddrBase + 2)= _iCols;
@@ -930,19 +976,77 @@ void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, in
 
 	for(iIndex = 0 ; iIndex < iArraySum(_piPow, 0, _iRows * _iCols) ; iIndex++)
 	{
-		int iTemp = sadr(iAddrData + iIndex);
-		pdblToto = stk(iTemp);
+		int iTemp = sadr(iAddrData) + iIndex;
 		*stk(iTemp) = _pdblRealData[iIndex];
 	}
-	C2F(intersci).ntypes[Top - Rhs + _iNewVal - 1] = '$';
-	Top++;
 
-	*Lstk(3) = sadr(iAddrData + iIndex + 1);
-	pdblToto = stk(*Lstk(3));
+	if(_pdblImgData != NULL)
+	{
+		iAddrData  = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols);
+		*istk(iAddrBase + 3)= 1; // Use complex values
+		for(iIndex = 0 ; iIndex < iArraySum(_piPow, 0, _iRows * _iCols) ; iIndex++)
+		{
+			int iTemp = sadr(iAddrData) + iIndex;
+			*stk(iTemp) = _pdblImgData[iIndex];
+		}
+	}
 
+	C2F(intersci).ntypes[Top - Rhs + _iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
+	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrData);
+
+	*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrData) + iIndex;
 }
 
-void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, char* _szData_Type, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData)
+void CreateSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData)
 {
+	CreateCSparseVarFromPtr(_iNewVal, _iRows, _iCols, _iTotalElem, _piElemByRow, _piColByRow, _pdblRealData, NULL);
+}
+
+void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData, double* _pdblImgData)
+{
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iNewVal));
+	int iAddElemByRow	= 0;
+	int iAddrColByRow	= 0;
+	int iAddrRealData	= 0;
+	int iAddrImgData	= 0;
+
+	*istk(iAddrBase)	= 5;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	*istk(iAddrBase + 3)= 0; // Non complex values
+	*istk(iAddrBase + 4)= _iTotalElem;
+
+	iAddElemByRow		= iAddrBase + 5;
+	iAddrColByRow		= iAddElemByRow + _iRows;
+	iAddrRealData		= iAddrColByRow + _iTotalElem;
+	iAddrImgData		= iAddrColByRow + 2 * _iTotalElem;
+
+	for(iIndex = 0 ; iIndex < _iTotalElem ; iIndex++)
+	{
+		int iTemp		= 0;
+		*istk(iAddElemByRow + iIndex) = _piElemByRow[iIndex];
+		*istk(iAddrColByRow + iIndex) = _piColByRow[iIndex];
+		iTemp			= sadr(iAddrRealData) + iIndex;
+		*stk(iTemp)		= _pdblRealData[iIndex];
+	}
+
+	if(_pdblImgData != NULL)
+	{
+		*istk(iAddrBase + 3)= 1; // Use complex values
+		for(iIndex = 0 ; iIndex < _iTotalElem ; iIndex++)
+		{
+			int iTemp		= 0;
+			iTemp		= sadr(iAddrImgData) + iIndex;
+			*stk(iTemp)	= _pdblImgData[iIndex];
+		}
+	}
+
+	C2F(intersci).ntypes[Top - Rhs + _iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
+	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrRealData);
+
+	*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + iIndex;
 
 }
