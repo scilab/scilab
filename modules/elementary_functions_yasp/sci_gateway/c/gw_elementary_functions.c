@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -35,7 +35,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_kron),"kron"},
 	{C2F(sci_kron),"kron"},
 	{C2F(sci_kron),"kron"},
-	{C2F(sci_scimatrix),"matrix"},	
+	{C2F(sci_scimatrix),"matrix"},
 	{C2F(sci_sin),"sin"},
 	{C2F(sci_cos),"cos"},
 	{C2F(sci_atan),"atan"},
@@ -69,8 +69,9 @@ static gw_generic_table Tab[]=
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
-{  
-	callFunctionFromGateway(Tab);
+{
+  sciprint("WARNING ! : You are using a new generation module\n");
+  callFunctionFromGateway(Tab);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

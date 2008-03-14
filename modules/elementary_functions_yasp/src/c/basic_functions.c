@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Antoine ELIAS
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,8 +31,8 @@ double dabsz(double _dblRealVal, double _dblImgVal)
 {
 	double dblAbsReal	= dabss(_dblRealVal);
 	double dblAbsImg	= dabss(_dblImgVal);
-	double dblMax		= max(dblAbsReal, dblAbsImg);
-	double dblMin		= min(dblAbsReal, dblAbsImg);
+	double dblMax		= Max(dblAbsReal, dblAbsImg);
+	double dblMin		= Min(dblAbsReal, dblAbsImg);
 	if(dblMin == 0)
 	{
 		return dblMax;
@@ -45,7 +45,7 @@ double dabsz(double _dblRealVal, double _dblImgVal)
 	W = MAX( XABS, YABS )
 	Z = MIN( XABS, YABS )
 	*/
-	
+
 	return 0;
 }
 
@@ -99,11 +99,11 @@ double dlogs(double _dblVal)
 
 /*This fonction is a translation of fortran wacos write by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
 *     REFERENCE
-*        This is a Fortran-77 translation of an algorithm by 
-*        T.E. Hull, T. F. Fairgrieve and P.T.P. Tang which 
+*        This is a Fortran-77 translation of an algorithm by
+*        T.E. Hull, T. F. Fairgrieve and P.T.P. Tang which
 *        appears in their article :
-*          "Implementing the Complex Arcsine and Arccosine 
-*           Functions Using Exception Handling", ACM, TOMS, 
+*          "Implementing the Complex Arcsine and Arccosine
+*           Functions Using Exception Handling", ACM, TOMS,
 *           Vol 23, No. 3, Sept 1997, p. 299-335
 */
 void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
@@ -127,7 +127,7 @@ void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 
 	double dblTemp = 0;
 
-	if( min(dblAbsReal, dblAbsImg) > dblLinf && max(dblAbsReal, dblAbsImg) <= dblLsup)
+	if( Min(dblAbsReal, dblAbsImg) > dblLinf && Max(dblAbsReal, dblAbsImg) <= dblLsup)
 	{//we are in the safe region
 		dblR = sqrt( pow((dblAbsReal + 1 ), 2) + pow(dblAbsImg, 2));
 		dblS = sqrt( pow((dblAbsReal - 1 ), 2) + pow(dblAbsImg, 2));
@@ -206,7 +206,7 @@ void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 			dblTemp		= 2 * dblAbsImg * (dblAbsImg + dblTemp2);
 			*_pdblImg	= 0.5 * F2C(logp1)(&dblTemp);
 		}
-	}	
+	}
 	if(iSignReal < 0)
 		*_pdblReal = sdblPi - *_pdblReal;
 
@@ -216,11 +216,11 @@ void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 
 /*This fonction is a translation of fortran wasin write by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
 *     REFERENCE
-*        This is a Fortran-77 translation of an algorithm by 
-*        T.E. Hull, T. F. Fairgrieve and P.T.P. Tang which 
+*        This is a Fortran-77 translation of an algorithm by
+*        T.E. Hull, T. F. Fairgrieve and P.T.P. Tang which
 *        appears in their article :
-*          "Implementing the Complex Arcsine and Arccosine 
-*           Functions Using Exception Handling", ACM, TOMS, 
+*          "Implementing the Complex Arcsine and Arccosine
+*           Functions Using Exception Handling", ACM, TOMS,
 *           Vol 23, No. 3, Sept 1997, p. 299-335
 */
 void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
@@ -244,7 +244,7 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 
 	double dblTemp = 0;
 
-	if( min(dblAbsReal, dblAbsImg) > dblLinf && max(dblAbsReal, dblAbsImg) <= dblLsup)
+	if( Min(dblAbsReal, dblAbsImg) > dblLinf && Max(dblAbsReal, dblAbsImg) <= dblLsup)
 	{//we are in the safe region
 		dblR = sqrt( pow((dblAbsReal + 1 ), 2) + pow(dblAbsImg, 2));
 		dblS = sqrt( pow((dblAbsReal - 1 ), 2) + pow(dblAbsImg, 2));
@@ -323,7 +323,7 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 			dblTemp		= 2 * dblAbsImg * (dblAbsImg + dblTemp2);
 			*_pdblImg	= 0.5 * F2C(logp1)(&dblTemp);
 		}
-	}	
+	}
 	*_pdblReal *= iSignReal;
 	*_pdblImg *= iSignImg;
 }
