@@ -38,6 +38,7 @@ src/cpp/CallFileChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
 src/cpp/CallWaitBar.cpp \
+src/cpp/CallHelpBrowser.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
@@ -126,7 +127,8 @@ sci_gateway/c/sci_uiwait.c \
 sci_gateway/c/sci_mpopup.c \
 sci_gateway/c/sci_messagebox.c \
 sci_gateway/c/sci_waitbar.c \
-sci_gateway/c/sci_progressionbar.c
+sci_gateway/c/sci_progressionbar.c \
+sci_gateway/c/sci_help.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

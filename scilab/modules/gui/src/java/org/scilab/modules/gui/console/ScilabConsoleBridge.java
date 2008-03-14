@@ -42,7 +42,7 @@ public class ScilabConsoleBridge {
 	 * Displays data in the console
 	 * @param console the console to display the data in
 	 * @param dataToDisplay the data to be displayed
-	 * @see fr.scilab.console.Console#display()
+	 * @see fr.scilab.console.HelpBrowser#display()
 	 */
 	public static void display(Console console, String dataToDisplay) {
 		console.getAsSimpleConsole().display(dataToDisplay);
@@ -52,7 +52,7 @@ public class ScilabConsoleBridge {
 	 * Reads input data in the console
 	 * @param console the console to read the data from
 	 * @return the data entered by the user
-	 * @see fr.scilab.console.Console#readLine()
+	 * @see fr.scilab.console.HelpBrowser#readLine()
 	 */
 	public static String readLine(Console console) {
 		return console.getAsSimpleConsole().readLine();
@@ -160,7 +160,7 @@ public class ScilabConsoleBridge {
 	 * Reads one user input char
 	 * @param console the console used to get the char
 	 * @return the data entered by the user
-	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 * @see fr.scilab.console.HelpBrowser#getCharWithoutOutput()
 	 */
 	public static int getCharWithoutOutput(Console console) {
 		return console.getAsSimpleConsole().getCharWithoutOutput();

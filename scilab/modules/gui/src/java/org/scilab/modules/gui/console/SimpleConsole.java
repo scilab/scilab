@@ -89,7 +89,7 @@ public interface SimpleConsole {
 	/**
 	 * Reads one user input char
 	 * @return the data entered by the user
-	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 * @see fr.scilab.console.HelpBrowser#getCharWithoutOutput()
 	 */
 	int getCharWithoutOutput();
 

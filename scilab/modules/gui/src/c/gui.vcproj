@@ -391,6 +391,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallHelpBrowser.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallJxclick.cpp"
 				>
 			</File>
@@ -623,6 +627,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_help.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_messagebox.c"
 				>
 			</File>
@@ -849,6 +857,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallFileChooser.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallHelpBrowser.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallHelpBrowser.hxx"
 				>
 			</File>
 			<File

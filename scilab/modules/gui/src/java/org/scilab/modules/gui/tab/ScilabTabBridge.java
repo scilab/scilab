@@ -19,6 +19,7 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -148,6 +149,16 @@ public class ScilabTabBridge {
  	 * @return index of member
  	 */
 	public static int addMember(Tab tab, Console member) {
+		return tab.getAsSimpleTab().addMember(member);
+	}
+
+	/**
+	 * We want to be able to add directly a HelpBrowser in a Tab.
+	 * @param tab the tab where we want to add the member
+	 * @param member the member to add
+	 * @return the position of the HelpBrowser in the member list.
+	 */
+	public static int addMember(Tab tab, HelpBrowser member) {
 		return tab.getAsSimpleTab().addMember(member);
 	}
 

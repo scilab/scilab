@@ -22,6 +22,7 @@ import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -178,6 +179,15 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		return ScilabBridge.addMember(this, member);
 	}
 	
+	/**
+	 * We want to be able to add directly a HelpBrowser in a Tab.
+	 * @param member the member to add
+	 * @return the position of the HelpBrowser in the member list.
+	 */
+	public int addMember(HelpBrowser member) {
+		return ScilabBridge.addMember(this, member);		
+	}
+
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add

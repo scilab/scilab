@@ -219,6 +219,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 			this.menuBar = null;
 			super.setJMenuBar(null);
 		}
+		this.repaint();
 	}
 
 	/**

@@ -69,7 +69,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	/**
 	 * Displays data in the console
 	 * @param dataToDisplay the data to be displayed
-	 * @see fr.scilab.console.Console#display()
+	 * @see fr.scilab.console.HelpBrowser#display()
 	 */
 	public void display(String dataToDisplay) {
 		ScilabBridge.display(this, dataToDisplay);
@@ -78,7 +78,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	/**
 	 * Reads input data in the console
 	 * @return the data entered by the user
-	 * @see org.scilab.modules.shell.Console#readLine()
+	 * @see org.scilab.modules.shell.HelpBrowser#readLine()
 	 */
 	public String readLine() {
 		return ScilabBridge.readLine(this);
@@ -171,7 +171,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	/**
 	 * Reads one user input char
 	 * @return the data entered by the user
-	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 * @see fr.scilab.console.HelpBrowser#getCharWithoutOutput()
 	 */
 	public int getCharWithoutOutput() {
 		return ScilabBridge.getCharWithoutOutput(this);

@@ -74,6 +74,8 @@
 
 		<pathelement location="${jogl.jar}"/>
 		
+		<pathelement location="${jhall.jar}"/>
+
 	</path>
 	
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>

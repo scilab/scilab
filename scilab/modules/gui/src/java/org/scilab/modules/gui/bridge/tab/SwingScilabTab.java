@@ -23,6 +23,7 @@ import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
@@ -36,6 +37,7 @@ import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -196,6 +198,25 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @return index of member in ArrayList
 	 */
 	private int addMember(SwingScilabConsole member) {
+		this.setContentPane(member);
+		return this.getComponentZOrder(member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	public int addMember(HelpBrowser member) {
+		return this.addMember((SwingScilabHelpBrowser) member.getAsSimpleHelpBrowser());
+	}
+
+	/**
+	 * Add a member (dockable element) to container and returns its index
+	 * @param member the member to add
+	 * @return index of member in ArrayList
+	 */
+	private int addMember(SwingScilabHelpBrowser member) {
 		this.setContentPane(member);
 		return this.getComponentZOrder(member);
 	}

@@ -41,6 +41,9 @@ import org.scilab.modules.gui.filechooser.SimpleFileChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
 import org.scilab.modules.gui.frame.SimpleFrame;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
+import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowserBridge;
+import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabelBridge;
 import org.scilab.modules.gui.label.SimpleLabel;
@@ -598,6 +601,16 @@ public class ScilabBridge {
 	}
 
 	/**
+	 * We want to be able to add directly a HelpBrowser in a Tab.
+	 * @param tab the tab where we want to add the member
+	 * @param member the member to add
+	 * @return the position of the HelpBrowser in the member list.
+	 */
+	public static int addMember(Tab tab, HelpBrowser member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab where we want to add the member
 	 * @param member the member to add
@@ -757,7 +770,7 @@ public class ScilabBridge {
 	 * Displays data in the console
 	 * @param console the console to display the data in
 	 * @param dataToDisplay the data to be displayed
-	 * @see org.scilab.modules.console.Console#display()
+	 * @see org.scilab.modules.console.HelpBrowser#display()
 	 */
 	public static void display(Console console, String dataToDisplay) {
 		ScilabConsoleBridge.display(console, dataToDisplay);
@@ -767,7 +780,7 @@ public class ScilabBridge {
 	 * Reads input data in the console
 	 * @param console the console to read the data from
 	 * @return the data entered by the user
-	 * @see org.scilab.modules.console.Console#readLine()
+	 * @see org.scilab.modules.console.HelpBrowser#readLine()
 	 */
 	public static String readLine(Console console) {
 		return ScilabConsoleBridge.readLine(console);
@@ -881,7 +894,7 @@ public class ScilabBridge {
 	 * Reads one user input char
 	 * @param console the console used to get the char
 	 * @return the data entered by the user
-	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 * @see fr.scilab.console.HelpBrowser#getCharWithoutOutput()
 	 */
 	public static int getCharWithoutOutput(Console console) {
 		return ScilabConsoleBridge.getCharWithoutOutput(console);
@@ -4110,6 +4123,44 @@ public class ScilabBridge {
 	 */
 	public static void setIndeterminateMode(WaitBar waitBar, boolean status) {
 		ScilabWaitBarBridge.setIndeterminateMode(waitBar, status);
+	}
+
+	/***********************/
+	/* Help Browser Bridge */
+	/***********************/
+
+	/**
+	 * Create a new Help Browser
+	 * @return the created Help Browser
+	 */
+	public static SimpleHelpBrowser createHelpBrowser() {
+		return ScilabHelpBrowserBridge.createHelpBrowser();
+	}
+
+	/**
+	 * Display the Help Browser
+	 * @param browser the Help Browser
+	 */
+	public static void display(HelpBrowser browser) {
+		ScilabHelpBrowserBridge.display(browser);
+	}
+	
+	/**
+	 * Display the matching items for a specified keyword
+	 * @param browser the Help Browser
+	 * @param keyword the keyword
+	 * @return true if the keyword exists
+	 */
+	public static boolean searchKeywork(HelpBrowser browser, String keyword) {
+		return ScilabHelpBrowserBridge.searchKeywork(browser, keyword);
+	}
+	
+	/**
+	 * Close the HelpBrowser
+	 * @param browser the Help Browser
+	 */
+	public static void close(HelpBrowser browser) {
+		ScilabHelpBrowserBridge.close(browser);
 	}
 
 

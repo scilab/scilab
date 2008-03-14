@@ -480,5 +480,10 @@
           <parameter type="int" name="objID"/>
           <parameter type="boolean" name="status"/>
         </method>
+<!-- Help Browser -->
+	<method name="launchHelpBrowser" returnType="void" modifier="static"/>      
+        <method name="searchKeyword" returnType="boolean" modifier="static">
+          <parameter type="String" name="keyword"/>
+        </method>
   </object>
 </package>

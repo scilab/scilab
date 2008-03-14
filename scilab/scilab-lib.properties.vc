@@ -6,6 +6,8 @@ flexdock.jar=${thirdparty.dir}/flexdock-0.5.1.jar
 
 jogl.jar=${thirdparty.dir}/jogl.jar
 
+jhall.jar=${thirdparty.dir}/jhall.jar
+
 gluegen.jar=${thirdparty.dir}/gluegen-rt.jar
 
 jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar

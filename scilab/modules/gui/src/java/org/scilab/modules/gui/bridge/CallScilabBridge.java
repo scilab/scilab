@@ -29,6 +29,7 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
+import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabel;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -1831,6 +1832,35 @@ public class CallScilabBridge {
 	 */
 	public static void setWaitBarIndeterminateMode(int id, boolean status) {
 		((WaitBar) UIElementMapper.getCorrespondingUIElement(id)).setIndeterminateMode(status);
+	}
+	
+	/**********************/
+	/*                    */
+	/* HELPBROWSER BRIDGE */
+	/*                    */
+	/**********************/
+	
+	/**
+	 * Launch Scilab help browser if not already created
+	 */
+	public static void launchHelpBrowser() {
+		ScilabHelpBrowser.createHelpBrowser();
+	}
+	
+	/**
+	 * Search a keyword in Scilab Help Browser
+	 * @param keyword the keyword to search
+	 * @return true if the keyword is a function name
+	 */
+	public static boolean searchKeyword(String keyword) {
+		return ScilabHelpBrowser.createHelpBrowser().searchKeywork(keyword);
+	}
+
+	/**
+	 * Close Scilab Help Browser
+	 */
+	public static void closeHelpBrowser() {
+		ScilabHelpBrowser.getHelpBrowser().close();
 	}
 
 }

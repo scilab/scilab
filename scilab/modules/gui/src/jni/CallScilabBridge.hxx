@@ -184,6 +184,8 @@ jmethodID voidsetWaitBarMessagejintjobjectArrayID; // cache method id
 jmethodID voidsetWaitBarValuejintjintID; // cache method id
 jmethodID voiddestroyWaitBarjintID; // cache method id
 jmethodID voidsetWaitBarIndeterminateModejintjbooleanID; // cache method id
+jmethodID voidlaunchHelpBrowserID; // cache method id
+jmethodID jbooleansearchKeywordjstringID; // cache method id
 
 
 /**
@@ -486,6 +488,10 @@ static void setWaitBarValue(JavaVM * jvm_, long id, long value);
 static void destroyWaitBar(JavaVM * jvm_, long objID);
 
 static void setWaitBarIndeterminateMode(JavaVM * jvm_, long objID, bool status);
+
+static void launchHelpBrowser(JavaVM * jvm_);
+
+static bool searchKeyword(JavaVM * jvm_, char * keyword);
 
 
                         /**

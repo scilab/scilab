@@ -45,7 +45,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	/**
 	 * Displays data in the console
 	 * @param dataToDisplay the data to be displayed
-	 * @see fr.scilab.console.Console#display(java.lang.String)
+	 * @see fr.scilab.console.HelpBrowser#display(java.lang.String)
 	 */
 	public void display(String dataToDisplay) {
 		this.getConfiguration().getOutputView().append(dataToDisplay);
@@ -83,7 +83,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	/**
 	 * Reads one user input char
 	 * @return the data entered by the user
-	 * @see fr.scilab.console.Console#getCharWithoutOutput()
+	 * @see fr.scilab.console.HelpBrowser#getCharWithoutOutput()
 	 */
 	public int getCharWithoutOutput() {
 		int retChar;

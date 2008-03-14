@@ -19,6 +19,7 @@ import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
@@ -64,6 +65,13 @@ public interface Tab extends Container {
 	 * @return the position of the canvas in the member list.
 	 */
 	int addMember(Console member);
+	
+	/**
+	 * We want to be able to add directly a HelpBrowser in a Tab.
+	 * @param member the member to add
+	 * @return the position of the HelpBrowser in the member list.
+	 */
+	int addMember(HelpBrowser member);
 	
 	/**
 	 * We want to be able to add a Frame in a Tab.

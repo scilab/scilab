@@ -233,6 +233,8 @@ voidsetWaitBarMessagejintjobjectArrayID=NULL;
 voidsetWaitBarValuejintjintID=NULL; 
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
+voidlaunchHelpBrowserID=NULL; 
+jbooleansearchKeywordjstringID=NULL; 
 
 
 }
@@ -389,6 +391,8 @@ voidsetWaitBarMessagejintjobjectArrayID=NULL;
 voidsetWaitBarValuejintjintID=NULL; 
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
+voidlaunchHelpBrowserID=NULL; 
+jbooleansearchKeywordjstringID=NULL; 
 
 
 }
@@ -3814,6 +3818,52 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+void CallScilabBridge::launchHelpBrowser (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidlaunchHelpBrowserID = curEnv->GetStaticMethodID(cls, "launchHelpBrowser", "()V" ) ;
+if (voidlaunchHelpBrowserID == NULL) {
+std::cerr << "Could not access to the method " << "launchHelpBrowser" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidlaunchHelpBrowserID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+bool CallScilabBridge::searchKeyword (JavaVM * jvm_, char * keyword){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleansearchKeywordjstringID = curEnv->GetStaticMethodID(cls, "searchKeyword", "(Ljava/lang/String;)Z" ) ;
+if (jbooleansearchKeywordjstringID == NULL) {
+std::cerr << "Could not access to the method " << "searchKeyword" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring keyword_ = curEnv->NewStringUTF( keyword );
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleansearchKeywordjstringID ,keyword_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
 }
 
 }
