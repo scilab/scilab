@@ -131,16 +131,16 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/scicosclip.c src/c/sciblk4.c src/c/haltscicos.c \
 	src/fortran/scitovv.f src/fortran/vvtosci.f \
 	src/fortran/skipvars.f src/fortran/coselm.f \
-	src/fortran/scitod.f src/fortran/dtosci.f src/fortran/sctree.f \
-	src/fortran/scierr.f src/fortran/ftree2.f src/fortran/ftree3.f \
+	src/fortran/scitod.f src/fortran/sctree.f src/fortran/scierr.f \
+	src/fortran/ftree2.f src/fortran/ftree3.f \
 	src/fortran/list2vars.f src/fortran/ftree4.f \
 	src/fortran/scitoi.f src/fortran/scifunc.f \
-	src/fortran/itosci.f sci_gateway/c/intcscicos.c \
-	sci_gateway/c/gw_scicos.c sci_gateway/c/sci_buildouttb.c \
-	sci_gateway/c/sci_ctree2.c sci_gateway/c/sci_ctree3.c \
-	sci_gateway/c/sci_ctree4.c sci_gateway/c/sci_curblock.c \
-	sci_gateway/c/sci_curblockc.c sci_gateway/c/sci_diffobjs.c \
-	sci_gateway/c/sci_duplicate.c sci_gateway/c/sci_end_scicosim.c \
+	sci_gateway/c/intcscicos.c sci_gateway/c/gw_scicos.c \
+	sci_gateway/c/sci_buildouttb.c sci_gateway/c/sci_ctree2.c \
+	sci_gateway/c/sci_ctree3.c sci_gateway/c/sci_ctree4.c \
+	sci_gateway/c/sci_curblock.c sci_gateway/c/sci_curblockc.c \
+	sci_gateway/c/sci_diffobjs.c sci_gateway/c/sci_duplicate.c \
+	sci_gateway/c/sci_end_scicosim.c \
 	sci_gateway/c/sci_getblocklabel.c \
 	sci_gateway/c/sci_getscicosvars.c \
 	sci_gateway/c/sci_permutobj.c \
@@ -177,9 +177,9 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 @SCICOS_TRUE@	libsciscicos_la-sciblk4.lo \
 @SCICOS_TRUE@	libsciscicos_la-haltscicos.lo
 @SCICOS_TRUE@am__objects_3 = scitovv.lo vvtosci.lo skipvars.lo \
-@SCICOS_TRUE@	coselm.lo scitod.lo dtosci.lo sctree.lo scierr.lo \
-@SCICOS_TRUE@	ftree2.lo ftree3.lo list2vars.lo ftree4.lo \
-@SCICOS_TRUE@	scitoi.lo scifunc.lo itosci.lo
+@SCICOS_TRUE@	coselm.lo scitod.lo sctree.lo scierr.lo ftree2.lo \
+@SCICOS_TRUE@	ftree3.lo list2vars.lo ftree4.lo scitoi.lo \
+@SCICOS_TRUE@	scifunc.lo
 @SCICOS_TRUE@am__objects_4 = libsciscicos_la-intcscicos.lo \
 @SCICOS_TRUE@	libsciscicos_la-gw_scicos.lo \
 @SCICOS_TRUE@	libsciscicos_la-sci_buildouttb.lo \
@@ -580,7 +580,6 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/fortran/skipvars.f \
 @SCICOS_TRUE@src/fortran/coselm.f \
 @SCICOS_TRUE@src/fortran/scitod.f \
-@SCICOS_TRUE@src/fortran/dtosci.f \
 @SCICOS_TRUE@src/fortran/sctree.f \
 @SCICOS_TRUE@src/fortran/scierr.f \
 @SCICOS_TRUE@src/fortran/ftree2.f \
@@ -588,8 +587,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/fortran/list2vars.f \
 @SCICOS_TRUE@src/fortran/ftree4.f \
 @SCICOS_TRUE@src/fortran/scitoi.f \
-@SCICOS_TRUE@src/fortran/scifunc.f \
-@SCICOS_TRUE@src/fortran/itosci.f
+@SCICOS_TRUE@src/fortran/scifunc.f
 
 @SCICOS_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/intcscicos.c \
 @SCICOS_TRUE@sci_gateway/c/gw_scicos.c \
@@ -1420,9 +1418,6 @@ coselm.lo: src/fortran/coselm.f
 scitod.lo: src/fortran/scitod.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scitod.lo `test -f 'src/fortran/scitod.f' || echo '$(srcdir)/'`src/fortran/scitod.f
 
-dtosci.lo: src/fortran/dtosci.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dtosci.lo `test -f 'src/fortran/dtosci.f' || echo '$(srcdir)/'`src/fortran/dtosci.f
-
 sctree.lo: src/fortran/sctree.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sctree.lo `test -f 'src/fortran/sctree.f' || echo '$(srcdir)/'`src/fortran/sctree.f
 
@@ -1446,9 +1441,6 @@ scitoi.lo: src/fortran/scitoi.f
 
 scifunc.lo: src/fortran/scifunc.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scifunc.lo `test -f 'src/fortran/scifunc.f' || echo '$(srcdir)/'`src/fortran/scifunc.f
-
-itosci.lo: src/fortran/itosci.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o itosci.lo `test -f 'src/fortran/itosci.f' || echo '$(srcdir)/'`src/fortran/itosci.f
 
 sci_ctree.lo: sci_gateway/fortran/sci_ctree.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ctree.lo `test -f 'sci_gateway/fortran/sci_ctree.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_ctree.f
@@ -2054,6 +2046,7 @@ install-data-local:
 
 @SCICOS_TRUE@.mly.ml:
 @SCICOS_TRUE@	$(OCAMLLEX) $<
+
 # call the ocaml/Yacc
 @SCICOS_TRUE@generate-parser: $(PARSER_SRC)
 @SCICOS_TRUE@	$(OCAMLYACC) $(<)

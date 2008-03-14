@@ -75,11 +75,9 @@ copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\coselm.f"/>
-		<File RelativePath=".\dtosci.f"/>
 		<File RelativePath=".\ftree2.f"/>
 		<File RelativePath=".\ftree3.f"/>
 		<File RelativePath=".\ftree4.f"/>
-		<File RelativePath=".\itosci.f"/>
 		<File RelativePath=".\list2vars.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_ctree.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_curblock.f"/>

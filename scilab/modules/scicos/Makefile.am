@@ -42,7 +42,6 @@ src/fortran/vvtosci.f \
 src/fortran/skipvars.f \
 src/fortran/coselm.f \
 src/fortran/scitod.f \
-src/fortran/dtosci.f \
 src/fortran/sctree.f \
 src/fortran/scierr.f \
 src/fortran/ftree2.f \
@@ -50,8 +49,7 @@ src/fortran/ftree3.f \
 src/fortran/list2vars.f \
 src/fortran/ftree4.f \
 src/fortran/scitoi.f \
-src/fortran/scifunc.f \
-src/fortran/itosci.f
+src/fortran/scifunc.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/intcscicos.c \
 sci_gateway/c/gw_scicos.c \
