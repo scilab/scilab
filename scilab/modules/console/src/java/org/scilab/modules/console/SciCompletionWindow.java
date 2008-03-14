@@ -292,7 +292,9 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 			/* The user validates an entry in the list */
 
 			/* Add text to the input command view */
-			inputParsingManager.writeCompletionPart(((CompletionItem) listUI.getSelectedValue()).getReturnValue());
+			if (listUI.getModel().getSize() != 0) {
+				inputParsingManager.writeCompletionPart(((CompletionItem) listUI.getSelectedValue()).getReturnValue());
+			}
 
 			/* Hide the completion window and give the focus to the console */
 			window.setVisible(false);
