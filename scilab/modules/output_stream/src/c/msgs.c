@@ -568,7 +568,7 @@ static int msg_8(integer *n, integer *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_9(integer *n, integer *ierr)
 {
-	sciprint(_("Rank defficient. rank = %d\n"),ierr);
+	sciprint(_("Rank defficient. rank = %d\n"),*ierr);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
