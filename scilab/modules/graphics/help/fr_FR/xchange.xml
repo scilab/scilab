@@ -1,60 +1,56 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>xchange  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xchange"> transformation de coordonnées de l&apos;échelle courante en pixels et inversement  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[x1,y1,rect]=xchange(x,y,dir)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x,y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP> : deux matrices de taille (n1,n2) (coordonnées d&apos;un ensemble de points).</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>dir</PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP> : spécifie la conversion à réaliser (Voir la rubrique "Description" pour plus d'informations).</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>x1,y1  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP> : deux matrices de taille (n1,n2) (coordonnées transformées).</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>rect  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP> : un vecteur de taille 4.</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Après l&apos;appel à une fonction graphique de haut niveau, <VERB>xchange</VERB> calcule des coordonnées en pixels à partir des coordonnées &quot;réelles&quot; à l&apos;échelle du dessin courant, et inversement, suivant la valeur du paramètre <VERB>dir</VERB> :
-    &quot;f2i&quot; (float to int) signifie réel vers pixel et &quot;i2f&quot; (int to float)
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xchange"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xchange</refname><refpurpose> transformation de coordonnées de l'échelle courante en pixels et inversement  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[x1,y1,rect]=xchange(x,y,dir)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x,y  </term>
+  <listitem>
+  <para>deux matrices de taille (n1,n2) (coordonnées d'un ensemble de points).</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>dir</term>
+  <listitem>
+  <para>spécifie la conversion à réaliser (Voir la rubrique "Description" pour plus d'informations).</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>x1,y1  </term>
+  <listitem>
+  <para>deux matrices de taille (n1,n2) (coordonnées transformées).</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>rect  </term>
+  <listitem>
+  <para>un vecteur de taille 4.</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Après l'appel à une fonction graphique de haut niveau, <literal>xchange</literal> calcule des coordonnées en pixels à partir des coordonnées "réelles" à l'échelle du dessin courant, et inversement, suivant la valeur du paramètre <literal>dir</literal> :
+    "f2i" (float to int) signifie réel vers pixel et "i2f" (int to float)
     signifie pixel vers réel.
-    <VERB>x1</VERB> et <VERB>y1</VERB> sont les nouvelles coordonnées de l&apos;ensemble de points 
-    définis par les anciennes coordonnées <VERB>x</VERB> et <VERB>y</VERB>.
-  </P>
-  <P>
-    <VERB>rect</VERB> sont les coordonnées en pixels
+    <literal>x1</literal> et <literal>y1</literal> sont les nouvelles coordonnées de l'ensemble de points 
+    définis par les anciennes coordonnées <literal>x</literal> et <literal>y</literal>.
+  </para>
+  <para>
+    <literal>rect</literal> sont les coordonnées en pixels
     du rectangle du cadre courant : [point en haut à gauche, largeur, hauteur].
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 t=[0:0.1:2*%pi]';
 plot2d(t,sin(t))
 [x,y,rect]=xchange(1,1,"f2i")
 [x,y,rect]=xchange(0,0,"i2f")
- ]]></EXAMPLE>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Auteurs</title><para>J.Ph.C.  </para></refsection>
+</refentry>

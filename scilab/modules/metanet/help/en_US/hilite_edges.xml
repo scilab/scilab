@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,37 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hilite_edges"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hilite_edges</refname><refpurpose> highlights a set of edges</refpurpose></refnamediv><refnamediv xml:id="unhilite_edges"><refname>unhilite_edges</refname><refpurpose> unhighlights a set of edges</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>hilite_edges(p)
+unhilite_edges(p)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>row vector of edge numbers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>hilite_edges</literal> highlights the set of edges <literal>p</literal> of the
+    displayed graph in the current edit_graph window.</para>
+    <para><literal>unhilite_edges</literal> un-highlights the set of edges <literal>p</literal> of the
+    displayed graph in the current edit_graph window. If the edges are not hilited nothing is done.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hilite_edges</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="hilite_edges"> highlights a set of edges</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="unhilite_edges"> unhighlights a set of edges</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>hilite_edges(p)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>unhilite_edges(p)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of edge numbers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>hilite_edges</VERB> highlights the set of edges <VERB>p</VERB> of the
-    displayed graph in the current edit_graph window.</P>
-    <P><VERB>unhilite_edges</VERB> un-highlights the set of edges <VERB>p</VERB> of the
-    displayed graph in the current edit_graph window. If the edges are not hilited nothing is done.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -50,23 +45,23 @@ g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 1
 show_graph(g);
 for i=1:edge_number(g), hilite_edges(i);xpause(3d5);unhilite_edges(i), end;
 hilite_edges(1:3:edge_number(g))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>hilite_nodes</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>show_nodes</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>show_arcs</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindow</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindows</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="hilite_nodes">hilite_nodes</link>
+    </member>
+    <member>
+      <link linkend="show_nodes">show_nodes</link>
+    </member>
+    <member>
+      <link linkend="show_arcs">show_arcs</link>
+    </member>
+    <member>
+      <link linkend="netwindow">netwindow</link>
+    </member>
+    <member>
+      <link linkend="netwindows">netwindows</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

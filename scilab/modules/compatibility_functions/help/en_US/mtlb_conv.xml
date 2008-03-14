@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,79 +10,78 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_conv</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_conv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_conv</refname><refpurpose>Matlab conv emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_conv">Matlab conv emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab <VERB>conv</VERB> and Scilab <VERB>convol</VERB> behave differently in some particular cases:</P>
+    <para>Matlab <literal>conv</literal> and Scilab <literal>convol</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        With column vector inputs: if at least input is a column vector Matlab <VERB>conv</VERB> returns a column
-	vector but Scilab <VERB>convol</VERB> always returns a row vector.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With column vector inputs: if at least input is a column vector Matlab <literal>conv</literal> returns a column
+	vector but Scilab <literal>convol</literal> always returns a row vector.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_conv(u,v)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>conv(u,v)</VERB> when it was not
+    <para>
+    The function <literal>mtlb_conv(u,v)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>conv(u,v)</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_conv</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_conv</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>u</VERB> and <VERB>v</VERB> are row vectors,
-        <VERB>mtlb_conv(u,v)</VERB> may be replaced by <VERB>convol(u,v)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>u</literal> and <literal>v</literal> are row vectors,
+        <literal>mtlb_conv(u,v)</literal> may be replaced by <literal>convol(u,v)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>u</VERB> or <VERB>v</VERB> is a column vector,
-        <VERB>mtlb_conv(u,v)</VERB> may be replaced by <VERB>convol(u,v).'</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>u</literal> or <literal>v</literal> is a column vector,
+        <literal>mtlb_conv(u,v)</literal> may be replaced by <literal>convol(u,v).'</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>u</VERB> and <VERB>v</VERB> are column vectors,
-        <VERB>mtlb_conv(u,v)</VERB> may be replaced by <VERB>convol(u,v).'</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        If <literal>u</literal> and <literal>v</literal> are column vectors,
+        <literal>mtlb_conv(u,v)</literal> may be replaced by <literal>convol(u,v).'</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Scilab <VERB>convol</VERB> sometimes returns values that may be rounded using <VERB>clean</VERB>
-    to have a closer result from Matlab one.</P>
+    <para>Scilab <literal>convol</literal> sometimes returns values that may be rounded using <literal>clean</literal>
+    to have a closer result from Matlab one.</para>
 
-    <P>Caution: <VERB>mtlb_conv</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_conv</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="clean">clean</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

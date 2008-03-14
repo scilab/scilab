@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,54 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graycolormap</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graycolormap"> linear gray colormap</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>cmap=graycolormap(n)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer &gt;= 1, the colormap size.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>cmap</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix with 3 columns <VERB>[R,G,B]</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>graycolormap</VERB> computes a colormap with <VERB>n</VERB> gray colors
-    varying linearly from black to white.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graycolormap"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graycolormap</refname><refpurpose> linear gray colormap</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>cmap=graycolormap(n)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integer &gt;= 1, the colormap size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cmap</term>
+        <listitem>
+          <para>matrix with 3 columns <literal>[R,G,B]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>graycolormap</literal> computes a colormap with <literal>n</literal> gray colors
+    varying linearly from black to white.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 xset("colormap",graycolormap(32))
 plot3d1() 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>colormap</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>hotcolormap</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>jetcolormap</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xset</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="colormap">colormap</link>
+    </member>
+    <member>
+      <link linkend="hotcolormap">hotcolormap</link>
+    </member>
+    <member>
+      <link linkend="jetcolormap">jetcolormap</link>
+    </member>
+    <member>
+      <link linkend="xset">xset</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

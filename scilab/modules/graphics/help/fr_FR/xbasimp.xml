@@ -1,89 +1,85 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xbasimp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xbasimp</refname><refpurpose>envoie des graphiques vers une imprimante
+  ou un fichier Postscript</refpurpose></refnamediv>
+  
 
-  <TITLE>xbasimp</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="xbasimp">envoie des graphiques vers une imprimante
-  ou un fichier Postscript</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xbasimp(win_num,[filen,printer])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>xbasimp(win_num,[filen,printer])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>win_num</PARAM_NAME>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: entier ou vecteur d'entiers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>entier ou vecteur d'entiers</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>filen</PARAM_NAME>
+      <varlistentry>
+        <term>filen</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: chaîne de caractères, nom du fichier Postscript (la valeur par
+        <listitem>
+          <para>chaîne de caractères, nom du fichier Postscript (la valeur par
           défaut est "file"). Le numéro de fenêtre est ajouté à 
-          <VERB>filen</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          <literal>filen</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>printer</PARAM_NAME>
+      <varlistentry>
+        <term>printer</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: chaîne de caractères, nom de l'imprimante. Si
-          <VERB>printer</VERB> est présent ou s'il n'y a qu'un seul argument
+        <listitem>
+          <para>chaîne de caractères, nom de l'imprimante. Si
+          <literal>printer</literal> est présent ou s'il n'y a qu'un seul argument
           d'entrée dans la séquence d'appel, le fichier est directement
-          imprimé sur l'imprimante <VERB>printer</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+          imprimé sur l'imprimante <literal>printer</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>xbasimp</VERB> envoie les graphiques enregistrés dans la fenêtre
-    <VERB>win_num</VERB> dans le fichier Postscript <VERB>filen.</VERB> Le
+  <refsection><title>Description</title>
+    <para><literal>xbasimp</literal> envoie les graphiques enregistrés dans la fenêtre
+    <literal>win_num</literal> dans le fichier Postscript <literal>filen.</literal> Le
     fichier créé ne contient pas d'entête. Pour le visualiser, il est
     nécessaire d'ajouter l'entête, par exemple avec les commandes
-    <VERB>Blpr</VERB> ou <VERB>BEpsf</VERB> ou d'utiliser directement la
-    fonction <VERB>xs2eps</VERB>. Si une imprimante est spécifiée, le fichier
-    Postscript est imprimé avec la commande <VERB>Blpr</VERB>. Cette fonction
-    n'est utilisable qu'avec le pilote <VERB>"Rec"</VERB>.</P>
+    <literal>Blpr</literal> ou <literal>BEpsf</literal> ou d'utiliser directement la
+    fonction <literal>xs2eps</literal>. Si une imprimante est spécifiée, le fichier
+    Postscript est imprimé avec la commande <literal>Blpr</literal>. Cette fonction
+    n'est utilisable qu'avec le pilote <literal>"Rec"</literal>.</para>
 
-    <P>Si <VERB>win_num</VERB> est un vecteur, plusieurs fichiers sont
-    générés, un pour chaque fenêtre (avec les noms <VERB>filenxx</VERB>), et
+    <para>Si <literal>win_num</literal> est un vecteur, plusieurs fichiers sont
+    générés, un pour chaque fenêtre (avec les noms <literal>filenxx</literal>), et
     les fichiers sont imprimés sur une seule page avec la commande
-    <VERB>Blpr</VERB>.</P>
-  </DESCRIPTION>
+    <literal>Blpr</literal>.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>printing</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="printing">printing</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xs2fig</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xs2fig">xs2fig</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xs2ppm</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xs2ppm">xs2ppm</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xs2eps</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xs2eps">xs2eps</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xs2ps</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="xs2ps">xs2ps</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

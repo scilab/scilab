@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,59 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="evans"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>evans</refname><refpurpose>Evans root locus</refpurpose></refnamediv>
+  
 
-  <TITLE>evans</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="evans">Evans root locus</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>evans(H [,kmax])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>evans(H [,kmax])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>H</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>H</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: list (linear system <VERB>syslin</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>list (linear system <literal>syslin</literal>)</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>kmax</PARAM_NAME>
+      <varlistentry>
+        <term>kmax</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real (maximum gain desired for the plot )</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>real (maximum gain desired for the plot )</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Gives the Evans root locus for a linear system in state-space or
-    transfer form H(s) (<VERB>syslin</VERB> list). This is the locus of the
-    roots of <VERB>1+k*H(s)=1+k*N(s)/D(s)</VERB>, in the complex plane. For a
-    selected sample of gains <VERB>k &lt;= kmax</VERB>, the imaginary part of
-    the roots of <VERB>D(s)+k*N(s)</VERB> is plotted vs the real part.</P>
+  <refsection><title>Description</title>
+    <para>Gives the Evans root locus for a linear system in state-space or
+    transfer form H(s) (<literal>syslin</literal> list). This is the locus of the
+    roots of <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, in the complex plane. For a
+    selected sample of gains <literal>k &lt;= kmax</literal>, the imaginary part of
+    the roots of <literal>D(s)+k*N(s)</literal> is plotted vs the real part.</para>
 
-    <P>To obtain the gain at a given point of the locus you can simply execute
+    <para>To obtain the gain at a given point of the locus you can simply execute
     the following instruction :
-    <VERB>k=-1/real(horner(h,[1,%i]*locate(1)))</VERB> and click the desired
+    <literal>k=-1/real(horner(h,[1,%i]*locate(1)))</literal> and click the desired
     point on the root locus. If the coordinates of the selected point are in
-    the real 2 x 1 vector <VERB>P=locate(1)</VERB> this <VERB>k</VERB> solves
-    the equation <VERB> k*N(w) + D(w) =0</VERB> with
-    <VERB>w=P(1)+%i*P(2)=[1,%i]*P</VERB>.</P>
-  </DESCRIPTION>
+    the real 2 x 1 vector <literal>P=locate(1)</literal> this <literal>k</literal> solves
+    the equation <literal> k*N(w) + D(w) =0</literal> with
+    <literal>w=P(1)+%i*P(2)=[1,%i]*P</literal>.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
 evans(H,100)
@@ -78,19 +75,19 @@ evans(n,d,100);
 clf();n=real(poly([0.1-%i 0.1+%i,-10],'s'));
 evans(n,d,80);
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>kpure</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="kpure">kpure</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>krac2</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="krac2">krac2</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>locate</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="locate">locate</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

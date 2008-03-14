@@ -1,56 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>comp</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="comp">  scilab function compilation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>comp(function [,opt])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>function</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a scilab function, not compiled (type 11)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>opt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: flag with value 0 (default), 1 or 2.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>comp(function)</VERB>  compiles the function <VERB>function</VERB>.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="comp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>comp</refname><refpurpose>  scilab function compilation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>comp(function [,opt])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>function</term>
+        <listitem>
+          <para>a scilab function, not compiled (type 11)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>flag with value 0 (default), 1 or 2.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>comp(function)</literal>  compiles the function <literal>function</literal>.
     Compiled and interpreted functions are equivalent but usually 
     compiled functions are much faster.
-    The functions provided in the standard libraries are compiled.</P>
-     <P>
+    The functions provided in the standard libraries are compiled.</para>
+     <para>
       The online definition as well as the short syntax of the commands
-      <VERB>getf</VERB> and <VERB>deff</VERB> generate compiled functions. 
+      <literal>getf</literal> and <literal>deff</literal> generate compiled functions. 
       So comp has to be used in very particular cases. To produce uncompiled
-      functions one must use <VERB>getf</VERB> or <VERB>deff</VERB> with 
-      the option <VERB>"n"</VERB>.
-    </P> 
-    <P>
+      functions one must use <literal>getf</literal> or <literal>deff</literal> with 
+      the option <literal>"n"</literal>.
+    </para> 
+    <para>
     The value opt==2 causes the function to be compiled "for profiling".
     The osolete opt==1 option was specific to code analysis purposes and 
-    is now ignored, i.e treated as opt==0.</P>
-   <P>
+    is now ignored, i.e treated as opt==0.</para>
+   <para>
    Note: the compilation takes part "in place", i.e the original function is modified
    and no new object is created.
-   </P>
-   </DESCRIPTION>
-   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>profile</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   </para>
+   </refsection>
+   <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="type">type</link> </member> 
+    <member> <link linkend="deff">deff</link> </member> 
+    <member> <link linkend="getf">getf</link> </member>
+    <member> <link linkend="function">function</link> </member>
+    <member> <link linkend="profile">profile</link> </member>
+  </simplelist></refsection>
+</refentry>

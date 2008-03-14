@@ -1,79 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delbpt"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>delbpt</refname><refpurpose>delete breakpoints</refpurpose></refnamediv>
+  
 
-  <TITLE>delbpt</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="delbpt">delete breakpoints</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>delbpt([macroname
-    [,linenumb]])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>delbpt([macroname [,linenumb]])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>macroname</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>macroname</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>linenumb</PARAM_NAME>
+      <varlistentry>
+        <term>linenumb</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: scalar integer or vector of integers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>scalar integer or vector of integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Deletes the breakpoint at line <VERB>linenumb</VERB> in the function
-    <VERB>macroname</VERB>.</P>
+  <refsection><title>Description</title>
+    <para>Deletes the breakpoint at line <literal>linenumb</literal> in the function
+    <literal>macroname</literal>.</para>
 
-    <P><VERB>linenumb</VERB> can be a line or column vector of line numbers,
-    or a single scalar line number.</P>
+    <para><literal>linenumb</literal> can be a line or column vector of line numbers,
+    or a single scalar line number.</para>
 
-    <P>If <VERB>linenumb</VERB> is omitted, all the breakpoints in function
-    <VERB>macroname</VERB> are deleted.</P>
+    <para>If <literal>linenumb</literal> is omitted, all the breakpoints in function
+    <literal>macroname</literal> are deleted.</para>
 
-    <P>If both <VERB>macroname</VERB> and <VERB>linenumb</VERB> are omitted,
-    all the breakpoints in all the functions are deleted.</P>
-  </DESCRIPTION>
+    <para>If both <literal>macroname</literal> and <literal>linenumb</literal> are omitted,
+    all the breakpoints in all the functions are deleted.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[setbpt('foo',1),setbpt('foo',10),delbpt('foo',10),dispbpt()
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[setbpt('foo',1),setbpt('foo',10),delbpt('foo',10),dispbpt()
 delbpt('foo',1),dispbpt()
 
 setbpt('foo1',4),setbpt('foo1',9),setbpt('foo2',6),setbpt('foo3',8),dispbpt()
 delbpt('foo2'),dispbpt()
 delbpt(),dispbpt()
 
-delbpt('foo',[1,2,5,6]),dispbpt()]]></EXAMPLE>
+delbpt('foo',[1,2,5,6]),dispbpt()]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>setbpt</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="setbpt">setbpt</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>dispbpt</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="dispbpt">dispbpt</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>pause</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="pause">pause</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>resume</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="resume">resume</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

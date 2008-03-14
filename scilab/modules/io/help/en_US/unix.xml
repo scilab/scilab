@@ -1,49 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unix"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unix</refname><refpurpose>shell (sh) command
+  execution</refpurpose></refnamediv>
+  
 
-  <TITLE>unix</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="unix">shell (sh) command
-  execution</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>stat=unix(command-name)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>stat=unix(command-name)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>command-name</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: A character string containing Unix sh instruction</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>A character string containing Unix sh instruction</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>stat</PARAM_NAME>
+      <varlistentry>
+        <term>stat</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: An integer flag</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>An integer flag</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Sends a string <VERB>command-name</VERB> to Unix for execution by the
+  <refsection><title>Description</title>
+    <para>Sends a string <literal>command-name</literal> to Unix for execution by the
     sh shell. Standard output and standard errors of the shell command are
-    written in the calling shell. <VERB>stat</VERB> gives -1 if unix can't be
-    called (Not enough system memory available) or the sh return code.</P>
-  </DESCRIPTION>
+    written in the calling shell. <literal>stat</literal> gives -1 if unix can't be
+    called (Not enough system memory available) or the sh return code.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 if ~MSDOS then
   unix("ls $SCI/demos");
 end
@@ -53,35 +49,35 @@ deff('wd=directory()','if MSDOS then unix(''cd>''+TMPDIR+''\path'');..
       wd=read(TMPDIR+''/path'',1,1,''(a)'')')
 wd=directory()
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>edit</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="edit">edit</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>manedit</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="manedit">manedit</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix_g</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unix_g">unix_g</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix_s</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unix_s">unix_s</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix_w</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unix_w">unix_w</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix_x</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unix_x">unix_x</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>host</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="host">host</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

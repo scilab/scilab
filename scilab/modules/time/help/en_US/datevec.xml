@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,33 +10,30 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>datevec</TITLE>
-	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="datevec"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>datevec</refname><refpurpose>Date components</refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="datevec">Date components</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>V=datevec(DT)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>[Y,M,D,H,MI,S]=datevec(DT)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>
+ 
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>V=datevec(DT)
+[Y,M,D,H,MI,S]=datevec(DT)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>
 			V = datevec(DT) converts a serial date number (defined by datenum) to a
 			date vector V having elements [year, month, day, hour, minute, second].
 			The first five vector elements are integers. DT can be an array.
-		</P>
-		<P>
+		</para>
+		<para>
 			[Y, M, D, H, MI, S] = datevec(DT) returns the components of the date
 			vector as individual variables. DT can be an array.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 
-<EXAMPLE><![CDATA[
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // First example
 datevec(720840)
 
@@ -50,18 +47,18 @@ datevec(A)
 // Fourth example (With real values)
 A = grand(10,12,'unf',1,1000000)
 datevec(A)
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>datenum</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>calendar</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="datenum">datenum</link>
+		</member>
+		<member>
+			<link linkend="calendar">calendar</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Authors</title><simplelist type="vert">
+		<member>A.C</member>
+	</simplelist></refsection>
+</refentry>

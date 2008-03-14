@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997-2008 - INRIA
@@ -10,41 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_set_timer</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pvm_set_timer"> Sets the  system's notion  of  the current time.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[info] = pvm_set_timer()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>info</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: scalar</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>pvm_set_timer</VERB> initialized the timer.</P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_set_timer"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_set_timer</refname><refpurpose> Sets the  system's notion  of  the current time.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[info] = pvm_set_timer()</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>scalar</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>pvm_set_timer</literal> initialized the timer.</para>
+    <para>
     The returned value will be 0 if 
     the call is successful and will be 
-    will be -1 if some error occurs.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    will be -1 if some error occurs.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 pvm_set_timer()
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_get_timer</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pvm_get_timer">pvm_get_timer</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

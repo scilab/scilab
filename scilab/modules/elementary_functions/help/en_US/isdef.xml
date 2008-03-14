@@ -10,62 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isdef"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>isdef</refname><refpurpose>checks variable
+  existence</refpurpose></refnamediv>
+  
 
-  <TITLE>isdef</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="isdef">checks variable
-  existence</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>isdef(name [,where])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>isdef(name [,where])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>name</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>where</PARAM_NAME>
+      <varlistentry>
+        <term>where</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: an optional character string with default value
-          <VERB>'all'</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>an optional character string with default value
+          <literal>'all'</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>isdef(name)</VERB> returns <VERB>%T</VERB> if the variable
-    named<VERB>name</VERB> exists and <VERB>%F</VERB> otherwise.</P>
+  <refsection><title>Description</title>
+    <para><literal>isdef(name)</literal> returns <literal>%T</literal> if the variable
+    named<literal>name</literal> exists and <literal>%F</literal> otherwise.</para>
 
-    <P>Caveats: a function which uses <VERB>isdef</VERB> may return a result
-    which depends on the environment!</P>
+    <para>Caveats: a function which uses <literal>isdef</literal> may return a result
+    which depends on the environment!</para>
 
-    <P><VERB>isdef(name,'local')</VERB> returns <VERB>%T</VERB> if the
-    variable named<VERB>name</VERB> exists in the local environment of the
-    current function and <VERB>%F</VERB> otherwise.</P>
+    <para><literal>isdef(name,'local')</literal> returns <literal>%T</literal> if the
+    variable named<literal>name</literal> exists in the local environment of the
+    current function and <literal>%F</literal> otherwise.</para>
 
-    <P><VERB>isdef(name,'nolocal')</VERB> returns <VERB>%T</VERB> if the
-    variable named <VERB>name</VERB> exists in the full calling environment
-    (including the global level) of the current function and <VERB>%F</VERB>
-    otherwise.</P>
-  </DESCRIPTION>
+    <para><literal>isdef(name,'nolocal')</literal> returns <literal>%T</literal> if the
+    variable named <literal>name</literal> exists in the full calling environment
+    (including the global level) of the current function and <literal>%F</literal>
+    otherwise.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 A=1;
 isdef('A')
@@ -86,29 +83,29 @@ function go()
 endfunction
 go()
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>exists</LINK>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="exists">exists</link>
 
-      <LINK>isglobal</LINK>
-    </SEE_ALSO_ITEM>
+      <link linkend="isglobal">isglobal</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>whereis</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="whereis">whereis</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>type</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="type">type</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>typeof</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="typeof">typeof</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>clear</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="clear">clear</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

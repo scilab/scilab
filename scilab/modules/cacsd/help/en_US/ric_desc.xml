@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,93 +10,90 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ric_desc</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="ric_desc"> Riccati equation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>X=ric_desc(H [,E))  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[X1,X2,zero]=ric_desc(H [,E])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>H,E</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real square matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>X1,X2</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real square matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>zero</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real number</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Riccati solver with hamiltonian matrices as inputs.</P>
-    <P>
-    In the continuous time case calling sequence is <VERB>ric_descr(H)</VERB> (one input):</P>
-    <P>
-    Riccati equation is:</P>
-    <VERBATIM>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ric_desc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ric_desc</refname><refpurpose> Riccati equation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>X=ric_desc(H [,E))
+[X1,X2,zero]=ric_desc(H [,E])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>H,E</term>
+        <listitem>
+          <para>real square matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X1,X2</term>
+        <listitem>
+          <para>real square matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zero</term>
+        <listitem>
+          <para>real number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Riccati solver with hamiltonian matrices as inputs.</para>
+    <para>
+    In the continuous time case calling sequence is <literal>ric_descr(H)</literal> (one input):</para>
+    <para>
+    Riccati equation is:</para>
+    <programlisting><![CDATA[
+
   (Ec)   A'*X + X*A + X*R*X -Q = 0.
-   ]]>
-    </VERBATIM>
-    <P>
-    Defining the hamiltonian matrix <VERB>H</VERB> by:</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    Defining the hamiltonian matrix <literal>H</literal> by:</para>
+    <programlisting><![CDATA[
+
  H = [A  R;
       Q -A']
-   ]]>
-    </VERBATIM>
-    <P>
-    with the calling sequence <VERB>[X1,X2,zero]=ric_descr(H)</VERB>, the 
-    solution <VERB>X</VERB> is given by <VERB>X=X1/X2</VERB>.</P>
-    <P><VERB>zero</VERB> = L1 norm of rhs of (<VERB>Ec</VERB>)</P>
-    <P>
-    The solution <VERB>X</VERB> is also given by <VERB>X=riccati(A,Q,R,'c'))</VERB></P>
-    <P>
-    In the discrete-time case calling sequence is <VERB>ric_descr(H,E)</VERB> (two inputs):</P>
-    <P>
-    The Riccati equation is:</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    with the calling sequence <literal>[X1,X2,zero]=ric_descr(H)</literal>, the 
+    solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.</para>
+    <para><literal>zero</literal> = L1 norm of rhs of (<literal>Ec</literal>)</para>
+    <para>
+    The solution <literal>X</literal> is also given by <literal>X=riccati(A,Q,R,'c'))</literal></para>
+    <para>
+    In the discrete-time case calling sequence is <literal>ric_descr(H,E)</literal> (two inputs):</para>
+    <para>
+    The Riccati equation is:</para>
+    <programlisting><![CDATA[
+
    (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
-   ]]>
-    </VERBATIM>
-    <P>
-    Defining <VERB>G=B/R*B'</VERB> and the hamiltonian pencil <VERB>(E,H)</VERB> by:</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    Defining <literal>G=B/R*B'</literal> and the hamiltonian pencil <literal>(E,H)</literal> by:</para>
+    <programlisting><![CDATA[
+
       E=[eye(n,n),G;               H=[A, 0*ones(n,n);
          0*ones(n,n),A']             -C, eye(n,n)];
-   ]]>
-    </VERBATIM>
-    <P>
-    with the calling sequence <VERB>[X1,X2,err]=ric_descr(H,E)</VERB>, the 
-    solution <VERB>X</VERB> is given by <VERB>X=X1/X2</VERB>.</P>
-    <P><VERB>zero</VERB>= L1 norm of rhs of (<VERB>Ed</VERB>)</P>
-    <P>
-    The solution <VERB>X</VERB> is also given by <VERB>X=riccati(A,G,C,'d')</VERB>  
-    with <VERB>G=B/R*B'</VERB></P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>riccati</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+    ]]></programlisting>
+    <para>
+    with the calling sequence <literal>[X1,X2,err]=ric_descr(H,E)</literal>, the 
+    solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.</para>
+    <para><literal>zero</literal>= L1 norm of rhs of (<literal>Ed</literal>)</para>
+    <para>
+    The solution <literal>X</literal> is also given by <literal>X=riccati(A,G,C,'d')</literal>  
+    with <literal>G=B/R*B'</literal></para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="riccati">riccati</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

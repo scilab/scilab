@@ -1,44 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getscilabkeywords"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getscilabkeywords</refname><refpurpose>returns a list with all scilab
+  keywords.</refpurpose></refnamediv>
+  
 
-  <TITLE>getscilabkeywords</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="getscilabkeywords">returns a list with all scilab
-  keywords.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>list_keywords=getscilabkeywords()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>list_keywords=getscilabkeywords()</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>list_keywords</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>list_keywords</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a list</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>list_keywords(1) : primitives</P>
+  <refsection><title>Description</title>
+    <para>list_keywords(1) : primitives</para>
 
-    <P>list_keywords(2) : commands</P>
+    <para>list_keywords(2) : commands</para>
 
-    <P>list_keywords(3) : predef variables</P>
+    <para>list_keywords(3) : predef variables</para>
 
-    <P>list_keywords(4) :scilab functions</P>
+    <para>list_keywords(4) :scilab functions</para>
 
-    <P>list_keywords(5) :scicos functions</P>
-  </DESCRIPTION>
+    <para>list_keywords(5) :scicos functions</para>
+  </refsection>
 
-  <AUTHOR>A.C, adapted from Enrico Segre's code in Scipad</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C, adapted from Enrico Segre's code in Scipad</para></refsection>
+</refentry>

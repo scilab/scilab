@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,47 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clear_pixmap"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>clear_pixmap</refname><refpurpose>erase the pixmap
+  buffer</refpurpose></refnamediv>
+  
 
-  <TITLE>clear_pixmap</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="clear_pixmap">erase the pixmap
-  buffer</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>clear_pixmap()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>clear_pixmap()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <SP>If a graphic window <VERB>pixmap</VERB> property is <VERB>"on"</VERB>
+  <refsection><title>Description</title>
+    <para>If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
     the drawings are send to a pixmap memory instead of the screen display.
-    </SP>
+    </para>
 
-    <P></P>
+    <para/>
 
-    <P>The <VERB>clear_pixmap()</VERB> instruction erase the pixmap, but not
-    the screen.</P>
+    <para>The <literal>clear_pixmap()</literal> instruction erase the pixmap, but not
+    the screen.</para>
 
-    <P></P>
+    <para/>
 
-    <SP>The pixmap mode can be used to obtain smooth animations.</SP>
-  </DESCRIPTION>
+    <para>The pixmap mode can be used to obtain smooth animations.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>figure_properties</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="figure_properties">figure_properties</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>show_pixmap</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="show_pixmap">show_pixmap</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Serge Steer INRIA</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Serge Steer INRIA</para></refsection>
+</refentry>

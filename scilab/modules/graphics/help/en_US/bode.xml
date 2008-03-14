@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,133 +10,125 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bode"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bode</refname><refpurpose>Bode plot</refpurpose></refnamediv>
+  
 
-  <TITLE>bode</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="bode">Bode plot</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>bode(sl,[fmin,fmax] [,step] [,comments]
-    )</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>bode(sl,[fmin,fmax] [,step] [,comments] )
+bode(sl,frq [,comments] )
+bode(frq,db,phi [,comments])
+bode(frq, repf [,comments])</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>bode(sl,frq [,comments] )</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
 
-    <CALLING_SEQUENCE_ITEM>bode(frq,db,phi
-    [,comments])</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>: <literal>syslin</literal> list (SISO or SIMO linear system) in
+          continuous or discrete time.</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>bode(frq, repf [,comments])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+      <varlistentry>
+        <term>fmin,fmax</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
+        <listitem>
+          <para>real (frequency bounds (in Hz))</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (SISO or SIMO linear system) in
-          continuous or discrete time.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>step</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fmin,fmax</PARAM_NAME>
+        <listitem>
+          <para>real (logarithmic step.)</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real (frequency bounds (in Hz))</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>comments</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>step</PARAM_NAME>
+        <listitem>
+          <para>vector of character strings (captions).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real (logarithmic step.)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>frq</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>comments</PARAM_NAME>
+        <listitem>
+          <para>row vector or matrix (frequencies (in Hz) ) (one row for each
+          SISO subsystem).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector of character strings (captions).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>db</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>frq</PARAM_NAME>
+        <listitem>
+          <para>row vector or matrix ( magnitudes (in Db)). (one row for each
+          SISO subsystem).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: row vector or matrix (frequencies (in Hz) ) (one row for each
-          SISO subsystem).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>phi</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>db</PARAM_NAME>
+        <listitem>
+          <para>row vector or matrix ( phases (in degree)) (one row for each
+          SISO subsystem).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: row vector or matrix ( magnitudes (in Db)). (one row for each
-          SISO subsystem).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>repf</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>phi</PARAM_NAME>
+        <listitem>
+          <para>row vector or matrix of complex numbers (complex frequency
+          response).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: row vector or matrix ( phases (in degree)) (one row for each
-          SISO subsystem).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+  <refsection><title>Description</title>
+    <para>Bode plot, i.e magnitude and phase of the frequency response of
+    <literal>sl</literal>.</para>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>repf</PARAM_NAME>
+    <para><literal>sl</literal> can be a continuous-time or discrete-time SIMO system
+    (see <literal>syslin</literal>). In case of multi-output the outputs are plotted
+    with different symbols.</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: row vector or matrix of complex numbers (complex frequency
-          response).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+    <para>The frequencies are given by the bounds <literal>fmin,fmax</literal> (in Hz)
+    or by a row-vector (or a matrix for multi-output) <literal>frq</literal>.</para>
 
-  <DESCRIPTION>
-    <P>Bode plot, i.e magnitude and phase of the frequency response of
-    <VERB>sl</VERB>.</P>
+    <para><literal>step</literal> is the ( logarithmic ) discretization step. (see
+    <literal>calfrq</literal> for the choice of default value).</para>
 
-    <P><VERB>sl</VERB> can be a continuous-time or discrete-time SIMO system
-    (see <VERB>syslin</VERB>). In case of multi-output the outputs are plotted
-    with different symbols.</P>
+    <para><literal>comments</literal> is a vector of character strings (captions).</para>
 
-    <P>The frequencies are given by the bounds <VERB>fmin,fmax</VERB> (in Hz)
-    or by a row-vector (or a matrix for multi-output) <VERB>frq</VERB>.</P>
+    <para><literal>db,phi</literal> are the matrices of modulus (in Db) and phases (in
+    degrees). (One row for each response).</para>
 
-    <P><VERB>step</VERB> is the ( logarithmic ) discretization step. (see
-    <VERB>calfrq</VERB> for the choice of default value).</P>
+    <para><literal>repf</literal> matrix of complex numbers. One row for each
+    response.</para>
 
-    <P><VERB>comments</VERB> is a vector of character strings (captions).</P>
-
-    <P><VERB>db,phi</VERB> are the matrices of modulus (in Db) and phases (in
-    degrees). (One row for each response).</P>
-
-    <P><VERB>repf</VERB> matrix of complex numbers. One row for each
-    response.</P>
-
-    <P>Default values for <VERB>fmin</VERB> and <VERB>fmax</VERB> are
-    <VERB>1.d-3</VERB>, <VERB>1.d+3</VERB> if <VERB>sl</VERB> is
-    continuous-time or <VERB>1.d-3</VERB>, <VERB>0.5</VERB> if <VERB>sl</VERB>
+    <para>Default values for <literal>fmin</literal> and <literal>fmax</literal> are
+    <literal>1.d-3</literal>, <literal>1.d+3</literal> if <literal>sl</literal> is
+    continuous-time or <literal>1.d-3</literal>, <literal>0.5</literal> if <literal>sl</literal>
     is discrete-time. Automatic discretization of frequencies is made by
-    <VERB>calfrq</VERB>.</P>
-  </DESCRIPTION>
+    <literal>calfrq</literal>.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
@@ -146,39 +138,39 @@ h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 clf()
 bode([h1;h],0.01,100,['h1';'h'])
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>black</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="black">black</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>nyquist</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="nyquist">nyquist</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gainplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gainplot">gainplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>repfreq</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="repfreq">repfreq</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>g_margin</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="g_margin">g_margin</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>p_margin</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="p_margin">p_margin</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>calfrq</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="calfrq">calfrq</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>phasemag</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="phasemag">phasemag</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

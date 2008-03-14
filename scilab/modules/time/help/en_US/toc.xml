@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,46 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>toc</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="toc">Read the stopwatch timer</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>toc()</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>t = toc()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-  <PARAM_INDENT>
-    <PARAM_ITEM>
-      <PARAM_NAME>t</PARAM_NAME>
-      <PARAM_DESCRIPTION>
-        <SP>: number of seconds since last call to <VERB>tic()</VERB> (Precision in order of millisecond).</SP>
-      </PARAM_DESCRIPTION> 
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>The sequence of commands <VERB>tic(); operation; toc();</VERB> prints the number of seconds required for the operation.</P>
-   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="toc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>toc</refname><refpurpose>Read the stopwatch timer</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>toc()
+t = toc()</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+  <variablelist>
+    <varlistentry>
+      <term>t</term>
+      <listitem>
+        <para>number of seconds since last call to <literal>tic()</literal> (Precision in order of millisecond).</para>
+      </listitem> 
+    </varlistentry>
+  </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>The sequence of commands <literal>tic(); operation; toc();</literal> prints the number of seconds required for the operation.</para>
+   </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 tic();
 realtimeinit(1);
 realtime(0);
 realtime(10);
 toc();
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>tic</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>timer</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member><link linkend="tic">tic</link></member>
+    <member><link linkend="timer">timer</link></member>
+    <member><link linkend="etime">etime</link></member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+    <member>A.C.</member>
+  </simplelist></refsection>
+</refentry>

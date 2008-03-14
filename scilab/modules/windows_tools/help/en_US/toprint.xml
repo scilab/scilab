@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,59 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="toprint"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>toprint</refname><refpurpose>Send text or figure to the printer
+  (Windows)</refpurpose></refnamediv>
+  
 
-  <TITLE>toprint</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="toprint">Send text or figure to the printer
-  (Windows)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>toprint('filename')</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>toprint('filename')
+toprint(['line1','line2',...],'page header')
+toprint(num)
+toprint(num,output)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>toprint(['line1','line2',...],'page
-    header')</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Description</title>
+    <para>toprint('filename') send text file to the printer.</para>
 
-    <CALLING_SEQUENCE_ITEM>toprint(num)</CALLING_SEQUENCE_ITEM>
+    <para>bOK=toprint('filename') send text file to the printer. bOK is %T if
+    file exist.</para>
 
-    <CALLING_SEQUENCE_ITEM>toprint(num,output)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+    <para>toprint(['line1','line2',...],'page header')</para>
 
-  <DESCRIPTION>
-    <P>toprint('filename') send text file to the printer.</P>
+    <para>toprint(num) send the figure with figure_id=num to the printer.</para>
 
-    <P>bOK=toprint('filename') send text file to the printer. bOK is %T if
-    file exist.</P>
+    <para>toprint(num,output) send the figure with figure_id=num to the
+    printer.With ouput='pos' or 'gdi' ('gdi' by default)</para>
+  </refsection>
 
-    <P>toprint(['line1','line2',...],'page header')</P>
-
-    <P>toprint(num) send the figure with figure_id=num to the printer.</P>
-
-    <P>toprint(num,output) send the figure with figure_id=num to the
-    printer.With ouput='pos' or 'gdi' ('gdi' by default)</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[toprint(['Test','toprint primitive'],'Scilab page header');
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[toprint(['Test','toprint primitive'],'Scilab page header');
 scf(4);
 plot();
 toprint(4);
 toprint(4,'pos');
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>printsetupbox</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="printsetupbox">printsetupbox</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,37 +10,32 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>perctl</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="perctl"> computation of percentils</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perctl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>perctl</refname><refpurpose> computation of percentils</refpurpose></refnamediv>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>p=perctl(x,y) </CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>x</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: real or complex vector or matrix</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-			<PARAM_ITEM>
-				<PARAM_NAME>y</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: vector of positif values between 0 and 100.</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
-	<DESCRIPTION>
-		<P>
+	
+	
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>p=perctl(x,y)</synopsis></refsynopsisdiv>
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>x</term>
+				<listitem>
+					<para>real or complex vector or matrix</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>y</term>
+				<listitem>
+					<para>vector of positif values between 0 and 100.</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	<refsection><title>Description</title>
+		<para>
 			Compute the matrix p of percentils (in increasing
 			order,  column  first) of  the  real  vector or  matrix
 			x indicated by the entries of y, the values
@@ -50,14 +45,14 @@
 			are the percentils values.   The contents of its second
 			column are  the places  of the computed  percentiles in
 			the input matrix x.
-		</P>
-		<P>
+		</para>
+		<para>
 			The minimum or maximum values in x are assigned to
 			percentiles for percent values outside that range.
-		</P>
-	</DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+		</para>
+	</refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 x=[6 7 0 7 10 4 2 2 7 1;
 	6 0 5 5 5 2 0 6 8 10;
 	8 6 4 3 5 9 8 3 4 7;
@@ -70,14 +65,14 @@ x=[6 7 0 7 10 4 2 2 7 1;
 	10 3 3 4 8 6 9 4 8 3]
 y=[10 20 30]
 p=perctl(x,y)
- ]]>
-  </EXAMPLE>
-	<AUTHOR> Carlos Klimann</AUTHOR>
-	<BIBLIO>
-		<P>
+ 
+  ]]></programlisting></refsection>
+	<refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
+	<refsection><title>Bibliography</title>
+		<para>
 			HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
 			Statistical   Packages,   The  American   Statistician,
 			Nov.1996, Vol 50, No.4
-		</P>
-	</BIBLIO>
-</MAN>
+		</para>
+	</refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,59 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hsvcolormap</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="hsvcolormap">  Hue-saturation-value colormap</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hsvcolormap"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hsvcolormap</refname><refpurpose>  Hue-saturation-value colormap</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>cmap = hsvcolormap(n)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>cmap = hsvcolormap(n)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-  <PARAM_INDENT>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>n</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  integer &gt;= 1, the colormap size.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>n</term>
+    <listitem>
+       <para> integer &gt;= 1, the colormap size.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>cmap</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : matrix with 3 columns <VERB>[R,G,B]</VERB>.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>cmap</term>
+    <listitem>
+       <para>matrix with 3 columns <literal>[R,G,B]</literal>.
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-    <SP><VERB>hsvcolormap</VERB> computes a colormap with
-      <VERB>n</VERB>colors. This colormap  varies the hue component of the
+  <refsection><title>Description</title>
+    <para><literal>hsvcolormap</literal> computes a colormap with
+      <literal>n</literal>colors. This colormap  varies the hue component of the
       hsv color model.  The colors begin with red, pass through yellow, green,
     cyan, blue, magenta, and return to red.  The map is particularly
-    useful for displaying periodic functions. </SP>
-  </DESCRIPTION>
+    useful for displaying periodic functions. </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
     f=gcf();f.color_map=hsvcolormap(64);
      plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM label='Serge Steer'>
+  <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>Serge Steer</term><listitem><para>
       INRIA
-    </AUTHORS_ITEM>
-  </AUTHORS>
+    </para></listitem></varlistentry>
+  </variablelist></refsection>
 
-   </MAN>
+   </refentry>

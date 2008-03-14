@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -10,116 +10,113 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sci2for</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sci2for"> scilab function to Fortran routine conversion</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>txt=sci2for(fun,nam,vtps [,lvtps])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>fun</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Scilab function</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>nam</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string, the name of generated subroutine</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>vtps</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>lvtps</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>txt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, text of the subroutine Fortran code</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-  </P>
-    <P>
-    The elements of the list <VERB>vtps</VERB> give the type and dimensions
-    of the input variables of the calling sequence and <VERB>lvtps</VERB>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sci2for"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sci2for</refname><refpurpose> scilab function to Fortran routine conversion</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=sci2for(fun,nam,vtps [,lvtps])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>Scilab function</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nam</term>
+        <listitem>
+          <para>character string, the name of generated subroutine</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>vtps</term>
+        <listitem>
+          <para>list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lvtps</term>
+        <listitem>
+          <para>list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>string, text of the subroutine Fortran code</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+  </para>
+    <para>
+    The elements of the list <literal>vtps</literal> give the type and dimensions
+    of the input variables of the calling sequence and <literal>lvtps</literal>
     optionally gives the type and dimensions of the output variables. This
     last parameter is usefull if type and/or dimension inference cannot be
     able to determine the desired values.
-  </P>
-    <P>
+  </para>
+    <para>
     These lists are  structured as described below:
-  </P>
-    <VERBATIM>
-<![CDATA[
+  </para>
+    <programlisting><![CDATA[
+
 vtps(i)=list(typ,row_dim,col_dim)
-   ]]>
-    </VERBATIM>
-    <P>
+   
+    ]]></programlisting>
+    <para>
     where :
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="typ">
-        <SP>: is a character string giving the type of the variable :</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="&quot;0&quot;">
-        <SP>: constant,integer vector or matrix</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="&quot;1&quot;">
-        <SP>: constant,double precision vector or matrix</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="&quot;10&quot;">
-        <SP>: character string</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="row_dim">
-        <SP>: character string (row dimension)</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="col_dim">
-        <SP>: character string (column dimension)</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="txt">
-        <SP>: Fortran code</SP>
-        <P>
+  </para>
+    <variablelist>
+      <varlistentry><term>typ</term><listitem>
+        <para>is a character string giving the type of the variable :</para>
+      </listitem></varlistentry>
+      <varlistentry><term>"0"</term><listitem>
+        <para>constant,integer vector or matrix</para>
+      </listitem></varlistentry>
+      <varlistentry><term>"1"</term><listitem>
+        <para>constant,double precision vector or matrix</para>
+      </listitem></varlistentry>
+      <varlistentry><term>"10"</term><listitem>
+        <para>character string</para>
+      </listitem></varlistentry>
+      <varlistentry><term>row_dim</term><listitem>
+        <para>character string (row dimension)</para>
+      </listitem></varlistentry>
+      <varlistentry><term>col_dim</term><listitem>
+        <para>character string (column dimension)</para>
+      </listitem></varlistentry>
+      <varlistentry><term>txt</term><listitem>
+        <para>Fortran code</para>
+        <para>
     Generated code may use routines of scilab libraries and some others
-    whose source code may be found in &lt;SCIDIR&gt;/util/sci2for.f</P>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <SECTION label="Remarks">
-    <P>
-    This function is just a try. Only simple function may be translated. Many function calls have not  yet Fortran equivalent, to add the translation of a new function call you may define a scilab function. whose name is f_&lt;name of function&gt;. see &lt;SCIDIR&gt;/macros/sci2for/f_*.sci files for examples.</P>
-    <P>
-    The following keywords :</P>
-    <VERBATIM>
-<![CDATA[
+    whose source code may be found in &lt;SCIDIR&gt;/util/sci2for.f</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Remarks</title>
+    <para>
+    This function is just a try. Only simple function may be translated. Many function calls have not  yet Fortran equivalent, to add the translation of a new function call you may define a scilab function. whose name is f_&lt;name of function&gt;. see &lt;SCIDIR&gt;/macros/sci2for/f_*.sci files for examples.</para>
+    <para>
+    The following keywords :</para>
+    <programlisting><![CDATA[
+
  work,iwork,ierr
  iw*  iiw*
  ilbN   (N integer)
-   ]]>
-    </VERBATIM>
-    <P>
-    may not appear in the function code.</P>
-  </SECTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>function</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+    ]]></programlisting>
+    <para>
+    may not appear in the function code.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="function">function</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

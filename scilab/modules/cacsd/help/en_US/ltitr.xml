@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,65 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ltitr</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="ltitr"> discrete time response (state space)  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[X]=ltitr(A,B,U,[x0])   </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[xf,X]=ltitr(A,B,U,[x0])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A,B</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real  matrices of appropriate dimensions</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>U,X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real  matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x0,xf</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vectors (default value=0 for <VERB>x0</VERB>))</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    calculates the time response of the discrete time system</P>
-    <VERBATIM>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ltitr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ltitr</refname><refpurpose> discrete time response (state space)  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X]=ltitr(A,B,U,[x0])
+[xf,X]=ltitr(A,B,U,[x0])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B</term>
+        <listitem>
+          <para>real  matrices of appropriate dimensions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U,X</term>
+        <listitem>
+          <para>real  matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0,xf</term>
+        <listitem>
+          <para>real vectors (default value=0 for <literal>x0</literal>))</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    calculates the time response of the discrete time system</para>
+    <programlisting><![CDATA[
+
          x[t+1] = Ax[t] + Bu[t].
-   ]]>
-    </VERBATIM>
-    <P>
-    The inputs <VERB>ui</VERB>'s are the columns of the <VERB>U</VERB> matrix</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    The inputs <literal>ui</literal>'s are the columns of the <literal>U</literal> matrix</para>
+    <programlisting><![CDATA[
+
         U=[u0,u1,...,un];
-   ]]>
-    </VERBATIM>
-    <P><VERB>x0</VERB> is the vector of initial state (default value : 0) ;</P>
-    <P><VERB>X</VERB> is the matrix of outputs (same number of columns as <VERB>U</VERB>).</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para><literal>x0</literal> is the vector of initial state (default value : 0) ;</para>
+    <para><literal>X</literal> is the matrix of outputs (same number of columns as <literal>U</literal>).</para>
+    <programlisting><![CDATA[
+
         X=[x0,x1,x2,...,xn] 
-   ]]>
-    </VERBATIM>
-    <P><VERB>xf</VERB> is the vector of final state <VERB>xf=X[n+1]</VERB></P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para><literal>xf</literal> is the vector of final state <literal>xf=X[n+1]</literal></para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 A=eye(2,2);B=[1;1];
 x0=[-1;-2];
 u=[1,2,3,4,5];
@@ -76,14 +73,14 @@ x=ltitr(A,B,u,x0)
 x1=A*x0+B*u(1)
 x2=A*x1+B*u(2)
 x3=A*x2+B*u(3) //....
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>rtitr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>flts</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="rtitr">rtitr</link>
+    </member>
+    <member>
+      <link linkend="flts">flts</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,85 +1,72 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_size</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_size"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_size</refname><refpurpose>Fonction d'�mulation de la fonction Matlab size</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_size">Fonction d'�mulation de la fonction Matlab size</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>size</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>size</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec deux param�tres d'entr�e : La fonction Matlab <VERB>size</VERB> peut �tre
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec deux param�tres d'entr�e : La fonction Matlab <literal>size</literal> peut �tre
 	utilis�e avec le second param�tre donnant donnant une dimension du premier param�tre
 	qui n'existe pas (retourne 1 dans ce cas) mais pas la fonction Scilab.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         Avec plus d'une param�tre de sortie : si le nombre de param�tres de sortie est plus
 	petit que le nombre de dimension, la derni�re sortie est �gale au produit de toutes
 	les dimensions restantes dans Matlab mais pas dans Scilab. Si le nombre de sorties
 	est plus grand que le nombre de dimensions, toutes les sorties correspondant � une
 	dimension qui n'existe pas sont �gales � 1 en Matlab mais Scilab retourne une erreur dans ce cas.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>[d1,[d2,...]] = mtlb_size(X[,dim])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>[d1,[d2,...]] = mtlb_size(X[,dim])</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_size</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_size</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec deux param�tres d'entr�e : si <VERB>dim</VERB> correspond � une dimension de <VERB>X</VERB> qui existe
-        <VERB>mtlb_size(X,dim)</VERB> peut �tre remplac� par <VERB>size(X,dim)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec deux param�tres d'entr�e : si <literal>dim</literal> correspond � une dimension de <literal>X</literal> qui existe
+        <literal>mtlb_size(X,dim)</literal> peut �tre remplac� par <literal>size(X,dim)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-	Avec plus d'un param�tre de sortie : si le nombre des sorties est �gal au nombre de dimensions de <VERB>X</VERB>
-	<VERB>[d1,[d2,...]] = mtlb_size(X)</VERB> peut �tre remplac� par <VERB>[d1,[d2,...]] = size(X)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+	Avec plus d'un param�tre de sortie : si le nombre des sorties est �gal au nombre de dimensions de <literal>X</literal>
+	<literal>[d1,[d2,...]] = mtlb_size(X)</literal> peut �tre remplac� par <literal>[d1,[d2,...]] = size(X)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_size</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_size</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

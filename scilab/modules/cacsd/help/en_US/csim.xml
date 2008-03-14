@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,83 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="csim"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>csim</refname><refpurpose> simulation (time response) of linear system</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y [,x]]=csim(u,t,sl,[x0 [,tol]])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>u</term>
+        <listitem>
+          <para>function, list or string (control)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>real vector specifying times  with, <literal>t(1)</literal> is the initial  time (<literal>x0=x(t(1))</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>list (<literal>syslin</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>a  matrix such that   <literal>y=[y(t(i)]</literal>, i=1,..,n</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>a  matrix such that   <literal>x=[x(t(i)]</literal>, i=1,..,n</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>a 2 vector [atol rtol] defining absolute and relative tolerances for ode solver (see ode)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    simulation of the controlled linear system <literal>sl</literal>.
+    <literal>sl</literal> is assumed to be a continuous-time system 
+    represented by a <literal>syslin</literal> list.</para>
+    <para><literal>u</literal> is the control and <literal>x0</literal> the initial state.</para>
+    <para><literal>y</literal> is the output and <literal>x</literal> the state.</para>
+    <para>
+    The control can be:</para>
+    <para>
+    1. a function : <literal>[inputs]=u(t)</literal></para>
+    <para>
+    2. a list : <literal>list(ut,parameter1,....,parametern)</literal> such that:
+    <literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> is a function)</para>
+    <para>
+    3. the string <literal>"impuls"</literal> for impulse response calculation
+    (here <literal>sl</literal> is assumed SISO without direct feed through and <literal>x0=0</literal>)</para>
+    <para>
+    4. the string <literal>"step"</literal> for step response calculation 
+    (here <literal>sl</literal> is assumed SISO without direct feed-through and
+    <literal>x0=0</literal>)</para>
+    <para>
+    5. a vector giving the values of u correponding to each t value.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>csim</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="csim"> simulation (time response) of linear system</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[y [,x]]=csim(u,t,sl,[x0 [,tol]])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>u</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: function, list or string (control)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>t</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector specifying times  with, <VERB>t(1)</VERB> is the initial  time (<VERB>x0=x(t(1))</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list (<VERB>syslin</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a  matrix such that   <VERB>y=[y(t(i)]</VERB>, i=1,..,n</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a  matrix such that   <VERB>x=[x(t(i)]</VERB>, i=1,..,n</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a 2 vector [atol rtol] defining absolute and relative tolerances for ode solver (see ode)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    simulation of the controlled linear system <VERB>sl</VERB>.
-    <VERB>sl</VERB> is assumed to be a continuous-time system 
-    represented by a <VERB>syslin</VERB> list.</P>
-    <P><VERB>u</VERB> is the control and <VERB>x0</VERB> the initial state.</P>
-    <P><VERB>y</VERB> is the output and <VERB>x</VERB> the state.</P>
-    <P>
-    The control can be:</P>
-    <P>
-    1. a function : <VERB>[inputs]=u(t)</VERB></P>
-    <P>
-    2. a list : <VERB>list(ut,parameter1,....,parametern)</VERB> such that:
-    <VERB>inputs=ut(t,parameter1,....,parametern)</VERB> (<VERB>ut</VERB> is a function)</P>
-    <P>
-    3. the string <VERB>&quot;impuls&quot;</VERB> for impulse response calculation
-    (here <VERB>sl</VERB> is assumed SISO without direct feed through and <VERB>x0=0</VERB>)</P>
-    <P>
-    4. the string <VERB>&quot;step&quot;</VERB> for step response calculation 
-    (here <VERB>sl</VERB> is assumed SISO without direct feed-through and
-    <VERB>x0=0</VERB>)</P>
-    <P>
-    5. a vector giving the values of u correponding to each t value.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 s=poly(0,'s');rand('seed',0);w=ssrand(1,1,3);w('A')=w('A')-2*eye();
 t=0:0.05:5;
 //impulse(w) = step (s * w)
@@ -104,29 +100,29 @@ plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
 deff('u=input(t)','u=abs(sin(t))')
 xbasc();plot2d([t',t'],[(csim(input,t,w))',0*t'])
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>syslin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dsimul</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>flts</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ltitr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rtitr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ode</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>impl</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="syslin">syslin</link>
+    </member>
+    <member>
+      <link linkend="dsimul">dsimul</link>
+    </member>
+    <member>
+      <link linkend="flts">flts</link>
+    </member>
+    <member>
+      <link linkend="ltitr">ltitr</link>
+    </member>
+    <member>
+      <link linkend="rtitr">rtitr</link>
+    </member>
+    <member>
+      <link linkend="ode">ode</link>
+    </member>
+    <member>
+      <link linkend="impl">impl</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

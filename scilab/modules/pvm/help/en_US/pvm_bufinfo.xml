@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997-2008 - INRIA
@@ -10,67 +10,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_bufinfo</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pvm_bufinfo"> Returns information about a message buffer.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[bytes, msgtag, tid, info] = pvm_bufinfo(bufid)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>bufid</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:   integer, specifying   a  particular  message buffer  identifier.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>bytes</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, size of the message in bytes  (not very useful inside scilab).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>msgtag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer,  label of the  message.  Useful when the message was 
-    received with a wildcard msgtag.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tid</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, task ID of the source of the message.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>info</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, status code returned by  the routine. Values less than 
-    zero indicate an error.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>pvm_bufinfo</VERB> returns information   about  the requested   message
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_bufinfo"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_bufinfo</refname><refpurpose> Returns information about a message buffer.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[bytes, msgtag, tid, info] = pvm_bufinfo(bufid)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>bufid</term>
+        <listitem>
+          <para>  integer, specifying   a  particular  message buffer  identifier.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bytes</term>
+        <listitem>
+          <para>integer, size of the message in bytes  (not very useful inside scilab).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msgtag</term>
+        <listitem>
+          <para>integer,  label of the  message.  Useful when the message was 
+    received with a wildcard msgtag.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tid</term>
+        <listitem>
+          <para>integer, task ID of the source of the message.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>integer, status code returned by  the routine. Values less than 
+    zero indicate an error.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>pvm_bufinfo</literal> returns information   about  the requested   message
     buffer.  Typically it is  used   to determine  facts  about the   last
-    received   message  such  as   its size  or   source. <VERB>pvm_bufinfo</VERB> is
+    received   message  such  as   its size  or   source. <literal>pvm_bufinfo</literal> is
     especially useful when an application is  able to receive any incoming
     message, and the action taken depends on the source tid and the msgtag
-    associated  with the message that comes  in first.</P>
-    <P>
-    The returned value <VERB>info</VERB>will be zero if 
-    <VERB>pvm_bufinfo</VERB> is successful and will be 
-    will be &lt; 0 if some error occurs.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_recv</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    associated  with the message that comes  in first.</para>
+    <para>
+    The returned value <literal>info</literal>will be zero if 
+    <literal>pvm_bufinfo</literal> is successful and will be 
+    will be &lt; 0 if some error occurs.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pvm_recv">pvm_recv</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

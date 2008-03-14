@@ -1,149 +1,147 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>save_format</TITLE>
-  <TYPE>Scilab Data Type</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="save_format">format of files produced by "save"</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save_format"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>save_format</refname><refpurpose>format of files produced by "save"</refpurpose></refnamediv>
+  
+  
+  
+  
+  
  
-  <DESCRIPTION>
-     <P>
-     Variables are saved by Scilab with the <LINK>save</LINK> command in this
+  <refsection><title>Description</title>
+     <para>
+     Variables are saved by Scilab with the <link linkend="save">save</link> command in this
      format:
-     </P>
-     <P>
+     </para>
+     <para>
      each variable record is appended consecutively to the file. The variable
      record begins with 24 bytes holding the variable name in encoded format 
-     (see <LINK>code2str</LINK>), where the name is terminated by the value 40.
-     </P>
-     <P>
+     (see <link linkend="code2str">code2str</link>), where the name is terminated by the value 40.
+     </para>
+     <para>
      After that comes the variable type (long integer), then, depending on it, for:
-     </P>
+     </para>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Floating matrices (type 1)">
-           <P>row size m (long integer), column size n (long integer), it (long integer);</P>
-           <P>data (8*n*m*(it+1) bytes)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Floating matrices (type 1)</term><listitem>
+           <para>row size m (long integer), column size n (long integer), it (long integer);</para>
+           <para>data (8*n*m*(it+1) bytes)</para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Polynomials (type 2) and Size implicit indices (?) (type 129)">
-           <P>row size m (long integer), column size n (long integer), it (long integer);</P>
-           <P>formal variable name (16 bytes); pointer table (m*n+1 long integers);</P>
-           <P>data (8*(N-1)*(it+1) bytes, where N is the last entry of the pointer table)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Polynomials (type 2) and Size implicit indices (?) (type 129)</term><listitem>
+           <para>row size m (long integer), column size n (long integer), it (long integer);</para>
+           <para>formal variable name (16 bytes); pointer table (m*n+1 long integers);</para>
+           <para>data (8*(N-1)*(it+1) bytes, where N is the last entry of the pointer table)</para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Booleans (type 4)">
-           <P>row size m (long integer), column size n (long integer);</P>
-           <P>data (4*n*m bytes)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Booleans (type 4)</term><listitem>
+           <para>row size m (long integer), column size n (long integer);</para>
+           <para>data (4*n*m bytes)</para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Floating sparse matrices (type 5)">
-           <P>row size m (long integer), column size n (long integer),
-           it (long integer), nel (long integer); </P>
-           <P>index (4*m+nel bytes);</P>
-           <P>non-zero values (8*nel*(it+1) bytes)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Floating sparse matrices (type 5)</term><listitem>
+           <para>row size m (long integer), column size n (long integer),
+           it (long integer), nel (long integer); </para>
+           <para>index (4*m+nel bytes);</para>
+           <para>non-zero values (8*nel*(it+1) bytes)</para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Boolean sparse matrices (type 6)">
-           <P>row size m (long integer), column size n (long integer),
-            it (long integer), nel (long integer);</P>
-           <P>index (4*m+nel bytes);</P>
-           <P> non-zero values (4*nel*(it+1) bytes)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Boolean sparse matrices (type 6)</term><listitem>
+           <para>row size m (long integer), column size n (long integer),
+            it (long integer), nel (long integer);</para>
+           <para>index (4*m+nel bytes);</para>
+           <para> non-zero values (4*nel*(it+1) bytes)</para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Integer matrices (type 8)">
-           <P>row size m (long integer), column size n (long integer),</P>
-           <P>integer type (long integer): 1,2,4, or 11,12,14 for signed and unsigned
-              1,2,4 bytes integers;</P>
-           <P>data (n*m*(it modulo 10) bytes)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Integer matrices (type 8)</term><listitem>
+           <para>row size m (long integer), column size n (long integer),</para>
+           <para>integer type (long integer): 1,2,4, or 11,12,14 for signed and unsigned
+              1,2,4 bytes integers;</para>
+           <para>data (n*m*(it modulo 10) bytes)</para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="handles (type 9)">
-           <SP>
+     <variablelist>
+        <varlistentry><term>handles (type 9)</term><listitem>
+           <para>
            ??
-          </SP>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+          </para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Strings (type 10)">
-           <P>row size m (long integer), column size n (long integer),</P>
-           <P>total number of characters nc+1 (long integer);</P>
-           <P>pointer table (n*m+1 bytes);</P>
-           <P>data (4*nc bytes)</P>
-           </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Strings (type 10)</term><listitem>
+           <para>row size m (long integer), column size n (long integer),</para>
+           <para>total number of characters nc+1 (long integer);</para>
+           <para>pointer table (n*m+1 bytes);</para>
+           <para>data (4*nc bytes)</para>
+           </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Uncompiled functions (type 11)">
-           <P>nout (long integer), lhs names (24*nout bytes),</P>
-           <P>nin (long integer), rhs names (24*nin bytes);</P>
-           <P>code length N (long integer),</P>
-           <P>code (4*N bytes)</P>
-          </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Uncompiled functions (type 11)</term><listitem>
+           <para>nout (long integer), lhs names (24*nout bytes),</para>
+           <para>nin (long integer), rhs names (24*nin bytes);</para>
+           <para>code length N (long integer),</para>
+           <para>code (4*N bytes)</para>
+          </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Compiled functions (type 13)">
-           <P>nout (long integer), lhs names (24*nout bytes),</P>
-           <P>nin (long integer), rhs names (24*nin bytes);</P>
-           <P>code length N (long integer),</P>
-           <P>pseudocode (4*N bytes)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Compiled functions (type 13)</term><listitem>
+           <para>nout (long integer), lhs names (24*nout bytes),</para>
+           <para>nin (long integer), rhs names (24*nin bytes);</para>
+           <para>code length N (long integer),</para>
+           <para>pseudocode (4*N bytes)</para>
+        </listitem></varlistentry>
+     </variablelist>
 
-     <DESCRIPTION_INDENT>
-           <DESCRIPTION_ITEM label="Libraries (type 14)">
-           <P>path length np (long integer), path name (4*np bytes),</P>
-           <P>number of names nn (long integer),</P>
-           <P>class pointers (120 bytes);</P>
-           <P>names (24*nn bytes);</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+           <varlistentry><term>Libraries (type 14)</term><listitem>
+           <para>path length np (long integer), path name (4*np bytes),</para>
+           <para>number of names nn (long integer),</para>
+           <para>class pointers (120 bytes);</para>
+           <para>names (24*nn bytes);</para>
+        </listitem></varlistentry>
+     </variablelist>
 
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label="Lists (type 15), tlists (type 16), mlists (type 17)">
-           <P>number of fields n (long integer),</P>
-           <P>pointers (4*(n+1) bytes);</P>
-           <P>variables (each one written according to its format)</P>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     <variablelist>
+        <varlistentry><term>Lists (type 15), tlists (type 16), mlists (type 17)</term><listitem>
+           <para>number of fields n (long integer),</para>
+           <para>pointers (4*(n+1) bytes);</para>
+           <para>variables (each one written according to its format)</para>
+        </listitem></varlistentry>
+     </variablelist>
      
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Pointers (type 128)">
-     <SP>
+     <variablelist>
+     <varlistentry><term>Pointers (type 128)</term><listitem>
+     <para>
      ??
-     </SP>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+     </para>
+     </listitem></varlistentry>
+     </variablelist>
 
 
-  </DESCRIPTION>
+  </refsection>
 
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>load</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>listvarinfile</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="save">save</link> </member>
+    <member> <link linkend="load">load</link> </member>
+    <member> <link linkend="listvarinfile">listvarinfile</link> </member>
+    <member> <link linkend="type">type</link> </member>
+    <member> <link linkend="typeof">typeof</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>compiled by Enrico Segre</AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>compiled by Enrico Segre</member>
+  </simplelist></refsection>
 
-</MAN>
+</refentry>

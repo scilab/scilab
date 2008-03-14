@@ -1,88 +1,81 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>recompilefunction</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>10-Jun-2007</DATE>
-  <SHORT_DESCRIPTION name="recompilefunction">recompiles a scilab function, 
-                       changing its type</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="recompilefunction"><info><pubdate>10-Jun-2007</pubdate></info><refnamediv><refname>recompilefunction</refname><refpurpose>recompiles a scilab function, 
+                       changing its type</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>recompilefunction(funname [,kind [,force]])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>recompilefunction(funname [,kind [,force]])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-  <PARAM_INDENT>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>funname</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : string, name of the function to recompile
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>funname</term>
+    <listitem>
+       <para>string, name of the function to recompile
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>kind</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : string: <BD>"n"</BD> (noncompiled, type 11), <BD>"c"</BD> 
-       (compiled, type 13) or <BD>"p"</BD> (compiled, type 13, with 
+    <varlistentry>
+    <term>kind</term>
+    <listitem>
+       <para>string: <emphasis role="bold">"n"</emphasis> (noncompiled, type 11), <emphasis role="bold">"c"</emphasis> 
+       (compiled, type 13) or <emphasis role="bold">"p"</emphasis> (compiled, type 13, with 
        provision for profiling). Default "c".
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>force</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : boolean. If false, the function is recomplied only if its kind changes;
+    <varlistentry>
+    <term>force</term>
+    <listitem>
+       <para>boolean. If false, the function is recomplied only if its kind changes;
        if true, it is recompiled even if it keeps the same kind (notably useful
        to recompile a "p" function, to reset the profiling statistics).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <P>
-     This function reverse-compiles a function variable via <LINK>fun2string</LINK>,
-     and recompiles it to the desired kind with <LINK>deff</LINK>.
-     </P>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+     <itemizedlist>
+     <listitem>
+     <para>
+     This function reverse-compiles a function variable via <link linkend="fun2string">fun2string</link>,
+     and recompiles it to the desired kind with <link linkend="deff">deff</link>.
+     </para>
+     </listitem>
+     </itemizedlist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    recompilefunction("asinh","p")
    for i=1:100; asinh(rand(100,100)); end
    showprofile(asinh)   
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>comp</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>fun2string</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>profile</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="function">function</link> </member>
+    <member> <link linkend="getf">getf</link> </member>
+    <member> <link linkend="deff">deff</link> </member>
+    <member> <link linkend="comp">comp</link> </member>
+    <member> <link linkend="fun2string">fun2string</link> </member>
+    <member> <link linkend="profile">profile</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM label='Enrico Segre'>
-    </AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>Enrico Segre</term><listitem><para>
+    </para></listitem></varlistentry>
+  </variablelist></refsection>
 
-  <BIBLIO>
-    <SP>
+  <refsection><title>Bibliography</title>
+    <para>
    http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation
-  </SP>
-  </BIBLIO>
+  </para>
+  </refsection>
 
-</MAN>
+</refentry>

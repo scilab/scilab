@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -10,77 +10,73 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>Infer</TITLE>
-  <TYPE>M2SCI Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Infer"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Infer</refname><refpurpose>Create a tree containing inference data</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="Infer">Create a tree containing inference data</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>infer=Infer(varargin)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>infer=Infer(varargin)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>varargin</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: data for inference</SP>
-	  <PARAM_INDENT>
-          <PARAM_ITEM>
-            <PARAM_NAME>varargin(1)</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-              <SP>: list of dimensions default value is list(Unknown,Unknown)</SP>
-            </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
-          <PARAM_ITEM>
-            <PARAM_NAME>varargin(2)</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-              <SP>: type ("type" tlist, see Type help page) default value is Type(Unknown,Unknown)</SP>
-            </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
-          <PARAM_ITEM>
-            <PARAM_NAME>varargin(3)</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-              <SP>: contents ("contents" tlist, see Contents help page) default value is Contents(list(),list()). This field is
-              only used if represented data is a Cell or a Struct.</SP>
-            </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
-          </PARAM_INDENT>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>infer</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: an "infer" tlist</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>varargin</term>
+        <listitem>
+          <para>data for inference</para>
+	  <variablelist>
+          <varlistentry>
+            <term>varargin(1)</term>
+            <listitem>
+              <para>list of dimensions default value is list(Unknown,Unknown)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>varargin(2)</term>
+            <listitem>
+              <para>type ("type" tlist, see Type help page) default value is Type(Unknown,Unknown)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>varargin(3)</term>
+            <listitem>
+              <para>contents ("contents" tlist, see Contents help page) default value is Contents(list(),list()). This field is
+              only used if represented data is a Cell or a Struct.</para>
+            </listitem>
+          </varlistentry>
+          </variablelist>
+       </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infer</term>
+        <listitem>
+          <para>an "infer" tlist</para>
+       </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>
-    This function create a <VERB>tlist</VERB> representing inference data when using M2SCI.
+  <refsection><title>Description</title>
+    <para>
+    This function create a <literal>tlist</literal> representing inference data when using M2SCI.
     All input parameters values are verified to be compatible with "M2SCI tlists". (Unknown=-1 in M2SCI)
-    </P>  
-  </DESCRIPTION>
+    </para>  
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Contents</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="Funcall">Funcall</link> </member>
+    <member> <link linkend="Operation">Operation</link> </member>
+    <member> <link linkend="Variable">Variable</link> </member>
+    <member> <link linkend="Cste">Cste</link> </member>
+    <member> <link linkend="Contents">Contents</link> </member>
+    <member> <link linkend="Type">Type</link> </member>
+    <member> <link linkend="Equal">Equal</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
 
-</MAN>
-
+</refentry>

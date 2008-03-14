@@ -1,94 +1,80 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!-- When this file is modified please also modify mtlb_tril.xml -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_triu</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_triu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_triu</refname><refpurpose>Fonction d'�mulation de la fonction Matlab triu</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_triu">Fonction d'�mulation de la fonction Matlab triu</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>triu</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>triu</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec des param�tres d'entr�e complexes : La fonction Matlab <VERB>triu</VERB> peut �tre
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec des param�tres d'entr�e complexes : La fonction Matlab <literal>triu</literal> peut �tre
 	utilis�e avec des donn�es complexes mais pas la fonction Scilab.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         Avec des param�tres d'entr�e de type cha�ne de cacat�res : �tant donn� que Matlab et Scilab
-	ne consid�rent pas les cha�nes de caract�res de la m�me fa�on, la fonction <VERB>triu</VERB>
+	ne consid�rent pas les cha�nes de caract�res de la m�me fa�on, la fonction <literal>triu</literal>
 	ne donne pas le m�me r�sutat pour ce type d'entr�e dans Scilab et dans Matlab.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec des param�tres d'entr�e bool�ens : La fonction Matlab <VERB>triu</VERB> peut �tre
+      <listitem>
+        <para>
+        Avec des param�tres d'entr�e bool�ens : La fonction Matlab <literal>triu</literal> peut �tre
 	utilis�e avec des donn�es bool�ennes mais pas la fonction Scilab.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_triu(x,k)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>triu(x,k)</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_triu(x,k)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>triu(x,k)</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_triu</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_triu</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>X</VERB> contient des doubles r�els
-        <VERB>mtlb_triu(x,k)</VERB> peut �tre remplac� par <VERB>triu(x,k)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>X</literal> contient des doubles r�els
+        <literal>mtlb_triu(x,k)</literal> peut �tre remplac� par <literal>triu(x,k)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>X</VERB> contient des bool�ens
-        <VERB>mtlb_triu(x,k)</VERB> peut �tre remplac� par <VERB>triu(bool2s(x),k)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Si <literal>X</literal> contient des bool�ens
+        <literal>mtlb_triu(x,k)</literal> peut �tre remplac� par <literal>triu(bool2s(x),k)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_triu</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_triu</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>Chaines_de_caracteres_Matlab-Scilab</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

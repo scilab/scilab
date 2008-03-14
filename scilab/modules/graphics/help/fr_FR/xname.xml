@@ -1,30 +1,25 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>xname  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xname"> change le nom de la fenêtre graphique courante  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>xname(name)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>name  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères, nom de la fenêtre graphique.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>xname</VERB> change le nom de la fenêtre graphique courante.
-  </P>
-  </DESCRIPTION>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xname"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xname</refname><refpurpose> change le nom de la fenêtre graphique courante  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>xname(name)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>name  </term>
+  <listitem>
+  <para>chaîne de caractères, nom de la fenêtre graphique.
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>xname</literal> change le nom de la fenêtre graphique courante.
+  </para>
+  </refsection>
+  <refsection><title>Auteurs</title><para>J.Ph.C.  </para></refsection>
+</refentry>

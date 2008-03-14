@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xgraduate</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xgraduate"> axis graduation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>xmi,xma</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalars</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xi, xa, kMinr, kMaxr, ar</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:real scalars</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>np1,np2</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>xgraduate</VERB> returns the axis graduations which are used by the plot
-    routines (with pretty print flag enabled). It returns an interval <VERB>[xi,xa]</VERB> which contains the
-    given interval <VERB>[xmi,xma]</VERB> and such that</P>
-    <P><VERB>xi= kMinr*10^ar</VERB>, <VERB>xa=kMaxr*10^ar</VERB> and the interval can 
-    be divided into <VERB>np2</VERB> intervals and each interval is divided in
-    <VERB>np1</VERB> sub-intervals.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xgraduate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xgraduate</refname><refpurpose> axis graduation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xmi,xma</term>
+        <listitem>
+          <para>real scalars</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xi, xa, kMinr, kMaxr, ar</term>
+        <listitem>
+          <para>:real scalars</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>np1,np2</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>xgraduate</literal> returns the axis graduations which are used by the plot
+    routines (with pretty print flag enabled). It returns an interval <literal>[xi,xa]</literal> which contains the
+    given interval <literal>[xmi,xma]</literal> and such that</para>
+    <para><literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal> and the interval can 
+    be divided into <literal>np2</literal> intervals and each interval is divided in
+    <literal>np1</literal> sub-intervals.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
   [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>graduate</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.P.C ; ;   </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="graduate">graduate</link>
+    </member>
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>J.P.C ; ;   </para></refsection>
+</refentry>

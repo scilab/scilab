@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,62 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="index_from_tail_head"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>index_from_tail_head</refname><refpurpose>Computes the index of edges given by (tail,head) pairs</refpurpose></refnamediv>
+	
+	
+	
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>i = index_from_tail_head(g,t,h)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
+			
+			<varlistentry>
+				<term>g</term>
+				<listitem>
+					<para>a  <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+				</listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>t</term>
+				<listitem>
+					<para>a vector: edges tail node numbers.</para>
+				</listitem>
+			</varlistentry>
+		
+			<varlistentry>
+				<term>h</term>
+				<listitem>
+					<para>a vector: edges head node numbers.</para>
+				</listitem>
+			</varlistentry>
+		
+			<varlistentry>
+				<term>i</term>
+				<listitem>
+					<para>a row vector of edge numbers</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection><title>Description</title>
+		<para>
+			<literal>i = index_from_tail_head(g,tail,head)</literal> computes the
+			index of edges given by <literal>(tail(k),head(k))</literal> pairs
+			relative to the graph <literal>g</literal>.
+		</para>
+	</refsection>
+	
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>index_from_tail_head</TITLE>
-	<TYPE>Scilab Function  </TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="index_from_tail_head">Computes the index of edges given by (tail,head) pairs</SHORT_DESCRIPTION>
-	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>i = index_from_tail_head(g,t,h)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
-	
-	<PARAM>
-		<PARAM_INDENT>
-			
-			<PARAM_ITEM>
-				<PARAM_NAME>g</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a  <LINK>graph_data_structure</LINK>.</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-			
-			<PARAM_ITEM>
-				<PARAM_NAME>t</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a vector: edges tail node numbers.</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		
-			<PARAM_ITEM>
-				<PARAM_NAME>h</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a vector: edges head node numbers.</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		
-			<PARAM_ITEM>
-				<PARAM_NAME>i</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a row vector of edge numbers</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
-	
-	<DESCRIPTION>
-		<SP>
-			<VERB>i = index_from_tail_head(g,tail,head)</VERB> computes the
-			index of edges given by <VERB>(tail(k),head(k))</VERB> pairs
-			relative to the graph <VERB>g</VERB>.
-		</SP>
-	</DESCRIPTION>
-	
-	<EXAMPLE>
-<![CDATA[
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28 14]; 
 he=[ 1  2 2  4  5 11 13  1 25 22 24 22 22 19 13 13 14 16 16  9 16];
@@ -82,17 +77,17 @@ show_graph(g);
 
 i = index_from_tail_head(g,[22 14 17],[13 12 9])
 hilite_edges(i)
-]]>
-	</EXAMPLE>
-	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM><LINK>show_edges</LINK></SEE_ALSO_ITEM>
-	</SEE_ALSO>
-	
-	<AUTHORS>
-		<AUTHORS_ITEM label='Serge Steer'>
-			INRIA
-		</AUTHORS_ITEM>
-	</AUTHORS>
 
-</MAN>
+	]]></programlisting></refsection>
+	
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member><link linkend="show_edges">show_edges</link></member>
+	</simplelist></refsection>
+	
+	<refsection><title>Authors</title><variablelist>
+		<varlistentry><term>Serge Steer</term><listitem><para>
+			INRIA
+		</para></listitem></varlistentry>
+	</variablelist></refsection>
+
+</refentry>

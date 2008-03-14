@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,73 +10,72 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_diff</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_diff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_diff</refname><refpurpose>Matlab diff emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_diff">Matlab diff emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>diff</VERB> behave differently in some particular cases:</P>
+    <para>Matlab and Scilab <literal>diff</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        With two input parameters: Scilab <VERB>diff</VERB> considers all values of first input as a vector
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With two input parameters: Scilab <literal>diff</literal> considers all values of first input as a vector
 	what Matlab does not.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         With three input parameters: If dimension of first input along dimension given by third parameter
 	reaches 1 before n interations
 	have been made,Matlab switches to next non-singleton dimension what Scilab does not.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_diff(A[,n[,dim]])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>diff(A[,n[,dim]])</VERB> when it was not
+    <para>
+    The function <literal>mtlb_diff(A[,n[,dim]])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>diff(A[,n[,dim]])</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_diff</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_diff</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        With two inputs, if <VERB>A</VERB> is a scalar or a vector
-        <VERB>mtlb_diff(A,n)</VERB> may be replaced by <VERB>diff(A,n)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With two inputs, if <literal>A</literal> is a scalar or a vector
+        <literal>mtlb_diff(A,n)</literal> may be replaced by <literal>diff(A,n)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        With three inputs, if size of A along dimension given by <VERB>dim</VERB> can not reach 1
-        <VERB>mtlb_diff(A,n,dim)</VERB> may be replaced by <VERB>diff(A,n,dim)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        With three inputs, if size of A along dimension given by <literal>dim</literal> can not reach 1
+        <literal>mtlb_diff(A,n,dim)</literal> may be replaced by <literal>diff(A,n,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_diff</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_diff</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

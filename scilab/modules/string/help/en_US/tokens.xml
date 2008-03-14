@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>tokens</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="tokens"> returns the tokens of a character string.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>T=tokens(str [,delimiter])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string. The string where to search the tokens.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>delimiter</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) a character or a vector of characters. The tokens delimeters.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>T</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: column vector of found tokens</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>T=tokens(str [,delimiter]) </VERB> searches the tokens included in the
-    string <VERB>str</VERB>. The <VERB>delimiter</VERB> default value is [&quot; &quot;,&lt;Tab&gt;]
-    where &lt;Tab&gt; stands for <VERB>ascii(9)</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tokens"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>tokens</refname><refpurpose> returns the tokens of a character string.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>T=tokens(str [,delimiter])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>a character string. The string where to search the tokens.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>delimiter</term>
+        <listitem>
+          <para>(optional) a character or a vector of characters. The tokens delimeters.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>T</term>
+        <listitem>
+          <para>column vector of found tokens</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>T=tokens(str [,delimiter]) </literal> searches the tokens included in the
+    string <literal>str</literal>. The <literal>delimiter</literal> default value is [" ",&lt;Tab&gt;]
+    where &lt;Tab&gt; stands for <literal>ascii(9)</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 tokens('This is a character string')
 
 tokens('SCI/demos/scicos','/')
 
 tokens('y=a+b*2',['=','+','*'])
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>strindex</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>tokenpos</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="strindex">strindex</link>
+    </member>
+    <member>
+      <link linkend="tokenpos">tokenpos</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

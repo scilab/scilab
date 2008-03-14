@@ -1,49 +1,40 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="winqueryreg"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>winqueryreg</refname><refpurpose>Obtenir une clef de la base des
+  registres de Microsoft Windows</refpurpose></refnamediv>
+  
 
-  <TITLE>winqueryreg</TITLE>
+  
 
-  <TYPE>Fonction Scilab</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="winqueryreg">Obtenir une clef de la base des
-  registres de Microsoft Windows</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('name', 'rootkey',
-    'subkey')</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>value = winqueryreg('name', 'rootkey', 'subkey')
+value = winqueryreg('rootkey', 'subkey', 'valname')
+value = winqueryreg('rootkey', 'subkey')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey', 'subkey',
-    'valname')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey',
-    'subkey')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-    <P>value = winqueryreg('name', 'rootkey', 'subkey') retourne les clefs
+  <refsection><title>Description</title>
+    <para>value = winqueryreg('name', 'rootkey', 'subkey') retourne les clefs
     contenues dans rootkey\subkey dans une matrice de chaines de caracteres.
-    Le premier argument doit etre la chaine de caracteres, 'name'.</P>
+    Le premier argument doit etre la chaine de caracteres, 'name'.</para>
 
-    <P>Si la valeur contenue dans la base des registres est une chaine de
+    <para>Si la valeur contenue dans la base des registres est une chaine de
     caracteres, winqueryreg retourne une chaine de caracteres. Si la valeur
     est un entier sur 32 bits, winqueryreg retourne la valeur comme un entier
-    (int32).</P>
+    (int32).</para>
 
-    <P>value = winqueryreg('rootkey', 'subkey', 'valname') retourne la valeur
-    pour la clef valname dans rootkey\subkey.</P>
+    <para>value = winqueryreg('rootkey', 'subkey', 'valname') retourne la valeur
+    pour la clef valname dans rootkey\subkey.</para>
 
-    <P>value = winqueryreg('rootkey', 'subkey') retourne la valeur "par
-    défaut" de la clef rootkey\subkey.</P>
+    <para>value = winqueryreg('rootkey', 'subkey') retourne la valeur "par
+    défaut" de la clef rootkey\subkey.</para>
 
-    <P><VERB>Note</VERB> : Les arguments 'name' et 'rootkey' sont
-    "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.</P>
-  </DESCRIPTION>
+    <para><literal>Note</literal>Les arguments 'name' et 'rootkey' sont
+    "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[if MSDOS then
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[if MSDOS then
   winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
   lines(-1);
   mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
@@ -54,9 +45,9 @@
      str = sprintf('%s = %s', mousechar(k), string(setting));
      disp(str);
   end
-end]]></EXAMPLE>
+end]]></programlisting></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

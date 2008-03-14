@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,46 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>abcd</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="syssize"> size of state-space system</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[r,nx]=syssize(Sl)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>Sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: linear system (<VERB>syslin</VERB> list) in state-space</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: 1 x 2 real vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>nx</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    returns in <VERB>r</VERB> the vector [number of outputs, number of inputs]
-    of the linear system <VERB>Sl</VERB>. <VERB>nx</VERB> is the number of states of <VERB>Sl</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>size</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="syssize"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>syssize</refname><refpurpose> size of state-space system</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[r,nx]=syssize(Sl)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list) in state-space</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1 x 2 real vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nx</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    returns in <literal>r</literal> the vector [number of outputs, number of inputs]
+    of the linear system <literal>Sl</literal>. <literal>nx</literal> is the number of states of <literal>Sl</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="size">size</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

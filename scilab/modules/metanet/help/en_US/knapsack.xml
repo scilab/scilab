@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,93 +10,89 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>knapsack</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="knapsack"> solves a 0-1 multiple knapsack problem</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[earn,ind] = knapsack(profit,weight,capa,[bck])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>profit</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer row vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>weight</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer row vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>capa</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer row vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>bck</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>earn</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ind</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer row vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP>The 0-1 multiple knapsack problem with  n (n &gt;= 2)
-    items and  m  knapsacks (m &gt;= 1) is defined as follow:</SP>
-    <P>Maximize the global profit  <VERB>E=profit*sum(X,1)</VERB> under the constraints:</P>
-    <P><VERB>X*weight &lt;= capa</VERB></P>
-    <P><VERB>sum(X,1) &lt;= 1 ; i=1,...,n</VERB></P>
-    <P><VERB>X(j,i)= 0 or 1</VERB></P>
-    <P> Where</P>
-    <P><VERB>profit</VERB> is the vector of the profits of the n items. The entries must be positive integers.</P>
-    <P><VERB>weight</VERB> is the vector of the corresponding weights. The entries must be positive integers</P>
-    <P><VERB>capa</VERB> is the vector of the (integer) capacities of the m knapsacks.The entries must be positive integers </P> 
-    <P><VERB>X</VERB> is a <VERB>m</VERB> by <VERB>n</VERB> matrix.</P>
-    <P> </P>
-    <P><VERB>[earn,ind] = knapsack(profit,weight,capa)</VERB> solves
-    the problem. It returns in<VERB>earn</VERB> the value of the
-    criterium <VERB>E</VERB> for the &quot;optimal&quot; solution. It
-    also return in the vector <VERB>ind</VERB> the optimal locations:
-    <VERB>ind(i)</VERB> gives the number of the knapsack where item i
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="knapsack"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>knapsack</refname><refpurpose> solves a 0-1 multiple knapsack problem</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[earn,ind] = knapsack(profit,weight,capa,[bck])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>profit</term>
+        <listitem>
+          <para>integer row vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>weight</term>
+        <listitem>
+          <para>integer row vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>capa</term>
+        <listitem>
+          <para>integer row vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bck</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>earn</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+        <listitem>
+          <para>integer row vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>The 0-1 multiple knapsack problem with  n (n &gt;= 2)
+    items and  m  knapsacks (m &gt;= 1) is defined as follow:</para>
+    <para>Maximize the global profit  <literal>E=profit*sum(X,1)</literal> under the constraints:</para>
+    <para><literal>X*weight &lt;= capa</literal></para>
+    <para><literal>sum(X,1) &lt;= 1 ; i=1,...,n</literal></para>
+    <para><literal>X(j,i)= 0 or 1</literal></para>
+    <para> Where</para>
+    <para><literal>profit</literal> is the vector of the profits of the n items. The entries must be positive integers.</para>
+    <para><literal>weight</literal> is the vector of the corresponding weights. The entries must be positive integers</para>
+    <para><literal>capa</literal> is the vector of the (integer) capacities of the m knapsacks.The entries must be positive integers </para> 
+    <para><literal>X</literal> is a <literal>m</literal> by <literal>n</literal> matrix.</para>
+    <para> </para>
+    <para><literal>[earn,ind] = knapsack(profit,weight,capa)</literal> solves
+    the problem. It returns in<literal>earn</literal> the value of the
+    criterium <literal>E</literal> for the "optimal" solution. It
+    also return in the vector <literal>ind</literal> the optimal locations:
+    <literal>ind(i)</literal> gives the number of the knapsack where item i
     is inserted and this value is 0 if the item i is not in the
-    optimal solution. The matrix <VERB>X</VERB> can be derived from
-    <VERB>ind</VERB> by  </P>
-    <VERBATIM>
+    optimal solution. The matrix <literal>X</literal> can be derived from
+    <literal>ind</literal> by  </para>
+    <programlisting><![CDATA[
       items=1:n;
       items(ind==0)==[];
       ind(ind==0)=[];
       X=sparse([ind;items]',ones(n,1),[m,n])
-    </VERBATIM>
-    <P></P>
-    <P><VERB>bck</VERB> is an optional integer: the maximum number of
+    ]]></programlisting>
+    <para/>
+    <para><literal>bck</literal> is an optional integer: the maximum number of
     backtrackings to be performed, if heuristic solution is
-    required. If the exact solution is required <VERB>bck</VERB> can
-    be omitted or can have a negative value.</P> 
+    required. If the exact solution is required <literal>bck</literal> can
+    be omitted or can have a negative value.</para> 
  
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 weight=ones(1,15).*.[1:4];
 profit=ones(1,60);
 capa=[15 40 30 60];
@@ -111,16 +106,16 @@ X*weight' //sack weights
 x=sum(X,1);
 and(x<=1) //contraints check
 profit*x'==earn
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>qassign</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-<BIBLIO>
-<P>Coppersmith, D. "Knapsack Used in Factoring." §4.6 in Open Problems in Communication and Computation (Ed. T. M. Cover and B. Gopinath). New York: Springer-Verlag, pp. 117-119, 1987.</P>
-<P>Honsberger, R. Mathematical Gems III. Washington, DC: Math. Assoc. Amer., pp. 163-166, 1985.</P>
-</BIBLIO>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="qassign">qassign</link>
+    </member>
+  </simplelist></refsection>
+<refsection><title>Bibliography</title>
+<para>Coppersmith, D. "Knapsack Used in Factoring." §4.6 in Open Problems in Communication and Computation (Ed. T. M. Cover and B. Gopinath). New York: Springer-Verlag, pp. 117-119, 1987.</para>
+<para>Honsberger, R. Mathematical Gems III. Washington, DC: Math. Assoc. Amer., pp. 163-166, 1985.</para>
+</refsection>
 
-</MAN>
+</refentry>

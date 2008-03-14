@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - 
@@ -10,77 +10,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="st_deviation"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>st_deviation</refname><refpurpose> standard deviation (row or
+    column-wise) of vector/matrix entries</refpurpose></refnamediv><refnamediv xml:id="stdev"><refname>stdev</refname><refpurpose> standard deviation (row or column-wise) of vector/matrix entries</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=st_deviation(x)
+y=st_deviation(x,'r')
+y=st_deviation(x,'c')
+y=stdev(x)
+y=stdev(x,'r')
+y=stdev(x,'c')</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>scalar or vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    st_deviation computes the "sample" standard deviation, that
+    is, it is normalized by N-1, where N is the sequence length.</para>
+    <para>
+    For a vector or a matrix <literal>x</literal>, <literal>y=st_deviation(x)</literal>  returns in the
+    scalar <literal>y</literal> the standard deviation of all the entries of <literal>x</literal>.</para>
+    <para><literal>y=st_deviation(x,'r')</literal> (or, equivalently,
+    <literal>y=st_deviation(x,1)</literal>) is the rowwise standard deviation. It returns in each 
+    entry of the column vector <literal>y</literal> the standard deviation of each row of <literal>x</literal>.</para>
+    <para><literal>y=st_deviation(x,'c')</literal> (or, equivalently, <literal>y=st_deviation(x,2)</literal>) is the columnwise st_deviation. It returns in each entry of the row vector 
+    <literal>y</literal> the standard deviation of each column  of <literal>x</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>st_deviation</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="st_deviation"> standard deviation (row or
-    column-wise) of vector/matrix entries</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="stdev"> standard deviation (row or column-wise) of vector/matrix entries</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=st_deviation(x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=st_deviation(x,'r')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=st_deviation(x,'c')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=stdev(x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=stdev(x,'r')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=stdev(x,'c')  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: scalar or vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    st_deviation computes the &quot;sample&quot; standard deviation, that
-    is, it is normalized by N-1, where N is the sequence length.</P>
-    <P>
-    For a vector or a matrix <VERB>x</VERB>, <VERB>y=st_deviation(x)</VERB>  returns in the
-    scalar <VERB>y</VERB> the standard deviation of all the entries of <VERB>x</VERB>.</P>
-    <P><VERB>y=st_deviation(x,'r')</VERB> (or, equivalently,
-    <VERB>y=st_deviation(x,1)</VERB>) is the rowwise standard deviation. It returns in each 
-    entry of the column vector <VERB>y</VERB> the standard deviation of each row of <VERB>x</VERB>.</P>
-    <P><VERB>y=st_deviation(x,'c')</VERB> (or, equivalently, <VERB>y=st_deviation(x,2)</VERB>) is the columnwise st_deviation. It returns in each entry of the row vector 
-    <VERB>y</VERB> the standard deviation of each column  of <VERB>x</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 A=[1,2,10;7,7.1,7.01];
 st_deviation(A)
 st_deviation(A,'r')
 st_deviation(A,'c')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>sum</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>median</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mean</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>nanstdev</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>stdevf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="sum">sum</link>
+    </member>
+    <member>
+      <link linkend="median">median</link>
+    </member>
+    <member>
+      <link linkend="mean">mean</link>
+    </member>
+    <member>
+      <link linkend="nanstdev">nanstdev</link>
+    </member>
+    <member>
+      <link linkend="stdevf">stdevf</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

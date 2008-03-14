@@ -1,38 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>host</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="host"> Unix or DOS command execution</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>stat=host(command-name)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>command-name</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: A character string containing Unix sh instruction</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>stat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: An integer flag</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Sends a string <VERB>command-name</VERB> to Unix for execution by the command interpreter (sh under Unix, or command.com under DOS). Standard output and standard errors of the shell command are written in the calling shell.
-    <VERB>stat</VERB> gives -1 if host can't be called (Not enough system memory
-    available) or the command interpreter return code.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="host"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>host</refname><refpurpose> Unix or DOS command execution</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>stat=host(command-name)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
+        <listitem>
+          <para>A character string containing Unix sh instruction</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stat</term>
+        <listitem>
+          <para>An integer flag</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Sends a string <literal>command-name</literal> to Unix for execution by the command interpreter (sh under Unix, or command.com under DOS). Standard output and standard errors of the shell command are written in the calling shell.
+    <literal>stat</literal> gives -1 if host can't be called (Not enough system memory
+    available) or the command interpreter return code.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
     //create a getdir function based on host
     function wd=getdir()
       if MSDOS then 
@@ -44,26 +40,26 @@
     endfunction
     //call it
     wd=getdir()
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>edit</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>manedit</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unix_g</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unix_s</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unix_w</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unix_x</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="edit">edit</link>
+    </member>
+    <member>
+      <link linkend="manedit">manedit</link>
+    </member>
+    <member>
+      <link linkend="unix_g">unix_g</link>
+    </member>
+    <member>
+      <link linkend="unix_s">unix_s</link>
+    </member>
+    <member>
+      <link linkend="unix_w">unix_w</link>
+    </member>
+    <member>
+      <link linkend="unix_x">unix_x</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

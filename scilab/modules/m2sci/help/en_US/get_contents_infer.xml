@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -10,66 +10,62 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>get_contents_infer</TITLE>
-  <TYPE>M2SCI Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get_contents_infer"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>get_contents_infer</refname><refpurpose>Search for informations
+  in a "M2SCi tlist" contents</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="get_contents_infer">Search for informations
-  in a "M2SCi tlist" contents</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[infer,pos]=get_contents_infer(m2scitlist,index)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>m2scitlist</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a "M2SCI tlist"</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>index</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: an index similar to indexes returned by <VERB>macr2tree</VERB>.</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>infer</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: an "infer" tlist</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>pos</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: position of information in list</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>m2scitlist</term>
+        <listitem>
+          <para>a "M2SCI tlist"</para>
+       </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>index</term>
+        <listitem>
+          <para>an index similar to indexes returned by <literal>macr2tree</literal>.</para>
+       </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infer</term>
+        <listitem>
+          <para>an "infer" tlist</para>
+       </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pos</term>
+        <listitem>
+          <para>position of information in list</para>
+       </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>
+  <refsection><title>Description</title>
+    <para>
     This functions searches for inference informations of a given
     index in the contents of a Cell or a Struct taken in account the
-    <VERB>*</VERB>. If no information has been found, returned values
+    <literal>*</literal>. If no information has been found, returned values
     are infer=infer() and pos=0.
-    </P>  
-  </DESCRIPTION>
+    </para>  
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Contents</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="Infer">Infer</link> </member>
+    <member> <link linkend="Contents">Contents</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
 
-</MAN>
-
+</refentry>

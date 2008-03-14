@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,60 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>frexp</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="frexp"> dissect floating-point numbers into base 2 exponent and mantissa</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[f,e]=frexp(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: array of real values, usually in the range 0.5 &lt;= abs(f) &lt; 1.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>e</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: array of integers that satisfy the equation: <VERB>x = f.*2.^e</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    This function corresponds to the ANSI C function frexp(). Any zeros in <VERB>x</VERB> produce
-    <VERB>f=0</VERB> and <VERB>e=0</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frexp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>frexp</refname><refpurpose> dissect floating-point numbers into base 2 exponent and mantissa</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[f,e]=frexp(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>array of real values, usually in the range 0.5 &lt;= abs(f) &lt; 1.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>e</term>
+        <listitem>
+          <para>array of integers that satisfy the equation: <literal>x = f.*2.^e</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    This function corresponds to the ANSI C function frexp(). Any zeros in <literal>x</literal> produce
+    <literal>f=0</literal> and <literal>e=0</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 [f,e]=frexp([1,%pi,-3,%eps])
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>log</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>hat</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ieee</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>log2</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="log">log</link>
+    </member>
+    <member>
+      <link linkend="hat">hat</link>
+    </member>
+    <member>
+      <link linkend="ieee">ieee</link>
+    </member>
+    <member>
+      <link linkend="log2">log2</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,47 +1,43 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>return</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="return"> return or resume execution and copy some local variables</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>return</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[x1,..,xn]=return(a1,..,an)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>...</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    In a function <VERB>return</VERB> stops the execution of the function,
-    <VERB>[..]=return(..)</VERB> stops the execution of the function and put the
-    local variables <VERB>ai</VERB> in calling environnement under names
-    <VERB>xi</VERB>.</P>
-    <P>
-    In <VERB>pause</VERB> mode, it allows to return to upper level
-    <VERB>[..]=return(..)</VERB> returns to upper level and put the local variables
-    <VERB>ai</VERB> in calling environnement under names <VERB>xi</VERB>.</P>
-    <P>
-    In an <VERB>execstr</VERB> called by a function <VERB>[..]=return(..)</VERB> stops
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="return"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>return</refname><refpurpose> return or resume execution and copy some local variables</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>return
+[x1,..,xn]=return(a1,..,an)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    In a function <literal>return</literal> stops the execution of the function,
+    <literal>[..]=return(..)</literal> stops the execution of the function and put the
+    local variables <literal>ai</literal> in calling environnement under names
+    <literal>xi</literal>.</para>
+    <para>
+    In <literal>pause</literal> mode, it allows to return to upper level
+    <literal>[..]=return(..)</literal> returns to upper level and put the local variables
+    <literal>ai</literal> in calling environnement under names <literal>xi</literal>.</para>
+    <para>
+    In an <literal>execstr</literal> called by a function <literal>[..]=return(..)</literal> stops
     the execution of the function and put the local variables 
-    <VERB>ai</VERB> in calling environnement under names <VERB>xi</VERB>.</P>
-    <P><VERB>resume</VERB> is equivalent to <VERB>return</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>abort</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>break</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <literal>ai</literal> in calling environnement under names <literal>xi</literal>.</para>
+    <para><literal>resume</literal> is equivalent to <literal>return</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="abort">abort</link>
+    </member>
+    <member>
+      <link linkend="break">break</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

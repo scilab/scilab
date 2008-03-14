@@ -1,18 +1,16 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>then</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="then"> keyword in if-then-else</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    Used with <VERB>if</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>if</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="then"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>then</refname><refpurpose> keyword in if-then-else</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
+    Used with <literal>if</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="if">if</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

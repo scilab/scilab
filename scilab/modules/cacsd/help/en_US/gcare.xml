@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,57 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gcare</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="gcare"> control Riccati equation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[X,F]=gcare(Sl)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>Sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: linear system (<VERB>syslin</VERB> list)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: symmetric matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>F</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gcare"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gcare</refname><refpurpose> control Riccati equation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X,F]=gcare(Sl)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>symmetric matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>real matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Generalized Control Algebraic Riccati Equation (GCARE).
-    <VERB>X</VERB> = solution , <VERB>F</VERB> = gain.</P>
-    <P>
-    The GCARE for <VERB>Sl=[A,B,C,D]</VERB> is:</P>
-    <VERBATIM>
-<![CDATA[
+    <literal>X</literal> = solution , <literal>F</literal> = gain.</para>
+    <para>
+    The GCARE for <literal>Sl=[A,B,C,D]</literal> is:</para>
+    <programlisting><![CDATA[
+
 (A-B*Si*D'*C)'*X+X*(A-B*Si*D'*C)-X*B*Si*B'*X+C'*Ri*C=0
-   ]]>
-    </VERBATIM>
-    <P>
-    where <VERB>S=(eye()+D'*D)</VERB>, <VERB>Si=inv(S)</VERB>, <VERB>R=(eye()+D*D')</VERB>, <VERB>Ri=inv(R)</VERB> 
-    and <VERB>F=-Si*(D'*C+B'*X)</VERB> is such that <VERB>A+B*F</VERB> is stable.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>gfare</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+    ]]></programlisting>
+    <para>
+    where <literal>S=(eye()+D'*D)</literal>, <literal>Si=inv(S)</literal>, <literal>R=(eye()+D*D')</literal>, <literal>Ri=inv(R)</literal> 
+    and <literal>F=-Si*(D'*C+B'*X)</literal> is such that <literal>A+B*F</literal> is stable.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="gfare">gfare</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

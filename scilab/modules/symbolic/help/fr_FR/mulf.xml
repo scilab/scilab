@@ -1,25 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mulf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="mulf">  multiplication symbolique  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>mulf(&apos;d&apos;,&apos;c&apos;)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    Renvoie la chaîne de caractères <VERB>&apos;c*d&apos;</VERB>. Des simplifications triviales du type <VERB>&apos;1*c&apos; = &apos;c&apos;</VERB> sont effectuées.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mulf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mulf</refname><refpurpose>  multiplication symbolique  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>mulf('d','c')</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>
+    Renvoie la chaîne de caractères <literal>'c*d'</literal>. Des simplifications triviales du type <literal>'1*c' = 'c'</literal> sont effectuées.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 mulf('1','a')
 mulf('0','a')
 'a'+'b'   // attention ...
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rdivf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>addf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>subf</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="rdivf">rdivf</link> </member>     <member> <link linkend="addf">addf</link> </member>     <member> <link linkend="subf">subf</link> </member>
+  </simplelist></refsection>
+</refentry>

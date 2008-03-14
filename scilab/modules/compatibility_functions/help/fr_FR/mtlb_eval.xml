@@ -1,105 +1,92 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_eval</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_eval"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_eval</refname><refpurpose>Fonction d'�mulation de la fonction Matlab eval</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_eval">Fonction d'�mulation de la fonction Matlab eval</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>L'�quivalent Scilab pour la fonction Matlab <VERB>eval</VERB> est diff�rent suivant ses entr�es et sorties.</P>
+    <para>L'�quivalent Scilab pour la fonction Matlab <literal>eval</literal> est diff�rent suivant ses entr�es et sorties.</para>
 
-    <P>
-    La fonction <VERB>mtlb_eval(str1,str2)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>eval</VERB> parce qu'il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_eval(str1,str2)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>eval</literal> parce qu'il n'�tait pas
     possible de savoir ce qu'�taient les op�randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_eval</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_eval</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
         Pour les appels avec une entr�e et pas de sortie,
-        <VERB>mtlb_eval(str1)</VERB> peut �tre remplac� par <VERB>evstr(str1)</VERB>
-	si <VERB>str1</VERB> est une expression Scilab valid
-	ou par <VERB>execstr(str1)</VERB> 
-	si <VERB>str1</VERB> est une instruction Scilab valid.
-        </SP>
-      </ITEM>
+        <literal>mtlb_eval(str1)</literal> peut �tre remplac� par <literal>evstr(str1)</literal>
+	si <literal>str1</literal> est une expression Scilab valid
+	ou par <literal>execstr(str1)</literal> 
+	si <literal>str1</literal> est une instruction Scilab valid.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         Pour les appels avec une entr�e et une sortie,
-        <VERB>val=mtlb_eval(str1)</VERB> peut �tre remplac� par <VERB>val=evstr(str1)</VERB>
-	si <VERB>str1</VERB> est une instruction Scilab valid.
-        </SP>
-      </ITEM>
+        <literal>val=mtlb_eval(str1)</literal> peut �tre remplac� par <literal>val=evstr(str1)</literal>
+	si <literal>str1</literal> est une instruction Scilab valid.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         Pour les appels avec deux entr�es et une sortie,
-        <VERB>mtlb_eval(str1,str2)</VERB> peut �tre remplac� par:
-	<VERB>
-	if execstr(str1,&quot;errcatch&quot;)&lt;&gt;0 then
+        <literal>mtlb_eval(str1,str2)</literal> peut �tre remplac� par:
+	<literal>
+	if execstr(str1,"errcatch")&lt;&gt;0 then
 	  execstr(str2);
 	end	  
-	</VERB>
-	si <VERB>str1</VERB> et <VERB>str2</VERB> sont des instructions Scilab valides.
-        </SP>
-      </ITEM>
+	</literal>
+	si <literal>str1</literal> et <literal>str2</literal> sont des instructions Scilab valides.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         Pour les appels avec une entr�e et plus d'une sortie,
-        <VERB>[val1,val2,...]=mtlb_eval(str1)</VERB> peut �tre remplac� par:
-	<VERB>execstr(&quot;[val1,val2,...]&quot;+str1)</VERB>
-	si <VERB>str1</VERB> est une instruction Scilab valide.
-        </SP>
-      </ITEM>
+        <literal>[val1,val2,...]=mtlb_eval(str1)</literal> peut �tre remplac� par:
+	<literal>execstr("[val1,val2,...]"+str1)</literal>
+	si <literal>str1</literal> est une instruction Scilab valide.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         Pour les appels avec deux entr�es et plus d'une sortie,
-        <VERB>[val1,val2,...]=mtlb_eval(str1,str2)</VERB> peut �tre remplac� par:
-	<VERB>
-	if execstr(&quot;[val1,val2,...]&quot;+str1,&quot;errcatch&quot;)&lt;&gt;0 then
-	  execstr(&quot;[val1,val2,...]&quot;+str2);
+        <literal>[val1,val2,...]=mtlb_eval(str1,str2)</literal> peut �tre remplac� par:
+	<literal>
+	if execstr("[val1,val2,...]"+str1,"errcatch")&lt;&gt;0 then
+	  execstr("[val1,val2,...]"+str2);
 	end	  
-	</VERB>
-	si <VERB>str1</VERB> et <VERB>str2</VERB> sont des instructions Scilab valides.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+	</literal>
+	si <literal>str1</literal> et <literal>str2</literal> sont des instructions Scilab valides.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_eval</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_eval</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="evstr">evstr</link> </member>
+    <member> <link linkend="execstr">execstr</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

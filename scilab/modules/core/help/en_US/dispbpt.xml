@@ -1,40 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dispbpt"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dispbpt</refname><refpurpose>display breakpoints</refpurpose></refnamediv>
+  
 
-  <TITLE>dispbpt</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="dispbpt">display breakpoints</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>dispbpt()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>dispbpt()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P><VERB>dispbpt()</VERB> displays all active breakpoints currently
-    inserted in functions.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>dispbpt()</literal> displays all active breakpoints currently
+    inserted in functions.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>setbpt</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="setbpt">setbpt</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delbpt</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delbpt">delbpt</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>pause</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="pause">pause</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>resume</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="resume">resume</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

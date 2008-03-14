@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -11,49 +11,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>isdir</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="isdir"> checks if argument is a directory path</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>r=isdir(path)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string, the file pathname</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean, true if <VERB>path</VERB> is a path to a directory.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>r=isdir(path)</VERB> checks if <VERB>path</VERB> is a path to a directory.</P>
-  </DESCRIPTION>
-  <SECTION label="Reference">
-    <P>
-    This function is based on the C function stat. The <VERB>SCI</VERB> and <VERB>~</VERB> shortcuts for Scilab directory and home directory are handled.</P>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isdir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>isdir</refname><refpurpose> checks if argument is a directory path</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>r=isdir(path)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a character string, the file pathname</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>a boolean, true if <literal>path</literal> is a path to a directory.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>r=isdir(path)</literal> checks if <literal>path</literal> is a path to a directory.</para>
+  </refsection>
+  <refsection><title>Reference</title>
+    <para>
+    This function is based on the C function stat. The <literal>SCI</literal> and <literal>~</literal> shortcuts for Scilab directory and home directory are handled.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 isdir(TMPDIR)
 isdir SCI/etc/scilab.start
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>fileinfo</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. Steer INRIA</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="fileinfo">fileinfo</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>S. Steer INRIA</para></refsection>
+</refentry>

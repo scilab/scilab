@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,58 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="calerf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>calerf</refname><refpurpose>  computes error functions.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>integer indicator</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real vector or matrix (of same size than x)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>calerf(x,0)</literal> computes the error function <literal>erf(x)</literal></para>
+    <para><literal>calerf(x,1)</literal> computes the complementary error function <literal>erfc(x)</literal></para>
+    <para><literal>calerf(x,2)</literal> computes the  scaled complementary error function <literal>erfcx(x)</literal></para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>calerf</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="calerf">  computes error functions.  </SHORT_DESCRIPTION>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer indicator</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector or matrix (of same size than x)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>calerf(x,0)</VERB> computes the error function <VERB>erf(x)</VERB></P>
-    <P><VERB>calerf(x,1)</VERB> computes the complementary error function <VERB>erfc(x)</VERB></P>
-    <P><VERB>calerf(x,2)</VERB> computes the  scaled complementary error function <VERB>erfcx(x)</VERB></P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 deff('y=f(t)','y=exp(-t^2)');
 calerf(1,0)
 2/sqrt(%pi)*intg(0,1,f)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>erf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>erfc</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>erfcx</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>W. J. Cody (code from Netlib (specfun))</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="erf">erf</link>
+    </member>
+    <member>
+      <link linkend="erfc">erfc</link>
+    </member>
+    <member>
+      <link linkend="erfcx">erfcx</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>W. J. Cody (code from Netlib (specfun))</para></refsection>
+</refentry>

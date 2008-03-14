@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ????-2006 - INRIA - Scilab 
@@ -10,35 +10,32 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mapsound</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="mapsound"> Plots a sound map</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mapsound (w,dt,fmin,fmax,simpl,rate)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>dt,fmin,fmax,simpl,rate</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: scalars. default values dt=0.1,fmin=100,fmax=1500,simpl=1,rate=22050;</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mapsound"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mapsound</refname><refpurpose> Plots a sound map</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mapsound (w,dt,fmin,fmax,simpl,rate)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>dt,fmin,fmax,simpl,rate</term>
+        <listitem>
+          <para>scalars. default values dt=0.1,fmin=100,fmax=1500,simpl=1,rate=22050;</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Plots a sound map for a sound. It does FFT at time increments dt.
-    <VERB>rate</VERB> is the sampling rate. <VERB>simpl</VERB> points are collected for
-    speed reasons. <VERB>fmin</VERB> and <VERB>fmax</VERB> are used for graphic
-    boundaries.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <literal>rate</literal> is the sampling rate. <literal>simpl</literal> points are collected for
+    speed reasons. <literal>fmin</literal> and <literal>fmax</literal> are used for graphic
+    boundaries.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
 // Then we generate the sound.
@@ -46,6 +43,6 @@ s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
 [nr,nc]=size(t);
 s(nc/2:nc)=sin(330*t(nc/2:nc));
 mapsound(s);
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

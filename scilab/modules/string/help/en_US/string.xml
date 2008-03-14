@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,81 +10,78 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>string</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="string"> conversion to string</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>string(x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[out,in,text]=string(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix or function</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    converts a matrix into a matrix of strings.</P>
-    <P>
-    If <VERB>x</VERB> is a function  <VERB>[out,in,text]=string(x)</VERB>  returns
-    three vectors strings : <VERB>out</VERB> is the vector of output variables,
-    <VERB>in</VERB> is the vector of input variables, and <VERB>text</VERB> is
-    the (column) vector of the source code of the function.</P>
-    <P>
-    If  <VERB>x</VERB> is a <VERB>lib</VERB> variable, text is a character string column
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="string"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>string</refname><refpurpose> conversion to string</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>string(x)
+[out,in,text]=string(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real matrix or function</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    converts a matrix into a matrix of strings.</para>
+    <para>
+    If <literal>x</literal> is a function  <literal>[out,in,text]=string(x)</literal>  returns
+    three vectors strings : <literal>out</literal> is the vector of output variables,
+    <literal>in</literal> is the vector of input variables, and <literal>text</literal> is
+    the (column) vector of the source code of the function.</para>
+    <para>
+    If  <literal>x</literal> is a <literal>lib</literal> variable, text is a character string column
     vector. The first element contains the path of library file and the 
-    other the name of functions it defines.</P>
-    <P>
-    Character strings are defined as <VERB>'string'</VERB> (between quotes) or
-    <VERB>&quot;string&quot;</VERB> (between doublequotes);
-    matrices of strings are defined as usual constant matrices.</P>
-    <P>
-    Concatenation of strings is made by the <VERB>+</VERB> operation.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    other the name of functions it defines.</para>
+    <para>
+    Character strings are defined as <literal>'string'</literal> (between quotes) or
+    <literal>"string"</literal> (between doublequotes);
+    matrices of strings are defined as usual constant matrices.</para>
+    <para>
+    Concatenation of strings is made by the <literal>+</literal> operation.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 string(rand(2,2))
 deff('y=mymacro(x)','y=x+1')
 [out,in,text]=string(mymacro)
 x=123.356; 'Result is '+string(x)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>part</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>length</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>quote</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>evstr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>execstr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>strsubst</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>strcat</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>strindex</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>sci2exp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="part">part</link>
+    </member>
+    <member>
+      <link linkend="length">length</link>
+    </member>
+    <member>
+      <link linkend="quote">quote</link>
+    </member>
+    <member>
+      <link linkend="evstr">evstr</link>
+    </member>
+    <member>
+      <link linkend="execstr">execstr</link>
+    </member>
+    <member>
+      <link linkend="strsubst">strsubst</link>
+    </member>
+    <member>
+      <link linkend="strcat">strcat</link>
+    </member>
+    <member>
+      <link linkend="strindex">strindex</link>
+    </member>
+    <member>
+      <link linkend="sci2exp">sci2exp</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

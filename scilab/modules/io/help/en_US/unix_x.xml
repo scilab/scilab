@@ -1,70 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unix_x"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unix_x</refname><refpurpose>shell (sh) command execution, output
+  redirected to a window</refpurpose></refnamediv>
+  
 
-  <TITLE>unix_x</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="unix_x">shell (sh) command execution, output
-  redirected to a window</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>unix_x(cmd)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>unix_x(cmd)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>cmd</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>cmd</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Sends a string <VERB>cmd</VERB> to Unix for execution by the sh shell.
+  <refsection><title>Description</title>
+    <para>Sends a string <literal>cmd</literal> to Unix for execution by the sh shell.
     The standard output is redirected to a window. Unix execution errors are
     trapped; *NOTE* that only the last shell command error is reported when a
-    list of command separated by ";" is sent: this is not recommended.</P>
-  </DESCRIPTION>
+    list of command separated by ";" is sent: this is not recommended.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 if MSDOS then unix_x("dir "+'""'+WSCI+"\demos"+'""'); 
 else unix_x("ls $SCI/demos"); end
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>edit</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="edit">edit</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>manedit</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="manedit">manedit</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix_g</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unix_g">unix_g</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix_s</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unix_s">unix_s</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix_w</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unix_w">unix_w</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unix</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="unix">unix</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,44 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="metanet_module_path"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>metanet_module_path</refname><refpurpose>Returns the path of the metanet module</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>metanet_module_path</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="metanet_module_path">Returns the path of the metanet module</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>p = metanet_module_path()</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>p = metanet_module_path()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>p</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a string, The module path.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>p</term>
+    <listitem>
+       <para>a string, The module path.
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-     <P><VERB>p=metanet_module_path()</VERB> return the path of the
+  <refsection><title>Description</title>
+     <para><literal>p=metanet_module_path()</literal> return the path of the
      metanet module. This path may be useful to retreive Metanet data
-     files.</P>
+     files.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
   g=load_graph(metanet_module_path()+'/demos/mesh100.graph');
   show_graph(g);
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
  
-</MAN>
+</refentry>

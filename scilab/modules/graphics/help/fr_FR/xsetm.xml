@@ -1,21 +1,17 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>xsetm  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xsetm"> boîte de dialogue pour changer des valeurs du contexte graphique  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>xsetm()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    <VERB>xsetm()</VERB> est identique à <VERB>xset()</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xsetm"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xsetm</refname><refpurpose> boîte de dialogue pour changer des valeurs du contexte graphique  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>xsetm()</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>
+    <literal>xsetm()</literal> est identique à <literal>xset()</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="xset">xset</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>J.Ph.C.  </para></refsection>
+</refentry>

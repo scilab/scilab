@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,55 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>circuit</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="circuit"> finds a circuit or the rank function in a directed graph</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[p,r] = circuit(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of integer numbers of the arcs of the circuit if it exists</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of rank function if there is no circuit</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP>A cycle of a graph <VERB>g</VERB>, also called a
-    circuit, is a subset of the edges  of <VERB>g</VERB> that forms
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="circuit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>circuit</refname><refpurpose> finds a circuit or the rank function in a directed graph</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[p,r] = circuit(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>row vector of integer numbers of the arcs of the circuit if it exists</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>row vector of rank function if there is no circuit</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>A cycle of a graph <literal>g</literal>, also called a
+    circuit, is a subset of the edges  of <literal>g</literal> that forms
     a path such that the first node of the path corresponds to the
-    last.</SP> 
-    <P><VERB>circuit</VERB> tries to find surch a circuit
-    for the directed graph <VERB>g</VERB>.  It returns the circuit
-    <VERB>p</VERB> as a row vector of the corresponding arc numbers if
-    it exists and it returns the empty vector <VERB>[]</VERB>
-    otherwise.</P>
+    last.</para> 
+    <para><literal>circuit</literal> tries to find surch a circuit
+    for the directed graph <literal>g</literal>.  It returns the circuit
+    <literal>p</literal> as a row vector of the corresponding arc numbers if
+    it exists and it returns the empty vector <literal>[]</literal>
+    otherwise.</para>
     
-    <P>If the graph has no circuit, the rank function is returned in <VERB>r</VERB>, 
-    otherwise its value is the empty vector <VERB>[]</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <para>If the graph has no circuit, the rank function is returned in <literal>r</literal>, 
+    otherwise its value is the empty vector <literal>[]</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 // graph with circuit
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
 he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
@@ -83,9 +78,9 @@ g1.edges.graphics.display='number';
 
 show_graph(g1,'new');
 [p,r]=circuit(g)
- ]]>
-  </EXAMPLE>
-<BIBLIO>
-<P>Stanley, R. P. Enumerative Combinatorics, Vol. 1. Cambridge, England: Cambridge University Press, 1999.</P>
-</BIBLIO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+<refsection><title>Bibliography</title>
+<para>Stanley, R. P. Enumerative Combinatorics, Vol. 1. Cambridge, England: Cambridge University Press, 1999.</para>
+</refsection>
+</refentry>

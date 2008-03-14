@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,42 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>convstr</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="convstr"> case conversion</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[y]=convstr(str-matrix, [&quot;flag&quot;])   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>str-matrix, y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrices of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&quot;flag&quot;  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string (<VERB>&quot;u&quot;</VERB> for upper or <VERB>&quot;l&quot;</VERB> for lower (default value))</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    converts the matrix of strings <VERB>str-matrix</VERB>
-    into lower case (for <VERB>&quot;l&quot;</VERB> ;default value) or
-    upper case (for <VERB>&quot;u&quot;</VERB>).</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="convstr"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>convstr</refname><refpurpose> case conversion</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y]=convstr(str-matrix, ["flag"])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str-matrix, y</term>
+        <listitem>
+          <para>matrices of strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"flag"  </term>
+        <listitem>
+          <para>string (<literal>"u"</literal> for upper or <literal>"l"</literal> for lower (default value))</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    converts the matrix of strings <literal>str-matrix</literal>
+    into lower case (for <literal>"l"</literal> ;default value) or
+    upper case (for <literal>"u"</literal>).</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 A=['this','is';'my','matrix'];
 convstr(A,'u')
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

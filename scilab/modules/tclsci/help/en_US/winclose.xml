@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jaime Urzua
@@ -11,40 +11,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-<LANGUAGE>eng</LANGUAGE>
-<TITLE>winclose</TITLE>
-<TYPE>sciGUI toolbox function</TYPE>
-<DATE>$LastChangedDate$</DATE>
-<SHORT_DESCRIPTION name="winclose"> close windows created by sciGUI</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="winclose"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>winclose</refname><refpurpose> close windows created by sciGUI</refpurpose></refnamediv>
 
-<CALLING_SEQUENCE>
-<CALLING_SEQUENCE_ITEM>winclose(winIds)</CALLING_SEQUENCE_ITEM>
-</CALLING_SEQUENCE>
-<PARAM>
-<PARAM_INDENT>
-<PARAM_ITEM>
- <PARAM_NAME>winIds</PARAM_NAME>
- <PARAM_DESCRIPTION>
-	<SP>: matrix of integer greater than 0, window identificator.</SP>
-</PARAM_DESCRIPTION>
-</PARAM_ITEM>
-</PARAM_INDENT>
-</PARAM>
 
-<DESCRIPTION>
-<P><VERB>winclose(winIds)</VERB> close windows created by sciGUI.</P>
 
-</DESCRIPTION>
 
-<EXAMPLE>
-<![CDATA[//CREATE SOME WINDOWS
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>winclose(winIds)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+<varlistentry>
+ <term>winIds</term>
+ <listitem>
+	<para>matrix of integer greater than 0, window identificator.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+
+<refsection><title>Description</title>
+<para><literal>winclose(winIds)</literal> close windows created by sciGUI.</para>
+
+</refsection>
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+//CREATE SOME WINDOWS
 win1=waitbar('This is an example');
 win2=waitbar('HELLO!');
-winclose([win1,win2]);]]>
-</EXAMPLE>
+winclose([win1,win2]);
+]]></programlisting></refsection>
 
-<AUTHOR>Jaime Urzua</AUTHOR>
+<refsection><title>Authors</title><para>Jaime Urzua</para></refsection>
   
-</MAN>
+</refentry>

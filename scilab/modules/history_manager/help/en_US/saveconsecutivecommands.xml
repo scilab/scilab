@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
@@ -10,50 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="saveconsecutivecommands"><info><pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate></info><refnamediv><refname>saveconsecutivecommands</refname><refpurpose>Save consecutive duplicate commands.</refpurpose></refnamediv>
+  
 
-  <TITLE>saveconsecutivecommands</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 aoÃ»t 2006) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="saveconsecutivecommands">Save consecutive duplicate commands.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>saveconsecutivecommands(boolean_in)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>saveconsecutivecommands(boolean_in)
+boolean_out = saveconsecutivecommands()</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>boolean_out =
-    saveconsecutivecommands()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>boolean_in</term>
+				<listitem>
+				<para>a boolean (%t or %f)</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>boolean_out</term>
+				<listitem>
+				<para>current value</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
 
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>boolean_in</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-				<SP>: a boolean (%t or %f)</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-			<PARAM_ITEM>
-				<PARAM_NAME>boolean_out</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-				<SP>: current value</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
+  <refsection><title>Description</title>
+    <para>Save consecutive duplicate commands.</para>
 
-  <DESCRIPTION>
-    <P>Save consecutive duplicate commands.</P>
+    <para>saveconsecutivecommands(%t) if you want consecutive executions of the
+    same statement to be saved to the history file.</para>
+  </refsection>
 
-    <P>saveconsecutivecommands(%t) if you want consecutive executions of the
-    same statement to be saved to the history file.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[saveconsecutivecommands()
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[saveconsecutivecommands()
 saveconsecutivecommands(%t)
 1
 1
@@ -62,9 +57,9 @@ saveconsecutivecommands(%f)
 1
 1
 2
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

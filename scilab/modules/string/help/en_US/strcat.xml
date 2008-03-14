@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,84 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strcat"><info><pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</pubdate></info><refnamediv><refname>strcat</refname><refpurpose>concatenate character
+  strings</refpurpose></refnamediv>
+  
 
-  <TITLE>strcat</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="strcat">concatenate character
-  strings</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>txt=strcat(vstr [,strp])</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=strcat(vstr [,strp])
+txt=strcat(vstr [,strp],["flag"])</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>txt=strcat(vstr [,strp],["flag"])
-    </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>vstr</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>vstr</PARAM_NAME>
+        <listitem>
+          <para>vector of strings</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>strp</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>strp</PARAM_NAME>
+        <listitem>
+          <para>string, default value is the emptystr <literal>""</literal></para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string, default value is the emptystr <VERB>""</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>txt</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>txt</PARAM_NAME>
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>"flag"</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>"flag"</PARAM_NAME>
+        <listitem>
+          <para>string ( "*" for just return one string , "r" for return a
+          column matrix, "c" for return a row matrix) </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string ( "*" for just return one string , "r" for return a
-          column matrix, "c" for return a row matrix) </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para><literal>txt=strcat(vstr)</literal> concatenates character strings :
+    <literal>txt=vstr(1)+...+vstr(n)</literal></para>
 
-  <DESCRIPTION>
-    <P><VERB>txt=strcat(vstr)</VERB> concatenates character strings :
-    <VERB>txt=vstr(1)+...+vstr(n)</VERB></P>
+    <para><literal>txt=strcat(vstr,strp)</literal> returns
+    <literal>txt=strs(1)+strp+...+strp+strs(n)</literal>. The plus symbol does the
+    same: <literal>"a"+"b"</literal> is the same as <literal>strcat(["a","b"]) If the
+    number of vstr is one, returns txt=str(1);</literal></para>
+  </refsection>
 
-    <P><VERB>txt=strcat(vstr,strp)</VERB> returns
-    <VERB>txt=strs(1)+strp+...+strp+strs(n)</VERB>. The plus symbol does the
-    same: <VERB>"a"+"b"</VERB> is the same as <VERB>strcat(["a","b"]) If the
-    number of vstr is one, returns txt=str(1);</VERB></P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 strcat(string(1:10),',')
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>string</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="string">string</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>strings</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="strings">strings</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

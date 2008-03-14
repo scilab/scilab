@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,54 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xsave"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xsave</refname><refpurpose>save graphics into a
+  file</refpurpose></refnamediv>
+  
 
-  <TITLE>xsave</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="xsave">save graphics into a
-  file</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xsave(filename,[win_num])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xsave(filename,[win_num])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>file_name</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file_name</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string, name of the file.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string, name of the file.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>win_num</PARAM_NAME>
+      <varlistentry>
+        <term>win_num</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integer, the graphics window number. If not given, the current
-          graphics window is used.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>integer, the graphics window number. If not given, the current
+          graphics window is used.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>xsave</VERB> saves the graphics contained in the graphics window
-    <VERB>win_num</VERB> in the binary file <VERB>file_name</VERB>. and can be
-    reloaded with <VERB>xload</VERB>.</P>
+  <refsection><title>Description</title>
+    <para><literal>xsave</literal> saves the graphics contained in the graphics window
+    <literal>win_num</literal> in the binary file <literal>file_name</literal>. and can be
+    reloaded with <literal>xload</literal>.</para>
 
-    <P>For new graphics <VERB>xsave(file_name,win_num)</VERB> use preferabily
-    <VERB>save(file_name,scf(win_num))</VERB>.</P>
-  </DESCRIPTION>
+    <para>For new graphics <literal>xsave(file_name,win_num)</literal> use preferabily
+    <literal>save(file_name,scf(win_num))</literal>.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
     //new style
     t=0:0.01:10;
@@ -74,21 +71,21 @@
     load(TMPDIR+'/foo.scg')
     
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xload</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xload">xload</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>save</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="save">save</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>load</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="load">load</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

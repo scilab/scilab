@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,70 +10,68 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!-- When this file is modified please also modify mtlb_lower.xml -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_upper</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_upper"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_upper</refname><refpurpose>Matlab upper emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_upper">Matlab upper emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab <VERB>upper(A)</VERB> and Scilab <VERB>convstr(A,&quot;u&quot;)</VERB> behave differently in some particular cases:</P>
+    <para>Matlab <literal>upper(A)</literal> and Scilab <literal>convstr(A,"u")</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is not a chacarter string matrix: Matlab <VERB>upper</VERB> can be used with a
-	not-character-string <VERB>A</VERB> but not Scilab <VERB>convstr</VERB>.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> is not a chacarter string matrix: Matlab <literal>upper</literal> can be used with a
+	not-character-string <literal>A</literal> but not Scilab <literal>convstr</literal>.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_upper(A)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>upper(A)</VERB> when it was not
+    <para>
+    The function <literal>mtlb_upper(A)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>upper(A)</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_upper</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_upper</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is a character string matrix
-        <VERB>mtlb_upper(A)</VERB> may be replaced by <VERB>convstr(A,&quot;u&quot;)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> is a character string matrix
+        <literal>mtlb_upper(A)</literal> may be replaced by <literal>convstr(A,"u")</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is not a character string matrix
-        <VERB>mtlb_upper(A)</VERB> may be replaced by <VERB>A</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        If <literal>A</literal> is not a character string matrix
+        <literal>mtlb_upper(A)</literal> may be replaced by <literal>A</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_upper</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_upper</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>convstr</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="convstr">convstr</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

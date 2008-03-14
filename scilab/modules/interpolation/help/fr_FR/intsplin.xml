@@ -1,72 +1,54 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2006 - INRIA - Serge STEER 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>intsplin  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="intsplin"> intï¿½gration approchï¿½e de donnï¿½es expï¿½rimentales utilisant une interpolation par une spline.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>v = intsplin([x,] s)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur des abscisses, classï¿½es par ordre croissant. La valeur par dï¿½faut est <VERB>1:size(y,&apos;*&apos;)</VERB>
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>s  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur des ordonnï¿½es.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>v  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : valeur de l&apos;approximation de l&apos;intï¿½grale
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="intsplin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>intsplin</refname><refpurpose> intï¿½gration approchï¿½e de donnï¿½es expï¿½rimentales utilisant une interpolation par une spline.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>v = intsplin([x,] s)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>vecteur des abscisses, classï¿½es par ordre croissant. La valeur par dï¿½faut est <literal>1:size(y,'*')</literal>
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>s  </term>
+  <listitem>
+  <para>vecteur des ordonnï¿½es.
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>v  </term>
+  <listitem>
+  <para>valeur de l'approximation de l'intï¿½grale
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     Calcule une approximation de :
-  </P>
-  <P>
+  </para>
+  <para>
     oï¿½ f est donnï¿½e sous forme de valeurs expï¿½rimentales :
-  </P>
-  <P>
-    <VERB>s(i)=f(x(i))</VERB>  et <VERB>x0=x(1)</VERB>, <VERB>x1=x(n)</VERB>
-  </P>
-  <P>
-    Entre les points, f est approchï¿½e ï¿½ l&apos;aide d&apos;une spline.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  <para>
+    <literal>s(i)=f(x(i))</literal>  et <literal>x0=x(1)</literal>, <literal>x1=x(n)</literal>
+  </para>
+  <para>
+    Entre les points, f est approchï¿½e ï¿½ l'aide d'une spline.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 t=0:0.1:%pi
 intsplin(t,sin(t))
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>intg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>integrate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inttrap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>splin</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="intg">intg</link> </member>     <member> <link linkend="intc">intc</link> </member>     <member> <link linkend="intl">intl</link> </member>     <member> <link linkend="integrate">integrate</link> </member>     <member> <link linkend="inttrap">inttrap</link> </member>     <member> <link linkend="splin">splin</link> </member>
+  </simplelist></refsection>
+</refentry>

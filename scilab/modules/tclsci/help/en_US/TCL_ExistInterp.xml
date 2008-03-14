@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
@@ -10,62 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_ExistInterp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>TCL_ExistInterp</refname><refpurpose>Return %T if a tcl slave interperter
+  exists</refpurpose></refnamediv>
+  
 
-  <TITLE>TCL_ExistInterp</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="TCL_ExistInterp">Return %T if a tcl slave interperter
-  exists</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>OK=TCL_ExistInterp(interp)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>OK=TCL_ExistInterp(interp)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>interp</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>interp</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: character string parameter. Name of the slave tcl
-          interpreter.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>character string parameter. Name of the slave tcl
+          interpreter.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>ok</PARAM_NAME>
+      <varlistentry>
+        <term>ok</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: boolean. %T if TCL interpreter exists.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>boolean. %T if TCL interpreter exists.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>This routine allows to test if TCL interpreter exists.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>This routine allows to test if TCL interpreter exists.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
   TCL_ExistInterp('SlaveInterp')
   TCL_CreateSlave('SlaveInterp')
   TCL_ExistInterp('SlaveInterp')
-  TCL_DeleteInterp('SlaveInterp')]]></EXAMPLE>
+  TCL_DeleteInterp('SlaveInterp')]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_CreateSlave</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_DeleteInterp</LINK>
-    </SEE_ALSO_ITEM>
-</SEE_ALSO>
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+    <member>
+      <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
+    </member>
+</simplelist></refsection>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

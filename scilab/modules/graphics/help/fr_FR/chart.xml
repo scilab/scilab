@@ -1,102 +1,91 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>chart  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="chart"> diagramme de Nichols  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>chart([flags])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>chart(gain [,flags])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>chart(gain,phase [,flags])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-  <PARAM_INDENT>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="chart"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>chart</refname><refpurpose> diagramme de Nichols  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>chart([flags])
+chart(gain [,flags])
+chart(gain,phase [,flags])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+  <variablelist>
 
-  <PARAM_ITEM>
-  <PARAM_NAME>gain  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : valeurs réelles ( gains (en DB))
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+  <varlistentry>
+  <term>gain  </term>
+  <listitem>
+  <para>valeurs réelles ( gains (en DB))
+</para>
+  </listitem> 
+  </varlistentry>
 
-  <PARAM_ITEM>
-  <PARAM_NAME>phase  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : valeurs réelles (phases (en degrés))
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+  <varlistentry>
+  <term>phase  </term>
+  <listitem>
+  <para>valeurs réelles (phases (en degrés))
+</para>
+  </listitem> 
+  </varlistentry>
 
-  <PARAM_ITEM>
-  <PARAM_NAME>flags  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : une liste de 4 termes list(sup [,leg [,cm [,cphi]]])
-</SP>
+  <varlistentry>
+  <term>flags  </term>
+  <listitem>
+  <para>une liste de 4 termes list(sup [,leg [,cm [,cphi]]])
+</para>
  
 
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>sup  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : 1 -&gt; superposition sur le dessin précédent   0 -&gt; pas de superposition
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+ <variablelist>
+  <varlistentry>
+  <term>sup  </term>
+  <listitem>
+  <para>1 -&gt; superposition sur le dessin précédent   0 -&gt; pas de superposition
+</para>
+  </listitem> 
+  </varlistentry>
 
-  <PARAM_ITEM>
-  <PARAM_NAME>leg  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : 1 indique que les légendes sont dessinées, 0 : pas de légendes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+  <varlistentry>
+  <term>leg  </term>
+  <listitem>
+  <para>1 indique que les légendes sont dessinées, 0 : pas de légendes
+</para>
+  </listitem> 
+  </varlistentry>
 
-  <PARAM_ITEM>
-  <PARAM_NAME>cm  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : numéro de couleur (voir plot2d) pour les courbes de gain
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+  <varlistentry>
+  <term>cm  </term>
+  <listitem>
+  <para>numéro de couleur (voir plot2d) pour les courbes de gain
+</para>
+  </listitem> 
+  </varlistentry>
 
-  <PARAM_ITEM>
-  <PARAM_NAME>cphi  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : numéro de couleur (voir plot2d) pour les courbes de phase
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+  <varlistentry>
+  <term>cphi  </term>
+  <listitem>
+  <para>numéro de couleur (voir plot2d) pour les courbes de phase
+</para>
+  </listitem> 
+  </varlistentry>
+  </variablelist>
+  </listitem> 
+  </varlistentry>
 
-  </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+  </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     Dessine un diagramme de Nichols
-  </P>
-  <P>
-    Les valeurs par défaut pour <VERB>gain</VERB> et <VERB>phase</VERB> sont respectivement :
-  </P>
-  <P>
-    <VERB>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</VERB>
-  </P>
-  <P>
-    <VERB>[-(1:10) , -(20:10:160)]</VERB>
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  <para>
+    Les valeurs par défaut pour <literal>gain</literal> et <literal>phase</literal> sont respectivement :
+  </para>
+  <para>
+    <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+  </para>
+  <para>
+    <literal>[-(1:10) , -(20:10:160)]</literal>
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 black(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
@@ -108,5 +97,5 @@ xbasc()
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 black([h1;h],0.01,100,['h1';'h'])
 chart([-8 -6 -4],[80 120],list(1,0));
- ]]></EXAMPLE>
-</MAN>
+ ]]></programlisting></refsection>
+</refentry>

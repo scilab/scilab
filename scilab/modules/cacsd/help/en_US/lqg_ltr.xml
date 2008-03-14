@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,81 +10,78 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lqgltr</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lqg_ltr"> LQG with loop transform recovery</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[kf,kc]=lqg_ltr(sl,mu,ro)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: linear system in state-space form (<VERB>syslin</VERB> list)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>mu,ro</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  real positive numbers chosen ``small enough''</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>kf,kc</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: controller and observer Kalman gains.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    returns the Kalman gains for:</P>
-    <VERBATIM>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lqg_ltr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lqg_ltr</refname><refpurpose> LQG with loop transform recovery</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[kf,kc]=lqg_ltr(sl,mu,ro)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>linear system in state-space form (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mu,ro</term>
+        <listitem>
+          <para> real positive numbers chosen ``small enough''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kf,kc</term>
+        <listitem>
+          <para>controller and observer Kalman gains.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    returns the Kalman gains for:</para>
+    <programlisting><![CDATA[
+
            x = a*x + b*u + l*w1   
   (sl)
            y = c*x + mu*I*w2
 
            z = h*x
-   ]]>
-    </VERBATIM>
-    <P>
-    Cost function:</P>
-    <VERBATIM>
+   
+    ]]></programlisting>
+    <para>
+    Cost function:</para>
+    <programlisting><![CDATA[
       /+oo
                    |
           J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
            lqg     |
                    / 0
-    </VERBATIM>
-    <P>
-    The lqg/ltr approach looks for <VERB>L,mu,H,ro</VERB> such that:
-    J(lqg) = J(freq) where</P>
-    <VERBATIM>
+    ]]></programlisting>
+    <para>
+    The lqg/ltr approach looks for <literal>L,mu,H,ro</literal> such that:
+    J(lqg) = J(freq) where</para>
+    <programlisting><![CDATA[
 
                   /+oo        *  *           *
           J    =  | tr[S  W  W  S ] + tr[T  T]dw
            freq   |
                   /0
-    </VERBATIM>
-    <P>
-    and</P>
-    <VERBATIM>
-<![CDATA[
+    ]]></programlisting>
+    <para>
+    and</para>
+    <programlisting><![CDATA[
+
  S = (I + G*K)^(-1)  
  T = G*K*(I+G*K)^(-1)
-   ]]>
-    </VERBATIM>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>syslin</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="syslin">syslin</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -11,67 +11,63 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getlongpathname"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getlongpathname</refname><refpurpose>get long path name (Only for
+  Windows)</refpurpose></refnamediv>
+  
 
-  <TITLE>getlongpathname</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="getlongpathname">get long path name (Only for
-  Windows)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>longpath=getlongpathname(shortpath)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>longpath=getlongpathname(shortpath)
+[longpath,bOK]=getlongpathname(shortpath)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[longpath,bOK]=getlongpathname(shortpath)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>shortpath</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>shortpath</PARAM_NAME>
+        <listitem>
+          <para>A character string the short path</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: A character string the short path</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>longpath</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>longpath</PARAM_NAME>
+        <listitem>
+          <para>A character string the long path</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: A character string the long path</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>bOK</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>bOK</PARAM_NAME>
+        <listitem>
+          <para>A boolean %T if path has been converted else %F</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: A boolean %T if path has been converted else %F</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>The getlongpathname primitive converts the specified path to its long
+  <refsection><title>Description</title>
+    <para>The getlongpathname primitive converts the specified path to its long
     form. It no long path is found, this primitive returns the specified
-    name.</P>
-  </DESCRIPTION>
+    name.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[[longpath,bOK]=getlongpathname(SCI) 
- ]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[[longpath,bOK]=getlongpathname(SCI) 
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getshortpathname</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getshortpathname">getshortpathname</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

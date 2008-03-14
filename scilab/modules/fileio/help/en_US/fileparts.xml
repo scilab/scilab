@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -11,82 +11,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fileparts</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fileparts">returns the path, filename and extension for a file path</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[path,fname,extension]=fileparts(fullpath)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> v=fileparts(fullpath,sel)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>fullpath</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a character string, the given file path</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sel</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a optional character string selector, with posible values:
-       'path' 'fname' or 'extension'</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string, the path of the directory pointed to by fullpath</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fname</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP> : a character string, the filename part is any or ''</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>extension</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP> : a character string, the extension part is any or ''</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>value</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP> : a character string, depending on sel value</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>[path,fname,extension]=fileparts(fullpath)</VERB> splits the
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fileparts"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fileparts</refname><refpurpose>returns the path, filename and extension for a file path</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[path,fname,extension]=fileparts(fullpath)
+v=fileparts(fullpath,sel)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fullpath</term>
+        <listitem>
+          <para> a character string, the given file path</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sel</term>
+        <listitem>
+          <para>a optional character string selector, with posible values:
+       'path' 'fname' or 'extension'</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a character string, the path of the directory pointed to by fullpath</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fname</term>
+        <listitem>
+          <para>a character string, the filename part is any or ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>extension</term>
+        <listitem>
+          <para>a character string, the extension part is any or ''</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>value</term>
+        <listitem>
+          <para>a character string, depending on sel value</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>[path,fname,extension]=fileparts(fullpath)</literal> splits the
    fullpath character string in its three parts: the path of the
    directory pointed to, the filename part, the extension part
-   including the dot.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   including the dot.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
    [path,fname,extension]=fileparts('SCI/etc/scilab.start')
    fileparts('SCI/etc/scilab.start','extension')
-  ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pathconvert</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>basename</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fullfile</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>
+  
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pathconvert">pathconvert</link>
+    </member>
+    <member>
+      <link linkend="basename">basename</link>
+    </member>
+    <member>
+      <link linkend="fullfile">fullfile</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>
     Serge Steer, INRIA
-  </AUTHOR>
-</MAN>
+  </para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,38 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gdf</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sdf"> Set default figure. </SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sdf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sdf</refname><refpurpose> Set default figure. </refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>sdf()</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>f = gdf(); set(f,"default_values",1) </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sdf()
+f = gdf(); set(f,"default_values",1)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-  <PARAM_INDENT>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>f</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: handle, the handle of the default figure.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>f</term>
+    <listitem>
+       <para>handle, the handle of the default figure.</para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-  <P>
+  <refsection><title>Description</title>
+  <para>
    This routine resets the figure's model to default values.
-   </P>
-  </DESCRIPTION>
+   </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    
    x=[0:0.1:2*%pi]';
    f=get("default_figure"); // get the handle of the model figure 
@@ -61,17 +58,17 @@
      if i == 4, sdf(); end // return to the  default values of the figure's model
     end
     
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sda</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>gdf</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>gda</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="sda">sda</link> </member>
+    <member> <link linkend="gdf">gdf</link> </member>
+    <member> <link linkend="gda">gda</link> </member>
+    <member> <link linkend="set">set</link> </member>
+    <member> <link linkend="graphics_entities">graphics_entities</link> </member>
+  </simplelist></refsection>
 
-  <AUTHOR>
+  <refsection><title>Authors</title><para>
     Djalel ABDEMOUCHE
-  </AUTHOR>
-</MAN>
+  </para></refsection>
+</refentry>

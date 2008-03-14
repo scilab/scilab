@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
@@ -10,102 +10,99 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>onserver</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="observer"> observer design</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Obs=observer(Sys,J)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[Obs,U,m]=observer(Sys [,flag,alfa])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>Sys</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (linear system)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>J</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: nx x ny constant matrix (output injection matrix)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character strings (<VERB>'pp'</VERB> or <VERB>'st'</VERB> (default))</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>alfa</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: location of closed-loop poles (optional parameter, default=-1)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Obs</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: linear system (<VERB>syslin</VERB> list), the observer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>U</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: orthogonal matrix (see <VERB>dt_ility</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>m</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer (dimension of unstable unobservable (<VERB>st</VERB>)  or unobservable  (<VERB>pp</VERB>) subspace)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>Obs=observer(Sys,J)</VERB> returns the observer 
-    <VERB>Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A))</VERB> obtained from <VERB>Sys</VERB> 
-    by a <VERB>J</VERB> output injection. (td is the time domain of <VERB>Sys</VERB>).
-    More generally, <VERB>observer</VERB> returns in <VERB>Obs</VERB> an observer for 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="observer"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>observer</refname><refpurpose> observer design</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>Obs=observer(Sys,J)
+[Obs,U,m]=observer(Sys [,flag,alfa])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sys</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (linear system)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>J</term>
+        <listitem>
+          <para>nx x ny constant matrix (output injection matrix)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>character strings (<literal>'pp'</literal> or <literal>'st'</literal> (default))</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>alfa</term>
+        <listitem>
+          <para>location of closed-loop poles (optional parameter, default=-1)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Obs</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list), the observer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>orthogonal matrix (see <literal>dt_ility</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>integer (dimension of unstable unobservable (<literal>st</literal>)  or unobservable  (<literal>pp</literal>) subspace)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>Obs=observer(Sys,J)</literal> returns the observer 
+    <literal>Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A))</literal> obtained from <literal>Sys</literal> 
+    by a <literal>J</literal> output injection. (td is the time domain of <literal>Sys</literal>).
+    More generally, <literal>observer</literal> returns in <literal>Obs</literal> an observer for 
     the observable part of linear system 
-    <VERB>Sys</VERB>: <VERB>dotx=A x + Bu, y=Cx + Du</VERB>  represented by a <VERB>syslin</VERB> list.
-    <VERB>Sys</VERB> has <VERB>nx</VERB> state variables, <VERB>nu</VERB> inputs and <VERB>ny</VERB> outputs.
-    <VERB>Obs</VERB> is a linear system with matrices <VERB>[Ao,Bo,Identity]</VERB>, 
-    where <VERB>Ao</VERB> is <VERB>no x no</VERB>, <VERB>Bo</VERB> is <VERB>no x (nu+ny)</VERB>, <VERB> Co</VERB> is
-    <VERB>no x no</VERB> and <VERB>no=nx-m</VERB>.</P>
-    <P>
-    Input to <VERB>Obs</VERB> is <VERB>[u,y]</VERB> and output of <VERB>Obs</VERB> is:</P>
-    <P>
-    xhat=estimate of x modulo unobservable subsp. (case <VERB>flag='pp'</VERB>)
-    or</P>
-    <P>
-    xhat=estimate of x modulo unstable unobservable subsp. (case <VERB>flag='st'</VERB>)</P>
-    <P>
-    case <VERB>flag='st'</VERB>:
-    z=H*x can be estimated with stable observer iff <VERB>H*U(:,1:m)=0</VERB>
-    and assignable poles of the observer are set to <VERB>alfa(1),alfa(2),...</VERB></P>
-    <P>
-    case <VERB>flag='pp'</VERB>:
-    z=H*x can be estimated with given error spectrum iff <VERB>H*U(:,1:m)=0</VERB> 
-    all poles of the observer are assigned and set to <VERB>alfa(1),alfa(2),...</VERB></P>
-    <P>
-    If H satifies the constraint: <VERB>H*U(:,1:m)=0</VERB>  (ker(H) contains unobs-subsp.
+    <literal>Sys</literal>: <literal>dotx=A x + Bu, y=Cx + Du</literal>  represented by a <literal>syslin</literal> list.
+    <literal>Sys</literal> has <literal>nx</literal> state variables, <literal>nu</literal> inputs and <literal>ny</literal> outputs.
+    <literal>Obs</literal> is a linear system with matrices <literal>[Ao,Bo,Identity]</literal>, 
+    where <literal>Ao</literal> is <literal>no x no</literal>, <literal>Bo</literal> is <literal>no x (nu+ny)</literal>, <literal> Co</literal> is
+    <literal>no x no</literal> and <literal>no=nx-m</literal>.</para>
+    <para>
+    Input to <literal>Obs</literal> is <literal>[u,y]</literal> and output of <literal>Obs</literal> is:</para>
+    <para>
+    xhat=estimate of x modulo unobservable subsp. (case <literal>flag='pp'</literal>)
+    or</para>
+    <para>
+    xhat=estimate of x modulo unstable unobservable subsp. (case <literal>flag='st'</literal>)</para>
+    <para>
+    case <literal>flag='st'</literal>:
+    z=H*x can be estimated with stable observer iff <literal>H*U(:,1:m)=0</literal>
+    and assignable poles of the observer are set to <literal>alfa(1),alfa(2),...</literal></para>
+    <para>
+    case <literal>flag='pp'</literal>:
+    z=H*x can be estimated with given error spectrum iff <literal>H*U(:,1:m)=0</literal> 
+    all poles of the observer are assigned and set to <literal>alfa(1),alfa(2),...</literal></para>
+    <para>
+    If H satifies the constraint: <literal>H*U(:,1:m)=0</literal>  (ker(H) contains unobs-subsp.
     of Sys) one has H*U=[0,H2] and the observer for 
     z=H*x is H2*Obs with H2=H*U(:,m+1:nx) i.e. Co, the C-matrix of the
-    observer for H*x, is Co=H2.</P>
-    <P>
-    In the particular case where the pair <VERB>(A,C)</VERB> of <VERB>Sys</VERB> is 
-    observable, one has <VERB>m=0</VERB> and the linear system <VERB>U*Obs</VERB> (resp.
-    <VERB>H*U*Obs</VERB>) is an observer for <VERB>x</VERB> (resp. <VERB>Hx</VERB>). 
-    The error spectrum is <VERB>alpha(1),alpha(2),...,alpha(nx)</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    observer for H*x, is Co=H2.</para>
+    <para>
+    In the particular case where the pair <literal>(A,C)</literal> of <literal>Sys</literal> is 
+    observable, one has <literal>m=0</literal> and the linear system <literal>U*Obs</literal> (resp.
+    <literal>H*U*Obs</literal>) is an observer for <literal>x</literal> (resp. <literal>Hx</literal>). 
+    The error spectrum is <literal>alpha(1),alpha(2),...,alpha(nx)</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
 //nx=5 states, nu=1 input, ny=1 output, 
 //un=3 unobservable states, us=2 of them unstable.
@@ -150,18 +147,18 @@ L = lqe(P21);
 Plant = syslin('c',A,B,C,D);
 Obs = observer(Plant,L);
 spec(Obs.A)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>dt_ility</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unobs</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>stabil</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F.D.  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="dt_ility">dt_ility</link>
+    </member>
+    <member>
+      <link linkend="unobs">unobs</link>
+    </member>
+    <member>
+      <link linkend="stabil">stabil</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F.D.  </para></refsection>
+</refentry>

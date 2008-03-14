@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
@@ -10,49 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="historymanager"><info><pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006)$</pubdate></info><refnamediv><refname>historymanager</refname><refpurpose>enable or disable history manager</refpurpose></refnamediv>
+  
 
-  <TITLE>historymanager</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 aoÃ»t 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="historymanager">enable or disable history manager</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>state1=historymanager(state2)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>state1=historymanager(state2)
+state1=historymanager()</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>state1=historymanager()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>state1</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>state1</PARAM_NAME>
+        <listitem>
+          <para>returns history manager state 'on' or 'off'</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: returns history manager state 'on' or 'off'</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>state2</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>state2</PARAM_NAME>
+        <listitem>
+          <para>'on' or 'off' set history manager's state</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: 'on' or 'off' set history manager's state</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>enable or disable history manager.</para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>enable or disable history manager.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[displayhistory()
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[displayhistory()
 backupstate=historymanager()
 historymanager('off')
 displayhistory()
@@ -62,7 +58,7 @@ displayhistory()
 historymanager(backupstate)
 
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

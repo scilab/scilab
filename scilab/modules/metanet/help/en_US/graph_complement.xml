@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,56 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_complement</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph_complement"> complement of a graph</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g1 = graph_complement(g,[gmax])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>gmax</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:a optional graph data structure.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph data structure of the new graph</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP>The complement of a graph g is the graph g1 with the same node
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_complement"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_complement</refname><refpurpose> complement of a graph</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = graph_complement(g,[gmax])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gmax</term>
+        <listitem>
+          <para>:a optional graph data structure.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1</term>
+        <listitem>
+          <para>graph data structure of the new graph</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>The complement of a graph g is the graph g1 with the same node
     set but whose edge set consists of the edges not present in g
     (i.e., the complement of the edge set of g with respect to all
-    possible edges on the vertex set of G). </SP>
-    <P><VERB>graph_complement</VERB> returns the undirected graph
-    <VERB>g1</VERB> which is the complement of the graph
-    <VERB>g</VERB> with respect to the corresponding complete graph.
-    When <VERB>gmax</VERB> is given, the complement is made with
-    respect to <VERB>gmax</VERB>.  <VERB>g</VERB> and
-    <VERB>gmax</VERB> are supposed to be simple graphs (use
-    <VERB>graph_simp</VERB> before calling
-    <VERB>graph_complement</VERB> if necessary) and to have the same
-    number of nodes.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    possible edges on the vertex set of G). </para>
+    <para><literal>graph_complement</literal> returns the undirected graph
+    <literal>g1</literal> which is the complement of the graph
+    <literal>g</literal> with respect to the corresponding complete graph.
+    When <literal>gmax</literal> is given, the complement is made with
+    respect to <literal>gmax</literal>.  <literal>g</literal> and
+    <literal>gmax</literal> are supposed to be simple graphs (use
+    <literal>graph_simp</literal> before calling
+    <literal>graph_complement</literal> if necessary) and to have the same
+    number of nodes.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 13 14 15 17 17 16 16];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 15 12 13 9 10 14 11 16 14 15 1 17];
 g=make_graph('foo',1,17,ta,he);
@@ -71,15 +66,15 @@ g1=graph_complement(g);
 show_graph(g1,'new');
 g=graph_complement(g1);
 show_graph(g,'new');
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>graph_sum</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>graph_simp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="graph_sum">graph_sum</link>
+    </member>
+    <member>
+      <link linkend="graph_simp">graph_simp</link>
+    </member>
+  </simplelist></refsection>
 
-</MAN>
+</refentry>

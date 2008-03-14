@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,58 +10,57 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_strfind</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_strfind"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_strfind</refname><refpurpose>Matlab strfind emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_strfind">Matlab strfind emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab <VERB>strfind</VERB> and Scilab <VERB>strindex</VERB> behave differently in some particular cases:</P>
+    <para>Matlab <literal>strfind</literal> and Scilab <literal>strindex</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        With inputs which not character strings: Matlab <VERB>strfind</VERB> can be used
-	with not character strings inputs but not Scilab <VERB>strindex</VERB>.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With inputs which not character strings: Matlab <literal>strfind</literal> can be used
+	with not character strings inputs but not Scilab <literal>strindex</literal>.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_strfind(A,B)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>strfind(A,B)</VERB> when it was not
+    <para>
+    The function <literal>mtlb_strfind(A,B)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>strfind(A,B)</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_strfind</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_strfind</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> and <VERB>B</VERB> are character strings
-        <VERB>mtlb_strfind(A,B)</VERB> may be replaced by <VERB>strindex(A,B)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> and <literal>B</literal> are character strings
+        <literal>mtlb_strfind(A,B)</literal> may be replaced by <literal>strindex(A,B)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_strfind</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_strfind</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

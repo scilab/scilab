@@ -1,60 +1,56 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="exists"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>exists</refname><refpurpose>checks variable
+  existence</refpurpose></refnamediv>
+  
 
-  <TITLE>exists</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="exists">checks variable
-  existence</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>exists(name [,where])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>exists(name [,where])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>name</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>where</PARAM_NAME>
+      <varlistentry>
+        <term>where</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: an optional character string with default value
-          <VERB>'all'</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>an optional character string with default value
+          <literal>'all'</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>exists(name)</VERB> returns <VERB>1</VERB> if the variable named
-    <VERB>name</VERB> exists and <VERB>0</VERB> otherwise.</P>
+  <refsection><title>Description</title>
+    <para><literal>exists(name)</literal> returns <literal>1</literal> if the variable named
+    <literal>name</literal> exists and <literal>0</literal> otherwise.</para>
 
-    <P>Caveats: a function which uses <VERB>exists</VERB> may return a result
-    which depends on the environment!</P>
+    <para>Caveats: a function which uses <literal>exists</literal> may return a result
+    which depends on the environment!</para>
 
-    <P><VERB>exists(name,'local')</VERB> returns <VERB>1</VERB> if the
-    variable named <VERB>name</VERB> exists in the local environment of the
-    current function and <VERB>0</VERB> otherwise.</P>
+    <para><literal>exists(name,'local')</literal> returns <literal>1</literal> if the
+    variable named <literal>name</literal> exists in the local environment of the
+    current function and <literal>0</literal> otherwise.</para>
 
-    <P><VERB>exists(name,'nolocal')</VERB> returns <VERB>1</VERB> if the
-    variable named <VERB>name</VERB> exists in the full calling environment
-    (including the global level) of the current function and <VERB>0</VERB>
-    otherwise.</P>
-  </DESCRIPTION>
+    <para><literal>exists(name,'nolocal')</literal> returns <literal>1</literal> if the
+    variable named <literal>name</literal> exists in the full calling environment
+    (including the global level) of the current function and <literal>0</literal>
+    otherwise.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''local'')])'
@@ -76,31 +72,31 @@ function go()
 endfunction
 go()
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>isdef</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="isdef">isdef</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>isglobal</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="isglobal">isglobal</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>whereis</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="whereis">whereis</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>type</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="type">type</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>typeof</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="typeof">typeof</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>macrovar</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="macrovar">macrovar</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

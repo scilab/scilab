@@ -1,32 +1,27 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>nf3d  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="nf3d"> conversion de facettes pour plot3d  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[xx,yy,zz]=nf3d(x,y,z)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x,y,x,xx,yy,zz  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : 6 matrices réelles
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="nf3d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>nf3d</refname><refpurpose> conversion de facettes pour plot3d  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[xx,yy,zz]=nf3d(x,y,z)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x,y,x,xx,yy,zz  </term>
+  <listitem>
+  <para>6 matrices réelles
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     Fonction utilitaire utilisée pour convertir des facettes codées dans trois matrices x,y,z (format plot3d2) dans un format accepté par plot3d.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 // une sphère...
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
@@ -35,8 +30,8 @@ y= cos(u)'*sin(v);
 z= sin(u)'*ones(v);
 // plot3d2(x,y,z) est équivalent à ...
 [xx,yy,zz]=nf3d(x,y,z); plot3d(xx,yy,zz)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot3d2</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="plot3d">plot3d</link> </member>     <member> <link linkend="plot3d2">plot3d2</link> </member>
+  </simplelist></refsection>
+</refentry>

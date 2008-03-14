@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,54 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>g_margin</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="g_margin"> gain margin</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[gm [,fr]]=g_margin(h)   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list representing a linear system in  state-space or transfer form</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    returns <VERB>gm</VERB>, the gain margin in dB of <VERB>h</VERB> 
-    (SISO plant) and <VERB>fr</VERB>, the achieved corresponding frequency in hz.
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="g_margin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>g_margin</refname><refpurpose> gain margin</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[gm [,fr]]=g_margin(h)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list representing a linear system in  state-space or transfer form</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    returns <literal>gm</literal>, the gain margin in dB of <literal>h</literal> 
+    (SISO plant) and <literal>fr</literal>, the achieved corresponding frequency in hz.
     The gain margin is values of the system gain at points where the
-    nyquist plot crosses the negative real axis.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    nyquist plot crosses the negative real axis.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 h=syslin('c',-1+%s,3+2*%s+%s^2)
 [g,fr]=g_margin(h)
 [g,fr]=g_margin(h-10)
 nyquist(h-10)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>p_margin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>black</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>chart</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>nyquist</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="p_margin">p_margin</link>
+    </member>
+    <member>
+      <link linkend="black">black</link>
+    </member>
+    <member>
+      <link linkend="chart">chart</link>
+    </member>
+    <member>
+      <link linkend="nyquist">nyquist</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,44 +1,40 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>fileparts</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fullfile">Construit un nom de fichier complet</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>f = fullfile(varargin)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>varargin</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: tous les répertoires et le nom de fichier utilisés pour créer le nom de fichier complet (au moins un répertoire et un nom de fichier)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP> : nom de fichier complet</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>f = fullfile(varargin)</VERB> construit un nom de fichier complet en prenant en compte la plateforme actuelle et en gérant les cas où les noms de répertoires commencent ou finissent par un séparateur de répertoire.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fullfile"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fullfile</refname><refpurpose>Construit un nom de fichier complet</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>f = fullfile(varargin)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>varargin</term>
+        <listitem>
+          <para>tous les répertoires et le nom de fichier utilisés pour créer le nom de fichier complet (au moins un répertoire et un nom de fichier)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>nom de fichier complet</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>f = fullfile(varargin)</literal> construit un nom de fichier complet en prenant en compte la plateforme actuelle et en gérant les cas où les noms de répertoires commencent ou finissent par un séparateur de répertoire.</para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+
    f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
    f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
-  ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>pathconvert</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>fileparts</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHORS>
-  <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  
+  ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="pathconvert">pathconvert</link> </member>
+    <member> <link linkend="fileparts">fileparts</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+  <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

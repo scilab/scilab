@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
@@ -10,143 +10,135 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<?xml-stylesheet type="text/xsl" href="file:///usr/local/lib/scilab/man/eng/html-rev.xsl"?>
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mesh"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mesh</refname><refpurpose>3D mesh plot</refpurpose></refnamediv>
+  
 
-  <TITLE>mesh</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="mesh">3D mesh plot</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mesh(Z)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mesh(Z)
+mesh(X,Y,Z)
+mesh(...,&lt;GlobalProperty&gt;)
+mesh(...,&lt;color&gt;,&lt;GlobalProperty&gt;)
+mesh(&lt;axes_handle&gt;,...)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>mesh(X,Y,Z)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Z</term>
 
-    <CALLING_SEQUENCE_ITEM>mesh(...,&lt;GlobalProperty&gt;)</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>a real matrix defining the surface height. It can not be
+          omitted. The Z data is a<literal> m</literal>x<literal>n</literal> matrix.</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>mesh(...,&lt;color&gt;,&lt;GlobalProperty&gt;)</CALLING_SEQUENCE_ITEM>
+      <varlistentry>
+        <term>X,Y</term>
 
-    <CALLING_SEQUENCE_ITEM>mesh(&lt;axes_handle&gt;,...)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>two real matrices : always set together, these data defines a
+          new standard grid. This new <literal>X</literal> and <literal>Y</literal>
+          components of the grid must match <literal>Z</literal> dimensions (see
+          description below).</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>Z</PARAM_NAME>
+      <varlistentry>
+        <term>color</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a real matrix defining the surface height. It can not be
-          omitted. The Z data is a<VERB> m</VERB>x<VERB>n</VERB> matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>an optional real matrix defining a color value for each
+          <literal>(X(j),Y(i))</literal> point of the grid (see description
+          below).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>X,Y</PARAM_NAME>
+      <varlistentry>
+        <term>&lt;GlobalProperty&gt;</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: two real matrices : always set together, these data defines a
-          new standard grid. This new <VERB>X</VERB> and <VERB>Y</VERB>
-          components of the grid must match <VERB>Z</VERB> dimensions (see
-          description below).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>color</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: an optional real matrix defining a color value for each
-          <VERB>(X(j),Y(i))</VERB> point of the grid (see description
-          below).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;GlobalProperty&gt;</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: This optional argument represents a sequence of couple
-          statements <VERB>{PropertyName,PropertyValue}</VERB> that defines
+        <listitem>
+          <para>This optional argument represents a sequence of couple
+          statements <literal>{PropertyName,PropertyValue}</literal> that defines
           global objects' properties applied to all the curves created by this
           plot. For a complete view of the available properties (see
-          <LINK>GlobalProperty</LINK>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          <link linkend="GlobalProperty">GlobalProperty</link>).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;axes_handle&gt;</PARAM_NAME>
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: This optional argument forces the plot to appear inside the
-          selected axes given by <VERB>axes_handle</VERB> rather than the
-          current axes (see <LINK>gca</LINK>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>This optional argument forces the plot to appear inside the
+          selected axes given by <literal>axes_handle</literal> rather than the
+          current axes (see <link linkend="gca">gca</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>mesh</VERB> draws a parametric surface using a rectangular grid
-    defined by <VERB>X</VERB> and <VERB>Y</VERB> coordinates (if
-    <VERB>{X,Y}</VERB> are not specified, this grid is determined using the
-    dimensions of the <VERB>Z</VERB> matrix) ; at each point of this grid, a Z
-    coordinate is given using the <VERB>Z</VERB> matrix. <VERB>mesh</VERB> is
-    based on the <VERB>surf</VERB> command with default option
-    <VERB>color_mode</VERB> = white index (inside the current colormap) and
-    <VERB>color_flag</VERB> = 0.</P>
+  <refsection><title>Description</title>
+    <para><literal>mesh</literal> draws a parametric surface using a rectangular grid
+    defined by <literal>X</literal> and <literal>Y</literal> coordinates (if
+    <literal>{X,Y}</literal> are not specified, this grid is determined using the
+    dimensions of the <literal>Z</literal> matrix) ; at each point of this grid, a Z
+    coordinate is given using the <literal>Z</literal> matrix. <literal>mesh</literal> is
+    based on the <literal>surf</literal> command with default option
+    <literal>color_mode</literal> = white index (inside the current colormap) and
+    <literal>color_flag</literal> = 0.</para>
 
-    <P>Data entry specification :</P>
+    <para>Data entry specification :</para>
 
-    <P>In this paragraph and to be more clear, we won't mention
-    <VERB>GlobalProperty</VERB> optional arguments as they do not interfer
-    with entry data (except for <VERB>"Xdata"</VERB>, <VERB>"Ydata"</VERB> and
-    <VERB>"Zdata"</VERB> property, see <LINK>GlobalProperty</LINK>). It is
-    assumed that all those optional arguments could be present too.</P>
+    <para>In this paragraph and to be more clear, we won't mention
+    <literal>GlobalProperty</literal> optional arguments as they do not interfer
+    with entry data (except for <literal>"Xdata"</literal>, <literal>"Ydata"</literal> and
+    <literal>"Zdata"</literal> property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
+    assumed that all those optional arguments could be present too.</para>
 
-    <P>If <VERB>Z</VERB> is the only matrix specified, (Z) plots the matrix
-    <VERB>Z</VERB> versus the grid defined by <VERB>1:size(Z,2)</VERB> along
-    the x axis and <VERB>1:size(Z,1)</VERB> along the y axis.</P>
-  </DESCRIPTION>
+    <para>If <literal>Z</literal> is the only matrix specified, (Z) plots the matrix
+    <literal>Z</literal> versus the grid defined by <literal>1:size(Z,2)</literal> along
+    the x axis and <literal>1:size(Z,1)</literal> along the y axis.</para>
+  </refsection>
 
-  <SECTION label="Remarks">
-    <P>To enable the tranparency mode you should set the <VERB>color_mode
-    </VERB>option to 0.</P>
-  </SECTION>
+  <refsection><title>Remarks</title>
+    <para>To enable the tranparency mode you should set the <literal>color_mode
+    </literal>option to 0.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
 Z=X.^2-Y.^2;
 xtitle('z=x2-y ^2');
 mesh(X,Y,Z);
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>surf</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="surf">surf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>meshgrid</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="meshgrid">meshgrid</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>LineSpec</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="LineSpec">LineSpec</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>GlobalProperty</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="GlobalProperty">GlobalProperty</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>F.Belahcene</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>F.Belahcene</para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,142 +10,139 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xclick</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xclick"> wait for a mouse click</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[c_i,c_x,c_y,c_w,c_m]=xclick([flag])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>c_i</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, mouse button number.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>c_x,c_y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalars, position of the mouse.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>c_w</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, window number.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>c_m</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, menu callback.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer. If present, the click event queue is not cleared when entering  xclick.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>xclick</VERB> waits for a mouse click in the graphics window.
-  </P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xclick"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xclick</refname><refpurpose> wait for a mouse click</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[c_i,c_x,c_y,c_w,c_m]=xclick([flag])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>c_i</term>
+        <listitem>
+          <para>integer, mouse button number.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c_x,c_y</term>
+        <listitem>
+          <para>real scalars, position of the mouse.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c_w</term>
+        <listitem>
+          <para>integer, window number.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c_m</term>
+        <listitem>
+          <para>string, menu callback.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>integer. If present, the click event queue is not cleared when entering  xclick.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>xclick</literal> waits for a mouse click in the graphics window.
+  </para>
+    <para>
     If it is called with 3 left hand side arguments, it waits for a mouse click 
     in the current graphics window.
-  </P>
-    <P>
+  </para>
+    <para>
     If it is called with 4 or 5 left hand side arguments, it waits for a mouse 
     click in any graphics window.
-  </P>
-    <P>
+  </para>
+    <para>
     The returned values are described below.
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="c_i">
-        <SP>: an integer which gives the number of the mouse button or key that was
-	  pressed  .</SP>
+  </para>
+    <variablelist>
+      <varlistentry><term>c_i</term><listitem>
+        <para>an integer which gives the number of the mouse button or key that was
+	  pressed  .</para>
 	
-	<DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM label="ibutton==0">
-            <SP>: Left mouse button has been pressed</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==1">
-            <SP>: Middle mouse button has been pressed</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==2">
-            <SP>: Right mouse button has been pressed</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+	<variablelist>
+          <varlistentry><term>ibutton==0</term><listitem>
+            <para>Left mouse button has been pressed</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==1</term><listitem>
+            <para>Middle mouse button has been pressed</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==2</term><listitem>
+            <para>Right mouse button has been pressed</para>
+	    <para/>
+          </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM label="ibutton==3">
-            <SP>: Left mouse button has been clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==4">
-            <SP>: Middle mouse button has been clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==5">
-            <SP>: Right mouse button has been clicked</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+	  <varlistentry><term>ibutton==3</term><listitem>
+            <para>Left mouse button has been clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==4</term><listitem>
+            <para>Middle mouse button has been clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==5</term><listitem>
+            <para>Right mouse button has been clicked</para>
+	    <para/>
+          </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM label="ibutton==10">
-            <SP>: Left mouse button has been double-clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==11">
-            <SP>: Middle mouse button has been double-clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==12">
-            <SP>: Right mouse button has been double-clicked</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+	  <varlistentry><term>ibutton==10</term><listitem>
+            <para>Left mouse button has been double-clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==11</term><listitem>
+            <para>Middle mouse button has been double-clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==12</term><listitem>
+            <para>Right mouse button has been double-clicked</para>
+	    <para/>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="ibutton &gt; =32">
-            <SP>: key with ascii code ascii(ibutton) has been pressed</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>ibutton &gt; =32</term><listitem>
+            <para>key with ascii code ascii(ibutton) has been pressed</para>
+          </listitem></varlistentry>
 	
-          <DESCRIPTION_ITEM label="ibutton &gt; =1000+32">
-            <SP>: key with ascii code ascii(ibutton-1000) has been pressed while CTRL
-	    key pressed</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="ibutton==-100">
-            <SP>: graphic window has been closed</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="ibutton==-2">
-            <SP>: a dynamic menu has been selected</SP>
-          </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT>
+          <varlistentry><term>ibutton &gt; =1000+32</term><listitem>
+            <para>key with ascii code ascii(ibutton-1000) has been pressed while CTRL
+	    key pressed</para>
+          </listitem></varlistentry>
+          <varlistentry><term>ibutton==-100</term><listitem>
+            <para>graphic window has been closed</para>
+          </listitem></varlistentry>
+          <varlistentry><term>ibutton==-2</term><listitem>
+            <para>a dynamic menu has been selected</para>
+          </listitem></varlistentry>
+	</variablelist>
 
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="c_x,c_y">
-        <SP>: the coordinates of the position of the mouse click in the current graphics  scale.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="c_w">
-        <SP>: the window number where the click has occurred.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="c_m">
-        <SP>: string associated with a dynamic menu. If xclick returns due to a click on a menu, <VERB>c_i</VERB>, <VERB>c_x</VERB>, <VERB>c_y,</VERB> and <VERB>c_w</VERB> take arbitrary values.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      </listitem></varlistentry>
+      <varlistentry><term>c_x,c_y</term><listitem>
+        <para>the coordinates of the position of the mouse click in the current graphics  scale.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>c_w</term><listitem>
+        <para>the window number where the click has occurred.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>c_m</term><listitem>
+        <para>string associated with a dynamic menu. If xclick returns due to a click on a menu, <literal>c_i</literal>, <literal>c_x</literal>, <literal>c_y,</literal> and <literal>c_w</literal> take arbitrary values.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>locate</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xgetmouse</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>seteventhandler</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="locate">locate</link>
+    </member>
+    <member>
+      <link linkend="xgetmouse">xgetmouse</link>
+    </member>
+    <member>
+      <link linkend="seteventhandler">seteventhandler</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>

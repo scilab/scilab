@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,59 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>1</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>2001</DATE>
-  <SHORT_DESCRIPTION name="isequal"> objects comparison</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>t=isequal(a,b)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>t=isequal(a,b,..)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a, b , ...  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: variables of any types</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>t</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: boolean</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP><VERB> isequal</VERB> compares its arguments. If all of them
-    are equals function returns <VERB> %t</VERB> and in the other case
-    it returns <VERB> %f</VERB> .</SP>
-    <P> When comparing list's, structures,... the comparison is made
-    recursively, the order of the fields matters. </P>
-    <P>floating point data are compared according to IEEE rule, i.e.
-    NaN values are not equal. See <LINK>isequalbitwise</LINK> for bitwise
-    comparisons. </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isequal"><info><pubdate>2001</pubdate></info><refnamediv><refname>isequal</refname><refpurpose> objects comparison</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>t=isequal(a,b)
+t=isequal(a,b,..)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a, b , ...  </term>
+        <listitem>
+          <para>variables of any types</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal> isequal</literal> compares its arguments. If all of them
+    are equals function returns <literal> %t</literal> and in the other case
+    it returns <literal> %f</literal> .</para>
+    <para> When comparing list's, structures,... the comparison is made
+    recursively, the order of the fields matters. </para>
+    <para>floating point data are compared according to IEEE rule, i.e.
+    NaN values are not equal. See <link linkend="isequalbitwise">isequalbitwise</link> for bitwise
+    comparisons. </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 a=[1 2]
 isequal(a,[1 2])
 isequal(a,1)
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>isequalbitwise</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>equal</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>less</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="isequalbitwise">isequalbitwise</link>
+    </member>
+    <member>
+      <link linkend="equal">equal</link>
+    </member>
+    <member>
+      <link linkend="less">less</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

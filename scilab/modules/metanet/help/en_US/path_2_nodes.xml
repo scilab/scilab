@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,46 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="path_2_nodes"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>path_2_nodes</refname><refpurpose> set of nodes from a path</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>ns = path_2_nodes(p,g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>row vector of integer numbers of the arcs of the path</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ns</term>
+        <listitem>
+          <para>row vector of integer numbers of the set of nodes</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>path_2_nodes</literal> returns the set of nodes <literal>ns</literal> corresponding to the 
+    path <literal>p</literal> given by its arc numbers ; if <literal>p</literal> is not a path, the
+    empty vector <literal>[]</literal> is returned.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>path_2_nodes</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="path_2_nodes"> set of nodes from a path</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>ns = path_2_nodes(p,g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of integer numbers of the arcs of the path</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ns</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of integer numbers of the set of nodes</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>path_2_nodes</VERB> returns the set of nodes <VERB>ns</VERB> corresponding to the 
-    path <VERB>p</VERB> given by its arc numbers ; if <VERB>p</VERB> is not a path, the
-    empty vector <VERB>[]</VERB> is returned.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -62,11 +57,11 @@ show_graph(g);
 
 ns=path_2_nodes(p,g);
 hilite_nodes(ns);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>nodes_2_path</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="nodes_2_path">nodes_2_path</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

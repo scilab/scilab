@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -11,47 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="javaclasspath"><info><pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate></info><refnamediv><refname>javaclasspath</refname><refpurpose>set and get dynamic Java class path</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>javaclasspath</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="javaclasspath">set and get dynamic Java class path</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res=javaclasspath()
+javaclasspath(path)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res=javaclasspath()</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
 
-    <CALLING_SEQUENCE_ITEM>javaclasspath(path)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>a string matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para>set and get the dynamic Java path to one or more directory or file
+    specifications given in path.</para>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>set and get the dynamic Java path to one or more directory or file
-    specifications given in path.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[res=javaclasspath();
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[res=javaclasspath();
 javaclasspath(SCI);
 javaclasspath([SCI,SCI+'/java']);
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

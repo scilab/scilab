@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -10,37 +10,34 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gcd</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="gcd"> gcd calculation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[pgcd,U]=gcd(p)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: polynomial row vector <VERB>p=[p1,..,pn]</VERB> or integer row
-	    vector (type equal to 8)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    computes the gcd  of components of <VERB>p</VERB> and a unimodular
-    matrix (with polynomial inverse) <VERB>U</VERB>, with minimal degree such that</P>
-    <P>
-      <VERB>p*U=[0 ... 0 pgcd]</VERB>
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gcd"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gcd</refname><refpurpose> gcd calculation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[pgcd,U]=gcd(p)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>polynomial row vector <literal>p=[p1,..,pn]</literal> or integer row
+	    vector (type equal to 8)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    computes the gcd  of components of <literal>p</literal> and a unimodular
+    matrix (with polynomial inverse) <literal>U</literal>, with minimal degree such that</para>
+    <para>
+      <literal>p*U=[0 ... 0 pgcd]</literal>
+    </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //polynomial case
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];
@@ -52,17 +49,17 @@ V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 [thegcd,U]=gcd(V)
 V*U
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>bezout</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lcm</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>hermit</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="bezout">bezout</link>
+    </member>
+    <member>
+      <link linkend="lcm">lcm</link>
+    </member>
+    <member>
+      <link linkend="hermit">hermit</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

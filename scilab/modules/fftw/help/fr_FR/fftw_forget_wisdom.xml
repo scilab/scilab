@@ -1,33 +1,29 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>fftw_forget_wisdom</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>February 2006</DATE>
-  <SHORT_DESCRIPTION name="fftw_forget_wisdom">Re-initialise le wisdom fftw</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>fftw_forget_wisdom()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw_forget_wisdom"><info><pubdate>February 2006</pubdate></info><refnamediv><refname>fftw_forget_wisdom</refname><refpurpose>Re-initialise le wisdom fftw</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>fftw_forget_wisdom()</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
 	Cette fonction re-initialise le wisdom fftw.
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+
  //return fftw wisdom
  txt=get_fftw_wisdom();
  //set fftw wisdom
  set_fftw_wisdom(txt);
  //reset fftw wisdom
  fftw_forget_wisdom();
- ]]>
-  </EXAMPLE>
+ 
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>fftw</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>get_fftw_wisdom</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>set_fftw_wisdom</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member><link linkend="fftw">fftw</link></member>
+    <member><link linkend="get_fftw_wisdom">get_fftw_wisdom</link></member>
+    <member><link linkend="set_fftw_wisdom">set_fftw_wisdom</link></member>
+  </simplelist></refsection>
+</refentry>

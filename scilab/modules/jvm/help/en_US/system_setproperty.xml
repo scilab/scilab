@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -11,63 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="system_setproperty"><info><pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate></info><refnamediv><refname>system_setproperty</refname><refpurpose>set a system property
+  indicated by a specified key and value.</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>system_setproperty</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="system_setproperty">set a system property
-  indicated by a specified key and value.</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>prev = system_setproperty(key,value)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>prev = system_setproperty(key,value)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>prev</term>
 
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>a string previous value or []</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>prev</PARAM_NAME>
+      <varlistentry>
+        <term>key</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string previous value or []</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>key</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
       
-      <PARAM_ITEM>
-        <PARAM_NAME>value</PARAM_NAME>
+      <varlistentry>
+        <term>value</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
       
-    </PARAM_INDENT>
-  </PARAM>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P> Sets the system property indicated by the specified key.</P>
-    <P> Warning : change property with precaution.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para> Sets the system property indicated by the specified key.</para>
+    <para> Warning : change property with precaution.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[system_getproperty('myproperty')
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[system_getproperty('myproperty')
   system_setproperty('myproperty','hello')
   system_getproperty('myproperty')
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

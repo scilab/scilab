@@ -1,73 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>colorbar</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="colorbar">draw a colorbar</SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>colorbar(umin, umax [, colminmax, fmt])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-    <PARAM_INDENT>
-     <PARAM_ITEM>
-        <PARAM_NAME>umin</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: real scalar, the minimum value associated with the plot</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>umax</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: real scalar, the maximum value associated with the plot</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>colminmax</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: (optional) a vector with 2 integer components</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>fmt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: (optional) a string to set up the display format for
-        colorbar graduations</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-   </PARAM_INDENT>
-  </PARAM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colorbar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>colorbar</refname><refpurpose>draw a colorbar</refpurpose></refnamediv>
   
-  <DESCRIPTION>
-    <P>
+  
+  
+  
+  
+
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>colorbar(umin, umax [, colminmax, fmt])</synopsis></refsynopsisdiv>
+
+  <refsection><title>Parameters</title>
+    <variablelist>
+     <varlistentry>
+        <term>umin</term>
+        <listitem>
+	 <para>real scalar, the minimum value associated with the plot</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>umax</term>
+        <listitem>
+	 <para>real scalar, the maximum value associated with the plot</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>colminmax</term>
+        <listitem>
+	 <para>(optional) a vector with 2 integer components</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>fmt</term>
+        <listitem>
+	 <para>(optional) a string to set up the display format for
+        colorbar graduations</para>
+	</listitem> 
+     </varlistentry>
+   </variablelist>
+  </refsection>
+  
+  <refsection><title>Description</title>
+    <para>
      Draw a colorbar for a plot3d, fec, Sgrayplot, etc... The function may be called
-     <BD>BEFORE</BD> the plot3d, fec, Sgrayplot,... because its sets and changes the
+     <emphasis role="bold">BEFORE</emphasis> the plot3d, fec, Sgrayplot,... because its sets and changes the
      frame for the plot. This way the colorbar is not part of the associated plot and 
      so is not modified by a zoom or a rotation.
-    </P>
-    <P>
-     The optional argument <VERB>colminmax</VERB> may be used to precise the first color
+    </para>
+    <para>
+     The optional argument <literal>colminmax</literal> may be used to precise the first color
      (associated with umin) and the the last color (associated with umax) of the current 
-     colormap. By default <VERB>colminmax=[1 nb_colors]</VERB> where nb_colors is the 
+     colormap. By default <literal>colminmax=[1 nb_colors]</literal> where nb_colors is the 
      number of colors of the current colormap.
-    </P>
-    <P>
-     The optional argument <VERB>fmt</VERB> is a string containing a
-     C-format, like <VERB>"%.2f"</VERB>, <VERB>"%e"</VERB>, etc... 
-    </P>
-    <P>
+    </para>
+    <para>
+     The optional argument <literal>fmt</literal> is a string containing a
+     C-format, like <literal>"%.2f"</literal>, <literal>"%e"</literal>, etc... 
+    </para>
+    <para>
      For the 2 optional arguments you can use the syntax
-     <VERB>keyword=value</VERB> which is useful to give the
-     format without giving  <VERB>colminmax</VERB> (see the
+     <literal>keyword=value</literal> which is useful to give the
+     format without giving  <literal>colminmax</literal> (see the
      last example).
-    </P>
+    </para>
 
-    </DESCRIPTION>
+    </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // example 1
 x = linspace(0,1,81);
 z = cos(2*%pi*x)'*sin(2*%pi*x);
@@ -123,17 +119,16 @@ plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
 xtitle("a plot3d with shaded interpolated colors")
 drawnow() ;
 xselect()
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>colormap</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="colormap">colormap</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>
+  <refsection><title>Authors</title><para>
      B. Pincon, S. Steer
-  </AUTHOR>
+  </para></refsection>
 
-</MAN>
-
+</refentry>

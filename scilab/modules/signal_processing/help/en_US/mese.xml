@@ -1,45 +1,41 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mese</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="mese"> maximum entropy spectral estimation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[sm,fr]=mese(x [,npts]);  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Input sampled data sequence</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>npts</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Optional parameter giving number of points of <VERB>fr</VERB> and <VERB>sm</VERB> (default is 256)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sm</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Samples of spectral estimate on the frequency grid <VERB>fr</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fr</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: npts equally spaced frequency samples in <VERB>[0,.5)</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Calculate the maximum entropy spectral estimate of <VERB>x</VERB></P>
-  </DESCRIPTION>
-  <AUTHOR>C. B.  </AUTHOR>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mese"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mese</refname><refpurpose> maximum entropy spectral estimation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[sm,fr]=mese(x [,npts]);</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>Input sampled data sequence</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>npts</term>
+        <listitem>
+          <para>Optional parameter giving number of points of <literal>fr</literal> and <literal>sm</literal> (default is 256)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sm</term>
+        <listitem>
+          <para>Samples of spectral estimate on the frequency grid <literal>fr</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fr</term>
+        <listitem>
+          <para>npts equally spaced frequency samples in <literal>[0,.5)</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Calculate the maximum entropy spectral estimate of <literal>x</literal></para>
+  </refsection>
+  <refsection><title>Authors</title><para>C. B.  </para></refsection>
+</refentry>

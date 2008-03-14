@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,103 +10,101 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!-- When this file is modified please also modify mtlb_min.xml -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_max</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_max"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_max</refname><refpurpose>Matlab max emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_max">Matlab max emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>max</VERB> behave differently in some particular cases:</P>
+    <para>Matlab and Scilab <literal>max</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        With complex values: Matlab <VERB>max</VERB> can be used with complex values but not Scilab function.
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With complex values: Matlab <literal>max</literal> can be used with complex values but not Scilab function.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with one input: Matlab <VERB>max</VERB> threats values along the first
+      <listitem>
+        <para>
+        When called with one input: Matlab <literal>max</literal> threats values along the first
 	non-singleton dimension but Scilab threats all input values.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         When called with two inputs: if one is an empty matrix, Scilab returns an error message but Matlab returns [].
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with three inputs: if <VERB>dim</VERB> parameter is greater than number of
+      <listitem>
+        <para>
+        When called with three inputs: if <literal>dim</literal> parameter is greater than number of
 	dimensions of first input, Scilab returns an error message and Matlab returns the first input.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>[r[,k]] = mtlb_max(A[,B[,dim]])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>[r[,k]] = max(A[,B[,dim]])</VERB> when it was not
+    <para>
+    The function <literal>[r[,k]] = mtlb_max(A[,B[,dim]])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>[r[,k]] = max(A[,B[,dim]])</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_max</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_max</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        When called with one input, if <VERB>A</VERB> is a vector or a scalar
-        <VERB>[r[,k]] = mtlb_max(A)</VERB> may be replaced by <VERB>max(A)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When called with one input, if <literal>A</literal> is a vector or a scalar
+        <literal>[r[,k]] = mtlb_max(A)</literal> may be replaced by <literal>max(A)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with one input, if <VERB>A</VERB> is a matrix
-        <VERB>[r[,k]] = mtlb_max(A)</VERB> may be replaced by <VERB>max(A,&quot;r&quot;)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        When called with one input, if <literal>A</literal> is a matrix
+        <literal>[r[,k]] = mtlb_max(A)</literal> may be replaced by <literal>max(A,"r")</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with two inputs, if <VERB>A</VERB> and <VERB>B</VERB> are real matrices and not empty matrices
-        <VERB>[r[,k]] = mtlb_max(A,B)</VERB> may be replaced by <VERB>max(A,B)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        When called with two inputs, if <literal>A</literal> and <literal>B</literal> are real matrices and not empty matrices
+        <literal>[r[,k]] = mtlb_max(A,B)</literal> may be replaced by <literal>max(A,B)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with three inputs, if <VERB>dim</VERB> is lesser than the number of dimensions of <VERB>A</VERB>
-        <VERB>[r[,k]] = mtlb_max(A,[],dim)</VERB> may be replaced by <VERB>max(A,dim)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        When called with three inputs, if <literal>dim</literal> is lesser than the number of dimensions of <literal>A</literal>
+        <literal>[r[,k]] = mtlb_max(A,[],dim)</literal> may be replaced by <literal>max(A,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_max</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_max</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="firstnonsingleton">firstnonsingleton</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

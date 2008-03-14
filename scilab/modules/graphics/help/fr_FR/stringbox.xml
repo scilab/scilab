@@ -1,99 +1,93 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="stringbox"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>stringbox</refname><refpurpose>Calcule le rectangle englobant d'un
+  texte ou d'un label.</refpurpose></refnamediv>
+  
 
-  <TITLE>stringbox</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="stringbox">Calcule le rectangle englobant d'un
-  texte ou d'un label.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>rect = stringbox( string, x, y, [angle, [fontStyle,
-    [fontSize]]] )</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
+rect = stringbox( handle )</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>rect = stringbox( handle )</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
+        <listitem>
+          <para>matrice 2x4 contenant les coordonées des 4 sommets du
+          rectangle englobant.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrice 2x4 contenant les coordonées des 4 sommets du
-          rectangle englobant.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>string</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>string</PARAM_NAME>
+        <listitem>
+          <para>matrice de chaine de caractère à  entourer.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrice de chaine de caractère à  entourer.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>x,y</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+        <listitem>
+          <para>scalaires réels, coordonnées du point en bas à  gauche des
+          chaînes de caractères.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: scalaires réels, coordonnées du point en bas à  gauche des
-          chaînes de caractères.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>angle</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>angle</PARAM_NAME>
+        <listitem>
+          <para>Angle de rotation de la chaîne en degrés autour du point
+          <literal>(x,y)</literal> dans le sens des aiguilles d'une montre.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Angle de rotation de la chaîne en degrés autour du point
-          <VERB>(x,y)</VERB> dans le sens des aiguilles d'une montre.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>fonStyle</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fonStyle</PARAM_NAME>
+        <listitem>
+          <para>un entier specifiant le type de la fonte.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: un entier specifiant le type de la fonte.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>fontSize</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fontSize</PARAM_NAME>
+        <listitem>
+          <para>un entier specifiant la taille de la fonte.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: un entier specifiant la taille de la fonte.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>handle</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>handle</PARAM_NAME>
+        <listitem>
+          <para>un handle de type Text ou Label.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: un handle de type Text ou Label.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P><VERB>stringbox</VERB> renvoie les positions des quatres sommets du
+  <refsection><title>Description</title>
+    <para><literal>stringbox</literal> renvoie les positions des quatres sommets du
     rectangle englobant d'un objet Text ou Label ou d'une chaine de caractère
     que l'on souhaite afficher. Les coordonnées sont données dans l'échelle
     graphique courante. Le premier sommet correspond à  la coordonnées du
     texte, le point en bas à  gauche sans rotations, les suivants sont donnés
-    dans le sens des aiguilles d'une montre.</P>
+    dans le sens des aiguilles d'une montre.</para>
 
-    <P>Le résultat est approximatif avec le pilote PostScript.</P>
-  </DESCRIPTION>
+    <para>Le résultat est approximatif avec le pilote PostScript.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[// show axes
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[// show axes
 axes = gca() ;
 axes.axes_visible = 'on' ;
 axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
@@ -131,21 +125,21 @@ else
 end;
 
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xstring</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="xstring">xstring</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xstringl</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xstringl">xstringl</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xstringb</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="xstringb">xstringb</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Jean-Baptiste Silvy</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>Jean-Baptiste Silvy</para></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,207 +10,205 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>edit_graph_menus</TITLE>
-  <TYPE>Description</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="edit_graph_menus"> <VERB>edit_graph</VERB> menus description</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edit_graph_menus"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>edit_graph_menus</refname><refpurpose> edit_graph menus description</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
   The edit_graph editor  supports the following menus: 
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="File/New: ">
-        <SP>This menu erases the currently edited network.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="View/Zoom: ">
-        <SP>This menu allows to set the scale factor for the display</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="View/Replot: ">
-        <SP>This menu erases and re-displays the network.</SP>
-        <P>
+  </para>
+    <variablelist>
+      <varlistentry><term>File/New: </term><listitem>
+        <para>This menu erases the currently edited network.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>View/Zoom: </term><listitem>
+        <para>This menu allows to set the scale factor for the display</para>
+      </listitem></varlistentry>
+      <varlistentry><term>View/Replot: </term><listitem>
+        <para>This menu erases and re-displays the network.</para>
+        <para>
     This edition mode  can also be entered pressing the
-    &quot;<VERB>r</VERB>&quot; key while locator is in the 
+    "<literal>r</literal>" key while locator is in the 
     edition window. 
-    </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="View/Find Node: ">
-        <SP>This menu asks for a node number or a node name. If this node
+    </para>
+      </listitem></varlistentry>
+      <varlistentry><term>View/Find Node: </term><listitem>
+        <para>This menu asks for a node number or a node name. If this node
     exists the view is modified such as the node appears in the middle
-    of the graphic window.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="View/Find Arc: ">
-        <SP>This menu asks for an arc number or aa arc name. If this arc
+    of the graphic window.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>View/Find Arc: </term><listitem>
+        <para>This menu asks for an arc number or aa arc name. If this arc
     exists the view is modified such as the arc appears in the middle
-    of the graphic window.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="File/SaveAs: ">
-        <SP>This menu  allows to save the graph under a specified name</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="File/Save: ">
-        <SP>This menu  allows to save the graph under its current name</SP>
-        <P>
-    This edition mode  can also be entered pressing the &quot;<VERB>s</VERB>&quot; key while locator is in the
-    edition window. </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="File/Load: ">
-        <SP>This menu  allows to load a &quot;graph&quot; file.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="File/Export: ">
-        <SP>This menu  allows to export the view of the graph in a regular graphic window.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="View/Options: ">
-        <SP>This menu  allows to set global graph properties
-    This edition mode  can also be entered pressing the &quot;<VERB>o</VERB>&quot; key while locator is in the
-    edition window.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Graph/Settings: ">
-        <SP>This menu  allows to set if graph is directed or not. It also sets
+    of the graphic window.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>File/SaveAs: </term><listitem>
+        <para>This menu  allows to save the graph under a specified name</para>
+      </listitem></varlistentry>
+      <varlistentry><term>File/Save: </term><listitem>
+        <para>This menu  allows to save the graph under its current name</para>
+        <para>
+    This edition mode  can also be entered pressing the "<literal>s</literal>" key while locator is in the
+    edition window. </para>
+      </listitem></varlistentry>
+      <varlistentry><term>File/Load: </term><listitem>
+        <para>This menu  allows to load a "graph" file.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>File/Export: </term><listitem>
+        <para>This menu  allows to export the view of the graph in a regular graphic window.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>View/Options: </term><listitem>
+        <para>This menu  allows to set global graph properties
+    This edition mode  can also be entered pressing the "<literal>o</literal>" key while locator is in the
+    edition window.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Graph/Settings: </term><listitem>
+        <para>This menu  allows to set if graph is directed or not. It also sets
     default values for node diameter, node
-    border width, edge width, and font size.</SP>
-      </DESCRIPTION_ITEM>
-        <DESCRIPTION_ITEM label="Graph/Add Node Data Field: ">
-        <SP>This menu  allows to add a new data field in the nodes data structure.</SP>
-      </DESCRIPTION_ITEM>
-       <DESCRIPTION_ITEM label="Graph/Add Edge Data Field: ">
-        <SP>This menu  allows to add a new data field in the edges data structure.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Information: ">
-        <SP>This menu  outputs  graph informations, like number of nodes,
-    number of arcs, nodes properties ans arc properties.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="File/Quit: ">
-        <SP>Use this menu to exit out of the editor.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/NewNode: ">
-        <SP>This menu set the current edition mode to &quot;node addition&quot;.  To
+    border width, edge width, and font size.</para>
+      </listitem></varlistentry>
+        <varlistentry><term>Graph/Add Node Data Field: </term><listitem>
+        <para>This menu  allows to add a new data field in the nodes data structure.</para>
+      </listitem></varlistentry>
+       <varlistentry><term>Graph/Add Edge Data Field: </term><listitem>
+        <para>This menu  allows to add a new data field in the edges data structure.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Information: </term><listitem>
+        <para>This menu  outputs  graph informations, like number of nodes,
+    number of arcs, nodes properties ans arc properties.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>File/Quit: </term><listitem>
+        <para>Use this menu to exit out of the editor.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/NewNode: </term><listitem>
+        <para>This menu set the current edition mode to "node addition".  To
     add a node just click on its desired position. This edition mode
-    can also be entered pressing the &quot;n&quot; key while locator is in the
+    can also be entered pressing the "n" key while locator is in the
     edition window (Under windows, the edition window should also have
     the focus). It is the current editing mode when edit_graph is
     started. This mode remains active until an other edition mode
-    is selected.</SP>
-        <P>
-    This edition mode  can also be entered pressing the &quot;<VERB>n</VERB>&quot; key while locator is in the
-    edition window. </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/NewArc: ">
-        <SP>This menu set the current edition mode to &quot;edge addition&quot;. To
+    is selected.</para>
+        <para>
+    This edition mode  can also be entered pressing the "<literal>n</literal>" key while locator is in the
+    edition window. </para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/NewArc: </term><listitem>
+        <para>This menu set the current edition mode to "edge addition". To
     add an edge between two nodes just left click on the initial node and
     on the final node (click on right button cancels current edge
-    addition).</SP>
-        <P>
+    addition).</para>
+        <para>
     This edition mode
-    can also be entered pressing the &quot;a&quot; key while locator is in the
+    can also be entered pressing the "a" key while locator is in the
     edition window (Under windows, the edition window should also have
     the focus). This mode remains active until an other edition mode
     is selected.
-    </P>
-        <P>
-    This edition mode  can also be entered pressing the &quot;<VERB>a</VERB>&quot; key while locator is in the
+    </para>
+        <para>
+    This edition mode  can also be entered pressing the "<literal>a</literal>" key while locator is in the
     edition window. 
-    </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Move Node: ">
-        <SP>This menu set the current edition mode to &quot;move node&quot;. To
+    </para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Move Node: </term><listitem>
+        <para>This menu set the current edition mode to "move node". To
     move a node just left click on the selected node move the mouse up
     to the final position and left click  (click on right button
-    cancels move).</SP>
-        <P>
-    This edition mode  can also be entered pressing the &quot;<VERB>m</VERB>&quot; key while locator is in the
+    cancels move).</para>
+        <para>
+    This edition mode  can also be entered pressing the "<literal>m</literal>" key while locator is in the
     edition window. 
-    </P>
-        <P>
-    This mode remains active until an other edition mode is selected.</P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Move Region: ">
-        <SP>This menu set the current edition mode to &quot;move region mode&quot;. To
+    </para>
+        <para>
+    This mode remains active until an other edition mode is selected.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Move Region: </term><listitem>
+        <para>This menu set the current edition mode to "move region mode". To
     move a rectangular region just click left on a rectangle corner,
     drag rectangle to the desired area, click left to validate the
     area (click on right button cancels move) then move the rectangle
-    to the desired position and click to validate.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Copy Region To ClipBoard: ">
-        <SP>This menu set the current edition mode to &quot;copy region to
-    clipboard mode&quot;. To copy a rectangular region into the edit_graph
+    to the desired position and click to validate.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Copy Region To ClipBoard: </term><listitem>
+        <para>This menu set the current edition mode to "copy region to
+    clipboard mode". To copy a rectangular region into the edit_graph
     clipboard just click left on a rectangle corner, drag rectangle to
     the desired area, click left to validate the area (click on right
-    button cancels copy) .</SP>
-        <P>
+    button cancels copy) .</para>
+        <para>
     The edit_graph clipboard is shared by all edit_graph editors.
-    </P>
-        <P>
-    This mode remains active until an other edition mode is selected.</P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Paste: ">
-        <SP>This menu set the current edition mode to &quot;paste from clipboard mode&quot; to
-    clipboard mode&quot;. To paste clipboard into the edit_graph editor
+    </para>
+        <para>
+    This mode remains active until an other edition mode is selected.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Paste: </term><listitem>
+        <para>This menu set the current edition mode to "paste from clipboard mode" to
+    clipboard mode". To paste clipboard into the edit_graph editor
      click left to select the editor window, drag rectangle to
     the desired area, click left to validate the position (click on right
-    button cancels copy) .</SP>
-        <P>
-    This edition mode  can also be entered pressing the &quot;<VERB>v</VERB>&quot; key while locator is in the
+    button cancels copy) .</para>
+        <para>
+    This edition mode  can also be entered pressing the "<literal>v</literal>" key while locator is in the
     edition window. 
-    </P>
-        <P>   This mode remains active until an other edition mode is selected.</P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Delete: ">
-        <SP>This menu set the current edition mode to &quot;delete object mode&quot;. To
-    delete a node or an edge just left click on the selected object.</SP>
-        <P>
+    </para>
+        <para>   This mode remains active until an other edition mode is selected.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Delete: </term><listitem>
+        <para>This menu set the current edition mode to "delete object mode". To
+    delete a node or an edge just left click on the selected object.</para>
+        <para>
     This edition mode  can also be entered pressing the
-    &quot;<VERB>d</VERB>&quot; key while locator is in the 
+    "<literal>d</literal>" key while locator is in the 
     edition window. 
-    </P>
-        <P>
-    This mode remains active until an other edition mode is selected.</P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Delete Region">
-        <SP>This menu set the current edition mode to &quot;delete region mode&quot;. To
+    </para>
+        <para>
+    This mode remains active until an other edition mode is selected.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Delete Region</term><listitem>
+        <para>This menu set the current edition mode to "delete region mode". To
     delete a rectangular region just click left on a rectangle corner,
     drag rectangle to the desired area, click left to validate the
-    area (click on right button cancels selection).</SP>
-        <P>
-    Note that the deleted region is not send to the clipboard</P>
-        <P>
+    area (click on right button cancels selection).</para>
+        <para>
+    Note that the deleted region is not send to the clipboard</para>
+        <para>
     This mode remains active until an other edition mode is selected.
-     This edition mode  can also be entered pressing the &quot;<VERB>x</VERB>&quot; key while locator is in the
-    edition window. </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Properties: ">
-        <SP>This menu set the current edition mode to &quot;set object
-     properties&quot;. To set a node or an edge properties, just left click
-     on the selected object; a popup dialog appears.</SP>
-        <P> This
-     mode remains active until an other edition mode is selected.</P>
-        <P>
+     This edition mode  can also be entered pressing the "<literal>x</literal>" key while locator is in the
+    edition window. </para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Properties: </term><listitem>
+        <para>This menu set the current edition mode to "set object
+     properties". To set a node or an edge properties, just left click
+     on the selected object; a popup dialog appears.</para>
+        <para> This
+     mode remains active until an other edition mode is selected.</para>
+        <para>
     This edition mode  can also be entered pressing the
-    &quot;<VERB>p</VERB>&quot; key while locator is in the 
-    edition window.  </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Default names: ">
-        <SP>This menu automatically sets the node and egde names properties to
-    node and egde internal number.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Edit/Undo: ">
-        <SP>This menu set the current edition mode to &quot;undo previous
-     edition&quot;. It can be used recursively.</SP>
-        <P>
+    "<literal>p</literal>" key while locator is in the 
+    edition window.  </para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Default names: </term><listitem>
+        <para>This menu automatically sets the node and egde names properties to
+    node and egde internal number.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Edit/Undo: </term><listitem>
+        <para>This menu set the current edition mode to "undo previous
+     edition". It can be used recursively.</para>
+        <para>
     This edition mode  can also be entered pressing the
-    &quot;<VERB>u</VERB>&quot; key while locator is in the 
-    edition window.</P>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
+    "<literal>u</literal>" key while locator is in the 
+    edition window.</para>
+      </listitem></varlistentry>
+    </variablelist>
+    <para>
     Note that Under windows, the shortcuts are taken into accound only if
-    the edition window have  the focus.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>edit_graph</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    the edition window have  the focus.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="edit_graph">edit_graph</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

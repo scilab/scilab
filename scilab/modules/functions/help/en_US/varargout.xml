@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -11,42 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>varargout</TITLE>
-  <TYPE>Scilab keyword</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="varargout">  variable numbers of arguments in an output argument list</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    A function whose output argument list contains  <VERB>varargout</VERB> must be
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="varargout"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>varargout</refname><refpurpose>  variable numbers of arguments in an output argument list</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
+    A function whose output argument list contains  <literal>varargout</literal> must be
     called with more output arguments than indicated in the output argument
-    list. The calling arguments passed form <VERB>varargout</VERB> keyword onwards
-    are extracted out of the <VERB>varargout</VERB> list defined in the function</P>
-    <P><VERB>varagout = function ex()</VERB> may be called with any number of output
-    arguments. Within function  <VERB>ex</VERB> output arguments may be stored in
-    in <VERB>varargout(i)</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    list. The calling arguments passed form <literal>varargout</literal> keyword onwards
+    are extracted out of the <literal>varargout</literal> list defined in the function</para>
+    <para><literal>varagout = function ex()</literal> may be called with any number of output
+    arguments. Within function  <literal>ex</literal> output arguments may be stored in
+    in <literal>varargout(i)</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 deff('varargout=exampl()','varargout=list(1,2,3,4)')
 
 x=exampl()
 [x,y]=exampl()
 [x,y,z]=exampl()
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>function</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>varargin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>list</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="function">function</link>
+    </member>
+    <member>
+      <link linkend="varargin">varargin</link>
+    </member>
+    <member>
+      <link linkend="list">list</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

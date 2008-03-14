@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,37 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="printsetupbox"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>printsetupbox</refname><refpurpose>Display print dialog box
+  (Windows)</refpurpose></refnamediv>
+  
 
-  <TITLE>printsetupbox</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="printsetupbox">Display print dialog box
-  (Windows)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>printsetupbox()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>printsetupbox()
+bOK=printsetupbox()</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>bOK=printsetupbox()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Description</title>
+    <para>bOK=printsetupbox() displays the built-in printing dialogbox for
+    Windows and configure the printer. returns %T if you push 'OK' button</para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>bOK=printsetupbox() displays the built-in printing dialogbox for
-    Windows and configure the printer. returns %T if you push 'OK' button</P>
-  </DESCRIPTION>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="toprint">toprint</link>
+    </member>
+  </simplelist></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>toprint</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

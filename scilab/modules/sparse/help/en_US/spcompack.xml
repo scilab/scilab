@@ -1,49 +1,47 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spcompack</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="spcompack"> converts a compressed adjacency representation</SHORT_DESCRIPTION>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>xadj</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  integer vector of length (n+1).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xlindx</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  integer vector of length n+1 (pointers).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>lindx</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  integer vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>adjncy</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  integer vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <VERBATIM>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spcompack"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>spcompack</refname><refpurpose> converts a compressed adjacency representation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xadj</term>
+        <listitem>
+          <para> integer vector of length (n+1).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xlindx</term>
+        <listitem>
+          <para> integer vector of length n+1 (pointers).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lindx</term>
+        <listitem>
+          <para> integer vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>adjncy</term>
+        <listitem>
+          <para> integer vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <programlisting><![CDATA[
+
 Utility fonction spcompak is used to convert a compressed adjacency
 representation into standard adjacency representation.
-   ]]>
-    </VERBATIM>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 // A is the sparse matrix:
 A=[1,0,0,0,0,0,0;
    0,1,0,0,0,0,0;
@@ -78,17 +76,17 @@ xlindx=[1,2,3,8,9,11];
 //A can be reconstructed from (xadj,xlindx,lindx).
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy-spcompack(xadj,xlindx,lindx)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>sp2adj</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>adj2sp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>spget</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="sp2adj">sp2adj</link>
+    </member>
+    <member>
+      <link linkend="adj2sp">adj2sp</link>
+    </member>
+    <member>
+      <link linkend="spget">spget</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

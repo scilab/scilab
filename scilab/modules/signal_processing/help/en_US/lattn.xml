@@ -1,49 +1,45 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lattn</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lattn"> recursive solution of normal equations</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[la,lb]=lattn(n,p,cov)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: maximum order of the filter</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: fixed dimension of the MA part. If <VERB>p= -1</VERB>, the algorithm reduces to the classical Levinson recursions.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>cov</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix containing the <VERB>Rk</VERB>'s (<VERB>d*d</VERB> matrices for a d-dimensional process).It must be given the following way</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>la</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list-type variable, giving the successively calculated polynomials (degree 1 to degree n),with coefficients Ak</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    solves recursively on <VERB>n</VERB> (<VERB>p</VERB> being fixed)
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lattn"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lattn</refname><refpurpose> recursive solution of normal equations</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[la,lb]=lattn(n,p,cov)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>maximum order of the filter</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>fixed dimension of the MA part. If <literal>p= -1</literal>, the algorithm reduces to the classical Levinson recursions.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cov</term>
+        <listitem>
+          <para>matrix containing the <literal>Rk</literal>'s (<literal>d*d</literal> matrices for a d-dimensional process).It must be given the following way</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>la</term>
+        <listitem>
+          <para>list-type variable, giving the successively calculated polynomials (degree 1 to degree n),with coefficients Ak</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    solves recursively on <literal>n</literal> (<literal>p</literal> being fixed)
     the following system (normal equations), i.e. identifies
-    the AR part (poles) of a vector ARMA(n,p) process</P>
-    <P>
-    where {<VERB>Rk;k=1,nlag</VERB>} is the sequence of empirical covariances</P>
-  </DESCRIPTION>
-  <AUTHOR>G. Le V.  </AUTHOR>
-</MAN>
+    the AR part (poles) of a vector ARMA(n,p) process</para>
+    <para>
+    where {<literal>Rk;k=1,nlag</literal>} is the sequence of empirical covariances</para>
+  </refsection>
+  <refsection><title>Authors</title><para>G. Le V.  </para></refsection>
+</refentry>

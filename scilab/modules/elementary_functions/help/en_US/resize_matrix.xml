@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
@@ -10,82 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>resize_matrix</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoÃ» 2006) $</DATE>
-  <SHORT_DESCRIPTION name="resize_matrix"> create a new matrix with a different size</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="resize_matrix"><info><pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006) $</pubdate></info><refnamediv><refname>resize_matrix</refname><refpurpose> create a new matrix with a different size</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>mat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: input matrix from which the resized matrix will be created.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>mat</term>
+        <listitem>
+          <para>input matrix from which the resized matrix will be created.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>nbRow</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number of row of the resized matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>nbRow</term>
+        <listitem>
+          <para>number of row of the resized matrix.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>nbCol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number of column of the resized matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>nbCol</term>
+        <listitem>
+          <para>number of column of the resized matrix.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>typeOfMat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: caracter string, type name of the resized matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>typeOfMat</term>
+        <listitem>
+          <para>caracter string, type name of the resized matrix.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>resMat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: resized matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>resMat</term>
+        <listitem>
+          <para>resized matrix.</para>
+        </listitem>
+      </varlistentry>
 
-    </PARAM_INDENT>
-  </PARAM>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P> Create a matrix of size <VERB>nbRow</VERB> x <VERB>nbCol</VERB> and whose elements
-    <VERB>(i,j)</VERB> are
-    <VERB>mat(i,j)</VERB> if <VERB>(i,j)</VERB> is in the range of the input matrix.
-    Otherwise elements <VERB>(i,j)</VERB> are <VERB>0</VERB> for real
-    or integer matrices, <VERB>%f</VERB> for boolean matrices and an empty string
+  <refsection><title>Description</title>
+    <para> Create a matrix of size <literal>nbRow</literal> x <literal>nbCol</literal> and whose elements
+    <literal>(i,j)</literal> are
+    <literal>mat(i,j)</literal> if <literal>(i,j)</literal> is in the range of the input matrix.
+    Otherwise elements <literal>(i,j)</literal> are <literal>0</literal> for real
+    or integer matrices, <literal>%f</literal> for boolean matrices and an empty string
     for string matrices.
-    </P>
+    </para>
 
-    <P>
+    <para>
     The type of the output matrix may be modified by specifying the
-    <VERB>typeOfMat</VERB> argument.
+    <literal>typeOfMat</literal> argument.
     In this case, be sure that the input matrix type is compatible with
     this one.
-    </P>
+    </para>
 
-    <P>
+    <para>
     For now, only real, integer matrices, boolean and character string matrices are supported.
-    This means that <VERB>typeOfMat</VERB> must be chosen within:  'constant', 'boolean',
+    This means that <literal>typeOfMat</literal> must be chosen within:  'constant', 'boolean',
     'string' or any integer type ('int8', 'int16',...).
-    </P>
-  </DESCRIPTION>
+    </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
   // number matrix
   myMat = 5 * rand( 3, 4 )
@@ -98,19 +95,19 @@
   myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"]
   myMatString = resize_matrix( myMatString, 3, 1 )
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>matrix</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>size</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>typeof</LINK>
-    </SEE_ALSO_ITEM>
-    </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="matrix">matrix</link>
+    </member>
+    <member>
+      <link linkend="size">size</link>
+    </member>
+    <member>
+      <link linkend="typeof">typeof</link>
+    </member>
+    </simplelist></refsection>
 
-    <AUTHOR>Jean-Baptiste Silvy </AUTHOR>
-</MAN>
+    <refsection><title>Authors</title><para>Jean-Baptiste Silvy </para></refsection>
+</refentry>

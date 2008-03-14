@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,57 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>linf</refname><refpurpose> infinity norm</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>linf(g [,eps],[tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>is a <literal>syslin</literal> linear system.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eps</term>
+        <listitem>
+          <para>is error tolerance on n.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>threshold for imaginary axis poles.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    returns the L_infinity norm of <literal>g</literal>.</para>
+    <programlisting><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>linf</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="linf"> infinity norm</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>linf(g [,eps],[tol])   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: is a <VERB>syslin</VERB> linear system.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>eps</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: is error tolerance on n.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: threshold for imaginary axis poles.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    returns the L_infinity norm of <VERB>g</VERB>.</P>
-    <VERBATIM>
-<![CDATA[
     n=sup [sigmax(g(jw)] 
        w
-   ]]>
-    </VERBATIM>
-    <P>
-    (sigmax largest singular value).</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>h_norm</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>linfn</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+    ]]></programlisting>
+    <para>
+    (sigmax largest singular value).</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="h_norm">h_norm</link>
+    </member>
+    <member>
+      <link linkend="linfn">linfn</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

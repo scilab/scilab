@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,78 +10,77 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_dec2hex</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_dec2hex"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_dec2hex</refname><refpurpose>Matlab dec2hex emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_dec2hex">Matlab dec2hex emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>dec2hex</VERB> behave differently in some particular cases:</P>
+    <para>Matlab and Scilab <literal>dec2hex</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        With empty matrix: Matlab <VERB>dec2hex</VERB> returns "" but in Scilab you get [].
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        With empty matrix: Matlab <literal>dec2hex</literal> returns "" but in Scilab you get [].
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        With complex inputs: Matlab <VERB>dec2hex</VERB> automatically removes complex part of inputs but not Scilab one.
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        With complex inputs: Matlab <literal>dec2hex</literal> automatically removes complex part of inputs but not Scilab one.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Matlab <VERB>dec2hex</VERB> always returns a row vector but in Scilab <VERB>dec2hex</VERB>
+      <listitem>
+        <para>
+        Matlab <literal>dec2hex</literal> always returns a row vector but in Scilab <literal>dec2hex</literal>
 	returns a value which have the same size as the input.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Matlab <VERB>dec2hex</VERB> can have two inputs but not Scilab one.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Matlab <literal>dec2hex</literal> can have two inputs but not Scilab one.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_dec2hex(D[,N])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>dec2hex(D[,N])</VERB> when it was not
+    <para>
+    The function <literal>mtlb_dec2hex(D[,N])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>dec2hex(D[,N])</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_dec2hex</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_dec2hex</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>D</VERB> is not an empty matrix,
-        <VERB>mtlb_dec2hex(D)</VERB> may be replaced by
-	<VERB>matrix(dec2hex(real(D)),-1,1)</VERB> if <VERB>D</VERB> is complex and by
-	<VERB>matrix(dec2hex(D),-1,1)</VERB> else.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>D</literal> is not an empty matrix,
+        <literal>mtlb_dec2hex(D)</literal> may be replaced by
+	<literal>matrix(dec2hex(real(D)),-1,1)</literal> if <literal>D</literal> is complex and by
+	<literal>matrix(dec2hex(D),-1,1)</literal> else.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_dec2hex</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_dec2hex</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

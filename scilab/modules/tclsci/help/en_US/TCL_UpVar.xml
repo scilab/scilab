@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
@@ -10,70 +10,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_UpVar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>TCL_UpVar</refname><refpurpose>Make a link from a tcl source variable
+  to a tcl destination variable</refpurpose></refnamediv>
+  
 
-  <TITLE>TCL_UpVar</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="TCL_UpVar">Make a link from a tcl source variable
-  to a tcl destination variable</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>OK=TCL_UpVar(varname1,varname2,[interp])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>OK=TCL_UpVar(varname1,varname2,[interp])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>varname1</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>varname1</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: character string. Contains the name of the tcl source
-          variable.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>character string. Contains the name of the tcl source
+          variable.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>varname2</PARAM_NAME>
+      <varlistentry>
+        <term>varname2</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: character string. Contains the name of the tcl destination
-          variable.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>character string. Contains the name of the tcl destination
+          variable.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>interp</PARAM_NAME>
+      <varlistentry>
+        <term>interp</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: optional character string parameter. Name of the slave tcl
+        <listitem>
+          <para>optional character string parameter. Name of the slave tcl
           interpreter in which the operation has to be performed. If not
           provided, it defaults to the main tcl interpreter created by
-          Scilab.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          Scilab.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>ok</PARAM_NAME>
+      <varlistentry>
+        <term>ok</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: boolean. %T if it is ok.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>boolean. %T if it is ok.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Make a link from a tcl source variable to a tcl destination
-    variable.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Make a link from a tcl source variable to a tcl destination
+    variable.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 TCL_SetVar("Scilab","OK")
 TCL_UpVar("Scilab","ScilabBis")
 TCL_GetVar("ScilabBis")
@@ -94,45 +91,45 @@ TCL_GetVar("ScilabBis",'InterpBis')
 TCL_GetVar("Scilab",'InterpBis')
 TCL_DeleteInterp('InterpBis')
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ScilabEval</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ScilabEval">ScilabEval</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_EvalFile</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_EvalFile">TCL_EvalFile</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_EvalStr</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_GetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_GetVar">TCL_GetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_SetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_SetVar">TCL_SetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_ExistVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_UnsetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_UnsetVar">TCL_UnsetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_CreateSlave</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_DeleteInterp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

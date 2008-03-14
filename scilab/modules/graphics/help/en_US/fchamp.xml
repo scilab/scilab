@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,111 +10,107 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fchamp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fchamp</refname><refpurpose>direction field of a 2D first order
+  ODE</refpurpose></refnamediv>
+  
 
-  <TITLE>fchamp</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="fchamp">direction field of a 2D first order
-  ODE</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>fchamp(f,t,xr,yr,[arfact,rect,strf])</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>fchamp(f,t,xr,yr,[arfact,rect,strf])
+fchamp(f,t,xr,yr,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>fchamp(f,t,xr,yr,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
+        <listitem>
+          <para>An external (function or character string) or a list which
+          describes the ODE.</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: An external (function or character string) or a list which
-          describes the ODE.</SP>
+          <variablelist>
+            <varlistentry>
+              <term>-</term>
 
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>-</PARAM_NAME>
+              <listitem>
+                <para>It can be a function name <literal>f</literal>, where
+                <literal>f</literal> is supposed to be a function of type
+                <literal>y=f(t,xy [p1,..pn])</literal>. <literal>f</literal> returns a
+                column vector of size 2, <literal>y</literal>, which gives the value
+                of the direction field <literal>f</literal> at point
+                <literal>xy=[x,y]</literal> and at time <literal>t</literal>.</para>
+              </listitem>
+            </varlistentry>
 
-              <PARAM_DESCRIPTION>
-                <SP>It can be a function name <VERB>f</VERB>, where
-                <VERB>f</VERB> is supposed to be a function of type
-                <VERB>y=f(t,xy [p1,..pn])</VERB>. <VERB>f</VERB> returns a
-                column vector of size 2, <VERB>y</VERB>, which gives the value
-                of the direction field <VERB>f</VERB> at point
-                <VERB>xy=[x,y]</VERB> and at time <VERB>t</VERB>.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+            <varlistentry>
+              <term>-</term>
 
-            <PARAM_ITEM>
-              <PARAM_NAME>-</PARAM_NAME>
+              <listitem>
+                <para>It can also be an object of type list,
+                <literal>list(f,P1,..Pn)</literal> where <literal>f</literal> is a
+                function of type <literal>y=f(t,xy,p1,..pn)</literal> and
+                <literal>Pi</literal> gives the value of the parameter
+                <literal>pi</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
 
-              <PARAM_DESCRIPTION>
-                <SP>It can also be an object of type list,
-                <VERB>list(f,P1,..Pn)</VERB> where <VERB>f</VERB> is a
-                function of type <VERB>y=f(t,xy,p1,..pn)</VERB> and
-                <VERB>Pi</VERB> gives the value of the parameter
-                <VERB>pi</VERB>.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>t</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>t</PARAM_NAME>
+        <listitem>
+          <para>The selected time.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: The selected time.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>xr,yr</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>xr,yr</PARAM_NAME>
+        <listitem>
+          <para>Two row vectors of size n1 and n2 which define the grid on
+          which the direction field is computed.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Two row vectors of size n1 and n2 which define the grid on
-          which the direction field is computed.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+        <listitem>
+          <para>This represents a sequence of statements <literal>key1=value1,key2=value2</literal>,
+          ... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: arfact, rect,
+          strf (see below).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1,key2=value2</VERB>,
-          ... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following: arfact, rect,
-          strf (see below).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>arfact,rect,strf</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>arfact,rect,strf</PARAM_NAME>
+        <listitem>
+          <para>Optional arguments, see <literal>champ</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Optional arguments, see <VERB>champ</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para><literal>fchamp</literal> is used to draw the direction field of a 2D first
+    order ODE defined by the external function <literal>f</literal>. Note that if
+    the ODE is autonomous, argument <literal>t</literal> is useless, but it must be
+    given.</para>
 
-  <DESCRIPTION>
-    <P><VERB>fchamp</VERB> is used to draw the direction field of a 2D first
-    order ODE defined by the external function <VERB>f</VERB>. Note that if
-    the ODE is autonomous, argument <VERB>t</VERB> is useless, but it must be
-    given.</P>
+    <para>Enter the command <literal>fchamp()</literal> to see a demo.</para>
+  </refsection>
 
-    <P>Enter the command <VERB>fchamp()</VERB> to see a demo.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 deff("[xdot] = derpol(t,x)",..
         ["xd1 = x(2)";..
@@ -126,17 +122,17 @@ fchamp(derpol,0,xf,yf)
 clf()
 fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>champ</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="champ">champ</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>champ1</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="champ1">champ1</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

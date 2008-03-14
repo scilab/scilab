@@ -1,69 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>chsolve  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="chsolve"> solveur de Cholesky creux  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>sol=chsolve(spcho,rhs)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>spcho  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : liste contenant les facteurs de Cholesky renvoyés par chfact 
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>rhs, sol  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : vecteurs
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-      <VERB>sol=chsolve(spcho,rhs)</VERB> calcule la solution de 
-      <VERB>rhs=A*sol</VERB>, où <VERB>A</VERB> est une matrice symétrique
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="chsolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>chsolve</refname><refpurpose> solveur de Cholesky creux  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>sol=chsolve(spcho,rhs)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>spcho  </term>
+	<listitem>
+	  <para>liste contenant les facteurs de Cholesky renvoyés par chfact 
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>rhs, sol  </term>
+	<listitem>
+	  <para>vecteurs
+	  </para>
+	</listitem> 
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+      <literal>sol=chsolve(spcho,rhs)</literal> calcule la solution de 
+      <literal>rhs=A*sol</literal>, où <literal>A</literal> est une matrice symétrique
       définie positive. Cette fonction est basée sur le programme Ng-Peyton
       (ORNL). Voir le programme Fortran pour une description complète des
-      variables de la liste <VERB>spcho</VERB>. 
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+      variables de la liste <literal>spcho</literal>. 
+    </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     A=sprand(20,20,0.1);
     A=A*A'+eye();  
     spcho=chfact(A);
     sol=(1:20)';rhs=A*sol;
     spcho=chfact(A);
     chsolve(spcho,rhs)
-    ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>chfact</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>  
-    <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM>  
-    <SEE_ALSO_ITEM> <LINK>luget</LINK> </SEE_ALSO_ITEM>  
-    <SEE_ALSO_ITEM> <LINK>spchol</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="chfact">chfact</link> </member> 
+    <member> <link linkend="sparse">sparse</link> </member>  
+    <member> <link linkend="lufact">lufact</link> </member>  
+    <member> <link linkend="luget">luget</link> </member>  
+    <member> <link linkend="spchol">spchol</link> </member>
+  </simplelist></refsection>
+</refentry>

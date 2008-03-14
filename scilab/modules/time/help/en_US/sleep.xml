@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,38 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sleep"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sleep</refname><refpurpose>suspend Scilab</refpurpose></refnamediv>
+  
 
-  <TITLE>sleep</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="sleep">suspend Scilab</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>sleep(milliseconds)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sleep(milliseconds)</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P><VERB>sleep</VERB> : Sleep process for specified number of miliseconds
+  <refsection><title>Description</title>
+    <para><literal>sleep</literal>Sleep process for specified number of miliseconds
     specified by the argument. The actual suspension time may be longer
     because of other activities in the system, or because of the time spent in
-    processing the call.</P>
-  </DESCRIPTION>
+    processing the call.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     tic;sleep(6000);toc
-    ]]></EXAMPLE>
+    ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xpause</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xpause">xpause</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

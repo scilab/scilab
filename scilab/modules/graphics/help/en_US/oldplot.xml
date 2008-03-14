@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,60 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="oldplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>oldplot</refname><refpurpose>simple plot (old
+  version)</refpurpose></refnamediv>
+  
 
-  <TITLE>oldplot</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="oldplot">simple plot (old
-  version)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>oldplot(x,y,[xcap,ycap,caption])</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>oldplot(x,y,[xcap,ycap,caption])
+oldplot(y)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>oldplot(y)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+        <listitem>
+          <para>two vectors with same sizes</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: two vectors with same sizes</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>xcap,ycap,caption</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>xcap,ycap,caption</PARAM_NAME>
+        <listitem>
+          <para>character strings or string matrices</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: character strings or string matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>Plot <literal>y</literal> as function of <literal>x</literal>. <literal>xcap</literal>
+    and <literal>ycap</literal> are captions for x-axis and y-axis respectively and
+    <literal>caption</literal> is the caption of the plot.</para>
 
-  <DESCRIPTION>
-    <P>Plot <VERB>y</VERB> as function of <VERB>x</VERB>. <VERB>xcap</VERB>
-    and <VERB>ycap</VERB> are captions for x-axis and y-axis respectively and
-    <VERB>caption</VERB> is the caption of the plot.</P>
-
-    <P>Invoked with only one argument, <VERB>oldplot(y)</VERB> plots the
-    <VERB>y</VERB> vector or, if <VERB>y</VERB> is a matrix, it plots all its
+    <para>Invoked with only one argument, <literal>oldplot(y)</literal> plots the
+    <literal>y</literal> vector or, if <literal>y</literal> is a matrix, it plots all its
     row vectors on the same plot. This plot is done with respect to the vector
-    1:&lt;number of columns of <VERB>y</VERB>&gt;.</P>
+    1:&lt;number of columns of <literal>y</literal>&gt;.</para>
 
-    <P><VERB>oldplot</VERB> is obsolete. Use <VERB>plot2d</VERB> or
-    <VERB>plot</VERB> instead.</P>
-  </DESCRIPTION>
+    <para><literal>oldplot</literal> is obsolete. Use <literal>plot2d</literal> or
+    <literal>plot</literal> instead.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 x=0:0.1:2*%pi;
 // simple plot
@@ -75,17 +71,17 @@ oldplot(x,sin(x),"sin","time","plot of sinus")
 xbasc()
 oldplot([sin(x);cos(x)])
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="plot">plot</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

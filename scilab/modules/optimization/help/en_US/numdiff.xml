@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,80 +10,77 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="numdiff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>numdiff</refname><refpurpose>numerical gradient
+  estimation</refpurpose></refnamediv>
+  
 
-  <TITLE>numdiff</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="numdiff">numerical gradient
-  estimation</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g=numdiff(fun,x [,dx])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g=numdiff(fun,x [,dx])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>fun</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: an external, Scilab function or list. See below for calling
-          sequence, see also <LINK>external</LINK> for details about external
-          functions.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>an external, Scilab function or list. See below for calling
+          sequence, see also <link linkend="external">external</link> for details about external
+          functions.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+      <varlistentry>
+        <term>x</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector, the argument of the function <VERB>fun</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>vector, the argument of the function <literal>fun</literal></para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>dx</PARAM_NAME>
+      <varlistentry>
+        <term>dx</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector, the finite difference step. Default value is
-          <VERB>dx=sqrt(%eps)*(1+1d-3*abs(x))</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>vector, the finite difference step. Default value is
+          <literal>dx=sqrt(%eps)*(1+1d-3*abs(x))</literal></para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+      <varlistentry>
+        <term>g</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector, the estimated gradient</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>vector, the estimated gradient</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>given a function <VERB>fun(x)</VERB> from <VERB>R^n</VERB> to
-    <VERB>R^p</VERB> computes the matrix <VERB>g</VERB> such as</P>
+  <refsection><title>Description</title>
+    <para>given a function <literal>fun(x)</literal> from <literal>R^n</literal> to
+    <literal>R^p</literal> computes the matrix <literal>g</literal> such as</para>
 
-    <VERBATIM>[ d f ] [ i ] g = [ ---- ] ij [ d x ] [ j ]</VERBATIM>
+    <programlisting><![CDATA[[ d f ] [ i ] g = [ ---- ] ij [ d x ] [ j ]]]></programlisting>
 
-    <P>using finite difference methods.</P>
+    <para>using finite difference methods.</para>
 
-    <P>Without parameters, the function fun calling sequence is
-    <VERB>y=fun(x)</VERB>, and numdiff can be called as
-    <VERB>g=numdiff(fun,x)</VERB>. Else the function fun calling sequence must
-    be <VERB>y=fun(x,param_1,pararm_2,..,param_q)</VERB>. If parameters
-    <VERB>param_1,param_2,..param_q</VERB> exist then <VERB>numdiff</VERB> can
+    <para>Without parameters, the function fun calling sequence is
+    <literal>y=fun(x)</literal>, and numdiff can be called as
+    <literal>g=numdiff(fun,x)</literal>. Else the function fun calling sequence must
+    be <literal>y=fun(x,param_1,pararm_2,..,param_q)</literal>. If parameters
+    <literal>param_1,param_2,..param_q</literal> exist then <literal>numdiff</literal> can
     be called as follow
-    <VERB>g=numdiff(list(fun,param_1,param_2,..param_q),x)</VERB>.</P>
-  </DESCRIPTION>
+    <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // example 1 (without parameters)
 // myfun is a function from R^2 to R :   (x(1),x(2)) |--> myfun(x) 
 function f=myfun(x)
@@ -108,15 +105,15 @@ x=1
 g2=numdiff(list(myfun,a,b,c),x)
 // The exact gradient, i.e derivate belong x(1), is :
 exact2=c*(x+a)^(c-1)
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>optim</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="optim">optim</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>external</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="external">external</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,79 +10,75 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="des2ss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>des2ss</refname><refpurpose> descriptor to state-space</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
+[Sl]=des2ss(Des)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B,C,D,E</term>
+        <listitem>
+          <para>real matrices of appropriate dimensions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Des</term>
+        <listitem>
+          <para>list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>real parameter (threshold) (default value <literal>100*%eps</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Descriptor to state-space transform.</para>
+    <para><literal>Sl=des2ss(A,B,C,D,E)</literal> returns 
+    a linear system <literal>Sl</literal> equivalent to the descriptor system 
+    <literal>(E,A,B,C,D)</literal>.</para>
+    <para>
+    For index one <literal>(E,A)</literal> pencil, explicit formula is used and
+    for higher index pencils <literal>rowshuff</literal> is used.</para>
+    <para><literal>Sl=des2ss(Des)</literal> with <literal>Des=list('des',A,B,C,D,E)</literal> returns
+    a linear system <literal>Sl</literal> in state-space form with possibly 
+    a polynomial <literal>D</literal> matrix.</para>
+    <para>
+    A generalized Leverrier algorithm is used.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>des2ss</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="des2ss"> descriptor to state-space</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[Sl]=des2ss(A,B,C,D,E [,tol])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[Sl]=des2ss(Des)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A,B,C,D,E</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real matrices of appropriate dimensions</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Des</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real parameter (threshold) (default value <VERB>100*%eps</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Descriptor to state-space transform.</P>
-    <P><VERB>Sl=des2ss(A,B,C,D,E)</VERB> returns 
-    a linear system <VERB>Sl</VERB> equivalent to the descriptor system 
-    <VERB>(E,A,B,C,D)</VERB>.</P>
-    <P>
-    For index one <VERB>(E,A)</VERB> pencil, explicit formula is used and
-    for higher index pencils <VERB>rowshuff</VERB> is used.</P>
-    <P><VERB>Sl=des2ss(Des)</VERB> with <VERB>Des=list('des',A,B,C,D,E)</VERB> returns
-    a linear system <VERB>Sl</VERB> in state-space form with possibly 
-    a polynomial <VERB>D</VERB> matrix.</P>
-    <P>
-    A generalized Leverrier algorithm is used.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
 S1=tf2des(G);S2=tf2des(G,"withD");
 W1=des2ss(S1);W2=des2ss(S2);
 clean(ss2tf(W1))
 clean(ss2tf(W2))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>des2tf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>glever</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rowshuff</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="des2tf">des2tf</link>
+    </member>
+    <member>
+      <link linkend="glever">glever</link>
+    </member>
+    <member>
+      <link linkend="rowshuff">rowshuff</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

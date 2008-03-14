@@ -1,169 +1,165 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>macr2lst</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="macr2lst"> function to list conversion</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[txt]=macr2lst(function-name)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <SP>
-    This primitive converts a compiled Scilab function <VERB>function-name</VERB>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="macr2lst"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>macr2lst</refname><refpurpose> function to list conversion</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[txt]=macr2lst(function-name)</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
+    This primitive converts a compiled Scilab function <literal>function-name</literal>
     into a list which codes the internal representation of
-    the function (reverse polish notation).</SP>
-    <P>The first entry of the list is the function name, the second
+    the function (reverse polish notation).</para>
+    <para>The first entry of the list is the function name, the second
     and third are respectively the vectors of left hand side variables
     and right hand side variables names. The following entries are either basic operation records 
     
     either lists with contains the hierachical control structures like
-    if , for, ... </P>
-    <P>Basic operation records are described by a character string
-    vector whose first element represents the opcode. </P>
-    <TABLE>
-      <TABLE_NEW_ROW>
-	<TABLE_NEW_COLUMN>op codes</TABLE_NEW_COLUMN>
-	<TABLE_NEW_COLUMN>meaning</TABLE_NEW_COLUMN>
-	<TABLE_NEW_COLUMN>parameters</TABLE_NEW_COLUMN>     
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-	<TABLE_NEW_COLUMN>"0"</TABLE_NEW_COLUMN>
-	<TABLE_NEW_COLUMN>ignored opcode</TABLE_NEW_COLUMN>
-	<TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>     
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-	<TABLE_NEW_COLUMN>"1"</TABLE_NEW_COLUMN>
-	<TABLE_NEW_COLUMN>No more used</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>     
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>
-	 <TABLE_NEW_COLUMN>"2"</TABLE_NEW_COLUMN>
-	 <TABLE_NEW_COLUMN>variable or function reference</TABLE_NEW_COLUMN>
-	 <TABLE_NEW_COLUMN>variable name, #rhs, #lhs</TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>"3"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>put a string in the stack</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>the string</TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>    
-        <TABLE_NEW_COLUMN>"4"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>put am empty matrix in the stack</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN> 
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>     
-        <TABLE_NEW_COLUMN>"5"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>apply an operation</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>operation code, #rhs,#lhs</TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>    
-        <TABLE_NEW_COLUMN>"6"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>put a number  in the stack</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>the number</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>     
-       <TABLE_NEW_COLUMN>"12"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>pause command</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>     
-        <TABLE_NEW_COLUMN>"13"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>break command</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>      
-        <TABLE_NEW_COLUMN>"14"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>abort command</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN> 
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>     
-        <TABLE_NEW_COLUMN>"15"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>end of line mark</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>     
-        <TABLE_NEW_COLUMN>"17"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>quit command</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>     
-        <TABLE_NEW_COLUMN>"18"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>named variable</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>variable name</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>     
-        <TABLE_NEW_COLUMN>"19"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>create recursive index structure</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>path length, number of final indices</TABLE_NEW_COLUMN>
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>  
-        <TABLE_NEW_COLUMN>"20"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>function call</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>function name, #rhs, #lhs </TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>  
-        <TABLE_NEW_COLUMN>"23"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>create variable from name</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>variable name</TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>  
-        <TABLE_NEW_COLUMN>"24"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>put a variable with type 0 in the stack</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>  
-        <TABLE_NEW_COLUMN>"25"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>profile record</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>number of call, time spend </TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>  
-        <TABLE_NEW_COLUMN>"26"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>put a vector of strings in the stack</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>#rows, #columns, element sequence</TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-     <TABLE_NEW_ROW>  
-        <TABLE_NEW_COLUMN>"27"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>put a builtin reference in the stack</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>interface number, position in interface, function name</TABLE_NEW_COLUMN>  
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>"28"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>continue command</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>   
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>   
-        <TABLE_NEW_COLUMN>"29"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>assignment</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>#lhs, display mode, (variable name, #rhs)*</TABLE_NEW_COLUMN>      
-       </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>   
-        <TABLE_NEW_COLUMN>"30"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>logical expression short circuit</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>type, jump size</TABLE_NEW_COLUMN>      
-       </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>   
-        <TABLE_NEW_COLUMN>"31"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>comment</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>the comment</TABLE_NEW_COLUMN>      
-       </TABLE_NEW_ROW>
+    if , for, ... </para>
+    <para>Basic operation records are described by a character string
+    vector whose first element represents the opcode. </para>
+    <informaltable border="1">
+      <tr>
+	<td>op codes</td>
+	<td>meaning</td>
+	<td>parameters</td>     
+      </tr>
+      <tr>
+	<td>"0"</td>
+	<td>ignored opcode</td>
+	<td>none</td>     
+      </tr>
+      <tr>
+	<td>"1"</td>
+	<td>No more used</td>
+        <td/>     
+       </tr>
+       <tr>
+	 <td>"2"</td>
+	 <td>variable or function reference</td>
+	 <td>variable name, #rhs, #lhs</td>  
+       </tr>
+       <tr>
+        <td>"3"</td>
+        <td>put a string in the stack</td>
+        <td>the string</td>  
+       </tr>
+       <tr>    
+        <td>"4"</td>
+        <td>put am empty matrix in the stack</td>
+        <td>none</td> 
+       </tr>
+       <tr>     
+        <td>"5"</td>
+        <td>apply an operation</td>
+        <td>operation code, #rhs,#lhs</td>  
+       </tr>
+       <tr>    
+        <td>"6"</td>
+        <td>put a number  in the stack</td>
+        <td>the number</td>
+       </tr>
+       <tr>     
+       <td>"12"</td>
+        <td>pause command</td>
+        <td>none</td>
+       </tr>
+       <tr>     
+        <td>"13"</td>
+        <td>break command</td>
+        <td>none</td>
+       </tr>
+       <tr>      
+        <td>"14"</td>
+        <td>abort command</td>
+        <td>none</td> 
+       </tr>
+       <tr>     
+        <td>"15"</td>
+        <td>end of line mark</td>
+        <td>none</td>
+       </tr>
+       <tr>     
+        <td>"17"</td>
+        <td>quit command</td>
+        <td>none</td>
+       </tr>
+       <tr>     
+        <td>"18"</td>
+        <td>named variable</td>
+        <td>variable name</td>
+       </tr>
+       <tr>     
+        <td>"19"</td>
+        <td>create recursive index structure</td>
+        <td>path length, number of final indices</td>
+       </tr>
+       <tr>  
+        <td>"20"</td>
+        <td>function call</td>
+        <td>function name, #rhs, #lhs </td>  
+       </tr>
+       <tr>  
+        <td>"23"</td>
+        <td>create variable from name</td>
+        <td>variable name</td>  
+       </tr>
+       <tr>  
+        <td>"24"</td>
+        <td>put a variable with type 0 in the stack</td>
+        <td>none</td>  
+       </tr>
+       <tr>  
+        <td>"25"</td>
+        <td>profile record</td>
+        <td>number of call, time spend </td>  
+       </tr>
+       <tr>  
+        <td>"26"</td>
+        <td>put a vector of strings in the stack</td>
+        <td>#rows, #columns, element sequence</td>  
+       </tr>
+     <tr>  
+        <td>"27"</td>
+        <td>put a builtin reference in the stack</td>
+        <td>interface number, position in interface, function name</td>  
+       </tr>
+       <tr>
+        <td>"28"</td>
+        <td>continue command</td>
+        <td>none</td>   
+       </tr>
+       <tr>   
+        <td>"29"</td>
+        <td>assignment</td>
+        <td>#lhs, display mode, (variable name, #rhs)*</td>      
+       </tr>
+      <tr>   
+        <td>"30"</td>
+        <td>logical expression short circuit</td>
+        <td>type, jump size</td>      
+       </tr>
+       <tr>   
+        <td>"31"</td>
+        <td>comment</td>
+        <td>the comment</td>      
+       </tr>
   
-       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>"99"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>return command</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>none</TABLE_NEW_COLUMN>      
-      </TABLE_NEW_ROW>
-       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN> &gt; "100"</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>builtin call (obsolete)</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>100*fun, #rhs, #lhs, fin</TABLE_NEW_COLUMN>      
-      </TABLE_NEW_ROW>
-  </TABLE>
- <P>The <LINK>fun2string</LINK> function can be used to generate the intial code.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+       <tr>
+        <td>"99"</td>
+        <td>return command</td>
+        <td>none</td>      
+      </tr>
+       <tr>
+        <td> &gt; "100"</td>
+        <td>builtin call (obsolete)</td>
+        <td>100*fun, #rhs, #lhs, fin</td>      
+      </tr>
+  </informaltable>
+ <para>The <link linkend="fun2string">fun2string</link> function can be used to generate the intial code.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //DISPLAY
 function y=foo(x,flag)
   if flag then 
@@ -175,12 +171,12 @@ endfunction
 L=macr2lst(foo)
 fun2string(L)
 
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>macrovar</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>fun2string</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>macr2tree</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>tree2code</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member><link linkend="macrovar">macrovar</link></member>
+    <member><link linkend="fun2string">fun2string</link></member>
+    <member><link linkend="macr2tree">macr2tree</link></member>
+    <member><link linkend="tree2code">tree2code</link></member>
+  </simplelist></refsection>
+</refentry>

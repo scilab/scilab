@@ -1,107 +1,91 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_sort"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</pubdate></info><refnamediv><refname>mtlb_sort</refname><refpurpose>Fonction d'ï¿½mulation de la fonction
+  Matlab sort</refpurpose></refnamediv>
+  
 
-  <TITLE>mtlb_sort</TITLE>
+  
 
-  <TYPE>Fonction M2SCI</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="mtlb_sort">Fonction d'ï¿½mulation de la fonction
-  Matlab sort</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>P = mtlb_sort(X)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>P = mtlb_sort(X)
+P = mtlb_sort(X,dim[,mode])</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>P = mtlb_sort(X,dim[,mode])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: un scalaire, un vecteur, une matrice ou hypermatrice
+        <listitem>
+          <para>un scalaire, un vecteur, une matrice ou hypermatrice
           d'elements compris dans [-1 1]un scalaire, un vecteur ou une matrice
-          de rï¿½els, de boolï¿½ens ou une string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          de rï¿½els, de boolï¿½ens ou une string</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>ndim</PARAM_NAME>
+      <varlistentry>
+        <term>ndim</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: un entier positif</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>un entier positif</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>mode</PARAM_NAME>
+      <varlistentry>
+        <term>mode</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>:une chaine de caracteres (<VERB>"ascend"</VERB> or
-          <VERB>"descend"</VERB>) </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>:une chaine de caracteres (<literal>"ascend"</literal> or
+          <literal>"descend"</literal>) </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>sort</VERB> de
-    Matlab et la fonction <VERB>gsort</VERB> de Scilab se comportent
-    diffï¿½remment :</P>
+  <refsection><title>Description</title>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>sort</literal> de
+    Matlab et la fonction <literal>gsort</literal> de Scilab se comportent
+    diffï¿½remment :</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
-        <ITEMIZE>
-          <ITEM>
-            <SP>Si <VERB>X</VERB> est un vecteur alors l'appel de la fonction
-            <VERB>sort(X) </VERB>de Matlab est ï¿½quivalent ï¿½ï¿½ l'appel de la
-            fonction <VERB>sort(X,'g','i')</VERB> de Scilab. </SP>
-          </ITEM>
+    <itemizedlist>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>Si <literal>X</literal> est un vecteur alors l'appel de la fonction
+            <literal>sort(X) </literal>de Matlab est ï¿½quivalent ï¿½ï¿½ l'appel de la
+            fonction <literal>sort(X,'g','i')</literal> de Scilab. </para>
+          </listitem>
 
-          <ITEM>
-            <SP><VERB>dim=1</VERB> (resp. <VERB>2</VERB>) de Matlab est
-            equivalent au flag <VERB>'r'</VERB> (resp.<VERB> 'c'</VERB>) de
-            Scilab.</SP>
-          </ITEM>
+          <listitem>
+            <para><literal>dim=1</literal> (resp. <literal>2</literal>) de Matlab est
+            equivalent au flag <literal>'r'</literal> (resp.<literal> 'c'</literal>) de
+            Scilab.</para>
+          </listitem>
 
-          <ITEM>
-            <SP><VERB>mode="ascend"</VERB> (resp. <VERB>"descend"</VERB>) est
-            ï¿½quivalent au flag <VERB>'i'</VERB> (resp <VERB>'d'</VERB>) de
-            Scilab.</SP>
-          </ITEM>
-        </ITEMIZE>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+          <listitem>
+            <para><literal>mode="ascend"</literal> (resp. <literal>"descend"</literal>) est
+            ï¿½quivalent au flag <literal>'i'</literal> (resp <literal>'d'</literal>) de
+            Scilab.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
 
-    <P>La fonction <VERB>mtlb_sort(X,dim[,mode])</VERB> est utilisï¿½e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>sort(X,dim[,mode])</VERB>
+    <para>La fonction <literal>mtlb_sort(X,dim[,mode])</literal> est utilisï¿½e par
+    <literal>mfile2sci</literal> pour remplacer <literal>sort(X,dim[,mode])</literal>
     quand il n'ï¿½tait pas possible de savoir ce qu'ï¿½taient les paramï¿½tres
     d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette
     fonction va dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour
     obtenir un code plus performant on peut remplacer les appels ï¿½ï¿½
-    <VERB>mtlb_sort</VERB> par des appels <LINK>gsort</LINK>.</P>
+    <literal>mtlb_sort</literal> par des appels <link linkend="gsort">gsort</link>.</para>
 
-    <P>Attention : <VERB>mtlb_sort</VERB> ne doit pas ï¿½tre utilisï¿½e pour une
-    programmation manuelle.</P>
-  </DESCRIPTION>
+    <para>Attention : <literal>mtlb_sort</literal> ne doit pas ï¿½tre utilisï¿½e pour une
+    programmation manuelle.</para>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>F.B.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>F.B.</member>
+  </simplelist></refsection>
+</refentry>

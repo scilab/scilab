@@ -1,39 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>global</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="global"> Define global variable</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>global('nam1',...,'namn')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>global nam1 ... namn</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>nam1,..., namn</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: valid variable names</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="global"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>global</refname><refpurpose> Define global variable</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>global('nam1',...,'namn')
+global nam1 ... namn</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>nam1,..., namn</term>
+        <listitem>
+          <para>valid variable names</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Ordinarily, each Scilab function, has its
-    own local variables and can &quot;read&quot; all variables created in the base
-    workspace or by the calling functions. The <VERB>global</VERB> keyword allow to make
+    own local variables and can "read" all variables created in the base
+    workspace or by the calling functions. The <literal>global</literal> keyword allow to make
     variables read/write across functions. Any assignment to that variable,
     in any function, is available to all the other functions declaring
-    it <VERB>global</VERB>.</P>
-    <P>
+    it <literal>global</literal>.</para>
+    <para>
     If the global variable doesn't exist the first time you issue
-    the <VERB>global</VERB> statement, it will be initialized to the empty matrix.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    the <literal>global</literal> statement, it will be initialized to the empty matrix.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //first: calling environnment and a function share a variable
 global a
 a=1
@@ -48,23 +44,23 @@ initdata()
 letsgo()
 letsgo1()
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>who</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>isglobal</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>clearglobal</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>gstacksize</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>resume</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="who">who</link>
+    </member>
+    <member>
+      <link linkend="isglobal">isglobal</link>
+    </member>
+    <member>
+      <link linkend="clearglobal">clearglobal</link>
+    </member>
+    <member>
+      <link linkend="gstacksize">gstacksize</link>
+    </member>
+    <member>
+      <link linkend="resume">resume</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

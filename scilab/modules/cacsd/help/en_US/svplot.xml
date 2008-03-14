@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F.D
@@ -10,80 +10,77 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>svplot</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="svplot"> singular-value sigma-plot</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[SVM]=svplot(sl,[w])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (continuous, discrete or sampled system)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>w</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector (optional parameter)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    computes for the system <VERB>sl=(A,B,C,D)</VERB>
-    the singular values of its transfer function matrix:</P>
-    <VERBATIM>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="svplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>svplot</refname><refpurpose> singular-value sigma-plot</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[SVM]=svplot(sl,[w])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (continuous, discrete or sampled system)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w</term>
+        <listitem>
+          <para>real vector (optional parameter)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    computes for the system <literal>sl=(A,B,C,D)</literal>
+    the singular values of its transfer function matrix:</para>
+    <programlisting><![CDATA[
+
              G(jw) = C(jw*I-A)B^-1+D
 or
              G(exp(jw)) = C(exp(jw)*I-A)B^-1+D
 or
              G(exp(jwT)) = C(exp(jw*T)*I-A)B^-1+D
-   ]]>
-    </VERBATIM>
-    <P>
-    evaluated over the frequency range specified by <VERB>w</VERB>. (T is the sampling
-    period, <VERB>T=sl('dt')</VERB> for sampled systems).</P>
-    <P><VERB>sl</VERB> is a <VERB>syslin</VERB> list representing the system
-    <VERB>[A,B,C,D]</VERB> in state-space form. <VERB>sl</VERB> can be continous or
-    discrete time or sampled system.</P>
-    <P>
-    The <VERB>i</VERB>-th column of the output matrix <VERB>SVM</VERB> contains the singular
-    values of <VERB>G</VERB> for the <VERB>i</VERB>-th frequency value <VERB>w(i)</VERB>.</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    evaluated over the frequency range specified by <literal>w</literal>. (T is the sampling
+    period, <literal>T=sl('dt')</literal> for sampled systems).</para>
+    <para><literal>sl</literal> is a <literal>syslin</literal> list representing the system
+    <literal>[A,B,C,D]</literal> in state-space form. <literal>sl</literal> can be continous or
+    discrete time or sampled system.</para>
+    <para>
+    The <literal>i</literal>-th column of the output matrix <literal>SVM</literal> contains the singular
+    values of <literal>G</literal> for the <literal>i</literal>-th frequency value <literal>w(i)</literal>.</para>
+    <programlisting><![CDATA[
+
 SVM = svplot(sl)
-   ]]>
-    </VERBATIM>
-    <P>
-    is equivalent to</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    is equivalent to</para>
+    <programlisting><![CDATA[
+
 SVM = svplot(sl,logspace(-3,3))  (continuous)
-   ]]>
-    </VERBATIM>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <programlisting><![CDATA[
+
 SVM = svplot(sl,logspace(-3,%pi)) (discrete)
-   ]]>
-    </VERBATIM>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 x=logspace(-3,3);
 y=svplot(ssrand(2,2,4),x);
 xbasc();plot2d1("oln",x',20*log(y')/log(10));
 xgrid(12)
 xtitle("Singular values plot","(Rd/sec)", "Db");
- ]]>
-  </EXAMPLE>
-  <AUTHOR>F.D; ;   </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>Authors</title><para>F.D; ;   </para></refsection>
+</refentry>

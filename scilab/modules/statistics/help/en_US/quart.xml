@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,33 +10,28 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>quart</TITLE>
-  <TYPE>  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="quart"> computation of quartiles
-  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>s=quart(x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>s=quart(x,'r') or m=quart(x,1)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>s=quart(x,'c') or m=quart(x,2)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quart"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>quart</refname><refpurpose> computation of quartiles
+  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s=quart(x)
+s=quart(x,'r') or m=quart(x,1)
+s=quart(x,'c') or m=quart(x,2)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
 For a vector  or a matrix x,  [q]=quart(x,y)
 returns in the vector q the quartiles of x.
 
@@ -44,15 +39,15 @@ returns in the vector q the quartiles of x.
 [q]=quart(x,1)) are the   rowwise percentiles.  It
 returns in  each  column of    the matrix  q   the
 quartiles  of   data   in the   corresponding column  of
-x.</P>
-    <P>
+x.</para>
+    <para>
 [q]=quart(x,'c')        (or,         equivalently,
 [q]=quart(x,2)) are the  columnwise quartiles.  It
 returns in each row of  the matrix q the quartiles
-of data in the corresponding row of x.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+of data in the corresponding row of x.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 
 x=[6 7 0 7 10 4 2 2 7 1;
    6 0 5 5 5 2 0 6 8 10;
@@ -68,11 +63,11 @@ q=quart(x)
 q=quart(x,'r')
 q=quart(x,'c')
 
- ]]>
-  </EXAMPLE>
-  <AUTHOR> Carlos Klimann</AUTHOR>
-  <BIBLIO>
-    <P>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
-  </BIBLIO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
+  <refsection><title>Bibliography</title>
+    <para>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

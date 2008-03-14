@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
@@ -10,59 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Matplot_properties"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Matplot_properties</refname><refpurpose>description of the Matplot
+  entities properties</refpurpose></refnamediv>
+  
 
-  <TITLE>Matplot_properties</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="Matplot_properties">description of the Matplot
-  entities properties</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>The Matplot entity is a leaf of the graphics entities hierarchy. It
+  <refsection><title>Description</title>
+    <para>The Matplot entity is a leaf of the graphics entities hierarchy. It
     represents 2D plots of surface using colors and images (see
-    <VERB>Matplot</VERB> and <VERB>Matplot1</VERB>).</P>
+    <literal>Matplot</literal> and <literal>Matplot1</literal>).</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        Matplot entity should be of the type <VERB>"Axes"</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+    <variablelist>
+      <varlistentry><term>parent: </term><listitem>
+        <para>This property contains the handle of the parent. The parent of the
+        Matplot entity should be of the type <literal>"Axes"</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="children: ">
-        <SP>This property contains a vector with the <VERB>children</VERB> of
-        the handle. However, <VERB>Matplot</VERB> handles currently do not
-        have any <VERB>children</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>children: </term><listitem>
+        <para>This property contains a vector with the <literal>children</literal> of
+        the handle. However, <literal>Matplot</literal> handles currently do not
+        have any <literal>children</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the <VERB>visible</VERB> property value for
-        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+      <varlistentry><term>visible: </term><listitem>
+        <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
         By default, the plot is visible, the value's property is
-        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the plot is not drawn on the
-        screen.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>"on"</literal>. If <literal>"off"</literal> the plot is not drawn on the
+        screen.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="data: ">
-        <SP>This field defines a [<VERB>m</VERB>x<VERB>n</VERB>]
-        <VERB>color</VERB> data matrix using the current colormap. The color
-        associated to <VERB>color(i,j)</VERB> is used do draw a small square
-        of length 1 with center at location <VERB>(x=j,y=(m-i+1))</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>data: </term><listitem>
+        <para>This field defines a [<literal>m</literal>x<literal>n</literal>]
+        <literal>color</literal> data matrix using the current colormap. The color
+        associated to <literal>color(i,j)</literal> is used do draw a small square
+        of length 1 with center at location <literal>(x=j,y=(m-i+1))</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="user_data: ">
-        <SP>This field can be use to store any scilab variable in the Matplot
-        data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      <varlistentry><term>user_data: </term><listitem>
+        <para>This field can be use to store any scilab variable in the Matplot
+        data structure, and to retreive it.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     
    Matplot((1:xget("lastpattern")))
    e=gce(); // get current entity
@@ -70,41 +69,41 @@
    e.data=e.data($:-1:1) // reverse order
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>grayplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="grayplot">grayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Matplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="Matplot">Matplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Matplot1</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="Matplot1">Matplot1</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>grayplot_properties</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="grayplot_properties">grayplot_properties</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>F.Leray</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>F.Leray</para></refsection>
+</refentry>

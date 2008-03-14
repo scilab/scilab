@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997-2008 - INRIA
@@ -10,40 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_mytid</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pvm_mytid"> returns the tid of the calling process.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[tid] = pvm_mytid()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>tid</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, the task identifier of the calling PVM process. Values less than zero indicate an error.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>pvm_mytid</VERB> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_mytid"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_mytid</refname><refpurpose> returns the tid of the calling process.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[tid] = pvm_mytid()</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>tid</term>
+        <listitem>
+          <para>integer, the task identifier of the calling PVM process. Values less than zero indicate an error.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>pvm_mytid</literal> 
     enrolls this process
     into PVM on its first call. It also generates a unique 
-     <VERB>tid</VERB></P>
-    <P>
-    if this process was not created by <VERB>pvm_spawn</VERB>.
-    pvm_mytid returns the <VERB>tid</VERB> 
+     <literal>tid</literal></para>
+    <para>
+    if this process was not created by <literal>pvm_spawn</literal>.
+    pvm_mytid returns the <literal>tid</literal> 
     of the calling process
-    and can be called multiple times in an application.</P>
-    <P>
+    and can be called multiple times in an application.</para>
+    <para>
     Any PVM system call (not just pvm_mytid) will enroll a task in PVM
-    if the task is not enrolled before the call.</P>
-    <P>
+    if the task is not enrolled before the call.</para>
+    <para>
     The tid is a 32 bit positive integer created by the local pvmd.
     The 32 bits are divided into fields that encode various
     information about this process such as its location in
@@ -52,18 +49,18 @@
     a multiprocessor, and a process ID field. This information
     is used by PVM and is not expected to be used by applications.
     Applications should not attempt to predict or interpret the tid with
-    the exception of calling tidtohost()</P>
-    <P>
+    the exception of calling tidtohost()</para>
+    <para>
     If PVM has not been started before an application calls 
-    <VERB>pvm_mytid</VERB>, the returned value will be 
-    will be &lt; 0.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_tidtohost</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_parent</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <literal>pvm_mytid</literal>, the returned value will be 
+    will be &lt; 0.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pvm_tidtohost">pvm_tidtohost</link>
+    </member>
+    <member>
+      <link linkend="pvm_parent">pvm_parent</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

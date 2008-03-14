@@ -1,71 +1,51 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>fullrfk  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fullrfk"> factorisation de rang plein de A^k  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[Q,M]=fullrfk(A,k)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>A  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice réelle ou complexe
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>k  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>Q,M  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrices réelles ou complexes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Cette fonction calcule la factorisation de rang plein de <VERB>A^k</VERB> : <VERB>fullrfk</VERB> renvoie <VERB>Q</VERB> et <VERB>M</VERB> telles que <VERB>A^k = Q*M</VERB>
-    avec Im(<VERB>Q</VERB>)=Im(<VERB>A^k</VERB>) et ker(<VERB>M</VERB>)=ker(<VERB>A^k</VERB>),
-    <VERB>Q</VERB> de rang maximal, et les lignes de <VERB>M</VERB> sont linéairement indépendantes, 
-  </P>
-  <P>
-    Pour <VERB>k=1</VERB>, <VERB>fullrfk</VERB> est équivalent à <VERB>fullrf</VERB>.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fullrfk"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fullrfk</refname><refpurpose> factorisation de rang plein de A^k  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[Q,M]=fullrfk(A,k)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>A  </term>
+  <listitem>
+  <para>matrice réelle ou complexe
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>k  </term>
+  <listitem>
+  <para>entier
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>Q,M  </term>
+  <listitem>
+  <para>matrices réelles ou complexes
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Cette fonction calcule la factorisation de rang plein de <literal>A^k</literal> : <literal>fullrfk</literal> renvoie <literal>Q</literal> et <literal>M</literal> telles que <literal>A^k = Q*M</literal>
+    avec Im(<literal>Q</literal>)=Im(<literal>A^k</literal>) et ker(<literal>M</literal>)=ker(<literal>A^k</literal>),
+    <literal>Q</literal> de rang maximal, et les lignes de <literal>M</literal> sont linéairement indépendantes, 
+  </para>
+  <para>
+    Pour <literal>k=1</literal>, <literal>fullrfk</literal> est équivalent à <literal>fullrf</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
 norm(Bk*Ck-A^3,1)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>range</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F.D (1990);   </AUTHOR>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="fullrf">fullrf</link> </member>     <member> <link linkend="range">range</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>F.D (1990);   </para></refsection>
+</refentry>

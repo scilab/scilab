@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,73 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strcspn"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</pubdate></info><refnamediv><refname>strcspn</refname><refpurpose>Get span until character in
+  string</refpurpose></refnamediv>
+  
 
-  <TITLE>strcspn</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="strcspn">Get span until character in
-  string</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res =
-    strcspn(string_one,string_two)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res = strcspn(string_one,string_two)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>string_one</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>string_one</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>string_two</PARAM_NAME>
+      <varlistentry>
+        <term>string_two</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
+      <varlistentry>
+        <term>res</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>res = strcspn(string_one,string_two)</VERB> Scans string_one for
+  <refsection><title>Description</title>
+    <para><literal>res = strcspn(string_one,string_two)</literal> Scans string_one for
     the first occurrence of any of the characters that are part of string_two,
     returning the number of characters of string_one read before this first
-    occurrence.</P>
+    occurrence.</para>
 
-    <P>string_two must have same dimensions than string_two or string_two must
-    be a string.</P>
-  </DESCRIPTION>
+    <para>string_two must have same dimensions than string_two or string_two must
+    be a string.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 strcspn("fcba73","1234567890")
 strcspn(["fcba73","f7cba73"],"1234567890")
 strcspn(["fcba73","f7cba73"],["312","34567890"])
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>strspn</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="strspn">strspn</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

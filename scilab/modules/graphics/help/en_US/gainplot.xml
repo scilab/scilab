@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,95 +10,87 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gainplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gainplot</refname><refpurpose>magnitude plot</refpurpose></refnamediv>
+  
 
-  <TITLE>gainplot</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="gainplot">magnitude plot</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>gainplot(sl,fmin,fmax [,step] [,comments]
-    )</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>gainplot(sl,fmin,fmax [,step] [,comments] )
+gainplot(frq,db,phi [,comments])
+gainplot(frq, repf [,comments])</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>gainplot(frq,db,phi
-    [,comments])</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
 
-    <CALLING_SEQUENCE_ITEM>gainplot(frq, repf
-    [,comments])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>list (<literal>syslin</literal> SIMO linear system).</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
+      <varlistentry>
+        <term>fmin,fmax</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: list (<VERB>syslin</VERB> SIMO linear system).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real scalars (frequency interval).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fmin,fmax</PARAM_NAME>
+      <varlistentry>
+        <term>step</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real scalars (frequency interval).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real (discretization step (logarithmic scale))</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>step</PARAM_NAME>
+      <varlistentry>
+        <term>comments</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real (discretization step (logarithmic scale))</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>comments</PARAM_NAME>
+      <varlistentry>
+        <term>frq</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>matrix (row by row frequencies)</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>frq</PARAM_NAME>
+      <varlistentry>
+        <term>db,phi</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrix (row by row frequencies)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>matrices (magnitudes and phases corresponding to
+          <literal>frq</literal>)</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>db,phi</PARAM_NAME>
+      <varlistentry>
+        <term>repf</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrices (magnitudes and phases corresponding to
-          <VERB>frq</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>complex matrix. One row for each frequency response.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>repf</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para>Same as Bode but plots only the magnitude.</para>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: complex matrix. One row for each frequency response.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>Same as Bode but plots only the magnitude.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
@@ -107,35 +99,35 @@ clf()
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 gainplot([h1;h],0.01,100,['h1';'h'])
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>bode</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="bode">bode</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>black</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="black">black</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>nyquist</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="nyquist">nyquist</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>freq</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="freq">freq</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>repfreq</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="repfreq">repfreq</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>g_margin</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="g_margin">g_margin</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>p_margin</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="p_margin">p_margin</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

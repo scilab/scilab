@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -10,73 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="SciBoolean"><info><pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)  $</pubdate></info><refnamediv><refname>SciBoolean</refname><refpurpose>Class to use boolean object with
+  scilab</refpurpose></refnamediv>
+  
 
-  <TITLE>SciBoolean</TITLE>
+  
 
-  <TYPE>Java Interface</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 aoÃ»t 2006)  $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="SciBoolean">Class to use boolean object with
-  scilab</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P><IMG src="../images/SciBooleanClass.gif"></IMG></P>
+  <refsection><title>Description</title>
+    <para><inlinemediaobject><imageobject><imagedata fileref="../images/SciBooleanClass.gif"/></imageobject></inlinemediaobject></para>
 
-    <P>Method Summary :</P>
+    <para>Method Summary :</para>
 
-    <P><VERB>public SciBoolean(String name,SciBoolean Obj)</VERB> :
-    Constructor</P>
+    <para><literal>public SciBoolean(String name,SciBoolean Obj)</literal></para>
 
-    <P><VERB>public SciBoolean(String name) </VERB>: Constructor (if name
+    <para><literal>public SciBoolean(String name) </literal>Constructor (if name
     exists in Scilab and has the same type, variable is imported from
-    Scilab)</P>
+    Scilab)</para>
 
-    <P><VERB>public SciBoolean(String name,boolean Value )</VERB> :
-    Constructor</P>
+    <para><literal>public SciBoolean(String name,boolean Value )</literal></para>
 
-    <P><VERB>public String getName()</VERB> : Get Name of scilab object</P>
+    <para><literal>public String getName()</literal>Get Name of scilab object</para>
 
-    <P><VERB>public boolean getData()</VERB> : Get Value of scilab object</P>
+    <para><literal>public boolean getData()</literal>Get Value of scilab object</para>
 
-    <P><VERB>public void Get()</VERB> : Get in java object , value of scilab
-    object</P>
+    <para><literal>public void Get()</literal>Get in java object , value of scilab
+    object</para>
 
-    <P><VERB>public boolean Job(String job)</VERB> : (deprecated see Scilab.Exec) Execute a job in
-    scilab</P>
+    <para><literal>public boolean Job(String job)</literal>(deprecated see Scilab.Exec) Execute a job in
+    scilab</para>
 
-    <P><VERB>public void Send()</VERB> : Send to scilab object , value of java
-    object</P>
+    <para><literal>public void Send()</literal>Send to scilab object , value of java
+    object</para>
 
-    <P><VERB>public void disp()</VERB> : disp object</P>
-  </DESCRIPTION>
+    <para><literal>public void disp()</literal>disp object</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[ // See SCI/modules/javasci/examples directory]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ // See SCI/modules/javasci/examples directory]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>Scilab</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="Scilab">Scilab</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciBooleanArray</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciBooleanArray">SciBooleanArray</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciDoubleArray</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciDoubleArray">SciDoubleArray</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciString</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciString">SciString</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciStringArray</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="SciStringArray">SciStringArray</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

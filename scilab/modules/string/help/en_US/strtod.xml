@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,51 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>strtod</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="strtod">Convert string to double.</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM> d = strchr(str)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> [d,endstr] = strtod(str) </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strtod"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>strtod</refname><refpurpose>Convert string to double.</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>d = strchr(str)
+[d,endstr] = strtod(str)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
       
-      <PARAM_ITEM>
-        <PARAM_NAME>d</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or matrix of reals</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>d</term>
+        <listitem>
+          <para>real or matrix of reals</para>
+        </listitem>
+      </varlistentry>
       
-      <PARAM_ITEM>
-        <PARAM_NAME>endstr</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>endstr</term>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
       
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>[d,endstr] = strtod(str)</VERB> Parses strings str interpreting its content as a floating point number and returns its value as a real.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>[d,endstr] = strtod(str)</literal> Parses strings str interpreting its content as a floating point number and returns its value as a real.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 strtod('123.556This is a sample real')
 [d,endstr] = strtod('123.556This is a sample real')
 strtod(['123.556This is a sample real','888.666 here'])
 [d,endstr] =strtod(['123.556This is a sample real','888.666 here'])
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

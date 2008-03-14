@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,88 +10,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="flts"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>flts</refname><refpurpose> time response (discrete time, sampled system)  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y [,x]]=flts(u,sl [,x0])
+[y]=flts(u,sl [,past])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>u</term>
+        <listitem>
+          <para>matrix (input vector)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>list (linear system <literal>syslin</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>vector (initial state ; default value=<literal>0</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>past</term>
+        <listitem>
+          <para>matrix (of the past ; default value=<literal>0</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>matrices (state and output)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    State-space form:</para>
+    <para><literal>sl</literal> is a <literal>syslin</literal> list containing the matrices of the 
+    following linear system</para>
+    <para><literal>sl=syslin('d',A,B,C,D)</literal> (see <literal>syslin</literal>):</para>
+    <programlisting><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>flts</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="flts"> time response (discrete time, sampled system)  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[y [,x]]=flts(u,sl [,x0])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[y]=flts(u,sl [,past])    </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>u</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix (input vector)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list (linear system <VERB>syslin</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x0</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector (initial state ; default value=<VERB>0</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>past</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix (of the past ; default value=<VERB>0</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrices (state and output)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    State-space form:</P>
-    <P><VERB>sl</VERB> is a <VERB>syslin</VERB> list containing the matrices of the 
-    following linear system</P>
-    <P><VERB>sl=syslin('d',A,B,C,D)</VERB> (see <VERB>syslin</VERB>):</P>
-    <VERBATIM>
-<![CDATA[
   x[t+1] = A x[t] + B u[t]
   y[t] = C x[t] + D u[t]
-   ]]>
-    </VERBATIM>
-    <P>
-    or, more generally, if <VERB>D</VERB> is a polynomial matrix (<VERB>p = degree(D(z))</VERB>) :</P>
-    <P>
-    Transfer form:</P>
-    <P><VERB> y=flts(u,sl[,past])</VERB>. Here <VERB>sl</VERB> is a linear system in 
-    transfer matrix  representation i.e</P>
-    <P><VERB>sl=syslin('d',transfer_matrix)</VERB> (see <VERB>syslin</VERB>).</P>
-    <P>
-    is the matrix of past values of u and y.</P>
-    <P>
+   
+    ]]></programlisting>
+    <para>
+    or, more generally, if <literal>D</literal> is a polynomial matrix (<literal>p = degree(D(z))</literal>) :</para>
+    <para>
+    Transfer form:</para>
+    <para><literal> y=flts(u,sl[,past])</literal>. Here <literal>sl</literal> is a linear system in 
+    transfer matrix  representation i.e</para>
+    <para><literal>sl=syslin('d',transfer_matrix)</literal> (see <literal>syslin</literal>).</para>
+    <para>
+    is the matrix of past values of u and y.</para>
+    <para>
     nd is the maximum of degrees of lcm's of each row of the denominator
-    matrix of sl.</P>
-    <VERBATIM>
-<![CDATA[
+    matrix of sl.</para>
+    <programlisting><![CDATA[
+
 u=[u0 u1 ... un]  (input)
 y=[y0 y1 ... yn]  (output)
-   ]]>
-    </VERBATIM>
-    <P>
+   
+    ]]></programlisting>
+    <para>
     p is the difference between maximum degree of numerator and 
-    maximum degree of denominator</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    maximum degree of denominator</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 sl=syslin('d',1,1,1);u=1:10;
 y=flts(u,sl); 
 plot2d2("onn",(1:size(u,'c'))',y')
@@ -141,17 +137,17 @@ norm([ys1,ys2]-rs,1)
 //With H:
 yh1=flts(u(:,1:4),H);yh2=flts(u(:,5:10),H,[u(:,2:4); yh1(:,2:4)]);
 norm([yh1,yh2]-rh)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ltitr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dsimul</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rtitr</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ltitr">ltitr</link>
+    </member>
+    <member>
+      <link linkend="dsimul">dsimul</link>
+    </member>
+    <member>
+      <link linkend="rtitr">rtitr</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

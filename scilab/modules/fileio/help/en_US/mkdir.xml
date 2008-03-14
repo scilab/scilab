@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -11,48 +11,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mkdir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mkdir</refname><refpurpose>Make new directory</refpurpose></refnamediv>
+  
 
-  <TITLE>mkdir</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="mkdir">Make new directory</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mkdir('dirname')</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mkdir('dirname')
+mkdir('parentdir','newdir')
+status=mkdir( ... )
+[status,msg]=mkdir( ... )</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>mkdir('parentdir','newdir')</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Description</title>
 
-    <CALLING_SEQUENCE_ITEM>status=mkdir( ... )</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>[status,msg]=mkdir( ... )</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-
-	<P>
+	<para>
 		mkdir('dirname') creates the directory dirname in the current
 		directory, if dirname represents a relative path. Otherwise, dirname
 		represents an absolute path and mkdir attempts to create the absolute
 		directory dirname
-	</P>
+	</para>
 
-    <P>mkdir('parentdir','dirname') creates the directory dirname in the
+    <para>mkdir('parentdir','dirname') creates the directory dirname in the
     existing directory parentdir, where parentdir is an absolute or relative
-    pathname.</P>
+    pathname.</para>
 
-    <P>[status,message] = mkdir(...,'dirname') creates the directory dirname
+    <para>[status,message] = mkdir(...,'dirname') creates the directory dirname
     in the existing directory parentdir, returning the status, a message.
     Here, status is 1 for success, 2 if it already exists, and 0
-    otherwise.</P>
-  </DESCRIPTION>
+    otherwise.</para>
+  </refsection>
 
-	<EXAMPLE><![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 		// Absolute pathname
 		mkdir(TMPDIR+"/mkdir_example_1")
 		status_2 = mkdir(TMPDIR+"/mkdir_example_2")
@@ -65,21 +59,21 @@
 		cd TMPDIR;
 		[status_5,msg_5] = mkdir("mkdir_example_5")
 		[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>cd</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dir</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rmdir</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="cd">cd</link>
+    </member>
+    <member>
+      <link linkend="dir">dir</link>
+    </member>
+    <member>
+      <link linkend="rmdir">rmdir</link>
+    </member>
+  </simplelist></refsection>
   
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

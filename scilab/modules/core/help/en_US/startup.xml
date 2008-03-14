@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>startup</TITLE>
-	<TYPE>Scilab Documentation</TYPE>
-	<DATE>January 2008</DATE>
-	<SHORT_DESCRIPTION name="startup"> startup file</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="startup"><info><pubdate>January 2008</pubdate></info><refnamediv><refname>startup</refname><refpurpose> startup file</refpurpose></refnamediv>
 	
-	<DESCRIPTION>
-		<P>
-			The startup file <VERB>SCIHOME/.scilab</VERB> and <VERB>SCIHOME/scilab.ini</VERB> in 
+	
+	
+	
+	
+	
+	<refsection><title>Description</title>
+		<para>
+			The startup file <literal>SCIHOME/.scilab</literal> and <literal>SCIHOME/scilab.ini</literal> in 
 			are automatically executed (if present) when Scilab is invoked, in addition with the 
-			file <VERB>scilab.star</VERB> in the Scilab directory (SCI).
-		</P>
-	</DESCRIPTION>
-	<SECTION label="Remarks">
-		<P>
+			file <literal>scilab.star</literal> in the Scilab directory (SCI).
+		</para>
+	</refsection>
+	<refsection><title>Remarks</title>
+		<para>
 			Last line of startup file must be terminated by a newline to be taken into account.
-		</P>
-		<P>
+		</para>
+		<para>
 			SCIHOME definition : 
 			On Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
 			On Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-		</P>
-	</SECTION>
+		</para>
+	</refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>scilab</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="scilab">scilab</link>
+		</member>
+	</simplelist></refsection>
 	
 	
-</MAN>
+</refentry>

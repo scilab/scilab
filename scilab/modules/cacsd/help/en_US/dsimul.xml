@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,48 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>dscr</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="dsimul">  state space discrete time simulation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=dsimul(sl,u)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list describing a discrete time linear system</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>u</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix of appropriate dimension</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: output of <VERB>sl</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dsimul"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dsimul</refname><refpurpose>  state space discrete time simulation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=dsimul(sl,u)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list describing a discrete time linear system</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>u</term>
+        <listitem>
+          <para>real matrix of appropriate dimension</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>output of <literal>sl</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Utility function. 
-    If <VERB>[A,B,C,D]=abcd(sl)</VERB> and <VERB>x0=sl('X0')</VERB>, <VERB>dsimul</VERB> returns <VERB>y=C*ltitr(A,B,u,x0)+D*u</VERB> i.e.
-    the time response of <VERB>sl</VERB> to the input <VERB>u</VERB>.
-    <VERB>sl</VERB> is assumed to be in state space form (<VERB>syslin</VERB> list).</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    If <literal>[A,B,C,D]=abcd(sl)</literal> and <literal>x0=sl('X0')</literal>, <literal>dsimul</literal> returns <literal>y=C*ltitr(A,B,u,x0)+D*u</literal> i.e.
+    the time response of <literal>sl</literal> to the input <literal>u</literal>.
+    <literal>sl</literal> is assumed to be in state space form (<literal>syslin</literal> list).</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 z=poly(0,'z');
 h=(1-2*z)/(z^2-0.2*z+1);
 sl=tf2ss(h);
@@ -59,17 +55,17 @@ u=zeros(1,20);u(1)=1;
 x1=dsimul(sl,u)   //Impulse response
 u=ones(1,20);
 x2=dsimul(sl,u);  //Step response
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>syslin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>flts</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ltitr</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="syslin">syslin</link>
+    </member>
+    <member>
+      <link linkend="flts">flts</link>
+    </member>
+    <member>
+      <link linkend="ltitr">ltitr</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

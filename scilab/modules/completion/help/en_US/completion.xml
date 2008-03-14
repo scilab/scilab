@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,76 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="completion"><info><pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</pubdate></info><refnamediv><refname>completion</refname><refpurpose>returns words that start with the text you pass as parameter.</refpurpose></refnamediv>
+  
 
-  <TITLE>completion</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="completion">returns words that start with the text you pass as parameter.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>r = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>r = completion(beginning_of_a_word,dictionary)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphic_properties,files] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros,graphic_properties] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[functions,commands,variables,macros] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[functions,commands,variables] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[functions,commands] = completion(beginning_of_a_word)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>r = completion(beginning_of_a_word)
+r = completion(beginning_of_a_word,dictionary)
+[functions,commands,variables,macros,graphic_properties,files] = completion(beginning_of_a_word)
+[functions,commands,variables,macros,graphic_properties] = completion(beginning_of_a_word)
+[functions,commands,variables,macros] = completion(beginning_of_a_word)
+[functions,commands,variables] = completion(beginning_of_a_word)
+[functions,commands] = completion(beginning_of_a_word)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+        <listitem>
+          <para>a string matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>beginning_of_a_word</PARAM_NAME>
+    <variablelist>
+      <varlistentry>
+        <term>beginning_of_a_word</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>dictionary</PARAM_NAME>
+    <variablelist>
+      <varlistentry>
+        <term>dictionary</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string
-          ("functions","commands","variables","macros","graphic_properties","files")</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+        <listitem>
+          <para>a string
+          ("functions","commands","variables","macros","graphic_properties","files")</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>functions,commands,variables,macros,graphic_properties,files</PARAM_NAME>
+    <variablelist>
+      <varlistentry>
+        <term>functions,commands,variables,macros,graphic_properties,files</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a string matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>returns words that start with the text you pass as parameter.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>returns words that start with the text you pass as parameter.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[r = completion('w')
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[r = completion('w')
 r = completion('w','functions')
 r = completion('w','commands')
 r = completion('w','variables')
@@ -93,11 +90,11 @@ r = completion('w','files')
 [functions,commands,variables] = completion('w')
 [functions,commands] = completion('w')
 
-   ]]></EXAMPLE>
+   ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getscilabkeywords</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getscilabkeywords">getscilabkeywords</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

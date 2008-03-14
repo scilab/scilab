@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
@@ -11,54 +11,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gettext"><info><pubdate>$LastChangedDate: 2007-11-15 13:33:00 +0200 (thu., 15 nov. 2007)$</pubdate></info><refnamediv><refname>gettext</refname><refpurpose>get text translated into the current locale and domain.</refpurpose></refnamediv>
+  
 
-  <TITLE>gettext</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-11-15 13:33:00 +0200 (thu., 15 nov. 2007)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="gettext">get text translated into the current locale and domain.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>msg=gettext(myString)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>msg=gettext(myString)</synopsis></refsynopsisdiv>
 
-  </CALLING_SEQUENCE>
-
-  <PARAM>
+  <refsection><title>Parameters</title>
  
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>string</PARAM_NAME>
+    <variablelist>
+      <varlistentry>
+        <term>string</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: the message to be translated</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>the message to be translated</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>gettext</VERB> get the translation of a string to the current locale in the current domain.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>gettext</literal> get the translation of a string to the current locale in the current domain.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 gettext('Startup execution:')
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>dgettext</LINK>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="dgettext">dgettext</link>
 
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>Sylvestre Ledru</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>Sylvestre Ledru</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,46 +1,42 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lusolve</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lusolve"> sparse linear system solver</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>lusolve(hand,b)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>lusolve(A,b)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>b</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: full real matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real square sparse invertible matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>hand</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: handle to a previously computed sparse lu factors (output of lufact)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>x=lusolve(hand,b)</VERB> solves the sparse linear system
-    <VERB>A*x = b</VERB>.</P>
-    <P><VERB>[hand,rk]=lufact(A)</VERB> is the output of lufact.</P>
-    <P><VERB>x=lusolve(A,b)</VERB> solves the sparse linear system  
-    <VERB>A*x = b</VERB></P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lusolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lusolve</refname><refpurpose> sparse linear system solver</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>lusolve(hand,b)
+lusolve(A,b)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>full real matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real square sparse invertible matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hand</term>
+        <listitem>
+          <para>handle to a previously computed sparse lu factors (output of lufact)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>x=lusolve(hand,b)</literal> solves the sparse linear system
+    <literal>A*x = b</literal>.</para>
+    <para><literal>[hand,rk]=lufact(A)</literal> is the output of lufact.</para>
+    <para><literal>x=lusolve(A,b)</literal> solves the sparse linear system  
+    <literal>A*x = b</literal></para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
 sp=sparse(rows_cols,non_zeros);
 [h,rk]=lufact(sp);x=lusolve(h,[1;1;1;1]);ludel(h)
@@ -50,20 +46,20 @@ non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
 sp=sparse(rows_cols,non_zeros);
 x=lusolve(sp,-ones(4,1));
 sp*x
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>sparse</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lufact</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>slash</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>backslash</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="sparse">sparse</link>
+    </member>
+    <member>
+      <link linkend="lufact">lufact</link>
+    </member>
+    <member>
+      <link linkend="slash">slash</link>
+    </member>
+    <member>
+      <link linkend="backslash">backslash</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

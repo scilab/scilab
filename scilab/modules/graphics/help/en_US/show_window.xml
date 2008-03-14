@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,30 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>show_window</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="show_window"> raises a graphics window</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>show_window([figure])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>figure</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number or handle of the figure to show.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P> With no parameters,<VERB>show_window</VERB>raises the current graphics window even if
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_window"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>show_window</refname><refpurpose> raises a graphics window</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>show_window([figure])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>figure</term>
+        <listitem>
+          <para>number or handle of the figure to show.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para> With no parameters,<literal>show_window</literal>raises the current graphics window even if
     it is iconified. Otherwise, raises the specified window by its number or handle.
-    If no window already exists, one is created.</P>
-  </DESCRIPTION>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+    If no window already exists, one is created.</para>
+  </refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>

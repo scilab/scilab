@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,55 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dos"><info><pubdate>$LastChangedDate: 2006-12-13 10:29:16 +0200 (ven., 13 decembre 2006)$</pubdate></info><refnamediv><refname>dos</refname><refpurpose>shell (cmd) command execution (Windows
+  only)</refpurpose></refnamediv>
+  
 
-  <TITLE>dos</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-12-13 10:29:16 +0200 (ven., 13 decembre 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="dos">shell (cmd) command execution (Windows
-  only)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>bOK=dos(command-name)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>bOK=dos(command-name)
+bOK=dos(command-name,'-echo')
+[output,bOK]=dos(command-name)
+[output,bOK]=dos(command-name,'-echo')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>bOK=dos(command-name,'-echo')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>[output,bOK]=dos(command-name)</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>[output,bOK]=dos(command-name,'-echo')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-    <P>Sends a string command-name to Windows for execution by the cmd shell.
+  <refsection><title>Description</title>
+    <para>Sends a string command-name to Windows for execution by the cmd shell.
     Standard output and standard errors of the shell command are written in
-    the calling shell. bOK returns if command has been executed.</P>
+    the calling shell. bOK returns if command has been executed.</para>
 
-    <P>[output,bOK] = dos(command-name,'-echo') forces the output to the
-    Command Window, even though it is also being assigned into a variable.</P>
+    <para>[output,bOK] = dos(command-name,'-echo') forces the output to the
+    Command Window, even though it is also being assigned into a variable.</para>
 
-    <P>To open the notepad editor and return control immediately to Scilab
-    dos('start notepad')</P>
-  </DESCRIPTION>
+    <para>To open the notepad editor and return control immediately to Scilab
+    dos('start notepad')</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[[s,w] = dos('dir');
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[[s,w] = dos('dir');
 [s,w] = dos('dir','-echo');
 dos('start notepad')
 dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched notepad's processus
 [s, w] = dos('foo')
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>unix</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="unix">unix</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,85 +1,65 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2000 - INRIA 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>st_deviation  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="st_deviation"> écart-type des termes d&apos;une matrice  </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="stdev"> écart-type des termes d&apos;une matrice  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>y=st_deviation(x)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=st_deviation(x,&apos;r&apos;)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=st_deviation(x,&apos;c&apos;)
-    </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=stdev(x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=stdev(x,'r')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=stdev(x,'c')  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ou matrice réelle
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : scalaire ou vecteur
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    st_deviation calcule l&apos;estimateur sans biais de l&apos;écart-type (normalisé par N-1, ou N est le nombre d&apos;échantillons).
-  </P>
-  <P>
-    Pour un vecteur ou une matrice <VERB>x</VERB>, <VERB>y=st_deviation(x)</VERB> renvoie dans <VERB>y</VERB> l&apos;écart-type des termes de <VERB>x</VERB>.
-  </P>
-  <P>
-    <VERB>y=st_deviation(x,&apos;r&apos;)</VERB> (ou <VERB>y=st_deviation(x,1)</VERB>) est l&apos;écart-type suivant l&apos;indice de ligne. Chaque composante du vecteur ligne <VERB>y</VERB> contient l&apos;écart-type de chaque colonne de <VERB>x</VERB>.
-  </P>
-  <P>
-  </P>
-  <P>
-    <VERB>y=st_deviation(x,&apos;c&apos;)</VERB> (ou <VERB>y=st_deviation(x,2)</VERB>) est l&apos;écart-type selon l&apos;indice de colonne. Chaque composante du vecteur colonne <VERB>y</VERB> contient l&apos;écart-type de chaque ligne de <VERB>x</VERB>.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="st_deviation"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>st_deviation</refname><refpurpose> écart-type des termes d'une matrice  </refpurpose></refnamediv><refnamediv xml:id="stdev"><refname>stdev</refname><refpurpose> écart-type des termes d'une matrice  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>y=st_deviation(x)
+y=st_deviation(x,'r')
+y=st_deviation(x,'c')
+y=stdev(x)
+y=stdev(x,'r')
+y=stdev(x,'c')</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>vecteur ou matrice réelle
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>y  </term>
+  <listitem>
+  <para>scalaire ou vecteur
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    st_deviation calcule l'estimateur sans biais de l'écart-type (normalisé par N-1, ou N est le nombre d'échantillons).
+  </para>
+  <para>
+    Pour un vecteur ou une matrice <literal>x</literal>, <literal>y=st_deviation(x)</literal> renvoie dans <literal>y</literal> l'écart-type des termes de <literal>x</literal>.
+  </para>
+  <para>
+    <literal>y=st_deviation(x,'r')</literal> (ou <literal>y=st_deviation(x,1)</literal>) est l'écart-type suivant l'indice de ligne. Chaque composante du vecteur ligne <literal>y</literal> contient l'écart-type de chaque colonne de <literal>x</literal>.
+  </para>
+  <para>
+  </para>
+  <para>
+    <literal>y=st_deviation(x,'c')</literal> (ou <literal>y=st_deviation(x,2)</literal>) est l'écart-type selon l'indice de colonne. Chaque composante du vecteur colonne <literal>y</literal> contient l'écart-type de chaque ligne de <literal>x</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 A=[1,2,10;7,7.1,7.01];
 st_deviation(A)
 st_deviation(A,'r')
 st_deviation(A,'c')
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>  
-   <SEE_ALSO_ITEM> <LINK>median</LINK> </SEE_ALSO_ITEM>  
-   <SEE_ALSO_ITEM> <LINK>mean</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>nanstdev</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>stdevf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="sum">sum</link> </member>  
+   <member> <link linkend="median">median</link> </member>  
+   <member> <link linkend="mean">mean</link> </member>
+    <member>
+      <link linkend="nanstdev">nanstdev</link>
+    </member>
+    <member>
+      <link linkend="stdevf">stdevf</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

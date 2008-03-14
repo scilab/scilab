@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
@@ -10,101 +10,97 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
- 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xs2emf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xs2emf</refname><refpurpose>send graphics to a file in EMF syntax (Only
+  for Windows)</refpurpose></refnamediv>
+  
 
-  <TITLE>xs2emf</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="xs2emf">send graphics to a file in EMF syntax (Only
-  for Windows)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xs2emf(win_num,filen)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xs2emf(win_num,filen)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>win_num</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integer scalar.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>integer scalar.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>filen</PARAM_NAME>
+      <varlistentry>
+        <term>filen</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string, file name.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>string, file name.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-	<P>The function xs2emf will not be available in version alpha</P>
-    <P><VERB>xs2emf</VERB> sends the recorded graphics of the window
-    <VERB>win_num</VERB> in the file <VERB>filen</VERB> in EMF format. This
-    function works only if the selected driver is <VERB>"Rec"</VERB> in the
-    window <VERB>win_num</VERB> or if the window is in "new style".</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+	<para>The function xs2emf will not be available in version alpha</para>
+    <para><literal>xs2emf</literal> sends the recorded graphics of the window
+    <literal>win_num</literal> in the file <literal>filen</literal> in EMF format. This
+    function works only if the selected driver is <literal>"Rec"</literal> in the
+    window <literal>win_num</literal> or if the window is in "new style".</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[ 
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ 
     //simple example
     scf(0)
     plot2d()
     xs2emf(0,'foo.emf')
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xs2bmp</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xs2bmp">xs2bmp</link>
+    </member>
 	
-    <SEE_ALSO_ITEM>
-      <LINK>xs2gif</LINK>
-	</SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xs2gif">xs2gif</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2jpg</LINK>
-	</SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2jpg">xs2jpg</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2png</LINK>
-	</SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2png">xs2png</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2ppm</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2ppm">xs2ppm</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2eps</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2eps">xs2eps</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2pdf</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2pdf">xs2pdf</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2svg</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2svg">xs2svg</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2ps</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2ps">xs2ps</link>
+    </member>
   
-    <SEE_ALSO_ITEM>
-      <LINK>xs2fig</LINK>
-    </SEE_ALSO_ITEM>  
+    <member>
+      <link linkend="xs2fig">xs2fig</link>
+    </member>  
 
-  </SEE_ALSO>
+  </simplelist></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

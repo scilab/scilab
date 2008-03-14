@@ -1,23 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>what</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="whereis"> name of library containing a function</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[librname]=whereis(function-name)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="whereis"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>whereis</refname><refpurpose> name of library containing a function</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[librname]=whereis(function-name)</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
     returns as a character string
-    the name of the library containing the function <VERB>function-name</VERB>. 
-    The path of the library is returned by typing <VERB>&quot;librname&quot;</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>lib</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    the name of the library containing the function <literal>function-name</literal>. 
+    The path of the library is returned by typing <literal>"librname"</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="lib">lib</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

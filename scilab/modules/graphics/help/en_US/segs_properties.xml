@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,169 +10,168 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="segs_properties"><info><pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû 2006)$</pubdate></info><refnamediv><refname>segs_properties</refname><refpurpose>description of the Segments entity
+  properties</refpurpose></refnamediv>
+  
 
-  <TITLE>segs_properties</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoÃ» 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="segs_properties">description of the Segments entity
-  properties</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>The Segs entity is a leaf of the graphics entities hierarchy. This
+  <refsection><title>Description</title>
+    <para>The Segs entity is a leaf of the graphics entities hierarchy. This
     entity defines the parameters for a set of colored segments or colored
-    arrows.</P>
+    arrows.</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        segment entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+    <variablelist>
+      <varlistentry><term>parent: </term><listitem>
+        <para>This property contains the handle of the parent. The parent of the
+        segment entity should be of the type <literal>"Axes"</literal> or
+        <literal>"Compound"</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="children: ">
-        <SP>This property contains a vector with the <VERB>children</VERB> of
-        the handle. However, <VERB>segs</VERB> handles currently do not have
-        any <VERB>children</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>children: </term><listitem>
+        <para>This property contains a vector with the <literal>children</literal> of
+        the handle. However, <literal>segs</literal> handles currently do not have
+        any <literal>children</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the <VERB>visible</VERB> property value for
-        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+      <varlistentry><term>visible: </term><listitem>
+        <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
         By default, the segments are visibles, the value's property is
-        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the segments are not drawn on
-        the screen.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>"on"</literal>. If <literal>"off"</literal> the segments are not drawn on
+        the screen.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="data: ">
-        <SP>This field is two column matrix <VERB>[x,y,[z]]</VERB> which gives
+      <varlistentry><term>data: </term><listitem>
+        <para>This field is two column matrix <literal>[x,y,[z]]</literal> which gives
         the coordinates of the segments boundary. If
-        <VERB>xv=matrix(x,2,-1)</VERB> and <VERB>yv=matrix(y,2,-1)</VERB> then
-        <VERB>xv(:,k)</VERB> and <VERB>yv(:,k)</VERB> are the boundary
-        coordinates of the segment numbered <VERB>k</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>xv=matrix(x,2,-1)</literal> and <literal>yv=matrix(y,2,-1)</literal> then
+        <literal>xv(:,k)</literal> and <literal>yv(:,k)</literal> are the boundary
+        coordinates of the segment numbered <literal>k</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="line_mode: ">
-        <SP>This field contains the default <VERB>line_mode</VERB> property
-        value for the segs. Its value should be <VERB>"on" </VERB>(line drawn)
-        or <VERB>"off"</VERB> (no line drawn).</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>line_mode: </term><listitem>
+        <para>This field contains the default <literal>line_mode</literal> property
+        value for the segs. Its value should be <literal>"on" </literal>(line drawn)
+        or <literal>"off"</literal> (no line drawn).</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="line_style: ">
-        <SP>The <VERB>line_style</VERB> property value should be an integer in
+      <varlistentry><term>line_style: </term><listitem>
+        <para>The <literal>line_style</literal> property value should be an integer in
         [0 6]. 0 stands for solid the other value stands for a selection of
-        dashes. This property applies to all segments.</SP>
-      </DESCRIPTION_ITEM>
+        dashes. This property applies to all segments.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="thickness: ">
-        <SP>This field contains the <VERB>thickness</VERB> property for all
-        segments. Its value should be a non negative integer..</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>thickness: </term><listitem>
+        <para>This field contains the <literal>thickness</literal> property for all
+        segments. Its value should be a non negative integer..</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="arrow_size: ">
-        <SP>Factor that specify the size of a arrowheads. With a negative
+      <varlistentry><term>arrow_size: </term><listitem>
+        <para>Factor that specify the size of a arrowheads. With a negative
         value, the size is also dependent of the arrows length. TO draw
-        segment, the value must be set to 0.</SP>
-      </DESCRIPTION_ITEM>
+        segment, the value must be set to 0.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="segs_color: ">
-        <SP>This field contains the vector of colors to use to draw each
+      <varlistentry><term>segs_color: </term><listitem>
+        <para>This field contains the vector of colors to use to draw each
         segment. Each element is a color index relative to the current
-        colormap.</SP>
-      </DESCRIPTION_ITEM>
+        colormap.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="mark_mode: ">
-        <SP>This field contains the default <VERB>mark_mode</VERB> property
-        value for the polyline. Its value should be <VERB>"on"</VERB> (marks
-        drawn) or <VERB>"off"</VERB> (no marks drawn).</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>mark_mode: </term><listitem>
+        <para>This field contains the default <literal>mark_mode</literal> property
+        value for the polyline. Its value should be <literal>"on"</literal> (marks
+        drawn) or <literal>"off"</literal> (no marks drawn).</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="mark_style: ">
-        <SP>The <VERB>mark_style</VERB> property value is used to select the
-        type of mark to use when <VERB>mark_mode</VERB> property is
-        <VERB>"on"</VERB>. The value should be an integer in [0 14] which
+      <varlistentry><term>mark_style: </term><listitem>
+        <para>The <literal>mark_style</literal> property value is used to select the
+        type of mark to use when <literal>mark_mode</literal> property is
+        <literal>"on"</literal>. The value should be an integer in [0 14] which
         stands for: dot, plus, cross, star, filled diamond, diamond, triangle
         up, triangle down, diamond plus, circle, asterisk, square, triangle
-        right, triangle left and pentagram.</SP>
-      </DESCRIPTION_ITEM>
+        right, triangle left and pentagram.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="mark_size_unit: ">
-        <SP>This field contains the default <VERB>mark_size_unit</VERB>
-        property value. If <VERB>mark_size_unit</VERB> is set to
-        <VERB>"point"</VERB>, then the <VERB>mark_size</VERB> value is
-        directly given in points. When <VERB>mark_size_unit</VERB> is set to
-        <VERB>"tabulated"</VERB>, <VERB>mark_size</VERB> is computed relative
+      <varlistentry><term>mark_size_unit: </term><listitem>
+        <para>This field contains the default <literal>mark_size_unit</literal>
+        property value. If <literal>mark_size_unit</literal> is set to
+        <literal>"point"</literal>, then the <literal>mark_size</literal> value is
+        directly given in points. When <literal>mark_size_unit</literal> is set to
+        <literal>"tabulated"</literal>, <literal>mark_size</literal> is computed relative
         to the font size array: therefore, its value should be an integer in
         [0 5] which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
-        <LINK>plot2d</LINK> and pure scilab functions use
-        <VERB>tabulated</VERB> mode as default ; when using <LINK>plot</LINK>
-        function, the <VERB>point</VERB> mode is automatically enabled.</SP>
-      </DESCRIPTION_ITEM>
+        <link linkend="plot2d">plot2d</link> and pure scilab functions use
+        <literal>tabulated</literal> mode as default ; when using <link linkend="plot">plot</link>
+        function, the <literal>point</literal> mode is automatically enabled.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="mark_size: ">
-        <SP>The <VERB>mark_size</VERB> property is used to select the type of
-        size of the marks when <VERB>mark_mode</VERB> property is
-        <VERB>"on"</VERB>. Its value should be an integer between 0 and 5
-        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>mark_size: </term><listitem>
+        <para>The <literal>mark_size</literal> property is used to select the type of
+        size of the marks when <literal>mark_mode</literal> property is
+        <literal>"on"</literal>. Its value should be an integer between 0 and 5
+        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="mark_foreground: ">
-        <SP>This field contains the <VERB>mark_foreground</VERB> property
+      <varlistentry><term>mark_foreground: </term><listitem>
+        <para>This field contains the <literal>mark_foreground</literal> property
         value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</SP>
-      </DESCRIPTION_ITEM>
+        index (relative to the current color_map).</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="mark_background: ">
-        <SP>This field contains the <VERB>mark_background</VERB> property
+      <varlistentry><term>mark_background: </term><listitem>
+        <para>This field contains the <literal>mark_background</literal> property
         value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</SP>
-      </DESCRIPTION_ITEM>
+        index (relative to the current color_map).</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="clip_state: ">
-        <SP>This field contains the <VERB>clip_state</VERB> property value for
-        the segments. It should be :</SP>
+      <varlistentry><term>clip_state: </term><listitem>
+        <para>This field contains the <literal>clip_state</literal> property value for
+        the segments. It should be :</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM>
-            <SP><VERB>"off"</VERB> this means that the segments is not
-            clipped.</SP>
-          </DESCRIPTION_ITEM>
+        <itemizedlist>
+          <listitem>
+            <para><literal>"off"</literal> this means that the segments is not
+            clipped.</para>
+          </listitem>
 
-          <DESCRIPTION_ITEM>
-            <SP><VERB>"clipgrf"</VERB> this means that the segments is clipped
-            outside the Axes box.</SP>
-          </DESCRIPTION_ITEM>
+          <listitem>
+            <para><literal>"clipgrf"</literal> this means that the segments is clipped
+            outside the Axes box.</para>
+          </listitem>
 
-          <DESCRIPTION_ITEM>
-            <SP><VERB>"on"</VERB> this means that the segments is clipped
+          <listitem>
+            <para><literal>"on"</literal> this means that the segments is clipped
             outside the rectangle given by the property
-            <VERB>clip_box</VERB>.</SP>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+            <literal>clip_box</literal>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="clip_box: ">
-        <SP>This field contains the <VERB>clip_box</VERB> property. By default
+      <varlistentry><term>clip_box: </term><listitem>
+        <para>This field contains the <literal>clip_box</literal> property. By default
         segment are not clipped, clip_state is "off", so the value should be
-        an empty matrix .Other cases the vector <VERB>[x,y,w,h]</VERB>
+        an empty matrix .Other cases the vector <literal>[x,y,w,h]</literal>
         (upper-left point width height) defines the portions of the segments
-        to display, however <VERB>clip_state</VERB> property value will be
-        changed.</SP>
-      </DESCRIPTION_ITEM>
+        to display, however <literal>clip_state</literal> property value will be
+        changed.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="user_data: ">
-        <SP>This field can be use to store any scilab variable in the segs
-        data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      <varlistentry><term>user_data: </term><listitem>
+        <para>This field can be use to store any scilab variable in the segs
+        data structure, and to retreive it.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
    a=get("current_axes");//get the handle of the newly created axes
    a.data_bounds=[-10,-10;10,10];
@@ -198,29 +197,29 @@
    a.thickness=4;
    xrect(s.clip_box);
 
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xsegs</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xsegs">xsegs</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDMOUCHE</para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="primes"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>primes</refname><refpurpose>primes function</refpurpose></refnamediv>
+  
 
-  <TITLE>primes numbers</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="primes">primes function</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[y]=primes(x)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y]=primes(x)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real scalar</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+      <varlistentry>
+        <term>y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Given a real <VERB>x</VERB>, <VERB>primes(x)</VERB> returns in a vector
-    <VERB>y</VERB> all the primes numbers included between 1 and
-    <VERB>x</VERB>. If <VERB>x&lt;2 </VERB>then <VERB>primes(x)</VERB> returns
-    an empty matrix.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Given a real <literal>x</literal>, <literal>primes(x)</literal> returns in a vector
+    <literal>y</literal> all the primes numbers included between 1 and
+    <literal>x</literal>. If <literal>x&lt;2 </literal>then <literal>primes(x)</literal> returns
+    an empty matrix.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 x=35
 y=primes(x)
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>factor</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="factor">factor</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

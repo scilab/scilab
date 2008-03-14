@@ -1,30 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getscilabmode</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2007-04-02 14:33:52 +0200 (Mon, 02 Apr 2007) $</DATE>
-  <SHORT_DESCRIPTION name="getscilabmode">returns scilab mode</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getscilabmode"><info><pubdate>$LastChangedDate: 2007-04-02 14:33:52 +0200 (Mon, 02 Apr 2007) $</pubdate></info><refnamediv><refname>getscilabmode</refname><refpurpose>returns scilab mode</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mode = getscilabmode()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mode = getscilabmode()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>returns scilab mode. 4 modes are possible : STD , API , NW , NWNI .</P>
-    <P><VERB>API</VERB> : Scilab is launch as an API.</P>
-    <P><VERB>STD</VERB> : The standard Scilab (gui, plot ...) </P>
-    <P><VERB>NW</VERB> : Scilab in command line with the plots.</P>
-    <P><VERB>NWNI</VERB> : Scilab in command line without any graphics.</P>
+  <refsection><title>Description</title>
+    <para>returns scilab mode. 4 modes are possible : STD , API , NW , NWNI .</para>
+    <para><literal>API</literal>Scilab is launch as an API.</para>
+    <para><literal>STD</literal>The standard Scilab (gui, plot ...) </para>
+    <para><literal>NW</literal>Scilab in command line with the plots.</para>
+    <para><literal>NWNI</literal>Scilab in command line without any graphics.</para>
     
-  </DESCRIPTION>
+  </refsection>
 
-  <EXAMPLE><![CDATA[getscilabmode()]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[getscilabmode()]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>scilab</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="scilab">scilab</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

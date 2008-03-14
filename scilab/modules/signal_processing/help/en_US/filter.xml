@@ -1,56 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>filter</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="filter"> modelling filter</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[y,xt]=filter(n,F,H,Rt,T)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number of computed points.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>F, H</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: relevant matrices of the Markovian model.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Rt, T</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: gain matrices.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: output of the filter.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: filter process.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    This function computes the modelling filter</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>faurre</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>G. Le V.  </AUTHOR>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="filter"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>filter</refname><refpurpose> modelling filter</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y,xt]=filter(n,F,H,Rt,T)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>number of computed points.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>F, H</term>
+        <listitem>
+          <para>relevant matrices of the Markovian model.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Rt, T</term>
+        <listitem>
+          <para>gain matrices.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>output of the filter.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xt</term>
+        <listitem>
+          <para>filter process.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    This function computes the modelling filter</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="faurre">faurre</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>G. Le V.  </para></refsection>
+</refentry>

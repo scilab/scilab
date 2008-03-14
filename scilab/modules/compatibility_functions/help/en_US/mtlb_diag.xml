@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,62 +10,61 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_diag</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_diag"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_diag</refname><refpurpose>Matlab diag emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_diag">Matlab diag emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>diag</VERB> behave differently in some particular cases:</P>
+    <para>Matlab and Scilab <literal>diag</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>    
-	With character string matrices: Scilab <VERB>diag</VERB> function considers each character string as an object
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>    
+	With character string matrices: Scilab <literal>diag</literal> function considers each character string as an object
 	while Matlab considers each character individually.
-        </SP>    
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>    
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>y = mtlb_diag(x[,dim])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>y = diag(x[,dim])</VERB> when it was not
+    <para>
+    The function <literal>y = mtlb_diag(x[,dim])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>y = diag(x[,dim])</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_diag</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_diag</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>    
-	If <VERB>x</VERB> is not a character string matrix
-	<VERB>y = mtlb_diag(x[,dim])</VERB> may be replaced by <VERB>y = diag(x[,dim])</VERB>
-        </SP>    
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>    
+	If <literal>x</literal> is not a character string matrix
+	<literal>y = mtlb_diag(x[,dim])</literal> may be replaced by <literal>y = diag(x[,dim])</literal>
+        </para>    
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_diag</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_diag</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO> 
-    <SEE_ALSO_ITEM> <LINK>Matlab-Scilab_character_strings</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline"> 
+    <member> <link linkend="MatlabScilab_character_strings">Matlab-Scilab_character_strings</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

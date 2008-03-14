@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,393 +10,392 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graphics</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="Graphics"> graphics library overview</SHORT_DESCRIPTION>
-  <SECTION label="2d plotting">
-    <ITEMIZE>
-      <ITEM label="plot2d">
-        <SP>: plot a curve</SP>
-      </ITEM>
-      <ITEM label="plot2d2">
-        <SP>: plot a curve as step function</SP>
-      </ITEM>
-      <ITEM label="plot2d3">
-        <SP>: plot a curve with vertical bars</SP>
-      </ITEM>
-      <ITEM label="plot2d4">
-        <SP>: plot a curve with arrows</SP>
-      </ITEM>
-      <ITEM label="fplot2d">
-        <SP>: plot a curve defined by a function</SP>
-      </ITEM>
-      <ITEM label="champ">
-        <SP>: 2D vector field</SP>
-      </ITEM>
-      <ITEM label="champ1">
-        <SP>: 2D vector field with colored arrows</SP>
-      </ITEM>
-      <ITEM label="fchamp">
-        <SP>: direction field of a 2D first order ODE</SP>
-      </ITEM>
-      <ITEM label="contour2d">
-        <SP>: level curves of a surface on a 2D plot</SP>
-      </ITEM>
-      <ITEM label="fcontour2d">
-        <SP>: level curves of a surface defined by a function on a 2D plot</SP>
-      </ITEM>
-      <ITEM label="grayplot">
-        <SP>: 2D plot of a surface using colors</SP>
-      </ITEM>
-      <ITEM label="fgrayplot">
-        <SP>: 2D plot of a surface defined by a function using colors</SP>
-      </ITEM>
-      <ITEM label="Sgrayplot">
-        <SP>: smooth 2D plot of a surface using colors</SP>
-      </ITEM>
-      <ITEM label="Sfgrayplot">
-        <SP>: smooth 2D plot of a surface defined by a function using colors</SP>
-      </ITEM>
-      <ITEM label="xgrid">
-        <SP>: add a grid on a 2D plot</SP>
-      </ITEM>
-      <ITEM label="errbar">
-        <SP>: add vertical error bars on a 2D plot</SP>
-      </ITEM>
-      <ITEM label="histplot">
-        <SP>: plot a histogram</SP>
-      </ITEM>
-      <ITEM label="Matplot">
-        <SP>: 2D plot of a matrix using colors</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="3d plotting">
-    <ITEMIZE>
-      <ITEM label="plot3d">
-        <SP>: plot a surface</SP>
-      </ITEM>
-      <ITEM label="plot3d1">
-        <SP>: plot a surface with gray or color level</SP>
-      </ITEM>
-      <ITEM label="fplot3d">
-        <SP>: plot a surface defined by a function</SP>
-      </ITEM>
-      <ITEM label="fplot3d1">
-        <SP>: plot a surface defined by a function with gray or color level</SP>
-      </ITEM>
-      <ITEM label="param3d">
-        <SP>: plot one curve</SP>
-      </ITEM>
-      <ITEM label="param3d1">
-        <SP>: plots curves</SP>
-      </ITEM>
-      <ITEM label="contour">
-        <SP>: level curves on a 3D surface</SP>
-      </ITEM>
-      <ITEM label="fcontour">
-        <SP>: level curves on a 3D surface defined by a function</SP>
-      </ITEM>
-      <ITEM label="hist3d">
-        <SP>: 3D representation of a histogram</SP>
-      </ITEM>
-      <ITEM label="genfac3d">
-        <SP>: compute facets of a 3D surface</SP>
-      </ITEM>
-      <ITEM label="eval3dp">
-        <SP>: compute facets of a 3D surface</SP>
-      </ITEM>
-      <ITEM label="geom3d">
-        <SP>: projection from 3D on 2D after a 3D plot</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Line and polygon plotting">
-    <ITEMIZE>
-      <ITEM label="xpoly">
-        <SP>: draw a polyline or a polygon</SP>
-      </ITEM>
-      <ITEM label="xpolys">
-        <SP>: draw a set of polylines or polygons</SP>
-      </ITEM>
-      <ITEM label="xrpoly">
-        <SP>: draw a regular polygon</SP>
-      </ITEM>
-      <ITEM label="xsegs">
-        <SP>: draw unconnected segments</SP>
-      </ITEM>
-      <ITEM label="xfpoly">
-        <SP>: fill a polygon</SP>
-      </ITEM>
-      <ITEM label="xfpolys">
-        <SP>: fill a set of polygons</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Rectangle plotting">
-    <ITEMIZE>
-      <ITEM label="xrect">
-        <SP>: draw a rectangle</SP>
-      </ITEM>
-      <ITEM label="xfrect">
-        <SP>: fill a rectangle</SP>
-      </ITEM>
-      <ITEM label="xrects">
-        <SP>: draw or fill a set of rectangles</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Arc plotting">
-    <ITEMIZE>
-      <ITEM label="xarc">
-        <SP>: draw a part of an ellipse</SP>
-      </ITEM>
-      <ITEM label="xarcs">
-        <SP>: draw parts of a set of ellipses</SP>
-      </ITEM>
-      <ITEM label="xfarc">
-        <SP>: fill a part of an ellipse</SP>
-      </ITEM>
-      <ITEM label="xfarcs">
-        <SP>: fill parts of a set of ellipses</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Arrow plotting">
-    <ITEMIZE>
-      <ITEM label="xarrows">
-        <SP>: draw a set of arrows</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Strings">
-    <ITEMIZE>
-      <ITEM label="xstring">
-        <SP>: draw strings</SP>
-      </ITEM>
-      <ITEM label="xstringl">
-        <SP>: compute a box which surrounds strings</SP>
-      </ITEM>
-      <ITEM label="xstringb">
-        <SP>: draw strings into a box</SP>
-      </ITEM>
-      <ITEM label="xtitle">
-        <SP>: add titles on a graphics window</SP>
-      </ITEM>
-      <ITEM label="titlepage">
-        <SP>: add a title in the middle of a graphics window</SP>
-      </ITEM>
-      <ITEM label="xinfo">
-        <SP>: draw an info string in the message subwindow</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Frames and axes">
-    <ITEMIZE>
-      <ITEM label="xaxis">
-        <SP>: draw an axis</SP>
-      </ITEM>
-      <ITEM label="graduate">
-        <SP>: pretty axis graduations</SP>
-      </ITEM>
-      <ITEM label="plotframe">
-        <SP>: plot a frame with scaling and grids</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Coordinates transformations">
-    <ITEMIZE>
-      <ITEM label="isoview">
-        <SP>: set scales for isometric plot (do not change the size of the window)</SP>
-      </ITEM>
-      <ITEM label="square">
-        <SP>: set scales for isometric plot (change the size of the window)</SP>
-      </ITEM>
-      <ITEM label="scaling">
-        <SP>: affine transformation of a set of points</SP>
-      </ITEM>
-      <ITEM label="rotate">
-        <SP>: rotation of a set of points</SP>
-      </ITEM>
-      <ITEM label="xsetech">
-        <SP>: set the sub-window of a graphics window for plotting</SP>
-      </ITEM>
-      <ITEM label="subplot">
-        <SP>: divide a graphics window into a matrix of sub-windows</SP>
-      </ITEM>
-      <ITEM label="xgetech">
-        <SP>: get the current graphics scale</SP>
-      </ITEM>
-      <ITEM label="xchange">
-        <SP>: transform real to pixel coordinates</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Colors">
-    <ITEMIZE>
-      <ITEM label="colormap">
-        <SP>: using colormaps</SP>
-      </ITEM>
-      <ITEM label="getcolor">
-        <SP>: dialog to select colors in the current colormap</SP>
-      </ITEM>
-      <ITEM label="addcolor">
-        <SP>: add new colors to the current colormap</SP>
-      </ITEM>
-      <ITEM label="graycolormap">
-        <SP>: linear gray colormap</SP>
-      </ITEM>
-      <ITEM label="hotcolormap">
-        <SP>: red to yellow colormap</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Graphics context">
-    <ITEMIZE>
-      <ITEM label="xset">
-        <SP>: set values of the graphics context</SP>
-      </ITEM>
-      <ITEM label="xget">
-        <SP>: get current values of the graphics context</SP>
-      </ITEM>
-      <ITEM label="xlfont">
-        <SP>: load a font in the graphics context or query loaded font</SP>
-      </ITEM>
-      <ITEM label="getsymbol">
-        <SP>: dialog to select a symbol and its size</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Save and load">
-    <ITEMIZE>
-      <ITEM label="xsave">
-        <SP>: save graphics into a file</SP>
-      </ITEM>
-      <ITEM label="xload">
-        <SP>: load a saved graphics</SP>
-      </ITEM>
-      <ITEM label="xbasimp">
-        <SP>: send graphics to a Postscript printer or in a file</SP>
-      </ITEM>
-      <ITEM label="xs2fig">
-        <SP>: send graphics to a file in Xfig syntax</SP>
-      </ITEM>
-      <ITEM label="xs2gif">
-        <SP>: send graphics to a file in Gif syntax</SP>
-      </ITEM>
-      <ITEM label="xs2ppm">
-        <SP>: send graphics to a file in PPM syntax</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Graphics primitives">
-    <ITEMIZE>
-      <ITEM label="xbasc">
-        <SP>: clear a graphics window and erase the associated recorded graphics</SP>
-      </ITEM>
-      <ITEM label="xclear">
-        <SP>: clear a graphics window</SP>
-      </ITEM>
-      <ITEM label="driver">
-        <SP>: select a graphics driver</SP>
-      </ITEM>
-      <ITEM label="xinit">
-        <SP>: initialisation of a graphics driver</SP>
-      </ITEM>
-      <ITEM label="xend">
-        <SP>: close a graphics session</SP>
-      </ITEM>
-      <ITEM label="xbasr">
-        <SP>: redraw a graphics window</SP>
-      </ITEM>
-      <ITEM label="replot">
-        <SP>: redraw the current graphics window with new boundaries</SP>
-      </ITEM>
-      <ITEM label="xpause">
-        <SP>: suspend Scilab</SP>
-      </ITEM>
-      <ITEM label="xselect">
-        <SP>: raise the current graphics window</SP>
-      </ITEM>
-      <ITEM label="xclea">
-        <SP>: erase a rectangle</SP>
-      </ITEM>
-      <ITEM label="xclip">
-        <SP>: set a clipping zone</SP>
-      </ITEM>
-      <ITEM label="xdel">
-        <SP>: delete a graphics window</SP>
-      </ITEM>
-      <ITEM label="winsid">
-        <SP>: return the list of graphics windows</SP>
-      </ITEM>
-      <ITEM label="xname">
-        <SP>: change the name of the current graphics window</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Mouse position">
-    <ITEMIZE>
-      <ITEM label="xclick">
-        <SP>: wait for a mouse click</SP>
-      </ITEM>
-      <ITEM label="locate">
-        <SP>: mouse selection of a set of points</SP>
-      </ITEM>
-      <ITEM label="xgetmouse">
-        <SP>: get the current position of the mouse</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Interactive editor">
-    <ITEMIZE>
-      <ITEM label="edit_curv">
-        <SP>: interactive graphics curve editor</SP>
-      </ITEM>
-      <ITEM label="gr_menu">
-        <SP>: simple interactives graphic editor</SP>
-      </ITEM>
-      <ITEM label="sd2sci">
-        <SP>: gr_menu structure to scilab instruction convertor</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-  <SECTION label="Graphics functions for automatic control">
-    <ITEMIZE>
-      <ITEM label="bode">
-        <SP>: Bode plot</SP>
-      </ITEM>
-      <ITEM label="gainplot">
-        <SP>: magnitude plot</SP>
-      </ITEM>
-      <ITEM label="nyquist">
-        <SP>: Nyquist plot</SP>
-      </ITEM>
-      <ITEM label="m_circle">
-        <SP>: M-circle plot</SP>
-      </ITEM>
-      <ITEM label="chart">
-        <SP>: Nichols chart</SP>
-      </ITEM>
-      <ITEM label="black">
-        <SP>: Black's diagram</SP>
-      </ITEM>
-      <ITEM label="evans">
-        <SP>: Evans root locus</SP>
-      </ITEM>
-      <ITEM label="sgrid">
-        <SP>: s-plane grid lines</SP>
-      </ITEM>
-      <ITEM label="plzr">
-        <SP>: pole-zero plot</SP>
-      </ITEM>
-      <ITEM label="zgrid">
-        <SP>: zgrid plot</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
-</MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Graphics"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Graphics</refname><refpurpose> graphics library overview</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>2d plotting</title>
+    <variablelist>
+      <varlistentry><term>plot2d</term><listitem>
+        <para>plot a curve</para>
+      </listitem></varlistentry>
+      <varlistentry><term>plot2d2</term><listitem>
+        <para>plot a curve as step function</para>
+      </listitem></varlistentry>
+      <varlistentry><term>plot2d3</term><listitem>
+        <para>plot a curve with vertical bars</para>
+      </listitem></varlistentry>
+      <varlistentry><term>plot2d4</term><listitem>
+        <para>plot a curve with arrows</para>
+      </listitem></varlistentry>
+      <varlistentry><term>fplot2d</term><listitem>
+        <para>plot a curve defined by a function</para>
+      </listitem></varlistentry>
+      <varlistentry><term>champ</term><listitem>
+        <para>2D vector field</para>
+      </listitem></varlistentry>
+      <varlistentry><term>champ1</term><listitem>
+        <para>2D vector field with colored arrows</para>
+      </listitem></varlistentry>
+      <varlistentry><term>fchamp</term><listitem>
+        <para>direction field of a 2D first order ODE</para>
+      </listitem></varlistentry>
+      <varlistentry><term>contour2d</term><listitem>
+        <para>level curves of a surface on a 2D plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>fcontour2d</term><listitem>
+        <para>level curves of a surface defined by a function on a 2D plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>grayplot</term><listitem>
+        <para>2D plot of a surface using colors</para>
+      </listitem></varlistentry>
+      <varlistentry><term>fgrayplot</term><listitem>
+        <para>2D plot of a surface defined by a function using colors</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Sgrayplot</term><listitem>
+        <para>smooth 2D plot of a surface using colors</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Sfgrayplot</term><listitem>
+        <para>smooth 2D plot of a surface defined by a function using colors</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xgrid</term><listitem>
+        <para>add a grid on a 2D plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>errbar</term><listitem>
+        <para>add vertical error bars on a 2D plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>histplot</term><listitem>
+        <para>plot a histogram</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Matplot</term><listitem>
+        <para>2D plot of a matrix using colors</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>3d plotting</title>
+    <variablelist>
+      <varlistentry><term>plot3d</term><listitem>
+        <para>plot a surface</para>
+      </listitem></varlistentry>
+      <varlistentry><term>plot3d1</term><listitem>
+        <para>plot a surface with gray or color level</para>
+      </listitem></varlistentry>
+      <varlistentry><term>fplot3d</term><listitem>
+        <para>plot a surface defined by a function</para>
+      </listitem></varlistentry>
+      <varlistentry><term>fplot3d1</term><listitem>
+        <para>plot a surface defined by a function with gray or color level</para>
+      </listitem></varlistentry>
+      <varlistentry><term>param3d</term><listitem>
+        <para>plot one curve</para>
+      </listitem></varlistentry>
+      <varlistentry><term>param3d1</term><listitem>
+        <para>plots curves</para>
+      </listitem></varlistentry>
+      <varlistentry><term>contour</term><listitem>
+        <para>level curves on a 3D surface</para>
+      </listitem></varlistentry>
+      <varlistentry><term>fcontour</term><listitem>
+        <para>level curves on a 3D surface defined by a function</para>
+      </listitem></varlistentry>
+      <varlistentry><term>hist3d</term><listitem>
+        <para>3D representation of a histogram</para>
+      </listitem></varlistentry>
+      <varlistentry><term>genfac3d</term><listitem>
+        <para>compute facets of a 3D surface</para>
+      </listitem></varlistentry>
+      <varlistentry><term>eval3dp</term><listitem>
+        <para>compute facets of a 3D surface</para>
+      </listitem></varlistentry>
+      <varlistentry><term>geom3d</term><listitem>
+        <para>projection from 3D on 2D after a 3D plot</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Line and polygon plotting</title>
+    <variablelist>
+      <varlistentry><term>xpoly</term><listitem>
+        <para>draw a polyline or a polygon</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xpolys</term><listitem>
+        <para>draw a set of polylines or polygons</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xrpoly</term><listitem>
+        <para>draw a regular polygon</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xsegs</term><listitem>
+        <para>draw unconnected segments</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xfpoly</term><listitem>
+        <para>fill a polygon</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xfpolys</term><listitem>
+        <para>fill a set of polygons</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Rectangle plotting</title>
+    <variablelist>
+      <varlistentry><term>xrect</term><listitem>
+        <para>draw a rectangle</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xfrect</term><listitem>
+        <para>fill a rectangle</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xrects</term><listitem>
+        <para>draw or fill a set of rectangles</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Arc plotting</title>
+    <variablelist>
+      <varlistentry><term>xarc</term><listitem>
+        <para>draw a part of an ellipse</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xarcs</term><listitem>
+        <para>draw parts of a set of ellipses</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xfarc</term><listitem>
+        <para>fill a part of an ellipse</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xfarcs</term><listitem>
+        <para>fill parts of a set of ellipses</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Arrow plotting</title>
+    <variablelist>
+      <varlistentry><term>xarrows</term><listitem>
+        <para>draw a set of arrows</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Strings</title>
+    <variablelist>
+      <varlistentry><term>xstring</term><listitem>
+        <para>draw strings</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xstringl</term><listitem>
+        <para>compute a box which surrounds strings</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xstringb</term><listitem>
+        <para>draw strings into a box</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xtitle</term><listitem>
+        <para>add titles on a graphics window</para>
+      </listitem></varlistentry>
+      <varlistentry><term>titlepage</term><listitem>
+        <para>add a title in the middle of a graphics window</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xinfo</term><listitem>
+        <para>draw an info string in the message subwindow</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Frames and axes</title>
+    <variablelist>
+      <varlistentry><term>xaxis</term><listitem>
+        <para>draw an axis</para>
+      </listitem></varlistentry>
+      <varlistentry><term>graduate</term><listitem>
+        <para>pretty axis graduations</para>
+      </listitem></varlistentry>
+      <varlistentry><term>plotframe</term><listitem>
+        <para>plot a frame with scaling and grids</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Coordinates transformations</title>
+    <variablelist>
+      <varlistentry><term>isoview</term><listitem>
+        <para>set scales for isometric plot (do not change the size of the window)</para>
+      </listitem></varlistentry>
+      <varlistentry><term>square</term><listitem>
+        <para>set scales for isometric plot (change the size of the window)</para>
+      </listitem></varlistentry>
+      <varlistentry><term>scaling</term><listitem>
+        <para>affine transformation of a set of points</para>
+      </listitem></varlistentry>
+      <varlistentry><term>rotate</term><listitem>
+        <para>rotation of a set of points</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xsetech</term><listitem>
+        <para>set the sub-window of a graphics window for plotting</para>
+      </listitem></varlistentry>
+      <varlistentry><term>subplot</term><listitem>
+        <para>divide a graphics window into a matrix of sub-windows</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xgetech</term><listitem>
+        <para>get the current graphics scale</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xchange</term><listitem>
+        <para>transform real to pixel coordinates</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Colors</title>
+    <variablelist>
+      <varlistentry><term>colormap</term><listitem>
+        <para>using colormaps</para>
+      </listitem></varlistentry>
+      <varlistentry><term>getcolor</term><listitem>
+        <para>dialog to select colors in the current colormap</para>
+      </listitem></varlistentry>
+      <varlistentry><term>addcolor</term><listitem>
+        <para>add new colors to the current colormap</para>
+      </listitem></varlistentry>
+      <varlistentry><term>graycolormap</term><listitem>
+        <para>linear gray colormap</para>
+      </listitem></varlistentry>
+      <varlistentry><term>hotcolormap</term><listitem>
+        <para>red to yellow colormap</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Graphics context</title>
+    <variablelist>
+      <varlistentry><term>xset</term><listitem>
+        <para>set values of the graphics context</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xget</term><listitem>
+        <para>get current values of the graphics context</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xlfont</term><listitem>
+        <para>load a font in the graphics context or query loaded font</para>
+      </listitem></varlistentry>
+      <varlistentry><term>getsymbol</term><listitem>
+        <para>dialog to select a symbol and its size</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Save and load</title>
+    <variablelist>
+      <varlistentry><term>xsave</term><listitem>
+        <para>save graphics into a file</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xload</term><listitem>
+        <para>load a saved graphics</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xbasimp</term><listitem>
+        <para>send graphics to a Postscript printer or in a file</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xs2fig</term><listitem>
+        <para>send graphics to a file in Xfig syntax</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xs2gif</term><listitem>
+        <para>send graphics to a file in Gif syntax</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xs2ppm</term><listitem>
+        <para>send graphics to a file in PPM syntax</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Graphics primitives</title>
+    <variablelist>
+      <varlistentry><term>xbasc</term><listitem>
+        <para>clear a graphics window and erase the associated recorded graphics</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xclear</term><listitem>
+        <para>clear a graphics window</para>
+      </listitem></varlistentry>
+      <varlistentry><term>driver</term><listitem>
+        <para>select a graphics driver</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xinit</term><listitem>
+        <para>initialisation of a graphics driver</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xend</term><listitem>
+        <para>close a graphics session</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xbasr</term><listitem>
+        <para>redraw a graphics window</para>
+      </listitem></varlistentry>
+      <varlistentry><term>replot</term><listitem>
+        <para>redraw the current graphics window with new boundaries</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xpause</term><listitem>
+        <para>suspend Scilab</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xselect</term><listitem>
+        <para>raise the current graphics window</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xclea</term><listitem>
+        <para>erase a rectangle</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xclip</term><listitem>
+        <para>set a clipping zone</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xdel</term><listitem>
+        <para>delete a graphics window</para>
+      </listitem></varlistentry>
+      <varlistentry><term>winsid</term><listitem>
+        <para>return the list of graphics windows</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xname</term><listitem>
+        <para>change the name of the current graphics window</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Mouse position</title>
+    <variablelist>
+      <varlistentry><term>xclick</term><listitem>
+        <para>wait for a mouse click</para>
+      </listitem></varlistentry>
+      <varlistentry><term>locate</term><listitem>
+        <para>mouse selection of a set of points</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xgetmouse</term><listitem>
+        <para>get the current position of the mouse</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Interactive editor</title>
+    <variablelist>
+      <varlistentry><term>edit_curv</term><listitem>
+        <para>interactive graphics curve editor</para>
+      </listitem></varlistentry>
+      <varlistentry><term>gr_menu</term><listitem>
+        <para>simple interactives graphic editor</para>
+      </listitem></varlistentry>
+      <varlistentry><term>sd2sci</term><listitem>
+        <para>gr_menu structure to scilab instruction convertor</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Graphics functions for automatic control</title>
+    <variablelist>
+      <varlistentry><term>bode</term><listitem>
+        <para>Bode plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>gainplot</term><listitem>
+        <para>magnitude plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>nyquist</term><listitem>
+        <para>Nyquist plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>m_circle</term><listitem>
+        <para>M-circle plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>chart</term><listitem>
+        <para>Nichols chart</para>
+      </listitem></varlistentry>
+      <varlistentry><term>black</term><listitem>
+        <para>Black's diagram</para>
+      </listitem></varlistentry>
+      <varlistentry><term>evans</term><listitem>
+        <para>Evans root locus</para>
+      </listitem></varlistentry>
+      <varlistentry><term>sgrid</term><listitem>
+        <para>s-plane grid lines</para>
+      </listitem></varlistentry>
+      <varlistentry><term>plzr</term><listitem>
+        <para>pole-zero plot</para>
+      </listitem></varlistentry>
+      <varlistentry><term>zgrid</term><listitem>
+        <para>zgrid plot</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

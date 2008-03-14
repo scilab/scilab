@@ -1,55 +1,51 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>stacksize</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="stacksize"> set scilab stack size</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>stacksize(n)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>stacksize('max')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>stacksize('min')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>sz=stacksize()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, the required stack size given in number of double precision words</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sz</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: 2-vector [total used]</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Scilab stores &quot;usual&quot; variables in a stack <VERB>stk</VERB> (for global variables see <VERB>gstacksize</VERB>).</P>
-    <P><VERB>stacksize(n)</VERB> allows the user to increase or decrease the size of
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stacksize"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>stacksize</refname><refpurpose> set scilab stack size</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>stacksize(n)
+stacksize('max')
+stacksize('min')
+sz=stacksize()</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integer, the required stack size given in number of double precision words</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sz</term>
+        <listitem>
+          <para>2-vector [total used]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Scilab stores "usual" variables in a stack <literal>stk</literal> (for global variables see <literal>gstacksize</literal>).</para>
+    <para><literal>stacksize(n)</literal> allows the user to increase or decrease the size of
     this stack. The maximum allowed size depends on the amount of
-    free memory and swap space available at the time.</P>
-    <P><VERB>stacksize('max')</VERB> allows the user to increase the size of
-    this stack to the maximum.</P>
-    <P><VERB>stacksize('min')</VERB> allows the user to decrease the size of
-    this stack to the minimum.</P>
+    free memory and swap space available at the time.</para>
+    <para><literal>stacksize('max')</literal> allows the user to increase the size of
+    this stack to the maximum.</para>
+    <para><literal>stacksize('min')</literal> allows the user to decrease the size of
+    this stack to the minimum.</para>
     
-    <P>
-    This function with the <VERB>n</VERB> argument can now be used everywhere.</P>
-    <P><VERB>sz=stacksize()</VERB> returns a 2-vector which contains  the current
-    total and used stack size.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>who</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>gstacksize</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <para>
+    This function with the <literal>n</literal> argument can now be used everywhere.</para>
+    <para><literal>sz=stacksize()</literal> returns a 2-vector which contains  the current
+    total and used stack size.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="who">who</link>
+    </member>
+    <member>
+      <link linkend="gstacksize">gstacksize</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,120 +1,116 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>qld</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="qld"> linear quadratic programming solver</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x,lagr]=qld(Q,p,C,b,ci,cs,me [,tol])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[x,lagr,info]=qld(Q,p,C,b,ci,cs,me [,tol])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>Q</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real positive definite symmetric matrix (dimension <VERB>n x n</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real (column) vector (dimension <VERB> n</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>C</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix (dimension <VERB> (me + md) x n</VERB>) </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>b</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: RHS column vector (dimension <VERB> (me + md)</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ci</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: column vector of lower-bounds (dimension <VERB>n</VERB>). If
-	    there are no lower bound constraints, put <VERB>ci = []</VERB>. If
-	    some components of <VERB>x</VERB> are bounded from below, set the
-	    other (unconstrained) values of <VERB>ci</VERB> to a very  large
-	    negative  number (e.g. <VERB>ci(j) =
-	      -number_properties('huge')</VERB>.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>cs</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: column vector of upper-bounds. (Same remarks as above).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>me</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number of equality constraints (i.e. <VERB>C(1:me,:)*x = b(1:me)</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:Floatting point number, required précision.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: optimal solution found.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="qld"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>qld</refname><refpurpose> linear quadratic programming solver</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x,lagr]=qld(Q,p,C,b,ci,cs,me [,tol])
+[x,lagr,info]=qld(Q,p,C,b,ci,cs,me [,tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Q</term>
+        <listitem>
+          <para>real positive definite symmetric matrix (dimension <literal>n x n</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>real (column) vector (dimension <literal> n</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C</term>
+        <listitem>
+          <para>real matrix (dimension <literal> (me + md) x n</literal>) </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>RHS column vector (dimension <literal> (me + md)</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ci</term>
+        <listitem>
+          <para>column vector of lower-bounds (dimension <literal>n</literal>). If
+	    there are no lower bound constraints, put <literal>ci = []</literal>. If
+	    some components of <literal>x</literal> are bounded from below, set the
+	    other (unconstrained) values of <literal>ci</literal> to a very  large
+	    negative  number (e.g. <literal>ci(j) =
+	      -number_properties('huge')</literal>.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cs</term>
+        <listitem>
+          <para>column vector of upper-bounds. (Same remarks as above).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>me</term>
+        <listitem>
+          <para>number of equality constraints (i.e. <literal>C(1:me,:)*x = b(1:me)</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>:Floatting point number, required précision.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>optimal solution found.</para>
+        </listitem>
+      </varlistentry>
    
-      <PARAM_ITEM>
-        <PARAM_NAME>lagr</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of Lagrange multipliers.  If lower and upper-bounds
-	    <VERB>ci,cs</VERB> are provided, <VERB>lagr</VERB> has  <VERB>n +
-	      me + md</VERB> components and <VERB>lagr(1:n)</VERB> is the
+      <varlistentry>
+        <term>lagr</term>
+        <listitem>
+          <para>vector of Lagrange multipliers.  If lower and upper-bounds
+	    <literal>ci,cs</literal> are provided, <literal>lagr</literal> has  <literal>n +
+	      me + md</literal> components and <literal>lagr(1:n)</literal> is the
 	    Lagrange  vector associated with the bound constraints and
-	    <VERB>lagr (n+1 : n + me + md)</VERB> is the Lagrange vector
+	    <literal>lagr (n+1 : n + me + md)</literal> is the Lagrange vector
 	    associated  with the linear constraints. (If an upper-bound
-	    (resp. lower-bound) constraint <VERB>i</VERB> is active
-	    <VERB>lagr(i)</VERB> is &gt; 0 (resp. &lt;0). If no bounds are
-	    provided, <VERB>lagr</VERB> has only <VERB>me + md</VERB>
-	    components.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>info</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, return the execution status instead of sending
-	  errors.</SP>
-	<P>info==1 : Too many iterations needed</P>
-	<P>info==2 : Accuracy insufficient to statisfy convergence criterion</P>
-	<P>info==5 : Length of working array is too short</P>
- 	<P>info==10: The constraints are inconsistent</P>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>Minimize <VERB> 0.5*x'*Q*x + p'*x</VERB></P>
-    <P>under the constraints</P>
-    <VERBATIM>
-<![CDATA[
+	    (resp. lower-bound) constraint <literal>i</literal> is active
+	    <literal>lagr(i)</literal> is &gt; 0 (resp. &lt;0). If no bounds are
+	    provided, <literal>lagr</literal> has only <literal>me + md</literal>
+	    components.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>integer, return the execution status instead of sending
+	  errors.</para>
+	<para>info==1 : Too many iterations needed</para>
+	<para>info==2 : Accuracy insufficient to statisfy convergence criterion</para>
+	<para>info==5 : Length of working array is too short</para>
+ 	<para>info==10: The constraints are inconsistent</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>Minimize <literal> 0.5*x'*Q*x + p'*x</literal></para>
+    <para>under the constraints</para>
+    <programlisting><![CDATA[
+
  C(j,:) x = b(j),  j=1,...,me
  C(j,:) x <= b(j), j=me+1,...,me+md
  ci <= x <= cs
-   ]]>
-    </VERBATIM>
-    <P>This function requires  <VERB>Q</VERB> to be positive definite, if it is
-      not the case, one may use the <LINK>quapro</LINK> function.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>This function requires  <literal>Q</literal> to be positive definite, if it is
+      not the case, one may use the <link linkend="quapro">quapro</link> function.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -135,22 +131,22 @@ b=[b1;b2] ;  //
 me=3;
 [x,lagr]=qld(Q,p,C,b,ci,cs,me)
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>quapro</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>optim</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHORS>
-    <AUTHORS_ITEM label="K.Schittkowski">, University of Bayreuth, Germany</AUTHORS_ITEM>
-    <AUTHORS_ITEM label=" A.L. Tits and J.L. Zhou"> , University of Maryland</AUTHORS_ITEM>
-  </AUTHORS>
-  <USED_FUNCTIONS>
-    <P>ql0001.f in routines/optim directory</P>
-  </USED_FUNCTIONS>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="quapro">quapro</link>
+    </member>
+    <member>
+      <link linkend="optim">optim</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>K.Schittkowski</term><listitem><para>, University of Bayreuth, Germany</para></listitem></varlistentry>
+    <varlistentry><term> A.L. Tits and J.L. Zhou</term><listitem><para> , University of Maryland</para></listitem></varlistentry>
+  </variablelist></refsection>
+  <refsection><title>Used Functions</title>
+    <para>ql0001.f in routines/optim directory</para>
+  </refsection>
 
-</MAN>
+</refentry>

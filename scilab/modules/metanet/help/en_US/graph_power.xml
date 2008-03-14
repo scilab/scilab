@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,50 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_power"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_power</refname><refpurpose> kth power of a directed 1-graph</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = graph_power(g,k)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link> defining a directed graph.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1</term>
+        <listitem>
+          <para>graph data structure of the new graph</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>graph_power</literal> computes the directed graph <literal>g1</literal> which is the kth power 
+    of directed 1-graph <literal>g</literal>.
+    There is an arc between two nodes in <literal>g1</literal> if there exists a path between 
+    these nodes of length at most k in <literal>g</literal>.
+    <literal>graph_power(g,1)</literal> is graph <literal>g</literal>.</para>
+    <para>
+    If such a graph does not exist, an empty vector is returned.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_power</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph_power"> kth power of a directed 1-graph</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g1 = graph_power(g,k)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK> defining a directed graph.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>k</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph data structure of the new graph</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>graph_power</VERB> computes the directed graph <VERB>g1</VERB> which is the kth power 
-    of directed 1-graph <VERB>g</VERB>.
-    There is an arc between two nodes in <VERB>g1</VERB> if there exists a path between 
-    these nodes of length at most k in <VERB>g</VERB>.
-    <VERB>graph_power(g,1)</VERB> is graph <VERB>g</VERB>.</P>
-    <P>
-    If such a graph does not exist, an empty vector is returned.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
 he=[2 6 3 6 7 8 8 8 4 7 3 5];
 g=make_graph('foo',1,8,ta,he);
@@ -65,6 +60,6 @@ show_graph(g);
 g2=graph_power(g,2);
 show_graph(g2,'new');
 
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2007 - INRIA - Allan CORNET
@@ -10,28 +10,25 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>prompt</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2007-05-13 12:13:33 +0200 (dim., 13 mai 2007) $</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="prompt"><info><pubdate>$LastChangedDate: 2007-05-13 12:13:33 +0200 (dim., 13 mai 2007) $</pubdate></info><refnamediv><refname>prompt</refname><refpurpose>get current prompt</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="prompt">get current prompt</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>p=prompt()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>p=prompt()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P><VERB>prompt()</VERB> get current prompt.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>prompt()</literal> get current prompt.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>pause</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member><link linkend="pause">pause</link></member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C.</member>
+  </simplelist></refsection>
+</refentry>

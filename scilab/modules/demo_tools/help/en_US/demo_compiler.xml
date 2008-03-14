@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,28 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>demo_compiler</TITLE>
-	<TYPE>Scilab Function</TYPE>
-    <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_compiler"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_compiler</refname><refpurpose> test the presence of a compileur </refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="demo_compiler"> test the presence of a compileur </SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>N = datenum()</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>
+    
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>N = datenum()</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>
 			The function demo_compiler asks the computer if it owns a compileur C or not. 
 			It returns a boolean indicating wether the compiler exists or not.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 select num,
  case 0
   return;
@@ -47,15 +42,15 @@ select num,
 	wheelg=wheelgs;
 	show(x);
 end
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>findmsvccompiler</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="findmsvccompiler">findmsvccompiler</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Authors</title><simplelist type="vert">
+		<member>G.H</member>
+	</simplelist></refsection>
+</refentry>

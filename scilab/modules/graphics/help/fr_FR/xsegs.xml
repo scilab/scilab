@@ -1,71 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xsegs"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xsegs</refname><refpurpose>dessine des segments non
+  connectés</refpurpose></refnamediv>
+  
 
-  <TITLE>xsegs</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="xsegs">dessine des segments non
-  connectés</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xsegs(xv,yv,[style])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>xsegs(xv,yv,[style])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>xv,yv</PARAM_NAME>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>xv,yv</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrices de la même taille.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>matrices de la même taille.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>style</PARAM_NAME>
+      <varlistentry>
+        <term>style</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vecteur ou scalaire. Si <VERB>style</VERB> est un scalaire
+        <listitem>
+          <para>vecteur ou scalaire. Si <literal>style</literal> est un scalaire
           positif, il donne la couleur pour tous les segments. Si
-          <VERB>style</VERB> est négatif la couleur courante est utilisé. Si
-          <VERB>style</VERB> est un vecteur, alors <VERB>style(i)</VERB> donne
-          la couleur du segment <VERB>i</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+          <literal>style</literal> est négatif la couleur courante est utilisé. Si
+          <literal>style</literal> est un vecteur, alors <literal>style(i)</literal> donne
+          la couleur du segment <literal>i</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>xsegs</VERB> dessine un ensemble de segments déconnectés donnés
-    par <VERB>xv</VERB> et <VERB>yv</VERB>. Si <VERB>xv</VERB> et
-    <VERB>yv</VERB> sont des matrices elles sont considérées comme des
+  <refsection><title>Description</title>
+    <para><literal>xsegs</literal> dessine un ensemble de segments déconnectés donnés
+    par <literal>xv</literal> et <literal>yv</literal>. Si <literal>xv</literal> et
+    <literal>yv</literal> sont des matrices elles sont considérées comme des
     vecteurs (par concaténation de leurs colonnes). Les coordonnées des deux
     points définissant un segment sont données par les valeurs consécutives
-    des termes de <VERB>xv</VERB> et <VERB>yv</VERB>:</P>
+    des termes de <literal>xv</literal> et <literal>yv</literal>:</para>
 
-    <P><VERB>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</VERB>.</P>
+    <para><literal>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</literal>.</para>
 
-    <P>Par exemple, en utilisant des matrices de taille (2,n) :</P>
+    <para>Par exemple, en utilisant des matrices de taille (2,n) :</para>
 
-    <VERBATIM>xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] yv=[yi_1 yi_2 ...; yf_1 yf_2
-    ...]</VERBATIM>
+    <programlisting><![CDATA[xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] yv=[yi_1 yi_2 ...; yf_1 yf_2
+    ...]]]></programlisting>
 
-    <P>le segment numéro k est défini par :
-    <VERB>(xi_k,yi_k)--&gt;(xf_k,yf_k)</VERB>.</P>
-  </DESCRIPTION>
+    <para>le segment numéro k est défini par :
+    <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 x=2*%pi*(0:9)/10;
 xv=[sin(x);9*sin(x)];
 yv=[cos(x);9*cos(x)];
 plot2d([-10,10],[-10,10],[-1,-1],"022")
 xsegs(xv,yv,1:10)
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>J.Ph.C.</para></refsection>
+</refentry>

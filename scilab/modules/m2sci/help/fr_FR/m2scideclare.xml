@@ -1,199 +1,179 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>m2scideclare</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-
-  <SHORT_DESCRIPTION name="m2scideclare">Donner des indices pour aider M2SCI...</SHORT_DESCRIPTION>
-
-  <DESCRIPTION>
-  <P>
-  La principale difficult� de M2SCI (<VERB>mfile2sci</VERB>) est de trouver
-  ce que sont les variables : dimensions, type...  
-  </P>
-  <P>
-  Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
-  <VERB>%m2scideclare</VERB> dans le fichier Matlab � convertir,
-  (<VERB>%m2sciassume</VERB> �tait utilis�e dans les versions pr�c�dentes
-  de Scilab mais est maintenant obsol�te).
-  </P>
-  <P>
-  La syntaxe de cette commande est :
-  </P>
-  <P>
-  <VERB>%m2scideclare nom_de_variable|dimensions|type_de_donn�es|propri�t�</VERB>
-  </P>
-  <P>
-  avec :
-  </P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="m2scideclare"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>m2scideclare</refname><refpurpose>Donner des indices pour aider M2SCI...</refpurpose></refnamediv>
   
-  <DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM>
-  <ITEMIZE>
-    <ITEM>
-      <SP>
+  
+  
+  
+
+  
+
+  <refsection><title>Description</title>
+  <para>
+  La principale difficult� de M2SCI (<literal>mfile2sci</literal>) est de trouver
+  ce que sont les variables : dimensions, type...  
+  </para>
+  <para>
+  Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
+  <literal>%m2scideclare</literal> dans le fichier Matlab � convertir,
+  (<literal>%m2sciassume</literal> �tait utilis�e dans les versions pr�c�dentes
+  de Scilab mais est maintenant obsol�te).
+  </para>
+  <para>
+  La syntaxe de cette commande est :
+  </para>
+  <para>
+  <literal>%m2scideclare nom_de_variable|dimensions|type_de_donn�es|propri�t�</literal>
+  </para>
+  <para>
+  avec :
+  </para>
+  
+  <itemizedlist>
+  <listitem>
+  <itemizedlist>
+    <listitem>
+      <para>
       nom_de_variable : nom de la variable d�clar�e. Ce nom peut �tre
-      un champ de Struct (e.g. <VERB>x(1,2).nom</VERB>)
+      un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
       ou d�crire le contenu d'une Cell en utilisant la syntaxe
-      <VERB>x(1,2).entries</VERB>. NOTEZ que pour les Cells et les
-      Structs <VERB>*</VERB> peut �tre utilis� comme index.
-      </SP>
-    </ITEM>
-    <ITEM>
-      <SP>
+      <literal>x(1,2).entries</literal>. NOTEZ que pour les Cells et les
+      Structs <literal>*</literal> peut �tre utilis� comme index.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
       dimensions : dimensions de la variable d�clar�e s�par�es par des espaces,
-      si une dimension est inconnue, remplacez la par <VERB>?</VERB>. NOTEZ que
+      si une dimension est inconnue, remplacez la par <literal>?</literal>. NOTEZ que
       les dimensions des cha�nes de caract�re doivent �tre identiques aux dimensions
-      Matlab e.g. <VERB>1 6</VERB> pour la cha�ne de caract�res 'chaine'.
-      </SP>
-    </ITEM>
-    <ITEM>
-      <SP>
+      Matlab e.g. <literal>1 6</literal> pour la cha�ne de caract�res 'chaine'.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
       type_de_donn�es: le type de donn�e de la variable qui peut �tre :
-      </SP>
-      <TABLE>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Type de donn�e m2scideclare</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Type Scilab "�quivalent"</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Double</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>1</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Boolean</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>4</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Sparse</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>5</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Int</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>8</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Handle</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>9</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>String</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>10</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Struct</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Struct Matlab (16)</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Cell</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Cell Matlab (17)</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Void</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Sans type (0)</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>?</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Type inconnu</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-      </TABLE>
-    </ITEM>
-   <ITEM>
-      <SP>
+      </para>
+      <informaltable border="1">
+	<tr>
+	  <td>Type de donn�e m2scideclare</td>
+	  <td>Type Scilab "�quivalent"</td>
+	</tr>
+	<tr>
+	  <td>Double</td>
+	  <td>1</td>
+	</tr>
+	<tr>
+	  <td>Boolean</td>
+	  <td>4</td>
+	</tr>
+	<tr>
+	  <td>Sparse</td>
+	  <td>5</td>
+	</tr>
+	<tr>
+	  <td>Int</td>
+	  <td>8</td>
+	</tr>
+	<tr>
+	  <td>Handle</td>
+	  <td>9</td>
+	</tr>
+	<tr>
+	  <td>String</td>
+	  <td>10</td>
+	</tr>
+	<tr>
+	  <td>Struct</td>
+	  <td>Struct Matlab (16)</td>
+	</tr>
+	<tr>
+	  <td>Cell</td>
+	  <td>Cell Matlab (17)</td>
+	</tr>
+	<tr>
+	  <td>Void</td>
+	  <td>Sans type (0)</td>
+	</tr>
+	<tr>
+	  <td>?</td>
+	  <td>Type inconnu</td>
+	</tr>
+      </informaltable>
+    </listitem>
+   <listitem>
+      <para>
       propri�t� : propri�t� de la variable qui peut �tre : 
-      </SP>
-      <TABLE>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Propri�t� m2scideclare</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>"Equivalent" Scilab</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Real</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Donn�e r�elle</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>Complex</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Donn�e complexe</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-	<TABLE_NEW_ROW>
-	  <TABLE_NEW_COLUMN>?</TABLE_NEW_COLUMN>
-	  <TABLE_NEW_COLUMN>Property inconnue</TABLE_NEW_COLUMN>
-	</TABLE_NEW_ROW>
-      </TABLE>
-      <SP>Ce champ est ignor� pour les types de donn�es suivants : <VERB>Cell</VERB>,
-      <VERB>Struct</VERB>, <VERB>String</VERB> et <VERB>Boolean</VERB>.</SP>
-    </ITEM>
-  </ITEMIZE>
-  </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
-  <P>
-  Toutes les informations donn�es par <VERB>m2scideclare</VERB> sont compar�es avec
+      </para>
+      <informaltable border="1">
+	<tr>
+	  <td>Propri�t� m2scideclare</td>
+	  <td>"Equivalent" Scilab</td>
+	</tr>
+	<tr>
+	  <td>Real</td>
+	  <td>Donn�e r�elle</td>
+	</tr>
+	<tr>
+	  <td>Complex</td>
+	  <td>Donn�e complexe</td>
+	</tr>
+	<tr>
+	  <td>?</td>
+	  <td>Property inconnue</td>
+	</tr>
+      </informaltable>
+      <para>Ce champ est ignor� pour les types de donn�es suivants : <literal>Cell</literal>,
+      <literal>Struct</literal>, <literal>String</literal> et <literal>Boolean</literal>.</para>
+    </listitem>
+  </itemizedlist>
+  </listitem>
+  </itemizedlist>
+  <para>
+  Toutes les informations donn�es par <literal>m2scideclare</literal> sont compar�es avec
   les donn�es inf�r�es, en cas de conflit, les donn�es inf�r�es sont conserv�es et
   un warning est affich�. Si vous �tes s�rs de vos informations, rapportez ce bug.
-  </P>
+  </para>
   
-  <P>Voici quelques exemples :</P>
+  <para>Voici quelques exemples :</para>
 
-  <DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM>
-  <ITEMIZE>
-    <ITEM>
-      <SP><VERB>%m2scideclare var1|2 3|Double|Real</VERB>
-      : var1 est d�clar�e comme une matrice de Doubles de taille 2x3
-      et contenant des donn�es r�elles</SP>
-    </ITEM>
-    <ITEM>
-      <SP><VERB>%m2scideclare var2|2 3 10|Double|Complex</VERB>
-      : var2 est d�clar�e comme une hypermatrice de Doubles de taille 2x3x10
-      et contenant des donn�es complexes</SP>
-    </ITEM>
-    <ITEM>
-      <SP><VERB>%m2scideclare var3(1,2).name|1 10|String|?</VERB>
-      : var3 est d�clar�e comme un tableau de Structs contenant une cha�ne de
-      caract�res de taille 1x10 dans le champ 'name' de la Struct � l'indice (1,2) </SP>
-    </ITEM>
-    <ITEM>
-      <SP><VERB>%m2scideclare var4(1,5).entries|1 ?|Boolean|?</VERB>
-      : var4 est d�clar�e comme un tableau de Cells contenant
-      un vecteur ligne de bool�ens � l'indice (1,5)</SP>
-    </ITEM>
-    <ITEM>
-      <SP><VERB>%m2scideclare var4(1,6).entries|? ?|Int|?</VERB>
-      : var4 est d�clar�e comme un tableau de Cells contenant
+  <itemizedlist>
+  <listitem>
+  <itemizedlist>
+    <listitem>
+      <para><literal>%m2scideclare var1|2 3|Double|Real</literal>var1 est d�clar�e comme une matrice de Doubles de taille 2x3
+      et contenant des donn�es r�elles</para>
+    </listitem>
+    <listitem>
+      <para><literal>%m2scideclare var2|2 3 10|Double|Complex</literal>var2 est d�clar�e comme une hypermatrice de Doubles de taille 2x3x10
+      et contenant des donn�es complexes</para>
+    </listitem>
+    <listitem>
+      <para><literal>%m2scideclare var3(1,2).name|1 10|String|?</literal>var3 est d�clar�e comme un tableau de Structs contenant une cha�ne de
+      caract�res de taille 1x10 dans le champ 'name' de la Struct � l'indice (1,2) </para>
+    </listitem>
+    <listitem>
+      <para><literal>%m2scideclare var4(1,5).entries|1 ?|Boolean|?</literal>var4 est d�clar�e comme un tableau de Cells contenant
+      un vecteur ligne de bool�ens � l'indice (1,5)</para>
+    </listitem>
+    <listitem>
+      <para><literal>%m2scideclare var4(1,6).entries|? ?|Int|?</literal>var4 est d�clar�e comme un tableau de Cells contenant
       un vecteur ligne de bool�ens � l'indice (1,5)
-      et des donn�es enti�res � l'indice (1,6)</SP>
-    </ITEM>
-    <ITEM>
-      <SP><VERB>%m2scideclare var5(*,*).name|1 ?|String|?</VERB>
-      : var5 est d�clar�e comme un tableau de Structs contenant une
-      cha�ne de caract�res de taille 1xn dans chaque champ 'name'</SP>
-    </ITEM>
-    <ITEM>
-      <SP><VERB>%m2scideclare var6(2,*).entries|1 3|Double|Real</VERB>
-      : var6 est d�clar�e comme un tableau de Cells contenant un
+      et des donn�es enti�res � l'indice (1,6)</para>
+    </listitem>
+    <listitem>
+      <para><literal>%m2scideclare var5(*,*).name|1 ?|String|?</literal>var5 est d�clar�e comme un tableau de Structs contenant une
+      cha�ne de caract�res de taille 1xn dans chaque champ 'name'</para>
+    </listitem>
+    <listitem>
+      <para><literal>%m2scideclare var6(2,*).entries|1 3|Double|Real</literal>var6 est d�clar�e comme un tableau de Cells contenant un
       veteur de Doubles de taille 1x3 dans chaque �lement de sa
-      seconde ligne.</SP>
-    </ITEM>
-  </ITEMIZE>
-  </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
+      seconde ligne.</para>
+    </listitem>
+  </itemizedlist>
+  </listitem>
+  </itemizedlist>
 
-  </DESCRIPTION> 
+  </refsection> 
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

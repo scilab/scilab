@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,61 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>tk_getdir</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="tk_getdir"> dialog to get a directory path</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>path=tk_getdir([title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_getdir([title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_getdir(dir,[title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_getdir(dir,'string')  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>dir</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string which gives the initial directory used for directory search. by default tk_getdir uses the previously selected directory.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: is the user selected file path if user answers &quot;Ok&quot; or the &quot; &quot; string if user answers &quot;Cancel&quot;</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>title='string'  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:Optional argument which gives the title for the tk_getdir window.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Creates a dialog window for file selection</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tk_getdir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tk_getdir</refname><refpurpose> dialog to get a directory path</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>path=tk_getdir([title='string'])
+path=tk_getdir([title='string'])
+path=tk_getdir(dir,[title='string'])
+path=tk_getdir(dir,'string')</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>dir</term>
+        <listitem>
+          <para>a character string which gives the initial directory used for directory search. by default tk_getdir uses the previously selected directory.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>is the user selected file path if user answers "Ok" or the " " string if user answers "Cancel"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>title='string'  </term>
+        <listitem>
+          <para>:Optional argument which gives the title for the tk_getdir window.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Creates a dialog window for file selection</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 tk_getdir()
 tk_getdir('SCI/macros/xdess')
 tk_getdir(title='Choose a directory name ')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>tk_getfile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>file</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fileinfo</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="tk_getfile">tk_getfile</link>
+    </member>
+    <member>
+      <link linkend="file">file</link>
+    </member>
+    <member>
+      <link linkend="fileinfo">fileinfo</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

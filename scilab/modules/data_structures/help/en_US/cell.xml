@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
@@ -10,77 +10,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cell"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cell</refname><refpurpose> create an empty cell</refpurpose></refnamediv>
+  
 
-  <TITLE>cell</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="cell"> create an empty cell</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>c=cell(m1,m2,...)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>c=cell(m1,m2,...)
+c=cell(x)
+c=cell()</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>c=cell(x)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
 
-    <CALLING_SEQUENCE_ITEM>c=cell()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>integers vector</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+      <varlistentry>
+        <term>m1, m2,..</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integers vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>m1, m2,..</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para>Returns an empty cell.</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+    <variablelist>
+      <varlistentry><term>cell(m1)</term><listitem>
+        <para> returns an empty <literal>(m1,m1)</literal> cell</para>
+      </listitem></varlistentry>
 
-  <DESCRIPTION>
-    <P>Returns an empty cell.</P>
+      <varlistentry><term>cell(m1,m2)</term><listitem>
+        <para> returns an empty <literal>(m1,m2) </literal>cell</para>
+      </listitem></varlistentry>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="cell(m1)">
-        <SP> returns an empty <VERB>(m1,m1)</VERB> cell</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>cell(m1,m2,..,mn)</term><listitem>
+        <para>creates an empty <literal>(m1,m2,..,mn)</literal> cell.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="cell(m1,m2)">
-        <SP> returns an empty <VERB>(m1,m2) </VERB>cell</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>cell(x)</term><listitem>
+        <para> returns an empty cell array with : the first dimension of the
+        cell array is <literal>x(1)</literal>, the second dimension is <literal>x(2),
+        ...</literal></para>
+      </listitem></varlistentry>
+    </variablelist>
 
-      <DESCRIPTION_ITEM label="cell(m1,m2,..,mn)">
-        <SP> : creates an empty <VERB>(m1,m2,..,mn)</VERB> cell.</SP>
-      </DESCRIPTION_ITEM>
+    <para>Note that <literal>cell(x) </literal>is not the same size that
+    <literal>x</literal></para>
 
-      <DESCRIPTION_ITEM label="cell(x)">
-        <SP> returns an empty cell array with : the first dimension of the
-        cell array is <VERB>x(1)</VERB>, the second dimension is <VERB>x(2),
-        ...</VERB></SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <para><literal>cell()</literal> is eqivalent to <literal>cell(0)</literal></para>
 
-    <P>Note that <VERB>cell(x) </VERB>is not the same size that
-    <VERB>x</VERB></P>
+  </refsection>
 
-    <P><VERB>cell()</VERB> is eqivalent to <VERB>cell(0)</VERB></P>
-
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 a=cell(3)
 b=cell(3,1)
@@ -104,19 +99,19 @@ b(1:2)
 b(1).entries //result is an array
 
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>eye</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="eye">eye</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>ones</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="ones">ones</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>zeros</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="zeros">zeros</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

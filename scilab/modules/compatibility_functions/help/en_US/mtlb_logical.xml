@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,58 +10,57 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_logical</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_logical"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_logical</refname><refpurpose>Matlab logical emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_logical">Matlab logical emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>There is no Scilab equivalent function for Matlab <VERB>logical</VERB> but its behavior can be easyly reproduced.</P>
-    <P>
-    The function <VERB>mtlb_logical(A)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>logical(A)</VERB> when it was not
+    <para>There is no Scilab equivalent function for Matlab <literal>logical</literal> but its behavior can be easyly reproduced.</para>
+    <para>
+    The function <literal>mtlb_logical(A)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>logical(A)</literal> when it was not
     possible to know what was the input while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_logical</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_logical</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is a boolean matrix
-        <VERB>mtlb_logical(A)</VERB> may be replaced by <VERB>A</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> is a boolean matrix
+        <literal>mtlb_logical(A)</literal> may be replaced by <literal>A</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is not an empty matrix
-        <VERB>mtlb_logical(A)</VERB> may be replaced by <VERB>A&lt;&gt;[]</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>A</literal> is not an empty matrix
+        <literal>mtlb_logical(A)</literal> may be replaced by <literal>A&lt;&gt;[]</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is an empty matrix
-        <VERB>mtlb_logical(A)</VERB> may be replaced by <VERB>[]</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        If <literal>A</literal> is an empty matrix
+        <literal>mtlb_logical(A)</literal> may be replaced by <literal>[]</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_logical</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_logical</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

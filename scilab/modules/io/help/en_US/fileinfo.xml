@@ -1,108 +1,104 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fileinfo</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fileinfo"> Provides information about a file</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x,ierr]=fileinfo(file)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>file</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string, the file pathname</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: an integer vector of size 6 containing information or an empty matrix if file does not exist.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ierr</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: error indicator, 0, if no error has occured</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fileinfo"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fileinfo</refname><refpurpose> Provides information about a file</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x,ierr]=fileinfo(file)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file</term>
+        <listitem>
+          <para>a character string, the file pathname</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>an integer vector of size 6 containing information or an empty matrix if file does not exist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ierr</term>
+        <listitem>
+          <para>error indicator, 0, if no error has occured</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     x=fileinfo(file) returns
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="x(1)">
-        <SP>: The file size</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(2)">
-        <SP>: The file mode</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(3)">
-        <SP>: The user id</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(4)">
-        <SP>: the group id</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(5)">
-        <SP>: The device number</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(6)">
-        <SP>: The date of last modification</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(7)">
-        <SP>: The date of last change</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(8)">
-        <SP>: The date of last access</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(9)">
-        <SP>: The device type (if inode device)</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(10)">
-        <SP>: The blocksize for filesystem I/O</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(11)">
-        <SP>: The  number of blocks allocated</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(12)">
-        <SP>: The inode</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="x(13)">
-        <SP>: The number of hard links</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <SECTION label="Reference">
-    <P>
-    This function is an interface to the C function stat.</P>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+  </para>
+    <variablelist>
+      <varlistentry><term>x(1)</term><listitem>
+        <para>The file size</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(2)</term><listitem>
+        <para>The file mode</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(3)</term><listitem>
+        <para>The user id</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(4)</term><listitem>
+        <para>the group id</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(5)</term><listitem>
+        <para>The device number</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(6)</term><listitem>
+        <para>The date of last modification</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(7)</term><listitem>
+        <para>The date of last change</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(8)</term><listitem>
+        <para>The date of last access</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(9)</term><listitem>
+        <para>The device type (if inode device)</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(10)</term><listitem>
+        <para>The blocksize for filesystem I/O</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(11)</term><listitem>
+        <para>The  number of blocks allocated</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(12)</term><listitem>
+        <para>The inode</para>
+      </listitem></varlistentry>
+      <varlistentry><term>x(13)</term><listitem>
+        <para>The number of hard links</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Reference</title>
+    <para>
+    This function is an interface to the C function stat.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 w=fileinfo(SCI+'/etc/scilab.start')
 getdate(w(6))
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getdate</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>file</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dispfiles</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>newest</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>isdir</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. Steer INRIA</AUTHOR>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getdate">getdate</link>
+    </member>
+    <member>
+      <link linkend="file">file</link>
+    </member>
+    <member>
+      <link linkend="dispfiles">dispfiles</link>
+    </member>
+    <member>
+      <link linkend="newest">newest</link>
+    </member>
+    <member>
+      <link linkend="isdir">isdir</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>S. Steer INRIA</para></refsection>
+</refentry>

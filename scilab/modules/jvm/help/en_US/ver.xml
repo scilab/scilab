@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -11,30 +10,26 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-
-  <TITLE>ver</TITLE>
-
-  <TYPE>Scilab Function</TYPE>
-
-  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
-
-  <SHORT_DESCRIPTION name="ver">Version information for Scilab</SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>ver()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ver"><info><pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate></info><refnamediv><refname>ver</refname><refpurpose>Version information for Scilab</refpurpose></refnamediv>
+  
 
   
-  <DESCRIPTION>
-    <P>Version information for Scilab.</P>
-  </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[ver
-]]></EXAMPLE>
+  
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  
+
+  
+
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>ver()</synopsis></refsynopsisdiv>
+
+  
+  <refsection><title>Description</title>
+    <para>Version information for Scilab.</para>
+  </refsection>
+
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ver
+]]></programlisting></refsection>
+
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

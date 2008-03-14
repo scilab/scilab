@@ -1,80 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_logic</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_logic"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_logic</refname><refpurpose>Fonction d'�mulation des op�rateurs logiques de Matlab</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_logic">Fonction d'�mulation des op�rateurs logiques de Matlab</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, les op�rateurs logiques se comportent diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, les op�rateurs logiques se comportent diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec des op�randes complexes : Les op�rateurs <VERB>&lt;</VERB>, <VERB>&lt;=</VERB>,
-	<VERB>&gt;</VERB> et <VERB>&gt;=</VERB> ne peuvent pas �tre utilis�s dans Scilab
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec des op�randes complexes : Les op�rateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
+	<literal>&gt;</literal> et <literal>&gt;=</literal> ne peuvent pas �tre utilis�s dans Scilab
 	avec des op�randes complexes alors que cela est possible dans Matlab. Dans ce cas,
 	seule la partie r�elle des op�randes est compar�e.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec des matrices vides : Si les deux op�randes des op�rateurs <VERB>&lt;</VERB>, <VERB>&lt;=</VERB>,
-	<VERB>&gt;</VERB> and <VERB>&gt;=</VERB> sont des matrices vides, Scilab renvoie un message d'erreur
-	alors que Matlab retourne une matrice vide. Pour les op�rateurs <VERB>==</VERB> et <VERB>~=</VERB>,
+      <listitem>
+        <para>
+        Avec des matrices vides : Si les deux op�randes des op�rateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
+	<literal>&gt;</literal> and <literal>&gt;=</literal> sont des matrices vides, Scilab renvoie un message d'erreur
+	alors que Matlab retourne une matrice vide. Pour les op�rateurs <literal>==</literal> et <literal>~=</literal>,
 	si au moins une op�rande est une matrice vide alors Matlab renvoie [] alors que Scilab
 	retourne un bool�en %T ou %F.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_logic(A,symbol,B)</VERB> (avec "symbol" une cha�ne de caract�res contenant
+    <para>
+    La fonction <literal>mtlb_logic(A,symbol,B)</literal> (avec "symbol" une cha�ne de caract�res contenant
     le symbole de l'op�rateur) est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>A symbol B</VERB> quand il n'�tait pas
+    <literal>mfile2sci</literal> pour remplacer <literal>A symbol B</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les op�randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_logic</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_logic</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> et <VERB>B</VERB> ne sont pas des complexes ni des matrices vides
-        <VERB>mtlb_logic(A,symbol,B)</VERB> peut �tre remplac� par <VERB>A symbol B</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> et <literal>B</literal> ne sont pas des complexes ni des matrices vides
+        <literal>mtlb_logic(A,symbol,B)</literal> peut �tre remplac� par <literal>A symbol B</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_logic</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_logic</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

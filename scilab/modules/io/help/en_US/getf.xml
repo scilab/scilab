@@ -1,119 +1,115 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getf</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="getf"> defining a function from a file</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>getf(file-name [,opt])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Scilab string.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>opt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: optional character string</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;c&quot;  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: loaded functions are &quot;compiled&quot; to be
-                more efficient (default)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;n&quot;  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: loaded functions are not &quot;compiled&quot;</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;p&quot;  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: loaded functions are &quot;compiled&quot; and
-                prepared for profiling (see profile)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    loads one or several functions (see <VERB>functions</VERB>)
-    defined in the file <VERB>'file-name'</VERB>.  The string
-    <VERB>opt='n'</VERB> means that the functions are not compiled
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getf</refname><refpurpose> defining a function from a file</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>getf(file-name [,opt])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>Scilab string.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>optional character string</para>
+          <variablelist>
+            <varlistentry>
+              <term>"c"  </term>
+              <listitem>
+                <para>loaded functions are "compiled" to be
+                more efficient (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"n"  </term>
+              <listitem>
+                <para>loaded functions are not "compiled"</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"p"  </term>
+              <listitem>
+                <para>loaded functions are "compiled" and
+                prepared for profiling (see profile)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    loads one or several functions (see <literal>functions</literal>)
+    defined in the file <literal>'file-name'</literal>.  The string
+    <literal>opt='n'</literal> means that the functions are not compiled
     (pre-interpreted) when loaded. This can be useful for some
-    debugging purpose (see <VERB>comp</VERB>). By default, functions
-    are compiled when loaded (i.e. <VERB>opt='c'</VERB> is used).</P>
-    <P> In the file a function must begin by a &quot;syntax
-    definition&quot; line as follows:</P>
-    <VERBATIM>
-<![CDATA[
+    debugging purpose (see <literal>comp</literal>). By default, functions
+    are compiled when loaded (i.e. <literal>opt='c'</literal> is used).</para>
+    <para> In the file a function must begin by a "syntax
+    definition" line as follows:</para>
+    <programlisting><![CDATA[
+
 function [y1,...,yn]=foo(x1,...,xm)
-   ]]>
-    </VERBATIM>
-    <P>The following lines contain a sequence of scilab instructions.</P>
+   
+    ]]></programlisting>
+    <para>The following lines contain a sequence of scilab instructions.</para>
 
-    <P>The &quot;syntax definition&quot; line gives the &quot;full&quot;
-    calling syntax of this function. The <VERB>yi</VERB> are output
+    <para>The "syntax definition" line gives the "full"
+    calling syntax of this function. The <literal>yi</literal> are output
     variables calculated as functions of input variables
-    <VERB>xi</VERB> and variables existing in Scilab when the function
+    <literal>xi</literal> and variables existing in Scilab when the function
     is executed. Shorter input or output argument list may be
-    used.</P>
+    used.</para>
 
-    <P> Many functions may be written in the same file. A function is
-    terminated by an <VERB>endfunction</VERB> keyword. For
+    <para> Many functions may be written in the same file. A function is
+    terminated by an <literal>endfunction</literal> keyword. For
     compatibility with previous versions a function may also be
-    terminated by the following <VERB>function</VERB> keyword or the
-    <VERB>EOF</VERB> mark. For that reason it is not possible to load
+    terminated by the following <literal>function</literal> keyword or the
+    <literal>EOF</literal> mark. For that reason it is not possible to load
     function containing nested function definition using the
-    <VERB>getf</VERB> function.</P>
+    <literal>getf</literal> function.</para>
 
-    <P><VERB>getf</VERB> is an obsolete way for loading functions into
-    scilab from a file. It is replaced by the <VERB>exec</VERB>
+    <para><literal>getf</literal> is an obsolete way for loading functions into
+    scilab from a file. It is replaced by the <literal>exec</literal>
     function. Note that functions in a file should be terminated by an
-    <VERB>endfunction</VERB> keyword.  The <VERB>exec</VERB> function
-    supposes <VERB>opt=='c'</VERB>.</P>
+    <literal>endfunction</literal> keyword.  The <literal>exec</literal> function
+    supposes <literal>opt=='c'</literal>.</para>
 
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 getf('SCI/modules/graphics/macros/plot.sci')
 
 getf SCI/modules/graphics/macros/plot.sci
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>functions</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>function</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>genlib</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>getd</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>exec</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>edit</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>comp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="functions">functions</link>
+    </member>
+    <member>
+      <link linkend="function">function</link>
+    </member>
+    <member>
+      <link linkend="genlib">genlib</link>
+    </member>
+    <member>
+      <link linkend="getd">getd</link>
+    </member>
+    <member>
+      <link linkend="exec">exec</link>
+    </member>
+    <member>
+      <link linkend="edit">edit</link>
+    </member>
+    <member>
+      <link linkend="comp">comp</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

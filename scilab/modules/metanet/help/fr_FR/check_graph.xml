@@ -1,54 +1,36 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>check_graph  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="check_graph"> vérifie un graphe Scilab  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>check_graph(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste) à vérifier
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>check_graph</VERB> vérifie si <VERB>g</VERB> est un
-    graphe. La vérification est non seulement syntaxique (nombre d&apos;éléments de la liste, tailles compatibles des vecteurs), mais aussi sémantique au sens où
-    <VERB>check_graph</VERB> vérifie que les éléments <VERB>node_number</VERB>, <VERB>tail</VERB> et
-    <VERB>head</VERB> de la liste représentent vraiment un graphe.
-  </P>
-  <P>
-    De plus, les noms des sommets doivent être différents. En fait, cela ne donne pas d&apos;erreur dans Scilab, mais un comportement étrange peut en résulter dans la fenêtre Metanet. Ceci n&apos;est pas vérifié par <VERB>check_graph</VERB> 
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="check_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>check_graph</refname><refpurpose> vérifie un graphe Scilab  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>check_graph(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste) à vérifier
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>check_graph</literal> vérifie si <literal>g</literal> est un
+    graphe. La vérification est non seulement syntaxique (nombre d'éléments de la liste, tailles compatibles des vecteurs), mais aussi sémantique au sens où
+    <literal>check_graph</literal> vérifie que les éléments <literal>node_number</literal>, <literal>tail</literal> et
+    <literal>head</literal> de la liste représentent vraiment un graphe.
+  </para>
+  <para>
+    De plus, les noms des sommets doivent être différents. En fait, cela ne donne pas d'erreur dans Scilab, mais un comportement étrange peut en résulter dans la fenêtre Metanet. Ceci n'est pas vérifié par <literal>check_graph</literal> 
     car cela prendrait trop de temps. Cela est seulement vérifié lors de la visualisation, sauvegarde ou chargement du graphe.
-  </P>
-  <P>
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>graph-list</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  </para>
+  <para>
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="graphlist">graph-list</link> </member>
+  </simplelist></refsection>
+</refentry>

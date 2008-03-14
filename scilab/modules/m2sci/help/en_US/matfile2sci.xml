@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ???? - INRIA - Serge STEER 
@@ -10,53 +10,50 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>matfile2sci</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="matfile2sci"> converts  a Matlab 5 MAT-file
-  into a Scilab binary file</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>matfile2sci(mat_file_path,sci_file_path)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>mat_file_path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string containing the path of the Matlab input file</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sci_file_path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string containing the path of the Scilab output file</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matfile2sci"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>matfile2sci</refname><refpurpose> converts  a Matlab 5 MAT-file
+  into a Scilab binary file</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>mat_file_path</term>
+        <listitem>
+          <para>character string containing the path of the Matlab input file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sci_file_path</term>
+        <listitem>
+          <para>character string containing the path of the Scilab output file</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Converts a Matlab 5 MAT-file into a Scilab binary file compatible
-    with  the function <VERB>load</VERB> The Matlab data types are
-    converted into the Scilab equivalents.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>loadmatfile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>load</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mfile2sci</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>Serge Steer (INRIA)  </AUTHOR>
-  <BIBLIO>
-    <P>This function has been developped according to the document  &quot;MAT-File Format&quot;:
- <A href="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</A></P>
-  </BIBLIO>
-</MAN>
+    with  the function <literal>load</literal> The Matlab data types are
+    converted into the Scilab equivalents.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="loadmatfile">loadmatfile</link>
+    </member>
+    <member>
+      <link linkend="load">load</link>
+    </member>
+    <member>
+      <link linkend="mfile2sci">mfile2sci</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>Serge Steer (INRIA)  </para></refsection>
+  <refsection><title>Bibliography</title>
+    <para>This function has been developped according to the document  "MAT-File Format":
+ <link xlink:href="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</link></para>
+  </refsection>
+</refentry>

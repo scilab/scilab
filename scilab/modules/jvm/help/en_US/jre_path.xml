@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -11,44 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jre_path"><info><pubdate>$LastChangedDate: 2006-12-12 09:26:08 +0200$</pubdate></info><refnamediv><refname>jre_path</refname><refpurpose>returns Java Runtime Environment used by Scilab</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>jre_path</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-12-12 09:26:08 +0200$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="jre_path">returns Java Runtime Environment used by Scilab</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>p=jre_path()</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>p=jre_path()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
+        <listitem>
+          <para>a string path of JRE</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string path of JRE</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>returns Java Runtime Environment used by Scilab.</para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>returns Java Runtime Environment used by Scilab.</P>
-  </DESCRIPTION>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="system_getproperty">system_getproperty</link>
+    </member>
+  </simplelist></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>system_getproperty</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

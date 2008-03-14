@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,51 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gda"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gda</refname><refpurpose>Return handle of default
+  axes.</refpurpose></refnamediv>
+  
 
-  <TITLE>gda</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="gda">Return handle of default
-  axes.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>a = gda()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>a = gda()
+a = get("default_axes")</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>a = get("default_axes")</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
+        <listitem>
+          <para>handle, the handle of the default axes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: handle, the handle of the default axes.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>The default axes is a graphic entity which is never drawn. It is used
+  <refsection><title>Description</title>
+    <para>The default axes is a graphic entity which is never drawn. It is used
     as a reference for the axes properties default values. These default
-    properties values are used to initialize new axes inside figures.</P>
+    properties values are used to initialize new axes inside figures.</para>
 
-    <P>The <VERB>gda</VERB> function returns the handle on the default axes.
+    <para>The <literal>gda</literal> function returns the handle on the default axes.
     The user can use this handle to set or get the axes properties default
-    values.</P>
+    values.</para>
 
-    <P>Note that an equivalent default graphic entity exists for figure
-    entities too (see <VERB>gdf</VERB>).</P>
-  </DESCRIPTION>
+    <para>Note that an equivalent default graphic entity exists for figure
+    entities too (see <literal>gdf</literal>).</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
      
     a=gda() // get the handle of the model axes 
     // set its' properties
@@ -82,37 +78,37 @@
     clf()
     plot2d(sin(t),cos(t))
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>gdf</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="gdf">gdf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>sda</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="sda">sda</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>sdf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="sdf">sdf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>clf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="clf">clf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gca</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gca">gca</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+</refentry>

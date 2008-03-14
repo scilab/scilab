@@ -1,57 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clipboard"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>clipboard</refname><refpurpose>Copy and paste strings to and from the
+  system clipboard (Windows).</refpurpose></refnamediv>
+  
 
-  <TITLE>clipboard</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="clipboard">Copy and paste strings to and from the
-  system clipboard (Windows).</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>clipboard('copy',data)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>clipboard('copy',data)
+str=clipboard('paste')
+clipboard('do','paste')
+clipboard('do','copy')
+clipboard('do','empty')
+clipboard(winnum,'EMF')
+clipboard(winnum,'DIB')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>str=clipboard('paste')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>clipboard('do','paste')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>clipboard('do','copy')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>clipboard('do','empty')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'EMF')</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'DIB')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-    <P><VERB>clipboard('copy',data)</VERB> sets the clipboard contents to
+  <refsection><title>Description</title>
+    <para><literal>clipboard('copy',data)</literal> sets the clipboard contents to
     data. If data is not a character array, the clipboard uses sci2exp to
-    convert it to a string.</P>
+    convert it to a string.</para>
 
-    <P><VERB>str = clipboard('paste')</VERB> returns the current contents of
+    <para><literal>str = clipboard('paste')</literal> returns the current contents of
     the clipboard as a string or as an empty string (' '), if the current
-    clipboard contents cannot be converted to a string.</P>
+    clipboard contents cannot be converted to a string.</para>
 
-    <P><VERB>clipboard('do','paste')</VERB>,
-    <VERB>clipboard('do','copy')</VERB>, <VERB>clipboard('do','empty')</VERB>
-    performs a paste, copy or empty clipboard.</P>
+    <para><literal>clipboard('do','paste')</literal>,
+    <literal>clipboard('do','copy')</literal>, <literal>clipboard('do','empty')</literal>
+    performs a paste, copy or empty clipboard.</para>
 
-    <P>Note that <VERB>clipboard(...) </VERB>works only Windows platforms when
-    Scilab used in window mode.</P>
+    <para>Note that <literal>clipboard(...) </literal>works only Windows platforms when
+    Scilab used in window mode.</para>
 
-    <P><VERB>clipboard(winnum,'EMF')</VERB> copy a graphic windows identified
-    by his window's number in the clipboard to EMF format. </P>
+    <para><literal>clipboard(winnum,'EMF')</literal> copy a graphic windows identified
+    by his window's number in the clipboard to EMF format. </para>
 
-    <P><VERB>clipboard(winnum,'DIB') </VERB>copy a graphic windows identified
-    by his window's number in the clipboard to DIB format.</P>
-  </DESCRIPTION>
+    <para><literal>clipboard(winnum,'DIB') </literal>copy a graphic windows identified
+    by his window's number in the clipboard to DIB format.</para>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,74 +1,61 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_plot</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_plot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_plot</refname><refpurpose>Fonction d'�mulation de la fonction Matlab plot</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_plot">Fonction d'�mulation de la fonction Matlab plot</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>La fonction Matlab <VERB>plot</VERB> et la fonction Scilab <VERB>plot2d</VERB> se comportent diff�remment.</P>
+    <para>La fonction Matlab <literal>plot</literal> et la fonction Scilab <literal>plot2d</literal> se comportent diff�remment.</para>
 
-    <P>
-    La fonction <VERB>mtlb_plot(...)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>plot(...)</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_plot(...)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>plot(...)</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_plot</VERB> quand il n'y a pas de valeur de sortie,
+    on peut remplacer les appels � <literal>mtlb_plot</literal> quand il n'y a pas de valeur de sortie,
     dans ce cas, les couleurs doivent �tre chang�es par l'utilisateur:
-    </P>
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec un param�tre d'entr�e, si <VERB>Y</VERB> est r�el
-        <VERB>mtlb_plot(Y)</VERB> peut �tre remplac� par <VERB>plot2d(Y)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec un param�tre d'entr�e, si <literal>Y</literal> est r�el
+        <literal>mtlb_plot(Y)</literal> peut �tre remplac� par <literal>plot2d(Y)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec un param�tre d'entr�e, si <VERB>Y</VERB> est complex
-        <VERB>mtlb_plot(Y)</VERB> peut �tre remplac� par <VERB>plot2d(real(Y),imag(Y))</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Avec un param�tre d'entr�e, si <literal>Y</literal> est complex
+        <literal>mtlb_plot(Y)</literal> peut �tre remplac� par <literal>plot2d(real(Y),imag(Y))</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec deux param�tres d'entr�e <VERB>X</VERB> et <VERB>Y</VERB>, si <VERB>Y</VERB> n'est pas une cha�ne de caract�res,
-        <VERB>mtlb_plot(X,Y)</VERB> peut �tre remplac� par <VERB>plot2d(X,Y)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Avec deux param�tres d'entr�e <literal>X</literal> et <literal>Y</literal>, si <literal>Y</literal> n'est pas une cha�ne de caract�res,
+        <literal>mtlb_plot(X,Y)</literal> peut �tre remplac� par <literal>plot2d(X,Y)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_plot</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_plot</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="plot2d">plot2d</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

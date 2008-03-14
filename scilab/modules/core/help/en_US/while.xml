@@ -1,71 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>while</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim, 10 sep 2006)$</DATE>
-  <SHORT_DESCRIPTION name="while"> while keyword</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P><VERB>while</VERB> clause. Must be terminated by
-<VERB>&quot;end&quot;</VERB></P>
-    <P>
-      <VERB>while expr ,instructions,...[,else instructions], end</VERB>
-    </P>
-    <P>
-      <VERB>while expr do instructions,...[,else instructions], end</VERB>
-    </P>
-    <P>
-      <VERB>while expr then instructions,...[,else instructions], end</VERB>
-    </P>
-    <P>Notes:</P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
-	<P> The only constraint is that each &quot;then&quot; or
-	&quot;do&quot; keyword must be on the same line line as
-	&quot;while&quot; keyword.</P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<P> The &quot;keyword &quot;then&quot; or &quot;do&quot;  can
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="while"><info><pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim, 10 sep 2006)$</pubdate></info><refnamediv><refname>while</refname><refpurpose> while keyword</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para><literal>while</literal> clause. Must be terminated by
+<literal>"end"</literal></para>
+    <para>
+      <literal>while expr ,instructions,...[,else instructions], end</literal>
+    </para>
+    <para>
+      <literal>while expr do instructions,...[,else instructions], end</literal>
+    </para>
+    <para>
+      <literal>while expr then instructions,...[,else instructions], end</literal>
+    </para>
+    <para>Notes:</para>
+    <itemizedlist>
+      <listitem>
+	<para> The only constraint is that each "then" or
+	"do" keyword must be on the same line line as
+	"while" keyword.</para>
+      </listitem>
+      <listitem>
+	<para> The "keyword "then" or "do"  can
 	be replaced by a carriage return or a comma. For compatibility
 	with Matlab it is also possible, but not recommended, to put a
 	space between the end of the expression and the beginning of
-	the first instruction. </P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<P>
-	The optional <VERB>,else instructions</VERB> construction
+	the first instruction. </para>
+      </listitem>
+      <listitem>
+	<para>
+	The optional <literal>,else instructions</literal> construction
 	allows to gives instructions which are executed when expr
-	expression becomes false.</P>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
+	expression becomes false.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
       Warning: the number of characters used to define the body of any
       conditionnal instruction (if while for or select/case) must be
-    limited to 16k.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-    <![CDATA[
+    limited to 16k.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    
 	     e=1; a=1; k=1;
 	     while norm(a-(a+e),1) > %eps, e=e/2; k=k+1; end
 	     e,k
-    ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>for</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>select</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>break</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>return</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pause</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO> 
-</MAN>
+    
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="for">for</link>
+    </member>
+    <member>
+      <link linkend="select">select</link>
+    </member>
+    <member>
+      <link linkend="break">break</link>
+    </member>
+    <member>
+      <link linkend="return">return</link>
+    </member>
+    <member>
+      <link linkend="pause">pause</link>
+    </member>
+  </simplelist></refsection> 
+</refentry>

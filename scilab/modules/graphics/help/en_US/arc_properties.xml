@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,122 +10,121 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="arc_properties"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>arc_properties</refname><refpurpose>description of the Arc entity
+  properties</refpurpose></refnamediv>
+  
 
-  <TITLE>arc_properties</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="arc_properties">description of the Arc entity
-  properties</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>The Arc entity is a leaf of the graphics entities hierarchy. This
+  <refsection><title>Description</title>
+    <para>The Arc entity is a leaf of the graphics entities hierarchy. This
     entity defines the parameters for ellipses and part of ellipses and the
-    filled ones.</P>
+    filled ones.</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This field contains the handle of the parent. The parent of the
-        arc entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+    <variablelist>
+      <varlistentry><term>parent: </term><listitem>
+        <para>This field contains the handle of the parent. The parent of the
+        arc entity should be of the type <literal>"Axes"</literal> or
+        <literal>"Compound"</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="children: ">
-        <SP>This property contains a vector with the <VERB>children</VERB> of
-        the handle. However, <VERB>arc</VERB> handles currently do not have
-        any <VERB>children</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>children: </term><listitem>
+        <para>This property contains a vector with the <literal>children</literal> of
+        the handle. However, <literal>arc</literal> handles currently do not have
+        any <literal>children</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="thickness: ">
-        <SP>This field contains the line <VERB>thickness</VERB> property. Its
-        value should be positive integer.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>thickness: </term><listitem>
+        <para>This field contains the line <literal>thickness</literal> property. Its
+        value should be positive integer.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="line_style: ">
-        <SP>The <VERB>line_style</VERB> property value should be an integer in
+      <varlistentry><term>line_style: </term><listitem>
+        <para>The <literal>line_style</literal> property value should be an integer in
         [1 6]. 1 stands for solid the other value stands for a selection of
-        dashes.</SP>
-      </DESCRIPTION_ITEM>
+        dashes.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="line_mode: ">
-        <SP>This property allows to display or not the line representing the
-        arc. The value must be <VERB>"on"</VERB> or <VERB>"off"</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>line_mode: </term><listitem>
+        <para>This property allows to display or not the line representing the
+        arc. The value must be <literal>"on"</literal> or <literal>"off"</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="fill_mode: ">
-        <SP>If <VERB>fill_mode</VERB> property value is <VERB>"on" </VERB>,
-        the arc is filled with the <VERB>background</VERB> color.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>fill_mode: </term><listitem>
+        <para>If <literal>fill_mode</literal> property value is <literal>"on" </literal>,
+        the arc is filled with the <literal>background</literal> color.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the default <VERB>foreground</VERB> property
+      <varlistentry><term>foreground: </term><listitem>
+        <para>This field contains the default <literal>foreground</literal> property
         value used to draw or to fill arc. It should be a color index
-        (relative to the current colormap).</SP>
-      </DESCRIPTION_ITEM>
+        (relative to the current colormap).</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="background: ">
-        <SP>This field contains the color used to fill the arc. It should be a
-        color index (relative to the current colormap).</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>background: </term><listitem>
+        <para>This field contains the color used to fill the arc. It should be a
+        color index (relative to the current colormap).</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="data: ">
-        <SP>This property is to return the coordinates of the upper-left
+      <varlistentry><term>data: </term><listitem>
+        <para>This property is to return the coordinates of the upper-left
         point, the width and the height of the inclosing rectangle as well as
         the boundary angles of the sector. It is the matrix
-        <VERB>[xleft,yup,[zup],width,height,a1,a2]</VERB> where
-        <VERB>a1/64</VERB> and <VERB>a2/64</VERB> are the sector boundary
-        angles in degree.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>[xleft,yup,[zup],width,height,a1,a2]</literal> where
+        <literal>a1/64</literal> and <literal>a2/64</literal> are the sector boundary
+        angles in degree.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the <VERB>visible</VERB> property value for
-        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB>. If
-        <VERB>"on"</VERB> the arc is drawn, If <VERB>"off"</VERB> the arc is
-        not displayed on the screen.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>visible: </term><listitem>
+        <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal>. If
+        <literal>"on"</literal> the arc is drawn, If <literal>"off"</literal> the arc is
+        not displayed on the screen.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="clip_state: ">
-        <SP>This field contains the <VERB>clip_state</VERB> property value for
-        the arc. Clip_state value should be :</SP>
+      <varlistentry><term>clip_state: </term><listitem>
+        <para>This field contains the <literal>clip_state</literal> property value for
+        the arc. Clip_state value should be :</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM>
-            <SP><VERB>"off"</VERB> this means that the arc is not clipped</SP>
-          </DESCRIPTION_ITEM>
+        <itemizedlist>
+          <listitem>
+            <para><literal>"off"</literal> this means that the arc is not clipped</para>
+          </listitem>
 
-          <DESCRIPTION_ITEM>
-            <SP><VERB>"clipgrf"</VERB> this means that the arc is clipped
-            outside the Axes box.</SP>
-          </DESCRIPTION_ITEM>
+          <listitem>
+            <para><literal>"clipgrf"</literal> this means that the arc is clipped
+            outside the Axes box.</para>
+          </listitem>
 
-          <DESCRIPTION_ITEM>
-            <SP><VERB>"on"</VERB> this means that the arc is clipped outside
-            the arc given by property clip_box.</SP>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+          <listitem>
+            <para><literal>"on"</literal> this means that the arc is clipped outside
+            the arc given by property clip_box.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="clip_box: ">
-        <SP>This field is to determinate the <VERB>clip_box</VERB> property.
+      <varlistentry><term>clip_box: </term><listitem>
+        <para>This field is to determinate the <literal>clip_box</literal> property.
         By Default its value should be an empty matrix if clip_state is "off".
-        Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width
+        Other cases the vector <literal>[x,y,w,h]</literal> (upper-left point width
         height) defines the portions of the arc to display, however
-        <VERB>clip_state</VERB> property value will be changed.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>clip_state</literal> property value will be changed.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="user_data: ">
-        <SP>This field can be use to store any scilab variable in the arc data
-        structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      <varlistentry><term>user_data: </term><listitem>
+        <para>This field can be use to store any scilab variable in the arc data
+        structure, and to retreive it.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    a=get("current_axes");//get the handle of the newly created axes
    a.data_bounds=[-2,-2;2,2];
 
@@ -138,41 +137,41 @@
    xfarc(-.5,1,.4,.6,0,360*64);
    arc.visible="off";
 
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xarc</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xarc">xarc</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xarcs</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xarcs">xarcs</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xfarc</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xfarc">xfarc</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xfarcs</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xfarcs">xfarcs</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+</refentry>

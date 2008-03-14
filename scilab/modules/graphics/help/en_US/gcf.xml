@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,43 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gcf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gcf</refname><refpurpose>Return handle of current graphic or GUI
+  window.</refpurpose></refnamediv>
+  
 
-  <TITLE>gcf</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="gcf">Return handle of current graphic or GUI
-  window.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>h = gcf()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>h = gcf()</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: handle or integer.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>handle or integer.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>This routine returns the handle of the current graphic or GUI window.
-    If the current figure is a graphic one <VERB>gcf()</VERB> returns a handle
-    on it. If the current figure is a <LINK>uicontrol</LINK> one
-    <VERB>gcf()</VERB> returns it's figure number.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>This routine returns the handle of the current graphic or GUI window.
+    If the current figure is a graphic one <literal>gcf()</literal> returns a handle
+    on it. If the current figure is a <link linkend="uicontrol">uicontrol</link> one
+    <literal>gcf()</literal> returns it's figure number.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     
     f=gcf()  
     f.figure_size= [610,469]/2;
@@ -64,41 +61,41 @@
     figure(f) //make GUI  window f the current figure
     gcf()
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>gdf</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="gdf">gdf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gca</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gca">gca</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gce</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gce">gce</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>scf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="scf">scf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>uicontrol</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="uicontrol">uicontrol</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Serge Steer, INRIA</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Serge Steer, INRIA</para></refsection>
+</refentry>

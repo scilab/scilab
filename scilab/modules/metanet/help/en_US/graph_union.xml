@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,74 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_union"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_union</refname><refpurpose> union of two graphs</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g2 = graph_union(g,g1 [,opt])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1</term>
+        <listitem>
+          <para>a graph data structure.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>a boolean, with  <literal>%t</literal> as default value.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g2</term>
+        <listitem>
+          <para>graph data structure of the new graph</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <itemizedlist>
+    <listitem>
+    <para><literal>graph_union(g,g1)</literal> creates a new graph
+    <literal>g2</literal>. The node set of <literal>g2</literal> is the union (in
+    the usual sense) of the node sets of <literal>g</literal> and
+    <literal>g1</literal>. If node names are given in both graph, nodes with
+    equal names in <literal>g1</literal> and <literal>g2</literal> are considered
+    as common nodes. </para>
+    <para><literal>g2</literal> has an edge for each edge of <literal>g</literal> and
+    an edge for each edge of <literal>g1</literal>. The edges of
+    <literal>g</literal> and <literal>g1</literal> having the same endpoints are
+    kept and in this case <literal>g2</literal> has multiple edges.</para>
+    </listitem>
+    <listitem>
+    <para><literal>graph_union(g,g1,%f)</literal> creates a new graph
+    <literal>g2</literal>. The node set of <literal>g2</literal> is the union (in
+    the usual sense) of the node sets of t<literal>g</literal> and
+    <literal>g1</literal>. In this case the function does not looks for
+    common nodes.</para>
+    <para><literal>g2</literal> has an edge for each edge of <literal>g</literal> and an edge for each edge of 
+    <literal>g1</literal>. The edges of <literal>g</literal> and <literal>g1</literal> having the same endpoints are kept 
+    and in this case <literal>g2</literal> has multiple edges.</para>
+    </listitem>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_union</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph_union"> union of two graphs</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g2 = graph_union(g,g1 [,opt])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a graph data structure.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>opt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean, with  <VERB>%t</VERB> as default value.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g2</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph data structure of the new graph</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <SP><VERB>graph_union(g,g1)</VERB> creates a new graph
-    <VERB>g2</VERB>. The node set of <VERB>g2</VERB> is the union (in
-    the usual sense) of the node sets of <VERB>g</VERB> and
-    <VERB>g1</VERB>. If node names are given in both graph, nodes with
-    equal names in <VERB>g1</VERB> and <VERB>g2</VERB> are considered
-    as common nodes. </SP>
-    <P><VERB>g2</VERB> has an edge for each edge of <VERB>g</VERB> and
-    an edge for each edge of <VERB>g1</VERB>. The edges of
-    <VERB>g</VERB> and <VERB>g1</VERB> having the same endpoints are
-    kept and in this case <VERB>g2</VERB> has multiple edges.</P>
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM>
-    <SP><VERB>graph_union(g,g1,%f)</VERB> creates a new graph
-    <VERB>g2</VERB>. The node set of <VERB>g2</VERB> is the union (in
-    the usual sense) of the node sets of t<VERB>g</VERB> and
-    <VERB>g1</VERB>. In this case the function does not looks for
-    common nodes.</SP>
-    <P><VERB>g2</VERB> has an edge for each edge of <VERB>g</VERB> and an edge for each edge of 
-    <VERB>g1</VERB>. The edges of <VERB>g</VERB> and <VERB>g1</VERB> having the same endpoints are kept 
-    and in this case <VERB>g2</VERB> has multiple edges.</P>
-    </DESCRIPTION_ITEM>
+  </itemizedlist>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-  </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta1=[1,2,3,4,4,4,4,5,6,7,7];he1=[2,3,1,1,5,7,7,6,7,3,4];
 g1=make_graph('foo1',1,7,ta1,he1);
 g1.nodes.graphics.x= [273,271,339,384,504,513,439];
@@ -102,14 +97,14 @@ show_graph(g,'new');
 g=graph_union(g1,g2,%f);
 show_graph(g,'new');
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>supernode</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>subgraph</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="supernode">supernode</link>
+    </member>
+    <member>
+      <link linkend="subgraph">subgraph</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

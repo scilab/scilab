@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,69 +10,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Compound_properties"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Compound_properties</refname><refpurpose>description of the Compound
+  entity properties</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>Compound_properties</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="Compound_properties">description of the Compound
-  entity properties</SHORT_DESCRIPTION>
-
-  <DESCRIPTION>
-    <P>The Compound entity is a third of the graphics entities hierarchy. This
+  <refsection><title>Description</title>
+    <para>The Compound entity is a third of the graphics entities hierarchy. This
     entity defines interdependencies of the various graphics entities and
-    their global visibility property.</P>
+    their global visibility property.</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        text entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+    <variablelist>
+      <varlistentry><term>parent: </term><listitem>
+        <para>This property contains the handle of the parent. The parent of the
+        text entity should be of the type <literal>"Axes"</literal> or
+        <literal>"Compound"</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="children: ">
-        <SP>A vector containing the handles of all graphics objects children
+      <varlistentry><term>children: </term><listitem>
+        <para>A vector containing the handles of all graphics objects children
         of the Compound These graphics objects can be of type
-        <VERB>"Compound"</VERB>, <VERB>"Rectangle"</VERB>,
-        <VERB>"Polyline"</VERB>, <VERB>"Patch"</VERB>, <VERB>"Segs"</VERB>,
-        <VERB>"Arc"</VERB>, <VERB>"Grayplot"</VERB>,..</SP>
-      </DESCRIPTION_ITEM>
+        <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
+        <literal>"Polyline"</literal>, <literal>"Patch"</literal>, <literal>"Segs"</literal>,
+        <literal>"Arc"</literal>, <literal>"Grayplot"</literal>,..</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the <VERB>visible</VERB> property value for
-        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB>. By
-        default, value is <VERB>"on" </VERB> where graphics entities children
+      <varlistentry><term>visible: </term><listitem>
+        <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal>. By
+        default, value is <literal>"on" </literal> where graphics entities children
         of the Compound are drawn according to their visibility property. If
-        <VERB>"off"</VERB> all children of Compound are not displayed on the
-        screen.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>"off"</literal> all children of Compound are not displayed on the
+        screen.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="user_data: ">
-        <SP>This field can be use to store any scilab variable in the figure
-        data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      <varlistentry><term>user_data: </term><listitem>
+        <para>This field can be use to store any scilab variable in the figure
+        data structure, and to retreive it.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>glue</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="glue">glue</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>unglue</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="unglue">unglue</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+</refentry>

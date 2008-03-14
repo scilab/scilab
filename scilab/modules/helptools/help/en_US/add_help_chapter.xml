@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,51 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>add_help_chapter</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="add_help_chapter"> Add an entry in the helps list</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>add_help_chapter(title,path)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>title</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string, the help chapter title</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string, the path of the directory containing the
-       help files.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_help_chapter"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>add_help_chapter</refname><refpurpose> Add an entry in the helps list</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>add_help_chapter(title,path)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+        <listitem>
+          <para>a character string, the help chapter title</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a character string, the path of the directory containing the
+       help files.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
   This function adds a new entry in the helps list. The help chapter
   files are to be located in a single directory. If the given
-  <VERB>title</VERB> already exists in the helps list associated with
+  <literal>title</literal> already exists in the helps list associated with
   the same path nothing is done.  The function checks if the directory
-  exist.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>help</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>add_demo</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>
+  exist.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="help">help</link>
+    </member>
+    <member>
+      <link linkend="add_demo">add_demo</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>
     Serge Steer , INRIA
-  </AUTHOR>
-</MAN>
+  </para></refsection>
+</refentry>

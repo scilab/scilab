@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
@@ -10,52 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="addhistory"><info><pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer., 30 août 2006)$</pubdate></info><refnamediv><refname>addhistory</refname><refpurpose>add lines to current history.</refpurpose></refnamediv>
+  
 
-  <TITLE>addhistory</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer., 30 aoÃ»t 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="addhistory">add lines to current history.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>addhistory(string)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>addhistory(string_matrix)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>addhistory(string)
+addhistory(string_matrix)</synopsis></refsynopsisdiv>
 
-	<PARAM>
-		<PARAM_INDENT>
+	<refsection><title>Parameters</title>
+		<variablelist>
 
-			<PARAM_ITEM>
-				<PARAM_NAME>string</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-				<SP>: a string</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>string</term>
+				<listitem>
+				<para>a string</para>
+				</listitem>
+			</varlistentry>
 
-			<PARAM_ITEM>
-				<PARAM_NAME>string_matrix</PARAM_NAME>
+			<varlistentry>
+				<term>string_matrix</term>
 
-				<PARAM_DESCRIPTION>
-				<SP>: a string matrix</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+				<listitem>
+				<para>a string matrix</para>
+				</listitem>
+			</varlistentry>
 
-		</PARAM_INDENT>
-	</PARAM>
+		</variablelist>
+	</refsection>
 
-  <DESCRIPTION>
-    <P>add lines to current history.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>add lines to current history.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[addhistory('hello')
-addhistory(['hello','Scilab')]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[addhistory('hello')
+addhistory(['hello','Scilab')]]></programlisting></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

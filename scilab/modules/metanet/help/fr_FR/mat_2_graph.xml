@@ -1,76 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mat_2_graph  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="mat_2_graph"> graphe à partir de matrice d&apos;incidence sommets-arcs ou sommets-sommets  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>g = mat_2_graph(a,oriented,[mat])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>a  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice creuse d&apos;incidence sommets-arcs ou  sommets-sommets
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>orienté  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier, 0 (graphe non-orienté ) ou 1 (graphe orienté)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>mat  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne optionnelle, &apos;node-arc&apos; ou &apos;node-node&apos;
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>mat_2_graph</VERB> calcule le graphe <VERB>g</VERB> correspondant à la matrice creuse d&apos;incidence sommets-arcs ou 
-    sommets-sommets <VERB>a</VERB>.
-    Vérification est faite que <VERB>a</VERB> est une matrice d&apos;incidence sommets-arcs ou 
-    sommets-sommets d&apos;un graphe orienté (<VERB>orienté = 1</VERB>) ou non-orienté 
-    (<VERB>non-orienté = 0</VERB>).
-    Si l&apos;argument optionnel <VERB>mat</VERB> est omis ou est la chaîne de caractères 
-    <VERB>&apos;node-arc&apos;</VERB>, a doit être une matrice sommets-arcs. Si <VERB>mat</VERB> est la chaîne de caractères
-    <VERB>&apos;node-node&apos;</VERB>, a doit être une matrice sommets-sommets.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mat_2_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mat_2_graph</refname><refpurpose> graphe à partir de matrice d'incidence sommets-arcs ou sommets-sommets  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>g = mat_2_graph(a,oriented,[mat])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>a  </term>
+  <listitem>
+  <para>matrice creuse d'incidence sommets-arcs ou  sommets-sommets
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>orienté  </term>
+  <listitem>
+  <para>entier, 0 (graphe non-orienté ) ou 1 (graphe orienté)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>mat  </term>
+  <listitem>
+  <para>chaîne optionnelle, 'node-arc' ou 'node-node'
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>mat_2_graph</literal> calcule le graphe <literal>g</literal> correspondant à la matrice creuse d'incidence sommets-arcs ou 
+    sommets-sommets <literal>a</literal>.
+    Vérification est faite que <literal>a</literal> est une matrice d'incidence sommets-arcs ou 
+    sommets-sommets d'un graphe orienté (<literal>orienté = 1</literal>) ou non-orienté 
+    (<literal>non-orienté = 0</literal>).
+    Si l'argument optionnel <literal>mat</literal> est omis ou est la chaîne de caractères 
+    <literal>'node-arc'</literal>, a doit être une matrice sommets-arcs. Si <literal>mat</literal> est la chaîne de caractères
+    <literal>'node-node'</literal>, a doit être une matrice sommets-sommets.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 g=load_graph(SCI+'/demos/metanet/colored');
 show_graph(g);
 a=graph_2_mat(g);
@@ -81,8 +60,8 @@ a=graph_2_mat(g,'node-node');
 g1=mat_2_graph(a,1,'node-node');
 g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
 show_graph(g1,'new');
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>adj_lists</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>chain_struct</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graph_2_mat</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="adj_lists">adj_lists</link> </member>     <member> <link linkend="chain_struct">chain_struct</link> </member>     <member> <link linkend="graph_2_mat">graph_2_mat</link> </member>
+  </simplelist></refsection>
+</refentry>

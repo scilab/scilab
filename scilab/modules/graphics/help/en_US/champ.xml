@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,107 +10,103 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="champ"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>champ</refname><refpurpose>2D vector field plot</refpurpose></refnamediv>
+  
 
-  <TITLE>champ</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="champ">2D vector field plot</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>champ(x,y,fx,fy,[arfact,rect,strf])</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>champ(x,y,fx,fy,[arfact,rect,strf])
+champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>champ(x,y,fx,fy,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+        <listitem>
+          <para>two vectors which define the grid.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: two vectors which define the grid.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>fx</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fx</PARAM_NAME>
+        <listitem>
+          <para>a matrix which describes the x component of the vector field.
+          <literal>fx(i,j)</literal> is the x component of the vector field at point
+          <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a matrix which describes the x component of the vector field.
-          <VERB>fx(i,j)</VERB> is the x component of the vector field at point
-          <VERB>(x(i),y(j))</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>fy</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fy</PARAM_NAME>
+        <listitem>
+          <para>a matrix which describes the y component of the vector field.
+          <literal>fy(i,j)</literal> is the y component of the vector field at point
+          <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a matrix which describes the y component of the vector field.
-          <VERB>fy(i,j)</VERB> is the y component of the vector field at point
-          <VERB>(x(i),y(j))</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+        <listitem>
+          <para>This represents a sequence of statements 
+         <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: arfact, rect,
+          strf (see below).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements 
-         <VERB>key1=value1,key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following: arfact, rect,
-          strf (see below).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>arfact</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>arfact</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: an optional argument of type real which gives a scale factor
+        <listitem>
+          <para>an optional argument of type real which gives a scale factor
           for the display of the arrow heads on the plot (default value is
-          1.0).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          1.0).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
+      <varlistentry>
+        <term>rect</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a vector <VERB>rect=[xmin,ymin,xmax,ymax]</VERB> which gives
-          the boundaries of the graphics frame to use.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a vector <literal>rect=[xmin,ymin,xmax,ymax]</literal> which gives
+          the boundaries of the graphics frame to use.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>strf</PARAM_NAME>
+      <varlistentry>
+        <term>strf</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string of length 3 "xyz" which has the same meaning as the
-          <VERB>strf</VERB> parameter of <VERB>plot2d</VERB>. The first
-          character x has no effect with <VERB>champ</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a string of length 3 "xyz" which has the same meaning as the
+          <literal>strf</literal> parameter of <literal>plot2d</literal>. The first
+          character x has no effect with <literal>champ</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>champ</VERB> draws a 2D vector field. The length of the arrows is
-    proportional to the intensity of the field.</P>
+  <refsection><title>Description</title>
+    <para><literal>champ</literal> draws a 2D vector field. The length of the arrows is
+    proportional to the intensity of the field.</para>
 
-    <P>If you want colored arrows with the color of the arrows depending on
-    the intensity of the field, use <VERB>champ1</VERB>.</P>
+    <para>If you want colored arrows with the color of the arrows depending on
+    the intensity of the field, use <literal>champ1</literal>.</para>
 
-    <P>Enter the command <VERB>champ()</VERB> to see a demo.</P>
-  </DESCRIPTION>
+    <para>Enter the command <literal>champ()</literal> to see a demo.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 // using rect as plot boundaries 
 champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
@@ -118,21 +114,21 @@ champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
 clf()
 champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>champ1</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="champ1">champ1</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>fchamp</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="fchamp">fchamp</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

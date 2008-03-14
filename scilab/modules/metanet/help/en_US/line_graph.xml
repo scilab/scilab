@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,46 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>line_graph</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="line_graph"> graph with nodes corresponding to edges</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g1 = line_graph(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a  <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph data structure of the new graph</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>line_graph</VERB> returns the graph <VERB>g1</VERB> with the nodes corresponding 
-    to the edges of the graph <VERB>g</VERB>.
-    <VERB>g1</VERB> is defined in the following way:
-     - its nodes correspond to the edges of <VERB>g</VERB>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="line_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>line_graph</refname><refpurpose> graph with nodes corresponding to edges</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = line_graph(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a  <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1</term>
+        <listitem>
+          <para>graph data structure of the new graph</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>line_graph</literal> returns the graph <literal>g1</literal> with the nodes corresponding 
+    to the edges of the graph <literal>g</literal>.
+    <literal>g1</literal> is defined in the following way:
+     - its nodes correspond to the edges of <literal>g</literal>
      - 2 nodes of the new graph are adjacent if and only if the corresponding
-    edges of the graph <VERB>g</VERB> are adjacent.</P>
-    <P>
-    The coordinates of the nodes of <VERB>g1</VERB> are given by the middle points of the 
-    corresponding edges of <VERB>g</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    edges of the graph <literal>g</literal> are adjacent.</para>
+    <para>
+    The coordinates of the nodes of <literal>g1</literal> are given by the middle points of the 
+    corresponding edges of <literal>g</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
 he=[2 6 3 6 7 8 8 8 4 7 3 5];
 g=make_graph('foo',0,8,ta,he);
@@ -63,11 +58,11 @@ g1.nodes.graphics.colors(2,:)=color('red')
 g1.edges.graphics.foreground(:)=color('red')
 
 show_graph(graph_union(g,g1,%f),'new')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>arc_graph</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="arc_graph">arc_graph</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

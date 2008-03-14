@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,60 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>strrchr</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-	<SHORT_DESCRIPTION name="strrchr">Find the last occurrence of a character in a string</SHORT_DESCRIPTION>
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>res = strrchr(str1,char)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strrchr"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>strrchr</refname><refpurpose>Find the last occurrence of a character in a string</refpurpose></refnamediv>
 	
-	<PARAM>
-		<PARAM_INDENT>
-		<PARAM_ITEM>
-			<PARAM_NAME>str1</PARAM_NAME>
-			<PARAM_DESCRIPTION>
-			<SP>: string or matrix of strings</SP>
-			</PARAM_DESCRIPTION>
-		</PARAM_ITEM>
+	
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>res = strrchr(str1,char)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
+		<varlistentry>
+			<term>str1</term>
+			<listitem>
+			<para>string or matrix of strings</para>
+			</listitem>
+		</varlistentry>
 		
-		<PARAM_ITEM>
-			<PARAM_NAME>char</PARAM_NAME>
-			<PARAM_DESCRIPTION>
-			<SP>: a character.</SP>
-			</PARAM_DESCRIPTION>
-		</PARAM_ITEM>
+		<varlistentry>
+			<term>char</term>
+			<listitem>
+			<para>a character.</para>
+			</listitem>
+		</varlistentry>
 		
-		<PARAM_ITEM>
-			<PARAM_NAME>res</PARAM_NAME>
-			<PARAM_DESCRIPTION>
-			<SP>: string or matrix of strings</SP>
-			</PARAM_DESCRIPTION>
-		</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
+		<varlistentry>
+			<term>res</term>
+			<listitem>
+			<para>string or matrix of strings</para>
+			</listitem>
+		</varlistentry>
+		</variablelist>
+	</refsection>
 	
-	<DESCRIPTION>
-		<P><VERB>res = strrchr(str1,char)</VERB> Returns the last occurrence of character in the string str.</P>
-		<P> num must have same dimensions than str1 or only one char. </P>
-	</DESCRIPTION>
+	<refsection><title>Description</title>
+		<para><literal>res = strrchr(str1,char)</literal> Returns the last occurrence of character in the string str.</para>
+		<para> num must have same dimensions than str1 or only one char. </para>
+	</refsection>
 	
-	<EXAMPLE>
-<![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 strrchr('This is a sample string','s')
 strrchr(['This is a sample string','in scilab'],'s')
 strrchr(['This is a sample string','in scilab'],['s','a'])
-]]>
-	</EXAMPLE>
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>strchr</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>strstr</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
-</MAN>
+
+	]]></programlisting></refsection>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="strchr">strchr</link>
+		</member>
+		<member>
+			<link linkend="strstr">strstr</link>
+		</member>
+	</simplelist></refsection>
+</refentry>

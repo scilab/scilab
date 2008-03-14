@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,64 +11,61 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>basename</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="basename"> strip directory and suffix from filenames</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>files= basename(files[,flag [,flagexpand]])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>files</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix giving a set of file names.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag,flagexpand</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: boolean optional parameters. (default value <VERB>%t</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>files</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>basename</VERB> return the basename of the file entries given in files.</P>
-    <P>
-    If <VERB>flag</VERB> is true the files are first converted to the target 
-    type given by the <VERB>MSDOS</VERB> variable. 
-    Moreover, if <VERB>flagexpand</VERB> is true leading strings like
-    <VERB>HOME</VERB>, <VERB>SCI</VERB> or <VERB>~</VERB> are expanded using environment
-    variables.</P>
-    <P>
-    Note that <VERB>basename(files,%f)</VERB> can give erroneous results if 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="basename"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>basename</refname><refpurpose> strip directory and suffix from filenames</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>files= basename(files[,flag [,flagexpand]])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>a string matrix giving a set of file names.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag,flagexpand</term>
+        <listitem>
+          <para>boolean optional parameters. (default value <literal>%t</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>a string matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>basename</literal> return the basename of the file entries given in files.</para>
+    <para>
+    If <literal>flag</literal> is true the files are first converted to the target 
+    type given by the <literal>MSDOS</literal> variable. 
+    Moreover, if <literal>flagexpand</literal> is true leading strings like
+    <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
+    variables.</para>
+    <para>
+    Note that <literal>basename(files,%f)</literal> can give erroneous results if 
     pathnames given in files do not follow the convention 
-    given by the <VERB>MSDOS</VERB> variable.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    given by the <literal>MSDOS</literal> variable.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 files=basename('SCI/macros/util/poo.sci')
 files=basename('SCI/macros\util/poo.sci')
 files=basename('SCI/macros\util/poo.sci.k')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>listfiles</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pathconvert</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="listfiles">listfiles</link>
+    </member>
+    <member>
+      <link linkend="pathconvert">pathconvert</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

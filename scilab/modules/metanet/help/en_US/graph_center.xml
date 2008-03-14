@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,49 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_center</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph_center"> center of a graph</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[no,rad] = graph_center(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>no</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rad</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>graph_center</VERB> computes a center of the graph <VERB>g</VERB> i.e. the 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_center"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_center</refname><refpurpose> center of a graph</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[no,rad] = graph_center(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>no</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rad</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>graph_center</literal> computes a center of the graph <literal>g</literal> i.e. the 
     node for which the largest of the shortest paths to all the other nodes 
     is minimum. The lengths of the arcs are supposed to be integer (and the default
     value is 1). 
-    The output is the value <VERB>rad</VERB> of the length of the radius and
-    <VERB>no</VERB> which is the node number of the center of the graph.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    The output is the value <literal>rad</literal> of the length of the radius and
+    <literal>no</literal> which is the node number of the center of the graph.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 15 12 13  9 14 11 16 1 17 14 15];
 g=make_graph('foo',0,17,ta,he);
@@ -69,14 +64,14 @@ for k=1:16
 end
 r1
 hilite_edges(path)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>graph_diameter</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-<BIBLIO>
-<P>Harary, F. Graph Theory. Reading, MA: Addison-Wesley, p. 35, 1994.</P>
-</BIBLIO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="graph_diameter">graph_diameter</link>
+    </member>
+  </simplelist></refsection>
+<refsection><title>Bibliography</title>
+<para>Harary, F. Graph Theory. Reading, MA: Addison-Wesley, p. 35, 1994.</para>
+</refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,44 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>dbphi</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="dbphi"> frequency response to phase and magnitude representation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[db,phi] =dbphi(repf)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>db,phi</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of gains (db) and phases (degrees)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>repf</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of complex frequency response</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>db(k)</VERB> is the magnitude of <VERB>repf(k)</VERB> expressed in dB i.e.
-    <VERB>db(k)=20*log(abs(repf(k)))/log(10)</VERB> and <VERB>phi(k)</VERB> is the phase
-    of <VERB>repf(k)</VERB> expressed in degrees.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>repfreq</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>bode</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dbphi"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dbphi</refname><refpurpose> frequency response to phase and magnitude representation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[db,phi] =dbphi(repf)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>db,phi</term>
+        <listitem>
+          <para>vector of gains (db) and phases (degrees)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>repf</term>
+        <listitem>
+          <para>vector of complex frequency response</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>db(k)</literal> is the magnitude of <literal>repf(k)</literal> expressed in dB i.e.
+    <literal>db(k)=20*log(abs(repf(k)))/log(10)</literal> and <literal>phi(k)</literal> is the phase
+    of <literal>repf(k)</literal> expressed in degrees.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="repfreq">repfreq</link>
+    </member>
+    <member>
+      <link linkend="bode">bode</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

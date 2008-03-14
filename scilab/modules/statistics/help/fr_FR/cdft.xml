@@ -1,75 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>cdft  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="cdft"> fonction de répartition de la distribution de Student  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[P,Q]=cdft(&quot;PQ&quot;,T,Df)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[T]=cdft(&quot;T&quot;,Df,P,Q)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[Df]=cdft(&quot;Df&quot;,P,Q,T)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>P,Q,T,Df  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : six vecteurs réels de même taille.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : l&apos;intégrale de -infini à T de la densité de Student. comprise entre : (0,1].
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>T  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : borne d&apos;intégration supérieure. En entrée : ( -infini, +infini). En recherche : [ -1E150, 1E150 ]
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>DF:  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cdft"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cdft</refname><refpurpose> fonction de répartition de la distribution de Student  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[P,Q]=cdft("PQ",T,Df)
+[T]=cdft("T",Df,P,Q)
+[Df]=cdft("Df",P,Q,T)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>P,Q,T,Df  </term>
+  <listitem>
+  <para>six vecteurs réels de même taille.
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>P,Q (Q=1-P)  </term>
+  <listitem>
+  <para>l'intégrale de -infini à T de la densité de Student. comprise entre : (0,1].
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>T  </term>
+  <listitem>
+  <para>borne d'intégration supérieure. En entrée : ( -infini, +infini). En recherche : [ -1E150, 1E150 ]
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>DF:  </term>
+  <listitem>
+  <para>
     Degrés de libertés de la distribution. En entrée : (0 , +infini). En recherche : [1e-300, 1E10]
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     Étant donnés les autres, calcule un paramètre de la distribution de Student.
-  </P>
-  <P>
+  </para>
+  <para>
     La formule  26.5.27  de   Abramowitz  et  Stegun,   Handbook   of
-    Mathematical Functions  (1966) est utilisée pour réduire le calcul de la fonction de répartition de la distribution à celle d&apos;une loi beta incomplète.
-  </P>
-  <P>
-    Le calcul des autres paramètres implique une recherche d&apos;une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
-  </P>
-  </DESCRIPTION>
-</MAN>
+    Mathematical Functions  (1966) est utilisée pour réduire le calcul de la fonction de répartition de la distribution à celle d'une loi beta incomplète.
+  </para>
+  <para>
+    Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+  </para>
+  </refsection>
+</refentry>

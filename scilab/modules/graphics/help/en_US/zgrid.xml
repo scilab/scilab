@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,32 +10,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>zgrid</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="zgrid"> zgrid plot</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>zgrid()    </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="zgrid"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>zgrid</refname><refpurpose> zgrid plot</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>zgrid()</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
     plots z-plane grid lines: lines of constant 
     damping factor (zeta) and natural frequency (Wn) are 
-    drawn in within the unit Z-plane circle.</P>
-    <P>
+    drawn in within the unit Z-plane circle.</para>
+    <para>
     Iso-frequency curves are shown in frequency*step on the
     interval [0,0.5]. Upper limit corresponds to Shannon
-    frequency <VERB>( 1/dt &gt; 2*f )</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>frep2tf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>freson</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    frequency <literal>( 1/dt &gt; 2*f )</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="frep2tf">frep2tf</link>
+    </member>
+    <member>
+      <link linkend="freson">freson</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

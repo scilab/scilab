@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -11,34 +11,31 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="drawnow"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>drawnow</refname><refpurpose>draw hidden graphics
+  entities.</refpurpose></refnamediv>
+  
 
-  <TITLE>drawnow</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="drawnow">draw hidden graphics
-  entities.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>drawnow()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>drawnow()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>Considering the current figure, this function can be used to draw the
+  <refsection><title>Description</title>
+    <para>Considering the current figure, this function can be used to draw the
     hidden graphics entities and all its chidren, that may have been postponed
-    by a previous call to <VERB>drawlater</VERB>. The
-    <VERB>immediate_drawing</VERB> property of the <VERB>current figure</VERB>
-    is set to <VERB>"on" </VERB>.</P>
+    by a previous call to <literal>drawlater</literal>. The
+    <literal>immediate_drawing</literal> property of the <literal>current figure</literal>
+    is set to <literal>"on" </literal>.</para>
 
-    <P>It can specially be used with the <VERB>drawlater</VERB> function.</P>
-  </DESCRIPTION>
+    <para>It can specially be used with the <literal>drawlater</literal> function.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
   f=get("current_figure") // handle of the current figure
   
@@ -59,25 +56,25 @@
   drawnow(); // draw the current figure
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>drawlater</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="drawlater">drawlater</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE, F.Leray</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE, F.Leray</para></refsection>
+</refentry>

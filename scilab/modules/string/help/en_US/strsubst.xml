@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,96 +10,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strsubst"><info><pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</pubdate></info><refnamediv><refname>strsubst</refname><refpurpose>substitute a character string by another
+  in a character string.</refpurpose></refnamediv>
+  
 
-  <TITLE>strsubst</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="strsubst">substitute a character string by another
-  in a character string.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>str=strsubst(string,searchStr,replaceStr)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>str=strsubst(string,searchStr,replaceStr)
+str=strsubst(string,searchStr,replaceStr,["flag"])</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>str=strsubst(string,searchStr,replaceStr,["flag"])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>string</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>string</PARAM_NAME>
+        <listitem>
+          <para>a matrix of character string. The strings where to search
+          occurrences of <literal>searchStr</literal></para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a matrix of character string. The strings where to search
-          occurrences of <VERB>searchStr</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>searchStr</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>searchStr</PARAM_NAME>
+        <listitem>
+          <para>a character string. The string to search in
+          <literal>string</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string. The string to search in
-          <VERB>string</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>replaceStr</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>replaceStr</PARAM_NAME>
+        <listitem>
+          <para>a character string. The replacement string.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string. The replacement string.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>str</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
+        <listitem>
+          <para>a matrix of character string. The result of the substitution
+          on <literal>searchStr</literal> by <literal>replaceStr</literal> in <literal>string</literal></para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a matrix of character string. The result of the substitution
-          on <VERB>searchStr</VERB> by <VERB>replaceStr</VERB> in <VERB>string</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>"flag"</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>"flag"</PARAM_NAME>
+        <listitem>
+          <para>string("r" for regular expression)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string("r" for regular expression)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para><literal>strsubst</literal> replaces all occurrences of <literal>searchStr</literal> in
+    <literal>string</literal> by <literal>replaceStr</literal>.</para>
 
-  <DESCRIPTION>
-    <P><VERB>strsubst</VERB> replaces all occurrences of <VERB>searchStr</VERB> in
-    <VERB>string</VERB> by <VERB>replaceStr</VERB>.</P>
-
-    <P>When using the forth parameters "r", the searchStr should be a string of
+    <para>When using the forth parameters "r", the searchStr should be a string of
     regular expression. And then strsubst is going to match it with string and
-    replace according to the regular express rules. </P>
-  </DESCRIPTION>
+    replace according to the regular express rules. </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 strsubst('SCI/demos/scicos','SCI','.')
 strsubst('SCI/demos/scicos','/',' ')
 strsubst('2' ,'/2(]*)?$\1/' ,'0','r')
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>string</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="string">string</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>strings</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="strings">strings</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

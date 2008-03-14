@@ -1,81 +1,79 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>alufunctions  </TITLE>
-  <TYPE>Scilab keyword  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="alufunctions"> description des modes de dessin des pixels.  </SHORT_DESCRIPTION>
-  <DESCRIPTION>
-  <P>
-    src est la source c&apos;est à dire la &quot;valeur du pixel&quot; que l&apos;on veut dessiner.
-    dst est la destination c&apos;est à dire la &quot;valeur du pixel&quot; déjà présent à cet emplacement. 
-  </P>
-  <P>
-  </P>
-  <P>
-     0: effacer i.e. &quot;0&quot;
-  </P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="alufunctions"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>alufunctions</refname><refpurpose> description des modes de dessin des pixels.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+  <para>
+    src est la source c'est à dire la "valeur du pixel" que l'on veut dessiner.
+    dst est la destination c'est à dire la "valeur du pixel" déjà présent à cet emplacement. 
+  </para>
+  <para>
+  </para>
+  <para>
+     0: effacer i.e. "0"
+  </para>
  
-  <P>
-     1: ET i.e. &quot;src ET dst&quot;
-  </P>
+  <para>
+     1: ET i.e. "src ET dst"
+  </para>
  
-  <P>
-     2: ET inverse i.e. &quot;src ET NON dst&quot;
-  </P>
+  <para>
+     2: ET inverse i.e. "src ET NON dst"
+  </para>
  
-  <P>
-     3: copie i.e. &quot;src&quot;
-  </P>
+  <para>
+     3: copie i.e. "src"
+  </para>
  
-  <P>
-     4: ET inverse i.e. &quot;(NON src) ET dst&quot;
-  </P>
+  <para>
+     4: ET inverse i.e. "(NON src) ET dst"
+  </para>
  
-  <P>
-     5: rien i.e. &quot;dst&quot;
-  </P>
+  <para>
+     5: rien i.e. "dst"
+  </para>
  
-  <P>
-     6: XOU (ou exclusif) i.e. &quot;src XOU dst&quot;
-  </P>
+  <para>
+     6: XOU (ou exclusif) i.e. "src XOU dst"
+  </para>
  
-  <P>
-     7: OU i.e. &quot;src OU dst&quot;
-  </P>
+  <para>
+     7: OU i.e. "src OU dst"
+  </para>
  
-  <P>
-     8: NOR &quot;(NON src) ET (NON dst)&quot;
-  </P>
+  <para>
+     8: NOR "(NON src) ET (NON dst)"
+  </para>
  
-  <P>
-     9: équivalence i.e. &quot;(NON src) OUX dst&quot;
-  </P>
+  <para>
+     9: équivalence i.e. "(NON src) OUX dst"
+  </para>
  
-  <P>
-    10: inversion i.e. &quot;NON dst&quot;
-  </P>
+  <para>
+    10: inversion i.e. "NON dst"
+  </para>
  
-  <P>
-    11: OU inverse i.e. &quot;src OU (NON dst)&quot;
-  </P>
+  <para>
+    11: OU inverse i.e. "src OU (NON dst)"
+  </para>
  
-  <P>
-    12: copie inversée i.e. &quot;NON src&quot;
-  </P>
+  <para>
+    12: copie inversée i.e. "NON src"
+  </para>
  
-  <P>
-    13: OU inverse i.e. &quot;(NON src) OU dst&quot;
-  </P>
+  <para>
+    13: OU inverse i.e. "(NON src) OU dst"
+  </para>
  
-  <P>
-    14: NAND i.e. &quot;(NON src) OU (NON dst)&quot;
-  </P>
+  <para>
+    14: NAND i.e. "(NON src) OU (NON dst)"
+  </para>
  
-  <P>
-    15:  valeur affectée &quot;1&quot;
-  </P>
+  <para>
+    15:  valeur affectée "1"
+  </para>
  
-  </DESCRIPTION>
-</MAN>
+  </refsection>
+</refentry>

@@ -1,44 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>perl</refname><refpurpose>Call Perl script using appropriate operating
+  system executable</refpurpose></refnamediv>
+  
 
-  <TITLE>perl</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="perl">Call Perl script using appropriate operating
-  system executable</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>perl('perlfile')</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>perl('perlfile')
+perl('perlfile',arg1,arg2,...)
+result = perl(...)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>perl('perlfile',arg1,arg2,...)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Description</title>
+    <para>perl('perlfile') calls the Perl script perlfile, using the appropriate
+    operating system Perl executable.</para>
 
-    <CALLING_SEQUENCE_ITEM>result = perl(...)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-    <P>perl('perlfile') calls the Perl script perlfile, using the appropriate
-    operating system Perl executable.</P>
-
-    <P>perl('perlfile',arg1,arg2,...) calls the Perl script perlfile, using
+    <para>perl('perlfile',arg1,arg2,...) calls the Perl script perlfile, using
     the appropriate operating system Perl executable, and passes the arguments
-    arg1, arg2, and so on, to perlfile.</P>
+    arg1, arg2, and so on, to perlfile.</para>
 
-    <P>result = perl(...) returns the results of attempted Perl call to
-    result.</P>
-  </DESCRIPTION>
+    <para>result = perl(...) returns the results of attempted Perl call to
+    result.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>unix</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="unix">unix</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

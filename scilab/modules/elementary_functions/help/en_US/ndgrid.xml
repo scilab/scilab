@@ -1,76 +1,72 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ndgrid</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="ndgrid">arrays for multidimensional function evaluation on grid</SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[X, Y] = ndgrid(x,y)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[X, Y, Z] = ndgrid(x,y,z)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[X, Y, Z, T] = ndgrid(x,y,z,t)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-    <PARAM_INDENT>
-     <PARAM_ITEM>
-        <PARAM_NAME>x, y, z, ...</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: vectors</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>X, Y, Z, ...</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: matrices in case of 2 input arguments, or else hypermatrices</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-   </PARAM_INDENT>
-  </PARAM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ndgrid"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ndgrid</refname><refpurpose>arrays for multidimensional function evaluation on grid</refpurpose></refnamediv>
   
-  <DESCRIPTION>
-    <P>
+  
+  
+  
+  
+
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X, Y] = ndgrid(x,y)
+[X, Y, Z] = ndgrid(x,y,z)
+[X, Y, Z, T] = ndgrid(x,y,z,t)
+[X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)</synopsis></refsynopsisdiv>
+
+  <refsection><title>Parameters</title>
+    <variablelist>
+     <varlistentry>
+        <term>x, y, z, ...</term>
+        <listitem>
+	 <para>vectors</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>X, Y, Z, ...</term>
+        <listitem>
+	 <para>matrices in case of 2 input arguments, or else hypermatrices</para>
+	</listitem> 
+     </varlistentry>
+   </variablelist>
+  </refsection>
+  
+  <refsection><title>Description</title>
+    <para>
     This is an utility routine useful to create arrays for function evaluation on 2, 3, ..., n 
-    dimensional grids. For instance in 2d, a grid is defined by two vectors, <VERB>x</VERB> and
-    <VERB> y</VERB> of length nx and ny, and you want to evaluate a function (says <EM>f</EM>) 
-    on all the grid points, that is on all the points of coordinates  <EM>(x(i),y(j))</EM> 
-    with  <EM>i=1,..,nx</EM> and <EM>j=1,..,ny</EM>. In this case, this function can
-    compute the two matrices <VERB>X,Y</VERB> of size <EM>nx x ny</EM> such that :
-    </P>
-    <VERBATIM><![CDATA[
+    dimensional grids. For instance in 2d, a grid is defined by two vectors, <literal>x</literal> and
+    <literal> y</literal> of length nx and ny, and you want to evaluate a function (says <emphasis>f</emphasis>) 
+    on all the grid points, that is on all the points of coordinates  <emphasis>(x(i),y(j))</emphasis> 
+    with  <emphasis>i=1,..,nx</emphasis> and <emphasis>j=1,..,ny</emphasis>. In this case, this function can
+    compute the two matrices <literal>X,Y</literal> of size <emphasis>nx x ny</emphasis> such that :
+    </para>
+    <programlisting><![CDATA[
       X(i,j) = x(i)   for all i in [1,nx]
       Y(i,j) = y(j)       and j in [1,ny]
-     ]]></VERBATIM>
-    <P>
-    and the evaluation may be done with <VERB>Z=f(X,Y)</VERB> (at the condition that you have 
-    coded <VERB>f</VERB> for evaluation on vector arguments, which is done (in general) by 
-    using the element-wise operators <VERB>.*</VERB>, <VERB>./</VERB> and <VERB>.^</VERB>
-    in place of <VERB>*</VERB>, <VERB>/</VERB> and <VERB>^</VERB>).
-    </P>
-    <P>
-    In the 3d case, considering 3 vectors <VERB>x,y,z</VERB> of length nx, ny and nz,  <VERB>X,Y,Z</VERB>
-    are 3 hypermatrices  of size <EM>nx x ny x nz</EM> such that :
-    </P>
-    <VERBATIM><![CDATA[
+     ]]></programlisting>
+    <para>
+    and the evaluation may be done with <literal>Z=f(X,Y)</literal> (at the condition that you have 
+    coded <literal>f</literal> for evaluation on vector arguments, which is done (in general) by 
+    using the element-wise operators <literal>.*</literal>, <literal>./</literal> and <literal>.^</literal>
+    in place of <literal>*</literal>, <literal>/</literal> and <literal>^</literal>).
+    </para>
+    <para>
+    In the 3d case, considering 3 vectors <literal>x,y,z</literal> of length nx, ny and nz,  <literal>X,Y,Z</literal>
+    are 3 hypermatrices  of size <emphasis>nx x ny x nz</emphasis> such that :
+    </para>
+    <programlisting><![CDATA[
       X(i,j,k) = x(i)  
       Y(i,j,k) = y(j)   for all (i,j,k) in [1,nx]x[1,ny]x[1,nz]
       Z(i,j,k) = z(k)
-     ]]></VERBATIM>
-    <P>
-    In the general case of m input arguments <VERB>x1, x2, .., xm</VERB>, then
-    the m output arguments <VERB>X1, X2, .., Xm</VERB> are hypermatrices  of size 
-    <EM>nx1 x nx2 x ... x nxm</EM> and :
-    </P>
-    <VERBATIM><![CDATA[
+     ]]></programlisting>
+    <para>
+    In the general case of m input arguments <literal>x1, x2, .., xm</literal>, then
+    the m output arguments <literal>X1, X2, .., Xm</literal> are hypermatrices  of size 
+    <emphasis>nx1 x nx2 x ... x nxm</emphasis> and :
+    </para>
+    <programlisting><![CDATA[
     Xj(i1,i2,...,ij,...,im) = xj(ij)   
     for all (i1,i2,...,im) in [1,nx1]x[1,nx2]x...x[1,nxm]  
-     ]]></VERBATIM>
-    </DESCRIPTION>
+     ]]></programlisting>
+    </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // create a simple 2d grid
 nx = 40; ny = 40;
 x = linspace(-1,1,nx);
@@ -104,16 +100,16 @@ end
 xbasc()
 plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
 xtitle("A 3d grid !"); xselect()
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>kron</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="kron">kron</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>
+  <refsection><title>Authors</title><para>
      B. Pincon
-  </AUTHOR>
+  </para></refsection>
 
-</MAN>
+</refentry>

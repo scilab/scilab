@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,53 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perms"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>perms</refname><refpurpose>all permutations of vector
+  components</refpurpose></refnamediv>
+  
 
-  <TITLE>perms</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="perms">all permutations of vector
-  components</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=perms(x)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=perms(x)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: scalar or vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>scalar or vector</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+      <varlistentry>
+        <term>y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Given a vector <VERB>x</VERB> of length <VERB>n</VERB>,
-    <VERB>perms</VERB> returns all the permutations of the <VERB>n</VERB>
-    components of <VERB>x</VERB> (i.e <VERB>n!</VERB> permutations). The size
-    of <VERB>y</VERB> is<VERB> n! x n</VERB></P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Given a vector <literal>x</literal> of length <literal>n</literal>,
+    <literal>perms</literal> returns all the permutations of the <literal>n</literal>
+    components of <literal>x</literal> (i.e <literal>n!</literal> permutations). The size
+    of <literal>y</literal> is<literal> n! x n</literal></para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[x=[4, 7, 10]
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[x=[4, 7, 10]
 y=perms(x)
 x=[1, 5, 2, 5]
 y=perms(x)
-  ]]></EXAMPLE>
-</MAN>
+  ]]></programlisting></refsection>
+</refentry>

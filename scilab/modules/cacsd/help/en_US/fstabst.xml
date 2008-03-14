@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,70 +10,66 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fstabst"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fstabst</refname><refpurpose> Youla's parametrization</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[J]=fstabst(P,r)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (linear system)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1x2 row vector, dimension of <literal>P22</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>J</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (linear system in state-space representation)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Parameterization of all stabilizing feedbacks.</para>
+    <para><literal>P</literal> is partitioned as follows:</para>
+    <programlisting><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fstabst</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fstabst"> Youla's parametrization</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[J]=fstabst(P,r)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>P</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (linear system)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: 1x2 row vector, dimension of <VERB>P22</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>J</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (linear system in state-space representation)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Parameterization of all stabilizing feedbacks.</P>
-    <P><VERB>P</VERB> is partitioned as follows:</P>
-    <VERBATIM>
-<![CDATA[
 P=[ P11 P12;
     P21 P22]  
-   ]]>
-    </VERBATIM>
-    <P>
+   
+    ]]></programlisting>
+    <para>
     (in state-space or transfer form: automatic conversion in state-space is
-    done for the computations)</P>
-    <P><VERB>r</VERB> = size of  <VERB>P22</VERB> subsystem, (2,2) block of <VERB>P</VERB></P>
-    <VERBATIM>
-<![CDATA[
+    done for the computations)</para>
+    <para><literal>r</literal> = size of  <literal>P22</literal> subsystem, (2,2) block of <literal>P</literal></para>
+    <programlisting><![CDATA[
+
           J =[ J11 J12;
                J21 J22]
-   ]]>
-    </VERBATIM>
-    <P><VERB>K</VERB> is a stabilizing controller for <VERB>P</VERB> (i.e. <VERB>P22</VERB>) iff 
-    <VERB>K=lft(J,r,Q)</VERB> with <VERB>Q</VERB> stable.</P>
-    <P>
-    The central part of <VERB>J</VERB> , <VERB>J11</VERB> is the lqg regulator for <VERB>P</VERB></P>
-    <P>
-    This <VERB>J</VERB> is such that defining <VERB>T</VERB> as the 2-port <VERB>lft</VERB> of <VERB>P</VERB>
-    and <VERB>J</VERB> : <VERB>[T,rt]=lft(P,r,J,r)</VERB> one has that <VERB>T12</VERB> is inner
-    and <VERB>T21</VERB> is co-inner.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para><literal>K</literal> is a stabilizing controller for <literal>P</literal> (i.e. <literal>P22</literal>) iff 
+    <literal>K=lft(J,r,Q)</literal> with <literal>Q</literal> stable.</para>
+    <para>
+    The central part of <literal>J</literal> , <literal>J11</literal> is the lqg regulator for <literal>P</literal></para>
+    <para>
+    This <literal>J</literal> is such that defining <literal>T</literal> as the 2-port <literal>lft</literal> of <literal>P</literal>
+    and <literal>J</literal> : <literal>[T,rt]=lft(P,r,J,r)</literal> one has that <literal>T12</literal> is inner
+    and <literal>T21</literal> is co-inner.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
 bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
@@ -83,20 +79,20 @@ J=fstabst(P,r);
 Q=ssrand(nu,ny,1);Q('A')=-1;  //Stable Q
 K=lft(J,r,Q);
 A=h_cl(P,r,K); spec(A)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>obscont</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lft</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lqg</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lqg2stan</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="obscont">obscont</link>
+    </member>
+    <member>
+      <link linkend="lft">lft</link>
+    </member>
+    <member>
+      <link linkend="lqg">lqg</link>
+    </member>
+    <member>
+      <link linkend="lqg2stan">lqg2stan</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

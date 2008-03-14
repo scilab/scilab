@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997-2008 - INRIA
@@ -10,103 +10,100 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_tasks</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pvm_tasks"> information about the tasks running on the virtual machine.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res  = pvm_tasks([where])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>where</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) integer, specifying what tasks to return information about. The options are:</SP>
-          <VERBATIM>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_tasks"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_tasks</refname><refpurpose> information about the tasks running on the virtual machine.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res = pvm_tasks([where])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>where</term>
+        <listitem>
+          <para>(optional) integer, specifying what tasks to return information about. The options are:</para>
+          <programlisting><![CDATA[
+
  0(default) for all the tasks on the virtual machine
  pvmd tid for all tasks on a given host
    tid  for a specific task
-   ]]>
-          </VERBATIM>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  list of 7 elements such that:</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>res(1)  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning task ID of one task</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>res(2)  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning parent task ID</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>res(3)  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning pvmd task ID of host task is on</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>res(4)  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning status of task</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>res(5)  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  string returning the name of spawned task. Manually started tasks return blank.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>res(6)  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning the number of tasks being reported on.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>res(7)  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer status code returned by the routine.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>pvm_tasks</VERB> 
+   
+          ]]></programlisting>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para> list of 7 elements such that:</para>
+          <variablelist>
+            <varlistentry>
+              <term>res(1)  </term>
+              <listitem>
+                <para> integer returning task ID of one task</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(2)  </term>
+              <listitem>
+                <para> integer returning parent task ID</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(3)  </term>
+              <listitem>
+                <para> integer returning pvmd task ID of host task is on</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(4)  </term>
+              <listitem>
+                <para> integer returning status of task</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(5)  </term>
+              <listitem>
+                <para> string returning the name of spawned task. Manually started tasks return blank.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(6)  </term>
+              <listitem>
+                <para> integer returning the number of tasks being reported on.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>res(7)  </term>
+              <listitem>
+                <para> integer status code returned by the routine.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>pvm_tasks</literal> 
     returns information about
     tasks presently running on the virtual machine.
     The information returned is the same as
-    that available from the console command</P>
-    <P>
-    The <VERB>pvm_tasks</VERB> function returns information about the entire
-    virtual machine in one call.</P>
-    <P>
-    If pvm_tasks is successful,</P>
-    <P>
+    that available from the console command</para>
+    <para>
+    The <literal>pvm_tasks</literal> function returns information about the entire
+    virtual machine in one call.</para>
+    <para>
+    If pvm_tasks is successful,</para>
+    <para>
     will be 0.
-    If some error occurs then</P>
-    <P>
-    will be &lt; 0.</P>
-    <P>
-    for example:</P>
-    <VERBATIM>
-<![CDATA[
+    If some error occurs then</para>
+    <para>
+    will be &lt; 0.</para>
+    <para>
+    for example:</para>
+    <programlisting><![CDATA[
+
 -->res = pvm_tasks()
  res  =
  
@@ -137,15 +134,15 @@
        res(7)
  
     0. 
-   ]]>
-    </VERBATIM>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_config</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_tidtohost</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pvm_config">pvm_config</link>
+    </member>
+    <member>
+      <link linkend="pvm_tidtohost">pvm_tidtohost</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

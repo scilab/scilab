@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,70 +10,68 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!-- When this file is modified please also modify mtlb_upper.xml -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_lower</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_lower"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_lower</refname><refpurpose>Matlab lower emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_lower">Matlab lower emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab <VERB>lower(A)</VERB> and Scilab <VERB>convstr(A,&quot;l&quot;)</VERB> behave differently in some particular cases:</P>
+    <para>Matlab <literal>lower(A)</literal> and Scilab <literal>convstr(A,"l")</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is not a chacarter string matrix: Matlab <VERB>lower</VERB> can be used with a
-	not-character-string <VERB>A</VERB> but not Scilab <VERB>convstr</VERB>.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> is not a chacarter string matrix: Matlab <literal>lower</literal> can be used with a
+	not-character-string <literal>A</literal> but not Scilab <literal>convstr</literal>.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_lower(A)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>lower(A)</VERB> when it was not
+    <para>
+    The function <literal>mtlb_lower(A)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>lower(A)</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_lower</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_lower</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is a character string matrix
-        <VERB>mtlb_lower(A)</VERB> may be replaced by <VERB>convstr(A,&quot;l&quot;)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> is a character string matrix
+        <literal>mtlb_lower(A)</literal> may be replaced by <literal>convstr(A,"l")</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is not a character string matrix
-        <VERB>mtlb_lower(A)</VERB> may be replaced by <VERB>A</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        If <literal>A</literal> is not a character string matrix
+        <literal>mtlb_lower(A)</literal> may be replaced by <literal>A</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_lower</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_lower</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>convstr</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="convstr">convstr</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

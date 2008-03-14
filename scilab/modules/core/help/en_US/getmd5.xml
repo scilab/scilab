@@ -1,57 +1,53 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getmd5</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-
-  <SHORT_DESCRIPTION name="getmd5">get md5 checksum</SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res=getmd5(filename)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>res=getmd5(ParamString,'string')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: md5 result (string)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: filename (string or matrix of strings)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ParamString</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getmd5"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getmd5</refname><refpurpose>get md5 checksum</refpurpose></refnamediv>
   
-  <DESCRIPTION>
-    <P><VERB>getmd5(...)</VERB> get md5 checksum of a file or a string.</P>
-  </DESCRIPTION>
+  
+  
+  
 
-  <EXAMPLE>
-<![CDATA[
+  
+
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res=getmd5(filename)
+res=getmd5(ParamString,'string')</synopsis></refsynopsisdiv>
+
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>md5 result (string)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>filename (string or matrix of strings)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ParamString</term>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  
+  <refsection><title>Description</title>
+    <para><literal>getmd5(...)</literal> get md5 checksum of a file or a string.</para>
+  </refsection>
+
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 getmd5('hello world','string')
 getmd5(['hello' 'world'],'string')
 getmd5(['hello' ; 'world'],'string')
 
 getmd5( SCI+'/modules/core/etc/core.start' )
 getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
-]]>
-  </EXAMPLE>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  ]]></programlisting></refsection>
+
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C.</member>
+  </simplelist></refsection>
+</refentry>

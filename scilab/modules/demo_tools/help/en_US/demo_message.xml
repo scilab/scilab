@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,47 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>demo_message</TITLE>
-	<TYPE>Scilab Function</TYPE>
-    <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_message"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_message</refname><refpurpose> display a message </refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="demo_message"> display a message </SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>demo_message(fil)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>
+    
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>demo_message(fil)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>
 		The function demo_message displays the text message within the file 'fil' given 
 		in argument.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 demo_message('SCI/demos/control/pid/pid_3.sce');
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_run</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>x_message</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_begin</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_end</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="demo_run">demo_run</link>
+		</member>
+		<member>
+			<link linkend="x_message">x_message</link>
+		</member>
+		<member>
+			<link linkend="demo_begin">demo_begin</link>
+		</member>
+		<member>
+			<link linkend="demo_end">demo_end</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Authors</title><simplelist type="vert">
+		<member>G.H</member>
+	</simplelist></refsection>
+</refentry>

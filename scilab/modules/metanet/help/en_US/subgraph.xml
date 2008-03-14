@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,57 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="subgraph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>subgraph</refname><refpurpose> subgraph of a graph</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = subgraph(v,ind,g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>row vector, numbers of nodes or edges</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+        <listitem>
+          <para>string, 'nodes' or 'edges'</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1</term>
+        <listitem>
+          <para>graph data structure of the new graph</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>subgraph</literal> returns the graph <literal>g1</literal>, built with the numbers given by the
+    the row vector <literal>v</literal>. 
+    If <literal>ind</literal> is the string <literal>'nodes'</literal>, <literal>g1</literal> is built with the node 
+    numbers given by <literal>v</literal> and the connected edges of these nodes in <literal>g</literal>. 
+    If <literal>ind</literal> is the string <literal>'edges'</literal>, <literal>g1</literal> is built with the edge 
+    numbers given by <literal>v</literal> and the tail-head nodes of these edges in <literal>g</literal>.</para>
+    <para>
+    All the characteristics of the old nodes and edges of <literal>g</literal> are preserved.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>subgraph</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="subgraph"> subgraph of a graph</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g1 = subgraph(v,ind,g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector, numbers of nodes or edges</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ind</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, 'nodes' or 'edges'</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph data structure of the new graph</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>subgraph</VERB> returns the graph <VERB>g1</VERB>, built with the numbers given by the
-    the row vector <VERB>v</VERB>. 
-    If <VERB>ind</VERB> is the string <VERB>'nodes'</VERB>, <VERB>g1</VERB> is built with the node 
-    numbers given by <VERB>v</VERB> and the connected edges of these nodes in <VERB>g</VERB>. 
-    If <VERB>ind</VERB> is the string <VERB>'edges'</VERB>, <VERB>g1</VERB> is built with the edge 
-    numbers given by <VERB>v</VERB> and the tail-head nodes of these edges in <VERB>g</VERB>.</P>
-    <P>
-    All the characteristics of the old nodes and edges of <VERB>g</VERB> are preserved.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -82,23 +77,23 @@ hilite_edges(v);
 g1=subgraph(v,'edges',g);
 netwindow(w1);
 show_graph(g1);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>add_edge</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>add_node</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>delete_arcs</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>delete_nodes</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>supernode</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="add_edge">add_edge</link>
+    </member>
+    <member>
+      <link linkend="add_node">add_node</link>
+    </member>
+    <member>
+      <link linkend="delete_arcs">delete_arcs</link>
+    </member>
+    <member>
+      <link linkend="delete_nodes">delete_nodes</link>
+    </member>
+    <member>
+      <link linkend="supernode">supernode</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

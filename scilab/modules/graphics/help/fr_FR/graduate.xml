@@ -1,75 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>graduate  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graduate"> graduations simplifiées des axes 2D  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[xi,xa,np]=graduate( xmi, xma,n1,n2)   </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[xi,xa,np]=graduate( xmi, xma)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>xmi,xma  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : scalaire réel
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>n1, n2  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entiers avec comme valeurs par défaut 3, 10
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>xi, xa  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : scalaire réel
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>np  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    graduate recherche l&apos;intervalle minimum <VERB>[xi,xa]</VERB> et un nombre de graduations 
-    <VERB>np</VERB> tels que :
-  </P>
-  <P>
-    <VERB>xi &lt;= xmi &lt;= xma &lt;= xa</VERB>
-  </P>
-  <P>
-    <VERB>xa - xi / np  =  k(10^n)</VERB>,<VERB>k</VERB> dans <VERB>[1 3 5]</VERB> pour un entier <VERB>n</VERB>
-  </P>
-  <P>
-    <VERB>n1 &lt; np &lt; n2</VERB>
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="graduate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graduate</refname><refpurpose> graduations simplifiées des axes 2D  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[xi,xa,np]=graduate( xmi, xma,n1,n2)
+[xi,xa,np]=graduate( xmi, xma)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>xmi,xma  </term>
+  <listitem>
+  <para>scalaire réel
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>n1, n2  </term>
+  <listitem>
+  <para>entiers avec comme valeurs par défaut 3, 10
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>xi, xa  </term>
+  <listitem>
+  <para>scalaire réel
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>np  </term>
+  <listitem>
+  <para>entier
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    graduate recherche l'intervalle minimum <literal>[xi,xa]</literal> et un nombre de graduations 
+    <literal>np</literal> tels que :
+  </para>
+  <para>
+    <literal>xi &lt;= xmi &lt;= xma &lt;= xa</literal>
+  </para>
+  <para>
+    <literal>xa - xi / np  =  k(10^n)</literal>,<literal>k</literal> dans <literal>[1 3 5]</literal> pour un entier <literal>n</literal>
+  </para>
+  <para>
+    <literal>n1 &lt; np &lt; n2</literal>
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
   y=(0:0.33:145.78)';
   xbasc();plot2d1('enn',0,y)
   [ymn,ymx,np]=graduate(mini(y),maxi(y))
   rect=[1,ymn,prod(size(y)),ymx];
   xbasc();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xsetech</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. Steer 1992;   </AUTHOR>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="xsetech">xsetech</link> </member>     <member> <link linkend="plot2d">plot2d</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>S. Steer 1992;   </para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,50 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="winqueryreg"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>winqueryreg</refname><refpurpose>Get item from Microsoft Windows
+  registry</refpurpose></refnamediv>
+  
 
-  <TITLE>winqueryreg</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="winqueryreg">Get item from Microsoft Windows
-  registry</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('name',
-    'rootkey','subkey')</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>value = winqueryreg('name', 'rootkey','subkey')
+value = winqueryreg('rootkey', 'subkey','valname')
+value = winqueryreg('rootkey','subkey')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey',
-    'subkey','valname')</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Description</title>
+    <para>value = winqueryreg('name', 'rootkey', 'subkey') returns the key names
+    in <literal>rootkey\subkey</literal> in a matrix of strings. The first argument
+    is the literal quoted string, 'name'.</para>
 
-    <CALLING_SEQUENCE_ITEM>value =
-    winqueryreg('rootkey','subkey')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-    <P>value = winqueryreg('name', 'rootkey', 'subkey') returns the key names
-    in <VERB>rootkey\subkey</VERB> in a matrix of strings. The first argument
-    is the literal quoted string, 'name'.</P>
-
-    <P>If the value retrieved from the registry is a string, winqueryreg
+    <para>If the value retrieved from the registry is a string, winqueryreg
     returns a string. If the value is a 32-bit integer, winqueryreg returns
-    the value as an integer (int32).</P>
+    the value as an integer (int32).</para>
 
-    <P>value = winqueryreg('rootkey', 'subkey', 'valname') returns the value
-    for key valname in <VERB>rootkey\subkey</VERB>.</P>
+    <para>value = winqueryreg('rootkey', 'subkey', 'valname') returns the value
+    for key valname in <literal>rootkey\subkey</literal>.</para>
 
-    <P>value = winqueryreg('rootkey', 'subkey') returns a value in
-    <VERB>rootkey\subkey</VERB> that has no value name property.</P>
+    <para>value = winqueryreg('rootkey', 'subkey') returns a value in
+    <literal>rootkey\subkey</literal> that has no value name property.</para>
 
-    <P><VERB>Note</VERB> : The literal name argument and the rootkey argument
-    are case-sensitive. The subkey and valname arguments are not.</P>
-  </DESCRIPTION>
+    <para><literal>Note</literal>The literal name argument and the rootkey argument
+    are case-sensitive. The subkey and valname arguments are not.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[if MSDOS then
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[if MSDOS then
   winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
   lines(-1);
   mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
@@ -64,9 +56,9 @@
      str = sprintf('%s = %s', mousechar(k), string(setting));
      disp(str);
   end
-end]]></EXAMPLE>
+end]]></programlisting></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

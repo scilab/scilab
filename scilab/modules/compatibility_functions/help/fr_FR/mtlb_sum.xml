@@ -1,103 +1,89 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!-- When this file is modified please also modify mtlb_prod.xml -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_sum</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_sum"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_sum</refname><refpurpose>Fonction d'�mulation de la fonction Matlab sum</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_sum">Fonction d'�mulation de la fonction Matlab sum</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>sum</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>sum</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        En cas d'appel avec un param�tre d'entr�e : La fonction Matlab <VERB>sum</VERB> traite
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        En cas d'appel avec un param�tre d'entr�e : La fonction Matlab <literal>sum</literal> traite
 	les valeurs en suivant la premi�re dimension qui n'est pas 1 alors que la fonction Scilab
-	<VERB>sum</VERB> traite toutes les valeurs de l'entr�e.
-        </SP>
-      </ITEM>
+	<literal>sum</literal> traite toutes les valeurs de l'entr�e.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec deux param�tres d'entr�e : La fonction Matlab <VERB>sum</VERB> peut �tre
+      <listitem>
+        <para>
+        En cas d'appel avec deux param�tres d'entr�e : La fonction Matlab <literal>sum</literal> peut �tre
 	utilis�e avec le second param�tre donnant une dimension du premier param�tre qui n'existe pas
-	alors que la fonction Scilab <VERB>sum</VERB> retourne un message d'erreur.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+	alors que la fonction Scilab <literal>sum</literal> retourne un message d'erreur.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_sum(A[,dim])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>sum(A[,dim])</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_sum(A[,dim])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>sum(A[,dim])</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_sum</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_sum</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        En cas d'appel avec un param�tre d'entr�e, si <VERB>A</VERB> est une matrice vide, un scalaire ou un vecteur,
-        <VERB>mtlb_sum(A)</VERB> peut �tre remplac� par <VERB>sum(A)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice vide, un scalaire ou un vecteur,
+        <literal>mtlb_sum(A)</literal> peut �tre remplac� par <literal>sum(A)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec un param�tre d'entr�e, si <VERB>A</VERB> est une matrice non-vide,
-        <VERB>mtlb_sum(A)</VERB> peut �tre remplac� par <VERB>sum(A,1)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice non-vide,
+        <literal>mtlb_sum(A)</literal> peut �tre remplac� par <literal>sum(A,1)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec un param�tre d'entr�e, si <VERB>A</VERB> est hypermatrice,
-        <VERB>mtlb_sum(A)</VERB> peut �tre remplac� par <VERB>sum(A,firstnonsingleton(A))</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est hypermatrice,
+        <literal>mtlb_sum(A)</literal> peut �tre remplac� par <literal>sum(A,firstnonsingleton(A))</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec deux param�tres d'entr�e, si <VERB>dim</VERB> est inf�rieure au nombre
-	de dimensions de <VERB>A</VERB> 
-        <VERB>mtlb_sum(A,dim)</VERB> peut �tre remplac� par <VERB>sum(A,dim)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        En cas d'appel avec deux param�tres d'entr�e, si <literal>dim</literal> est inf�rieure au nombre
+	de dimensions de <literal>A</literal> 
+        <literal>mtlb_sum(A,dim)</literal> peut �tre remplac� par <literal>sum(A,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_sum</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_sum</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="firstnonsingleton">firstnonsingleton</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

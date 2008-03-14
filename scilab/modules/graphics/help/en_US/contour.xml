@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,280 +10,277 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>contour</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="contour"> level curves on a 3D surface</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>contour(x,y,z,nz,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: two real row vectors of size n1 and n2.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix of size (n1,n2), the values of the function or  a
-	    Scilab function which defines the surface  <VERB>z=f(x,y)</VERB>. </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>nz</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: the level values or the number of levels.</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>-  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>If <VERB>nz</VERB> is an integer, its value gives the number of
-  level curves  equally spaced from zmin to zmax as follows:</SP>
-                <VERBATIM>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>contour</refname><refpurpose> level curves on a 3D surface</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
+contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>two real row vectors of size n1 and n2.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>real matrix of size (n1,n2), the values of the function or  a
+	    Scilab function which defines the surface  <literal>z=f(x,y)</literal>. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nz</term>
+        <listitem>
+          <para>the level values or the number of levels.</para>
+          <variablelist>
+            <varlistentry>
+              <term>-  </term>
+              <listitem>
+                <para>If <literal>nz</literal> is an integer, its value gives the number of
+  level curves  equally spaced from zmin to zmax as follows:</para>
+                <programlisting><![CDATA[
+
  z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
-   ]]>
-                </VERBATIM>
-                <SP> Note that the <VERB>zmin</VERB> and
-                <VERB>zmax</VERB> levels are not drawn  (generically
+   
+                ]]></programlisting>
+                <para> Note that the <literal>zmin</literal> and
+                <literal>zmax</literal> levels are not drawn  (generically
                 they are reduced to points) but they can be added
-                with</SP>
-                <VERBATIM>
-<![CDATA[
+                with</para>
+                <programlisting><![CDATA[
+
  [im,jm] = find(z == zmin);     // or zmax 
  plot2d(x(im)',y(jm)',-9,"000")
-   ]]>
-                </VERBATIM>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>-  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>If <VERB>nz</VERB> is a vector,
-              <VERB>nz(i)</VERB> gives the value of the ith level
+   
+                ]]></programlisting>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-  </term>
+              <listitem>
+                <para>If <literal>nz</literal> is a vector,
+              <literal>nz(i)</literal> gives the value of the ith level
               curve. Note that it can be useful in order to see
-              <VERB>zmin</VERB> and   <VERB>zmax</VERB> level curves
-              to add an epsilon tolerance: <VERB>nz=[zmin+%eps,..,zmax-%eps]</VERB>.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a sequence of statements <VERB>key1=value1, key2=value2</VERB>,
+              <literal>zmin</literal> and   <literal>zmax</literal> level curves
+              to add an epsilon tolerance: <literal>nz=[zmin+%eps,..,zmax-%eps]</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;  </term>
+        <listitem>
+          <para>a sequence of statements <literal>key1=value1, key2=value2</literal>,
   ... where keys may be
-  <VERB>theta</VERB>,<VERB>alpha</VERB>,<VERB>leg</VERB>,<VERB>flag</VERB>, <VERB>ebox</VERB>,<VERB>zlev</VERB> (see below). In
-  this case, the order has no special meaning.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>theta, alpha</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real values giving in degree the spherical coordinates of  the observation point.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>leg</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string defining the captions for each axis with @ as a field separator, for example &quot;X@Y@Z&quot;.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a real vector of size three <VERB>flag=[mode,type,box]</VERB>.</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>mode</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: string representation mode.</SP>
-		<PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>mode=0: </PARAM_NAME>
-		    <PARAM_DESCRIPTION>
-		    <SP>the level curves are drawn on the surface defined by
-			(x,y,z).</SP>
-		    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>mode=1: </PARAM_NAME>
-		    <PARAM_DESCRIPTION>
-		      <SP>the level curves are drawn on a 3D plot and
-			on the plan defined by  the equation z=zlev.</SP>
-		    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>mode=2:</PARAM_NAME> 
-		    <PARAM_DESCRIPTION>
-		      <SP>the level curves are drawn on a 2D plot.</SP>
-		    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-		</PARAM_INDENT>
-	      </PARAM_DESCRIPTION>
+  <literal>theta</literal>,<literal>alpha</literal>,<literal>leg</literal>,<literal>flag</literal>, <literal>ebox</literal>,<literal>zlev</literal> (see below). In
+  this case, the order has no special meaning.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta, alpha</term>
+        <listitem>
+          <para>real values giving in degree the spherical coordinates of  the observation point.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>leg</term>
+        <listitem>
+          <para>string defining the captions for each axis with @ as a field separator, for example "X@Y@Z".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>a real vector of size three <literal>flag=[mode,type,box]</literal>.</para>
+          <variablelist>
+            <varlistentry>
+              <term>mode</term>
+              <listitem>
+                <para>string representation mode.</para>
+		<variablelist>
+                  <varlistentry>
+                    <term>mode=0: </term>
+		    <listitem>
+		    <para>the level curves are drawn on the surface defined by
+			(x,y,z).</para>
+		    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>mode=1: </term>
+		    <listitem>
+		      <para>the level curves are drawn on a 3D plot and
+			on the plan defined by  the equation z=zlev.</para>
+		    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>mode=2:</term> 
+		    <listitem>
+		      <para>the level curves are drawn on a 2D plot.</para>
+		    </listitem>
+                  </varlistentry>
+		</variablelist>
+	      </listitem>
 
-	    </PARAM_ITEM>
+	    </varlistentry>
 
-            <PARAM_ITEM>
-              <PARAM_NAME>type</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: an integer (scaling).</SP>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>type=0</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>the plot is made using the current 3D scaling (set by
-			a previous call to <VERB>param3d</VERB>,
-			<VERB>plot3d</VERB>, <VERB>contour</VERB> or
-			<VERB>plot3d1</VERB>).</SP> 
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>type=1</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>rescales automatically 3d boxes with extreme aspect
+            <varlistentry>
+              <term>type</term>
+              <listitem>
+                <para>an integer (scaling).</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>type=0</term>
+                    <listitem>
+                      <para>the plot is made using the current 3D scaling (set by
+			a previous call to <literal>param3d</literal>,
+			<literal>plot3d</literal>, <literal>contour</literal> or
+			<literal>plot3d1</literal>).</para> 
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=1</term>
+                    <listitem>
+                      <para>rescales automatically 3d boxes with extreme aspect
 			ratios, the boundaries are specified by the value of
-			the optional argument <VERB>ebox</VERB>.</SP> 
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>type=2</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>rescales automatically 3d boxes with extreme aspect
+			the optional argument <literal>ebox</literal>.</para> 
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=2</term>
+                    <listitem>
+                      <para>rescales automatically 3d boxes with extreme aspect
 			ratios, the boundaries are computed using the given
-			data.</SP> 
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>type=3</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>3d isometric with box bounds given by optional
-			<VERB>ebox</VERB>, similarily to
-			<VERB>type=1</VERB></SP> 
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>type=4</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>3d isometric bounds  derived from the data, to
-			similarily<VERB>type=2</VERB></SP> 
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>type=5</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>3d expanded isometric bounds  with box bounds given
-			by optional <VERB>ebox</VERB>, similarily to
-			<VERB>type=1</VERB></SP> 
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>type=6</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>3d expanded isometric bounds  derived from the data,
-			similarily to <VERB>type=2</VERB></SP> 
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>box</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: an integer (frame around the plot).</SP>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>box=0</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>nothing is drawn around the plot.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>box=1</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>unimplemented (like box=0).</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>box=2</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>only the axes behind the surface are drawn.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>box=3</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>a box surrounding the surface is drawn and captions are added.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>box=4</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>a box surrounding the surface is drawn, captions and axes are added.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ebox</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: used when <VERB>type</VERB> in <VERB>flag</VERB> is 1. It
+			data.</para> 
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=3</term>
+                    <listitem>
+                      <para>3d isometric with box bounds given by optional
+			<literal>ebox</literal>, similarily to
+			<literal>type=1</literal></para> 
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=4</term>
+                    <listitem>
+                      <para>3d isometric bounds  derived from the data, to
+			similarily<literal>type=2</literal></para> 
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=5</term>
+                    <listitem>
+                      <para>3d expanded isometric bounds  with box bounds given
+			by optional <literal>ebox</literal>, similarily to
+			<literal>type=1</literal></para> 
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=6</term>
+                    <listitem>
+                      <para>3d expanded isometric bounds  derived from the data,
+			similarily to <literal>type=2</literal></para> 
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>box</term>
+              <listitem>
+                <para>an integer (frame around the plot).</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>box=0</term>
+                    <listitem>
+                      <para>nothing is drawn around the plot.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=1</term>
+                    <listitem>
+                      <para>unimplemented (like box=0).</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=2</term>
+                    <listitem>
+                      <para>only the axes behind the surface are drawn.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=3</term>
+                    <listitem>
+                      <para>a box surrounding the surface is drawn and captions are added.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=4</term>
+                    <listitem>
+                      <para>a box surrounding the surface is drawn, captions and axes are added.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ebox</term>
+        <listitem>
+          <para>used when <literal>type</literal> in <literal>flag</literal> is 1. It
 	    specifies the boundaries of the plot as the vector
-	    <VERB>[xmin,xmax,ymin,ymax,zmin,zmax]</VERB>.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>zlev</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real number.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>contour</VERB> draws level curves of a surface z=f(x,y). The level curves are
+	    <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zlev</term>
+        <listitem>
+          <para>real number.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>contour</literal> draws level curves of a surface z=f(x,y). The level curves are
     drawn on a 3D surface. The optional arguments are the same as for the function 
-    <VERB>plot3d</VERB> (except <VERB>zlev</VERB>) and their meanings are the same. 
+    <literal>plot3d</literal> (except <literal>zlev</literal>) and their meanings are the same. 
     They control the drawing of level curves on a 3D plot.
-    Only <VERB>flag(1)=mode</VERB> has a special meaning.
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="mode=0">
-        <SP>: the level curves are drawn on the surface defined by (x,y,z).</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mode=1">
-        <SP>: the level curves are drawn on a 3D plot and on the plan defined
-	  by  the equation z=zlev.</SP> 
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mode=2">
-        <SP>: the level curves are drawn on a 2D plot.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
+    Only <literal>flag(1)=mode</literal> has a special meaning.
+  </para>
+    <variablelist>
+      <varlistentry><term>mode=0</term><listitem>
+        <para>the level curves are drawn on the surface defined by (x,y,z).</para>
+      </listitem></varlistentry>
+      <varlistentry><term>mode=1</term><listitem>
+        <para>the level curves are drawn on a 3D plot and on the plan defined
+	  by  the equation z=zlev.</para> 
+      </listitem></varlistentry>
+      <varlistentry><term>mode=2</term><listitem>
+        <para>the level curves are drawn on a 2D plot.</para>
+      </listitem></varlistentry>
+    </variablelist>
+    <para>
     You can change the format of the floating point number printed on the levels
-    by using <VERB>xset(&quot;fpf&quot;,string)</VERB> where <VERB>string</VERB> gives the 
-    format in C format syntax (for example <VERB>string=&quot;%.3f&quot;</VERB>). Use 
-    <VERB>string=&quot;&quot;</VERB> to switch back to default format and Use 
-    <VERB>string=&quot; &quot;</VERB> to suppress printing.</P>
-    <P>
-    Usually we use <VERB>contour2d</VERB> to draw levels curves on a 2D plot.</P>
-    <P>
-    Enter the command <VERB>contour()</VERB> to see a demo.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    by using <literal>xset("fpf",string)</literal> where <literal>string</literal> gives the 
+    format in C format syntax (for example <literal>string="%.3f"</literal>). Use 
+    <literal>string=""</literal> to switch back to default format and Use 
+    <literal>string=" "</literal> to suppress printing.</para>
+    <para>
+    Usually we use <literal>contour2d</literal> to draw levels curves on a 2D plot.</para>
+    <para>
+    Enter the command <literal>contour()</literal> to see a demo.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 
@@ -298,15 +295,15 @@ z=feval(t,t,my_surface);
 plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
 //
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>contour2d</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>plot3d</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="contour2d">contour2d</link>
+    </member>
+    <member>
+      <link linkend="plot3d">plot3d</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>

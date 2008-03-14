@@ -1,50 +1,46 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lib</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lib"> library definition</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xlib = lib('lib-dir')  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>lib-dir</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>lib-dir</VERB> is a character string defining a directory that contains
-    compiled Scilab function (<VERB>.bin</VERB>) files.</P>
-    <P>
-    In addition to these files <VERB>lib-dir</VERB> must have a file called
-    <VERB>names</VERB>, that contains the names of the functions defined in
-    <VERB>lib-dir</VERB>.  On success, all functions in <VERB>lib-dir</VERB> are
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lib"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lib</refname><refpurpose> library definition</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xlib = lib('lib-dir')</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>lib-dir</term>
+        <listitem>
+          <para>character string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>lib-dir</literal> is a character string defining a directory that contains
+    compiled Scilab function (<literal>.bin</literal>) files.</para>
+    <para>
+    In addition to these files <literal>lib-dir</literal> must have a file called
+    <literal>names</literal>, that contains the names of the functions defined in
+    <literal>lib-dir</literal>.  On success, all functions in <literal>lib-dir</literal> are
     available from within Scilab.  They are loaded on demand when called
-    for the first time.</P>
-    <P>
+    for the first time.</para>
+    <para>
     Binary files can be created from within Scilab with the command
-    <VERB>save</VERB>.</P>
-    <P>
-    Scilab's standard libraries are defined using <VERB>lib</VERB> on the
-    <VERB>SCIDIR/macros/*</VERB> subdirectories.</P>
-    <P>
+    <literal>save</literal>.</para>
+    <para>
+    Scilab's standard libraries are defined using <literal>lib</literal> on the
+    <literal>SCIDIR/macros/*</literal> subdirectories.</para>
+    <para>
     A library variable
     usually is saved for later loading, either on-line or from the
-    user-specific startup file (see startup).</P>
-  </DESCRIPTION>
-  <SECTION label="Restrictions">
-    <P>
-    Scilab tacitly assumes that each xxxx.bin file defines a  variable named <VERB>xxxx</VERB>.</P>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+    user-specific startup file (see startup).</para>
+  </refsection>
+  <refsection><title>Restrictions</title>
+    <para>
+    Scilab tacitly assumes that each xxxx.bin file defines a  variable named <literal>xxxx</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //define some variables
 function z = myplus(x, y), z = x + y,endfunction
 function z = yourplus(x, y), x = x - y,endfunction
@@ -69,26 +65,26 @@ clear myplus yourplus A
 myplus(1,2)
 
 A
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>library</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>genlib</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>save</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>deff</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>getf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>whereis</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="library">library</link>
+    </member>
+    <member>
+      <link linkend="genlib">genlib</link>
+    </member>
+    <member>
+      <link linkend="save">save</link>
+    </member>
+    <member>
+      <link linkend="deff">deff</link>
+    </member>
+    <member>
+      <link linkend="getf">getf</link>
+    </member>
+    <member>
+      <link linkend="whereis">whereis</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

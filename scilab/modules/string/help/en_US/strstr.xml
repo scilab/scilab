@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,75 +10,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strstr"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</pubdate></info><refnamediv><refname>strstr</refname><refpurpose>Locate substring</refpurpose></refnamediv>
+  
 
-  <TITLE>strstr</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="strstr">Locate substring</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res =
-    strstr(haystack,needle)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res = strstr(haystack,needle)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>haystack</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>haystack</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>needle</PARAM_NAME>
+      <varlistentry>
+        <term>needle</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
+      <varlistentry>
+        <term>res</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string or matrix of strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>string or matrix of strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>res = strstr(haystack,needle)</VERB> Returns a string matrix
+  <refsection><title>Description</title>
+    <para><literal>res = strstr(haystack,needle)</literal> Returns a string matrix
     starting from where the first occurrence of needle in haystack to the end
-    of haystack, or '' if there needle is not part of haystack.</P>
+    of haystack, or '' if there needle is not part of haystack.</para>
 
-    <P>num must have same dimensions than haystack or only one char.</P>
-  </DESCRIPTION>
+    <para>num must have same dimensions than haystack or only one char.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 strstr('This is a simple string','simple')
 strstr('This is a simple string','sample')
 strstr(['This is a simple string','in scilab'],'is')
 strstr(['This is a sample string','in scilab'],['a','scilab'])
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>strrchr</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="strrchr">strrchr</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>strchr</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="strchr">strchr</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

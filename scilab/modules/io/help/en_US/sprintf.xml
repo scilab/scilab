@@ -1,98 +1,94 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>printf</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sprintf"> Emulator of C language sprintf function</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>str=sprintf(format,value_1,..,value_n)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>format</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a Scilab string. Specifies a character string combining literal characters with conversion specifications.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>value_i</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Specifies the data to be converted according to the format parameter.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: column vector of character strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    The <VERB>sprintf</VERB> function converts, formats, and stores its
-    <VERB>value</VERB> parameters, under control of the <VERB>format</VERB> parameter.
-  </P>
-    <P>
-    The <VERB>format</VERB> parameter is a character string that contains two
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sprintf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sprintf</refname><refpurpose> Emulator of C language sprintf function</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>str=sprintf(format,value_1,..,value_n)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>a Scilab string. Specifies a character string combining literal characters with conversion specifications.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>value_i</term>
+        <listitem>
+          <para>Specifies the data to be converted according to the format parameter.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>column vector of character strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    The <literal>sprintf</literal> function converts, formats, and stores its
+    <literal>value</literal> parameters, under control of the <literal>format</literal> parameter.
+  </para>
+    <para>
+    The <literal>format</literal> parameter is a character string that contains two
     types of objects:
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Literal characters">
-        <SP>: which are copied to the output stream.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Conversion specifications">
-        <SP>: each of which causes zero or more items to be fetched from the <VERB>value</VERB> parameter list. see <LINK>printf_conversion</LINK> for details</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
-    If there are not enough items for <VERB>format</VERB> in the
-    <VERB>value</VERB> parameter list, <VERB>sprintf</VERB> generate an error.
-    If any <VERB>value</VERB>s remain after the entire <VERB>format</VERB> has been
-    processed, they are ignored.</P>
-    <P>
-    Note: <VERB>sprintf</VERB> is obsolete, use <VERB>msprintf</VERB> instead.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </para>
+    <variablelist>
+      <varlistentry><term>Literal characters</term><listitem>
+        <para>which are copied to the output stream.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Conversion specifications</term><listitem>
+        <para>each of which causes zero or more items to be fetched from the <literal>value</literal> parameter list. see <link linkend="printf_conversion">printf_conversion</link> for details</para>
+      </listitem></varlistentry>
+    </variablelist>
+    <para>
+    If there are not enough items for <literal>format</literal> in the
+    <literal>value</literal> parameter list, <literal>sprintf</literal> generate an error.
+    If any <literal>value</literal>s remain after the entire <literal>format</literal> has been
+    processed, they are ignored.</para>
+    <para>
+    Note: <literal>sprintf</literal> is obsolete, use <literal>msprintf</literal> instead.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 fahr=120
 sprintf('%3d Fahrenheit = %6.1f Celsius',fahr,(5/9)*(fahr-32)) 
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>string</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>print</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>write</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>format</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>disp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>file</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>printf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fprintf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>msprintf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>printf_conversion</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="string">string</link>
+    </member>
+    <member>
+      <link linkend="print">print</link>
+    </member>
+    <member>
+      <link linkend="write">write</link>
+    </member>
+    <member>
+      <link linkend="format">format</link>
+    </member>
+    <member>
+      <link linkend="disp">disp</link>
+    </member>
+    <member>
+      <link linkend="file">file</link>
+    </member>
+    <member>
+      <link linkend="printf">printf</link>
+    </member>
+    <member>
+      <link linkend="fprintf">fprintf</link>
+    </member>
+    <member>
+      <link linkend="msprintf">msprintf</link>
+    </member>
+    <member>
+      <link linkend="printf_conversion">printf_conversion</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

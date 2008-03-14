@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,130 +10,126 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>contour2d</refname><refpurpose>level curves of a surface on a 2D
+  plot</refpurpose></refnamediv>
+  
 
-  <TITLE>contour2d</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="contour2d">level curves of a surface on a 2D
-  plot</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>contour2d(x,y,z,nz,[style,strf,leg,rect,nax])</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>contour2d(x,y,z,nz,[style,strf,leg,rect,nax])
+contour2d(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>contour2d(x,y,z,nz,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+        <listitem>
+          <para>two real row vectors of size n1 and n2: the grid.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: two real row vectors of size n1 and n2: the grid.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>z</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
+        <listitem>
+          <para>real matrix of size (n1,n2), the values of the function on the
+	    grid or a  Scilab function which defines the surface  <literal>z=f(x,y)</literal>. </para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix of size (n1,n2), the values of the function on the
-	    grid or a  Scilab function which defines the surface  <VERB>z=f(x,y)</VERB>. </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>nz</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>nz</PARAM_NAME>
+        <listitem>
+          <para>the level values or the number of levels.</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: the level values or the number of levels.</SP>
+          <variablelist>
+            <varlistentry>
+              <term/>
 
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME></PARAM_NAME>
-
-              <PARAM_DESCRIPTION>
-                <SP>If <VERB>nz</VERB> is an integer, its value gives the
+              <listitem>
+                <para>If <literal>nz</literal> is an integer, its value gives the
                 number of level curves equally spaced from zmin to zmax as
-                follows:</SP>
+                follows:</para>
 
-                <VERBATIM>z= zmin + (1:nz)*(zmax-zmin)/(nz+1)</VERBATIM>
+                <programlisting><![CDATA[z= zmin + (1:nz)*(zmax-zmin)/(nz+1)]]></programlisting>
 
-                <P>Note that the <VERB>zmin</VERB> and <VERB>zmax</VERB>
+                <para>Note that the <literal>zmin</literal> and <literal>zmax</literal>
                 levels are not drawn (generically they are reduced to points)
-                but they can be added with</P>
+                but they can be added with</para>
 
-                <VERBATIM>[im,jm] = find(z == zmin); // or zmax
-plot2d(x(im)',y(jm)',-9,"000")</VERBATIM>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+                <programlisting><![CDATA[[im,jm] = find(z == zmin); // or zmax
+plot2d(x(im)',y(jm)',-9,"000")]]></programlisting>
+              </listitem>
+            </varlistentry>
 
-            <PARAM_ITEM>
-              <PARAM_NAME></PARAM_NAME>
+            <varlistentry>
+              <term/>
 
-              <PARAM_DESCRIPTION>
-                <SP>If <VERB>nz</VERB> is a vector, <VERB>nz(i)</VERB> gives
-                the value of the ith level curve.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+              <listitem>
+                <para>If <literal>nz</literal> is a vector, <literal>nz(i)</literal> gives
+                the value of the ith level curve.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements 
-          <VERB>key1=value1,key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following: style, leg, rect,
-          nax, strf or axesflag and frameflag (see <LINK>plot2d</LINK>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>This represents a sequence of statements 
+          <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: style, leg, rect,
+          nax, strf or axesflag and frameflag (see <link linkend="plot2d">plot2d</link>)</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>style,strf,leg,rect,nax</PARAM_NAME>
+      <varlistentry>
+        <term>style,strf,leg,rect,nax</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: see <LINK>plot2d</LINK>. The argument <VERB>style</VERB> gives
+        <listitem>
+          <para>see <link linkend="plot2d">plot2d</link>. The argument <literal>style</literal> gives
           the dash styles or colors which are to be used for level curves. It
-          must have the same size as the number of levels.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+          must have the same size as the number of levels.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>contour2d</VERB> draws level curves of a surface
-    <VERB>z=f(x,y)</VERB> on a 2D plot. The values of <VERB>f(x,y)</VERB> are
-    given by the matrix <VERB>z</VERB> at the grid points defined by
-    <VERB>x</VERB> and <VERB>y</VERB>.</P>
+  <refsection><title>Description</title>
+    <para><literal>contour2d</literal> draws level curves of a surface
+    <literal>z=f(x,y)</literal> on a 2D plot. The values of <literal>f(x,y)</literal> are
+    given by the matrix <literal>z</literal> at the grid points defined by
+    <literal>x</literal> and <literal>y</literal>.</para>
 
-    <P>You can change the format of the floating point number printed on the
-    levels by using <VERB>xset("fpf",string)</VERB> where <VERB>string</VERB>
+    <para>You can change the format of the floating point number printed on the
+    levels by using <literal>xset("fpf",string)</literal> where <literal>string</literal>
     gives the format in C format syntax (for example
-    <VERB>string="%.3f"</VERB>). Use <VERB>string=""</VERB> to switch back to
-    default format and Use <VERB>string=" "</VERB> to suppress printing. This
-    last feature is useful in conjunction with <LINK>legends</LINK> to display
+    <literal>string="%.3f"</literal>). Use <literal>string=""</literal> to switch back to
+    default format and Use <literal>string=" "</literal> to suppress printing. This
+    last feature is useful in conjunction with <link linkend="legends">legends</link> to display
     the level numbers in a legend and not directly onto the level curves as 
-    usual (see Examples).</P>
+    usual (see Examples).</para>
 
-    <P>The optional arguments <VERB>style,strf,leg,rect,nax</VERB>, can be
-    passed by a sequence of statements <VERB>key1=value1, key2=value2</VERB>,
+    <para>The optional arguments <literal>style,strf,leg,rect,nax</literal>, can be
+    passed by a sequence of statements <literal>key1=value1, key2=value2</literal>,
     ... where keys may be
-    <VERB>style</VERB>,<VERB>strf</VERB>,<VERB>leg</VERB>,<VERB>rect</VERB>,<VERB>nax</VERB>.
-    In this case, the order has no special meaning.</P>
+    <literal>style</literal>,<literal>strf</literal>,<literal>leg</literal>,<literal>rect</literal>,<literal>nax</literal>.
+    In this case, the order has no special meaning.</para>
 
-    <P>Use <VERB>contour</VERB> to draw levels curves on a 3D surface.</P>
-  </DESCRIPTION>
+    <para>Use <literal>contour</literal> to draw levels curves on a 3D surface.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
 // changing the format of the printing of the levels
 xset("fpf","%.2f")
@@ -156,19 +152,19 @@ contour2d(x,x,z,-0.75:0.25:0.75,frameflag=3,rect=[0,0,5*%pi,4*%pi])
 //          will not work as soon as one of the level is formed by 2 curves)  
 legends(string(-0.75:0.25:0.75),1:7,"lr");
 xtitle("Some level curves of the function cos(x)cos(y)")
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>contour</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>contour2di</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="contour">contour</link>
+    </member>
+    <member>
+      <link linkend="contour2di">contour2di</link>
+    </member>
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

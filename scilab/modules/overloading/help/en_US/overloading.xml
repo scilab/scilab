@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA 
@@ -10,246 +10,245 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>overloading</TITLE>
-  <TYPE>Scilab keyword</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="overloading"> display, functions and operators overloading capabilities</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="overloading"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>overloading</refname><refpurpose> display, functions and operators overloading capabilities</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
     In scilab, variable display, functions and operators may be defined
     for new objects using  functions (scilab coded or primitives).
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Display">
-        <SP>: The display of new objects defined by <VERB>tlist</VERB> structure may be overloaded (the default display is similar to <VERB>list</VERB>'s one). The overloading function must have no output argument a single input argument. It's name is formed as follow <VERB>%&lt;tlist_type&gt;_p</VERB> where <VERB>%&lt;tlist_type&gt;</VERB> stands for the first entry of the <VERB>tlist</VERB> type component truncated to the first 9 characters.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Operators">
-        <SP>: Each operator which is not defined for given operands type may be defined. The overloading function must have a single output argument and one or two inputs according to the number of operands. The function name is formed as follow:</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
+  </para>
+    <variablelist>
+      <varlistentry><term>Display</term><listitem>
+        <para>The display of new objects defined by <literal>tlist</literal> structure may be overloaded (the default display is similar to <literal>list</literal>'s one). The overloading function must have no output argument a single input argument. It's name is formed as follow <literal>%&lt;tlist_type&gt;_p</literal> where <literal>%&lt;tlist_type&gt;</literal> stands for the first entry of the <literal>tlist</literal> type component truncated to the first 9 characters.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>Operators</term><listitem>
+        <para>Each operator which is not defined for given operands type may be defined. The overloading function must have a single output argument and one or two inputs according to the number of operands. The function name is formed as follow:</para>
+      </listitem></varlistentry>
+    </variablelist>
+    <para>
     for binary operators:
-    <VERB>%&lt;first_operand_type&gt;_&lt;op_code&gt;_&lt;second_operand_type&gt;</VERB>
-  </P>
-    <P>
+    <literal>%&lt;first_operand_type&gt;_&lt;op_code&gt;_&lt;second_operand_type&gt;</literal>
+  </para>
+    <para>
     for unary operators:
-    <VERB>%&lt;operand_type&gt;_&lt;op_code&gt;</VERB>
-  </P>
-    <P>
+    <literal>%&lt;operand_type&gt;_&lt;op_code&gt;</literal>
+  </para>
+    <para>
     extraction and insertion operators which are n-nary operators are
     described below.
-  </P>
-    <P><VERB>&lt;operand_type&gt;</VERB>, <VERB>&lt;first_operand_type&gt;</VERB>,
-    <VERB>&lt;second_operand_type&gt;</VERB>  are sequence of characters associated
+  </para>
+    <para><literal>&lt;operand_type&gt;</literal>, <literal>&lt;first_operand_type&gt;</literal>,
+    <literal>&lt;second_operand_type&gt;</literal>  are sequence of characters associated
     with each data type as described in the following table:
-  </P>
-    <TABLE>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>data type</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>data type</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>constant</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>s</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>boolean</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>b</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>string</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>c</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>library</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>f</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>function pointer</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>fptr</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>handle</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>h</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>integer</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>i</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>list</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>l</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>function</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>m</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>compiled function</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>mc</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>polynomial</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>p</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>sparse</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>sp</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>boolean sparse</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>spb</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>tlist</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN><VERB>tlist_type</VERB></TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-    </TABLE>
-    <P><VERB>&lt;op_code&gt;</VERB> is a single character associated with each operator as
+  </para>
+    <informaltable border="1">
+      <tr>
+        <td>data type</td>
+        <td>char code</td>
+        <td>data type</td>
+        <td>char code</td>
+      </tr>
+      <tr>
+        <td>constant</td>
+        <td>s</td>
+        <td>boolean</td>
+        <td>b</td>
+      </tr>
+      <tr>
+        <td>string</td>
+        <td>c</td>
+        <td>library</td>
+        <td>f</td>
+      </tr>
+      <tr>
+        <td>function pointer</td>
+        <td>fptr</td>
+        <td>handle</td>
+        <td>h</td>
+      </tr>
+      <tr>
+        <td>integer</td>
+        <td>i</td>
+        <td>list</td>
+        <td>l</td>
+      </tr>
+      <tr>
+        <td>function</td>
+        <td>m</td>
+        <td>compiled function</td>
+        <td>mc</td>
+      </tr>
+      <tr>
+        <td>polynomial</td>
+        <td>p</td>
+        <td>sparse</td>
+        <td>sp</td>
+      </tr>
+      <tr>
+        <td>boolean sparse</td>
+        <td>spb</td>
+        <td>tlist</td>
+        <td><literal>tlist_type</literal></td>
+      </tr>
+    </informaltable>
+    <para><literal>&lt;op_code&gt;</literal> is a single character associated with each operator as
     described in the following table:
-  </P>
-    <TABLE>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>      op</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>      op</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    <VERB>'</VERB>       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    t</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    +        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    a</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    -        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    s</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    *        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    m</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    <VERB>/</VERB>        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    r</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    \        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    l</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    <VERB>^</VERB>       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    p</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>   .*        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    x</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>   ./        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    d</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>   .\        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    q</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>   .*.       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    k</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>   ./.       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    y</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    <VERB>.\.</VERB>       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    z</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    :        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    b</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    *.       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    u</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    /.       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    v</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    <VERB>\.</VERB>        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    w</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>   [a,b]     </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    c</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>   [a;b]     </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    f</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>() extraction</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    e</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>() insertion</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    i</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    ==       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    o</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>      &lt;&gt;     </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    n</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    |        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    g</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    &amp;        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    h</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    <VERB>.^</VERB>       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    j</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    ~        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    5</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    .'       </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    0</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    &lt;        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    1</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    &gt;        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    2</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>   &lt;=        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    3</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>   &gt;=        </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    4</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>         </TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    iext</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    6</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-    </TABLE>
-    <P>
-    The overloading function for extraction syntax <VERB>b=a(i1,...,in)</VERB>
-    has the following calling sequence: <VERB>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB>
-  </P>
-    <P>
+  </para>
+    <informaltable border="1">
+      <tr>
+        <td>      op</td>
+        <td>char code</td>
+        <td>      op</td>
+        <td>char code</td>
+      </tr>
+      <tr>
+        <td>    <literal>'</literal>       </td>
+        <td>    t</td>
+        <td>    +        </td>
+        <td>    a</td>
+      </tr>
+      <tr>
+        <td>    -        </td>
+        <td>    s</td>
+        <td>    *        </td>
+        <td>    m</td>
+      </tr>
+      <tr>
+        <td>    <literal>/</literal>        </td>
+        <td>    r</td>
+        <td>    \        </td>
+        <td>    l</td>
+      </tr>
+      <tr>
+        <td>    <literal>^</literal>       </td>
+        <td>    p</td>
+        <td>   .*        </td>
+        <td>    x</td>
+      </tr>
+      <tr>
+        <td>   ./        </td>
+        <td>    d</td>
+        <td>   .\        </td>
+        <td>    q</td>
+      </tr>
+      <tr>
+        <td>   .*.       </td>
+        <td>    k</td>
+        <td>   ./.       </td>
+        <td>    y</td>
+      </tr>
+      <tr>
+        <td>    <literal>.\.</literal>       </td>
+        <td>    z</td>
+        <td>    :        </td>
+        <td>    b</td>
+      </tr>
+      <tr>
+        <td>    *.       </td>
+        <td>    u</td>
+        <td>    /.       </td>
+        <td>    v</td>
+      </tr>
+      <tr>
+        <td>    <literal>\.</literal>        </td>
+        <td>    w</td>
+        <td>   [a,b]     </td>
+        <td>    c</td>
+      </tr>
+      <tr>
+        <td>   [a;b]     </td>
+        <td>    f</td>
+        <td>() extraction</td>
+        <td>    e</td>
+      </tr>
+      <tr>
+        <td>() insertion</td>
+        <td>    i</td>
+        <td>    ==       </td>
+        <td>    o</td>
+      </tr>
+      <tr>
+        <td>      &lt;&gt;     </td>
+        <td>    n</td>
+        <td>    |        </td>
+        <td>    g</td>
+      </tr>
+      <tr>
+        <td>    &amp;        </td>
+        <td>    h</td>
+        <td>    <literal>.^</literal>       </td>
+        <td>    j</td>
+      </tr>
+      <tr>
+        <td>    ~        </td>
+        <td>    5</td>
+        <td>    .'       </td>
+        <td>    0</td>
+      </tr>
+      <tr>
+        <td>    &lt;        </td>
+        <td>    1</td>
+        <td>    &gt;        </td>
+        <td>    2</td>
+      </tr>
+      <tr>
+        <td>   &lt;=        </td>
+        <td>    3</td>
+        <td>   &gt;=        </td>
+        <td>    4</td>
+      </tr>
+      <tr>
+        <td>             </td>
+        <td>         </td>
+        <td>    iext</td>
+        <td>    6</td>
+      </tr>
+    </informaltable>
+    <para>
+    The overloading function for extraction syntax <literal>b=a(i1,...,in)</literal>
+    has the following calling sequence: <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+  </para>
+    <para>
     and the syntax
-    <VERB>[x1,..,xm]=a(i1,...,in)</VERB> has the following calling sequence: 
-    <VERB>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB>
-  </P>
-    <P>
-  </P>
-    <P>
+    <literal>[x1,..,xm]=a(i1,...,in)</literal> has the following calling sequence: 
+    <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+  </para>
+    <para>
+  </para>
+    <para>
     The overloading function associated to the insertion syntax
-    <VERB>a(i1,...,in)=b</VERB>  has the following calling sequence: 
-    <VERB>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</VERB>.
-  </P>
-    <P>
-   </P>
-    <P>
-    The <VERB>6</VERB> char code may be  used for some complex
-    insertion algorithm like <VERB>x.b(2)=33</VERB> where <VERB>b</VERB> field is
-    not defined in the structure <VERB>x</VERB>. The insertion is
-    automatically decomposed into <VERB>temp=x.b;</VERB>
-    <VERB>temp(2)=33;</VERB> <VERB>x.b=temp</VERB>. The <VERB>6</VERB>
-    char code is used for the first step of this algorithm. The <VERB>6</VERB>
-    overloading function is very similar to the <VERB>e</VERB>'s one.
-   </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Functions :">
-        <SP>Some basic primitive function</SP>
-        <P>
+    <literal>a(i1,...,in)=b</literal>  has the following calling sequence: 
+    <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>.
+  </para>
+    <para>
+   </para>
+    <para>
+    The <literal>6</literal> char code may be  used for some complex
+    insertion algorithm like <literal>x.b(2)=33</literal> where <literal>b</literal> field is
+    not defined in the structure <literal>x</literal>. The insertion is
+    automatically decomposed into <literal>temp=x.b;</literal>
+    <literal>temp(2)=33;</literal> <literal>x.b=temp</literal>. The <literal>6</literal>
+    char code is used for the first step of this algorithm. The <literal>6</literal>
+    overloading function is very similar to the <literal>e</literal>'s one.
+   </para>
+    <variablelist>
+      <varlistentry><term>Functions :</term><listitem>
+        <para>Some basic primitive function</para>
+        <para>
     may also be overloaded for new data type. When such a function
     is undefined for a particular data types the function
-    <VERB>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</VERB> is
+    <literal>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</literal> is
     called. User may add in this called function the definition
-    associated with the input data types.</P>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    associated with the input data types.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //DISPLAY
 deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
 tlist('tab',['a','b'],['x';'y'],rand(2,2))
@@ -261,17 +260,17 @@ deff('x=%c_a_s(a,b)','x=a+string(b)')
 //FUNCTION
 deff('x=%c_sin(a)','x=''sin(''+a+'')''')
 sin('2*x')
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>tlist</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>disp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>symbols</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="tlist">tlist</link>
+    </member>
+    <member>
+      <link linkend="disp">disp</link>
+    </member>
+    <member>
+      <link linkend="symbols">symbols</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

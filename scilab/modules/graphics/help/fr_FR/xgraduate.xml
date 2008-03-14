@@ -1,56 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>xgraduate  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xgraduate"> graduation des axes   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>xmi,xma  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : scalaire réel
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>xi, xa, kMinr, kMaxr, ar  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xgraduate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xgraduate</refname><refpurpose> graduation des axes   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>xmi,xma  </term>
+  <listitem>
+  <para>scalaire réel
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>xi, xa, kMinr, kMaxr, ar  </term>
+  <listitem>
+  <para>
     :scalaires réels
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>np1,np2  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>xgraduate</VERB> renvoie les graduations des axes utilisées par les routines de dessin. Elle renvoie un intervalle <VERB>[xi,xa]</VERB> contenant l&apos;intervalle donné <VERB>[xmi,xma]</VERB> avec xi et xa tels que  
-  </P>
-  <P>
-    <VERB>xi= kMinr*10^ar</VERB>, <VERB>xa=kMaxr*10^ar</VERB> et l&apos;intervalle peut être divise en <VERB>np2</VERB> intervalles et chaque intervalle est divisé en
-    <VERB>np1</VERB> sous-intervalles.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>np1,np2  </term>
+  <listitem>
+  <para>entier
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>xgraduate</literal> renvoie les graduations des axes utilisées par les routines de dessin. Elle renvoie un intervalle <literal>[xi,xa]</literal> contenant l'intervalle donné <literal>[xmi,xma]</literal> avec xi et xa tels que  
+  </para>
+  <para>
+    <literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal> et l'intervalle peut être divise en <literal>np2</literal> intervalles et chaque intervalle est divisé en
+    <literal>np1</literal> sous-intervalles.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
   [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>graduate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.P.C ; ;   </AUTHOR>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="graduate">graduate</link> </member>     <member> <link linkend="plot2d">plot2d</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>J.P.C ; ;   </para></refsection>
+</refentry>

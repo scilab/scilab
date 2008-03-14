@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,76 +10,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gamitg"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gamitg</refname><refpurpose> H-infinity gamma iterations</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[gopt]=gamitg(G,r,prec [,options]);</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>G</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (plant realization )</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1x2 row vector (dimension of <literal>G22</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>prec</term>
+        <listitem>
+          <para>desired relative accuracy on the norm</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>option</term>
+        <listitem>
+          <para>string <literal>'t'</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gopt</term>
+        <listitem>
+          <para>real scalar, optimal H-infinity gain</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>gopt=gamitg(G,r,prec [,options])</literal>
+    returns the H-infinity optimal gain <literal>gopt</literal>.</para>
+    <para><literal>G</literal> contains the state-space matrices <literal>[A,B,C,D]</literal> of
+    the plant with the usual partitions:</para>
+    <programlisting><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gamitg</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="gamitg"> H-infinity gamma iterations</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[gopt]=gamitg(G,r,prec [,options]);  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>G</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (plant realization )</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: 1x2 row vector (dimension of <VERB>G22</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>prec</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: desired relative accuracy on the norm</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>option</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string <VERB>'t'</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>gopt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar, optimal H-infinity gain</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>gopt=gamitg(G,r,prec [,options])</VERB>
-    returns the H-infinity optimal gain <VERB>gopt</VERB>.</P>
-    <P><VERB>G</VERB> contains the state-space matrices <VERB>[A,B,C,D]</VERB> of
-    the plant with the usual partitions:</P>
-    <VERBATIM>
-<![CDATA[
    B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
                             ( C2 )          ( D21  D22)
-   ]]>
-    </VERBATIM>
-    <P>
-    These partitions are implicitly given in <VERB>r</VERB>: <VERB>r(1)</VERB>
-    and <VERB>r(2)</VERB> are the dimensions of <VERB>D22</VERB> (rows x columns)</P>
-    <P>
-    With <VERB>option='t'</VERB>, <VERB>gamitg</VERB> traces each bisection step, i.e., 
-    displays the lower and upper bounds and the current test point.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ccontrg</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>h_inf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>P. Gahinet</AUTHOR>
-</MAN>
+   
+    ]]></programlisting>
+    <para>
+    These partitions are implicitly given in <literal>r</literal>: <literal>r(1)</literal>
+    and <literal>r(2)</literal> are the dimensions of <literal>D22</literal> (rows x columns)</para>
+    <para>
+    With <literal>option='t'</literal>, <literal>gamitg</literal> traces each bisection step, i.e., 
+    displays the lower and upper bounds and the current test point.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ccontrg">ccontrg</link>
+    </member>
+    <member>
+      <link linkend="h_inf">h_inf</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>P. Gahinet</para></refsection>
+</refentry>

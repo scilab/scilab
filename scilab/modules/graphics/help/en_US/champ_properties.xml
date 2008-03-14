@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,104 +10,103 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="champ_properties"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>champ_properties</refname><refpurpose>description of the 2D vector
+  field entity properties</refpurpose></refnamediv>
+  
 
-  <TITLE>champ_properties</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="champ_properties">description of the 2D vector
-  field entity properties</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>The Champ entity is a leaf of the graphics entities hierarchy. This
-    entity defines the parameters for a 2D vector field.</P>
+  <refsection><title>Description</title>
+    <para>The Champ entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for a 2D vector field.</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This properties contains the <VERB>visible</VERB> property value
-        for the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB>
-        . If <VERB>"on" </VERB> the vector field is drawn, If
-        <VERB>"off"</VERB> the vector field is not displayed on the
-        screen.</SP>
-      </DESCRIPTION_ITEM>
+    <variablelist>
+      <varlistentry><term>visible: </term><listitem>
+        <para>This properties contains the <literal>visible</literal> property value
+        for the entity . It should be <literal>"on" </literal> or <literal>"off"</literal>
+        . If <literal>"on" </literal> the vector field is drawn, If
+        <literal>"off"</literal> the vector field is not displayed on the
+        screen.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="data: ">
-        <SP>This field defines a <VERB>tlist</VERB> data structure of type
-        <VERB>"champdata"</VERB> composed of a row and column indices of each
+      <varlistentry><term>data: </term><listitem>
+        <para>This field defines a <literal>tlist</literal> data structure of type
+        <literal>"champdata"</literal> composed of a row and column indices of each
         element : the x and y grid coordinates are contained respectively in
-        <VERB>data.x </VERB>and <VERB>data.y</VERB>. The complementary fields
-        named <VERB>data.fx</VERB> and <VERB>data.fy</VERB> are matrices which
-        describe respectively the <VERB>x</VERB> and <VERB>y</VERB> component
-        of the vector field at point <VERB>(x(i),y(j))</VERB>.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="user_data: ">
-	<SP>This field can be use to store any scilab variable in the
-	  champ data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>data.x </literal>and <literal>data.y</literal>. The complementary fields
+        named <literal>data.fx</literal> and <literal>data.fy</literal> are matrices which
+        describe respectively the <literal>x</literal> and <literal>y</literal> component
+        of the vector field at point <literal>(x(i),y(j))</literal>.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>user_data: </term><listitem>
+	<para>This field can be use to store any scilab variable in the
+	  champ data structure, and to retreive it.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="line_style: ">
-        <SP>The <VERB>line_style</VERB> property value should be an integer in
+      <varlistentry><term>line_style: </term><listitem>
+        <para>The <literal>line_style</literal> property value should be an integer in
         [0 9]. 0 stands for solid the other value stands for a selection of
         dashes. This property applies to all lines used to draw the vector
-        field.</SP>
-      </DESCRIPTION_ITEM>
+        field.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="thickness: ">
-        <SP>This property contains the <VERB>thickness</VERB> property for all
+      <varlistentry><term>thickness: </term><listitem>
+        <para>This property contains the <literal>thickness</literal> property for all
         lines used to draw the vector field. Its value should be a non
-        negative integer..</SP>
-      </DESCRIPTION_ITEM>
+        negative integer..</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="colored: ">
-        <SP>If this this property value is <VERB>"on"</VERB>, fields vectors
+      <varlistentry><term>colored: </term><listitem>
+        <para>If this this property value is <literal>"on"</literal>, fields vectors
         are drawn using a color proportional to the intensity of the
-        field.</SP>
-      </DESCRIPTION_ITEM>
+        field.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="clip_state: ">
-        <SP>This field contains the <VERB>clip_state</VERB> property value for
-        the champ. It should be :</SP>
+      <varlistentry><term>clip_state: </term><listitem>
+        <para>This field contains the <literal>clip_state</literal> property value for
+        the champ. It should be :</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM>
-            <P><VERB>"off"</VERB> this means that the vector field is not
-            clipped</P>
-          </DESCRIPTION_ITEM>
+        <itemizedlist>
+          <listitem>
+            <para><literal>"off"</literal> this means that the vector field is not
+            clipped</para>
+          </listitem>
 
-          <DESCRIPTION_ITEM>
-            <P><VERB>"clipgrf"</VERB> this means that the vector field is
-            clipped outside the Axes box.</P>
-          </DESCRIPTION_ITEM>
+          <listitem>
+            <para><literal>"clipgrf"</literal> this means that the vector field is
+            clipped outside the Axes box.</para>
+          </listitem>
 
-          <DESCRIPTION_ITEM>
-            <P><VERB>"on"</VERB> this means that the vector field is clipped
-            outside the rectangle given by property clip_box.</P>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+          <listitem>
+            <para><literal>"on"</literal> this means that the vector field is clipped
+            outside the rectangle given by property clip_box.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="clip_box: ">
-        <SP>This property contains the <VERB>clip_box</VERB> property. Its
+      <varlistentry><term>clip_box: </term><listitem>
+        <para>This property contains the <literal>clip_box</literal> property. Its
         value should be an empty matrix if clip_state is "off" .Other cases
-        the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height)
+        the vector <literal>[x,y,w,h]</literal> (upper-left point width height)
         defines the portions of the vector field to display, however
-        <VERB>clip_state</VERB> property value will be changed.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>clip_state</literal> property value will be changed.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        2D vector field entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      <varlistentry><term>parent: </term><listitem>
+        <para>This property contains the handle of the parent. The parent of the
+        2D vector field entity should be of the type <literal>"Axes"</literal> or
+        <literal>"Compound"</literal>.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
    a=get("current_axes");//get the handle of the newly created axes
    a.data_bounds=[-10,-10;10,10];
@@ -121,33 +120,33 @@
    a.data_bounds=[-5,-5;5,5];
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>champ</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="champ">champ</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>champ1</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="champ1">champ1</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+</refentry>

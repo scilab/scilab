@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005      - INRIA - Pierrick MODE
@@ -12,56 +11,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="readxls"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>readxls</refname><refpurpose>reads an Excel file</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>readxls</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="readxls">reads an Excel file</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sheets = readxls(file_path)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>sheets = readxls(file_path)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>file_path</term>
+    <listitem>
+       <para>a character string: the path of the Excel file.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>file_path</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a character string: the path of the Excel file.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>sheets</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : an <VERB>mlist</VERB> of type <VERB>xls</VERB>, with one field named <VERB>sheets</VERB>
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>sheets</term>
+    <listitem>
+       <para>an <literal>mlist</literal> of type <literal>xls</literal>, with one field named <literal>sheets</literal>
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-    <P>Given an Excel file path this function returns an <VERB>mlist</VERB> data structure
-      of type <VERB>xls</VERB>, with one field named <VERB>sheets</VERB>. The
-      <VERB>sheets</VERB> field itself contains a list of sheet data structure.</P>
+  <refsection><title>Description</title>
+    <para>Given an Excel file path this function returns an <literal>mlist</literal> data structure
+      of type <literal>xls</literal>, with one field named <literal>sheets</literal>. The
+      <literal>sheets</literal> field itself contains a list of sheet data structure.</para>
 
-    <P><VERB>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</VERB> where 
-      <VERB>sheetname</VERB> is a character string containing the name of the sheet,
-      <VERB>Text</VERB> is a matrix of string which contains the cell's
-      strings and  <VERB>Value</VERB> is a matrix of numberswhich contains the cell's
-      values. </P>
-    <P> Warning only BIFF8 Excel files (last Excel file version) are handled  </P>
-  </DESCRIPTION>
+    <para><literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> where 
+      <literal>sheetname</literal> is a character string containing the name of the sheet,
+      <literal>Text</literal> is a matrix of string which contains the cell's
+      strings and  <literal>Value</literal> is a matrix of numberswhich contains the cell's
+      values. </para>
+    <para> Warning only BIFF8 Excel files (last Excel file version) are handled  </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
     // some basic operations on Sheets
     typeof(Sheets)
@@ -73,25 +66,25 @@
     typeof(s1(2,:))
 
     editvar s1
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xls_open</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>xls_read</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="xls_open">xls_open</link> </member>
+    <member> <link linkend="xls_read">xls_read</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM label='Pierrick Mode'>
+  <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>Pierrick Mode</term><listitem><para>
     INRIA
-    </AUTHORS_ITEM>
-    <AUTHORS_ITEM label='Serge Steer'>
+    </para></listitem></varlistentry>
+    <varlistentry><term>Serge Steer</term><listitem><para>
     INRIA
-    </AUTHORS_ITEM>
-  </AUTHORS>
+    </para></listitem></varlistentry>
+  </variablelist></refsection>
 
-  <USED_FUNCTIONS>
-     <SP> This function is based on the Scilab functions <VERB>xls_open</VERB>
-      and  <VERB>xls_read</VERB>
-     </SP>
-  </USED_FUNCTIONS>
-</MAN>
+  <refsection><title>Used Functions</title>
+     <para> This function is based on the Scilab functions <literal>xls_open</literal>
+      and  <literal>xls_read</literal>
+     </para>
+  </refsection>
+</refentry>

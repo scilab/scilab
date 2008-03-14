@@ -1,40 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>who</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="who">listing of variables</SHORT_DESCRIPTION>
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>who</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>who()</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>names=who('local')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>[names,mem]=who('local')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>names=who('global')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>[names,mem]=who('global')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>who('sorted')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>names=who('local','sorted')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>[names,mem]=who('local','sorted')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>names=who('global','sorted')</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>[names,mem]=who('global','sorted')</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="who"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>who</refname><refpurpose>listing of variables</refpurpose></refnamediv>
 	
-	<DESCRIPTION>
-		<P><VERB>who</VERB> displays current variable names.</P>
-		<P><VERB>who('local')</VERB> or <VERB>who('get')</VERB> Returns current
-		variable names and memory used in double precision words.</P>
-		<P><VERB>who('global')</VERB> returns global variable names and memory
-		used in double precision words.</P>
-		<P><VERB>who('sorted')</VERB> displays in alphabetical order all variables.</P>
-	</DESCRIPTION>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>whos</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>who_user</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
-</MAN>
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>who
+who()
+names=who('local')
+[names,mem]=who('local')
+names=who('global')
+[names,mem]=who('global')
+who('sorted')
+names=who('local','sorted')
+[names,mem]=who('local','sorted')
+names=who('global','sorted')
+[names,mem]=who('global','sorted')</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para><literal>who</literal> displays current variable names.</para>
+		<para><literal>who('local')</literal> or <literal>who('get')</literal> Returns current
+		variable names and memory used in double precision words.</para>
+		<para><literal>who('global')</literal> returns global variable names and memory
+		used in double precision words.</para>
+		<para><literal>who('sorted')</literal> displays in alphabetical order all variables.</para>
+	</refsection>
+	
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="whos">whos</link>
+		</member>
+		<member>
+			<link linkend="who_user">who_user</link>
+		</member>
+	</simplelist></refsection>
+</refentry>

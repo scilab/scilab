@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,49 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xclip</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xclip"> set a clipping zone</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xclip([x,y,w,h])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>xclip(rect)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>xclip(&quot;clipgrf&quot;)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y,w,h</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real values.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of size 4.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>xclip</VERB> is obsolete with the new graphic mode, use the
-      <VERB>clip_state</VERB> and <VERB>clip_box</VERB> properties of the
-      entities instead.</P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xclip"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xclip</refname><refpurpose> set a clipping zone</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xclip([x,y,w,h])
+xclip(rect)
+xclip("clipgrf")</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y,w,h</term>
+        <listitem>
+          <para>real values.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>row vector of size 4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>xclip</literal> is obsolete with the new graphic mode, use the
+      <literal>clip_state</literal> and <literal>clip_box</literal> properties of the
+      entities instead.</para>
 
-    <P><VERB>xclip</VERB> set a clipping zone given by the coordinates, in the current
-    graphics scale, of the rectangle <VERB>x,y,w,h</VERB> 
+    <para><literal>xclip</literal> set a clipping zone given by the coordinates, in the current
+    graphics scale, of the rectangle <literal>x,y,w,h</literal> 
     (upper-left point, width, height). If only one argument is given, it stands
-    for a rectangle specification <VERB>rect=[x,y,w,h]</VERB>.</P>
-    <P><VERB>xclip(&quot;clipgrf&quot;)</VERB> is used to clip the usual rectangle boundaries.</P>
-    <P>
-    To unclip a region use the command <VERB>xclip()</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    for a rectangle specification <literal>rect=[x,y,w,h]</literal>.</para>
+    <para><literal>xclip("clipgrf")</literal> is used to clip the usual rectangle boundaries.</para>
+    <para>
+    To unclip a region use the command <literal>xclip()</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 x=0:0.2:2*%pi;
 x1=[sin(x);100*sin(x)];
 y1=[cos(x);100*cos(x)];
@@ -75,7 +72,7 @@ e.clip_state='clipgrf';
 xclip("clipgrf")
 // remove clipping
 e.clip_state='off';
- ]]>
-  </EXAMPLE>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>

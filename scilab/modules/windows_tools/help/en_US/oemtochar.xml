@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,51 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="oemtochar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>oemtochar</refname><refpurpose>translates a string from the OEM-defined
+  character set into either an ANSI string. (Windows Only)</refpurpose></refnamediv>
+  
 
-  <TITLE>oemtochar</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="oemtochar">translates a string from the OEM-defined
-  character set into either an ANSI string. (Windows Only)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>str=oemtochar(str1)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>str=oemtochar(str1)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>str1</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str1</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a matrix of OEM-defined character string.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a matrix of OEM-defined character string.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
+      <varlistentry>
+        <term>str</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a matrix of ANSI character string.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a matrix of ANSI character string.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>oemtochar</VERB> translates a string from the OEM-defined
-    character set into either an ANSI string.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>oemtochar</literal> translates a string from the OEM-defined
+    character set into either an ANSI string.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>chartooem</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="chartooem">chartooem</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

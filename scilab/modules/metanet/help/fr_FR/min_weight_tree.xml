@@ -1,78 +1,58 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>min_weight_tree  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="min_weight_tree"> arbre couvrant de poids minimum  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>t = min_weight_tree([i],g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>i  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier, numéro de sommet racine de l&apos;arbre
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>t  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne d&apos;entiers : numéros des arcs de l&apos;arbre s&apos;il existe
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>min_weight_tree</VERB> essaye de trouver un arbre couvrant de poids minimum pour l&apos;arbre
-    graphe <VERB>g</VERB>. L&apos;argument optionnel <VERB>i</VERB> est le numéro du sommet racine de l&apos;arbre; sa valeur par défaut est le sommet 1. Ce sommet n&apos;est pas significatif pour un graphe non-orienté.
-  </P>
-  <P>
-    Les poids sont données par les éléments <VERB>edge_weight</VERB> du graphe.
-    Si ces valeurs ne sont pas données (vecteur vide <VERB>[]</VERB>), elles sont supposées nulles.
-    Les poids peuvent être positifs, nuls ou négatifs. Pour calculer un arbre recouvrant sans tenir compte des poids, leur donner une valeur nulle ou vide <VERB>[]</VERB>.
-  </P>
-  <P>
-    <VERB>min_weight_tree</VERB> renvoie l&apos;arbre <VERB>t</VERB> sous forme d&apos;un vecteur ligne des numéros
-    d&apos;arcs (cas orienté) ou d&apos;arêtes (cas non-orienté), si il existe, ou le vecteur vide <VERB>[]</VERB> sinon.
-    Si l&apos;arbre existe, la dimension de <VERB>t</VERB> est le nombre de sommets moins 1.
-    Si <VERB>t(i)</VERB> est la racine de l&apos;arbre, 
-      - pour j &lt; i, <VERB>t(j)</VERB> est le numéro de l&apos;arc dans l&apos;arbre après le
-          sommet <VERB>t(j)</VERB>
-      - pour j &gt; i, <VERB>t(j)</VERB> est le numéro de l&apos;arc dans l&apos;arbre avant le
-          sommet <VERB>t(j)</VERB>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="min_weight_tree"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>min_weight_tree</refname><refpurpose> arbre couvrant de poids minimum  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>t = min_weight_tree([i],g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>i  </term>
+  <listitem>
+  <para>entier, numéro de sommet racine de l'arbre
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>t  </term>
+  <listitem>
+  <para>vecteur ligne d'entiers : numéros des arcs de l'arbre s'il existe
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>min_weight_tree</literal> essaye de trouver un arbre couvrant de poids minimum pour l'arbre
+    graphe <literal>g</literal>. L'argument optionnel <literal>i</literal> est le numéro du sommet racine de l'arbre; sa valeur par défaut est le sommet 1. Ce sommet n'est pas significatif pour un graphe non-orienté.
+  </para>
+  <para>
+    Les poids sont données par les éléments <literal>edge_weight</literal> du graphe.
+    Si ces valeurs ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles.
+    Les poids peuvent être positifs, nuls ou négatifs. Pour calculer un arbre recouvrant sans tenir compte des poids, leur donner une valeur nulle ou vide <literal>[]</literal>.
+  </para>
+  <para>
+    <literal>min_weight_tree</literal> renvoie l'arbre <literal>t</literal> sous forme d'un vecteur ligne des numéros
+    d'arcs (cas orienté) ou d'arêtes (cas non-orienté), si il existe, ou le vecteur vide <literal>[]</literal> sinon.
+    Si l'arbre existe, la dimension de <literal>t</literal> est le nombre de sommets moins 1.
+    Si <literal>t(i)</literal> est la racine de l'arbre, 
+      - pour j &lt; i, <literal>t(j)</literal> est le numéro de l'arc dans l'arbre après le
+          sommet <literal>t(j)</literal>
+      - pour j &gt; i, <literal>t(j)</literal> est le numéro de l'arc dans l'arbre avant le
+          sommet <literal>t(j)</literal>
       
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -86,5 +66,5 @@ edgecolor=1*ones(1,ma); edgecolor(t)=11*ones(t); g1('edge_color')=edgecolor;
 edgewidth=1*ones(1,ma); edgewidth(t)=4*ones(t); g1('edge_width')=edgewidth;
 x_message('Arbre de poids minimum à partir du sommet 1');
 show_graph(g1);
- ]]></EXAMPLE>
-</MAN>
+ ]]></programlisting></refsection>
+</refentry>

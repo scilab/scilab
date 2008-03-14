@@ -1,137 +1,124 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_isa</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_isa"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_isa</refname><refpurpose>Fonction d'�mulation de la fonction Matlab isa</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_isa">Fonction d'�mulation de la fonction Matlab isa</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Il n'y a pas de fonction Scilab �quivalente � la fonction Matlab <VERB>isa</VERB> mais quand la "classe" d'objet recherch�e existe dans Scilab, des expressions �quivalentes existent.</P>
+    <para>Il n'y a pas de fonction Scilab �quivalente � la fonction Matlab <literal>isa</literal> mais quand la "classe" d'objet recherch�e existe dans Scilab, des expressions �quivalentes existent.</para>
 
-    <P>
-    La fonction <VERB>mtlb_isa(OBJ,class)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>isa(OBJ,class)</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_isa(OBJ,class)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>isa(OBJ,class)</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_isa</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_isa</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "logical",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>type(OBJ)==4</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "logical",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==4</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "char",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>type(OBJ)==10</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "char",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==10</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "numeric",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>or(type(OBJ)==[1,5,8])</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "numeric",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>or(type(OBJ)==[1,5,8])</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "intX" (X valant 8, 16 ou 32),
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>typeof(OBJ)=="intX"</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "intX" (X valant 8, 16 ou 32),
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="intX"</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "uintX" (X valant 8, 16 ou 32),
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>typeof(OBJ)=="uintX"</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "uintX" (X valant 8, 16 ou 32),
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="uintX"</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "single",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>type(OBJ)==1</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "single",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==1</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "double",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>type(OBJ)==1</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "double",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==1</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "cell",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>typeof(OBJ)=="ce"</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "cell",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="ce"</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "struct",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>typeof(OBJ)=="st"</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "struct",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="st"</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "function_handle",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>type(OBJ)==13</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "function_handle",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==13</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "sparse",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>type(OBJ)==5</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "sparse",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==5</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>class</VERB> est �gal � "lti",
-        <VERB>mtlb_isa(OBJ,class)</VERB> peut �tre remplac� par <VERB>typeof(OBJ)=="state-space"</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Si <literal>class</literal> est �gal � "lti",
+        <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="state-space"</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_isa</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_isa</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="type">type</link> </member>
+    <member> <link linkend="typeof">typeof</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -10,59 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="flipdim"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>flipdim</refname><refpurpose>flip x components along a given
+  dimension</refpurpose></refnamediv>
+  
 
-  <TITLE>flip x components along a given dimension</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="flipdim">flip x components along a given
-  dimension</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=flipdim(x,dim)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=flipdim(x,dim)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a scalar, a vector or an array of reals</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a scalar, a vector or an array of reals</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>dim</PARAM_NAME>
+      <varlistentry>
+        <term>dim</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a positive integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a positive integer</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+      <varlistentry>
+        <term>y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a scalar, a vector or an array of reals</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a scalar, a vector or an array of reals</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Given <VERB>x</VERB>, a scalar/vector/array of reals and
-    <VERB>dim</VERB> a positive integer, this function flips the x components
-    along the dimension number <VERB>dim</VERB> of <VERB>x</VERB>
-    (<VERB>x</VERB> and <VERB>y</VERB> have the same size)</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Given <literal>x</literal>, a scalar/vector/array of reals and
+    <literal>dim</literal> a positive integer, this function flips the x components
+    along the dimension number <literal>dim</literal> of <literal>x</literal>
+    (<literal>x</literal> and <literal>y</literal> have the same size)</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[// example 1: flip x components along the first dimension
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[// example 1: flip x components along the first dimension
 x=[1 2 3 4; 5 6 7 8];
 dim=1;
 y=flipdim(x,dim)
@@ -75,7 +72,7 @@ y=flipdim(x,dim)
 x=matrix(1:48,[3 2,4,2]);
 dim=3;
 y=flipdim(x,dim)
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <AUTHOR>F.Belahcene</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>F.Belahcene</para></refsection>
+</refentry>

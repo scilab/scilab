@@ -1,85 +1,65 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>nlev  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="nlev"> Algorithme de Leverrier   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[num,den]=nlev(A,z [,rmax])    </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>A  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice réelle carrée
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>z  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : chaîne de caractères
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>rmax  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : paramètre optionnel (voir <VERB>bdiag</VERB>) 
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-      <VERB>[num,den]=nlev(A,z [,rmax])</VERB> calcule
-      <VERB>(z*eye()-A)^(-1)</VERB> par bloc diagonalisation de
-      <VERB>A</VERB> suivie de l&apos;algorithme de Leverrier sur chaque
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="nlev"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>nlev</refname><refpurpose> Algorithme de Leverrier   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[num,den]=nlev(A,z [,rmax])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>A  </term>
+	<listitem>
+	  <para>matrice réelle carrée
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>z  </term>
+	<listitem>
+	  <para>chaîne de caractères
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>rmax  </term>
+	<listitem>
+	  <para>paramètre optionnel (voir <literal>bdiag</literal>) 
+	  </para>
+	</listitem> 
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+      <literal>[num,den]=nlev(A,z [,rmax])</literal> calcule
+      <literal>(z*eye()-A)^(-1)</literal> par bloc diagonalisation de
+      <literal>A</literal> suivie de l'algorithme de Leverrier sur chaque
       bloc.
-    </P>
-    <P>
-    Cet algorithme est plus efficace que l&apos;algorithme de
-    Leverrier seul, mais il n&apos;est toujours pas parfait !
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+    </para>
+    <para>
+    Cet algorithme est plus efficace que l'algorithme de
+    Leverrier seul, mais il n'est toujours pas parfait !
+    </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     A=rand(3,3);x=poly(0,'x');
     [NUM,den]=nlev(A,'x')
     clean(den-poly(A,'x'))
     clean(NUM/den-inv(x*eye()-A))
-    ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>ss2tf</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHORS>
-    <AUTHORS_ITEM>
+    ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="coff">coff</link> </member> 
+    <member> <link linkend="coffg">coffg</link> </member> 
+    <member> <link linkend="glever">glever</link> </member> 
+    <member> <link linkend="ss2tf">ss2tf</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>
       F. Delebecque, INRIA; 
-    </AUTHORS_ITEM>
-    <AUTHORS_ITEM>
+    </member>
+    <member>
       S. Steer, INRIA;  
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </member>
+  </simplelist></refsection>
+</refentry>

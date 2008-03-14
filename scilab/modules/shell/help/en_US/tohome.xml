@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
@@ -10,30 +10,27 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>tohome</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tohome"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tohome</refname><refpurpose>Move the cursor to the upper left corner of the Command Window</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="tohome">Move the cursor to the upper left corner of the Command Window</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>tohome()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>tohome()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P><VERB>tohome()</VERB> moves the cursor to the upper-left corner of the Command Window and clears the screen.</P>
-    <P>You can use the scroll bar to see the history of previous functions.</P>
-    <P>Note that <VERB>tohome()</VERB> cannot be used under Windows platforms when Scilab used in no window mode.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>tohome()</literal> moves the cursor to the upper-left corner of the Command Window and clears the screen.</para>
+    <para>You can use the scroll bar to see the history of previous functions.</para>
+    <para>Note that <literal>tohome()</literal> cannot be used under Windows platforms when Scilab used in no window mode.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>clc</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member><link linkend="clc">clc</link></member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

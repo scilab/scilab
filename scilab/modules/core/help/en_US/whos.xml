@@ -1,55 +1,51 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>whos</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="whos"> listing of variables in long form</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="whos"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>whos</refname><refpurpose> listing of variables in long form</refpurpose></refnamediv>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>whos()</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>whos -type typ</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>whos -name nam</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>typ</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: name of selected variable type (see typeof)</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-			<PARAM_ITEM>
-				<PARAM_NAME>nam</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: first characters of selected names</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
 	
-	<DESCRIPTION>
-		<P><VERB>whos()</VERB> displays all current variable names, types and memory used.</P>
-		<P><VERB>whos -type typ</VERB> displays all current variables with specified type.</P>
-		<P><VERB>whos -name nam</VERB> displays all current variables whose names begin with <VERB>nam</VERB>.</P>
-		<P>Note : If a variable is global, a * appears ahead of his type.</P>
-	</DESCRIPTION>
 	
-	<EXAMPLE><![CDATA[
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>whos()
+whos -type typ
+whos -name nam</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>typ</term>
+				<listitem>
+					<para>name of selected variable type (see typeof)</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>nam</term>
+				<listitem>
+					<para>first characters of selected names</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection><title>Description</title>
+		<para><literal>whos()</literal> displays all current variable names, types and memory used.</para>
+		<para><literal>whos -type typ</literal> displays all current variables with specified type.</para>
+		<para><literal>whos -name nam</literal> displays all current variables whose names begin with <literal>nam</literal>.</para>
+		<para>Note : If a variable is global, a * appears ahead of his type.</para>
+	</refsection>
+	
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 lines(0) 
 whos()
 whos -type boolean
 whos -name %
-]]></EXAMPLE>
+]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>who</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>typeof</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
-</MAN>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="who">who</link>
+		</member>
+		<member>
+			<link linkend="typeof">typeof</link>
+		</member>
+	</simplelist></refsection>
+</refentry>

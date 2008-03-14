@@ -1,68 +1,60 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>fgrayplot  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fgrayplot"> reprï¿½entation 2D en pseudo-couleurs d&apos;une surface dï¿½inie par une fonction  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>fgrayplot(x,y,f,[strf,rect,nax])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>fgrayplot(x,y,f,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x,y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteurs lignes de taille n1 et n2.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>f  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : fonction externe du type z=f(x,y)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : une sï¿½uence d&apos;affectations <VERB>key1=value1, key2=value2</VERB>,... o <VERB>key1</VERB>, <VERB>key2,...</VERB> peuvent prendre les valeurs : rect, nax, strf, axesflag ou frameflag (voir <VERB>plot2d</VERB>).
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>strf,rect,nax  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : voir <VERB>plot2d</VERB>.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>fgrayplot</VERB> dessine une reprï¿½entation 2D en pseudo-couleurs d&apos;une surface dï¿½inie par <VERB>z=f(x,y)</VERB> sur une grille dï¿½inie par <VERB>x</VERB> et <VERB>y</VERB>.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fgrayplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fgrayplot</refname><refpurpose> reprï¿½entation 2D en pseudo-couleurs d'une surface dï¿½inie par une fonction  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>fgrayplot(x,y,f,[strf,rect,nax])
+fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x,y  </term>
+  <listitem>
+  <para>vecteurs lignes de taille n1 et n2.
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>f  </term>
+  <listitem>
+  <para>fonction externe du type z=f(x,y)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>&lt;opt_args&gt;  </term>
+  <listitem>
+  <para>une sï¿½uence d'affectations <literal>key1=value1, key2=value2</literal>,... o <literal>key1</literal>, <literal>key2,...</literal> peuvent prendre les valeurs : rect, nax, strf, axesflag ou frameflag (voir <literal>plot2d</literal>).
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>strf,rect,nax  </term>
+  <listitem>
+  <para>voir <literal>plot2d</literal>.
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>fgrayplot</literal> dessine une reprï¿½entation 2D en pseudo-couleurs d'une surface dï¿½inie par <literal>z=f(x,y)</literal> sur une grille dï¿½inie par <literal>x</literal> et <literal>y</literal>.
     Chaque rectangle sur la grille est rempli avec une couleur dï¿½endant de la moyenne des 
-    valeurs de <VERB>z</VERB> aux coins du rectangle.
-  </P>
-  <P>
-    Taper <VERB>fgrayplot()</VERB> pour voir une dï¿½onstration de la fonction.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+    valeurs de <literal>z</literal> aux coins du rectangle.
+  </para>
+  <para>
+    Taper <literal>fgrayplot()</literal> pour voir une dï¿½onstration de la fonction.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 t=-1:0.1:1;
 deff("[z]=my_surface(x,y)","z=x**2+y**2")
 fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sfgrayplot</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="grayplot">grayplot</link> </member>     <member> <link linkend="plot2d">plot2d</link> </member>     <member> <link linkend="Sgrayplot">Sgrayplot</link> </member>     <member> <link linkend="Sfgrayplot">Sfgrayplot</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>J.Ph.C.  </para></refsection>
+</refentry>

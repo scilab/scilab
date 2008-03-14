@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -11,42 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>showprofile</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="showprofile"> extracts and displays execution profiles of a Scilab function</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>showprofile(fun)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>fun</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a Scilab function</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    To use <VERB>showprofile</VERB> the Scilab function must have been prepared for
-    profiling (see getf).</P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="showprofile"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>showprofile</refname><refpurpose> extracts and displays execution profiles of a Scilab function</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>showprofile(fun)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>a Scilab function</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    To use <literal>showprofile</literal> the Scilab function must have been prepared for
+    profiling (see getf).</para>
+    <para>
     For such function, When such a function is executed the systems counts
     how many time each line is executed and how may cpu time is spend for
     each line execution. These data are stored within the function data
-    structure.  The <VERB>showprofile</VERB> function outputs profiling results
-    (see <VERB>profile</VERB>) with text of the function lines.</P>
-    <P>
-    Function text is rebuild with <VERB>fun2string</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    structure.  The <literal>showprofile</literal> function outputs profiling results
+    (see <literal>profile</literal>) with text of the function lines.</para>
+    <para>
+    Function text is rebuild with <literal>fun2string</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //define function and prepare it for profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -61,17 +56,17 @@ deff('x=foo(n)',['if n==0 then'
 foo(30)
 //get execution profiles
 showprofile(foo)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>profile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>plotprofile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fun2string</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="profile">profile</link>
+    </member>
+    <member>
+      <link linkend="plotprofile">plotprofile</link>
+    </member>
+    <member>
+      <link linkend="fun2string">fun2string</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

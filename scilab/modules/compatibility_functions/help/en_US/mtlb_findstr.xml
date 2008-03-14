@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,46 +10,45 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_findstr</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_findstr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_findstr</refname><refpurpose>Matlab findstr emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_findstr">Matlab findstr emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>There is no Scilab equivalent for Matlab <VERB>findstr</VERB>.</P>
+    <para>There is no Scilab equivalent for Matlab <literal>findstr</literal>.</para>
 
-    <P>
-    The function <VERB>mtlb_findstr(A,B)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>findstr(A,B)</VERB> when it was not
+    <para>
+    The function <literal>mtlb_findstr(A,B)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>findstr(A,B)</literal> when it was not
     possible to know what were the operands/inputs[CUSTOM] while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_findstr</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_findstr</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> is always longer than <VERB>B</VERB>
-	(i.e. <VERB>findstr</VERB> can be replaced by <VERB>strfind</VERB> in Matlab,
-        <VERB>mtlb_findstr(A,B)</VERB> may be replaced by <VERB>strindex(A,B)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> is always longer than <literal>B</literal>
+	(i.e. <literal>findstr</literal> can be replaced by <literal>strfind</literal> in Matlab,
+        <literal>mtlb_findstr(A,B)</literal> may be replaced by <literal>strindex(A,B)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_findstr</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_findstr</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

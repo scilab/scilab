@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -10,50 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="struct"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</pubdate></info><refnamediv><refname>struct</refname><refpurpose>create a struct</refpurpose></refnamediv>
+  
 
-  <TITLE>struct</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="struct">create a struct</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>st=struct(field1,value1,field2,value2...)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>st=struct(field1,value1,field2,value2...)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>field1, field2, ..</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>field1, field2, ..</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: strings represents the fields names</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>strings represents the fields names</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>value1, value2, ..</PARAM_NAME>
+      <varlistentry>
+        <term>value1, value2, ..</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: all data type (double, char, int, ...), represents the fields
-          values</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>all data type (double, char, int, ...), represents the fields
+          values</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>This function returns a struct with the fields names
-    <VERB>fields1</VERB>, <VERB>field2</VERB>, ..., and the fields values
-    corresponding <VERB>value1</VERB>, <VERB>value2</VERB>, ...</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>This function returns a struct with the fields names
+    <literal>fields1</literal>, <literal>field2</literal>, ..., and the fields values
+    corresponding <literal>value1</literal>, <literal>value2</literal>, ...</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[// create a struct date
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[// create a struct date
 date=struct('day',25,'month' ,'DEC','year',2006)
 //change the month
 date.month='AUG';
@@ -65,11 +62,11 @@ date.day=19;
 date.semaine=32
 
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>cell</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="cell">cell</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

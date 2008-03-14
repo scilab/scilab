@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,36 +10,35 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_fwrite</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_fwrite"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_fwrite</refname><refpurpose>Matlab fwrite emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_fwrite">Matlab fwrite emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>There is no Scilab equivalent for Matlab <VERB>fwrite</VERB>. Scilab <VERB>mput</VERB>
-    and Matlab <VERB>fwrite</VERB> behave differently in many cases, but they are equivalents in some cases.</P>
+    <para>There is no Scilab equivalent for Matlab <literal>fwrite</literal>. Scilab <literal>mput</literal>
+    and Matlab <literal>fwrite</literal> behave differently in many cases, but they are equivalents in some cases.</para>
 
-    <P>
-    The function <VERB>mtlb_fwrite(varargin)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>fwrite</VERB>. This function will
+    <para>
+    The function <literal>mtlb_fwrite(varargin)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>fwrite</literal>. This function will
     determine the correct semantic at run time. It is sometimes possible to replace
-    calls to <VERB>mtlb_fwrite</VERB> by calls to <LINK>mput</LINK>.
-    </P>
+    calls to <literal>mtlb_fwrite</literal> by calls to <link linkend="mput">mput</link>.
+    </para>
 
-    <P>Caution: <VERB>mtlb_fwrite</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_fwrite</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>mput</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="mput">mput</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,94 +10,90 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="glever"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>glever</refname><refpurpose> inverse of matrix pencil</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>E, A</term>
+        <listitem>
+          <para>two real square matrices of same dimensions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>character string (default value '<literal>s</literal>')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Bfs,Bis</term>
+        <listitem>
+          <para>two polynomial matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>chis</term>
+        <listitem>
+          <para>polynomial</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Computation of</para>
+    <para>
+    <literal>(s*E-A)^-1</literal></para>
+    <para>
+     by generalized Leverrier's algorithm for a matrix pencil.</para>
+    <programlisting><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>glever</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="glever"> inverse of matrix pencil</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[Bfs,Bis,chis]=glever(E,A [,s])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>E, A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: two real square matrices of same dimensions</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>s</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string (default value '<VERB>s</VERB>')</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Bfs,Bis</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: two polynomial matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>chis</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: polynomial</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Computation of</P>
-    <P>
-    <VERB>(s*E-A)^-1</VERB></P>
-    <P>
-     by generalized Leverrier's algorithm for a matrix pencil.</P>
-    <VERBATIM>
-<![CDATA[
 (s*E-A)^-1 = (Bfs/chis) - Bis.
-   ]]>
-    </VERBATIM>
-    <P><VERB>chis</VERB> = characteristic polynomial (up to a multiplicative constant).</P>
-    <P><VERB>Bfs</VERB>  = numerator polynomial matrix.</P>
-    <P><VERB>Bis</VERB>
-    = polynomial matrix ( - expansion of <VERB>(s*E-A)^-1</VERB> at infinity).</P>
-    <P>
-    Note the - sign before <VERB>Bis</VERB>.</P>
-  </DESCRIPTION>
-  <SECTION label="Caution">
-    <P>
-    This function uses <VERB>cleanp</VERB> to simplify <VERB>Bfs,Bis</VERB> and <VERB>chis</VERB>.</P>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para><literal>chis</literal> = characteristic polynomial (up to a multiplicative constant).</para>
+    <para><literal>Bfs</literal>  = numerator polynomial matrix.</para>
+    <para><literal>Bis</literal>
+    = polynomial matrix ( - expansion of <literal>(s*E-A)^-1</literal> at infinity).</para>
+    <para>
+    Note the - sign before <literal>Bis</literal>.</para>
+  </refsection>
+  <refsection><title>Caution</title>
+    <para>
+    This function uses <literal>cleanp</literal> to simplify <literal>Bfs,Bis</literal> and <literal>chis</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
 [Bfs,Bis,chis]=glever(F)
 inv(F)-((Bfs/chis) - Bis)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>rowshuff</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>det</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>invr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>coffg</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pencan</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>penlaur</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F. D. (1988)  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="rowshuff">rowshuff</link>
+    </member>
+    <member>
+      <link linkend="det">det</link>
+    </member>
+    <member>
+      <link linkend="invr">invr</link>
+    </member>
+    <member>
+      <link linkend="coffg">coffg</link>
+    </member>
+    <member>
+      <link linkend="pencan">pencan</link>
+    </member>
+    <member>
+      <link linkend="penlaur">penlaur</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F. D. (1988)  </para></refsection>
+</refentry>

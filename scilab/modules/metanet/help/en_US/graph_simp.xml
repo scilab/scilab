@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,40 +10,36 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_simp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_simp</refname><refpurpose> converts a graph to a simple undirected graph</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = graph_simp(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1</term>
+        <listitem>
+          <para>graph data structure of the new graph</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>graph_simp</literal> returns the simple undirected graph <literal>g1</literal> corresponding to 
+    multigraph <literal>g</literal>. It deletes loops in <literal>g</literal>, replaces directed edges 
+    with undirected edges and replaces multiple edges with single edges.A simple graph is also called a strict graph.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_simp</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph_simp"> converts a graph to a simple undirected graph</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g1 = graph_simp(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph data structure of the new graph</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>graph_simp</VERB> returns the simple undirected graph <VERB>g1</VERB> corresponding to 
-    multigraph <VERB>g</VERB>. It deletes loops in <VERB>g</VERB>, replaces directed edges 
-    with undirected edges and replaces multiple edges with single edges.A simple graph is also called a strict graph.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1  1 2 2 2 3 4 4 4 5 5 6 7 7 8 8 9 9 10 10 10 10 10 11 12 12 13 13 13 14 15 16 16 17 17];
 he=[1 2 10 3 5 7 4 2 9 9 4 6 6 8 2 6 9 7 4  7 11 13 13 15 12 11 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -53,15 +48,15 @@ g.nodes.graphics.y=[ 59 133 223 311 227 299 221 288 384 141 209 299 398 383 187 
 show_graph(g);
 g1=graph_simp(g);
 show_graph(g1,'new');
- ]]>
-  </EXAMPLE>
-<BIBLIO>
-<P>Bronshtein, I. N. and Semendyayev, K. A. Handbook of Mathematics, 4th ed. New York: Springer-Verlag, 2004.</P>
-<P>Gibbons, A. Algorithmic Graph Theory. Cambridge, England: Cambridge University Press, 1985.</P>
-<P>Harary, F. "The Number of Linear, Directed, Rooted, and Connected Graphs." Trans. Amer. Math. Soc. 78, 445-463, 1955.</P>
-<P>Harary, F. "Enumeration of Graphs." In Graph Theory. Reading, MA: Addison-Wesley, pp. 185-187, 1994.</P>
-<P>Steinbach, P. Field Guide to Simple Graphs. Albuquerque, NM: Design Lab, 1990.</P>
-<P>Tutte, W. T. Graph Theory as I Have Known It. Oxford, England: Oxford University Press, 1998.</P>
-<P>West, D. B. Introduction to Graph Theory, 2nd ed. Englewood Cliffs, NJ: Prentice-Hall, 2000. </P>
-</BIBLIO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+<refsection><title>Bibliography</title>
+<para>Bronshtein, I. N. and Semendyayev, K. A. Handbook of Mathematics, 4th ed. New York: Springer-Verlag, 2004.</para>
+<para>Gibbons, A. Algorithmic Graph Theory. Cambridge, England: Cambridge University Press, 1985.</para>
+<para>Harary, F. "The Number of Linear, Directed, Rooted, and Connected Graphs." Trans. Amer. Math. Soc. 78, 445-463, 1955.</para>
+<para>Harary, F. "Enumeration of Graphs." In Graph Theory. Reading, MA: Addison-Wesley, pp. 185-187, 1994.</para>
+<para>Steinbach, P. Field Guide to Simple Graphs. Albuquerque, NM: Design Lab, 1990.</para>
+<para>Tutte, W. T. Graph Theory as I Have Known It. Oxford, England: Oxford University Press, 1998.</para>
+<para>West, D. B. Introduction to Graph Theory, 2nd ed. Englewood Cliffs, NJ: Prentice-Hall, 2000. </para>
+</refsection>
+</refentry>

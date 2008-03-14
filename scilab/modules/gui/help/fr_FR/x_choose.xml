@@ -1,60 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>x_choose  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="x_choose"> boîte de dialogue permettant de faire des choix  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[num]=x_choose(items,title [,button])   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>items  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur colonne de chaînes de caractères. Les articles à choisir
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>title  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur colonne de chaînes de caractères. Titre de la boîte
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>button  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères, texte du bouton d&apos;annulation (&apos;Cancel&apos; par défaut)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>num  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier, le numéro de l&apos;article choisi ou 0 si &quot;Cancel&quot; a été pressé.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Renvoie dans <VERB>num</VERB> le numéro de l&apos;article choisi.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_choose"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>x_choose</refname><refpurpose> boîte de dialogue permettant de faire des choix  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[num]=x_choose(items,title [,button])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>items  </term>
+  <listitem>
+  <para>vecteur colonne de chaînes de caractères. Les articles à choisir
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>title  </term>
+  <listitem>
+  <para>vecteur colonne de chaînes de caractères. Titre de la boîte
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>button  </term>
+  <listitem>
+  <para>chaîne de caractères, texte du bouton d'annulation ('Cancel' par défaut)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>num  </term>
+  <listitem>
+  <para>entier, le numéro de l'article choisi ou 0 si "Cancel" a été pressé.
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Renvoie dans <literal>num</literal> le numéro de l'article choisi.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire';'pour la boite de dialogue'])
 n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire'],'Terminer')
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>x_choices</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_mdialog</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getvalue</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>unix_g</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="x_choices">x_choices</link> </member>     <member> <link linkend="x_mdialog">x_mdialog</link> </member>     <member> <link linkend="getvalue">getvalue</link> </member>     <member> <link linkend="unix_g">unix_g</link> </member>
+  </simplelist></refsection>
+</refentry>

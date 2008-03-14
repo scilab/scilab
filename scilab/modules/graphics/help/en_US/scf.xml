@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,104 +10,99 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="scf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>scf</refname><refpurpose>set the current graphic figure
+  (window)</refpurpose></refnamediv>
+  
 
-  <TITLE>scf</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="scf">set the current graphic figure
-  (window)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>f = scf()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>f = scf()
+f = scf(h)
+f = scf(num)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>f = scf(h)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
 
-    <CALLING_SEQUENCE_ITEM>f = scf(num)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>a handle, the figure handle</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
+      <varlistentry>
+        <term>num</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a handle, the figure handle</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a number, the figure_id</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>num</PARAM_NAME>
+      <varlistentry>
+        <term>f</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a number, the figure_id</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>the handle of the current figure</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para>The current figure is the destination of the graphic drawing. The
+    <literal>scf</literal> function allows to change this current figure or to
+    create it if it does not already exist.</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: the handle of the current figure</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+    <para/>
 
-  <DESCRIPTION>
-    <SP>The current figure is the destination of the graphic drawing. The
-    <VERB>scf</VERB> function allows to change this current figure or to
-    create it if it does not already exist.</SP>
+    <para><literal>scf(num)</literal> set the figure with <literal>figure_id==num</literal>
+    as the current figure. If it does not already exist it is created.</para>
 
-    <P></P>
+    <para/>
 
-    <P><VERB>scf(num)</VERB> set the figure with <VERB>figure_id==num</VERB>
-    as the current figure. If it does not already exist it is created.</P>
+    <para><literal>scf(h)</literal> set the figure pointed to by the handle
+    <literal>h</literal> as the current figure. If it does not already exist it is
+    created.</para>
 
-    <P></P>
+    <para><literal>scf()</literal> is equivalent to <literal>scf(max(winsid())+1) </literal>.
+    It may be used to create a new graphic window.</para>
+  </refsection>
 
-    <P><VERB>scf(h)</VERB> set the figure pointed to by the handle
-    <VERB>h</VERB> as the current figure. If it does not already exist it is
-    created.</P>
-
-    <P><VERB>scf()</VERB> is equivalent to <VERB>scf(max(winsid())+1) </VERB>.
-    It may be used to create a new graphic window.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    f4=scf(4); //creates figure with id==4 and make it the current one
    f0=scf(0); //creates figure with id==0 and make it the current one
    plot2d() //draw in current figure (id=0)
    scf(f4); // set first created figure as current one
    plot3d() //draw in current figure (id=4)
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gcf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gcf">gcf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>clf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="clf">clf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>S. Steer INRIA</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>S. Steer INRIA</para></refsection>
+</refentry>

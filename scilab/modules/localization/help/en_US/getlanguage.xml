@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
@@ -11,41 +11,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getlanguage"><info><pubdate>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007) $</pubdate></info><refnamediv><refname>getlanguage</refname><refpurpose>getlanguage() returns current language used by Scilab.</refpurpose></refnamediv>
+  
 
-  <TITLE>getlanguage</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-04-22 18:33:00 +0200 (dim., 22 avr. 2007) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="getlanguage">getlanguage() returns current language used by Scilab.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>getlanguage()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>getlanguage()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P><VERB>getlanguage()</VERB> returns current language used by Scilab.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>getlanguage()</literal> returns current language used by Scilab.</para>
+  </refsection>
 
-    <EXAMPLE>
-<![CDATA[
+    <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 setlanguage('en_US')
 getlanguage()
- ]]>
-  </EXAMPLE>
+ 
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>setlanguage</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="setlanguage">setlanguage</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-    <AUTHORS_ITEM>Sylvestre Ledru</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C.</member>
+    <member>Sylvestre Ledru</member>
+  </simplelist></refsection>
+</refentry>

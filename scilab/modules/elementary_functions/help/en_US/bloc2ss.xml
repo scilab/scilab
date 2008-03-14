@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -11,96 +11,93 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>bloc2ss</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="bloc2ss"> block-diagram to state-space conversion</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[sl]=bloc2ss(blocd)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>blocd</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bloc2ss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bloc2ss</refname><refpurpose> block-diagram to state-space conversion</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[sl]=bloc2ss(blocd)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>blocd</term>
+        <listitem>
+          <para>list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>list</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Given a block-diagram representation of a linear system
-    <VERB>bloc2ss</VERB> converts this representation to a state-space
+    <literal>bloc2ss</literal> converts this representation to a state-space
     linear system.
-    The first element of the list <VERB>blocd</VERB> must be the string <VERB>'blocd'</VERB>.
+    The first element of the list <literal>blocd</literal> must be the string <literal>'blocd'</literal>.
     Each other element of this list is itself a list of one
-    the following types :</P>
-    <VERBATIM>
-<![CDATA[
+    the following types :</para>
+    <programlisting><![CDATA[
+
 list('transfer','name_of_linear_system')
-   ]]>
-    </VERBATIM>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <programlisting><![CDATA[
+
 list('link','name_of_link',
              [number_of_upstream_box,upstream_box_port],
              [downstream_box_1,downstream_box_1_portnumber],
              [downstream_box_2,downstream_box_2_portnumber],
              ...)
-   ]]>
-    </VERBATIM>
-    <P>
-    The strings <VERB>'transfer'</VERB> and <VERB>'links'</VERB> are keywords which
-    indicate the type of element in the block diagram.</P>
-    <P>
+   
+    ]]></programlisting>
+    <para>
+    The strings <literal>'transfer'</literal> and <literal>'links'</literal> are keywords which
+    indicate the type of element in the block diagram.</para>
+    <para>
     Case 1 :  the second parameter of the list is a character string which 
     may refer (for a possible further evaluation) 
     to the Scilab name of a linear system given
-    in state-space representation (<VERB>syslin</VERB> list) or in transfer
-    form (matrix of rationals).</P>
-    <P>
+    in state-space representation (<literal>syslin</literal> list) or in transfer
+    form (matrix of rationals).</para>
+    <para>
     To each transfer block is associated an integer.
     To each input and output of a transfer block is also
-    associated its number, an integer (see examples)</P>
-    <P>
+    associated its number, an integer (see examples)</para>
+    <para>
     Case 2 :  the second kind of element in a block-diagram representation
     is a link.
     A link links one output of a block represented by the pair
-    <VERB>[number_of_upstream_box,upstream_box_port]</VERB>, to different
+    <literal>[number_of_upstream_box,upstream_box_port]</literal>, to different
     inputs of other blocks. Each such input is represented by 
-    the pair <VERB>[downstream_box_i,downstream_box_i_portnumber]</VERB>.</P>
-    <P>
+    the pair <literal>[downstream_box_i,downstream_box_i_portnumber]</literal>.</para>
+    <para>
     The different elements of a block-diagram can be defined
-    in an arbitrary order.</P>
-    <P>
-    For example</P>
-    <P>
-    [1] <VERB>S1*S2</VERB> with unit feedback.</P>
-    <P>
-    There are 3 transfers <VERB>S1</VERB> (number <VERB>n_s1=2</VERB>) , <VERB>S2</VERB> (number <VERB>n_s2=3</VERB>)
-    and an adder (number <VERB>n_add=4</VERB>) with symbolic transfer 
-    function <VERB>['1','1']</VERB>.</P>
-    <P>
-    There are 4 links. The first one (named <VERB>'U'</VERB>) links the input 
+    in an arbitrary order.</para>
+    <para>
+    For example</para>
+    <para>
+    [1] <literal>S1*S2</literal> with unit feedback.</para>
+    <para>
+    There are 3 transfers <literal>S1</literal> (number <literal>n_s1=2</literal>) , <literal>S2</literal> (number <literal>n_s2=3</literal>)
+    and an adder (number <literal>n_add=4</literal>) with symbolic transfer 
+    function <literal>['1','1']</literal>.</para>
+    <para>
+    There are 4 links. The first one (named <literal>'U'</literal>) links the input 
     (port 0 of fictitious block -1, omitted) to port 1 of the adder.
     The second and third one link respectively (output)port 1 
-    of the adder to (input)port 1 of system <VERB>S1</VERB>, and 
-    (output)port 1 of <VERB>S1</VERB> to (input)port 1 of <VERB>S2</VERB>.
-    The fourth link (named <VERB>'Y'</VERB>) links (output)port 1 of <VERB>S2</VERB> to 
+    of the adder to (input)port 1 of system <literal>S1</literal>, and 
+    (output)port 1 of <literal>S1</literal> to (input)port 1 of <literal>S2</literal>.
+    The fourth link (named <literal>'Y'</literal>) links (output)port 1 of <literal>S2</literal> to 
     the output (port 0 of fictitious block -1, omitted) and to 
-    (input)port 2 of the adder.</P>
-    <VERBATIM>
-<![CDATA[
+    (input)port 2 of the adder.</para>
+    <programlisting><![CDATA[
+
 //Initialization
 syst=list('blocd'); l=1;
 //
@@ -117,16 +114,16 @@ l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
 l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
 // Outputs // -1 -> output 1
 l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
-   ]]>
-    </VERBATIM>
-    <P>
-    With <VERB>s=poly(0,'s');S1=1/(s+1);S2=1/s;</VERB> the result of the evaluation call
-    <VERB>sl=bloc2ss(syst);</VERB> is a state-space representation for
-    <VERB>1/(s^2+s-1)</VERB>.</P>
-    <P>
-    [2] LFT example</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    With <literal>s=poly(0,'s');S1=1/(s+1);S2=1/s;</literal> the result of the evaluation call
+    <literal>sl=bloc2ss(syst);</literal> is a state-space representation for
+    <literal>1/(s^2+s-1)</literal>.</para>
+    <para>
+    [2] LFT example</para>
+    <programlisting><![CDATA[
+
 //Initialization
 syst=list('blocd'); l=1;
 //
@@ -141,28 +138,28 @@ l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
 l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
 l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
 l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
-   ]]>
-    </VERBATIM>
-    <P>
-    With</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    With</para>
+    <programlisting><![CDATA[
+
 P=syslin('c',A,B,C,D);
 P11=P(1,1); 
 P12=P(1,2);
 P21=P(2,1); 
 P22=P(2,2);
 K=syslin('c',Ak,Bk,Ck,Dk);
-   ]]>
-    </VERBATIM>
-    <P><VERB>bloc2exp(syst)</VERB>
-    returns the evaluation the lft of <VERB>P</VERB>
-    and <VERB>K</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>bloc2exp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. S., F. D. (INRIA)  </AUTHOR>
-</MAN>
+   
+    ]]></programlisting>
+    <para><literal>bloc2exp(syst)</literal>
+    returns the evaluation the lft of <literal>P</literal>
+    and <literal>K</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="bloc2exp">bloc2exp</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>S. S., F. D. (INRIA)  </para></refsection>
+</refentry>

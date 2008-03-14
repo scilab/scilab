@@ -1,78 +1,62 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>Contents</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="Contents"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Contents</refname><refpurpose>Crï¿½ï¿½ un arbre contenant les
+  donnï¿½es d'infï¿½rence du contenu d'une variable</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="Contents">Crï¿½ï¿½ un arbre contenant les
-  donnï¿½es d'infï¿½rence du contenu d'une variable</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>contents=Contents(liste_d_index,list_d_infer)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>contents=Contents(liste_d_index,list_d_infer)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>liste_d_index</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP> : liste d'indexes similaires aux indexes retournï¿½s par <LINK>macr2tree</LINK>.</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>liste_d_infer</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP> : liste de tlists de type "infer" contenant les donnï¿½es
-        d'infï¿½rence pour l'index correspondant.</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>contents</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: une tlist de type "contents"</SP>
-       </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>liste_d_index</term>
+        <listitem>
+          <para>liste d'indexes similaires aux indexes retournï¿½s par <link linkend="macr2tree">macr2tree</link>.</para>
+       </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>liste_d_infer</term>
+        <listitem>
+          <para>liste de tlists de type "infer" contenant les donnï¿½es
+        d'infï¿½rence pour l'index correspondant.</para>
+       </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>contents</term>
+        <listitem>
+          <para>une tlist de type "contents"</para>
+       </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>
-    Cette fonction crï¿½ï¿½ une <VERB>tlist</VERB> reprï¿½sentant les
+  <refsection><title>Description</title>
+    <para>
+    Cette fonction crï¿½ï¿½ une <literal>tlist</literal> reprï¿½sentant les
     donnï¿½es d'infï¿½rence pour le contenu d'une Cell ou d'une Struct quand
     on utilise M2SCI. Tous les paramï¿½tres d'entrï¿½e sont vï¿½rifiï¿½s pour ï¿½tre compatible avec
     les "tlists M2SCI". (Unknown=-1 dans M2SCI).
     Assurez vous que pour chaque entrï¿½e dans la liste d'indexes, il y
     a une entrï¿½e dans la liste de tlists de type "infer".
-    </P>  
-  </DESCRIPTION>
+    </para>  
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>get_contents_infer</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="get_contents_infer">get_contents_infer</link> </member>
+    <member> <link linkend="Funcall">Funcall</link> </member>
+    <member> <link linkend="Operation">Operation</link> </member>
+    <member> <link linkend="Variable">Variable</link> </member>
+    <member> <link linkend="Cste">Cste</link> </member>
+    <member> <link linkend="Infer">Infer</link> </member>
+    <member> <link linkend="Type">Type</link> </member>
+    <member> <link linkend="Equal">Equal</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
 
-</MAN>
-
+</refentry>

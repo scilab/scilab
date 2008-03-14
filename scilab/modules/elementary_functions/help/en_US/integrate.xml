@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,84 +10,81 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>integrate</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="integrate"> integration by quadrature</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x]=integrate(expr,v,x0,x1 [,ea [,er]])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>expr</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: external Scilab</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string (integration variable)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x0,x1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real numbers (bounds of integration)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ea,er</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real numbers (absolute  error bound) Default value: 0</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>er</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real number, (relative error bound) Default value: 1.d-8</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    computes :</P>
-    <VERBATIM><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="integrate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>integrate</refname><refpurpose> integration by quadrature</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x]=integrate(expr,v,x0,x1 [,ea [,er]])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>expr</term>
+        <listitem>
+          <para>external Scilab</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>string (integration variable)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0,x1</term>
+        <listitem>
+          <para>real numbers (bounds of integration)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ea,er</term>
+        <listitem>
+          <para>real numbers (absolute  error bound) Default value: 0</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>er</term>
+        <listitem>
+          <para>real number, (relative error bound) Default value: 1.d-8</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    computes :</para>
+    <programlisting><![CDATA[
                        /x1
                       [
                   x = I  f(v)dv
                       ]
                      /x0
-      ]]></VERBATIM>
-    <P>
+      ]]></programlisting>
+    <para>
     The evaluation hopefully satisfies following claim for accuracy:
-    <VERB>abs(I-x)&lt;= max(ea,er*abs(I))</VERB> where I stands for the
-    exact value of the integral.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <literal>abs(I-x)&lt;= max(ea,er*abs(I))</literal> where I stands for the
+    exact value of the integral.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 integrate('sin(x)','x',0,%pi)
 integrate(['if x==0 then 1,';
            'else sin(x)/x,end'],'x',0,%pi)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>intg</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>inttrap</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>intsplin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ode</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="intg">intg</link>
+    </member>
+    <member>
+      <link linkend="inttrap">inttrap</link>
+    </member>
+    <member>
+      <link linkend="intsplin">intsplin</link>
+    </member>
+    <member>
+      <link linkend="ode">ode</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -12,74 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>iconvert</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="iconvert"> conversion to 1 or 4 byte integer representation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=iconvert(X,itype)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of floats or integers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of integers coded on one, two or four bytes.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iconvert"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>iconvert</refname><refpurpose> conversion to 1 or 4 byte integer representation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=iconvert(X,itype)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>matrix of floats or integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>matrix of integers coded on one, two or four bytes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     converts and stores data two one, two or four bytes integers. 
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="itype=0">
-        <SP>: return floating point numbers</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="itype=1">
-        <SP>: return int8 numbers in the range [-128,127]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="itype=11">
-        <SP>: return uint8 numbers in the range [0,255]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="itype=2">
-        <SP>: return int16 numbers in the range [-32768,32767]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="itype=12">
-        <SP>: return uint16 numbers in the range [0, 65535]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="itype=4">
-        <SP>: return int32 numbers in the range [-2147483648,2147483647]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="itype=14">
-        <SP>: return uint32 numbers in the range [0, 4294967295]</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </para>
+    <variablelist>
+      <varlistentry><term>itype=0</term><listitem>
+        <para>return floating point numbers</para>
+      </listitem></varlistentry>
+      <varlistentry><term>itype=1</term><listitem>
+        <para>return int8 numbers in the range [-128,127]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>itype=11</term><listitem>
+        <para>return uint8 numbers in the range [0,255]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>itype=2</term><listitem>
+        <para>return int16 numbers in the range [-32768,32767]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>itype=12</term><listitem>
+        <para>return uint16 numbers in the range [0, 65535]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>itype=4</term><listitem>
+        <para>return int32 numbers in the range [-2147483648,2147483647]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>itype=14</term><listitem>
+        <para>return uint32 numbers in the range [0, 4294967295]</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 b=int32([1 -120 127 312])
 y=iconvert(b,1)
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>double</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>inttype</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="double">double</link>
+    </member>
+    <member>
+      <link linkend="inttype">inttype</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

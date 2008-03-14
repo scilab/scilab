@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,73 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>load_graph</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="load_graph"> loads a graph from a file</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[g,modified,mgs] = load_graph(name)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>name</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, the path of the file to load</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a  <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM> <PARAM_ITEM>
-        <PARAM_NAME>modified</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean, if true it indicates that the  graph list has been updated to the current version</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>msg</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string. if this argument is required the
-          <VERB>load_graph</VERB> function returns on errors instead
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="load_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>load_graph</refname><refpurpose> loads a graph from a file</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[g,modified,mgs] = load_graph(name)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>string, the path of the file to load</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a  <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry> <varlistentry>
+        <term>modified</term>
+        <listitem>
+          <para>a boolean, if true it indicates that the  graph list has been updated to the current version</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msg</term>
+        <listitem>
+          <para>a string. if this argument is required the
+          <literal>load_graph</literal> function returns on errors instead
           of calling the error manager. In such a case msg contains
-          the error message. If no error occurs <VERB>msg</VERB> is an
-          empty matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP> <VERB>load_graph</VERB> loads a graph from a file. This file
+          the error message. If no error occurs <literal>msg</literal> is an
+          empty matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para> <literal>load_graph</literal> loads a graph from a file. This file
     may be either an ascii file (scilab4.x versions) or a binary file
-    compatible with the <VERB>load</VERB> and <VERB>save</VERB> functions.</SP>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    compatible with the <literal>load</literal> and <literal>save</literal> functions.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 g=load_graph(metanet_module_path()+'/demos/mesh100.graph');
 show_graph(g);
 g=load_graph(metanet_module_path()+'/demos/colored.graph');
 show_graph(g,'new');
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>save_graph</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>graph_data_structure</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>save</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>load</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="save_graph">save_graph</link>
+    </member>
+    <member>
+      <link linkend="graph_data_structure">graph_data_structure</link>
+    </member>
+    <member>
+      <link linkend="save">save</link>
+    </member>
+    <member>
+      <link linkend="load">load</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

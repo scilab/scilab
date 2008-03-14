@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,83 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rubberbox</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="rubberbox"> Rubberband box for rectangle selection</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(initial_rect)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox()
-    </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(edition_mode)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>initial_rect</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector with two or four entries. With four entries it gives the
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rubberbox"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rubberbox</refname><refpurpose> Rubberband box for rectangle selection</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[final_rect,btn]=rubberbox(initial_rect)
+[final_rect,btn]=rubberbox()
+[final_rect,btn]=rubberbox(edition_mode)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>initial_rect</term>
+        <listitem>
+          <para>vector with two or four entries. With four entries it gives the
   initial rectangle  defined by [x_left, y_top, width, height], with
   two entries width and height are supposed to be 0.
-  coordinates of the upper-left corner of</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>edition_mode</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:a boolean, if edition_mode==%t; button press selects the first corner, release
+  coordinates of the upper-left corner of</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edition_mode</term>
+        <listitem>
+          <para>:a boolean, if edition_mode==%t; button press selects the first corner, release
 	    selects the opposite corner.if edition_mode==%f, button press or
 	    click selects the first corner, a click is requested to select the
-	    opposite corner. The default value is  edition_mode=%f </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>final_rect</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:a rectangle defined by [x_left, y_top, width, height]</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>btn</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:an integer, the number of the mouse button clicked</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>rubberbox(initial_rect)</VERB>  tracks a rubberband box in
-    the current graphic window, following the mouse. When a button is clicked <VERB>rubberbox</VERB> returns the final
-    rectangles definition  in <VERB>final_Rect</VERB>. If the argument
-    <VERB>initial_rect</VERB> user has to click to fix the initial
-    corner position.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+	    opposite corner. The default value is  edition_mode=%f </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>final_rect</term>
+        <listitem>
+          <para>:a rectangle defined by [x_left, y_top, width, height]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>btn</term>
+        <listitem>
+          <para>:an integer, the number of the mouse button clicked</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>rubberbox(initial_rect)</literal>  tracks a rubberband box in
+    the current graphic window, following the mouse. When a button is clicked <literal>rubberbox</literal> returns the final
+    rectangles definition  in <literal>final_Rect</literal>. If the argument
+    <literal>initial_rect</literal> user has to click to fix the initial
+    corner position.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 xsetech(frect=[0,0,100,100])
 [x,y]=xclick();r=rubberbox([x;y;30;10])
 xrect(r)
 r=rubberbox()
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xrect</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xrects</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xclick</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xgetmouse</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dragrect</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xrect">xrect</link>
+    </member>
+    <member>
+      <link linkend="xrects">xrects</link>
+    </member>
+    <member>
+      <link linkend="xclick">xclick</link>
+    </member>
+    <member>
+      <link linkend="xgetmouse">xgetmouse</link>
+    </member>
+    <member>
+      <link linkend="dragrect">dragrect</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

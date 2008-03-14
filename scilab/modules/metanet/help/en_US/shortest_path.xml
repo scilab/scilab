@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,97 +10,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="shortest_path"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>shortest_path</refname><refpurpose>shortest path</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>shortest_path</TITLE>
+  
 
-  <TYPE>Scilab function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="shortest_path">shortest path</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[p,lp] = shortest_path(i,j,g,[typ])</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[p,lp] =
-    shortest_path(i,j,g,[typ])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>i</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>i</PARAM_NAME>
+        <listitem>
+          <para>integer, number of start node</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integer, number of start node</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>j</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>j</PARAM_NAME>
+        <listitem>
+          <para>integer, number of end node</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integer, number of end node</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>g</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <listitem>
+          <para>a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>typ</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>typ</PARAM_NAME>
+        <listitem>
+          <para>string, type of shortest path</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string, type of shortest path</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>p</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
+        <listitem>
+          <para>row vector of integer numbers of the arcs of the shortest path
+          if it exists</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of integer numbers of the arcs of the shortest path
-          if it exists</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>lp</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>lp</PARAM_NAME>
+        <listitem>
+          <para>length of shortest path</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: length of shortest path</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P><VERB>shortest_path</VERB> returns the shortest path <VERB>p</VERB>
-    from node <VERB>i</VERB> to node <VERB>j</VERB> if it exists, and the
-    empty vector <VERB>[]</VERB> otherwise. The optional argument
-    <VERB>typ</VERB> is a string which defines the type of shortest path,
+  <refsection><title>Description</title>
+    <para><literal>shortest_path</literal> returns the shortest path <literal>p</literal>
+    from node <literal>i</literal> to node <literal>j</literal> if it exists, and the
+    empty vector <literal>[]</literal> otherwise. The optional argument
+    <literal>typ</literal> is a string which defines the type of shortest path,
     'arc' for the shortest path with respect to the number of arcs and
     'length' for the shortest path with respect to the length of the edges
-    <VERB>edge_length</VERB>.</P>
+    <literal>edge_length</literal>.</para>
 
-    <P>For the shortest path with respect to the length of the edges, the
-    lengths are given by the element <VERB>edge_length</VERB> of the graph
-    list. If its value is not given (empty vector <VERB>[]</VERB>), it is
+    <para>For the shortest path with respect to the length of the edges, the
+    lengths are given by the element <literal>edge_length</literal> of the graph
+    list. If its value is not given (empty vector <literal>[]</literal>), it is
     assumed to be equal to 0 on each edge. Lengths can be positive, equal to 0
-    or negative.</P>
+    or negative.</para>
 
-    <P>When a shortest path exists, <VERB>lp</VERB> is the length of this
-    path.</P>
-  </DESCRIPTION>
+    <para>When a shortest path exists, <literal>lp</literal> is the length of this
+    path.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 rand('uniform');
 
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
@@ -116,15 +110,15 @@ show_graph(g);
 hilite_edges(p);
 
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>find_path</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="find_path">find_path</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>nodes_2_path</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="nodes_2_path">nodes_2_path</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

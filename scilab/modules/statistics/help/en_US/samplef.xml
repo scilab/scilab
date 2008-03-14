@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,77 +10,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="samplef"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>samplef</refname><refpurpose>  sample with replacement from a population
+  and frequences of his values.</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s = samplef(n,X,f,orient)</synopsis></refsynopsisdiv>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>samplef</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="samplef">  sample with replacement from a population
-  and frequences of his values.</SHORT_DESCRIPTION>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>s = samplef(n,X,f,orient)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+    <varlistentry>
+    <term>n</term>
+    <listitem>
+       <para>positive integer (size of sample)</para>
+    </listitem>
+    </varlistentry>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>X</term>
+    <listitem>
+       <para>matrix. Samples will be extracted from this matrix</para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>n</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: positive integer (size of sample)</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>f</term>
+    <listitem>
+       <para>positive integer matrix with same type than X. It indicates frequences
+       of corresponding values of X.</para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>X</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: matrix. Samples will be extracted from this matrix</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>orient</term>
+    <listitem>
+       <para>Optional parameter. Admissible values are 1, 2, 'r' or 'c'</para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>f</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: positive integer matrix with same type than X. It indicates frequences
-       of corresponding values of X.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>orient</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: Optional parameter. Admissible values are 1, 2, 'r' or 'c'</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>s</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>:  vector or matrix containing sample</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>s</term>
+    <listitem>
+       <para> vector or matrix containing sample</para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-<P>
+  <refsection><title>Description</title>
+<para>
    This function gives s, a  vector of lenght n.  It contains
    a  sample of  n  extractions, with  replacement, from  the
    vector  (or  matrix)  X,  each element  counted  with  the
    frequence given by the corresponding value in vector f.
-</P>
-<P>
+</para>
+<para>
    s=samplef(n,X,f)   (or  s=samplef(n,X,f,'*'))   returns  a
    vector s whose values are a random sample of n values from
    X,   each  value   with  a   probability  to   be  sampled
    proportional  to the corresponding  value of  f, extracted
    with replacement, from X.  f must have same lenght than X.
-</P>
-<P>
+</para>
+<para>
    s=samplef(n,X,f,'r')           (or,          equivalently,
    s=samplef(n,X,f,1))    returns    a    matrix   of    type
    size(X,'r')xn.  It contains a random sample of n rows from
@@ -88,8 +83,8 @@
    to   the  corresponding   value  of   f,   extracted  with
    replacement, from the  rows of X. The lenght  of f must be
    equal to the number of rows of X.
-</P>
-<P>
+</para>
+<para>
    s=samplef(n,X,f,'c')           (or,          equivalently,
    s=samplef(n,X,f,2))    returns    a    matrix   of    type
    nxsize(X,'c').  It  contains a random sample  of n columns
@@ -97,10 +92,10 @@
    proportional  to the corresponding  value of  f, extracted
    with replacement, from the columns  of X.  The lenght of f
    must be equal to the number of columns of X.
-</P>
-  </DESCRIPTION>
+</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    a=[3 7 9;22 4 2]
    f1=[10 1 1 1 1 1]
    f2=[1 ; 15]
@@ -109,14 +104,14 @@
    s=samplef(15,a,f2,'r')
    s=samplef(15,a,f3,'c')
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sample</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>samwr</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="sample">sample</link> </member>
+    <member> <link linkend="samwr">samwr</link> </member>
+  </simplelist></refsection>
 
-  <AUTHOR>
+  <refsection><title>Authors</title><para>
    Carlos Klimann
-  </AUTHOR>
-</MAN>
+  </para></refsection>
+</refentry>

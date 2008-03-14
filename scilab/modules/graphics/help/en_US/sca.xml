@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,34 +10,31 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sca</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sca">set the current axes entity</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>a=sca(a)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a handle, the handle on the Axes entity</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP><VERB>sca(a)</VERB> is used to set the current <VERB>Axes</VERB> entity (see
-      <LINK>graphics_entities</LINK>) to the one pointed to by the handle
-      <VERB>a</VERB>. The drawing functions generaly use the
-      current axes entity.</SP>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sca"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sca</refname><refpurpose>set the current axes entity</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>a=sca(a)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>a handle, the handle on the Axes entity</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>sca(a)</literal> is used to set the current <literal>Axes</literal> entity (see
+      <link linkend="graphics_entities">graphics_entities</link>) to the one pointed to by the handle
+      <literal>a</literal>. The drawing functions generaly use the
+      current axes entity.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 clf()
 a1=newaxes(); 
 a1.axes_bounds=[0,0,1.0,0.5];
@@ -54,18 +51,18 @@ plot(t,asinh(t),'g')
 legend(['acosh','asinh'])
 sca(a2); //make secoçnd axes current
 legend('sinh')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>subplot</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>gda</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>newaxes</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. Steer, INRIA</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="subplot">subplot</link>
+    </member>
+    <member>
+      <link linkend="gda">gda</link>
+    </member>
+    <member>
+      <link linkend="newaxes">newaxes</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>S. Steer, INRIA</para></refsection>
+</refentry>

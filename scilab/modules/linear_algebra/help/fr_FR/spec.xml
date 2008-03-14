@@ -1,167 +1,140 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>spec  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="spec"> valeurs propres d&apos;une matrice  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>evals=spec(A)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[X,diagevals]=spec(A)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>evals=spec(A,E)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[al,be]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[al,be,Z]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[al,be]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[al,be,Q,Z]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
-
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>A  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée réelle ou complexe
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-	<PARAM_NAME>E  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée réelle ou complexe de même dimensions que  <VERB> A</VERB>
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      
-      <PARAM_ITEM>
-	<PARAM_NAME>evals  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : vecteur réel ou complexe
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-	<PARAM_NAME>diagevals  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    :  matrice carrée diagonale réelle ou complexe (les éléments
-	    diagonaux sont les valeurs propres)
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-	<PARAM_NAME>al  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : vecteur réel ou complexe, al./be donnes les valeurs propres
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-	<PARAM_NAME>be  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : vecteur réel ou complexe, al./be donnes les valeurs propres
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-	<PARAM_NAME>X  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée inversible réelle ou complexe, matrices des
-	    vecteurs propres.
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-	<PARAM_NAME>Q  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée inversible réelle ou complexe, matrices des
-	    vecteurs propres à gauche.
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-	<PARAM_NAME>Z  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : atrice carrée inversible réelle ou complexe, matrices des
-	    vecteurs propres à droite.
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label='spec(A)'> 
-	<SP>
-	  : <VERB> evals=spec(A)</VERB>  retourne dans le vecteur
-	  <VERB>evals</VERB> les valeurs propres de <VERB>A</VERB>.
-	</SP>
-	<P>
-	  <VERB> [evals,X] =spec(A)</VERB> retourne de plus les vecteurs
-	  propres (s'ils existent). Voir aussi <VERB>bdiag</VERB>
-	</P>
-      </DESCRIPTION_ITEM>
-   
-      <DESCRIPTION_ITEM  label='spec(A,B)'> 
-	<SP>
-	  : <VERB>evals=spec(A,E)</VERB> retourne le  spectre du faisceau
-	  <VERB>s E - A</VERB>, c'est à dire les racines du déterminant de
-	  la matrice de polynômes <VERB>s E - A</VERB>.
-	</SP>
-
-	<P>
-	  <VERB>[al,be] = spec(A,E)</VERB> retourne le  spectre du faisceau
-	  <VERB>s E - A</VERB>, c'est à dire les racines du déterminant de
-	  la matrice de polynômes <VERB>s E - A</VERB>. Les valeurs propres
-	  sont données par <VERB>al./be</VERB>. Si <VERB>be(i) = 0</VERB> la
-	  <VERB>i</VERB>ième valeur propres est à l'infini. (Pour <VERB>E =
-	    eye(A), al./be</VERB> est <VERB>spec(A)</VERB>).
-	</P>
-	<P>
-	  <VERB> [al,be,Z] = spec(A,E)</VERB> retourne de plus la matrice
-	  <VERB>Z</VERB> des vecteurs propres généralisés à droite.
-	</P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="spec"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>spec</refname><refpurpose> valeurs propres d'une matrice  </refpurpose></refnamediv>
   
-	<P>
-	  <VERB> [al,be,Q,Z] = spec(A,E)</VERB> retourne de plus les matrices
-	  <VERB>Q</VERB> et <VERB>Z</VERB> des vecteurs propres généralisés à
-	  droite et à gauche.
-      </P>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>evals=spec(A)
+[X,diagevals]=spec(A)
 
-  <EXAMPLE><![CDATA[
+evals=spec(A,E)
+[al,be]=spec(A,E)
+[al,be,Z]=spec(A,E)
+[al,be]=spec(A,E)
+[al,be,Q,Z]=spec(A,E)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>A  </term>
+	<listitem>
+	  <para>matrice carrée réelle ou complexe
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+      <varlistentry>
+	<term>E  </term>
+	<listitem>
+	  <para>matrice carrée réelle ou complexe de même dimensions que  <literal> A</literal>
+	  </para>
+	</listitem> 
+      </varlistentry>
+      
+      <varlistentry>
+	<term>evals  </term>
+	<listitem>
+	  <para>vecteur réel ou complexe
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+      <varlistentry>
+	<term>diagevals  </term>
+	<listitem>
+	  <para> matrice carrée diagonale réelle ou complexe (les éléments
+	    diagonaux sont les valeurs propres)
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+      <varlistentry>
+	<term>al  </term>
+	<listitem>
+	  <para>vecteur réel ou complexe, al./be donnes les valeurs propres
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+      <varlistentry>
+	<term>be  </term>
+	<listitem>
+	  <para>vecteur réel ou complexe, al./be donnes les valeurs propres
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+      <varlistentry>
+	<term>X  </term>
+	<listitem>
+	  <para>matrice carrée inversible réelle ou complexe, matrices des
+	    vecteurs propres.
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+      <varlistentry>
+	<term>Q  </term>
+	<listitem>
+	  <para>matrice carrée inversible réelle ou complexe, matrices des
+	    vecteurs propres à gauche.
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+      <varlistentry>
+	<term>Z  </term>
+	<listitem>
+	  <para>atrice carrée inversible réelle ou complexe, matrices des
+	    vecteurs propres à droite.
+	  </para>
+	</listitem> 
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <variablelist>
+      <varlistentry><term>spec(A)</term><listitem> 
+	<para>
+	  : <literal> evals=spec(A)</literal>  retourne dans le vecteur
+	  <literal>evals</literal> les valeurs propres de <literal>A</literal>.
+	</para>
+	<para>
+	  <literal> [evals,X] =spec(A)</literal> retourne de plus les vecteurs
+	  propres (s'ils existent). Voir aussi <literal>bdiag</literal>
+	</para>
+      </listitem></varlistentry>
+   
+      <varlistentry><term>spec(A,B)</term><listitem> 
+	<para>
+	  : <literal>evals=spec(A,E)</literal> retourne le  spectre du faisceau
+	  <literal>s E - A</literal>, c'est à dire les racines du déterminant de
+	  la matrice de polynômes <literal>s E - A</literal>.
+	</para>
+
+	<para>
+	  <literal>[al,be] = spec(A,E)</literal> retourne le  spectre du faisceau
+	  <literal>s E - A</literal>, c'est à dire les racines du déterminant de
+	  la matrice de polynômes <literal>s E - A</literal>. Les valeurs propres
+	  sont données par <literal>al./be</literal>. Si <literal>be(i) = 0</literal> la
+	  <literal>i</literal>ième valeur propres est à l'infini. (Pour <literal>E =
+	    eye(A), al./be</literal> est <literal>spec(A)</literal>).
+	</para>
+	<para>
+	  <literal> [al,be,Z] = spec(A,E)</literal> retourne de plus la matrice
+	  <literal>Z</literal> des vecteurs propres généralisés à droite.
+	</para>
+  
+	<para>
+	  <literal> [al,be,Q,Z] = spec(A,E)</literal> retourne de plus les matrices
+	  <literal>Q</literal> et <literal>Z</literal> des vecteurs propres généralisés à
+	  droite et à gauche.
+      </para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>  
+
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     // MATRIX EIGENVALUES
     A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
     spec(A)
@@ -180,24 +153,24 @@
     A=A+%i*rand(A);E=rand(A);
     roots(det(%s*E-A))   //complex case
 
-    ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>gspec</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>bdiag</LINK> </SEE_ALSO_ITEM>  
-   <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <USED_FUNCTIONS>
-    <P>
+    ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="poly">poly</link> </member> 
+    <member> <link linkend="det">det</link> </member> 
+    <member> <link linkend="gspec">gspec</link> </member> 
+    <member> <link linkend="schur">schur</link> </member> 
+    <member> <link linkend="bdiag">bdiag</link> </member>  
+   <member> <link linkend="colcomp">colcomp</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Fonctions Utilisées</title>
+    <para>
       Le calcul des valeurs propres des matrices est basé sur les
       routines Lapack DGEEV and ZGEEV.
-    </P>
-    <P>
+    </para>
+    <para>
       Le calcul des valeurs propres des matrices est basé sur les
       routines Lapack DGEEV and ZGEEV.
-    </P>
-  </USED_FUNCTIONS>
+    </para>
+  </refsection>
 
-</MAN>
+</refentry>

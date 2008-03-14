@@ -1,59 +1,46 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_isletter</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_isletter"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_isletter</refname><refpurpose>Fonction d'�mulation de la fonction Matlab isletter</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_isletter">Fonction d'�mulation de la fonction Matlab isletter</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Il n'y a pas de fonction Scilab �quivalente � la fonction Matlab <VERB>isletter</VERB> et les 
+    <para>Il n'y a pas de fonction Scilab �quivalente � la fonction Matlab <literal>isletter</literal> et les 
     expressions �quivalentes sont assez compliqu�es, donc
-    <VERB>mfile2sci</VERB> utilise <VERB>mtlb_isletter(A)</VERB>pour remplacer <VERB>isletter(A)</VERB>.
+    <literal>mfile2sci</literal> utilise <literal>mtlb_isletter(A)</literal>pour remplacer <literal>isletter(A)</literal>.
      Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_isletter</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_isletter</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> n'est pas une cha�ne de caract�res
-        <VERB>tf = mtlb_isletter(A)</VERB> peut �tre remplac� par <VERB>tf = zeros(A)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> n'est pas une cha�ne de caract�res
+        <literal>tf = mtlb_isletter(A)</literal> peut �tre remplac� par <literal>tf = zeros(A)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> est une cha�ne de caract�res
-        <VERB>tf = mtlb_isletter(A)</VERB> peut �tre remplac� par 
-	<VERB>tf = (asciimat(A)&gt;=65&amp;asciimat(A)&lt;=90)|(asciimat(A)&gt;=97&amp;asciimat(A)&lt;=122)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Si <literal>A</literal> est une cha�ne de caract�res
+        <literal>tf = mtlb_isletter(A)</literal> peut �tre remplac� par 
+	<literal>tf = (asciimat(A)&gt;=65&amp;asciimat(A)&lt;=90)|(asciimat(A)&gt;=97&amp;asciimat(A)&lt;=122)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_isletter</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_isletter</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

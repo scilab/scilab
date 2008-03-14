@@ -1,70 +1,64 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-   <LANGUAGE>eng</LANGUAGE>
-   <TITLE>edit_error</TITLE>
-   <TYPE>Scilab Function  </TYPE>
-   <DATE>$LastChangedDate$</DATE>
-   <SHORT_DESCRIPTION name="edit_error"> opens in SciPad the source of the last recorded error</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edit_error"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>edit_error</refname><refpurpose> opens in SciPad the source of the last recorded error</refpurpose></refnamediv>
+   
+   
+   
+   
+   
 
-   <CALLING_SEQUENCE>
-   <CALLING_SEQUENCE_ITEM>answ = edit_error(clearerror)</CALLING_SEQUENCE_ITEM>
-   </CALLING_SEQUENCE>
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>answ = edit_error(clearerror)</synopsis></refsynopsisdiv>
 
-   <PARAM>
-   <PARAM_INDENT>
+   <refsection><title>Parameters</title>
+   <variablelist>
 
-     <PARAM_ITEM>
-     <PARAM_NAME>clearerror</PARAM_NAME>
-     <PARAM_DESCRIPTION>
-        <SP>
-        : boolean - if true the error condition is cleared, if false it is kept (as in
-          <LINK>lasterror</LINK>)
-        </SP>
-     </PARAM_DESCRIPTION>
-     </PARAM_ITEM>
+     <varlistentry>
+     <term>clearerror</term>
+     <listitem>
+        <para>boolean - if true the error condition is cleared, if false it is kept (as in
+          <link linkend="lasterror">lasterror</link>)
+        </para>
+     </listitem>
+     </varlistentry>
 
-     <PARAM_ITEM>
-     <PARAM_NAME>answ</PARAM_NAME>
-     <PARAM_DESCRIPTION>
-        <SP>
-        : a string stating which source file is open (or why no file was open)
-        </SP>
-     </PARAM_DESCRIPTION>
-     </PARAM_ITEM>
-   </PARAM_INDENT>
-   </PARAM>
+     <varlistentry>
+     <term>answ</term>
+     <listitem>
+        <para>a string stating which source file is open (or why no file was open)
+        </para>
+     </listitem>
+     </varlistentry>
+   </variablelist>
+   </refsection>
 
-   <DESCRIPTION>
-      <P>
+   <refsection><title>Description</title>
+      <para>
        This function opens in SciPad the source of the function which caused the last recorded
        error, and highlights the offending line. 
-      </P>
-      <P>
+      </para>
+      <para>
        This function works only for functions which are defined in libraries, i.e.
        not for internal functions, nor with functions defined online, nor loaded with
-       individual <LINK>getf</LINK> or <LINK>getd</LINK>. This is since Scilab presently
+       individual <link linkend="getf">getf</link> or <link linkend="getd">getd</link>. This is since Scilab presently
        retains only the path to libraries and not to individual function sources.
-      </P>
-      <P>
+      </para>
+      <para>
        Correspondance between the function name foo and function filename foo.sci
        is tacitly assumed.
-      </P>
-   </DESCRIPTION>
+      </para>
+   </refsection>
 
-   <EXAMPLE><![CDATA[
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     acosh abc
     edit_error
-   ]]></EXAMPLE>
+   ]]></programlisting></refsection>
 
-   <SEE_ALSO>
-     <SEE_ALSO_ITEM> <LINK>scipad</LINK> </SEE_ALSO_ITEM>
-     <SEE_ALSO_ITEM> <LINK>lasterror</LINK> </SEE_ALSO_ITEM>
-     <SEE_ALSO_ITEM> <LINK>errclear</LINK> </SEE_ALSO_ITEM>
-   </SEE_ALSO>
+   <refsection><title>See Also</title><simplelist type="inline">
+     <member> <link linkend="scipad">scipad</link> </member>
+     <member> <link linkend="lasterror">lasterror</link> </member>
+     <member> <link linkend="errclear">errclear</link> </member>
+   </simplelist></refsection>
 
 
-   <AUTHORS>
-     <AUTHORS_ITEM>Enrico Segre</AUTHORS_ITEM>
-   </AUTHORS>
- </MAN>
+   <refsection><title>Authors</title><simplelist type="vert">
+     <member>Enrico Segre</member>
+   </simplelist></refsection>
+ </refentry>

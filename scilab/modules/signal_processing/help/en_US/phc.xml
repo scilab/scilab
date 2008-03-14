@@ -1,51 +1,47 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>phc</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="phc"> Markovian representation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[H,F,G]=phc(hk,d,r)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>hk</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: hankel matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>d</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: dimension of the observation</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: desired dimension of the state vector for the approximated model</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>H, F, G</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: relevant matrices of the Markovian model</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Function which computes the matrices <VERB>H, F, G</VERB> of a Markovian 
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="phc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>phc</refname><refpurpose> Markovian representation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[H,F,G]=phc(hk,d,r)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>hk</term>
+        <listitem>
+          <para>hankel matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>d</term>
+        <listitem>
+          <para>dimension of the observation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>desired dimension of the state vector for the approximated model</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H, F, G</term>
+        <listitem>
+          <para>relevant matrices of the Markovian model</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Function which computes the matrices <literal>H, F, G</literal> of a Markovian 
     representation by the principal hankel
     component approximation method, from the hankel matrix built
-    from the covariance sequence of a stochastic process.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    from the covariance sequence of a stochastic process.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //
 //This example may usefully be compared with the results from 
 //the 'levin' macro (see the corresponding help and example)
@@ -90,11 +86,11 @@ s=s/2/%pi/.1;
 //now we get the estimated spectrum
 imag(s),
 //
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>levin</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="levin">levin</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,42 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>date</TITLE>
-	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="date"> Current date as date string</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="date"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>date</refname><refpurpose> Current date as date string</refpurpose></refnamediv>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>dt=date()</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>dt</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-				<SP>: a string</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
 	
-	<DESCRIPTION>
-		<P>dt=date() returns a string containing the date in dd-mmm-yyyy format.</P>
-	</DESCRIPTION>
+ 
 	
-	<EXAMPLE><![CDATA[
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>dt=date()</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>dt</term>
+				<listitem>
+				<para>a string</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection><title>Description</title>
+		<para>dt=date() returns a string containing the date in dd-mmm-yyyy format.</para>
+	</refsection>
+	
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 date()
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM><LINK>getdate</LINK></SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM><LINK>toc</LINK></SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM><LINK>tic</LINK></SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM><LINK>timer</LINK></SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
-	</SEE_ALSO>
-</MAN>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member><link linkend="getdate">getdate</link></member>
+		<member><link linkend="toc">toc</link></member>
+		<member><link linkend="tic">tic</link></member>
+		<member><link linkend="timer">timer</link></member>
+		<member><link linkend="etime">etime</link></member>
+	</simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
@@ -10,72 +10,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
- 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xs2ps"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xs2ps</refname><refpurpose>send graphics to a file in PS
+  syntax</refpurpose></refnamediv>
+  
 
-  <TITLE>xs2ps</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="xs2ps">send graphics to a file in PS
-  syntax</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xs2ps(win_num,filen,[color])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xs2ps(win_num,filen,[color])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>win_num</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integer scalar or vector .</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>integer scalar or vector .</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>filen</PARAM_NAME>
+      <varlistentry>
+        <term>filen</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string, file name.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>string, file name.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>color</PARAM_NAME>
+      <varlistentry>
+        <term>color</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: optional integer. 0 means black and white and 1 means color.
+        <listitem>
+          <para>optional integer. 0 means black and white and 1 means color.
           The default value is to use a value compatible with the screen
-          status.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+          status.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-	<P>The function xs2ps will not be available in version alpha</P>
-    <P><VERB>xs2ps</VERB> saves the recorded graphics of the window
-    <VERB>win_num</VERB> to file <VERB>filen</VERB> in Postscript syntax. The
-    <VERB>filen</VERB> must not have suffix extension.</P>
+  <refsection><title>Description</title>
+	<para>The function xs2ps will not be available in version alpha</para>
+    <para><literal>xs2ps</literal> saves the recorded graphics of the window
+    <literal>win_num</literal> to file <literal>filen</literal> in Postscript syntax. The
+    <literal>filen</literal> must not have suffix extension.</para>
 
-    <P>Note that the generated Postscript file cannot be direcly printed since
-    it requires a header file. The Scilab command <VERB>BEpsf</VERB> or others
-    can be used to add a header file. The function <VERB>xs2eps</VERB> can be
+    <para>Note that the generated Postscript file cannot be direcly printed since
+    it requires a header file. The Scilab command <literal>BEpsf</literal> or others
+    can be used to add a header file. The function <literal>xs2eps</literal> can be
     used to directly produce an encapsulated Postscript file with an
-    header.</P>
+    header.</para>
 
-    <P>This function works only if the selected driver is <VERB>"Rec"</VERB>
-    in the window <VERB>win_num</VERB> or if the window is in "new style". The
-    generated postscript file does not contrains the header part</P>
-  </DESCRIPTION>
+    <para>This function works only if the selected driver is <literal>"Rec"</literal>
+    in the window <literal>win_num</literal> or if the window is in "new style". The
+    generated postscript file does not contrains the header part</para>
+  </refsection>
 
-<EXAMPLE><![CDATA[
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 scf(0);
 plot2d();
 // Postcript export
@@ -85,58 +81,58 @@ xs2ps(0,filename)
 xs2gif(0,'foo.gif');
 // ppm export
 xs2ppm(0,'foo.ppm');
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set_posfig_dim</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>printing</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set_posfig_dim">set_posfig_dim</link>
+    </member>
+    <member>
+      <link linkend="printing">printing</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xbasimp</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xbasimp">xbasimp</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2bmp</LINK>
-	</SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2bmp">xs2bmp</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2gif</LINK>
-	</SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2gif">xs2gif</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2jpg</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2jpg">xs2jpg</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2png</LINK>
-	</SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2png">xs2png</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2ppm</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2ppm">xs2ppm</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2eps</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2eps">xs2eps</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2pdf</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2pdf">xs2pdf</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2svg</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2svg">xs2svg</link>
+    </member>
   
-    <SEE_ALSO_ITEM>
-      <LINK>xs2fig</LINK>
-    </SEE_ALSO_ITEM>    
+    <member>
+      <link linkend="xs2fig">xs2fig</link>
+    </member>    
 
-    <SEE_ALSO_ITEM>
-      <LINK>xs2emf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="xs2emf">xs2emf</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

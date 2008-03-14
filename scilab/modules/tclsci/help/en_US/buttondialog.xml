@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jaime URZUA
@@ -10,45 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-<LANGUAGE>eng</LANGUAGE>
-<TITLE>buttondialog</TITLE>
-<TYPE>sciGUI toolbox function</TYPE>
-<DATE>$LastChangedDate$</DATE>
-<SHORT_DESCRIPTION name="buttondialog"> Create a simple button dialog</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="buttondialog"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>buttondialog</refname><refpurpose> Create a simple button dialog</refpurpose></refnamediv>
 
-<CALLING_SEQUENCE>
-<CALLING_SEQUENCE_ITEM>answer=buttondialog(mes,buttons[,icon])</CALLING_SEQUENCE_ITEM>
-</CALLING_SEQUENCE>
 
-<PARAM>
-<PARAM_INDENT>
-<PARAM_ITEM>
- <PARAM_NAME>mes</PARAM_NAME>
- <PARAM_DESCRIPTION><SP>: string, message to display.</SP></PARAM_DESCRIPTION>
-</PARAM_ITEM>
-<PARAM_ITEM>
- <PARAM_NAME>buttons</PARAM_NAME>
- <PARAM_DESCRIPTION><SP>: string, buttons name.</SP></PARAM_DESCRIPTION>
-</PARAM_ITEM>
-<PARAM_ITEM>
- <PARAM_NAME>icon</PARAM_NAME>
- <PARAM_DESCRIPTION><SP>: string, icon type, should be: error, hourglass, info, passwd, question and warning.</SP> </PARAM_DESCRIPTION>
-</PARAM_ITEM>
-</PARAM_INDENT>
-</PARAM>
 
-<DESCRIPTION>
-<P><VERB>buttondialog</VERB> create a simple button dialog and retur the answer. <VERB>buttons</VERB> identify the buttons to show in the following manner : "button_1|button_2....|button_n"</P>
-</DESCRIPTION>
 
-<EXAMPLE>
-<![CDATA[answ=buttondialog("This is an example","ok");
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>answer=buttondialog(mes,buttons[,icon])</synopsis></refsynopsisdiv>
+
+<refsection><title>Parameters</title>
+<variablelist>
+<varlistentry>
+ <term>mes</term>
+ <listitem><para>string, message to display.</para></listitem>
+</varlistentry>
+<varlistentry>
+ <term>buttons</term>
+ <listitem><para>string, buttons name.</para></listitem>
+</varlistentry>
+<varlistentry>
+ <term>icon</term>
+ <listitem><para>string, icon type, should be: error, hourglass, info, passwd, question and warning.</para> </listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+
+<refsection><title>Description</title>
+<para><literal>buttondialog</literal> create a simple button dialog and retur the answer. <literal>buttons</literal> identify the buttons to show in the following manner : "button_1|button_2....|button_n"</para>
+</refsection>
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+answ=buttondialog("This is an example","ok");
 answ=buttondialog("Do the work?","yes|no|maybe","question");
-]]>
-</EXAMPLE>
 
-<AUTHOR>Jaime Urzua</AUTHOR>
+]]></programlisting></refsection>
+
+<refsection><title>Authors</title><para>Jaime Urzua</para></refsection>
   
-</MAN>
+</refentry>

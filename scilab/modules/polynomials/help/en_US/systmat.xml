@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -10,60 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>systmat</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="systmat"> system matrix</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[Sm]=systmat(Sl);  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>Sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: linear system (<VERB>syslin</VERB> list) or descriptor system</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Sm</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix pencil</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    System matrix of the linear system <VERB>Sl</VERB> (<VERB>syslin</VERB> list)
-    in state-space form (utility function).</P>
-    <VERBATIM>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="systmat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>systmat</refname><refpurpose> system matrix</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Sm]=systmat(Sl);</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list) or descriptor system</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sm</term>
+        <listitem>
+          <para>matrix pencil</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    System matrix of the linear system <literal>Sl</literal> (<literal>syslin</literal> list)
+    in state-space form (utility function).</para>
+    <programlisting><![CDATA[
+
  Sm = [-sI + A   B;
       [    C     D]
-   ]]>
-    </VERBATIM>
-    <P>
-    For a descriptor system (<VERB>Sl=list('des',A,B,C,D,E)</VERB>), <VERB>systmat</VERB> returns:</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    For a descriptor system (<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal> returns:</para>
+    <programlisting><![CDATA[
+
  Sm = [-sE + A   B;
       [    C     D]
-   ]]>
-    </VERBATIM>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ss2des</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>sm2des</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>sm2ss</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ss2des">ss2des</link>
+    </member>
+    <member>
+      <link linkend="sm2des">sm2des</link>
+    </member>
+    <member>
+      <link linkend="sm2ss">sm2ss</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

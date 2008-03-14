@@ -1,81 +1,77 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>eval_cshep2d</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="eval_cshep2d">bidimensional cubic shepard interpolation evaluation</SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-    <PARAM_INDENT>
-     <PARAM_ITEM>
-        <PARAM_NAME>xp, yp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: two real vectors (or matrices) of the same size</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>tl_coef</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: a tlist scilab structure (of type cshep2d) defining a cubic Shepard interpolation function
-               (named <VERB>S</VERB> in the following)</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>zp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: vector (or matrix) of the same size than <VERB>xp</VERB> and  <VERB>yp</VERB>, 
-               evaluation of the interpolant <VERB>S</VERB> at these points</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>dzpdx,dzpdy</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: vectors (or matrices) of the same size than <VERB>xp</VERB> and  <VERB>yp</VERB>, evaluation
-               of the first derivatives of <VERB>S</VERB> at these points</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>d2zpdxx,d2zpdxy,d2zpdyy</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: vectors (or matrices) of the same size than <VERB>xp</VERB> and  <VERB>yp</VERB>, evaluation of the
-               second derivatives of <VERB>S</VERB> at these points</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
-   </PARAM_INDENT>
-  </PARAM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eval_cshep2d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>eval_cshep2d</refname><refpurpose>bidimensional cubic shepard interpolation evaluation</refpurpose></refnamediv>
   
-  <DESCRIPTION>
-    <P>
+  
+  
+  
+  
+
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis></refsynopsisdiv>
+
+  <refsection><title>Parameters</title>
+    <variablelist>
+     <varlistentry>
+        <term>xp, yp</term>
+        <listitem>
+	 <para>two real vectors (or matrices) of the same size</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>tl_coef</term>
+        <listitem>
+	 <para>a tlist scilab structure (of type cshep2d) defining a cubic Shepard interpolation function
+               (named <literal>S</literal> in the following)</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>zp</term>
+        <listitem>
+	 <para>vector (or matrix) of the same size than <literal>xp</literal> and  <literal>yp</literal>, 
+               evaluation of the interpolant <literal>S</literal> at these points</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>dzpdx,dzpdy</term>
+        <listitem>
+	 <para>vectors (or matrices) of the same size than <literal>xp</literal> and  <literal>yp</literal>, evaluation
+               of the first derivatives of <literal>S</literal> at these points</para>
+	</listitem> 
+     </varlistentry>
+     <varlistentry>
+        <term>d2zpdxx,d2zpdxy,d2zpdyy</term>
+        <listitem>
+	 <para>vectors (or matrices) of the same size than <literal>xp</literal> and  <literal>yp</literal>, evaluation of the
+               second derivatives of <literal>S</literal> at these points</para>
+	</listitem> 
+     </varlistentry>
+   </variablelist>
+  </refsection>
+  
+  <refsection><title>Description</title>
+    <para>
     This is the evaluation routine for cubic Shepard interpolation function computed with
-    <LINK>cshep2d</LINK>, that is :
-    </P>
-        <VERBATIM><![CDATA[
+    <link linkend="cshep2d">cshep2d</link>, that is :
+    </para>
+        <programlisting><![CDATA[
       zp(i) = S(xp(i),yp(i))   
       dzpdx(i) = dS/dx(xp(i),yp(i))
       dzpdy(i) = dS/dy(xp(i),yp(i))  
       d2zpdxx(i) = d2S/dx2(xp(i),yp(i))
       d2zpdxy(i) = d2S/dxdy(xp(i),yp(i))  
       d2zpdyy(i) = d2S/dy2(xp(i),yp(i))
-         ]]></VERBATIM>
-    </DESCRIPTION>
+         ]]></programlisting>
+    </refsection>
 
-    <SECTION label="Remark">
-    <P>
-    The interpolant <EM>S</EM> is C2 (twice continuously differentiable) but is also extended by 
-    zero for <EM>(x,y)</EM> far enough the interpolation points. This leads to a discontinuity
+    <refsection><title>Remark</title>
+    <para>
+    The interpolant <emphasis>S</emphasis> is C2 (twice continuously differentiable) but is also extended by 
+    zero for <emphasis>(x,y)</emphasis> far enough the interpolation points. This leads to a discontinuity
     in a region far outside the interpolation points, and so, is not cumbersome in practice (in a 
     general manner, evaluation outside interpolation points (i.e. extrapolation) leads to very 
     inacurate results).
-    </P>
-    </SECTION>
+    </para>
+    </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // see example section of cshep2d
 
 // this example shows the behavior far from the interpolation points ...
@@ -100,16 +96,16 @@ xbasc();
 plot3d(xf,yf,list(zf,color), flag=[2 6 4])
 legends(["extrapolation region","interpolation region"],[2 3],1)
 xselect()
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>cshep2d</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+ ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="cshep2d">cshep2d</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-     <AUTHORS_ITEM> Robert J. Renka</AUTHORS_ITEM>
-     <AUTHORS_ITEM> B. Pincon (scilab interface)</AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Authors</title><simplelist type="vert">
+     <member> Robert J. Renka</member>
+     <member> B. Pincon (scilab interface)</member>
+  </simplelist></refsection>
 
-</MAN>
+</refentry>

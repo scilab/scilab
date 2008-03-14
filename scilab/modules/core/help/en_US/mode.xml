@@ -1,55 +1,51 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mode</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="mode"> select a mode in exec file</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mode(k)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>k=mode()   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
-    Used exclusively inside an exec-file or a scilab function <VERB>mode(k)</VERB> allows to change the information displayed during the execution, depending on
-    the value of <VERB>k</VERB>:
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="k=0">
-        <SP>: The new variable values are displayed if required (see help on semi or comma).</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="k=-1">
-        <SP>: the exec file or scilab function executes silently. (this is the default value for scilab functions)</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="k=1 or k=3">
-        <SP>: each line of instructions is echoed preceded of the prompt(if
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mode"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mode</refname><refpurpose> select a mode in exec file</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mode(k)
+k=mode()</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
+    Used exclusively inside an exec-file or a scilab function <literal>mode(k)</literal> allows to change the information displayed during the execution, depending on
+    the value of <literal>k</literal>:
+  </para>
+    <variablelist>
+      <varlistentry><term>k=0</term><listitem>
+        <para>The new variable values are displayed if required (see help on semi or comma).</para>
+      </listitem></varlistentry>
+      <varlistentry><term>k=-1</term><listitem>
+        <para>the exec file or scilab function executes silently. (this is the default value for scilab functions)</para>
+      </listitem></varlistentry>
+      <varlistentry><term>k=1 or k=3</term><listitem>
+        <para>each line of instructions is echoed preceded of the prompt(if
 	  possible). The new variable values are displayed if required. This is
-	  the default for exec files.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="k=7">
-        <SP>: The new variable values are displayed if required, each line of
+	  the default for exec files.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>k=7</term><listitem>
+        <para>The new variable values are displayed if required, each line of
 	  instructions is echoed (if possible) and a prompt (&gt;&gt;) is
-	  issued after each line waiting for a carriage return .</SP>
-	<SP>If  carriage return follows character "p"  the execution is paused
-	  (see <LINK>pause</LINK>).</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <SP>Line display is disabled for compiled scilab function (see getf or
-      comp). By default, Scilab functions are executed using the silent ("-1") mode.</SP>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>exec</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>getf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>semi</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>comma</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+	  issued after each line waiting for a carriage return .</para>
+	<para>If  carriage return follows character "p"  the execution is paused
+	  (see <link linkend="pause">pause</link>).</para>
+      </listitem></varlistentry>
+    </variablelist>
+    <para>Line display is disabled for compiled scilab function (see getf or
+      comp). By default, Scilab functions are executed using the silent ("-1") mode.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="exec">exec</link>
+    </member>
+    <member>
+      <link linkend="getf">getf</link>
+    </member>
+    <member>
+      <link linkend="semi">semi</link>
+    </member>
+    <member>
+      <link linkend="comma">comma</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,45 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="apropos"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>apropos</refname><refpurpose> searches keywords in Scilab help</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>apropos(key)
+apropos(regexp)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>key</term>
+        <listitem>
+          <para>character string. give the sequence of characters to be found</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>regexp</term>
+        <listitem>
+          <para> character string. give the regular expression to be found
+	    (only with "Scilab Browser")</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>apropos(key)</literal> looks for Scilab help files containing
+      keywords <literal>key</literal>in their short description section.</para>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>apropos</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="apropos"> searches keywords in Scilab help</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>apropos(key)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>apropos(regexp)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>key</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string. give the sequence of characters to be found</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>regexp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  character string. give the regular expression to be found
-	    (only with "Scilab Browser")</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>apropos(key)</VERB> looks for Scilab help files containing
-      keywords <VERB>key</VERB>in their short description section.</P>
+    <para>With Scilab Browser only, <literal>apropos(regexp)</literal> looks for Scilab
+      help files containing regular expression  <literal>regexp</literal>in their short
+      description section.</para> 
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-    <P>With Scilab Browser only, <VERB>apropos(regexp)</VERB> looks for Scilab
-      help files containing regular expression  <VERB>regexp</VERB>in their short
-      description section.</P> 
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 apropos('ode')
 apropos ode 
 apropos "list of"
@@ -62,15 +57,15 @@ apropos "^ab"  //search help beginning the two characters "ab"
 apropos "quadratic.*solver"
 
 %browsehelp=%browsehelp_save;
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>help</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>man</LINK>
-    </SEE_ALSO_ITEM>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="help">help</link>
+    </member>
+    <member>
+      <link linkend="man">man</link>
+    </member>
 
-  </SEE_ALSO>
-</MAN>
+  </simplelist></refsection>
+</refentry>

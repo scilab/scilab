@@ -1,27 +1,23 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="banner"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>banner</refname><refpurpose>show scilab banner
+  (Windows)</refpurpose></refnamediv>
+  
 
-  <TITLE>banner</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="banner">show scilab banner
-  (Windows)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>banner()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>banner()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>show scilab banner.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>show scilab banner.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[clc();banner()
-]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[clc();banner()
+]]></programlisting></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

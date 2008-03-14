@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -10,90 +10,87 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cat</refname><refpurpose>concatenate several arrays</refpurpose></refnamediv>
+  
 
-  <TITLE>cat</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="cat">concatenate several arrays</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=cat(dims,A1,A2,...,An)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=cat(dims,A1,A2,...,An)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>dims</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>dims</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a positive real scalar.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a positive real scalar.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>A1,A2,..An</PARAM_NAME>
+      <varlistentry>
+        <term>A1,A2,..An</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: scalars, vectors, matrices or mutlti-arrays, or cells arrays.
+        <listitem>
+          <para>scalars, vectors, matrices or mutlti-arrays, or cells arrays.
           A1,A2,...,An must have the same size (excluding the dimension number
           dims). size(A1,i)=size(A2,i)=...=size(An,i) for i different of dims
           and size(A1,dims), size(A2,dims),...,size(An,dims) can be
-          different.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          different.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+      <varlistentry>
+        <term>y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a scalar, vector, matrix or mutlti-array, y has the same type
-          than A1,A2,...,An.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a scalar, vector, matrix or mutlti-array, y has the same type
+          than A1,A2,...,An.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>y=cat(dims,A1,A2,...,An) :</VERB> y is the result of the
+  <refsection><title>Description</title>
+    <para><literal>y=cat(dims,A1,A2,...,An) :</literal> y is the result of the
     concatenation of the input arguments A1,A2,...,An. if dims=1then the
     concatenation is done according to the rows : if dims=2 then concatenation
-    is done according to the columns of the input arguments,...</P>
+    is done according to the columns of the input arguments,...</para>
 
-    <P>if dims=1, then the concatenation is done according to the rows</P>
+    <para>if dims=1, then the concatenation is done according to the rows</para>
 
-    <P>A1=[1 2 3 ; 4 5 6]; A2=[7 8 9 ; 10 11 12]; y=cat(1,A1,A2) =&gt; y=[1 2
-    3 ; 4 5 61 ;7 8 9; 10 11 12]</P>
+    <para>A1=[1 2 3 ; 4 5 6]; A2=[7 8 9 ; 10 11 12]; y=cat(1,A1,A2) =&gt; y=[1 2
+    3 ; 4 5 61 ;7 8 9; 10 11 12]</para>
 
-    <P>if dims=2, then the concatenation is done according to the columns of
-    the input arguments</P>
+    <para>if dims=2, then the concatenation is done according to the columns of
+    the input arguments</para>
 
-    <P>A1=[1 2 3;4 5 6]; A2=[7 8 9 ;10 11 12]; y=cat(2,A1,A2) =&gt; y=[1 2 3 7
-    8 9 ; 4 5 6 10 11 12]</P>
-  </DESCRIPTION>
+    <para>A1=[1 2 3;4 5 6]; A2=[7 8 9 ;10 11 12]; y=cat(2,A1,A2) =&gt; y=[1 2 3 7
+    8 9 ; 4 5 6 10 11 12]</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[// first example : concatenation according to the rows 
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[// first example : concatenation according to the rows 
 dims=1; A1=[1 2 3]; A2=[4 5 6 ; 7 8 9]; A3=[10 11 12]; y=cat(dims,A1,A2,A3)
 // second example :  concatenation according to the columns
 dims=2; A1=[1 2 3]'; A2=[4 5;7 8;9 10]; y=cat(dims,A1,A2)
 // third example : concatenation according to the 3th dimension 
 dims=3; A1=matrix(1:12,[2,2,3]); A2=[13 14;15 16]; A3=matrix(21:36,[2,2,4]); y=cat(dims,A1,A2,A3)
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>permute</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="permute">permute</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>matrix</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="matrix">matrix</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Farid Belahcene</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Farid Belahcene</para></refsection>
+</refentry>

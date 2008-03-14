@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,57 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ftest</TITLE>
-  <TYPE>  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="ftest"> Fischer ratio</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>f=ftest(samples)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[f,p]=ftest(samples)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>samples</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex matrix of type nr X nc</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB> f=ftest(samples) </VERB> computes the Fischer ratio of the
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ftest"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ftest</refname><refpurpose> Fischer ratio</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>f=ftest(samples)
+[f,p]=ftest(samples)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>samples</term>
+        <listitem>
+          <para>real or complex matrix of type nr X nc</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal> f=ftest(samples) </literal> computes the Fischer ratio of the
     nc samples whose  values are in the columns  of the matrix
-    <VERB>samples</VERB>. Each one of these samples is composed of nr
+    <literal>samples</literal>. Each one of these samples is composed of nr
     values. (The  Fischer ratio is the ratio  between nr times
     the  variance of  the means  of  samples and  the mean  of
-    variances of each sample)</P>
-    <P><VERB> [f,p]=ftest(samples) </VERB> gives in p the p-value of the
-    computed Fischer ratio f.</P>
-  </DESCRIPTION>
-  <SECTION label="References">
-    <P>
-    Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</P>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+    variances of each sample)</para>
+    <para><literal> [f,p]=ftest(samples) </literal> gives in p the p-value of the
+    computed Fischer ratio f.</para>
+  </refsection>
+  <refsection><title>References</title>
+    <para>
+    Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 samples=[46 55 54;
          53 54 50; 
          49 58 51;
          50 61 51;
          46 52 49]
 [f,p]=ftest(samples)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ftuneq</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR> Carlos Klimann</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ftuneq">ftuneq</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
+</refentry>

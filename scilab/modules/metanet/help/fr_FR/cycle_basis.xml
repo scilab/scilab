@@ -1,63 +1,44 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>cycle_basis  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="cycle_basis"> base des cycles d&apos;un graphe simple non-orienté  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>spc = cycle_basis(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>spc  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice creuse
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Tout d&apos;abord un arbre couvrant est trouvé avec <VERB>min_weight_tree</VERB> et est 
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cycle_basis"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cycle_basis</refname><refpurpose> base des cycles d'un graphe simple non-orienté  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>spc = cycle_basis(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>spc  </term>
+  <listitem>
+  <para>matrice creuse
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Tout d'abord un arbre couvrant est trouvé avec <literal>min_weight_tree</literal> et est 
     ensuite utilisé pour trouver tous les cycles fondamentaux par rapport à 
-    cet arbre. Ils sont renvoyés sous forme d&apos;un 
-    ensemble de cycles, chaque cycle étant représenté par un ensemble d&apos;arêtes.
-    Ces cycles sont renvoyés dans une matrice creuse<VERB>spc</VERB> : chaque ligne 
+    cet arbre. Ils sont renvoyés sous forme d'un 
+    ensemble de cycles, chaque cycle étant représenté par un ensemble d'arêtes.
+    Ces cycles sont renvoyés dans une matrice creuse<literal>spc</literal> : chaque ligne 
     de cette matrice correspond à un cycle.
-  </P>
-  <P>
-    Le graphe <VERB>g</VERB> est supposé simple, non-orienté et connecté
-    (<VERB>cycle_basis</VERB> ne vérifie pas que le graphe est simple, utiliser 
-    <VERB>graph_simp</VERB>m avant l&apos;appel si nécessaire).
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  <para>
+    Le graphe <literal>g</literal> est supposé simple, non-orienté et connecté
+    (<literal>cycle_basis</literal> ne vérifie pas que le graphe est simple, utiliser 
+    <literal>graph_simp</literal>m avant l'appel si nécessaire).
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
 gt=make_graph('foo',1,17,ta,he);
@@ -76,8 +57,8 @@ for kk=1:(size(spc,1)),
   aaa=spc(kk,:);aaa=full(aaa);aaa(aaa==0)=[];
   show_arcs(aaa);
 end;
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>min_weight_tree</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graph_simp</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="min_weight_tree">min_weight_tree</link> </member>     <member> <link linkend="graph_simp">graph_simp</link> </member>
+  </simplelist></refsection>
+</refentry>

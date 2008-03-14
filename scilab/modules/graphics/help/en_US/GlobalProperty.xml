@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
@@ -10,415 +10,364 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<?xml-stylesheet type="text/xsl" href="file:///usr/local/lib/scilab/man/eng/html-rev.xsl"?>
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="GlobalProperty"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>GlobalProperty</refname><refpurpose>to customize the objects appearance
+  (curves, surfaces...) in a plot or surf command.</refpurpose></refnamediv>
+  
 
-  <TITLE>GlobalProperty</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="GlobalProperty">to customize the objects appearance
-  (curves, surfaces...) in a plot or surf command.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>None. The GlobalProperty is an optional argument
-    that can be used inside a plot or surf command. It allows a global
-    customization of all the new plotted lines (respectivly surfaces). It has
-    to be given as a couple {PropertyName, PropertyValue}. Several couples can
-    be set at the same time in a plot or surf call.</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>None. The GlobalProperty is an optional argument that can be used inside a plot or surf command. It allows a global customization of all the new plotted lines (respectivly surfaces). It has to be given as a couple {PropertyName, PropertyValue}. Several couples can be set at the same time in a plot or surf call.
 
-    <CALLING_SEQUENCE_ITEM></CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM> </CALLING_SEQUENCE_ITEM>
+PropertyName must be a string defining the property to set.The PropertyValue can be a real, integer or string (scalar or matrix) depending on the type of property used. For example, to specify a red (color) longdash-dot (line style) with diamond marker (marker), the sequence should be : 'Colo','red','LineSt','-.','Marker','diam'.
 
-    <CALLING_SEQUENCE_ITEM>PropertyName must be a string defining the property
-    to set.The PropertyValue can be a real, integer or string (scalar or
-    matrix) depending on the type of property used. For example, to specify a
-    red (color) longdash-dot (line style) with diamond marker (marker), the
-    sequence should be :
-    'Colo','red','LineSt','-.','Marker','diam'.</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM> </CALLING_SEQUENCE_ITEM>
+As you can see, a full complete spelling of each property name and value is not required but those arguments, specified in any order, must remain unambiguous. Furthermore, the string specification is not case sensitive. GlobalProperty is predominant on all LineSpec previously stated.</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM> </CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>As you can see, a full complete spelling of each
-    property name and value is not required but those arguments, specified in
-    any order, must remain unambiguous. Furthermore, the string specification
-    is not case sensitive. GlobalProperty is predominant on all LineSpec
-    previously stated.</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <DESCRIPTION>
-    <P>Here is a complete list of the <VERB>PropertyName</VERB> you can
-    specify (using <LINK>plot</LINK> or <LINK>surf</LINK>) and their available
-    associated <VERB>PropertyValue</VERB>. If not specified, those properties
-    are available for both <VERB>Polyline</VERB> and <VERB>Fac3d</VERB>
+  <refsection><title>Description</title>
+    <para>Here is a complete list of the <literal>PropertyName</literal> you can
+    specify (using <link linkend="plot">plot</link> or <link linkend="surf">surf</link>) and their available
+    associated <literal>PropertyValue</literal>. If not specified, those properties
+    are available for both <literal>Polyline</literal> and <literal>Fac3d</literal>
     objects (created respectivly by plot or surf) and, as previously said,
-    they are applied to the new created objects (lines or surfaces).</P>
+    they are applied to the new created objects (lines or surfaces).</para>
 
-    <P>Sometimes, you may have two PropertyName correponding to one property :
+    <para>Sometimes, you may have two PropertyName correponding to one property :
     the first one is the equivalent default Matlab name, the second is the
-    default name used by Scilab (i.e.:<VERB> Color or Foreground</VERB> for a
-    line, see below).</P>
+    default name used by Scilab (i.e.:<literal> Color or Foreground</literal> for a
+    line, see below).</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="CData or ColorData: ">
-        <SP>a real matrix specifiying the color at every points defined by
-        <VERB>Z</VERB> matrix. This property is linked to the object's
-        <VERB>data.color</VERB> property (see
-        <LINK>surface_properties</LINK>). Note that this property is available
-        for surfaces only.</SP>
+    <variablelist>
+      <varlistentry><term>CData or ColorData: </term><listitem>
+        <para>a real matrix specifiying the color at every points defined by
+        <literal>Z</literal> matrix. This property is linked to the object's
+        <literal>data.color</literal> property (see
+        <link linkend="surface_properties">surface_properties</link>). Note that this property is available
+        for surfaces only.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="CDataMapping or ColorDataMapping: ">
-        <SP>a string with value <VERB>'scaled'</VERB> or
-        <VERB>'direct'</VERB>. If a <VERB>data.color</VERB> is set, each index
+      <varlistentry><term>CDataMapping or ColorDataMapping: </term><listitem>
+        <para>a string with value <literal>'scaled'</literal> or
+        <literal>'direct'</literal>. If a <literal>data.color</literal> is set, each index
         color data specifies a single value for each vertex.
-        <VERB>cdata_mapping</VERB> determines wether those indices are scaled
-        to map linearly into the current colormap (<VERB>'scaled'</VERB> mode)
-        or point directly into this colormap (<VERB>'direct</VERB>' mode).
-        This property is usefull when <VERB>color_flag</VERB> equals
-        <VERB>2</VERB>,<VERB>3</VERB> or <VERB>4</VERB>. Note that this
-        property exists only with <VERB>Fac3d</VERB> entities. Note also that
-        <VERB>plot3d</VERB> has <VERB>'direct'</VERB> mode by default and
-        <VERB>surf</VERB> has<VERB> 'scaled'</VERB> mode by default.</SP>
+        <literal>cdata_mapping</literal> determines wether those indices are scaled
+        to map linearly into the current colormap (<literal>'scaled'</literal> mode)
+        or point directly into this colormap (<literal>'direct</literal>' mode).
+        This property is usefull when <literal>color_flag</literal> equals
+        <literal>2</literal>,<literal>3</literal> or <literal>4</literal>. Note that this
+        property exists only with <literal>Fac3d</literal> entities. Note also that
+        <literal>plot3d</literal> has <literal>'direct'</literal> mode by default and
+        <literal>surf</literal> has<literal> 'scaled'</literal> mode by default.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Clipping: ">
-        <SP>a string <VERB>"on"</VERB> or <VERB>"off"</VERB> defining the
-        clipping mode (<VERB>"on"</VERB> by default). It is equivalent to the
-        <VERB>clip_state</VERB> property. This field contains the
-        <VERB>visible</VERB> property (see <LINK>polyline_properties</LINK>).
+      <varlistentry><term>Clipping: </term><listitem>
+        <para>a string <literal>"on"</literal> or <literal>"off"</literal> defining the
+        clipping mode (<literal>"on"</literal> by default). It is equivalent to the
+        <literal>clip_state</literal> property. This field contains the
+        <literal>visible</literal> property (see <link linkend="polyline_properties">polyline_properties</link>).
         Note that this property is not yet available for surface
-        entities.</SP>
+        entities.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Color or Foreground: ">
-        <SP>a string defining a known color (see <LINK>color_list</LINK>) or a
-        <VERB>1</VERB>x<VERB>3</VERB> (or <VERB>3</VERB>x<VERB>1</VERB>) RGB
+      <varlistentry><term>Color or Foreground: </term><listitem>
+        <para>a string defining a known color (see <link linkend="color_list">color_list</link>) or a
+        <literal>1</literal>x<literal>3</literal> (or <literal>3</literal>x<literal>1</literal>) RGB
         vector defining a color number. Color number is given as a 3-uple
-        <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
+        <literal>R</literal>, <literal>G</literal>, <literal>B</literal> corresponding
         respectively to red, green and blue intensity between 0 and 1. This
-        property is linked to the object's <VERB>foreground</VERB> property
-        (see <LINK>polyline_properties</LINK>). <VERB>Warning</VERB><VERB>
-        :</VERB> Color is not available for surfaces objects. The
-        <VERB>Foreground</VERB> property exists for surfaces objects but is
-        linked to the Matlab <VERB>EdgeColor</VERB> property (see
-        <LINK>surface_properties</LINK>).</SP>
+        property is linked to the object's <literal>foreground</literal> property
+        (see <link linkend="polyline_properties">polyline_properties</link>). <literal>Warning</literal><literal>
+        :</literal> Color is not available for surfaces objects. The
+        <literal>Foreground</literal> property exists for surfaces objects but is
+        linked to the Matlab <literal>EdgeColor</literal> property (see
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="EdgeColor or Foreground: ">
-        <SP>a string defining a known color (see <LINK>color_list</LINK>) or a
-        <VERB>1</VERB>x<VERB>3</VERB> (or <VERB>3</VERB>x<VERB>1</VERB>) RGB
+      <varlistentry><term>EdgeColor or Foreground: </term><listitem>
+        <para>a string defining a known color (see <link linkend="color_list">color_list</link>) or a
+        <literal>1</literal>x<literal>3</literal> (or <literal>3</literal>x<literal>1</literal>) RGB
         vector defining a color number. Color number is given as a 3-uple
-        <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
+        <literal>R</literal>, <literal>G</literal>, <literal>B</literal> corresponding
         respectively to red, green and blue intensity between 0 and 1. This
-        property is linked to the surface <VERB>foreground</VERB> property
-        (see <LINK>surface_properties</LINK>). <VERB>Warning</VERB><VERB>
-        :</VERB> For polyline objects, the <VERB>Foreground</VERB> property
-        exists with a different meaning (see above) and <VERB>EdgeColor</VERB>
-        does not exist at all.</SP>
+        property is linked to the surface <literal>foreground</literal> property
+        (see <link linkend="surface_properties">surface_properties</link>). <literal>Warning</literal><literal>
+        :</literal> For polyline objects, the <literal>Foreground</literal> property
+        exists with a different meaning (see above) and <literal>EdgeColor</literal>
+        does not exist at all.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="FaceColor: ">
-        <SP>a string with value <VERB>'none'</VERB>, <VERB>'flat'</VERB> or
-        <VERB>'interp'</VERB> specifying the way the facet's color are
-        rendered. When<VERB> 'none'</VERB> is selected, a mesh of the surface
-        is drawn; if <VERB>'flat'</VERB> (deault mode) is set, the
-        <VERB>Fac3d</VERB> <VERB>color.data</VERB> values determine one color
+      <varlistentry><term>FaceColor: </term><listitem>
+        <para>a string with value <literal>'none'</literal>, <literal>'flat'</literal> or
+        <literal>'interp'</literal> specifying the way the facet's color are
+        rendered. When<literal> 'none'</literal> is selected, a mesh of the surface
+        is drawn; if <literal>'flat'</literal> (deault mode) is set, the
+        <literal>Fac3d</literal> <literal>color.data</literal> values determine one color
         per facet using the color of the first vertex of the facet. If the
-        value is <VERB>'interp'</VERB>, an interpolated shading is done on the
-        surface using <VERB>color.data</VERB> to determine a color at each
-        vertex of each facet.</SP>
+        value is <literal>'interp'</literal>, an interpolated shading is done on the
+        surface using <literal>color.data</literal> to determine a color at each
+        vertex of each facet.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="LineStyle: ">
-        <SP>This property value should be a string defining a line style. This
-        property is linked to tje object's <VERB>line_style</VERB> property
-        (see <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+      <varlistentry><term>LineStyle: </term><listitem>
+        <para>This property value should be a string defining a line style. This
+        property is linked to tje object's <literal>line_style</literal> property
+        (see <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <SP></SP>
+        <para/>
 
-        <TABLE>
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>Specifier</VERB></TABLE_NEW_COLUMN>
+        <informaltable border="1">
+          <tr>
+            <td><literal>Specifier</literal></td>
 
-            <TABLE_NEW_COLUMN><VERB>Line Style</VERB></TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td><literal>Line Style</literal></td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>-</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>-</literal></td>
 
-            <TABLE_NEW_COLUMN>Solid line (default)</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Solid line (default)</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>--</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>--</literal></td>
 
-            <TABLE_NEW_COLUMN>Dashed line</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Dashed line</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>:</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>:</literal></td>
 
-            <TABLE_NEW_COLUMN>Dotted line</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Dotted line</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>-.</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>-.</literal></td>
 
-            <TABLE_NEW_COLUMN>Dash-dotted line</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Dash-dotted line</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>none</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>none</literal></td>
 
-            <TABLE_NEW_COLUMN>No line</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
-        </TABLE>
-      </DESCRIPTION_ITEM>
+            <td>No line</td>
+          </tr>
+        </informaltable>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+      
 
-      <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+      
 
-      <DESCRIPTION_ITEM label="Marker or MarkStyle: ">
-        <SP>A string defining the marker type. Note that if you specify a
+      <varlistentry><term>Marker or MarkStyle: </term><listitem>
+        <para>A string defining the marker type. Note that if you specify a
         marker wihtout a line style, both line (with default solid mode
         enabled) and marker are drawn.This property is linked to the object's
-        <VERB>mark_style</VERB> and <VERB>mark_mode</VERB> properties (see
-        <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+        <literal>mark_style</literal> and <literal>mark_mode</literal> properties (see
+        <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <TABLE>
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>Specifier</VERB></TABLE_NEW_COLUMN>
+        <informaltable border="1">
+          <tr>
+            <td><literal>Specifier</literal></td>
 
-            <TABLE_NEW_COLUMN><VERB>Marker Type</VERB></TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td><literal>Marker Type</literal></td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>+</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>+</literal></td>
 
-            <TABLE_NEW_COLUMN>Plus sign</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Plus sign</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>o</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>o</literal></td>
 
-            <TABLE_NEW_COLUMN>Circle</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Circle</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>*</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>*</literal></td>
 
-            <TABLE_NEW_COLUMN>Asterisk</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Asterisk</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>.</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>.</literal></td>
 
-            <TABLE_NEW_COLUMN>Point</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Point</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>x</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>x</literal></td>
 
-            <TABLE_NEW_COLUMN>Cross</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Cross</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>'square'</VERB> or
-            <VERB>'s'</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>'square'</literal> or
+            <literal>'s'</literal></td>
 
-            <TABLE_NEW_COLUMN>Square</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Square</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>'diamond'</VERB> or
-            <VERB>'d'</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>'diamond'</literal> or
+            <literal>'d'</literal></td>
 
-            <TABLE_NEW_COLUMN>Diamond</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Diamond</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>^</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>^</literal></td>
 
-            <TABLE_NEW_COLUMN>Upward-pointing triangle</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Upward-pointing triangle</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>v</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>v</literal></td>
 
-            <TABLE_NEW_COLUMN>Downward-pointing triangle</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Downward-pointing triangle</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>&gt;</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>&gt;</literal></td>
 
-            <TABLE_NEW_COLUMN>Right-pointing triangle</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Right-pointing triangle</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>&lt;</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>&lt;</literal></td>
 
-            <TABLE_NEW_COLUMN>Left-pointing triangle</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Left-pointing triangle</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>'pentagram'</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>'pentagram'</literal></td>
 
-            <TABLE_NEW_COLUMN>Five-pointed star (pentagram)</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
+            <td>Five-pointed star (pentagram)</td>
+          </tr>
 
-          <TABLE_NEW_ROW>
-            <TABLE_NEW_COLUMN><VERB>'none'</VERB></TABLE_NEW_COLUMN>
+          <tr>
+            <td><literal>'none'</literal></td>
 
-            <TABLE_NEW_COLUMN>No marker (default)</TABLE_NEW_COLUMN>
-          </TABLE_NEW_ROW>
-        </TABLE>
-      </DESCRIPTION_ITEM>
+            <td>No marker (default)</td>
+          </tr>
+        </informaltable>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+      
 
-      <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+      
 
-      <DESCRIPTION_ITEM label="MarkerEdgeColor or MarkForeground: ">
-        <SP>a string defining a known color (see color_list) or a
-        <VERB>1</VERB>x<VERB>3</VERB> (or <VERB>3</VERB>x<VERB>1</VERB>) RGB
+      <varlistentry><term>MarkerEdgeColor or MarkForeground: </term><listitem>
+        <para>a string defining a known color (see color_list) or a
+        <literal>1</literal>x<literal>3</literal> (or <literal>3</literal>x<literal>1</literal>) RGB
         vector defining a color number. Color number is given as a 3-uple
-        <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
+        <literal>R</literal>, <literal>G</literal>, <literal>B</literal> corresponding
         respectively to red, green and blue intensity between 0 and 1. This
-        property is linked to the object's <VERB>mark_foreground</VERB>
-        property (see <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+        property is linked to the object's <literal>mark_foreground</literal>
+        property (see <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="MarkerFaceColor or MarkBackground: ">
-        <SP>a string defining a known color (see color_list) or a
-        <VERB>1</VERB>x<VERB>3</VERB> (or <VERB>3</VERB>x<VERB>1</VERB>) RGB
+      <varlistentry><term>MarkerFaceColor or MarkBackground: </term><listitem>
+        <para>a string defining a known color (see color_list) or a
+        <literal>1</literal>x<literal>3</literal> (or <literal>3</literal>x<literal>1</literal>) RGB
         vector defining a color number. Color number is given as a 3-uple
-        <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
+        <literal>R</literal>, <literal>G</literal>, <literal>B</literal> corresponding
         respectively to red, green and blue intensity between 0 and 1. This
-        property is linked to the object's <VERB>mark_background</VERB>
-        property (see <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+        property is linked to the object's <literal>mark_background</literal>
+        property (see <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="MarkerSize or MarkSize: ">
-        <SP>a scalar defining the marker size in <VERB>point</VERB> unit. This
-        property is linked to the object's <VERB>mark_size</VERB> property
-        with <VERB>mark_size_unit</VERB> enabled to <VERB>"point"</VERB> (see
-        <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+      <varlistentry><term>MarkerSize or MarkSize: </term><listitem>
+        <para>a scalar defining the marker size in <literal>point</literal> unit. This
+        property is linked to the object's <literal>mark_size</literal> property
+        with <literal>mark_size_unit</literal> enabled to <literal>"point"</literal> (see
+        <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Visible: ">
-        <SP>a string <VERB>"on"</VERB> or <VERB>"off"</VERB> defining the
-        visibility mode (<VERB>"on"</VERB> by default). This property is
-        linked to the object's <VERB>visible</VERB> property (see
-        <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+      <varlistentry><term>Visible: </term><listitem>
+        <para>a string <literal>"on"</literal> or <literal>"off"</literal> defining the
+        visibility mode (<literal>"on"</literal> by default). This property is
+        linked to the object's <literal>visible</literal> property (see
+        <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="X data: ">
-        <SP>a real vector or matrix (re-)defining the given data for all the
+      <varlistentry><term>X data: </term><listitem>
+        <para>a real vector or matrix (re-)defining the given data for all the
         plotted lines or surfaces. Concerning dimensions, note that this new
-        data must match all the previous specified <VERB>X</VERB> data : that
+        data must match all the previous specified <literal>X</literal> data : that
         is to say all those data matrices must be of the same dimensions. This
-        property is linked to the object's <VERB>data.x</VERB> property (see
-        <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+        property is linked to the object's <literal>data.x</literal> property (see
+        <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Y data: ">
-        <SP>a real vector or matrix (re-)defining the given data for all the
+      <varlistentry><term>Y data: </term><listitem>
+        <para>a real vector or matrix (re-)defining the given data for all the
         plotted lines or surfaces. Concerning dimensions, note that this new
-        data must match all the previous specified <VERB>Y</VERB> data : that
+        data must match all the previous specified <literal>Y</literal> data : that
         is to say all those data matrices must be of the same dimensions. This
-        property is linked to the object's <VERB>data.y</VERB> property (see
-        <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+        property is linked to the object's <literal>data.y</literal> property (see
+        <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Z data: ">
-        <SP>when used with <VERB>plot</VERB>, a real vector or matrix adding
-        a</SP>
+      <varlistentry><term>Z data: </term><listitem>
+        <para>when used with <literal>plot</literal>, a real vector or matrix adding
+        a</para>
 
-        <SP><VERB>Z</VERB> data for all the plotted lines ; with
-        <VERB>surf</VERB>, a real matrix (re-)defining the given data for all
+        <para><literal>Z</literal> data for all the plotted lines ; with
+        <literal>surf</literal>, a real matrix (re-)defining the given data for all
         the surfaces. Concerning dimensions, note that this new data must
-        match all the previous specified <VERB>X</VERB> and <VERB>Y</VERB>
-        data. This property is linked to the object's <VERB>data.z</VERB>
-        property (see <LINK>polyline_properties</LINK> or
-        <LINK>surface_properties</LINK>).</SP>
+        match all the previous specified <literal>X</literal> and <literal>Y</literal>
+        data. This property is linked to the object's <literal>data.z</literal>
+        property (see <link linkend="polyline_properties">polyline_properties</link> or
+        <link linkend="surface_properties">surface_properties</link>).</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+        
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[// --------------------
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[// --------------------
 // With the plot command :
 // --------------------
 x=1:10; // Init.
@@ -463,33 +412,33 @@ subplot(212)
 surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
 
  
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>LineSpec</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="LineSpec">LineSpec</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="plot">plot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>surf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="surf">surf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>clf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="clf">clf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>polyline_properties</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="polyline_properties">polyline_properties</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>surface_properties</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="surface_properties">surface_properties</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>F.Leray</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>F.Leray</para></refsection>
+</refentry>

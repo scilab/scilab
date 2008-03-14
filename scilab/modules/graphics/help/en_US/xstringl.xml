@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,78 +10,75 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xstringl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xstringl</refname><refpurpose>compute a box which surrounds
+  strings</refpurpose></refnamediv>
+  
 
-  <TITLE>xstringl</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="xstringl">compute a box which surrounds
-  strings</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>rect=xstringl(x,y,str,[fontId,fontSize])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>rect=xstringl(x,y,str,[fontId,fontSize])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector of 4 real scalars defining the box.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>vector of 4 real scalars defining the box.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+      <varlistentry>
+        <term>x,y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real scalars, coordinates of the lower-left point of the
-          strings.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real scalars, coordinates of the lower-left point of the
+          strings.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
+      <varlistentry>
+        <term>str</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of strings.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>matrix of strings.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fontId</PARAM_NAME>
+      <varlistentry>
+        <term>fontId</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: an integer specifying the font type.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>an integer specifying the font type.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>fontSize</PARAM_NAME>
+      <varlistentry>
+        <term>fontSize</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: an integer specifying the font size.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>an integer specifying the font size.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>xstringl</VERB> returns in <VERB>rect=[x,y,w,h]</VERB>
+  <refsection><title>Description</title>
+    <para><literal>xstringl</literal> returns in <literal>rect=[x,y,w,h]</literal>
     (upper-left point, width, height) the size of a rectangle in the current
-    graphic scale which would surround the strings <VERB>str</VERB> drawn at
-    location <VERB>x,y</VERB> (lower-left point).</P>
+    graphic scale which would surround the strings <literal>str</literal> drawn at
+    location <literal>x,y</literal> (lower-left point).</para>
 
-    <P>The result can be approximative when using the Postscript driver.</P>
-  </DESCRIPTION>
+    <para>The result can be approximative when using the Postscript driver.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 plot2d([0;1],[0;1],0)
 str=["Scilab" "is";"not" "elisaB"];
@@ -98,29 +95,29 @@ xstring(r2(1),r2(2),str)
 
 txt2=gce();
 txt2.font_size = 5;
-txt2.font_style = 2;  ]]></EXAMPLE>
+txt2.font_style = 2;  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>titlepage</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="titlepage">titlepage</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xstring</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xstring">xstring</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xstringl</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xstringl">xstringl</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xtitle</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xtitle">xtitle</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>stringbox</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="stringbox">stringbox</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

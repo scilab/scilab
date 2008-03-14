@@ -1,28 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>xend  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xend"> termine la session graphique courante  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>xend()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    <VERB>xend</VERB> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <VERB>xend</VERB> ferme le fichier qui a été ouvert par <VERB>xinit</VERB>. 
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xend"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xend</refname><refpurpose> termine la session graphique courante  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>xend()</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>
+    <literal>xend</literal> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <literal>xend</literal> ferme le fichier qui a été ouvert par <literal>xinit</literal>. 
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 driver("Pos")
 xinit("foo.ps")
 plot2d()
 xend()
 driver("X11")
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xbasimp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xend</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="xbasimp">xbasimp</link> </member>     <member> <link linkend="xend">xend</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>J.Ph.C.  </para></refsection>
+</refentry>

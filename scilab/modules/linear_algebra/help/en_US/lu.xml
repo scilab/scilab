@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,66 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lu</refname><refpurpose> LU factors of Gaussian elimination</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[L,U]= lu(A)
+[L,U,E]= lu(A)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex  matrix (m x n).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>L</term>
+        <listitem>
+          <para> real or complex matrices  (m x min(m,n)).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>real or complex matrices  (min(m,n) x n ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E</term>
+        <listitem>
+          <para>a (n x n) permutation matrix.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>[L,U]= lu(A)</literal> produces two matrices <literal>L</literal> and
+    <literal>U</literal> such that <literal>A = L*U</literal> with <literal>U</literal>
+    upper triangular and <literal>E*L</literal> lower triangular for a
+    permutation matrix <literal>E</literal>.</para>
+    <para> 
+    If <literal>A</literal> has rank <literal>k</literal>, rows <literal>k+1</literal> to
+    <literal>n</literal> of <literal>U</literal> are zero.</para>
+    <para><literal>[L,U,E]= lu(A)</literal> produces three matrices <literal>L</literal>, <literal>U</literal> and
+    <literal>E</literal> such that <literal>E*A = L*U</literal> with
+    <literal>U</literal> upper triangular and <literal>E*L</literal> lower
+    triangular for a permutation matrix <literal>E</literal>.</para>
+    <para> 
+    If <literal>A</literal> is a real matrix, using the function
+    <literal>lufact</literal> and  <literal>luget</literal> it is possible to obtain
+    the permutation matrices and also when <literal>A</literal> is not full
+    rank the column compression of the matrix <literal>L</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lu</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lu"> LU factors of Gaussian elimination</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[L,U]= lu(A)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[L,U,E]= lu(A)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex  matrix (m x n).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>L</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  real or complex matrices  (m x min(m,n)).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>U</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex matrices  (min(m,n) x n ).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>E</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a (n x n) permutation matrix.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>[L,U]= lu(A)</VERB> produces two matrices <VERB>L</VERB> and
-    <VERB>U</VERB> such that <VERB>A = L*U</VERB> with <VERB>U</VERB>
-    upper triangular and <VERB>E*L</VERB> lower triangular for a
-    permutation matrix <VERB>E</VERB>.</P>
-    <P> 
-    If <VERB>A</VERB> has rank <VERB>k</VERB>, rows <VERB>k+1</VERB> to
-    <VERB>n</VERB> of <VERB>U</VERB> are zero.</P>
-    <P><VERB>[L,U,E]= lu(A)</VERB> produces three matrices <VERB>L</VERB>, <VERB>U</VERB> and
-    <VERB>E</VERB> such that <VERB>E*A = L*U</VERB> with
-    <VERB>U</VERB> upper triangular and <VERB>E*L</VERB> lower
-    triangular for a permutation matrix <VERB>E</VERB>.</P>
-    <P> 
-    If <VERB>A</VERB> is a real matrix, using the function
-    <VERB>lufact</VERB> and  <VERB>luget</VERB> it is possible to obtain
-    the permutation matrices and also when <VERB>A</VERB> is not full
-    rank the column compression of the matrix <VERB>L</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 a=rand(4,4);
 [l,u]=lu(a)
 norm(l*u-a)
@@ -80,28 +75,28 @@ norm(l*u-a)
 ludel(h)
 P=full(P);L=full(L);U=full(U);Q=full(Q); 
 norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>lufact</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>luget</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lusolve</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>qr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>svd</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <USED_FUNCTIONS>
-    <P>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="lufact">lufact</link>
+    </member>
+    <member>
+      <link linkend="luget">luget</link>
+    </member>
+    <member>
+      <link linkend="lusolve">lusolve</link>
+    </member>
+    <member>
+      <link linkend="qr">qr</link>
+    </member>
+    <member>
+      <link linkend="svd">svd</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Used Functions</title>
+    <para>
    lu decompositions are based on the Lapack routines DGETRF for real
-   matrices and ZGETRF for the complex case.</P>
-  </USED_FUNCTIONS>
-</MAN>
+   matrices and ZGETRF for the complex case.</para>
+  </refsection>
+</refentry>

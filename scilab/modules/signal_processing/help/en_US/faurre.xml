@@ -1,77 +1,73 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>faurre</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="faurre"> filter computation by simple Faurre algorithm</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[P,R,T]=faurre(n,H,F,G,R0)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number of iterations.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>H, F, G</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: estimated triple from the covariance sequence of <VERB>y</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>R0</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: E(yk*yk')</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>P</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: solution of the Riccati equation after n iterations.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>R, T</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: gain matrix of the filter.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="faurre"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>faurre</refname><refpurpose> filter computation by simple Faurre algorithm</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[P,R,T]=faurre(n,H,F,G,R0)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>number of iterations.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H, F, G</term>
+        <listitem>
+          <para>estimated triple from the covariance sequence of <literal>y</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R0</term>
+        <listitem>
+          <para>E(yk*yk')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>solution of the Riccati equation after n iterations.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R, T</term>
+        <listitem>
+          <para>gain matrix of the filter.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     This function computes iteratively the minimal solution of the algebraic
-    Riccati equation and gives the matrices <VERB>R</VERB> and <VERB>T</VERB> of the 
+    Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
     filter model.
     The algorithm tries to compute the solution P as the growing limit of a
-    sequence of matrices Pn such that</P>
-    <VERBATIM>
-<![CDATA[
+    sequence of matrices Pn such that</para>
+    <programlisting><![CDATA[
+
                                      -1
 Pn+1=F*Pn*F'+(G-F*Pn*h')*(R0-H*Pn*H')  *(G'-H*Pn*F')
        -1
 P0=G*R0 *G'
-   ]]>
-    </VERBATIM>
-    <P>
+   
+    ]]></programlisting>
+    <para>
     Note that this method may not converge,especially when F has poles
-    near the unit circle. Use preferably the srfaur function.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>srfaur</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lindquist</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>phc</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>G. Le V.  </AUTHOR>
-</MAN>
+    near the unit circle. Use preferably the srfaur function.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="srfaur">srfaur</link>
+    </member>
+    <member>
+      <link linkend="lindquist">lindquist</link>
+    </member>
+    <member>
+      <link linkend="phc">phc</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>G. Le V.  </para></refsection>
+</refentry>

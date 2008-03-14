@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,36 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>unzoom</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="unzoom"> unzoom graphics</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>unzoom()  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>unzoom(H)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-   <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>H</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: A handle on an axes or a vector of handle on axes.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>unzoom()</VERB> is used to remove the zoom effect for all the axes of the
-      current graphic figure: </P> 
-    <P><VERB>unzoom(H)</VERB> is used to remove the zoom effect for all the
-      axes given by the vector of handles on axes <VERB>H</VERB>.</P> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unzoom"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unzoom</refname><refpurpose> unzoom graphics</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>unzoom()
+unzoom(H)</synopsis></refsynopsisdiv>
+   <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>A handle on an axes or a vector of handle on axes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>unzoom()</literal> is used to remove the zoom effect for all the axes of the
+      current graphic figure: </para> 
+    <para><literal>unzoom(H)</literal> is used to remove the zoom effect for all the
+      axes given by the vector of handles on axes <literal>H</literal>.</para> 
 
   
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     clf()
     x=0:0.01:6*%pi;
     plot2d(x,sin(x^2))
@@ -63,15 +60,15 @@
     zoom_rect(rect) //zoom again
     unzoom() //unzoom all the axes
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>zoom_rect</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>axes_properties</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>Serge Steer INRIA </AUTHOR>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="zoom_rect">zoom_rect</link>
+    </member>
+    <member>
+      <link linkend="axes_properties">axes_properties</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>Serge Steer INRIA </para></refsection>
+</refentry>

@@ -1,65 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="toolbar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>toolbar</refname><refpurpose>show or hide a toolbar</refpurpose></refnamediv>
+  
 
-  <TITLE>toolbar</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="toolbar">show or hide a toolbar</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>state1=toolbar(winnum,state2)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>state1=toolbar(winnum,state2)
+state1=toolbar(winnum)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>state1=toolbar(winnum)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>state1</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>state1</PARAM_NAME>
+        <listitem>
+          <para>returns toolbar's state 'on' or 'off'</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: returns toolbar's state 'on' or 'off'</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>winum</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>winum</PARAM_NAME>
+        <listitem>
+          <para>window's number (-1: Scilab console window)</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: window's number (-1: Scilab console window)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>state2</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>state2</PARAM_NAME>
+        <listitem>
+          <para>'on' or 'off' set toolbar's state</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: 'on' or 'off' set toolbar's state</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>show or hide a toolbar.</para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>show or hide a toolbar.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[toolbar(-1,'off')
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[toolbar(-1,'off')
 state=toolbar(-1,'on')
 
 plot3d();
 h=gcf();
 toolbar(h.figure_id,'off')
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <AUTHORS>
-  <AUTHORS_ITEM>Allan CORNET</AUTHORS_ITEM>
-  <AUTHORS_ITEM>Vincent COUVERT</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+  <member>Allan CORNET</member>
+  <member>Vincent COUVERT</member>
+  </simplelist></refsection>
+</refentry>

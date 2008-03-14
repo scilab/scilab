@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,79 +10,75 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>formatman</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="formatman"> translates old NROFF man files in a directory into ascii, tex, html or xml</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>formatman(path [,to])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string, giving the path of the directory</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>to</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string with possible values &quot;ascii&quot;, &quot;tex&quot;, &quot;html&quot;, &quot;xml&quot;</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="formatman"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>formatman</refname><refpurpose> translates old NROFF man files in a directory into ascii, tex, html or xml</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>formatman(path [,to])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>character string, giving the path of the directory</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>to</term>
+        <listitem>
+          <para>character string with possible values "ascii", "tex", "html", "xml"</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     This function, not yet fully checked, formats old help files (*.man) of a given
     directory, written
     in a subset of NROFF, to ascii, tex, html or xml.
-  </P>
-    <P>
+  </para>
+    <para>
     NOTE: this function is obsolete and MUST ONLY be used to translate old
     NROFF help files into new XML help files.
-  </P>
-    <P>
+  </para>
+    <para>
     Known NROFF directives are .TH, .SH, .TP, .RS, .RE, .LP, .IG,
      .nf, .fi, .TS, .TE, .ft, .IP
-  </P>
-    <P>
+  </para>
+    <para>
     Font handling like
-  </P>
-    <VERBATIM>
-<![CDATA[
+  </para>
+    <programlisting><![CDATA[
+
 , , , , ,  ]
-   ]]>
-    </VERBATIM>
-    <P>
+   
+    ]]></programlisting>
+    <para>
     are ignored
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="ascii">
-        <SP>mode generates a .cat file for each .man file and a whatis file</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="tex">
-        <SP>mode generates a .tex file for each .man file and a whatis.tex file</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="html">
-        <SP>mode generates a .html file for each .man file and a index.html file</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="xml">
-        <SP>mode generates a .xml file for each .man file</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>help</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>man</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  </para>
+    <variablelist>
+      <varlistentry><term>ascii</term><listitem>
+        <para>mode generates a .cat file for each .man file and a whatis file</para>
+      </listitem></varlistentry>
+      <varlistentry><term>tex</term><listitem>
+        <para>mode generates a .tex file for each .man file and a whatis.tex file</para>
+      </listitem></varlistentry>
+      <varlistentry><term>html</term><listitem>
+        <para>mode generates a .html file for each .man file and a index.html file</para>
+      </listitem></varlistentry>
+      <varlistentry><term>xml</term><listitem>
+        <para>mode generates a .xml file for each .man file</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="help">help</link>
+    </member>
+    <member>
+      <link linkend="man">man</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,76 +1,61 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>%helps  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="%helps"> variable contenant les noms des répertoires des chapitres d&apos;aide  </SHORT_DESCRIPTION>
-  <DESCRIPTION>
-  <P>
-    <VERB>%helps</VERB> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
-  </P>
-  <VERBATIM><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="helps"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>%helps</refname><refpurpose> variable contenant les noms des répertoires des chapitres d'aide  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+  <para>
+    <literal>%helps</literal> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
+  </para>
+  <programlisting><![CDATA[
 répertoire_du_chapitre    titre_du_chapitre
-   ]]></VERBATIM>
-  <P>
-    Par exemple, nous avons le chapitre &quot;graphics&quot;. 
-    <VERB>%helps(2,:)</VERB>.
-  </P>
-  <P>
-    La valeur par défaut de <VERB>%helps</VERB> est initialisée dans le fichier <VERB>SCI+&quot;scilab.start&quot;</VERB>.
-  </P>
-  <P>
-    Pour ajouter de nouveaux chapitres d&apos;aide il suffit d&apos;ajouter des lignes à la variable <VERB>%helps</VERB>, par exemple dans le fichier utilisateur de démarrage <VERB>SCIHOME/.scilab</VERB> ou <VERB>SCIHOME/scilab.ini</VERB>.
-  </P>
-  <P>
+   ]]></programlisting>
+  <para>
+    Par exemple, nous avons le chapitre "graphics". 
+    <literal>%helps(2,:)</literal>.
+  </para>
+  <para>
+    La valeur par défaut de <literal>%helps</literal> est initialisée dans le fichier <literal>SCI+"scilab.start"</literal>.
+  </para>
+  <para>
+    Pour ajouter de nouveaux chapitres d'aide il suffit d'ajouter des lignes à la variable <literal>%helps</literal>, par exemple dans le fichier utilisateur de démarrage <literal>SCIHOME/.scilab</literal> ou <literal>SCIHOME/scilab.ini</literal>.
+  </para>
+  <para>
     Par exemple, 
-    <VERB>%helps=[%helps; &quot;répertoire_du_chapitre&quot;,  &quot;titre_du_chapitre&quot;];</VERB>
-  </P>
-  <P>
-    &quot;titre_du_chapitre&quot; devient le titre d&apos;un nouveau chapitre.
-  </P>
-  <P>
-    Chaque répertoire d&apos;aide contient des fichiers <VERB>*.html</VERB>,
-    généralement généré à partir d&apos;un fichier XML, et un fichier
-    <VERB>whatis.html</VERB> contenant une ligne pour chaque mot-clé documenté
+    <literal>%helps=[%helps; "répertoire_du_chapitre",  "titre_du_chapitre"];</literal>
+  </para>
+  <para>
+    "titre_du_chapitre" devient le titre d'un nouveau chapitre.
+  </para>
+  <para>
+    Chaque répertoire d'aide contient des fichiers <literal>*.html</literal>,
+    généralement généré à partir d'un fichier XML, et un fichier
+    <literal>whatis.html</literal> contenant une ligne pour chaque mot-clé documenté
     dans le chapitre correspondant. Chaque ligne doit avoir le format :
-  </P>
-  <P>
-  </P>
-  <VERBATIM><![CDATA[
+  </para>
+  <para>
+  </para>
+  <programlisting><![CDATA[
 <BR><A HREF="item.html">item</A> - description rapide
-   ]]></VERBATIM>
-  <P>
-    <VERB>item</VERB> est l&apos;article de la liste d&apos;aide, c&apos;est-à-dire que la commande <VERB>help item</VERB> affiche le contenu du fichier <VERB>item.html</VERB>.
-  </P>
-  <P>
+   ]]></programlisting>
+  <para>
+    <literal>item</literal> est l'article de la liste d'aide, c'est-à-dire que la commande <literal>help item</literal> affiche le contenu du fichier <literal>item.html</literal>.
+  </para>
+  <para>
       
-    La commande <VERB>apropos mot-clé</VERB> renvoie les lignes de tous les fichiers
-    <VERB>whatis</VERB> dans lesquels <VERB>mot-clé</VERB> apparaît.
-  </P>
-  <P>
-  </P>
-  <P>
-    Sur les plates-formes Linux, Scilab dispose d&apos;un Makefile pour transformer les fichiers <VERB>.xml</VERB> en <VERB>.html</VERB> (voir SCIDIR/examples/man-examples).
-  </P>
-  <P>
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>help</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    La commande <literal>apropos mot-clé</literal> renvoie les lignes de tous les fichiers
+    <literal>whatis</literal> dans lesquels <literal>mot-clé</literal> apparaît.
+  </para>
+  <para>
+  </para>
+  <para>
+    Sur les plates-formes Linux, Scilab dispose d'un Makefile pour transformer les fichiers <literal>.xml</literal> en <literal>.html</literal> (voir SCIDIR/examples/man-examples).
+  </para>
+  <para>
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="help">help</link> </member>     <member> <link linkend="apropos">apropos</link> </member>
+  </simplelist></refsection>
+</refentry>

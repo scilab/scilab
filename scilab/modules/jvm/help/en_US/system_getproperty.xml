@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -11,193 +10,189 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="system_getproperty"><info><pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate></info><refnamediv><refname>system_getproperty</refname><refpurpose>gets the system property
+  indicated by a specified key.</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>system_getproperty</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="system_getproperty">gets the system property
-  indicated by a specified key.</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res=system_getproperty(key)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res=system_getproperty(key)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
+        <listitem>
+          <para>a string value</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string value</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>key</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>key</PARAM_NAME>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>gets the system property indicated by a specified key.</para>
 
-  <DESCRIPTION>
-    <P>gets the system property indicated by a specified key.</P>
-
-    <TABLE>
+    <informaltable border="1">
       
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.version</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Runtime Environment version</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.version</td>
+        <td>Java Runtime Environment version</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vendor</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Runtime Environment vendor</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vendor</td>
+        <td>Java Runtime Environment vendor</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vendor.url</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java vendor URL</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vendor.url</td>
+        <td>Java vendor URL</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.home</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java installation directory</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.home</td>
+        <td>Java installation directory</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vm.specification.version</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Virtual Machine specification version</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vm.specification.version</td>
+        <td>Java Virtual Machine specification version</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vm.specification.vendor</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Virtual Machine specification vendor</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vm.specification.vendor</td>
+        <td>Java Virtual Machine specification vendor</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vm.specification.name</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Virtual Machine specification name</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vm.specification.name</td>
+        <td>Java Virtual Machine specification name</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vm.version</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Virtual Machine implementation version</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vm.version</td>
+        <td>Java Virtual Machine implementation version</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vm.vendor</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Virtual Machine implementation vendor</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vm.vendor</td>
+        <td>Java Virtual Machine implementation vendor</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.vm.name</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Virtual Machine implementation name</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.vm.name</td>
+        <td>Java Virtual Machine implementation name</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.specification.version</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Runtime Environment specification version</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.specification.version</td>
+        <td>Java Runtime Environment specification version</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.specification.vendor</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Runtime Environment specification vendor</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.specification.vendor</td>
+        <td>Java Runtime Environment specification vendor</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.specification.name</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java Runtime Environment specification name</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.specification.name</td>
+        <td>Java Runtime Environment specification name</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.class.version</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java class format version number</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.class.version</td>
+        <td>Java class format version number</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.class.path</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Java class path</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.class.path</td>
+        <td>Java class path</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.library.path</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>List of paths to search when loading libraries</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.library.path</td>
+        <td>List of paths to search when loading libraries</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.io.tmpdir</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Default temp file path</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.io.tmpdir</td>
+        <td>Default temp file path</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.compiler</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Name of JIT compiler to use</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.compiler</td>
+        <td>Name of JIT compiler to use</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>java.ext.dirs</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Path of extension directory or directories</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>java.ext.dirs</td>
+        <td>Path of extension directory or directories</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>os.name</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Operating system name</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>os.name</td>
+        <td>Operating system name</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>os.arch</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Operating system architecture</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>os.arch</td>
+        <td>Operating system architecture</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>os.version</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Operating system version</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>os.version</td>
+        <td>Operating system version</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>file.separator</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>File separator ("/" on UNIX)</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>file.separator</td>
+        <td>File separator ("/" on UNIX)</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>path.separator</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Path separator (":" on UNIX)</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>path.separator</td>
+        <td>Path separator (":" on UNIX)</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>line.separator Line separator</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>("\n" on UNIX)</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>line.separator Line separator</td>
+        <td>("\n" on UNIX)</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>user.name</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>User's account name</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>user.name</td>
+        <td>User's account name</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>user.home</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>User's home directory</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>user.home</td>
+        <td>User's home directory</td>
+      </tr> 
 
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>user.dir</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>User's current working directory</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>user.dir</td>
+        <td>User's current working directory</td>
+      </tr> 
       
-    </TABLE>
-  </DESCRIPTION>
+    </informaltable>
+  </refsection>
 
-  <EXAMPLE><![CDATA[system_getproperty('awt.toolkit')
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[system_getproperty('awt.toolkit')
 system_getproperty('file.encoding')
 system_getproperty('file.encoding.pkg')
 system_getproperty('java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment')
@@ -247,7 +242,7 @@ system_getproperty('user.language')
 system_getproperty('user.name')
 system_getproperty('user.timezone')
 system_getproperty('user.variant')
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

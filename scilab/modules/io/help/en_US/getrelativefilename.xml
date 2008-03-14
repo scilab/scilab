@@ -1,51 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>getrelativefilename</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="getrelativefilename">Given an absolute directory and an absolute filename, returns a relative file name.</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getrelativefilename"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getrelativefilename</refname><refpurpose>Given an absolute directory and an absolute filename, returns a relative file name.</refpurpose></refnamediv>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>rel_file = getrelativefilename(abs_dir,abs_file)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
+	
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>rel_file = getrelativefilename(abs_dir,abs_file)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
 		
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>abs_dir</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: A character string : the absolute directory</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+		<variablelist>
+			<varlistentry>
+				<term>abs_dir</term>
+				<listitem>
+					<para>A character string : the absolute directory</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>abs_file</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: A character string : the absolute filename</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>abs_file</term>
+				<listitem>
+					<para>A character string : the absolute filename</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>rel_file</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: A character string : relative filename</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
+			<varlistentry>
+				<term>rel_file</term>
+				<listitem>
+					<para>A character string : relative filename</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
 		
-	</PARAM>
+	</refsection>
 	
-	<DESCRIPTION>
-		<P>Given an absolute directory and an absolute filename, returns a relative file name.</P>
-		<P>For example, if the current directory is C:\scilab\bin and the filename C:\scilab\modules\helptools\readme.txt is given,
-		getrelativefilename will return ..\modules\helptools\readme.txt.</P>
-	</DESCRIPTION>
+	<refsection><title>Description</title>
+		<para>Given an absolute directory and an absolute filename, returns a relative file name.</para>
+		<para>For example, if the current directory is C:\scilab\bin and the filename C:\scilab\modules\helptools\readme.txt is given,
+		getrelativefilename will return ..\modules\helptools\readme.txt.</para>
+	</refsection>
 	
-	<EXAMPLE>
-<![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 if MSDOS then
 	getrelativefilename('C:\program file\scilab-4.0\bin','C:\program file\scilab-4.0\modules\helptools\help.dtd')
 	getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
@@ -58,20 +54,20 @@ else
 	getrelativefilename(SCI+'/bin',SCI+'/modules/helptools/help.dtd')
 	getrelativefilename(getcwd(),SCI+'/bin/scilex')
 end
-]]>
-	</EXAMPLE>
+
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>getshortpathname</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>getlongpathname</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>getcwd</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="getshortpathname">getshortpathname</link>
+		</member>
+		<member>
+			<link linkend="getlongpathname">getlongpathname</link>
+		</member>
+		<member>
+			<link linkend="getcwd">getcwd</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHOR>Pierre MARECHAL</AUTHOR>
-</MAN>
+	<refsection><title>Authors</title><para>Pierre MARECHAL</para></refsection>
+</refentry>

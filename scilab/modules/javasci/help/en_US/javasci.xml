@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -10,47 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="javasci"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>javasci</refname><refpurpose>Scilab tool to interface Scilab functions
+  to Java</refpurpose></refnamediv>
+  
 
-  <TITLE>Java - Scilab Interface</TITLE>
+  
 
-  <TYPE>Java Interface</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="javasci">Scilab tool to interface Scilab functions
-  to Java</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>Java interface written to allow calling Scilab computational engine
-    from Java.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Java interface written to allow calling Scilab computational engine
+    from Java.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[ // See SCI/modules/javasci/examples directory]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ // See SCI/modules/javasci/examples directory]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>Scilab</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="Scilab">Scilab</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciDouble</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciDouble">SciDouble</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciDoubleArray</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciDoubleArray">SciDoubleArray</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciString</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciString">SciString</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciStringArray</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="SciStringArray">SciStringArray</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

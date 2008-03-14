@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,46 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getsymbol</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="getsymbol"> dialog to select a symbol and its size</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>c=getsymbol([title])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>title</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, dialog title.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>c</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of size 2 <VERB>[n,sz]</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P> Obsolete function use <LINK>getmark</LINK> or the interactive graphic
-      properties editor preferabily.</P>
-    <P><VERB>getsymbol</VERB> opens a dialog choice box with title <VERB>title</VERB> if
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getsymbol"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getsymbol</refname><refpurpose> dialog to select a symbol and its size</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>c=getsymbol([title])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+        <listitem>
+          <para>string, dialog title.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>vector of size 2 <literal>[n,sz]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para> Obsolete function use <link linkend="getmark">getmark</link> or the interactive graphic
+      properties editor preferabily.</para>
+    <para><literal>getsymbol</literal> opens a dialog choice box with title <literal>title</literal> if
     given where the user can select a
-    symbol and its size. <VERB>getsymbol</VERB> returns the id of the mark
-    <VERB>n</VERB> and the id of its size <VERB>sz</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getmark</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xset</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    symbol and its size. <literal>getsymbol</literal> returns the id of the mark
+    <literal>n</literal> and the id of its size <literal>sz</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getmark">getmark</link>
+    </member>
+    <member>
+      <link linkend="xset">xset</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

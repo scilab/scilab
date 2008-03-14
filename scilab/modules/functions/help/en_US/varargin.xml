@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -11,63 +10,61 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="varargin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>varargin</refname><refpurpose>variable numbers of arguments in an input
+  argument list</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>varargin</TITLE>
+  
 
-  <TYPE>Scilab keyword</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="varargin">variable numbers of arguments in an input
-  argument list</SHORT_DESCRIPTION>
-
-  <DESCRIPTION>
-    <P>A function whose last input argument is <VERB>varargin</VERB> can be
+  <refsection><title>Description</title>
+    <para>A function whose last input argument is <literal>varargin</literal> can be
     called with more input arguments than indicated in the input argument
-    list. The calling arguments passed form <VERB>varargin</VERB> keyword
+    list. The calling arguments passed form <literal>varargin</literal> keyword
     onwards may then be retrieved within the function in a list named
-    <VERB>varargin</VERB>.</P>
+    <literal>varargin</literal>.</para>
 
-    <P>Suppose that <VERB>varargin</VERB> keyword is the <VERB>n</VERB> th
+    <para>Suppose that <literal>varargin</literal> keyword is the <literal>n</literal> th
     argument of the formal input argument list, then if the function is called
-    with less than <VERB>n-1</VERB> input arguments the <VERB>varargin</VERB>
-    list is not defined, if the function is called with <VERB>n-1</VERB>
-    arguments then <VERB>varargin</VERB> list is an empty list.</P>
+    with less than <literal>n-1</literal> input arguments the <literal>varargin</literal>
+    list is not defined, if the function is called with <literal>n-1</literal>
+    arguments then <literal>varargin</literal> list is an empty list.</para>
 
-    <P><VERB>y = function ex(varargin)</VERB> may be called with any number of
-    input arguments. Within function <VERB>ex</VERB> input arguments may be
-    retrieved in <VERB>varargin(i)</VERB>
-    ,<VERB>i=1:length(varargin)</VERB></P>
+    <para><literal>y = function ex(varargin)</literal> may be called with any number of
+    input arguments. Within function <literal>ex</literal> input arguments may be
+    retrieved in <literal>varargin(i)</literal>
+    ,<literal>i=1:length(varargin)</literal></para>
 
-    <P>If it is not the last input argument of a function,
-    <VERB>varargin</VERB> is a normal input argument name with no special
-    meaning.</P>
-  </DESCRIPTION>
+    <para>If it is not the last input argument of a function,
+    <literal>varargin</literal> is a normal input argument name with no special
+    meaning.</para>
+  </refsection>
 
-  <SECTION label="Remark">
-    <P>Named argument syntax like <VERB>foo(...,key=value) </VERB> is
+  <refsection><title>Remark</title>
+    <para>Named argument syntax like <literal>foo(...,key=value) </literal> is
     incompatible with the use of varargin. The reason is that the names (i.e.
     keys) associated with values are not stored in the varargin list. Consider
-    for instance:</P>
+    for instance:</para>
 
-    <P>function foo(varargin),disp([varargin(1),varargin(2)]),endfunction</P>
+    <para>function foo(varargin),disp([varargin(1),varargin(2)]),endfunction</para>
 
-    <P>foo(a=1,b=2)</P>
+    <para>foo(a=1,b=2)</para>
 
-    <P>Scilab answers: 1. 2. </P>
+    <para>Scilab answers: 1. 2. </para>
 
-    <P>foo(b=1,a=2)</P>
+    <para>foo(b=1,a=2)</para>
 
-    <P> Scilab answers: 1. 2. </P>
+    <para> Scilab answers: 1. 2. </para>
 
-    <P>Result is the same, but the arguments were inverted.</P>
-  </SECTION>
+    <para>Result is the same, but the arguments were inverted.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
                           'if rhs>=1 then disp(varargin),end'])
@@ -77,19 +74,19 @@ exampl(1,2,3)
 l=list('a',%s,%t);
 exampl(1,l(2:3))
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>function</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="function">function</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>varargout</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="varargout">varargout</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>list</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="list">list</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

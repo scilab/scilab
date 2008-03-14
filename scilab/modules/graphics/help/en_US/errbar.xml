@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,46 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>errbar</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="errbar"> add vertical error bars on a 2D plot</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>errbar(x,y,em,ep)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y,em,ep</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: four matrices of the same size.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>errbar</VERB> adds vertical error bars on a 2D plot. 
-    <VERB>x</VERB> and <VERB>y</VERB> have the same meaning as in <VERB>plot2d</VERB>.
-    <VERB>em(i,j)</VERB> and <VERB>ep(i,j)</VERB> stands for the error interval on the 
-    value <VERB>y(i,j)</VERB>: <VERB>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</VERB>.</P>
-    <P>
-    Enter the command <VERB>errbar()</VERB> to see a demo.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="errbar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>errbar</refname><refpurpose> add vertical error bars on a 2D plot</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>errbar(x,y,em,ep)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y,em,ep</term>
+        <listitem>
+          <para>four matrices of the same size.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>errbar</literal> adds vertical error bars on a 2D plot. 
+    <literal>x</literal> and <literal>y</literal> have the same meaning as in <literal>plot2d</literal>.
+    <literal>em(i,j)</literal> and <literal>ep(i,j)</literal> stands for the error interval on the 
+    value <literal>y(i,j)</literal>: <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.</para>
+    <para>
+    Enter the command <literal>errbar()</literal> to see a demo.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 t=[0:0.1:2*%pi]';
 y=[sin(t) cos(t)]; x=[t t];
 plot2d(x,y)
 errbar(x,y,0.05*ones(x),0.03*ones(x))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>

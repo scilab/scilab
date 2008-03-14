@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,62 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pinv</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pinv"> pseudoinverse</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>pinv(A,[tol])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real number</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>X = pinv(A)</VERB> produces a matrix <VERB>X</VERB> of the
-    same dimensions as <VERB>A'</VERB> such that:</P>
-    <P><VERB>A*X*A = A, X*A*X = X</VERB>  and both
-    <VERB>A*X</VERB> and <VERB>X*A</VERB> are Hermitian .</P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pinv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pinv</refname><refpurpose> pseudoinverse</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>pinv(A,[tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>real number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>X = pinv(A)</literal> produces a matrix <literal>X</literal> of the
+    same dimensions as <literal>A'</literal> such that:</para>
+    <para><literal>A*X*A = A, X*A*X = X</literal>  and both
+    <literal>A*X</literal> and <literal>X*A</literal> are Hermitian .</para>
+    <para>
     The computation is  based  on SVD and  any  singular values 
     lower than a tolerance are treated   as zero: this  tolerance 
-    is accessed by <VERB>X=pinv(A,tol)</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    is accessed by <literal>X=pinv(A,tol)</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 A=rand(5,2)*rand(2,4);
 norm(A*pinv(A)*A-A,1)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>rank</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>svd</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>qr</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <USED_FUNCTIONS>
-    <P><VERB>pinv</VERB> function is  based on the singular value decomposition
- (Scilab function <VERB>svd</VERB>).</P>
-  </USED_FUNCTIONS>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="rank">rank</link>
+    </member>
+    <member>
+      <link linkend="svd">svd</link>
+    </member>
+    <member>
+      <link linkend="qr">qr</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Used Functions</title>
+    <para><literal>pinv</literal> function is  based on the singular value decomposition
+ (Scilab function <literal>svd</literal>).</para>
+  </refsection>
+</refentry>

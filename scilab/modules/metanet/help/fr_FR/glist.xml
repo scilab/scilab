@@ -1,45 +1,28 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>glist  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="glist"> création d&apos;un graphe  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>g = glist(a1, ... ,a34)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    <VERB>glist(a1,....a34)</VERB> est un raccourci de la commande :
-    <VERB>tlist([&apos;graph&apos;,&apos;name&apos;,&apos;oriented&apos;,&apos;node_number&apos;,&apos;tail&apos;,&apos;head&apos;,..
-              &apos;node_name&apos;,&apos;node_type&apos;,&apos;node_x&apos;,&apos;node_y&apos;,&apos;node_color&apos;,..
-              &apos;node_diam&apos;,&apos;node_border&apos;,&apos;node_font_size&apos;,&apos;node_demand&apos;,..
-              &apos;edge_name&apos;,&apos;edge_color&apos;,&apos;edge_width&apos;,&apos;edge_hi_width&apos;,..
-              &apos;edge_font_size&apos;,&apos;edge_length&apos;,&apos;edge_cost&apos;,..
-              &apos;edge_min_cap&apos;,&apos;edge_max_cap&apos;,&apos;edge_q_weight&apos;,&apos;edge_q_orig&apos;,..
-              &apos;edge_weight&apos;,&apos;default_node_diam&apos;,&apos;default_node_border&apos;,..
-              &apos;default_edge_width&apos;,&apos;default_edge_hi_width&apos;,..
-              &apos;default_font_size&apos;,&apos;node_label&apos;,&apos;edge_label&apos;],a1, ... ,a34)</VERB>
-    Il s&apos;agit d&apos;une fonction de bas niveau pour créer un graphe. Aucune 
-    vérification n&apos;est faite.
-    Pour créer un graphe de façon plus standard, utiliser <VERB>make_graph</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>check_graph</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graph-list</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>make_graph</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="glist"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>glist</refname><refpurpose> création d'un graphe  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>g = glist(a1, ... ,a34)</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>
+    <literal>glist(a1,....a34)</literal> est un raccourci de la commande :
+    <literal>tlist(['graph','name','oriented','node_number','tail','head',..
+              'node_name','node_type','node_x','node_y','node_color',..
+              'node_diam','node_border','node_font_size','node_demand',..
+              'edge_name','edge_color','edge_width','edge_hi_width',..
+              'edge_font_size','edge_length','edge_cost',..
+              'edge_min_cap','edge_max_cap','edge_q_weight','edge_q_orig',..
+              'edge_weight','default_node_diam','default_node_border',..
+              'default_edge_width','default_edge_hi_width',..
+              'default_font_size','node_label','edge_label'],a1, ... ,a34)</literal>
+    Il s'agit d'une fonction de bas niveau pour créer un graphe. Aucune 
+    vérification n'est faite.
+    Pour créer un graphe de façon plus standard, utiliser <literal>make_graph</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="check_graph">check_graph</link> </member>     <member> <link linkend="graphlist">graph-list</link> </member>     <member> <link linkend="make_graph">make_graph</link> </member>
+  </simplelist></refsection>
+</refentry>

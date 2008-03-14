@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,83 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>plot_graph</refname><refpurpose> general plot of a graph (obsolete)</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>plot_graph(g,[rep,rep1])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep</term>
+        <listitem>
+          <para>row vector of 13 values for the parameters of the plot</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep1</term>
+        <listitem>
+          <para>row vector of 4 values defining the plotting rectangle</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para> This function is osolete, use show_graph instead</para>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>plot_graph</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="plot_graph"> general plot of a graph (obsolete)</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>plot_graph(g,[rep,rep1])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rep</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of 13 values for the parameters of the plot</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rep1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of 4 values defining the plotting rectangle</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P> This function is osolete, use show_graph instead</P>
-
-    <P><VERB>plot_graph</VERB> plots graph <VERB>g</VERB> in a Scilab graphical window.
-    The optional arguments <VERB>rep</VERB> and <VERB>rep1</VERB> define the parameters
+    <para><literal>plot_graph</literal> plots graph <literal>g</literal> in a Scilab graphical window.
+    The optional arguments <literal>rep</literal> and <literal>rep1</literal> define the parameters
     of the plot. If there are not given, a dialog box for the definition
-    of these parameters is opened.</P>
-    <P><VERB>rep</VERB> must be a row vector with 13 integer numbers which must be 1 or 2.
-    The meaning of the values of <VERB>rep</VERB> are:</P>
-    <P>
+    of these parameters is opened.</para>
+    <para><literal>rep</literal> must be a row vector with 13 integer numbers which must be 1 or 2.
+    The meaning of the values of <literal>rep</literal> are:</para>
+    <para>
     Frame definition: 1 = Automatic
-                      2 = Given (see below)</P>
-    <P>
-    Plotting arrows: 1 = yes, 2 = no</P>
-    <P>
-    Plotting sink and source nodes: 1 = yes, 2 = no</P>
-    <P>
-    Plotting node names: 1 = yes, 2 = no</P>
-    <P>
-    Plotting node labels: 1 = yes, 2 = no</P>
-    <P>
-    Plotting arc names : 1 = yes, 2 = no</P>
-    <P>
-    Plotting arc labels: 1 = yes, 2 = no</P>
-    <P>
-    Plotting node demand: 1 = yes, 2 = no</P>
-    <P>
-    Plotting edge length: 1 = yes, 2 = no</P>
-    <P>
-    Plotting edge cost: 1 = yes, 2 = no</P>
-    <P>
-    Plotting edge min cap: 1 = yes, 2 = no</P>
-    <P>
-    Plotting edge max cap: 1 = yes, 2 = no</P>
-    <P>
-    Plotting edge weight: 1 = yes, 2 = no</P>
-    <P>
-    If <VERB>rep(1)</VERB> is 2, the frame definition must be given by
-    <VERB>rep1</VERB>. Otherwise, <VERB>rep1</VERB>can be omitted.
-    <VERB>rep1</VERB> must be a row vector <VERB>[orx,ory,w,h]</VERB> giving respectively the coordinates of the upper-left point, the width and the height of the
-    plotting rectangle.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+                      2 = Given (see below)</para>
+    <para>
+    Plotting arrows: 1 = yes, 2 = no</para>
+    <para>
+    Plotting sink and source nodes: 1 = yes, 2 = no</para>
+    <para>
+    Plotting node names: 1 = yes, 2 = no</para>
+    <para>
+    Plotting node labels: 1 = yes, 2 = no</para>
+    <para>
+    Plotting arc names : 1 = yes, 2 = no</para>
+    <para>
+    Plotting arc labels: 1 = yes, 2 = no</para>
+    <para>
+    Plotting node demand: 1 = yes, 2 = no</para>
+    <para>
+    Plotting edge length: 1 = yes, 2 = no</para>
+    <para>
+    Plotting edge cost: 1 = yes, 2 = no</para>
+    <para>
+    Plotting edge min cap: 1 = yes, 2 = no</para>
+    <para>
+    Plotting edge max cap: 1 = yes, 2 = no</para>
+    <para>
+    Plotting edge weight: 1 = yes, 2 = no</para>
+    <para>
+    If <literal>rep(1)</literal> is 2, the frame definition must be given by
+    <literal>rep1</literal>. Otherwise, <literal>rep1</literal>can be omitted.
+    <literal>rep1</literal> must be a row vector <literal>[orx,ory,w,h]</literal> giving respectively the coordinates of the upper-left point, the width and the height of the
+    plotting rectangle.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 // simple graph with different choices for the plot
 ta=[2 2 1 1 2 4 3 3 4];
 he=[2 2 3 2 3 2 1 2 1];
@@ -110,11 +105,11 @@ clf(); plot_graph(g);
 xset("thickness",4);
 clf();
 plot_graph(g);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>show_graph</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="show_graph">show_graph</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

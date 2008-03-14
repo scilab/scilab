@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,57 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_edges"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv xml:id="show_arcs"><refname>show_arcs</refname><refpurpose> highlights a set of arcs</refpurpose></refnamediv><refnamediv><refname>show_edges</refname><refpurpose> highlights a set of edges</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>show_edges(p [,sup])
+show_edges(p ,sup=value)
+show_edges(p ,leg=value)
+show_edges(p ,sup=value,leg=value)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>vector of arc numbers (directed graph) or edge numbers (undirected graph)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sup</term>
+        <listitem>
+          <para>string, superposition flag. The default value is  <literal>'no'</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>leg</term>
+        <listitem>
+          <para>string, data field to be displayed. The default value is <literal>'nothing'</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>show_arcs</literal> or similarily <literal>show_edges</literal>
+    highlights the set of arcs or edges <literal>p</literal> of the
+    displayed graph in the current <link linkend="edit_graph">edit_graph</link> window (see <link linkend="netwindow">netwindow</link>).  If
+    the optional argument <literal>sup</literal> is equal to the string
+    'sup', the highlighting is superposed on the previous one.</para>
+    <para>If leg is equal to <literal>'number'</literal> the edge numbers are also drawn.</para>
+    <para>If leg is equal to <literal>'name'</literal> the edge names are  also drawn.</para>
+    <para>If leg is equal to one of the edges data fields
+    <literal>'name'</literal> the corresponding values are also drawn.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>show_edges</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="show_arcs"> highlights a set of arcs</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="show_edges"> highlights a set of edges</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>show_edges(p [,sup])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>show_edges(p ,sup=value)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>show_edges(p ,leg=value)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>show_edges(p ,sup=value,leg=value)  </CALLING_SEQUENCE_ITEM>
-
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of arc numbers (directed graph) or edge numbers (undirected graph)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sup</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, superposition flag. The default value is  <VERB>'no'</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>leg</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, data field to be displayed. The default value is <VERB>'nothing'</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>show_arcs</VERB> or similarily <VERB>show_edges</VERB>
-    highlights the set of arcs or edges <VERB>p</VERB> of the
-    displayed graph in the current <LINK>edit_graph</LINK> window (see <LINK>netwindow</LINK>).  If
-    the optional argument <VERB>sup</VERB> is equal to the string
-    'sup', the highlighting is superposed on the previous one.</P>
-    <P>If leg is equal to <VERB>'number'</VERB> the edge numbers are also drawn.</P>
-    <P>If leg is equal to <VERB>'name'</VERB> the edge names are  also drawn.</P>
-    <P>If leg is equal to one of the edges data fields
-    <VERB>'name'</VERB> the corresponding values are also drawn.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -73,26 +67,26 @@ t=min_weight_tree(1,g);
 show_arcs(t);
 show_arcs(t,leg='number');
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>edit_graph</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>hilite_edges</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unhilite_edges</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>show_nodes</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindow</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindows</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="edit_graph">edit_graph</link>
+    </member>
+    <member>
+      <link linkend="hilite_edges">hilite_edges</link>
+    </member>
+    <member>
+      <link linkend="unhilite_edges">unhilite_edges</link>
+    </member>
+    <member>
+      <link linkend="show_nodes">show_nodes</link>
+    </member>
+    <member>
+      <link linkend="netwindow">netwindow</link>
+    </member>
+    <member>
+      <link linkend="netwindows">netwindows</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

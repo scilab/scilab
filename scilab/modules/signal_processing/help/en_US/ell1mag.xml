@@ -1,50 +1,46 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ell1mag</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="ell1mag"> magnitude of elliptic filter</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[v]=ell1mag(eps,m1,z)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>eps</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: passband ripple=<VERB>1/(1+eps^2)</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>m1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: stopband ripple=<VERB>1/(1+(eps^2)/m1)</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: sample vector of values in the complex plane</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: elliptic filter values at sample points</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ell1mag"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ell1mag</refname><refpurpose> magnitude of elliptic filter</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[v]=ell1mag(eps,m1,z)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>eps</term>
+        <listitem>
+          <para>passband ripple=<literal>1/(1+eps^2)</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m1</term>
+        <listitem>
+          <para>stopband ripple=<literal>1/(1+(eps^2)/m1)</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>sample vector of values in the complex plane</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>elliptic filter values at sample points</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Function used for squared magnitude of an elliptic filter.
-    Usually <VERB>m1=eps*eps/(a*a-1)</VERB>. Returns 
-    <VERB>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</VERB> for <VERB>s=%sn(z,m1)</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    Usually <literal>m1=eps*eps/(a*a-1)</literal>. Returns 
+    <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal> for <literal>s=%sn(z,m1)</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
 'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
 alpha=%k(1-m1)/%k(1-m);')
@@ -58,11 +54,11 @@ sample=0:0.01:20;
 //Now we map the positive real axis into the contour...
 z=alpha*%asn(sample/omegac,m)+Beta*ones(sample);
 plot(sample,ell1mag(epsilon,m1,z))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>buttmag</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="buttmag">buttmag</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

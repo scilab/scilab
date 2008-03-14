@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,119 +10,116 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>legends</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="legends"> draw graph legend</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>legends(strings,style,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>strings</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: n vector of strings, strings(i) is the legend of the ith curve</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>style</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer row vector of size n (the plot styles, third parameter of plot2d) or an integer 2 x n matrix, style(1,k) contains the plot style for the kth curve and style(2,k) contains the line style (if style(1,k)&gt;0) or mark color (if style(1,k)&lt;0).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="legends"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>legends</refname><refpurpose> draw graph legend</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>legends(strings,style,&lt;opt_args&gt;)
+</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>strings</term>
+        <listitem>
+          <para>n vector of strings, strings(i) is the legend of the ith curve</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style</term>
+        <listitem>
+          <para>integer row vector of size n (the plot styles, third parameter of plot2d) or an integer 2 x n matrix, style(1,k) contains the plot style for the kth curve and style(2,k) contains the line style (if style(1,k)&gt;0) or mark color (if style(1,k)&lt;0).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
         
-        <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements
-          <VERB>key1=value1,key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following:</SP>
+        <listitem>
+          <para>This represents a sequence of statements
+          <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following:</para>
           
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>opt</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: specify where to draw the legends; this parameter may be a integer
+          <variablelist>
+            <varlistentry>
+              <term>opt</term>
+              <listitem>
+                <para>specify where to draw the legends; this parameter may be a integer
                 flag (or equivalently a string flag) or a vector [x,y] which gives the coordinates 
                 of the upper left corner of the legend box. In the first case the possible values
-                are:</SP>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>1 or &quot;ur&quot;</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP> the legends are drawn in the upper right-hand corner.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>2 or &quot;ul&quot;</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP> the legends are drawn in the upper left-hand corner.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>3 or &quot;ll&quot;</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP> the legends are drawn in the lower left-hand corner.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>4 or &quot;lr&quot;</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP> the legends are drawn in the lower right-hand corner.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>5 or &quot;?&quot;</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP> interactive placement with the mouse  (default).</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>6 or &quot;below&quot;</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP> the legends are drawn under the graph (which is resized accordingly).</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+                are:</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>1 or "ur"</term>
+                    <listitem>
+                      <para> the legends are drawn in the upper right-hand corner.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>2 or "ul"</term>
+                    <listitem>
+                      <para> the legends are drawn in the upper left-hand corner.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>3 or "ll"</term>
+                    <listitem>
+                      <para> the legends are drawn in the lower left-hand corner.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>4 or "lr"</term>
+                    <listitem>
+                      <para> the legends are drawn in the lower right-hand corner.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>5 or "?"</term>
+                    <listitem>
+                      <para> interactive placement with the mouse  (default).</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>6 or "below"</term>
+                    <listitem>
+                      <para> the legends are drawn under the graph (which is resized accordingly).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
           
-            <PARAM_ITEM>
-              <PARAM_NAME>with_box</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: a boolean (default value %t) which sets ot not the drawing of the box.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+            <varlistentry>
+              <term>with_box</term>
+              <listitem>
+                <para>a boolean (default value %t) which sets ot not the drawing of the box.</para>
+              </listitem>
+            </varlistentry>
           
-            <PARAM_ITEM>
-              <PARAM_NAME>font_size</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: an integer (default value 1) which sets the size of the font used for the names in the legend. </SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+            <varlistentry>
+              <term>font_size</term>
+              <listitem>
+                <para>an integer (default value 1) which sets the size of the font used for the names in the legend. </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Puts a legend on the current plot using the specified strings as
-    labels.</P>
-    <P>
-    In the interactive placement (opt=5 or opt=&quot;?&quot;) move the legend box with the
-    mouse and press the left button to release it.</P>
-    <P>
+    labels.</para>
+    <para>
+    In the interactive placement (opt=5 or opt="?") move the legend box with the
+    mouse and press the left button to release it.</para>
+    <para>
     This function allows more flexible placement of the legends than the
-    leg plot2d argument.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-  <![CDATA[
+    leg plot2d argument.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  
 
 // Example 1
 t=0:0.1:2*%pi;
@@ -158,22 +155,22 @@ plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
 
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xstring</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xtitle</LINK>
-    </SEE_ALSO_ITEM>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
+    <member>
+      <link linkend="xstring">xstring</link>
+    </member>
+    <member>
+      <link linkend="xtitle">xtitle</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>legend</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="legend">legend</link>
+    </member>
 
-  </SEE_ALSO>
-</MAN>
+  </simplelist></refsection>
+</refentry>

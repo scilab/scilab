@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,50 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>part</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="part"> extraction of strings</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[c]=part(mp,v)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>mp,c</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer vector.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Let <VERB>s[k]</VERB> stands for the <VERB>k</VERB> character of string <VERB>s</VERB> ( 
-    or the white space character if <VERB>k &gt;length(s)</VERB>).</P>
-    <P><VERB>part</VERB> returns <VERB>c</VERB>, a matrix of character strings, such that 
-    <VERB>c(i,j)</VERB> is the string <VERB>&quot;s[v(1)]...s[v(n)]&quot;</VERB> ( <VERB>s=mp(i,j)</VERB> ).</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="part"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>part</refname><refpurpose> extraction of strings</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[c]=part(mp,v)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>mp,c</term>
+        <listitem>
+          <para>string matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>integer vector.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Let <literal>s[k]</literal> stands for the <literal>k</literal> character of string <literal>s</literal> ( 
+    or the white space character if <literal>k &gt;length(s)</literal>).</para>
+    <para><literal>part</literal> returns <literal>c</literal>, a matrix of character strings, such that 
+    <literal>c(i,j)</literal> is the string <literal>"s[v(1)]...s[v(n)]"</literal> ( <literal>s=mp(i,j)</literal> ).</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 c=part(['a','abc','abcd'],[1,1,2])
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>string</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>length</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="string">string</link>
+    </member>
+    <member>
+      <link linkend="length">length</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

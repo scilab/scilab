@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
@@ -11,58 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>head_comments</TITLE>
-	<TYPE>Scilab Function  </TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="head_comments">display scilab function header comments</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="head_comments"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>head_comments</refname><refpurpose>display scilab function header comments</refpurpose></refnamediv>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>head_comments(name)</CALLING_SEQUENCE_ITEM>   
-		<CALLING_SEQUENCE_ITEM>head_comments(name,%paths)</CALLING_SEQUENCE_ITEM>   
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>name</PARAM_NAME>
-				<PARAM_DESCRIPTION><SP>: character string, the function name</SP></PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-			<PARAM_ITEM>
-				<PARAM_NAME>%paths</PARAM_NAME>
-				<PARAM_DESCRIPTION><SP>: character string vector, paths where to look for the asscoated sci-file</SP></PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
 	
-	<DESCRIPTION>
-		<P>
-			<VERB>comments(name)</VERB> displays the function header comments (like the
-			Matlab help). The comments are read from the associated sci-file. If <VERB>name</VERB>
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>head_comments(name)
+head_comments(name,%paths)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>name</term>
+				<listitem><para>character string, the function name</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>%paths</term>
+				<listitem><para>character string vector, paths where to look for the asscoated sci-file</para></listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection><title>Description</title>
+		<para>
+			<literal>comments(name)</literal> displays the function header comments (like the
+			Matlab help). The comments are read from the associated sci-file. If <literal>name</literal>
 			if a function in a library the sci-file path is those given by the library
-			path (see <VERB>lib</VERB>). If <VERB>name</VERB> if a function which is
-			not in a library, a file with name <VERB>name.sci</VERB> is searched in the
-			directories given by the variable <VERB>%paths</VERB>
-		</P>
-		<P>
+			path (see <literal>lib</literal>). If <literal>name</literal> if a function which is
+			not in a library, a file with name <literal>name.sci</literal> is searched in the
+			directories given by the variable <literal>%paths</literal>
+		</para>
+		<para>
 			Warning, most of the scilab predefined functions have no header comments.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<EXAMPLE>
-<![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 head_comments sinc
-]]>
-	</EXAMPLE>
+
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM><LINK>help</LINK></SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member><link linkend="help">help</link></member>
+	</simplelist></refsection>
 	
-	<AUTHOR>
+	<refsection><title>Authors</title><para>
 		Serge Steer, INRIA
-	</AUTHOR>
-</MAN>
+	</para></refsection>
+</refentry>

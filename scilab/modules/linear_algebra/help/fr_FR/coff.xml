@@ -1,85 +1,64 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>coff  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="coff"> résolvante (méthode des cofacteurs)  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[N,d]=coff(M [,var])   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>M  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice carrée réelle
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>var  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères (indéterminée des polynômes)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>N  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice de polynômes (de même taille que <VERB>M</VERB>)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>d  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : polynôme (polynôme caractéristique de M : <VERB>poly(M,var)</VERB>)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>coff</VERB> calcule R=<VERB>(s*eye()-M)^-1</VERB> pour <VERB>M</VERB> une matrice réelle. 
-    R est donnée par <VERB>N/d</VERB>.
-  </P>
-  <P>
-    <VERB>N</VERB> = matrice des numérateurs (polynômes).
-  </P>
-  <P>
-    <VERB>d</VERB> = dénominateur commun.
-  </P>
-  <P>
-    <VERB>var</VERB> chaîne de caractères (indéterminée des polynômes, &apos;<VERB>s</VERB>&apos; par défaut)
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="coff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>coff</refname><refpurpose> résolvante (méthode des cofacteurs)  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[N,d]=coff(M [,var])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>M  </term>
+  <listitem>
+  <para>matrice carrée réelle
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>var  </term>
+  <listitem>
+  <para>chaîne de caractères (indéterminée des polynômes)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>N  </term>
+  <listitem>
+  <para>matrice de polynômes (de même taille que <literal>M</literal>)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>d  </term>
+  <listitem>
+  <para>polynôme (polynôme caractéristique de M : <literal>poly(M,var)</literal>)
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>coff</literal> calcule R=<literal>(s*eye()-M)^-1</literal> pour <literal>M</literal> une matrice réelle. 
+    R est donnée par <literal>N/d</literal>.
+  </para>
+  <para>
+    <literal>N</literal> = matrice des numérateurs (polynômes).
+  </para>
+  <para>
+    <literal>d</literal> = dénominateur commun.
+  </para>
+  <para>
+    <literal>var</literal> chaîne de caractères (indéterminée des polynômes, '<literal>s</literal>' par défaut)
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 M=[1,2;0,3];
 [N,d]=coff(M)
 N/d
 inv(%s*eye()-M)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ss2tf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>nlev</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="coffg">coffg</link> </member>     <member> <link linkend="ss2tf">ss2tf</link> </member>     <member> <link linkend="nlev">nlev</link> </member>     <member> <link linkend="poly">poly</link> </member>
+  </simplelist></refsection>
+</refentry>

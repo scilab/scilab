@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -11,51 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="javalibrarypath"><info><pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate></info><refnamediv><refname>javalibrarypath</refname><refpurpose>set and get dynamic java.library.path</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>javalibrarypath</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-05-10 09:26:08 +0200$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="javalibrarypath">set and get dynamic java.library.path</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res=javalibrarypath()
+javalibrarypath(path)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res=javalibrarypath()</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>javalibrarypath(path)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
+        <listitem>
+          <para>a string matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>set and get the dynamic Java Library path to one or more directory given in path.</para>
+    <para>When you use java classes with native methods, you need to define path where is dynamic library.</para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>set and get the dynamic Java Library path to one or more directory given in path.</P>
-    <P>When you use java classes with native methods, you need to define path where is dynamic library.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[res=javalibrarypath();
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[res=javalibrarypath();
 javalibrarypath(SCI);
 javalibrarypath([SCI,SCI+'/libs']);
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>javaclasspath</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="javaclasspath">javaclasspath</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

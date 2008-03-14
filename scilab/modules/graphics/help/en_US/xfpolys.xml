@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,80 +10,77 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xfpolys</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xfpolys"> fill a set of polygons</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xfpolys(xpols,ypols,[fill])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>xpols,ypols</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrices of the same size (p,n) (points of the polygons).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fill</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of size n or of size (p,n)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>xfpolys</VERB> fills a set of polygons of the same size defined by 
-      the two matrices <VERB>xpols</VERB> and <VERB>ypols</VERB>. 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpolys"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xfpolys</refname><refpurpose> fill a set of polygons</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xfpolys(xpols,ypols,[fill])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xpols,ypols</term>
+        <listitem>
+          <para>matrices of the same size (p,n) (points of the polygons).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill</term>
+        <listitem>
+          <para>vector of size n or of size (p,n)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>xfpolys</literal> fills a set of polygons of the same size defined by 
+      the two matrices <literal>xpols</literal> and <literal>ypols</literal>. 
       The coordinates of each polygon
-      are stored in a column of <VERB>xpols</VERB> and <VERB>ypols</VERB>.
-    </P>
-    <P>The polygons may be filled with a given color (flat) or painted with
+      are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
+    </para>
+    <para>The polygons may be filled with a given color (flat) or painted with
       interpolated (shaded) colors.
-    </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="flat color painting">
-	<SP>In this case <VERB>fill</VERB> should be a vector of size
-	  <VERB>n</VERB>.
+    </para>
+    <variablelist>
+      <varlistentry><term>flat color painting</term><listitem>
+	<para>In this case <literal>fill</literal> should be a vector of size
+	  <literal>n</literal>.
 	  The pattern for filling polygon number i is given by
-	  <VERB>fill(i)</VERB>:</SP>
-	<DESCRIPTION_INDENT>
-	  <DESCRIPTION_ITEM label="-">
-	    <SP>if <VERB>fill(i)&lt;0</VERB>, the polygon is filled with
-	      pattern id <VERB>-fill(i)</VERB>.</SP>
-	  </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="-">
-	    <SP>if <VERB>fill(i)=0</VERB>, the polygon is drawn with the
-	      current dash style (or current color) and not filled.</SP>
-	  </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="-">
-	    <SP>if <VERB>fill(i)&gt;0</VERB>, the polygon is filled with
-	      pattern id <VERB>fill(i)</VERB>.  Then its contour is drawn with
-	      the current dash (or color) and closed if necessary.</SP>
-	  </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="interpolated color painting">
-	<P>
-	  In this case <VERB>fill</VERB> should be a matrix with same sizes
-	  as <VERB>xpols</VERB> and <VERB>ypols</VERB>. Note that
-	  <VERB>p</VERB> must be equal to 3 or 4.
-	</P>
-	<P>
-	  <VERB>fill(k,i)</VERB> gives the color at the <VERB>k</VERB>th edge
-	  of polygon <VERB>i</VERB>.
-	</P>
-      </DESCRIPTION_ITEM>
+	  <literal>fill(i)</literal>:</para>
+	<itemizedlist>
+	  <listitem>
+	    <para>if <literal>fill(i)&lt;0</literal>, the polygon is filled with
+	      pattern id <literal>-fill(i)</literal>.</para>
+	  </listitem>
+	  <listitem>
+	    <para>if <literal>fill(i)=0</literal>, the polygon is drawn with the
+	      current dash style (or current color) and not filled.</para>
+	  </listitem>
+	  <listitem>
+	    <para>if <literal>fill(i)&gt;0</literal>, the polygon is filled with
+	      pattern id <literal>fill(i)</literal>.  Then its contour is drawn with
+	      the current dash (or color) and closed if necessary.</para>
+	  </listitem>
+	</itemizedlist>
+      </listitem></varlistentry>
+      <varlistentry><term>interpolated color painting</term><listitem>
+	<para>
+	  In this case <literal>fill</literal> should be a matrix with same sizes
+	  as <literal>xpols</literal> and <literal>ypols</literal>. Note that
+	  <literal>p</literal> must be equal to 3 or 4.
+	</para>
+	<para>
+	  <literal>fill(k,i)</literal> gives the color at the <literal>k</literal>th edge
+	  of polygon <literal>i</literal>.
+	</para>
+      </listitem></varlistentry>
 
-    </DESCRIPTION_INDENT>
+    </variablelist>
  
-  </DESCRIPTION>
-  <EXAMPLE>
-    <![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    
     
     a=gca();a.data_bounds=[0,-10;210,40];a.foreground=color('red');
     x1=[0,10,20,30,20,10,0]';
@@ -120,18 +117,18 @@
     f=gcf();f.color_map=graycolormap(max(C));
     xfpolys(X,Y,C)
 
-    ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xfpoly</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xpoly</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xpolys</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+    
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xfpoly">xfpoly</link>
+    </member>
+    <member>
+      <link linkend="xpoly">xpoly</link>
+    </member>
+    <member>
+      <link linkend="xpolys">xpolys</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,95 +10,90 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="nansum"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>nansum</refname><refpurpose>  Sum of values ignoring NAN's</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s = nansum(x,orient)</synopsis></refsynopsisdiv>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nansum</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="nansum">  Sum of values ignoring NAN's</SHORT_DESCRIPTION>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>s = nansum(x,orient)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+    <varlistentry>
+    <term>x</term>
+    <listitem>
+       <para>numerical vector or matrix.</para>
+    </listitem>
+    </varlistentry>
 
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>x</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: numerical vector or matrix.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>orient</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: nothing or '*'.
+    <varlistentry>
+    <term>orient</term>
+    <listitem>
+       <para>nothing or '*'.
          'r' or 1.
-         'c' or 2.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+         'c' or 2.</para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>s</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-      <SP> : Numerical scalar or vector containig the value of the adding operation.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>s</term>
+    <listitem>
+      <para>Numerical scalar or vector containig the value of the adding operation.</para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-<P>
+  <refsection><title>Description</title>
+<para>
    This function returns in s the sum of the values (ignoring
    the NAN's) of a numerical vector or matrix x.
-   </P>
-<P>
+   </para>
+<para>
    For a vector or matrix x, s=nansum(x) (or s=nansum(x,'*'))
    returns in  scalar s the sum of values of all entries 
    (ignoring the NAN's) of a vector or matrix x.
-   </P>
-<P>
+   </para>
+<para>
    s=nansum(x,'r')(or,  equivalently,  s=nansum(x,1)) returns
    in each  entry of the  row vector s of  type 1xsize(x,'c')
    the sum of each column of x (ignoring the NANs).
-</P>
-<P>
+</para>
+<para>
    s=nansum(x,'c')(or,  equivalently,  s=nansum(x,2)) returns
    in each entry of the column vector s of type size(x,'c')x1
    the sum of each row of x (ignoring the NANs).
-</P>
-<P>
+</para>
+<para>
    For the  last two cases,  if a row  or column is  in whole
    composed of NAN, the corresponding place of s will contain
    a NAN.
-</P>
-  </DESCRIPTION>
+</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
     m=nansum(x)
     m=nansum(x,1)
     m=nansum(x,2)
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>nancumsum</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="nancumsum">nancumsum</link> </member>
+    <member> <link linkend="sum">sum</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>
     Carlos Klimann
-  </AUTHOR>
-  <BIBLIO>
-    <P>
+  </para></refsection>
+  <refsection><title>Bibliography</title>
+    <para>
     Wonacott,  T.H. and  Wonacott, R.J.; Introductory Statistics,
-    5th edition, J.Wiley and Sons, 1990.</P>
+    5th edition, J.Wiley and Sons, 1990.</para>
 
-  </BIBLIO>
+  </refsection>
 
 
-</MAN>
+</refentry>

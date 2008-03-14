@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,100 +10,95 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>test_run</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû 2006) $</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="test_run"><info><pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû 2006) $</pubdate></info><refnamediv><refname>test_run</refname><refpurpose>Launch tests</refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="test_run">Launch tests</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>N = test_run()</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>N = test_run(module_name[,test_name[,options]])</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
+	
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>N = test_run()
+N = test_run(module_name[,test_name[,options]])</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>module_name</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a vector of string</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>module_name</term>
+				<listitem>
+					<para>a vector of string</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>test_name</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a vector of string</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>test_name</term>
+				<listitem>
+					<para>a vector of string</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>options</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a vector of string</SP>
+			<varlistentry>
+				<term>options</term>
+				<listitem>
+					<para>a vector of string</para>
 					
-					<PARAM_INDENT>
+					<variablelist>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>no_check_ref</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>no_check_ref</term>
+							<listitem/>
+						</varlistentry>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>no_check_error_output</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>no_check_error_output</term>
+							<listitem/>
+						</varlistentry>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>create_ref</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>create_ref</term>
+							<listitem/>
+						</varlistentry>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>list</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
-						<PARAM_ITEM>
-							<PARAM_NAME>help</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>list</term>
+							<listitem/>
+						</varlistentry>
+						<varlistentry>
+							<term>help</term>
+							<listitem/>
+						</varlistentry>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>mode_nw</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>mode_nw</term>
+							<listitem/>
+						</varlistentry>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>mode_nwni</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>mode_nwni</term>
+							<listitem/>
+						</varlistentry>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>nonreg_test</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>nonreg_test</term>
+							<listitem/>
+						</varlistentry>
 						
-						<PARAM_ITEM>
-							<PARAM_NAME>unit_test</PARAM_NAME>
-							<PARAM_DESCRIPTION></PARAM_DESCRIPTION>
-						</PARAM_ITEM>
+						<varlistentry>
+							<term>unit_test</term>
+							<listitem/>
+						</varlistentry>
 						
-					</PARAM_INDENT>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+					</variablelist>
+				</listitem>
+			</varlistentry>
 			
-		</PARAM_INDENT>
-	</PARAM>
+		</variablelist>
+	</refsection>
 	
-	<DESCRIPTION>
-	</DESCRIPTION>
 	
-	<EXAMPLE><![CDATA[
+	
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 // Launch all tests
 test_run();
@@ -130,9 +124,9 @@ test_run([],[],'unit_test');
 
 test_run([],[],['no_check_ref','mode_nw']);
 	
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>P.M</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Authors</title><simplelist type="vert">
+		<member>P.M</member>
+	</simplelist></refsection>
+</refentry>

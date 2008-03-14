@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jaime Urzua
@@ -10,34 +10,31 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-<LANGUAGE>eng</LANGUAGE>
-<TITLE>demoplay</TITLE>
-<TYPE>sciGUI toolbox function</TYPE>
-<DATE>$LastChangedDate$</DATE>
-<SHORT_DESCRIPTION name="demoplay"> interactive demo player.</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demoplay"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demoplay</refname><refpurpose> interactive demo player.</refpurpose></refnamediv>
 
-<CALLING_SEQUENCE>
-<CALLING_SEQUENCE_ITEM>demoplay(filename)</CALLING_SEQUENCE_ITEM>
-</CALLING_SEQUENCE>
 
-<PARAM>
-<PARAM_INDENT>
-<PARAM_ITEM>
- <PARAM_NAME>filename</PARAM_NAME>
- <PARAM_DESCRIPTION><SP>: string, name of the file to play.</SP></PARAM_DESCRIPTION>
-</PARAM_ITEM>
-</PARAM_INDENT>
-</PARAM>
 
-<DESCRIPTION>
-<P><VERB>demoplay</VERB> display demo files in a interactive manner. More information to do!!</P>
-</DESCRIPTION>
 
-<EXAMPLE>
-<![CDATA[demoplay();]]>
-</EXAMPLE>
-<AUTHOR>Jaime Urzua</AUTHOR>
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>demoplay(filename)</synopsis></refsynopsisdiv>
+
+<refsection><title>Parameters</title>
+<variablelist>
+<varlistentry>
+ <term>filename</term>
+ <listitem><para>string, name of the file to play.</para></listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+
+<refsection><title>Description</title>
+<para><literal>demoplay</literal> display demo files in a interactive manner. More information to do!!</para>
+</refsection>
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+demoplay();
+]]></programlisting></refsection>
+<refsection><title>Authors</title><para>Jaime Urzua</para></refsection>
   
-</MAN>
+</refentry>

@@ -1,83 +1,78 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fft2"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fft2</refname><refpurpose>two-dimension fast Fourier
+  transform</refpurpose></refnamediv>
+  
 
-  <TITLE>fft2</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="fft2">two-dimension fast Fourier
-  transform</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=fft2(x)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=fft2(x)
+y=fft2(x,n,m)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>y=fft2(x,n,m)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <listitem>
+          <para>a vector/matrix/array (Real or Complex)</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a vector/matrix/array (Real or Complex)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>y</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+        <listitem>
+          <para>a vector/matrix/array (Real or Complex)</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a vector/matrix/array (Real or Complex)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>m</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>m</PARAM_NAME>
+        <listitem>
+          <para>integer, number of rows.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integer, number of rows.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>n</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
+        <listitem>
+          <para>integer, number of columns.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: integer, number of columns.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <programlisting><![CDATA[This functions performs the two-dimension discrete Fourier
+    transform.]]></programlisting>
 
-  <DESCRIPTION>
-    <VERBATIM>This functions performs the two-dimension discrete Fourier
-    transform.</VERBATIM>
+    <para><literal>y=fft2(x)</literal>y and x have the same size</para>
 
-    <P><VERB>y=fft2(x)</VERB>: y and x have the same size</P>
+    <para><literal>y=fft2(x,m,n):</literal> If <literal>m</literal> (respectively
+    <literal>n</literal>) is less than the rows number (respectively columns) of
+    <literal>x</literal> then the <literal>x</literal> rows number (resp. columns) is
+    truncated, else if m (resp. <literal>n</literal>) is more than the rows number
+    (resp. columns) of <literal>x</literal> then <literal>x</literal> rows are completed
+    by zero (resp. columns) .</para>
 
-    <P><VERB>y=fft2(x,m,n):</VERB> If <VERB>m</VERB> (respectively
-    <VERB>n</VERB>) is less than the rows number (respectively columns) of
-    <VERB>x</VERB> then the <VERB>x</VERB> rows number (resp. columns) is
-    truncated, else if m (resp. <VERB>n</VERB>) is more than the rows number
-    (resp. columns) of <VERB>x</VERB> then <VERB>x</VERB> rows are completed
-    by zero (resp. columns) .</P>
-
-    <P>if <VERB>x</VERB> is a matrix then <VERB>y</VERB> is a matrix, if
-    <VERB>x</VERB> is a hypermatrix then <VERB>y</VERB> is a hypermatrix, with
-    the size of the first dimension of <VERB>y</VERB> is equal to
-    <VERB>m</VERB>, the size of the second dimension of <VERB>y</VERB> is
-    equal to <VERB>n</VERB>, the size of the ith dimension of <VERB>y</VERB>
+    <para>if <literal>x</literal> is a matrix then <literal>y</literal> is a matrix, if
+    <literal>x</literal> is a hypermatrix then <literal>y</literal> is a hypermatrix, with
+    the size of the first dimension of <literal>y</literal> is equal to
+    <literal>m</literal>, the size of the second dimension of <literal>y</literal> is
+    equal to <literal>n</literal>, the size of the ith dimension of <literal>y</literal>
     (for i&gt;2, case hypermatrix) equal to the size of the ith dimension of
-    <VERB>x</VERB>. (i.e size(y,1)=m, size(y,2)=n and size(y,i)=size(x,i) for
-    i&gt;2)</P>
-  </DESCRIPTION>
+    <literal>x</literal>. (i.e size(y,1)=m, size(y,2)=n and size(y,i)=size(x,i) for
+    i&gt;2)</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 //Comparison with explicit formula
 a=[1 2 3 ;4 5 6 ;7 8 9 ;10 11 12]  
 m=size(a,1)
@@ -95,11 +90,11 @@ norm(a2-fft2(a))
 
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>fft</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="fft">fft</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

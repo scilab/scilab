@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,44 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>kron</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="kron"> Kronecker product (.*.)  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>kron(A,B)   </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>A.*.B</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
-    <VERB>kron(A,B)</VERB> or  <VERB>A.*.B</VERB> returns the Kronecker tensor 
-    product of two matrices <VERB>A</VERB> and <VERB>B</VERB>. The resulting
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kron"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>kron</refname><refpurpose> Kronecker product (.*.)  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>kron(A,B)
+A.*.B</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
+    <literal>kron(A,B)</literal> or  <literal>A.*.B</literal> returns the Kronecker tensor 
+    product of two matrices <literal>A</literal> and <literal>B</literal>. The resulting
     matrix has the following block form:
-    </P>
-    <VERBATIM><![CDATA[
+    </para>
+    <programlisting><![CDATA[
               | A(1,1) B ..... A(1,n) B |
               |   .              .      |
     A .*. B = |   .              .      |   
               |   .              .      |
               | A(m,1) B ..... A(m,n) B |
-    ]]></VERBATIM>
-    <P> If <VERB>A</VERB> is a  <VERB>m x n</VERB> matrix and  <VERB>B</VERB> a  
-       <VERB>p x q</VERB> matrix then <VERB>A.*.B</VERB> is a  
-       <VERB>(m*p) x (n*q)</VERB> matrix.
-    </P>
-    <P><VERB>A</VERB> and <VERB>B</VERB> can be sparse matrices.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    ]]></programlisting>
+    <para> If <literal>A</literal> is a  <literal>m x n</literal> matrix and  <literal>B</literal> a  
+       <literal>p x q</literal> matrix then <literal>A.*.B</literal> is a  
+       <literal>(m*p) x (n*q)</literal> matrix.
+    </para>
+    <para><literal>A</literal> and <literal>B</literal> can be sparse matrices.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 A=[1,2;3,4];
 kron(A,A)
 A.*.A
 sparse(A).*.sparse(A)
 A(1,1)=%i;
 kron(A,A)
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

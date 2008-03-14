@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,36 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>findlcccompiler</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006) $</DATE>
-  <SHORT_DESCRIPTION name="findlccccompiler">detects LCC-Win32 C Compiler</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findlccccompiler"><info><pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 ao� 2006) $</pubdate></info><refnamediv><refname>findlccccompiler</refname><refpurpose>detects LCC-Win32 C Compiler</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>ret=findlcccompiler()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>ret=findlcccompiler()</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>ret</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>ret</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: returns %T or %F</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>returns %T or %F</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>detects LCC-Win32 C Compiler.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>detects LCC-Win32 C Compiler.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[ret=findlcccompiler()
-]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ret=findlcccompiler()
+]]></programlisting></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

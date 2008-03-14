@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,36 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>strings</TITLE>
-  <TYPE>Scilab Object</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="strings"> Scilab Object, character strings</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    Strings are defined as <VERB>'string'</VERB> (between quotes) or 
-    <VERB>&quot;string&quot;</VERB> (between doublequotes);
-    matrices of strings are defined as usual constant matrices.</P>
-    <P>
-    Concatenation of two strings is made by a <VERB>+</VERB> : <VERB>string1+string2</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strings"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>strings</refname><refpurpose> Scilab Object, character strings</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
+    Strings are defined as <literal>'string'</literal> (between quotes) or 
+    <literal>"string"</literal> (between doublequotes);
+    matrices of strings are defined as usual constant matrices.</para>
+    <para>
+    Concatenation of two strings is made by a <literal>+</literal> : <literal>string1+string2</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ['this','is'; 'a 2x2','matrix']
 "matrix"=="mat"+"rix"
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>part</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>length</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>strcat</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="part">part</link>
+    </member>
+    <member>
+      <link linkend="length">length</link>
+    </member>
+    <member>
+      <link linkend="strcat">strcat</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

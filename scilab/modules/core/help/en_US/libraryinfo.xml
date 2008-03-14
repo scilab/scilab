@@ -1,64 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="libraryinfo"><info><pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</pubdate></info><refnamediv><refname>libraryinfo</refname><refpurpose>get macros and path of a scilab library</refpurpose></refnamediv>
+  
 
-  <TITLE>libraryinfo</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="libraryinfo">get macros and path of a scilab library</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>macros = libraryinfo(libraryname)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[macros,path] = libraryinfo(libraryname)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>macros = libraryinfo(libraryname)
+[macros,path] = libraryinfo(libraryname)</synopsis></refsynopsisdiv>
 
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>macros</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>macros</PARAM_NAME>
+        <listitem>
+          <para>a string matrix (all macros of the library)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix (all macros of the library)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a string (path of library)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+        <listitem>
+          <para>a string (path of library)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
     
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>libraryname</PARAM_NAME>
+    <variablelist>
+      <varlistentry>
+        <term>libraryname</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string (library name)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+        <listitem>
+          <para>a string (library name)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
-  </PARAM>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>get macros and path of a scilab library.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>get macros and path of a scilab library.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[[m,p]=libraryinfo('corelib')
-   ]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[[m,p]=libraryinfo('corelib')
+   ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>librarieslist</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="librarieslist">librarieslist</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

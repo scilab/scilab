@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,46 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>imrep2ss</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="imrep2ss"> state-space realization of an impulse response</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[sl]=imrep2ss(v [,deg])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector coefficients of impulse response, <VERB>v(:,k)</VERB> is the kth sample</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>deg</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer (order required)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imrep2ss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>imrep2ss</refname><refpurpose> state-space realization of an impulse response</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[sl]=imrep2ss(v [,deg])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>vector coefficients of impulse response, <literal>v(:,k)</literal> is the kth sample</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>deg</term>
+        <listitem>
+          <para>integer (order required)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Impulse response to linear system conversion (one input).
-    <VERB>v</VERB> must have an even number of columns.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <literal>v</literal> must have an even number of columns.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 s=poly(0,'s');
 H=[1/(s+0.5);2/(s-0.4)]   //strictly proper
 np=20;w=ldiv(H('num'),H('den'),np);
@@ -63,26 +59,26 @@ rep=rtitr(H('num'),H('den'),u);   //Impulse rep.
 w=z*imrep2ss(rep)   //Realization with shifted impulse response 
 // i.e strictly proper to proper
 H2=ss2tf(w);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>frep2tf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>arl2</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>time_id</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>armax</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>markp2ss</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ldiv</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="frep2tf">frep2tf</link>
+    </member>
+    <member>
+      <link linkend="arl2">arl2</link>
+    </member>
+    <member>
+      <link linkend="time_id">time_id</link>
+    </member>
+    <member>
+      <link linkend="armax">armax</link>
+    </member>
+    <member>
+      <link linkend="markp2ss">markp2ss</link>
+    </member>
+    <member>
+      <link linkend="ldiv">ldiv</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

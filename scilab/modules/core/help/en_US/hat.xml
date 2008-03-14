@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) {date_debut_1}-{date_fin_1} - {organisme 1} {auteur 1} 
@@ -12,46 +12,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hat</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="hat"> (<VERB>^</VERB>) exponentiation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>A^b</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
-    Exponentiation of matrices or vectors by a constant vector.</P>
-    <P>
-    If <VERB>A</VERB> is a vector or a rectangular matrix the exponentiation is done
-    element-wise, with the usual meaning.</P>
-    <P>
-    For square <VERB>A</VERB> matrices the exponentiation is done in the matrix sense.</P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hat</refname><refpurpose> (^) exponentiation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>A^b</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
+    Exponentiation of matrices or vectors by a constant vector.</para>
+    <para>
+    If <literal>A</literal> is a vector or a rectangular matrix the exponentiation is done
+    element-wise, with the usual meaning.</para>
+    <para>
+    For square <literal>A</literal> matrices the exponentiation is done in the matrix sense.</para>
+    <para>
     For boolean, polynomial and rational matrices, the exponent must be an
-    integer</P>
-    <P>
-    Remark that <VERB>123.^b</VERB> is interpreted as <VERB>(123).^b</VERB>. In such
-    cases dot is part of the operator, not of the number.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    integer</para>
+    <para>
+    Remark that <literal>123.^b</literal> is interpreted as <literal>(123).^b</literal>. In such
+    cases dot is part of the operator, not of the number.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 2^4
 [1 2;2 4]^(1+%i)
 s=poly(0,"s");
 [1 2 s]^4
 [s 1;1  s]^(-1)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>exp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>inv</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="exp">exp</link>
+    </member>
+    <member>
+      <link linkend="inv">inv</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

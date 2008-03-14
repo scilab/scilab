@@ -1,59 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>sd2sci  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sd2sci"> conversion des sorties de gr_menu vers des instructions Scilab  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>txt=sd2sci(sd [,sz [,orig]])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>sd  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : structure de données renvoyée par gr_menu.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>sz  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur de nombres ou chaînes de caractères avec deux composantes, donnant les facteurs de zoom en x et y.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>orig  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur de nombres ou chaînes de caractères avec deux composantes, donnant un vecteur de translation de l&apos;origine 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Etant donné une liste <VERB>sd</VERB> générée par <VERB>gr_menu</VERB>
-    <VERB>sd2sci</VERB> fabrique un vecteur d&apos;instructions Scilab correspondant au graphique
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sd2sci"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sd2sci</refname><refpurpose> conversion des sorties de gr_menu vers des instructions Scilab  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>txt=sd2sci(sd [,sz [,orig]])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>sd  </term>
+  <listitem>
+  <para>structure de données renvoyée par gr_menu.
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>sz  </term>
+  <listitem>
+  <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant les facteurs de zoom en x et y.
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>orig  </term>
+  <listitem>
+  <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant un vecteur de translation de l'origine 
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Etant donné une liste <literal>sd</literal> générée par <literal>gr_menu</literal>
+    <literal>sd2sci</literal> fabrique un vecteur d'instructions Scilab correspondant au graphique
     contenu dans sd.
-  </P>
-  <P>
-    Les paramètres optionnels <VERB>sz</VERB> et <VERB>orig</VERB> permettent de changer l&apos;échelle ou de décaler
+  </para>
+  <para>
+    Les paramètres optionnels <literal>sz</literal> et <literal>orig</literal> permettent de changer l'échelle ou de décaler
     le graphique initial.
-  </P>
-  <P>
-    Si <VERB>sz</VERB> ou <VERB>orig</VERB> sont donnés sous forme de chaînes de caractères, les instructions
+  </para>
+  <para>
+    Si <literal>sz</literal> ou <literal>orig</literal> sont donnés sous forme de chaînes de caractères, les instructions
     générées les utilisent de façon formelle.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>Serge Steer INRIA 1988   </AUTHOR>
-</MAN>
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="execstr">execstr</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>Serge Steer INRIA 1988   </para></refsection>
+</refentry>

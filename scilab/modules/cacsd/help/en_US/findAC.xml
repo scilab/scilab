@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,137 +10,133 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>findAC</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="findAC"> discrete-time system subspace identification</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>S</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, the number of block rows in the block-Hankel matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>N</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>L</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>R</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix, relevant part of the  R factor of the concatenated block-Hankel matrices computed by a call to findr.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>METH</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, an option for the method to use</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>= 1</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  MOESP method with past inputs and outputs;</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>= 2</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  N4SID method;</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-          <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findAC"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>findAC</refname><refpurpose> discrete-time system subspace identification</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)
+[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>integer, the number of block rows in the block-Hankel matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>L</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R</term>
+        <listitem>
+          <para>matrix, relevant part of the  R factor of the concatenated block-Hankel matrices computed by a call to findr.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>METH</term>
+        <listitem>
+          <para>integer, an option for the method to use</para>
+          <variablelist>
+            <varlistentry>
+              <term>= 1</term>
+              <listitem>
+                <para> MOESP method with past inputs and outputs;</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>= 2</term>
+              <listitem>
+                <para> N4SID method;</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+          <para>
     Default:    METH = 3.
-  </P>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>TOL</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number. Default: prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>PRINTW</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, switch for printing the warning messages.</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>PRINTW</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>= 1: print warning messages;</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>= 0</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: do not print warning messages.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-          <P>
+  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>TOL</term>
+        <listitem>
+          <para>the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number. Default: prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>PRINTW</term>
+        <listitem>
+          <para>integer, switch for printing the warning messages.</para>
+          <variablelist>
+            <varlistentry>
+              <term>PRINTW</term>
+              <listitem>
+                <para>= 1: print warning messages;</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>= 0</term>
+              <listitem>
+                <para>do not print warning messages.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+          <para>
     Default:    PRINTW = 0.
-  </P>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix, state system matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>C</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix, output system matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>RCND</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of length 4,  condition numbers of the matrices involved in rank decision</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>matrix, state system matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C</term>
+        <listitem>
+          <para>matrix, output system matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>RCND</term>
+        <listitem>
+          <para>vector of length 4,  condition numbers of the matrices involved in rank decision</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     finds the system matrices A and C of a discrete-time system, given the
     system order and the relevant part of the R factor of the concatenated
     block-Hankel matrices, using subspace identification techniques (MOESP 
     or N4SID).
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="*">
-        <SP>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)  computes the system matrices A and C. The model structure is:       x(k+1) = Ax(k) + Bu(k) + Ke(k),   k &gt;= 1,      y(k)   = Cx(k) + Du(k) + e(k),  where x(k) and y(k) are vectors of length N and L, respectively.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="*">
-        <SP>[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)  also returns the vector RCND of length 4 containing the condition numbers of the matrices involved in rank decisions.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)  computes the system matrices A and C. The model structure is:       x(k+1) = Ax(k) + Bu(k) + Ke(k),   k &gt;= 1,      y(k)   = Cx(k) + Du(k) + e(k),  where x(k) and y(k) are vectors of length N and L, respectively.</para>
+      </listitem>
+      <listitem>
+        <para>[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)  also returns the vector RCND of length 4 containing the condition numbers of the matrices involved in rank decisions.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
     Matrix R, computed by findR, should be determined with suitable arguments
-    METH and JOBD.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    METH and JOBD.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -160,26 +156,26 @@ S=15;L=1;
 N=3;
 METH=3;TOL=-1;
 [A,C] = findAC(S,N,L,R,METH,TOL);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>findABCD</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>findBD</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>findBDK</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>findR</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>sorder</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>sident</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="findABCD">findABCD</link>
+    </member>
+    <member>
+      <link linkend="findBD">findBD</link>
+    </member>
+    <member>
+      <link linkend="findBDK">findBDK</link>
+    </member>
+    <member>
+      <link linkend="findR">findR</link>
+    </member>
+    <member>
+      <link linkend="sorder">sorder</link>
+    </member>
+    <member>
+      <link linkend="sident">sident</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

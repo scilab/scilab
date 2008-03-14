@@ -1,27 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sethomedirectory</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sethomedirectory">Set Scilab home directory</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sethomedirectory"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sethomedirectory</refname><refpurpose>Set Scilab home directory</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[home,scilabhome]=sethomedirectory()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[home,scilabhome]=sethomedirectory()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>Set Scilab home path : "SCIHOME" variable.</P>
+  <refsection><title>Description</title>
+    <para>Set Scilab home path : "SCIHOME" variable.</para>
 
-    <P>On Windows 2k and XP , C:\Documents and
-    Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</P>
+    <para>On Windows 2k and XP , C:\Documents and
+    Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
 
-    <P>On Windows Vista ,
-    C:\Users\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</P>
+    <para>On Windows Vista ,
+    C:\Users\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
 
-    <P>On Unix, /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</P>
-  </DESCRIPTION>
+    <para>On Unix, /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+  </refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

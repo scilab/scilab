@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,84 +10,80 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spanplus"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>spanplus</refname><refpurpose> sum of subspaces</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X,dim,dima]=spanplus(A,B[,tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A, B</term>
+        <listitem>
+          <para>two real or complex matrices with equal number of rows</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>orthogonal or unitary square matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim, dima</term>
+        <listitem>
+          <para>integers, dimension of subspaces</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>nonnegative real number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    computes a  basis X such that:</para>
+    <para>
+    the first <literal>dima</literal> columns of <literal>X</literal> span Range(<literal>A</literal>)
+    and the following (<literal>dim-dima</literal>) columns make a basis of <literal>A+B</literal>
+    relative to <literal>A</literal>.</para>
+    <para>
+    The <literal>dim</literal> first columns of <literal>X</literal> make a basis for <literal>A+B</literal>.</para>
+    <para>
+    One has the following canonical form for <literal>[A,B]</literal>:</para>
+    <programlisting><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spanplus</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="spanplus"> sum of subspaces</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[X,dim,dima]=spanplus(A,B[,tol])   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A, B</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: two real or complex matrices with equal number of rows</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: orthogonal or unitary square matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>dim, dima</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integers, dimension of subspaces</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: nonnegative real number</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    computes a  basis X such that:</P>
-    <P>
-    the first <VERB>dima</VERB> columns of <VERB>X</VERB> span Range(<VERB>A</VERB>)
-    and the following (<VERB>dim-dima</VERB>) columns make a basis of <VERB>A+B</VERB>
-    relative to <VERB>A</VERB>.</P>
-    <P>
-    The <VERB>dim</VERB> first columns of <VERB>X</VERB> make a basis for <VERB>A+B</VERB>.</P>
-    <P>
-    One has the following canonical form for <VERB>[A,B]</VERB>:</P>
-    <VERBATIM>
-<![CDATA[
          [*,*]    (dima rows)
 X'*[A,B]=[0,*]    (dim-dima rows)
          [0,0]    
-   ]]>
-    </VERBATIM>
-    <P><VERB>tol</VERB> is an optional argument (see function code).</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para><literal>tol</literal> is an optional argument (see function code).</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 A=rand(6,2)*rand(2,5);      // rank(A)=2
 B=[A(:,1),rand(6,2)]*rand(3,3);   //two additional independent vectors
 [X,dim,dimA]=spanplus(A,B);
 dimA
 dim
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>spaninter</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>im_inv</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>spantwo</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F. D.; ;   </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="spaninter">spaninter</link>
+    </member>
+    <member>
+      <link linkend="im_inv">im_inv</link>
+    </member>
+    <member>
+      <link linkend="spantwo">spantwo</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F. D.; ;   </para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -11,41 +11,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="drawlater"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>drawlater</refname><refpurpose>makes axes children
+  invisible.</refpurpose></refnamediv>
+  
 
-  <TITLE>drawlater</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="drawlater">makes axes children
-  invisible.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>drawlater()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>drawlater()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>This function can be used not to display immediatly onto the
-    <VERB>current figure</VERB> the next created graphics objects - i.e. by
+  <refsection><title>Description</title>
+    <para>This function can be used not to display immediatly onto the
+    <literal>current figure</literal> the next created graphics objects - i.e. by
     calling high level functions such as plotting functions or setting
-    properties to existant objects. The <VERB>immediate_drawing</VERB>
-    property of the current figure is set to <VERB>'off'</VERB> in order to
-    postpon the next drawings.</P>
+    properties to existant objects. The <literal>immediate_drawing</literal>
+    property of the current figure is set to <literal>'off'</literal> in order to
+    postpon the next drawings.</para>
 
-    <P>It can specially be used with the <VERB>drawnow</VERB> function.</P>
+    <para>It can specially be used with the <literal>drawnow</literal> function.</para>
 
-    <P>To enable back the <VERB>immediate_drawing</VERB> for the current
-    figure, you can use <VERB>drawnow</VERB> function.</P>
+    <para>To enable back the <literal>immediate_drawing</literal> for the current
+    figure, you can use <literal>drawnow</literal> function.</para>
 
-    <P>Warning : note that between drawlater and drawnow calls, the current
-    figure may have changed. Therefore, this must be used carefully.</P>
-  </DESCRIPTION>
+    <para>Warning : note that between drawlater and drawnow calls, the current
+    figure may have changed. Therefore, this must be used carefully.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
   //Example :  one axes / one figure
   drawlater(); 
   xfarc(.25,.55,.1,.15,0,64*360);
@@ -80,25 +77,25 @@
 
   draw(a) // ...axes only is visible providing you not redraw the window
   drawnow() // all is visible
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>drawnow</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="drawnow">drawnow</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE, F.Leray</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE, F.Leray</para></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -11,50 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>plotprofile</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="plotprofile"> extracts and displays execution profiles
-                     of a Scilab function</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>plotprofile(fun)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>fun</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a Scilab compiled function, or a function name (string), or an array of
-                function names</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    To use <VERB>plotprofile</VERB>, the Scilab function must have been prepared for
-    profiling (see getf).</P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plotprofile"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>plotprofile</refname><refpurpose> extracts and displays execution profiles
+                     of a Scilab function</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>plotprofile(fun)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>a Scilab compiled function, or a function name (string), or an array of
+                function names</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    To use <literal>plotprofile</literal>, the Scilab function must have been prepared for
+    profiling (see getf).</para>
+    <para>
     When such a function is executed, the system
     counts how many times each line is executed and how much cpu time is
     spent executing each line. This data is stored within the
-    function data structure. The function <VERB>plotprofile</VERB> in an interactive
+    function data structure. The function <literal>plotprofile</literal> in an interactive
     command which displays this results in a graphic window. When a line
     is clicked, the source of the function is displayed with the selected line
-    highlighted.</P>
-    <P>
-    NOTE: you have to click on the &quot;Exit&quot; item in the graphics windows to
-    exit from &quot;plotprofile&quot;.</P>
-    <P>
-    The function code is regenerated with <VERB>fun2string</VERB> and dumped into
-    a temporary file.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    highlighted.</para>
+    <para>
+    NOTE: you have to click on the "Exit" item in the graphics windows to
+    exit from "plotprofile".</para>
+    <para>
+    The function code is regenerated with <literal>fun2string</literal> and dumped into
+    a temporary file.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //define a function and prepare it for profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -69,17 +64,17 @@ deff('x=foo(n)',['if n==0 then'
 foo(30)
 //get execution profiles
 plotprofile(foo) // click on Exit to exit
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>profile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>showprofile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fun2string</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="profile">profile</link>
+    </member>
+    <member>
+      <link linkend="showprofile">showprofile</link>
+    </member>
+    <member>
+      <link linkend="fun2string">fun2string</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

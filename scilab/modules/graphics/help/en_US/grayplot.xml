@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,77 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grayplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>grayplot</refname><refpurpose>2D plot of a surface using
+  colors</refpurpose></refnamediv>
+  
 
-  <TITLE>grayplot</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="grayplot">2D plot of a surface using
-  colors</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>grayplot(x,y,z,[strf,rect,nax])</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>grayplot(x,y,z,[strf,rect,nax])
+grayplot(x,y,z,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>grayplot(x,y,z,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+        <listitem>
+          <para>real row vectors of size n1 and n2.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real row vectors of size n1 and n2.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>z</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
+        <listitem>
+          <para>real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
+          of the surface at the point (x(i),y(j)).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix of size (n1,n2). <VERB>z(i,j)</VERB> is the value
-          of the surface at the point (x(i),y(j)).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+        <listitem>
+          <para>This represents a sequence of statements <literal>key1=value1,
+          key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: rect, nax, strf
+          or axesflag and frameflag (see <literal>plot2d</literal> and
+          <literal>plot2d_old_version</literal>).</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1,
-          key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following: rect, nax, strf
-          or axesflag and frameflag (see <VERB>plot2d</VERB> and
-          <VERB>plot2d_old_version</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>strf,rect,nax</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>strf,rect,nax</PARAM_NAME>
+        <listitem>
+          <para>see <literal>plot2d</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: see <VERB>plot2d</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P><VERB>grayplot</VERB> makes a 2D plot of the surface given by
-    <VERB>z</VERB> on a grid defined by <VERB>x</VERB> and <VERB>y</VERB>.
+  <refsection><title>Description</title>
+    <para><literal>grayplot</literal> makes a 2D plot of the surface given by
+    <literal>z</literal> on a grid defined by <literal>x</literal> and <literal>y</literal>.
     Each rectangle on the grid is filled with a gray or color level depending
-    on the average value of <VERB>z</VERB> on the corners of the
-    rectangle.</P>
+    on the average value of <literal>z</literal> on the corners of the
+    rectangle.</para>
 
-    <P>Enter the command <VERB>grayplot()</VERB> to see a demo.</P>
-  </DESCRIPTION>
+    <para>Enter the command <literal>grayplot()</literal> to see a demo.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 x=-10:10; y=-10:10;m =rand(21,21);
 grayplot(x,y,m,rect=[-20,-20,20,20])
@@ -88,25 +84,25 @@ t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
 clf()
 grayplot(t,t,m)
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>fgrayplot</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="fgrayplot">fgrayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Sgrayplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="Sgrayplot">Sgrayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Sfgrayplot</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="Sfgrayplot">Sfgrayplot</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

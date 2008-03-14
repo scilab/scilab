@@ -1,23 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>findm</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="findm"> for elliptic filter design</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[m]=findm(chi)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
-    Search for <VERB>m</VERB> such that <VERB>chi = %k(1-m)/%k(m)</VERB>
-    (For use with <VERB>find_freq</VERB>).</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>%k</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F. D.;   </AUTHOR>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findm"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>findm</refname><refpurpose> for elliptic filter design</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[m]=findm(chi)</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
+    Search for <literal>m</literal> such that <literal>chi = %k(1-m)/%k(m)</literal>
+    (For use with <literal>find_freq</literal>).</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="k">%k</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F. D.;   </para></refsection>
+</refentry>

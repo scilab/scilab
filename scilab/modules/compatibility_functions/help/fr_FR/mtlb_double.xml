@@ -1,95 +1,82 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_double</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_double"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_double</refname><refpurpose>Fonction d'�mulation de la fonction Matlab double</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_double">Fonction d'�mulation de la fonction Matlab double</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>double</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>double</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec un param�tre d'entr�e de type cha�ne de caract�re : La fonction <VERB>double</VERB> de Scilab
-	ne tol�re pas ce type d'entr�e alors que la fonction <VERB>double</VERB> de Matlab retourne
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec un param�tre d'entr�e de type cha�ne de caract�re : La fonction <literal>double</literal> de Scilab
+	ne tol�re pas ce type d'entr�e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de codes ASCII.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec un param�tre d'entr�e de type bool�en : La fonction <VERB>double</VERB> de Scilab
-	ne tol�re pas ce type d'entr�e alors que la fonction <VERB>double</VERB> de Matlab retourne
+      <listitem>
+        <para>
+        Avec un param�tre d'entr�e de type bool�en : La fonction <literal>double</literal> de Scilab
+	ne tol�re pas ce type d'entr�e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de doubles.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_double(A)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>double(A)</VERB> quand il n'�tait pas
-    possible de savoir ce qu'�tait <VERB>A</VERB> pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    <para>
+    La fonction <literal>mtlb_double(A)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>double(A)</literal> quand il n'�tait pas
+    possible de savoir ce qu'�tait <literal>A</literal> pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_double</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_double</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> est une cha�ne de caract�re
-        <VERB>mtlb_double(A)</VERB> peut �tre remplac� par <VERB>asciimat(A)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> est une cha�ne de caract�re
+        <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>asciimat(A)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> est une matrice de bool�ens
-        <VERB>mtlb_double(A)</VERB> peut �tre remplac� par <VERB>bool2s(A)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Si <literal>A</literal> est une matrice de bool�ens
+        <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>bool2s(A)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> est une matrice de doubles
-        <VERB>mtlb_double(A)</VERB> peut �tre remplac� par <VERB>A</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Si <literal>A</literal> est une matrice de doubles
+        <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>A</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_double</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_double</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>asciimat</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>bool2s</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="asciimat">asciimat</link> </member>
+    <member> <link linkend="bool2s">bool2s</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

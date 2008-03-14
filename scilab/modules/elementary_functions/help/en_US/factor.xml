@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="factor"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>factor</refname><refpurpose>factor function</refpurpose></refnamediv>
+  
 
-  <TITLE>primes numbers decomposition</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="factor">factor function</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[y]=factor(x)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y]=factor(x)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real scalar</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+      <varlistentry>
+        <term>y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector of primes numbers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>vector of primes numbers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Given a real <VERB>x</VERB>, <VERB>factor(x)</VERB> returns in a vector
-    <VERB>y</VERB> the primes numbers decomposition of <VERB>x</VERB>.
-    Particular cases: <VERB>factor(0)</VERB> returns <VERB>0</VERB>, and
-    <VERB>factor(1)</VERB> returns <VERB>1</VERB>.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Given a real <literal>x</literal>, <literal>factor(x)</literal> returns in a vector
+    <literal>y</literal> the primes numbers decomposition of <literal>x</literal>.
+    Particular cases: <literal>factor(0)</literal> returns <literal>0</literal>, and
+    <literal>factor(1)</literal> returns <literal>1</literal>.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 x=620
 y=factor(x)
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>primes</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="primes">primes</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

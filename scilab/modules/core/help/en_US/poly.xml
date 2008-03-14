@@ -1,96 +1,92 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>poly</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="poly"> polynomial definition</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>p=poly(a,&quot;x&quot;, [&quot;flag&quot;])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix or real number</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: symbolic variable</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&quot;flag&quot;  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string (&quot;roots&quot;, &quot;coeff&quot;), default value is
-	    &quot;roots&quot;.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="If a is a matrix,">
-	<SP><VERB>p</VERB> is the characteristic
-	  polynomial i.e. <VERB>determinant(x*eye()-a)</VERB>, <VERB>x</VERB> being
-	  the symbolic variable.</SP>
-      </DESCRIPTION_ITEM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="poly"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>poly</refname><refpurpose> polynomial definition</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>p=poly(a,"x", ["flag"])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>matrix or real number</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>symbolic variable</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"flag"  </term>
+        <listitem>
+          <para>string ("roots", "coeff"), default value is
+	    "roots".</para> 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <variablelist>
+      <varlistentry><term>If a is a matrix,</term><listitem>
+	<para><literal>p</literal> is the characteristic
+	  polynomial i.e. <literal>determinant(x*eye()-a)</literal>, <literal>x</literal> being
+	  the symbolic variable.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="If v is a vector,">
-	<DESCRIPTION_INDENT> 
-	  <DESCRIPTION_ITEM label="-">
-	    <SP><VERB>poly(v,&quot;x&quot;,[&quot;roots&quot;])</VERB>  is the polynomial
-	      with <VERB>roots</VERB> the entries of <VERB>v</VERB> and
-	      <VERB>&quot;x&quot;</VERB> as formal variable. (In this case,
-	      <VERB>roots</VERB> and   <VERB>poly</VERB> are inverse functions). Note
-	      that Infinite roots gives zero  highest degree coefficients. </SP> 
-	  </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="-">
-	    <SP><VERB>poly(v,&quot;x&quot;,&quot;coeff&quot;)</VERB> creates the
-	      polynomial with symbol <VERB>&quot;x&quot;</VERB> and with coefficients
-	      the entries of <VERB>v</VERB> (v(1) is the constant term of the
-	      polynomial). (Here <VERB>poly</VERB> and <VERB>coeff</VERB> are inverse
-	      functions).</SP>
-	  </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT> 
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT> 
-    <SP><VERB>s=poly(0,&quot;s&quot;)</VERB> is the seed for defining
-      polynomials with symbol <VERB>&quot;s&quot;</VERB>.</SP>
-  </DESCRIPTION>
-  <EXAMPLE>
-    <![CDATA[
+      <varlistentry><term>If v is a vector,</term><listitem>
+	<itemizedlist> 
+	  <listitem>
+	    <para><literal>poly(v,"x",["roots"])</literal>  is the polynomial
+	      with <literal>roots</literal> the entries of <literal>v</literal> and
+	      <literal>"x"</literal> as formal variable. (In this case,
+	      <literal>roots</literal> and   <literal>poly</literal> are inverse functions). Note
+	      that Infinite roots gives zero  highest degree coefficients. </para> 
+	  </listitem>
+	  <listitem>
+	    <para><literal>poly(v,"x","coeff")</literal> creates the
+	      polynomial with symbol <literal>"x"</literal> and with coefficients
+	      the entries of <literal>v</literal> (v(1) is the constant term of the
+	      polynomial). (Here <literal>poly</literal> and <literal>coeff</literal> are inverse
+	      functions).</para>
+	  </listitem>
+	</itemizedlist> 
+      </listitem></varlistentry>
+    </variablelist> 
+    <para><literal>s=poly(0,"s")</literal> is the seed for defining
+      polynomials with symbol <literal>"s"</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    
     s=poly(0,"s");p=1+s+2*s^2;
     A=rand(2,2);poly(A,"x")
     //rational fractions
     h=(1+2*%s)/poly(1:4,'s','c')
-    ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>coeff</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>roots</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>varn</LINK>
-    </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM>
-      <LINK>horner</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>derivat</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>matrices</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rational</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="coeff">coeff</link>
+    </member>
+    <member>
+      <link linkend="roots">roots</link>
+    </member>
+    <member>
+      <link linkend="varn">varn</link>
+    </member>
+   <member>
+      <link linkend="horner">horner</link>
+    </member>
+    <member>
+      <link linkend="derivat">derivat</link>
+    </member>
+    <member>
+      <link linkend="matrices">matrices</link>
+    </member>
+    <member>
+      <link linkend="rational">rational</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

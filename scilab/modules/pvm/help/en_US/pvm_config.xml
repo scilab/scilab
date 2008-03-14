@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997-2008 - INRIA
@@ -10,98 +10,93 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_config</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pvm_config"> sends a message</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>res =  pvm_config()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>list of 7 elements such that:</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>(1)</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:
-     integer returning the number of hosts (pvmds) in the virtual
-     machine.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>(2)</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning the number of different data formats being used.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>(3)</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning pvmd task ID for host.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>(4)</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  character string returning name of host.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>(5)</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  character string returning architecture name of host</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>(6)</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer returning relative speed of host. Default value is 1000.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>(7)</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:  integer status code returned by the routine.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>pvm_config</VERB> returns information about
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_config"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_config</refname><refpurpose> sends a message</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res = pvm_config()</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>list of 7 elements such that:</para>
+          <variablelist>
+            <varlistentry>
+              <term>(1)</term>
+              <listitem>
+                <para/>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(2)</term>
+              <listitem>
+                <para> integer returning the number of different data formats being used.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(3)</term>
+              <listitem>
+                <para> integer returning pvmd task ID for host.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(4)</term>
+              <listitem>
+                <para> character string returning name of host.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(5)</term>
+              <listitem>
+                <para> character string returning architecture name of host</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(6)</term>
+              <listitem>
+                <para> integer returning relative speed of host. Default value is 1000.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>(7)</term>
+              <listitem>
+                <para> integer status code returned by the routine.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>pvm_config</literal> returns information about
     the present virtual machine. The information returned is
-    similar to that available from the console command.</P>
-    <P>
-    The <VERB>pvm_config</VERB> function returns information about the entire
-    virtual machine in one call.</P>
-    <P>
-    The returned value <VERB>res(7)</VERB>will be zero if 
+    similar to that available from the console command.</para>
+    <para>
+    The <literal>pvm_config</literal> function returns information about the entire
+    virtual machine in one call.</para>
+    <para>
+    The returned value <literal>res(7)</literal>will be zero if 
     the call is successful and will be 
-    will be &lt; 0 if some error occurs.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    will be &lt; 0 if some error occurs.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 if pvm_start()==0 then
     res = pvm_config()
     pvm_halt()
 end
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_start</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_tasks</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pvm_start">pvm_start</link>
+    </member>
+    <member>
+      <link linkend="pvm_tasks">pvm_tasks</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

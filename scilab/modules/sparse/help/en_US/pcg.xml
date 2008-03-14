@@ -1,114 +1,110 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pcg</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pcg">precondioned conjugate gradient </SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pcg"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pcg</refname><refpurpose>precondioned conjugate gradient </refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A, b [, tol [, maxit [, M [, M2 [, x]]]]]) </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A, b, key=value,...)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x, flag, err, iter, res] = pcg(A, b [, tol [, maxit [, M [, M2 [, x]]]]])
+[x, flag, err, iter, res] = pcg(A, b, key=value,...)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT> 
-      <PARAM_ITEM>
-	<PARAM_NAME>A</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: symmetric positive definite full or sparse matrix of size nxn 
-	    or a function returning <VERB>A*x</VERB> for each given <VERB>x</VERB></SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>b</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: right hand side vector (size: nx1)</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>tol</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: error tolerance (default: 1000*%eps)</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>maxi</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: maximum number of iterations (default: n)</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>M</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: preconditioner: full or sparse matrix or function returning
-	    <VERB>M\x</VERB> (default: none)</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>M2</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: preconditioner: full or sparse matrix or function returning
-	    <VERB>M2\x</VERB> for each <VERB>x</VERB> (default: none)</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>x0</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: initial guess vector (default: zeros(n,1))</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>x</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: solution vector</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>flag</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: 0 if <VERB>pcg</VERB> converged to the desired
-	    tolerance within <VERB>maxi</VERB> iterations, 1 else</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>err</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: final relative norm of the residual</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>iter</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: number of iterations performed</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>res</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: vector of the residual norms</SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM> 
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Parameters</title>
+    <variablelist> 
+      <varlistentry>
+	<term>A</term>
+	<listitem>
+	  <para>symmetric positive definite full or sparse matrix of size nxn 
+	    or a function returning <literal>A*x</literal> for each given <literal>x</literal></para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>b</term>
+	<listitem>
+	  <para>right hand side vector (size: nx1)</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>tol</term>
+	<listitem>
+	  <para>error tolerance (default: 1000*%eps)</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>maxi</term>
+	<listitem>
+	  <para>maximum number of iterations (default: n)</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>M</term>
+	<listitem>
+	  <para>preconditioner: full or sparse matrix or function returning
+	    <literal>M\x</literal> (default: none)</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>M2</term>
+	<listitem>
+	  <para>preconditioner: full or sparse matrix or function returning
+	    <literal>M2\x</literal> for each <literal>x</literal> (default: none)</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>x0</term>
+	<listitem>
+	  <para>initial guess vector (default: zeros(n,1))</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>x</term>
+	<listitem>
+	  <para>solution vector</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>flag</term>
+	<listitem>
+	  <para>0 if <literal>pcg</literal> converged to the desired
+	    tolerance within <literal>maxi</literal> iterations, 1 else</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>err</term>
+	<listitem>
+	  <para>final relative norm of the residual</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>iter</term>
+	<listitem>
+	  <para>number of iterations performed</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>res</term>
+	<listitem>
+	  <para>vector of the residual norms</para>
+	</listitem>
+      </varlistentry> 
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <SP> Solves the linear system <VERB>Ax=b</VERB> using the conjugate
+  <refsection><title>Description</title>
+    <para> Solves the linear system <literal>Ax=b</literal> using the conjugate
       gradient method with or without preconditioning. The preconditionning
-      should be defined by a symmetric positive definite matrix <VERB>M</VERB>,
-      or two matrices <VERB>M1</VERB> and <VERB>M2</VERB> such that
-      <VERB>M=M1*M2</VERB>. in the case the function solves <VERB>inv(M)*A*x =
-	inv(M)*b</VERB> for <VERB>x</VERB>. <VERB>M</VERB>, <VERB>M1</VERB> and
-      <VERB>M2</VERB> can be Scilab functions with calling sequence <VERB>y=Milx(x)</VERB> which
-      computes  the corresponding left division  <VERB>y=Mi\x</VERB>. </SP>  
-    <SP> The <VERB>A</VERB> matrix must be a symmetric positive definite 
-      matrix (full or sparse) or a function  with calling sequence <VERB>y=Ax(x)</VERB> which
-      computes <VERB>y=A*x</VERB></SP>
-  </DESCRIPTION>
+      should be defined by a symmetric positive definite matrix <literal>M</literal>,
+      or two matrices <literal>M1</literal> and <literal>M2</literal> such that
+      <literal>M=M1*M2</literal>. in the case the function solves <literal>inv(M)*A*x =
+	inv(M)*b</literal> for <literal>x</literal>. <literal>M</literal>, <literal>M1</literal> and
+      <literal>M2</literal> can be Scilab functions with calling sequence <literal>y=Milx(x)</literal> which
+      computes  the corresponding left division  <literal>y=Mi\x</literal>. </para>  
+    <para> The <literal>A</literal> matrix must be a symmetric positive definite 
+      matrix (full or sparse) or a function  with calling sequence <literal>y=Ax(x)</literal> which
+      computes <literal>y=A*x</literal></para>
+  </refsection>
 
-  <EXAMPLE>
-<![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
  //Well conditionned problem
  A=[ 94  0   0   0    0   28  0   0   32  0  
      0   59  13  5    0   0   0   10  0   0  
@@ -156,21 +152,21 @@
    // A passed as an argument
    [x, fail, err, iter, res]=pcg(list(Atimesx,A),b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
- ]]>
-  </EXAMPLE>
+ 
+  ]]></programlisting></refsection>
   
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>backslash</LINK>
-    </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM>
-      <LINK>qmr</LINK>
-    </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM>
-      <LINK>gmres</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="backslash">backslash</link>
+    </member>
+   <member>
+      <link linkend="qmr">qmr</link>
+    </member>
+   <member>
+      <link linkend="gmres">gmres</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>
     Sage Group (IRISA, 2004)
-  </AUTHOR>
-</MAN>
+  </para></refsection>
+</refentry>

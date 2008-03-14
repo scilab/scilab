@@ -1,62 +1,56 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>xgetech  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xgetech"> récupération de l&apos;échelle graphique courante   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[wrect,frect,logflag,arect]=xgetech()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>wrect,frect  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : valeurs réelles.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>logflag  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères de taille 2 &quot;xy&quot;.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>xgetech</VERB> renvoie l&apos;échelle graphique de la fenêtre courante.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xgetech"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xgetech</refname><refpurpose> récupération de l'échelle graphique courante   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[wrect,frect,logflag,arect]=xgetech()</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>wrect,frect  </term>
+  <listitem>
+  <para>valeurs réelles.
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>logflag  </term>
+  <listitem>
+  <para>chaîne de caractères de taille 2 "xy".
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>xgetech</literal> renvoie l'échelle graphique de la fenêtre courante.
     Le rectangle [xmin,ymin,xmax,ymax] donné par
-    <VERB>frect</VERB> est la taille de toute la fenêtre graphique. 
-    Le dessin est fait dans la région définie par <VERB>wrect</VERB>.
-  </P>
-  <P>
-    <VERB>wrect=[x,y,w,h]</VERB> (point en haut à gauche, largeur, hauteur) décrit 
+    <literal>frect</literal> est la taille de toute la fenêtre graphique. 
+    Le dessin est fait dans la région définie par <literal>wrect</literal>.
+  </para>
+  <para>
+    <literal>wrect=[x,y,w,h]</literal> (point en haut à gauche, largeur, hauteur) décrit 
     la région de la fenêtre graphique. 
-  </P>
-  <P>
-    <VERB>wrect=[0,0,1,1]</VERB> signifie que toute la fenêtre graphique est utilisée, 
-    et <VERB>wrect=[0.5,0,0.5,1]</VERB> signifie que seule la
+  </para>
+  <para>
+    <literal>wrect=[0,0,1,1]</literal> signifie que toute la fenêtre graphique est utilisée, 
+    et <literal>wrect=[0.5,0,0.5,1]</literal> signifie que seule la
     moitié droite de la fenêtre graphique est utilisée.
-  </P>
-  <P>
-    <VERB>logflag</VERB> : chaîne de caractères de taille 2 &quot;xy&quot;, où x et y peuvent être &quot;n&quot; ou &quot;l&quot;. &quot;n&quot; pour échelle normale et &quot;l&quot; pour échelle logarithmique. x  pour axe des x et y pour axe des y.
-  </P>
-  <P>
-    <VERB>arect=[x_gauche, x_droite,y_haut,y_bas]</VERB> définit le cadre
-    dans la sous-fenêtre. Le cadre est spécifié (comme <VERB>wrect</VERB>) en utilisant des 
+  </para>
+  <para>
+    <literal>logflag</literal> : chaîne de caractères de taille 2 "xy", où x et y peuvent être "n" ou "l". "n" pour échelle normale et "l" pour échelle logarithmique. x  pour axe des x et y pour axe des y.
+  </para>
+  <para>
+    <literal>arect=[x_gauche, x_droite,y_haut,y_bas]</literal> définit le cadre
+    dans la sous-fenêtre. Le cadre est spécifié (comme <literal>wrect</literal>) en utilisant des 
     proportions de la largeur et de la hauteur de la sous-fenêtre courante.
-  </P>
-  <P>
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  <para>
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 // première sous-fenêtre
 xsetech([0,0,1.0,0.5])
 plot2d()
@@ -70,9 +64,9 @@ xsetech([0,0,1.0,0.5])
 xsetech([0,0.5,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
 xbasc();
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xsetech</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.;   </AUTHOR>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="xsetech">xsetech</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><para>J.Ph.C.;   </para></refsection>
+</refentry>

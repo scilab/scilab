@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,48 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>trimmean</TITLE>
-  <TYPE>  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="trimmean"> trimmed mean of a vector or a matrix</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>m=trimmean(x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>m=trimmean(x,discard,'r') or m=trimmean(x,discard,1)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>m=trimmean(x,discard,'c') or m=trimmean(x,discard,2)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>real or complex vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>discard</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>number: The discarding percentage</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trimmean"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>trimmean</refname><refpurpose> trimmed mean of a vector or a matrix</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>m=trimmean(x)
+m=trimmean(x,discard,'r') or m=trimmean(x,discard,1)
+m=trimmean(x,discard,'c') or m=trimmean(x,discard,2)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>discard</term>
+        <listitem>
+          <para>number: The discarding percentage</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     A  trimmed mean  is calculated  by discarding  a certain
     percentage of the lowest and the highest scores and then
     computing  the  mean   of  the  remaining  scores.   For
     example, a  mean trimmed  50% is computed  by discarding
     the lower  and higher 25%  of the scores and  taking the
-    mean of the remaining scores.</P>
-    <P>
+    mean of the remaining scores.</para>
+    <para>
     The median  is the mean trimmed 100%  and the arithmetic
-    mean is the mean trimmed 0%.</P>
-    <P>
+    mean is the mean trimmed 0%.</para>
+    <para>
     A  trimmed mean  is  obviously less  susceptible to  the
     effects of  extreme scores than is  the arithmetic mean.
     It is therefore less susceptible to sampling fluctuation
@@ -74,45 +69,45 @@
     statistic,  the  more precise  the  statistic  is as  an
     estimator         of         the         parameter.[from
     http://davidmlane.com/hyperstat/A12977.html])  than  the
-    mean for normal distributions.</P>
-    <P>
+    mean for normal distributions.</para>
+    <para>
     Trimmed  means  are often  used  in  Olympic scoring  to
     minimize the effects  of extreme ratings possibly caused
     by            biased            judges.            [from
-    http://davidmlane.com/hyperstat/A11971.html]</P>
-    <P>
-    For      a      vector      or     matrix      <VERB>x</VERB>,
-    <VERB>t=trimmean(x,discard)</VERB>  returns in  scalar <VERB>t</VERB>
-    the  mean   of  all  the  entries   of  <VERB>x</VERB>,  after
-    discarding    <VERB>discard/2</VERB>   highest    values   and
-    <VERB>discard/2</VERB> lowest values.</P>
-    <P><VERB>t=trimmean(x,discard,'r')</VERB>    (or,   equivalently,
-    <VERB>t=trimmean(x,discard,1)</VERB>) returns in each entry of
-    the row vector <VERB>t</VERB>  the trimmed mean of each column
-    of <VERB>x</VERB>.</P>
-    <P><VERB>t=trimmean(x,discard,'c')</VERB>    (or,   equivalently,
-    <VERB>t=trimmean(x,discard,2)</VERB>) returns in each entry of
-    the column vector <VERB>t</VERB>  the trimmed mean of each row
-    of <VERB>x</VERB>.</P>
-    <P>
+    http://davidmlane.com/hyperstat/A11971.html]</para>
+    <para>
+    For      a      vector      or     matrix      <literal>x</literal>,
+    <literal>t=trimmean(x,discard)</literal>  returns in  scalar <literal>t</literal>
+    the  mean   of  all  the  entries   of  <literal>x</literal>,  after
+    discarding    <literal>discard/2</literal>   highest    values   and
+    <literal>discard/2</literal> lowest values.</para>
+    <para><literal>t=trimmean(x,discard,'r')</literal>    (or,   equivalently,
+    <literal>t=trimmean(x,discard,1)</literal>) returns in each entry of
+    the row vector <literal>t</literal>  the trimmed mean of each column
+    of <literal>x</literal>.</para>
+    <para><literal>t=trimmean(x,discard,'c')</literal>    (or,   equivalently,
+    <literal>t=trimmean(x,discard,2)</literal>) returns in each entry of
+    the column vector <literal>t</literal>  the trimmed mean of each row
+    of <literal>x</literal>.</para>
+    <para>
     This function computes the  trimmed mean of a vector or
-    matrix <VERB> x</VERB>.</P>
-    <P>
-    For a vector or matrix <VERB> x</VERB>, <VERB> m=trimmean(x) </VERB>
-    returns in scalar <VERB> m</VERB> the trimmedmean of all the
-    entries of <VERB> x</VERB>.</P>
-    <P><VERB>   m=trimmean(x,'r')  </VERB>  (or,   equivalently,  
-    <VERB> m=trimmean(x,1) </VERB>)  returns in each entry  of the row
-    vector <VERB> m</VERB> the trimmed mean of each column of <VERB> x</VERB>.</P>
-    <P>
-    q<VERB>  m=trimmean(x,'c')   </VERB>  (or,  equivalently,  
-    <VERB> m=trimmean(x,2)  </VERB>)  returns  in  each entry  of  the
-    column vector <VERB> m</VERB> the trimmed mean of each row of
-    <VERB> x</VERB>.</P>
-  </DESCRIPTION>
-  <SECTION label="References">
-    <P>
-     Luis  Angel   Garcia-Escudero  and  Alfonso  Gordaliza, Robustness Properties of Means and Trimmed Means, JASA, Volume 94, Number 447, Sept 1999, pp956-969</P>
-  </SECTION>
-  <AUTHOR> Carlos Klimann</AUTHOR>
-</MAN>
+    matrix <literal> x</literal>.</para>
+    <para>
+    For a vector or matrix <literal> x</literal>, <literal> m=trimmean(x) </literal>
+    returns in scalar <literal> m</literal> the trimmedmean of all the
+    entries of <literal> x</literal>.</para>
+    <para><literal>   m=trimmean(x,'r')  </literal>  (or,   equivalently,  
+    <literal> m=trimmean(x,1) </literal>)  returns in each entry  of the row
+    vector <literal> m</literal> the trimmed mean of each column of <literal> x</literal>.</para>
+    <para>
+    q<literal>  m=trimmean(x,'c')   </literal>  (or,  equivalently,  
+    <literal> m=trimmean(x,2)  </literal>)  returns  in  each entry  of  the
+    column vector <literal> m</literal> the trimmed mean of each row of
+    <literal> x</literal>.</para>
+  </refsection>
+  <refsection><title>References</title>
+    <para>
+     Luis  Angel   Garcia-Escudero  and  Alfonso  Gordaliza, Robustness Properties of Means and Trimmed Means, JASA, Volume 94, Number 447, Sept 1999, pp956-969</para>
+  </refsection>
+  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
+</refentry>

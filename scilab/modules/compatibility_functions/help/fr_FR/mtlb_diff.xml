@@ -1,82 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_diff</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_diff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_diff</refname><refpurpose>Fonction d'�mulation de la fonction Matlab diff</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_diff">Fonction d'�mulation de la fonction Matlab diff</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>diff</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>diff</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec deux param�tres d'entr�e : la fonction <VERB>diff</VERB> de Scilab consid�re
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec deux param�tres d'entr�e : la fonction <literal>diff</literal> de Scilab consid�re
 	toutes les valeurs du premier param�tre comm un vecteur ce que Matlab ne fait pas.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         Avec trois param�tres d'entr�e : si la dimension du premier param�tre suivant la dimension
 	donn�e par le troisi�me param�tre atteint 1 avant que la fin des n it�rations, Matlab passe
 	� la dimension suivante n'�tant pas un 1 ce que Scilab ne fait pas.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_diff(A[,n[,dim]])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>diff(A[,n[,dim]])</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_diff(A[,n[,dim]])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>diff(A[,n[,dim]])</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les entr�es pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_diff</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_diff</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec deux entr�es, si <VERB>A</VERB> est un scalaire ou un vecteur
-        <VERB>mtlb_diff(A,n)</VERB> peut �tre remplac� par <VERB>diff(A,n)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec deux entr�es, si <literal>A</literal> est un scalaire ou un vecteur
+        <literal>mtlb_diff(A,n)</literal> peut �tre remplac� par <literal>diff(A,n)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec deux entr�es, si la taille de A suivant la dimension donn�e par <VERB>dim</VERB> ne peut pas atteindre 1
-        <VERB>mtlb_diff(A,n,dim)</VERB> peut �tre remplac� par <VERB>diff(A,n,dim)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Avec deux entr�es, si la taille de A suivant la dimension donn�e par <literal>dim</literal> ne peut pas atteindre 1
+        <literal>mtlb_diff(A,n,dim)</literal> peut �tre remplac� par <literal>diff(A,n,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_diff</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_diff</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,45 +1,32 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_fscanf</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_fscanf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_fscanf</refname><refpurpose>Fonction d'�mulation de la fonction Matlab fscanf</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_fscanf">Fonction d'�mulation de la fonction Matlab fscanf</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Il n'y a pas d'�quivalent Scilab exact pour la fonction Matlab <VERB>fscanf</VERB>. La fonction Scilab <VERB>mfscanf</VERB>
-    et la fonction Matlab <VERB>fscanf</VERB> se comportent diff�remment dans beaucoup de cas mais sont �quivalentes dans plusieurs cas.</P>
+    <para>Il n'y a pas d'�quivalent Scilab exact pour la fonction Matlab <literal>fscanf</literal>. La fonction Scilab <literal>mfscanf</literal>
+    et la fonction Matlab <literal>fscanf</literal> se comportent diff�remment dans beaucoup de cas mais sont �quivalentes dans plusieurs cas.</para>
 
-    <P>
-    La fonction <VERB>mtlb_fscanf(varargin)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>fscanf</VERB>. Cette fonction va
+    <para>
+    La fonction <literal>mtlb_fscanf(varargin)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>fscanf</literal>. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Il est quelquefois possible de remplacer les appels �
-    <VERB>mtlb_fscanf</VERB> par des appels � <LINK>mfscanf</LINK>.
-    </P>
+    <literal>mtlb_fscanf</literal> par des appels � <link linkend="mfscanf">mfscanf</link>.
+    </para>
 
-    <P>Attention : <VERB>mtlb_fscanf</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_fscanf</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
  
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>mfscanf</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="mfscanf">mfscanf</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

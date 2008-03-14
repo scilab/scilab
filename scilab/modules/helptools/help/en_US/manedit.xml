@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,51 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="manedit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>manedit</refname><refpurpose>editing a manual item</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>manedit(manitem)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>manitem</term>
+        <listitem>
+          <para>character string (usually, name of a function)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>edit(manitem)</literal> opens the xml file associated to <literal>manitem</literal>
+    in the scipad editor.</para>
+    <para>If there is no xml file associated with <literal>manitem</literal> and
+      <literal>manitem</literal> is the name of a Scilab function scipad opens with
+      the skeleton of the xml file produced by <link linkend="help_skeleton">help_skeleton</link>. This
+    file is located in TMPDIR.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>manedit</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="manedit">editing a manual item</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>manedit(manitem)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>manitem</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string (usually, name of a function)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>edit(manitem)</VERB> opens the xml file associated to <VERB>manitem</VERB>
-    in the scipad editor.</P>
-    <P>If there is no xml file associated with <VERB>manitem</VERB> and
-      <VERB>manitem</VERB> is the name of a Scilab function scipad opens with
-      the skeleton of the xml file produced by <LINK>help_skeleton</LINK>. This
-    file is located in TMPDIR.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 manedit('manedit')
 
 function [x,y,z]=foo123(a,b),
 x=a+b,y=a-b,z=a==b
 endfunction
 manedit foo123
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>help</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>help_skeleton</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="help">help</link>
+    </member>
+    <member>
+      <link linkend="help_skeleton">help_skeleton</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

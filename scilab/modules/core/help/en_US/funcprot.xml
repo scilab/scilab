@@ -1,44 +1,40 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>funcprot</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="funcprot"> switch scilab functions protection mode</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>prot=funcprot()  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>funcprot(prot)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>prot</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer with possible values 0,1,2</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="funcprot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>funcprot</refname><refpurpose> switch scilab functions protection mode</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>prot=funcprot()
+funcprot(prot)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>prot</term>
+        <listitem>
+          <para>integer with possible values 0,1,2</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Scilab functions are variable, funcprot allows the user to specify
     what scilab do when such  variables are redefined.
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="*">
-        <SP>If prot==0  nothing special is done</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="*">
-        <SP>If prot==1  scilab issues a warning message when a function is redefined (default mode)</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="*">
-        <SP>If prot==2 scilab issues an error when a function is redefined</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>If prot==0  nothing special is done</para>
+      </listitem>
+      <listitem>
+        <para>If prot==1  scilab issues a warning message when a function is redefined (default mode)</para>
+      </listitem>
+      <listitem>
+        <para>If prot==2 scilab issues an error when a function is redefined</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 funcprot(1)
 deff('[x]=foo(a)','x=a')
 deff('[x]=foo(a)','x=a+1')
@@ -47,6 +43,6 @@ funcprot(0)
 deff('[x]=foo(a)','x=a')
 deff('[x]=foo(a)','x=a+1')
 foo=33
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

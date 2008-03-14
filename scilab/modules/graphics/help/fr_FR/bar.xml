@@ -1,104 +1,100 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bar</refname><refpurpose>histogramme de barres</refpurpose></refnamediv>
 	
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>bar</TITLE>
-	<TYPE>Fonction Scilab</TYPE>
- <DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="bar">histogramme de barres</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>bar(y)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>bar(x,y)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>bar([h],x,y [,width [,color [,style]]])</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>h</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: un pointeur sur les axes, (par défaut: h=gca() ).</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
 	
-			<PARAM_ITEM>
-				<PARAM_NAME>y</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: un scalaire, un vecteur de taille N, ou une matrice de taille N*M</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+ 
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>bar(y)
+bar(x,y)
+bar([h],x,y [,width [,color [,style]]])</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Paramètres</title>
+		<variablelist>
+			<varlistentry>
+				<term>h</term>
+				<listitem>
+					<para>un pointeur sur les axes, (par défaut: h=gca() ).</para>
+				</listitem>
+			</varlistentry>
+	
+			<varlistentry>
+				<term>y</term>
+				<listitem>
+					<para>un scalaire, un vecteur de taille N, ou une matrice de taille N*M</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>x</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: un scalaire ou un vecteur de taille N, (si y est un vecteur alors x doit etre de meme longeur que y. Si y est une matrice alors x doit etre un vecteur de longeur egale au nombre de lignes de y).</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>x</term>
+				<listitem>
+					<para>un scalaire ou un vecteur de taille N, (si y est un vecteur alors x doit etre de meme longeur que y. Si y est une matrice alors x doit etre un vecteur de longeur egale au nombre de lignes de y).</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>width</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: (optionnel), un scalaire, définit l'épaisseur des barres (un pourcentage de l'epaisseur maximum autorisé pour une barre), par défaut: width=0.8, i.e 80%.</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>width</term>
+				<listitem>
+					<para>(optionnel), un scalaire, définit l'épaisseur des barres (un pourcentage de l'epaisseur maximum autorisé pour une barre), par défaut: width=0.8, i.e 80%.</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>color</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: (optionnel), une chaine (par défaut: 'blue'), specifiant la couleur de l'intérieur des barres.</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>color</term>
+				<listitem>
+					<para>(optionnel), une chaine (par défaut: 'blue'), specifiant la couleur de l'intérieur des barres.</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>style:</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>(optionel), une chaine, 'grouped' or 'stacked' (par défaut: 'grouped').</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
+			<varlistentry>
+				<term>style:</term>
+				<listitem>
+					<para>(optionel), une chaine, 'grouped' or 'stacked' (par défaut: 'grouped').</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
 	
-	<DESCRIPTION>
-		<P><VERB>bar(y,...) :</VERB> si y est un vecteur alors la fonction bar
-		dessine une polyline de type <VERB>polyline_style</VERB> égale à  6, dans
+	<refsection><title>Description</title>
+		<para><literal>bar(y,...) :</literal> si y est un vecteur alors la fonction bar
+		dessine une polyline de type <literal>polyline_style</literal> égale à  6, dans
 		ce cas x =1 : length(y). Si y est une matrice de taille N*M, alors la
 		fonction bar dessine M polylines de (type 6), chaque polyline correspond à 
-		une colonne de y est au vecteur x=1:size(y,1).</P>
+		une colonne de y est au vecteur x=1:size(y,1).</para>
 		
-		<P><VERB>bar(x,y,...) :</VERB> si y est un vecteur alors la fonction bar
-		dessine une polyline de type <VERB>polyline_style</VERB> égale à  6,
+		<para><literal>bar(x,y,...) :</literal> si y est un vecteur alors la fonction bar
+		dessine une polyline de type <literal>polyline_style</literal> égale à  6,
 		vérifiant: longeur de x = longeur de y .Si y est une matrice de taille
 		N*M, alors la fonction bar dessine M polylines de (type 6), chaque
 		polyline correspond à  une colonne de y est au vecteur x vérifiant longueur
-		de x=size(y,1) (i.e longueur de x = nombre de ligne de y).</P>
+		de x=size(y,1) (i.e longueur de x = nombre de ligne de y).</para>
 		
-		<P><VERB>bar(h,...) :</VERB> definit les axes courants ou le dessin est
-		réalisé.</P>
+		<para><literal>bar(h,...) :</literal> definit les axes courants ou le dessin est
+		réalisé.</para>
 		
-		<P><VERB>bar(...,width,...) :</VERB> definit l'épaisseur des barres en
-		pourcentage (générallement: 0&lt;width&lt;=1).</P>
+		<para><literal>bar(...,width,...) :</literal> definit l'épaisseur des barres en
+		pourcentage (générallement: 0&lt;width&lt;=1).</para>
 		
-		<P><VERB>bar(...,style,...) :</VERB> dans le cas ou y est une matrice
+		<para><literal>bar(...,style,...) :</literal> dans le cas ou y est une matrice
 		l'option style definit la façon dont les barres sont positionnées les unes
 		par rapport aux autres. Si y est une matice N*M (donc M polylines de type
 		6) alors il y a 2 façons de dessiner ces M barres. l'option style fixée à 
 		grouped' permet de centrer les M polylines par rapport aux abscisses (i.e
 		par rapport à  chaque composantes de x), et l'option style fixée à 
-		'stacked' permet de les empiler.</P>
+		'stacked' permet de les empiler.</para>
 		
-		<P><VERB>bar(...,color,...) : </VERB>definit la couleur des barres. La
+		<para><literal>bar(...,color,...) : </literal>definit la couleur des barres. La
 		fonction bar utilise la meme colormap que la fonction
-		<VERB>plot</VERB>.</P>
+		<literal>plot</literal>.</para>
 		
-		<P>S'il y a plusieurs appels à  la fonction bar, la fonction
-		<VERB>barhomogenize</VERB> permet d'homogénéiser l'épaisseur et le style
+		<para>S'il y a plusieurs appels à  la fonction bar, la fonction
+		<literal>barhomogenize</literal> permet d'homogénéiser l'épaisseur et le style
 		de toutes les barres (i.e les polylines de type 6) inclus dans les axes
-		courrants.</P>
-	</DESCRIPTION>
+		courrants.</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 // Premier exemple : dessine une barre, avec les paramètres width=0.5
 // et color='yellow' et par défaut x=1:length(y), style = 'grouped'.
 scf(0);
@@ -119,25 +115,25 @@ bar(x,y,'stacked');
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 bar(x,y,0.2,'green');
-]]></EXAMPLE>
+]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>barh</LINK>
-		</SEE_ALSO_ITEM>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member>
+			<link linkend="barh">barh</link>
+		</member>
 	
-		<SEE_ALSO_ITEM>
-			<LINK>barhomogenize</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="barhomogenize">barhomogenize</link>
+		</member>
 	
-		<SEE_ALSO_ITEM>
-			<LINK>plot</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="plot">plot</link>
+		</member>
 	
-		<SEE_ALSO_ITEM>
-			<LINK>polyline_properties</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+		<member>
+			<link linkend="polyline_properties">polyline_properties</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHOR>Farid Belahcene</AUTHOR>
-</MAN>
+	<refsection><title>Auteurs</title><para>Farid Belahcene</para></refsection>
+</refentry>

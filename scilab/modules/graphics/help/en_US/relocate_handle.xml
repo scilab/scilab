@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Jean-Baptiste Silvy
@@ -10,60 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="relocate_handle"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>relocate_handle</refname><refpurpose>Move handles inside the graphic
+  hierarchy.</refpurpose></refnamediv>
+  
 
-  <TITLE>relocate_handle</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="relocate_handle">Move handles inside the graphic
-  hierarchy.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>relocate_handle( movedHandles, parent
-    )</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>relocate_handle( movedHandles, parent )</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>movedHandles</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>movedHandles</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Vector of relocated handles.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>Vector of relocated handles.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>parent</PARAM_NAME>
+      <varlistentry>
+        <term>parent</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: New parent of the handles.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>New parent of the handles.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>The relocate_handle function allows to move handles from their current
+  <refsection><title>Description</title>
+    <para>The relocate_handle function allows to move handles from their current
     locations in the graphical hierarchy to another. All the moved entities
     are relocated under the same parent handle specified with the
-    <BD>parent</BD> parameter.</P>
+    <emphasis role="bold">parent</emphasis> parameter.</para>
 
-    <P>Since not every handles are compatible with each others, some
+    <para>Since not every handles are compatible with each others, some
     restrictions exist when relocationg handles. For examples, it is not
     allowed to move an axes handle under a polyline. More information about
-    compatibility can be found in the <LINK>graphics_entities</LINK> page.</P>
+    compatibility can be found in the <link linkend="graphics_entities">graphics_entities</link> page.</para>
 
-    <P>This routine is particularly useful to move an object from an axes
-    entity to an other or to move axes from figures handles.</P>
-  </DESCRIPTION>
+    <para>This routine is particularly useful to move an object from an axes
+    entity to an other or to move axes from figures handles.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[x = 0:10 ;
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[x = 0:10 ;
 
 // plot a first polyline
 plot(x,x^2) ;
@@ -80,25 +76,25 @@ poly2bis = copy( poly2 ) ; // make a copy of the polyline
 // put both polyline in the same window
 relocate_handle( poly2bis, axes1 ) ;
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>copy</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="copy">copy</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>swap_handles</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="swap_handles">swap_handles</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Jean-Baptiste Silvy</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Jean-Baptiste Silvy</para></refsection>
+</refentry>

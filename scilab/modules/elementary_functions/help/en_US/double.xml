@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>double</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="double"> conversion from integer to double precision  representation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=double(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=int16(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=int32(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=uint8(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=uint16(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=uint32(X)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of floats or integers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of floats</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="double"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>double</refname><refpurpose> conversion from integer to double precision  representation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=double(X)
+y=int16(X)
+y=int32(X)
+y=uint8(X)
+y=uint16(X)
+y=uint32(X)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>matrix of floats or integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>matrix of floats</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     converts  data stored using  one, two or four bytes integers into
-    double precision floating point representation. If <VERB>X</VERB> entries are already 
-    double precision floats, nothing is done.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    double precision floating point representation. If <literal>X</literal> entries are already 
+    double precision floats, nothing is done.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 x=int8([0 12 140])
 double(x)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>int8</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>inttype</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>type</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="int8">int8</link>
+    </member>
+    <member>
+      <link linkend="inttype">inttype</link>
+    </member>
+    <member>
+      <link linkend="type">type</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

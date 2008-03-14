@@ -1,24 +1,22 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rational</TITLE>
-  <TYPE>Scilab Objects</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="rational"> Scilab objects, rational in Scilab</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    A rational <VERB>r</VERB> is a quotient of two polynomials <VERB>r=num/den</VERB>.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rational"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rational</refname><refpurpose> Scilab objects, rational in Scilab</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
+    A rational <literal>r</literal> is a quotient of two polynomials <literal>r=num/den</literal>.
     The internal representation of a rational is a list.
-    <VERB>r=tlist('['r','num','den','dt'],num,den,[])</VERB> is the same as <VERB>r=num/den</VERB>.
+    <literal>r=tlist('['r','num','den','dt'],num,den,[])</literal> is the same as <literal>r=num/den</literal>.
     A rational matrix can be defined with the usual syntax
-    e.g. <VERB>[r11,r12;r21,r22]</VERB> is a 2x2 matrix where <VERB>rij</VERB> are 
+    e.g. <literal>[r11,r12;r21,r22]</literal> is a 2x2 matrix where <literal>rij</literal> are 
     1x1 rationals.
     A rational matrix can also be defined as above as a list
-    <VERB>tlist(['r','num','den','dt'],num,den,[])</VERB> with <VERB>num</VERB> and <VERB>den</VERB> polynomial matrices.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <literal>tlist(['r','num','den','dt'],num,den,[])</literal> with <literal>num</literal> and <literal>den</literal> polynomial matrices.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 s=poly(0,'s');
 W=[1/s,1/(s+1)]
 W'*W
@@ -28,17 +26,17 @@ H=Num./Den
 syslin('c',Num,Den)
 syslin('c',H)
 [Num1,Den1]=simp(Num,Den)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>poly</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>syslin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>simp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="poly">poly</link>
+    </member>
+    <member>
+      <link linkend="syslin">syslin</link>
+    </member>
+    <member>
+      <link linkend="simp">simp</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

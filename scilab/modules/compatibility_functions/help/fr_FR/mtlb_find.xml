@@ -1,96 +1,83 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_find</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_find"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_find</refname><refpurpose>Fonction d'�mulation de la fonction Matlab find</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_find">Fonction d'�mulation de la fonction Matlab find</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>find</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>find</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec un param�tre d'entr�e qui est un vecteur colonne ou une matrice :  La fonction Matlab <VERB>find</VERB>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec un param�tre d'entr�e qui est un vecteur colonne ou une matrice :  La fonction Matlab <literal>find</literal>
 	retourne un(des) vecteur(s) colonne alors que Scilab retourne un(des) vecteur(s) ligne.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec trois param�tres de sortie : La fonction Matlab <VERB>find</VERB> peut retourner trois valeurs
+      <listitem>
+        <para>
+        Avec trois param�tres de sortie : La fonction Matlab <literal>find</literal> peut retourner trois valeurs
 	mais pas la fonction Scilab.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>[i[,j[,v]]] = mtlb_find(B)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>[i[,j[,v]]] = find(B)</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>[i[,j[,v]]] = mtlb_find(B)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>[i[,j[,v]]] = find(B)</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_find</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_find</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Pour un appel avec un seul param�tre de sortie, si <VERB>B</VERB> est un vecteur ligne,
-        <VERB>i = mtlb_find(B)</VERB> peut �tre remplac� par <VERB>i = find(B)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Pour un appel avec un seul param�tre de sortie, si <literal>B</literal> est un vecteur ligne,
+        <literal>i = mtlb_find(B)</literal> peut �tre remplac� par <literal>i = find(B)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour un appel avec un seul param�tre de sortie, si <VERB>B</VERB> n'est pas un vecteur ligne,
-        <VERB>i = mtlb_find(B)</VERB> peut �tre remplac� par <VERB>i = matrix(find(B),-1,1)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Pour un appel avec un seul param�tre de sortie, si <literal>B</literal> n'est pas un vecteur ligne,
+        <literal>i = mtlb_find(B)</literal> peut �tre remplac� par <literal>i = matrix(find(B),-1,1)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour un appel avec deux param�tres de sortie, si <VERB>B</VERB> est un vecteur ligne,
-        <VERB>[i,j] = mtlb_find(B)</VERB> peut �tre remplac� par <VERB>[i,j] = find(B)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Pour un appel avec deux param�tres de sortie, si <literal>B</literal> est un vecteur ligne,
+        <literal>[i,j] = mtlb_find(B)</literal> peut �tre remplac� par <literal>[i,j] = find(B)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour un appel avec un seul param�tre de sortie, si <VERB>B</VERB> n'est pas un vecteur ligne,
-        <VERB>[i,j] = mtlb_find(B)</VERB> peut �tre remplac� par 
-	<VERB>[i,j] = find(B);i = matrix(i,-1,1);j = matrix(j,-1,1);</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Pour un appel avec un seul param�tre de sortie, si <literal>B</literal> n'est pas un vecteur ligne,
+        <literal>[i,j] = mtlb_find(B)</literal> peut �tre remplac� par 
+	<literal>[i,j] = find(B);i = matrix(i,-1,1);j = matrix(j,-1,1);</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_find</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_find</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

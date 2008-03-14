@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>clock</TITLE>
-	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clock"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>clock</refname><refpurpose>Return current time as date vector</refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="clock">Return current time as date vector</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>c = clock</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>c = clock returns a 6-element date vector containing the current date and time in decimal form:</P>
-		<P>c = [year month day hour minute seconds]</P>
-		<P>the first five elements are integers. The seconds element is accurate to several digits beyond the decimal point.</P>
-	</DESCRIPTION>
+ 
 	
-	<EXAMPLE><![CDATA[
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>c = clock</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>c = clock returns a 6-element date vector containing the current date and time in decimal form:</para>
+		<para>c = [year month day hour minute seconds]</para>
+		<para>the first five elements are integers. The seconds element is accurate to several digits beyond the decimal point.</para>
+	</refsection>
+	
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 clock
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>datenum</LINK>
-		</SEE_ALSO_ITEM>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="datenum">datenum</link>
+		</member>
 	
-		<SEE_ALSO_ITEM>
-			<LINK>datevec</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="datevec">datevec</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>timer</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="timer">timer</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>etime</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="etime">etime</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>tic</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="tic">tic</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>toc</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="toc">toc</link>
+		</member>
 		
 		
-	</SEE_ALSO>
+	</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>P.M</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Authors</title><simplelist type="vert">
+		<member>P.M</member>
+	</simplelist></refsection>
+</refentry>

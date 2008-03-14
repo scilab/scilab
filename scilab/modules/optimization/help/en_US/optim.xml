@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,266 +10,262 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>optim</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="optim"> non-linear optimization routine</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[f,xopt]=optim(costf,x0)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[f [,xopt [,gradopt [,work]]]]=optim(costf [,&lt;contr&gt;],x0
-      [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>costf</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: external, i.e Scilab function list or string
-	    (<VERB>costf</VERB> is the cost function: see below its calling
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="optim"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>optim</refname><refpurpose> non-linear optimization routine</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[f,xopt]=optim(costf,x0)
+[f [,xopt [,gradopt [,work]]]]=optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>costf</term>
+        <listitem>
+          <para>external, i.e Scilab function list or string
+	    (<literal>costf</literal> is the cost function: see below its calling
 	    sequence (Scilab or Fortran)). See also external for details about
-	    external functions.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x0</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector (initial value of variable to be minimized).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: value of optimal cost (<VERB>f=costf(xopt)</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xopt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: best value of <VERB>x</VERB> found.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;contr&gt;</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: keyword representing the following sequence of arguments:
-	    <VERB>'b',binf,bsup</VERB>  with <VERB>binf</VERB> and 
-	    <VERB>bsup</VERB> are real vectors with same dimension as
-	    <VERB>x0</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower
-	    and upper bounds on <VERB>x</VERB>.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>algo</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Character string used to sprecify the algorithm to use. The
-	    possible values are <VERB>'qn'</VERB> for quasi-Newton (default) or
-	    <VERB>'gc'</VERB> for conjugate gradient or <VERB>'nd'</VERB> for
+	    external functions.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>real vector (initial value of variable to be minimized).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>value of optimal cost (<literal>f=costf(xopt)</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xopt</term>
+        <listitem>
+          <para>best value of <literal>x</literal> found.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;contr&gt;</term>
+        <listitem>
+          <para>keyword representing the following sequence of arguments:
+	    <literal>'b',binf,bsup</literal>  with <literal>binf</literal> and 
+	    <literal>bsup</literal> are real vectors with same dimension as
+	    <literal>x0</literal>. <literal>binf</literal> and <literal>bsup</literal> are lower
+	    and upper bounds on <literal>x</literal>.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>algo</term>
+        <listitem>
+          <para>Character string used to sprecify the algorithm to use. The
+	    possible values are <literal>'qn'</literal> for quasi-Newton (default) or
+	    <literal>'gc'</literal> for conjugate gradient or <literal>'nd'</literal> for
 	    non-differentiable.  Note that
-	    <VERB>'nd'</VERB> does not accept bounds on <VERB>x</VERB>.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>df0</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar. Guessed decreasing of <VERB>f</VERB> at first
-	    iteration. (<VERB>df0=1</VERB> is the default value).</SP> 
-        </PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>mem :  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>integer, number of variables used to approximate the  Hessian,
-	    (<VERB>algo='gc' or 'nd'</VERB>). Default value is around 6.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;stop&gt;</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  keyword representing the sequence of optional parameters
+	    <literal>'nd'</literal> does not accept bounds on <literal>x</literal>.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>df0</term>
+        <listitem>
+          <para>real scalar. Guessed decreasing of <literal>f</literal> at first
+	    iteration. (<literal>df0=1</literal> is the default value).</para> 
+        </listitem> 
+      </varlistentry>
+      <varlistentry>
+        <term>mem :  </term>
+        <listitem>
+          <para>integer, number of variables used to approximate the  Hessian,
+	    (<literal>algo='gc' or 'nd'</literal>). Default value is around 6.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;stop&gt;</term>
+        <listitem>
+          <para> keyword representing the sequence of optional parameters
 	    controlling the  convergence of the algorithm. 
-            <VERB>'ar',nap [,iter [,epsg [,epsf [,epsx]]]]</VERB></SP> 
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;ar&quot;  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: reserved keyword for stopping rule selection defined as
-		  follows:</SP> 
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>nap</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: maximum number of calls to <VERB>costf</VERB> allowed
-		  (default is 100).</SP> 
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>iter</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: maximum number of iterations allowed (default is 100).</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>epsg</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: threshold on gradient norm.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>epsf</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: threshold controlling decreasing of <VERB>f</VERB></SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>epsx</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: threshold controlling variation of <VERB>x</VERB>. This
-		  vector (possibly matrix) of same size as <VERB>x0</VERB> can
-		  be used to scale <VERB>x</VERB>.</SP> 
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;params&gt; </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: keyword representing the sequence of arguments: 
-          <VERB>'ti', valti ,'td', valtd</VERB> which can be used to pass argument to
-	    an external written in C or Fortran (see below).</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>&quot;imp=iflag&quot;  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: named argument used to set the trace mode. <VERB>iflag=0</VERB>
-	    nothing (execpt errors) is reported, <VERB>iflag=1</VERB> initial
-	    and final reports, <VERB>iflag=2</VERB> adds a report per
-	    iteration, <VERB>iflag&gt;2</VERB> add reports on linear
+            <literal>'ar',nap [,iter [,epsg [,epsf [,epsx]]]]</literal></para> 
+          <variablelist>
+            <varlistentry>
+              <term>"ar"  </term>
+              <listitem>
+                <para>reserved keyword for stopping rule selection defined as
+		  follows:</para> 
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nap</term>
+              <listitem>
+                <para>maximum number of calls to <literal>costf</literal> allowed
+		  (default is 100).</para> 
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>iter</term>
+              <listitem>
+                <para>maximum number of iterations allowed (default is 100).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>epsg</term>
+              <listitem>
+                <para>threshold on gradient norm.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>epsf</term>
+              <listitem>
+                <para>threshold controlling decreasing of <literal>f</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>epsx</term>
+              <listitem>
+                <para>threshold controlling variation of <literal>x</literal>. This
+		  vector (possibly matrix) of same size as <literal>x0</literal> can
+		  be used to scale <literal>x</literal>.</para> 
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;params&gt; </term>
+        <listitem>
+          <para>keyword representing the sequence of arguments: 
+          <literal>'ti', valti ,'td', valtd</literal> which can be used to pass argument to
+	    an external written in C or Fortran (see below).</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"imp=iflag"  </term>
+        <listitem>
+          <para>named argument used to set the trace mode. <literal>iflag=0</literal>
+	    nothing (execpt errors) is reported, <literal>iflag=1</literal> initial
+	    and final reports, <literal>iflag=2</literal> adds a report per
+	    iteration, <literal>iflag&gt;2</literal> add reports on linear
 	    search. Warning, most of these reports are written on the Scilab
-	    standard output.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>gradopt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  gradient of <VERB>costf</VERB> at <VERB>xopt</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>work</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: working array for hot restart for quasi-Newton method. This
-	    array is automatically initialized by <VERB>optim</VERB> when
-	    <VERB>optim</VERB> is invoked. It can be used as input parameter to
-	    speed-up the calculations.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP>
+	    standard output.</para> 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gradopt</term>
+        <listitem>
+          <para> gradient of <literal>costf</literal> at <literal>xopt</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>work</term>
+        <listitem>
+          <para>working array for hot restart for quasi-Newton method. This
+	    array is automatically initialized by <literal>optim</literal> when
+	    <literal>optim</literal> is invoked. It can be used as input parameter to
+	    speed-up the calculations.</para> 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
       Non-linear optimization routine for programs without constraints or with
-      bound constraints:</SP> 
-    <VERBATIM>
-      <![CDATA[
-      min costf(x) w.r.t x.
-      ]]>
-    </VERBATIM>
-    <P><VERB>costf</VERB> is an &quot;external&quot; i.e a Scilab function, a
-      list or a string giving the name of a C or Fortran routine (see
-      &quot;external&quot;).
+      bound constraints:</para> 
+    <programlisting><![CDATA[
       
-      This external must return the value <VERB>f</VERB> of the cost function
-      at the point <VERB>x</VERB> and the gradient <VERB>g</VERB> of the cost
-      function at the point <VERB>x</VERB>. 
-    </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="- Scilab function case">
-	<P>If <VERB>costf</VERB> is a Scilab function, the calling sequence
-	  for <VERB>costf</VERB> must be:
-	  <VERB>[f,g,ind]=costf(x,ind)</VERB></P>
+      min costf(x) w.r.t x.
+      
+    ]]></programlisting>
+    <para><literal>costf</literal> is an "external" i.e a Scilab function, a
+      list or a string giving the name of a C or Fortran routine (see
+      "external").
+      
+      This external must return the value <literal>f</literal> of the cost function
+      at the point <literal>x</literal> and the gradient <literal>g</literal> of the cost
+      function at the point <literal>x</literal>. 
+    </para>
+    <variablelist>
+      <varlistentry><term>- Scilab function case</term><listitem>
+	<para>If <literal>costf</literal> is a Scilab function, the calling sequence
+	  for <literal>costf</literal> must be:
+	  <literal>[f,g,ind]=costf(x,ind)</literal></para>
 
-	<SP>Here, <VERB>costf</VERB> is a function which returns <VERB>f</VERB>,
-	  value (real number) of cost function at <VERB>x</VERB>, and
-	  <VERB>g</VERB>, gradient vector of cost function at
-	  <VERB>x</VERB>. The variable <VERB>ind</VERB>  is described below.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="- List case">
-	<P>If <VERB>costf</VERB> is a list, it should be of the form:
-	  <VERB>list(real_costf, arg1,...,argn)</VERB> with <VERB>real_costf</VERB>
+	<para>Here, <literal>costf</literal> is a function which returns <literal>f</literal>,
+	  value (real number) of cost function at <literal>x</literal>, and
+	  <literal>g</literal>, gradient vector of cost function at
+	  <literal>x</literal>. The variable <literal>ind</literal>  is described below.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>- List case</term><listitem>
+	<para>If <literal>costf</literal> is a list, it should be of the form:
+	  <literal>list(real_costf, arg1,...,argn)</literal> with <literal>real_costf</literal>
 	  a Scilab function with calling sequence :
-	  <VERB>[f,g,ind]=costf(x,ind,arg1,... argn)</VERB>. The
-	  <VERB>x</VERB>, <VERB>f</VERB>, <VERB>g</VERB>, <VERB>ind</VERB>
-	  arguments have the same meaning that above. <VERB>argi</VERB>
-	  arguments can be used to pass function parameters.</P>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="- String case">
-	<P>If <VERB>costf</VERB> is a character string, it refers to the name
-	  of a C or Fortran routine which must be linked to Scilab </P>
-	<DESCRIPTION_INDENT>
-	  <DESCRIPTION_ITEM label="* Fortran case">
-	    <P>The generic calling sequence for the Fortran subroutine is: 
-	      <VERB>subroutine costf(ind,n,x,f,g,ti,tr,td)</VERB> with the
-	      following declarations:</P>
-	    <VERBATIM>
-	      <![CDATA[
+	  <literal>[f,g,ind]=costf(x,ind,arg1,... argn)</literal>. The
+	  <literal>x</literal>, <literal>f</literal>, <literal>g</literal>, <literal>ind</literal>
+	  arguments have the same meaning that above. <literal>argi</literal>
+	  arguments can be used to pass function parameters.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>- String case</term><listitem>
+	<para>If <literal>costf</literal> is a character string, it refers to the name
+	  of a C or Fortran routine which must be linked to Scilab </para>
+	<variablelist>
+	  <varlistentry><term>* Fortran case</term><listitem>
+	    <para>The generic calling sequence for the Fortran subroutine is: 
+	      <literal>subroutine costf(ind,n,x,f,g,ti,tr,td)</literal> with the
+	      following declarations:</para>
+	    <programlisting><![CDATA[
+	      
 	      integer ind,n ti(*)
 	      double precision x(n),f,g(n),td(*)
 	      real tr(*)
-	      ]]>
-	    </VERBATIM>
-	    <SP>The argument <VERB>ind</VERB> is described below.</SP>
-	    <P>The Fortran subroutine <VERB>costf</VERB> must return <VERB>f</VERB>
-	      and the vector <VERB>g</VERB>, given <VERB>x, ind, n, ti, tr,td</VERB>.</P>
-	    <P> <VERB>ti,tr,td</VERB> can be used to initialize parameters. In
-	      the calling sequence of <VERB>optim</VERB>, the keyword
-	      <VERB>&lt;params&gt;'</VERB> can be replaced by <VERB>'ti', valti ,'td', valtd</VERB>
-		.  Then, the routine  <VERB>costf</VERB> is
-	      evaluated with <VERB>ti=valti</VERB> and 
-	      <VERB>td=valtd</VERB> whatever the value of
-	      <VERB>ind</VERB>. Thus, the Scilab variables <VERB>valti</VERB>
-	      and <VERB>valtd</VERB> (integer vector and real vector) are sent
-	      to the routine <VERB>costf</VERB>.</P>  
-	  </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="* C case">
-	    <P>The generic calling sequence for the C procedure is: 
-	    <VERB>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</VERB>
-             with the following declarations:</P>
+	      
+	    ]]></programlisting>
+	    <para>The argument <literal>ind</literal> is described below.</para>
+	    <para>The Fortran subroutine <literal>costf</literal> must return <literal>f</literal>
+	      and the vector <literal>g</literal>, given <literal>x, ind, n, ti, tr,td</literal>.</para>
+	    <para> <literal>ti,tr,td</literal> can be used to initialize parameters. In
+	      the calling sequence of <literal>optim</literal>, the keyword
+	      <literal>&lt;params&gt;'</literal> can be replaced by <literal>'ti', valti ,'td', valtd</literal>
+		.  Then, the routine  <literal>costf</literal> is
+	      evaluated with <literal>ti=valti</literal> and 
+	      <literal>td=valtd</literal> whatever the value of
+	      <literal>ind</literal>. Thus, the Scilab variables <literal>valti</literal>
+	      and <literal>valtd</literal> (integer vector and real vector) are sent
+	      to the routine <literal>costf</literal>.</para>  
+	  </listitem></varlistentry>
+	  <varlistentry><term>* C case</term><listitem>
+	    <para>The generic calling sequence for the C procedure is: 
+	    <literal>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</literal>
+             with the following declarations:</para>
 
-	    <P>The argument <VERB>ind</VERB> is described below.</P>
-	    <P>The C procedure <VERB>costf</VERB> must return <VERB>f</VERB>
-	      and the vector <VERB>g</VERB>, given <VERB>x, ind, n, ti, tr, td</VERB>.</P>
+	    <para>The argument <literal>ind</literal> is described below.</para>
+	    <para>The C procedure <literal>costf</literal> must return <literal>f</literal>
+	      and the vector <literal>g</literal>, given <literal>x, ind, n, ti, tr, td</literal>.</para>
 		
-	    <P> <VERB>ti,tr,td</VERB> can be used to initialize parameters. In
-	      the calling sequence of <VERB>optim</VERB>, the string
-	      <VERB>'in'</VERB> can be replaced by <VERB>'ti', valti ,'td', valtd</VERB>.  
-	      Then, the procedure  <VERB>costf</VERB> is
-	      evaluated with <VERB>ti=valti</VERB> and 
-	      <VERB>td=valtd</VERB> whatever the value of
-	      <VERB>ind</VERB>. Thus, the Scilab variables <VERB>valti</VERB>
-	      and <VERB>valtd</VERB> (integer vector and real vector) are sent
-	      to the procedure <VERB>costf</VERB>.</P>  
-	  </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>If <VERB>ind=2</VERB> (resp. <VERB>3, 4</VERB>), <VERB>costf</VERB>
-      must provide <VERB>f</VERB> (resp. <VERB>g, f</VERB> and
-      <VERB>g</VERB>).</P> 
-    <P>If <VERB>ind=1</VERB> nothing is computed (used for display purposes
-      only).</P> 
-    <P> On output, <VERB>ind&lt;0</VERB>  means that <VERB>f</VERB> cannot
-      be evaluated at <VERB>x</VERB> and <VERB>ind=0</VERB> interrupts
-      the optimization.</P> 
+	    <para> <literal>ti,tr,td</literal> can be used to initialize parameters. In
+	      the calling sequence of <literal>optim</literal>, the string
+	      <literal>'in'</literal> can be replaced by <literal>'ti', valti ,'td', valtd</literal>.  
+	      Then, the procedure  <literal>costf</literal> is
+	      evaluated with <literal>ti=valti</literal> and 
+	      <literal>td=valtd</literal> whatever the value of
+	      <literal>ind</literal>. Thus, the Scilab variables <literal>valti</literal>
+	      and <literal>valtd</literal> (integer vector and real vector) are sent
+	      to the procedure <literal>costf</literal>.</para>  
+	  </listitem></varlistentry>
+	</variablelist>
+      </listitem></varlistentry>
+    </variablelist>
+    <para>If <literal>ind=2</literal> (resp. <literal>3, 4</literal>), <literal>costf</literal>
+      must provide <literal>f</literal> (resp. <literal>g, f</literal> and
+      <literal>g</literal>).</para> 
+    <para>If <literal>ind=1</literal> nothing is computed (used for display purposes
+      only).</para> 
+    <para> On output, <literal>ind&lt;0</literal>  means that <literal>f</literal> cannot
+      be evaluated at <literal>x</literal> and <literal>ind=0</literal> interrupts
+      the optimization.</para> 
 
-  </DESCRIPTION>
-  <EXAMPLE>
-    <![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    
     // External function written in Scilab
     xref=[1;2;3];x0=[1;-1;1]
     deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
@@ -352,32 +348,32 @@
     [f,xo,go]=optim('rosenf',x0,'td',p)
 
  
-    ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>external</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>quapro</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>linpro</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>datafit</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>leastsq</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>numdiff</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>derivative</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>NDcost</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="external">external</link>
+    </member>
+    <member>
+      <link linkend="quapro">quapro</link>
+    </member>
+    <member>
+      <link linkend="linpro">linpro</link>
+    </member>
+    <member>
+      <link linkend="datafit">datafit</link>
+    </member>
+    <member>
+      <link linkend="leastsq">leastsq</link>
+    </member>
+    <member>
+      <link linkend="numdiff">numdiff</link>
+    </member>
+    <member>
+      <link linkend="derivative">derivative</link>
+    </member>
+    <member>
+      <link linkend="NDcost">NDcost</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

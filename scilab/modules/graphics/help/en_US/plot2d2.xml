@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,54 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot2d2"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>plot2d2</refname><refpurpose>2D plot (step
+  function)</refpurpose></refnamediv>
+  
 
-  <TITLE>plot2d2</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="plot2d2">2D plot (step
-  function)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>plot2d2([x],y)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>plot2d2([x],y)
+plot2d2([x],y,&lt;opt_args&gt;)
+plot2d2([logflag],x,y,[style,strf,leg,rect,nax])</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>plot2d2([x],y,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>args</term>
 
-    <CALLING_SEQUENCE_ITEM>plot2d2([logflag],x,y,[style,strf,leg,rect,nax])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>see <literal>plot2d</literal> for a description of parameters.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>args</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para><literal>plot2d2</literal> is the same as <literal>plot2d</literal> but the
+    functions given by <literal>(x,y)</literal> are supposed to be piecewise
+    constant.</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: see <VERB>plot2d</VERB> for a description of parameters.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+    <para>By default, successive plots are superposed. To clear the previous
+    plot, use <literal>clf()</literal>.</para>
 
-  <DESCRIPTION>
-    <P><VERB>plot2d2</VERB> is the same as <VERB>plot2d</VERB> but the
-    functions given by <VERB>(x,y)</VERB> are supposed to be piecewise
-    constant.</P>
+    <para>Enter the command <literal>plot2d2()</literal> to see a demo. Note that all
+    the modes proposed by <literal>plot2dxx</literal> (xx = 1 to 4) can be enabled
+    using <literal>plot2d</literal> and setting the <literal>polyline_style</literal>
+    option to the corresponding number.</para>
+  </refsection>
 
-    <P>By default, successive plots are superposed. To clear the previous
-    plot, use <VERB>clf()</VERB>.</P>
-
-    <P>Enter the command <VERB>plot2d2()</VERB> to see a demo. Note that all
-    the modes proposed by <VERB>plot2dxx</VERB> (xx = 1 to 4) can be enabled
-    using <VERB>plot2d</VERB> and setting the <VERB>polyline_style</VERB>
-    option to the corresponding number.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 // plots a step function of value i on the segment [i,i+1]
 // the last segment is not drawn
@@ -74,33 +69,33 @@ e.children(1).polyline_style=2;
 e.children(2).polyline_style=2;
 e.children(3).polyline_style=2;
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d3</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="plot2d3">plot2d3</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d4</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="plot2d4">plot2d4</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>subplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="subplot">subplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>clf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="clf">clf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>polyline_properties</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="polyline_properties">polyline_properties</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

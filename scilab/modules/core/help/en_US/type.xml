@@ -1,81 +1,77 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>type</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="type"> variable type</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[i]=type(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Scilab object</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>i</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>type(x)</VERB>  returns an integer which is the type of <VERB>x</VERB> as following :</P>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="type"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>type</refname><refpurpose> variable type</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[i]=type(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>Scilab object</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>type(x)</literal>  returns an integer which is the type of <literal>x</literal> as following :</para>
+    <para>
      1 
-    :  real or complex constant matrix.</P>
-    <P>
+    :  real or complex constant matrix.</para>
+    <para>
      2 
-    :  polynomial matrix.</P>
-    <P>
+    :  polynomial matrix.</para>
+    <para>
      4 
-    :  boolean matrix.</P>
-    <P>
+    :  boolean matrix.</para>
+    <para>
      5
-    :  sparse matrix.</P>
-    <P>
+    :  sparse matrix.</para>
+    <para>
      6
-    :  sparse boolean matrix.</P>
-    <P>
+    :  sparse boolean matrix.</para>
+    <para>
      8
-    :  matrix of integers stored on 1 2 or 4 bytes</P>
-    <P>
+    :  matrix of integers stored on 1 2 or 4 bytes</para>
+    <para>
      9
-    :  matrix of graphic handles</P>
-    <P>
+    :  matrix of graphic handles</para>
+    <para>
      10 
-    :  matrix of character strings.</P>
-    <P>
+    :  matrix of character strings.</para>
+    <para>
      11 
-    :  un-compiled function.</P>
-    <P>
+    :  un-compiled function.</para>
+    <para>
      13 
-    :  compiled function.</P>
-    <P>
+    :  compiled function.</para>
+    <para>
      14 
-    :  function library.</P>
-    <P>
+    :  function library.</para>
+    <para>
      15 
-    :  list.</P>
-    <P>
+    :  list.</para>
+    <para>
      16 
-    :  typed list (tlist)</P>
-    <P>
+    :  typed list (tlist)</para>
+    <para>
      17
-    :  mlist</P>
-    <P>
+    :  mlist</para>
+    <para>
      128
-    : pointer</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>typeof</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    : pointer</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="typeof">typeof</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

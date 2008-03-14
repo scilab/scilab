@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -11,61 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>functions</TITLE>
-  <TYPE>Scilab Data type</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="functions"> Scilab procedures and Scilab objects</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    Functions are Scilab procedures (&quot;macro&quot;, &quot;function&quot; and &quot;procedure&quot;
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="functions"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>functions</refname><refpurpose> Scilab procedures and Scilab objects</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
+    Functions are Scilab procedures ("macro", "function" and "procedure"
     have the save meaning). 
-  </P>
-  </DESCRIPTION>
-  <SECTION label="Function definition">
-    <P>
+  </para>
+  </refsection>
+  <refsection><title>Function definition</title>
+    <para>
     Usually, they are defined in files with an editor and loaded into
-    Scilab by <VERB>getf</VERB> or through a library (see
-    <VERB>lib</VERB> or <VERB>genlib</VERB>). But They can also be
-    defined on-line (see <VERB>deff</VERB> or <VERB>function</VERB> o.
+    Scilab by <literal>getf</literal> or through a library (see
+    <literal>lib</literal> or <literal>genlib</literal>). But They can also be
+    defined on-line (see <literal>deff</literal> or <literal>function</literal> o.
     A function is defined by two components:  
-  </P>
-    <ITEMIZE>
-      <ITEM label="-">
-        <SP>a &quot;syntax definition&quot; part  as follows:</SP>
-        <VERBATIM>
-<![CDATA[
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>a "syntax definition" part  as follows:</para>
+        <programlisting><![CDATA[
+
  function [y1,...,yn]=foo(x1,...,xm)
  function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
-   ]]>
-        </VERBATIM>
-      </ITEM>
-      <ITEM label="-">
-        <SP>a sequence of scilab instructions.</SP>
-      </ITEM>
-    </ITEMIZE>
-    <P>
-      The &quot;syntax definition&quot; line gives the &quot;full&quot; calling syntax of this function. The <VERB>yi</VERB> are output variables calculated as functions of input variables <VERB>xi</VERB> and variables existing in Scilab when the function is executed.</P>
-  </SECTION>
-  <SECTION label="Calling function">
-    <P>
-    Usually function calling syntax is <VERB>[y1,...,yn]=foo(x1,...,xm)</VERB>. Shorter input or output argument list than definition ones may be used. In such cases, only the first variables from the left are used of set. The <VERB>argn</VERB> function may be used to get the actual number of calling arguments.</P>
-    <P>
-    It is also possible to use &quot;named argument&quot; to specify input arguments: suppose function <VERB>fun1</VERB> defined as <VERB>function y1=fun1(x1,x2,x3)</VERB> then it call be called with a syntax like  <VERB>y=fun1(x1=33,x3=[1 2 3])</VERB> within <VERB>fun1</VERB> x2 will be undefined. It is possible to check for defined variables with the <VERB>exists</VERB> function</P>
-    <P>
-    When a function has no left hand side argument and is called only with character string arguments, the callling syntax may be simplified <VERB>fun('a','toto','a string')</VERB> can be replaced by <VERB>fun a toto 'a string'</VERB></P>
-  </SECTION>
-  <SECTION label="Miscellaneous">
-    <P>
-    Functions are Scilab objects (with type numbers 13 or 11). They and can be manipulated (built, saved, loaded, passed as arguments,..) as other variable types.</P>
-    <P>
-    Collections of functions can be collected in libraries.  Functions which begin with <VERB>%</VERB> sign (e.g. <VERB>%foo</VERB>) are often used to overload (see <VERB>overloading</VERB>) operations or functions for new data type.</P>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+   
+        ]]></programlisting>
+      </listitem>
+      <listitem>
+        <para>a sequence of scilab instructions.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      The "syntax definition" line gives the "full" calling syntax of this function. The <literal>yi</literal> are output variables calculated as functions of input variables <literal>xi</literal> and variables existing in Scilab when the function is executed.</para>
+  </refsection>
+  <refsection><title>Calling function</title>
+    <para>
+    Usually function calling syntax is <literal>[y1,...,yn]=foo(x1,...,xm)</literal>. Shorter input or output argument list than definition ones may be used. In such cases, only the first variables from the left are used of set. The <literal>argn</literal> function may be used to get the actual number of calling arguments.</para>
+    <para>
+    It is also possible to use "named argument" to specify input arguments: suppose function <literal>fun1</literal> defined as <literal>function y1=fun1(x1,x2,x3)</literal> then it call be called with a syntax like  <literal>y=fun1(x1=33,x3=[1 2 3])</literal> within <literal>fun1</literal> x2 will be undefined. It is possible to check for defined variables with the <literal>exists</literal> function</para>
+    <para>
+    When a function has no left hand side argument and is called only with character string arguments, the callling syntax may be simplified <literal>fun('a','toto','a string')</literal> can be replaced by <literal>fun a toto 'a string'</literal></para>
+  </refsection>
+  <refsection><title>Miscellaneous</title>
+    <para>
+    Functions are Scilab objects (with type numbers 13 or 11). They and can be manipulated (built, saved, loaded, passed as arguments,..) as other variable types.</para>
+    <para>
+    Collections of functions can be collected in libraries.  Functions which begin with <literal>%</literal> sign (e.g. <literal>%foo</literal>) are often used to overload (see <literal>overloading</literal>) operations or functions for new data type.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //inline definition (see function)
 function [x,y]=myfct(a,b)
 x=a+b
@@ -83,38 +80,38 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
 // definition in an ascii file (see getf)
 getf SCI/modules/elementary_functions/macros/asinh.sci;
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>function</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>deff</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>getf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>comp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lib</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>getd</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>genlib</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>exists</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>varargin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>varargout</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="function">function</link>
+    </member>
+    <member>
+      <link linkend="deff">deff</link>
+    </member>
+    <member>
+      <link linkend="getf">getf</link>
+    </member>
+    <member>
+      <link linkend="comp">comp</link>
+    </member>
+    <member>
+      <link linkend="lib">lib</link>
+    </member>
+    <member>
+      <link linkend="getd">getd</link>
+    </member>
+    <member>
+      <link linkend="genlib">genlib</link>
+    </member>
+    <member>
+      <link linkend="exists">exists</link>
+    </member>
+    <member>
+      <link linkend="varargin">varargin</link>
+    </member>
+    <member>
+      <link linkend="varargout">varargout</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

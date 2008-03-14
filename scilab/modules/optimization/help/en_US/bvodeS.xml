@@ -1,104 +1,97 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>bvodeS</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="bvodeS">simplified call of bvode</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,
-         [ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin,
-          collpnt,subint,iprint,ireg,ifail])
-    </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  array of points at which approximations of the solution will be computed.
-    The points x(i) must be given in increasing order.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>m</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: array of orders for the differential equations given in <VERB>fsub</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  number of differential equations, length of <VERB>m</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: left end of solution interval, where a&lt;=x(1).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>b</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  right end of solution interval, where x($)&lt;=b.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fsub</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  name of a Scilab function for evaluating the rhs of the differential 
-       equation system to be solved; fsub also may be a list for parameter transfer.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>gsub</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:   name of a Scilab function for evaluating the boundary conditions for the
-       given differential equation system; gsub may also be a list as for fsub.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>zeta</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: array of points at which the boundary or side conditions are given in 
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bvodeS"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bvodeS</refname><refpurpose>simplified call of bvode</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>z=bvodeS(x,m,n,a,b,fsub,gsub,zeta, [ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin, collpnt,subint,iprint,ireg,ifail])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para> array of points at which approximations of the solution will be computed.
+    The points x(i) must be given in increasing order.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>array of orders for the differential equations given in <literal>fsub</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para> number of differential equations, length of <literal>m</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>left end of solution interval, where a&lt;=x(1).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para> right end of solution interval, where x($)&lt;=b.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fsub</term>
+        <listitem>
+          <para> name of a Scilab function for evaluating the rhs of the differential 
+       equation system to be solved; fsub also may be a list for parameter transfer.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gsub</term>
+        <listitem>
+          <para>  name of a Scilab function for evaluating the boundary conditions for the
+       given differential equation system; gsub may also be a list as for fsub.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zeta</term>
+        <listitem>
+          <para>array of points at which the boundary or side conditions are given in 
        increasing order. Each point must occur as often as boundary or side 
        conditions are given there. Each side condition point other than a or b must
        be included in the array fixpnt.
-       The length of zeta should be sum(m).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  array of all derivatives of the solution functions up to the order
+       The length of zeta should be sum(m).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para> array of all derivatives of the solution functions up to the order
     m(i)-1 for the i-th function. (See the examples below.) The length of z should
-    be sum(m).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin,
-          collpnt,subint,iprint,ireg,ifail</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: These optional arguments may be called by name in any order in the
-form argument=name. The meaning of ystart to ireg is given in the <LINK>bvode</LINK> help page.
-The Scilab functions <VERB>dfsub</VERB> and <VERB>dgsub</VERB> for evaluating the Jacobians may also be lists
-for parameter transfer. The function <VERB>ystart</VERB> is called <VERB>guess</VERB> in bvode.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ifail</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  if ifail=1, all parameters needed for the call of bvode are displayed.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+    be sum(m).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin,
+          collpnt,subint,iprint,ireg,ifail</term>
+        <listitem>
+          <para>These optional arguments may be called by name in any order in the
+form argument=name. The meaning of ystart to ireg is given in the <link linkend="bvode">bvode</link> help page.
+The Scilab functions <literal>dfsub</literal> and <literal>dgsub</literal> for evaluating the Jacobians may also be lists
+for parameter transfer. The function <literal>ystart</literal> is called <literal>guess</literal> in bvode.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ifail</term>
+        <listitem>
+          <para> if ifail=1, all parameters needed for the call of bvode are displayed.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>
-This interface program simplifies the call of <LINK>bvode</LINK>, a program for the numerical
+  <refsection><title>Description</title>
+    <para>
+This interface program simplifies the call of <link linkend="bvode">bvode</link>, a program for the numerical
 solution of multi-point boundary value problems for mixed order systems of ordinary
 differential equations. The Scilab program bvode is adapted from the fortran program
 colnew. See the paper by U. Asher, J. Christiansen, and R.D. Russel:
@@ -106,12 +99,12 @@ Collocation software for boundary-value ODE's, ACM Trans. Math. Soft. 7:209-222,
 The following examples should demonstrate not only how such systems can be solved 
 with the help of bvodeS, but also should emphazise some important problems which occur 
 with boundary value problems for ordinary ode's.
-</P>
-  </DESCRIPTION>
+</para>
+  </refsection>
 
 
-  <EXAMPLE>
-<![CDATA[// 1. Modified example from help bvode. 
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+// 1. Modified example from help bvode. 
 
 // DE:  y1''''(x)=(1-6*x*x*y1'''(x)-6*x*y1''(x))/(y2(x)^3)
 //         y2'(x)=1
@@ -306,20 +299,20 @@ y=x.^3/6+x.^2-x./6+1
 endfunction
 
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>bvode</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ode</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dassl</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="bvode">bvode</link>
+    </member>
+    <member>
+      <link linkend="ode">ode</link>
+    </member>
+    <member>
+      <link linkend="dassl">dassl</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Rainer von Seggern</AUTHOR>
+  <refsection><title>Authors</title><para>Rainer von Seggern</para></refsection>
 
-</MAN>
+</refentry>

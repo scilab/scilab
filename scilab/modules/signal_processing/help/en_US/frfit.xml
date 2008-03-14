@@ -1,86 +1,82 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>frfit</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="frfit"> frequency response fit</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>sys=frfit(w,fresp,order)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[num,den]=frfit(w,fresp,order)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>sys=frfit(w,fresp,order,weight)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[num,den]=frfit(w,fresp,order,weight)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>w</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: positive real vector of frequencies (Hz)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fresp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: complex vector of frequency responses (same size as <VERB>w</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>order</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer (required order, degree of <VERB>den</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>weight</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: positive real vector (default value <VERB>ones(w)</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>num,den</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: stable polynomials</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>sys=frfit(w,fresp,order,weight)</VERB> returns a bi-stable transfer function
-    <VERB>G(s)=sys=num/den</VERB>, of of given <VERB>order</VERB> such that 
-    its frequency response <VERB>G(w(i))</VERB> matches <VERB>fresp(i)</VERB>, i.e.
-    <VERB>freq(num,den,%i*w)</VERB> should be close to <VERB>fresp</VERB>.
-    <VERB>weight(i)</VERB> is the weight given to <VERB>w(i)</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frfit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>frfit</refname><refpurpose> frequency response fit</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sys=frfit(w,fresp,order)
+[num,den]=frfit(w,fresp,order)
+sys=frfit(w,fresp,order,weight)
+[num,den]=frfit(w,fresp,order,weight)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>w</term>
+        <listitem>
+          <para>positive real vector of frequencies (Hz)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fresp</term>
+        <listitem>
+          <para>complex vector of frequency responses (same size as <literal>w</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>order</term>
+        <listitem>
+          <para>integer (required order, degree of <literal>den</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>weight</term>
+        <listitem>
+          <para>positive real vector (default value <literal>ones(w)</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>num,den</term>
+        <listitem>
+          <para>stable polynomials</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>sys=frfit(w,fresp,order,weight)</literal> returns a bi-stable transfer function
+    <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that 
+    its frequency response <literal>G(w(i))</literal> matches <literal>fresp(i)</literal>, i.e.
+    <literal>freq(num,den,%i*w)</literal> should be close to <literal>fresp</literal>.
+    <literal>weight(i)</literal> is the weight given to <literal>w(i)</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 w=0.01:0.01:2;s=poly(0,'s');
 G=syslin('c',2*(s^2+0.1*s+2), (s^2+s+1)*(s^2+0.3*s+1));
 fresp=repfreq(G,w);
 Gid=frfit(w,fresp,4);
 frespfit=repfreq(Gid,w);
 bode(w,[fresp;frespfit])
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>frep2tf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>factors</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>cepstrum</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mrfit</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>freq</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>calfrq</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="frep2tf">frep2tf</link>
+    </member>
+    <member>
+      <link linkend="factors">factors</link>
+    </member>
+    <member>
+      <link linkend="cepstrum">cepstrum</link>
+    </member>
+    <member>
+      <link linkend="mrfit">mrfit</link>
+    </member>
+    <member>
+      <link linkend="freq">freq</link>
+    </member>
+    <member>
+      <link linkend="calfrq">calfrq</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

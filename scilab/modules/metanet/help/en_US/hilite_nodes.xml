@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,37 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hilite_nodes"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hilite_nodes</refname><refpurpose> highlights a set of nodes</refpurpose></refnamediv><refnamediv xml:id="unhilite_nodes"><refname>unhilite_nodes</refname><refpurpose> unhighlights a set of nodes</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>hilite_nodes(p)
+unhilite_nodes(p)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>row vector of node numbers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>hilite_nodes</literal> highlights the set of nodes <literal>p</literal> of the
+    displayed graph in the current edit_graph window.</para>
+    <para><literal>unhilite_nodes</literal> un-highlights the set of nodes <literal>p</literal> of the
+    displayed graph in the current edit_graph window. If the nodes are not hilited nothing is done.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hilite_nodes</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="hilite_nodes"> highlights a set of nodes</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="unhilite_nodes"> unhighlights a set of nodes</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>hilite_nodes(p)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>unhilite_nodes(p)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of node numbers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>hilite_nodes</VERB> highlights the set of nodes <VERB>p</VERB> of the
-    displayed graph in the current edit_graph window.</P>
-    <P><VERB>unhilite_nodes</VERB> un-highlights the set of nodes <VERB>p</VERB> of the
-    displayed graph in the current edit_graph window. If the nodes are not hilited nothing is done.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -50,20 +45,20 @@ g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 1
 show_graph(g);
 for i=2:3:node_number(g), hilite_nodes(i);xpause(3d5);unhilite_nodes(i), end;
 hilite_nodes(1:3:node_number(g))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>show_nodes</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>show_arcs</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindow</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindows</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="show_nodes">show_nodes</link>
+    </member>
+    <member>
+      <link linkend="show_arcs">show_arcs</link>
+    </member>
+    <member>
+      <link linkend="netwindow">netwindow</link>
+    </member>
+    <member>
+      <link linkend="netwindows">netwindows</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

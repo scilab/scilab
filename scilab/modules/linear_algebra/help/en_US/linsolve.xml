@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,74 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linsolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>linsolve</refname><refpurpose> linear equation solver</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>a <literal>na x ma</literal> real matrix (possibly sparse)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>a <literal>na x 1</literal> vector (same row dimension as <literal>A</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>a real vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kerA</term>
+        <listitem>
+          <para>a <literal>ma x k</literal> real matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>linsolve</literal>  computes all the solutions to <literal> A*x+b=0</literal>.</para>
+    <para><literal>x0</literal> is a particular solution (if any) and <literal> kerA= </literal>nullspace
+    of <literal>A</literal>. Any <literal>x=x0+kerA*w</literal> with arbitrary <literal>w</literal> satisfies
+    <literal> A*x+b=0</literal>.</para>
+    <para>
+    If compatible <literal>x0</literal> is given on entry, <literal>x0</literal> is returned. If not
+    a compatible <literal>x0</literal>, if any, is returned.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>linsolve</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="linsolve"> linear equation solver</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x0,kerA]=linsolve(A,b [,x0])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <VERB>na x ma</VERB> real matrix (possibly sparse)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>b</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <VERB>na x 1</VERB> vector (same row dimension as <VERB>A</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x0</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a real vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>kerA</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <VERB>ma x k</VERB> real matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>linsolve</VERB>  computes all the solutions to <VERB> A*x+b=0</VERB>.</P>
-    <P><VERB>x0</VERB> is a particular solution (if any) and <VERB> kerA= </VERB>nullspace
-    of <VERB>A</VERB>. Any <VERB>x=x0+kerA*w</VERB> with arbitrary <VERB>w</VERB> satisfies
-    <VERB> A*x+b=0</VERB>.</P>
-    <P>
-    If compatible <VERB>x0</VERB> is given on entry, <VERB>x0</VERB> is returned. If not
-    a compatible <VERB>x0</VERB>, if any, is returned.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 A=rand(5,3)*rand(3,8);
 b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //compatible b
 b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //uncompatible b
 A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>inv</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pinv</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>colcomp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>im_inv</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="inv">inv</link>
+    </member>
+    <member>
+      <link linkend="pinv">pinv</link>
+    </member>
+    <member>
+      <link linkend="colcomp">colcomp</link>
+    </member>
+    <member>
+      <link linkend="im_inv">im_inv</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

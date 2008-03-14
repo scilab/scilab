@@ -1,43 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>getsymbol  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="getsymbol"> boîte de dialogue pour sélectionner un marqueur  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>c=getsymbol([title])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>title  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères, titre de la boîte
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>c  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur de taille 2 <VERB>[n,sz]</VERB>.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P> Cette fonction est obsolete, il est conseillé d'utiliser la fonction
-      <LINK>getmark</LINK> ou l'éditeur interactif de propiétés graphiques.</P>
-  <P>
-    <VERB>getsymbol</VERB> ouvre une boîte de dialogue avec pour titre <VERB>title</VERB>, où l&apos;utilisateur peut choisir un marqueur ainsi que sa taille. <VERB>getsymbol</VERB> renvoie le numéro du marqueur <VERB>n</VERB> et le code de sa taille <VERB>sz</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-     <SEE_ALSO_ITEM>  <LINK>getmark</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getsymbol"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getsymbol</refname><refpurpose> boîte de dialogue pour sélectionner un marqueur  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>c=getsymbol([title])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>title  </term>
+  <listitem>
+  <para>chaîne de caractères, titre de la boîte
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>c  </term>
+  <listitem>
+  <para>vecteur de taille 2 <literal>[n,sz]</literal>.
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para> Cette fonction est obsolete, il est conseillé d'utiliser la fonction
+      <link linkend="getmark">getmark</link> ou l'éditeur interactif de propiétés graphiques.</para>
+  <para>
+    <literal>getsymbol</literal> ouvre une boîte de dialogue avec pour titre <literal>title</literal>, où l'utilisateur peut choisir un marqueur ainsi que sa taille. <literal>getsymbol</literal> renvoie le numéro du marqueur <literal>n</literal> et le code de sa taille <literal>sz</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+     <member>  <link linkend="getmark">getmark</link> </member>
+    <member> <link linkend="xset">xset</link> </member>
+  </simplelist></refsection>
+</refentry>

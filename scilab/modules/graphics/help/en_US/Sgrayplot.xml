@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,94 +10,91 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Sgrayplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Sgrayplot</refname><refpurpose>smooth 2D plot of a surface using
+  colors</refpurpose></refnamediv>
+  
 
-  <TITLE>Sgrayplot</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="Sgrayplot">smooth 2D plot of a surface using
-  colors</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>Sgrayplot(x,y,z,&lt;opt_args&gt;)
+Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real row vectors of size n1 and n2.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real row vectors of size n1 and n2.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
+      <varlistentry>
+        <term>z</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix of size (n1,n2). <VERB>z(i,j)</VERB> is the value
-          of the surface at the point (x(i),y(j)).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
+          of the surface at the point (x(i),y(j)).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements
-          <VERB>key1=value1,key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following: strf, rect, nax, zminmax, colminmax, mesh, colout
-          (see <LINK>plot2d</LINK> for the 3 first and <LINK>fec</LINK> for the 4 last).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>This represents a sequence of statements
+          <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: strf, rect, nax, zminmax, colminmax, mesh, colout
+          (see <link linkend="plot2d">plot2d</link> for the 3 first and <link linkend="fec">fec</link> for the 4 last).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>strf,rect,nax</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: see <LINK>plot2d</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>strf,rect,nax</term>
+        <listitem>
+          <para>see <link linkend="plot2d">plot2d</link>.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>zminmax, colminmax, mesh, colout</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: see <LINK>fec</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+      <varlistentry>
+        <term>zminmax, colminmax, mesh, colout</term>
+        <listitem>
+          <para>see <link linkend="fec">fec</link>.</para>
+        </listitem>
+      </varlistentry>
+  </variablelist>
+  </refsection>
 
 
-  <DESCRIPTION>
-    <P><VERB>Sgrayplot</VERB> is the same as <VERB>grayplot</VERB> but the
-    plot is smoothed. The function <VERB>fec</VERB> is used for smoothing. The
+  <refsection><title>Description</title>
+    <para><literal>Sgrayplot</literal> is the same as <literal>grayplot</literal> but the
+    plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
     surface is plotted assuming that it is linear on a set of triangles built
-    from the grid (here with n1=5, n2=3):</P>
-    <VERBATIM>
+    from the grid (here with n1=5, n2=3):</para>
+    <programlisting><![CDATA[
              _____________
              | /| /| /| /|
              |/_|/_|/_|/_| 
              | /| /| /| /| 
-             |/_|/_|/_|/_|</VERBATIM>
+             |/_|/_|/_|/_|]]></programlisting>
 
-    <P>The function <LINK>colorbar</LINK> may be used to see the color scale.</P>
+    <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale.</para>
 
-    <P>The parameter <VERB>zminmax</VERB> is useful for animation purpose (see an
-       example after) and the parameter <VERB>colminmax</VERB> lets the user choose a part
-       of the current colormap (see the <LINK>fec</LINK> help page).</P>
+    <para>The parameter <literal>zminmax</literal> is useful for animation purpose (see an
+       example after) and the parameter <literal>colminmax</literal> lets the user choose a part
+       of the current colormap (see the <link linkend="fec">fec</link> help page).</para>
 
-    <P>Enter the command <VERB>Sgrayplot()</VERB> to see a demo.</P>
+    <para>Enter the command <literal>Sgrayplot()</literal> to see a demo.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // example #1
 x=-10:10; y=-10:10;m =rand(21,21);
 clf()
@@ -131,29 +128,29 @@ for i = 1:nt
    show_pixmap()
 end
 f.pixmap='off';
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>fec</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="fec">fec</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>fgrayplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="fgrayplot">fgrayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>grayplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="grayplot">grayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Sfgrayplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="Sfgrayplot">Sfgrayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>colorbar</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="colorbar">colorbar</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,61 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>minus</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="minus"> (-)  substraction operator, sign changes</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>X-Y</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>-Y</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <VERB>syslin</VERB> list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <VERB>syslin</VERB> list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Substraction</P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="minus"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>minus</refname><refpurpose> (-)  substraction operator, sign changes</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>X-Y
+-Y</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y</term>
+        <listitem>
+          <para>scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Substraction</para>
+    <para>
     For numeric operands substraction as its usual meaning.
     If one of the operands is a matrix and the other one a scalar the
-    the operation is performed element-wise. if <VERB>Y==[] X</VERB>  is returned;
-    if <VERB>X==[] -Y</VERB>  is returned.</P>
-    <P>
+    the operation is performed element-wise. if <literal>Y==[] X</literal>  is returned;
+    if <literal>X==[] -Y</literal>  is returned.</para>
+    <para>
     Substraction may also be defined for other data types through
-    &quot;soft-coded&quot; operations.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    "soft-coded" operations.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 [1,2]-1
 []-2
 
 %s-2
 1/%s-2
 "cat"+"enate"
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>addf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mtlb_mode</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="addf">addf</link>
+    </member>
+    <member>
+      <link linkend="mtlb_mode">mtlb_mode</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,62 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sort</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sort"> order sorting</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,'r')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,'c')  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex vector/matrix; sparse vector; character string vector/matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>s</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex vector or matrix; sparse vector; character string vector/matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>k</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector or matrix of integers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>s=sort(v)</VERB> sorts <VERB>v</VERB>  in decreasing order. 
-    If <VERB>v</VERB> is a matrix, sorting is done columnwise, <VERB>v</VERB> being seen as the stacked vector <VERB>v(:)</VERB>.
-    If <VERB>v</VERB> is a string, sort is increasing order.
-    <VERB>[s,k]=sort(v)</VERB> gives in addition the indices of entries of <VERB>s</VERB> in <VERB>v</VERB>, i.e. <VERB>v(k(:)) </VERB> is the vector <VERB>s</VERB>.</P>
-    <P><VERB>s=sort(v,'r')</VERB> sorts the rows of <VERB>v</VERB> in decreasing order i.e.
-    each column of <VERB>s</VERB> is obtained from each column of <VERB>v</VERB>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sort"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sort</refname><refpurpose> order sorting</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[s, [k]]=sort(v)
+[s, [k]]=sort(v,'r')
+[s, [k]]=sort(v,'c')</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>real or complex vector/matrix; sparse vector; character string vector/matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>real or complex vector or matrix; sparse vector; character string vector/matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>vector or matrix of integers</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>s=sort(v)</literal> sorts <literal>v</literal>  in decreasing order. 
+    If <literal>v</literal> is a matrix, sorting is done columnwise, <literal>v</literal> being seen as the stacked vector <literal>v(:)</literal>.
+    If <literal>v</literal> is a string, sort is increasing order.
+    <literal>[s,k]=sort(v)</literal> gives in addition the indices of entries of <literal>s</literal> in <literal>v</literal>, i.e. <literal>v(k(:)) </literal> is the vector <literal>s</literal>.</para>
+    <para><literal>s=sort(v,'r')</literal> sorts the rows of <literal>v</literal> in decreasing order i.e.
+    each column of <literal>s</literal> is obtained from each column of <literal>v</literal>
     by reordering it in decreasing order.
-    <VERB>[s,k]=sort(v,'r')</VERB> returns in addition in each column of <VERB>k</VERB>
-    the indices such that <VERB>v(k(:,i),i)=s(:,i)</VERB> for each column index <VERB>i</VERB>.</P>
-    <P><VERB>s=sort(v,'c')</VERB> sorts the columns of <VERB>v</VERB> in decreasing order i.e.
-    each row of <VERB>s</VERB> is obtained from each row of <VERB>v</VERB>
+    <literal>[s,k]=sort(v,'r')</literal> returns in addition in each column of <literal>k</literal>
+    the indices such that <literal>v(k(:,i),i)=s(:,i)</literal> for each column index <literal>i</literal>.</para>
+    <para><literal>s=sort(v,'c')</literal> sorts the columns of <literal>v</literal> in decreasing order i.e.
+    each row of <literal>s</literal> is obtained from each row of <literal>v</literal>
     by reordering it in decreasing order.
-    <VERB>[s,k]=sort(v,'c')</VERB> returns in addition in each row of <VERB>k</VERB>
-    the indices such that <VERB>v(i,k(i,:))=s(i,:)</VERB> for each row index <VERB>i</VERB>.</P>
-    <P>
-    Complex matrices or vectors are sorted w.r.t their magnitude.</P>
-    <P><VERB>y=sort(A)</VERB> is valid when <VERB>A</VERB> is a sparse vector. Column/row
-    sorting is not implemented for sparse matrices.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <literal>[s,k]=sort(v,'c')</literal> returns in addition in each row of <literal>k</literal>
+    the indices such that <literal>v(i,k(i,:))=s(i,:)</literal> for each row index <literal>i</literal>.</para>
+    <para>
+    Complex matrices or vectors are sorted w.r.t their magnitude.</para>
+    <para><literal>y=sort(A)</literal> is valid when <literal>A</literal> is a sparse vector. Column/row
+    sorting is not implemented for sparse matrices.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 [s,p]=sort(rand(1,10));
 //p  is a random permutation of 1:10
 A=[1,2,5;3,4,2];
@@ -75,11 +72,11 @@ sort(v)
 sort(v')
 sort(v,'r')  //Does nothing for row vectors
 sort(v,'c')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>find</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="find">find</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

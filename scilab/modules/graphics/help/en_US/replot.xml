@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,60 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="replot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>replot</refname><refpurpose>redraw the current graphics window with new
+  boundaries</refpurpose></refnamediv>
+  
 
-  <TITLE>replot</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="replot">redraw the current graphics window with new
-  boundaries</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>replot(rect,[handle])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>replot(rect,[handle])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of size 4.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>row vector of size 4.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>handle</PARAM_NAME>
+      <varlistentry>
+        <term>handle</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: optional argument. Graphics handle(s) of type Axes to select
-          one or several given Axes. Only available in new graphics mode.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>optional argument. Graphics handle(s) of type Axes to select
+          one or several given Axes. Only available in new graphics mode.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>replot</VERB> is used to redraw the content of the current
+  <refsection><title>Description</title>
+    <para><literal>replot</literal> is used to redraw the content of the current
     graphics window with new boundaries defined by
-    <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>. Under old graphics syntax, it
-    works only with the driver <VERB>"Rec"</VERB>.</P>
+    <literal>rect=[xmin,ymin,xmax,ymax]</literal>. Under old graphics syntax, it
+    works only with the driver <literal>"Rec"</literal>.</para>
 
-    <P>Under new graphics mode, this transformation can be applied to specific
+    <para>Under new graphics mode, this transformation can be applied to specific
     axes given by Axes graphics handles via the handle argument. If handle is
     not specified, the new boundaries are applied to the current axes of the
-    current figure. The transformation changes the <VERB>data_bounds</VERB>
-    value of those axes. Note that the axes property <VERB>tight_limits</VERB>
+    current figure. The transformation changes the <literal>data_bounds</literal>
+    value of those axes. Note that the axes property <literal>tight_limits</literal>
     must also be set to "on" to strictly select those bounds (see
-    <LINK>axes_properties</LINK>).<VERB> </VERB></P>
-  </DESCRIPTION>
+    <link linkend="axes_properties">axes_properties</link>).<literal> </literal></para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[backupstyle='?'
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[backupstyle='?'
 
 // First Example
 x=[0:0.1:2*%pi]';
@@ -78,21 +75,21 @@ replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
 replot([-3,-2,8,4],f.children(2)) 
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xbasr</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xbasr">xbasr</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xbasc</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="xbasc">xbasc</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>clf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="clf">clf</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

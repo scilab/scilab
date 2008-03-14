@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
@@ -10,66 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_SetVar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>TCL_SetVar</refname><refpurpose>Set a tcl/tk variable
+  value</refpurpose></refnamediv>
+  
 
-  <TITLE>TCL_SetVar</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="TCL_SetVar">Set a tcl/tk variable
-  value</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>TCL_SetVar(varname, value
-    [,interp])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>TCL_SetVar(varname, value [,interp])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>varname</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>varname</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: character string. Contains the name of the tcl/tk variable to
-          set.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>character string. Contains the name of the tcl/tk variable to
+          set.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>value</PARAM_NAME>
+      <varlistentry>
+        <term>value</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: may be a character string, a scalar, a real or string matrix
-          (m x n). Contains the value to give to the tcl/tk variable.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>may be a character string, a scalar, a real or string matrix
+          (m x n). Contains the value to give to the tcl/tk variable.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>interp</PARAM_NAME>
+      <varlistentry>
+        <term>interp</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: optional character string parameter. Name of the slave tcl
+        <listitem>
+          <para>optional character string parameter. Name of the slave tcl
           interpreter in which the operation has to be performed. If not
           provided, it defaults to the main tcl interpreter created by
-          Scilab.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+          Scilab.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>This routine allows to set a variable within a tcl/tk interpreter. When
+  <refsection><title>Description</title>
+    <para>This routine allows to set a variable within a tcl/tk interpreter. When
     tcl/tk support is enabled in scilab, this routine can be used to set up
     the value of a tcl/tk variable. This can be useful to change some value in
     the tcl/tk interpreter without having to build a tcl/tk instruction (and
-    use <VERB>TCL_EvalStr</VERB>).</P>
-  </DESCRIPTION>
+    use <literal>TCL_EvalStr</literal>).</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 //----------------------------------------------------
 TCL_EvalStr("toplevel .tst1");
 // creates a toplevel TK window. 
@@ -126,45 +122,45 @@ TCL_DeleteInterp('TCLSlave')
 //----------------------------------------------------
 
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ScilabEval</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ScilabEval">ScilabEval</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_EvalFile</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_EvalFile">TCL_EvalFile</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_EvalStr</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_GetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_GetVar">TCL_GetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_ExistVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_UnsetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_UnsetVar">TCL_UnsetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_UpVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_UpVar">TCL_UpVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_CreateSlave</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_DeleteInterp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

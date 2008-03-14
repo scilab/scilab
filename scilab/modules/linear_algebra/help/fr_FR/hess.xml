@@ -1,83 +1,63 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>hess  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="hess"> Forme de Hessenberg  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>H = hess(A)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[U,H] = hess(A)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>A  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée réelle ou complexe
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>H  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée réelle ou complexe
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>U  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée unitaire
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-      <VERB>[U,H] = hess(A)</VERB> Calcule une matrice unitaire <VERB>U</VERB>
-      et une matrice de Hessenberg <VERB>H</VERB> telles que <VERB>A =
-	U*H*U&apos;</VERB> et <VERB>U&apos;*U</VERB> = Identité. La syntaxe
-      <VERB>H=hess(A)</VERB> ne renvoie que la matrice de Hessenberg.
-    </P>
-    <P>
-      Les coefficients d&apos;une matrice sous forme de Hessenberg sont nuls
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hess"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hess</refname><refpurpose> Forme de Hessenberg  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>H = hess(A)
+[U,H] = hess(A)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>A  </term>
+	<listitem>
+	  <para>matrice carrée réelle ou complexe
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>H  </term>
+	<listitem>
+	  <para>matrice carrée réelle ou complexe
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>U  </term>
+	<listitem>
+	  <para>matrice carrée unitaire
+	  </para>
+	</listitem> 
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+      <literal>[U,H] = hess(A)</literal> Calcule une matrice unitaire <literal>U</literal>
+      et une matrice de Hessenberg <literal>H</literal> telles que <literal>A =
+	U*H*U'</literal> et <literal>U'*U</literal> = Identité. La syntaxe
+      <literal>H=hess(A)</literal> ne renvoie que la matrice de Hessenberg.
+    </para>
+    <para>
+      Les coefficients d'une matrice sous forme de Hessenberg sont nuls
       sous la première sous-diagonale. Si la matrice est symétrique ou
       hermitienne, la forme est tridiagonale.
-    </P>
-  </DESCRIPTION>
+    </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     A=rand(3,3);[U,H]=hess(A);
     and( abs(U*H*U'-A)<1.d-10 )
-    ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>contr</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <USED_FUNCTIONS>
-    <P>
+    ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="qr">qr</link> </member> 
+    <member> <link linkend="contr">contr</link> </member> 
+    <member> <link linkend="schur">schur</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Fonctions Utilisées</title>
+    <para>
       Le calcul de la forme de Hessenberg determinant est basé sur les routines Lapack :
       DGEHRD, DORGHR  pour les matrices réelles et ZGEHRD, ZORGHR pour le cas complexe.
-    </P>
-  </USED_FUNCTIONS>
-</MAN>
+    </para>
+  </refsection>
+</refentry>

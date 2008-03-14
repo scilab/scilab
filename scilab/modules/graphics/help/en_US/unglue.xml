@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,59 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>unglue</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="unglue"> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unglue"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unglue</refname><refpurpose> 
    unglue a coumpound object and replace it by individual children.
-  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>unglue(h) </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>H=unglue(h) </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a handle on an Compound.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>H</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a vector of handle on the resulting entities after unCompound.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>unglue(h)
+H=unglue(h)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>a handle on an Compound.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>a vector of handle on the resulting entities after unCompound.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Given a handle on an Compound entity, this function destroies the Compound 
     and unpacks the elementary entities to associated them to its parent.
-    <VERB>glue</VERB> returns a vector of handles on these individual
-    children.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>copy</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>glue</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+    <literal>glue</literal> returns a vector of handles on these individual
+    children.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="get">get</link>
+    </member>
+    <member>
+      <link linkend="set">set</link>
+    </member>
+    <member>
+      <link linkend="copy">copy</link>
+    </member>
+    <member>
+      <link linkend="glue">glue</link>
+    </member>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para> Djalel ABDEMOUCHE</para></refsection>
+</refentry>

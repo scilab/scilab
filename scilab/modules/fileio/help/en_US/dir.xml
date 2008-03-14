@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,88 +11,85 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>dir</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="dir"> get file list </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>dir path</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>S=dir([path]) </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix giving a directory pathname (eventually  ended
-	    by a pattern built with <VERB>*</VERB>). Default value is <VERB>.</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>S</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <VERB>tlist</VERB> of type <VERB>dir</VERB> with fields :
-	    <VERB>name</VERB>, <VERB>date</VERB> and <VERB>isdir</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-      <VERB>dir</VERB> can be used to get the files which match 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dir</refname><refpurpose> get file list </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>dir path
+S=dir([path])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>a string matrix giving a directory pathname (eventually  ended
+	    by a pattern built with <literal>*</literal>). Default value is <literal>.</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>a <literal>tlist</literal> of type <literal>dir</literal> with fields :
+	    <literal>name</literal>, <literal>date</literal> and <literal>isdir</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+      <literal>dir</literal> can be used to get the files which match 
       the patterns given by the path argument. 
-      Patterns are given to the unix <VERB>ls</VERB> or to the windows
-      <VERB>dir</VERB> commands in order to get information on files. 
+      Patterns are given to the unix <literal>ls</literal> or to the windows
+      <literal>dir</literal> commands in order to get information on files. 
       Thus in order to write portable Scilab script valid wildcard patterns 
       for both os are to be given. Note that Pathname conversion is
-      performed and for example <VERB>SCI/modules/core/macros/*.sci</VERB> is a valid 
+      performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid 
       pattern for both unix and windows.
-    </P>
-    <P>
-      The <VERB>name</VERB> field of the returned variable is the column vector
+    </para>
+    <para>
+      The <literal>name</literal> field of the returned variable is the column vector
       of the file names.
-    </P>
+    </para>
 
-    <P>
-      The <VERB>date</VERB> field of the returned variable is the column vector
+    <para>
+      The <literal>date</literal> field of the returned variable is the column vector
       of integers containing a last modification date coded in second from 1 Jan 1970).
-    </P>
-    <P>
-      The <VERB>isdir</VERB> field of the returned variable is the column vector
+    </para>
+    <para>
+      The <literal>isdir</literal> field of the returned variable is the column vector
       of boolean true if the corresponding name is a directory.
-    </P>
-   <P>
+    </para>
+   <para>
       The  default display of the returned structure is a column formatted list
-      of files. It can be changed redefining the function <VERB>%dir_p</VERB>
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+      of files. It can be changed redefining the function <literal>%dir_p</literal>
+    </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 dir
 dir SCI/modules/core/macros/*.bin
 x=dir('SCI/modules/core/macros/*.bin')
 dt=getdate(x.date);
 mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
-]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>listfiles</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>findfiles</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ls</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fileinfo</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>date</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="listfiles">listfiles</link>
+    </member>
+    <member>
+      <link linkend="findfiles">findfiles</link>
+    </member>
+    <member>
+      <link linkend="ls">ls</link>
+    </member>
+    <member>
+      <link linkend="fileinfo">fileinfo</link>
+    </member>
+    <member>
+      <link linkend="date">date</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

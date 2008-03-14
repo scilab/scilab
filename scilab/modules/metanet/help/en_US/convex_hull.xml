@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,50 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="convex_hull"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>convex_hull</refname><refpurpose> convex hull of a set of points in the plane</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[nhull,ind] = convex_hull(xy)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xy</term>
+        <listitem>
+          <para>2 x n real matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nhull</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+        <listitem>
+          <para>integer row vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>convex_hull</literal> finds the convex hull of a given set of n points in
+    the plane. <literal>xy</literal> is the 2 x n matrix of the (x,y) coordinates of
+    the given points. <literal>convex_hull</literal> returns in <literal>nhull</literal> the number
+    of the points of the boundary of the convex hull and in <literal>ind</literal> the
+    row vector (of size <literal>nhull</literal>) giving the indices in <literal>xy</literal> of the
+    points of the boundary. The order in <literal>ind</literal> corresponds to
+    consecutive points on the boundary.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>convex_hull</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="convex_hull"> convex hull of a set of points in the plane</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[nhull,ind] = convex_hull(xy)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>xy</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: 2 x n real matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>nhull</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ind</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer row vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>convex_hull</VERB> finds the convex hull of a given set of n points in
-    the plane. <VERB>xy</VERB> is the 2 x n matrix of the (x,y) coordinates of
-    the given points. <VERB>convex_hull</VERB> returns in <VERB>nhull</VERB> the number
-    of the points of the boundary of the convex hull and in <VERB>ind</VERB> the
-    row vector (of size <VERB>nhull</VERB>) giving the indices in <VERB>xy</VERB> of the
-    points of the boundary. The order in <VERB>ind</VERB> corresponds to
-    consecutive points on the boundary.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28]; 
 he=[ 1  2 2  4  5 11 13  1 25 22 24 22 22 19 13 13 14 16 16  9 16];
@@ -68,6 +63,6 @@ show_graph(g);
 xy=[g.nodes.graphics.x;g.nodes.graphics.y];
 [nhull,ind] = convex_hull(xy)
 hilite_nodes(ind);
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

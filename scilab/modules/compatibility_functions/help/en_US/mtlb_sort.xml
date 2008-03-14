@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2006 - INRIA - Farid BELAHCENE 
@@ -10,95 +10,91 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN> 
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_sort"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</pubdate></info><refnamediv><refname>mtlb_sort</refname><refpurpose>Matlab sort emulation
+  function</refpurpose></refnamediv> 
+  
 
-  <TITLE>mtlb_sort</TITLE>
+  
 
-  <TYPE>M2SCI function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="mtlb_sort">Matlab sort emulation
-  function</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>P = mtlb_sort(X)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>P = mtlb_sort(X)
+P = mtlb_sort(X,dim[,mode])</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>P = mtlb_sort(X,dim[,mode])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
+        <listitem>
+          <para>a scalar, vector, matrix of reals, booleans or a string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a scalar, vector, matrix of reals, booleans or a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+    <variablelist>
+      <varlistentry>
+        <term>dim</term>
 
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>dim</PARAM_NAME>
+        <listitem>
+          <para>a positive scalar integer</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a positive scalar integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>mode</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>mode</PARAM_NAME>
+        <listitem>
+          <para>a string ("ascend" or "descend")</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string ("ascend" or "descend")</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>Matlab <literal>sort</literal> and Scilab <literal>gsort</literal> behave
+    differently in some particular cases:</para>
 
-  <DESCRIPTION>
-    <P>Matlab <VERB>sort</VERB> and Scilab <VERB>gsort</VERB> behave
-    differently in some particular cases:</P>
+    <itemizedlist>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>For a vector <literal>X</literal> the Matlab
+            <literal>sort(X,'g','i')</literal> function call is equivalent to the
+            Scilab <literal>gsort(X)</literal> function call.</para>
+          </listitem>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
-        <ITEMIZE>
-          <ITEM>
-            <SP>For a vector <VERB>X</VERB> the Matlab
-            <VERB>sort(X,'g','i')</VERB> function call is equivalent to the
-            Scilab <VERB>gsort(X)</VERB> function call.</SP>
-          </ITEM>
+          <listitem>
+            <para>The value <literal>1</literal> (resp. <literal>2</literal>) of the Matlab
+            dim is equivalent to the Scilab <literal>"r"</literal> flag (resp.
+            <literal>"c"</literal>).</para>
+          </listitem>
 
-          <ITEM>
-            <SP>The value <VERB>1</VERB> (resp. <VERB>2</VERB>) of the Matlab
-            dim is equivalent to the Scilab <VERB>"r"</VERB> flag (resp.
-            <VERB>"c"</VERB>).</SP>
-          </ITEM>
+          <listitem>
+            <para>The Matlab "<literal>ascend"</literal> (resp.
+            <literal>"descend"</literal>) mode is equivalent to the Scilab
+            <literal>"i"</literal> (resp. <literal>"d"</literal>) flag.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
 
-          <ITEM>
-            <SP>The Matlab "<VERB>ascend"</VERB> (resp.
-            <VERB>"descend"</VERB>) mode is equivalent to the Scilab
-            <VERB>"i"</VERB> (resp. <VERB>"d"</VERB>) flag.</SP>
-          </ITEM>
-        </ITEMIZE>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-
-    <P>The function <VERB>mtlb_sort(X[,dim[,mode]])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>sort(X[,dim[,mode]])</VERB> when
+    <para>The function <literal>mtlb_sort(X[,dim[,mode]])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>sort(X[,dim[,mode]])</literal> when
     it was not possible to know what were the inputs while porting Matlab code
     to Scilab. This function will determine the correct semantic at run time.
     If you want to have a more efficient code it is possible to replace
-    <VERB>mtlb_sort</VERB> call by <LINK>gsort</LINK> call.</P>
+    <literal>mtlb_sort</literal> call by <link linkend="gsort">gsort</link> call.</para>
 
-    <P>Caution: <VERB>mtlb_sort</VERB> has not to be used for hand coded
-    functions.</P>
-  </DESCRIPTION>
+    <para>Caution: <literal>mtlb_sort</literal> has not to be used for hand coded
+    functions.</para>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>F.B.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>F.B.</member>
+  </simplelist></refsection>
+</refentry>

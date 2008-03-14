@@ -1,88 +1,75 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_dec2hex</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_dec2hex"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_dec2hex</refname><refpurpose>Fonction d'�mulation de la fonction Matlab dec2hex</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_dec2hex">Fonction d'�mulation de la fonction Matlab dec2hex</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>dec2hex</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>dec2hex</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec la matrice vide : La fonction Matlab <VERB>dec2hex</VERB> retourne "" mais la fonction Scilab renvoie [].
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec la matrice vide : La fonction Matlab <literal>dec2hex</literal> retourne "" mais la fonction Scilab renvoie [].
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Avec des param�tres d'entr�e complexes : La fonction Matlab <VERB>dec2hex</VERB> enl�ve
+      <listitem>
+        <para>
+        Avec des param�tres d'entr�e complexes : La fonction Matlab <literal>dec2hex</literal> enl�ve
 	automatiquement la partie imaginaire mais pas la fonction Scilab.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        La fonction Matlab <VERB>dec2hex</VERB> renvoie toujours un vecteur colonne mais
+      <listitem>
+        <para>
+        La fonction Matlab <literal>dec2hex</literal> renvoie toujours un vecteur colonne mais
 	la fonction Scilab renvoie un matrice de la m�me taille que le param�tre d'entr�e.
-        </SP>
-      </ITEM>
-      <ITEM>
-        <SP>
-        La fonction Matlab <VERB>dec2hex</VERB> peut avoir deux param�tres d'entr�e mais pas dans Scilab.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        La fonction Matlab <literal>dec2hex</literal> peut avoir deux param�tres d'entr�e mais pas dans Scilab.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_dec2hex(D[,N])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>dec2hex(D[,N])</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_dec2hex(D[,N])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>dec2hex(D[,N])</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_dec2hex</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_dec2hex</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>D</VERB> n'est pas une matrice vide,
-        <VERB>mtlb_dec2hex(D)</VERB> peut �tre remplac� par
-	<VERB>matrix(dec2hex(real(D)),-1,1)</VERB> si <VERB>D</VERB> est complexe et par
-	<VERB>matrix(dec2hex(D),-1,1)</VERB> dans les autres cas.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>D</literal> n'est pas une matrice vide,
+        <literal>mtlb_dec2hex(D)</literal> peut �tre remplac� par
+	<literal>matrix(dec2hex(real(D)),-1,1)</literal> si <literal>D</literal> est complexe et par
+	<literal>matrix(dec2hex(D),-1,1)</literal> dans les autres cas.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_dec2hex</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_dec2hex</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,53 +1,49 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>save</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="save"> saving variables in binary files</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>save(filename [,x1,x2,...,xn])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>save(fd [,x1,x2,...,xn])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string containing the path of the file</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fd</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a file descriptor given by a call to mopen</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xi</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: arbitrary Scilab variable(s)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>The <VERB>save</VERB> command can be used to save Scilab current variables 
-     in a binary file. If a variable is a graphic handle, the <VERB>save</VERB> function
-      saves all the corresponding <LINK>graphics_entities</LINK> definition. </P>
-    <P>The file can be given either by its paths or
-    by its descriptor previously given by <VERB>mopen</VERB>.</P>
-    <P><VERB>save(filename)</VERB> saves all current variables in the file defined
-    by  <VERB>filename</VERB>.</P>
-    <P><VERB>save(fd)</VERB> saves all current variables in the file defined
-    by  the descriptor <VERB>fd</VERB>.</P>
-    <P><VERB>save(filename,x,y)</VERB> or <VERB>save(fd,x,y)</VERB> saves only named
-    variables <VERB>x</VERB> and <VERB>y</VERB>.</P>
-    <P>Saved  variables can be reloaded by the <VERB>load</VERB> command.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>save</refname><refpurpose> saving variables in binary files</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>save(filename [,x1,x2,...,xn])
+save(fd [,x1,x2,...,xn])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>character string containing the path of the file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>a file descriptor given by a call to mopen</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xi</term>
+        <listitem>
+          <para>arbitrary Scilab variable(s)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>The <literal>save</literal> command can be used to save Scilab current variables 
+     in a binary file. If a variable is a graphic handle, the <literal>save</literal> function
+      saves all the corresponding <link linkend="graphics_entities">graphics_entities</link> definition. </para>
+    <para>The file can be given either by its paths or
+    by its descriptor previously given by <literal>mopen</literal>.</para>
+    <para><literal>save(filename)</literal> saves all current variables in the file defined
+    by  <literal>filename</literal>.</para>
+    <para><literal>save(fd)</literal> saves all current variables in the file defined
+    by  the descriptor <literal>fd</literal>.</para>
+    <para><literal>save(filename,x,y)</literal> or <literal>save(fd,x,y)</literal> saves only named
+    variables <literal>x</literal> and <literal>y</literal>.</para>
+    <para>Saved  variables can be reloaded by the <literal>load</literal> command.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 a=eye(2,2);b=ones(a);
 save('val.dat',a,b);
 clear a
@@ -69,17 +65,17 @@ lst=list(1,2,3)
 save(fd,lst)
 mclose(fd)
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>load</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>save_format</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mopen</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="load">load</link>
+    </member>
+    <member>
+      <link linkend="save_format">save_format</link>
+    </member>
+    <member>
+      <link linkend="mopen">mopen</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

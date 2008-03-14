@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,66 +10,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>%helps</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="%helps"> Variable defining the path of help directories</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    The global variable <VERB>%helps</VERB> is an N x 2 matrix of strings. 
-    The kth row of <VERB>%helps</VERB>, <VERB>%helps(k,:)</VERB> represents
-    the kth chapter of the manual and is made of two strings:</P>
-    <P><VERB>%helps(k,1)</VERB> is the absolute pathname for a help directory.</P>
-    <P><VERB>%helps(k,2)</VERB> is a title for this help directory.
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="helps"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>%helps</refname><refpurpose> Variable defining the path of help directories</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para>
+    The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
+    The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
+    the kth chapter of the manual and is made of two strings:</para>
+    <para><literal>%helps(k,1)</literal> is the absolute pathname for a help directory.</para>
+    <para><literal>%helps(k,2)</literal> is a title for this help directory.
     For instance, for k=2, we have the graphics chapter 
-    <VERB>%helps(2,:)</VERB>.</P>
-    <P>
-    The variable <VERB>%helps</VERB> is defined in the Scilab startup
-    file <VERB>SCI+&quot;/scilab.start&quot;</VERB>.</P>
-    <P>
+    <literal>%helps(2,:)</literal>.</para>
+    <para>
+    The variable <literal>%helps</literal> is defined in the Scilab startup
+    file <literal>SCI+"/scilab.start"</literal>.</para>
+    <para>
     To add a new help directory, the user should add a row to
-    the variable <VERB>%helps</VERB>. (One row for each directory).</P>
-    <P>
-    For instance, <VERB>%helps=[%helps; &quot;Path-Of-My-Help-Dir&quot;,&quot;My-Title&quot;];</VERB>
+    the variable <literal>%helps</literal>. (One row for each directory).</para>
+    <para>
+    For instance, <literal>%helps=[%helps; "Path-Of-My-Help-Dir","My-Title"];</literal>
     enables the Scilab help browser to look for help manual items
-    in the directory with pathname &quot;Path-Of-My-Help-Dir&quot;.</P>
-    <P>
-    &quot;My-Title&quot; is then the title of a new help chapter.</P>
-    <P>
-    A valid help directory must contain:</P>
-    <P>
-    1- A set of <VERB>.html</VERB> files (e.g. <VERB>item1.html, item2.html</VERB> etc).
-    The <VERB>.html</VERB> files are usually built from XML files.</P>
-    <P>
-    2- A <VERB>whatis.html</VERB> file, which must have a special format. Each row
-    of the <VERB>whatis</VERB> must be as follows:</P>
-    <VERBATIM>
-<![CDATA[
+    in the directory with pathname "Path-Of-My-Help-Dir".</para>
+    <para>
+    "My-Title" is then the title of a new help chapter.</para>
+    <para>
+    A valid help directory must contain:</para>
+    <para>
+    1- A set of <literal>.html</literal> files (e.g. <literal>item1.html, item2.html</literal> etc).
+    The <literal>.html</literal> files are usually built from XML files.</para>
+    <para>
+    2- A <literal>whatis.html</literal> file, which must have a special format. Each row
+    of the <literal>whatis</literal> must be as follows:</para>
+    <programlisting><![CDATA[
+
 <BR><A HREF="item.html">item</A> - quick description
-   ]]>
-    </VERBATIM>
-    <P><VERB>item</VERB> is the item of the help, i.e. the command <VERB>help item</VERB>
-    displays the contents of the file <VERB>item.html</VERB>.</P>
-    <P>
-    The command <VERB>apropos keyword</VERB> returns the row(s) of all
-    the <VERB>whatis.html</VERB> file(s) in which the keyword appears.</P>
-    <P>
+   
+    ]]></programlisting>
+    <para><literal>item</literal> is the item of the help, i.e. the command <literal>help item</literal>
+    displays the contents of the file <literal>item.html</literal>.</para>
+    <para>
+    The command <literal>apropos keyword</literal> returns the row(s) of all
+    the <literal>whatis.html</literal> file(s) in which the keyword appears.</para>
+    <para>
     On Linux platforms Scilab provides a Makefile for transforming
-    <VERB>.xml</VERB> pages into <VERB>.html</VERB> pages (see SCIDIR/examples/man-examples).</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>apropos</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>help</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>man</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <literal>.xml</literal> pages into <literal>.html</literal> pages (see SCIDIR/examples/man-examples).</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="apropos">apropos</link>
+    </member>
+    <member>
+      <link linkend="help">help</link>
+    </member>
+    <member>
+      <link linkend="man">man</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

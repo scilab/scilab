@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,24 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graphics_entities"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graphics_entities</refname><refpurpose>description of the graphics
+  entities data structures</refpurpose></refnamediv><refnamediv xml:id="newgraphics"><refname>new graphics </refname><refpurpose>description of the graphics entities
+  data structures</refpurpose></refnamediv>
+  
 
-  <TITLE>graphics_entities</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="graphics_entities">description of the graphics
-  entities data structures</SHORT_DESCRIPTION>
+  
 
-  <SHORT_DESCRIPTION name="new graphics ">description of the graphics entities
-  data structures</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P> In Scilab,
+  <refsection><title>Description</title>
+    <para> In Scilab,
     graphics window and the drawing it contains are represented by hierchical
     entities. The hierachy top level is the Figure. Each Figure defines at
     least one child of type Axes. Each Axes entity contains a set of leaf
@@ -35,220 +34,188 @@
     Arcs, Segs,... It can also contain an Compound type which are recursive
     sets of entities. The main interest of the new graphic mode is to make
     property change easier. This new graphics'mode provides a set of
-    high-level graphing routines (see <LINK>set</LINK>, <LINK>get</LINK>) used
+    high-level graphing routines (see <link linkend="set">set</link>, <link linkend="get">get</link>) used
     to control objects' properties such as data, coordinates and scaling,
     color and appearences without requiring to replay the initial graphics
-    commands.</P>
+    commands.</para>
 
-    <P>Graphics entities are associated to Scilab variables of type
-    <VERB>handle</VERB>. The handle is a unique identifier which is associated
+    <para>Graphics entities are associated to Scilab variables of type
+    <literal>handle</literal>. The handle is a unique identifier which is associated
     to each instance of a created graphical entity. Using this handle, it will
     be possible to reach entities' properties through "set" and "get"
     routines. The handles are also used to manipulate graphics objects, to
-    move them, to make copies or delete them.</P>
+    move them, to make copies or delete them.</para>
 
-    <P></P>
+    <para/>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Figure: ">
-        <SP>The figure entity is the top level of the graphics entities
+    <variablelist>
+      <varlistentry><term>Figure: </term><listitem>
+        <para>The figure entity is the top level of the graphics entities
         hierarchy. This entity defines the parameters for the figure itself as
         well as the parameters' default values for the children creation. The
-        figure children are the Axes entities.</SP>
+        figure children are the Axes entities.</para>
 
-        <P>The handle on the current figure (the figure used where the drawing
-        are sent) may be got using <VERB>get("current_figure")</VERB> and it
-        may be set using <VERB>set("current_figure",h)</VERB>, where
-        <VERB>h</VERB> is either a handle on a figure or a
-        <VERB>figure_id</VERB> in this last case if the figure does not
-        already exists , it is created</P>
+        <para>The handle on the current figure (the figure used where the drawing
+        are sent) may be got using <literal>get("current_figure")</literal> and it
+        may be set using <literal>set("current_figure",h)</literal>, where
+        <literal>h</literal> is either a handle on a figure or a
+        <literal>figure_id</literal> in this last case if the figure does not
+        already exists , it is created</para>
 
-        <P>See <LINK>figure_properties</LINK> for details.</P>
+        <para>See <link linkend="figure_properties">figure_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Axes: ">
-        <P>The Axes entity is the second level of the graphics entities
+      <varlistentry><term>Axes: </term><listitem>
+        <para>The Axes entity is the second level of the graphics entities
         hierarchy. This entity defines the parameters for the change of
         coordinates and the axes drawing as well as the parameters' default
-        values for its children creation. See <LINK>axes_properties</LINK> for
+        values for its children creation. See <link linkend="axes_properties">axes_properties</link> for
         details. The handle on the current Axes may be got using
-        <VERB>get("current_axes")</VERB>.</P>
+        <literal>get("current_axes")</literal>.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Compound: ">
-        <SP>The Compound entity is just a vector of children and with a single
+      <varlistentry><term>Compound: </term><listitem>
+        <para>The Compound entity is just a vector of children and with a single
         property (visibility property). It is used to glue a set of entities
-        together.</SP>
+        together.</para>
 
-        <P>See <LINK>glue</LINK>, <LINK>unglue</LINK> and
-        <LINK>Compound_properties</LINK> functions.</P>
+        <para>See <link linkend="glue">glue</link>, <link linkend="unglue">unglue</link> and
+        <link linkend="Compound_properties">Compound_properties</link> functions.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Axis: ">
-        <SP>The Axis entity is a leaf of the graphics entities hierarchy. This
-        entity defines the parameters for axis scaling and appearance.</SP>
+      <varlistentry><term>Axis: </term><listitem>
+        <para>The Axis entity is a leaf of the graphics entities hierarchy. This
+        entity defines the parameters for axis scaling and appearance.</para>
 
-        <P>See <LINK>axis_properties</LINK> for details.</P>
+        <para>See <link linkend="axis_properties">axis_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Polyline: ">
-        <SP>The polyline entity is a leaf of the graphics entities hierarchy.
+      <varlistentry><term>Polyline: </term><listitem>
+        <para>The polyline entity is a leaf of the graphics entities hierarchy.
         It defines 2D and 3D polylines and polylines extensions drawing
-        properties.</SP>
+        properties.</para>
 
-        <P>See <LINK>polyline_properties</LINK> for details.</P>
+        <para>See <link linkend="polyline_properties">polyline_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Arc: ">
-        <SP>The Arc entity is a leaf of the graphics entities hierarchy. This
-        entity defines the parameters for ellipses and part of ellipses.</SP>
+      <varlistentry><term>Arc: </term><listitem>
+        <para>The Arc entity is a leaf of the graphics entities hierarchy. This
+        entity defines the parameters for ellipses and part of ellipses.</para>
 
-        <P>See <LINK>arc_properties</LINK> for details.</P>
+        <para>See <link linkend="arc_properties">arc_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Rectangle: ">
-        <SP>The Rectangle entity is a leaf of the graphics entities hierarchy.
+      <varlistentry><term>Rectangle: </term><listitem>
+        <para>The Rectangle entity is a leaf of the graphics entities hierarchy.
         This entity defines the parameters for rectangles and filled
-        rectangles.</SP>
+        rectangles.</para>
 
-        <P>See <LINK>rectangle_properties</LINK> for details.</P>
+        <para>See <link linkend="rectangle_properties">rectangle_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Surface: ">
-        <SP>The Surface entity is a leaf of the graphics entities hierarchy.
-        It has sub types <VERB>Fac3d</VERB> or <VERB>Plot3d</VERB>. This
-        entity defines the parameters for 3d surface plots.</SP>
+      <varlistentry><term>Surface: </term><listitem>
+        <para>The Surface entity is a leaf of the graphics entities hierarchy.
+        It has sub types <literal>Fac3d</literal> or <literal>Plot3d</literal>. This
+        entity defines the parameters for 3d surface plots.</para>
 
-        <P>See <LINK>surface_properties</LINK> for details.</P>
+        <para>See <link linkend="surface_properties">surface_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Fec: ">
-        <SP>The Fec entity is a leaf of the graphics entities hierarchy. It
-        represents 2D finite elements plots .</SP>
+      <varlistentry><term>Fec: </term><listitem>
+        <para>The Fec entity is a leaf of the graphics entities hierarchy. It
+        represents 2D finite elements plots .</para>
 
-        <P>See <LINK>fec_properties</LINK> for details.</P>
+        <para>See <link linkend="fec_properties">fec_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Grayplot: ">
-        <SP>The Grayplot entity is a leaf of the graphics entities hierarchy.
-        It represents 2D plots of surface using colors and images.</SP>
+      <varlistentry><term>Grayplot: </term><listitem>
+        <para>The Grayplot entity is a leaf of the graphics entities hierarchy.
+        It represents 2D plots of surface using colors and images.</para>
 
-        <P>See <LINK>grayplot_properties</LINK> for details.</P>
+        <para>See <link linkend="grayplot_properties">grayplot_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Matplot: ">
-        <SP>The Matplot entity is a leaf of the graphics entities hierarchy.
-        It represents 2D plots using integer matrices.</SP>
+      <varlistentry><term>Matplot: </term><listitem>
+        <para>The Matplot entity is a leaf of the graphics entities hierarchy.
+        It represents 2D plots using integer matrices.</para>
 
-        <P>See <LINK>Matplot_properties</LINK> for details.</P>
+        <para>See <link linkend="Matplot_properties">Matplot_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Segs: ">
-        <SP>The Segs entity is a leaf of the graphics entities hierarchy. This
+      <varlistentry><term>Segs: </term><listitem>
+        <para>The Segs entity is a leaf of the graphics entities hierarchy. This
         entity defines the parameters for a set of colored segments or colored
-        arrows.</SP>
+        arrows.</para>
 
-        <P>See <LINK>segs_properties</LINK> for details.</P>
+        <para>See <link linkend="segs_properties">segs_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Champ: ">
-        <SP>The Champ entity is a leaf of the graphics entities hierarchy.
-        This entity defines the parameters for a 2D vector field.</SP>
+      <varlistentry><term>Champ: </term><listitem>
+        <para>The Champ entity is a leaf of the graphics entities hierarchy.
+        This entity defines the parameters for a 2D vector field.</para>
 
-        <P>See <LINK>champ_properties</LINK> for details.</P>
+        <para>See <link linkend="champ_properties">champ_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Text: ">
-        <SP>The Text entity is a leaf of the graphics entities hierarchy. This
-        entity defines the parameters for string drawing.</SP>
+      <varlistentry><term>Text: </term><listitem>
+        <para>The Text entity is a leaf of the graphics entities hierarchy. This
+        entity defines the parameters for string drawing.</para>
 
-        <P>See <LINK>text_properties</LINK> for details.</P>
+        <para>See <link linkend="text_properties">text_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Label: ">
-        <SP>The Labels entity are children of the <VERB>Axes</VERB> graphics
+      <varlistentry><term>Label: </term><listitem>
+        <para>The Labels entity are children of the <literal>Axes</literal> graphics
         entity. This entity defines the parameters for the 3 x,y and z labels
-        and title drawn on a graphics window.</SP>
+        and title drawn on a graphics window.</para>
 
-        <P>See <LINK>label_properties</LINK> for details.</P>
+        <para>See <link linkend="label_properties">label_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+        
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Legend: ">
-        <SP>The Legend entity is a leaf of the graphics entities hierarchy.
+      <varlistentry><term>Legend: </term><listitem>
+        <para>The Legend entity is a leaf of the graphics entities hierarchy.
         This entity defines the parameters for legends drawn below
-        <VERB>plot2dx</VERB> graphs. This entity requires further
-        developments.</SP>
+        <literal>plot2dx</literal> graphs. This entity requires further
+        developments.</para>
 
-        <P>See <LINK>legend_properties</LINK> for details.</P>
+        <para>See <link linkend="legend_properties">legend_properties</link> for details.</para>
 
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+        
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 
   //Play this example line per line
@@ -283,39 +250,39 @@
   plot2d(x,x^3)  //the drawing are sent to the initial figure
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>move</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="move">move</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>draw</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="draw">draw</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>object_editor</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="object_editor">object_editor</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="plot">plot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>surf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="surf">surf</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

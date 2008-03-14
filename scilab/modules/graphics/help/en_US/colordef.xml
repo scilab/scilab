@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,94 +10,88 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colordef"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>colordef</refname><refpurpose>Set default color values to display different color schemes</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>colordef</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="colordef">Set default color values to display different color schemes</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>colordef(color_scheme)
+colordef(f,color_scheme)
+colordef('new',color_scheme)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>colordef(color_scheme)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>colordef(f,color_scheme)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>colordef('new',color_scheme)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>color_scheme</term>
+    <listitem>
+       <para>a character string with possible value: 'white', 'black','none'
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>color_scheme</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a character string with possible value: 'white', 'black','none'
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>f</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a handle on a graphic figure
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>f</term>
+    <listitem>
+       <para>a handle on a graphic figure
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <SP><VERB>colordef('white')</VERB> sets the default figure (see
-	  <LINK>gdf</LINK>) colormap to <VERB>jetcolormap(64)</VERB>, the
+  <refsection><title>Description</title>
+     <itemizedlist>
+     <listitem>
+     <para><literal>colordef('white')</literal> sets the default figure (see
+	  <link linkend="gdf">gdf</link>) colormap to <literal>jetcolormap(64)</literal>, the
 	    default figure background color to
-	  light gray and the default axes (see <LINK>gda</LINK>) background
-	  color to white, the axes lines foreground and font color to black.</SP> 
-     </DESCRIPTION_ITEM>
-     <DESCRIPTION_ITEM>
-     <SP><VERB>colordef('black')</VERB> sets the default figure (see
-	  <LINK>gdf</LINK>) colormap to <VERB>jetcolormap(64)</VERB>, the
+	  light gray and the default axes (see <link linkend="gda">gda</link>) background
+	  color to white, the axes lines foreground and font color to black.</para> 
+     </listitem>
+     <listitem>
+     <para><literal>colordef('black')</literal> sets the default figure (see
+	  <link linkend="gdf">gdf</link>) colormap to <literal>jetcolormap(64)</literal>, the
 	    default figure  background color to dark gray and the default axes
-	  (see <LINK>gda</LINK>) background color to black, the axes lines
-	  foreground and font color to white.</SP> 
-     </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM>
-     <SP><VERB>colordef('none')</VERB> sets the default figure (see
-	  <LINK>gdf</LINK>)  colormap to <VERB>hsvcolormap(64)</VERB>, the
+	  (see <link linkend="gda">gda</link>) background color to black, the axes lines
+	  foreground and font color to white.</para> 
+     </listitem>
+    <listitem>
+     <para><literal>colordef('none')</literal> sets the default figure (see
+	  <link linkend="gdf">gdf</link>)  colormap to <literal>hsvcolormap(64)</literal>, the
 	    default figure  background color to dark gray and the default axes
-	  (see <LINK>gda</LINK>) background color to black, the axes lines
-	  foreground and font color to white.</SP> 
-     </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM>
-     <SP><VERB>colordef(f,color_scheme)</VERB> sets the color  properties of  figure given by the
-	handle <VERB>f</VERB> as well as the color properties of its current axes.</SP> 
-     </DESCRIPTION_ITEM>
-   <DESCRIPTION_ITEM>
-     <SP><VERB>colordef('new',color_scheme)</VERB> creates a new graphic window
-	and its color properties as well as the properties of its  axes.</SP> 
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
+	  (see <link linkend="gda">gda</link>) background color to black, the axes lines
+	  foreground and font color to white.</para> 
+     </listitem>
+    <listitem>
+     <para><literal>colordef(f,color_scheme)</literal> sets the color  properties of  figure given by the
+	handle <literal>f</literal> as well as the color properties of its current axes.</para> 
+     </listitem>
+   <listitem>
+     <para><literal>colordef('new',color_scheme)</literal> creates a new graphic window
+	and its color properties as well as the properties of its  axes.</para> 
+     </listitem>
+     </itemizedlist>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    // Add here scilab instructions and comments
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> gdf</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> gda</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> figure_properties</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> axes_properties</LINK> </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="gdf"> gdf</link> </member>
+    <member> <link linkend="gda"> gda</link> </member>
+    <member> <link linkend="figure_properties"> figure_properties</link> </member>
+    <member> <link linkend="axes_properties"> axes_properties</link> </member>
 
-  </SEE_ALSO>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM label='S. Steer'>
+  <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>S. Steer</term><listitem><para>
        INRIA
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </para></listitem></varlistentry>
+  </variablelist></refsection>
+</refentry>

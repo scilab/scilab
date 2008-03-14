@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
@@ -10,67 +10,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="barhomogenize"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>barhomogenize</refname><refpurpose>homogenize all the bars included in the current working axes</refpurpose></refnamediv>
 	
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>barhomogenize</TITLE>
-	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="barhomogenize">homogenize all the bars included in the current working axes</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>barhomogenize()</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>barhomogenize([h[,'style'[,'width']]])</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>h</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: an axes handle, (default: h=gca() ).</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+	
+ 
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>barhomogenize()
+barhomogenize([h[,'style'[,'width']]])</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>h</term>
+				<listitem>
+					<para>an axes handle, (default: h=gca() ).</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>style</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>a string, 'grouped' or 'stacked' (default: 'grouped').</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>style</term>
+				<listitem>
+					<para>a string, 'grouped' or 'stacked' (default: 'grouped').</para>
+				</listitem>
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>width</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: (optional), a real scalar, defines the width (a percentage of
-					the available room) for the bar (default: 0.8).</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
+			<varlistentry>
+				<term>width</term>
+				<listitem>
+					<para>(optional), a real scalar, defines the width (a percentage of
+					the available room) for the bar (default: 0.8).</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
 	
-	<DESCRIPTION>
-		<P>If there are several bar calls, the <VERB>barhomogenize</VERB> function
+	<refsection><title>Description</title>
+		<para>If there are several bar calls, the <literal>barhomogenize</literal> function
 		allows to homogenize the width and style of all bars (i.e which has the
-		<VERB>polyline_style</VERB> type 6) included in the current working axes.
-		These bars must have the same x data.</P>
+		<literal>polyline_style</literal> type 6) included in the current working axes.
+		These bars must have the same x data.</para>
 		
-		<P><VERB>barhomogenize( ) :</VERB> takes the default values, h=gca(),
-		width=0.8, style='grouped'. <VERB></VERB></P>
+		<para><literal>barhomogenize( ) :</literal> takes the default values, h=gca(),
+		width=0.8, style='grouped'. <literal/></para>
 		
-		<P><VERB>barhomogenize(h,...) :</VERB> defines the current axes where the
-		drawing is performed.</P>
+		<para><literal>barhomogenize(h,...) :</literal> defines the current axes where the
+		drawing is performed.</para>
 		
-		<P><VERB>barhomogenize(...,width,...) :</VERB> defines the width of the
-		bar(s) in percentage (generally: 0&lt;width&lt;=1).</P>
+		<para><literal>barhomogenize(...,width,...) :</literal> defines the width of the
+		bar(s) in percentage (generally: 0&lt;width&lt;=1).</para>
 		
-		<P><VERB>barhomogenize(...,style,...) :</VERB> defines how the bars are
+		<para><literal>barhomogenize(...,style,...) :</literal> defines how the bars are
 		drawn. The 'grouped' option allows to center the M polylines versus each
-		components of x, and the 'stacked' option allows to stack them.</P>
-	</DESCRIPTION>
+		components of x, and the 'stacked' option allows to stack them.</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // First example: creation of 1 yellow bar (i.e 1 polyline with polyline_style=6) and 3 bars (i.e 3 polylines with polyline_style=6) 
 subplot(2,3,1)
 xtitle('ex1: creation of 1 yellow bar and 3 bars ')
@@ -116,17 +113,17 @@ barhomogenize();
 // change the style and the width
 //barhomogenize('stacked',0.5);
 //barhomogenize('stacked',1);
-]]></EXAMPLE>
+]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>bar</LINK>
-		</SEE_ALSO_ITEM>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="bar">bar</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>polyline_properties</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+		<member>
+			<link linkend="polyline_properties">polyline_properties</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHOR>Farid Belacehne</AUTHOR>
-</MAN>
+	<refsection><title>Authors</title><para>Farid Belacehne</para></refsection>
+</refentry>

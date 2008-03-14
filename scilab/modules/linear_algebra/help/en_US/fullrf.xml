@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,83 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullrf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fullrf</refname><refpurpose> full rank factorization</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Q,M,rk]=fullrf(A,[tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>real number (threshold for rank determination)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,M</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>integer (rank of <literal>A</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Full rank factorization : <literal>fullrf</literal> returns <literal>Q</literal> and <literal>M</literal> such
+    that <literal>A = Q*M</literal>
+    with range(<literal>Q</literal>)=range(<literal>A</literal>) and ker(<literal>M</literal>)=ker(<literal>A</literal>),
+    <literal>Q</literal> full column rank , <literal>M</literal> full row rank,
+    <literal>rk = rank(A) = #columns(Q) = #rows(M)</literal>.</para>
+    <para><literal>tol</literal> is an optional real parameter (default value is <literal>sqrt(%eps)</literal>).
+    The rank <literal>rk</literal> of <literal>A</literal> is defined as the number of singular values
+    larger than <literal>norm(A)*tol</literal>.</para>
+    <para>
+    If A is symmetric, <literal>fullrf</literal> returns <literal>M=Q'</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fullrf</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fullrf"> full rank factorization</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[Q,M,rk]=fullrf(A,[tol])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real number (threshold for rank determination)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Q,M</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rk</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer (rank of <VERB>A</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Full rank factorization : <VERB>fullrf</VERB> returns <VERB>Q</VERB> and <VERB>M</VERB> such
-    that <VERB>A = Q*M</VERB>
-    with range(<VERB>Q</VERB>)=range(<VERB>A</VERB>) and ker(<VERB>M</VERB>)=ker(<VERB>A</VERB>),
-    <VERB>Q</VERB> full column rank , <VERB>M</VERB> full row rank,
-    <VERB>rk = rank(A) = #columns(Q) = #rows(M)</VERB>.</P>
-    <P><VERB>tol</VERB> is an optional real parameter (default value is <VERB>sqrt(%eps)</VERB>).
-    The rank <VERB>rk</VERB> of <VERB>A</VERB> is defined as the number of singular values
-    larger than <VERB>norm(A)*tol</VERB>.</P>
-    <P>
-    If A is symmetric, <VERB>fullrf</VERB> returns <VERB>M=Q'</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 A=rand(5,2)*rand(2,5);
 [Q,M]=fullrf(A);
 norm(Q*M-A,1)
 [X,d]=rowcomp(A);Y=X';
 svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>svd</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>qr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fullrfk</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rowcomp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>colcomp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F.D.;   </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="svd">svd</link>
+    </member>
+    <member>
+      <link linkend="qr">qr</link>
+    </member>
+    <member>
+      <link linkend="fullrfk">fullrfk</link>
+    </member>
+    <member>
+      <link linkend="rowcomp">rowcomp</link>
+    </member>
+    <member>
+      <link linkend="colcomp">colcomp</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F.D.;   </para></refsection>
+</refentry>

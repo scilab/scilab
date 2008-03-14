@@ -1,249 +1,245 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>file</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="file"> file management</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>file(action,unit)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[units [,typ [,nams [,mod [,swap]]]]] = file([unit])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>file-name</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, file name of the file to be opened</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>status</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, The status of the file to be opened</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;new&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: file must not exist new file (default)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;old&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: file must already exists.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;unknown&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: unknown status</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;scratch&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: file is to be deleted at end of session</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>access</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, The type of access to the file</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;sequential&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: sequential access (default)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;direct&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: direct access.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>format</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string,</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;formatted&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: for a   formatted file (default)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;unformatted&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: binary record.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>recl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer,is the size of records in bytes when <VERB>access=&quot;direct&quot;</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>unit</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, logical unit descriptor of the opened file</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>units</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer vector, logical unit descriptor of
-   the opened files. Units 5 and 6 are reserved by the system for input and output devices.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>typs</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Character string vector, type (C or Fortran) of opened files.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>nams</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Character string vector, pathnames of opened files.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>mod</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: file opening mode. Formed by three digits abc</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>Fortran files</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>a</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: 0 stands for formatted and 1 for unformatted (binary)</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>b</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>0 stands for sequential acces and 1 for direct access</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>c</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: 0 stands for   &quot;new&quot;, 1 for  &quot;old&quot;, 2 for &quot;scratch&quot; and 3 for  &quot;unknown&quot;</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>C files</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>a</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: is 1 if file has been opened with a &quot;b&quot; (binary) mode</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>b</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: is 1 if file has been opened with a &quot;+&quot; (updating) mode</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>c</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: 1 stands for &quot;r&quot; (read), 2 stands for &quot;w&quot; (write) and 3 for &quot;a&quot; (append)</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>swap</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: automatic swap switch. swap=1 if automatic swap is on. swap is always 0 for Fortran files.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>err</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, error message number (see error), if open fails. If err is omitted an error message is issued.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>action</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: is one of the following strings:</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;close&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: closes the file(s) given by the logical unit descriptors given in <VERB>units</VERB></SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;rewind&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: puts the pointer at beginning of file</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;backspace&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: puts the pointer at beginning of last record.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;last&quot;   </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: puts the pointer after last record.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    selects a logical unit <VERB>unit</VERB> and manages the file
-    <VERB>file-name</VERB>.</P>
-    <P><VERB>[unit [,err]]=file('open', file-name [,status] [,access [,recl]][,format])</VERB> 
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="file"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>file</refname><refpurpose> file management</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
+file(action,unit)
+[units [,typ [,nams [,mod [,swap]]]]] = file([unit])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+        <listitem>
+          <para>string, file name of the file to be opened</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>status</term>
+        <listitem>
+          <para>string, The status of the file to be opened</para>
+          <variablelist>
+            <varlistentry>
+              <term>"new"</term>
+              <listitem>
+                <para>file must not exist new file (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"old"</term>
+              <listitem>
+                <para>file must already exists.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"unknown"</term>
+              <listitem>
+                <para>unknown status</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"scratch"</term>
+              <listitem>
+                <para>file is to be deleted at end of session</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>access</term>
+        <listitem>
+          <para>string, The type of access to the file</para>
+          <variablelist>
+            <varlistentry>
+              <term>"sequential"   </term>
+              <listitem>
+                <para>sequential access (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"direct"   </term>
+              <listitem>
+                <para>direct access.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>string,</para>
+          <variablelist>
+            <varlistentry>
+              <term>"formatted"   </term>
+              <listitem>
+                <para>for a   formatted file (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"unformatted"   </term>
+              <listitem>
+                <para>binary record.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>recl</term>
+        <listitem>
+          <para>integer,is the size of records in bytes when <literal>access="direct"</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>unit</term>
+        <listitem>
+          <para>integer, logical unit descriptor of the opened file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>units</term>
+        <listitem>
+          <para>integer vector, logical unit descriptor of
+   the opened files. Units 5 and 6 are reserved by the system for input and output devices.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>typs</term>
+        <listitem>
+          <para>Character string vector, type (C or Fortran) of opened files.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nams</term>
+        <listitem>
+          <para>Character string vector, pathnames of opened files.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mod</term>
+        <listitem>
+          <para>file opening mode. Formed by three digits abc</para>
+          <variablelist>
+            <varlistentry>
+              <term>Fortran files</term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                      <para>0 stands for formatted and 1 for unformatted (binary)</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>b</term>
+                    <listitem>
+                      <para>0 stands for sequential acces and 1 for direct access</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>c</term>
+                    <listitem>
+                      <para>0 stands for   "new", 1 for  "old", 2 for "scratch" and 3 for  "unknown"</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>C files</term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                      <para>is 1 if file has been opened with a "b" (binary) mode</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>b</term>
+                    <listitem>
+                      <para>is 1 if file has been opened with a "+" (updating) mode</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>c</term>
+                    <listitem>
+                      <para>1 stands for "r" (read), 2 stands for "w" (write) and 3 for "a" (append)</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>swap</term>
+        <listitem>
+          <para>automatic swap switch. swap=1 if automatic swap is on. swap is always 0 for Fortran files.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>err</term>
+        <listitem>
+          <para>integer, error message number (see error), if open fails. If err is omitted an error message is issued.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>action</term>
+        <listitem>
+          <para>is one of the following strings:</para>
+          <variablelist>
+            <varlistentry>
+              <term>"close"   </term>
+              <listitem>
+                <para>closes the file(s) given by the logical unit descriptors given in <literal>units</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"rewind"   </term>
+              <listitem>
+                <para>puts the pointer at beginning of file</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"backspace"   </term>
+              <listitem>
+                <para>puts the pointer at beginning of last record.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"last"   </term>
+              <listitem>
+                <para>puts the pointer after last record.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    selects a logical unit <literal>unit</literal> and manages the file
+    <literal>file-name</literal>.</para>
+    <para><literal>[unit [,err]]=file('open', file-name [,status] [,access [,recl]][,format])</literal> 
     allows to open a file with specified properties and to
-    get the associated unit number <VERB>unit</VERB>. This unit number may be
+    get the associated unit number <literal>unit</literal>. This unit number may be
     used for further actions on this file or as file descriptor in
-    <VERB>read</VERB>, <VERB>write</VERB>, <VERB>readb</VERB>, <VERB>writb</VERB>,<VERB>save</VERB>,
-    <VERB>load</VERB> function calls.</P>
-    <P><VERB>file(action,unit)</VERB> allows to close the file , or move the current
-    file pointer .</P>
-    <P><VERB>file()</VERB> returns the logical unit descriptors of the opened
-    files. So <VERB>file('close',file() )</VERB> closes all user opened files (C
-    or Fortran type).</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <literal>read</literal>, <literal>write</literal>, <literal>readb</literal>, <literal>writb</literal>,<literal>save</literal>,
+    <literal>load</literal> function calls.</para>
+    <para><literal>file(action,unit)</literal> allows to close the file , or move the current
+    file pointer .</para>
+    <para><literal>file()</literal> returns the logical unit descriptors of the opened
+    files. So <literal>file('close',file() )</literal> closes all user opened files (C
+    or Fortran type).</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 u=file('open',TMPDIR+'/foo','unknown')
 for k=1:4
   a=rand(1,4)
@@ -258,35 +254,35 @@ u2=mopen(TMPDIR+'/foo1','wb')
 [units,typs,nams]=file()
 file('close',u1);
 mclose(u2);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>save</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>load</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>write</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>read</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>writb</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>readb</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xgetfile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mopen</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mclose</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="save">save</link>
+    </member>
+    <member>
+      <link linkend="load">load</link>
+    </member>
+    <member>
+      <link linkend="write">write</link>
+    </member>
+    <member>
+      <link linkend="read">read</link>
+    </member>
+    <member>
+      <link linkend="writb">writb</link>
+    </member>
+    <member>
+      <link linkend="readb">readb</link>
+    </member>
+    <member>
+      <link linkend="xgetfile">xgetfile</link>
+    </member>
+    <member>
+      <link linkend="mopen">mopen</link>
+    </member>
+    <member>
+      <link linkend="mclose">mclose</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

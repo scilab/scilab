@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,248 +10,245 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lsqrsolve</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lsqrsolve"> minimize the sum of the squares of
-nonlinear functions, levenberg-marquardt algorithm</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x [,v [,info]]]=lsqrsolve(x0,fct,m [,stop [,diag]])</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[x [,v [,info]]]=lsqrsolve(x0,fct,m ,fjac [,stop [,diag]])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x0</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vector (initial value of functions argument).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fct</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: external (i.e function or list or string).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-       <PARAM_ITEM>
-        <PARAM_NAME>m</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, the number of functions.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fjac</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: external (i.e function or list or string).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>stop</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: optional vector
-          <VERB>[ftol,xtol,gtol,maxfev,epsfcn,factor]</VERB> the
-          default value is <VERB>[1.d-8,1.d-8,1.d-5,1000,0,100]</VERB></SP>
-          <PARAM_INDENT>
-          <PARAM_ITEM>
-            <PARAM_NAME>ftol</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-            <SP>: A positive real number,termination occurs when both
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lsqrsolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lsqrsolve</refname><refpurpose> minimize the sum of the squares of
+nonlinear functions, levenberg-marquardt algorithm</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x [,v [,info]]]=lsqrsolve(x0,fct,m [,stop [,diag]])
+[x [,v [,info]]]=lsqrsolve(x0,fct,m ,fjac [,stop [,diag]])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>real vector (initial value of functions argument).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fct</term>
+        <listitem>
+          <para>external (i.e function or list or string).</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>integer, the number of functions.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fjac</term>
+        <listitem>
+          <para>external (i.e function or list or string).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stop</term>
+        <listitem>
+          <para>optional vector
+          <literal>[ftol,xtol,gtol,maxfev,epsfcn,factor]</literal> the
+          default value is <literal>[1.d-8,1.d-8,1.d-5,1000,0,100]</literal></para>
+          <variablelist>
+          <varlistentry>
+            <term>ftol</term>
+            <listitem>
+            <para>A positive real number,termination occurs when both
                   the actual and predicted relative reductions in the
                   sum of squares are at most ftol.  therefore, ftol
                   measures the relative error desired in the sum of
-                  squares.</SP>
-           </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
-          <PARAM_ITEM>
-            <PARAM_NAME>xtol</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-            <SP>: A positive real number, termination occurs when the
+                  squares.</para>
+           </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>xtol</term>
+            <listitem>
+            <para>A positive real number, termination occurs when the
              relative error between two consecutive iterates is at
              most xtol. therefore, xtol measures the relative error
-             desired in the approximate solution.</SP>
-           </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
-          <PARAM_ITEM>
-            <PARAM_NAME>gtol</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-            <SP>: A nonnegative input variable. termination
+             desired in the approximate solution.</para>
+           </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>gtol</term>
+            <listitem>
+            <para>A nonnegative input variable. termination
 		  occurs when the cosine of the angle between fct(x) and
 		  any column of the jacobian is at most gtol in absolute
 		  value. therefore, gtol measures the orthogonality
 		  desired between the function vector and the columns
-		  of the jacobian.</SP>
-           </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
-          <PARAM_ITEM>
-            <PARAM_NAME>maxfev</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-            <SP>: A positive integer, termination occurs when the
+		  of the jacobian.</para>
+           </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>maxfev</term>
+            <listitem>
+            <para>A positive integer, termination occurs when the
              number of calls to fct is at least maxfev by the end of
-             an iteration.</SP>
-           </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
+             an iteration.</para>
+           </listitem>
+          </varlistentry>
 
-          <PARAM_ITEM>
-            <PARAM_NAME>epsfcn</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-            <SP>: A positive real number, used in determining a
+          <varlistentry>
+            <term>epsfcn</term>
+            <listitem>
+            <para>A positive real number, used in determining a
              suitable step length for the forward-difference
              approximation. this approximation assumes that the
              relative errors in the functions are of the order of
              epsfcn. if epsfcn is less than the machine precision, it
              is assumed that the relative errors in the functions are
-             of the order of the machine precision.</SP>
-           </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
+             of the order of the machine precision.</para>
+           </listitem>
+          </varlistentry>
 
-         <PARAM_ITEM>
-            <PARAM_NAME>factor</PARAM_NAME>
-            <PARAM_DESCRIPTION>
-            <SP>: A positive real number, used in determining the
+         <varlistentry>
+            <term>factor</term>
+            <listitem>
+            <para>A positive real number, used in determining the
             initial step bound. this bound is set to the product of
             factor and the euclidean norm of diag*x if nonzero, or
             else to factor itself. in most cases factor should lie in
             the interval (.1,100.). 100. is a generally recommended
-            value.</SP>
-           </PARAM_DESCRIPTION>
-          </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+            value.</para>
+           </listitem>
+          </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>diag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: is an array of length n.  diag
+      <varlistentry>
+        <term>diag</term>
+        <listitem>
+          <para>is an array of length n.  diag
          must contain positive entries that serve as
-         multiplicative scale factors for the variables.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+         multiplicative scale factors for the variables.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>x :  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>real vector (final value of function argument, estimated zero).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>v :  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>real vector (value of functions at x).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>info</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  termination indicator</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>0</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: improper input parameters.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>1</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: algorithm estimates that the relative error between x and the solution  is at most tol.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>2</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: number of calls to fcn reached</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>3</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: tol is too small. No further improvement in the approximate solution  x is possible.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>4</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: iteration is not making good progress.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+      <varlistentry>
+        <term>x :  </term>
+        <listitem>
+          <para>real vector (final value of function argument, estimated zero).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v :  </term>
+        <listitem>
+          <para>real vector (value of functions at x).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para> termination indicator</para>
+          <variablelist>
+            <varlistentry>
+              <term>0</term>
+              <listitem>
+                <para>improper input parameters.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>1</term>
+              <listitem>
+                <para>algorithm estimates that the relative error between x and the solution  is at most tol.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>2</term>
+              <listitem>
+                <para>number of calls to fcn reached</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>3</term>
+              <listitem>
+                <para>tol is too small. No further improvement in the approximate solution  x is possible.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>4</term>
+              <listitem>
+                <para>iteration is not making good progress.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>
+  <refsection><title>Description</title>
+    <para>
     minimize the sum of the squares of m nonlinear functions in n
      variables by a modification of the levenberg-marquardt
      algorithm. the user must provide a subroutine which calculates
      the functions. the jacobian is then calculated by a
-     forward-difference approximation.</P>
+     forward-difference approximation.</para>
  
-    <P>
-     minimize <VERB>sum(fct(x,m).^2)</VERB> where
-    <VERB>fct</VERB> is function from <VERB>R^n</VERB> to <VERB>R^m</VERB>
-    </P>
-    <P>
-    <VERB>fct</VERB> should be :
-    </P> 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>  
-    <SP>a Scilab function whose calling sequence is <VERB>v=fct(x,m)</VERB> given <VERB>x</VERB> and
-    <VERB>m</VERB>.</SP>
-    </DESCRIPTION_ITEM> 
+    <para>
+     minimize <literal>sum(fct(x,m).^2)</literal> where
+    <literal>fct</literal> is function from <literal>R^n</literal> to <literal>R^m</literal>
+    </para>
+    <para>
+    <literal>fct</literal> should be :
+    </para> 
+    <itemizedlist>
+    <listitem>  
+    <para>a Scilab function whose calling sequence is <literal>v=fct(x,m)</literal> given <literal>x</literal> and
+    <literal>m</literal>.</para>
+    </listitem> 
 
-    <DESCRIPTION_ITEM> 
-     <SP>a character string which  refers to a C or Fortran routine  which must be linked to Scilab. </SP>
+    <listitem> 
+     <para>a character string which  refers to a C or Fortran routine  which must be linked to Scilab. </para>
 
-    <P>
+    <para>
     Fortran calling sequence should be
-   <VERB>fct(m,n,x,v,iflag)</VERB>  where <VERB>m</VERB>,
-    <VERB>n</VERB>, <VERB>iflag</VERB> are integers, <VERB>x</VERB> a
-    double precision vector of size  <VERB>n</VERB> and <VERB>v</VERB> a
-    double precision vector of size  <VERB>m</VERB>.
-    </P>
-    <P>  
+   <literal>fct(m,n,x,v,iflag)</literal>  where <literal>m</literal>,
+    <literal>n</literal>, <literal>iflag</literal> are integers, <literal>x</literal> a
+    double precision vector of size  <literal>n</literal> and <literal>v</literal> a
+    double precision vector of size  <literal>m</literal>.
+    </para>
+    <para>  
     C calling sequence should be
-    <VERB>fct(int *m, int *n, double x[],double v[],int *iflag)</VERB>
-    </P>
+    <literal>fct(int *m, int *n, double x[],double v[],int *iflag)</literal>
+    </para>
 
-    </DESCRIPTION_ITEM> 
-     </DESCRIPTION_INDENT>
+    </listitem> 
+     </itemizedlist>
 
-     <P>  <VERB>fjac</VERB> is an external which returns <VERB>v=d(fct)/dx (x)</VERB>.
-     it should be :</P>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM label="a Scilab function"> <SP>whose calling
-    sequence is <VERB>J=fjac(x,m)</VERB> given <VERB>x</VERB> and
-    <VERB>m</VERB>.</SP>
-    </DESCRIPTION_ITEM> 
-    <DESCRIPTION_ITEM label="a character string">  <SP>it refers to a C or Fortran routine
-    which must be linked to Scilab. </SP>
-    <P>
+     <para>  <literal>fjac</literal> is an external which returns <literal>v=d(fct)/dx (x)</literal>.
+     it should be :</para>
+    <variablelist>
+    <varlistentry><term>a Scilab function</term><listitem> <para>whose calling
+    sequence is <literal>J=fjac(x,m)</literal> given <literal>x</literal> and
+    <literal>m</literal>.</para>
+    </listitem></varlistentry> 
+    <varlistentry><term>a character string</term><listitem>  <para>it refers to a C or Fortran routine
+    which must be linked to Scilab. </para>
+    <para>
     Fortran calling sequence should be
-   <VERB>fjac(m,n,x,jac,iflag)</VERB>  where <VERB>m</VERB>,
-    <VERB>n</VERB>, <VERB>iflag</VERB> are integers, <VERB>x</VERB> a
-    double precision vector of size  <VERB>n</VERB> and <VERB>jac</VERB> a
-    double precision vector of size  <VERB>m*n</VERB>.
-    </P>
-    <P>  
+   <literal>fjac(m,n,x,jac,iflag)</literal>  where <literal>m</literal>,
+    <literal>n</literal>, <literal>iflag</literal> are integers, <literal>x</literal> a
+    double precision vector of size  <literal>n</literal> and <literal>jac</literal> a
+    double precision vector of size  <literal>m*n</literal>.
+    </para>
+    <para>  
     C calling sequence should be
-    <VERB>fjac(int *m, int *n, double x[],double v[],int *iflag)</VERB>
-    </P>
- </DESCRIPTION_ITEM> 
- </DESCRIPTION_INDENT>
-   <P> return -1 in iflag to stop the algoritm if the function
-   or jacobian could not be evaluated.</P>
+    <literal>fjac(int *m, int *n, double x[],double v[],int *iflag)</literal>
+    </para>
+ </listitem></varlistentry> 
+ </variablelist>
+   <para> return -1 in iflag to stop the algoritm if the function
+   or jacobian could not be evaluated.</para>
   
 
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 // A simple example with lsqrsolve 
 a=[1,7;
    2,8
@@ -281,27 +278,27 @@ endfunction
 abc
 norm(v)
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>external</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>quapro</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>linpro</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>optim</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>fsolve</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
  
- <USED_FUNCTIONS>
-    <SP>lmdif, lmder from  minpack, Argonne National Laboratory.</SP>
- </USED_FUNCTIONS>
-</MAN>
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="external">external</link>
+    </member>
+    <member>
+      <link linkend="quapro">quapro</link>
+    </member>
+    <member>
+      <link linkend="linpro">linpro</link>
+    </member>
+    <member>
+      <link linkend="optim">optim</link>
+    </member>
+    <member>
+      <link linkend="fsolve">fsolve</link>
+    </member>
+  </simplelist></refsection>
+ 
+ <refsection><title>Used Functions</title>
+    <para>lmdif, lmder from  minpack, Argonne National Laboratory.</para>
+ </refsection>
+</refentry>

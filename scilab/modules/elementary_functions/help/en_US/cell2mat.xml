@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,72 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cell2mat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cell2mat</refname><refpurpose>convert a cell array into a
+  matrix</refpurpose></refnamediv>
+  
 
-  <TITLE>cell2mat</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="cell2mat">convert a cell array into a
-  matrix</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>x=cell2mat(c)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>x=cell2mat(c)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>c</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>c</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: cell, the components of c must have the same type and can be
-          scalars or matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>cell, the components of c must have the same type and can be
+          scalars or matrices</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+      <varlistentry>
+        <term>x</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Returns a matrix which is the concatenation of all components of the
-    cell c.</P>
+  <refsection><title>Description</title>
+    <para>Returns a matrix which is the concatenation of all components of the
+    cell c.</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="cell2mat(c)">
-        <SP>: all components of c must have the same data type (strings or
-        doubles or integers or booleans). For each row <VERB>i </VERB>of
-        <VERB>c,</VERB> <VERB>cell2mat</VERB> concatenates all the components
-        of the <VERB>ith</VERB> row of the cell <VERB>c</VERB></SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <variablelist>
+      <varlistentry><term>cell2mat(c)</term><listitem>
+        <para>all components of c must have the same data type (strings or
+        doubles or integers or booleans). For each row <literal>i </literal>of
+        <literal>c,</literal> <literal>cell2mat</literal> concatenates all the components
+        of the <literal>ith</literal> row of the cell <literal>c</literal></para>
+      </listitem></varlistentry>
+    </variablelist>
 
-    <P>Note that if the components of the cell input c<VERB> </VERB>are
-    strings then <VERB>cell2mat(c)</VERB> returns a column vector of strings
-    concatenation</P>
-  </DESCRIPTION>
+    <para>Note that if the components of the cell input c<literal> </literal>are
+    strings then <literal>cell2mat(c)</literal> returns a column vector of strings
+    concatenation</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 c=makecell([2,2],[1 2 3; 6 7 8],[4 5;9 10],[11 12;16 17],[14 13 15;18 19 20])
 cell2mat(c)
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>cell</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="cell">cell</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

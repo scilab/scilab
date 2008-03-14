@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -10,47 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lcm</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lcm"> least common multiple</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[pp,fact]=lcm(p)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>fact</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: polynomial vector or integer vector (type equal to 8)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>pp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: polynomial or integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>pp=lcm(p)</VERB> computes the lcm <VERB>pp</VERB> of polynomial vector <VERB>p</VERB>.</P>
-    <P><VERB>[pp,fact]=lcm(p)</VERB> computes in addition the vector <VERB>fact</VERB> such that:</P>
-    <P>
-      <VERB>p.*fact=pp*ones(p)</VERB>
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lcm"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lcm</refname><refpurpose> least common multiple</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[pp,fact]=lcm(p)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>:</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fact</term>
+        <listitem>
+          <para>polynomial vector or integer vector (type equal to 8)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pp</term>
+        <listitem>
+          <para>polynomial or integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>pp=lcm(p)</literal> computes the lcm <literal>pp</literal> of polynomial vector <literal>p</literal>.</para>
+    <para><literal>[pp,fact]=lcm(p)</literal> computes in addition the vector <literal>fact</literal> such that:</para>
+    <para>
+      <literal>p.*fact=pp*ones(p)</literal>
+    </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //polynomial case
 s=poly(0,'s');
 p=[s,s*(s+1)^2,s^2*(s+2)];
@@ -60,14 +57,14 @@ p.*fact, pp
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 lcm(V)
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>gcd</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>bezout</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="gcd">gcd</link>
+    </member>
+    <member>
+      <link linkend="bezout">bezout</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

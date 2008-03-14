@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jaime Urzua
@@ -11,24 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-<LANGUAGE>eng</LANGUAGE>
-<TITLE>config</TITLE>
-<TYPE>sciGUI toolbox function</TYPE>
-<DATE>$LastChangedDate$</DATE>
-<SHORT_DESCRIPTION name="config"> Scilab general configuration.</SHORT_DESCRIPTION>
-
-<CALLING_SEQUENCE>
-<CALLING_SEQUENCE_ITEM>config()
-</CALLING_SEQUENCE_ITEM>
-</CALLING_SEQUENCE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="config"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>config</refname><refpurpose> Scilab general configuration.</refpurpose></refnamediv>
 
 
-<DESCRIPTION>
-<P><VERB>config()</VERB> allows configure scilab parameters like lines to display, stacksize, %ODEOPTIONS.</P>
-</DESCRIPTION>
 
-<AUTHOR>Jaime Urzua</AUTHOR>
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>config()</synopsis></refsynopsisdiv>
+
+
+<refsection><title>Description</title>
+<para><literal>config()</literal> allows configure scilab parameters like lines to display, stacksize, %ODEOPTIONS.</para>
+</refsection>
+
+<refsection><title>Authors</title><para>Jaime Urzua</para></refsection>
   
-</MAN>
+</refentry>

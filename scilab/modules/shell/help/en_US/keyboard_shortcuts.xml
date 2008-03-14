@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2007 - INRIA - Allan CORNET
@@ -10,72 +10,71 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>Keyboard Shortcuts</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2007-08-31 09:08:25 +0200 (ven., 31 août 2007) $</DATE>
-  <SHORT_DESCRIPTION name="Keyboard Shortcuts">Keyboard Shortcuts in Scilab</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="KeyboardShortcuts"><info><pubdate>$LastChangedDate: 2007-08-31 09:08:25 +0200 (ven., 31 août 2007) $</pubdate></info><refnamediv><refname>Keyboard Shortcuts</refname><refpurpose>Keyboard Shortcuts in Scilab</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <DESCRIPTION>
-    <P>List of arrow and control keys that serve as shortcuts for using the Scilab.</P>
-    <TABLE>
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>Up</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>call previous line</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+  <refsection><title>Description</title>
+    <para>List of arrow and control keys that serve as shortcuts for using the Scilab.</para>
+    <informaltable border="1">
+      <tr>
+        <td>Up</td>
+        <td>call previous line</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>Down</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>call next line</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>Down</td>
+        <td>call next line</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>Left</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Move back one character.</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>Left</td>
+        <td>Move back one character.</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>Right</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Move forward one character.</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>Right</td>
+        <td>Move forward one character.</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>CTRL + B</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Move back one character.</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>CTRL + B</td>
+        <td>Move back one character.</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>CTRL + F</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Move forward one character.</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+        <td>CTRL + F</td>
+        <td>Move forward one character.</td>
+      </tr> 
             
-      <TABLE_NEW_ROW>
-      	<TABLE_NEW_COLUMN>CTRL + C</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Interrupt Scilab</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+      	<td>CTRL + C</td>
+        <td>Interrupt Scilab</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-      	<TABLE_NEW_COLUMN> CTRL + X</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Interrupt Scilab</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+      	<td> CTRL + X</td>
+        <td>Interrupt Scilab</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-      	<TABLE_NEW_COLUMN>Delete</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Delete character at cursor.</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+      	<td>Delete</td>
+        <td>Delete character at cursor.</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-      	<TABLE_NEW_COLUMN>CTRL + A</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Move to beginning of current line.</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
+      <tr>
+      	<td>CTRL + A</td>
+        <td>Move to beginning of current line.</td>
+      </tr> 
       
-      <TABLE_NEW_ROW>
-      	<TABLE_NEW_COLUMN>CTRL + D</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>Delete character at cursor.</TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW> 
-	</TABLE>
+      <tr>
+      	<td>CTRL + D</td>
+        <td>Delete character at cursor.</td>
+      </tr> 
+	</informaltable>
         
-  </DESCRIPTION>
-</MAN>
+  </refsection>
+</refentry>

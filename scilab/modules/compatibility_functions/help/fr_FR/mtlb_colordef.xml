@@ -1,107 +1,94 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_colordef</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_colordef"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_colordef</refname><refpurpose>Fonction d'�mulation de la fonction Matlab colordef</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_colordef">Fonction d'�mulation de la fonction Matlab colordef</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Il n'y a pas de fonction Scilab �quivalente � la fonction Matlab <VERB>colordef</VERB> mais il existe 
-    des instructions �quivalentes.</P>
+    <para>Il n'y a pas de fonction Scilab �quivalente � la fonction Matlab <literal>colordef</literal> mais il existe 
+    des instructions �quivalentes.</para>
 
-    <P>
-    La fonction <VERB>h = mtlb_colordef(color_option)</VERB> ou
-    <VERB>h = mtlb_colordef(fig,color_option)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>colordef(color_option)</VERB> ou
-    <VERB>colordef(fig,color_option)</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>h = mtlb_colordef(color_option)</literal> ou
+    <literal>h = mtlb_colordef(fig,color_option)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>colordef(color_option)</literal> ou
+    <literal>colordef(fig,color_option)</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_colordef</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_colordef</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Pour les appels avec un param�tre d'entr�e, si <VERB>color_option</VERB> est �gal � "black" ou "none"
-        <VERB>mtlb_colordef(color_option)</VERB> peut �tre remplac� par <VERB>fig = gcf();fig.background = -1;</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Pour les appels avec un param�tre d'entr�e, si <literal>color_option</literal> est �gal � "black" ou "none"
+        <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = gcf();fig.background = -1;</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour les appels avec un param�tre d'entr�e, si <VERB>color_option</VERB> est �gal � "white"
-        <VERB>mtlb_colordef(color_option)</VERB> peut �tre remplac� par <VERB>fig = gcf();fig.background = -2;</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Pour les appels avec un param�tre d'entr�e, si <literal>color_option</literal> est �gal � "white"
+        <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = gcf();fig.background = -2;</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour les appels avec deux param�tres d'entr�e, si <VERB>fig</VERB> est un handle graphique et
-	<VERB>color_option</VERB> est �gal � "black" ou "none"
-        <VERB>mtlb_colordef(color_option)</VERB> peut �tre remplac� par <VERB>fig.background = -1;</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est un handle graphique et
+	<literal>color_option</literal> est �gal � "black" ou "none"
+        <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig.background = -1;</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour les appels avec deux param�tres d'entr�e, si <VERB>fig</VERB> est un handle graphique et
-	<VERB>color_option</VERB> est �gal � "white"
-        <VERB>mtlb_colordef(color_option)</VERB> peut �tre remplac� par <VERB>fig.background = -2;</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est un handle graphique et
+	<literal>color_option</literal> est �gal � "white"
+        <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig.background = -2;</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour les appels avec deux param�tres d'entr�e, si <VERB>fig</VERB> est �gal � "new" et
-	<VERB>color_option</VERB> est �gal � "black" ou "none"
-        <VERB>mtlb_colordef(color_option)</VERB> peut �tre remplac� par <VERB>fig = scf(max(winsid())+1);fig.background = -1;</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est �gal � "new" et
+	<literal>color_option</literal> est �gal � "black" ou "none"
+        <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = scf(max(winsid())+1);fig.background = -1;</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour les appels avec deux param�tres d'entr�e, si <VERB>fig</VERB> est �gal � "new" et
-	<VERB>color_option</VERB> est �gal � "white"
-        <VERB>mtlb_colordef(color_option)</VERB> peut �tre remplac� par <VERB>fig = scf(max(winsid())+1);fig.background = -2;</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est �gal � "new" et
+	<literal>color_option</literal> est �gal � "white"
+        <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = scf(max(winsid())+1);fig.background = -2;</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Pour les appels avec un param�tre de sortie <VERB>h</VERB>, ajouter <VERB>h = fig;</VERB> � la suite des instructions �quivalentes.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Pour les appels avec un param�tre de sortie <literal>h</literal>, ajouter <literal>h = fig;</literal> � la suite des instructions �quivalentes.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_colordef</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_colordef</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>figure_properties</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="figure_properties">figure_properties</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

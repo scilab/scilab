@@ -1,36 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="islittleendian"><info><pubdate>$LastChangedDate: 2006-12-12 09:26:08 +0200$</pubdate></info><refnamediv><refname>islittleendian</refname><refpurpose>Checks if machine architecture is "little-endian"</refpurpose></refnamediv>
+  
 
-  <TITLE>islittleendian</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-12-12 09:26:08 +0200$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="islittleendian">Checks if machine architecture is "little-endian"</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>r=islittleendian()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>r=islittleendian()</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+        <listitem>
+          <para>a boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
     
-  </PARAM>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Returns <VERB>%t</VERB> or <VERB>%f</VERB> Checks if machine architecture is "little-endian".</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Returns <literal>%t</literal> or <literal>%f</literal> Checks if machine architecture is "little-endian".</para>
+  </refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

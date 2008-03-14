@@ -1,55 +1,38 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="apropos"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>apropos</refname><refpurpose> recherche d'un mot-clé dans l'aide de Scilab   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>apropos(key)
+apropos(regexp)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>key</term>
+        <listitem>
+          <para>Une chaîne de caractères, la séquence de caractères à rechercher</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>regexp</term>
+        <listitem>
+          <para> Une chaîne de caractères, l'expression régulière à
+	    rechercher. Cette syntaxe ne fonctionne que le browser "Scilab Browser"</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>apropos(key)</literal> recherche les pages d'aides contenant la
+      séquence de caractères <literal>key</literal> dans leur section "SHORT_DESCRIPTION".</para>
 
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>apropos  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="apropos"> recherche d&apos;un mot-clé dans l&apos;aide de Scilab   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>apropos(key)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>apropos(regexp)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>key</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Une chaîne de caractères, la séquence de caractères à rechercher</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>regexp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  Une chaîne de caractères, l'expression régulière à
-	    rechercher. Cette syntaxe ne fonctionne que le browser "Scilab Browser"</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>apropos(key)</VERB> recherche les pages d'aides contenant la
-      séquence de caractères <VERB>key</VERB> dans leur section "SHORT_DESCRIPTION".</P>
-
-    <P>Avec le "Browser Scilab" uniquement , <VERB>apropos(regexp)</VERB>
+    <para>Avec le "Browser Scilab" uniquement , <literal>apropos(regexp)</literal>
       recherche les pages d'aides contenant l'expression régulière donnée par
-      <VERB>regexp</VERB> dans leur section "SHORT_DESCRIPTION".</P> 
+      <literal>regexp</literal> dans leur section "SHORT_DESCRIPTION".</para> 
 
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 apropos('ode')
 apropos ode 
 apropos "list of"
@@ -63,9 +46,9 @@ apropos "quadratic.*solver"
 
 %browsehelp=%browsehelp_save;
 
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>help</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>man</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="help">help</link> </member>
+    <member> <link linkend="man">man</link> </member>
+  </simplelist></refsection>
+</refentry>

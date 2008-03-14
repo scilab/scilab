@@ -1,69 +1,51 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2006 - INRIA - Serge STEER 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>LISSAGE  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="smooth"> interpolation par une spline  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[pt]=smooth(ptd [,pas])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>ptd  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur rï¿½el ï¿½ deux colonnes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>pas  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : rï¿½el (pas de discrï¿½tisation des abscisses)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>pt  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur rï¿½el ï¿½ deux colonnes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Cette fonction calcule les valeurs d&apos;une spline d&apos;interpolation
-    dont les points de rï¿½fï¿½rence sont donnï¿½s par <VERB>(ptd(1,i),ptd(2,i))</VERB>. Les abscisses <VERB>ptd(1,:)</VERB> doivent ï¿½tre classï¿½s par ordre croissant.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="smooth"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>smooth</refname><refpurpose> interpolation par une spline  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[pt]=smooth(ptd [,pas])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>ptd  </term>
+  <listitem>
+  <para>vecteur rï¿½el ï¿½ deux colonnes
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>pas  </term>
+  <listitem>
+  <para>rï¿½el (pas de discrï¿½tisation des abscisses)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>pt  </term>
+  <listitem>
+  <para>vecteur rï¿½el ï¿½ deux colonnes
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Cette fonction calcule les valeurs d'une spline d'interpolation
+    dont les points de rï¿½fï¿½rence sont donnï¿½s par <literal>(ptd(1,i),ptd(2,i))</literal>. Les abscisses <literal>ptd(1,:)</literal> doivent ï¿½tre classï¿½s par ordre croissant.
     La valeur par dï¿½faut du pas est ï¿½gale ï¿½ 
-    <VERB>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</VERB>
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+    <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal>
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 x=[1 10 20 30 40];
 y=[1 30 -10 20 40];
 plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
 yi=smooth([x;y],0.1);
 plot2d(yi(1,:)',yi(2,:)',[1],"000");
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>splin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>interp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>interpln</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="splin">splin</link> </member>     <member> <link linkend="interp">interp</link> </member>     <member> <link linkend="interpln">interpln</link> </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,45 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>strtok</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</DATE>
-  <SHORT_DESCRIPTION name="strtok">Split string into tokens</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM> res = strtok(str,delimiters)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strtok"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>strtok</refname><refpurpose>Split string into tokens</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res = strtok(str,delimiters)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
       
-      <PARAM_ITEM>
-        <PARAM_NAME>delimiters</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>delimiters</term>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
       
-      <PARAM_ITEM>
-        <PARAM_NAME>res</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>res = strtok(str,delimiters)</VERB>  sequence of calls to this function split str into tokens, which are sequences of contiguous characters spearated by any of the characters that are part of delimiters.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>res = strtok(str,delimiters)</literal>  sequence of calls to this function split str into tokens, which are sequences of contiguous characters spearated by any of the characters that are part of delimiters.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 TOKENS = [];
 token = strtok("A string of ,,tokens and some  more tokens"," ,");
 TOKENS = [TOKENS,token];
@@ -57,14 +54,14 @@ while( token <> '' )
   TOKENS = [TOKENS,token];
 end
 disp(TOKENS);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>strrchr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>strchr</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="strrchr">strrchr</link>
+    </member>
+    <member>
+      <link linkend="strchr">strchr</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

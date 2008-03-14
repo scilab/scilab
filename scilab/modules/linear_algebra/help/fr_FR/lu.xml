@@ -1,87 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>lu  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lu"> factorisation LU  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[L,U]= lu(A)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[L,U,E]= lu(A)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>A  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée réelle ou complexe (m x n).
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>L,U  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrices carrées réelles ou complexes (n x n).
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>E  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : une matrice de permutation.
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-      <VERB>[L,U]= lu(A)</VERB> calcule deux matrices <VERB>L</VERB> et
-      <VERB>U</VERB> telles que <VERB>A = L*U</VERB> avec <VERB>U</VERB>
-      triangulaire supérieure et <VERB>L</VERB> triangulaire inférieure
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lu</refname><refpurpose> factorisation LU  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[L,U]= lu(A)
+[L,U,E]= lu(A)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>A  </term>
+	<listitem>
+	  <para>matrice carrée réelle ou complexe (m x n).
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>L,U  </term>
+	<listitem>
+	  <para>matrices carrées réelles ou complexes (n x n).
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>E  </term>
+	<listitem>
+	  <para>une matrice de permutation.
+	  </para>
+	</listitem> 
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+      <literal>[L,U]= lu(A)</literal> calcule deux matrices <literal>L</literal> et
+      <literal>U</literal> telles que <literal>A = L*U</literal> avec <literal>U</literal>
+      triangulaire supérieure et <literal>L</literal> triangulaire inférieure
       à une permutation des lignes près.
-    </P>
-    <P>
-      Si <VERB>A</VERB> est de rang <VERB>k</VERB>, les lignes
-      <VERB>k+1</VERB> à <VERB>n</VERB> de <VERB>U</VERB> sont nulles.
-    </P>
-    <P>
-    </P>
-    <P>
-      <VERB>[L,U,E]= lu(A)</VERB> calcule trois matrices <VERB>L</VERB>,
-      <VERB>U</VERB> et <VERB>E</VERB> telles que <VERB>E*A = L*U</VERB>
-      avec <VERB>U</VERB> triangulaire supérieure, <VERB>L</VERB>
-      triangulaire inférieure et <VERB>E</VERB> une matrice de
+    </para>
+    <para>
+      Si <literal>A</literal> est de rang <literal>k</literal>, les lignes
+      <literal>k+1</literal> à <literal>n</literal> de <literal>U</literal> sont nulles.
+    </para>
+    <para>
+    </para>
+    <para>
+      <literal>[L,U,E]= lu(A)</literal> calcule trois matrices <literal>L</literal>,
+      <literal>U</literal> et <literal>E</literal> telles que <literal>E*A = L*U</literal>
+      avec <literal>U</literal> triangulaire supérieure, <literal>L</literal>
+      triangulaire inférieure et <literal>E</literal> une matrice de
       permutation.
-    </P>
-    <P>
-      Si <VERB>A</VERB> est une matrice réelle, il est possible en
-      utilisant <VERB>lufact</VERB> et <VERB>luget</VERB>
-      d&apos;obtenir les matrices de permutations et quand
-      <VERB>A</VERB> n&apos;est pas inversible la compression des
-      colonnes de la matrice <VERB>L</VERB>.
-    </P>
-  </DESCRIPTION>
+    </para>
+    <para>
+      Si <literal>A</literal> est une matrice réelle, il est possible en
+      utilisant <literal>lufact</literal> et <literal>luget</literal>
+      d'obtenir les matrices de permutations et quand
+      <literal>A</literal> n'est pas inversible la compression des
+      colonnes de la matrice <literal>L</literal>.
+    </para>
+  </refsection>
 
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     a=rand(4,4);
     [l,u]=lu(a)
     norm(l*u-a)
@@ -92,19 +72,19 @@
     ludel(h)
     P=full(P);L=full(L);U=full(U);Q=full(Q); 
     norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
-    ]]></EXAMPLE>
+    ]]></programlisting></refsection>
 
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>luget</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>lusolve</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <USED_FUNCTIONS>
-    <SP>La décomposition LU est basée sur les routines Lapack  DGETRF pour
-    les matrices réelles et ZGETRF pour le cas complexe. </SP>
-  </USED_FUNCTIONS>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="lufact">lufact</link> </member> 
+    <member> <link linkend="luget">luget</link> </member> 
+    <member> <link linkend="lusolve">lusolve</link> </member> 
+    <member> <link linkend="qr">qr</link> </member> 
+    <member> <link linkend="svd">svd</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Fonctions Utilisées</title>
+    <para>La décomposition LU est basée sur les routines Lapack  DGETRF pour
+    les matrices réelles et ZGETRF pour le cas complexe. </para>
+  </refsection>
 
-</MAN>
+</refentry>

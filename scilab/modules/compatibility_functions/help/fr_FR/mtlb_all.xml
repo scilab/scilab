@@ -1,112 +1,98 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<!-- When this file is modified please also modify mtlb_any.xml -->
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_all</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_all"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_all</refname><refpurpose>Fonction d'�mulation de la fonction Matlab all</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_all">Fonction d'�mulation de la fonction Matlab all</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, les fonctions <VERB>all</VERB> de Matlab et
-    <VERB>and</VERB> de Scilab se comportent diff�remment :</P>
+    <para>Dans plusieurs cas particuliers, les fonctions <literal>all</literal> de Matlab et
+    <literal>and</literal> de Scilab se comportent diff�remment :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-	Avec un argument d'entr�e (<VERB>all(A)</VERB>), la fonction <VERB>all</VERB> de Matlab traite
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+	Avec un argument d'entr�e (<literal>all(A)</literal>), la fonction <literal>all</literal> de Matlab traite
 	les valeurs selon la premi�re dimension de A qui n'est pas 1 comme un vecteur
 	alors que Scilab traite toutes les valeurs de A.
-	</SP>
-      </ITEM>
+	</para>
+      </listitem>
 	
-      <ITEM>
-        <SP>
-	Avec deux arguments d'entr�e (<VERB>all(A,dim)</VERB>), Matlab
-	tol�re une valeur de <VERB>dim</VERB> sup�rieure au
+      <listitem>
+        <para>
+	Avec deux arguments d'entr�e (<literal>all(A,dim)</literal>), Matlab
+	tol�re une valeur de <literal>dim</literal> sup�rieure au
 	nombre de dimensions de A alors que Scilab renvoie un message d'erreur dans ce cas.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_all(A[,dim])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>all(A[,dim])</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_all(A[,dim])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>all(A[,dim])</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les op�randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_all</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_all</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>    
-	Si <VERB>A</VERB> est un scalaire ou un vecteur
-	<VERB>R = mtlb_all(A)</VERB> peut �tre remplac� par <VERB>R = and(A)</VERB>
-	</SP>      
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>    
+	Si <literal>A</literal> est un scalaire ou un vecteur
+	<literal>R = mtlb_all(A)</literal> peut �tre remplac� par <literal>R = and(A)</literal>
+	</para>      
+      </listitem>
 
-      <ITEM>
-        <SP>
-	Si <VERB>A</VERB> est une matrice
-	<VERB>R = mtlb_all(A)</VERB> peut �tre remplac� par <VERB>R = and(A,1)</VERB>
-	</SP>      
-      </ITEM>
+      <listitem>
+        <para>
+	Si <literal>A</literal> est une matrice
+	<literal>R = mtlb_all(A)</literal> peut �tre remplac� par <literal>R = and(A,1)</literal>
+	</para>      
+      </listitem>
 
-      <ITEM>
-        <SP>
-	Si <VERB>A</VERB> est une hypermatrice
-	<VERB>R = mtlb_all(A)</VERB> peut �tre remplac� par <VERB>R = and(A,firstnonsingleton(A))</VERB>
-	ou par <VERB>R = and(A,user_defined_value)</VERB> si la premi�re dimension non-�gale � 1 de A est connue.
-	</SP>
-      </ITEM>
+      <listitem>
+        <para>
+	Si <literal>A</literal> est une hypermatrice
+	<literal>R = mtlb_all(A)</literal> peut �tre remplac� par <literal>R = and(A,firstnonsingleton(A))</literal>
+	ou par <literal>R = and(A,user_defined_value)</literal> si la premi�re dimension non-�gale � 1 de A est connue.
+	</para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-	Si <VERB>dim</VERB> est inf�rieur ou �gal au nombre de dimensions de A
-	<VERB>R = mtlb_all(A,dim)</VERB> peut �tre remplac� par <VERB>R = and(A,dim)</VERB>
-	</SP>
-      </ITEM>
+      <listitem>
+        <para>
+	Si <literal>dim</literal> est inf�rieur ou �gal au nombre de dimensions de A
+	<literal>R = mtlb_all(A,dim)</literal> peut �tre remplac� par <literal>R = and(A,dim)</literal>
+	</para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-	Si <VERB>dim</VERB> est sup�rieur au nombre de dimensions de A
-	<VERB>R = mtlb_all(A,dim)</VERB> peut �tre remplac� par <VERB>R = A&lt;&gt;0</VERB> si A n'est pas
-	une matrice vide ou par <VERB>R = A</VERB> si A est une matrice vide.
-	</SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+	Si <literal>dim</literal> est sup�rieur au nombre de dimensions de A
+	<literal>R = mtlb_all(A,dim)</literal> peut �tre remplac� par <literal>R = A&lt;&gt;0</literal> si A n'est pas
+	une matrice vide ou par <literal>R = A</literal> si A est une matrice vide.
+	</para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention: <VERB>mtlb_all</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention: <literal>mtlb_all</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="firstnonsingleton">firstnonsingleton</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

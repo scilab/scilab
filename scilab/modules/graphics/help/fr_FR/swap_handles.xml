@@ -1,59 +1,54 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="swap_handles"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>swap_handles</refname><refpurpose>Permute deux handle dans la
+  hiérarchie graphique.</refpurpose></refnamediv>
+  
 
-  <TITLE>swap_handle</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="swap_handles">Permute deux handle dans la
-  hiérarchie graphique.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>swap_handle( handle1, handle2
-    )</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>swap_handle( handle1, handle2 )</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>handle1</PARAM_NAME>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>handle1</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: premier handle de la permutation.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>premier handle de la permutation.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>handle2</PARAM_NAME>
+      <varlistentry>
+        <term>handle2</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: second handle de la permutation.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>second handle de la permutation.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>La fonction swap_handles permet de permuter deux handles dans la
+  <refsection><title>Description</title>
+    <para>La fonction swap_handles permet de permuter deux handles dans la
     hierarchie graphique. Le premier prend la place du second et
-    inversement.</P>
+    inversement.</para>
 
-    <P>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
-    existe des restrictions quant à &#160; l'utilisation de la routine. Il est
+    <para>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
+    existe des restrictions quant à   l'utilisation de la routine. Il est
     par exemple impossible de permuter un handle polyline et un handle axes,
     ils ne seraient alors plus compatible avec leur nouveaux parents. Pour
-    plus d'information à &#160; ce sujet, on peut se reporter à &#160; la page
-    <LINK>graphics_entities</LINK> .</P>
+    plus d'information à   ce sujet, on peut se reporter à   la page
+    <link linkend="graphics_entities">graphics_entities</link> .</para>
 
-    <P>La routine peut-être utilisée pour modifier les indices des enfants
-    d'un handle.</P>
-  </DESCRIPTION>
+    <para>La routine peut-être utilisée pour modifier les indices des enfants
+    d'un handle.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[//-----------------//
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[//-----------------//
 //  Permier exemple   //
 //-----------------//
 
@@ -99,25 +94,25 @@ axes2 = gca() ;
 swap_handles( axes1, axes2 ) ;
 
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>copy</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="copy">copy</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>relocate_handle</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="relocate_handle">relocate_handle</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Jean-Baptiste Silvy</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>Jean-Baptiste Silvy</para></refsection>
+</refentry>

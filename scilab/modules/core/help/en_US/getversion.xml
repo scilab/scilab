@@ -1,93 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getversion"><info><pubdate>$LastChangedDate: 2006-10-17 20:39:36 +0200 (mar., 17 oct. 2006)$</pubdate></info><refnamediv><refname>getversion</refname><refpurpose>get scilab and modules version
+  information</refpurpose></refnamediv>
+  
 
-  <TITLE>getversion</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-10-17 20:39:36 +0200 (mar., 17 oct. 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="getversion">get scilab and modules version
-  information</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>version=getversion()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>version=getversion()
+[version,opts]=getversion()
+ver=getversion('scilab')
+versioninfo=getversion('scilab','string_info')
+ver=getversion('&lt;module&gt;')
+versioninfo=getversion('&lt;module&gt;','string_info')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[version,opts]=getversion()</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>version</term>
 
-    <CALLING_SEQUENCE_ITEM>ver=getversion('scilab')</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>a string</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>versioninfo=getversion('scilab','string_info')</CALLING_SEQUENCE_ITEM>
+      <varlistentry>
+        <term>versioninfo</term>
 
-    <CALLING_SEQUENCE_ITEM>ver=getversion('&lt;module&gt;')</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>a string about version</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>versioninfo=getversion('&lt;module&gt;','string_info')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+      <varlistentry>
+        <term>ver</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>version</PARAM_NAME>
+        <listitem>
+          <para>a integer vector</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          <para>ver(1) Major version</para>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>versioninfo</PARAM_NAME>
+          <para>ver(2) Minor version</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string about version</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+          <para>ver(3) Maintenance version</para>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>ver</PARAM_NAME>
+          <para>ver(4) SVN Revision version</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a integer vector</SP>
+      <varlistentry>
+        <term>opts</term>
 
-          <P>ver(1) Major version</P>
+        <listitem>
+          <para>a vector of string with four entries
+          :<literal>[compiler,pvm,tk,modelicac]</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-          <P>ver(2) Minor version</P>
+  <refsection><title>Description</title>
+    <para>return in <literal>version</literal> the Scilab version name and in
+    <literal>opts</literal> build options which can be used to determine if scilab
+    has been build with pvm, tk or modelicac.</para>
+  </refsection>
 
-          <P>ver(3) Maintenance version</P>
-
-          <P>ver(4) SVN Revision version</P>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>opts</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a vector of string with four entries
-          :<VERB>[compiler,pvm,tk,modelicac]</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>return in <VERB>version</VERB> the Scilab version name and in
-    <VERB>opts</VERB> build options which can be used to determine if scilab
-    has been build with pvm, tk or modelicac.</P>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[getversion()
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[getversion()
 [version,opts]=getversion()
 ver=getversion('scilab')
 verstr=getversion('scilab','string_info')
 ver=getversion('overloading')
 verstr=getversion('overloading','string_info')
-   ]]></EXAMPLE>
+   ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getmodules</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getmodules">getmodules</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

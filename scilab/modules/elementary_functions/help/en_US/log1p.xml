@@ -1,37 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>log1p</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="log1p"> computes with accuracy the natural logarithm of its argument added by one</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=log1p(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar, vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar, vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>logp1(x)</VERB> is the &quot;element-wise&quot; log(1+x) function. <VERB>y(i,j)=log(1 + x(i,j))</VERB>.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="log1p"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>log1p</refname><refpurpose> computes with accuracy the natural logarithm of its argument added by one</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=log1p(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real scalar, vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real scalar, vector or matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>logp1(x)</literal> is the "element-wise" log(1+x) function. <literal>y(i,j)=log(1 + x(i,j))</literal>.
     This function, defined for x &gt; -1, must be used if we want to compute log(1+x) with
-    accuracy for |x| &lt;&lt; 1.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    accuracy for |x| &lt;&lt; 1.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 format("e",24)
 log(1.001)
 log1p(0.001)
@@ -40,12 +36,12 @@ log1p(1.e-7)
 log(1 + 1.e-20)
 log1p(1.e-20)
 format("v") //reset default format
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>log</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>B.P.;   </AUTHOR>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="log">log</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>B.P.;   </para></refsection>
+</refentry>

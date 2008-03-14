@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,87 +10,83 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frep2tf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>frep2tf</refname><refpurpose> transfer function realization from frequency response</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>frq</term>
+        <listitem>
+          <para>vector of frequencies in Hz.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>repf</term>
+        <listitem>
+          <para>vector of frequency response</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dg</term>
+        <listitem>
+          <para>degree of linear system</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dom</term>
+        <listitem>
+          <para>time domain (<literal>'c'</literal> or <literal>'d'</literal> or <literal>dt</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tols</term>
+        <listitem>
+          <para>a vector of size 3 giving the relative and absolute tolerance  and the maximum number of iterations (default values are <literal>rtol=1.e-2; atol=1.e-4, N=10</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>weight</term>
+        <listitem>
+          <para>vector of weights on frequencies</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>SISO transfer function</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>err</term>
+        <listitem>
+          <para>error (for example if <literal>dom='c'</literal> <literal>sum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Frequency response to  transfer function conversion. The order of <literal>h</literal>
+    is a priori given in <literal>dg</literal> which must be provided.
+    The following linear system is solved in the least square sense.</para>
+    <programlisting><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>frep2tf</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="frep2tf"> transfer function realization from frequency response</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>frq</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of frequencies in Hz.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>repf</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of frequency response</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>dg</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: degree of linear system</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>dom</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: time domain (<VERB>'c'</VERB> or <VERB>'d'</VERB> or <VERB>dt</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tols</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a vector of size 3 giving the relative and absolute tolerance  and the maximum number of iterations (default values are <VERB>rtol=1.e-2; atol=1.e-4, N=10</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>weight</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of weights on frequencies</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: SISO transfer function</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>err</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: error (for example if <VERB>dom='c'</VERB> <VERB>sum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Frequency response to  transfer function conversion. The order of <VERB>h</VERB>
-    is a priori given in <VERB>dg</VERB> which must be provided.
-    The following linear system is solved in the least square sense.</P>
-    <VERBATIM>
-<![CDATA[
  weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
-   ]]>
-    </VERBATIM>
-    <P>
-    where <VERB>phi_k= 2*%i*%pi*frq</VERB> when <VERB>dom='c'</VERB> and <VERB>phi_k=exp(2*%i*%pi*dom*frq</VERB> if not. If the <VERB>weight</VERB> vector is not given a default 
-    penalization is used (when <VERB>dom='c'</VERB>).</P>
-    <P>
-    A stable and minimum phase system can be obtained by using function <VERB>factors</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    where <literal>phi_k= 2*%i*%pi*frq</literal> when <literal>dom='c'</literal> and <literal>phi_k=exp(2*%i*%pi*dom*frq</literal> if not. If the <literal>weight</literal> vector is not given a default 
+    penalization is used (when <literal>dom='c'</literal>).</para>
+    <para>
+    A stable and minimum phase system can be obtained by using function <literal>factors</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 s=poly(0,'s');
 h=syslin('c',(s-1)/(s^3+5*s+20))
 frq=0:0.05:3;repf=repfreq(h,frq);
@@ -112,23 +108,23 @@ frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
 xbasc();plot2d1("onn",frq',abs([repf;rep2])');
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>imrep2ss</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>arl2</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>time_id</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>armax</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>frfit</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="imrep2ss">imrep2ss</link>
+    </member>
+    <member>
+      <link linkend="arl2">arl2</link>
+    </member>
+    <member>
+      <link linkend="time_id">time_id</link>
+    </member>
+    <member>
+      <link linkend="armax">armax</link>
+    </member>
+    <member>
+      <link linkend="frfit">frfit</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

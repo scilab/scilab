@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jaime Urzua
@@ -10,59 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-<LANGUAGE>eng</LANGUAGE>
-<TITLE>waitbar</TITLE>
-<TYPE>sciGUI toolbox function</TYPE>
-<DATE>$LastChangedDate$</DATE>
-<SHORT_DESCRIPTION name="waitbar"> Draw a waitbar</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="waitbar"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>waitbar</refname><refpurpose> Draw a waitbar</refpurpose></refnamediv>
 
-<CALLING_SEQUENCE>
-<CALLING_SEQUENCE_ITEM>winId=waitbar(x)</CALLING_SEQUENCE_ITEM>
-<CALLING_SEQUENCE_ITEM>winId=waitbar(x,mes)</CALLING_SEQUENCE_ITEM>
-<CALLING_SEQUENCE_ITEM>winId=waitbar(mes)</CALLING_SEQUENCE_ITEM>
-<CALLING_SEQUENCE_ITEM>waitbar(x,winId)</CALLING_SEQUENCE_ITEM>
-<CALLING_SEQUENCE_ITEM>waitbar(mes,winId)</CALLING_SEQUENCE_ITEM>
-<CALLING_SEQUENCE_ITEM>waitbar(x,mes,winId)</CALLING_SEQUENCE_ITEM>
-</CALLING_SEQUENCE>
 
-<PARAM>
-<PARAM_INDENT>
-<PARAM_ITEM>
- <PARAM_NAME>x</PARAM_NAME>
- <PARAM_DESCRIPTION><SP>: real, fraction to display.</SP></PARAM_DESCRIPTION>
-</PARAM_ITEM>
-<PARAM_ITEM>
- <PARAM_NAME>mes</PARAM_NAME>
- <PARAM_DESCRIPTION><SP>: string, message to display.</SP></PARAM_DESCRIPTION>
-</PARAM_ITEM>
-<PARAM_ITEM>
- <PARAM_NAME>winId</PARAM_NAME>
- <PARAM_DESCRIPTION><SP>: integer greater than 0, window identificator.</SP></PARAM_DESCRIPTION>
-</PARAM_ITEM>
-</PARAM_INDENT>
-</PARAM>
 
-<DESCRIPTION>
-<P><VERB>waitbar(x)</VERB> create a new waitbar displaying a fraction x, return window identificator.</P>
-<P><VERB>waitbar(x,mes)</VERB> create a new waitbar displaying a fraction x and message mes, return window identificator.</P>
-<P><VERB>waitbar(mes)</VERB> create a new waitbar displaying a fraction 0 and message mes, return window identificator.</P>
-<P><VERB>waitbar(x,mes)</VERB> create a new waitbar displaying a fraction 0 and message mes, return window identificator.</P>
-<P><VERB>waitbar(x,winId)</VERB>, <VERB>waitbar(mes,winId)</VERB> and <VERB>waitbar(x,mes,winId)</VERB> update waitbar with window identificator winId.</P>
 
-</DESCRIPTION>
 
-<EXAMPLE>
-<![CDATA[winId=waitbar('This is an example');
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>winId=waitbar(x)
+winId=waitbar(x,mes)
+winId=waitbar(mes)
+waitbar(x,winId)
+waitbar(mes,winId)
+waitbar(x,mes,winId)</synopsis></refsynopsisdiv>
+
+<refsection><title>Parameters</title>
+<variablelist>
+<varlistentry>
+ <term>x</term>
+ <listitem><para>real, fraction to display.</para></listitem>
+</varlistentry>
+<varlistentry>
+ <term>mes</term>
+ <listitem><para>string, message to display.</para></listitem>
+</varlistentry>
+<varlistentry>
+ <term>winId</term>
+ <listitem><para>integer greater than 0, window identificator.</para></listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+
+<refsection><title>Description</title>
+<para><literal>waitbar(x)</literal> create a new waitbar displaying a fraction x, return window identificator.</para>
+<para><literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction x and message mes, return window identificator.</para>
+<para><literal>waitbar(mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.</para>
+<para><literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.</para>
+<para><literal>waitbar(x,winId)</literal>, <literal>waitbar(mes,winId)</literal> and <literal>waitbar(x,mes,winId)</literal> update waitbar with window identificator winId.</para>
+
+</refsection>
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+winId=waitbar('This is an example');
 realtimeinit(0.3);
 for j=0:0.1:1,
     realtime(3*j);
     waitbar(j,winId);
 end
-winclose(winId);]]>
-</EXAMPLE>
+winclose(winId);
+]]></programlisting></refsection>
 
-<AUTHOR>Jaime Urzua</AUTHOR>
+<refsection><title>Authors</title><para>Jaime Urzua</para></refsection>
   
-</MAN>
+</refentry>

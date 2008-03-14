@@ -1,47 +1,43 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>unix_g</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="unix_g"> shell (sh) command execution, output redirected to a variable</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>rep=unix_g(cmd)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[rep,stat]=unix_g(cmd)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>cmd</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rep</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a column vector of character strings</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>stat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a integer, the error status. stat=0 if no error occured</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Sends a string <VERB>cmd</VERB> to Unix for execution by the sh
-    shell. The standard output is redirected to scilab variable <VERB>rep</VERB>.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unix_g"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unix_g</refname><refpurpose> shell (sh) command execution, output redirected to a variable</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>rep=unix_g(cmd)
+[rep,stat]=unix_g(cmd)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>cmd</term>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep</term>
+        <listitem>
+          <para>a column vector of character strings</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stat</term>
+        <listitem>
+          <para>a integer, the error status. stat=0 if no error occured</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Sends a string <literal>cmd</literal> to Unix for execution by the sh
+    shell. The standard output is redirected to scilab variable <literal>rep</literal>.
     Unix execution errors are trapped; *NOTE* that only the last shell command
-    error is reported when a list of command separated by &quot;;&quot; is sent: this is
-    not recommended.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    error is reported when a list of command separated by ";" is sent: this is
+    not recommended.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 function d=DIR(path)
   path=pathconvert(path,%t,%t)
   if MSDOS then
@@ -52,20 +48,20 @@ function d=DIR(path)
 endfunction
 
 DIR('SCI/demos')
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>unix_s</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unix_w</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unix_x</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unix</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="unix_s">unix_s</link>
+    </member>
+    <member>
+      <link linkend="unix_w">unix_w</link>
+    </member>
+    <member>
+      <link linkend="unix_x">unix_x</link>
+    </member>
+    <member>
+      <link linkend="unix">unix</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

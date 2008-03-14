@@ -1,103 +1,99 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>linear_interpn</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="linear_interpn">n dimensional linear interpolation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>xp1, xp2, .., xpn</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real vectors (or matrices) of same size</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x1 ,x2, ..., xn</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  strictly increasing row vectors (with at least 2 components)
-               defining the n dimensional interpolation grid</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  vector (case n=1), matrix (case n=2) or hypermatrix (case n &gt; 2) with the
-                 values of the underlying interpolated function at the grid points.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>out_mode</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) string defining the evaluation outside the grid (extrapolation)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>vp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  vector or matrix of same size than <VERB>xp1, ..., xpn</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Given a n dimensional grid defined by the n vectors <VERB>x1 ,x2, ..., xn</VERB> and the
-    values <VERB>v</VERB> of a function (says <EM>f</EM>) at the grid points :
-    </P>
-        <VERBATIM><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linear_interpn"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>linear_interpn</refname><refpurpose>n dimensional linear interpolation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>xp1, xp2, .., xpn</term>
+        <listitem>
+          <para>real vectors (or matrices) of same size</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x1 ,x2, ..., xn</term>
+        <listitem>
+          <para> strictly increasing row vectors (with at least 2 components)
+               defining the n dimensional interpolation grid</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para> vector (case n=1), matrix (case n=2) or hypermatrix (case n &gt; 2) with the
+                 values of the underlying interpolated function at the grid points.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>out_mode</term>
+        <listitem>
+          <para>(optional) string defining the evaluation outside the grid (extrapolation)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>vp</term>
+        <listitem>
+          <para> vector or matrix of same size than <literal>xp1, ..., xpn</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Given a n dimensional grid defined by the n vectors <literal>x1 ,x2, ..., xn</literal> and the
+    values <literal>v</literal> of a function (says <emphasis>f</emphasis>) at the grid points :
+    </para>
+        <programlisting><![CDATA[
       v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
-         ]]></VERBATIM>
-    <P>
-    this function computes the linear interpolant of <EM>f</EM> from the grid (called <EM>s</EM>
+         ]]></programlisting>
+    <para>
+    this function computes the linear interpolant of <emphasis>f</emphasis> from the grid (called <emphasis>s</emphasis>
     in the following) at the points which coordinates are defined by the vectors (or matrices) 
-    <VERB>xp1, xp2, ..., xpn</VERB>:
-    </P>
-        <VERBATIM><![CDATA[
+    <literal>xp1, xp2, ..., xpn</literal>:
+    </para>
+        <programlisting><![CDATA[
    vp(i) = s(xp1(i),xp2(i), ..., xpn(i))
 
    or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) in case the xpk are matrices
-         ]]></VERBATIM>
-    <P>
-    The <VERB>out_mode</VERB> parameter set the evaluation rule for extrapolation: if we note 
-    <EM>Pi=(xp1(i),xp2(i),...,xpn(i))</EM> then <VERB>out_mode</VERB> defines the
+         ]]></programlisting>
+    <para>
+    The <literal>out_mode</literal> parameter set the evaluation rule for extrapolation: if we note 
+    <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> then <literal>out_mode</literal> defines the
     evaluation rule when:
-    </P>
-        <VERBATIM><![CDATA[
+    </para>
+        <programlisting><![CDATA[
    P(i) not in  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
-         ]]></VERBATIM>
-    <P>
+         ]]></programlisting>
+    <para>
     The different choices are:
-    </P>
-    <ITEMIZE label="out_mode">
-      <ITEM label="&quot;by_zero&quot;">
-         <SP>: an extrapolation by zero is done</SP>
-      </ITEM>
-      <ITEM label="&quot;by_nan&quot;">
-         <SP>: extrapolation by Nan</SP>
-      </ITEM>
-      <ITEM label="&quot;C0&quot;">
-         <SP>: the extrapolation is defined as follows:</SP>
-        <VERBATIM><![CDATA[
+    </para>
+    <variablelist>
+      <varlistentry><term>"by_zero"</term><listitem>
+         <para>an extrapolation by zero is done</para>
+      </listitem></varlistentry>
+      <varlistentry><term>"by_nan"</term><listitem>
+         <para>extrapolation by Nan</para>
+      </listitem></varlistentry>
+      <varlistentry><term>"C0"</term><listitem>
+         <para>the extrapolation is defined as follows:</para>
+        <programlisting><![CDATA[
      s(P) = s(proj(P)) where proj(P) is nearest point from P 
                        located on the grid boundary.
-         ]]></VERBATIM>
-      </ITEM>
-      <ITEM label="&quot;natural&quot;">
-         <SP>: the extrapolation is done by using the nearest n-linear patch from the point.</SP>
-      </ITEM>
-      <ITEM label="&quot;periodic&quot;">
-         <SP>: <VERB>s</VERB> is extended by periodicity.</SP>
-      </ITEM>
-    </ITEMIZE>
-  </DESCRIPTION>
+         ]]></programlisting>
+      </listitem></varlistentry>
+      <varlistentry><term>"natural"</term><listitem>
+         <para>the extrapolation is done by using the nearest n-linear patch from the point.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>"periodic"</term><listitem>
+         <para>: <literal>s</literal> is extended by periodicity.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // example 1 : 1d linear interpolation
 x = linspace(0,2*%pi,11);
 y = sin(x);
@@ -197,23 +193,23 @@ colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("tri-linear interpolation of "+func)
 xselect()
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>interpln</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>splin</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>splin2d</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>splin3d</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="interpln">interpln</link>
+    </member>
+    <member>
+      <link linkend="splin">splin</link>
+    </member>
+    <member>
+      <link linkend="splin2d">splin2d</link>
+    </member>
+    <member>
+      <link linkend="splin3d">splin3d</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>
     B. Pincon
-  </AUTHOR>
-</MAN>
+  </para></refsection>
+</refentry>

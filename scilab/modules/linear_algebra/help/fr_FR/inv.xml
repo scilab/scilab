@@ -1,59 +1,41 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>inv  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="inv"> inverse d&apos;une matrice  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>inv(X)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>X  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice carrée réelle, complexe, polynomiale ou rationnelle,
-	    liste de type &quot;syslin&quot;
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-      <VERB>inv(X)</VERB> est l&apos;inverse de la matrice carrée
-      <VERB>X</VERB>. Un message de mise en garde est affiché si <VERB>X</VERB>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="inv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>inv</refname><refpurpose> inverse d'une matrice  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>inv(X)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>X  </term>
+	<listitem>
+	  <para>matrice carrée réelle, complexe, polynomiale ou rationnelle,
+	    liste de type "syslin"
+	  </para>
+	</listitem> 
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+      <literal>inv(X)</literal> est l'inverse de la matrice carrée
+      <literal>X</literal>. Un message de mise en garde est affiché si <literal>X</literal>
       est mal équilibrée (termes très petits et termes très grands) ou
       singulière à la précision machine.
-    </P>
-    <P>
-      Pour les matrices polynomiales ou rationnelles, <VERB>inv(X)</VERB> est
-      équivalent à <VERB>invr(X)</VERB>.
-    </P>
-    <P>
+    </para>
+    <para>
+      Pour les matrices polynomiales ou rationnelles, <literal>inv(X)</literal> est
+      équivalent à <literal>invr(X)</literal>.
+    </para>
+    <para>
       Pour les systèmes dynamiques linéaires sous forme de leur représentation
-      d&apos;état (liste de type <VERB>syslin</VERB>), <VERB>inv(X)</VERB> est
-      équivalent à <VERB>invsyslin(X)</VERB>.
-    </P>
-  </DESCRIPTION>
+      d'état (liste de type <literal>syslin</literal>), <literal>inv(X)</literal> est
+      équivalent à <literal>invsyslin(X)</literal>.
+    </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     A=rand(3,3);inv(A)*A
     //
     x=poly(0,'x');
@@ -65,26 +47,26 @@
     A=ssrand(2,2,3);
     W=inv(A)*A
     clean(ss2tf(W))
-    ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>slash</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>backslash</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>pinv</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>lusolve</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>invr</LINK> </SEE_ALSO_ITEM>  
-    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <USED_FUNCTIONS>
-    <P>
-      La fonction <VERB>inv</VERB> pour les matrices de  nombres est basée
+    ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="slash">slash</link> </member> 
+    <member> <link linkend="backslash">backslash</link> </member> 
+    <member> <link linkend="pinv">pinv</link> </member> 
+    <member> <link linkend="qr">qr</link> </member> 
+    <member> <link linkend="lufact">lufact</link> </member> 
+    <member> <link linkend="lusolve">lusolve</link> </member> 
+    <member> <link linkend="invr">invr</link> </member>  
+    <member> <link linkend="coff">coff</link> </member> 
+    <member> <link linkend="coffg">coffg</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Fonctions Utilisées</title>
+    <para>
+      La fonction <literal>inv</literal> pour les matrices de  nombres est basée
       sur les routines Lapack :
       DGETRF, DGETRI pour les matrices réelles et  ZGETRF, ZGETRI pour le
       cas complexe.
       Pour les matrices de polynomes et de fractions rationnelles
-      <VERB>inv</VERB>  est basée sur la fonction Scilab  <VERB>invr</VERB>.
-    </P>
-   </USED_FUNCTIONS>
-</MAN>
+      <literal>inv</literal>  est basée sur la fonction Scilab  <literal>invr</literal>.
+    </para>
+   </refsection>
+</refentry>

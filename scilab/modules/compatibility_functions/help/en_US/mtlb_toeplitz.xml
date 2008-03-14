@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,72 +10,71 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_toeplitz</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_toeplitz"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_toeplitz</refname><refpurpose>Matlab toeplitz emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_toeplitz">Matlab toeplitz emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>toeplitz</VERB> behave differently in some particular cases:</P>
+    <para>Matlab and Scilab <literal>toeplitz</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
         With one input parameter: if this parameter is complex or is a matrix, output value of
-	Matlab and Scilab <VERB>toeplitz</VERB> can be different.
-        </SP>
-      </ITEM>
+	Matlab and Scilab <literal>toeplitz</literal> can be different.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         With two input parameters: if they are vectors and their first elements are not equal, 
 	Scilab returns an error but Matlab gives priority to the column element. If they are matrices, output value of
-	Matlab and Scilab <VERB>toeplitz</VERB> are different.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+	Matlab and Scilab <literal>toeplitz</literal> are different.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_toeplitz(c[,r])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>toeplitz(c[,r])</VERB> when it was not
+    <para>
+    The function <literal>mtlb_toeplitz(c[,r])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>toeplitz(c[,r])</literal> when it was not
     possible to know what were the operands/inputs[CUSTOM] while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_toeplitz</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_toeplitz</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        When called with one input, if <VERB>c</VERB> is a real scalar or vector 
-        <VERB>mtlb_toeplitz(c)</VERB> may be replaced by <VERB>toeplitz(c)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When called with one input, if <literal>c</literal> is a real scalar or vector 
+        <literal>mtlb_toeplitz(c)</literal> may be replaced by <literal>toeplitz(c)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with two inputs, if <VERB>c</VERB> and <VERB>r</VERB> are scalars or vectors and their first elements are equal
-        <VERB>mtlb_toeplitz(c,r)</VERB> may be replaced by <VERB>toeplitz(c,r)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        When called with two inputs, if <literal>c</literal> and <literal>r</literal> are scalars or vectors and their first elements are equal
+        <literal>mtlb_toeplitz(c,r)</literal> may be replaced by <literal>toeplitz(c,r)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_toeplitz</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_toeplitz</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  </refsection>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

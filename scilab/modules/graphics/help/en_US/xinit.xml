@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,59 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xinit</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xinit"> initialisation of a graphics driver</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xinit([driver-name])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>driver-name</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Initialisation of the given driver.</P>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xinit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xinit</refname><refpurpose> initialisation of a graphics driver</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xinit([driver-name])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>driver-name</term>
+        <listitem>
+          <para>string.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Initialisation of the given driver.</para>
+    <para>
     For X Window
-    <VERB>driver-name</VERB> can be a string which gives the name of a display
+    <literal>driver-name</literal> can be a string which gives the name of a display
     and a new graphics window is created. If the argument is omitted 
     the value of the environment variable DISPLAY is used if it exists or 
-    the value &quot;unix:0.0&quot; is used.</P>
-    <P>
-    For the Postscript, Xfig or Gif driver, <VERB>driver-name</VERB> is a name of 
-    the file where all the graphics operations are recorded.</P>
-    <P>Note that in Postscript case the generated file is not a complete
+    the value "unix:0.0" is used.</para>
+    <para>
+    For the Postscript, Xfig or Gif driver, <literal>driver-name</literal> is a name of 
+    the file where all the graphics operations are recorded.</para>
+    <para>Note that in Postscript case the generated file is not a complete
       postscript file. It should be converted using the BEpsf or Blatexpr shell
-      programs (see printing)</P>
+      programs (see printing)</para>
       
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 driver("Pos")
 xinit("foo.ps")
 plot2d()
 xend()
 driver("X11")
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xbasimp</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xend</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xbasimp">xbasimp</link>
+    </member>
+    <member>
+      <link linkend="xend">xend</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>

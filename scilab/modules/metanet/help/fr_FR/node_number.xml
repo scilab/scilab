@@ -1,53 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>node_number  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="node_number"> nombre de sommets d&apos;un graphe  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>n = node_number(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>n  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier, nombre de sommets
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>node_number</VERB> renvoie le nombre <VERB>n</VERB> de sommets du graphe.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>arc_number</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>edge_number</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="node_number"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>node_number</refname><refpurpose> nombre de sommets d'un graphe  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>n = node_number(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>n  </term>
+  <listitem>
+  <para>entier, nombre de sommets
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>node_number</literal> renvoie le nombre <literal>n</literal> de sommets du graphe.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="arc_number">arc_number</link> </member>     <member> <link linkend="edge_number">edge_number</link> </member>
+  </simplelist></refsection>
+</refentry>

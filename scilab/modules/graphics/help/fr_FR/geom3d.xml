@@ -1,53 +1,49 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="geom3d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>geom3d</refname><refpurpose>projection 3D vers 2D après une instruction
+  de dessin 3D</refpurpose></refnamediv>
+  
 
-  <TITLE>geom3d</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="geom3d">projection 3D vers 2D après une instruction
-  de dessin 3D</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x,y]=geom3d(x1,y1,z1)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[x,y]=geom3d(x1,y1,z1)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x1,y1,z1</PARAM_NAME>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x1,y1,z1</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vecteur réels de même taille (points 3D).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>vecteur réels de même taille (points 3D).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+      <varlistentry>
+        <term>x,y</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vecteurs réels de même taille que <VERB>x1</VERB>,
-          <VERB>y1</VERB> et <VERB>z1</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>vecteurs réels de même taille que <literal>x1</literal>,
+          <literal>y1</literal> et <literal>z1</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Après l'utilisation d'une instruction de dessin 3D du type
-    <VERB>plot3d</VERB>, <VERB>plot3d1</VERB> ou <VERB>param3d</VERB>,
-    <VERB>geom3d</VERB> permet de faire la correspondance entre un point de
-    l'espace 3D <VERB>(x1(i),y1(i),z1(i))</VERB> et le point correspondant
-    <VERB>(x(i),y(i))</VERB> dans le plan projeté 2D. On peut ainsi utiliser
-    les primitives graphiques avec <VERB>(x,y)</VERB> pour superposer des
-    dessins.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Après l'utilisation d'une instruction de dessin 3D du type
+    <literal>plot3d</literal>, <literal>plot3d1</literal> ou <literal>param3d</literal>,
+    <literal>geom3d</literal> permet de faire la correspondance entre un point de
+    l'espace 3D <literal>(x1(i),y1(i),z1(i))</literal> et le point correspondant
+    <literal>(x(i),y(i))</literal> dans le plan projeté 2D. On peut ainsi utiliser
+    les primitives graphiques avec <literal>(x,y)</literal> pour superposer des
+    dessins.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 
 deff("[z]=surf(x,y)","z=sin(x)*cos(y)")
 t=%pi*(-10:10)/10;
@@ -57,7 +53,7 @@ fplot3d(t,t,surf,35,45,"X@Y@Z")
 // which can be drawn using geom3d and xpoly
 [x,y]=geom3d(%pi/2,0,surf(%pi/2,0))
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>J.Ph.C.</para></refsection>
+</refentry>

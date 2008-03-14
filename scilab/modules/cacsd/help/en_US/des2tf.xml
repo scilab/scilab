@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,95 +10,91 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>des2tf</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="des2tf"> descriptor to transfer function conversion</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[S]=des2tf(sl)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[Bfs,Bis,chis]=des2tf(sl)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list (linear system in descriptor form)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Bfs, Bis</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: two polynomial matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>chis</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: polynomial</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>S</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: rational matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="des2tf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>des2tf</refname><refpurpose> descriptor to transfer function conversion</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[S]=des2tf(sl)
+[Bfs,Bis,chis]=des2tf(sl)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>list (linear system in descriptor form)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Bfs, Bis</term>
+        <listitem>
+          <para>two polynomial matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>chis</term>
+        <listitem>
+          <para>polynomial</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>rational matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Given the linear system in descriptor form i.e.
-    <VERB>Sl=list('des',A,B,C,D,E)</VERB>, <VERB>des2tf</VERB> converts <VERB>sl</VERB> into
-    its transfer function representation:</P>
-    <VERBATIM>
-<![CDATA[
+    <literal>Sl=list('des',A,B,C,D,E)</literal>, <literal>des2tf</literal> converts <literal>sl</literal> into
+    its transfer function representation:</para>
+    <programlisting><![CDATA[
+
 S=C*(s*E-A)^(-1)*B+D
-   ]]>
-    </VERBATIM>
-    <P>
-    Called with 3 outputs arguments <VERB>des2tf</VERB> returns
-    <VERB>Bfs</VERB> and <VERB>Bis</VERB> two polynomial matrices, and <VERB>chis</VERB>
-    polynomial such that:</P>
-    <VERBATIM>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para>
+    Called with 3 outputs arguments <literal>des2tf</literal> returns
+    <literal>Bfs</literal> and <literal>Bis</literal> two polynomial matrices, and <literal>chis</literal>
+    polynomial such that:</para>
+    <programlisting><![CDATA[
+
 S=Bfs/chis - Bis
-   ]]>
-    </VERBATIM>
-    <P><VERB>chis</VERB> is the determinant of <VERB>(s*E-A)</VERB> (up to a xcative constant);</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+    <para><literal>chis</literal> is the determinant of <literal>(s*E-A)</literal> (up to a xcative constant);</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 s=poly(0,'s');
 G=[1/(s+1),s;1+s^2,3*s^3];
 Descrip=tf2des(G);Tf1=des2tf(Descrip)
 Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
 [A,B,C,D,E]=Descrip2(2:6);Tf3=C*inv(s*E-A)*B+D
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>glever</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pol2des</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>tf2des</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>ss2tf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>des2ss</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>rowshuff</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F. D.  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="glever">glever</link>
+    </member>
+    <member>
+      <link linkend="pol2des">pol2des</link>
+    </member>
+    <member>
+      <link linkend="tf2des">tf2des</link>
+    </member>
+    <member>
+      <link linkend="ss2tf">ss2tf</link>
+    </member>
+    <member>
+      <link linkend="des2ss">des2ss</link>
+    </member>
+    <member>
+      <link linkend="rowshuff">rowshuff</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F. D.  </para></refsection>
+</refentry>

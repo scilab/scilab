@@ -1,78 +1,65 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_linspace</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_linspace"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_linspace</refname><refpurpose>Fonction d'�mulation de la fonction Matlab linspace</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_linspace">Fonction d'�mulation de la fonction Matlab linspace</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>linspace</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>linspace</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec les cha�nes de caract�re: La fonction Matlab <VERB>linspace(A,B[,n])</VERB> renvoie un vecteur de caract�res si <VERB>A</VERB> ou <VERB>B</VERB> est une cha�ne de caract�re, mais la fonction Scilab ne marche pas avec des entr�es de ce type.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec les cha�nes de caract�re: La fonction Matlab <literal>linspace(A,B[,n])</literal> renvoie un vecteur de caract�res si <literal>A</literal> ou <literal>B</literal> est une cha�ne de caract�re, mais la fonction Scilab ne marche pas avec des entr�es de ce type.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_linspace(A,B[,n])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>linspace(A,B[,n])</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_linspace(A,B[,n])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>linspace(A,B[,n])</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_linspace</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_linspace</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> et <VERB>B</VERB> ne sont pas des cha�nes de caract�res,
-        <VERB>mtlb_linspace(A,B[,n])</VERB> peut �tre remplac� par <VERB>linspace(A,B[,n])</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> et <literal>B</literal> ne sont pas des cha�nes de caract�res,
+        <literal>mtlb_linspace(A,B[,n])</literal> peut �tre remplac� par <literal>linspace(A,B[,n])</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> ou <VERB>B</VERB> est une cha�ne de caract�res,
-        <VERB>mtlb_linspace(A,B[,n])</VERB> peut �tre remplac� par <VERB>ascii(linspace(ascii(A),ascii(B)[,n]))</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Si <literal>A</literal> ou <literal>B</literal> est une cha�ne de caract�res,
+        <literal>mtlb_linspace(A,B[,n])</literal> peut �tre remplac� par <literal>ascii(linspace(ascii(A),ascii(B)[,n]))</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_linspace</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_linspace</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>ascii</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="ascii">ascii</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -11,52 +11,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="removedir"><info><pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2007) $</pubdate></info><refnamediv><refname>removedir</refname><refpurpose>Remove a directory</refpurpose></refnamediv>
+  
 
-  <TITLE>removedir</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2007) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="removedir">Remove a directory</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>removedir('dirname')</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[status] = removedir('dirname','s')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>removedir('dirname')
+[status] = removedir('dirname','s')</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>removedir('dirname') removes the directory dirname from the current
+  <refsection><title>Description</title>
+    <para>removedir('dirname') removes the directory dirname from the current
     directory. If the directory is not empty, files and subdirectories are removed. If
     dirname is not in the current directory, specify the relative path to the
-    current directory or the full path for dirname.</P>
+    current directory or the full path for dirname.</para>
 
-    <P>[status] = removedir('dirname') removes the directory dirname
+    <para>[status] = removedir('dirname') removes the directory dirname
     and its contents from the current directory, returning the status.
-    Here, status is %T for success and is %F for error.</P>
+    Here, status is %T for success and is %F for error.</para>
     
-    <P>removedir is used by rmdir.</P>
-  </DESCRIPTION>
+    <para>removedir is used by rmdir.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 createdir(SCIHOME+'/Directory_test')
 removedir(SCIHOME+'/Directory_test')
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>mkdir</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="mkdir">mkdir</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>rmdir</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="rmdir">rmdir</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

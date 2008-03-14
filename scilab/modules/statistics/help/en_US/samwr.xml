@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,74 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="samwr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>samwr</refname><refpurpose> Sampling without replacement </refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s = samwr(sizam,numsamp,X)</synopsis></refsynopsisdiv>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>samwr</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="samwr"> Sampling without replacement </SHORT_DESCRIPTION>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>s = samwr(sizam,numsamp,X)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+    <varlistentry>
+    <term>sizam</term>
+    <listitem>
+       <para>integer. Size of a sample. It must be less or equal than
+        size of X.</para>
+    </listitem>
+    </varlistentry>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>numsamp</term>
+    <listitem>
+       <para>integer. Number of samples to be extracted.</para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>sizam</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: integer. Size of a sample. It must be less or equal than
-        size of X.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>X</term>
+    <listitem>
+       <para>column vector. It contains the population.</para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>numsamp</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: integer. Number of samples to be extracted.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>X</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: column vector. It contains the population.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>s</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: matrix of type sizsam  x numsamp. It contains
+    <varlistentry>
+    <term>s</term>
+    <listitem>
+       <para>matrix of type sizsam  x numsamp. It contains
          numsamp  random samples  (the  columns) each  of
          sizam  (size(X,'*'))  extractions,  without
-         replacement, from the column vector X.</SP>
+         replacement, from the column vector X.</para>
  
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-   <P>Gives samples without replacement from a column vector.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+   <para>Gives samples without replacement from a column vector.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     a=[0.33 1.24 2.1 1.03]
     s=samwr(4,12,a)
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sample</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>samplef</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="sample">sample</link> </member>
+    <member> <link linkend="samplef">samplef</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>
     Carlos Klimann
-  </AUTHOR>
+  </para></refsection>
 
 
-</MAN>
+</refentry>

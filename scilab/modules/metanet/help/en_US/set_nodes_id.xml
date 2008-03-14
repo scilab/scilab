@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,63 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="set_nodes_id"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>set_nodes_id</refname><refpurpose>displays labels near selected nodes in a graph display.</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>set_nodes_id</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="set_nodes_id">displays labels near selected nodes in a graph display.</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>set_nodes_id(nodes,Id,loc)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>set_nodes_id(nodes,Id,loc)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>nodes</term>
+    <listitem>
+       <para> vector of integers, the selected nodes
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>nodes</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  vector of integers, the selected nodes
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>Id</term>
+    <listitem>
+       <para>vector of strings: the labels to be drawn with the nodes;
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>Id</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : vector of strings: the labels to be drawn with the nodes;
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>loc</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : string, with possible values : <VERB>"center"</VERB>,
-       <VERB>"right"</VERB>, <VERB>"left"</VERB>, <VERB>"up"</VERB>
-       and <VERB>"downn</VERB>. Specify where the labels will be
+    <varlistentry>
+    <term>loc</term>
+    <listitem>
+       <para>string, with possible values : <literal>"center"</literal>,
+       <literal>"right"</literal>, <literal>"left"</literal>, <literal>"up"</literal>
+       and <literal>"downn</literal>. Specify where the labels will be
        drawn.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-  <SP><VERB>set_nodes_id(nodes,Id,loc) </VERB> allows to display
+  <refsection><title>Description</title>
+  <para><literal>set_nodes_id(nodes,Id,loc) </literal> allows to display
   labels near selected nodes  of the displayed graph in the current
-    <VERB>edit_graph</VERB> window (see <LINK>netwindow</LINK>). Note that these
+    <literal>edit_graph</literal> window (see <link linkend="netwindow">netwindow</link>). Note that these
   labels are not stored in the corresponding graph data
-  structure.</SP>
-  </DESCRIPTION>
+  structure.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
  ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -75,25 +67,25 @@ g.nodes.graphics.x=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 75
 g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301]/2;
 show_graph(g);
 set_nodes_id(1:3,'n'+string(1:3),'right')
-  ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>edit_graph</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>hilite_nodes</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>unhilite_nodes</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>ngraphic_data_structure</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>show_nodes</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindow</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>netwindows</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="edit_graph">edit_graph</link>
+    </member>
+    <member>
+      <link linkend="hilite_nodes">hilite_nodes</link>
+    </member>
+    <member>
+      <link linkend="unhilite_nodes">unhilite_nodes</link>
+    </member>
+    <member> <link linkend="ngraphic_data_structure">ngraphic_data_structure</link> </member>
+    <member> <link linkend="show_nodes">show_nodes</link> </member>
+    <member>
+      <link linkend="netwindow">netwindow</link>
+    </member>
+    <member>
+      <link linkend="netwindows">netwindows</link>
+    </member>
+  </simplelist></refsection>
 
-</MAN>
+</refentry>

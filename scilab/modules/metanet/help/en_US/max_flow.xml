@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,74 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>max_flow</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="max_flow"> maximum flow between two nodes</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[v,phi,flag] = max_flow(i,j,g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>i</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, number of start node</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>j</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, number of end node</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>v</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: value of the maximum flow it is exists</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>phi</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of the value of the flow on the arcs</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: feasible problem flag (0 or 1)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>max_flow</VERB> returns the value of maximum flow <VERB>v</VERB> from node number
-    <VERB>i</VERB> to node number <VERB>j</VERB> if it exists, and the value of the flow 
-    on each arc as a row vector <VERB>phi</VERB>. All the computations are made with 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="max_flow"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>max_flow</refname><refpurpose> maximum flow between two nodes</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[v,phi,flag] = max_flow(i,j,g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>integer, number of start node</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>j</term>
+        <listitem>
+          <para>integer, number of end node</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>value of the maximum flow it is exists</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>phi</term>
+        <listitem>
+          <para>row vector of the value of the flow on the arcs</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>feasible problem flag (0 or 1)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>max_flow</literal> returns the value of maximum flow <literal>v</literal> from node number
+    <literal>i</literal> to node number <literal>j</literal> if it exists, and the value of the flow 
+    on each arc as a row vector <literal>phi</literal>. All the computations are made with 
     integer numbers. The graph must be directed. If the problem is not 
-    feasible, <VERB>flag</VERB> is equal to 0, otherwise it is equal to 1.</P>
-    <P>
+    feasible, <literal>flag</literal> is equal to 0, otherwise it is equal to 1.</para>
+    <para>
     The bounds of the flow are given by the
-    <VERB>min_cap</VERB> and <VERB>max_cap</VERB> fields of the
-    <LINK>edges_data_structure</LINK>.  The value of the maximum
+    <literal>min_cap</literal> and <literal>max_cap</literal> fields of the
+    <link linkend="edges_data_structure">edges_data_structure</link>.  The value of the maximum
     capacity must be greater than or equal to the value of the minimum
-    capacity.  If the value of <VERB>min_cap</VERB> or
-    <VERB>max_cap</VERB> is not given, they are assumed to be equal to
-    0 on each edge.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    capacity.  If the value of <literal>min_cap</literal> or
+    <literal>max_cap</literal> is not given, they are assumed to be equal to
+    0 on each edge.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15 15 8 9 10 11 12 13 14];
 he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4 5 6 7 16 16 16 16 16 16 16];
 g=make_graph('foo',1,16,ta,he);
@@ -96,24 +91,24 @@ g.edges.graphics.foreground(ii)=11;
 g=add_edge_data(g,'flow',phi)
 g.edges.graphics.display='flow';
 show_graph(g);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>min_lcost_flow1</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>min_lcost_flow2</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>min_qcost_flow</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>edges_data_structure</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>add_edge_data</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="min_lcost_flow1">min_lcost_flow1</link>
+    </member>
+    <member>
+      <link linkend="min_lcost_flow2">min_lcost_flow2</link>
+    </member>
+    <member>
+      <link linkend="min_qcost_flow">min_qcost_flow</link>
+    </member>
+    <member>
+      <link linkend="edges_data_structure">edges_data_structure</link>
+    </member>
+    <member>
+      <link linkend="add_edge_data">add_edge_data</link>
+    </member>
+  </simplelist></refsection>
 
-</MAN>
+</refentry>

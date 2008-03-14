@@ -1,72 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chdir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>chdir</refname><refpurpose>changes Scilab current directory</refpurpose></refnamediv><refnamediv xml:id="cd"><refname>cd</refname><refpurpose>changes Scilab current directory</refpurpose></refnamediv>
+  
 
-  <TITLE>chdir</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="chdir">changes Scilab current directory</SHORT_DESCRIPTION>
+  
 
-  <SHORT_DESCRIPTION name="cd">changes Scilab current directory</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>b=chdir(path)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>realpath=cd(path)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>cd path</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>b=chdir(path)
+realpath=cd(path)
+cd path</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>b</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>b</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean %t if chdir operation is ok. </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a boolean %t if chdir operation is ok. </para>
+        </listitem>
+      </varlistentry>
       
-      <PARAM_ITEM>
-        <PARAM_NAME>path</PARAM_NAME>
+      <varlistentry>
+        <term>path</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a character string</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>realpath</PARAM_NAME>
+      <varlistentry>
+        <term>realpath</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string, the real path name after pathname
-          conversion (see below)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a character string, the real path name after pathname
+          conversion (see below)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <SP>Change the current Scilab directory to those given by
-    <VERB>path</VERB>. Note that path conversion is performed and for example
-    <VERB>SCI/modules/core/macros</VERB> is a valid pattern for both unix and windows.
-    If path is empty change to "home" directory.</SP>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Change the current Scilab directory to those given by
+    <literal>path</literal>. Note that path conversion is performed and for example
+    <literal>SCI/modules/core/macros</literal> is a valid pattern for both unix and windows.
+    If path is empty change to "home" directory.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 chdir(TMPDIR);
 pwd
 cd 
 cd SCI
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getcwd</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getcwd">getcwd</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

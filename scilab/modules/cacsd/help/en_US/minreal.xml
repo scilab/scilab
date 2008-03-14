@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge STEER
@@ -10,41 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>minreal</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="minreal"> minimal balanced realization</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>slb=minreal(sl [,tol])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl,slb</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> lists</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real (threshold)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </VERB>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="minreal"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>minreal</refname><refpurpose> minimal balanced realization</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>slb=minreal(sl [,tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl,slb</term>
+        <listitem>
+          <para>: <literal>syslin</literal> lists</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>real (threshold)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
     returns the balanced realization of linear 
-    system <VERB>sl</VERB> (<VERB>syslin</VERB> list).</P>
-    <P><VERB>sl</VERB> is assumed stable.</P>
-    <P><VERB>tol</VERB> threshold used in <VERB>equil1</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    system <literal>sl</literal> (<literal>syslin</literal> list).</para>
+    <para><literal>sl</literal> is assumed stable.</para>
+    <para><literal>tol</literal> threshold used in <literal>equil1</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 A=[-eye(2,2),rand(2,2);zeros(2,2),-2*eye(2,2)];
 B=[rand(2,2);zeros(2,2)];C=rand(2,4);
 sl=syslin('c',A,B,C);
@@ -54,24 +51,24 @@ ss2tf(slb)
 ctr_gram(sl)
 clean(ctr_gram(slb))
 clean(obs_gram(slb))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>minss</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>balreal</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>arhnk</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>equil</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>equil1</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. Steer INRIA 1987</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="minss">minss</link>
+    </member>
+    <member>
+      <link linkend="balreal">balreal</link>
+    </member>
+    <member>
+      <link linkend="arhnk">arhnk</link>
+    </member>
+    <member>
+      <link linkend="equil">equil</link>
+    </member>
+    <member>
+      <link linkend="equil1">equil1</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>S. Steer INRIA 1987</para></refsection>
+</refentry>

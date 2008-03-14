@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,65 +10,61 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sva"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sva</refname><refpurpose> singular value approximation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[U,s,V]=sva(A,k)
+[U,s,V]=sva(A,tol)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>nonnegative real number</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Singular value approximation.</para>
+    <para><literal>[U,S,V]=sva(A,k)</literal> with <literal>k</literal> an integer
+    &gt;=1, returns <literal>U,S</literal> and <literal>V</literal> such that
+    <literal>B=U*S*V'</literal> is the best L2 approximation of
+    <literal>A</literal> with rank(<literal>B</literal>)=<literal>k</literal>.</para>
+    <para><literal>[U,S,V]=sva(A,tol)</literal> with <literal>tol</literal> a real
+    number, returns <literal>U,S</literal> and <literal>V</literal> such that
+    <literal>B=U*S*V'</literal> such that L2-norm of <literal>A-B</literal>
+    is at most <literal>tol</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sva</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sva"> singular value approximation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[U,s,V]=sva(A,k)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[U,s,V]=sva(A,tol)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>k</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: nonnegative real number</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Singular value approximation.</P>
-    <P><VERB>[U,S,V]=sva(A,k)</VERB> with <VERB>k</VERB> an integer
-    &gt;=1, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
-    <VERB>B=U*S*V'</VERB> is the best L2 approximation of
-    <VERB>A</VERB> with rank(<VERB>B</VERB>)=<VERB>k</VERB>.</P>
-    <P><VERB>[U,S,V]=sva(A,tol)</VERB> with <VERB>tol</VERB> a real
-    number, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
-    <VERB>B=U*S*V'</VERB> such that L2-norm of <VERB>A-B</VERB>
-    is at most <VERB>tol</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 A=rand(5,4)*rand(4,5);
 [U,s,V]=sva(A,2);
 B=U*s*V';
 svd(A)
 svd(B)
 clean(svd(A-B))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>svd</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="svd">svd</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

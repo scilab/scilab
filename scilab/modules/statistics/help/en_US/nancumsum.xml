@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -10,97 +10,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="nancumsum"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>nancumsum</refname><refpurpose>  Thos function returns
+  the cumulative sum of the values of a matrix</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s = nancumsum(x,orient)</synopsis></refsynopsisdiv>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nancumsum</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="nancumsum">  Thos function returns
-  the cumulative sum of the values of a matrix</SHORT_DESCRIPTION>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>s = nancumsum(x,orient)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+    <varlistentry>
+    <term>x</term>
+    <listitem>
+       <para>x is a numerical vector or matrix.</para>
+    </listitem>
+    </varlistentry>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>orient</term>
+    <listitem>
+       <para>is an optional parameter. The possible values are
+        '*', 1, 2, 'r' or 'c'.</para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>x</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: x is a numerical vector or matrix.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>orient</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: is an optional parameter. The possible values are
-        '*', 1, 2, 'r' or 'c'.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>s</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: numerical scalar or vector. It contains the cumulative
-       sum of the values of x, ignoring the NAN's.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>s</term>
+    <listitem>
+       <para>numerical scalar or vector. It contains the cumulative
+       sum of the values of x, ignoring the NAN's.</para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-<P>
+  <refsection><title>Description</title>
+<para>
    This function returns in scalar or vector s the cumulative
    sum  of the  values (ignoring  the  NANs) of  a vector  or
    matrix (real or complex) x.
-</P>
-<P>
+</para>
+<para>
    This function  for a vector or a  matrix x, s=nancumsum(x)
    (or, equivalently  s=nancumsum(x,'*') returns in  scalar s
    the cumulative sum (ignoring  the NANs) of all the entries
    of x taken columnwise.
-</P>
-<P>
+</para>
+<para>
    s=nancumsum(x,'r')  (or,  equivalently,  s=nancumsum(x,1))
    returns in  the cols(x) sized vector s  the cumulative sum
    (ignoring    the    NANs)    of    the    rows    of    x:
    s(:,i)=nancumsum(x(:,i))
-</P>
-<P>
+</para>
+<para>
    s=nancumsum(x,'c')  (or,  equivalently,  s=nancumsum(x,2))
    returns in  the rows(x) sized vector s  the cumulative sum
    (ignoring     NANs)    of     the     columns    of     x:
    s(i,:)=nancumsum(x(i,:))
-</P>
-<P>
+</para>
+<para>
    For the  last two cases,  if a row  or column is  in whole
    composed of NAN, the corresponding place of s will contain
    a NAN.
-</P>
+</para>
 
 
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 a=[1 2 3;4 5 6]
 s=nancumsum(a)
 s=nancumsum(a,'r')
 s=nancumsum(a,'c')
 
- ]]>
-  </EXAMPLE>
+ 
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>nansum</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>cumsum</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="nansum">nansum</link> </member>
+    <member> <link linkend="cumsum">cumsum</link> </member>
+  </simplelist></refsection>
 
-  <AUTHOR>
+  <refsection><title>Authors</title><para>
     Carlos Klimann
-  </AUTHOR>
-</MAN>
+  </para></refsection>
+</refentry>

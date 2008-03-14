@@ -1,44 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="librarieslist"><info><pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</pubdate></info><refnamediv><refname>librarieslist</refname><refpurpose>get scilab libraries</refpurpose></refnamediv>
+  
 
-  <TITLE>librarieslist</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="librarieslist">get scilab libraries</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>s=librarieslist()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s=librarieslist()</synopsis></refsynopsisdiv>
 
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>s</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>s</PARAM_NAME>
+        <listitem>
+          <para>a string matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>return in <literal>s</literal> all libraries on scilab stack. </para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>return in <VERB>s</VERB> all libraries on scilab stack. </P>
-  </DESCRIPTION>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[librarieslist()
 
-  <EXAMPLE><![CDATA[librarieslist()
+   ]]></programlisting></refsection>
 
-   ]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>libraryinfo</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="libraryinfo">libraryinfo</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

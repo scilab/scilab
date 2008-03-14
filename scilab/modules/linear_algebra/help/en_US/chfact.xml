@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,55 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>chfact</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="chfact"> sparse Cholesky factorization</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>spcho=chfact(A)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: square symmetric positive sparse matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>spcho</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: list containing the Cholesky factors in coded form</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>spcho=chfact(A)</VERB> computes the sparse Cholesky factors of sparse
-    matrix <VERB>A</VERB>, assumed symmetric positive definite.
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chfact"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>chfact</refname><refpurpose> sparse Cholesky factorization</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>spcho=chfact(A)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>square symmetric positive sparse matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>spcho</term>
+        <listitem>
+          <para>list containing the Cholesky factors in coded form</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>spcho=chfact(A)</literal> computes the sparse Cholesky factors of sparse
+    matrix <literal>A</literal>, assumed symmetric positive definite.
     This function is based on the Ng-Peyton programs (ORNL). See the
     Fortran programs for a complete description of the variables in
-    <VERB>spcho</VERB>. This function is to be used with <VERB>chsolve</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>chsolve</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>sparse</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lufact</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>luget</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>spchol</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <literal>spcho</literal>. This function is to be used with <literal>chsolve</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="chsolve">chsolve</link>
+    </member>
+    <member>
+      <link linkend="sparse">sparse</link>
+    </member>
+    <member>
+      <link linkend="lufact">lufact</link>
+    </member>
+    <member>
+      <link linkend="luget">luget</link>
+    </member>
+    <member>
+      <link linkend="spchol">spchol</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

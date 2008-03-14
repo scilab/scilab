@@ -1,48 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>Chaines_de_caracteres_Matlab-Scilab</TITLE>
-  <TYPE>Documentation</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="Chaines_de_caracteres_MatlabScilab"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Chaines_de_caracteres_Matlab-Scilab</refname><refpurpose>G�n�ralit�s...</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="Chaines_de_caracteres_Matlab-Scilab">G�n�ralit�s...</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-  <P>    
+  <refsection><title>Description</title>
+  <para>    
   Les cha�nes de caract�re ne sont pas consid�r�es de la m�me fa�on 
   en Matlab ou en Scilab.
   Voici une br�ve pr�sentation des principales diff�rences.
-  </P>
-  <P>
+  </para>
+  <para>
   Matlab consid�re une chaine de caract�res comme Scilab consid�re une matrice de caract�res.
   Par exemple, un �quivalent Scilab pour la cha�ne de caract�res Matlab 'machaine' pourrait �tre ["m","a","c","h","a","i","n","e"]. 
   Donc, dans Scilab, une cha�ne de caract�res est un objet de type 'string' (10) et est toujours de taille 1 x 1 mais dans Matlab, une cha�ne de caract�res est de taille 1 x nombre_de_caract�res.
-  </P>
-  <P>
+  </para>
+  <para>
   Ainsi, on voit bien qu'une colonne donn�e d'une matrice de cha�nes de caract�res Matlab ne peut contenir que des cha�nes de m�me taille ce qui n'est pas vrai dans Scilab. On peut dire qu'une cha�ne de caract�res Scilab est �quivalente � une cell de cha�nes de caract�re Matlab.
-  </P>
-  <P>
+  </para>
+  <para>
   Toutes ces diff�rences peuvent conduire � des r�sultats diff�rents pour l'ex�cution des m�mes commandes dans Scilab ou dans Matlab, particuli�rement pour les fonctions travaillant sur les dimensions comme length() ou size().
-  </P>
-  </DESCRIPTION> 
+  </para>
+  </refsection> 
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>mstr2sci</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="mstr2sci">mstr2sci</link> </member>
+  </simplelist></refsection>
   
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,71 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>egraphic_data_structure</TITLE>
-  <TYPE>Scilab type</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="egraphic_data_structure">data structure representing the graphic properties used for edges graphical display</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <SP> A  data structure represented by a Scilab <VERB>mlist</VERB> with type  <VERB>egraphic</VERB>
-    and 8 fields:</SP>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
-	<SP><VERB>display</VERB> a string. Gives the information that
-	is displayed with the edge. The possible values are
-	<VERB>'nothing'</VERB>, <VERB>'number'</VERB>,
-	<VERB>'name'</VERB> or any edge data field name as given by
-	the <VERB>edgedatafields</VERB> function. Of course if
-	<VERB>display</VERB> is set to <VERB>'nothing'</VERB> no
-	information is displayed.</SP>
-      </DESCRIPTION_ITEM>	  
-      <DESCRIPTION_ITEM>
-	<SP><VERB>defaults</VERB> A Scilab tlist data structure of
-	type <VERB>edgedefs</VERB>. Contains the default values for
-	<VERB>'width'</VERB>, <VERB>'foreground'</VERB>,
-	<VERB>'font'</VERB>, <VERB>'profile_index'</VERB>
-	properties.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<SP><VERB>profiles</VERB> A Scilab list 
-	which stores the different edge profiles used for drawing the egdes.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<SP><VERB>name</VERB> A row vector of strings. The name
-	associated with each edge.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<SP><VERB>width</VERB>a row vector. The thickness of the
-	polyline used to draw each edge. A zero value stands for the
-	default value.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<SP><VERB>foreground</VERB>a row vector. The color index
-	(relative to current colormap) of the polyline used to draw
-	each edge. A zero value stands for the default value.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<SP><VERB>font</VERB>a matrix with 3 rows:
-	<VERB>font(1,i)</VERB> is the font size,
-	<VERB>font(2,i)</VERB> is the font
-	style,<VERB>font(2,i)</VERB> is the font color used to draw
-	information on the i th edge..A zero value of either entry
-	stands for the corresponding default value.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<SP><VERB>profile_index</VERB>a row vector.  The index
-	relative to the <VERB>profiles</VERB> list of the profile to
-	use to draw the edge polyline.</SP>
-      </DESCRIPTION_ITEM>
-
-    </DESCRIPTION_INDENT>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="egraphic_data_structure"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>egraphic_data_structure</refname><refpurpose>data structure representing the graphic properties used for edges graphical display</refpurpose></refnamediv>
   
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  
+  
+  
+  
+  <refsection><title>Description</title>
+    <para> A  data structure represented by a Scilab <literal>mlist</literal> with type  <literal>egraphic</literal>
+    and 8 fields:</para>
+    <itemizedlist>
+      <listitem>
+	<para><literal>display</literal> a string. Gives the information that
+	is displayed with the edge. The possible values are
+	<literal>'nothing'</literal>, <literal>'number'</literal>,
+	<literal>'name'</literal> or any edge data field name as given by
+	the <literal>edgedatafields</literal> function. Of course if
+	<literal>display</literal> is set to <literal>'nothing'</literal> no
+	information is displayed.</para>
+      </listitem>	  
+      <listitem>
+	<para><literal>defaults</literal> A Scilab tlist data structure of
+	type <literal>edgedefs</literal>. Contains the default values for
+	<literal>'width'</literal>, <literal>'foreground'</literal>,
+	<literal>'font'</literal>, <literal>'profile_index'</literal>
+	properties.</para>
+      </listitem>
+      <listitem>
+	<para><literal>profiles</literal> A Scilab list 
+	which stores the different edge profiles used for drawing the egdes.</para>
+      </listitem>
+      <listitem>
+	<para><literal>name</literal> A row vector of strings. The name
+	associated with each edge.</para>
+      </listitem>
+      <listitem>
+	<para><literal>width</literal>a row vector. The thickness of the
+	polyline used to draw each edge. A zero value stands for the
+	default value.</para>
+      </listitem>
+      <listitem>
+	<para><literal>foreground</literal>a row vector. The color index
+	(relative to current colormap) of the polyline used to draw
+	each edge. A zero value stands for the default value.</para>
+      </listitem>
+      <listitem>
+	<para><literal>font</literal>a matrix with 3 rows:
+	<literal>font(1,i)</literal> is the font size,
+	<literal>font(2,i)</literal> is the font
+	style,<literal>font(2,i)</literal> is the font color used to draw
+	information on the i th edge..A zero value of either entry
+	stands for the corresponding default value.</para>
+      </listitem>
+      <listitem>
+	<para><literal>profile_index</literal>a row vector.  The index
+	relative to the <literal>profiles</literal> list of the profile to
+	use to draw the edge polyline.</para>
+      </listitem>
+
+    </itemizedlist>
+  
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //create a simple graph
 ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13 4];
 he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10 4];
@@ -96,11 +93,11 @@ g.edges.graphics.display='number';
 show_graph(g)
 
 g.edges.graphics
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>edges_data_structure</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="edges_data_structure">edges_data_structure</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

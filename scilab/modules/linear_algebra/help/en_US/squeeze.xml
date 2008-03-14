@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,44 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>squeeze</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2007-2-6 15:12:38 +0200 (mar, 6 fev 2007) $</DATE>
-  <SHORT_DESCRIPTION name="squeeze"> squeeze</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM> hypOut = squeeze(hypIn)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>hypIn</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: hypermatrix or matrix of constant type.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>hypOut</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: hypermatrix or matrix of constant type.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P> Remove sigleton dimensions of a hypermatrix, that is any dimension for
-     which the size is 1. If the input is a matrix, it is unaffected.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>hypermat</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>hypermatrices</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>Eric Dubois, Jean-Baptiste Silvy</AUTHOR>
-</MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="squeeze"><info><pubdate>$LastChangedDate: 2007-2-6 15:12:38 +0200 (mar, 6 fev 2007) $</pubdate></info><refnamediv><refname>squeeze</refname><refpurpose> squeeze</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>hypOut = squeeze(hypIn)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>hypIn</term>
+        <listitem>
+          <para>hypermatrix or matrix of constant type.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hypOut</term>
+        <listitem>
+          <para>hypermatrix or matrix of constant type.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para> Remove sigleton dimensions of a hypermatrix, that is any dimension for
+     which the size is 1. If the input is a matrix, it is unaffected.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="hypermat">hypermat</link>
+    </member>
+    <member>
+      <link linkend="hypermatrices">hypermatrices</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>Eric Dubois, Jean-Baptiste Silvy</para></refsection>
+</refentry>

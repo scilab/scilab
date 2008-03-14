@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
@@ -10,61 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TK_EvalFile"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv xml:id="TCL_EvalFile"><refname>TCL_EvalFile</refname><refpurpose>Reads and evaluate a tcl/tk
+  file</refpurpose></refnamediv><refnamediv><refname>TK_EvalFile</refname><refpurpose>Reads and evaluate a tcl/tk file
+  (obsolete)</refpurpose></refnamediv>
+  
 
-  <TITLE>TK_EvalFile</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="TCL_EvalFile">Reads and evaluate a tcl/tk
-  file</SHORT_DESCRIPTION>
+  
 
-  <SHORT_DESCRIPTION name="TK_EvalFile">Reads and evaluate a tcl/tk file
-  (obsolete)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>TCL_EvalFile(filename
-    [,interp])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>TCL_EvalFile(filename [,interp])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: character string. Contains the name of the file to read and
-          evaluate.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>character string. Contains the name of the file to read and
+          evaluate.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>interp</PARAM_NAME>
+      <varlistentry>
+        <term>interp</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: optional character string parameter. Name of the slave tcl
+        <listitem>
+          <para>optional character string parameter. Name of the slave tcl
           interpreter in which the operation has to be performed. If not
           provided, it defaults to the main tcl interpreter created by
-          Scilab.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+          Scilab.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>With this routine, one can read and evaluate the content of a file
+  <refsection><title>Description</title>
+    <para>With this routine, one can read and evaluate the content of a file
     containing tcl/tk scripts. This allows to create powerful tk
-    interfaces.</P>
+    interfaces.</para>
 
-    <P>The filename might be relative or absolute.</P>
-  </DESCRIPTION>
+    <para>The filename might be relative or absolute.</para>
+  </refsection>
 
-  <SECTION label="Advantages and drawbacks of this functionality">
-    <P>This routines allows to use directly tcl/tk scripts. This thus allows,
+  <refsection><title>Advantages and drawbacks of this functionality</title>
+    <para>This routines allows to use directly tcl/tk scripts. This thus allows,
     for instance to use Interface Builders such as SpecTcl to design the
     interface. The interfaces built directly with tcl/tk scripts are much
     faster than the ones built with the Scilab Graphic Object library provided
@@ -76,9 +72,9 @@
     tcl/tk script. Thus, the interface designer has to write two sets of
     callbacks routines. One to describe the changes occuring in the interface
     when the user acts on the widgets. The second set of call routines will
-    perform the (pure) Scilab reactions to the user actions.</P>
+    perform the (pure) Scilab reactions to the user actions.</para>
 
-    <P>Here is an example: Suppose you design a scrollbar corresponding to a
+    <para>Here is an example: Suppose you design a scrollbar corresponding to a
     spline tension value. You want the spline to be displayed in a graphic
     windows and updated each time the user moves the scrollbar. At the same
     time, you want the value of this tension parameter to be displayed within
@@ -86,54 +82,54 @@
     which will be automatically called by the tk scrollbar ("-command"
     option). This callback function will update the displayed value of the
     parameter in the interface and will then call the scilab routine
-    ("ScilabEval" command) to update the graph.</P>
-  </SECTION>
+    ("ScilabEval" command) to update the graph.</para>
+  </refsection>
 
-  <SECTION label="Remarks on the tcl/tk script style">
-    <P>Because Scilab manages the tcl/tk events, it creates the root window
+  <refsection><title>Remarks on the tcl/tk script style</title>
+    <para>Because Scilab manages the tcl/tk events, it creates the root window
     ".", this window should not be destroyed nor directly used by your tcl/tk
     scripts. You should thus always create your own toplevel windows.
     Moreover, since this module was written at a time when namespaces didn't
     exist, some variables defined by scilab tcl/tk scripts could collide your
     code. Running your scripts in a slave interpreter may help in such a
-    case.</P>
-  </SECTION>
+    case.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 TCL_EvalFile(SCI+"/demos/tk/puzzle")
 
 scipad();TCL_EvalFile(SCI+"/demos/tk/puzzle","scipad")
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ScilabEval</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ScilabEval">ScilabEval</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_EvalStr</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_EvalStr">TCL_EvalStr</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_GetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_GetVar">TCL_GetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_SetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_SetVar">TCL_SetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_ExistVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_UnsetVar</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="TCL_UnsetVar">TCL_UnsetVar</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>TCL_UpVar</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="TCL_UpVar">TCL_UpVar</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

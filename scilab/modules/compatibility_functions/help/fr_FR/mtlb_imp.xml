@@ -1,68 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_imp</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_imp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_imp</refname><refpurpose>Fonction d'�mulation de l'op�rateur "deux points" de Matlab</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_imp">Fonction d'�mulation de l'op�rateur "deux points" de Matlab</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, l'op�rateur "deux points" se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, l'op�rateur "deux points" se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-	Avec des matrices vides : L'op�rateur <VERB>:</VERB> doit �tre utilis� avec des scalaires dans Scilab
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+	Avec des matrices vides : L'op�rateur <literal>:</literal> doit �tre utilis� avec des scalaires dans Scilab
 	et retourne un message d'erreur quand on l'utilise avec des matrices vides alors que Matlab renvoie []
 	dans tous ces cas.
-        </SP>
-       </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+       </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_imp(A,B[,C])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>A:B[:C]</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_imp(A,B[,C])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>A:B[:C]</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les op�randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_imp</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_imp</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-	Si <VERB>A</VERB>, <VERB>B</VERB> et <VERB>C</VERB> ne sont pas des matrices vides
-	<VERB>mtlb_imp(A,B[,C])</VERB> peut �tre remplac� par <VERB>A:B[:C]</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+	Si <literal>A</literal>, <literal>B</literal> et <literal>C</literal> ne sont pas des matrices vides
+	<literal>mtlb_imp(A,B[,C])</literal> peut �tre remplac� par <literal>A:B[:C]</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_imp</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_imp</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

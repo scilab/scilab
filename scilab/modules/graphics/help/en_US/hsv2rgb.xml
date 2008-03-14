@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,111 +10,100 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hsv2rgb</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="hsv2rgb"> Converts HSV colors to RGB</SHORT_DESCRIPTION>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hsv2rgb"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hsv2rgb</refname><refpurpose> Converts HSV colors to RGB</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[r,g,b] = hsv2rgb(h,s,v)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>rgb = hsv2rgb(h,s,v)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[r,g,b] = hsv2rgb(hsv)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>rgb = hsv2rgb(hsv)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[r,g,b] = hsv2rgb(h,s,v)
+rgb = hsv2rgb(h,s,v)
+[r,g,b] = hsv2rgb(hsv)
+rgb = hsv2rgb(hsv)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-  <PARAM_INDENT>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>h</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  a vector of size n. The "hue" values.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>h</term>
+    <listitem>
+       <para> a vector of size n. The "hue" values.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>s</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  a vector of size n. The "saturation" values.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>s</term>
+    <listitem>
+       <para> a vector of size n. The "saturation" values.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>v</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  a vector of size n. The "value" values
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>v</term>
+    <listitem>
+       <para> a vector of size n. The "value" values
+       </para>
+    </listitem>
+    </varlistentry>
 
-      <PARAM_ITEM>
-	<PARAM_NAME>hsv</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  a n x 3 matrix. Each row contains a [hue saturation value] tripple.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+      <varlistentry>
+	<term>hsv</term>
+    <listitem>
+       <para> a n x 3 matrix. Each row contains a [hue saturation value] tripple.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>r</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  a column vector of size n. The associated "red" values.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>r</term>
+    <listitem>
+       <para> a column vector of size n. The associated "red" values.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>g</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a column vector of size n. The associated "green" values.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>g</term>
+    <listitem>
+       <para>a column vector of size n. The associated "green" values.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>b</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a column vector of size n. The associated "blue" values.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>b</term>
+    <listitem>
+       <para>a column vector of size n. The associated "blue" values.
+       </para>
+    </listitem>
+    </varlistentry>
 
-  <PARAM_ITEM>
-    <PARAM_NAME>rgb</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       :  a n x 3 matrix. Each row contains a [red green blue] tripple.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+  <varlistentry>
+    <term>rgb</term>
+    <listitem>
+       <para> a n x 3 matrix. Each row contains a [red green blue] tripple.
+       </para>
+    </listitem>
+    </varlistentry>
 
-  </PARAM_INDENT>
-  </PARAM>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-  <SP>The function hsv2rgb converts colormaps
+  <refsection><title>Description</title>
+  <para>The function hsv2rgb converts colormaps
       between the RGB and HSV color spaces. As hue varies from 0 to 1.0,
       the corresponding colors vary from red through yellow, green, cyan, blue,
       magenta, and back to red, so that there are actually red values both at 0
       and 1.0. As saturation varies from 0 to 1.0, the corresponding colors
       (hues) vary from unsaturated (shades of gray) to fully saturated (no
       white component). As value, or brightness, varies from 0 to 1.0, the
-      corresponding colors become increasingly brighter. </SP>
-  </DESCRIPTION>
+      corresponding colors become increasingly brighter. </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
     t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
     plot3d1(t,t,z) 
     f=gcf();f.pixmap='on';
@@ -130,13 +119,13 @@
       show_pixmap()
       xpause(10000)
     end
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
 
-  <AUTHORS>
-    <AUTHORS_ITEM label='Serge Steer'>
+  <refsection><title>Authors</title><variablelist>
+    <varlistentry><term>Serge Steer</term><listitem><para>
     INRIA
-    </AUTHORS_ITEM>
-  </AUTHORS>
+    </para></listitem></varlistentry>
+  </variablelist></refsection>
 
-</MAN>
+</refentry>

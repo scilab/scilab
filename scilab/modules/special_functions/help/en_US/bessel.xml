@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,160 +10,150 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bessel"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv xml:id="besseli"><refname>besseli</refname><refpurpose>Modified Bessel functions of the first
+  kind (I sub alpha).</refpurpose></refnamediv><refnamediv xml:id="besselj"><refname>besselj</refname><refpurpose>Bessel functions of the first kind (J sub
+  alpha).</refpurpose></refnamediv><refnamediv xml:id="besselk"><refname>besselk</refname><refpurpose>Modified Bessel functions of the second
+  kind (K sub alpha).</refpurpose></refnamediv><refnamediv xml:id="bessely"><refname>bessely</refname><refpurpose>Bessel functions of the second kind (Y sub
+  alpha).</refpurpose></refnamediv><refnamediv xml:id="besselh"><refname>besselh</refname><refpurpose>Bessel functions of the third kind (aka
+  Hankel functions)</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  
 
-  <TITLE>bessel</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="besseli">Modified Bessel functions of the first
-  kind (I sub alpha).</SHORT_DESCRIPTION>
+  
 
-  <SHORT_DESCRIPTION name="besselj">Bessel functions of the first kind (J sub
-  alpha).</SHORT_DESCRIPTION>
+  
 
-  <SHORT_DESCRIPTION name="besselk">Modified Bessel functions of the second
-  kind (K sub alpha).</SHORT_DESCRIPTION>
+  
 
-  <SHORT_DESCRIPTION name="bessely">Bessel functions of the second kind (Y sub
-  alpha).</SHORT_DESCRIPTION>
+  
 
-  <SHORT_DESCRIPTION name="besselh">Bessel functions of the third kind (aka
-  Hankel functions)</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y = besseli(alpha,x [,ice])
+y = besselj(alpha,x [,ice])
+y = besselk(alpha,x [,ice])
+y = bessely(alpha,x [,ice])
+y = besselh(alpha,x)
+y = besselh(alpha,K,x [,ice])</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y = besseli(alpha,x [,ice])</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
 
-    <CALLING_SEQUENCE_ITEM>y = besselj(alpha,x [,ice])</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>real or complex vector.</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>y = besselk(alpha,x [,ice])</CALLING_SEQUENCE_ITEM>
+      <varlistentry>
+        <term>alpha</term>
 
-    <CALLING_SEQUENCE_ITEM>y = bessely(alpha,x [,ice])</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>real vector</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>y = besselh(alpha,x)</CALLING_SEQUENCE_ITEM>
+      <varlistentry>
+        <term>ice</term>
 
-    <CALLING_SEQUENCE_ITEM>y = besselh(alpha,K,x
-    [,ice])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>integer flag, with default value 0</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+      <varlistentry>
+        <term>K</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real or complex vector.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>integer, with possible values 1 or 2, the Hankel function
+          type.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>alpha</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: real vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>ice</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: integer flag, with default value 0</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>K</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: integer, with possible values 1 or 2, the Hankel function
-          type.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <SP>Warning: the semantics of these functions changes between Scilab-3.0
+  <refsection><title>Description</title>
+    <para>Warning: the semantics of these functions changes between Scilab-3.0
     and Scilab-3.1. The old semantics is available for compatibility using the
-    <LINK>oldbesseli</LINK>, <LINK>oldbesselj</LINK>, <LINK>oldbesselk</LINK>,
-    <LINK>oldbessely</LINK> functions.</SP>
+    <link linkend="oldbesseli">oldbesseli</link>, <link linkend="oldbesselj">oldbesselj</link>, <link linkend="oldbesselk">oldbesselk</link>,
+    <link linkend="oldbessely">oldbessely</link> functions.</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="*">
-        <SP><VERB>besseli(alpha,x)</VERB> computes modified Bessel functions
-        of the first kind (I sub alpha), for real order <VERB>alpha</VERB> and
-        argument <VERB>x</VERB>. <VERB>besseli(alpha,x,1)</VERB> computes
-        <VERB>besseli(alpha,x).*exp(-abs(real(x)))</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+    <itemizedlist>
+      <listitem>
+        <para><literal>besseli(alpha,x)</literal> computes modified Bessel functions
+        of the first kind (I sub alpha), for real order <literal>alpha</literal> and
+        argument <literal>x</literal>. <literal>besseli(alpha,x,1)</literal> computes
+        <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>.</para>
+      </listitem>
 
-      <DESCRIPTION_ITEM label="*">
-        <SP><VERB>besselj(alpha,x)</VERB> computes Bessel functions of the
-        first kind (J sub alpha), for real order <VERB>alpha</VERB> and
-        argument <VERB>x</VERB>. <VERB>besselj(alpha,x,1)</VERB> computes
-        <VERB>besselj(alpha,x).*exp(-abs(imag(x)))</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <listitem>
+        <para><literal>besselj(alpha,x)</literal> computes Bessel functions of the
+        first kind (J sub alpha), for real order <literal>alpha</literal> and
+        argument <literal>x</literal>. <literal>besselj(alpha,x,1)</literal> computes
+        <literal>besselj(alpha,x).*exp(-abs(imag(x)))</literal>.</para>
+      </listitem>
 
-      <DESCRIPTION_ITEM label="*">
-        <SP><VERB>besselk(alpha,x)</VERB> computes modified Bessel functions
-        of the second kind (K sub alpha), for real order <VERB>alpha</VERB>
-        and argument <VERB>x</VERB>. <VERB>besselk(alpha,x,1)</VERB> computes
-        <VERB>besselk(alpha,x).*exp(x)</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <listitem>
+        <para><literal>besselk(alpha,x)</literal> computes modified Bessel functions
+        of the second kind (K sub alpha), for real order <literal>alpha</literal>
+        and argument <literal>x</literal>. <literal>besselk(alpha,x,1)</literal> computes
+        <literal>besselk(alpha,x).*exp(x)</literal>.</para>
+      </listitem>
 
-      <DESCRIPTION_ITEM label="*">
-        <SP><VERB>bessely(alpha,x)</VERB> computes Bessel functions of the
-        second kind (Y sub alpha), for real order <VERB>alpha</VERB> and
-        argument <VERB>x</VERB>. <VERB>bessely(alpha,x,1)</VERB> computes
-        <VERB>bessely(alpha,x).*exp(-abs(imag(x)))</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <listitem>
+        <para><literal>bessely(alpha,x)</literal> computes Bessel functions of the
+        second kind (Y sub alpha), for real order <literal>alpha</literal> and
+        argument <literal>x</literal>. <literal>bessely(alpha,x,1)</literal> computes
+        <literal>bessely(alpha,x).*exp(-abs(imag(x)))</literal>.</para>
+      </listitem>
 
-      <DESCRIPTION_ITEM label="*">
-        <SP><VERB>besselh(alpha [,K] ,x)</VERB> computes Bessel functions of
-        the third kind (Hankel function H1 or H2 depending on <VERB>K</VERB>),
-        for real order <VERB>alpha</VERB> and argument <VERB>x</VERB>. If
-        omitted <VERB>K</VERB> is supposed to be equal to 1.
-        <VERB>besselh(alpha,1,x,1)</VERB> computes
-        <VERB>besselh(alpha,1,x).*exp(-%i*x)</VERB> and
-        <VERB>besselh(alpha,2,x,1)</VERB> computes
-        <VERB>besselh(alpha,2,x).*exp(%i*x)</VERB></SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      <listitem>
+        <para><literal>besselh(alpha [,K] ,x)</literal> computes Bessel functions of
+        the third kind (Hankel function H1 or H2 depending on <literal>K</literal>),
+        for real order <literal>alpha</literal> and argument <literal>x</literal>. If
+        omitted <literal>K</literal> is supposed to be equal to 1.
+        <literal>besselh(alpha,1,x,1)</literal> computes
+        <literal>besselh(alpha,1,x).*exp(-%i*x)</literal> and
+        <literal>besselh(alpha,2,x,1)</literal> computes
+        <literal>besselh(alpha,2,x).*exp(%i*x)</literal></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
 
-  <SECTION label="Remarks">
-    <P>If <VERB>alpha</VERB> and <VERB>x</VERB> are arrays of the same size,
-    the result <VERB>y</VERB> is also that size. If either input is a scalar,
+  <refsection><title>Remarks</title>
+    <para>If <literal>alpha</literal> and <literal>x</literal> are arrays of the same size,
+    the result <literal>y</literal> is also that size. If either input is a scalar,
     it is expanded to the other input's size. If one input is a row vector and
-    the other is a column vector, the result<VERB>y</VERB> is a
-    two-dimensional table of function values.</P>
+    the other is a column vector, the result<literal>y</literal> is a
+    two-dimensional table of function values.</para>
 
-    <P>Y_alpha and J_alpha Bessel functions are 2 independant solutions of the
-    Bessel 's differential equation :</P>
+    <para>Y_alpha and J_alpha Bessel functions are 2 independant solutions of the
+    Bessel 's differential equation :</para>
 
-    <VERBATIM>2 2 2 x y" + x y' + (x - alpha ) y = 0 , alpha &gt;=
-    0</VERBATIM>
+    <programlisting><![CDATA[2 2 2 x y" + x y' + (x - alpha ) y = 0 , alpha >=
+    0]]></programlisting>
 
-    <P>K_alpha and I_alpha modified Bessel functions are 2 independant
-    solutions of the modified Bessel 's differential equation :</P>
+    <para>K_alpha and I_alpha modified Bessel functions are 2 independant
+    solutions of the modified Bessel 's differential equation :</para>
 
-    <VERBATIM>2 2 2 x y" + x y' - (x + alpha ) y = 0 , alpha &gt;=
-    0</VERBATIM>
+    <programlisting><![CDATA[2 2 2 x y" + x y' - (x + alpha ) y = 0 , alpha >=
+    0]]></programlisting>
 
-    <P>H^1_alpha and H^2_alpha, the Hankel functions of first and second kind,
+    <para>H^1_alpha and H^2_alpha, the Hankel functions of first and second kind,
     are linear linear combinations of Bessel functions of the first and second
-    kinds:</P>
+    kinds:</para>
 
-    <VERBATIM>H^1_alpha(z) = J_alpha(z) + i Y_alpha(z) H^2_alpha(z) =
-    J_alpha(z) - i Y_alpha(z)</VERBATIM>
-  </SECTION>
+    <programlisting><![CDATA[H^1_alpha(z) = J_alpha(z) + i Y_alpha(z) H^2_alpha(z) =
+    J_alpha(z) - i Y_alpha(z)]]></programlisting>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 //  besselI functions
 // ==================
    x = linspace(0.01,10,5000)';
@@ -235,24 +224,24 @@
    legends(string(0.2:0.2:3.2),1:16,"ur")
    xtitle("Level curves of |H1(0,z)|")
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM><SP>Amos, D. E., (SNLA)</SP></AUTHORS_ITEM>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>Amos, D. E., (SNLA)</member>
 
-    <AUTHORS_ITEM><SP>Daniel, S. L., (SNLA)</SP></AUTHORS_ITEM>
+    <member>Daniel, S. L., (SNLA)</member>
 
-    <AUTHORS_ITEM><SP>Weston, M. K., (SNLA)</SP></AUTHORS_ITEM>
-  </AUTHORS>
+    <member>Weston, M. K., (SNLA)</member>
+  </simplelist></refsection>
 
-  <USED_FUNCTIONS>
-    <SP>The source codes can be found in routines/calelm</SP>
+  <refsection><title>Used Functions</title>
+    <para>The source codes can be found in routines/calelm</para>
 
-    <P>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f, dbesy.f,
-    zbesy.f, zbesh.f</P>
+    <para>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f, dbesy.f,
+    zbesy.f, zbesh.f</para>
 
-    <P>Drivers to extend definition area (Serge Steer INRIA): dbesig.f,
+    <para>Drivers to extend definition area (Serge Steer INRIA): dbesig.f,
     zbesig.f, dbesjg.f, zbesjg.f, dbeskg.f, zbeskg.f, dbesyg.f, zbesyg.f,
-    zbeshg.f</P>
-  </USED_FUNCTIONS>
-</MAN>
+    zbeshg.f</para>
+  </refsection>
+</refentry>

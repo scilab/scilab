@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,91 +10,89 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!-- When this file is modified please also modify mtlb_prod.xml -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_sum</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_sum"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_sum</refname><refpurpose>Matlab sum emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_sum">Matlab sum emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>sum</VERB> behave differently in some particular cases:</P>
+    <para>Matlab and Scilab <literal>sum</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        When called with one input: Matlab <VERB>sum</VERB> threts the values along the first
-	non-singleton dimension of input while Scilab <VERB>sum</VERB> threats all values of input.
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When called with one input: Matlab <literal>sum</literal> threts the values along the first
+	non-singleton dimension of input while Scilab <literal>sum</literal> threats all values of input.
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with two inputs: Matlab <VERB>sum</VERB> can be used with second input giving
-	a non-existing dimension of first input while Scilab <VERB>sum</VERB> returns an error message.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        When called with two inputs: Matlab <literal>sum</literal> can be used with second input giving
+	a non-existing dimension of first input while Scilab <literal>sum</literal> returns an error message.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_sum(A[,dim])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>sum(A[,dim])</VERB> when it was not
+    <para>
+    The function <literal>mtlb_sum(A[,dim])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>sum(A[,dim])</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_sum</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_sum</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        When called with one input, if <VERB>A</VERB> is an empty matrix, a scalar or a vector,
-        <VERB>mtlb_sum(A)</VERB> may be replaced by <VERB>sum(A)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When called with one input, if <literal>A</literal> is an empty matrix, a scalar or a vector,
+        <literal>mtlb_sum(A)</literal> may be replaced by <literal>sum(A)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with one input, if <VERB>A</VERB> is a not-empty matrix,
-        <VERB>mtlb_sum(A)</VERB> may be replaced by <VERB>sum(A,1)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        When called with one input, if <literal>A</literal> is a not-empty matrix,
+        <literal>mtlb_sum(A)</literal> may be replaced by <literal>sum(A,1)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with one input, if <VERB>A</VERB> is a multidimensional array,
-        <VERB>mtlb_sum(A)</VERB> may be replaced by <VERB>sum(A,firstnonsingleton(A))</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        When called with one input, if <literal>A</literal> is a multidimensional array,
+        <literal>mtlb_sum(A)</literal> may be replaced by <literal>sum(A,firstnonsingleton(A))</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        When called with two inputs, if <VERB>dim</VERB> is lesser than the number of dimensions of <VERB>A</VERB>
-        <VERB>mtlb_sum(A,dim)</VERB> may be replaced by <VERB>sum(A,dim)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        When called with two inputs, if <literal>dim</literal> is lesser than the number of dimensions of <literal>A</literal>
+        <literal>mtlb_sum(A,dim)</literal> may be replaced by <literal>sum(A,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_sum</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_sum</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="firstnonsingleton">firstnonsingleton</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

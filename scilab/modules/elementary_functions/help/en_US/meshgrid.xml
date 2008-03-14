@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -10,60 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="meshgrid"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>meshgrid</refname><refpurpose>create matrices or 3-D
+  arrays</refpurpose></refnamediv>
+  
 
-  <TITLE>meshgrid</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="meshgrid">create matrices or 3-D
-  arrays</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[X, Y] = meshgrid(x)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X, Y] = meshgrid(x)
+[X, Y] = meshgrid(x,y)
+[X, Y, Z] = meshgrid(x,y,z)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[X, Y] = meshgrid(x,y)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x, y, z</term>
 
-    <CALLING_SEQUENCE_ITEM>[X, Y, Z] = meshgrid(x,y,z)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>vectors</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x, y, z</PARAM_NAME>
+      <varlistentry>
+        <term>X, Y, Z</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vectors</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>matrices in case of 2 input arguments, else 3-D arrays in case
+          of 3 input arguments</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>X, Y, Z</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para>...</para>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrices in case of 2 input arguments, else 3-D arrays in case
-          of 3 input arguments</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+// ]]></programlisting></refsection>
 
-  <DESCRIPTION>
-    <P>...</P>
-  </DESCRIPTION>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ndgrid">ndgrid</link>
+    </member>
+  </simplelist></refsection>
 
-  <EXAMPLE><![CDATA[
-// ]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ndgrid</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHOR>Farid Belahcene</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Farid Belahcene</para></refsection>
+</refentry>

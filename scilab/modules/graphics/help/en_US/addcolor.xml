@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,47 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>addcolor</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="addcolor"> add new colors to the current colormap</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>new=addcolor(c)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>new</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: ids of the colors defined in c in the new color table.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>c</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix with 3 columns, RGB color definition.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>addcolor</VERB> adds new colors given in the <VERB>c</VERB> argument to the
-    current colormap. <VERB>c</VERB> must be a matrix with 3 columns 
-    <VERB>[R G B]</VERB><VERB>R</VERB> is red component, <VERB>G</VERB> is green component,
-    <VERB>B</VERB> is blue component). Each entry in <VERB>c</VERB> must be a non
-    negative number less or equal to 1.</P>
-    <P>
-    The ids of the new colors are returned into <VERB>new</VERB>.</P>
-    <P>
-    If a color defined in <VERB>c</VERB> is already present in the current colormap
-    it is not added.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>colormap</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="addcolor"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>addcolor</refname><refpurpose> add new colors to the current colormap</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>new=addcolor(c)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>new</term>
+        <listitem>
+          <para>ids of the colors defined in c in the new color table.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>matrix with 3 columns, RGB color definition.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>addcolor</literal> adds new colors given in the <literal>c</literal> argument to the
+    current colormap. <literal>c</literal> must be a matrix with 3 columns 
+    <literal>[R G B]</literal><literal>R</literal> is red component, <literal>G</literal> is green component,
+    <literal>B</literal> is blue component). Each entry in <literal>c</literal> must be a non
+    negative number less or equal to 1.</para>
+    <para>
+    The ids of the new colors are returned into <literal>new</literal>.</para>
+    <para>
+    If a color defined in <literal>c</literal> is already present in the current colormap
+    it is not added.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="colormap">colormap</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

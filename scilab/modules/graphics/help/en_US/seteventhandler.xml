@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,44 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>seteventhandler</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="seteventhandler"> set an event handler for
-  the current graphic window</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>seteventhandler(sfun_name)   </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>seteventhandler('')   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sfun_name</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a character string. The name of the Scilab function which is
-  intended to handle the events</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="seteventhandler"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>seteventhandler</refname><refpurpose> set an event handler for
+  the current graphic window</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>seteventhandler(sfun_name)
+seteventhandler('')</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sfun_name</term>
+        <listitem>
+          <para>a character string. The name of the Scilab function which is
+  intended to handle the events</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     The function allows the user to set a particular event handler for
-    the current graphic window. <VERB>seteventhandler('') </VERB>
+    the current graphic window. <literal>seteventhandler('') </literal>
     removes the handler.
-    </P>
+    </para>
 
-    <P>
+    <para>
     For more information about event handler functions see the
-    <LINK>event handler functions</LINK> help.
-    </P>
+    <link linkend="eventhandlerfunctions">event handler functions</link> help.
+    </para>
     
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
    function my_eventhandler(win,x,y,ibut)
       if ibut==-1000 then return,end
       [x,y]=xchange(x,y,'i2f')
@@ -64,26 +61,26 @@
 
 
    seteventhandler('') //suppress the event handler
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>addmenu</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xgetmouse</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xclick</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xchange</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>event handler functions</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>figure_properties</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="addmenu">addmenu</link>
+    </member>
+    <member>
+      <link linkend="xgetmouse">xgetmouse</link>
+    </member>
+    <member>
+      <link linkend="xclick">xclick</link>
+    </member>
+    <member>
+      <link linkend="xchange">xchange</link>
+    </member>
+    <member>
+      <link linkend="eventhandlerfunctions">event handler functions</link>
+    </member>
+    <member>
+      <link linkend="figure_properties">figure_properties</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

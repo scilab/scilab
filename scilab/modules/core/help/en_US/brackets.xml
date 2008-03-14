@@ -1,48 +1,44 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>brackets</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="brackets">([,]) left and right brackets</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[a11,a12,...;a21,a22,...;...]  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[s1,s2,...]=func(...)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a11,a12,...  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: any matrix (real, polynomial, rational,<VERB>syslin</VERB> list ...) with appropriate dimensions</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>s1,s2,...  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: any possible variable name</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="brackets"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>brackets</refname><refpurpose>([,]) left and right brackets</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[a11,a12,...;a21,a22,...;...]
+[s1,s2,...]=func(...)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a11,a12,...  </term>
+        <listitem>
+          <para>any matrix (real, polynomial, rational,<literal>syslin</literal> list ...) with appropriate dimensions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s1,s2,...  </term>
+        <listitem>
+          <para>any possible variable name</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Left and right brackets are used to note vector and matrix concatenation.
     These symbols are also used to denote a multiple left-hand-side for a function 
-    call</P>
-    <P>
+    call</para>
+    <para>
     Inside concatenation brackets, blank or comma characters mean 
-    &quot;column concatenation&quot;, semicolon and carriage-return mean 
-    &quot;row concatenation&quot;.</P>
-    <P>
+    "column concatenation", semicolon and carriage-return mean 
+    "row concatenation".</para>
+    <para>
     Note : to avoid confusions it is safer to use commas instead of blank to
-    separate columns.</P>
-    <P>
-    Within multiple lhs brackets variable names must be separated by comma.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    separate columns.</para>
+    <para>
+    Within multiple lhs brackets variable names must be separated by comma.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 [6.9,9.64; sqrt(-1) 0]
 [1 +%i  2 -%i  3]
 []
@@ -51,14 +47,14 @@ s=poly(0,'s');[1/s,2/s]
 [tf2ss(1/s),tf2ss(2/s)]
 
 [u,s]=schur(rand(3,3))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>comma</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>semicolon</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="comma">comma</link>
+    </member>
+    <member>
+      <link linkend="semicolon">semicolon</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

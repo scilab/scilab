@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,78 +10,75 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>UNOBS</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="unobs"> unobservable subspace</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[n,[U]]=unobs(A,C,[tol])   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A, C</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: tolerance used when evaluating ranks (QR factorizations).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: dimension of unobservable subspace.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>U</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: orthogonal change of basis which puts <VERB>(A,B)</VERB> in canonical form.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>[n,[U]]=unobs(A,C,[tol])</VERB> gives the unobservable form of an <VERB>(A,C)</VERB> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unobs"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unobs</refname><refpurpose> unobservable subspace</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[n,[U]]=unobs(A,C,[tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A, C</term>
+        <listitem>
+          <para>real matrices</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>tolerance used when evaluating ranks (QR factorizations).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>dimension of unobservable subspace.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable form of an <literal>(A,C)</literal> 
     pair.
-    The <VERB>n</VERB> first columns of <VERB>U</VERB> make a basis for the unobservable
-    subspace.</P>
-    <P>
-    The <VERB>(2,1)</VERB> block (made of last <VERB>nx-n</VERB> rows and <VERB>n</VERB> first 
-    columns) of <VERB>U'*A*U</VERB> is zero and and the <VERB>n</VERB> first columns 
-    of <VERB>C*U</VERB> are zero.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    The <literal>n</literal> first columns of <literal>U</literal> make a basis for the unobservable
+    subspace.</para>
+    <para>
+    The <literal>(2,1)</literal> block (made of last <literal>nx-n</literal> rows and <literal>n</literal> first 
+    columns) of <literal>U'*A*U</literal> is zero and and the <literal>n</literal> first columns 
+    of <literal>C*U</literal> are zero.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 A=diag([1,2,3]);C=[1,0,0];
 unobs(A,C)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>contr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>contrss</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>canon</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>cont_mat</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>spantwo</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>dt_ility</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="contr">contr</link>
+    </member>
+    <member>
+      <link linkend="contrss">contrss</link>
+    </member>
+    <member>
+      <link linkend="canon">canon</link>
+    </member>
+    <member>
+      <link linkend="cont_mat">cont_mat</link>
+    </member>
+    <member>
+      <link linkend="spantwo">spantwo</link>
+    </member>
+    <member>
+      <link linkend="dt_ility">dt_ility</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

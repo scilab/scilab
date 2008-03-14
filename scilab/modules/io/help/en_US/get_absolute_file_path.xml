@@ -1,65 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get_absolute_file_path"><info><pubdate>$LastChangedDate: 2006-10-10 17:02:59 +0200 (mar., 10 oct. 2006)$</pubdate></info><refnamediv><refname>get_absolute_file_path</refname><refpurpose>Given an absolute
+  pathname.</refpurpose></refnamediv>
+  
 
-  <TITLE>get_absolute_file_path</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-10-10 17:02:59 +0200 (mar., 10 oct. 2006)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="get_absolute_file_path">Given an absolute
-  pathname.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>pathname =
-    get_absolute_file_path(filename)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>pathname = get_absolute_file_path(filename)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: A character string : filename</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>A character string : filename</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>pathname</PARAM_NAME>
+      <varlistentry>
+        <term>pathname</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: A character string : the absolute pathname</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>A character string : the absolute pathname</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Given the absolute pathname.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>Given the absolute pathname.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[a=mopen(TMPDIR+'test.sce','wt');
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[a=mopen(TMPDIR+'test.sce','wt');
 get_absolute_file_path('test.sce');
 mclose(a);
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getshortpathname</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getshortpathname">getshortpathname</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>getlongpathname</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="getlongpathname">getlongpathname</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>getcwd</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="getcwd">getcwd</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,22 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>demo_choose</TITLE>
-	<TYPE>Scilab Function</TYPE>
-    <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_choose"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_choose</refname><refpurpose> create a dialog box for the choice of options </refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="demo_choose"> create a dialog box for the choice of options </SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>num = demo_choose(fil)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>
+    
+	
+	
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>num = demo_choose(fil)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>
 			The function demo_choose create a dialog box for the choice of options. It 
 			takes as argument the binary file 'fil'. This file is built by a .sce file 
 			written like below. It shall contain the variables 'choice', an array of text
@@ -36,10 +31,10 @@
 			Before the use of demo_choose, the .sce file shall be executed.
 			The function demo_choose returns the number of line chosen in the options 
 			array.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 exec('SCI/demos/control/pid/pid_ch_2.sce');
 [n]=demo_choose('SCI/demos/control/pid/pid_ch_2.bin');
 select n
@@ -50,18 +45,18 @@ select n
   case 2
 	mode(-1)
 end
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>x_choose</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_mdialog</LINK>
-		</SEE_ALSO_ITEM>
-		</SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
+		<member>
+			<link linkend="x_choose">x_choose</link>
+		</member>
+		<member>
+			<link linkend="demo_mdialog">demo_mdialog</link>
+		</member>
+		</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Authors</title><simplelist type="vert">
+		<member>G.H</member>
+	</simplelist></refsection>
+</refentry>

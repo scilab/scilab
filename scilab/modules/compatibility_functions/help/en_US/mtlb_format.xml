@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,112 +10,111 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_format</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_format"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_format</refname><refpurpose>Matlab format emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_format">Matlab format emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>format</VERB> behave differently in some particular cases:</P>
+    <para>Matlab and Scilab <literal>format</literal> behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
         Some Matlab formats do not exist in Scilab
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Calling sequence for <VERB>format</VERB> is different in Scilab and Matlab
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Calling sequence for <literal>format</literal> is different in Scilab and Matlab
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_format(type,prec)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>format([type prec])</VERB> when it was not
+    <para>
+    The function <literal>mtlb_format(type,prec)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>format([type prec])</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_format</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_format</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>type=""</VERB> and <VERB>prec=""</VERB>
-        <VERB>mtlb_format("","")</VERB> may be replaced by <VERB>format("v",6)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>type=""</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("","")</literal> may be replaced by <literal>format("v",6)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>type="+"</VERB> and <VERB>prec=""</VERB>
-        <VERB>mtlb_format("+","")</VERB> may be replaced by <VERB>format(6)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>type="+"</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("+","")</literal> may be replaced by <literal>format(6)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>type="long"</VERB> and <VERB>prec=""</VERB>
-        <VERB>mtlb_format("long","")</VERB> may be replaced by <VERB>format(16)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>type="long"</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("long","")</literal> may be replaced by <literal>format(16)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>type="long"</VERB> and <VERB>prec="e"</VERB>
-        <VERB>mtlb_format("long","e")</VERB> may be replaced by <VERB>format("e"16)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>type="long"</literal> and <literal>prec="e"</literal>
+        <literal>mtlb_format("long","e")</literal> may be replaced by <literal>format("e"16)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>type="long"</VERB> and <VERB>prec="g"</VERB>
-        <VERB>mtlb_format("long","g")</VERB> may be replaced by <VERB>format("e"16)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>type="long"</literal> and <literal>prec="g"</literal>
+        <literal>mtlb_format("long","g")</literal> may be replaced by <literal>format("e"16)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>type="short"</VERB> and <VERB>prec=""</VERB>
-        <VERB>mtlb_format("short","")</VERB> may be replaced by <VERB>format(6)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>type="short"</literal> and <literal>prec=""</literal>
+        <literal>mtlb_format("short","")</literal> may be replaced by <literal>format(6)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>type="short"</VERB> and <VERB>prec="e"</VERB>
-        <VERB>mtlb_format("short","e")</VERB> may be replaced by <VERB>format("e"6)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        If <literal>type="short"</literal> and <literal>prec="e"</literal>
+        <literal>mtlb_format("short","e")</literal> may be replaced by <literal>format("e"6)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>type="short"</VERB> and <VERB>prec="g"</VERB>
-        <VERB>mtlb_format("short","g")</VERB> may be replaced by <VERB>format("e"6)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        If <literal>type="short"</literal> and <literal>prec="g"</literal>
+        <literal>mtlb_format("short","g")</literal> may be replaced by <literal>format("e"6)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_format</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_format</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

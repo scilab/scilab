@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,63 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_edge"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>add_edge</refname><refpurpose> adds an edge or an arc between two nodes</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = add_edge(i,j,g)
+g1 = add_edge(ij,g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>vector of integers, number of start nodes</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>j</term>
+        <listitem>
+          <para> vector of  integers, number of end nodes</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ij</term>
+        <listitem>
+          <para> 2 by n matrix of  integers, first row contains the start node numbers, second row contains the end node numbers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>:a  graph list (see <link linkend="graph_data_structure">graph_data_structure </link>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g1</term>
+        <listitem>
+          <para>graph list of the new graph with the added edges</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>add_edge(i,j,g)</literal> returns the graph <literal>g1</literal> with a new edges connecting node number 
+    <literal>i(k)</literal> to node number <literal>j(k)</literal>. If the graph is directed, the edge is an arc.
+    The number of edges plus 1 is taken as the name of the new edge.</para>
+    <para><literal>add_edge(ij,g)</literal> returns the graph <literal>g1</literal> with a new edges connecting node number 
+    <literal>ij(1,k)</literal> to node number <literal>ij(2,k)</literal>. If the graph is directed, the edge is an arc.
+    The number of edges plus 1 is taken as the name of the new edge.</para>
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>add_edge</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="add_edge"> adds an edge or an arc between two nodes</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>g1 = add_edge(i,j,g)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>g1 = add_edge(ij,g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>i</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of integers, number of start nodes</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>j</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  vector of  integers, number of end nodes</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ij</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  2 by n matrix of  integers, first row contains the start node numbers, second row contains the end node numbers.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:a  graph list (see <LINK>graph_data_structure </LINK>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>g1</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph list of the new graph with the added edges</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <SP><VERB>add_edge(i,j,g)</VERB> returns the graph <VERB>g1</VERB> with a new edges connecting node number 
-    <VERB>i(k)</VERB> to node number <VERB>j(k)</VERB>. If the graph is directed, the edge is an arc.
-    The number of edges plus 1 is taken as the name of the new edge.</SP>
-    <P><VERB>add_edge(ij,g)</VERB> returns the graph <VERB>g1</VERB> with a new edges connecting node number 
-    <VERB>ij(1,k)</VERB> to node number <VERB>ij(2,k)</VERB>. If the graph is directed, the edge is an arc.
-    The number of edges plus 1 is taken as the name of the new edge.</P>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -80,17 +75,17 @@ g=add_edge([1 1 9;7 16 9],g);
 show_graph(g);
 hilite_edges(ne+1:ne+3)
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>add_node</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>delete_arcs</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>delete_nodes</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="add_node">add_node</link>
+    </member>
+    <member>
+      <link linkend="delete_arcs">delete_arcs</link>
+    </member>
+    <member>
+      <link linkend="delete_nodes">delete_nodes</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

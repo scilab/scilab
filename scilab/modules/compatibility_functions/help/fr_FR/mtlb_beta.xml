@@ -1,77 +1,64 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_beta</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_beta"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_beta</refname><refpurpose>Fonction d'�mulation de la fonction Matlab beta</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_beta">Fonction d'�mulation de la fonction Matlab beta</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>beta</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>beta</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
         Avec des param�tres d'entr�e de tailles diff�rentes : les param�tres d'entr�e de la fonction 
-	<VERB>beta</VERB> de Matlab doivent �tre de m�me taille sauf si l'un d'entre eux est un scalaire.
-	Les param�tres d'entr�e de la fonction <VERB>beta</VERB> de Scilab doivent �tre de m�me taille
+	<literal>beta</literal> de Matlab doivent �tre de m�me taille sauf si l'un d'entre eux est un scalaire.
+	Les param�tres d'entr�e de la fonction <literal>beta</literal> de Scilab doivent �tre de m�me taille
 	m�me si l'un d'entre eux est un scalaire.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_beta(A,B)</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>beta(A,B)</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>mtlb_beta(A,B)</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>beta(A,B)</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_beta</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_beta</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si <VERB>A</VERB> est un scalaire mais pas <VERB>B</VERB>
-        <VERB>Y = mtlb_beta(A,B)</VERB> peut �tre remplac� par <VERB>C=B;C(:)=A;Y = mtlb_beta(C,B);</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Si <literal>A</literal> est un scalaire mais pas <literal>B</literal>
+        <literal>Y = mtlb_beta(A,B)</literal> peut �tre remplac� par <literal>C=B;C(:)=A;Y = mtlb_beta(C,B);</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        Si <VERB>B</VERB> est un scalaire mais pas <VERB>A</VERB>
-        <VERB>Y = mtlb_beta(A,B)</VERB> peut �tre remplac� par <VERB>C=A;C(:)=B;Y = mtlb_beta(A,C);</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        Si <literal>B</literal> est un scalaire mais pas <literal>A</literal>
+        <literal>Y = mtlb_beta(A,B)</literal> peut �tre remplac� par <literal>C=A;C(:)=B;Y = mtlb_beta(A,C);</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_beta</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_beta</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

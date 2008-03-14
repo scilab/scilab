@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,51 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sci2map</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sci2map"> Scilab to Maple variable conversion</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>txt=sci2map(a,Map-name)   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Scilab object (matrix, polynomial, list, string)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Map-name</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string (name of the Maple variable)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>txt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of strings containing the corresponding Maple code</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sci2map"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sci2map</refname><refpurpose> Scilab to Maple variable conversion</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=sci2map(a,Map-name)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>Scilab object (matrix, polynomial, list, string)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Map-name</term>
+        <listitem>
+          <para>string (name of the Maple variable)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>vector of strings containing the corresponding Maple code</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Makes Maple code necessary to send 
-    the Scilab variable <VERB>a</VERB> to Maple : the name of the variable
-    in Maple is <VERB>Map-name</VERB>.
-    A Maple procedure <VERB>maple2scilab</VERB> can be found in <VERB>SCIDIR/maple</VERB>
-    directory.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    the Scilab variable <literal>a</literal> to Maple : the name of the variable
+    in Maple is <literal>Map-name</literal>.
+    A Maple procedure <literal>maple2scilab</literal> can be found in <literal>SCIDIR/maple</literal>
+    directory.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 txt=[sci2map([1 2;3 4],'a');
      sci2map(%s^2+3*%s+4,'p')]
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

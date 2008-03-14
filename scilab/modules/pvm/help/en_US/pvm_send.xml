@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997-2008 - INRIA
@@ -10,84 +10,81 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_send</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pvm_send"> immediately sends (or multicast) data.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[info] = pvm_send(tids,buff,msgtag)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>tids</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row of integers, contains the task IDs of the tasks to be sent to.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>buff</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: scilab variable.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag should be</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>&gt;= 0.  It allows the user's program to distinguish between different kinds of messages .</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>info</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer, status code returned by the routine. Values less than zero indicate an error.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>pvm_send</VERB> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_send"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_send</refname><refpurpose> immediately sends (or multicast) data.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[info] = pvm_send(tids,buff,msgtag)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>tids</term>
+        <listitem>
+          <para>row of integers, contains the task IDs of the tasks to be sent to.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>buff</term>
+        <listitem>
+          <para>scilab variable.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msgtag : integer, message tag supplied by the user.  msgtag should be</term>
+        <listitem>
+          <para>&gt;= 0.  It allows the user's program to distinguish between different kinds of messages .</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>integer, status code returned by the routine. Values less than zero indicate an error.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>pvm_send</literal> 
     sends (or multicasts) a message 
-    to the PVM process identified in the <VERB>tids</VERB> 
+    to the PVM process identified in the <literal>tids</literal> 
     array. Note that the message is not sent to the caller even if listed
-    in the array of tids. <VERB>msgtag</VERB>
-    is used to label the content of the message.</P>
-    <P>
+    in the array of tids. <literal>msgtag</literal>
+    is used to label the content of the message.</para>
+    <para>
     The returned value will be &gt;= 0 if 
     the call is successful and will be 
-    will be &lt; 0 if some error occurs.</P>
-    <P>
-    The <VERB>pvm_send</VERB> routine is asynchronous.  Computation on the sending
+    will be &lt; 0 if some error occurs.</para>
+    <para>
+    The <literal>pvm_send</literal> routine is asynchronous.  Computation on the sending
     processor resumes as soon as the message is safely on its way to the
     receiving processor.  This is in contrast to synchronous
     communication, during which computation on the sending processor halts
-    until the matching receive is executed by the receiving processor.</P>
-    <P>
-    If a multicast is performed, <VERB>pvm_send</VERB>  first determines which other
+    until the matching receive is executed by the receiving processor.</para>
+    <para>
+    If a multicast is performed, <literal>pvm_send</literal>  first determines which other
     pvmds contain the specified tasks.  Then passes the message to these
     pvmds which in turn distribute the message to their local tasks
-    without further network traffic.</P>
-    <P>
+    without further network traffic.</para>
+    <para>
     The PVM model guarantees the following about message order.  If task 1
     sends message A to task 2, then task 1 sends message B to task 2,
     message A will arrive at task 2 before message B.  Moreover, if both
     messages arrive before task 2 does a receive, then a wildcard receive
-    will always return message A.</P>
-    <P>
+    will always return message A.</para>
+    <para>
     Terminating a PVM task immediately after sending a message or messages
     from it may result in those messages being lost.  To be sure, always
-    call pvm_exit() before stopping.</P>
-  </DESCRIPTION>
+    call pvm_exit() before stopping.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_recv</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>pvm_bcast</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pvm_recv">pvm_recv</link>
+    </member>
+    <member>
+      <link linkend="pvm_bcast">pvm_bcast</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

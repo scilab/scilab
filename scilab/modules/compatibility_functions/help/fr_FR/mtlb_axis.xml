@@ -1,88 +1,70 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_axis"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</pubdate></info><refnamediv><refname>mtlb_axis</refname><refpurpose>Fonction d'ï¿½mulation de la fonction
+  Matlab axis</refpurpose></refnamediv>
+  
 
-  <TITLE>mtlb_axis</TITLE>
+  
 
-  <TYPE>Fonction M2SCI</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="mtlb_axis">Fonction d'ï¿½mulation de la fonction
-  Matlab axis</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mtlb_axis(X)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>mtlb_axis(X)
+mtlb_axis(st)
+mtlb_axis(axeshandle, ...)
+[mode,visibility,direction]=mtlb_axis('state')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>mtlb_axis(st)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
 
-    <CALLING_SEQUENCE_ITEM>mtlb_axis(axeshandle, ...)</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>un vecteur de rï¿½els ([xmin xmax ymin ymax] ou [xmin xmax ymin
+          ymax zmin zmax])</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>[mode,visibility,direction]=mtlb_axis('state')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+      <varlistentry>
+        <term>st</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
+        <listitem>
+          <para>une chaine de caractï¿½res ('auto', 'manual', 'tight', 'ij',
+          'xy', 'equal', 'square', 'vis3d', 'off', 'on')</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: un vecteur de rï¿½els ([xmin xmax ymin ymax] ou [xmin xmax ymin
-          ymax zmin zmax])</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>axeshandle</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>st</PARAM_NAME>
+        <listitem>
+          <para>:handle sur l'axe courant</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: une chaine de caractï¿½res ('auto', 'manual', 'tight', 'ij',
-          'xy', 'equal', 'square', 'vis3d', 'off', 'on')</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+  <refsection><title>Description</title>
+    <para>La fonction Matlab<literal> axis</literal> n'a pas de fonction Scilab
+    ï¿½quivalente :</para>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>axeshandle</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>:handle sur l'axe courant</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>La fonction Matlab<VERB> axis</VERB> n'a pas de fonction Scilab
-    ï¿½quivalente :</P>
-
-    <P>La fonction <VERB>mtlb_axis(n,X[,normflag])</VERB> est utilisï¿½e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>axis(...)</VERB> quand il
+    <para>La fonction <literal>mtlb_axis(n,X[,normflag])</literal> est utilisï¿½e par
+    <literal>mfile2sci</literal> pour remplacer <literal>axis(...)</literal> quand il
     n'ï¿½tait pas possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e
     pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution.
-    (<VERB>'fill'</VERB> , <VERB>'image' </VERB> et <VERB>'normal'</VERB> ne
+    (<literal>'fill'</literal> , <literal>'image' </literal> et <literal>'normal'</literal> ne
     sont pas implï¿½mentï¿½s).Pour obtenir un code plus performant on peut
-    remplacer les appels ï¿½ï¿½ <VERB>mtlb_axis</VERB> par les appels ï¿½ï¿½
+    remplacer les appels ï¿½ï¿½ <literal>mtlb_axis</literal> par les appels ï¿½ï¿½
     get(axeshandle,prop), ou prop est une propriï¿½tï¿½ des axes (see
-    <LINK>axis_properties</LINK>)</P>
+    <link linkend="axis_properties">axis_properties</link>)</para>
 
-    <P>Attention : <VERB>mtlb_axis</VERB> ne doit pas ï¿½tre utilisï¿½e pour une
-    programmation manuelle.</P>
-  </DESCRIPTION>
+    <para>Attention : <literal>mtlb_axis</literal> ne doit pas ï¿½tre utilisï¿½e pour une
+    programmation manuelle.</para>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>F.B.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>F.B.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,82 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mps2linpro</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="mps2linpro"> convert lp problem given in MPS format to linpro format</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>lp = mps2linpro(mps)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[p,C,b,ci,cs,mi] = mps2linpro(mps)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>mps</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: either a character string, path of the MPS file, or an mps data structure returned by <VERB>readmps</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>lp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a linpro data tlist with following fields:</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>p</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: real (column) vector (dimension <VERB> n</VERB>)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>C</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: real matrix (dimension <VERB> (mi + md) x n</VERB>) (If no constraints are given, you can set <VERB>C = []</VERB>)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>b</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: RHS vector (dimension <VERB>1 x (mi + md)</VERB>)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>ci</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: (column) vector of lower-bounds (dimension <VERB> n</VERB>). If there are no lower bound constraints, put <VERB>ci = []</VERB>. If some components of <VERB>x</VERB> are bounded from below, set the other (unconstrained) values of <VERB>ci</VERB> to a very  large negative  number (e.g. <VERB>ci(j) = -(% eps)^(-1)</VERB>.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>cs</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: (column) vector of upper-bounds. (Same remarks as above).</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>mi</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: number of equality constraints (i.e. <VERB>C(1:mi,:)*x = b(1:mi)</VERB>)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mps2linpro"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mps2linpro</refname><refpurpose> convert lp problem given in MPS format to linpro format</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>lp = mps2linpro(mps)
+[p,C,b,ci,cs,mi] = mps2linpro(mps)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>mps</term>
+        <listitem>
+          <para>either a character string, path of the MPS file, or an mps data structure returned by <literal>readmps</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lp</term>
+        <listitem>
+          <para>a linpro data tlist with following fields:</para>
+          <variablelist>
+            <varlistentry>
+              <term>p</term>
+              <listitem>
+                <para>real (column) vector (dimension <literal> n</literal>)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>C</term>
+              <listitem>
+                <para>real matrix (dimension <literal> (mi + md) x n</literal>) (If no constraints are given, you can set <literal>C = []</literal>)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>b</term>
+              <listitem>
+                <para>RHS vector (dimension <literal>1 x (mi + md)</literal>)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ci</term>
+              <listitem>
+                <para>(column) vector of lower-bounds (dimension <literal> n</literal>). If there are no lower bound constraints, put <literal>ci = []</literal>. If some components of <literal>x</literal> are bounded from below, set the other (unconstrained) values of <literal>ci</literal> to a very  large negative  number (e.g. <literal>ci(j) = -(% eps)^(-1)</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>cs</term>
+              <listitem>
+                <para>(column) vector of upper-bounds. (Same remarks as above).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mi</term>
+              <listitem>
+                <para>number of equality constraints (i.e. <literal>C(1:mi,:)*x = b(1:mi)</literal>)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     mps2linpro forms Linear programing data compatible with linpro out of
-    MPS data format.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>linpro</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>readmps</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    MPS data format.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="linpro">linpro</link>
+    </member>
+    <member>
+      <link linkend="readmps">readmps</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

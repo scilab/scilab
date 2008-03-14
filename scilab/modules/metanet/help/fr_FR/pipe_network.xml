@@ -1,67 +1,47 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>pipe_network  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pipe_network"> résout le problème du réseau de tuyaux  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[x,pi] = pipe_network(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne des valeurs des flots sur les arcs
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>pi  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne des potentiels sur les sommets
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>pipe_network</VERB> renvoie les valeurs des flots et des potentiels
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pipe_network"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pipe_network</refname><refpurpose> résout le problème du réseau de tuyaux  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[x,pi] = pipe_network(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>vecteur ligne des valeurs des flots sur les arcs
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>pi  </term>
+  <listitem>
+  <para>vecteur ligne des potentiels sur les sommets
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>pipe_network</literal> renvoie les valeurs des flots et des potentiels
     pour le problème du réseau de tuyaux (problème de flots avec deux lois de Kirchhoff).
     Le graphe doit être orienté. Le problème doit être soluble (la somme des
-    demandes des sommets doit être égale à 0). Les résistances sur les arcs doivent être strictement positives et sont données par les valeurs de l&apos;élément &apos;edge_weight&apos; du graphe.
-  </P>
-  <P>
-    Le problème est résolu à l&apos;aide d&apos;une factorisation LU creuse.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+    demandes des sommets doit être égale à 0). Les résistances sur les arcs doivent être strictement positives et sont données par les valeurs de l'élément 'edge_weight' du graphe.
+  </para>
+  <para>
+    Le problème est résolu à l'aide d'une factorisation LU creuse.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
 ta=[ta, 15 8 9 10 11 12 13 14];
 he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4];
@@ -75,5 +55,5 @@ g('node_demand')=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 -100 100];
 w = [1 3 2 6 4 7 8 1 2 2 2 4 7 8 9 2 3 5 7 3 2 5 8 2 5 8];
 g('edge_weight')=[w, 6 4 3 5 6];
 [x,pi] = pipe_network(g)
- ]]></EXAMPLE>
-</MAN>
+ ]]></programlisting></refsection>
+</refentry>

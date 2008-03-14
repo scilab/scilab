@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2007 - INRIA - Serge STEER
@@ -11,83 +11,80 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>loadmatfile</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="loadmatfile">loads a Matlab V6 MAT-file (binary or ASCII) into Scilab</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>loadmatfile(format,filename[,var1[,var2[,...]]])</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>loadmatfile(filename[,format[,var1[,var2[,...]]]])</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>loadmatfile(filename[,var1[,var2,[,...[,format]]]])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-  <PARAM_INDENT>
-    <PARAM_ITEM>
-       <PARAM_NAME>filename</PARAM_NAME>
-       <PARAM_DESCRIPTION>
-         <SP>: character string containing the path of the file (needed)</SP>
-       </PARAM_DESCRIPTION>
-     </PARAM_ITEM>
-     <PARAM_ITEM>
-       <PARAM_NAME>format</PARAM_NAME>
-       <PARAM_DESCRIPTION>
-         <SP>: file format (if not given and file has extension &quot;.mat&quot;, file is considered to be binary)</SP>
-         <PARAM_INDENT>
-           <PARAM_ITEM>
-             <PARAM_NAME>&quot;-mat&quot;</PARAM_NAME>
-             <PARAM_DESCRIPTION>
-                <SP>: binary file</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>&quot;-ascii&quot;</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: option to force Scilab to read file as an ASCII file</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>var1, var2</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character strings containing the name of the variables to load (only for binary files)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="loadmatfile"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>loadmatfile</refname><refpurpose>loads a Matlab V6 MAT-file (binary or ASCII) into Scilab</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>loadmatfile(format,filename[,var1[,var2[,...]]])
+loadmatfile(filename[,format[,var1[,var2[,...]]]])
+loadmatfile(filename[,var1[,var2,[,...[,format]]]])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+  <variablelist>
+    <varlistentry>
+       <term>filename</term>
+       <listitem>
+         <para>character string containing the path of the file (needed)</para>
+       </listitem>
+     </varlistentry>
+     <varlistentry>
+       <term>format</term>
+       <listitem>
+         <para>file format (if not given and file has extension ".mat", file is considered to be binary)</para>
+         <variablelist>
+           <varlistentry>
+             <term>"-mat"</term>
+             <listitem>
+                <para>binary file</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii"</term>
+              <listitem>
+                <para>option to force Scilab to read file as an ASCII file</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>var1, var2</term>
+        <listitem>
+          <para>character strings containing the name of the variables to load (only for binary files)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     loads a Matlab MAT-file into Scilab. The Matlab data types are
-    converted into the Scilab equivalents.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>load</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>savematfile</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>save</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>mfile2sci</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>matfile2sci</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHORS>
-  <AUTHORS_ITEM>Serge Steer (INRIA)</AUTHORS_ITEM>
-  <AUTHORS_ITEM>V.C</AUTHORS_ITEM>
-  </AUTHORS>
-  <BIBLIO>
-    <P>This function has been developped following the &quot;MAT-File Format&quot;
+    converted into the Scilab equivalents.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="load">load</link>
+    </member>
+    <member>
+      <link linkend="savematfile">savematfile</link>
+    </member>
+    <member>
+      <link linkend="save">save</link>
+    </member>
+    <member>
+      <link linkend="mfile2sci">mfile2sci</link>
+    </member>
+    <member>
+      <link linkend="matfile2sci">matfile2sci</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><simplelist type="vert">
+  <member>Serge Steer (INRIA)</member>
+  <member>V.C</member>
+  </simplelist></refsection>
+  <refsection><title>Bibliography</title>
+    <para>This function has been developped following the "MAT-File Format"
   description: 
-<VERB>www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</VERB></P>
-  </BIBLIO>
-</MAN>
+<literal>www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</literal></para>
+  </refsection>
+</refentry>

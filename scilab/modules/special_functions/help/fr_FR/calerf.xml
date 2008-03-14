@@ -1,71 +1,53 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
-<!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>calerf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="calerf">  calcule différentes fonctions d&apos;erreur.  </SHORT_DESCRIPTION>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur réel
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>flag  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : un entier 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur réel (de même taille que x)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-     <VERB>calerf(x,0)</VERB> calcule la fonction erreur :<VERB>erf(x)</VERB>
-  </P><P>
-     <VERB>calerf(x,1)</VERB> calcule la fonction erreur complémentaire :<VERB>erfc(x)</VERB>
-  </P> <P>
-     <VERB>calerf(x,2)</VERB> calcule la fonction erreur complémentaire normalisée :<VERB>erfcx(x)</VERB>
-  </P>
-</DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="calerf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>calerf</refname><refpurpose>  calcule différentes fonctions d'erreur.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>vecteur réel
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>flag  </term>
+  <listitem>
+  <para>un entier 
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>y  </term>
+  <listitem>
+  <para>vecteur réel (de même taille que x)
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+     <literal>calerf(x,0)</literal> calcule la fonction erreur :<literal>erf(x)</literal>
+  </para><para>
+     <literal>calerf(x,1)</literal> calcule la fonction erreur complémentaire :<literal>erfc(x)</literal>
+  </para> <para>
+     <literal>calerf(x,2)</literal> calcule la fonction erreur complémentaire normalisée :<literal>erfcx(x)</literal>
+  </para>
+</refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 deff('y=f(t)','y=exp(-t^2)');
 calerf(1,0)
 2/sqrt(%pi)*intg(0,1,f)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>erf</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>erfc</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>calerf</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
-<AUTHOR>W. J. Cody (code from Netlib (specfun))</AUTHOR>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member><link linkend="erf">erf</link></member>
+    <member><link linkend="erfc">erfc</link></member>
+    <member><link linkend="calerf">calerf</link></member>
+  </simplelist></refsection>
+<refsection><title>Auteurs</title><para>W. J. Cody (code from Netlib (specfun))</para></refsection>
 
-</MAN>
+</refentry>

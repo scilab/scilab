@@ -1,51 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getvariablesonstack"><info><pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</pubdate></info><refnamediv><refname>getvariablesonstack</refname><refpurpose>get variable names on stack of scilab</refpurpose></refnamediv>
+  
 
-  <TITLE>getvariablesonstack</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="getvariablesonstack">get variable names on stack of scilab</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>s=getvariablesonstack()</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>s=getvariablesonstack('local')</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>s=getvariablesonstack('global')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s=getvariablesonstack()
+s=getvariablesonstack('local')
+s=getvariablesonstack('global')</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>s</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>s</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a string matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>return in <VERB>s</VERB>variable names on scilab stack. </P>
-    <P>getvariablesonstack('local') returns local variables on scilab stack. </P>
-    <P>getvariablesonstack('global') returns global variables on scilab stack. </P>
-    <P>Variables are sorted by alphabetical order.</P>
+  <refsection><title>Description</title>
+    <para>return in <literal>s</literal>variable names on scilab stack. </para>
+    <para>getvariablesonstack('local') returns local variables on scilab stack. </para>
+    <para>getvariablesonstack('global') returns global variables on scilab stack. </para>
+    <para>Variables are sorted by alphabetical order.</para>
     
-  </DESCRIPTION>
+  </refsection>
 
-  <EXAMPLE><![CDATA[getvariablesonstack()
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[getvariablesonstack()
   getvariablesonstack('local')
   getvariablesonstack('global')
 
-   ]]></EXAMPLE>
+   ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>who</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="who">who</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

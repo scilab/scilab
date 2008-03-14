@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uicontrol"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>uicontrol</refname><refpurpose>create a Graphic User Interface
+  object</refpurpose></refnamediv>
+  
 
-  <TITLE>uicontrol</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="uicontrol">create a Graphic User Interface
-  object</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>h = uicontrol('PropertyName',PropertyValue,...) h =
-    uicontrol(parent,'PropertyName',PropertyValue,...)
-    h=uicontrol(uich)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>h = uicontrol('PropertyName',PropertyValue,...) h = uicontrol(parent,'PropertyName',PropertyValue,...) h=uicontrol(uich)</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>this routine creates an object in a figure. If the handle of the figure
+  <refsection><title>Description</title>
+    <para>this routine creates an object in a figure. If the handle of the figure
     is given (as the first parameter), the uicontrol is created in this
     figure. If no handle is given, the uicontrol is created in the current
     figure ( which may be obtained with a call to gcf() ). If there is no
@@ -34,270 +28,270 @@
     transformed to another uicontrol when you call the get(h,'style', ... )
     instruction. Scilab and all the graphic objects communicate through the
     property mechanism. Thus, to create adapted uicontrol, one has to know the
-    use of the property fields.</P>
+    use of the property fields.</para>
 
-    <P>h = uicontrol('PropertyName',PropertyValue,...) creates a uicontrol and
+    <para>h = uicontrol('PropertyName',PropertyValue,...) creates a uicontrol and
     assigns the specified properties and values to it. It assigns the default
     values to any properties you do not specify. The default uicontrol style
     is a pushbutton. The default parent is the current figure. See Properties
-    for information about these and other properties.</P>
+    for information about these and other properties.</para>
 
-    <P>h = uicontrol(parent,'PropertyName',PropertyValue,...) creates a
+    <para>h = uicontrol(parent,'PropertyName',PropertyValue,...) creates a
     uicontrol in the object specified by the handle, parent. If you also
     specify a different value for the Parent property, the value of the Parent
-    property takes precedence. parent is the handle of a figure.</P>
+    property takes precedence. parent is the handle of a figure.</para>
 
-    <P>h=uicontrol(uich) gives focus to the uicontrol specified by the handle,
-    uich.</P>
+    <para>h=uicontrol(uich) gives focus to the uicontrol specified by the handle,
+    uich.</para>
 
-    <P>Those are described under:</P>
-  </DESCRIPTION>
+    <para>Those are described under:</para>
+  </refsection>
 
-  <SECTION label="Properties">
-    <ITEMIZE>
-      <ITEM label="BackgroundColor">
-        <SP>[1,3] real vector or string Background color of the uicontrol. A
+  <refsection><title>Properties</title>
+    <variablelist>
+      <varlistentry><term>BackgroundColor</term><listitem>
+        <para>[1,3] real vector or string Background color of the uicontrol. A
         color is specified as Red, Green and Blue values. Those values are
         real in [ 0,1]. The color can be given as a real vector, ie [R,G,B] or
-        a string where each value is separated by a |, ie "R|G|B"</SP>
-      </ITEM>
+        a string where each value is separated by a |, ie "R|G|B"</para>
+      </listitem></varlistentry>
 
-      <ITEM label="callback">
-        <SP>string String evaluated by the scilab interpreter when an
+      <varlistentry><term>callback</term><listitem>
+        <para>string String evaluated by the scilab interpreter when an
         usicontrol is activated. (for example when you click on a
-        button).</SP>
-      </ITEM>
+        button).</para>
+      </listitem></varlistentry>
 
-      <ITEM label="fontangle">
-        <SP>string : {'normal'} | italic | oblique For a control containing
-        some text, this property sets the slant of the font.</SP>
-      </ITEM>
+      <varlistentry><term>fontangle</term><listitem>
+        <para>string : {'normal'} | italic | oblique For a control containing
+        some text, this property sets the slant of the font.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="fontsize">
-        <SP>real For a control containing some text, this property sets the
-        size of the font in FontUnits.</SP>
-      </ITEM>
+      <varlistentry><term>fontsize</term><listitem>
+        <para>real For a control containing some text, this property sets the
+        size of the font in FontUnits.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="fontunits">
-        <SP>string : {points} | pixels | normalized For a control containing
+      <varlistentry><term>fontunits</term><listitem>
+        <para>string : {points} | pixels | normalized For a control containing
         some text, this property sets the units with which the fontsize is
-        specified.</SP>
-      </ITEM>
+        specified.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="fontweight">
-        <SP>string : light | {normal} | demi | bold For a control containing
-        some text, this property sets the weight of the used font</SP>
-      </ITEM>
+      <varlistentry><term>fontweight</term><listitem>
+        <para>string : light | {normal} | demi | bold For a control containing
+        some text, this property sets the weight of the used font</para>
+      </listitem></varlistentry>
 
-      <ITEM label="fontname">
-        <SP>string : used to choose the name of the font selected to display
-        the text of the control.</SP>
-      </ITEM>
+      <varlistentry><term>fontname</term><listitem>
+        <para>string : used to choose the name of the font selected to display
+        the text of the control.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="ForegroundColor">
-        <SP>[1,3] real vector or string Foreground color of the uicontrol. A
+      <varlistentry><term>ForegroundColor</term><listitem>
+        <para>[1,3] real vector or string Foreground color of the uicontrol. A
         color is specified as Red, Green and Blue values. Those values are
         real in [ 0,1]. The color can be given as a real vector, ie [R,G,B] or
-        a string where each value is separated by a |, ie "R|G|B"</SP>
-      </ITEM>
+        a string where each value is separated by a |, ie "R|G|B"</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Horizontalalignment">
-        <SP>string: left | {center} | right. Set text horizontal alignment in
+      <varlistentry><term>Horizontalalignment</term><listitem>
+        <para>string: left | {center} | right. Set text horizontal alignment in
         the uicontrol. This property can only be used with 'text', 'edit' and
-        'checkbox' styles.</SP>
-      </ITEM>
+        'checkbox' styles.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="ListboxTop">
-        <SP>integer For a ListBox, this property tells which item of the list
-        appears on the first line of the visible area of the list.</SP>
-      </ITEM>
+      <varlistentry><term>ListboxTop</term><listitem>
+        <para>integer For a ListBox, this property tells which item of the list
+        appears on the first line of the visible area of the list.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Max">
-        <SP>scalar Specifies the largest value the 'value' property can be set
-        to. It has however differnet meaning on each uicontrol:</SP>
-      </ITEM>
+      <varlistentry><term>Max</term><listitem>
+        <para>scalar Specifies the largest value the 'value' property can be set
+        to. It has however differnet meaning on each uicontrol:</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>Check Boxes : Max is the value the 'value' property take when
-        control is checked</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>Check Boxes : Max is the value the 'value' property take when
+        control is checked</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>Silders : Maximinum value of the slider</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>Silders : Maximinum value of the slider</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>List boxes : if (Max-Min)&gt;1 the list allows multiple selection,
-        Otherwise not.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>List boxes : if (Max-Min)&gt;1 the list allows multiple selection,
+        Otherwise not.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Min">
-        <SP>scalar Specifies the lowest value the 'value' property can be set
-        to. It has however different meaning on each uicontrol:</SP>
-      </ITEM>
+      <varlistentry><term>Min</term><listitem>
+        <para>scalar Specifies the lowest value the 'value' property can be set
+        to. It has however different meaning on each uicontrol:</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>Check Boxes : Min is the value the 'value' property take when
-        control is unchecked</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>Check Boxes : Min is the value the 'value' property take when
+        control is unchecked</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>Silders : Mininum value of the slider</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>Silders : Mininum value of the slider</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>List boxes : if (Max-Min)&gt;1 the list allows multiple selection,
-        Otherwise not.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>List boxes : if (Max-Min)&gt;1 the list allows multiple selection,
+        Otherwise not.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Parent">
-        <SP>integer Handle of the control parent. Changing this property
-        allows to move a control from a figure to another.</SP>
-      </ITEM>
+      <varlistentry><term>Parent</term><listitem>
+        <para>integer Handle of the control parent. Changing this property
+        allows to move a control from a figure to another.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Path">
-        <SP>This property is read-only. It allows to get the TK path of the
+      <varlistentry><term>Path</term><listitem>
+        <para>This property is read-only. It allows to get the TK path of the
         control as a string. (Useful when creating User Interfaces using
-        uicontrols and TCL/TK scripts.)</SP>
-      </ITEM>
+        uicontrols and TCL/TK scripts.)</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Position">
-        <SP>[1,4] real vector or string. This property is used to set or get
+      <varlistentry><term>Position</term><listitem>
+        <para>[1,4] real vector or string. This property is used to set or get
         the geometrical configuration of a control. It is a real; vector : x y
         w h where the letters stand for the x location of the left bottom
         corner, the y location of the left bottom corner, the width and the
         height of the uicontrol. The unit is determined by the 'Unit'
-        property.</SP>
-      </ITEM>
+        property.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Relief">
-        <SP>string, appearance of the border of the control.
+      <varlistentry><term>Relief</term><listitem>
+        <para>string, appearance of the border of the control.
          Can take the value "flat", "groove", "raised", "ridge", "solid", 
-         or "sunken"</SP>
-      </ITEM>
+         or "sunken"</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>pushbutton: the default value for Relief property is "raised".</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>pushbutton: the default value for Relief property is "raised".</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>edit: the default value for Relief property is "sunken".</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>edit: the default value for Relief property is "sunken".</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>other styles: the default value for Relief property is "flat".</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>other styles: the default value for Relief property is "flat".</para>
+      </listitem></varlistentry>
 
-      <ITEM label="SliderStep">
-        <SP>[1,2] real vector or string, [small big]. The small step represents
+      <varlistentry><term>SliderStep</term><listitem>
+        <para>[1,2] real vector or string, [small big]. The small step represents
         the movement achieved when clicking on the slider trough
         or tapping on the keyboard arrows (when the slider has focus);
         the big step is the amount moved when using Ctrl-keyboard-arrows.
-        If the big step is omitted, it is defaulted to 1/10 of the scale.</SP>
-      </ITEM>
+        If the big step is omitted, it is defaulted to 1/10 of the scale.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="String">
-        <SP>string. Generally, this property represents the text appearing in a
+      <varlistentry><term>String</term><listitem>
+        <para>string. Generally, this property represents the text appearing in a
         uicontrol. Its exact meaning sometimes depends on the uicontrol
-        style:</SP>
-      </ITEM>
+        style:</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>List Boxes, Popup Menu the value can be a vector of string or a
-        string where the items are separated by a '|'.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>List Boxes, Popup Menu the value can be a vector of string or a
+        string where the items are separated by a '|'.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Style">
-        <SP>string : {pushbutton} | radiobutton | checkbox | edit | text |
+      <varlistentry><term>Style</term><listitem>
+        <para>string : {pushbutton} | radiobutton | checkbox | edit | text |
         slider | frame |listbox | popupmenu Style of the uicontrol. Here is a
-        short description of each one:</SP>
-      </ITEM>
+        short description of each one:</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>pushbutton A rectangular button generally used to run a
-        callback.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>pushbutton A rectangular button generally used to run a
+        callback.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>radiobutton A button whith to states : on or off.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>radiobutton A button whith to states : on or off.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>checkbox a small uicontrol that have to state : on or off</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>checkbox a small uicontrol that have to state : on or off</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>edit an editable string control</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>edit an editable string control</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>text a text control (generally static).</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>text a text control (generally static).</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>slider a scale control, that is a scrollbar use to set values
-        between in range with the mouse.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>slider a scale control, that is a scrollbar use to set values
+        between in range with the mouse.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>frame a control representing a zone used to group of related
-        controls.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>frame a control representing a zone used to group of related
+        controls.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>listbox a control representing a list of item that can be
-        scrolled. The item can be selected with the mouse.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>listbox a control representing a list of item that can be
+        scrolled. The item can be selected with the mouse.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>popupmenu a button which make a menu appear when clicked.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>popupmenu a button which make a menu appear when clicked.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Tag">
-        <SP>string this property is generally used to identify the control. It
+      <varlistentry><term>Tag</term><listitem>
+        <para>string this property is generally used to identify the control. It
         allows to give it a "name". Mainly used in conjontion with
-        findobj().</SP>
-      </ITEM>
+        findobj().</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Units">
-        <SP>string : {points} | pixels | normalized Set the units used to
-        specify the 'position' property.</SP>
-      </ITEM>
+      <varlistentry><term>Units</term><listitem>
+        <para>string : {points} | pixels | normalized Set the units used to
+        specify the 'position' property.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Userdata">
-        <SP>this can be used to associate some scilab objects (string,string
-        matrix, matrix mxn) to an uicontrol. </SP>
-      </ITEM>
+      <varlistentry><term>Userdata</term><listitem>
+        <para>this can be used to associate some scilab objects (string,string
+        matrix, matrix mxn) to an uicontrol. </para>
+      </listitem></varlistentry>
 
-      <ITEM label="Value">
-        <SP>Value of the uicontrol. The exact meaning depends on the style of
-        the uicontrol.</SP>
-      </ITEM>
+      <varlistentry><term>Value</term><listitem>
+        <para>Value of the uicontrol. The exact meaning depends on the style of
+        the uicontrol.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>Check boxes, Radio buttons value is set to Max (see above) when on
-        and Min when off.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>Check boxes, Radio buttons value is set to Max (see above) when on
+        and Min when off.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>List Boxes, Popu Menu value is a vector of indexes corresponding
+      <varlistentry><term>o</term><listitem>
+        <para>List Boxes, Popu Menu value is a vector of indexes corresponding
         to the index of the selected entry in the list. 1 is the first item of
-        the list.</SP>
-      </ITEM>
+        the list.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="o">
-        <SP>Sliders value indicated by the slider bar.</SP>
-      </ITEM>
+      <varlistentry><term>o</term><listitem>
+        <para>Sliders value indicated by the slider bar.</para>
+      </listitem></varlistentry>
 
-      <ITEM label="Verticalalignment">
-        <SP>string: top | {middle} | bottom. Set text vertical alignment in
+      <varlistentry><term>Verticalalignment</term><listitem>
+        <para>string: top | {middle} | bottom. Set text vertical alignment in
         the uicontrol. This property can only be used with 'text' and
-        'checkbox' styles.</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
+        'checkbox' styles.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE>f=figure();
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[f=figure();
 // create a figure
 h=uicontrol(f,'style','listbox', ...
  'position', [10 10 150 160]);
@@ -308,25 +302,25 @@ set(h, 'value', [1 3]);
 // select item 1 and 3 in the list
 close(f);
 // close the figure
-  </EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>figure</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="figure">figure</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>uimenu</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="uimenu">uimenu</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Bertrand Guiheneuf</para></refsection>
+</refentry>

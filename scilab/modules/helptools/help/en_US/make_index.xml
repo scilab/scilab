@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,33 +10,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>help</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="make_index"> creates a new index file for on-line help</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>make_index() </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
-    The on-line help reads first the <VERB>index.html</VERB> file
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="make_index"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>make_index</refname><refpurpose> creates a new index file for on-line help</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>make_index()</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
+    The on-line help reads first the <literal>index.html</literal> file
     which contains the list of the chapters. This file comes with Scilab and is
-    in the directory <VERB>SCIDIR/man/&lt;language&gt;</VERB> (see
-    <LINK>man</LINK>). It is possible to change this
+    in the directory <literal>SCIDIR/man/&lt;language&gt;</literal> (see
+    <link linkend="man">man</link>). It is possible to change this
     index file while interactively adding new chapters. For that,
-    modify the <LINK>%helps</LINK> variable and then use the
-    <VERB>make_index</VERB> function.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>%helps</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>man</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    modify the <link linkend="helps">%helps</link> variable and then use the
+    <literal>make_index</literal> function.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="helps">%helps</link>
+    </member>
+    <member>
+      <link linkend="man">man</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

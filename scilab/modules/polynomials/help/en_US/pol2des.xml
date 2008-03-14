@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
@@ -10,55 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pol2des</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pol2des"> polynomial matrix to descriptor form</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[N,B,C]=pol2des(Ds)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>Ds</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: polynomial matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>N, B, C</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: three real matrices</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Given the polynomial matrix <VERB>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</VERB>,
-    <VERB>pol2des</VERB> returns three  matrices <VERB>N, B, C</VERB>, with <VERB>N</VERB> nilpotent
-    such that:</P>
-    <P>
-      <VERB>Ds = C (s*N-eye())^-1 B</VERB>
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pol2des"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pol2des</refname><refpurpose> polynomial matrix to descriptor form</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[N,B,C]=pol2des(Ds)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Ds</term>
+        <listitem>
+          <para>polynomial matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N, B, C</term>
+        <listitem>
+          <para>three real matrices</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Given the polynomial matrix <literal>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</literal>,
+    <literal>pol2des</literal> returns three  matrices <literal>N, B, C</literal>, with <literal>N</literal> nilpotent
+    such that:</para>
+    <para>
+      <literal>Ds = C (s*N-eye())^-1 B</literal>
+    </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 s=poly(0,'s');
 G=[1,s;1+s^2,3*s^3];[N,B,C]=pol2des(G);
 G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ss2des</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>tf2des</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F.D.;   </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ss2des">ss2des</link>
+    </member>
+    <member>
+      <link linkend="tf2des">tf2des</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F.D.;   </para></refsection>
+</refentry>

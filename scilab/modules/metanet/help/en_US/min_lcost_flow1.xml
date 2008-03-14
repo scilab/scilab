@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,71 +10,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>min_lcost_flow1</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="min_lcost_flow1"> minimum linear cost flow</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[c,phi,flag] = min_lcost_flow1(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>c</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: value of cost</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>phi</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: row vector of the value of flow on the arcs</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: feasible problem flag (0 or 1)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>min_lcost_flow1</VERB> computes the minimum linear cost flow in the network 
-    <VERB>g</VERB>. It returns the total cost of the flows on the arcs <VERB>c</VERB> and
-    the row vector of the flows on the arcs <VERB>phi</VERB>. If the problem is not 
-    feasible (impossible to find a compatible flow for instance), <VERB>flag</VERB> is 
-    equal to 0, otherwise it is equal to 1.</P>
-    <P>
-    The bounds of the flow are given by the <VERB>min_cap</VERB> and
-    <VERB>max_cap</VERB> fields of the graph
-    <LINK>edges_data_structure</LINK>.  The value of the minimum
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="min_lcost_flow1"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>min_lcost_flow1</refname><refpurpose> minimum linear cost flow</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[c,phi,flag] = min_lcost_flow1(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>value of cost</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>phi</term>
+        <listitem>
+          <para>row vector of the value of flow on the arcs</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>feasible problem flag (0 or 1)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>min_lcost_flow1</literal> computes the minimum linear cost flow in the network 
+    <literal>g</literal>. It returns the total cost of the flows on the arcs <literal>c</literal> and
+    the row vector of the flows on the arcs <literal>phi</literal>. If the problem is not 
+    feasible (impossible to find a compatible flow for instance), <literal>flag</literal> is 
+    equal to 0, otherwise it is equal to 1.</para>
+    <para>
+    The bounds of the flow are given by the <literal>min_cap</literal> and
+    <literal>max_cap</literal> fields of the graph
+    <link linkend="edges_data_structure">edges_data_structure</link>.  The value of the minimum
     capacity and of the maximum capacity must be non negative and must
     be integer numbers.  The value of the maximum capacity must be
     greater than or equal to the value of the minimum capacity.  If
-    the value of <VERB>min_cap</VERB> or <VERB>max_cap</VERB> is not
-    given it is assumed to be equal to 0 on each edge.</P>
-    <P>
-    The costs on the edges are given by the element <VERB>cost</VERB>
-    of the fields of the graph <LINK>edges_data_structure</LINK>.  The
-    costs must be non negative.  If the value of <VERB>cost</VERB> is
-    not given, it is assumed to be equal to 0 on each edge.</P>
+    the value of <literal>min_cap</literal> or <literal>max_cap</literal> is not
+    given it is assumed to be equal to 0 on each edge.</para>
+    <para>
+    The costs on the edges are given by the element <literal>cost</literal>
+    of the fields of the graph <link linkend="edges_data_structure">edges_data_structure</link>.  The
+    costs must be non negative.  If the value of <literal>cost</literal> is
+    not given, it is assumed to be equal to 0 on each edge.</para>
  
-    <P>
-    This function uses the out-of-kilter algorithm.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <para>
+    This function uses the out-of-kilter algorithm.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ta=[1,1,2,2,2,3,4,4,5,6,6,6,7,7,7,8,9,10,12,12,13,13,13,14,15,14,9,11,10,1,8];
 he=[2,6,3,4,5,1,3,5,1,7,10,11,5,8,9,5,8,11,10,11,9,11,15,13,14,4,6,9,1,12,14];
 g=make_graph('foo',1,15,ta,he);
@@ -94,23 +89,23 @@ g=add_edge_data(g,'flow',phi)
 g.edges.graphics.display='flow';
 show_graph(g);
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>min_lcost_cflow</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>min_lcost_flow2</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>min_qcost_flow</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>edges_data_structure</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>add_edge_data</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="min_lcost_cflow">min_lcost_cflow</link>
+    </member>
+    <member>
+      <link linkend="min_lcost_flow2">min_lcost_flow2</link>
+    </member>
+    <member>
+      <link linkend="min_qcost_flow">min_qcost_flow</link>
+    </member>
+    <member>
+      <link linkend="edges_data_structure">edges_data_structure</link>
+    </member>
+    <member>
+      <link linkend="add_edge_data">add_edge_data</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

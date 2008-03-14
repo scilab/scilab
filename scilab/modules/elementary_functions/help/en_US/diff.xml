@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>diff</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="diff"> Difference and discrete derivative</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=diff(x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=diff(x [,n [,dim]])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector or matrix (real, complex, sparse or polynomial)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer the order of differentiation</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>dim</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer or character string with values &quot;r&quot;,&quot;c&quot; and &quot;*&quot;</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: scalar or vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>y=diff(x)</VERB>  compute the difference function y=x(2:$)-x(1:$-1)</P>
-    <P><VERB>diff(x,n,dim)</VERB> is the <VERB>n</VERB> th difference function along
-    dimension <VERB>dim</VERB>.</P>
-    <P><VERB>diff(x,n,&quot;*&quot;)</VERB> is equivalent to diff(x(:),n).</P>
-    <P>
-    Default value for <VERB>n</VERB> is 1.  Default value for
-    <VERB>dim</VERB> is <VERB>&quot;*&quot;</VERB>.</P>
-    <P><VERB>dim='r'</VERB> is equivalent to <VERB>dim=1</VERB> and <VERB>dim='c'</VERB> is
-    equivalent to <VERB>dim=2</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="diff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>diff</refname><refpurpose> Difference and discrete derivative</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=diff(x)
+y=diff(x [,n [,dim]])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vector or matrix (real, complex, sparse or polynomial)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>integer the order of differentiation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>integer or character string with values "r","c" and "*"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>scalar or vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>y=diff(x)</literal>  compute the difference function y=x(2:$)-x(1:$-1)</para>
+    <para><literal>diff(x,n,dim)</literal> is the <literal>n</literal> th difference function along
+    dimension <literal>dim</literal>.</para>
+    <para><literal>diff(x,n,"*")</literal> is equivalent to diff(x(:),n).</para>
+    <para>
+    Default value for <literal>n</literal> is 1.  Default value for
+    <literal>dim</literal> is <literal>"*"</literal>.</para>
+    <para><literal>dim='r'</literal> is equivalent to <literal>dim=1</literal> and <literal>dim='c'</literal> is
+    equivalent to <literal>dim=2</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 v=(1:8)^3;
 diff(v)
 diff(v,3)
@@ -78,6 +75,6 @@ t=0:step:10;
 y=sin(t);
 dy=diff(sin(t))/step; //approximate differentiation of sine function
 norm(dy-cos(t(1:$-1)),%inf)
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

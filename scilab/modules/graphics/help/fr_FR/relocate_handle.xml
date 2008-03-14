@@ -1,59 +1,54 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="relocate_handle"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>relocate_handle</refname><refpurpose>Déplace un handle à  
+  l'intérieur de la hiérarchie graphique.</refpurpose></refnamediv>
+  
 
-  <TITLE>relocate_handle</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="relocate_handle">Déplace un handle à &#160;
-  l'intérieur de la hiérarchie graphique.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>relocate_handle( movedHandles, parent
-    )</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>relocate_handle( movedHandles, parent )</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>movedHandles</PARAM_NAME>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>movedHandles</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Vecteur contenant les handles déplacés.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>Vecteur contenant les handles déplacés.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>parent</PARAM_NAME>
+      <varlistentry>
+        <term>parent</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Nouveau parent des handles.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>Nouveau parent des handles.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>La routine <BD>relocate_handle</BD> permet de déplacer des handles
-    graphiques à &#160; partir de leurs emplacements actuels vers un autre dans
+  <refsection><title>Description</title>
+    <para>La routine <emphasis role="bold">relocate_handle</emphasis> permet de déplacer des handles
+    graphiques à   partir de leurs emplacements actuels vers un autre dans
     la hierarchie graphique. Les entités déplacées sont relogées sous le
-    handle <BD>parent</BD> spécifié.</P>
+    handle <emphasis role="bold">parent</emphasis> spécifié.</para>
 
-    <P>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
-    existe des restrictions quant à &#160; l'utilisation de la routine . Il est
+    <para>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
+    existe des restrictions quant à   l'utilisation de la routine . Il est
     par exemple impossible de déplacer une handle axes comme enfant d'une
-    polyline. Pour plus d'information à &#160; ce sujet, on peut se reporter
-    à &#160; la page <LINK>graphics_entities</LINK>.</P>
+    polyline. Pour plus d'information à   ce sujet, on peut se reporter
+    à   la page <link linkend="graphics_entities">graphics_entities</link>.</para>
 
-    <P>Cette routine est particulièrement utile pour déplacer un objet d'un
-    axe à &#160; un autre ou pour déplacer des axes entre fenêtre.</P>
-  </DESCRIPTION>
+    <para>Cette routine est particulièrement utile pour déplacer un objet d'un
+    axe à   un autre ou pour déplacer des axes entre fenêtre.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[x = 0:10 ;
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[x = 0:10 ;
 
 // construction d'une première polyline
 plot(x,x^2) ;
@@ -70,25 +65,25 @@ poly2bis = copy( poly2 ) ; // copie de la polyline pour la déplacer ensuite
 // les deux polylines se retrouvent dans le même axe.
 relocate_handle( poly2bis, axes1 ) ;
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>copy</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="copy">copy</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>swap_handles</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="swap_handles">swap_handles</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Jean-Baptiste Silvy</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>Jean-Baptiste Silvy</para></refsection>
+</refentry>

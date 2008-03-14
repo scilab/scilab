@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,50 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>or</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="or"> (|) logical or</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>or(A),  or(A,'*')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>or(A,'r'), or(A,1)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>or(A,'c'), or(A,2)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>A|B</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P><VERB>or(A)</VERB>  gives the  <VERB>or</VERB> of the elements of the  boolean 
-    matrix  <VERB>A</VERB>. <VERB>or(A)</VERB> is true (<VERB>%t</VERB>) iff at least one entry of
-    <VERB>A</VERB> is <VERB>%t</VERB>.</P>
-    <P><VERB>y=or(A,'r')</VERB> (or, equivalently, <VERB>y=or(A,1)</VERB>) is the rowwise or. It returns in each 
-    entry of the row vector <VERB>y</VERB> the or of the rows of <VERB>x</VERB> (The or is performed on the 
-    row index : <VERB>y(j)= or(A(i,j),i=1,m)</VERB>).</P>
-    <P><VERB>y=or(A,'c')</VERB> (or, equivalently, <VERB>y=or(A,2)</VERB>) is the columnwise or. It returns 
-    in each entry of the column vector <VERB>y</VERB> the or of the columns of <VERB>x</VERB> 
-    (The or is performed on the column index:  <VERB>y(i)= or(A(i,j),j=1,n)</VERB>)).</P>
-    <P><VERB>A|B</VERB>  gives the element-wise logical <VERB>or</VERB> of the booleans matrices
-     <VERB>A</VERB> and  <VERB>B</VERB> .<VERB>A</VERB> and  <VERB>B</VERB> must be matrices with the same
-     dimensions or one from them must be a single boolean.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="or"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>or</refname><refpurpose> (|) logical or</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>or(A), or(A,'*')
+or(A,'r'), or(A,1)
+
+or(A,'c'), or(A,2)
+A|B</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para><literal>or(A)</literal>  gives the  <literal>or</literal> of the elements of the  boolean 
+    matrix  <literal>A</literal>. <literal>or(A)</literal> is true (<literal>%t</literal>) iff at least one entry of
+    <literal>A</literal> is <literal>%t</literal>.</para>
+    <para><literal>y=or(A,'r')</literal> (or, equivalently, <literal>y=or(A,1)</literal>) is the rowwise or. It returns in each 
+    entry of the row vector <literal>y</literal> the or of the rows of <literal>x</literal> (The or is performed on the 
+    row index : <literal>y(j)= or(A(i,j),i=1,m)</literal>).</para>
+    <para><literal>y=or(A,'c')</literal> (or, equivalently, <literal>y=or(A,2)</literal>) is the columnwise or. It returns 
+    in each entry of the column vector <literal>y</literal> the or of the columns of <literal>x</literal> 
+    (The or is performed on the column index:  <literal>y(i)= or(A(i,j),j=1,n)</literal>)).</para>
+    <para><literal>A|B</literal>  gives the element-wise logical <literal>or</literal> of the booleans matrices
+     <literal>A</literal> and  <literal>B</literal> .<literal>A</literal> and  <literal>B</literal> must be matrices with the same
+     dimensions or one from them must be a single boolean.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 or([%t %t %f])
 [%t %t %f]|[%f %t %t]
 [%t %t %f]|%f
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>and</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>not</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>find</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="and">and</link>
+    </member>
+    <member>
+      <link linkend="not">not</link>
+    </member>
+    <member>
+      <link linkend="find">find</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

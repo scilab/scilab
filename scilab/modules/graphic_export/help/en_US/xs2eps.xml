@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
@@ -10,116 +10,112 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
- 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xs2eps</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xs2eps">save graphics to a Postscript file.</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xs2eps(win_num,filen [,colored] [,orientation])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>win_num</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer scalar or vector .</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>filen</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, file name.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>colored</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: optional integer or boolean. 0 (%f) means black and white and 1
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xs2eps"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xs2eps</refname><refpurpose>save graphics to a Postscript file.</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xs2eps(win_num,filen [,colored] [,orientation])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
+        <listitem>
+          <para>integer scalar or vector .</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>filen</term>
+        <listitem>
+          <para>string, file name.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>colored</term>
+        <listitem>
+          <para>optional integer or boolean. 0 (%f) means black and white and 1
 	    (%t) means color.
           The default value (-1) is to use a value compatible with the screen
-          status.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>orientation</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: optional character, with possible values 'p' (portrait) or 'l' (landscape).
-          The default value  is 'p'.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>The function xs2eps will not be available in version alpha</P>
-    <P><VERB>xs2eps</VERB> saves the recorded graphics of the window
-    <VERB>win_num</VERB> to file <VERB>filen</VERB> in Postscript syntax. 
-    Note that <VERB>filen</VERB> must not have extension.</P>
+          status.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orientation</term>
+        <listitem>
+          <para>optional character, with possible values 'p' (portrait) or 'l' (landscape).
+          The default value  is 'p'.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>The function xs2eps will not be available in version alpha</para>
+    <para><literal>xs2eps</literal> saves the recorded graphics of the window
+    <literal>win_num</literal> to file <literal>filen</literal> in Postscript syntax. 
+    Note that <literal>filen</literal> must not have extension.</para>
 
-    <P><VERB>xs2eps</VERB> produces a complete encapsulated Postscrip file. 
-    It simply  calls <VERB>xs2eps</VERB> and then <VERB>BEpsf</VERB>.</P>
+    <para><literal>xs2eps</literal> produces a complete encapsulated Postscrip file. 
+    It simply  calls <literal>xs2eps</literal> and then <literal>BEpsf</literal>.</para>
 
-    <P>This function works only if the selected driver is <VERB>"Rec"</VERB>
-    in the window <VERB>win_num</VERB> or if the window is in "new style". The
-    generated postscript file does not contrains the header part</P>
-  </DESCRIPTION>
+    <para>This function works only if the selected driver is <literal>"Rec"</literal>
+    in the window <literal>win_num</literal> or if the window is in "new style". The
+    generated postscript file does not contrains the header part</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[ 
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ 
     scf(0)
     plot2d()
     // Postscript export
     filename='foo'; // ! no extension
     xs2eps(0,filename)
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set_posfig_dim</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>printing</LINK>
-    </SEE_ALSO_ITEM>
-	    <SEE_ALSO_ITEM>
-      <LINK>xs2bmp</LINK>
-	</SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set_posfig_dim">set_posfig_dim</link>
+    </member>
+    <member>
+      <link linkend="printing">printing</link>
+    </member>
+	    <member>
+      <link linkend="xs2bmp">xs2bmp</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2gif</LINK>
-	</SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2gif">xs2gif</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2jpg</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2jpg">xs2jpg</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2png</LINK>
-	</SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2png">xs2png</link>
+	</member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2ppm</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2ppm">xs2ppm</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2pdf</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2pdf">xs2pdf</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2svg</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2svg">xs2svg</link>
+    </member>
 	
-	<SEE_ALSO_ITEM>
-      <LINK>xs2ps</LINK>
-    </SEE_ALSO_ITEM>
+	<member>
+      <link linkend="xs2ps">xs2ps</link>
+    </member>
   
-    <SEE_ALSO_ITEM>
-      <LINK>xs2fig</LINK>
-    </SEE_ALSO_ITEM>    
+    <member>
+      <link linkend="xs2fig">xs2fig</link>
+    </member>    
 
-    <SEE_ALSO_ITEM>
-      <LINK>xs2emf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="xs2emf">xs2emf</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

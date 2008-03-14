@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,52 +10,51 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_strcmpi</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_strcmpi"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_strcmpi</refname><refpurpose>Matlab strcmpi emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_strcmpi">Matlab strcmpi emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>There is no Scilab function equivalent for Matlab <VERB>strcmpi</VERB>, there is equivalent instructions.</P>
+    <para>There is no Scilab function equivalent for Matlab <literal>strcmpi</literal>, there is equivalent instructions.</para>
 
-    <P>
-    The function <VERB>mtlb_strcmpi(A,B)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>strcmpi(A,B)</VERB> when it was not
+    <para>
+    The function <literal>mtlb_strcmpi(A,B)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>strcmpi(A,B)</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_strcmpi</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_strcmpi</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> and <VERB>B</VERB> are character strings
-        <VERB>mtlb_strcmpi(A,B)</VERB> may be replaced by <VERB>convstr(A)==convstr(B)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>A</literal> and <literal>B</literal> are character strings
+        <literal>mtlb_strcmpi(A,B)</literal> may be replaced by <literal>convstr(A)==convstr(B)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>A</VERB> and/or <VERB>B</VERB> is not a character string
-        <VERB>mtlb_strcmpi(A,B)</VERB> may be replaced by <VERB>0</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        If <literal>A</literal> and/or <literal>B</literal> is not a character string
+        <literal>mtlb_strcmpi(A,B)</literal> may be replaced by <literal>0</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_strcmpi</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_strcmpi</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

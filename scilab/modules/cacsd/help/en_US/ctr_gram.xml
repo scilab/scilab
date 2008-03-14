@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge STEER
@@ -10,74 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ctr_gram"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ctr_gram</refname><refpurpose> controllability gramian</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Gc]=ctr_gram(A,B [,dom])
+[Gc]=ctr_gram(sl)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B</term>
+        <listitem>
+          <para>two real matrices of appropriate dimensions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dom</term>
+        <listitem>
+          <para>character string (<literal>'c'</literal> (default value) or <literal>'d'</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>linear system, <literal>syslin</literal> list</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    Controllability gramian of <literal>(A,B)</literal> or <literal>sl</literal> (a <literal>syslin</literal> 
+    linear system).</para>
+    <para><literal>dom</literal> character string giving the time domain : <literal>"d"</literal> for a
+    discrete time system and <literal>"c"</literal> for continuous time (default case).</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ctr_gram</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="ctr_gram"> controllability gramian</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[Gc]=ctr_gram(A,B [,dom])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[Gc]=ctr_gram(sl)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>A,B</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: two real matrices of appropriate dimensions</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>dom</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string (<VERB>'c'</VERB> (default value) or <VERB>'d'</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: linear system, <VERB>syslin</VERB> list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    Controllability gramian of <VERB>(A,B)</VERB> or <VERB>sl</VERB> (a <VERB>syslin</VERB> 
-    linear system).</P>
-    <P><VERB>dom</VERB> character string giving the time domain : <VERB>&quot;d&quot;</VERB> for a
-    discrete time system and <VERB>&quot;c&quot;</VERB> for continuous time (default case).</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 A=diag([-1,-2,-3]);B=rand(3,2);
 Wc=ctr_gram(A,B)
 U=rand(3,3);A1=U*A/U;B1=U*B;
 Wc1=ctr_gram(A1,B1)    //Not invariant!
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>equil1</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>obs_gram</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>contr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>cont_mat</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>cont_frm</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>contrss</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. Steer INRIA 1988</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="equil1">equil1</link>
+    </member>
+    <member>
+      <link linkend="obs_gram">obs_gram</link>
+    </member>
+    <member>
+      <link linkend="contr">contr</link>
+    </member>
+    <member>
+      <link linkend="cont_mat">cont_mat</link>
+    </member>
+    <member>
+      <link linkend="cont_frm">cont_frm</link>
+    </member>
+    <member>
+      <link linkend="contrss">contrss</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>S. Steer INRIA 1988</para></refsection>
+</refentry>

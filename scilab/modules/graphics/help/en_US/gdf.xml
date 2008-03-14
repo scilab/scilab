@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,51 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gdf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gdf</refname><refpurpose>Return handle of default
+  figure.</refpurpose></refnamediv>
+  
 
-  <TITLE>gdf</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="gdf">Return handle of default
-  figure.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>f = gdf()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>f = gdf()
+f = get("default_figure")</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>f = get("default_figure")</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
+        <listitem>
+          <para>handle, the handle of the default figure.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: handle, the handle of the default figure.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>The default figure is a graphic entity which is never drawn. It is used
+  <refsection><title>Description</title>
+    <para>The default figure is a graphic entity which is never drawn. It is used
     as a reference for the figure properties default values. These default
-    properties values are used to initialize new figures.</P>
+    properties values are used to initialize new figures.</para>
 
-    <P>The <VERB>gdf</VERB> function returns the handle on the default figure.
+    <para>The <literal>gdf</literal> function returns the handle on the default figure.
     The user can use this handle to set or get the figure properties default
-    values.</P>
+    values.</para>
 
-    <P>Note that an equivalent default graphic entity exists for axes entities
-    too (see <VERB>gda</VERB>).</P>
-  </DESCRIPTION>
+    <para>Note that an equivalent default graphic entity exists for axes entities
+    too (see <literal>gda</literal>).</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    
    f=gdf() // get the handle of the model figure 
    // setting its' properties
@@ -72,41 +68,41 @@
    scf(2);
    plot2d() 
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>gda</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="gda">gda</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>sdf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="sdf">sdf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>sda</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="sda">sda</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gcf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gcf">gcf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>scf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="scf">scf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+</refentry>

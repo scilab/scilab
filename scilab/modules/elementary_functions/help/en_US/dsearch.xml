@@ -1,98 +1,94 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>dsearch</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="dsearch">binary search (aka dichotomous search in french)</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[ind, occ, info]  = dsearch(X, val [, ch ])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a real vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>val</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a real (row or column) vector with n components in strictly increasing 
-             order val(1) &lt; val(2) &lt; ... &lt; val(n)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ch</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) a character &quot;c&quot; or &quot;d&quot; (default value &quot;c&quot;)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ind</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a real vector or matrix with the same dimensions than X</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>occ</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a real vector with the same format than val (but with n-1 components in the case ch=&quot;c&quot;)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>info</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>This function is useful to search in an ordered table and/or to count the number of components
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dsearch"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dsearch</refname><refpurpose>binary search (aka dichotomous search in french)</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>a real vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>val</term>
+        <listitem>
+          <para>a real (row or column) vector with n components in strictly increasing 
+             order val(1) &lt; val(2) &lt; ... &lt; val(n)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ch</term>
+        <listitem>
+          <para>(optional) a character "c" or "d" (default value "c")</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+        <listitem>
+          <para>a real vector or matrix with the same dimensions than X</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>occ</term>
+        <listitem>
+          <para>a real vector with the same format than val (but with n-1 components in the case ch="c")</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>This function is useful to search in an ordered table and/or to count the number of components
        of a vector falling in some classes (a class being an interval or a value).
-    </P>
-    <P>By default or when <VERB>ch=&quot;c&quot;</VERB>, this is the interval case, that is, for 
+    </para>
+    <para>By default or when <literal>ch="c"</literal>, this is the interval case, that is, for 
        each X(i) search in which of the n-1 intervals it falls, the intervals being defined by:
-    </P>
-        <VERBATIM>
-<![CDATA[            I1 = [val(1), val(2)]
-            Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; ]]>
-</VERBATIM>
-    <P>and:
-    </P>
-    <ITEMIZE>
-       <ITEM label="ind(i)">
-            <SP>: is the interval number of X(i) (0 if X(i) is not in
-              [val(1),val(n)])</SP>
-       </ITEM>
-       <ITEM label="occ(k)">
-            <SP>: is the number of components of X which are in Ik</SP>
-       </ITEM>
-       <ITEM label="info">
-            <SP>: is the number of components of X which are not in [val(1),val(n)]</SP>
-       </ITEM>
-    </ITEMIZE>
-    <P>When <VERB>ch=&quot;d&quot;</VERB> case, this is the discrete case, that is, for 
+    </para>
+        <programlisting><![CDATA[
+            I1 = [val(1), val(2)]
+            Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; 
+]]></programlisting>
+    <para>and:
+    </para>
+    <variablelist>
+       <varlistentry><term>ind(i)</term><listitem>
+            <para>is the interval number of X(i) (0 if X(i) is not in
+              [val(1),val(n)])</para>
+       </listitem></varlistentry>
+       <varlistentry><term>occ(k)</term><listitem>
+            <para>is the number of components of X which are in Ik</para>
+       </listitem></varlistentry>
+       <varlistentry><term>info</term><listitem>
+            <para>is the number of components of X which are not in [val(1),val(n)]</para>
+       </listitem></varlistentry>
+    </variablelist>
+    <para>When <literal>ch="d"</literal> case, this is the discrete case, that is, for 
        each X(i)  search if it is equal to one val(k) and:
-    </P>
-    <ITEMIZE>
-       <ITEM label="ind(i)">
-            <SP>: is equal to the index of the component of val which matches X(i) 
-               (ind(i) = k if X(i)=val(k)) or 0 if X(i) is not in val.</SP>
-       </ITEM>
-       <ITEM label="occ(k)">
-            <SP>: is the number of components of X equal to val(k)</SP>
-       </ITEM>
-       <ITEM label="info">
-            <SP>: is the number of components of X which are not in the set {val(1),...,val(n)}</SP>
-       </ITEM>
-     </ITEMIZE>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    </para>
+    <variablelist>
+       <varlistentry><term>ind(i)</term><listitem>
+            <para>is equal to the index of the component of val which matches X(i) 
+               (ind(i) = k if X(i)=val(k)) or 0 if X(i) is not in val.</para>
+       </listitem></varlistentry>
+       <varlistentry><term>occ(k)</term><listitem>
+            <para>is the number of components of X equal to val(k)</para>
+       </listitem></varlistentry>
+       <varlistentry><term>info</term><listitem>
+            <para>is the number of components of X which are not in the set {val(1),...,val(n)}</para>
+       </listitem></varlistentry>
+     </variablelist>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 // example #1 (elementary stat for U(0,1))
 m = 50000 ; n = 10;
 X = grand(m,1,"def");
@@ -132,15 +128,15 @@ xbasc(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000")
 xtitle("an Hermite piecewise polynomial")
 // NOTE : you can verify by adding these ones : 
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>find</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>tabul</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>B.P.   </AUTHOR>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="find">find</link>
+    </member>
+    <member>
+      <link linkend="tabul">tabul</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>B.P.   </para></refsection>
+</refentry>

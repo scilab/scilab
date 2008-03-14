@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ????-2006 - INRIA - Scilab 
@@ -10,62 +10,59 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="soundsec"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>soundsec</refname><refpurpose>generates n sampled seconds of time
+  parameter</refpurpose></refnamediv>
+  
 
-  <TITLE>soundsec</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="soundsec">generates n sampled seconds of time
-  parameter</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>t=soundsec(n [,rate])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>t=soundsec(n [,rate])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: an integer, the number of seconds to generate.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>an integer, the number of seconds to generate.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>rate</PARAM_NAME>
+      <varlistentry>
+        <term>rate</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: an integer, the number of samples per second.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>an integer, the number of samples per second.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>generates a vector coding time from 0 to <VERB>n</VERB>seconds at
-    sampled rate <VERB>rate</VERB>.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>generates a vector coding time from 0 to <literal>n</literal>seconds at
+    sampled rate <literal>rate</literal>.</para>
+  </refsection>
 
-  <EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
 // Then we generate the sound.
 s=sin(2*%pi*440*t);
 analyze(s,200,600,22050);
-   </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>playsnd</LINK>
-    </SEE_ALSO_ITEM>
+   ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="playsnd">playsnd</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>analyze</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="analyze">analyze</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

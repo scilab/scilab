@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,67 +10,63 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_2_mat</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph_2_mat"> node-arc or node-node incidence matrix of a graph</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>a = graph_2_mat(g,mat)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a <LINK>graph_data_structure</LINK>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>mat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: optional string, 'node-arc' or 'node-node' matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: sparse node-arc or node-node incidence matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>graph_2_mat</VERB> computes the node-arc or the node-node incidence matrix 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_2_mat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_2_mat</refname><refpurpose> node-arc or node-node incidence matrix of a graph</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>a = graph_2_mat(g,mat)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mat</term>
+        <listitem>
+          <para>optional string, 'node-arc' or 'node-node' matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>sparse node-arc or node-node incidence matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>graph_2_mat</literal> computes the node-arc or the node-node incidence matrix 
     corresponding
-    to the graph <VERB>g</VERB>.</P>
-    <P>
-    If the optional argument <VERB>mat</VERB> is omitted or is the string 
-    <VERB>'node-arc'</VERB>, the node-arc matrix is computed. If <VERB>mat</VERB> is the string
-    <VERB>'node-node'</VERB>, the node-node matrix is computed.</P>
-    <P>
-    If <VERB>n</VERB> is the number of nodes of the graph and 
-    <VERB>m</VERB> is the number of edges of the graph, the node-arc matrix is a Scilab 
-    sparse matrix of size <VERB>(n,m)</VERB>.</P>
-    <P>
-    It is defined as follows. If the graph is directed:</P>
-    <P><VERB>a(i,j) = +1</VERB> if node <VERB>i</VERB> is the tail of arc <VERB>j</VERB></P>
-    <P><VERB>a(i,j) = -1</VERB> if node <VERB>i</VERB> is the head of arc <VERB>j</VERB></P>
-    <P>
-    If the graph is undirected:</P>
-    <P><VERB>a(i,j) = 1</VERB> if node <VERB>i</VERB> is the tail or the head of arc <VERB>j</VERB></P>
-    <P>
-    If <VERB>n</VERB> is the number of nodes of the graph, the node-node matrix is a 
-    Scilab sparse matrix of size <VERB>(n,n)</VERB>.</P>
-    <P>
-    It is defined as follows:</P>
-    <P><VERB>a(i,j) = 1</VERB> if there is an arc from node <VERB>i</VERB> to node <VERB>j</VERB></P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    to the graph <literal>g</literal>.</para>
+    <para>
+    If the optional argument <literal>mat</literal> is omitted or is the string 
+    <literal>'node-arc'</literal>, the node-arc matrix is computed. If <literal>mat</literal> is the string
+    <literal>'node-node'</literal>, the node-node matrix is computed.</para>
+    <para>
+    If <literal>n</literal> is the number of nodes of the graph and 
+    <literal>m</literal> is the number of edges of the graph, the node-arc matrix is a Scilab 
+    sparse matrix of size <literal>(n,m)</literal>.</para>
+    <para>
+    It is defined as follows. If the graph is directed:</para>
+    <para><literal>a(i,j) = +1</literal> if node <literal>i</literal> is the tail of arc <literal>j</literal></para>
+    <para><literal>a(i,j) = -1</literal> if node <literal>i</literal> is the head of arc <literal>j</literal></para>
+    <para>
+    If the graph is undirected:</para>
+    <para><literal>a(i,j) = 1</literal> if node <literal>i</literal> is the tail or the head of arc <literal>j</literal></para>
+    <para>
+    If <literal>n</literal> is the number of nodes of the graph, the node-node matrix is a 
+    Scilab sparse matrix of size <literal>(n,n)</literal>.</para>
+    <para>
+    It is defined as follows:</para>
+    <para><literal>a(i,j) = 1</literal> if there is an arc from node <literal>i</literal> to node <literal>j</literal></para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 ta = [10,3,6,2,3,7,6,9,5,10,8,2,5,8,4,9,1,8,9,4,7]
 he = [3,6,10,6,2,6,9,7,3,5,2,5,8,4,9,8,4,1,2,7,10]
 g=make_graph('foo',1,10,ta,he);
@@ -85,11 +80,11 @@ a=[['' string(1:10)];[string(1:10)' string(full(a))]]
 
 a=graph_2_mat(g);
 string(full(a))'
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>mat_2_graph</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="mat_2_graph">mat_2_graph</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

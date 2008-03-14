@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,46 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>eval3d</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="eval3d"> values of a function on a grid</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[z]=eval3d(fun,x,[y])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>fun</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: function accepting vectors as arguments.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: 2 vectors of size (1,n1) and (1,n2). (default value for <VERB>y</VERB> : <VERB>y=x</VERB>).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of size (n1,n2).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    This function returns a matrix <VERB>z(n1,n2)</VERB>. <VERB>z(i,j)=fun(x(i),y(j))</VERB>. 
-    If the function <VERB>fun</VERB> doesn't accept arguments of type vector use the
-    primitive <VERB>feval</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eval3d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>eval3d</refname><refpurpose> values of a function on a grid</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[z]=eval3d(fun,x,[y])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>function accepting vectors as arguments.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>2 vectors of size (1,n1) and (1,n2). (default value for <literal>y</literal> : <literal>y=x</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>matrix of size (n1,n2).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    This function returns a matrix <literal>z(n1,n2)</literal>. <literal>z(i,j)=fun(x(i),y(j))</literal>. 
+    If the function <literal>fun</literal> doesn't accept arguments of type vector use the
+    primitive <literal>feval</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
   x=-5:5;y=x;
   deff('[z]=f(x,y)',['z= x.*y']);
   z=eval3d(f,x,y);
@@ -58,12 +55,12 @@
   deff('[z]=f(x,y)',['z= x*y']);
   z=feval(x,y,f);
   plot3d(x,y,z);
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>feval</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>Steer S.; ; ;   </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="feval">feval</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>Steer S.; ; ;   </para></refsection>
+</refentry>

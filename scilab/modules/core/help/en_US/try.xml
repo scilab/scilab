@@ -1,44 +1,40 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>try</TITLE>
-  <TYPE>Scilab keyword</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="try"> beginning of try block in try-catch control instruction</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="catch"> beginning of catch block in try-catch control instruction </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>try </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>catch </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>end</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>The <VERB>try</VERB>-<VERB>catch</VERB> control instruction can be used
-      to manage codes that could possibly generate errors.</P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="try"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>try</refname><refpurpose> beginning of try block in try-catch control instruction</refpurpose></refnamediv><refnamediv xml:id="catch"><refname>catch</refname><refpurpose> beginning of catch block in try-catch control instruction </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>try
+statements
+catch
+statements
+end</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>The <literal>try</literal>-<literal>catch</literal> control instruction can be used
+      to manage codes that could possibly generate errors.</para>
 
-    <P>When a <VERB>try</VERB>-<VERB>catch</VERB> control instruction is
-      executed, normally only the statements between the <VERB>try</VERB> and 
-      <VERB>catch</VERB> keywords are executed. However, if an error occurs
+    <para>When a <literal>try</literal>-<literal>catch</literal> control instruction is
+      executed, normally only the statements between the <literal>try</literal> and 
+      <literal>catch</literal> keywords are executed. However, if an error occurs
       during execution of any of these statements, the error is recorded, the
-      remaining statements up to the <VERB>catch</VERB> keyword 
-      are skipped and the statements between the <VERB>catch</VERB> and
-      <VERB>end</VERB> keywords are executed using the default error handling
-      mode (see: <LINK>errcatch</LINK>. </P>
-    <P>The recorded error can be retreived using the <LINK>lasterror</LINK>
-      function.</P>
+      remaining statements up to the <literal>catch</literal> keyword 
+      are skipped and the statements between the <literal>catch</literal> and
+      <literal>end</literal> keywords are executed using the default error handling
+      mode (see: <link linkend="errcatch">errcatch</link>. </para>
+    <para>The recorded error can be retreived using the <link linkend="lasterror">lasterror</link>
+      function.</para>
 
-    <P>The <VERB>catch</VERB> statements as well as the <VERB>catch</VERB>
-      keyword can be omitted if no alternative statements are given.</P>
+    <para>The <literal>catch</literal> statements as well as the <literal>catch</literal>
+      keyword can be omitted if no alternative statements are given.</para>
 
 
-    <P>Note that one can also use the <LINK>execstr</LINK> function with
-      <VERB>'errcatch'</VERB> argument for error handling. This can be
-      particularily useful for handling syntactical errors.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <para>Note that one can also use the <link linkend="execstr">execstr</link> function with
+      <literal>'errcatch'</literal> argument for error handling. This can be
+      particularily useful for handling syntactical errors.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
  file_path=TMPDIR+'/wrong'
  try
     u=mopen(file_path,'r')
@@ -51,24 +47,24 @@
   [error_message,error_number]=lasterror(%t) 
 
  
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>error</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>execstr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>if</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lasterror</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>errcatch</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
- <AUTHOR> Serge Steer, INRIA</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="error">error</link>
+    </member>
+    <member>
+      <link linkend="execstr">execstr</link>
+    </member>
+    <member>
+      <link linkend="if">if</link>
+    </member>
+    <member>
+      <link linkend="lasterror">lasterror</link>
+    </member>
+    <member>
+      <link linkend="errcatch">errcatch</link>
+    </member>
+  </simplelist></refsection>
+ <refsection><title>Authors</title><para> Serge Steer, INRIA</para></refsection>
+</refentry>

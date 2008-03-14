@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,68 +10,67 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_isfield</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_isfield"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_isfield</refname><refpurpose>Matlab isfield emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_isfield">Matlab isfield emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>There is no Scilab equivalent function for Matlab <VERB>isfield(st,f)</VERB> and equivalent expressions behave differently in some particular cases:</P>
+    <para>There is no Scilab equivalent function for Matlab <literal>isfield(st,f)</literal> and equivalent expressions behave differently in some particular cases:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>st</VERB> is not a structure: Scilab equivalent returns an error message but Matlab returns <VERB>0</VERB>.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>st</literal> is not a structure: Scilab equivalent returns an error message but Matlab returns <literal>0</literal>.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_isfield(st,f)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>isfield(st,f)</VERB> when it was not
+    <para>
+    The function <literal>mtlb_isfield(st,f)</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>isfield(st,f)</literal> when it was not
     possible to know what were the inputs while porting Matlab code to Scilab. This function will
     determine the correct semantic at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_isfield</VERB> calls:
-    </P>
+    more efficient code it is possible to replace <literal>mtlb_isfield</literal> calls:
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        If <VERB>st</VERB> is a structure
-        <VERB>tf = mtlb_isfield(st,f)</VERB> may be replaced by <VERB>allf=getfield(1,st);tf=or(allf(3:$)==f);</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        If <literal>st</literal> is a structure
+        <literal>tf = mtlb_isfield(st,f)</literal> may be replaced by <literal>allf=getfield(1,st);tf=or(allf(3:$)==f);</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        If <VERB>st</VERB> is not a structure
-        <VERB>tf = mtlb_isfield(st,f)</VERB> may be replaced by <VERB>tf=%F;</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        If <literal>st</literal> is not a structure
+        <literal>tf = mtlb_isfield(st,f)</literal> may be replaced by <literal>tf=%F;</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Caution: <VERB>mtlb_isfield</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_isfield</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>getfield</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="getfield">getfield</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

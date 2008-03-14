@@ -1,58 +1,54 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nearfloat</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="nearfloat"> get previous or next floating-point number</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xnear = nearfloat(dir, x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>dir</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string (&quot;succ&quot; or &quot;pred&quot;)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar, vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xnear</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real scalar, vector or matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="nearfloat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>nearfloat</refname><refpurpose> get previous or next floating-point number</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xnear = nearfloat(dir, x)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>dir</term>
+        <listitem>
+          <para>string ("succ" or "pred")</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real scalar, vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xnear</term>
+        <listitem>
+          <para>real scalar, vector or matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     This function computes, in the element wise meaning, the corresponding neighbours 
-    of the elements of <VERB>x</VERB> (in the underlying floating point set, see number_properties), 
-    the successors if <VERB>dir = &quot;succ&quot;</VERB> and the predecessors if 
-    <VERB>dir = &quot;pred&quot;</VERB></P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    of the elements of <literal>x</literal> (in the underlying floating point set, see number_properties), 
+    the successors if <literal>dir = "succ"</literal> and the predecessors if 
+    <literal>dir = "pred"</literal></para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 format("e",22)
 nearfloat("succ",1) - 1
 1 - nearfloat("pred",1)
 format("v") //reset default format
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>number_properties</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>frexp</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>B.P.</AUTHOR>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="number_properties">number_properties</link>
+    </member>
+    <member>
+      <link linkend="frexp">frexp</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>B.P.</para></refsection>
+</refentry>

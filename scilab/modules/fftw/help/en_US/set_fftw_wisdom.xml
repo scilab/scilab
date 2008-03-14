@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
@@ -10,44 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>set_fftw_wisdom</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>February 2006</DATE>
-  <SHORT_DESCRIPTION name="set_fftw_wisdom">set fftw wisdom</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>set_fftw_wisdom(txt)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>txt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: String matrix that contains fftw wisdom.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="set_fftw_wisdom"><info><pubdate>February 2006</pubdate></info><refnamediv><refname>set_fftw_wisdom</refname><refpurpose>set fftw wisdom</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>set_fftw_wisdom(txt)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>String matrix that contains fftw wisdom.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
      This function set the fftw wisdom with a string matrix.
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
  //return fftw wisdom
  txt=get_fftw_wisdom();
  //set fftw wisdom
  set_fftw_wisdom(txt);
  //reset fftw wisdom
  fftw_forget_wisdom();
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>fftw</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>get_fftw_wisdom</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>fftw_forget_wisdom</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member><link linkend="fftw">fftw</link></member>
+    <member><link linkend="get_fftw_wisdom">get_fftw_wisdom</link></member>
+    <member><link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link></member>
+  </simplelist></refsection>
+</refentry>

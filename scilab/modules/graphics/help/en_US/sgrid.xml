@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,47 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sgrid</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sgrid"> s-plane grid lines.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>sgrid()  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>sgrid('new')  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>sgrid(zeta,wn [,color])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sgrid"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sgrid</refname><refpurpose> s-plane grid lines.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sgrid()
+sgrid('new')
+sgrid(zeta,wn [,color])</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
     Used in conjonction with evans, 
-    plots lines of constant damping ratio (<VERB>zeta</VERB>)
-    and natural frequency (<VERB>wn</VERB>).
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="sgrid()">
-        <SP>: add a grid over an existing continuous s-plane root with default values for <VERB>zeta</VERB> and <VERB>wn</VERB>.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="sgrid('new')">
-        <SP>: clears the graphic screen and then plots a default  s-plane grid</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="sgrid(zeta,wn [,color])">
-        <SP>: same as <VERB>sgrid()</VERB> but uses the provided damping ratio and  natural frequency.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    plots lines of constant damping ratio (<literal>zeta</literal>)
+    and natural frequency (<literal>wn</literal>).
+  </para>
+    <variablelist>
+      <varlistentry><term>sgrid()</term><listitem>
+        <para>add a grid over an existing continuous s-plane root with default values for <literal>zeta</literal> and <literal>wn</literal>.</para>
+      </listitem></varlistentry>
+      <varlistentry><term>sgrid('new')</term><listitem>
+        <para>clears the graphic screen and then plots a default  s-plane grid</para>
+      </listitem></varlistentry>
+      <varlistentry><term>sgrid(zeta,wn [,color])</term><listitem>
+        <para>same as <literal>sgrid()</literal> but uses the provided damping ratio and  natural frequency.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
 evans(H,100)
 sgrid()
 sgrid(0.6,2,7)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>evans</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="evans">evans</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

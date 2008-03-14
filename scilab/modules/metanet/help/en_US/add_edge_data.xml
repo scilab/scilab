@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,65 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_edge_data"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>add_edge_data</refname><refpurpose>associates new data fields to the edges data structure of a graph </refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>add_edge_data</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="add_edge_data">associates new data fields to the edges data structure of a graph </SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g = add_edge_data(g,name [,value])</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>g = add_edge_data(g,name [,value])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>g</term>
+    <listitem>
+       <para>a graph data structure (see <link linkend="graph_data_structure">graph_data_structure</link> )
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>g</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a graph data structure (see <LINK>graph_data_structure</LINK> )
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>name</term>
+    <listitem>
+       <para>a character string, the name of the data field.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>name</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a character string, the name of the data field.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>value</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a row vector or a matrix with column size equal to the number of edges. This parameter is optional. If it is omitted the data field is set to <VERB>[]</VERB>.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
+    <varlistentry>
+    <term>value</term>
+    <listitem>
+       <para>a row vector or a matrix with column size equal to the number of edges. This parameter is optional. If it is omitted the data field is set to <literal>[]</literal>.
+       </para>
+    </listitem>
+    </varlistentry>
 
   
-  </PARAM_INDENT>
-  </PARAM>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-     <SP><VERB>g = add_edge_data(g,name [,value])</VERB> associates the
-     data fields named <VERB>name</VERB> to the edges data structure
-     of the graph <VERB>g</VERB> and assign it the value given by the
-     parameter <VERB>value</VERB>. If the last argument is not given
-     the empty matrix <VERB>[]</VERB> is assigned.</SP>
-     <P> <VERB>value</VERB> can be a matrix of any type. The
-     <VERB>i</VERB>th column is associated with the<VERB>i</VERB>th
-     edge. </P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+     <para><literal>g = add_edge_data(g,name [,value])</literal> associates the
+     data fields named <literal>name</literal> to the edges data structure
+     of the graph <literal>g</literal> and assign it the value given by the
+     parameter <literal>value</literal>. If the last argument is not given
+     the empty matrix <literal>[]</literal> is assigned.</para>
+     <para> <literal>value</literal> can be a matrix of any type. The
+     <literal>i</literal>th column is associated with the<literal>i</literal>th
+     edge. </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 //create a simple graph
 ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
 he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
@@ -84,12 +76,12 @@ g=add_edge_data(g,'label','e'+string(1:14));
 edgedatafields(g)
 g.edges.data.label
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>edgedatafields</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>edges_data_structure</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="edgedatafields">edgedatafields</link> </member>
+    <member> <link linkend="edges_data_structure">edges_data_structure</link> </member>
+  </simplelist></refsection>
 
   
-</MAN>
+</refentry>

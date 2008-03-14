@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -11,113 +11,110 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xgetmouse</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xgetmouse"> get the mouse events and current position</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>rep=xgetmouse([sel])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>sel</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: boolean vector <VERB>[getmotion, getrelease]</VERB>. default
-  value is <VERB>[%t, %f]</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rep</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of size 3, [x,y,ibutton].</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    If the mouse pointer is located in the current graphics window, <VERB>xgetmouse</VERB> returns
-    in <VERB>rep</VERB> the current pointer position (x,y) and the value <VERB>ibutton</VERB>.
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xgetmouse"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xgetmouse</refname><refpurpose> get the mouse events and current position</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>rep=xgetmouse([sel])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>sel</term>
+        <listitem>
+          <para>boolean vector <literal>[getmotion, getrelease]</literal>. default
+  value is <literal>[%t, %f]</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep</term>
+        <listitem>
+          <para>vector of size 3, [x,y,ibutton].</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    If the mouse pointer is located in the current graphics window, <literal>xgetmouse</literal> returns
+    in <literal>rep</literal> the current pointer position (x,y) and the value <literal>ibutton</literal>.
 
-    The <VERB>ibutton</VERB> value indicates the event type:
-  </P>
-    <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM label="ibutton==0">
-            <SP>: Left mouse button has been pressed</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==1">
-            <SP>: Middle mouse button has been pressed</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==2">
-            <SP>: Right mouse button has been pressed</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+    The <literal>ibutton</literal> value indicates the event type:
+  </para>
+    <variablelist>
+          <varlistentry><term>ibutton==0</term><listitem>
+            <para>Left mouse button has been pressed</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==1</term><listitem>
+            <para>Middle mouse button has been pressed</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==2</term><listitem>
+            <para>Right mouse button has been pressed</para>
+	    <para/>
+          </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM label="ibutton==3">
-            <SP>: Left mouse button has been clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==4">
-            <SP>: Middle mouse button has been clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==5">
-            <SP>: Right mouse button has been clicked</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+	  <varlistentry><term>ibutton==3</term><listitem>
+            <para>Left mouse button has been clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==4</term><listitem>
+            <para>Middle mouse button has been clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==5</term><listitem>
+            <para>Right mouse button has been clicked</para>
+	    <para/>
+          </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM label="ibutton==10">
-            <SP>: Left mouse button has been double-clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==11">
-            <SP>: Middle mouse button has been double-clicked</SP>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="ibutton==12">
-            <SP>: Right mouse button has been double-clicked</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+	  <varlistentry><term>ibutton==10</term><listitem>
+            <para>Left mouse button has been double-clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==11</term><listitem>
+            <para>Middle mouse button has been double-clicked</para>
+          </listitem></varlistentry>
+	  <varlistentry><term>ibutton==12</term><listitem>
+            <para>Right mouse button has been double-clicked</para>
+	    <para/>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="ibutton==-5">
-            <SP>: Left mouse button has been released</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="ibutton==-4">
-            <SP>: Middle mouse button has been released</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="ibutton==-3">
-            <SP>: Right mouse button has been released</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>ibutton==-5</term><listitem>
+            <para>Left mouse button has been released</para>
+          </listitem></varlistentry>
+          <varlistentry><term>ibutton==-4</term><listitem>
+            <para>Middle mouse button has been released</para>
+          </listitem></varlistentry>
+          <varlistentry><term>ibutton==-3</term><listitem>
+            <para>Right mouse button has been released</para>
+	    <para/>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="ibutton==-1">
-            <SP>: pointer has moved</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>ibutton==-1</term><listitem>
+            <para>pointer has moved</para>
+	    <para/>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="ibutton &gt; =32">
-            <SP>: key with ascii code ascii(ibutton) has been pressed</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="ibutton &lt; =-32">
-            <SP>: key with ascii code ascii(-ibutton)   has been released</SP>
-	    <P></P>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>ibutton &gt; =32</term><listitem>
+            <para>key with ascii code ascii(ibutton) has been pressed</para>
+          </listitem></varlistentry>
+          <varlistentry><term>ibutton &lt; =-32</term><listitem>
+            <para>key with ascii code ascii(-ibutton)   has been released</para>
+	    <para/>
+          </listitem></varlistentry>
 	
-          <DESCRIPTION_ITEM label="ibutton &gt; =1000+32">
-            <SP>: key with ascii code ascii(ibutton-1000) has been pressed while CTRL
-	    key pressed</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="ibutton==-1000">
-            <SP>: graphic window has been closed</SP>
-          </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
+          <varlistentry><term>ibutton &gt; =1000+32</term><listitem>
+            <para>key with ascii code ascii(ibutton-1000) has been pressed while CTRL
+	    key pressed</para>
+          </listitem></varlistentry>
+          <varlistentry><term>ibutton==-1000</term><listitem>
+            <para>graphic window has been closed</para>
+          </listitem></varlistentry>
+    </variablelist>
+    <para>
     WARNING: In previous versions of Scilab (&lt;5.0), the user could give a flag to precise if the mouse click event queue had to be cleared when entering xgetmouse.
     This option is now obsolete and will be removed in Scilab 5.1.
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //  rectangle selection
 clf();  // erase/create window
 a=gca();a.data_bounds=[0 0;100 100];//set user coordinates
@@ -138,18 +135,18 @@ while rep(3)==-1 do // mouse just moving ...
   r.data=[ox,oy,w,h]; //change the retangle origin, width an height
   first=%f;
 end
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>locate</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xclick</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>seteventhandler</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>S. Steer</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="locate">locate</link>
+    </member>
+    <member>
+      <link linkend="xclick">xclick</link>
+    </member>
+    <member>
+      <link linkend="seteventhandler">seteventhandler</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>S. Steer</para></refsection>
+</refentry>

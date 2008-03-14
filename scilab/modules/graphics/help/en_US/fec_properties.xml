@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,80 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fec_properties"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fec_properties</refname><refpurpose>description of the fec entities
+  properties</refpurpose></refnamediv>
+  
 
-  <TITLE>fec_properties</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="fec_properties">description of the fec entities
-  properties</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>The Fec entity is a leaf of the graphics entities hierarchy. It
-    represents 2D finite elements plots (see <VERB>fec</VERB>,
-    <VERB>Sgrayplot</VERB>).</P>
+  <refsection><title>Description</title>
+    <para>The Fec entity is a leaf of the graphics entities hierarchy. It
+    represents 2D finite elements plots (see <literal>fec</literal>,
+    <literal>Sgrayplot</literal>).</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        fec entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+    <variablelist>
+      <varlistentry><term>parent: </term><listitem>
+        <para>This property contains the handle of the parent. The parent of the
+        fec entity should be of the type <literal>"Axes"</literal> or
+        <literal>"Compound"</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="children: ">
-        <SP>This property contains a vector with the <VERB>children</VERB> of
-        the handle. However, <VERB>Fec</VERB> handles currently do not have
-        any <VERB>children</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>children: </term><listitem>
+        <para>This property contains a vector with the <literal>children</literal> of
+        the handle. However, <literal>Fec</literal> handles currently do not have
+        any <literal>children</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the <VERB>visible</VERB> property value for
-        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+      <varlistentry><term>visible: </term><listitem>
+        <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
         By default, the plot is visible, the value's property is
-        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the plot is not drawn on the
-        screen.</SP>
-      </DESCRIPTION_ITEM>
+        <literal>"on"</literal>. If <literal>"off"</literal> the plot is not drawn on the
+        screen.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="data: ">
-        <SP>This is a three column matrix <VERB>[x,y,f]</VERB>, where
-        <VERB>x(i)</VERB> and <VERB>y(i)</VERB> are the coordinates of the
-        <VERB>i</VERB>'th node. <VERB>f(i)</VERB> is the value associated to
-        the node <VERB>i</VERB>.</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>data: </term><listitem>
+        <para>This is a three column matrix <literal>[x,y,f]</literal>, where
+        <literal>x(i)</literal> and <literal>y(i)</literal> are the coordinates of the
+        <literal>i</literal>'th node. <literal>f(i)</literal> is the value associated to
+        the node <literal>i</literal>.</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="triangles: ">
-        <SP>This is a five column matrix <VERB>[tn,n1,n2,n3,flag]</VERB>.
-        <VERB>tn(j)</VERB> is the triangle number. <VERB>n1(j)</VERB>,
-        <VERB>n2(j)</VERB> and <VERB>n3(j)</VERB> are the index of the nodes
-        which constitute the triangle. (<VERB>flag(j)</VERB> is not
-        used).</SP>
-      </DESCRIPTION_ITEM>
+      <varlistentry><term>triangles: </term><listitem>
+        <para>This is a five column matrix <literal>[tn,n1,n2,n3,flag]</literal>.
+        <literal>tn(j)</literal> is the triangle number. <literal>n1(j)</literal>,
+        <literal>n2(j)</literal> and <literal>n3(j)</literal> are the index of the nodes
+        which constitute the triangle. (<literal>flag(j)</literal> is not
+        used).</para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="z_bounds: ">
-        <SP>This <TT>[zmin,zmax]</TT> vector gives the z values associated
+      <varlistentry><term>z_bounds: </term><listitem>
+        <para>This <literal>[zmin,zmax]</literal> vector gives the z values associated
         with the first and the last color (of the current colormap). More
-        exactly if the colormap have <TT>nc</TT> colors and if we note <TT>dz
-        = (zmax-zmin)/nc</TT>, then the part of the triangulation where
-        <TT>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</TT> is filled with the
-        color <TT>i</TT>). By default <TT>zmin = min(func)</TT> and <TT>zmax =
-        max(func)</TT>. If you want to do an animation with func values that
-        varie in time, take for <TT>zmin</TT> and <TT>zmax</TT> the global
-        minimum and maximum or something close. </SP>
-      </DESCRIPTION_ITEM>
+        exactly if the colormap have <literal>nc</literal> colors and if we note <literal>dz
+        = (zmax-zmin)/nc</literal>, then the part of the triangulation where
+        <literal>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</literal> is filled with the
+        color <literal>i</literal>). By default <literal>zmin = min(func)</literal> and <literal>zmax =
+        max(func)</literal>. If you want to do an animation with func values that
+        varie in time, take for <literal>zmin</literal> and <literal>zmax</literal> the global
+        minimum and maximum or something close. </para>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="user_data: ">
-        <SP>This field can be use to store any scilab variable in the fec data
-        structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+      <varlistentry><term>user_data: </term><listitem>
+        <para>This field can be use to store any scilab variable in the fec data
+        structure, and to retreive it.</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
    x=-10:10; y=-10:10;m =rand(21,21);
    Sgrayplot(x,y,m);
@@ -93,33 +92,33 @@
    a.parent.color_map=hotcolormap(64);
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>fec</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="fec">fec</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Sgrayplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="Sgrayplot">Sgrayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+</refentry>

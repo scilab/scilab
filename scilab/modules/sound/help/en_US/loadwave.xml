@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ????-2006 - INRIA - Scilab 
@@ -10,57 +10,53 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="loadwave"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>loadwave</refname><refpurpose>load a sound wav file
+  into scilab</refpurpose></refnamediv>
+  
 
-  <TITLE>loadwave</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="loadwave">load a sound wav file
-  into scilab</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>x=loadwave(filename);</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>x=loadwave(filename);
+[x,y]=loadwave(filename);</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[x,y]=loadwave(filename);</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>a string. The path of the wav file to be loaded</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string. The path of the wav file to be loaded</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>a matrix one line for each channel</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a matrix one line for each channel</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>y</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+        <listitem>
+          <para>vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>Reads a <VERB>.wav</VERB> sound file into Scilab as a matrix. If y is
+  <refsection><title>Description</title>
+    <para>Reads a <literal>.wav</literal> sound file into Scilab as a matrix. If y is
     given, it is filled with information about the samples (See the message
-    sent by <VERB>loadwave</VERB>).</P>
-  </DESCRIPTION>
-  <EXAMPLE>
+    sent by <literal>loadwave</literal>).</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
 // Then we generate the sound: a two channels sound.
@@ -68,19 +64,19 @@ s=[sin(2*%pi*440*t);sin(2*%pi*350*t)];
 savewave(TMPDIR+'/foo.wav',s);
 s1=loadwave(TMPDIR+'/foo.wav');
 max(abs(s1-s))
-  </EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>savewave</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="savewave">savewave</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>analyze</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="analyze">analyze</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>mapsound</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="mapsound">mapsound</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

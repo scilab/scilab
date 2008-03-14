@@ -1,106 +1,102 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>derivative</TITLE>
-  <TYPE>  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="derivative"> approximate derivatives of a function</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>derivative(F,x) </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[J [,H]] = derivative(F,x [,h ,order ,H_form ,Q]) </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>F</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a Scilab function F: <VERB>R^n --&gt; R^m</VERB> or a <VERB>list(F,p1,...,pk)</VERB>, where F is a scilab function 
-      in the form <VERB>y=F(x,p1,...,pk)</VERB>, p1, ..., pk being any scilab objects (matrices, lists,...).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real column vector of dimension n.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) real, the stepsize used in the finite difference approximations.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>order</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) integer, the order of the finite difference formula used to approximate 
-      the derivatives (order = 1,2 or 4, default is order=2 ).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>H_form</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) string, the form in which the Hessean will be returned. Possible forms are:</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>H_form='default'  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: H is a m x (<VERB>n^2</VERB>) matrix ; in this form, the k-th row of H  corresponds to the Hessean of 
-      the k-th component of F, given  as the following row vector :</SP>
-                <VERBATIM>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="derivative"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>derivative</refname><refpurpose> approximate derivatives of a function</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>derivative(F,x)
+[J [,H]] = derivative(F,x [,h ,order ,H_form ,Q])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>a Scilab function F: <literal>R^n --&gt; R^m</literal> or a <literal>list(F,p1,...,pk)</literal>, where F is a scilab function 
+      in the form <literal>y=F(x,p1,...,pk)</literal>, p1, ..., pk being any scilab objects (matrices, lists,...).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real column vector of dimension n.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>(optional) real, the stepsize used in the finite difference approximations.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>order</term>
+        <listitem>
+          <para>(optional) integer, the order of the finite difference formula used to approximate 
+      the derivatives (order = 1,2 or 4, default is order=2 ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H_form</term>
+        <listitem>
+          <para>(optional) string, the form in which the Hessean will be returned. Possible forms are:</para>
+          <variablelist>
+            <varlistentry>
+              <term>H_form='default'  </term>
+              <listitem>
+                <para>H is a m x (<literal>n^2</literal>) matrix ; in this form, the k-th row of H  corresponds to the Hessean of 
+      the k-th component of F, given  as the following row vector :</para>
+                <programlisting><![CDATA[
+
   [ d(grad(F_k))/dx_1 | ..... | d(grad(F_k))/dx_n ] 
-   ]]>
-                </VERBATIM>
-                <P>  ((grad(F_k) being a row vector).</P>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>H_form='blockmat' :  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>H is a (mxn) x n block matrix : the classic Hessean matrices (of each component of F) are 
-    stacked by row (H = [H1 ; H2 ; ... ; Hm] in scilab syntax).</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>H_form='hypermat' :  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>H is a n x n matrix for m=1, and a n x n x m hypermatrix otherwise.  H(:,:,k) is the 
-    classic Hessean matrix of the k-th component of F.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Q</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: (optional) real matrix, orthogonal (default is eye(n,n)).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+   
+                ]]></programlisting>
+                <para>  ((grad(F_k) being a row vector).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>H_form='blockmat' :  </term>
+              <listitem>
+                <para>H is a (mxn) x n block matrix : the classic Hessean matrices (of each component of F) are 
+    stacked by row (H = [H1 ; H2 ; ... ; Hm] in scilab syntax).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>H_form='hypermat' :  </term>
+              <listitem>
+                <para>H is a n x n matrix for m=1, and a n x n x m hypermatrix otherwise.  H(:,:,k) is the 
+    classic Hessean matrix of the k-th component of F.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q</term>
+        <listitem>
+          <para>(optional) real matrix, orthogonal (default is eye(n,n)).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     Numerical approximation of the first and second derivatives of a function
-    F: <VERB> R^n --&gt; R^m</VERB> at the point x. The Jacobian is computed  by approximating
+    F: <literal> R^n --&gt; R^m</literal> at the point x. The Jacobian is computed  by approximating
     the directional derivatives of the components of F in the direction of 
     the columns of Q. 
     (For m=1, v=Q(:,k) : grad(F(x))*v = Dv(F(x)).)
     The second derivatives are computed by composition of first order derivatives.
     If H is given in its default form the Taylor series of F(x) up to terms of second 
-    order is given by :</P>
-    <VERBATIM>
-<![CDATA[
+    order is given by :</para>
+    <programlisting><![CDATA[
+
   F(x+dx) = F(x) + J(x)*dx + 1/2*H(x)*(dx .*. dx) + ...
-   ]]>
-    </VERBATIM>
-    <P>
-    (([J,H]=derivative(F,x,H_form='default'), J=J(x), H=H(x).)</P>
-  </DESCRIPTION>
-  <SECTION label="Remarks">
-    <P>
+   
+    ]]></programlisting>
+    <para>
+    (([J,H]=derivative(F,x,H_form='default'), J=J(x), H=H(x).)</para>
+  </refsection>
+  <refsection><title>Remarks</title>
+    <para>
     Numerical approximation of derivatives is generally an unstable process.  
 The step size h must be small to get a low error but if it is too small floating  
 point errors will dominate by cancellation. As a rule of thumb don't change 
@@ -108,17 +104,17 @@ the  default step size.  To work around numerical difficulties one may also chan
 the order and/or choose different orthogonal matrices Q (the default is eye(n,n)), 
 especially if the  approximate derivatives are used in optimization routines. All 
 the optional arguments may also be passed as named arguments, so that one can use 
-calls in the form :</P>
-    <VERBATIM>
-<![CDATA[
+calls in the form :</para>
+    <programlisting><![CDATA[
+
 derivative(F, x, H_form = "hypermat")
 derivative(F, x, order = 4) etc.
 
-   ]]>
-    </VERBATIM>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+   
+    ]]></programlisting>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
   function y=F(x)
    y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
  endfunction
@@ -163,15 +159,15 @@ derivative(F, x, order = 4) etc.
  He = A+A'
  clean(Je - J)
  clean(He - H)
-   ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>numdiff</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>derivat</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR> Rainer von Seggern, Bruno Pincon</AUTHOR>
-</MAN>
+   
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="numdiff">numdiff</link>
+    </member>
+    <member>
+      <link linkend="derivat">derivat</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para> Rainer von Seggern, Bruno Pincon</para></refsection>
+</refentry>

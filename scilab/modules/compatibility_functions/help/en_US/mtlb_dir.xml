@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
@@ -10,45 +10,44 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_dir</TITLE>
-  <TYPE>M2SCI function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_dir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_dir</refname><refpurpose>Matlab dir emulation function</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_dir">Matlab dir emulation function</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Matlab and Scilab <VERB>dir</VERB> behave differently:</P>
+    <para>Matlab and Scilab <literal>dir</literal> behave differently:</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        When result is stored in a variable: Matlab <VERB>dir</VERB> returns a structure but Scilab
-	<VERB>dir</VERB> returns a 'dir' tlist, so data can not be extracted in the same way.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        When result is stored in a variable: Matlab <literal>dir</literal> returns a structure but Scilab
+	<literal>dir</literal> returns a 'dir' tlist, so data can not be extracted in the same way.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    The function <VERB>mtlb_dir([path])</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>dir([path])</VERB> when output is stored in a variable.
-    There is no replacement possibility for it, else (when <VERB>mtlb_dir</VERB> is replaced by <VERB>dir</VERB>)
+    <para>
+    The function <literal>mtlb_dir([path])</literal> is used by
+    <literal>mfile2sci</literal> to replace <literal>dir([path])</literal> when output is stored in a variable.
+    There is no replacement possibility for it, else (when <literal>mtlb_dir</literal> is replaced by <literal>dir</literal>)
     data can not be extracted like in Matlab. For example, Scilab equivalent for Matlab
-    <VERB>L=dir;file_name=L(1).name;</VERB> is <VERB>L=dir();file_name=L.name(1);</VERB>.
-    </P>
+    <literal>L=dir;file_name=L(1).name;</literal> is <literal>L=dir();file_name=L.name(1);</literal>.
+    </para>
 
-    <P>Caution: <VERB>mtlb_dir</VERB> has not to be used for hand coded functions.</P>
+    <para>Caution: <literal>mtlb_dir</literal> has not to be used for hand coded functions.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,67 +1,62 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getshortpathname"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getshortpathname</refname><refpurpose>retourne le chemin au format
+  court (Seulement pour Windows)</refpurpose></refnamediv>
+  
 
-  <TITLE>getshortpathname</TITLE>
+  
 
-  <TYPE>Fonction Scilab</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="getshortpathname">retourne le chemin au format
-  court (Seulement pour Windows)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>shortpath=getshortgpathname(longpath)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>shortpath=getshortgpathname(longpath)
+[shortpath,bOK]=getshortpathname(longpath)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[shortpath,bOK]=getshortpathname(longpath)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>longpath</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>longpath</PARAM_NAME>
+        <listitem>
+          <para>Une chaine de caractere contenant le chemin au format
+          long.</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Une chaine de caractere contenant le chemin au format
-          long.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>shortpath</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>shortpath</PARAM_NAME>
+        <listitem>
+          <para>Une chaine de caractere contenant le chemin au format
+          court</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: Une chaine de caractere contenant le chemin au format
-          court</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>bOK</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>bOK</PARAM_NAME>
+        <listitem>
+          <para>contient %T si le chemin a ete converti ou %F si ce n'est pas
+          le cas.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: contient %T si le chemin a ete converti ou %F si ce n'est pas
-          le cas.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>La primitive getshortpathname convertie un chemin au format long en un
+    chemin au format court.</para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>La primitive getshortpathname convertie un chemin au format long en un
-    chemin au format court.</P>
-  </DESCRIPTION>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[[shortpath,bOK]=getshortpathname(SCI) 
+ ]]></programlisting></refsection>
 
-  <EXAMPLE><![CDATA[[shortpath,bOK]=getshortpathname(SCI) 
- ]]></EXAMPLE>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="getlongpathname">getlongpathname</link>
+    </member>
+  </simplelist></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getlongpathname</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>Allan CORNET</para></refsection>
+</refentry>

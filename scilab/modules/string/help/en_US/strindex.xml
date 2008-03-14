@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,87 +10,81 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strindex"><info><pubdate>$LastChangedDate: 2008-01-06 16:57:13 +0200 (Mon, 06 Febrary 2008)$</pubdate></info><refnamediv><refname>strindex</refname><refpurpose>search position of a character string in
+  an other string.</refpurpose></refnamediv>
+  
 
-  <TITLE>strindex</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2008-01-06 16:57:13 +0200 (Mon, 06 Febrary 2008)$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="strindex">search position of a character string in
-  an other string.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>ind=strindex(haystack,needle
-    )</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>ind=strindex(haystack,needle )
+[ind,which]=strindex(haystack,needle )</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[ind,which]=strindex(haystack,needle
-    )</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>haystack</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>haystack</PARAM_NAME>
+        <listitem>
+          <para>a character string. The string where to search occurrences of
+          <literal>needle </literal></para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string. The string where to search occurrences of
-          <VERB>needle </VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>needle </term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>needle </PARAM_NAME>
+        <listitem>
+          <para>a character string or character string vector . The string(s)
+          to search in <literal>haystack</literal></para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a character string or character string vector . The string(s)
-          to search in <VERB>haystack</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>ind</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>ind</PARAM_NAME>
+        <listitem>
+          <para>vector of indexes</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector of indexes</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>which</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>which</PARAM_NAME>
+        <listitem>
+          <para>vector of indexes</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector of indexes</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>"flag"</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>"flag"</PARAM_NAME>
+        <listitem>
+          <para>string("r" for regular expression)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: string("r" for regular expression)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para><literal>strindex</literal> searches indexes where <literal>needle (i)</literal> is
+    found in <literal>haystack</literal></para>
 
-  <DESCRIPTION>
-    <P><VERB>strindex</VERB> searches indexes where <VERB>needle (i)</VERB> is
-    found in <VERB>haystack</VERB></P>
-
-    <P>for each <VERB>k</VERB> it exist a <VERB>i</VERB> shuch that
-    <VERB>part(haystack,ind(k)+(0:length(needle(i))-1))</VERB> is the same
-    string than <VERB>needle(i)</VERB>. If <VERB>which</VERB> argument is
-    required it contains these <VERB>i</VERB>. When using the third parameters
+    <para>for each <literal>k</literal> it exist a <literal>i</literal> shuch that
+    <literal>part(haystack,ind(k)+(0:length(needle(i))-1))</literal> is the same
+    string than <literal>needle(i)</literal>. If <literal>which</literal> argument is
+    required it contains these <literal>i</literal>. When using the third parameters
     "r", the needle should be a string of regular expression. And then
     strindex is going to match it with haystack according to the regular
-    express rules.</P>
-  </DESCRIPTION>
+    express rules.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 k=strindex('SCI/demos/scicos','/')
 k=strindex('SCI/demos/scicos','SCI/')
 k=strindex('SCI/demos/scicos','!')
@@ -98,15 +92,15 @@ k=strindex('aaaaa','aa')
 k=strindex('SCI/demos/scicos',['SCI','sci'])
 [k,w]=strindex('1+3*abc/2.33',['+','-','*','/'])
 k=strindex('2' ,'/2(]*)?$\1/' ,'r') 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>string</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="string">string</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>strings</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="strings">strings</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

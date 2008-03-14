@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,116 +10,113 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plotframe"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>plotframe</refname><refpurpose>plot a frame with scaling and
+  grids</refpurpose></refnamediv>
+  
 
-  <TITLE>plotframe</TITLE>
+  
 
-  <TYPE></TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="plotframe">plot a frame with scaling and
-  grids</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-	  <CALLING_SEQUENCE_ITEM>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])</CALLING_SEQUENCE_ITEM>
- <CALLING_SEQUENCE_ITEM>plotframe(rect,&lt;opts_args&gt;)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])
+plotframe(rect,&lt;opts_args&gt;)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector <VERB>[xmin,ymin,xmax,ymax]</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>vector <literal>[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>tics</PARAM_NAME>
+      <varlistentry>
+        <term>tics</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vector <VERB>[nx,mx,ny,my]</VERB> where <VERB>mx, nx</VERB>
-          (resp. <VERB>my, ny</VERB>) are the number of x-axis (resp. y-axis)
-          intervals and subintervals.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>vector <literal>[nx,mx,ny,my]</literal> where <literal>mx, nx</literal>
+          (resp. <literal>my, ny</literal>) are the number of x-axis (resp. y-axis)
+          intervals and subintervals.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>arg_optX</PARAM_NAME>
+      <varlistentry>
+        <term>arg_optX</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: optional arguments up to three and choosen among.</SP>
+        <listitem>
+          <para>optional arguments up to three and choosen among.</para>
 
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>flags</PARAM_NAME>
+          <variablelist>
+            <varlistentry>
+              <term>flags</term>
 
-              <PARAM_DESCRIPTION>
-                <P>: vector <VERB>[wantgrids,findbounds]</VERB> where
-                <VERB>wantgrids</VERB> is a boolean variable (<VERB>%t</VERB>
-                or <VERB>%f</VERB>) which indicates gridding.
-                <VERB>findbounds</VERB> is a boolean variable. If
-                <VERB>findbounds</VERB> is <VERB>%t</VERB>, the bounds given
-                in <VERB>rect</VERB> are allowed to be slightly modified (in
+              <listitem>
+                <para>vector <literal>[wantgrids,findbounds]</literal> where
+                <literal>wantgrids</literal> is a boolean variable (<literal>%t</literal>
+                or <literal>%f</literal>) which indicates gridding.
+                <literal>findbounds</literal> is a boolean variable. If
+                <literal>findbounds</literal> is <literal>%t</literal>, the bounds given
+                in <literal>rect</literal> are allowed to be slightly modified (in
                 fact always increased) in order to have simpler graduations:
-                then <VERB>tics(2)</VERB> and <VERB>tics(4)</VERB> are
-                ignored.</P>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+                then <literal>tics(2)</literal> and <literal>tics(4)</literal> are
+                ignored.</para>
+              </listitem>
+            </varlistentry>
 
-            <PARAM_ITEM>
-              <PARAM_NAME>captions</PARAM_NAME>
+            <varlistentry>
+              <term>captions</term>
 
-              <PARAM_DESCRIPTION>
-                <SP>: vector of 3 strings <VERB>[title,x-leg,y-leg]</VERB>
+              <listitem>
+                <para>vector of 3 strings <literal>[title,x-leg,y-leg]</literal>
                 corresponding respectively to the title of the plot and the
-                captions on the x-axis and the y-axis.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+                captions on the x-axis and the y-axis.</para>
+              </listitem>
+            </varlistentry>
 
-            <PARAM_ITEM>
-              <PARAM_NAME>subwin</PARAM_NAME>
+            <varlistentry>
+              <term>subwin</term>
 
-              <PARAM_DESCRIPTION>
-                <SP>: a vector of size 4 defining the sub window. The sub
+              <listitem>
+                <para>a vector of size 4 defining the sub window. The sub
                 window is specified with the parameter
-                <VERB>subwin=[x,y,w,h]</VERB> (upper-left, width, height). The
-                values in <VERB>subwin</VERB> are specified using proportion
+                <literal>subwin=[x,y,w,h]</literal> (upper-left, width, height). The
+                values in <literal>subwin</literal> are specified using proportion
                 of the width or height of the current graphics window (see
-                <VERB>xsetech</VERB>).</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+                <literal>xsetech</literal>).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opts_args&gt;</PARAM_NAME>
+      <varlistentry>
+        <term>&lt;opts_args&gt;</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements
-          <BD>key1=value1</BD>,<BD> key2=value2</BD>,... where <BD>key1</BD>,
-          <BD>key2</BD>,... can be one of the following: <BD>tics</BD>,
-          <BD>flags</BD>, <BD>captions</BD> ou <BD>subwin</BD>. These
+        <listitem>
+          <para>This represents a sequence of statements
+          <emphasis role="bold">key1=value1</emphasis>,<emphasis role="bold"> key2=value2</emphasis>,... where <emphasis role="bold">key1</emphasis>,
+          <emphasis role="bold">key2</emphasis>,... can be one of the following: <emphasis role="bold">tics</emphasis>,
+          <emphasis role="bold">flags</emphasis>, <emphasis role="bold">captions</emphasis> ou <emphasis role="bold">subwin</emphasis>. These
           arguments have the same meaning as the ones used in the first form
-          of the routine.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+          of the routine.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>plotframe</VERB> is used with 2D plotting functions
-    <VERB>plot2d</VERB>, <VERB>plot2d1</VERB>,... to set a graphics frame. It
-    must be used before <VERB>plot2d</VERB> which should be invoked with the
-    "000" superposition mode.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>plotframe</literal> is used with 2D plotting functions
+    <literal>plot2d</literal>, <literal>plot2d1</literal>,... to set a graphics frame. It
+    must be used before <literal>plot2d</literal> which should be invoked with the
+    "000" superposition mode.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 x=[-0.3:0.8:27.3]';
 y=rand(x);
@@ -138,19 +135,19 @@ plotframe(rect,flags=[%f,%t],tics=tics,..
 plot2d(x,y,5,"000")
 xset("default")
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graduate</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="graduate">graduate</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>xsetech</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="xsetech">xsetech</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

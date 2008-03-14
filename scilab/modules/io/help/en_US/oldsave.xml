@@ -1,59 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>oldsave</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="oldsave"> saving variables in 2.4.1 and previous format</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>oldsave(filename [,x1,x2,...,xn])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: character string or a logical unit returned by file('open',...)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xi</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: arbitrary Scilab variable(s)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    The <VERB>oldsave</VERB> function is obsolete and is retained only for
-    compatibility purpose.</P>
-    <P>
-    The <VERB>oldsave</VERB> command can be used to save Scilab current variables 
-    in binary form in a file.</P>
-    <P><VERB>oldsave(filename)</VERB> saves all current variables in the file
-    defined by  <VERB>filename</VERB>.</P>
-    <P><VERB>oldsave(file-name,x,y)</VERB> saves only named variables <VERB>x</VERB> and <VERB>y</VERB>.</P>
-    <P>
-    Saved  variables can be reloaded by the <VERB>load</VERB> or oldload command.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="oldsave"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>oldsave</refname><refpurpose> saving variables in 2.4.1 and previous format</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>oldsave(filename [,x1,x2,...,xn])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>character string or a logical unit returned by file('open',...)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xi</term>
+        <listitem>
+          <para>arbitrary Scilab variable(s)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    The <literal>oldsave</literal> function is obsolete and is retained only for
+    compatibility purpose.</para>
+    <para>
+    The <literal>oldsave</literal> command can be used to save Scilab current variables 
+    in binary form in a file.</para>
+    <para><literal>oldsave(filename)</literal> saves all current variables in the file
+    defined by  <literal>filename</literal>.</para>
+    <para><literal>oldsave(file-name,x,y)</literal> saves only named variables <literal>x</literal> and <literal>y</literal>.</para>
+    <para>
+    Saved  variables can be reloaded by the <literal>load</literal> or oldload command.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 a=eye(2,2);b=ones(a);
 oldsave('TMPDIR/val.dat',a,b);
 clear a
 clear b
 oldload('TMPDIR/val.dat','a','b');
 
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>load</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>file</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="load">load</link>
+    </member>
+    <member>
+      <link linkend="file">file</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

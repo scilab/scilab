@@ -1,117 +1,103 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!-- When this file is modified please also modify mtlb_max.xml -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_min</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_min"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_min</refname><refpurpose>Fonction d'�mulation de la fonction Matlab min</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_min">Fonction d'�mulation de la fonction Matlab min</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>min</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>min</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Avec des valeurs complexes : La fonction Matlab <VERB>min</VERB> peut �tre utilis�e
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Avec des valeurs complexes : La fonction Matlab <literal>min</literal> peut �tre utilis�e
 	avec des complexes mais pas la fonction Scilab.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec deux param�tres d'entr�e : La fonction Matlab <VERB>min</VERB> traite les valeurs
+      <listitem>
+        <para>
+        En cas d'appel avec deux param�tres d'entr�e : La fonction Matlab <literal>min</literal> traite les valeurs
 	suivant la premi�re dimension qui n'est pas 1 alors que Scilab traite l'ensemble des valeurs de l'entr�e.
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
+      <listitem>
+        <para>
         En cas d'appel avec deux param�tres d'entr�e : si l'une d'elles est une matrice vide, Scilab
 	retourne un message d'erreur alors que Matlab renvoie [].
-        </SP>
-      </ITEM>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec trois param�tres d'entr�e : si le param�tre <VERB>dim</VERB> est plus grand que
+      <listitem>
+        <para>
+        En cas d'appel avec trois param�tres d'entr�e : si le param�tre <literal>dim</literal> est plus grand que
 	le nombre de dimensions de le premi�re entr�e, Scilab retourne un message d'erreur alors que Matlab
 	retourne le premier param�tre.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>[r[,k]] = mtlb_min(A[,B[,dim]])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>[r[,k]] = min(A[,B[,dim]])</VERB> quand il n'�tait pas
+    <para>
+    La fonction <literal>[r[,k]] = mtlb_min(A[,B[,dim]])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>[r[,k]] = min(A[,B[,dim]])</literal> quand il n'�tait pas
     possible de savoir ce qu'�taient les param�tres d'entr�e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
-    on peut remplacer les appels � <VERB>mtlb_min</VERB> :
-    </P>
+    on peut remplacer les appels � <literal>mtlb_min</literal> :
+    </para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        En cas d'appel avec un param�tre d'entr�e, si <VERB>A</VERB> est un scalaire ou un vecteur
-        <VERB>[r[,k]] = mtlb_min(A)</VERB> peut �tre remplac� par <VERB>min(A)</VERB>
-        </SP>
-      </ITEM>
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est un scalaire ou un vecteur
+        <literal>[r[,k]] = mtlb_min(A)</literal> peut �tre remplac� par <literal>min(A)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec un param�tre d'entr�e, si <VERB>A</VERB> est une matrice
-        <VERB>[r[,k]] = mtlb_min(A)</VERB> peut �tre remplac� par <VERB>min(A,&quot;r&quot;)</VERB>
-        </SP>
-      </ITEM>
+      <listitem>
+        <para>
+        En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice
+        <literal>[r[,k]] = mtlb_min(A)</literal> peut �tre remplac� par <literal>min(A,"r")</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec deux param�tres d'entr�e, si <VERB>A</VERB> et <VERB>B</VERB> 
+      <listitem>
+        <para>
+        En cas d'appel avec deux param�tres d'entr�e, si <literal>A</literal> et <literal>B</literal> 
 	sont des matrices r�elles et ne sont pas des matrices vides,
-        <VERB>[r[,k]] = mtlb_min(A,B)</VERB> peut �tre remplac� par <VERB>min(A,B)</VERB>
-        </SP>
-      </ITEM>
+        <literal>[r[,k]] = mtlb_min(A,B)</literal> peut �tre remplac� par <literal>min(A,B)</literal>
+        </para>
+      </listitem>
 
-      <ITEM>
-        <SP>
-        En cas d'appel avec trois param�tres d'entr�e, si <VERB>dim</VERB> est inf�rieur
-	au nombre de dimensions de <VERB>A</VERB>,
-        <VERB>[r[,k]] = mtlb_min(A,[],dim)</VERB> peut �tre remplac� par <VERB>min(A,dim)</VERB>
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+      <listitem>
+        <para>
+        En cas d'appel avec trois param�tres d'entr�e, si <literal>dim</literal> est inf�rieur
+	au nombre de dimensions de <literal>A</literal>,
+        <literal>[r[,k]] = mtlb_min(A,[],dim)</literal> peut �tre remplac� par <literal>min(A,dim)</literal>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>Attention : <VERB>mtlb_min</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_min</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="firstnonsingleton">firstnonsingleton</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,37 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>warning</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="warning">warning messages</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="warning"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>warning</refname><refpurpose>warning messages</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>warning('string')</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>warning('off')</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>warning('on')</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>mode = warning('query')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>warning('string')
+warning('off')
+warning('on')
+mode = warning('query')</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P>prints the character string <VERB>'string'</VERB> in a warning
-    message</P>
-    <P><VERB>'on'</VERB> enable warning messages.</P>
-    <P><VERB>'off'</VERB> disable warning messages.</P>
-    <P><VERB>'query'</VERB> get state 'on' or 'off'.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>prints the character string <literal>'string'</literal> in a warning
+    message</para>
+    <para><literal>'on'</literal> enable warning messages.</para>
+    <para><literal>'off'</literal> disable warning messages.</para>
+    <para><literal>'query'</literal> get state 'on' or 'off'.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[warning('on') 
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[warning('on') 
 warning('this is a warning')
 warning('off')
 warning('this is a warning')
 warning('query')
-warning('on')]]></EXAMPLE>
+warning('on')]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>error</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="error">error</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

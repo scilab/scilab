@@ -1,85 +1,81 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>printing  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="printing"> impression des graphiques Scilab   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Blatexpr xscale yscale filename.ps  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>BEpsf filename.ps   </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>Blpr &quot;Title&quot; filename1.ps filename2.ps ... filenamen.ps | lpr   </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
-      Les graphiques peuvent être sauvegardés avec la commande <VERB>xbasimp</VERB>.
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="printing"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>printing</refname><refpurpose> impression des graphiques Scilab   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>Blatexpr xscale yscale filename.ps
+BEpsf filename.ps
+Blpr "Title" filename1.ps filename2.ps ... filenamen.ps | lpr</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
+      Les graphiques peuvent être sauvegardés avec la commande <literal>xbasimp</literal>.
       La commande :
-    </P>
-    <VERBATIM><![CDATA[
+    </para>
+    <programlisting><![CDATA[
       xbasimp(xx,'des.ps',0)
-      ]]></VERBATIM>
-    <P>
+      ]]></programlisting>
+    <para>
       sauve les graphiques enregistrés dans la fenêtre xx dans le fichier
-      <VERB>des.ps.xx</VERB>. Ce fichier ne peut pas être envoyé directement vers une imprimante Postscript
-      mais un ensemble de programmes Scilab ( dans le répertoire <VERB>bin</VERB> de Scilab ) sont 
+      <literal>des.ps.xx</literal>. Ce fichier ne peut pas être envoyé directement vers une imprimante Postscript
+      mais un ensemble de programmes Scilab ( dans le répertoire <literal>bin</literal> de Scilab ) sont 
       à utiliser pour cela :
-    </P>
+    </para>
     
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM  label='BEpsf'> 
-      <SP>: La commande <VERB>BEpsf</VERB> crée un fichier epsf (PostScript
-	encapsulé) à partir du fichier <VERB>des.ps.xx</VERB> sous le nom
-	<VERB>des.epsf</VERB>, ce fichier epsf peut être imprimé directement ou
-	inclus dans un fichier PostScript.</SP>
+    <variablelist>
+    <varlistentry><term>BEpsf</term><listitem> 
+      <para>La commande <literal>BEpsf</literal> crée un fichier epsf (PostScript
+	encapsulé) à partir du fichier <literal>des.ps.xx</literal> sous le nom
+	<literal>des.epsf</literal>, ce fichier epsf peut être imprimé directement ou
+	inclus dans un fichier PostScript.</para>
 
-    </DESCRIPTION_ITEM>
+    </listitem></varlistentry>
 
-    <DESCRIPTION_ITEM  label='Blatexpr'> 
-      <SP>: La commande  <VERB>Blatexpr</VERB> crée un fichier epsf à partir du
-	  fichier <VERB>des.ps.xx</VERB> <VERB>des.ps.xx</VERB></SP>
-	<VERBATIM><![CDATA[
+    <varlistentry><term>Blatexpr</term><listitem> 
+      <para>La commande  <literal>Blatexpr</literal> crée un fichier epsf à partir du
+	  fichier <literal>des.ps.xx</literal> <literal>des.ps.xx</literal></para>
+	<programlisting><![CDATA[
 	  mv des.ps.xx des.ps
 	  Blatexpr 1.0 1.0 des.ps
-	  ]]></VERBATIM>
-	<P>
-	  sous le nom <VERB>des.epsf</VERB> et un fichier LaTeX 
-	  <VERB>des.tex</VERB>. Le fichier <VERB>des.tex</VERB> peut être inséré dans un document LaTeX 
+	  ]]></programlisting>
+	<para>
+	  sous le nom <literal>des.epsf</literal> et un fichier LaTeX 
+	  <literal>des.tex</literal>. Le fichier <literal>des.tex</literal> peut être inséré dans un document LaTeX 
 	  pour inclure le fichier epsf ( le fichier postscript 
-	  est inclus avec la commande <VERB>special</VERB> de TeX )
-	</P>
-	<VERBATIM><![CDATA[
+	  est inclus avec la commande <literal>special</literal> de TeX )
+	</para>
+	<programlisting><![CDATA[
 	  \input des.tex 
 	  \dessin{caption}{label}
-	  ]]></VERBATIM>
-    </DESCRIPTION_ITEM>
+	  ]]></programlisting>
+    </listitem></varlistentry>
 
-    <DESCRIPTION_ITEM  label='Blpr'> 
-      <SP>: La commande <VERB>Blpr</VERB> est utilisée pour imprimer un ensemble
+    <varlistentry><term>Blpr</term><listitem> 
+      <para>La commande <literal>Blpr</literal> est utilisée pour imprimer un ensemble
 	de graphiques sur une même feuille de papier. Par exemple pour imprimer
-	deux graphiques sur une seule page :</SP>
-      <VERBATIM><![CDATA[
+	deux graphiques sur une seule page :</para>
+      <programlisting><![CDATA[
 	Blpr "Deux graphiques" file1.ps.0 file2.ps.1 | lpr 
-	]]></VERBATIM>
-    </DESCRIPTION_ITEM>
+	]]></programlisting>
+    </listitem></varlistentry>
  
 
-    <DESCRIPTION_ITEM  label='Blatexprs'> 
-      <SP>: La commande <VERB>Blatexprs</VERB> utilisée pour insérer dans une
-	figure LaTeX un ensemble de graphiques  Scilab</SP>
-      <VERBATIM><![CDATA[
+    <varlistentry><term>Blatexprs</term><listitem> 
+      <para>La commande <literal>Blatexprs</literal> utilisée pour insérer dans une
+	figure LaTeX un ensemble de graphiques  Scilab</para>
+      <programlisting><![CDATA[
 	Blatexprs res file1.ps.0 file2.ps.1
-	]]></VERBATIM>
-      <P>
-	crée deux fichiers <VERB>res.ps</VERB> et <VERB>res.tex</VERB>. Le fichier <VERB>res.tex</VERB>
-	est utilisé comme pour <VERB>Blatexpr</VERB> pour lire la figure.
-      </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+	]]></programlisting>
+      <para>
+	crée deux fichiers <literal>res.ps</literal> et <literal>res.tex</literal>. Le fichier <literal>res.tex</literal>
+	est utilisé comme pour <literal>Blatexpr</literal> pour lire la figure.
+      </para>
+    </listitem></varlistentry>
+    </variablelist>
    
     
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xbasimp</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="xbasimp">xbasimp</link> </member>
+  </simplelist></refsection>
+</refentry>

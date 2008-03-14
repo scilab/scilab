@@ -1,38 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>halt</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="halt">stop execution</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="halt"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>halt</refname><refpurpose>stop execution</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>halt()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>halt()
+halt('a message')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>halt('a message')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Description</title>
+    <para>stops execution until something is entered in the keyboard.</para>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>stops execution until something is entered in the keyboard.</P>
-  </DESCRIPTION>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[halt('Press a key')
 
-  <EXAMPLE><![CDATA[halt('Press a key')
+halt()]]></programlisting></refsection>
 
-halt()]]></EXAMPLE>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="pause">pause</link>
+    </member>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pause</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="return">return</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>return</LINK>
-    </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
-      <LINK>exec</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="exec">exec</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

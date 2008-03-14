@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
@@ -10,37 +10,34 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_DeleteInterp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>TCL_DeleteInterp</refname><refpurpose>delete TCL interpreter</refpurpose></refnamediv>
 	
-	<LANGUAGE>eng</LANGUAGE>
-	<TITLE>TCL_DeleteInterp</TITLE>
-	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="TCL_DeleteInterp">delete TCL interpreter</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>TCL_DeleteInterp(interp)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>TCL_DeleteInterp()</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>interp</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: character string parameter. Name of the slave tcl
-					interpreter to delete. If not provided, it defaults to the main tcl interpreter created by Scilab.</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
 	
-	<DESCRIPTION>
-		<P>This routine allows to delete a TCL slave interpreter or the main scilab TCL interpreter.</P>
-	</DESCRIPTION>
+ 
 	
-	<EXAMPLE><![CDATA[
+	
+	<refsynopsisdiv><title>Calling Sequence</title><synopsis>TCL_DeleteInterp(interp)
+TCL_DeleteInterp()</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>interp</term>
+				<listitem>
+					<para>character string parameter. Name of the slave tcl
+					interpreter to delete. If not provided, it defaults to the main tcl interpreter created by Scilab.</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection><title>Description</title>
+		<para>This routine allows to delete a TCL slave interpreter or the main scilab TCL interpreter.</para>
+	</refsection>
+	
+	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 TCL_SetVar("Scilab","OK")
 TCL_ExistVar("Scilab")
 TCL_DeleteInterp()
@@ -51,27 +48,27 @@ TCL_SetVar("Scilab","OK",'BisInterp')
 TCL_ExistVar("Scilab",'BisInterp')
 TCL_DeleteInterp('BisInterp')
 TCL_ExistInterp('BisInterp')
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-	<SEE_ALSO>
+	<refsection><title>See Also</title><simplelist type="inline">
 		
-		<SEE_ALSO_ITEM>
-			<LINK>TCL_SetVar</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="TCL_SetVar">TCL_SetVar</link>
+		</member>
 	
-		<SEE_ALSO_ITEM>
-			<LINK>TCL_ExistVar</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="TCL_ExistVar">TCL_ExistVar</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>TCL_CreateSlave</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="TCL_CreateSlave">TCL_CreateSlave</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>TCL_ExistInterp</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="TCL_ExistInterp">TCL_ExistInterp</link>
+		</member>
 	
-	</SEE_ALSO>
+	</simplelist></refsection>
 	
-	<AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+	<refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

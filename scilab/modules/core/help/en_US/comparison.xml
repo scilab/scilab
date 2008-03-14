@@ -1,104 +1,100 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>Comparison</TITLE>
-  <TYPE>Scilab operator</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="comparison">  comparison, relational operators</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="comparison"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>comparison</refname><refpurpose>  comparison, relational operators</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>a==b</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>a~=b or a&lt;&gt;b</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>a&lt;b</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>a&lt;=b</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>a&gt;b</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>a&gt;=b</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: any type of variable for <VERB>a==b</VERB>, <VERB>a~=b</VERB> 
-	    <VERB>a&lt;&gt;b</VERB> equality comparisons and restricted to real floating point and integer
-	    array for order related comparisons <VERB>a&lt;b</VERB>,
-	    <VERB>a&lt;=b</VERB>, <VERB>a&gt;b</VERB>,<VERB>a&gt;=b</VERB>. </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>b</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: any type of variable for <VERB>a==b</VERB>, <VERB>a~=b</VERB> 
-	    <VERB>a&lt; &gt; b</VERB> equality  comparisons and restricted to
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>a==b
+a~=b or a&lt;&gt;b
+a&lt;b
+a&lt;=b
+a&gt;b
+a&gt;=b</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>any type of variable for <literal>a==b</literal>, <literal>a~=b</literal> 
+	    <literal>a&lt;&gt;b</literal> equality comparisons and restricted to real floating point and integer
+	    array for order related comparisons <literal>a&lt;b</literal>,
+	    <literal>a&lt;=b</literal>, <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>any type of variable for <literal>a==b</literal>, <literal>a~=b</literal> 
+	    <literal>a&lt; &gt; b</literal> equality  comparisons and restricted to
 	    real floating point and integer arrays for order related comparisons
-	    <VERB>a&lt;b</VERB>, <VERB>a&lt;=b</VERB>,
-	    <VERB>a&gt;b</VERB>,<VERB>a&gt;=b</VERB>.</SP> 
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>Two classes of operators have to be distinguished:</P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="The equality and inequality comparisons: ">
-	<SP><VERB>a==b</VERB>, <VERB>a~=b</VERB> (or equivalently <VERB>a&lt;&gt;b</VERB>).
-	  These operators apply to any type of operands.</SP> 
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="The order related comparisons: ">
-	<SP><VERB>a&lt;b</VERB>, <VERB>a&lt;=b</VERB>,
-	    <VERB>a&gt;b</VERB>,<VERB>a&gt;=b</VERB>. These operators apply
-	    only to real floating point and integer arrays.</SP> 
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+	    <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
+	    <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>.</para> 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>Two classes of operators have to be distinguished:</para>
+    <variablelist>
+      <varlistentry><term>The equality and inequality comparisons: </term><listitem>
+	<para><literal>a==b</literal>, <literal>a~=b</literal> (or equivalently <literal>a&lt;&gt;b</literal>).
+	  These operators apply to any type of operands.</para> 
+      </listitem></varlistentry>
+      <varlistentry><term>The order related comparisons: </term><listitem>
+	<para><literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
+	    <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>. These operators apply
+	    only to real floating point and integer arrays.</para> 
+      </listitem></varlistentry>
+    </variablelist>
 
-   <P>The semantics of the comparison operators also depend on the operands types:</P>
+   <para>The semantics of the comparison operators also depend on the operands types:</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="With array variables ">
-	<SP> like floating point and integer arrays, logical arrays,
-	  string arrays, polynomial and rationnal arrays, handle arrays, lists... the following rules apply:</SP> 
-	<DESCRIPTION_INDENT>
-	  <DESCRIPTION_ITEM>
-	    <SP>If <VERB> a</VERB> and <VERB> b</VERB> evaluates as arrays with same types
+    <variablelist>
+      <varlistentry><term>With array variables </term><listitem>
+	<para> like floating point and integer arrays, logical arrays,
+	  string arrays, polynomial and rationnal arrays, handle arrays, lists... the following rules apply:</para> 
+	<itemizedlist>
+	  <listitem>
+	    <para>If <literal> a</literal> and <literal> b</literal> evaluates as arrays with same types
 	      and identical dimensions, the comparison is performed element by
-	      element and the result is an array  of booleans of the same.</SP> 
-	  </DESCRIPTION_ITEM>
+	      element and the result is an array  of booleans of the same.</para> 
+	  </listitem>
 
-	  <DESCRIPTION_ITEM>
-	    <SP>If <VERB> a</VERB> and <VERB> b</VERB>  evaluates as arrays 
-	      with same types, but <VERB> a</VERB> or <VERB> b</VERB> is a 1 by
+	  <listitem>
+	    <para>If <literal> a</literal> and <literal> b</literal>  evaluates as arrays 
+	      with same types, but <literal> a</literal> or <literal> b</literal> is a 1 by
 	      1 array the scalar is compared with each element of the
 	      other array. The result is an array of booleans of the size of
-	      the non scalar operand.</SP>  
-	  </DESCRIPTION_ITEM>
+	      the non scalar operand.</para>  
+	  </listitem>
 
-	  <DESCRIPTION_ITEM>
-	     <SP>In the others cases the result is the boolean <VERB> %f</VERB></SP>
-	  </DESCRIPTION_ITEM>
+	  <listitem>
+	     <para>In the others cases the result is the boolean <literal> %f</literal></para>
+	  </listitem>
 
-	  <DESCRIPTION_ITEM>
-	    <SP>If the operand data types are differents but "compatible" like
+	  <listitem>
+	    <para>If the operand data types are differents but "compatible" like
 	    floating points and integers a type conversion is performed before
-	    the comparison.</SP>
-	  </DESCRIPTION_ITEM>
+	    the comparison.</para>
+	  </listitem>
 
-	</DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+	</itemizedlist>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="With other type of operands ">
-	<SP> like <VERB>function</VERB>,
-	<VERB>libraries</VERB>, the result is <VERB>
-	    %t</VERB> if the objects are identical and <VERB> %f</VERB> in the
-	  other cases.</SP> 
-	<P>Equality comparison between operands of incompatible data types
-	  returns <VERB>%f</VERB>.</P> 
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-   </DESCRIPTION>
+      <varlistentry><term>With other type of operands </term><listitem>
+	<para> like <literal>function</literal>,
+	<literal>libraries</literal>, the result is <literal>
+	    %t</literal> if the objects are identical and <literal> %f</literal> in the
+	  other cases.</para> 
+	<para>Equality comparison between operands of incompatible data types
+	  returns <literal>%f</literal>.</para> 
+      </listitem></varlistentry>
+    </variablelist>
+   </refsection>
 
-  <EXAMPLE>
-    <![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    
     //element wise comparisons
     (1:5)==3
     (1:5)<=4 
@@ -124,17 +120,17 @@
     p==0
     p/poly(1,'s','c')==0
 
-    ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>less</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>boolean</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>isequal</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="less">less</link>
+    </member>
+    <member>
+      <link linkend="boolean">boolean</link>
+    </member>
+    <member>
+      <link linkend="isequal">isequal</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

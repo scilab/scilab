@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,51 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edgedatafields"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>edgedatafields</refname><refpurpose> returns the vector of edge data fields names</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>edgedatafields</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="edgedatafields"> returns the vector of edge data fields names</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>F = edgedatafields(g)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>F = edgedatafields(g)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>g</term>
+    <listitem>
+       <para>a graph data structure (see <link linkend="graph_data_structure">graph_data_structure</link> )
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>g</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a graph data structure (see <LINK>graph_data_structure</LINK> )
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>F</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a row vector of strings. Each element is a field name of the edges data data structure.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>F</term>
+    <listitem>
+       <para>a row vector of strings. Each element is a field name of the edges data data structure.
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-  <SP>It is possible to associate data to the edges of a graph. This
-  can be done with the <LINK>add_edge_data</LINK> function. the
-  <VERB>edgedatafields</VERB> function allows to retreive the field
+  <refsection><title>Description</title>
+  <para>It is possible to associate data to the edges of a graph. This
+  can be done with the <link linkend="add_edge_data">add_edge_data</link> function. the
+  <literal>edgedatafields</literal> function allows to retreive the field
   names of these data. A given  edge data can be referenced by its field name
-  <VERB>g.edges.data(field_name)</VERB>.</SP>
-  </DESCRIPTION>
+  <literal>g.edges.data(field_name)</literal>.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 //create a simple graph
 ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
 he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
@@ -69,13 +62,13 @@ g=add_edge_data(g,'length',round(10*rand(1,14,'u')));
 g=add_edge_data(g,'label','e'+string(1:14));
 edgedatafields(g)
 g.edges.data.label
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>graph_data_structure</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>add_edge_data</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="graph_data_structure">graph_data_structure</link> </member>
+    <member> <link linkend="add_edge_data">add_edge_data</link> </member>
+  </simplelist></refsection>
 
 
  
-</MAN>
+</refentry>

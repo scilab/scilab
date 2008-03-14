@@ -1,49 +1,45 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hank</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="hank"> covariance to hankel matrix</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[hk]=hank(m,n,cov)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>m</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number of bloc-rows</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: number of bloc-columns</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>cov</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: sequence of covariances; it must be given as :[R0 R1 R2...Rk]</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>hk</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: computed hankel matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    this function builds the hankel matrix of size <VERB>(m*d,n*d)</VERB>
-    from the covariance sequence of a vector process</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hank"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hank</refname><refpurpose> covariance to hankel matrix</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[hk]=hank(m,n,cov)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>number of bloc-rows</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>number of bloc-columns</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cov</term>
+        <listitem>
+          <para>sequence of covariances; it must be given as :[R0 R1 R2...Rk]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hk</term>
+        <listitem>
+          <para>computed hankel matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    this function builds the hankel matrix of size <literal>(m*d,n*d)</literal>
+    from the covariance sequence of a vector process</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 //Example of how to use the hank macro for 
 //building a Hankel matrix from multidimensional 
 //data (covariance or Markov parameters e.g.)
@@ -66,12 +62,12 @@ c=rand(2,2*64)
 //
 H=hank(4,5,c);
 //
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>toeplitz</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>G. Le Vey</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="toeplitz">toeplitz</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>G. Le Vey</para></refsection>
+</refentry>

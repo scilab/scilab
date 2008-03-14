@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,52 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Matplot1"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Matplot1</refname><refpurpose>2D plot of a matrix using
+  colors</refpurpose></refnamediv>
+  
 
-  <TITLE>Matplot1</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="Matplot1">2D plot of a matrix using
-  colors</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Matplot1(a,rect)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>Matplot1(a,rect)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>a</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: real matrix of size (n1,n2).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>real matrix of size (n1,n2).</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
+      <varlistentry>
+        <term>rect</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>[xmin,ymin,xmax,ymax]</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>: <literal>[xmin,ymin,xmax,ymax]</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>The entries of matrix <VERB>int(a)</VERB> are used as colormap entries
-    in the current colormap. <VERB>rect</VERB> specify a rectangle in the
+  <refsection><title>Description</title>
+    <para>The entries of matrix <literal>int(a)</literal> are used as colormap entries
+    in the current colormap. <literal>rect</literal> specify a rectangle in the
     current scale and the matrix is drawn inside this rectangle. Each matrix
     entry will be rendered as a small rectangle filled with its associated
-    color.</P>
-  </DESCRIPTION>
+    color.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 //--- first example
 clf();
@@ -91,29 +88,29 @@ for k=-n:n,
 end
 
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>colormap</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="colormap">colormap</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="plot2d">plot2d</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Matplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="Matplot">Matplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>grayplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="grayplot">grayplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>Matplot_properties</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="Matplot_properties">Matplot_properties</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>J.Ph.C.</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+</refentry>

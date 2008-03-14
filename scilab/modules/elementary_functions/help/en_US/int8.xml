@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,87 +10,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>int8</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="int8"> conversion to one byte integer representation</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="int16"> conversion to 2 bytes integer representation</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="int32"> conversion to 4 bytes integer representation</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="uint8"> conversion to one byte unsigned integer representation</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="uint16"> conversion to 2 bytes unsigned integer representation</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="uint32"> conversion to 4 bytes unsigned integer representation</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>y=int8(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=int16(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=int32(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=uint8(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=uint16(X)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=uint32(X)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of floats or integers</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrix of integers coded on one, two or four bytes.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="int8"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>int8</refname><refpurpose> conversion to one byte integer representation</refpurpose></refnamediv><refnamediv xml:id="int16"><refname>int16</refname><refpurpose> conversion to 2 bytes integer representation</refpurpose></refnamediv><refnamediv xml:id="int32"><refname>int32</refname><refpurpose> conversion to 4 bytes integer representation</refpurpose></refnamediv><refnamediv xml:id="uint8"><refname>uint8</refname><refpurpose> conversion to one byte unsigned integer representation</refpurpose></refnamediv><refnamediv xml:id="uint16"><refname>uint16</refname><refpurpose> conversion to 2 bytes unsigned integer representation</refpurpose></refnamediv><refnamediv xml:id="uint32"><refname>uint32</refname><refpurpose> conversion to 4 bytes unsigned integer representation</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=int8(X)
+y=int16(X)
+y=int32(X)
+y=uint8(X)
+y=uint16(X)
+y=uint32(X)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>matrix of floats or integers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>matrix of integers coded on one, two or four bytes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
     converts and stores data two one, two or four bytes integers. These
     data types are specialy useful to store big objects such as images,
     long signals,...
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="y=int8(X)">
-        <SP>: return numbers in the range [-128,127]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="y=uint8(X)">
-        <SP>: return numbers in the range [0,255]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="y=int16(X)">
-        <SP>: return numbers in the range [-32768,32767]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="y=uint16(X)">
-        <SP>: return numbers in the range [0, 65535]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="y=int32(X)">
-        <SP>: return numbers in the range [-2147483648,2147483647]</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="y=uint32(X)">
-        <SP>: return numbers in the range [0, 4294967295]</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+  </para>
+    <variablelist>
+      <varlistentry><term>y=int8(X)</term><listitem>
+        <para>return numbers in the range [-128,127]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>y=uint8(X)</term><listitem>
+        <para>return numbers in the range [0,255]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>y=int16(X)</term><listitem>
+        <para>return numbers in the range [-32768,32767]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>y=uint16(X)</term><listitem>
+        <para>return numbers in the range [0, 65535]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>y=int32(X)</term><listitem>
+        <para>return numbers in the range [-2147483648,2147483647]</para>
+      </listitem></varlistentry>
+      <varlistentry><term>y=uint32(X)</term><listitem>
+        <para>return numbers in the range [0, 4294967295]</para>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 int8([1 -120 127 312])
 uint8([1 -120 127 312])
 
 x=int32(-200:100:400)
 int8(x)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>double</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>inttype</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>iconvert</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="double">double</link>
+    </member>
+    <member>
+      <link linkend="inttype">inttype</link>
+    </member>
+    <member>
+      <link linkend="iconvert">iconvert</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

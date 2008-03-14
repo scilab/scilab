@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,186 +10,185 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="axis_properties"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>axis_properties</refname><refpurpose>description of the axis entity
+  properties</refpurpose></refnamediv>
+  
 
-  <TITLE>axis_properties</TITLE>
+  
 
-  <TYPE>Scilab Data type</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="axis_properties">description of the axis entity
-  properties</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>The Axis entity is a leaf of the graphics entities hierarchy. This
-    entity defines the parameters for axis scaling and appearance.</P>
+  <refsection><title>Description</title>
+    <para>The Axis entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for axis scaling and appearance.</para>
 
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Axis properties">
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM label="parent: ">
-            <SP>This property contains the handle of the parent. The parent of
-            the axis entity should be of the type <VERB>"Axes"</VERB> or
-            <VERB>"Compound"</VERB>.</SP>
-          </DESCRIPTION_ITEM>
+    <variablelist>
+      <varlistentry><term>Axis properties</term><listitem>
+        <variablelist>
+          <varlistentry><term>parent: </term><listitem>
+            <para>This property contains the handle of the parent. The parent of
+            the axis entity should be of the type <literal>"Axes"</literal> or
+            <literal>"Compound"</literal>.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="visible: ">
-            <SP>This field contains the <VERB>visible</VERB> property value
-            for the entity . It should be <VERB>"on" </VERB> or
-            <VERB>"off"</VERB> . By default, the axis entity is visible, the
-            value's property is <VERB>"on"</VERB>. If <VERB>"off"</VERB>, the
-            axis is not drawn on the screen.</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>visible: </term><listitem>
+            <para>This field contains the <literal>visible</literal> property value
+            for the entity . It should be <literal>"on" </literal> or
+            <literal>"off"</literal> . By default, the axis entity is visible, the
+            value's property is <literal>"on"</literal>. If <literal>"off"</literal>, the
+            axis is not drawn on the screen.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="tics_direction: ">
-            <SP>Specify the direction of the tics drawn under the horizontal
+          <varlistentry><term>tics_direction: </term><listitem>
+            <para>Specify the direction of the tics drawn under the horizontal
             axis and the vertical axis. The possible values of this property
-            are:</SP>
+            are:</para>
 
-            <DESCRIPTION_INDENT>
-              <DESCRIPTION_ITEM>
-                <P><VERB>"top"</VERB>. In this case, tics are drawn at the top
-                of the horizontal axis.</P>
-              </DESCRIPTION_ITEM>
+            <itemizedlist>
+              <listitem>
+                <para><literal>"top"</literal>. In this case, tics are drawn at the top
+                of the horizontal axis.</para>
+              </listitem>
 
-              <DESCRIPTION_ITEM>
-                <P><VERB>"bottom"</VERB>. In this case, tics are drawn at the
-                bottom of the horizantal axis.</P>
-              </DESCRIPTION_ITEM>
+              <listitem>
+                <para><literal>"bottom"</literal>. In this case, tics are drawn at the
+                bottom of the horizantal axis.</para>
+              </listitem>
 
-              <DESCRIPTION_ITEM>
-                <P><VERB>"left"</VERB>. In this case, tics are going left on
-                the vertical axis.</P>
-              </DESCRIPTION_ITEM>
+              <listitem>
+                <para><literal>"left"</literal>. In this case, tics are going left on
+                the vertical axis.</para>
+              </listitem>
 
-              <DESCRIPTION_ITEM>
-                <P><VERB>"right"</VERB>. In this case, tics are going right on
-                the vertical axis.</P>
-              </DESCRIPTION_ITEM>
-            </DESCRIPTION_INDENT>
+              <listitem>
+                <para><literal>"right"</literal>. In this case, tics are going right on
+                the vertical axis.</para>
+              </listitem>
+            </itemizedlist>
 
-            <P>The defaults values are <VERB>"top"</VERB> for the horizontal
-            axis and <VERB>"right"</VERB> for vertical axis.</P>
-          </DESCRIPTION_ITEM>
+            <para>The defaults values are <literal>"top"</literal> for the horizontal
+            axis and <literal>"right"</literal> for vertical axis.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="xtics_coord: ">
-            <SP>This field represent the x-coordinate of the axis. It is a row
+          <varlistentry><term>xtics_coord: </term><listitem>
+            <para>This field represent the x-coordinate of the axis. It is a row
             vector containing values increasing from left to right which give
             tics positions for a horizontal axis. Other case, the entity is a
             vertical axis, this property contain a scale which defines the
-            x-origin of the axis.</SP>
-          </DESCRIPTION_ITEM>
+            x-origin of the axis.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="ytics_coord: ">
-            <SP>This field represent the y-coordinate of the axis. It is a row
+          <varlistentry><term>ytics_coord: </term><listitem>
+            <para>This field represent the y-coordinate of the axis. It is a row
             vector containing values increasing from bottom to top which give
             tics positions for a vertical axis. Other case, the entity is a
             horizantal axis, this property contain a scale which defines the
-            y-origin of the axis.</SP>
-          </DESCRIPTION_ITEM>
+            y-origin of the axis.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="tics_color: ">
-            <SP>The value of this properties is index of the color used to
-            draw the axis'lines and tics.</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>tics_color: </term><listitem>
+            <para>The value of this properties is index of the color used to
+            draw the axis'lines and tics.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="tics_segment: ">
-            <SP>This field contains a flag which controls the display of the
-            base segment of the axis. The default is <VERB>"on"</VERB>, else
-            if to not display it, the property takes <VERB>"off"</VERB> as
-            value.</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>tics_segment: </term><listitem>
+            <para>This field contains a flag which controls the display of the
+            base segment of the axis. The default is <literal>"on"</literal>, else
+            if to not display it, the property takes <literal>"off"</literal> as
+            value.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="tics_style: ">
-            <SP>This property describes how the tics are given. It is a string
-            flag which can have these possible values:</SP>
+          <varlistentry><term>tics_style: </term><listitem>
+            <para>This property describes how the tics are given. It is a string
+            flag which can have these possible values:</para>
 
-            <DESCRIPTION_INDENT>
-              <DESCRIPTION_ITEM>
-                <P><VERB>"v"</VERB>. It's the default value, In this case,
+            <itemizedlist>
+              <listitem>
+                <para><literal>"v"</literal>. It's the default value, In this case,
                 tics positions are given by the row factor
-                <VERB>xtics_coord</VERB> for horizontal axis
-                (<VERB>ytics_coord</VERB> for the vertical one).</P>
-              </DESCRIPTION_ITEM>
+                <literal>xtics_coord</literal> for horizontal axis
+                (<literal>ytics_coord</literal> for the vertical one).</para>
+              </listitem>
 
-              <DESCRIPTION_ITEM>
-                <P><VERB>"r"</VERB>. In this case, tics positions are given by
-                the vector <VERB>[min,max,n] </VERB> where n is the number of
-                intervals.</P>
-              </DESCRIPTION_ITEM>
+              <listitem>
+                <para><literal>"r"</literal>. In this case, tics positions are given by
+                the vector <literal>[min,max,n] </literal> where n is the number of
+                intervals.</para>
+              </listitem>
 
-              <DESCRIPTION_ITEM>
-                <P><VERB>"i"</VERB>. In this case the vector given tics
-                positions is of size 4, <VERB>[k1,k2,a,n]</VERB> then values
-                are increasing between <VERB>k1*10^a</VERB> and
-                <VERB>k2*10^a</VERB>, n is the number of intervals.</P>
-              </DESCRIPTION_ITEM>
-            </DESCRIPTION_INDENT>
-          </DESCRIPTION_ITEM>
+              <listitem>
+                <para><literal>"i"</literal>. In this case the vector given tics
+                positions is of size 4, <literal>[k1,k2,a,n]</literal> then values
+                are increasing between <literal>k1*10^a</literal> and
+                <literal>k2*10^a</literal>, n is the number of intervals.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="sub_tics: ">
-            <SP>This field sets the number of tics to draw between two main
-            tics.</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>sub_tics: </term><listitem>
+            <para>This field sets the number of tics to draw between two main
+            tics.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="tics_labels: ">
-            <SP>This filed is a string matrix, which contains the strings to
-            be drawn along the axis at tics positions.</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>tics_labels: </term><listitem>
+            <para>This filed is a string matrix, which contains the strings to
+            be drawn along the axis at tics positions.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="labels_font_color: ">
-            <SP>This property determines the color of the tics labels.</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>labels_font_color: </term><listitem>
+            <para>This property determines the color of the tics labels.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="labels_font_size: ">
-            <SP>An integer specifying the font size used to draw the tics
-            labels.</SP>
-          </DESCRIPTION_ITEM>
+          <varlistentry><term>labels_font_size: </term><listitem>
+            <para>An integer specifying the font size used to draw the tics
+            labels.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="clip_state: ">
-            <SP>This field contains the <VERB>clip_state</VERB> property value
-            for the arc. Clip_state value should be :</SP>
+          <varlistentry><term>clip_state: </term><listitem>
+            <para>This field contains the <literal>clip_state</literal> property value
+            for the arc. Clip_state value should be :</para>
 
-            <DESCRIPTION_INDENT>
-              <DESCRIPTION_ITEM>
-                <P><VERB>"off"</VERB> this means that the axis is not
-                clipped</P>
-              </DESCRIPTION_ITEM>
+            <itemizedlist>
+              <listitem>
+                <para><literal>"off"</literal> this means that the axis is not
+                clipped</para>
+              </listitem>
 
-              <DESCRIPTION_ITEM>
-                <P><VERB>"clipgrf"</VERB> this means that the axis is clipped
-                outside the Axes box.</P>
-              </DESCRIPTION_ITEM>
+              <listitem>
+                <para><literal>"clipgrf"</literal> this means that the axis is clipped
+                outside the Axes box.</para>
+              </listitem>
 
-              <DESCRIPTION_ITEM>
-                <P><VERB>"on"</VERB> this means that the axis is clipped
-                outside the arc given by property clip_box.</P>
-              </DESCRIPTION_ITEM>
-            </DESCRIPTION_INDENT>
-          </DESCRIPTION_ITEM>
+              <listitem>
+                <para><literal>"on"</literal> this means that the axis is clipped
+                outside the arc given by property clip_box.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="clip_box: ">
-            <SP>This field is to determinate the <VERB>clip_box</VERB>
+          <varlistentry><term>clip_box: </term><listitem>
+            <para>This field is to determinate the <literal>clip_box</literal>
             property. By Default its value should be an empty matrix if
-            clip_state is "off". Other cases the vector <VERB>[x,y,w,h]</VERB>
+            clip_state is "off". Other cases the vector <literal>[x,y,w,h]</literal>
             (upper-left point width height) defines the portions of the axis
-            to display, however <VERB>clip_state</VERB> property value will be
-            changed.</SP>
-          </DESCRIPTION_ITEM>
+            to display, however <literal>clip_state</literal> property value will be
+            changed.</para>
+          </listitem></varlistentry>
 
-          <DESCRIPTION_ITEM label="user_data: ">
-            <SP>This field can be use to store any scilab variable in the axis
-            data structure, and to retreive it.</SP>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+          <varlistentry><term>user_data: </term><listitem>
+            <para>This field can be use to store any scilab variable in the axis
+            data structure, and to retreive it.</para>
+          </listitem></varlistentry>
+        </variablelist>
+      </listitem></varlistentry>
+    </variablelist>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 
   a=get("current_axes");//get the handle of the newly created axes
@@ -216,29 +215,29 @@
 
    
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>delete</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="delete">delete</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>drawaxis</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="drawaxis">drawaxis</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+</refentry>

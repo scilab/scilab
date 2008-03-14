@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,37 +10,34 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_pixmap"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>show_pixmap</refname><refpurpose>send the pixmap buffer to the
+  screen</refpurpose></refnamediv>
+  
 
-  <TITLE>show_pixmap</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="show_pixmap">send the pixmap buffer to the
-  screen</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>show_pixmap()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>show_pixmap()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <SP>If a graphic window <VERB>pixmap</VERB> property is <VERB>"on"</VERB>
+  <refsection><title>Description</title>
+    <para>If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
     the drawings are send to a pixmap memory instead of the screen
-    display.</SP>
+    display.</para>
 
-    <SP>The <VERB>show_pixmap()</VERB> instruction send the pixmap to the
-    screen.</SP>
+    <para>The <literal>show_pixmap()</literal> instruction send the pixmap to the
+    screen.</para>
 
-    <SP>The pixmap mode can be used to obtain smooth animations. This property
+    <para>The pixmap mode can be used to obtain smooth animations. This property
     can be found among the figure entity fields (see
-    <LINK>figure_properties</LINK>).</SP>
-  </DESCRIPTION>
+    <link linkend="figure_properties">figure_properties</link>).</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    
    f=gcf();f.pixmap='on'; //set the pixmap mode
    a=gca();a.data_bounds=[0 0; 10 10];
@@ -54,17 +51,17 @@
       //show the pixmap buffer
       show_pixmap()
    end
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>figure_properties</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="figure_properties">figure_properties</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>clear_pixmap</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="clear_pixmap">clear_pixmap</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>Serge Steer INRIA</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>Serge Steer INRIA</para></refsection>
+</refentry>

@@ -1,55 +1,42 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-    *
-    -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>mtlb_dir</TITLE>
-  <TYPE>Fonction M2SCI</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_dir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_dir</refname><refpurpose>Fonction d'�mulation de la fonction Matlab dir</refpurpose></refnamediv>
+  
+  
+  
+  
 
-  <SHORT_DESCRIPTION name="mtlb_dir">Fonction d'�mulation de la fonction Matlab dir</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
+  <refsection><title>Description</title>
 
-    <P>La fonction <VERB>dir</VERB> se comporte diff�remment dans Matlab et dans Scilab :</P>
+    <para>La fonction <literal>dir</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
 
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Quand le r�sultat est stock� dans une variable: La fonction Matlab <VERB>dir</VERB> renvoie une structure
+    <itemizedlist>
+    <listitem>
+    <itemizedlist>
+      <listitem>
+        <para>
+        Quand le r�sultat est stock� dans une variable: La fonction Matlab <literal>dir</literal> renvoie une structure
 	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les donn�es ne peuvent �tre
 	extraites de la m�me mani�re.
-        </SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+        </para>
+      </listitem>
+    </itemizedlist>
+    </listitem>
+    </itemizedlist>
 
-    <P>
-    La fonction <VERB>mtlb_dir([path])</VERB> est utilis�e par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>dir([path])</VERB> quand la sortie est stock�e dans une variable.
-    Il n'est pas possible de remplacer cette fonction, sinon (si on la remplace par <VERB>dir</VERB>) 
+    <para>
+    La fonction <literal>mtlb_dir([path])</literal> est utilis�e par
+    <literal>mfile2sci</literal> pour remplacer <literal>dir([path])</literal> quand la sortie est stock�e dans une variable.
+    Il n'est pas possible de remplacer cette fonction, sinon (si on la remplace par <literal>dir</literal>) 
     les donn�es ne pourront pas �tre extraites comme dans Matlab. Par exemple, l'�quivalent Scilab pour l'instruction Matlab 
-    <VERB>L=dir;file_name=L(1).name;</VERB> est <VERB>L=dir();file_name=L.name(1);</VERB>.
-    </P>
+    <literal>L=dir;file_name=L(1).name;</literal> est <literal>L=dir();file_name=L.name(1);</literal>.
+    </para>
 
-    <P>Attention : <VERB>mtlb_dir</VERB> ne doit pas �tre utilis�e pour une programmation manuelle.</P>
+    <para>Attention : <literal>mtlb_dir</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+  </simplelist></refsection>
+</refentry>

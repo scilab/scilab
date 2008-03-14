@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,76 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>tf2ss</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="tf2ss"> transfer to state-space</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>sl=tf2ss(h [,tol])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: rational matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>tol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: may be the constant rtol or the 2 vector <VERB>[rtol atol]</VERB></SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>rtol</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:tolerance used when evaluating observability.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>atol</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>:absolute tolerance used when evaluating observability.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: linear system (<VERB>syslin</VERB> list <VERB>sl=[A,B,C,D(s)]</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    transfer to state-space conversion:</P>
-    <P>
-      <VERB>h=C*(s*eye()-A)^-1*B+D(s)</VERB>
-    </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tf2ss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tf2ss</refname><refpurpose> transfer to state-space</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sl=tf2ss(h [,tol])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>rational matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>may be the constant rtol or the 2 vector <literal>[rtol atol]</literal></para>
+          <variablelist>
+            <varlistentry>
+              <term>rtol</term>
+              <listitem>
+                <para>:tolerance used when evaluating observability.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>atol</term>
+              <listitem>
+                <para>:absolute tolerance used when evaluating observability.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>linear system (<literal>syslin</literal> list <literal>sl=[A,B,C,D(s)]</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    transfer to state-space conversion:</para>
+    <para>
+      <literal>h=C*(s*eye()-A)^-1*B+D(s)</literal>
+    </para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 s=poly(0,'s');
 H=[2/s,(s+1)/(s^2-5)];
 Sys=tf2ss(H)
 clean(ss2tf(Sys))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ss2tf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>tf2des</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>des2tf</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ss2tf">ss2tf</link>
+    </member>
+    <member>
+      <link linkend="tf2des">tf2des</link>
+    </member>
+    <member>
+      <link linkend="des2tf">des2tf</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

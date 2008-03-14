@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -10,38 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="winopen"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>winopen</refname><refpurpose>Open file in appropriate application
+  (Windows only)</refpurpose></refnamediv>
+  
 
-  <TITLE>winopen</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="winopen">Open file in appropriate application
-  (Windows only)</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>winopen('filename')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>winopen('filename')</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P><VERB>winopen('filename')</VERB> opens filename in the appropriate
+  <refsection><title>Description</title>
+    <para><literal>winopen('filename')</literal> opens filename in the appropriate
     Microsoft Windows application. The winopen function uses the appropriate
     Windows shell command, and performs the same action as if you double-click
     the file in the Windows Explorer. If filename is not in the current
-    directory, specify the absolute path for filename.</P>
-  </DESCRIPTION>
+    directory, specify the absolute path for filename.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>unix</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="unix">unix</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C.</member>
+  </simplelist></refsection>
+</refentry>

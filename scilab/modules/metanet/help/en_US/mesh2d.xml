@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,70 +10,66 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mesh2d</TITLE>
-  <TYPE>Scilab function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="mesh2d"> triangulation of n points in the plane</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[nutr,A] = mesh2d(x,y,[front])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real row array</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: real row array</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>front</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer row array</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>nutr</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: sparse 0-1 matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-    The arrays <VERB>x</VERB> and <VERB>y</VERB> are the coordinates of n points in the plane.
-    <VERB>mesh2d</VERB> returns a matrix <VERB>nutr(3,nbt)</VERB> of the numbers of the
-    nodes of the <VERB>nbt</VERB> triangles of the triangulation of the points.
-    It returns also a sparse matrix <VERB>A</VERB> representing the connections 
-    between the nodes (<VERB>A(i,j)=1</VERB> if <VERB>(i,j)</VERB> is a side of one of 
-    the triangles or <VERB>i=j</VERB>).
-    In the case of 3 parameters <VERB>front</VERB> is the array defining the
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mesh2d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mesh2d</refname><refpurpose> triangulation of n points in the plane</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[nutr,A] = mesh2d(x,y,[front])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real row array</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real row array</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>front</term>
+        <listitem>
+          <para>integer row array</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nutr</term>
+        <listitem>
+          <para>integer matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>sparse 0-1 matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>
+    The arrays <literal>x</literal> and <literal>y</literal> are the coordinates of n points in the plane.
+    <literal>mesh2d</literal> returns a matrix <literal>nutr(3,nbt)</literal> of the numbers of the
+    nodes of the <literal>nbt</literal> triangles of the triangulation of the points.
+    It returns also a sparse matrix <literal>A</literal> representing the connections 
+    between the nodes (<literal>A(i,j)=1</literal> if <literal>(i,j)</literal> is a side of one of 
+    the triangles or <literal>i=j</literal>).
+    In the case of 3 parameters <literal>front</literal> is the array defining the
     boundary: it is the array of the indices of the points located on the
     boundary . The boundary is defined such that the normal to the boundary
     is oriented towards outside. The boundary is given by its connected
-    components: a component is the part <VERB>(i1,i2)</VERB> such that 
-    <VERB>front(i1)=front(i2)</VERB> (the external boundary is defined in the
+    components: a component is the part <literal>(i1,i2)</literal> such that 
+    <literal>front(i1)=front(i2)</literal> (the external boundary is defined in the
     counterclockwise way, see the examples below). 
     The error cases are the following:
                err = 0 if no errors were encountered;
-               err = 3 all nodes are collinear.</P>
-    <P>
+               err = 3 all nodes are collinear.</para>
+    <para>
     If the boundary is given, the other error cases are:
                err = 2 some points are identical;
         err = 5 wrong boundary array;
@@ -83,10 +78,10 @@
                err = 10 an interior point is on the boundary;
                err = 8 size limitation;
                err = 9 crossed boundary;
-               err = 12 some points are identical or size limitation.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+               err = 12 some points are identical or size limitation.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 // FIRST CASE
 theta=0.025*[1:40]*2.*%pi;
 x=1+cos(theta);
@@ -182,6 +177,6 @@ endfunction
 N=1000;xbasc();X=rand(1,N); Y=rand(1,N);
 xset("wdim",700,700);
 test(X,Y);
- ]]>
-  </EXAMPLE>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+</refentry>

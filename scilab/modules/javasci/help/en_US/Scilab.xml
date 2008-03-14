@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -10,71 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Scilab"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Scilab</refname><refpurpose>Scilab Class</refpurpose></refnamediv>
+  
 
-  <TITLE>Scilab</TITLE>
+  
 
-  <TYPE>Java Interface</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="Scilab">Scilab Class</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P><IMG src="../images/ScilabClass.gif"></IMG></P>
+  <refsection><title>Description</title>
+    <para><inlinemediaobject><imageobject><imagedata fileref="../images/ScilabClass.gif"/></imageobject></inlinemediaobject></para>
 
-    <P>Method Summary :</P>
+    <para>Method Summary :</para>
 
-    <P><VERB>public static void Events()</VERB> : do a scilab event.</P>
+    <para><literal>public static void Events()</literal>do a scilab event.</para>
 
-    <P><VERB>public static boolean HaveAGraph() </VERB>: return true if there
-    is a scilab graphic window.</P>
+    <para><literal>public static boolean HaveAGraph() </literal>return true if there
+    is a scilab graphic window.</para>
 
-    <P><VERB>public static boolean Exec(String job) </VERB>: execute a job in scilab. return true if there is no error.</P>
+    <para><literal>public static boolean Exec(String job) </literal>execute a job in scilab. return true if there is no error.</para>
     
-    <P><VERB>public static native boolean ExistVar(String VarName) </VERB>: Detect if VarName exists in Scilab. return true if Varname exist.</P>
+    <para><literal>public static native boolean ExistVar(String VarName) </literal>Detect if VarName exists in Scilab. return true if Varname exist.</para>
     
-    <P><VERB>public static native int TypeVar(String VarName) </VERB>: return  Scilab type of VarName. See <LINK>type</LINK></P>
+    <para><literal>public static native int TypeVar(String VarName) </literal>return  Scilab type of VarName. See <link linkend="type">type</link></para>
     
-		<P><VERB>public static native int GetLastErrorCode() </VERB>: return  last Error code. See <LINK>lasterror</LINK></P>
+		<para><literal>public static native int GetLastErrorCode() </literal>return  last Error code. See <link linkend="lasterror">lasterror</link></para>
 		
-		<P><VERB>public static boolean ExecuteScilabScript(String scilabscriptfilename) </VERB>: Execute a scilab script (.sce) return true if there is no error.</P>
+		<para><literal>public static boolean ExecuteScilabScript(String scilabscriptfilename) </literal>Execute a scilab script (.sce) return true if there is no error.</para>
     
-    <P><VERB>public static native boolean Finish() </VERB>: terminate scilab (call scilab.quit , close a scilab object)</P>
+    <para><literal>public static native boolean Finish() </literal>terminate scilab (call scilab.quit , close a scilab object)</para>
     
     
-  </DESCRIPTION>
+  </refsection>
 
-  <EXAMPLE><![CDATA[ // See SCI/modules/Javasci/examples directory]]></EXAMPLE>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ // See SCI/modules/Javasci/examples directory]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>SciDouble</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="SciDouble">SciDouble</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciDoubleArray</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciDoubleArray">SciDoubleArray</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciString</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciString">SciString</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>SciStringArray</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="SciStringArray">SciStringArray</link>
+    </member>
     
-    <SEE_ALSO_ITEM>
-      <LINK>type</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="type">type</link>
+    </member>
     
-    <SEE_ALSO_ITEM>
-      <LINK>lasterror</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="lasterror">lasterror</link>
+    </member>
     
-  </SEE_ALSO>
+  </simplelist></refsection>
 
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>A.C</para></refsection>
+</refentry>

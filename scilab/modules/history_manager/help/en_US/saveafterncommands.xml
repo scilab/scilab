@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
@@ -10,58 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="saveafterncommands"><info><pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate></info><refnamediv><refname>saveafterncommands</refname><refpurpose>Save the history file after n statements are added to the file.</refpurpose></refnamediv>
+  
 
-  <TITLE>saveafterncommands</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 aoÃ»t 2006) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="saveafterncommands">Save the history file after n statements are added to the file.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>saveafterncommands(n)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>v = saveafterncommands()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>saveafterncommands(n)
+v = saveafterncommands()</synopsis></refsynopsisdiv>
 
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>n</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-				<SP>: a integer, n statements</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-			<PARAM_ITEM>
-				<PARAM_NAME>v</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-				<SP>: current value</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
+	<refsection><title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>n</term>
+				<listitem>
+				<para>a integer, n statements</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>v</term>
+				<listitem>
+				<para>current value</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
 
 
-  <DESCRIPTION>
-    <P>Save the history file after n statements are added to the file.</P>
-    <P>For example, when you select the option and set n to 5, after every 5 statements are added,
-    the history file is automatically saved.</P>
-    <P>Use this option if you don't want to risk losing entries to the saved history because of an abnormal termination,
-    such as a power failure.</P>
-    <P>saveafterncommands() returns current value.</P>
-    <P>0 is default value.</P>
+  <refsection><title>Description</title>
+    <para>Save the history file after n statements are added to the file.</para>
+    <para>For example, when you select the option and set n to 5, after every 5 statements are added,
+    the history file is automatically saved.</para>
+    <para>Use this option if you don't want to risk losing entries to the saved history because of an abnormal termination,
+    such as a power failure.</para>
+    <para>saveafterncommands() returns current value.</para>
+    <para>0 is default value.</para>
 
-  </DESCRIPTION>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 	saveafterncommands(3)
 
-]]></EXAMPLE>
+]]></programlisting></refsection>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,90 +10,87 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="phasemag"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>phasemag</refname><refpurpose>phase and magnitude
+  computation</refpurpose></refnamediv>
+  
 
-  <TITLE>phasemag</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="phasemag">phase and magnitude
-  computation</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[phi,db]=phasemag(z [,mod])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[phi,db]=phasemag(z [,mod])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>z</PARAM_NAME>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>z</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: matrix or row vector of complex numbers.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>matrix or row vector of complex numbers.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>mod</PARAM_NAME>
+      <varlistentry>
+        <term>mod</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: character string</SP>
+        <listitem>
+          <para>character string</para>
 
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>mod='c'</PARAM_NAME>
+          <variablelist>
+            <varlistentry>
+              <term>mod='c'</term>
 
-              <PARAM_DESCRIPTION>
-                <SP>: "continuous" representation between -infinity and +360
-                degrees (default)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+              <listitem>
+                <para>"continuous" representation between -infinity and +360
+                degrees (default)</para>
+              </listitem>
+            </varlistentry>
 
-            <PARAM_ITEM>
-              <PARAM_NAME>mod='m'</PARAM_NAME>
+            <varlistentry>
+              <term>mod='m'</term>
 
-              <PARAM_DESCRIPTION>
-                <SP>: representation between -360 and 0 degrees</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+              <listitem>
+                <para>representation between -360 and 0 degrees</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>phi</PARAM_NAME>
+      <varlistentry>
+        <term>phi</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: phases (in degree) of <VERB>z</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>phases (in degree) of <literal>z</literal>.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>db</PARAM_NAME>
+      <varlistentry>
+        <term>db</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: magnitude (in Db)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>magnitude (in Db)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P><VERB>phasemag</VERB> computes the phases and magnitudes of the entries
-    of a complex matrix. For <VERB>mod='c'</VERB><VERB>phasemag</VERB>
-    computes <VERB>phi(:,i+1)</VERB> to minimize the distance with
-    <VERB>phi(:,i)</VERB>, i.e. it tries to obtain a "continuous
-    representation" of the phase.</P>
+  <refsection><title>Description</title>
+    <para><literal>phasemag</literal> computes the phases and magnitudes of the entries
+    of a complex matrix. For <literal>mod='c'</literal><literal>phasemag</literal>
+    computes <literal>phi(:,i+1)</literal> to minimize the distance with
+    <literal>phi(:,i)</literal>, i.e. it tries to obtain a "continuous
+    representation" of the phase.</para>
 
-    <P>To obtain the phase between -%pi and %pi use
-    <VERB>phi=atan(imag(z),real(z))</VERB></P>
-  </DESCRIPTION>
+    <para>To obtain the phase between -%pi and %pi use
+    <literal>phi=atan(imag(z),real(z))</literal></para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 s=poly(0,'s');
 h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
@@ -103,23 +100,23 @@ plot2d(frq',phasemag(rf,'c')');
 scf();
 plot2d(frq',phasemag(rf,'m')');
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>repfreq</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="repfreq">repfreq</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gainplot</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gainplot">gainplot</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>atan</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="atan">atan</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>bode</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="bode">bode</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

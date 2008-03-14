@@ -1,35 +1,31 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getlookandfeel</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006) $</DATE>
-  <SHORT_DESCRIPTION name="getlookandfeel">gets the current default look and feel.</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>lnf=getlookandfeel()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>lnf</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a string with current look and feel.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>bok</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>Gets the current default look and feel.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[currentlnf = getlookandfeel();
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getlookandfeel"><info><pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006) $</pubdate></info><refnamediv><refname>getlookandfeel</refname><refpurpose>gets the current default look and feel.</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>lnf=getlookandfeel()</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>lnf</term>
+        <listitem>
+          <para>a string with current look and feel.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bok</term>
+        <listitem>
+          <para>a boolean.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>Gets the current default look and feel.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+currentlnf = getlookandfeel();
 
 // Look and feel CDE/Motif
 setlookandfeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel")
@@ -42,15 +38,15 @@ setlookandfeel("javax.swing.plaf.metal.MetalLookAndFeel")
 sleep(3000);
 
 setlookandfeel(currentlnf)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>getinstalledlookandfeels</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>setlookandfeel</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="getinstalledlookandfeels">getinstalledlookandfeels</link>
+    </member>
+    <member>
+      <link linkend="setlookandfeel">setlookandfeel</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

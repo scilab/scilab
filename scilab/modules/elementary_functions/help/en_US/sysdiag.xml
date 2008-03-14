@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,35 +10,32 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sysdiag</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sysdiag"> block diagonal system connection</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>r=sysdiag(a1,a2,...,an)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sysdiag"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sysdiag</refname><refpurpose> block diagonal system connection</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>r=sysdiag(a1,a2,...,an)</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>
     Returns the block-diagonal system made with subsystems put in the main
     diagonal
-  </P>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="ai">
-        <SP>: subsystems (i.e. gains, or linear systems in state-space or transfer form)</SP>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-    <P>
-    Used in particular for system interconnections.</P>
-  </DESCRIPTION>
-  <SECTION label="Remark">
-    <P>
-    At most 17 arguments.</P>
-  </SECTION>
-  <EXAMPLE>
-<![CDATA[
+  </para>
+    <variablelist>
+      <varlistentry><term>ai</term><listitem>
+        <para>subsystems (i.e. gains, or linear systems in state-space or transfer form)</para>
+      </listitem></varlistentry>
+    </variablelist>
+    <para>
+    Used in particular for system interconnections.</para>
+  </refsection>
+  <refsection><title>Remark</title>
+    <para>
+    At most 17 arguments.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
  s=poly(0,'s')
  sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
  sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
@@ -46,17 +43,17 @@
  s=poly(0,'s')
  sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
  sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>brackets</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>insertion</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>feedback</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="brackets">brackets</link>
+    </member>
+    <member>
+      <link linkend="insertion">insertion</link>
+    </member>
+    <member>
+      <link linkend="feedback">feedback</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

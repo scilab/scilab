@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F Delebecque
@@ -10,66 +10,63 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lqg</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lqg"> LQG compensator</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[K]=lqg(P,r)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>P</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (augmented plant) in state-space form</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: 1x2 row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <VERB>P</VERB>)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>K</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: <VERB>syslin</VERB> list (controller)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>lqg</VERB>  computes the linear optimal LQG (H2) controller for the 
-    &quot;augmented&quot; plant <VERB>P=syslin('c',A,B,C,D)</VERB> (continuous time) or 
-    <VERB>P=syslin('d',A,B,C,D)</VERB> (discrete time).</P>
-    <P>
-    The function <VERB>lqg2stan</VERB> returns <VERB>P</VERB> and <VERB>r</VERB> given the
-    nominal plant, weighting terms and variances of noises.</P>
-    <P><VERB>K</VERB> is given by the following ABCD matrices: 
-    <VERB>[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</VERB> where <VERB>Kc=lqr(P12)</VERB>
-    is the controller gain and <VERB>Kf=lqe(P21)</VERB> is the filter gain.
-    See example in <VERB>lqg2stan</VERB>.</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>lqg2stan</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lqr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lqe</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>h_inf</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>obscont</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>F.D.  </AUTHOR>
-</MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lqg"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lqg</refname><refpurpose> LQG compensator</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[K]=lqg(P,r)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (augmented plant) in state-space form</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1x2 row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <literal>P</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>K</term>
+        <listitem>
+          <para>: <literal>syslin</literal> list (controller)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>lqg</literal>  computes the linear optimal LQG (H2) controller for the 
+    "augmented" plant <literal>P=syslin('c',A,B,C,D)</literal> (continuous time) or 
+    <literal>P=syslin('d',A,B,C,D)</literal> (discrete time).</para>
+    <para>
+    The function <literal>lqg2stan</literal> returns <literal>P</literal> and <literal>r</literal> given the
+    nominal plant, weighting terms and variances of noises.</para>
+    <para><literal>K</literal> is given by the following ABCD matrices: 
+    <literal>[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</literal> where <literal>Kc=lqr(P12)</literal>
+    is the controller gain and <literal>Kf=lqe(P21)</literal> is the filter gain.
+    See example in <literal>lqg2stan</literal>.</para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="lqg2stan">lqg2stan</link>
+    </member>
+    <member>
+      <link linkend="lqr">lqr</link>
+    </member>
+    <member>
+      <link linkend="lqe">lqe</link>
+    </member>
+    <member>
+      <link linkend="h_inf">h_inf</link>
+    </member>
+    <member>
+      <link linkend="obscont">obscont</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>F.D.  </para></refsection>
+</refentry>

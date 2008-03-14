@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,74 +10,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spzeros</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="spzeros">  sparse zero matrix</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>sp=spzeros(nrows,ncols)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>sp=spzeros(A)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>nrows</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer (number of rows)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>ncols</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer (number os columns)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>A</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: sparse matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>sp</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: sparse zero matrix</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>sp=spzeros(nrows,ncols)</VERB> returns a sparse zero matrix <VERB>sp</VERB> 
-    with <VERB>nrows</VERB> rows, <VERB>ncols</VERB> columns. 
-    (Equivalent to <VERB>sparse([],[],[nrow,ncols])</VERB>)</P>
-    <P><VERB>sp=spzeros(A)</VERB> returns a sparse zero matrix with same
-    dimensions as <VERB>A</VERB>. If <VERB>[m,n]=size(A)</VERB>, <VERB>spzeros(m,n)</VERB> and
-    <VERB>spzeros(A)</VERB> are equivalent. In particular <VERB>spzeros(3)</VERB> is not
-    equivalent to <VERB>spzeros(3,3)</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spzeros"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>spzeros</refname><refpurpose>  sparse zero matrix</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sp=spzeros(nrows,ncols)
+sp=spzeros(A)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>nrows</term>
+        <listitem>
+          <para>integer (number of rows)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ncols</term>
+        <listitem>
+          <para>integer (number os columns)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>sparse matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sp</term>
+        <listitem>
+          <para>sparse zero matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>sp=spzeros(nrows,ncols)</literal> returns a sparse zero matrix <literal>sp</literal> 
+    with <literal>nrows</literal> rows, <literal>ncols</literal> columns. 
+    (Equivalent to <literal>sparse([],[],[nrow,ncols])</literal>)</para>
+    <para><literal>sp=spzeros(A)</literal> returns a sparse zero matrix with same
+    dimensions as <literal>A</literal>. If <literal>[m,n]=size(A)</literal>, <literal>spzeros(m,n)</literal> and
+    <literal>spzeros(A)</literal> are equivalent. In particular <literal>spzeros(3)</literal> is not
+    equivalent to <literal>spzeros(3,3)</literal>.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 sum(spzeros(1000,1000))
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>sparse</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>full</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>eye</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>speye</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>spones</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="sparse">sparse</link>
+    </member>
+    <member>
+      <link linkend="full">full</link>
+    </member>
+    <member>
+      <link linkend="eye">eye</link>
+    </member>
+    <member>
+      <link linkend="speye">speye</link>
+    </member>
+    <member>
+      <link linkend="spones">spones</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

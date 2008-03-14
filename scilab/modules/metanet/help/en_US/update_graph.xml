@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,52 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="update_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>update_graph</refname><refpurpose> converts an old graph data structure to the current one.</refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>update_graph</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="update_graph"> converts an old graph data structure to the current one.</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>Gnew = update_graph(G)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>Gnew = update_graph(G)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+  <variablelist>
 
-  <PARAM>
-  <PARAM_INDENT>
+    <varlistentry>
+    <term>G</term>
+    <listitem>
+       <para>Scilab-4.x graph data structure.
+       </para>
+    </listitem>
+    </varlistentry>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>G</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : Scilab-4.x graph data structure.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Gnew</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : new graph data structure (see  <LINK>graph_data_structure</LINK>).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
+    <varlistentry>
+    <term>Gnew</term>
+    <listitem>
+       <para>new graph data structure (see  <link linkend="graph_data_structure">graph_data_structure</link>).
+       </para>
+    </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsection>
  
-  <DESCRIPTION>
-   <SP>Converts a Scilab-4.x graph data structure to the new one.</SP>
-   <P> In the future this function will be used to adapt graph data structures according to their versions.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+   <para>Converts a Scilab-4.x graph data structure to the new one.</para>
+   <para> In the future this function will be used to adapt graph data structures according to their versions.</para>
+  </refsection>
 
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>graph_data_structure</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graph-list</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="graph_data_structure">graph_data_structure</link> </member>
+    <member> <link linkend="graphlist">graph-list</link> </member>
+  </simplelist></refsection>
 
  
-</MAN>
+</refentry>

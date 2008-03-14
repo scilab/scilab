@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -11,79 +11,74 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="clf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>clf</refname><refpurpose>clear or reset the current graphic figure
+  (window) to default values</refpurpose></refnamediv>
+  
 
-  <TITLE>clf</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="clf">clear or reset the current graphic figure
-  (window) to default values</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>clf(&lt;opt_job_arg&gt;)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>clf(&lt;opt_job_arg&gt;)
+clf(h,&lt;opt_job_arg&gt;)
+clf(num,&lt;opt_job_arg&gt;)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>clf(h,&lt;opt_job_arg&gt;)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
 
-    <CALLING_SEQUENCE_ITEM>clf(num,&lt;opt_job_arg&gt;)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>a handle, the figure handle</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
+      <varlistentry>
+        <term>num</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a handle, the figure handle</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a number, the figure_id</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>num</PARAM_NAME>
+      <varlistentry>
+        <term>&lt;opt_job_arg&gt;</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a number, the figure_id</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>a string ( <literal>'clear' </literal>or <literal>'reset'</literal> )
+          specifying the job for <literal>clf</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>&lt;opt_job_arg&gt;</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para>The <literal>clf</literal> command is used to reset a figure to its default
+    values and/or to delete all its children.</para>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a string ( <VERB>'clear' </VERB>or <VERB>'reset'</VERB> )
-          specifying the job for <VERB>clf</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+    <para>If <literal>opt_job_arg</literal> string value is <literal>'clear'</literal> then
+    all children of the specified figure are deleted.</para>
 
-  <DESCRIPTION>
-    <SP>The <VERB>clf</VERB> command is used to reset a figure to its default
-    values and/or to delete all its children.</SP>
-
-    <P>If <VERB>opt_job_arg</VERB> string value is <VERB>'clear'</VERB> then
-    all children of the specified figure are deleted.</P>
-
-    <P>If <VERB>opt_job_arg</VERB> string value is <VERB>'reset'</VERB> then
+    <para>If <literal>opt_job_arg</literal> string value is <literal>'reset'</literal> then
     not only all children of the specified figure are deleted but the figure
     properties are reset to their default values using the default figure
-    model (see <LINK>gdf</LINK>).</P>
+    model (see <link linkend="gdf">gdf</link>).</para>
 
-    <P><VERB>clf(num)</VERB> clear or reset and clear the figure with
-    <VERB>figure_id==num</VERB>. Try not to specify an inexistant figure.</P>
+    <para><literal>clf(num)</literal> clear or reset and clear the figure with
+    <literal>figure_id==num</literal>. Try not to specify an inexistant figure.</para>
 
-    <P><VERB>clf(h)</VERB> clear or reset and clear the figure pointed to by
-    the handle <VERB>h</VERB>. Try not to specify an inexistant figure.</P>
+    <para><literal>clf(h)</literal> clear or reset and clear the figure pointed to by
+    the handle <literal>h</literal>. Try not to specify an inexistant figure.</para>
 
-    <P><VERB>clf()</VERB> clear or reset and clear the current existing
-    figure.</P>
-  </DESCRIPTION>
+    <para><literal>clf()</literal> clear or reset and clear the current existing
+    figure.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
    f4=scf(4);  //creates figure with id==4 and make it the current one
    f4.color_map = jetcolormap(64);
    f4.figure_size = [400, 200];
@@ -97,33 +92,33 @@
    clf(gcf(),'reset')
    plot3d1();  // color_map changed (back to the default one with 32 colors)
 
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>set</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="set">set</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>get</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="get">get</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gcf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gcf">gcf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gdf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gdf">gdf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>scf</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="scf">scf</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>graphics_entities</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <member>
+      <link linkend="graphics_entities">graphics_entities</link>
+    </member>
+  </simplelist></refsection>
 
-  <AUTHOR>S. Steer &amp; F.Leray INRIA</AUTHOR>
-</MAN>
+  <refsection><title>Authors</title><para>S. Steer &amp; F.Leray INRIA</para></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,55 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xnumb</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="xnumb"> draw numbers</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xnumb(x,y,nums,[box,angle])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x,y,nums</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vectors of same size.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>box</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: integer value.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>angle</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: optional vector of same size as <VERB>x</VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P><VERB>xnumb</VERB> draws the value of <VERB>nums(i)</VERB>
-    at position <VERB>x(i),y(i)</VERB> in the current scale.
-    If <VERB>box</VERB> is 1, a box is drawn around the numbers. 
-    If <VERB>angle</VERB> is given, it gives the direction for string drawing.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xnumb"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xnumb</refname><refpurpose> draw numbers</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xnumb(x,y,nums,[box,angle])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y,nums</term>
+        <listitem>
+          <para>vectors of same size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>box</term>
+        <listitem>
+          <para>integer value.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>angle</term>
+        <listitem>
+          <para>optional vector of same size as <literal>x</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para><literal>xnumb</literal> draws the value of <literal>nums(i)</literal>
+    at position <literal>x(i),y(i)</literal> in the current scale.
+    If <literal>box</literal> is 1, a box is drawn around the numbers. 
+    If <literal>angle</literal> is given, it gives the direction for string drawing.</para>
+  </refsection>
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
 plot2d([-100,500],[-100,600],[-1,-1],"022")
 x=0:100:200;
 xnumb(x,500*ones(x),[10,20,35],1)
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xstring</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="xstring">xstring</link>
+    </member>
+  </simplelist></refsection>
+  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+</refentry>
